@@ -26,7 +26,7 @@ const EnumsTable = ({ id, name, description, properties }) => (
           <TableRow key={name}>
             <TableColumn><code>{name}</code></TableColumn>
             <TableColumn><code>{`'${value}'`}</code></TableColumn>
-            <TableColumn className="prop-types__normal-column">{description}</TableColumn>
+            <TableColumn className="prop-types__cell">{description}</TableColumn>
           </TableRow>
         ))}
       </TableBody>

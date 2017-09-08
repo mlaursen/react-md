@@ -1,3 +1,111 @@
+✨
+🎉
+🐛
+## Changelog
+### New Components
+- 🎉 Created a [Layover](/components/helpers/layovers) to keep elements fixed within the viewport and a lot of other
+magic. Any component that uses the `Menu` behind the scenes can hook into this API.
+- 🎉 Created a [Badge](/components/badges) component for displaying notifications. [issues-220]
+- 🎉 Implemented [SVGIcon](/components/svg-icons)s and updated all components to natively support them. [issues-253]
+- 🎉 Created a [DropdownMenu](/components/menus#dropdown-menu-examples) when the `MenuButton` isn't flexible enough.
+- 🎉 Created [DropdownMenuColumn](/components/data-tables?tab=1#dropdown-menu-column-proptypes) and
+[MenuButtonColumn](/components/data-tables?tab=1#menu-button-column-proptypes) components to help with positioning menus
+within `DataTable`s. [issues-310]
+- 🎉 Created `TableFooter` component.
+- 🎉 Created a [Tooltipped](/components/tooltips#tooltipped-examples) component for easily adding tooltips to a child component.
+([@gamtic] - [pull-477] and [pull-473])
+
+
+### Component Updates
+- 🐛 `Autocomplete`s will now correctly trigger the `onBlur` event. [issues-266]
+- ✨ `Autocomplete`s can now send the label instead of the value when autocompleted.
+[autocompleteWithLabel](/components/autocompletes?tab=1#autocomplete-proptypes-autocomplete-with-label)
+- ✨ `Autocomplete`s can also support nodes  for the suggestion's label. This allows for some cool
+[autocomplete styling](/components/autocompletes#toolbar-search).
+- ✨ `Autocomplete`s have additional props for styling the inline suggestion.
+- ✨ `Autocomplete`s have additional accessibility support when there are paginated results. Check out the
+[Paginated/Lazy Loading Results](/components/autocompletes#paginated-lazy-loading-results) example for some more details.
+- ✨ `Button`s no longer prefer the `label` prop. It is preferred to render any icons or text as `children` in the `Button` instead. Look at the
+newer [Button examples](/components/buttons). [issues-254]
+- 🎉 `Button`s now have a consistent size between enabled and disabled states. [issues-295]
+- ✨ `Button`s can now have a consistent size across media sizes.
+  - [md-btn-text-height](/components/buttons?tab=2#variable-md-btn-text-height)
+  - [md-btn-text-font-size](/components/buttons?tab=2#variable-md-btn-font-size)
+  - [md-btn-floating-margin](/components/buttons?tab=2#variable-md-btn-floating-margin)
+- ✨ `Button`s have more theming abilities for text and background. [issues-296]
+- 🐛 `CardTitle` updated line wrapping logic for large titles. [issues-199]
+- ✨ `Collapse` can now disable the animation. [issues-219]
+- ✨ `DataTable`s have more control over the "plain" styles and injecting checkboxes into each row. [issues-195#issuecomment-268865697]
+- 🎉 `DataTable`s have an option to have fixed headers and footers. I'd still recommend using something like [react-virtualised](https://github.com/bvaughn/react-virtualized)
+instead. [issues-197] and [pull-318]
+- ✨ The `DataTable`'s `TableRow` provides the native `rowIndex` so it is no longer off-by-one. [issues-243]
+- ✨ `DataTable`s now support indeterminate checkboxes. [issues-256]
+- 🎉 `DataTable` performance boost by no longer attempting to grow and adjust columns. [issues-252]
+- 🎉 `DataTable`s now support displaying only a single row of `EditDialogColumn`. [issues-394]
+- 🎉 `DataTable`s can now correctly show menus and buttons. [Check out the examples](/components/data-tables#tables-with-menus)
+- 🐛 `DataTable`s added more accessibility for the built-in checkboxes.
+  - [checkboxHeaderLabel](/components/data-tables?tab=1#data-table-proptypes-checkbox-header-label)
+  - [checkboxLabelTemplate](/components/data-tables?tab=1#data-table-proptypes-checkbox-label-template)
+- ✨ `DataTable`s support `SVGIcon`s, so the `checkedIconChildren`, `checkedIconClassName`, `uncheckedIconChildren`, and `uncheckedIconClassName` props have been
+deprecated in favor of `checkedIcon` and `uncheckedIcon`.
+- ✨ `EditDialogColumn`s now support a mode to not automatically [open when tab-focused](/components/data-tables#edit-dialog-examples).
+- 🐛 `TablePagination`s now have a bit better support for smaller devices. [issues-489]
+- ✨ `Dialog`s have exposed both a `DialogContainer` and `Dialog` component.
+- 🐛 `Drawer`s deprecated the `closeOnNavItemClick` prop since it was a duplicate of `autoclose`. [issues-207]
+- 🎉 `ExpansionPanel` exposed more props to control the footer. [issues-306]
+- 🐛 `ExpansionPanel` now has better support for displaying smaller devices. [issues-479]
+- 🎉 `FileInput`s (and `FileUpload`s) have been updated to support selecting the same file multiple times in a row.
+- 🎉 `FontIcon`s and `SVGIcon`s support the dense spec. [issues-217]
+- ✨ `Grid`s now support stacked directions.
+- ✨ `Ink` is now disable-able on every component or at an application level. [Disabling ink example](/components/inks#disabling-ink)
+- 🐛 `Ink`s **no longer pulse** by default and **expand the entire container width**.
+- ✨ `List`s can now be displayed horizontally with the `inline` prop.
+- ✨ `ListItem` can now be rendered as any element so it doesn't need to be a direct descendant of `List` anymore. [issues-213]
+- ✨ `ListItem` can now display the expander icon to the left of the text instead of only to the right. [issues-264]
+- ✨ `List`s and `ListItem`s can now have consistent sizing across all media sizes.
+  - [md-list-padding](/components/lists?tab=2#variable-md-list-padding)
+  - [md-list-primary-font-size](/components/lists?tab=2#variable-md-list-primary-font-size)
+  - [md-list-secondary-font-size](/components/lists?tab=2#variable-md-list-secondary-font-size)
+  - [md-list-height](/components/lists?tab=2#variable-md-list-height)
+  - [md-list-avatar-height](/components/lists?tab=2#variable-md-list-avatar-height)
+  - [md-list-two-lines-height](/components/lists?tab=2#variable-md-list-two-lines-height)
+  - [md-list-three-lines-height](/components/lists?tab=2#variable-md-list-three-lines-height)
+  - [md-list-three-lines-addon-margin-top](/components/lists?tab=2#variable-md-list-three-lines-addon-margin-top)
+- ✨ `Media` added more defaults for the embedded selectors.
+- 🎉 `Menu`s can now automatically position themselves within the viewport (this is disabled by default for backwards compatibility)
+- 🐛 `Menu`s can now correctly render only one `ListItem`. [issues-259]
+- 🎉 `Menu`s can now correctly display context menus and cascading menus. Check out the [Google Docs Clone](/components/menus#google-docs-clone)
+example for more information.
+- ✨ `Menu`s can have consitent max-width/max-height across all media sizes.
+- 🐛 `NavigationDrawer` small bugfix for IE11 displaying weird.
+- 🎉 The `Portal` component is no longer used by default since it causes many issues. [issues-230]
+- ✨ `DatePicker` now supports setting the correct start of day according to the locales prop. [issues-326]
+- ✨ `DatePicker` now supports disabling the weekends from the calendar. ([@snkhubcom] - [pull-485])
+- ✨ `TimePicker` now supports a `hoverMode`. ([@JonathanIlk] - [pull-231])
+- ✨ `TabsContainer` exposed a new prop to control the `SwipeableViews` component. [issues-203]
+- ✨ `Toolbar` styles now support a `padding` version of `.md-toolbar-relative`. [issues-225]
+- ✨ `Toolbar` styles now support keeping consistent sizes across all media sizes.
+  - [md-toolbar-height](/components/toolbars?tab=2#variable-md-toolbar-height)
+  - [md-toolbar-prominent-height](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
+  - [md-toolbar-title-keyline](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
+  - [md-toolbar-btn-keyline](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
+  - [md-toolbar-select-field-margin](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
+
+#### General Changes
+- ✨ All form controls support getting the value from refs. [7e6585](#commit-7e6585)
+- 🎉 All Sass variables are `!default` for easier customization. [226](#issues-226)
+- 🎉 Automatic `id` generation is now `kebab-cased` instead of `camelCased` by default. [279](#issues-279)
+- 🎉 Stopped using `delete` for unused prop types. [212](#issues-212)
+- ✨ `line-height` is now only applied to the `body` and `p` tags by default. [242](#issues-242)
+- 🐛 Fixed a bug with invalid checksums from server side render components that use the `Portal`. [236](#issues-236)
+- 🎉 Created a global error color class name instead of limiting it only to text fields. [251](#issues-251)
+- 🐛 Changed the default portrait and landscape media queries to use min/max aspect ratio instead of orientation. See the
+[SassDoc](/customization/media-queries?tab=1#variable-md-portrait-media) for more information.
+- 🐛 Fixed the misspelling of "deceleration".
+- 🐛 Applied a new `md-html-min-width` to the `<html>` to fix weird resizing issues when `Dialog`s appear.
+- 🐛 Changed all the `outline: none` to `outline-style: none` so that the outlines can be added back easily by just applying
+`outline-style: auto`.
+
 ## Upgrading to 1.1.0
 A lot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
 of components that still used `isOpen`, `defaultOpen`, or `onSOMETHINGToggle` (`onVisibilityToggle`). They have now been renamed to `visible`, `defaultVisible`,

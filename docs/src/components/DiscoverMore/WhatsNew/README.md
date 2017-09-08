@@ -3,6 +3,10 @@
 This is one of the other exciting things for me. With the release of 1.1.0, the documentation website
 has also been rewritten from the ground up for better SSR, response time, and a first pass at offline
 mode. List of new features/functionality:
+- Added a page about [how to test](/discover-more/testing) along with react-md.
+- Added routing examples for the [BottomNavigation](/discover-more/routing-examples/bottom-navigations),
+[Drawer](/discover-more/routing-examples/drawers), and [NavigationDrawer](/discover-more/routing-examples/navigation-drawers)
+components that show how you can work in with `react-router`'s `Link` component.
 - It is now possible to link directly to an example, a component's prop type section, and a specific
 component's prop. This is probably more for me than anything else.
   - Link to Example - [Menu Completion View](/components/autocompletes#menu-completion-view)
@@ -15,11 +19,16 @@ list.
 
 
 ### v1.1.0 Released!
+This release **added Typescript support**. It is not completely perfect yet, but it seems to be in a decent
+implementation so far. Many thanks to the people who have helped me learn the basics for Typescript definitions
+and contributing to fix the missing definitions. ([@peteboothroyd] and [@mctep])
+
 Please see the [upgrade guide](/discover-more/upgrade-guides/v1.1.0) for upgrade help and a full list
 of new features and bugfixes. A bit too much went into this *minor* release, and I am planning on doing
 smaller releases from now on. This one was a bit of a disaster to develop.
 
-#### Immediate Release Warnings
+### Immediate Release Warnings
+#### Dialogs
 Just in case you don't read the upgrade guide, your application **will break** if you were using the
 UMD build for dialogs.
 
@@ -33,8 +42,15 @@ import { DialogContainer as Dialog } from 'react-md';
 const { DialogContainer: Dialog } = window.ReactMD; // UMD
 ```
 
+#### Data Tables
 If you were using the callbacks for when a row or checkbox was clicked, the number will probably be off now. Please see
 the [issue for more details](#issues-243).
+
+In addition, the styles for plain data tables have been simplified which might cause some display issues. [2cc40c](#commit-2cc40c)
+
+#### Menus
+If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following: 
+`.md-text-field-container,button,*[role="button"],*[role="listbox"]` otherwise there will be an error.
 
 ## August 2017
 ### v1.0.19 Released
