@@ -5,6 +5,12 @@
     white-space: normal;
   }
 
+  .md-data-table--plain &__cell {
+    padding-bottom: $md-default-padding;
+    padding-top: $md-default-padding;
+    vertical-align: top;
+  }
+
   .md-data-table {
     pre,
     .token.operator {
