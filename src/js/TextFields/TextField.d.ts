@@ -38,6 +38,7 @@ export interface SharedTextFieldProps {
   step?: number;
   pattern?: string;
   resize?: { min: number, max: number, disableShrink?: boolean };
+  tabIndex?: number;
 
   /**
    * @deprecated
