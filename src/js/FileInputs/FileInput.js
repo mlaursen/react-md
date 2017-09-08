@@ -5,6 +5,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import { TAB, SPACE, ENTER } from '../constants/keyCodes';
+import getField from '../utils/getField';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import getBtnStyles from '../Buttons/getBtnStyles';
 import FontIcon from '../FontIcons/FontIcon';
@@ -80,6 +81,12 @@ export default class FileInput extends PureComponent {
     accept: PropTypes.string,
 
     /**
+     * Boolean if the same file is allowed to be uploaded multiple times. This will basically make the
+     * `value` of the file input always blank.
+     */
+    allowDuplicates: PropTypes.bool,
+
+    /**
      * Boolean if multiple files will be accepted.
      */
     multiple: PropTypes.bool,
@@ -117,6 +124,14 @@ export default class FileInput extends PureComponent {
      * ```
      */
     onChange: PropTypes.func,
+
+    /**
+     * An optional value to apply to the `FileInput`. This is usually not needed and the
+     * `allowDuplicates` is what you are probably looking for instead.
+     *
+     * @see {@link #allowDuplicates}
+     */
+    value: PropTypes.string,
 
     /**
      * Boolean if the `FileInput` is currently disabled.
@@ -170,13 +185,18 @@ export default class FileInput extends PureComponent {
   static defaultProps = {
     label: 'Select a file',
     icon: <FontIcon>file_upload</FontIcon>,
+    allowDuplicates: false,
   };
 
-  state = { hover: false, pressed: false };
+  state = { hover: false, pressed: false, value: '' };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
       this.setState({ hover: false });
+    }
+
+    if (nextProps.allowDuplicates && this.state.value) {
+      this.setState({ value: '' });
     }
   }
 
@@ -204,16 +224,18 @@ export default class FileInput extends PureComponent {
   }
 
   _handleChange = (e) => {
-    const { multiple, onChange } = this.props;
-    if (!onChange) {
-      return;
+    const { multiple, onChange, allowDuplicates } = this.props;
+    const { files, value } = e.target;
+    if (onChange) {
+      if (!multiple) {
+        onChange(files[0] || null, e);
+      } else {
+        onChange(Array.prototype.slice.call(files), e);
+      }
     }
 
-    const { files } = e.target;
-    if (!multiple) {
-      onChange(files[0] || null, e);
-    } else {
-      onChange(Array.prototype.slice.call(files), e);
+    if (!allowDuplicates) {
+      this.setState({ value });
     }
   };
 
@@ -336,6 +358,8 @@ export default class FileInput extends PureComponent {
       iconClassName,
       /* eslint-disable no-unused-vars */
       icon: propIcon,
+      value: propValue,
+      allowDuplicates,
       onChange,
       onKeyUp,
       onKeyDown,
@@ -348,6 +372,7 @@ export default class FileInput extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+    const value = getField(this.props, this.state, 'value');
     let { icon } = this.props;
     if (iconClassName || iconChildren) {
       icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
@@ -400,6 +425,8 @@ export default class FileInput extends PureComponent {
           aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}
+          value={value}
+          tabIndex={-1}
         />
       </div>
     );

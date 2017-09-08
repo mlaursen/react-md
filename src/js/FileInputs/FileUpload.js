@@ -194,6 +194,12 @@ export default class FileUpload extends PureComponent {
     onProgress: PropTypes.func,
 
     /**
+     * Boolean if the same file is allowed to be uploaded multiple times. This will basically make the
+     * `value` of the file input always blank.
+     */
+    allowDuplicates: PropTypes.bool,
+
+    /**
      * An optional function to call when a file selects or unselects a file.
      * This will be called before any local uploading occurs.
      *
@@ -202,6 +208,14 @@ export default class FileUpload extends PureComponent {
      * ```
      */
     onChange: PropTypes.func,
+
+    /**
+     * An optional value to apply to the `FileInput`. This is usually not needed and the
+     * `allowDuplicates` is what you are probably looking for instead.
+     *
+     * @see {@link #allowDuplicates}
+     */
+    value: PropTypes.string,
   };
 
   state = {};
@@ -353,8 +367,6 @@ export default class FileUpload extends PureComponent {
       ...props
     } = this.props;
 
-    return (
-      <FileInput {...props} onChange={this._handleUpload} />
-    );
+    return <FileInput {...props} onChange={this._handleUpload} />;
   }
 }

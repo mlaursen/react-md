@@ -17,6 +17,7 @@ export interface FileInputProps extends Props {
   onChange: (files: File | Array<File> | null) => void;
   disabled?: boolean;
   swapTheming?: boolean;
+  allowDuplicates?: boolean;
 
   /**
    * @deprecated

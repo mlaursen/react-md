@@ -38,7 +38,9 @@ exports[`FileInput should apply styles correctly 1`] = `
     aria-hidden="true"
     class="md-file-input"
     id="test-input"
+    tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;
@@ -82,7 +84,9 @@ exports[`FileInput should render the form control props correctly 1`] = `
     class="md-file-input"
     id="file-input-1"
     name="images"
+    tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;
