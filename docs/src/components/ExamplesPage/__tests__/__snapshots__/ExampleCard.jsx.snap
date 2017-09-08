@@ -10,48 +10,31 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
   tabIndex={-1}
 >
   <div
-    className="md-card-title md-card-title--primary"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="md-card-title md-card-title--primary quick-link"
     style={undefined}
   >
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
-      Table Example
-    </h2>
-    <textarea
-      aria-hidden={true}
-      className="examples-page__example-link"
-      id="table-example-copy-area"
-      readOnly={true}
-      tabIndex={-1}
-      value="about:blank#table-example"
-    />
-    <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
-      disabled={undefined}
-      href={undefined}
-      id="table-example-copy-btn"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      type="button"
-    >
-      <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+      <div
+        className="quick-link__container"
       >
-        link
-      </i>
-    </button>
+        Table Example
+        <a
+          className="quick-link__link quick-link__link--title"
+          href="#table-example"
+          onClick={[Function]}
+        >
+          <i
+            className="md-icon material-icons"
+            style={undefined}
+          >
+            link
+          </i>
+        </a>
+      </div>
+    </h2>
     <button
       className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
@@ -122,48 +105,31 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
   tabIndex={-1}
 >
   <div
-    className="md-card-title md-card-title--primary"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="md-card-title md-card-title--primary quick-link"
     style={undefined}
   >
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
-      Table Example
-    </h2>
-    <textarea
-      aria-hidden={true}
-      className="examples-page__example-link"
-      id="table-example-copy-area"
-      readOnly={true}
-      tabIndex={-1}
-      value="about:blank#table-example"
-    />
-    <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
-      disabled={undefined}
-      href={undefined}
-      id="table-example-copy-btn"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      type="button"
-    >
-      <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+      <div
+        className="quick-link__container"
       >
-        link
-      </i>
-    </button>
+        Table Example
+        <a
+          className="quick-link__link quick-link__link--title"
+          href="#table-example"
+          onClick={[Function]}
+        >
+          <i
+            className="md-icon material-icons"
+            style={undefined}
+          >
+            link
+          </i>
+        </a>
+      </div>
+    </h2>
     <button
       className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
@@ -247,48 +213,31 @@ exports[`ExampleCard should display correctly with a description 1`] = `
   tabIndex={-1}
 >
   <div
-    className="md-card-title md-card-title--primary"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="md-card-title md-card-title--primary quick-link"
     style={undefined}
   >
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
-      Second Example
-    </h2>
-    <textarea
-      aria-hidden={true}
-      className="examples-page__example-link"
-      id="second-example-copy-area"
-      readOnly={true}
-      tabIndex={-1}
-      value="about:blank#second-example"
-    />
-    <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
-      disabled={undefined}
-      href={undefined}
-      id="second-example-copy-btn"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      type="button"
-    >
-      <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+      <div
+        className="quick-link__container"
       >
-        link
-      </i>
-    </button>
+        Second Example
+        <a
+          className="quick-link__link quick-link__link--title"
+          href="#second-example"
+          onClick={[Function]}
+        >
+          <i
+            className="md-icon material-icons"
+            style={undefined}
+          >
+            link
+          </i>
+        </a>
+      </div>
+    </h2>
     <button
       className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
@@ -355,48 +304,31 @@ exports[`ExampleCard should display correctly without a description 1`] = `
   tabIndex={-1}
 >
   <div
-    className="md-card-title md-card-title--primary"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="md-card-title md-card-title--primary quick-link"
     style={undefined}
   >
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
-      First Example
-    </h2>
-    <textarea
-      aria-hidden={true}
-      className="examples-page__example-link"
-      id="first-example-copy-area"
-      readOnly={true}
-      tabIndex={-1}
-      value="about:blank#first-example"
-    />
-    <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
-      disabled={undefined}
-      href={undefined}
-      id="first-example-copy-btn"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      type="button"
-    >
-      <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+      <div
+        className="quick-link__container"
       >
-        link
-      </i>
-    </button>
+        First Example
+        <a
+          className="quick-link__link quick-link__link--title"
+          href="#first-example"
+          onClick={[Function]}
+        >
+          <i
+            className="md-icon material-icons"
+            style={undefined}
+          >
+            link
+          </i>
+        </a>
+      </div>
+    </h2>
     <button
       className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}

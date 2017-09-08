@@ -94,7 +94,7 @@ export class PureMarkdown extends PureComponent {
       if (h.id) {
         const link = document.createElement('a');
         link.href = `#${h.id}`;
-        link.className = 'markdown-header__link';
+        link.className = 'quick-link__link quick-link__link--markdown';
 
         const i = document.createElement('i');
         i.className = 'md-icon material-icons';
@@ -108,7 +108,8 @@ export class PureMarkdown extends PureComponent {
           history.push(href);
         };
         h.appendChild(link);
-        h.classList.add('markdown-header');
+        h.classList.add('quick-link');
+        h.classList.add('quick-link__container');
       }
     }
   };

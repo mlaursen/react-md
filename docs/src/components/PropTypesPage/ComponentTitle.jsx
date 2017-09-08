@@ -4,6 +4,8 @@ import Button from 'react-md/lib/Buttons/Button';
 import TextField from 'react-md/lib/TextFields';
 import TableCardHeader from 'react-md/lib/DataTables/TableCardHeader';
 
+import { QuickLinkTitle } from 'components/QuickLink';
+
 export default class ComponentTitle extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -52,7 +54,8 @@ export default class ComponentTitle extends PureComponent {
     }
     return (
       <TableCardHeader
-        title={component}
+        className="quick-link"
+        title={<QuickLinkTitle id={`${id}-proptypes`} title={component} desktop={!mobile} />}
         titleId={`${id}-proptypes`}
         actions={actions}
         visible={visible}

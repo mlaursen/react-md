@@ -5,15 +5,11 @@ import CardText from 'react-md/lib/Cards/CardText';
 
 import { M_DASH } from 'constants/unicode';
 import Markdown from 'components/Markdown';
+import NativeLink from 'components/NativeLink';
 import ExpandableSource from 'components/ExpandableSource';
 import sassdocShape from 'propTypes/sassdocShape';
 import ParameterTable from './ParameterTable';
 import ReferenceList from './ReferenceList';
-
-function preventDefault(e) {
-  e.preventDefault();
-  window.location = e.target.getAttribute('href');
-}
 
 const SassDoc = ({
   sassdoc: {
@@ -111,7 +107,7 @@ const SassDoc = ({
 
   return (
     <div className="sassdoc" id={`${type}-${name}`} tabIndex={-1}>
-      <a href={`#${type}-${name}`} className="md-display-1 link" onClick={preventDefault}>{name}</a>
+      <NativeLink href={`#${type}-${name}`} className="md-display-1 link">{name}</NativeLink>
       <ExpandableSource code={code} oneLineCode={oneLineCode} />
       {children}
     </div>
