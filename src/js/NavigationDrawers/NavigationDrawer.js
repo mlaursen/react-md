@@ -49,7 +49,7 @@ function toMiniListItem(item, index) {
  * listed below will be provided to the `Drawer` component. So if there are props on the `Drawer`
  * that are not listed here, they will be passed along.
  *
- * The main benfit of using this component is that it will manage adding respective offset
+ * The main benefit of using this component is that it will manage adding respective offset
  * classes automatically for you to the content and the drawer. It will also manage using
  * a mini drawer type for you.
  */
@@ -278,7 +278,7 @@ export default class NavigationDrawer extends PureComponent {
 
     /**
      * Any additional children to display in the drawer's header `Toolbar`. If the `drawerHeader` prop is defined,
-     * this is invalud.
+     * this is invalid.
      */
     drawerHeaderChildren: invalidIf(PropTypes.node, 'drawerHeader'),
 
@@ -316,7 +316,7 @@ export default class NavigationDrawer extends PureComponent {
     ]).isRequired,
 
     /**
-     * The drawer tye to use for tablets.
+     * The drawer type to use for tablets.
      */
     tabletDrawerType: PropTypes.oneOf([
       DrawerTypes.FULL_HEIGHT,

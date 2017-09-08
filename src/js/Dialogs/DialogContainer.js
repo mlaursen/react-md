@@ -44,8 +44,8 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog id="accessibleExample" visible aria-describedby="accessibleContent">
-     *   <p id="accessibleContent">This is some content that describes the dialog.</p>
+     * <Dialog id="accessible-example" visible aria-describedby="accessible-content">
+     *   <p id="accessible-content">This is some content that describes the dialog.</p>
      * </Dialog>
      * ```
      */
@@ -61,8 +61,8 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog visible id="accessibleExample" aria-labelledby="accessibleDialogLabel">
-     *   <h2 id="accessibleDialogLabel">Some Accessible Dialog</h2>
+     * <Dialog visible id="accessible-example" aria-labelledby="accessible-dialog-label">
+     *   <h2 id="accessible-dialog-label">Some Accessible Dialog</h2>
      * </Dialog>
      * ```
      */
@@ -78,7 +78,7 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog visible id="accessibleExample" aria-label="Some Accessible Dialog">
+     * <Dialog visible id="accessible-example" aria-label="Some Accessible Dialog">
      *   <p>Lorem Ipsum</p>
      * </Dialog>
      * ```
@@ -150,7 +150,7 @@ export default class DialogContainer extends PureComponent {
     ]),
 
     /**
-     * Bolean if the `Dialog` is current visible.
+     * Boolean if the `Dialog` is current visible.
      */
     visible: PropTypes.bool.isRequired,
 
@@ -242,7 +242,7 @@ export default class DialogContainer extends PureComponent {
     transitionLeaveTimeout: PropTypes.number.isRequired,
 
     /**
-     * Boolean if the dialog should be closeable by pressing the escape key.
+     * Boolean if the dialog should be closable by pressing the escape key.
      * This will always be considered `false` of the `modal` props is `true`.
      */
     closeOnEsc: PropTypes.bool,

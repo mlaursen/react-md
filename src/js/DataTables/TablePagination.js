@@ -49,7 +49,7 @@ export default class TablePagination extends PureComponent {
     rowsPerPage: PropTypes.number,
 
     /**
-     * The current page for the pagination. This will make the comonent controlled, so the only way to get pagination
+     * The current page for the pagination. This will make the component controlled, so the only way to get pagination
      * is making sure you are updating this prop after the `onPagination` callback is called.
      *
      * Pages start from 1 instead of 0.

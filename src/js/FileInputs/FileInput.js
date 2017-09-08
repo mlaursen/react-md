@@ -58,7 +58,7 @@ export default class FileInput extends PureComponent {
     flat: PropTypes.bool,
 
     /**
-     * Boolean if the themeing should be swapped from text to background or vice-versa.
+     * Boolean if the theming should be swapped from text to background or vice-versa.
      *
      * @see {@link Buttons/Button#swapTheming}
      */
@@ -91,7 +91,7 @@ export default class FileInput extends PureComponent {
     label: PropTypes.node.isRequired,
 
     /**
-     * Boolean if the icons hould appear before the label.
+     * Boolean if the icons should appear before the label.
      */
     iconBefore: PropTypes.bool,
 
@@ -124,42 +124,42 @@ export default class FileInput extends PureComponent {
     disabled: PropTypes.bool,
 
     /**
-     * An optional function to call when they keyup event is triggerred on the file input's label.
+     * An optional function to call when they keyup event is triggered on the file input's label.
      */
     onKeyUp: PropTypes.func,
 
     /**
-     * An optional function to call when they keydown event is triggerred on the file input's label.
+     * An optional function to call when they keydown event is triggered on the file input's label.
      */
     onKeyDown: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseup event is triggerred on the file input's label.
+     * An optional function to call when they mouseup event is triggered on the file input's label.
      */
     onMouseUp: PropTypes.func,
 
     /**
-     * An optional function to call when they mousedown event is triggerred on the file input's label.
+     * An optional function to call when they mousedown event is triggered on the file input's label.
      */
     onMouseDown: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseover event is triggerred on the file input's label.
+     * An optional function to call when they mouseover event is triggered on the file input's label.
      */
     onMouseOver: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseleave event is triggerred on the file input's label.
+     * An optional function to call when they mouseleave event is triggered on the file input's label.
      */
     onMouseLeave: PropTypes.func,
 
     /**
-     * An optional function to call when they touchend event is triggerred on the file input's label.
+     * An optional function to call when they touchend event is triggered on the file input's label.
      */
     onTouchEnd: PropTypes.func,
 
     /**
-     * An optional function to call when they touchstart event is triggerred on the file input's label.
+     * An optional function to call when they touchstart event is triggered on the file input's label.
      */
     onTouchStart: PropTypes.func,
 

@@ -90,7 +90,7 @@ $md-btn-lr-padding: 16px !default;
 /// @type Number
 $md-btn-min-width: 88px !default;
 
-/// The the default size for a floating button (FAB).
+/// The default size for a floating button (FAB).
 /// @type Number
 $md-btn-floating-size: 56px !default;
 
@@ -98,7 +98,7 @@ $md-btn-floating-size: 56px !default;
 /// @type Number
 $md-btn-floating-dense-size: 48px !default;
 
-/// The the mini size for a floating button.
+/// The mini size for a floating button.
 /// @type Number
 $md-btn-floating-mini-size: 40px !default;
 
@@ -158,7 +158,7 @@ $md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2) !defa
 /// @type Color
 $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !default;
 
-/// An optional height to apply to a text button for all screen sizes. This will take precidence over
+/// An optional height to apply to a text button for all screen sizes. This will take precedence over
 /// the mobile/desktop variables.
 ///
 /// A side effect of using this variable is that the buttons will *not* be updated on mobile devices
@@ -169,7 +169,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 /// @type Number
 $md-btn-text-height: null !default;
 
-/// An optional font size to apply to a text button for all screen sies. This will take precidence
+/// An optional font size to apply to a text button for all screen sizes. This will take precedence
 /// over the mobile/desktop variables.
 ///
 /// @see md-btn-mobile-font-size
@@ -178,7 +178,7 @@ $md-btn-text-height: null !default;
 $md-btn-text-font-size: null !default;
 
 /// An optional margin to get applied to floating buttons that are fixed on a page for all screen sizes.
-/// This will take precidence over the mobile/desktop variables.
+/// This will take precedence over the mobile/desktop variables.
 ///
 /// @see md-btn-mobile-floating-margin
 /// @see md-btn-desktop-floating-margin
@@ -390,7 +390,7 @@ $md-btn-floating-margin: null !default;
   }
 }
 
-/// Creates the styes for buttons on mobile devices. This realy just sets the
+/// Creates the styles for buttons on mobile devices. This really just sets the
 /// font size and adds some styles to make the button be accessible for touch.
 ///
 /// @example scss - Example Usage SCSS
@@ -451,7 +451,7 @@ $md-btn-floating-margin: null !default;
   }
 }
 
-/// Creates the styes for buttons on desktop screens.
+/// Creates the styles for buttons on desktop screens.
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {

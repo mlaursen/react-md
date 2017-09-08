@@ -55,13 +55,13 @@ export default class SVGIcon extends PureComponent {
 
     /**
      * This prop is the title attribute to provide to the `<svg>` element itself. This should be used when you
-     * are using a spritesheet that has defined `<title>` with each svg symbol.
+     * are using a spritesheet that has defined `<title>` with each SVG symbol.
      */
     titleAttr: PropTypes.string,
 
     /**
      * An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the `title`
-     * and `desc` props as this is used to create ids for those two props. This is super benficial to screen readers.
+     * and `desc` props as this is used to create ids for those two props. This is super beneficial to screen readers.
      *
      * When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If
      * this is omitted and the `use` prop is defined, it will take everything after the `#` sign and append `-title` and
@@ -89,13 +89,13 @@ export default class SVGIcon extends PureComponent {
     desc: PropTypes.string,
 
     /**
-     * This should be a link to a part of an svg spritemap. So normally one of te following:
+     * This should be a link to a part of an SVG spritemap. So normally one of the following:
      * - `'#some-custom-svg'`
      * - `'/images/spritemap.svg#some-custom-svg'`
      *
      * This prop **should not** be used with the `children` prop as only one will be rendered.
      *
-     * > NOTE: IE **does not support** external svgs. Please see the demo for more details.
+     * > NOTE: IE **does not support** external SVGs. Please see the demo for more details.
      */
     use: PropTypes.string,
 
@@ -115,10 +115,10 @@ export default class SVGIcon extends PureComponent {
     focusable: PropTypes.bool,
 
     /**
-     * An optional size to apply to the svg. This can be used to set both the
-     * `height` and `width` simultaniously. This will be provided as inline styles
+     * An optional size to apply to the SVG. This can be used to set both the
+     * `height` and `width` simultaneously. This will be provided as inline styles
      * since the `height` and `width` are normally controlled by CSS, and CSS has
-     * higher precidence than the `height`/`width` attributes.
+     * higher precedence than the `height`/`width` attributes.
      */
     size: PropTypes.number,
 
@@ -145,21 +145,21 @@ export default class SVGIcon extends PureComponent {
      * fit a particular container element.
      *
      * The value of the viewBox attribute is a list of four numbers min-x, min-y, width and
-     * height, separated by whitespace and/or a comma, which specify a rectangle in user
+     * height, separated by white space and/or a comma, which specify a rectangle in user
      * space which should be mapped to the bounds of the viewport established by the given
      * element, taking into account attribute preserveAspectRatio.
      *
      * Negative values for width or height are not permitted and a value of zero disables
-     * rendering of the element.An optional viewbox for the svg.
+     * rendering of the element.An optional viewbox for the SVG.
      *
      * For example, if the SVG element is 250 (width) by 200 (height) and you provide
-     * `viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corenr
+     * `viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corner
      * (0, 0) to the bottom right (25, 20) and each unit will be worth `10px`.
      */
     viewBox: PropTypes.string,
 
     /**
-     * An optional xmlns string to provide. The `use` prop will not work wihtout this prop
+     * An optional xmlns string to provide. The `use` prop will not work without this prop
      * defined.
      */
     xmlns: PropTypes.string,

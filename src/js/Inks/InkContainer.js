@@ -15,7 +15,7 @@ import Ink from './Ink';
 
 
 /**
- * The `InkContainer` is usesd for holding the list of inks that get created by touch,
+ * The `InkContainer` is used for holding the list of inks that get created by touch,
  * click, or keyboard focus.
  *
  * If the container element has the `type="submit"` attribute, the ink will also be

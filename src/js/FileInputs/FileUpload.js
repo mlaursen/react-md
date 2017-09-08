@@ -24,8 +24,8 @@ import omit from '../utils/omit';
  * ```
  *
  * An upload can be aborted by calling the `abort(file || fileName)` function. If
- * the file or fileName are ommitted, it will *attempt* to abort the current
- * file that is uploading. Unreliable for multiselect.
+ * the file or fileName are omitted, it will *attempt* to abort the current
+ * file that is uploading. Unreliable for multi-select.
  *
  * ```js
  * <FileUpload ref="upload" />
@@ -162,7 +162,7 @@ export default class FileUpload extends PureComponent {
      * ```
      *
      * The load result will either be:
-     * - a data url
+     * - a data URL
      * - a plain text string
      * - an array buffer
      *

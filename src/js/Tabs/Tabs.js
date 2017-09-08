@@ -409,7 +409,7 @@ export default class Tabs extends PureComponent {
       alignToKeyline,
       mobile,
 
-      // Depreacted
+      // Deprecated
       defaultMedia,
       desktopMinWidth,
       /* eslint-enable no-unused-vars */

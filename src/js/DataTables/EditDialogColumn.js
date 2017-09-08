@@ -254,7 +254,7 @@ export default class EditDialogColumn extends PureComponent {
 
     /**
      * An optional function to call when the "Cancel" button has been clicked in large edit dialogs.
-     * The callback will include the text field's value before any edits occured and the click event.
+     * The callback will include the text field's value before any edits occurred and the click event.
      *
      * ```js
      * onCancelClick(previousValue, event)
@@ -449,22 +449,22 @@ export default class EditDialogColumn extends PureComponent {
     scrollIntoViewPadding: PropTypes.number,
 
     /**
-     * An optional function to call when the `click` event is triggered inthe column.
+     * An optional function to call when the `click` event is triggered in the column.
      */
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when the `mousedown` event is triggered inthe column.
+     * An optional function to call when the `mousedown` event is triggered in the column.
      */
     onMouseDown: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseup` event is triggered inthe column.
+     * An optional function to call when the `mouseup` event is triggered in the column.
      */
     onMouseUp: PropTypes.func,
 
     /**
-     * An optional function to call when the `touchstart` event is triggered inthe column.
+     * An optional function to call when the `touchstart` event is triggered in the column.
      */
     onTouchStart: PropTypes.func,
 
@@ -474,22 +474,22 @@ export default class EditDialogColumn extends PureComponent {
     onTouchEnd: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseenter` event is triggered inthe column.
+     * An optional function to call when the `mouseenter` event is triggered in the column.
      */
     onMouseEnter: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseover` event is triggered inthe column.
+     * An optional function to call when the `mouseover` event is triggered in the column.
      */
     onMouseOver: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseleave` event is triggered inthe column.
+     * An optional function to call when the `mouseleave` event is triggered in the column.
      */
     onMouseLeave: PropTypes.func,
 
     /**
-     * An optional function to call when the `touchmove` event is triggered inthe column.
+     * An optional function to call when the `touchmove` event is triggered in the column.
      */
     onTouchMove: PropTypes.func,
 

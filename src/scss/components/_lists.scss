@@ -149,7 +149,7 @@ $md-list-desktop-three-lines-height: 76px !default;
 /// @type Number
 $md-list-desktop-three-lines-addon-margin-top: 12px !default;
 
-/// The amount of padding to apply to a list. This value will take precidence over the mobile
+/// The amount of padding to apply to a list. This value will take precedence over the mobile
 /// and desktop variables so that this padding will be applied on all devices instead of switching
 /// based on media queries.
 ///
@@ -158,7 +158,7 @@ $md-list-desktop-three-lines-addon-margin-top: 12px !default;
 /// @type Number
 $md-list-padding: null !default;
 
-/// The font size to use for the primary text in a list item. This value will take precidence over
+/// The font size to use for the primary text in a list item. This value will take precedence over
 /// the mobile and desktop variables so the font size is applied on all devices instead of switching
 /// based on media queries.
 ///
@@ -167,7 +167,7 @@ $md-list-padding: null !default;
 /// @type Number
 $md-list-primary-font-size: null !default;
 
-/// The font size to use for the secondary text in a list item. This value will take precidence over
+/// The font size to use for the secondary text in a list item. This value will take precedence over
 /// the mobile and desktop variables so the font size is applied on all devices instead of switching
 /// based on media queries.
 ///
@@ -176,7 +176,7 @@ $md-list-primary-font-size: null !default;
 /// @type Number
 $md-list-secondary-font-size: null !default;
 
-/// The height to use for a list item. This value will take precidence over the mobile and desktop values
+/// The height to use for a list item. This value will take precedence over the mobile and desktop values
 /// so that the height is applied on all devices instead of based on media queries.
 ///
 /// @see md-list-mobile-height
@@ -184,7 +184,7 @@ $md-list-secondary-font-size: null !default;
 /// @type Number
 $md-list-height: null !default;
 
-/// The height to use for a list item that has an avatar. This value will take precidence over the mobile
+/// The height to use for a list item that has an avatar. This value will take precedence over the mobile
 /// and desktop values so the height is applied on all devices instead of based on media queries.
 ///
 /// @see md-list-mobile-avatar-height
@@ -192,7 +192,7 @@ $md-list-height: null !default;
 /// @type Number
 $md-list-avatar-height: null !default;
 
-/// The height to use for a list item that has two lines of text. This value will take precidence over the
+/// The height to use for a list item that has two lines of text. This value will take precedence over the
 /// mobile and desktop values so the height is applied on all devices instead of based on media queries.
 ///
 /// @see md-list-mobile-two-lines-height
@@ -200,7 +200,7 @@ $md-list-avatar-height: null !default;
 /// @type Number
 $md-list-two-lines-height: null !default;
 
-/// The height to use for a list item that has three lines of text. This value will take precidence over the
+/// The height to use for a list item that has three lines of text. This value will take precedence over the
 /// mobile and desktop values so the height is applied on all devices instead of based on media queries.
 ///
 /// @see md-list-mobile-three-lines-height
@@ -209,7 +209,7 @@ $md-list-two-lines-height: null !default;
 $md-list-three-lines-height: null !default;
 
 /// The margin top apply to icons or avatars that appear in a list with three lines of text. This value will
-/// take precidence over the mobile and desktop values so the margin is applied on all devices instead of based
+/// take precedence over the mobile and desktop values so the margin is applied on all devices instead of based
 /// on media queries.
 ///
 /// @see md-list-mobile-three-lines-addon-margin-top
@@ -474,7 +474,7 @@ $md-list-three-lines-addon-margin-top: null !default;
   }
 
   @if $include-inline {
-    // I'm really cheating here.. Since it is after media query, doesn't require more precidence to override
+    // I'm really cheating here.. Since it is after media query, doesn't require more precedence to override
     .md-list--inline {
       display: flex;
       padding: $md-list-inline-padding;
@@ -508,7 +508,7 @@ $md-list-three-lines-addon-margin-top: null !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-lists-moble;
+///     @include react-md-lists-mobile;
 ///   }
 ///
 /// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with
@@ -585,7 +585,7 @@ $md-list-three-lines-addon-margin-top: null !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-lists-moble;
+///     @include react-md-lists-mobile;
 ///   }
 ///
 /// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with

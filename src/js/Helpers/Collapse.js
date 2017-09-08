@@ -37,7 +37,7 @@ export default class Collapse extends PureComponent {
     springConfig: PropTypes.object.isRequired,
 
     /**
-     * Boolean if the the single child entering or leaving should be animated.
+     * Boolean if the single child entering or leaving should be animated.
      */
     animate: PropTypes.bool,
 

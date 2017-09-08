@@ -37,7 +37,7 @@ export default class AccessibleFakeButton extends PureComponent {
     children: PropTypes.node,
 
     /**
-     * An optional onClick function to call whent he user clicks the
+     * An optional onClick function to call when the user clicks the
      * button or presses space || enter.
      */
     onClick: PropTypes.func,

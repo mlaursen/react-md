@@ -96,7 +96,7 @@ export default class SelectionControl extends PureComponent {
      * - the currently changed radio's value
      * - the next checked state for the `Switch` or `Checkbox`.
      *
-     * as the first paramater followed by the change event.
+     * as the first parameter followed by the change event.
      *
      * ```js
      * // Radio

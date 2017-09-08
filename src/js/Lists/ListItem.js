@@ -191,7 +191,7 @@ export default class ListItem extends PureComponent {
     visible: controlled(PropTypes.bool, 'onClick', 'defaultVisible'),
 
     /**
-     * An icon to use for the exapnder icon when there are nested items.
+     * An icon to use for the expander icon when there are nested items.
      */
     expanderIcon: PropTypes.element,
 
@@ -289,7 +289,7 @@ export default class ListItem extends PureComponent {
      * Any additional props you would like to add to the inner `AccessibleFakeButton`. By default, all the
      * remaining props will be provided to the `AccessibleFakeButton`, so this prop is probably useless.
      * Enabling the `passPropsToItem` prop will change the default behavior so that the remaining props
-     * are provided to the surrounding `<li>` node instead and this prop becomes usefull.
+     * are provided to the surrounding `<li>` node instead and this prop becomes useful.
      */
     tileProps: PropTypes.object,
 
@@ -301,7 +301,7 @@ export default class ListItem extends PureComponent {
      */
     passPropsToItem: PropTypes.bool,
     expanderIconChildren: deprecated(PropTypes.node, 'Use `expanderIcon` instead'),
-    expanderIconClassName: deprecated(PropTypes.string, 'Use `exapnderIcon` instead'),
+    expanderIconClassName: deprecated(PropTypes.string, 'Use `expanderIcon` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),

@@ -168,7 +168,7 @@ export default class Layover extends PureComponent {
      * };
      * ```
      *
-     * If you add any additional contraints such as `width` or `max-width`, it will not span the entire viewport's
+     * If you add any additional constraints such as `width` or `max-width`, it will not span the entire viewport's
      * width. This prop should generally really only be used on mobile devices. Using this prop along with
      * `fillViewportHeight` for Autocompletes can create great Android mobile searches. See the `fillViewportHeight`
      * for more information about why it is *only Android*.
@@ -290,7 +290,7 @@ export default class Layover extends PureComponent {
     animationPosition: positionShape.isRequired,
 
     /**
-     * If you  would the the layover to interact as a context menu, provide this prop. It will
+     * If you would like the layover to interact as a context menu, provide this prop. It will
      * make the children appear relative to the context menu origin automatically.
      *
      * @see {@link #preventContextMenu}
@@ -556,7 +556,7 @@ export default class Layover extends PureComponent {
 
   /**
    * This is just a simple utility function to merge the existing state styles,
-   * any new styles, and the children's styles (with most precidence).
+   * any new styles, and the children's styles (with most precedence).
    */
   _mergeStyles = (style) => {
     const {
@@ -597,7 +597,7 @@ export default class Layover extends PureComponent {
   };
 
   /**
-   * This initializes the popover with the default styles, and the intitial bookkeeping
+   * This initializes the popover with the default styles, and the initial bookkeeping
    * variables to update while it is open.
    */
   _init = (fixedTo, anchor, sameWidth, centered, rect) => {

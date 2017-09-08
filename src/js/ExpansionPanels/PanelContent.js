@@ -6,7 +6,7 @@ import DialogFooter from '../Dialogs/DialogFooter';
 
 /**
  * The `PanelContent` component is for displaying the expanded content
- * for an `ExpansionPanel`. It wil display any children in a `md-panel-content`
+ * for an `ExpansionPanel`. It will display any children in a `md-panel-content`
  * container followed by a `Divider` and the `PanelControls` .
  */
 export default class PanelContent extends PureComponent {

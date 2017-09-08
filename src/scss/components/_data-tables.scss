@@ -19,7 +19,7 @@ $md-data-table-include-checkboxes: true !default;
 /// @type Boolean
 $md-data-table-include-edit-dialog: true !default;
 
-/// Boolean if the styes for select fields in data tables should be included.
+/// Boolean if the styles for select fields in data tables should be included.
 /// @type Boolean
 $md-data-table-include-select-fields: true !default;
 
@@ -48,7 +48,7 @@ $md-data-table-fixed-use-view-height: false !default;
 /// @type Boolean
 $md-data-table-include-pagination: true !default;
 
-/// Boolean if the `TablePagination`'s styles should be updated for mobiles deviecs
+/// Boolean if the `TablePagination`'s styles should be updated for mobiles devices
 /// so that the select field shrinks its font size to 13px;
 ///
 /// This should normally be used along with the `md-data-table-pagination-mobile-label-hidden`
@@ -62,7 +62,7 @@ $md-data-table-pagination-mobile-shrinking: true !default;
 /// @type Boolean
 $md-data-table-pagination-mobile-label-hidden: true !default;
 
-/// Boolean if the the table card header styles should be included.
+/// Boolean if the table card header styles should be included.
 /// @type Boolean
 $md-data-table-include-table-card-headers: true !default;
 
@@ -200,7 +200,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should also be included.
 /// @param {Boolean} include-plain [$md-data-table-include-plain] - Boolean if the plain data
 ///     table styles should be included.
-/// @param {Boolean} include-checkboes [$md-data-table-include-checkboxes] - Boolean if the checkbox
+/// @param {Boolean} include-checkboxes [$md-data-table-include-checkboxes] - Boolean if the checkbox
 ///     styles should be included.
 /// @param {Boolean} include-edit-dialog [$md-data-table-include-edit-dialog] - Boolean if the edit
 ///     dialog styles should be included.
@@ -256,7 +256,7 @@ $md-data-table-contextual-fallback-color: null !default;
 }
 
 /// Updates the styles for data tables only if the `$light-theme` does not equal the
-/// `$md-light-theme`. The only styles realy updated are the border colors and the
+/// `$md-light-theme`. The only styles really updated are the border colors and the
 /// hover/selected row background colors.
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
@@ -264,7 +264,7 @@ $md-data-table-contextual-fallback-color: null !default;
 ///     the light theme.
 /// @param {Boolean} include-table-card-headers [$md-data-table-include-table-card-headers] - Boolean if
 ///     the contextual table card header styles should be included.
-/// @param {Color} context-ual-fallback-color [$md-data-table-contextual-fallback-color] - A fallback color
+/// @param {Color} contextual-fallback-color [$md-data-table-contextual-fallback-color] - A fallback color
 ///     to use for the contextual headers.
 /// @group data-tables, themes
 @mixin react-md-theme-data-tables(
@@ -584,7 +584,7 @@ $md-data-table-contextual-fallback-color: null !default;
   }
 }
 
-/// This is a utility function for making a fixed table via css instead of inline styles. This one is a bit more
+/// This is a utility function for making a fixed table via CSS instead of inline styles. This one is a bit more
 /// reliable since you can provide the cell heights correctly.
 ///
 /// @example scss - Example Usage
@@ -626,7 +626,7 @@ $md-data-table-contextual-fallback-color: null !default;
 ///     this table should *not* have a fixed header.
 /// @param {Number} footer-height [$md-data-table-column-height] - The height for the table's footer. If this is `null`,
 ///     the table should *not* have a fixed footer.
-/// @param {Number} toolbar-height [null] - An optinal height of the toolbar to exclude when making the max-height of the
+/// @param {Number} toolbar-height [null] - An optional height of the toolbar to exclude when making the max-height of the
 ///     table.
 @mixin react-md-make-fixed-table($height, $header-height: $md-data-table-header-height, $footer-height: $md-data-table-column-height, $toolbar-height: null) {
   @if $height == true {
@@ -746,7 +746,7 @@ $md-data-table-contextual-fallback-color: null !default;
 ///     @include react-md-data-table-paginations-shrink(true, true);
 ///   }
 ///
-/// @param {Boolean} shrink [$md-data-table-pagination-mobile-shrinking] - Boolena if the select field should shrink by
+/// @param {Boolean} shrink [$md-data-table-pagination-mobile-shrinking] - Boolean if the select field should shrink by
 ///     reducing the font size to 13px and reducing the padding by 75%.
 /// @param {Boolean} hide-label [$md-data-table-pagination-mobile-label-hidden] - Boolean if the pagination label (Rows per page)
 ///     should be hidden.

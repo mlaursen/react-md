@@ -153,11 +153,11 @@ $md-body-mobile-font-size: #{$md-font-size-base}px !default;
 /// @type Number
 $md-body-desktop-font-size: 13px !default;
 
-/// The `.md-body-2` fnt size.
+/// The `.md-body-2` font size.
 /// @type Number
 $md-body-2-line-height: 24px !default;
 
-/// The `.md-body-1` fnt size.
+/// The `.md-body-1` font size.
 /// @type Number
 $md-body-1-line-height: 20px !default;
 
@@ -328,14 +328,14 @@ $md-line-height: 20 / $md-font-size-base !default;
   line-height: $md-subheading-1-line-height;
 }
 
-/// Aplaceholder for the body-1 typography
+/// A placeholder for the body-1 typography
 %md-body-1 {
   @extend %md-tracking-10;
 
   line-height: $md-line-height;
 }
 
-/// Aplaceholder for the body-2 typography
+/// A placeholder for the body-2 typography
 %md-body-2 {
   @extend %md-tracking-10;
 
@@ -420,12 +420,12 @@ $md-line-height: 20 / $md-font-size-base !default;
   font-weight: $md-font-bold;
 }
 
-/// This includes the css for simple typography in react-md. It will
+/// This includes the CSS for simple typography in react-md. It will
 /// update all items to use `box-sizing: border-box`, set the font
 /// family, set the line-height, text-rendering, and create the base
 /// class names for the typography. If the `$extend-html-tags` is true,
 /// the `h1` - `h6`, `p`, and `caption` tags will be updated with the
-/// corresponding css class name.
+/// corresponding CSS class name.
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the application
 ///     is using the light theme.
@@ -670,7 +670,7 @@ $md-line-height: 20 / $md-font-size-base !default;
   }
 }
 
-/// Creates the css for typography on mobile devices. If the `$extend-html-tags` param is true,
+/// Creates the CSS for typography on mobile devices. If the `$extend-html-tags` param is true,
 /// the `h6`, `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
@@ -706,7 +706,7 @@ $md-line-height: 20 / $md-font-size-base !default;
   }
 }
 
-/// Creates the css for typography on desktop screens. If the `$extend-html-tags` param is true,
+/// Creates the CSS for typography on desktop screens. If the `$extend-html-tags` param is true,
 /// the `h6`, `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
@@ -909,7 +909,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 }
 
 /// Hosts the material icon font library locally by declaring the font face
-/// and the .material-icons css class.
+/// and the .material-icons CSS class.
 ///
 /// @example scss - Basic Usage Sass
 ///   @include host-material-icons('/fonts/material-icons');

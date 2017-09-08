@@ -13,7 +13,7 @@ import between from '../utils/PropTypes/between';
  * uploading/downloading a file.
  *
  * An `Indeterminate` linear progress bar should be used when you can not keep track
- * of the progess yourself. An example might be waiting for an API call to complete.
+ * of the progress yourself. An example might be waiting for an API call to complete.
  *
  * A `Query Indeterminate` linear progress bar is used when you are combining
  * `Indeterminate` and `Determinate`. A Linear Progress component can be displayed

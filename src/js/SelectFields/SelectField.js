@@ -168,7 +168,7 @@ export default class SelectField extends PureComponent {
     itemLabel: PropTypes.string.isRequired,
 
     /**
-     * The key to use for extracting a menu item'value label if the menu item is an object.
+     * The key to use for extracting a menu item's value if the menu item is an object.
      *
      * Example:
      *
@@ -252,7 +252,7 @@ export default class SelectField extends PureComponent {
     error: PropTypes.bool,
 
     /**
-     * An optional text to display whent he text select field is in an error state.
+     * An optional text to display when the text select field is in an error state.
      *
      * @see {@link TextFields/TextField#errorText}
      */
@@ -432,7 +432,7 @@ export default class SelectField extends PureComponent {
 
     /**
      * Since the `menuItems` get mapped into `ListItem`, this prop is used to remove
-     * any unneccessary props from the `ListItem` itself. This is where you
+     * any unnecessary props from the `ListItem` itself. This is where you
      * would remove parts of your object such as `description` or `__metadata__`.
      */
     deleteKeys: PropTypes.oneOfType([

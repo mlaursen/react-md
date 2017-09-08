@@ -71,7 +71,7 @@ $md-toolbar-prominent-title-font-size: $md-title-font-size !default;
 /// @type Number
 $md-toolbar-mobile-portrait-height: 56px !default;
 
-/// The height of a toolbar on moble landscape devices.
+/// The height of a toolbar on mobile landscape devices.
 /// @type Number
 $md-toolbar-mobile-landscape-height: 48px !default;
 
@@ -161,7 +161,7 @@ $md-toolbar-desktop-title-keyline: null !default;
 /// @type Number
 $md-toolbar-desktop-select-field-margin: null !default;
 
-/// A height to use for the toolbar on all screen sizes. This value will have precidence over the mobile/tablet/desktop
+/// A height to use for the toolbar on all screen sizes. This value will have precedence over the mobile/tablet/desktop
 /// variables.
 ///
 /// @see md-toolbar-mobile-portrait-height
@@ -171,7 +171,7 @@ $md-toolbar-desktop-select-field-margin: null !default;
 /// @type Number
 $md-toolbar-height: null !default;
 
-/// A height to use for prominent toolbars on all screen sizes. This value will have precidence over the mobile/tablet/desktop
+/// A height to use for prominent toolbars on all screen sizes. This value will have precedence over the mobile/tablet/desktop
 /// variables.
 ///
 /// @see md-toolbar-mobile-prominent-height
@@ -180,7 +180,7 @@ $md-toolbar-height: null !default;
 /// @type Number
 $md-toolbar-prominent-height: if($md-toolbar-height != null, $md-toolbar-height * 2, 128px) !default;
 
-/// A title keyline to use for toolbars on all screen sizes. This value will have precidence over the mobile/tablet/desktop
+/// A title keyline to use for toolbars on all screen sizes. This value will have precedence over the mobile/tablet/desktop
 /// variables.
 ///
 /// @see md-toolbar-mobile-title-keyline
@@ -189,7 +189,7 @@ $md-toolbar-prominent-height: if($md-toolbar-height != null, $md-toolbar-height 
 /// @type Number
 $md-toolbar-title-keyline: null !default;
 
-/// The keyline to use for the main navigation and action buttons in the toolbar. This value will have precidence over the
+/// The keyline to use for the main navigation and action buttons in the toolbar. This value will have precedence over the
 /// mobile/tablet/desktop variables.
 ///
 /// @see md-toolbar-mobile-btn-keyline
@@ -213,12 +213,12 @@ $md-toolbar-select-field-margin: null !default;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the toolbars should be themed
 ///     for the light theme.
-/// @param {Boolean} include-media [$md-media-included] - Boolena if the toolbar media queries
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the toolbar media queries
 ///     should be included.
 /// @param {Boolean} include-themed [$md-toolbar-include-themed] - Boolean if the themed toolbars
 ///     should be included.
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-text-fields [$md-toolbar-include-text-fields] - Boolean if the styles for
@@ -664,7 +664,7 @@ $md-toolbar-select-field-margin: null !default;
 ///   }
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
@@ -753,7 +753,7 @@ $md-toolbar-select-field-margin: null !default;
 ///   }
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
@@ -830,7 +830,7 @@ $md-toolbar-select-field-margin: null !default;
 ///   @include react-md-toolbars-media;
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles

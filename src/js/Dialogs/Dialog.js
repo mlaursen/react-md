@@ -17,7 +17,6 @@ import DialogFooter from './DialogFooter';
  * the `DialogContainer` component.
  */
 export default class Dialog extends PureComponent {
-  /* eslint-disable max-len */
   static propTypes = {
     /**
      * @see {@link Dialogs/DialogContainer#id}
@@ -26,7 +25,6 @@ export default class Dialog extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ])),
-    /* eslint-enable max-len */
 
     /**
      * @see {@link Dialogs/DialogContainer#aria-describedby}
@@ -191,9 +189,9 @@ export default class Dialog extends PureComponent {
     centered: PropTypes.bool,
 
     /**
-     * Boolean if the content should be padded. This will take precidence
+     * Boolean if the content should be padded. This will take precedence
      * over the `autopadContent` prop. So if this is defined, that value
-     * will be used instead of any thing that was was caclulated in this
+     * will be used instead of any thing that was was calculated in this
      * component.
      *
      * @see {@link #autopadContent}

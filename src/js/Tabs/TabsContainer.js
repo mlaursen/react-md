@@ -16,7 +16,7 @@ import TabPanel from './TabPanel';
  * the `SwipeableViews`. This component will traverse the children subtree and extract out
  * the `children` from each tab, and render them in a swipeable container. However,
  * since this is using the `React.Children` traversal, You will have to keep the `Tabs`
- * and `Tab` component as a direct decendent. You are unable to make a separate component
+ * and `Tab` component as a direct descendent. You are unable to make a separate component
  * that encompasses the `Tab` component.
  *
  * ```js
@@ -138,7 +138,7 @@ export default class TabsContainer extends PureComponent {
     activeTabIndex: controlled(PropTypes.number, 'onTabChange', 'defaultTabIndex'),
 
     /**
-     * An optional function to call when a new tab is seleced by swiping or clicking a tab. When
+     * An optional function to call when a new tab is selected by swiping or clicking a tab. When
      * a new tab has been clicked, the callback will include the active tab index, the tab's `id`,
      * the tab's `controlsId`, the tab's `children`, and the click event.
      *

@@ -19,7 +19,7 @@ import injectTooltip from '../Tooltips/injectTooltip';
  * A `FlatButton` is a button with no depth on the screen that is ideally used in `Dialog`s
  * or `CardActions`. The text can be optionally styled with the `primary` or `secondary` colors.
  *
- * A `RaisedButton` is a button with some depth to help actions have more prominene in flat
+ * A `RaisedButton` is a button with some depth to help actions have more prominent in flat
  * layouts or layouts with varying content. The background can be styled by the light/dark theme,
  * or optionally the `primary` or `secondary` color.
  *
@@ -176,7 +176,7 @@ class Button extends PureComponent {
     /**
      * The position that the `FloatingButton` should be fixed to the page. It will
      * either be fixed to the top right, top left, bottom right, or bottom left of
-     * the page. This prop is ony used if the `floating` prop and `fixed` prop are
+     * the page. This prop is only used if the `floating` prop and `fixed` prop are
      * `true`.
      */
     fixedPosition: PropTypes.oneOf(['tr', 'tl', 'br', 'bl']).isRequired,

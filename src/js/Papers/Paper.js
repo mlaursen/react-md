@@ -5,9 +5,9 @@ import cn from 'classnames';
 import between from '../utils/PropTypes/between';
 
 /**
- * The `Paper` component is a simple wrappper that adds box-shadow.
+ * The `Paper` component is a simple wrapper that adds box-shadow.
  *
- * You can also use the scss mixin instead of paper.
+ * You can also use the SCSS mixin instead of paper.
  *
  * ```scss
  * @include md-box-shadow(5);

@@ -56,14 +56,14 @@ $md-slider-discrete-tick-height: $md-slider-track-height !default;
 $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
 
 /// The opacity to use for the Slider's thumb ink. This will appear when the user
-/// focuses with the keybord or touches the slider on a mobile device.
+/// focuses with the keyboard or touches the slider on a mobile device.
 ///
 /// This opacity will be applied to the `$primary-color`.
 /// @type Number
 $md-slider-mask-ink-opacity: .15 !default;
 
 /// The opacity to use for the discrete Slider's thumb ink. This will appear when the user
-/// focuses with the keybord.
+/// focuses with the keyboard.
 ///
 /// This opacity will be applied to the `$primary-color`.
 /// @type Number
@@ -93,10 +93,10 @@ $md-slider-warn-md: true !default;
 ///     a `-200` suffix.
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
-/// @param {Boolean} $inlude-media [$md-media-included] - Boolean if the media queries should be included.
+/// @param {Boolean} $include-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} $include-discrete [$md-slider-include-discrete] - A boolean if the discrete slider's scss should be included.
 /// @param {Boolean} $include-editor [$md-slider-include-editor] - A boolean if the editable slider's scss should be included.
-/// @param {Boolean} $include-indicators [$md-slider-include-indiccators] - A boolean if the small scss for displaying indicators/icons
+/// @param {Boolean} $include-indicators [$md-slider-include-indicators] - A boolean if the small scss for displaying indicators/icons
 ///     with the slider should be included.
 @mixin react-md-sliders(
   $primary-color: $md-primary-color,
@@ -374,7 +374,7 @@ $md-slider-warn-md: true !default;
   }
 }
 
-/// Creates the css for the slider indicators on mobile devices. This should most likely
+/// Creates the CSS for the slider indicators on mobile devices. This should most likely
 /// be used within a media query.
 ///
 /// @example scss - Example Usage SCSS
@@ -389,7 +389,7 @@ $md-slider-warn-md: true !default;
   }
 }
 
-/// Creates the css for the slider indicators on desktop screens. This should most likely
+/// Creates the CSS for the slider indicators on desktop screens. This should most likely
 /// be used within a media query.
 ///
 /// @example scss - Example Usage SCSS

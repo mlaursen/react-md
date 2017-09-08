@@ -33,7 +33,7 @@ export default class Menu extends PureComponent {
       if (!this._warned) {
         /* eslint-disable no-console */
         console.error(
-          'The `Menu.Positions.CONTEXT` position has been depreacted and will be removed ' +
+          'The `Menu.Positions.CONTEXT` position has been deprecated and will be removed ' +
           'in the next major release. To make the `Menu` behave as a context menu, provide ' +
           'the `onContextMenu` prop instead.'
         );
@@ -173,7 +173,7 @@ export default class Menu extends PureComponent {
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when a key is pressed anywhere in the menn.
+     * An optional function to call when a key is pressed anywhere in the menu.
      */
     onKeyDown: PropTypes.func,
 

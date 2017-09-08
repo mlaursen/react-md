@@ -227,7 +227,7 @@ export default class TextField extends PureComponent {
 
     /**
      * An optional boolean if the `floating` state of the text field's floating label can be
-     * externally modified as well. The floating state is true when the tet field gains focus
+     * externally modified as well. The floating state is true when the text field gains focus
      * or there is a value in the text field.
      *
      * If this prop is set, it will check both the floating prop and the floating state to
@@ -298,7 +298,7 @@ export default class TextField extends PureComponent {
     maxRows: PropTypes.number,
 
     /**
-     * An optional customsize to apply to the text field. This is used along with
+     * An optional custom size to apply to the text field. This is used along with
      * the `$md-text-field-custom-sizes` variable. It basically applies a className of
      * `md-text-field--NAME`.
      */
@@ -491,7 +491,7 @@ export default class TextField extends PureComponent {
 
   /**
    * A helper function for blurring the `input` field or the `textarea` in the `TextField`.
-   * This is accessibile if you use `refs`.
+   * This is accessible if you use `refs`.
    * Example:
    *
    * ```js

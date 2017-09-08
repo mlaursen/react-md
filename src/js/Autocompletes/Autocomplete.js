@@ -89,7 +89,7 @@ export default class Autocomplete extends PureComponent {
     inputStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the autocomplete's input field iteself.
+     * An optional className to apply to the autocomplete's input field itself.
      */
     inputClassName: PropTypes.string,
 
@@ -116,7 +116,7 @@ export default class Autocomplete extends PureComponent {
     label: PropTypes.node,
 
     /**
-     * An optional value to use for the text field. This will forse this component
+     * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
     value: controlled(PropTypes.oneOfType([
@@ -134,7 +134,7 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * An object key to use to extract the text to be compared for filtering.
-     * This will only be applied if the the given `data` prop is an array of objects.
+     * This will only be applied if the given `data` prop is an array of objects.
      */
     dataLabel: PropTypes.string.isRequired,
 
@@ -305,7 +305,7 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * A boolean if the text field's value should be reset to the empty string when
-     * an item is auto-completed. This is usefull if you do not want a fully controlled
+     * an item is auto-completed. This is useful if you do not want a fully controlled
      * component and the values are stored outside of the `TextField`. (like `Chips`).
      */
     clearOnAutocomplete: PropTypes.bool,
@@ -399,17 +399,17 @@ export default class Autocomplete extends PureComponent {
     /**
      * An optional transition name to use for the list appearing/disappearing.
      *
-     * @see {@link Helpers/Layoers#transitionName}
+     * @see {@link Helpers/Layovers#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layoers#transitionEnterTimeout}
+     * @see {@link Helpers/Layovers#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layoers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 

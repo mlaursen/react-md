@@ -91,7 +91,7 @@ export default class DropdownMenu extends PureComponent {
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * Bolean if the menu's list is currently visible. If this is defined, it will
+     * Boolean if the menu's list is currently visible. If this is defined, it will
      * require the `onVisibilityChange` function to be defined since it will become
      * a controlled component.
      */
@@ -173,7 +173,7 @@ export default class DropdownMenu extends PureComponent {
     position: positionShape,
 
     /**
-     * Boolean if the menu's list should gan the cascading styles.
+     * Boolean if the menu's list should gain the cascading styles.
      *
      * @see {@link Menus/Menu#cascading}
      */
@@ -187,7 +187,7 @@ export default class DropdownMenu extends PureComponent {
     cascadingZDepth: PropTypes.number,
 
     /**
-     * The anchor position for the cascanding lists.
+     * The anchor position for the cascading lists.
      *
      * @see {@link Menus/Menu#cascadingAnchor}
      */
