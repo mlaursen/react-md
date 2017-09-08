@@ -37,7 +37,7 @@ $md-toolbar-include-select-fields: true !default;
 /// > NOTE: If `$md-toolbar-relative-padding` is `true`, these classes will still not be created. In addition,
 /// if `$md-toolbar-include-prominent` is `false`, the prominent class name will not be created.
 /// @type Boolean
-$md-toolbar-include-relative-padding-class-names: false !default;
+$md-toolbar-include-relative-padding-class-names: true !default;
 
 /// Boolean if the `.md-toolbar-relative` and `.md-toolbar-relative--prominent` should use `padding` instead of `margin`
 /// for positioning.

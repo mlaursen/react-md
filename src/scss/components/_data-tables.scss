@@ -185,7 +185,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// be changed from `nowrap` to `initial` if you want line wrapping.
 %md-table-column--plain {
   height: $md-data-table-plain-column-height;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 /// Includes the styles for the data tables.
@@ -391,7 +391,8 @@ $md-data-table-contextual-fallback-color: null !default;
 
     @if $include-plain {
       &--plain {
-        @extend %md-table-column--plain;
+        height: $md-data-table-plain-column-height;
+        white-space: normal;
       }
     }
 
