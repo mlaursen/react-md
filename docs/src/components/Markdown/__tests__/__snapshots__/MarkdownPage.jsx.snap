@@ -264,7 +264,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       this along with the <code>manifest.json</code> that can be created by webpack so that you can load all the bundles for a page before calling
       the first <code>ReactDOM.render()</code> in your app. This works great with <code>react-router@4</code> since you can use the <code>StaticRouter</code> to figure out
       which bundles need to be loaded, and pass it to the client.</p>
-      <p>To help with this, I ended up making a <a href=\\"src/utils/syncComponent.js\\">syncComponent</a> and <a href=\\"src/utils/asyncComponent.js\\" class=\\"link\\">asyncComponent</a>
+      <p>To help with this, I ended up making a <a href=\\"src/utils/syncComponent.js\\" class=\\"link\\">syncComponent</a> and <a href=\\"src/utils/asyncComponent.js\\" class=\\"link\\">asyncComponent</a>
       HOC. The synchronous component (which should be used by the server) will update the <code>staticContext</code> provided by the <code>StaticRouter</code> and
       push the <code>chunkName</code> to a list of bundles that need to be loaded before the page can render. This can be seen in the <a href=\\"src.routes/sync.js\\" class=\\"link\\">routes/sync</a>
       and <a href=\\"src/routes/async.js\\" class=\\"link\\">routes/async</a> files. With all this set up, the final things are just to provide the list of bundles to the client
@@ -339,7 +339,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <li>inline the <code>webpack manifest</code> when being server rendered.</li>
       </ul>
       <p>The webpack config was updated to include <a href=\\"webpack.config.js#L40-L48\\" class=\\"link\\">these lines</a> for longer hashing and my server rendered
-      page <a href=\\"src/server/utils/renderHtmlPage.js#L5-L21\\">inlined the manifiest</a> in the <a href=\\"src/server/utils/renderHtmlPage.js#L99\\" class=\\"link\\">head</a>.
+      page <a href=\\"src/server/utils/renderHtmlPage.js#L5-L21\\" class=\\"link\\">inlined the manifiest</a> in the <a href=\\"src/server/utils/renderHtmlPage.js#L99\\" class=\\"link\\">head</a>.
       This actually allowed for some better bundle loading support and extracting some of the common code out again for smaller bundles.</p>
       <h3 id=\\"quick-response-times\\">Quick Response Times</h3>
       <p>One of the other goals of this was to get some better response time. This hasn&#39;t fully been updated, but I ended up adding service workers
@@ -409,7 +409,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       and any of the &quot;databases&quot; that have been built. This also runs the <a href=\\"#cleanassets\\" class=\\"link\\">clean:assets</a>
       script.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a>, <a href=\\"#sassdoc\\">sassdoc</a>, or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
+      <p>SEE: <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a>, <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a>, or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
       <h3 id=\\"clean-assets\\">clean:assets</h3>
@@ -429,7 +429,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       Once it has been built, you can run <a href=\\"#start\\" class=\\"link\\">start</a> to run the production server
       with server side rendering.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
+      <p>SEE: <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a> or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
       <h3 id=\\"build-dev\\">build:dev</h3>
@@ -438,7 +438,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h3 id=\\"jsdoc\\">jsdoc</h3>
       <p>This task just runs the <code>jsdoc:build</code> followed by <code>jsdoc:create</code>.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdocbuild\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a> for more information.</p>
+      <p>SEE: <a href=\\"#jsdocbuild\\" class=\\"link\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a> for more information.</p>
       </blockquote>
       <h3 id=\\"jsdoc-build\\">jsdoc:build</h3>
       <p>This will run jsdoc on the <code>react-md/src/js</code> folder and extract jsdoc for some specific files to get additional
@@ -446,10 +446,10 @@ exports[`MarkdownPage should render correctly 1`] = `
       <code>Layover.HorizontalAnchors</code> and <code>Autocomplete.fuzzyFilter</code>.This will create a <code>jsdoc.json</code> file in the home directory
       to be parsed by <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a>.</p>
       <h3 id=\\"docgen\\">docgen</h3>
-      <p>This will run the <a href=\\"#jsdoc\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
+      <p>This will run the <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
       be created before the <code>docgen:create</code> script can be ran.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a> or <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> for more information.</p>
+      <p>SEE: <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a> or <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> for more information.</p>
       </blockquote>
       <h3 id=\\"docgen-create\\">docgen:create</h3>
       <p>This will create a &quot;database&quot; of component documentation that can be used for the api
@@ -475,14 +475,14 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h3 id=\\"start-dev\\">start:dev</h3>
       <p>This will start up the server in development mode. This is helpful if you don&#39;t need every watcher running and have already
       built the databases or you need to test server code independently so you have access to the <code>nodemon</code> <code>restart</code> ability. Both
-      <a href=\\"#dev\\">dev</a> and <a href=\\"#devfull\\" class=\\"link\\">dev:full</a> end up using this behind the scenes.</p>
+      <a href=\\"#dev\\" class=\\"link\\">dev</a> and <a href=\\"#devfull\\" class=\\"link\\">dev:full</a> end up using this behind the scenes.</p>
       <p>The development server will be restarted each time any config file changes, or server related files.</p>
       <h3 id=\\"start-prod\\">start:prod</h3>
-      <p>This will run the <a href=\\"#build\\">build</a> command followed by the <a href=\\"#start\\" class=\\"link\\">start</a>. It is really just for testing
+      <p>This will run the <a href=\\"#build\\" class=\\"link\\">build</a> command followed by the <a href=\\"#start\\" class=\\"link\\">start</a>. It is really just for testing
       the production mode quickly without deploying to my main website.</p>
       <h3 id=\\"dev\\">dev</h3>
       <p>This is the second most useful development script. It will only run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
-      and concurrently run the <a href=\\"#watchreact-md\\">watch:react-md</a> and <a href=\\"#startdev\\" class=\\"link\\">start:dev</a>. Mostly
+      and concurrently run the <a href=\\"#watchreact-md\\" class=\\"link\\">watch:react-md</a> and <a href=\\"#startdev\\" class=\\"link\\">start:dev</a>. Mostly
       use this script if you only need to see the examples changes without any docgen or SassDoc updates.</p>
       <h3 id=\\"dev-minimal\\">dev:minimal</h3>
       <p>This is a script that will remove any existing assets, run the webpack watcher, and start the development
@@ -516,7 +516,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>When running the react-md.mlaursen.com website for production, my setup is as follows:</p>
       <ul>
       <li>Amazon Linux Micro EC2 Instance</li>
-      <li><a href=\\"https://letsencrypt.org/\\">letsencrypt</a> <a href=\\"https://certbot.eff.org/\\" class=\\"link\\">certbot</a> for auto SSL cert renewal</li>
+      <li><a href=\\"https://letsencrypt.org/\\" class=\\"link\\">letsencrypt</a> <a href=\\"https://certbot.eff.org/\\" class=\\"link\\">certbot</a> for auto SSL cert renewal</li>
       <li>nginx for reverse proxying, SSL, and serving static assets</li>
       <li>express for server side rendering</li>
       <li><a href=\\"https://github.com/Unitech/pm2\\" class=\\"link\\">pm2</a> for running the servers as background processes</li>

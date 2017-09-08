@@ -34,7 +34,7 @@ function addSimpleGithubLinking(markdown) {
  * @return {String} the markdown updated with link styles.
  */
 function addLinkStyles(markdown) {
-  return markdown.replace(/<a (href=".*")>/g, '<a $1 class="link">');
+  return markdown.replace(/<a (href="[^"]+")>/g, '<a $1 class="link">');
 }
 
 /**
