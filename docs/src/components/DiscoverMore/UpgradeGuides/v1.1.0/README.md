@@ -79,7 +79,7 @@ The `ListItem` has now exposed an `itemProps` prop which can be used to supply a
 - `expanderLeft` added. This allows for the expander icon to appear as the left icon instead of only as the right.
 
 ### Menus
-The Menu component was redone to stay within the viewport. It also has a lot of other nicities built in now. If you were using
+The Menu component was redone to stay within the viewport. It also has a lot of other niceties built in now. If you were using
 the `Menu.Positions.CONTEXT` before, it has been deprecated. To create a context menu now, all you need to do is provide a
 `onContextMenu` prop. The component will now automatically set the positioning of the context menu for you as well.
 

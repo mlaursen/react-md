@@ -3,6 +3,7 @@ import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
 
+import { M_DASH } from 'constants/unicode';
 import Markdown from 'components/Markdown';
 import ExpandableSource from 'components/ExpandableSource';
 import sassdocShape from 'propTypes/sassdocShape';
@@ -62,7 +63,7 @@ const SassDoc = ({
     children.push(
       <div key="returns" className="sassdoc__section sassdoc__returns">
         <pre className="sassdoc__variable md-text--primary-color">{returns.type}</pre>
-        {'\u2014'}
+        {M_DASH}
         <Markdown markdown={returns.description} />
       </div>
     );

@@ -17,7 +17,7 @@ const examples = [{
 The main use case for the badge is to create a notification component.  When the badge
 content is set to a number, it will automatically be truncated to \`max\` prop value.
 If the number is greater than the \`max\`, it will be displayed as \`${template}\`.
-This is really only done to get the number within the bubble. The buble size can be
+This is really only done to get the number within the bubble. The bubble size can be
 changed via Sass.
 
 Even though the main use case of the badge is for notifications, you can also float

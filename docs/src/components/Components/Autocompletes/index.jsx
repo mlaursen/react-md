@@ -47,7 +47,7 @@ of searching and how you can modify the list items for highlighting search resul
   code: ToolbarSearchRaw,
   children: <ToolbarSearch />,
 }, {
-  title: 'Github Ajax Example',
+  title: 'GitHub Ajax Example',
   code: GithubAjaxExampleRaw,
   children: <GithubAjaxExample />,
 }, {

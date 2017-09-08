@@ -3,7 +3,7 @@ it has been toggled open by a button or some other input. Starting from 1.1.0, t
 `Menu` component uses the [Layover](/components/helpers/layovers) component behind
 the scenes, so it can automatically attempt to position the menu in the viewport.
 This feature is **disabled by default** to keep backwards compatibility, but can be
-enabled by enabiling the `simplified` prop.
+enabled by enabling the `simplified` prop.
 
 There are 3 types of menus included by default in `react-md`:
 
@@ -13,7 +13,7 @@ by the developer about if the menu should be visible and how it should be toggle
 
 #### DropdownMenu
 This is a simple wrapper with the `Menu` component so that the overhead of setting
-the visibility can be abstracted away. This will render whatever chldren as a toggle
+the visibility can be abstracted away. This will render whatever children as a toggle
 component for the `Menu` and display a `List` of the `items` provided.
 
 #### MenuButton

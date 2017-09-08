@@ -323,7 +323,7 @@ exports[`InlineIcons should render correctly 1`] = `
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
       htmlFor="text-field-with-svg-password"
     >
-      Password with svg
+      Password with SVG
     </label>
     <input
       className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"

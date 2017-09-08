@@ -26,7 +26,7 @@ react-md is also available as a UMD bundle. This can either be found in the `dis
 
 ```js
 /* index.js */
-import { Card, CardTitle, CardText, CardActions, Button } from ReactMD;
+const { Card, CardTitle, CardText, CardActions, Button } = window.ReactMD;
 
 class App extends React.Component {
   render() {

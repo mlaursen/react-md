@@ -42,7 +42,7 @@ export class SimpleExamples extends PureComponent {
 
   chainToasts = () => {
     this.addToast('Sent', 'Undo');
-    this.addToast('Conection timed out. Showing limited messages.', {
+    this.addToast('Connection timed out. Showing limited messages.', {
       children: 'Retry',
       onClick: () => {
         alert('You tried again for some reason...'); // eslint-disable-line no-alert

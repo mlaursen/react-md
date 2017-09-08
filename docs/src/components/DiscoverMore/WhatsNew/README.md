@@ -1,7 +1,7 @@
 ### react-md@1.1.0 Released
 Please see the [upgrade guide](/discover-more/upgrade-guides/v1.1.0) for upgrade help.
 
-Alot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
+A lot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
 of components that still used `isOpen`, `defaultOpen`, or `onSOMETHINGToggle` (`onVisibilityToggle`). They have now been renamed to `visible`, `defaultVisible`,
 and `onSOMETHINGChange` (`onVisibilityChange`). This _should_ not break any functionality in your app, but it will display helpful
 migration messages for you.
@@ -18,7 +18,7 @@ To help combat the weird resizing of content when a `Dialog` is opened, the `htm
 
 ### App Breaking Changes
 ##### Menus
-If you were using context menus befofore, please see the upgrade guide for new behavior.
+If you were using context menus before, please see the upgrade guide for new behavior.
 
 #### Dialogs
 If you were using the UMD build or specifying `import { Dialog } from 'react-md'`, your app will probably now
@@ -68,7 +68,7 @@ There were also some undocumented changes that might appear in the list below.
 - Updated the button's label to be `node` and added a `noIcon` prop for buttons. [#261](#pull-261)
 - Implemented the dense icon spec. [#217](#issues-217)
 - Added initial typescript support. [#175](#issues-175)
-- Ink is now disableable at an application level. [#176](#issues-176)
+- Ink is now disable-able at an application level. [#176](#issues-176)
 - Buttons, Lists, and Toolbars can now have a consistent size across all devices. [#226](#issues-226)
 - Most components no longer use the Portal component since it lead to a lot of issues. [#230](#issues-230)
 - TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
@@ -107,13 +107,13 @@ pressed `shift+tab`. [#458](#issues-458)
 - Fixed the `NavigationDrawer` incorrectly hiding a "permanent" drawer type when `defaultVisible={false}`. [#426](#issues-426)
 - Fixed some invalid checksum when Server Side Rendering the `NavigationDrawer`. [#420](#issues-420)
 > this also removed some unneeded transition class names from the `Drawer` when the drawer was "mini" or "permanent".
-- Updated the `Drawer` and `NavigationDrawer` components to proide props to style the overlay that gets
+- Updated the `Drawer` and `NavigationDrawer` components to provide props to style the overlay that gets
 created. [#389](#issues-389)
 
 ## July 2017
 ### v1.0.17 Released
 This patch was mostly about fixing components that needed to be resized after a container height/width
-update instead of just a window resize event. In additioan, there have been some mobile device performance
+update instead of just a window resize event. In addition, there have been some mobile device performance
 and behavior changes. Components that manually added touch events now use passive events when possible and
 the user can focus a text field and scroll the page without automatically hiding the keyboard like a native
 input element.
@@ -174,7 +174,7 @@ General mobile Safari bugfixes and other small changes.
 - Updated the `Slider` to automatically set the `defaultValue` to the provided `min` value and fixed the discrete slider's
 visibility issue. [#379](#issues-379)
 - Correctly added the `name` attribute to the `FileInput` and `FileUpload` components. [#378](#issues-378)
-- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via ajax.
+- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via Ajax.
 [#374](#issues-378)
 - Fixed the `TablePagination`'s start value to only update when the `page` prop updates (if defined).
 [#372](#issues-372)
@@ -210,7 +210,7 @@ This patch was about removing the prop type warnings from the new React version 
 ##### Changelog
 - Migrate React.PropTypes to prop-types. [#325](#issues-325)
 - Allow boolean values in selection controls [#350](#issues-350)
-- Fixed the picker diplay bug. [#354](#issues-354)
+- Fixed the picker display bug. [#354](#issues-354)
 - Fixed the SelectField error state bug. [#354](#issues-353)
 - Fixed the dialog mounting animation bug. [#348](#issues-348)
 - Allow a multiline textfield to grow from 1 row to multiple. [#347](#issues-347)
@@ -234,8 +234,8 @@ is closed by a click action.
 - Fixed the annoying delay on multiple components. [#210](#issues-210)
 - Fixed the `DatePicker`'s next/previous month logic. [#315](#issues-315)
 - Fixed the `CardActions` not centering correctly. [#316](#issues-316)
-- Halfly fixed the hidden content in full page dialogs. [#320](#issues-320)
-- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been chaged. [#322](#issues-322)
+- Half-ly fixed the hidden content in full page dialogs. [#320](#issues-320)
+- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been changed. [#322](#issues-322)
 - Fixed the `Slider`'s bullet position when in a `text-align: center` container. [#323](#issues-323)
 - Updated props from `string` to `node` for `react-intl` support. [#327](#issues-327)
 - Fixed the Ajax Autocomplete flashing bug. [#330](#issues-330)
@@ -281,7 +281,7 @@ the new ticket. [#288](#issues-288)
 ### v1.0.7 Released
 
 ##### Changelog
-- Fixed the Drawer's defaultVisible prop not working entirely corrrectly. [#286](#issues-286)
+- Fixed the Drawer's defaultVisible prop not working entirely correctly. [#286](#issues-286)
 - Fixed the DateTimeFormat fake mock. [#285](#issues-285)
 - Fixed the Date/Time pickers to not open when disabled. [#281](#issues-281)
 - Fixed the prop warning for MenuButton and passed correct props to Menu. [#278](#issues-278)
@@ -333,7 +333,7 @@ Minor bugfixes.
 Minor bugfixes.
 
 ##### Changelog
-- Fixed proptypes of avatar to allow [PropTypes.node](#issues-198) instead of `string` only.
+- Fixed PropTypes of avatar to allow [PropTypes.node](#issues-198) instead of `string` only.
 - Fixed the [accidental form submission](#commit-cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
 selecting an item from an `autocomplete` by using the enter key press in a form.
 - Fixed [Slider number alidation](#issues-184) for floats.
@@ -358,7 +358,7 @@ This is the first prod-ready release of react-md. The library still isn't comple
 
 ##### Changelog
 - Fixed the [background color bug](#commit-49ce0717af9a63530c1239b0b18c9bd1941a0914).
-- Fixed the precompiled bundles to actually reflect what my documentation said. The precompiled bundles
+- Fixed the pre-compiled bundles to actually reflect what my documentation said. The pre-compiled bundles
 are now formatted as `PRIMARY-COLOR_SECONDARY_COLOR.min.css` instead of `PRIMARY-COLOR-SECONDARY-COLOR.MIN.CSS`.
 - Created a [mixin to create color class names](#commit-14e19f3c767ed9901f94a36ee89da238b36e2a09).
 - Fixed the injectINK HOC for [keyboard _clicks_](#commit-59dff18cfd8b5b3923b1fb346ef699d8bad3b302).
@@ -417,7 +417,7 @@ choose a theme on your website.
 - Examples and Prop Types have been separated into different tabs to help separate content a bit more.
 - Most SassDoc can be viewed with the related component in a new SassDoc tab.
 - The main search now includes sass placeholders, variables, functions, and mixins that will either redirect you to
-the correct sassdoc tab, or to the [SassDoc Page](/sassdoc).
+the correct SassDoc tab, or to the [SassDoc Page](/sassdoc).
 
 ### v1.0.0.alpha.4 Released
 
@@ -426,7 +426,7 @@ the `NavigationDrawer` (or specifically use the `JumpToContentLink` component), 
 will allow a user to focus the main content of the page instead of having to go through every navigation item.
 
 ##### Changelog
-- Fixed some color variables that I had mistyped/miscopied...
+- Fixed some color variables that I had mistyped...
 - Fixed the spelling of `discreet -> discrete`
 - Fixed the `Sliders` when using touch devices. [#144](#issues-164)
 - Fixed the `YearPicker` after the name change from `initialYearsDisplayed` to `yearsDisplayed`. [#165](#issues-165)

@@ -40,14 +40,14 @@ export default class WithIcons extends PureComponent {
             max={12}
           />
           <Slider
-            id="volumn-changer-alarm"
+            id="volume-changer-alarm"
             label="Alarm volume"
             leftIcon={<SVGIcon use={alarm.url} />}
             defaultValue={8}
             max={12}
           />
           <Slider
-            id="volumn-changer-ring"
+            id="volume-changer-ring"
             label="Ring volume"
             leftIcon={<FontIcon>vibration</FontIcon>}
             defaultValue={10}

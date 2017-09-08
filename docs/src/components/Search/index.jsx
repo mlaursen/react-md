@@ -46,7 +46,7 @@ export class PureSearch extends PureComponent {
     })).isRequired,
 
     /**
-     * The meta object containg the last search's start index, the total results,
+     * The meta object containing the last search's start index, the total results,
      * the last search's limit of results, an optional link to get the next results,
      * and an optional link to get the previous results.
      */

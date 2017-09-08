@@ -195,12 +195,12 @@ exports[`BlockedFields should render correctly 1`] = `
       <div
         className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
-        <p
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           21 / 80
-        </p>
+        </div>
       </div>
     </div>
     <hr
@@ -268,18 +268,18 @@ exports[`BlockedFields should render correctly 1`] = `
       <div
         className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
-        <p
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive"
         >
           Max 1000 characters.
-        </p>
-        <p
+        </div>
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           181 / 1000
-        </p>
+        </div>
       </div>
     </div>
   </section>

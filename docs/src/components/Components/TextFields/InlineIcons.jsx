@@ -55,7 +55,7 @@ const InlineIcons = () => (
     />
     <TextField
       id="text-field-with-svg-password"
-      label="Password with svg"
+      label="Password with SVG"
       type="password"
       passwordIcon={<SVGIcon use={removeRedEye.url} />}
       className="md-cell md-cell--bottom"

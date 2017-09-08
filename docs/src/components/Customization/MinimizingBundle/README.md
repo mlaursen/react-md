@@ -23,7 +23,7 @@ The first example will include the entire `react-md` library even if you are not
 The commented out line is a little better because it will only include the `LinearProgress` and the `CircularProgress`
 components. However, if the `CircularProgress` component is actually never used, it was imported for no reason.
 
-Anything not defined at the top level `react-md` API or documented on the website is not guarenteed to be stable
+Anything not defined at the top level `react-md` API or documented on the website is not guaranteed to be stable
 and may change without notice.
 
 ## Minimizing CSS Bundle Size

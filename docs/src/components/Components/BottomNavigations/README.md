@@ -1,4 +1,4 @@
-The `BottomNavigigation` component is a mobile/tablet only alternative to a `NavigationDrawer`
+The `BottomNavigation` component is a mobile/tablet only alternative to a `NavigationDrawer`
 for handling navigation. It should only be used when there are 3 to 5 links within your app.
 The bottom navigation can be static or dynamic. When it is static, it will always be visible
 while a dynamic navigation will disappear when the user scrolls down and appears when the user

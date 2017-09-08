@@ -38,7 +38,7 @@ export default class SimpleModal extends PureComponent {
           actions={actions}
         >
           <p id="speed-boost-description" className="md-color--secondary-text">
-            Let Google help apps determine location. This means sending ananymous
+            Let Google help apps determine location. This means sending anonymous
             location data to Google, even when no apps are running.
           </p>
         </Dialog>

@@ -49,7 +49,7 @@ menu can also be hidden automatically if the user attempts to scroll instead by 
 prop.
 
 The biggest difference between these menus and the default version is that their positioning is handled by inline
-styles instead of external css. Because of the inline styling, it might be better to keep the non-"smart" menus
+styles instead of external CSS. Because of the inline styling, it might be better to keep the non-"smart" menus
 enabled in general cases when complex positioning is required or the menus are tied to text fields.
 
 > See the Autocomplete example below for more details about problems with "smart" menus and text fields.

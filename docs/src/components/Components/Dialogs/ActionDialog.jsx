@@ -18,7 +18,7 @@ export default class SimpleModal extends PureComponent {
     const { visible } = this.state;
     // Actions can either be an object of props to build a Button,
     // or valid react components. When the action is a set of props,
-    // it defaults to creating a flat button. unique keys will automatically
+    // it defaults to creating a flat button. Unique keys will automatically
     // be cloned into the buttons along with an additional class name for styling
 
     const actions = [];

@@ -42,7 +42,7 @@ I am currently using a branching model where `master` only gets updated when a n
 occurs. The active branch will be whatever version number that is currently being developed with
 an `x`. So if the next release is `v1.0.1`, the active development branch will be `release/1.0.x`.
 
-Before you can do any work, make sure to fork the `react-md` repository via github and then you can
+Before you can do any work, make sure to fork the `react-md` repository via GitHub and then you can
 follow these steps.
 
 ```bash
@@ -95,7 +95,7 @@ $ npm run test:watch  # watches for changes in tests and reruns
 If there are any visual changes or you want to test the functionality of a component, you can use the documentation
 site and create a new example.
 
-See the documentation's site [README](https://github.com/mlaursen/react-md/docs) for information on running the dev server.
+See the documentation's site [README](https://github.com/mlaursen/react-md/tree/master/docs#react-md-documentation) for information on running the dev server.
 
 ### License
 By contributing your code to to the `mlaursen/react-md` GitHub repository, you agree to license your contribution under the

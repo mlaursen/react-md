@@ -118,7 +118,7 @@ exports[`Typography should render correctly 1`] = `
           <li><code>.md-text-center</code> - aligns text center</li>
           <li><code>.md-text-right</code> - aligns text right</li>
           <li><code>.md-text-justify</code>, - aligns text by justify</li>
-          <li><code>.md-text-capitalize</code> - capitlizes the text</li>
+          <li><code>.md-text-capitalize</code> - capitalizes the text</li>
           <li><code>.md-text-uppercase</code> - uppercases the text</li>
           <li><code>.md-text-lowercase</code> - lowercases the text</li>
           <li><code>.md-text-nowrap</code> - does not allow line breaks</li>

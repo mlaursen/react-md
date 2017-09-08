@@ -40,7 +40,7 @@ class names will be created:
 - \`.md-text-center\` - aligns text center
 - \`.md-text-right\` - aligns text right
 - \`.md-text-justify\`, - aligns text by justify
-- \`.md-text-capitalize\` - capitlizes the text
+- \`.md-text-capitalize\` - capitalizes the text
 - \`.md-text-uppercase\` - uppercases the text
 - \`.md-text-lowercase\` - lowercases the text
 - \`.md-text-nowrap\` - does not allow line breaks

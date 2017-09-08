@@ -1,4 +1,4 @@
-Avatars can can be used to symbolize people or objects. They are generally used to givea more personalized
+Avatars can can be used to symbolize people or objects. They are generally used to give a more personalized
 feeling on a website for each user.
 
 An avatar can be made from one of the following:
@@ -6,7 +6,7 @@ An avatar can be made from one of the following:
 - a `FontIcon`,
 - a letter
 
-An avatar can be created by providing a `src` prop pointing to the url of the image.
+An avatar can be created by providing a `src` prop pointing to the URL of the image.
 When an avatar is an image, the `alt` or `role="presentation"` props should be provided
 for accessibility.
 

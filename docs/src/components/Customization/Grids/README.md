@@ -21,7 +21,7 @@ and 5/12s on desktops / larger screens.
 
 ### Class Names Created
 - `.md-grid` - The main flex container. You should use this along with the `.md-cell` to get
-the correct gutter and margins for a material desing page.
+the correct gutter and margins for a material design page.
 - `.md-grid--no-spacing` - An optional class name to use with the `.md-grid`. When they are used
 together, all the margins and spacings will be removed from the grid.
 - `.md-cell` - The main container for a column or cell in the grid. If this is used alone, the default
@@ -39,7 +39,7 @@ that if you are using the base configuration options and following the material 
 allow 4 columns per row, tablets 8 per row, and desktops 12. So specifying `.md-cell .md-cell--6` would span an
 entire row on mobile devices, 3/4 of a row on tablets, and 1/2 of a row on desktops.
 - `.md-cell--NUMBER-offset` - This will offset the cell by the given number of columns. If the `number` is greater
-than the maximum amount of columsn allowed for the device's screen size, an entire row will be blank.
+than the maximum amount of columns allowed for the device's screen size, an entire row will be blank.
 - `.md-cell--NUMBER-phone` - This will set the cell's size only for mobile devices.
 - `.md-cell--NUMBER-tablet` - This will set the cell's size only for tablet devices.
 - `.md-cell--NUMBER-desktop` - This will set the cell's size only for desktop / large screens.

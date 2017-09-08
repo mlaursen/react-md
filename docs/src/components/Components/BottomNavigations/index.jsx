@@ -49,7 +49,7 @@ Since this is a **navigation** component, the bottom navigation can be updated t
 This example will be exactly the same as the shifting example above, just using \`react-router\`'s \`Link\` and
 \`Route\` components to change the index and figure out which components to render.
 
-Since my site uses path params to fetch documentation/examples/sassdoc, you will need to navigate to a different
+Since my site uses path params to fetch documentation/examples/SassDoc, you will need to navigate to a different
 route to actually view the demo. Please click the link below to see this example in action. The code for the example
 is still available here by clicking the code expander button.
   `,

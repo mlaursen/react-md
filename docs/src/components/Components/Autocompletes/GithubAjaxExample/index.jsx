@@ -31,7 +31,7 @@ export class PureGithubAjaxExample extends PureComponent {
    * 10 searches allowed in a minute for the GitHub API.
    *
    * The `githubRequest` function is a simple wrapper of the fetching data from the
-   * github api, but doing some additional work behind the scenes to keep track of
+   * GitHub API, but doing some additional work behind the scenes to keep track of
    * the remaining queries to the GitHub API. You can just treat it as:
    *
    * fetch(`https://api.github.com/search/users?q=${encodeURIComponent(query)}`)
@@ -66,7 +66,7 @@ export class PureGithubAjaxExample extends PureComponent {
   };
 
   /**
-   * When one of the usernames for github are selected, fetch all the repos
+   * When one of the usernames for GitHub are selected, fetch all the repos
    * for that user and then display very simple cards to represent those repos.
    */
   handleAutocomplete = (value, index, matches) => {
@@ -98,7 +98,7 @@ export class PureGithubAjaxExample extends PureComponent {
           onClick={this.reset}
           fixed
           secondary
-          tooltipLabel="Remove github repos"
+          tooltipLabel="Remove GitHub repos"
           tooltipPosition="left"
         >
           delete

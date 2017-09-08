@@ -5,7 +5,7 @@ There are four types of buttons in react-md:
 - floating
 
 Starting from v1.1.0, the dense spec for icons has been implemented. This means that the icon and floating buttons
-will be smaller when matching the destkop media query than when on mobile devices. See the
+will be smaller when matching the desktop media query than when on mobile devices. See the
 [dense spec variable](/components/font-icons?tab=2#variable-md-font-icon-include-dense) for more information.
 
 All of these types can be styled using the primary, secondary, or theme's colors. `flat` and `icon` buttons
