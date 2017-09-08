@@ -106,6 +106,16 @@ export default class Autocomplete extends PureComponent {
     listClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the inline suggestion when using `inline` mode.
+     */
+    inlineSuggestionStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the inline suggestion when using `inline` mode.
+     */
+    inlineSuggestionClassName: PropTypes.string,
+
+    /**
      * Boolean if the autocomplete is disabled.
      */
     disabled: PropTypes.bool,
@@ -919,6 +929,8 @@ export default class Autocomplete extends PureComponent {
       listClassName,
       textFieldStyle,
       textFieldClassName,
+      inlineSuggestionStyle,
+      inlineSuggestionClassName,
       menuId,
       inline,
       anchor,
@@ -998,11 +1010,11 @@ export default class Autocomplete extends PureComponent {
         suggestion = (
           <span
             key="suggestion"
-            style={suggestionStyle}
+            style={{ ...suggestionStyle, ...inlineSuggestionStyle }}
             className={cn('md-autocomplete-suggestion', {
               'md-autocomplete-suggestion--floating': props.label,
               'md-autocomplete-suggestion--block': block,
-            })}
+            }, inlineSuggestionClassName)}
           >
             {this.state.suggestion}
           </span>

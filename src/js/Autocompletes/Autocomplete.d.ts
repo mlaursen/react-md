@@ -17,6 +17,8 @@ export interface AutocompleteProps extends BaseMenuProps {
   textFieldClassName?: string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
+  inlineSuggestionStyle?: React.CSSProperties;
+  inlineSuggestionClassName?: string;
   disabled?: boolean;
   label?: React.ReactNode;
   placeholder?: string;
