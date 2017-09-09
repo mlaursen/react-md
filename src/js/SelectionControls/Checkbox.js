@@ -4,6 +4,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import controlled from '../utils/PropTypes/controlled';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import FontIcon from '../FontIcons/FontIcon';
 import SelectionControl from './SelectionControl';
 
@@ -93,42 +94,31 @@ export default class Checkbox extends PureComponent {
     inline: PropTypes.bool,
 
     /**
-     * Any children to use for the checked `FontIcon` of the `Checkbox`.
+     * The icon to display when the checkbox is checked.
      */
-    checkedIconChildren: PropTypes.node,
+    checkedIcon: PropTypes.node.isRequired,
 
     /**
-     * An icon className to use for the checked `FontIcon` of the `Checkbox`.
+     * The icon to display when the checkbox is unchecked.
      */
-    checkedIconClassName: PropTypes.string,
+    uncheckedIcon: PropTypes.node.isRequired,
 
-    /**
-     * Any children to use for the unchecked `FontIcon` of the `Checkbox`.
-     */
-    uncheckedIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use for the unchecked `FontIcon` of the `Checkbox`.
-     */
-    uncheckedIconClassName: PropTypes.string,
-
-    checkedIcon: deprecated(
-      PropTypes.node,
-      'Use the `checkedIconChildren` and `checkedIconClassName` props instead'
-    ),
-    uncheckedIcon: deprecated(
-      PropTypes.node,
-      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead'
-    ),
+    checkedIconChildren: deprecated(PropTypes.node, 'Use `checkedIcon` instead'),
+    checkedIconClassName: deprecated(PropTypes.string, 'Use `checkedIcon` instead'),
+    uncheckedIconChildren: deprecated(PropTypes.node, 'Use `uncheckedIcon` instead'),
+    uncheckedIconClassName: deprecated(PropTypes.string, 'Use `uncheckedIcon` instead'),
   };
 
   static defaultProps = {
-    checkedIconChildren: 'check_box',
-    uncheckedIconChildren: 'check_box_outline_blank',
+    checkedIcon: <FontIcon>check_box</FontIcon>,
+    uncheckedIcon: <FontIcon>check_box_outline_blank</FontIcon>,
   };
 
   render() {
     const {
+      checkedIcon,
+      uncheckedIcon,
+      // deprecated
       checkedIconChildren,
       checkedIconClassName,
       uncheckedIconChildren,
@@ -136,11 +126,14 @@ export default class Checkbox extends PureComponent {
       ...props
     } = this.props;
 
+    const checked = getDeprecatedIcon(checkedIconClassName, checkedIconChildren, checkedIcon);
+    const unchecked = getDeprecatedIcon(uncheckedIconClassName, uncheckedIconChildren, uncheckedIcon);
+
     return (
       <SelectionControl
         type="checkbox"
-        checkedCheckboxIcon={<FontIcon iconClassName={checkedIconClassName}>{checkedIconChildren}</FontIcon>}
-        uncheckedCheckboxIcon={<FontIcon iconClassName={uncheckedIconClassName}>{uncheckedIconChildren}</FontIcon>}
+        checkedCheckboxIcon={checked}
+        uncheckedCheckboxIcon={unchecked}
         __superSecreteProp
         {...props}
       />

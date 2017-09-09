@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import FontIcon from '../FontIcons/FontIcon';
 import SelectionControl from './SelectionControl';
 
@@ -87,42 +88,30 @@ export default class Radio extends PureComponent {
     inline: PropTypes.bool,
 
     /**
-     * Any children to use for the checked `FontIcon` of the `Radio`.
+     * The icon to display when the radio is checked/selected.
      */
-    checkedIconChildren: PropTypes.node,
+    checkedIcon: PropTypes.node.isRequired,
 
     /**
-     * An icon className to use for the checked `FontIcon` of the `Radio`.
+     * The icon to display when the radio is not checked/selected.
      */
-    checkedIconClassName: PropTypes.string,
-
-    /**
-     * Any children to use for the unchecked `FontIcon` of the `Radio`.
-     */
-    uncheckedIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use for the unchecked `FontIcon` of the `Radio`.
-     */
-    uncheckedIconClassName: PropTypes.string,
-
-    checkedIcon: deprecated(
-      PropTypes.node,
-      'Use the `checkedIconChildren` and `checkedIconClassName` props instead.'
-    ),
-    uncheckedIcon: deprecated(
-      PropTypes.node,
-      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead.'
-    ),
+    uncheckedIcon: PropTypes.node.isRequired,
+    checkedIconChildren: deprecated(PropTypes.node, 'Use `checkedIcon` instead'),
+    checkedIconClassName: deprecated(PropTypes.string, 'Use `checkedIcon` instead'),
+    uncheckedIconChildren: deprecated(PropTypes.node, 'Use `uncheckedIcon` instead'),
+    uncheckedIconClassName: deprecated(PropTypes.string, 'Use `uncheckedIcon` instead'),
   };
 
   static defaultProps = {
-    checkedIconChildren: 'radio_button_checked',
-    uncheckedIconChildren: 'radio_button_unchecked',
+    checkedIcon: <FontIcon>radio_button_checked</FontIcon>,
+    uncheckedIcon: <FontIcon>radio_button_unchecked</FontIcon>,
   };
 
   render() {
     const {
+      checkedIcon,
+      uncheckedIcon,
+      // deprecated
       checkedIconChildren,
       checkedIconClassName,
       uncheckedIconChildren,
@@ -130,11 +119,14 @@ export default class Radio extends PureComponent {
       ...props
     } = this.props;
 
+    const checked = getDeprecatedIcon(checkedIconClassName, checkedIconChildren, checkedIcon);
+    const unchecked = getDeprecatedIcon(uncheckedIconClassName, uncheckedIconChildren, uncheckedIcon);
+
     return (
       <SelectionControl
         type="radio"
-        checkedCheckboxIcon={<FontIcon iconClassName={checkedIconClassName}>{checkedIconChildren}</FontIcon>}
-        uncheckedCheckboxIcon={<FontIcon iconClassName={uncheckedIconClassName}>{uncheckedIconChildren}</FontIcon>}
+        checkedCheckboxIcon={checked}
+        uncheckedCheckboxIcon={unchecked}
         __superSecreteProp
         {...props}
       />

@@ -95,7 +95,7 @@ export default class FileInput extends PureComponent {
      * A label to display on the `FileInput`. This will be used with the `AccessibleFakeInkedButton` component to
      * create a `<label>` for the `<input type="file">`.
      */
-    label: PropTypes.node.isRequired,
+    label: PropTypes.node,
 
     /**
      * Boolean if the icons should appear before the label.
