@@ -8,4 +8,3 @@ public
 !public/react-md.png
 src/server/databases/*
 !src/server/databases/airQuality.json
-jsdoc.json

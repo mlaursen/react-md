@@ -23,9 +23,10 @@ This release **added Typescript support**. It is not completely perfect yet, but
 implementation so far. Many thanks to the people who have helped me learn the basics for Typescript definitions
 and contributing to fix the missing definitions. ([@peteboothroyd] and [@mctep])
 
-Please see the [upgrade guide](/discover-more/upgrade-guides/v1.1.0) for upgrade help and a full list
-of new features and bugfixes. A bit too much went into this *minor* release, and I am planning on doing
-smaller releases from now on. This one was a bit of a disaster to develop.
+You can see the [milestone for this release](https://github.com/mlaursen/react-md/issues?utf8=%E2%9C%93&q=milestone%3Av1.1.0) to see what went in it.
+There are also some undocumentated changes that should be covered in the [upgrade guide](/discover-more/upgrade-guides/v1.1.0).
+
+A bit too much went into this *minor* release, and I am planning on doing smaller releases from now on. This one was a bit of a disaster to develop.
 
 ### Immediate Release Warnings
 #### Dialogs

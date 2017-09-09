@@ -57,11 +57,12 @@ function removeMarginFromSeeParagraphs(markdown) {
 function addEmojiItems(markdown) {
   return markdown.replace(/\r?\n<li>✨\s?/g, '<li class="emoji-item emoji-item--sparkles">')
     .replace(/\r?\n<li>🎉\s?/g, '<li class="emoji-item emoji-item--tada">')
-    .replace(/\r?\n<li>🐛\s?/g, '<li class="emoji-item emoji-item--bug"');
+    .replace(/\r?\n<li>🐛\s?/g, '<li class="emoji-item emoji-item--bug">');
 }
 
 function addGithubLinks(markdown) {
-  return markdown.replace(/\[(commit|pull|issues)-((\w+)(#issuecomment-\w+)?)]/g, `[#$3](${GITHUB_URL}/$1/$2)`);
+  return markdown.replace(/\[(pull|issues)-((\w+)(#issuecomment-\w+)?)]/g, `[#$3](${GITHUB_URL}/$1/$2)`)
+    .replace(/\[commit-(\w+)]/g, `[$1](${GITHUB_URL}/commit/$1)`);
 }
 
 function addGithubUserLinks(markdown) {

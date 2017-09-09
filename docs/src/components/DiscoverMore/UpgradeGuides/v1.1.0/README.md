@@ -1,6 +1,3 @@
-✨
-🎉
-🐛
 ## Changelog
 ### New Components
 - 🎉 Created a [Layover](/components/helpers/layovers) to keep elements fixed within the viewport and a lot of other
@@ -13,7 +10,7 @@ magic. Any component that uses the `Menu` behind the scenes can hook into this A
 within `DataTable`s. [issues-310]
 - 🎉 Created `TableFooter` component.
 - 🎉 Created a [Tooltipped](/components/tooltips#tooltipped-examples) component for easily adding tooltips to a child component.
-([@gamtic] - [pull-477] and [pull-473])
+([@gamtiq] - [pull-477] and [pull-473])
 
 
 ### Component Updates
@@ -24,7 +21,8 @@ within `DataTable`s. [issues-310]
 [autocomplete styling](/components/autocompletes#toolbar-search).
 - ✨ `Autocomplete`s have additional props for styling the inline suggestion.
 - ✨ `Autocomplete`s have additional accessibility support when there are paginated results. Check out the
-[Paginated/Lazy Loading Results](/components/autocompletes#paginated-lazy-loading-results) example for some more details.
+[Paginated/Lazy Loading Results](/components/autocompletes#paginated-lazy-loading-results) example for some more details. [commit-3e8437]
+- ✨  `Autocomplete`s now add the `aria-autocomplete` attribute. [commit-75f1cf]
 - ✨ `Button`s no longer prefer the `label` prop. It is preferred to render any icons or text as `children` in the `Button` instead. Look at the
 newer [Button examples](/components/buttons). [issues-254]
 - 🎉 `Button`s now have a consistent size between enabled and disabled states. [issues-295]
@@ -40,14 +38,16 @@ newer [Button examples](/components/buttons). [issues-254]
 instead. [issues-197] and [pull-318]
 - ✨ The `DataTable`'s `TableRow` provides the native `rowIndex` so it is no longer off-by-one. [issues-243]
 - ✨ `DataTable`s now support indeterminate checkboxes. [issues-256]
-- 🎉 `DataTable` performance boost by no longer attempting to grow and adjust columns. [issues-252]
 - 🎉 `DataTable`s now support displaying only a single row of `EditDialogColumn`. [issues-394]
 - 🎉 `DataTable`s can now correctly show menus and buttons. [Check out the examples](/components/data-tables#tables-with-menus)
-- 🐛 `DataTable`s added more accessibility for the built-in checkboxes.
+- 🐛 `DataTable`s added more accessibility for the built-in checkboxes by providing labels. [commit-5368c9]
   - [checkboxHeaderLabel](/components/data-tables?tab=1#data-table-proptypes-checkbox-header-label)
   - [checkboxLabelTemplate](/components/data-tables?tab=1#data-table-proptypes-checkbox-label-template)
 - ✨ `DataTable`s support `SVGIcon`s, so the `checkedIconChildren`, `checkedIconClassName`, `uncheckedIconChildren`, and `uncheckedIconClassName` props have been
 deprecated in favor of `checkedIcon` and `uncheckedIcon`.
+- 🎉 `DataTable` performance boost by no longer attempting to grow and adjust columns. [issues-252]
+- ✨ `TableColumn`s now add the `aria-sort` attribute correctly when they are `sortable`. [commit-5368c9].
+- ✨ `TableColumn`s now provide the `scope` attribute correctly. [commit-3d1054]
 - ✨ `EditDialogColumn`s now support a mode to not automatically [open when tab-focused](/components/data-tables#edit-dialog-examples).
 - 🐛 `TablePagination`s now have a bit better support for smaller devices. [issues-489]
 - ✨ `Dialog`s have exposed both a `DialogContainer` and `Dialog` component.
@@ -92,19 +92,20 @@ example for more information.
   - [md-toolbar-select-field-margin](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
 
 #### General Changes
-- ✨ All form controls support getting the value from refs. [7e6585](#commit-7e6585)
-- 🎉 All Sass variables are `!default` for easier customization. [226](#issues-226)
-- 🎉 Automatic `id` generation is now `kebab-cased` instead of `camelCased` by default. [279](#issues-279)
-- 🎉 Stopped using `delete` for unused prop types. [212](#issues-212)
-- ✨ `line-height` is now only applied to the `body` and `p` tags by default. [242](#issues-242)
-- 🐛 Fixed a bug with invalid checksums from server side render components that use the `Portal`. [236](#issues-236)
-- 🎉 Created a global error color class name instead of limiting it only to text fields. [251](#issues-251)
+- ✨ All form controls support getting the value from refs. [commit-7e6585]
+- 🎉 All Sass variables are `!default` for easier customization. [issues-226]
+- 🎉 Automatic `id` generation is now `kebab-cased` instead of `camelCased` by default. [issues-279]
+- 🎉 Stopped using `delete` for unused prop types. [issues-212]
+- ✨ `line-height` is now only applied to the `body` and `p` tags by default. [issues-242]
+- 🐛 Fixed a bug with invalid checksums from server side render components that use the `Portal`. [issues-236]
+- 🎉 Created a global error color class name instead of limiting it only to text fields. [issues-251]
 - 🐛 Changed the default portrait and landscape media queries to use min/max aspect ratio instead of orientation. See the
 [SassDoc](/customization/media-queries?tab=1#variable-md-portrait-media) for more information.
 - 🐛 Fixed the misspelling of "deceleration".
 - 🐛 Applied a new `md-html-min-width` to the `<html>` to fix weird resizing issues when `Dialog`s appear.
 - 🐛 Changed all the `outline: none` to `outline-style: none` so that the outlines can be added back easily by just applying
 `outline-style: auto`.
+- 🎉 Updated the `displayName` of components that were using higher order components behind the scenes. [commit-7107ef]
 
 ## Upgrading to 1.1.0
 A lot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
@@ -115,7 +116,15 @@ migration messages for you.
 To help combat the weird resizing of content when a `Dialog` is opened, the `html` has been modified to gain a
 `min-width: 100%`. This can be changed by the [md-html-min-width](/customization/typography?tab=1#variable-md-html-min-width) variable.
 
-### DataTables
+## Buttons
+Buttons have added deprecation warnings for using the `label` prop. Instead of using the label, it is always preferred to use
+the `children` to render any content in the button. There is backwards compatibility built in so this should not be a breaking
+change but just a helpful migration warning.
+
+In addition with these changes, it is preferred to use the new `iconEl` instead of the `iconChildren` and `iconClassName` props. There is
+some better SVG support when using this prop.
+
+## DataTables
 The unique id generation for EditDialogColumn and SelectFieldColumn have been updated to also include the current cell index.
 ```js
 // Before
@@ -127,8 +136,7 @@ const id = `${baseId}-${rowIndex}-${colIndex}-edit-dialog-field`;
 const id = `${baseId}-${rowIndex}-${colIndex}-select-field`;
 ```
 
-
-#### DataTable
+### DataTable
 If you were using the callbacks for when a row or checkbox was clicked, the number will probably be off now. Please see
 the [issue for more details](#issues-243).
 
@@ -137,6 +145,16 @@ it was impossible to apply `style` and `className` to the surrounding responsive
 of the `DataTable` component will now apply `style` and `className` to the responsive container and `tableStyle`/`tableClassName`
 to the `<table>` when `responsive` is enabled. If `responsive` is disabled, the `style` and `className` will be applied to the
 `<table>` and `tableStyle`/`tableClassName` are invalid.
+
+With the new support for `SVGIcon`s, the `checkedIconChildren`, `checkedIconClassName`, `uncheckedIconChildren` and `uncheckedIconClassName`
+props have been deprecated. Please use the `checkedIcon` and `uncheckedIcon` props instead.
+
+### TableRow
+The `autoAdjust` prop has now been deprecated for performance reasons. Please enable the `grow` prop on one of the `TableColumn` in the header
+to get the old functionality back.
+
+### TableColumn
+The `sortIconChildren` and `sortIconClassName` props have been deprecated. Please use the `sortIcon` prop instead.
 
 #### EditDialogColumn
 The `EditDialogColumn` has been updated to automatically stay within the `DataTable`'s responsive container. In addition,
@@ -149,6 +167,8 @@ the "Ok" and "Cancel" buttons in a large dialog have been updated to have more s
 - `enforceMinWidth` deprecated.
 - `scrollThreshold` deprecated.
 - `transitionDuration` deprecated.
+- `inlineIconChildren` and `inlineIconClassName` props have been deprecated. Use the `inlineIcon` prop instead.
+- `noIcon` deprecated. Just set the `inlineIcon` prop to `null` to remove any icons.
 
 ### SelectFieldColumn
 The `SelectFieldColumn` was also updated to automatically stay within the `DataTable`'s responsive container. With the new
@@ -171,8 +191,16 @@ import { DialogContainer as Dialog } from 'react-md';
 const { DialogContainer: Dialog } = window.ReactMD; // UMD
 ```
 
-### Drawers/NavigationDrawers
-- `onVisibilityToggle` deprecated - Use `onVisibilityChange` instead.
+### Drawers
+- `closeOnNavItemClick` deprecated. Please use the `autoclose` prop instead. (It existed before)
+- `onVisibilityToggle` deprecated. Please use `onVisibilityChange` instead.
+
+### ExpansionPanels
+#### ExpansionPanel
+- `expandIconChildren` and `expandIconClassName` deprecated. Please use the `expanderIcon` prop instead.
+
+### FileInputs
+- `iconChildren` and `iconClassName` deprecated. Please use the `icon` prop instead.
 
 ### FontIcons
 Since there was a dense spec for icons disabled, you might want to set
@@ -183,27 +211,39 @@ if you were used to the look and feel without dense icons. It really changes the
 on desktop screens instead of the normal `24px`.
 
 ### Lists
-#### List
-The list is now able to be displayed inline instead of vertically. Just enable the `inline` prop for this change.
-
 #### ListItem
-The `ListItem` has now exposed an `itemProps` prop which can be used to supply any other valid React props to the surrounding
-`li` component.
-
 - `isOpen` deprecated - Use `visible` instead.
 - `defaultOpen` deprecated - Use `defaultVisible` instead.
-- `expanderLeft` added. This allows for the expander icon to appear as the left icon instead of only as the right.
+- `expanderIconChildren` and `expanderIconClassName` deprecated. Please use the `expanderIcon` prop instead.
 
 ### Menus
 The Menu component was redone to stay within the viewport. It also has a lot of other niceties built in now. If you were using
 the `Menu.Positions.CONTEXT` before, it has been deprecated. To create a context menu now, all you need to do is provide a
 `onContextMenu` prop. The component will now automatically set the positioning of the context menu for you as well.
 
+- `isOpen` deprecated. Please use the `visible` prop instead.
+- `contained` deprecated. Please use the `sameWidth` prop instead.
+- `Menu.Positions.CONTEXT` deprecated. To create context menus, just provide the `onContextMenu` callback prop instead.
+
 #### MenuButton
 The `MenuButton` was updated to move the list of items to be the `menuItems` prop instead of the `children`.
 
 - `buttonChildren` deprecated. But any children for the button in the children of the `MenuButton` itself.
+- `onMenuToggle` deprecated. Please use the `onVisibilityChange` prop instead.
+- `isOpen` deprecated. Please use the `visible` prop instead.
+- `defaultOpen` deprecated. Please use the `defaultVisible` prop instead.
 - `menuItems` - This should be the list of `number`, `string`, `object`, or `ListItem` used to render the list.
+
+### NavigationDrawers
+- `onVisibilityToggle` deprecated. Please use the `onVisibilityChange` prop instead.
+- `temporaryIconClassName` and `temporaryIconChildren` deprecated. Please use the `temporaryIcon` prop instead.
+- `persistentIconClassName` and `persistentIconChildren` deprecated. Please use the `persistentIcon` prop instead.
+
+### Pickers
+### Date Pickers
+- `previousIconChildren` and `previousIconClassName` deprecated. Please use the `previousIcon` prop instead.
+- `nextIconChildren` and `nextIconClassName` deprecated. Please use the `nextIcon` prop instead.
+- `initialCalendarDate` deprecated. Please use `defaultCalendarDate` instead.
 
 ### Portals
 All the components that were using the `Portal` component in the previous release are *not* using it by default now.
@@ -224,47 +264,22 @@ a prop.
 starts out as `defaultVisible` from the server, there _might_ be a server side rendering error message still.
 
 ### SelectFields
-- `onMenuToggle` deprecated - Use `onVisibilityChange` instead.
-- `isOpen` deprecated - Use `visibile` instead.
-- `defaultOpen` deprecated - Use `defaultVisible` instead.
-- `stripActiveItem` [added](/components/select-fields?tab=1#select-field-proptypes-strip-active-item).
+- `iconChildren` and `iconClassName` disabled. Please use the `dropdownIcon` prop instead.
+- `isOpen` deprecated. Please use the `visibile` prop instead.
+- `defaultOpen` deprecated. Please use the `defaultVisible` prop instead.
+- `onMenuToggle` deprecated. Please use the `onVisibilityChange` prop instead.
+- `stretchList` deprecated. Maybe use `sameWidth` instead. Might not need any real changes.
 
-### Toolbars
-The `$md-toolbar-mobile-prominent-height` has been switched to `null` by default and been replaced by `$md-toolbar-prominent-height`.
-The toolbar's title can now also gain an id.
+### SelectionControls
+#### SelectionControl
+- `checkedCheckboxIconChildren`, `checkedCheckboxIconClassName`, `uncheckedCheckboxIconChildren` and `uncheckedCheckboxIconClassName` deprecated.
+Please use the `checkedCheckboxIcon` and `checkedCheckboxIcon` props instead.
+- `checkedRadioIconChildren`, `checkedRadioIconClassName`, `uncheckedRadioIconChildren` and `uncheckedRadioIconClassName` deprecated.
+Please use the `checkedRadioIcon` and `checkedRadioIcon` props instead.
 
-## Changelog
-You can see the [milestone for this release](https://github.com/mlaursen/react-md/issues?utf8=%E2%9C%93&q=milestone%3Av1.1.0) to see what went in it.
-There were also some undocumented changes that might appear in the list below.
+#### Checkbox/Radio
+- `checkedIconChildren` and `checkedIconClassName` deprecated. Please use the `checkedIcon` prop instead.
+- `uncheckedIconChildren` and `uncheckedIconClassName` deprecated. Please use the `uncheckedIcon` prop instead.
 
-- Deprecated the `closeOnNavItemClick` for drawers - [#207](#issues-207)
-- Updated `ListItem` to allow a custom [li wrapper](#commit-13d1235f4ba95039c0ddc2add8252907df45946d).
-- Stopped the `waitForInkTransition` on most components by default - [#210](#issues-210)
-- Updated the `TabsContainer` component to provide access to the SwipeableViews API - [#203](#issues-203).
-- Updated the `CardTitle` for better line-wrapping. - [#199](#issues-199)
-- Updated the `DataTable` to optionally hide the checkboxes without needing to use the `plain` prop and keeping the default styles. - [#195](#issues-195)
-- Added a hover mode for the `TimePicker` - [#231](#pull-231)
-- Updated all Sass variables to now be `!default` - [#226](#issues-226)
-- Added `md-toolbar-relative` configuration/alternative to use `padding` instead of `margin` - [#225](#issues-225)
-- Updated components that use the `TextField` to have access to the current value in a [ref callback](#commit-7e6585727e47b334ebab9220ee5ebef190bef56b).
-- Added the ability to disable the collapse animation - [#219](#issues-219)
-- Updated the display name of components that use ink or tooltips to be [withInk(Component) or withTooltip(Component)](#commit-7107ef05ef90ccfd139d3d78357af3cc7ff6005e).
-- Added the `aria-autocomplete` to the [Autocomplete](#commit-75f1cf663d5e428a666d294bfda03f4c7cdc1140).
-- Added the `aria-sort` to `TableColumn` when they are [sortable](#commit-5368c96bff79dfa43cb3d6256a3eaea779f7c196).
-- Updated the `ListItem` to set the correct aria props on the `li` tag instead of the [nested component](#commit-4907f3b62afc1d3578e6398cdeb6eca267466879).
-- Updated the `Autocomplete` for [paginated suggestion accessibility](#commit-3e84372ffd34f0b6952efa22bf30cf241ce9b89f).
-- Stopped using `delete` for unused props. [#212](#issues-212)
-- Documented and Publicized the inner used [Dialog component](#commit-f7db6187741b94caf013a02219ccd1d77c64314b).
-- Implemented a `Badge` component. [#220](#issues-220)
-- Updated line-height to only be applied to the `body` and `p` tags. [#242](#issues-242)
-- Updated the `TableRow` to use the correct `rowIndex` value. [#243](#issues-243)
-- Implemented indeterminate `DataTable`s. [#256](#issues-256)
-- General accessibility fixes for [selection controls and data tables](#commit-3d10540461f4c552188f22ab25ec5f665c3a00e2).
-- Updated the button's label to be `node` and added a `noIcon` prop for buttons. [#261](#pull-261)
-- Implemented the dense icon spec. [#217](#issues-217)
-- Added initial typescript support. [#175](#issues-175)
-- Ink is now disable-able at an application level. [#176](#issues-176)
-- Buttons, Lists, and Toolbars can now have a consistent size across all devices. [#226](#issues-226)
-- Most components no longer use the Portal component since it lead to a lot of issues. [#230](#issues-230)
-- TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
-- Keeping Menus within the viewport. Giant change. [#303](#pull-303)
+### TextFields
+- `passwordIconChildren` and `passwordIconClassName` deprecated. Please use `passwordIcon` instead.

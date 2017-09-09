@@ -6,7 +6,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "clean": "npm run clean:assets && rimraf \"src/server/databases/!(airQuality).json\" && rimraf jsdoc.json",
+    "clean": "npm run clean:assets && npm run clean:dbs",
+    "clean:dbs": "rimraf \"src/server/databases/!(airQuality).json\"",
     "clean:assets": "rimraf \"public/!(robots.txt|react-md.png|favicon.ico)\"",
     "prebuild": "npm run clean && npm run sassdoc:site && npm run doc-dbs",
     "build": "webpack --progress --colors --env.production",
@@ -14,7 +15,7 @@
     "air-quality": "cross-env BABEL_ENV=scripts babel-node src/scripts/createAirQualityDB.js",
     "doc-dbs": "npm run sassdoc && npm run docgen",
     "jsdoc": "npm run jsdoc:build && npm run jsdoc:create",
-    "jsdoc:build": "jsdoc -c jsdoc-conf.json ../src/js -X > jsdoc.json",
+    "jsdoc:build": "jsdoc -c jsdoc-conf.json ../src/js -X > src/server/databases/jsdoc.json",
     "jsdoc:create": "cross-env BABEL_ENV=scripts babel-node src/scripts/createJSDoc.js",
     "docgen": "npm run jsdoc && npm run docgen:create",
     "docgen:create": "cross-env BABEL_ENV=scripts babel-node src/scripts/createDocgen.js",
