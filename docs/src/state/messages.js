@@ -1,15 +1,30 @@
 export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
 
+export const REFRESH_MESSAGE = 'New content is available; please refresh';
+
 export function createMessage(message) {
   if (typeof message === 'string') {
     message = { text: message };
   }
+
   return { type: CREATE_MESSAGE, payload: { message } };
 }
 
 export function removeMessage() {
   return { type: REMOVE_MESSAGE };
+}
+
+export function createRefreshMessage() {
+  return createMessage({
+    text: REFRESH_MESSAGE,
+    action: {
+      label: 'Reload',
+      onClick: () => {
+        window.location.reload();
+      },
+    },
+  });
 }
 
 function push(state, message) {
