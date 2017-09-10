@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { IdPropType } from '../index';
-import { DropdownMenuProps } from './DropdownMenu';
+import { SharedDropdownMenuProps } from './DropdownMenu';
 import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
 import { SharedButtonProps } from '../Buttons/Button';
 
-export interface MenuButtonProps extends DropdownMenuProps, SharedButtonProps {
+export interface MenuButtonProps extends SharedDropdownMenuProps, SharedButtonProps {
+  children?: React.ReactNode;
   simplifiedMenu?: boolean;
 
   /**
