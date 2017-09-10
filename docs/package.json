@@ -139,8 +139,7 @@
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.2",
-    "webpack-manifest-plugin": "^1.2.1",
-    "webpack-md5-hash": "^0.0.5"
+    "webpack-manifest-plugin": "^1.2.1"
   },
   "jest": {
     "timers": "fake",
