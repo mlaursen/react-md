@@ -20,7 +20,10 @@ export interface BaseMenuProps extends SharedLayoverProps {
 }
 
 export interface MenuProps extends BaseMenuProps {
-  component?: Function | string;
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
+  component?: React.ReactType;
   visible: boolean;
   children?: React.ReactNode;
   cascading?: boolean;

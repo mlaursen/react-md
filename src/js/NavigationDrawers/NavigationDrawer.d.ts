@@ -55,7 +55,7 @@ export interface NavigationDrawerProps extends Props {
   toolbarProminentTitle?: boolean;
   toolbarActions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   toolbarChildren?: React.ReactNode;
-  contentComponent?: Function | string;
+  contentComponent?: React.ReactType;
   footer?: React.ReactNode;
   transitionName?: string;
   transitionEnterTimeout?: number;

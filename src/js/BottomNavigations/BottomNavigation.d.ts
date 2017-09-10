@@ -2,7 +2,13 @@ import * as React from 'react';
 import { Props } from '../index';
 
 export interface BottomNavigationProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   links: Array<{
+    // for the `component` prop until refactored out
+    [key: string]: any;
+
     label: React.ReactNode,
     icon?: React.ReactElement<any>,
     component?: React.ReactType,

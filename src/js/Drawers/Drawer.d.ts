@@ -25,11 +25,14 @@ export type MediaTypes = 'mobile' | 'tablet' | 'desktop';
 export type DrawerPositions = 'left' | 'right';
 
 export interface DrawerProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   navStyle?: React.CSSProperties;
   navClassName?: string;
   overlayStyle?: React.CSSProperties;
   overlayClassName?: string;
-  component?: Function | string;
+  component?: React.ReactType;
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: string }>;
   autoclose?: boolean;
   header?: React.ReactNode;

@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Props } from '../index';
 
 export interface AccessibleFakeButtonProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   noFocusOutline?: boolean;
   tabbedClassName?: string;
   onTabFocus?: (event: Event) => void;

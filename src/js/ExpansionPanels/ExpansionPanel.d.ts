@@ -3,6 +3,9 @@ import { Props } from '../index';
 import { ButtonTypes } from '../Buttons';
 
 export interface ExpansionPanelProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   headerStyle?: React.CSSProperties;
   headerClassName?: string;
   contentStyle?: React.CSSProperties;

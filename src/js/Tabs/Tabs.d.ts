@@ -4,6 +4,9 @@ import { TabProps as Tab } from './Tab';
 import { MediaTypes } from '../Drawers';
 
 export interface TabsProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   tabId: IdPropType;
   component?: React.ReactType;
   children?: React.ReactElement<Tab> | Array<React.ReactElement<Tab>>;

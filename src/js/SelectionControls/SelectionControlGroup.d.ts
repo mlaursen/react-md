@@ -2,6 +2,9 @@ import * as React from 'react';
 import { IdPropType, Props } from '../index';
 
 export interface SelectionControlGroupProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   controlStyle?: React.CSSProperties;
   controlClassName?: string;
   id?: IdPropType;

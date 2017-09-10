@@ -57,6 +57,9 @@ export interface SharedLayoverProps extends Props {
 }
 
 export interface LayoverProps extends SharedLayoverProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   component?: React.ReactType;
   visible: boolean;
   toggle?: React.ReactNode;

@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Props, IdPropType } from '../index';
 
 export interface TableCardHeaderProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   component?: React.ReactType;
   transitionName?: string;
   transitionEnterTimeout?: number;
