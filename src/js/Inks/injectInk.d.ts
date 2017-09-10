@@ -17,12 +17,16 @@ export interface InjectedInkProps extends Props {
   disabledInteractions?: Array<InteractionTypes>;
 }
 
+export interface InkProps {
+  ink: React.ReactNode | null;
+}
+
 export interface InkedComponent {
   createInk(pageX?: number, pageY?: number): void;
   focus(): void;
   getComposedComponent(): React.ReactInstance;
 }
 
-export default function injectInk<P>(
-  ComposedComponent: React.ComponentClass<P & { ink: React.ReactNode | null }>
-): React.ComponentClass<P & InjectedInkProps> & InkedComponent;
+export default function injectInk<ComposedProps>(
+  ComposedComponent: React.ComponentType<ComposedProps & InkProps>
+): React.ComponentClass<ComposedProps & InjectedInkProps> & InkedComponent;
