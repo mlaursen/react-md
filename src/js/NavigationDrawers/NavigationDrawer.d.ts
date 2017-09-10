@@ -94,6 +94,20 @@ export interface NavigationDrawerProps extends Props {
 }
 
 interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawerProps> {
+  DrawerTypes: {
+    // Permanent drawers
+    FULL_HEIGHT: 'full-height',
+    CLIPPED: 'clipped',
+    FLOATING: 'floating',
+
+    // Persistent drawers
+    PERSISTENT: 'persistent',
+    PERSISTENT_MINI: 'persistent-mini',
+
+    // Temporary
+    TEMPORARY: 'temporary',
+    TEMPORARY_MINI: 'temporary-mini',
+  };
   getCurrentMedia(props?: {
     mobileMinWidth: number,
     tabletMinWidth: number,

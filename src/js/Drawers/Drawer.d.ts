@@ -65,7 +65,20 @@ export interface DrawerProps extends Props {
 }
 
 interface DrawerComponent extends React.ComponentClass<DrawerProps> {
-  DrawerTypes: DrawerTypes;
+  DrawerTypes: {
+    // Permanent drawers
+    FULL_HEIGHT: 'full-height',
+    CLIPPED: 'clipped',
+    FLOATING: 'floating',
+
+    // Persistent drawers
+    PERSISTENT: 'persistent',
+    PERSISTENT_MINI: 'persistent-mini',
+
+    // Temporary
+    TEMPORARY: 'temporary',
+    TEMPORARY_MINI: 'temporary-mini',
+  };
   getCurrentMedia(props?: {
     mobileMinWidth: number,
     tabletMinWidth: number,

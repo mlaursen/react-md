@@ -73,9 +73,26 @@ export interface LayoverProps extends SharedLayoverProps {
 }
 
 interface LayoverComponent extends React.ComponentClass<LayoverProps> {
-  Positions: LayoverPositions;
-  VerticalAnchors: VerticalAnchors;
-  HorizontalAnchors: HorizontalAnchors;
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
 }
 
 declare const Layover: LayoverComponent;

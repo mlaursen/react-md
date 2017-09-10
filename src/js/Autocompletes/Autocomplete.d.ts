@@ -46,9 +46,26 @@ export interface AutocompleteProps extends BaseMenuProps {
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {
-  Positions: LayoverPositions;
-  HorizontalAnchors: HorizontalAnchors;
-  VerticalAnchors: VerticalAnchors;
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
   caseInsensitiveFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   fuzzyFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   findIgnoreCase(data: DataType, filterText: string, dataLabel?: string): string;

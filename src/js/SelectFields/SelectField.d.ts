@@ -100,5 +100,28 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   iconClassName?: string;
 }
 
-declare const SelectField: React.ComponentClass<SelectFieldProps>;
+interface SelectFieldComponent extends React.ComponentClass<SelectFieldProps> {
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
+}
+
+declare const SelectField: SelectFieldComponent;
 export default SelectField;
