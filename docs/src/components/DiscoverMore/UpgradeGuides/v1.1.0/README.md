@@ -76,7 +76,7 @@ deprecated in favor of `checkedIcon` and `uncheckedIcon`.
 - 🐛 `Menu`s can now correctly render only one `ListItem`. [issues-259]
 - 🎉 `Menu`s can now correctly display context menus and cascading menus. Check out the [Google Docs Clone](/components/menus#google-docs-clone)
 example for more information.
-- ✨ `Menu`s can have consitent max-width/max-height across all media sizes.
+- ✨ `Menu`s can have consistent max-width/max-height across all media sizes.
 - 🐛 `NavigationDrawer` small bugfix for IE11 displaying weird.
 - 🎉 The `Portal` component is no longer used by default since it causes many issues. [issues-230]
 - ✨ `DatePicker` now supports setting the correct start of day according to the locales prop. [issues-326]
