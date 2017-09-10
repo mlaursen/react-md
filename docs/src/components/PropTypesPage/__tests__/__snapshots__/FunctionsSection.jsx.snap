@@ -153,7 +153,7 @@ exports[`FunctionsSection should render correctly 3`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -196,7 +196,7 @@ exports[`FunctionsSection should render correctly 3`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -315,7 +315,7 @@ exports[`FunctionsSection should render correctly 4`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -358,7 +358,7 @@ exports[`FunctionsSection should render correctly 4`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section

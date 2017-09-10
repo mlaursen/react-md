@@ -78,7 +78,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
         </td>
         <td
           aria-sort={undefined}
-          className="md-table-column md-text-left md-table-column--plain md-text"
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           scope={undefined}
         >
           <section
@@ -121,7 +121,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
         </td>
         <td
           aria-sort={undefined}
-          className="md-table-column md-text-left md-table-column--plain md-text"
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           scope={undefined}
         >
           <section
