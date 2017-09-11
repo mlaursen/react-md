@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 
 export default class SimpleModal extends PureComponent {
@@ -28,7 +28,7 @@ export default class SimpleModal extends PureComponent {
     return (
       <div>
         <Button raised onClick={this.show}>Open the Dialog</Button>
-        <Dialog
+        <DialogContainer
           id="simple-action-dialog"
           visible={visible}
           onHide={this.hide}
@@ -41,7 +41,7 @@ export default class SimpleModal extends PureComponent {
             placeholder="Content..."
             defaultValue="Hello, world!"
           />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

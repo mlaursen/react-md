@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 
 import DocumentToolbar from './DocumentToolbar';
 import DocumentContainer from './DocumentContainer';
@@ -22,7 +22,7 @@ export default class GoogleDocsDialog extends PureComponent {
   render() {
     const { visible, hide } = this.props;
     return (
-      <Dialog
+      <DialogContainer
         id="google-docs-clone-dialog"
         fullPage
         aria-label="Google docs clone"
@@ -33,7 +33,7 @@ export default class GoogleDocsDialog extends PureComponent {
       >
         <DocumentToolbar hide={hide} />
         <DocumentContainer />
-      </Dialog>
+      </DialogContainer>
     );
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import Slider from 'react-md/lib/Sliders';
 
 import './_editable.scss';
@@ -44,7 +44,7 @@ export default class Editable extends PureComponent {
         <Button raised secondary onClick={this.show}>
           Open Color Changer
         </Button>
-        <Dialog
+        <DialogContainer
           id="color-changer"
           visible={visible}
           onHide={this.hide}
@@ -75,7 +75,7 @@ export default class Editable extends PureComponent {
             onChange={this.updateB}
             leftIcon={<Indicator>B</Indicator>}
           />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

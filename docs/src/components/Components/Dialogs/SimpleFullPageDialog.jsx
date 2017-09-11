@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
 import Toolbar from 'react-md/lib/Toolbars';
@@ -31,7 +31,7 @@ export default class SimpleFullPageDialog extends PureComponent {
         <Button raised onClick={this.show} aria-controls="simple-full-page-dialog">
           Open the Dialog
         </Button>
-        <Dialog
+        <DialogContainer
           id="simple-full-page-dialog"
           visible={visible}
           pageX={pageX}
@@ -55,7 +55,7 @@ export default class SimpleFullPageDialog extends PureComponent {
             <Divider />
             <TextField id="event-desc" placeholder="Description" block paddedBlock rows={4} />
           </section>
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

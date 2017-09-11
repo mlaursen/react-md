@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 
@@ -21,7 +21,7 @@ export default class SimpleListDialog extends PureComponent {
     return (
       <div>
         <Button raised onClick={this.show}>Open the dialog</Button>
-        <Dialog
+        <DialogContainer
           id="simple-list-dialog"
           visible={visible}
           title="Simple List Dialog"
@@ -33,7 +33,7 @@ export default class SimpleListDialog extends PureComponent {
             <ListItem primaryText="Single line text goes here" />
             <ListItem primaryText="Three line wrapped text goes here making it wrap to the next line and continues longer to be here" />
           </List>
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }
