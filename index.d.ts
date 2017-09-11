@@ -1,5 +1,6 @@
 // Type definitions for react-md
 // Project: https://github.com/mlaursen/react-md
+// Typescript Version: 2.4
 
 export { default as Autocomplete, AutocompleteProps } from './lib/Autocompletes';
 export { default as Avatar, AvatarProps } from './lib/Avatars';

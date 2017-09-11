@@ -9,8 +9,8 @@ import {
 } from '../Helpers/Layover';
 import { BaseMenuProps } from '../Menus/Menu';
 
-export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
-  id: IdPropType;
+export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
+  id?: IdPropType;
   menuId?: IdPropType;
   listId?: IdPropType;
   listStyle?: React.CSSProperties;
@@ -38,6 +38,11 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   menuTransitionLeaveTiemout?: number;
   deleteKeys?: number | string | Array<number | string>;
   simplifiedMenu?: boolean;
+  position?: LayoverPositions;
+}
+
+export interface SelectFieldProps extends SharedSelectFieldProps {
+  id: IdPropType;
 
   /**
    * @deprecated

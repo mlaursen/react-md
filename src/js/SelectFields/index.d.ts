@@ -1,1 +1,1 @@
-export { default, SelectFieldProps } from './SelectField';
+export { default, SharedSelectFieldProps, SelectFieldProps } from './SelectField';

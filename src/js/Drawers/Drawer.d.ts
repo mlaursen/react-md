@@ -57,6 +57,7 @@ export interface DrawerProps extends Props {
   transitionDuration?: number;
   clickableDesktopOverlay?: boolean;
   children?: React.ReactNode;
+  constantType?: boolean;
 
   /**
    * @deprecated

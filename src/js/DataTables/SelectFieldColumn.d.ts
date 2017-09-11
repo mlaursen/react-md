@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { InjectedTooltipProps } from '../Tooltips';
-import { SelectFieldProps } from '../SelectFields';
+import { SharedSelectFieldProps } from '../SelectFields';
 import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
 
-export interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps {
+export interface SelectFieldColumnProps extends SharedSelectFieldProps, InjectedTooltipProps {
   menuStyle?: React.CSSProperties;
   menuClassName?: string;
   header?: boolean;
