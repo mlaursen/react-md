@@ -17,14 +17,30 @@ component's prop. This is probably more for me than anything else.
 - When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
 list.
 
+### v1.1.1 Released
+This is a couple of Typescript bugfixes thanks to [@stickfigure] and [@noseglid].
 
-### v1.1.0 Released!
+#### Changelog
+- Updated components that use the `component` prop to allow any key until it gets refactored away. [commit-1c5b17b]
+- Added another attempt at fixing Typescript definitions for static component enums. [commit-d8247db]
+- Fixed the Typescript definitions for `injectInk` and `injectTooltip`. [commit-7b50871]
+- Fixed the `defaultMedia` Typescript definition for the `Drawer` component. ([@noseglid] - [pull-513])
+- Fixed the `calendarTitleFormat` Typescript definition. ([@noseglid] - [pull-511])
+- Fixed the `Drawer` and `NavigationDrawer` to have `constantType` and `constantDrawerType` Typescript definitions. [commit-065d84b]
+- Fixed the `LinearProgress` query Typescript definition. [commit-065d84b]
+- Fixed the `SelectFieldColumn`'s `id` Typescript definition. [commit-065d84b]
+- Fixed the TextField Typescript definition for `onPaste`. [commit-065d84b]
+- Updated the `TablePagination` with some more configuration props. [commit-0cb5aae]
+- Fixed an `Autocomplete` bug with opening the menu incorrectly. [commit-a42f8b1]
+
+
+### v1.1.0 Released
 This release **added Typescript support**. It is not completely perfect yet, but it seems to be in a decent
 implementation so far. Many thanks to the people who have helped me learn the basics for Typescript definitions
 and contributing to fix the missing definitions. ([@peteboothroyd] and [@mctep])
 
 You can see the [milestone for this release](https://github.com/mlaursen/react-md/issues?utf8=%E2%9C%93&q=milestone%3Av1.1.0) to see what went in it.
-There are also some undocumentated changes that should be covered in the [upgrade guide](/discover-more/upgrade-guides/v1.1.0).
+There are also some undocumented changes that should be covered in the [upgrade guide](/discover-more/upgrade-guides/v1.1.0).
 
 A bit too much went into this *minor* release, and I am planning on doing smaller releases from now on. This one was a bit of a disaster to develop.
 
