@@ -4,7 +4,7 @@ set -e
 
 tar_name=react-md.tar.bz2
 ssh_alias=react-md
-server_location=/var/www/react-md/v1.1.x
+server_location=/var/www/react-md/master
 
 yarn && yarn prebuild && yarn scripts
 
@@ -15,6 +15,7 @@ cd ..
 rm -f "$tar_name"
 tar --exclude='docs/src/server/databases/.gitkeep' \
   --exclude='docs/src/server/databases/airQuality.json' \
+  --exclude='docs/public/.DS_STORE' \
   --exclude='docs/public/robots.txt' \
   --exclude='docs/public/favicon.ico' \
   --exclude='docs/public/react-md.png' \
