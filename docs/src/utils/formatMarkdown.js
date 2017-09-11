@@ -61,8 +61,22 @@ function addEmojiItems(markdown) {
 }
 
 function addGithubLinks(markdown) {
+  if (__DEV__) {
+    const short = markdown.match(/\[commit-\w{0,6}]/g);
+    const long = markdown.match(/\[commit-\w{8,}]/g);
+    if (short || long) {
+      let joined = short;
+      if (long) {
+        joined = joined ? joined.concat(long) : long;
+      }
+
+      const msg = 'Failed attempting to create a GitHub commit shortcut link. The commit hash must be 7 characters in length.';
+      console.error(`${msg} Please fix the following: \`${joined.join(', ')}\``);
+    }
+  }
+
   return markdown.replace(/\[(pull|issues)-((\w+)(#issuecomment-\w+)?)]/g, `[#$3](${GITHUB_URL}/$1/$2)`)
-    .replace(/\[commit-(\w+)]/g, `[$1](${GITHUB_URL}/commit/$1)`);
+    .replace(/\[commit-(\w{7})]/g, `[$1](${GITHUB_URL}/commit/$1)`);
 }
 
 function addGithubUserLinks(markdown) {

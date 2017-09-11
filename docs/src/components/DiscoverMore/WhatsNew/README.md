@@ -47,7 +47,7 @@ const { DialogContainer: Dialog } = window.ReactMD; // UMD
 If you were using the callbacks for when a row or checkbox was clicked, the number will probably be off now. Please see
 the [issue for more details](#issues-243).
 
-In addition, the styles for plain data tables have been simplified which might cause some display issues. [2cc40c](#commit-2cc40c)
+In addition, the styles for plain data tables have been simplified which might cause some display issues. [commit-2cc40cd]
 
 #### Menus
 If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following: 
@@ -55,27 +55,27 @@ If you created a custom version of a `Menu`, you need to make sure that one of t
 
 ## August 2017
 ### v1.0.19 Released
-- Fixed the `Autocomplete` no longer firing click events on the list items. [#475](#issues-475)
-- Updated the UMD build to correctly include the `MenuButton`. [#482](#issues-482)
-- Fixed an invalid PropType warning for Date and Time pickers. [#490](#issues-490)
-- Added a little bit more support for tabs with dynamic height changes. [#487](#pull-487)
-- Added support for semi-bold fonts. [#468](#pull-468)
+- Fixed the `Autocomplete` no longer firing click events on the list items. [issues-475]
+- Updated the UMD build to correctly include the `MenuButton`. [issues-482]
+- Fixed an invalid PropType warning for Date and Time pickers. [issues-490]
+- Added a little bit more support for tabs with dynamic height changes. [pull-487]
+- Added support for semi-bold fonts. [pull-468]
 
 ### v1.0.18 Released
 ##### Changelog
 - Fixed the `Autocomplete` firing the `onAutocomplete` callback twice when using the keyboard to select
-an item. [#466](#issues-466)
-- Fixed a `PropType` warning when using the `Dialog` and one of the actions already had a key. [#465](#issues-465)
+an item. [issues-466]
+- Fixed a `PropType` warning when using the `Dialog` and one of the actions already had a key. [issues-465]
 - Fixed the `SelectField` and `TextField` from not floating the label when a `value` (or `label`) had
-a value of `0`. [#461](#issues-461) and [#460](#issues-460)
+a value of `0`. [issues-461] and [issues-460]
 - Fixed a weird infinite loop in the `FocusContainer` when some of the children are the `AccessibleFakeButton` and the user
-pressed `shift+tab`. [#458](#issues-458)
-- Updated the multiline `TextField` so that it can be correctly snapshotted. [#457](#issues-457)
-- Fixed the `NavigationDrawer` incorrectly hiding a "permanent" drawer type when `defaultVisible={false}`. [#426](#issues-426)
-- Fixed some invalid checksum when Server Side Rendering the `NavigationDrawer`. [#420](#issues-420)
+pressed `shift+tab`. [issues-458]
+- Updated the multiline `TextField` so that it can be correctly snapshotted. [issues-457]
+- Fixed the `NavigationDrawer` incorrectly hiding a "permanent" drawer type when `defaultVisible={false}`. [issues-426]
+- Fixed some invalid checksum when Server Side Rendering the `NavigationDrawer`. [issues-420]
 > this also removed some unneeded transition class names from the `Drawer` when the drawer was "mini" or "permanent".
 - Updated the `Drawer` and `NavigationDrawer` components to provide props to style the overlay that gets
-created. [#389](#issues-389)
+created. [issues-389]
 
 ## July 2017
 ### v1.0.17 Released
@@ -86,25 +86,25 @@ the user can focus a text field and scroll the page without automatically hiding
 input element.
 
 ##### Changelog
-- Fixed the weird page scroll behavior for dialogs when the user closed the dialog by clicking the overlay. [#367](#issues-367)
-- Updated the ListItem so that you can provide props to the surrounding li node. [#439](#issues-439)
-- Fixed a weird mobile safari but about using a virtualization library with any form input from react-md. [#442](#issues-442)
-- Added passive event listeners. [#382](#issues-382)
+- Fixed the weird page scroll behavior for dialogs when the user closed the dialog by clicking the overlay. [issues-367]
+- Updated the ListItem so that you can provide props to the surrounding li node. [issues-439]
+- Fixed a weird mobile safari but about using a virtualization library with any form input from react-md. [issues-442]
+- Added passive event listeners. [issues-382]
 - Updated the Autocomplete to no longer require an automatic TextField re-focus after a suggestion has been selected.
-[#428](#issues-428)
-- Fixed the TextField placeholder to correctly gain the disabled color. [#447](#issues-447)
-- Fixed the focus behavior of TextFields on mobile devices. [#434](#issues-434)
-- Fixed the unneeded PropType warning when a "controlled" TextField is disabled. [#432](#issues-432)
-- Fixed the PropType warning for Tabs. [#440](#issues-440)
+[issues-428]
+- Fixed the TextField placeholder to correctly gain the disabled color. [issues-447]
+- Fixed the focus behavior of TextFields on mobile devices. [issues-434]
+- Fixed the unneeded PropType warning when a "controlled" TextField is disabled. [issues-432]
+- Fixed the PropType warning for Tabs. [issues-440]
 - Fixed the multiline TextField requiring a flex container to display correctly. It will now display correctly if it is in
-just a `display: block` or whatever. [#365](#issues-365)
-- Fixed the TimePicker changing days when AM/PM was toggled. [#446](#issues-446)
-- Fixed the TimePicker to remember the last selected time better. [#438](#issues-438)
-- Fixed the TimePicker's ability to calculate time. [#359](#issues-359)
+just a `display: block` or whatever. [issues-365]
+- Fixed the TimePicker changing days when AM/PM was toggled. [issues-446]
+- Fixed the TimePicker to remember the last selected time better. [issues-438]
+- Fixed the TimePicker's ability to calculate time. [issues-359]
 - Fixed multiple components that manually calculate size for container resize events instead of just window resize events.
-  - ExpansionPanels and Tabs [#448](#issues-448)
-  - Multiline TextFields [#365](#issues-365)
-  - TablePagination [#415](#issues-415)
+  - ExpansionPanels and Tabs [issues-448]
+  - Multiline TextFields [issues-365]
+  - TablePagination [issues-415]
 
 
 ## June 2017
@@ -112,23 +112,23 @@ just a `display: block` or whatever. [#365](#issues-365)
 
 ##### Changelog
 - Updated the slider to no longer call `onChange` or `onDragChange` when dragging and the value
-or distance have not been updated. [d588fb4](#commit-d588fb4e000ecc7d00131c6d29b99908bb715532)
+or distance have not been updated. [commit-d588fb4]
 - Fixed a small bug with my `handleKeyboardAccessibility` so that spacebar didn't work in autocompletes.
-[b13f316](#commit-b13f316d23dd3ba3d25d557a79f5fb32754b2fae)
-- Fixed a keyboard accessibility problem with `SelectionControlGroup`. [eb6629d](#commit-eb6629d8fb5117a565b309422d7225a790f5ffd9)
-- Fixed an error where rendering the `Autocomplete` in a `ListItem` threw an error. [#412](#issues-412)
-- Updated the default `z-index` for the `Snackbar` so that it appears over the mini `Drawer`. [#410](#issues-410)
+[commit-b13f316]
+- Fixed a keyboard accessibility problem with `SelectionControlGroup`. [commit-eb6629d]
+- Fixed an error where rendering the `Autocomplete` in a `ListItem` threw an error. [issues-412]
+- Updated the default `z-index` for the `Snackbar` so that it appears over the mini `Drawer`. [issues-410]
 - Fixed the `DatePicker` so that it can accept a `value` of `null` and the empty string (`""`).
-  - [#384](#issues-384)
-  - [#396](#issues-396)
-  - [#409](#issues-409)
-- Fixed the cell offset calculations. [#401](#issues-401)
-- Fixed non-contained menus. [#391](#issues-391)
-- Fixed the `onClick` prop for `SelectionControl`. [#390](#issues-390)
-- Fixed the `Snackbar` not working as intended when the action has an `onClick` function. [#385](#issues-385)
-- Fixed the slider displaying the wrong value while sliding with touch or mouse. [#379](#issues-379)
-- Updated `.npmignore` to stop include the `jest-cache` with the published code. [#403](#issues-403)
-- Small typo fix. [#400](#issues-400)
+  - [issues-384]
+  - [issues-396]
+  - [issues-409]
+- Fixed the cell offset calculations. [issues-401]
+- Fixed non-contained menus. [issues-391]
+- Fixed the `onClick` prop for `SelectionControl`. [issues-390]
+- Fixed the `Snackbar` not working as intended when the action has an `onClick` function. [issues-385]
+- Fixed the slider displaying the wrong value while sliding with touch or mouse. [issues-379]
+- Updated `.npmignore` to stop include the `jest-cache` with the published code. [issues-403]
+- Small typo fix. [issues-400]
 
 
 ## May 2017
@@ -136,19 +136,15 @@ or distance have not been updated. [d588fb4](#commit-d588fb4e000ecc7d00131c6d29b
 General mobile Safari bugfixes and other small changes.
 
 ##### Changelog
-- Fixed the "stiffness" of scrolling in mobile Safari. [#383](#issues-383)
-- Fixed the weird bug of requiring two taps in mobile Safari to open a `SelectField`. [#381](#issues-381)
+- Fixed the "stiffness" of scrolling in mobile Safari. [issues-383]
+- Fixed the weird bug of requiring two taps in mobile Safari to open a `SelectField`. [issues-381]
 - Updated the `Slider` to automatically set the `defaultValue` to the provided `min` value and fixed the discrete slider's
-visibility issue. [#379](#issues-379)
-- Correctly added the `name` attribute to the `FileInput` and `FileUpload` components. [#378](#issues-378)
-- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via Ajax.
-[#374](#issues-378)
-- Fixed the `TablePagination`'s start value to only update when the `page` prop updates (if defined).
-[#372](#issues-372)
-- Fixed the `TextField`s not blurring correctly when a touch device scrolls the page after focusing
-the text field. [#366](#issues-366)
-- Updated the `ListItem` to allow the `nestedItems` to appear above the text instead of only below.
-[#380](#pull-380)
+visibility issue. [issues-379]
+- Correctly added the `name` attribute to the `FileInput` and `FileUpload` components. [issues-378]
+- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via Ajax. [issues-374]
+- Fixed the `TablePagination`'s start value to only update when the `page` prop updates (if defined). [issues-372]
+- Fixed the `TextField`s not blurring correctly when a touch device scrolls the page after focusing the text field. [issues-366]
+- Updated the `ListItem` to allow the `nestedItems` to appear above the text instead of only below. [pull-380]
 
 
 ### v1.0.14 Released
@@ -156,32 +152,30 @@ This patch is mostly for keyboard accessibility updates so that the custom compo
 as native form inputs.
 
 ##### Changelog
-- Updated the menu component so that it correctly closes when a list item is "clicked" with spacebar or enter.
-[#360](#issues-360)
-- Fixed the keyboard accessibility for selection controls, pickers, and select field. [#371](#issues-371)
+- Updated the menu component so that it correctly closes when a list item is "clicked" with spacebar or enter. [issues-360]
+- Fixed the keyboard accessibility for selection controls, pickers, and select field. [issues-371]
   - switch, radio, and checkbox will no longer be toggle-able with the enter key to emulate the native checkbox and radio
   - select fields, date pickers, and time pickers can only be opened by spacebar. The enter key will attempt to submit a form instead.
   - only the currently checked radio button will be tabbable in the `SelectionControlGroup`. Other options can be be selected by pressing
   the up, down, right, or left arrow keys like the native radio.
   - correctly updated the role for the `SelectField` to be a `"listbox"`
-- Fixed the `readOnly` state for the date and time pickers [#371](#issues-371)
-- Fixed the text field display error in Firefox. [#368](#issues-368)
-- Fixed the `TablePagination` labels when fully controlled. [#369](#issues-369)
-- Added a final fallback for nested dialogs to render inline if rendered inside of pure components.
-[#229](#issues-229)
-- Fixed the scroll locking of dialogs. [#361](#issues-361)
+- Fixed the `readOnly` state for the date and time pickers [issues-371]
+- Fixed the text field display error in Firefox. [issues-368]
+- Fixed the `TablePagination` labels when fully controlled. [issues-369]
+- Added a final fallback for nested dialogs to render inline if rendered inside of pure components. [issues-229]
+- Fixed the scroll locking of dialogs. [issues-361]
 
 ### v1.0.13 Released
 This patch was about removing the prop type warnings from the new React version and other small bugs.
 
 ##### Changelog
-- Migrate React.PropTypes to prop-types. [#325](#issues-325)
-- Allow boolean values in selection controls [#350](#issues-350)
-- Fixed the picker display bug. [#354](#issues-354)
-- Fixed the SelectField error state bug. [#354](#issues-353)
-- Fixed the dialog mounting animation bug. [#348](#issues-348)
-- Allow a multiline textfield to grow from 1 row to multiple. [#347](#issues-347)
-- Fixed the AccessibleFakeButton to click when spacebar is pressed. [#346](#issues-346)
+- Migrate React.PropTypes to prop-types. [issues-325]
+- Allow boolean values in selection controls [issues-350]
+- Fixed the picker display bug. [issues-354]
+- Fixed the SelectField error state bug. [issues-353]
+- Fixed the dialog mounting animation bug. [issues-348]
+- Allow a multiline textfield to grow from 1 row to multiple. [issues-347]
+- Fixed the AccessibleFakeButton to click when spacebar is pressed. [issues-346]
 
 
 
@@ -198,19 +192,19 @@ In addition, I decided to move the ticket from `v1.1.0` to `v1.0.12` about the a
 is closed by a click action.
 
 ##### Changelog
-- Fixed the annoying delay on multiple components. [#210](#issues-210)
-- Fixed the `DatePicker`'s next/previous month logic. [#315](#issues-315)
-- Fixed the `CardActions` not centering correctly. [#316](#issues-316)
-- Half-ly fixed the hidden content in full page dialogs. [#320](#issues-320)
-- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been changed. [#322](#issues-322)
-- Fixed the `Slider`'s bullet position when in a `text-align: center` container. [#323](#issues-323)
-- Updated props from `string` to `node` for `react-intl` support. [#327](#issues-327)
-- Fixed the Ajax Autocomplete flashing bug. [#330](#issues-330)
-- Fixed the `Dialog`'s page layout breaking when it appears. [#333](#issues-333)
-- Updated the `TableCheckbox` to appear in a `th` component when in the table header. [#334](#issues-334)
-- Fixed some of the styles for better IE 11 support. [#339](#issues-339)
+- Fixed the annoying delay on multiple components. [issues-210]
+- Fixed the `DatePicker`'s next/previous month logic. [issues-315]
+- Fixed the `CardActions` not centering correctly. [issues-316]
+- Half-ly fixed the hidden content in full page dialogs. [issues-320]
+- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been changed. [issues-322]
+- Fixed the `Slider`'s bullet position when in a `text-align: center` container. [issues-323]
+- Updated props from `string` to `node` for `react-intl` support. [issues-327]
+- Fixed the Ajax Autocomplete flashing bug. [issues-330]
+- Fixed the `Dialog`'s page layout breaking when it appears. [issues-333]
+- Updated the `TableCheckbox` to appear in a `th` component when in the table header. [issues-334]
+- Fixed some of the styles for better IE 11 support. [issues-339]
 - Fixed the mobile safari click event delegation bug that prevented Menus and other components to be closed when an area outside was clicked.
-[#340](#issues-340)
+[issues-340]
 
 
 ## March 2017
@@ -218,11 +212,11 @@ is closed by a click action.
 
 ##### Changelog
 - Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
-re-renders (... take 2 :( ). [#300](#issues-300)
-- Fixed the tooltip's [unmounting errors](#commit-ba8e734c663d87cc098d569258489c66590feb8b).
-- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [#308](#issues-308)
-- Fixed the checkboxes for DataTables when the rows are dynamic. [#297](#issues-297)
-- Fixed the snackbar's transition bug. [#311](#issues-311)
+re-renders (... take 2 :( ). [issues-300]
+- Fixed the tooltip's unmounting errors. [commit-ba8e734]
+- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [issues-308]
+- Fixed the checkboxes for DataTables when the rows are dynamic. [issues-297]
+- Fixed the snackbar's transition bug. [issues-311]
 
 ### v1.0.10 Released
 The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. Republished correctly with `npm`.
@@ -232,51 +226,49 @@ The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. 
 This was really another patch for drawers. 
 
 ##### Changelog
-- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [#291](#issues-291)
-- Fixed the DatePicker's min/max date validation error. [#293](#issues-293)
-- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [#298](#issues-298)
-- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [#299](#issues-299)
+- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [issues-291]
+- Fixed the DatePicker's min/max date validation error. [issues-293]
+- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [issues-298]
+- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [issues-299]
 - Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
-re-renders. [#300](#issues-300)
+re-renders. [issues-300]
 
 ### v1.0.8 Released
 
 ##### Changelog
 - My initial attempt at the defaultVisible prop not working correctly was incorrect. Updated the behavior as mentioned in
-the new ticket. [#288](#issues-288)
+the new ticket. [issues-288]
 
 ### v1.0.7 Released
 
 ##### Changelog
-- Fixed the Drawer's defaultVisible prop not working entirely correctly. [#286](#issues-286)
-- Fixed the DateTimeFormat fake mock. [#285](#issues-285)
-- Fixed the Date/Time pickers to not open when disabled. [#281](#issues-281)
-- Fixed the prop warning for MenuButton and passed correct props to Menu. [#278](#issues-278)
-- Fixed the Menu attempting to setState after it had unmounted. [#268](#issues-268)
+- Fixed the Drawer's defaultVisible prop not working entirely correctly. [iessues-286]
+- Fixed the DateTimeFormat fake mock. [issues-285]
+- Fixed the Date/Time pickers to not open when disabled. [issues-281]
+- Fixed the prop warning for MenuButton and passed correct props to Menu. [issues-278]
+- Fixed the Menu attempting to setState after it had unmounted. [issues-268]
 
 ## February 2017
 ### v1.0.6 Released
 
 ##### Changelog
-- Fixed DatePicker's [calendar Date when controlled](#issues-245)
-- Added [controlled warnings](#commit-d46cf4c6e356aa69ccbcd8fa7903451c4e20e307) to pickers.
-- Allowed non-material design colors to compile [without errors](#issues-244).
-- FontIcon force size [fix](#issues-221).
+- Fixed DatePicker's calendar Date when controlled. [issues-245]
+- Added controlled warnings to pickers. [commit-d46cf4c]
+- Allowed non-material design colors to compile without errors. [issues-244]
+- FontIcon force size fix. [issues-221]
 - Allowed a TableRow to only have a single column.
 
 ### v1.0.5 Released
 
 ##### Changelog
-- Fixed the DatePicker's [min/max date validator](#commit-53130fadde13253b403d9ed3fe662ed65f6c70d6).
-- Fixed the FocusContainer's [window focus bug](#commit-1fe1b9b763734809a565a7fa5c0f5d52bdf80906).
+- Fixed the DatePicker's min/max date validator. [commit-53130fa]
+- Fixed the FocusContainer's window focus bug. [commit-1fe1b9b]
   - > Basically using `element.contains(window)` is invalid and throws a 'Node' does not have contains error.
-- Automated the nested dialog [display error](#issues-229) until Portals are updated.
-- Fixed the TextField blocked [icon positioning](#commit-9115e235946942095392306564d37fa439511976).
-- Passed text-field related props from [pickers](#commit-5daabbb973330d770cbacae99fc418245807afbc).
-- Fixed the [TablePagination](#commit-93d932f91e0e2dcfd664331e3dbd2fd48a6c02df)'s onPagination callback
-to be more accurate.
-- Fixed the TableRows's [onCheckboxClick callback](#commit-69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
-match documentation.
+- Automated the nested dialog display error until Portals are updated. [issues-229]
+- Fixed the TextField blocked icon positioning. [commit-9115e23]
+- Passed text-field related props from pickers. [commit-5daabbb]
+- Fixed the TablePagination's onPagination callback to be more accurate. [commit-93d932f]
+- Fixed the TableRows's onCheckboxClick callback to match documentation. [commit-69fbdd8]
 
 > I had a moment and accidentally published 1.0.4 with the same code as 1.0.3
 
@@ -293,21 +285,20 @@ Minor bugfixes.
 Minor bugfixes.
 
 ##### Changelog
-- Fixed active label for [SelectField](#pull-235).
-- Components that use the `Portal` component pass the `lastChild` and `renderNode` [props correctly](#pull-234).
+- Fixed active label for SelectField. [pull-235]
+- Components that use the `Portal` component pass the `lastChild` and `renderNode` props correctly. [pull-234]
 
 ### v1.0.1 Released
 Minor bugfixes.
 
 ##### Changelog
-- Fixed PropTypes of avatar to allow [PropTypes.node](#issues-198) instead of `string` only.
-- Fixed the [accidental form submission](#commit-cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
-selecting an item from an `autocomplete` by using the enter key press in a form.
-- Fixed [Slider number alidation](#issues-184) for floats.
-- Fixed the issue where the [Switch's onChange prop](#issues-182) fires twice when clicking/touching
-the thumb.
-- Fixed the styling issue for [password text fields](#issues-192) that have a message with the field.
-- Fixed the SelectField to allow a [0 based option value](#issues-214).
+- Fixed PropTypes of avatar to allow `PropTypes.node` instead of `string` only. [issues-198]
+- Fixed the accidental form submission if selecting an item from an `autocomplete` by using the enter key press in
+a form. [commit-cf57610]
+- Fixed Slider number alidation for floats. [issues-185]
+- Fixed the issue where the Switch's onChange prop fires twice when clicking/touching the thumb. [issues-182]
+- Fixed the styling issue for password text fields that have a message with the field. [issues-192]
+- Fixed the SelectField to allow a 0 based option value. [issues-214]
 
 
 ## December 2016
@@ -324,25 +315,25 @@ This is the first prod-ready release of react-md. The library still isn't comple
 
 
 ##### Changelog
-- Fixed the [background color bug](#commit-49ce0717af9a63530c1239b0b18c9bd1941a0914).
+- Fixed the background color bug. [commit-49ce071]
 - Fixed the pre-compiled bundles to actually reflect what my documentation said. The pre-compiled bundles
 are now formatted as `PRIMARY-COLOR_SECONDARY_COLOR.min.css` instead of `PRIMARY-COLOR-SECONDARY-COLOR.MIN.CSS`.
-- Created a [mixin to create color class names](#commit-14e19f3c767ed9901f94a36ee89da238b36e2a09).
-- Fixed the injectINK HOC for [keyboard _clicks_](#commit-59dff18cfd8b5b3923b1fb346ef699d8bad3b302).
-- FileInput/FileUpload [bugfixes](#commit-2c4e1111fc53e25df94db67a43b892dfb94c0e50).
-- Updated the password text fields' styles for [keyboard accessibility](#commit-807aa2a0540756ae88845e5291bcb47e83c6d075).
+- Created a mixin to create color class names. [commit-14e19f3]
+- Fixed the injectINK HOC for keyboard _clicks_. [commit-59dff18]
+- FileInput/FileUpload bugfixes. [commit-2c4e111]
+- Updated the password text fields' styles for keyboard accessibility. [commit-807aa2a]
 - Updated the TextFieldMessage to not shrink when in a block text field.
-- Updated EditDialogColumn for [accessibility](#commit-217c42554044bdfda4652c8252c7863798c13b30).
-- Updated typography to be able to opt out of [utility class names](#commit-5c5eaa2f7a23fd4a811e58bf59ac73a4dc828e66).
-- Updated SelectField [keyboard accessibility](#commit-ffe270be18f2c957f2f257db800e1e602ba00e15).
+- Updated EditDialogColumn for accessibility. [commit-217c425]
+- Updated typography to be able to opt out of utility class names. [commit-5c5eaa2]
+- Updated SelectField keyboard accessibility. [commit-ffe270b]
 - Updated tooltips to no longer rotate along with the `.md-collapser`s.
-- Updated tooltips to be created through react components instead of my weird decision of creating it manually myself. [75eb2e0](#commit-75eb2e0a6616e6109141fc38cb88b35527d52eff)
-- Rewrote SelectFieldColumn. [#170](#issues-170)
+- Updated tooltips to be created through react components instead of my weird decision of creating it manually myself. [commit-75eb2e0]
+- Rewrote SelectFieldColumn. [issues-170]
 - Added the `getCurrentMedia` static method to the `NavigationDrawer` as well.
 - Updated permanent drawers to no longer use the Portal.
-- Updated the `Dialog` component to be able to be closed by pressing the escape key (only if not a `modal`). [b742ed5c](#commit-b742ed5cedaff0e79c6b812794ffe1bf4d567258)
-- Updated the Date and Time pickers to have _some_ [keyboard accessibility](#issues-173). This still isn't the ideal solution
-and will be changed in a future release (maybe?) to actually allow inline date and time selection that will appear in dropdowns.
+- Updated the `Dialog` component to be able to be closed by pressing the escape key (only if not a `modal`). [commit-b742ed5]
+- Updated the Date and Time pickers to have _some_ keyboard accessibility. This still isn't the ideal solution and will be changed in a
+future release (maybe?) to actually allow inline date and time selection that will appear in dropdowns. [issues-173]
 - Updated `FocusContainer` to be able to enable/disable the focus containment after being fully mounted.
 
 ### General Website Changes
@@ -358,7 +349,7 @@ This release fixed up a couple more bugs (listed below) and now the main focus w
 production-breaking bugs remaining.
 
 ##### Changelog
-- Fixed the Avatar colors changing [#161](#issues-161)
+- Fixed the Avatar colors changing. [issues-161]
 - Updated EditDialogColumn to interact correctly with keyboard focus and touch devices
 - Fixed the `Dialog` to remove the prevent scroll className when unmounting
 - Updated the `Drawer.getCurrentMedia` function to use the `Drawer.defaultProps` as the default value of the `props` parameter.
@@ -379,7 +370,7 @@ unmounted the inked component.
 
 With the upcoming `v1.0.0` release, the website has been remade to allow quicker navigation, searching, and finding
 related documentation.
-- A [Theme Builder](/customization/themes?tab=1) has also been added that allows you to pick and
+- A [Theme Builder](/customization/theme-builder) has also been added that allows you to pick and
 choose a theme on your website.
 - Examples and Prop Types have been separated into different tabs to help separate content a bit more.
 - Most SassDoc can be viewed with the related component in a new SassDoc tab.
@@ -395,9 +386,9 @@ will allow a user to focus the main content of the page instead of having to go 
 ##### Changelog
 - Fixed some color variables that I had mistyped...
 - Fixed the spelling of `discreet -> discrete`
-- Fixed the `Sliders` when using touch devices. [#144](#issues-164)
-- Fixed the `YearPicker` after the name change from `initialYearsDisplayed` to `yearsDisplayed`. [#165](#issues-165)
-- Added `onTabFocus` and `tabbedClassName` to the `AccessibleFakeButton`. [#160](#issues-160)
+- Fixed the `Sliders` when using touch devices. [issues-144]
+- Fixed the `YearPicker` after the name change from `initialYearsDisplayed` to `yearsDisplayed`. [issues-165]
+- Added `onTabFocus` and `tabbedClassName` to the `AccessibleFakeButton`. [issues-160]
 
 ### v1.0.0.alpha.3 Released
 
@@ -406,7 +397,7 @@ This release was focused on having a more consistent naming convention. Boolean 
 tag defaults. This also included some small bugfixes as well as updating the Portal component to stop using the undocumented
 `CSSPropertyOperations` since it crashed in React 15.4.0.
 
-The `SelectField` was also updated to no longer use the `TextField` component internally and behave more like [the html select](#issues-144).
+The `SelectField` was also updated to no longer use the `TextField` component internally and behave more like the html select. [issues-144]
 
 ### v1.0.0.alpha.2 Released
 

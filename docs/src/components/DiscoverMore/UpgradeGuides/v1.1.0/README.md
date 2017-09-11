@@ -21,8 +21,8 @@ within `DataTable`s. [issues-310]
 [autocomplete styling](/components/autocompletes#toolbar-search).
 - ✨ `Autocomplete`s have additional props for styling the inline suggestion.
 - ✨ `Autocomplete`s have additional accessibility support when there are paginated results. Check out the
-[Paginated/Lazy Loading Results](/components/autocompletes#paginated-lazy-loading-results) example for some more details. [commit-3e8437]
-- ✨  `Autocomplete`s now add the `aria-autocomplete` attribute. [commit-75f1cf]
+[Paginated/Lazy Loading Results](/components/autocompletes#paginated-lazy-loading-results) example for some more details. [commit-3e84372]
+- ✨  `Autocomplete`s now add the `aria-autocomplete` attribute. [commit-75f1cf6]
 - ✨ `Button`s no longer prefer the `label` prop. It is preferred to render any icons or text as `children` in the `Button` instead. Look at the
 newer [Button examples](/components/buttons). [issues-254]
 - 🎉 `Button`s now have a consistent size between enabled and disabled states. [issues-295]
@@ -40,14 +40,14 @@ instead. [issues-197] and [pull-318]
 - ✨ `DataTable`s now support indeterminate checkboxes. [issues-256]
 - 🎉 `DataTable`s now support displaying only a single row of `EditDialogColumn`. [issues-394]
 - 🎉 `DataTable`s can now correctly show menus and buttons. [Check out the examples](/components/data-tables#tables-with-menus)
-- 🐛 `DataTable`s added more accessibility for the built-in checkboxes by providing labels. [commit-5368c9]
+- 🐛 `DataTable`s added more accessibility for the built-in checkboxes by providing labels. [commit-5368c96]
   - [checkboxHeaderLabel](/components/data-tables?tab=1#data-table-proptypes-checkbox-header-label)
   - [checkboxLabelTemplate](/components/data-tables?tab=1#data-table-proptypes-checkbox-label-template)
 - ✨ `DataTable`s support `SVGIcon`s, so the `checkedIconChildren`, `checkedIconClassName`, `uncheckedIconChildren`, and `uncheckedIconClassName` props have been
 deprecated in favor of `checkedIcon` and `uncheckedIcon`.
 - 🎉 `DataTable` performance boost by no longer attempting to grow and adjust columns. [issues-252]
-- ✨ `TableColumn`s now add the `aria-sort` attribute correctly when they are `sortable`. [commit-5368c9].
-- ✨ `TableColumn`s now provide the `scope` attribute correctly. [commit-3d1054]
+- ✨ `TableColumn`s now add the `aria-sort` attribute correctly when they are `sortable`. [commit-5368c9c]
+- ✨ `TableColumn`s now provide the `scope` attribute correctly. [commit-3d10540]
 - ✨ `EditDialogColumn`s now support a mode to not automatically [open when tab-focused](/components/data-tables#edit-dialog-examples).
 - 🐛 `TablePagination`s now have a bit better support for smaller devices. [issues-489]
 - ✨ `Dialog`s have exposed both a `DialogContainer` and `Dialog` component.
@@ -92,7 +92,7 @@ example for more information.
   - [md-toolbar-select-field-margin](/components/toolbars?tab=2#variable-md-toolbar-prominent-height)
 
 #### General Changes
-- ✨ All form controls support getting the value from refs. [commit-7e6585]
+- ✨ All form controls support getting the value from refs. [commit-7e65857]
 - 🎉 All Sass variables are `!default` for easier customization. [issues-226]
 - 🎉 Automatic `id` generation is now `kebab-cased` instead of `camelCased` by default. [issues-279]
 - 🎉 Stopped using `delete` for unused prop types. [issues-212]
@@ -105,7 +105,7 @@ example for more information.
 - 🐛 Applied a new `md-html-min-width` to the `<html>` to fix weird resizing issues when `Dialog`s appear.
 - 🐛 Changed all the `outline: none` to `outline-style: none` so that the outlines can be added back easily by just applying
 `outline-style: auto`.
-- 🎉 Updated the `displayName` of components that were using higher order components behind the scenes. [commit-7107ef]
+- 🎉 Updated the `displayName` of components that were using higher order components behind the scenes. [commit-7107ef0]
 
 ## Upgrading to 1.1.0
 A lot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
