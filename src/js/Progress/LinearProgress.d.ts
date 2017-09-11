@@ -1,7 +1,7 @@
 import { BaseProgressProps } from './index';
 
 export interface LinearProgressProps extends BaseProgressProps {
-  query?: number;
+  query?: bool;
 }
 
 declare const LinearProgress: React.ComponentClass<LinearProgressProps>;
