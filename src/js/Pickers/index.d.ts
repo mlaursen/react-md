@@ -62,7 +62,7 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   calendarDateClassName?: string;
   calendarTitleClassName?: string;
-  calendarTitleFormat: CalendarTitleFormat;
+  calendarTitleFormat?: CalendarTitleFormat;
   calendarWeekdayClassName?: string;
   calendarWeekdayFormat?: NSL;
 }
