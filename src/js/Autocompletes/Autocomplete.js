@@ -624,9 +624,9 @@ export default class Autocomplete extends PureComponent {
       if (this.props.onBlur) {
         this.props.onBlur(e);
       }
-
-      this.setState({ focus: false });
     }
+
+    this.setState({ focus: false });
   };
 
   _handleInlineAutocomplete = () => {
@@ -649,9 +649,7 @@ export default class Autocomplete extends PureComponent {
       if (typeof value === 'object') {
         if (!label) {
           v = value[dataValue];
-        }
-
-        if (typeof v === 'undefined') {
+        } else {
           v = value[dataLabel];
         }
       }
@@ -740,9 +738,7 @@ export default class Autocomplete extends PureComponent {
       if (typeof v === 'object') {
         if (!label) {
           v = value[dataValue];
-        }
-
-        if (typeof v === 'undefined') {
+        } else {
           v = value[dataLabel];
         }
       }

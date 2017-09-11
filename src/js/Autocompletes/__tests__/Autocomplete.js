@@ -160,20 +160,6 @@ describe('Autocomplete', () => {
     expect(autocomplete.state('focus')).toBe(false);
   });
 
-  it('should not set the focus state to false when the text field is blurred and there are matches', () => {
-    const data = ['Hello'];
-    const autocomplete = mount(<Autocomplete id="test" data={data} defaultValue="h" />);
-    const field = autocomplete.find('input');
-    expect(field.length).toBe(1);
-
-    field.simulate('focus');
-    expect(autocomplete.state('matches')).toEqual(data);
-    expect(autocomplete.state('focus')).toBe(true);
-
-    field.simulate('blur');
-    expect(autocomplete.state('focus')).toBe(true);
-  });
-
   it('should call the onKeyDown prop when the onKeyDown event is fired on the text field', () => {
     const onKeyDown = jest.fn();
     const autocomplete = mount(<Autocomplete id="test" data={[]} onKeyDown={onKeyDown} />);
