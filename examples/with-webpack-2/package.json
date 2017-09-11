@@ -26,7 +26,7 @@
     "react-addons-transition-group": "^15.5.2",
     "react-dom": "^15.5.4",
     "react-hot-loader": "latest",
-    "react-md": "^1.0.11"
+    "react-md": "latest"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
