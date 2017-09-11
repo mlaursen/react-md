@@ -45,7 +45,7 @@ export interface DrawerProps extends Props {
   type?: DrawerTypes;
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  defaultMedia: MediaTypes;
+  defaultMedia?: MediaTypes;
   overlay?: boolean;
   portal?: boolean;
   renderNode?: Object;
