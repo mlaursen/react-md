@@ -17,12 +17,14 @@ $sizes: (
     right: $margin;
 
     @media (max-width: #{$md-tablet-min-width - 1}) {
-      top: $md-toolbar-mobile-portrait-height + $padding + $md-toolbar-inset-margin;
-
       // The simplified menu adds position absolute back to the menu, and for some reason
       // my css is reverse added, so it requires an additional override
       &.toolbar-search__list {
+        left: $md-toolbar-inset-margin;
         position: fixed;
+        right: $md-toolbar-inset-margin;
+        top: $md-toolbar-mobile-portrait-height + $padding + $md-toolbar-inset-margin;
+        width: auto;
       }
     }
 
