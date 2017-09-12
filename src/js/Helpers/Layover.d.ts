@@ -18,13 +18,7 @@ export type VerticalAnchors = {
   BOTTOM: 'bottom'
 }
 
-export type LayoverPositions =  {
-  TOP_LEFT: 'tl',
-  TOP_RIGHT: 'tr',
-  BOTTOM_LEFT: 'bl',
-  BOTTOM_RIGHT: 'br',
-  BELOW: 'below'
-}
+export type LayoverPositions = 'tl' | 'tr' | 'bl' | 'br' | 'below';
 
 export interface LayoverAnchor {
   x: HorizontalAnchors;
