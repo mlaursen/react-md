@@ -70,7 +70,7 @@ export default class Subheader extends PureComponent {
         {...props}
         className={cn('md-subheader', {
           'md-list-item--inset': inset,
-        }, themeColors({ primary }), className)}
+        }, themeColors({ primary, hint: !primary }), className)}
       >
         {primaryText}
         {children}
