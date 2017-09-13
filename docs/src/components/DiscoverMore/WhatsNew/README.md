@@ -17,6 +17,22 @@ component's prop. This is probably more for me than anything else.
 - When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
 list.
 
+### v1.1.2 Released
+This is a couple more Typescript bugfixes.
+
+### Changelog
+- Fixed the `Layover` positions and `Drawer` drawer type Typescript definitions. ([@noseglid] - [pull-520])
+2 Added `colSpan` and `rowSpan` to the `TableColumn` for Typescript definitions. ([@domszyn] - [pull-523])
+- Fixed the `MenuButton` and `MenuButtonColumn` Typescript definitions to include tooltip and ink props. [commit-c7e37f0]
+- Updated all components for `import { Component } from 'react-md/lib/Components'` syntax. [issues-524]
+- Fixed the `ListItem` not applying the correct styles when using `expanderLeft`. [issues-521]
+- Exposed additional style props for `FileInput` and `FileUpload`. [commit-9d2e3a3]
+- Updated `NavigationDrawer` to conditionally use `%` instead of `vh`. [commit-2704d15]
+- Fixed the `Subheader` to correctly apply `md-tet--secondary`. [commit-7fb0d98]
+- Updated `TextField` to apply `undefined` into the `leftIcon` or `rightIcon` instead of a boolean when the icons are
+not stateful. [commit-f1a720b]
+
+
 ### v1.1.1 Released
 This is a couple of Typescript bugfixes thanks to [@stickfigure] and [@noseglid].
 
