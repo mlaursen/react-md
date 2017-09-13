@@ -608,7 +608,7 @@ export default class ListItem extends PureComponent {
           secondaryText={secondaryText}
           threeLines={threeLines}
           className={cn({
-            'md-tile-content--left-icon': leftIcon,
+            'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
             'md-tile-content--left-avatar': leftAvatar,
             'md-tile-content--right-padding': rightIcon || rightAvatar,
           })}
