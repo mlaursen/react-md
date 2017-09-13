@@ -87,6 +87,10 @@ value will be saved. The dialog can be updated so that the cancel action happens
 tab, clicks somewhere else on the page, or scrolls the page instead.
 
 ### Types
+**Edit Dialogs are a mainly desktop interface**. Due to the weirdness in how different mobile devices
+handle keyboards, the \`dialog\` versions of the \`EditDialogColumn\` do not work on mobile devices.
+Use the \`inline\` mode stated below, or go for a better interface on mobile with a row card edit view.
+
 #### Default
 The default \`EditDialog\` will just be a small dialog that displays a text field with minimal padding.
 
