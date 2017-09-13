@@ -513,9 +513,9 @@ export default class TextField extends PureComponent {
       const iconEl = Children.only(icon);
       return cloneElement(iconEl, {
         key: iconEl.key || `icon-${dir}`,
-        disabled,
-        primary: stateful && !error && active,
-        error: stateful && error,
+        disabled: stateful ? disabled : undefined,
+        primary: stateful ? !error && active : undefined,
+        error: stateful ? error : undefined,
         className: cn('md-text-field-icon', {
           'md-text-field-icon--positioned': !block,
         }, iconEl.props.className),
