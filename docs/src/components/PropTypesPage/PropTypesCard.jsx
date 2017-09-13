@@ -15,8 +15,6 @@ import PropTypesTable from './PropTypesTable';
 import EnumsSection from './EnumsSection';
 import FunctionsSection from './FunctionsSection';
 
-/* eslint-disable no-unused-vars */
-
 export default class PropTypesCard extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
