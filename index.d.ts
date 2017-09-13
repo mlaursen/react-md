@@ -32,7 +32,7 @@ export {
   Dialog, DialogProps,
 } from './lib/Dialogs';
 export { default as Divider, DividerProps } from './lib/Dividers';
-export { default as Drawer, DrawerProps, MobileDrawerTypes, DrawerTypes } from './lib/Drawers';
+export { default as Drawer, DrawerProps, MobileDrawerType, DrawerType } from './lib/Drawers';
 export {
   ExpansionPanel, ExpansionPanelProps,
   ExpansionList, ExpansionListProps,

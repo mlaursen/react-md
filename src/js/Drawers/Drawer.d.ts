@@ -1,28 +1,11 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-export type MobileDrawerTypes = {
-  // Temporary
-  TEMPORARY: 'temporary',
-  TEMPORARY_MINI: 'temporary-mini',
-}
+export type MobileDrawerType = 'temporary' | 'temporary-mini';
+export type DrawerType = 'full-height' | 'clipped' | 'floating' | 'persistent' | 'persistent-mini' | MobileDrawerType;
 
-export type DrawerTypes = {
-  // Permanent drawers
-  FULL_HEIGHT: 'full-height',
-  CLIPPED: 'clipped',
-  FLOATING: 'floating',
-
-  // Persistent drawers
-  PERSISTENT: 'persistent',
-  PERSISTENT_MINI: 'persistent-mini',
-} | MobileDrawerTypes;
-
-export type MobileDrawerTypesType = 'temporary' | 'temporary-mini';
-export type DrawerTypesType = 'full-height' | 'clipped' | 'floating' | 'persistent' | 'persistent-mini' | MobileDrawerTypesType;
-
-export type MediaTypes = 'mobile' | 'tablet' | 'desktop';
-export type DrawerPositions = 'left' | 'right';
+export type MediaType = 'mobile' | 'tablet' | 'desktop';
+export type DrawerPosition = 'left' | 'right';
 
 export interface DrawerProps extends Props {
   // for the `component` prop until refactored out
@@ -36,23 +19,23 @@ export interface DrawerProps extends Props {
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: string }>;
   autoclose?: boolean;
   header?: React.ReactNode;
-  mobileType?: MobileDrawerTypes | MobileDrawerTypesType;
+  mobileType?: MobileDrawerType;
   mobileMinWidth?: number;
-  tabletType?: DrawerTypes | DrawerTypesType;
+  tabletType?: DrawerType;
   tabletMinWidth?: number;
-  desktopType?: DrawerTypes | DrawerTypesType;
+  desktopType?: DrawerType;
   desktopMinWidth?: number;
-  type?: DrawerTypes;
-  onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
+  type?: DrawerType;
+  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  defaultMedia?: MediaTypes;
+  defaultMedia?: MediaType;
   overlay?: boolean;
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
   defaultVisible?: boolean;
   visible?: boolean;
-  position?: DrawerPositions;
+  position?: DrawerPosition;
   inline?: boolean;
   transitionDuration?: number;
   clickableDesktopOverlay?: boolean;
@@ -84,10 +67,10 @@ interface DrawerComponent extends React.ComponentClass<DrawerProps> {
     mobileMinWidth: number,
     tabletMinWidth: number,
     desktopMinWidth: number,
-    mobileType: MobileDrawerTypes | MobileDrawerTypesType,
-    tabletType: DrawerTypes | DrawerTypesType,
-    desktopType: DrawerTypes | DrawerTypesType,
-  }): { type: DrawerTypes | DrawerTypesType, mobile: boolean, tablet: boolean, desktop: boolean };
+    mobileType: MobileDrawerType,
+    tabletType: DrawerType,
+    desktopType: DrawerType,
+  }): { type: DrawerType, mobile: boolean, tablet: boolean, desktop: boolean };
 
   matchesMedia(min: number, max?: number): boolean;
 }

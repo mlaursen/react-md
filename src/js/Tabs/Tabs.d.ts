@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IdPropType, Props } from '../index';
 import { TabProps as Tab } from './Tab';
-import { MediaTypes } from '../Drawers';
+import { MediaType } from '../Drawers';
 
 export interface TabsProps extends Props {
   // for the `component` prop until refactored out
@@ -23,7 +23,7 @@ export interface TabsProps extends Props {
   ) => void;
   activeTabIndex?: number;
   defaultTabIndex?: number;
-  defaultMedia?: MediaTypes;
+  defaultMedia?: MediaType;
   desktopMinWidth?: number;
   nextIcon?: React.ReactElement<any>;
   previousIcon?: React.ReactElement<any>;

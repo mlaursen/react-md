@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Props } from '../index';
 import {
-  DrawerTypes,
-  DrawerTypesType,
-  MobileDrawerTypes,
-  MobileDrawerTypesType,
-  DrawerPositions,
-  MediaTypes,
+  DrawerType,
+  MobileDrawerType,
+  DrawerPosition,
+  MediaType,
 } from '../Drawers';
 
 export interface NavigationDrawerProps extends Props {
@@ -26,20 +24,20 @@ export interface NavigationDrawerProps extends Props {
   drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
   drawerChildren?: React.ReactNode;
-  position?: DrawerPositions;
+  position?: DrawerPosition;
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: React.ReactNode }>;
-  mobileDrawerType?: MobileDrawerTypes | MobileDrawerTypesType;
-  tabletDrawerType?: DrawerTypes | DrawerTypesType;
-  desktopDrawerType?: DrawerTypes | DrawerTypesType;
-  drawerType?: DrawerTypes | DrawerTypesType;
-  defaultMedia?: MediaTypes;
+  mobileDrawerType?: MobileDrawerType;
+  tabletDrawerType?: DrawerType;
+  desktopDrawerType?: DrawerType;
+  drawerType?: DrawerType;
+  defaultMedia?: MediaType;
   mobileMinWidth?: number;
   tabletMinWidth?: number;
   desktopMinWidth?: number;
   portal?: boolean;
   lastChild?: boolean;
   renderNode?: Object;
-  onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
+  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, event: Event) => void;
@@ -113,10 +111,10 @@ interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawe
     mobileMinWidth: number,
     tabletMinWidth: number,
     desktopMinWidth: number,
-    mobileDrawerType: MobileDrawerTypes | MobileDrawerTypesType,
-    tabletDrawerType: DrawerTypes | DrawerTypesType,
-    desktopDrawerType: DrawerTypes | DrawerTypesType,
-  }): { type: DrawerTypesType | DrawerTypes, mobile: boolean, tablet: boolean, desktop: boolean };
+    mobileDrawerType: MobileDrawerType,
+    tabletDrawerType: DrawerType,
+    desktopDrawerType: DrawerType,
+  }): { type: DrawerType, mobile: boolean, tablet: boolean, desktop: boolean };
 }
 
 declare const NavigationDrawer: NavigationDrawerComponent;
