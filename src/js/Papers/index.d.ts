@@ -1,1 +1,1 @@
-export { default, PaperProps } from './Paper';
+export { default, default as Paper, PaperProps } from './Paper';

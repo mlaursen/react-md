@@ -17,7 +17,7 @@ class App extends React.Component {
         drawerTitle="react-md - Typescript"
         toolbarTitle="Welcome to react-md"
         navItems={navItems}
-        drawerType="temporary-mini"
+        drawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
         constantDrawerType={true}
       >
         <div className="App">

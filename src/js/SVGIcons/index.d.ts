@@ -1,1 +1,1 @@
-export { default, SVGIconProps } from './SVGIcon';
+export { default, default as SVGIcon, SVGIconProps } from './SVGIcon';

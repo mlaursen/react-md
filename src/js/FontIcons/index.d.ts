@@ -1,1 +1,1 @@
-export { default, FontIconProps } from './FontIcon';
+export { default, default as FontIcon, FontIconProps } from './FontIcon';

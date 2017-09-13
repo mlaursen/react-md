@@ -1,1 +1,1 @@
-export { default, SubheaderProps } from './Subheader';
+export { default, default as Subheader, SubheaderProps } from './Subheader';
