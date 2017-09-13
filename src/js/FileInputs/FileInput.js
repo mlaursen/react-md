@@ -43,6 +43,16 @@ export default class FileInput extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the label.
+     */
+    labelClassName: PropTypes.string,
+
+    /**
      * Boolean if the `FileInput` should be styled with the primary color.
      */
     primary: PropTypes.bool,
@@ -341,6 +351,8 @@ export default class FileInput extends PureComponent {
     const {
       style,
       className,
+      labelStyle,
+      labelClassName,
       label,
       primary,
       secondary,
@@ -402,6 +414,7 @@ export default class FileInput extends PureComponent {
           onKeyUp={this._handleKeyUp}
           onMouseOver={this._handleMouseOver}
           onMouseLeave={this._handleMouseLeave}
+          style={labelStyle}
           className={getBtnStyles({
             flat,
             raised: !flat,
@@ -411,7 +424,7 @@ export default class FileInput extends PureComponent {
             hover,
             swapTheming,
             pressed,
-          })}
+          }, labelClassName)}
         >
           {labelChildren}
         </AccessibleFakeInkedButton>

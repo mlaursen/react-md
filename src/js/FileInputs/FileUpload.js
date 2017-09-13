@@ -45,6 +45,16 @@ export default class FileUpload extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the label.
+     */
+    labelClassName: PropTypes.string,
+
+    /**
      * Boolean if the `FileInput` should be styled with the primary color.
      */
     primary: PropTypes.bool,
