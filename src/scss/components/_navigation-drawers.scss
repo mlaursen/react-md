@@ -10,6 +10,24 @@
 /// @type Boolean
 $md-navigation-drawer-enforce-height: false !default;
 
+/// Boolean if the `height`/`max-height` should use `vh` instead of `%`. It is recommended to set
+/// this to `false` instead of using `vh` because of the different calculations on devices.
+///
+/// If this is disabled, it is recommended to also add the following styles:
+/// ```scss
+/// html,
+/// body,
+/// #app, // the entry point for the react app
+/// div[react-root] {
+///   height: 100%;
+/// }
+/// ```
+/// This will allow for better height calculations throughout the app and not relying on the buggy `vh`.
+///
+/// @see md-navigation-drawer-enforce-height
+/// @type Boolean
+$md-navigation-drawer-use-view-height: true !default;
+
 /// Boolean if the cross-fade transition should be included. This is used when the content
 /// changes.
 /// @type Boolean
@@ -252,8 +270,9 @@ $md-cross-fade-distance: 16px !default;
 /// @param {Number} toolbar-height - The current toolbar height.
 /// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the height should be enforced
 ///     instead of setting the min-height.
-@mixin react-md-navigation-drawer-height($toolbar-height, $enforce-height: $md-navigation-drawer-enforce-height) {
-  $height: calc(100vh - #{$toolbar-height});
+/// @param {Boolean} use-vh [$md-navigation-drawer-use-view-height] - Boolean if the height should use `vh` instead of `%`.
+@mixin react-md-navigation-drawer-height($toolbar-height, $enforce-height: $md-navigation-drawer-enforce-height, $use-vh: $md-navigation-drawer-use-view-height) {
+  $height: calc(#{'100' + if($use-vh, 'vh', '%')} - #{$toolbar-height});
 
   @if $enforce-height {
     height: $height;
