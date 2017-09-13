@@ -16,6 +16,8 @@ export interface TableColumnProps extends Props, InjectedTooltipProps {
   plain?: boolean;
   scope?: 'row' | 'col';
   cellIndex?: boolean;
+  colSpan?: number;
+  rowSpan?: number;
 
   /**
    * @deprecated
