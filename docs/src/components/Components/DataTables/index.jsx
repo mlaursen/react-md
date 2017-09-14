@@ -23,6 +23,11 @@ import DynamicContentTableRaw from './DynamicContentTable/code';
 const examples = [{
   tableCard: true,
   title: 'Simple Plain Table',
+  description: `
+When a table has the \`plain\` prop enabled on tables, it will just set the min-height of each cell
+to the [$md-data-table-plain-column-height](?tab=2#variable-md-data-table-plain-column-height),
+allow line wrapping, and centers the content vertically in the cell.
+  `,
   code: SimplePlainTableRaw,
   children: <SimplePlainTable />,
 }, {
@@ -31,7 +36,9 @@ const examples = [{
   description: `
 This example will showcase a selectable table. Checkboxes will be injected as the first cell into
 each row. To help with accessibility, the \`baseId\` prop is now required on the table so that each
-checkbox is updated with a unique id and a common name.
+checkbox is updated with a unique id and a common name. Non-plain data tables have a height set to
+[$md-data-table-column-height](?tab=2#variable-md-data-table-column-height)
+and prevent text wrapping.
 
 You can also update the selectable table to be \`indeterminate\` which basically updates the "select all"
 checkbox to be in an "indeterminate" state when not all the rows have been checked.
@@ -49,6 +56,11 @@ component and its API to easily accomplish this.
 This component will be displayed at as a \`<tfoot>\` and attached to the bottom of the table. It will allow the user
 to paginate forwards or backwards by a preset number of rows. The default is to start at \`10\` rows per page and allows
 for \`10\`, \`20\`, \`30\`, \`40\`, \`50\`, and \`100\` by default (both of these can be configured).
+
+In addition, this example introduces a new styling prop: [selectable](?tab=1#table-row-proptypes-selectable). By default
+non-plain DataTables are \`selectable\` which means the checkbox will be automatically injected into the first cell of
+each row. Sometimes you want the styles of a non-plain \`DataTable\` but without the checkboxes. By disabling the
+\`selectable\` prop on each row, the non-plain styles will be applied and checkboxes will not be shown.
 `,
   code: SimplePaginationRaw,
   children: <SimplePagination />,
@@ -59,7 +71,13 @@ for \`10\`, \`20\`, \`30\`, \`40\`, \`50\`, and \`100\` by default (both of thes
 This example will show how you can create a table with editable content by using the additional
 table components: \`EditDialogColumn\` and \`SelectFieldColumn\`. Both of these components will
 attempt to stay within the viewport and automatically close if they are scrolled out of view
-while open.
+while open. In addition, this example showcases another styling prop: [grow](?tab=1#table-column-proptypes-grow).
+
+When you have many columns in your \`DataTable\` and it is not a plain table, it is recommended to
+apply \`grow\` to **one** of your column headers. Due to how the html \`<table>\` automatically attempts
+to size each cell, you can end up the "Select All Checkbox" being offset from all the other cells.
+Enabling \`grow\` on one cell will allow it to fill all missing space in the table and only allow
+cells to be sized based on content and padding.
 
 These two components utilize the \`baseId\` to automatically inject unique ids into each field.
 Each \`SelectField\` will gain an id of \`\${baseId}-\${rowIndex}-\${columnIndex}-select-field\`.
@@ -71,7 +89,7 @@ The \`SelectFieldColumn\` is just a simple wrapper of a \`TableColumn\` and a \`
 it does some work behind the scenes to work with the \`Layover\` component. All of the props are
 basically the same as the \`SelectField\` and can be used the same way.
 
-For more information about the \`EditDialogColumn\` types, please see the next example.
+For more information about the \`EditDialogColumn\` types, please see the [next example](#edit-dialog-examples).
   `,
   code: EditableTablesRaw,
   children: <EditableTables />,
@@ -122,7 +140,7 @@ cancel action.
 
 
 ### TextField
-The \`EditDialogColumn\` uses the [TextField](/components/text-fields) behind the scenese and correctly
+The \`EditDialogColumn\` uses the [TextField](/components/text-fields) behind the scenes and correctly
 applies all the props to the text field. This means you can integrate help text, error messages, counters,
 multiline fields, etc for the this component as well.
   `,
@@ -147,11 +165,11 @@ and \`DropdownMenuColumn\` components.
 There is some _very limited_ support for fixed table headers/footers built into \`react-md\`. However, it
 is advisable to use a third party library such as [react-virtualized](https://github.com/bvaughn/react-virtualized)
 when dealing with heavy interaction-based tables or using fixed headers. Part of the problem with the implementation
-that is built into this library is that the vertical scrollbar does not appear ntil you have scrolled horizontally
+that is built into this library is that the vertical scrollbar does not appear until you have scrolled horizontally
 to the end which is confusing for users on OSes that display scroll bars.
 
 If this still seems fine, there is a mixin built in that will help you create fixed tables at a specific size or
-to span the entire page. See [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+to span the entire page. See [react-md-make-fixed-table](?tab=2#mixin-react-md-make-fixed-table)
 for some more information there.
 
 This example will show how you can use your fixed table headers/footers along with the \`TablePagination\` component

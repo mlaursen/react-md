@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
 import { sortBy } from 'lodash/collection';
 
 import componentFunctions from 'propTypes/componentFunctions';
 import componentProps from 'propTypes/componentProps';
-import Markdown from 'components/Markdown';
 
+import Description from './Description';
 import ComponentTitle from './ComponentTitle';
 import PropTypesTable from './PropTypesTable';
 import EnumsSection from './EnumsSection';
@@ -39,7 +38,14 @@ export default class PropTypesCard extends PureComponent {
       propFilter: '',
       ascending: true,
       visibleProps: this.sort(true, props.props),
+      mobileFilterVisible: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.mobile && this.state.mobileFilterVisible) {
+      this.setState({ mobileFilterVisible: false });
+    }
   }
 
   sort = (ascending = this.state.ascending, visibleProps = this.state.visibleProps) => {
@@ -60,14 +66,17 @@ export default class PropTypesCard extends PureComponent {
     this.setState({ ascending, visibleProps: this.sort(ascending) });
   };
 
-  render() {
-    const { ascending, visibleProps, propFilter } = this.state;
-    let { description } = this.props;
-    const { id, functions, getters, enums, source, component, mobile } = this.props;
-    if (description) {
-      description = <Markdown component={CardText} markdown={description} />;
-    }
+  showMobileFilter = () => {
+    this.setState({ mobileFilterVisible: true });
+  };
 
+  hideMobileFilter = () => {
+    this.setState({ mobileFilterVisible: false });
+  };
+
+  render() {
+    const { ascending, visibleProps, propFilter, mobileFilterVisible } = this.state;
+    const { id, functions, getters, enums, source, component, description, mobile } = this.props;
     const sections = [];
     if (enums.length) {
       sections.push(
@@ -99,8 +108,11 @@ export default class PropTypesCard extends PureComponent {
           mobile={mobile}
           onFilter={this.handleFilter}
           propFilter={propFilter}
+          mobileFilterVisible={mobileFilterVisible}
+          onMobileFilterShow={this.showMobileFilter}
+          onMobileFilterHide={this.hideMobileFilter}
         />
-        {description}
+        <Description description={description} mobileFilterVisible={mobileFilterVisible} />
         <PropTypesTable ascending={ascending} sortProps={this.handleSort} visibleProps={visibleProps} baseId={id} />
         {sections}
       </Card>

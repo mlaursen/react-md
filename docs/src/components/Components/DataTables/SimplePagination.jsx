@@ -37,15 +37,15 @@ export default class SimplePagination extends PureComponent {
     const { slicedData } = this.state;
     const rowsPerPageLabel = this.props.mobile ? 'Rows' : 'Rows per page';
     return (
-      <DataTable baseId="simple-pagination" plain>
+      <DataTable baseId="simple-pagination">
         <TableHeader>
-          <TableRow>
+          <TableRow selectable={false}>
             {headers.map(header => <TableColumn key={header}>{header}</TableColumn>)}
           </TableRow>
         </TableHeader>
         <TableBody>
           {slicedData.map(({ key, cell1, cell2, cell3, cell4, cell5, cell6 }) => (
-            <TableRow key={key}>
+            <TableRow key={key} selectable={false}>
               <TableColumn>{cell1}</TableColumn>
               <TableColumn>{cell2}</TableColumn>
               <TableColumn>{cell3}</TableColumn>

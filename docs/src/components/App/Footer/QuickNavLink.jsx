@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import FontIcon from 'react-md/lib/FontIcons';
 
+function focusContent() {
+  document.getElementById('main-content').focus();
+}
+
 const QuickNavLink = ({ to, className, label, icon, name, left, titles, ...props }) => {
   if (!to) {
     return null;
@@ -27,6 +31,7 @@ const QuickNavLink = ({ to, className, label, icon, name, left, titles, ...props
       className={cn('footer__link', {
         'md-cell--right': !left,
       }, className)}
+      onClick={focusContent}
     >
       {left && fi}
       {navTitles}
