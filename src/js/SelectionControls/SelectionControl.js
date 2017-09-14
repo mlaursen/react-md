@@ -142,9 +142,24 @@ export default class SelectionControl extends PureComponent {
      */
     inline: PropTypes.bool,
 
+    /**
+     * The icon to use for a checked `checkbox` selection control.
+     */
     checkedCheckboxIcon: PropTypes.element,
+
+    /**
+     * The icon to use for an unchecked `checkbox` selection control.
+     */
     uncheckedCheckboxIcon: PropTypes.element,
+
+    /**
+     * The icon to use for a checked `radio` selection control.
+     */
     checkedRadioIcon: PropTypes.element,
+
+    /**
+     * The icon to use for an unchecked `radio` selection control.
+     */
     uncheckedRadioIcon: PropTypes.element,
 
     /**
@@ -250,7 +265,8 @@ export default class SelectionControl extends PureComponent {
       return <FontIcon iconClassName={iconClassName} inherit>{children}</FontIcon>;
     }
 
-    return React.cloneElement(this.props[prefix], { inherit: true });
+    const icon = this.props[prefix];
+    return icon ? React.cloneElement(icon, { inherit: true }) : null;
   };
 
   _handleKeyDown = (e) => {

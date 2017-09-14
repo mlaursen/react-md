@@ -96,12 +96,12 @@ export default class Checkbox extends PureComponent {
     /**
      * The icon to display when the checkbox is checked.
      */
-    checkedIcon: PropTypes.node.isRequired,
+    checkedIcon: PropTypes.node,
 
     /**
      * The icon to display when the checkbox is unchecked.
      */
-    uncheckedIcon: PropTypes.node.isRequired,
+    uncheckedIcon: PropTypes.node,
 
     checkedIconChildren: deprecated(PropTypes.node, 'Use `checkedIcon` instead'),
     checkedIconClassName: deprecated(PropTypes.string, 'Use `checkedIcon` instead'),
