@@ -89,5 +89,5 @@ const MENU_ITEMS = [{
   nestedItems: [],
 }];
 
-const InsertMenu = () => <DocumentMenu id="insert" text="Insert" menuItems={MENU_ITEMS} />;
+const InsertMenu = props => <DocumentMenu {...props} id="insert" text="Insert" menuItems={MENU_ITEMS} />;
 export default InsertMenu;

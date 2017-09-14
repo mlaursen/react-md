@@ -264,5 +264,5 @@ const MENU_ITEMS = [{
   disabled: true,
 }];
 
-const FormatMenu = () => <DocumentMenu id="format" text="Format" menuItems={MENU_ITEMS} />;
+const FormatMenu = props => <DocumentMenu {...props} id="format" text="Format" menuItems={MENU_ITEMS} />;
 export default FormatMenu;

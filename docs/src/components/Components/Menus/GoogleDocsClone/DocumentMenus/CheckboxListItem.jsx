@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import FontIcon from 'react-md/lib/FontIcons';
 import ListItemControl from 'react-md/lib/Lists/ListItemControl';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 
@@ -31,8 +32,8 @@ export default class CheckboxListItem extends PureComponent {
         primaryAction={
           <Checkbox
             {...props}
-            checkedIconChildren="check"
-            uncheckedIconChildren={null}
+            checkedIcon={<FontIcon>check</FontIcon>}
+            uncheckedIcon={null}
             inkDisabled
           />
         }

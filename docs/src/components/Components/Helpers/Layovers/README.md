@@ -15,3 +15,5 @@ same logic is applied if the user scrolls upwards (flip to be from above to belo
 Some additional features is that the `Layover` can attempt to make the child span the entire viewport.
 This "feature" really only works well on Android devices since iOS does not include the soft keyboard
 as part of this calculation and there is no way to detect keyboard visibility or size reliably.
+
+## You are probably looking for the [Menu](/components/menus) instead of this component. This is a very low level component and really used behind the scenes.

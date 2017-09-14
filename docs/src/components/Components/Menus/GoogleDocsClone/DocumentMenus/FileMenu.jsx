@@ -52,5 +52,5 @@ const MENU_ITEMS = [
   },
 ];
 
-const FileMenu = () => <DocumentMenu id="file" text="File" menuItems={MENU_ITEMS} />;
+const FileMenu = props => <DocumentMenu {...props} id="file" text="File" menuItems={MENU_ITEMS} />;
 export default FileMenu;

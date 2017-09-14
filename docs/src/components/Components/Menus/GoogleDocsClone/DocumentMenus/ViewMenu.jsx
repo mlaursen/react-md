@@ -57,5 +57,5 @@ const MENU_ITEMS = [
   }, 'Full screen',
 ];
 
-const ViewMenu = () => <DocumentMenu id="view" text="View" menuItems={MENU_ITEMS} />;
+const ViewMenu = props => <DocumentMenu {...props} id="view" text="View" menuItems={MENU_ITEMS} />;
 export default ViewMenu;
