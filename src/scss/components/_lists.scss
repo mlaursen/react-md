@@ -217,6 +217,12 @@ $md-list-three-lines-height: null !default;
 /// @type Number
 $md-list-three-lines-addon-margin-top: null !default;
 
+/// The line-height to apply any icons or avatars that are placed to the left or right of the text in a list item.
+/// This is really only applied if the line-height is altered in a parent element.
+///
+/// @type Number
+$md-list-addon-line-height: $md-line-height !default;
+
 /// A placeholder for removing the default margin, padding and list styles
 %md-list-unstyled {
   list-style: none;
@@ -346,16 +352,20 @@ $md-list-three-lines-addon-margin-top: null !default;
 
 
   @if $include-icon or $include-avatar {
-    .md-tile-addon--icon {
-      height: $md-font-icon-size;
+    .md-tile-addon {
+      line-height: $md-list-addon-line-height;
+
+      &--icon {
+        height: $md-font-icon-size;
+      }
+
+      &--avatar {
+        height: $md-avatar-size;
+      }
     }
 
     .md-text--theme-primary .md-icon {
       color: inherit;
-    }
-
-    .md-tile-addon--avatar {
-      height: $md-avatar-size;
     }
   }
 
