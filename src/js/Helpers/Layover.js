@@ -1092,7 +1092,7 @@ export default class Layover extends PureComponent {
       child = React.cloneElement(children, {
         ref: this._fixateChild,
         id: childId,
-        style: this.state.styles,
+        style: simplified ? child.props.style : this.state.styles,
         className: cn(`md-layover-child md-layover-child--${animationPosition}`, {
           'md-layover-child--simplified': simplified,
         }, child.props.className),
