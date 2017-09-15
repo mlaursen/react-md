@@ -27,6 +27,17 @@ $md-data-table-include-select-fields: true !default;
 /// @type Boolean
 $md-data-table-include-fixed-headers-footers: true !default;
 
+/// Boolean if the table pagination styles should be included.
+/// @type Boolean
+$md-data-table-include-pagination: true !default;
+
+/// Boolean if the selected state of the data tables should have higher precedence over the hover state.
+/// The default behavior is to allow the hover state to show up even if the row is selected. If this value
+/// is enabled, the hover effect will not show up at all when a row is selected.
+///
+/// @type Boolean
+$md-data-table-selected-over-hover: false !default;
+
 /// Boolean if the `react-md-make-fixed-table` mixin should include headers by default in the
 /// created styles.
 ///
@@ -43,10 +54,6 @@ $md-data-table-fixed-include-footers: true !default;
 /// view height instead of just using height.
 /// @type Boolean
 $md-data-table-fixed-use-view-height: false !default;
-
-/// Boolean if the table pagination styles should be included.
-/// @type Boolean
-$md-data-table-include-pagination: true !default;
 
 /// Boolean if the `TablePagination`'s styles should be updated for mobiles devices
 /// so that the select field shrinks its font size to 13px;
@@ -266,12 +273,15 @@ $md-data-table-contextual-fallback-color: null !default;
 ///     the contextual table card header styles should be included.
 /// @param {Color} contextual-fallback-color [$md-data-table-contextual-fallback-color] - A fallback color
 ///     to use for the contextual headers.
+/// @param {Boolean} selected-over-hover [$md-data-table-selected-over-hover] - Boolean if the selected state of
+///     rows should have a higher precedence than the hover state.
 /// @group data-tables, themes
 @mixin react-md-theme-data-tables(
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
   $include-table-card-headers: $md-data-table-include-table-card-headers,
-  $contextual-fallback-color: $md-data-table-contextual-fallback-color
+  $contextual-fallback-color: $md-data-table-contextual-fallback-color,
+  $selected-over-hover: $md-data-table-selected-color
 ) {
   @if $light-theme != $md-light-theme {
     thead .md-table-row,
@@ -280,13 +290,25 @@ $md-data-table-contextual-fallback-color: null !default;
     }
 
     .md-table-row {
+      $active-color: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
+      $hover-color: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
 
-      &--active {
-        background: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
-      }
+      @if $selected-over-hover {
+        &--hover {
+          background: $hover-color;
+        }
 
-      &--hover {
-        background: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
+        &--active {
+          background: $active-color;
+        }
+      } @else {
+        &--active {
+          background: $active-color;
+        }
+
+        &--hover {
+          background: $hover-color;
+        }
       }
     }
   }
@@ -330,7 +352,9 @@ $md-data-table-contextual-fallback-color: null !default;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling for the light
 ///     theme.
-@mixin react-md-data-table-rows($light-theme: $md-light-theme) {
+/// @param {Boolean} selected-over-hover [$md-data-table-selected-over-hover] - Boolean if the selected state of
+///     rows should have a higher precedence than the hover state.
+@mixin react-md-data-table-rows($light-theme: $md-light-theme, $selected-over-hover: $md-data-table-selected-over-hover) {
   thead .md-table-row,
   tbody .md-table-row:not(:last-child) {
     border-bottom: $md-data-table-border-size solid get-color('divider', $light-theme);
@@ -340,12 +364,25 @@ $md-data-table-contextual-fallback-color: null !default;
     transition-duration: $md-transition-time;
     transition-property: background;
 
-    &--active {
-      background: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
-    }
+    $active-color: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
+    $hover-color: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
 
-    &--hover {
-      background: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
+    @if $selected-over-hover {
+      &--hover {
+        background: $hover-color;
+      }
+
+      &--active {
+        background: $active-color;
+      }
+    } @else {
+      &--active {
+        background: $active-color;
+      }
+
+      &--hover {
+        background: $hover-color;
+      }
     }
   }
 }
