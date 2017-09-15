@@ -16,11 +16,22 @@ component's prop. This is probably more for me than anything else.
 "Used By", and "See" sections.
 - When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
 list.
+- It is now possible to search for specific examples from the main search bar.
+
+### v1.1.3 Released
+#### Changelog
+- Fixed the `Layover` positions in `DataTable`s. [issues-527]
+- Updated `SelectionControl` and `Checkbox` to allow `null` icons. [issues-528]
+- Fixed the `Layover` not apply the correct styles when `simplified` is enabled. [issues-529]
+- Fixed the `Menu` default export Typescript definition. [issues-526]
+- Fixed lists that appear as a child of a toolbar's title. [issues-375]
+- Fixed the selected state for `DataTable`s. [issues-530]
+- Fixed the `DataTable`'s 'hover color being incorrectly applied on mobile devices. [issues-531]
 
 ### v1.1.2 Released
 This is a couple more Typescript bugfixes.
 
-### Changelog
+#### Changelog
 - Fixed the `Layover` positions and `Drawer` drawer type Typescript definitions. ([@noseglid] - [pull-520])
 - Added `colSpan` and `rowSpan` to the `TableColumn` for Typescript definitions. ([@domszyn] - [pull-523])
 - Fixed the `MenuButton` and `MenuButtonColumn` Typescript definitions to include tooltip and ink props. [commit-c7e37f0]
