@@ -32,16 +32,25 @@ export class PureSearch extends PureComponent {
      */
     results: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
-      type: PropTypes.oneOf([
-        'Info',
-        'Examples',
-        'SassDoc',
-        'Prop Types',
-        'Mixin',
-        'Variable',
-        'Placeholder',
-        'Function',
-      ]).isRequired,
+      type: (props, propName, component, ...others) => {
+        const error = PropTypes.oneOf([
+          'Info',
+          'Examples',
+          'SassDoc',
+          'Prop Types',
+          'Mixin',
+          'Variable',
+          'Placeholder',
+          'Function',
+        ]).isRequired(props, propName, component, ...others);
+
+        // If it doesn't match one of the above, it should match `ComponentName Example`
+        if (error && !props[propName].match(/^\w+ Example$/)) {
+          return error;
+        }
+
+        return null;
+      },
       ref: PropTypes.string.isRequired,
     })).isRequired,
 

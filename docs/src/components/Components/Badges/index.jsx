@@ -9,14 +9,12 @@ import SimpleStyles from '!!raw-loader!./_simple.scss';
 import Notifications from './Notifications';
 import NotificationsRaw from './Notifications/code';
 
-const template = '`${max}`+'; // eslint-disable-line
-
 const examples = [{
   title: 'Simple',
   description: `
 The main use case for the badge is to create a notification component.  When the badge
 content is set to a number, it will automatically be truncated to \`max\` prop value.
-If the number is greater than the \`max\`, it will be displayed as \`${template}\`.
+If the number is greater than the \`max\`, it will be displayed as \`\`\${max}\`+\`.
 This is really only done to get the number within the bubble. The bubble size can be
 changed via Sass.
 

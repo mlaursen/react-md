@@ -26,6 +26,12 @@ it might not work as expected.
 mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
+
+### dev:full
+Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
+and then concurrently run all the watchers and start up the dev server.
+
+> SEE: [watch:all](#watchall)
 $ vim .env              # change port to whatever you want
 
 # This one is optional. A webpack-assets.json file must be created before the server will work correctly
@@ -403,10 +409,12 @@ it to the output directory. It isn't super ideal since I don't know how to trigg
 
 ## Scripts
 * [clean](#clean)
+  * [clean:dbs](#cleandbs)
   * [clean:assets](#cleanassets)
 * [prebuild](#prebuild)
 * [build](#build)
   * [build:dev](#buildev)
+* [doc-dbs](#doc-dbs)
 * [jsdoc](#jsdoc)
   * [jsdoc:build](#jsdocbuild)
   * [jsdoc:create](#jsdoccreate)
@@ -414,17 +422,18 @@ it to the output directory. It isn't super ideal since I don't know how to trigg
   * [docgen:create](#docgencreate)
 * [sassdoc](#sassdoc)
   * [sassdoc:site](#sassdocsite)
+* [examples-db](#examples-db)
 * [air-quality](#air-quality)
+* [watch:all](#watchall)
+  * [watch:docgen](#watchdocgen)
+  * [watch:sassdoc](#watchsassdoc)
+  * [watch:react-md](#watchreact-md)
 * [start](#start)
   * [start:dev](#startdev)
   * [start:prod](#startprod)
 * [dev](#dev)
   * [dev:full](#devfull)
   * [dev:minimal](#devminimal)
-* [watch:all](#watchall)
-  * [watch:docgen](#watchdocgen)
-  * [watch:sassdoc](#watchsassdoc)
-  * [watch:react-md](#watchreact-md)
 * [test](#test)
   * [test:watch](#testwatch)
 
@@ -435,6 +444,10 @@ script.
 
 > SEE: [jsdoc](#jsdoc), [sassdoc](#sassdoc), or [docgen](#docgen) for more information
 about "databases".
+
+### clean:dbs
+This will just remove any generated databases except for the airQuality database. See [air-quality](#air-quality) for
+more information.
 
 ### clean:assets
 This will just remove any existing assets or themes.
@@ -470,6 +483,10 @@ documentation on static component class attributes that are not picked up with `
 `Layover.HorizontalAnchors` and `Autocomplete.fuzzyFilter`.This will create a `jsdoc.json` file in the home directory
 to be parsed by [jsdoc:create](#jsdoccreate).
 
+### jsdoc:create
+This parses the created docgen so that the components can be linked in with these special enums and external functions
+for additional documentation.
+
 ### docgen
 This will run the [jsdoc](#jsdoc) script followed by the [docgen:create](#docgencreate) task. The jsdoc "database" *must*
 be created before the `docgen:create` script can be ran.
@@ -491,9 +508,30 @@ it is a simple mapping of the component group to related documentation. This com
 This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.
 
+### examples-db
+This will create a "database" to be used to search for specific examples in the documentation site.
+
 ### air-quality
 This will remake the airQuality "database" by fetching the data from the https://data.gov website, parse/format the response,
 and limit the number of results. This is really only useful if you need to get some fresher data.
+
+### watch:all
+This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md
+source code into the `lib/` folder.
+
+### watch:docgen
+This will create a watcher for the [docgen](#docgen) script and rebuild the "database" when a component's
+source code has changed. This isn't completely optimized since it doesn't check differences in content before
+writing.
+
+### watch:sassdoc
+This will create a watcher for the [sassdoc](#sassdoc) script and rebuild the "database" when a component's
+source code has changed. This isn't completely optimized since it doesn't check differences in content before
+writing.
+
+### watch:react-md
+This will just recompile a changed react-md source file into the `lib/` folder so the changes can be seen in the documentation
+site.
 
 ### start
 This will start the production server. The [build](#build) **must** have been run before the production server can
@@ -517,34 +555,16 @@ This is the second most useful development script. It will only run the [prebuil
 and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
 use this script if you only need to see the examples changes without any docgen or SassDoc updates.
 
-### dev:minimal
-This is a script that will remove any existing assets, run the webpack watcher, and start the development
-server. This is assuming that all the databases have been built and the react-md code has been compiled
-already.
-
 ### dev:full
 Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
 and then concurrently run all the watchers and start up the dev server.
 
 > SEE: [watch:all](#watchall)
 
-### watch:all
-This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md
-source code into the `lib/` folder.
-
-### watch:docgen
-This will create a watcher for the [docgen](#docgen) script and rebuild the "database" when a component's
-source code has changed. This isn't completely optimized since it doesn't check differences in content before
-writing.
-
-### watch:sassdoc
-This will create a watcher for the [sassdoc](#sassdoc) script and rebuild the "database" when a component's
-source code has changed. This isn't completely optimized since it doesn't check differences in content before
-writing.
-
-### watch:react-md
-This will just recompile a changed react-md source file into the `lib/` folder so the changes can be seen in the documentation
-site.
+### dev:minimal
+This is a script that will remove any existing assets, run the webpack watcher, and start the development
+server. This is assuming that all the databases have been built and the react-md code has been compiled
+already.
 
 ### test
 This will run tests only for the documentation server.
