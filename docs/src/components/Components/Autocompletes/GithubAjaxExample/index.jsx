@@ -7,7 +7,7 @@ import Autocomplete from 'react-md/lib/Autocompletes';
 import Avatar from 'react-md/lib/Avatars';
 import Button from 'react-md/lib/Buttons/Button';
 
-import { scrollTo } from 'utils/scrollRestoration';
+import scrollTo from 'utils/scrollTo';
 import { userShape } from 'propTypes/github';
 import { githubRequest, clearSearchResults } from 'state/github';
 import AboutRateLimiting from 'components/Github/AboutRateLimiting';
