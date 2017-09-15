@@ -293,21 +293,21 @@ $md-data-table-contextual-fallback-color: null !default;
       $active-color: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
       $hover-color: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
 
+      @if not $selected-over-hover {
+        &--active {
+          background: $active-color;
+        }
+      }
+
+      @media (min-device-width: #{$md-desktop-min-width}) {
+        &--hover {
+          background: $hover-color;
+        }
+      }
+
       @if $selected-over-hover {
-        &--hover {
-          background: $hover-color;
-        }
-
         &--active {
           background: $active-color;
-        }
-      } @else {
-        &--active {
-          background: $active-color;
-        }
-
-        &--hover {
-          background: $hover-color;
         }
       }
     }
@@ -367,21 +367,21 @@ $md-data-table-contextual-fallback-color: null !default;
     $active-color: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
     $hover-color: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
 
+    @if not $selected-over-hover {
+      &--active {
+        background: $active-color;
+      }
+    }
+
+    @media (min-device-width: #{$md-desktop-min-width}) {
+      &--hover {
+        background: $hover-color;
+      }
+    }
+
     @if $selected-over-hover {
-      &--hover {
-        background: $hover-color;
-      }
-
       &--active {
         background: $active-color;
-      }
-    } @else {
-      &--active {
-        background: $active-color;
-      }
-
-      &--hover {
-        background: $hover-color;
       }
     }
   }
