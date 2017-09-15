@@ -78,4 +78,4 @@ interface MenuComponent extends React.ComponentClass<MenuProps> {
 }
 
 declare const Menu: MenuComponent;
-export default MenuComponent;
+export default Menu;
