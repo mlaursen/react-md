@@ -78,6 +78,7 @@ describe('Search', () => {
   });
 
   it('should clear any timeouts if it unmounts', () => {
+    jest.useFakeTimers();
     const search = shallow(<Search {...PROPS} />);
     expect(setTimeout).not.toBeCalled();
     search.setProps({ searching: false });

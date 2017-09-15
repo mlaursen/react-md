@@ -10,14 +10,14 @@ exports[`ExamplesPage should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<pre><code>  ## Some Example page
-        That has content
-      
-        And some amazing **markdown**!
-      
-        - one
-        - two
-        - three
-      </code></pre>",
+  That has content
+
+  And some amazing **markdown**!
+
+  - one
+  - two
+  - three
+</code></pre>",
       }
     }
   />
@@ -90,7 +90,7 @@ exports[`ExamplesPage should render correctly 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Something that has some <strong>markdown</strong> and <strong>other stuff</strong>.</p>
-          ",
+",
           }
         }
       />

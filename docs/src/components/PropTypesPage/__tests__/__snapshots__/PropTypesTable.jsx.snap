@@ -99,8 +99,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">object
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -115,7 +115,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>An optional style to apply.</p>
-              ",
+",
               }
             }
           />
@@ -157,8 +157,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">string
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -173,7 +173,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>An optional className to apply to the <code>FontIcon</code>.</p>
-              ",
+",
               }
             }
           />
@@ -215,8 +215,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">string *
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -231,8 +231,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>default: <code>&#39;material-icons&#39;</code></p>
-              <p>The icon font library className to use to display the icon.</p>
-              ",
+<p>The icon font library className to use to display the icon.</p>
+",
               }
             }
           />
@@ -274,8 +274,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">node
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -290,7 +290,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>Any children required to display the icon with the font library.</p>
-              ",
+",
               }
             }
           />
@@ -332,8 +332,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">bool
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -348,7 +348,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>Boolean if the <code>FontIcon</code> should gain the disabled colors.</p>
-              ",
+",
               }
             }
           />
@@ -390,8 +390,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">oneOfType([bool, number])
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -406,9 +406,9 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
-              to enforce. This is useful when using other font icon libraries that do not have a consistent
-              size.</p>
-              ",
+to enforce. This is useful when using other font icon libraries that do not have a consistent
+size.</p>
+",
               }
             }
           />
@@ -450,8 +450,8 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<pre><code class=\\"lang-js\\">custom
-              </code></pre>
-              ",
+</code></pre>
+",
               }
             }
           />
@@ -466,7 +466,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>Boolean if the <code>forceSize</code> prop should also force the <code>font-size</code> instead of only <code>width</code> and <code>height</code>.</p>
-              ",
+",
               }
             }
           />

@@ -86,7 +86,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>It is something that does something. Quite amazing</p>
-              ",
+",
               }
             }
           />
@@ -129,7 +129,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>This is a param that is required.</p>
-              ",
+",
               }
             }
           />

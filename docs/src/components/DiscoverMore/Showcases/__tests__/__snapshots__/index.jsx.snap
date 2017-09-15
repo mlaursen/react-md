@@ -10,11 +10,11 @@ exports[`Showcases should render all the showcases 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<h2 id=\\"showcases\\">Showcases</h2>
-      <p>The following is a list of products/apps that use react-md other than this documentation site. Their entire
-      interface might not be implemented with react-md, but it should give a good idea of how it is used.</p>
-      <p>Want to showcase your app/product? Either open a pull request adding your application or look at
-      <a href=\\"https://github.com/mlaursen/react-md/issues/196\\" class=\\"link\\">the github issue</a> for getting your site added.</p>
-      ",
+<p>The following is a list of products/apps that use react-md other than this documentation site. Their entire
+interface might not be implemented with react-md, but it should give a good idea of how it is used.</p>
+<p>Want to showcase your app/product? Either open a pull request adding your application or look at
+<a href=\\"https://github.com/mlaursen/react-md/issues/196\\" class=\\"link\\">the github issue</a> for getting your site added.</p>
+",
       }
     }
   />
@@ -79,10 +79,10 @@ exports[`Showcases should render all the showcases 1`] = `
         className="md-card-text"
       >
         
-        Les Passions de Péronnes offers you to discover wines of terroirs, wines of
-        vignerons. Most of them are encountered during oeno-tourist trips, telling
-        us their wines, their hopes sometimes very crazy.
-        
+Les Passions de Péronnes offers you to discover wines of terroirs, wines of
+vignerons. Most of them are encountered during oeno-tourist trips, telling
+us their wines, their hopes sometimes very crazy.
+
       </section>
     </li>
   </ul>

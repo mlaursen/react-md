@@ -165,7 +165,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       dangerouslySetInnerHTML={
         Object {
           "__html": "<p>Some <strong>description</strong> <em>markdown</em></p>
-        ",
+",
         }
       }
     />
@@ -273,14 +273,14 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       dangerouslySetInnerHTML={
         Object {
           "__html": "<pre><code># Second Example
-        That contains some markdown!
-        
-        - one
-        - two
-        - three
-        
-        &gt; some note
-        </code></pre>",
+That contains some markdown!
+
+- one
+- two
+- three
+
+&gt; some note
+</code></pre>",
         }
       }
     />

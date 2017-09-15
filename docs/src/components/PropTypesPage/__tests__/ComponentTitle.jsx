@@ -11,6 +11,9 @@ const PROPS = {
   source: 'https://github.com/malursen/react-md/master/tree/src/js/Autocompletes/Autocomplete.js',
   propFilter: '',
   onFilter: () => {},
+  mobileFilterVisible: false,
+  onMobileFilterShow: () => {},
+  onMobileFilterHide: () => {},
 };
 describe('ComponentTitle', () => {
   it('should render correctly', () => {

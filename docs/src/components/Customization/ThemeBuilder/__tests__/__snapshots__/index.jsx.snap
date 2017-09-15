@@ -248,10 +248,10 @@ exports[`ThemeBuilder should render correctly 1`] = `
         Custom CSS Theme Builder
       </h3>
       
-      
+
       <p>
         Select a primary color, a secondary color, the secondary color's hue, and optionally toggle the light theme
-        to view a specific theme. When you have selected colors you like, either reference 
+to view a specific theme. When you have selected colors you like, either reference 
         <a
           class="link"
           href="#using-with-sass"
@@ -259,7 +259,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
           Using with Sass
         </a>
         
-        or 
+or 
         <a
           class="link"
           href="#pre-compiled-themes"
@@ -273,7 +273,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         .
       </p>
       
-      
+
     </section>
     <section
       class="md-background--card theme-preview"
@@ -338,33 +338,33 @@ exports[`ThemeBuilder should render correctly 1`] = `
       Using with Sass
     </h4>
     
-    
+
     <pre>
       <code
         class="lang-scss"
       >
         @import '~react-md/src/scss/react-md';
-        
-        $md-light-theme: true; // optional for light theme
-        $md-primary-color: $md-light-blue-500;
-        $md-secondary-color: $md-deep-orange-a-200;
-        
-        @include react-md-everything;
-        
-        // Or for a subsection
-        @include react-md-theme-everything($md-light-blue-500, $md-deep-orange-a-200, $md-light-theme, 'custom-theme');
-        
+
+$md-light-theme: true; // optional for light theme
+$md-primary-color: $md-light-blue-500;
+$md-secondary-color: $md-deep-orange-a-200;
+
+@include react-md-everything;
+
+// Or for a subsection
+@include react-md-theme-everything($md-light-blue-500, $md-deep-orange-a-200, $md-light-theme, 'custom-theme');
+
       </code>
     </pre>
     
-    
+
     <h4
       id="pre-compiled-themes"
     >
       Pre-compiled Themes
     </h4>
     
-    
+
     <p>
       This current theme is unavailable as a precomiled package. Only accents of 
       <code>
@@ -375,10 +375,10 @@ exports[`ThemeBuilder should render correctly 1`] = `
         light-theme
       </code>
        have been
-      precompiled.
+precompiled.
     </p>
     
-    
+
   </section>
 </div>
 `;
