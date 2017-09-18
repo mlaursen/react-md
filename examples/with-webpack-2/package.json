@@ -25,7 +25,7 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-transition-group": "^15.5.2",
     "react-dom": "^15.5.4",
-    "react-hot-loader": "latest",
+    "react-hot-loader": "3.0.0-beta.7",
     "react-md": "latest"
   },
   "devDependencies": {
