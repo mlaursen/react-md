@@ -47,7 +47,15 @@ export default class SelectionControl extends PureComponent {
     /**
      * An optional label to apply to the checkbox when there is no visible label.
      */
-    'aria-label': oneRequiredForA11y(PropTypes.string, 'label'),
+    'aria-label': oneRequiredForA11y(PropTypes.string, 'label', 'aria-labelledby'),
+
+    /**
+     * An optional id that points to a label for the selection control when there is no visible label.
+     */
+    'aria-labelledby': PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * An optional style to apply to the selection control's container.
@@ -307,6 +315,7 @@ export default class SelectionControl extends PureComponent {
       inkDisabled,
       disabledInteractions,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       /* eslint-disable no-unused-vars */
       label: propLabel,
       checked: propChildren,
@@ -384,6 +393,7 @@ export default class SelectionControl extends PureComponent {
           value={value}
           aria-hidden
           aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
         />
         <label
           htmlFor={id}
