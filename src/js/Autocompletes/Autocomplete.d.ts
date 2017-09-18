@@ -38,6 +38,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   onAutocomplete?: (suggestion: string | number, suggestionIndex: number, matches: DataType) => void;
   onChange?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
   clearOnAutocomplete?: boolean;
+  focusInputOnAutocomplete?: boolean;
   onMenuOpen?: Function;
   onMenuClose?: Function;
   autoComplete?: OnOffType;
