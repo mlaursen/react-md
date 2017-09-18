@@ -1090,6 +1090,10 @@ $md-text-field-message-line-height: $md-line-height !default;
     align-items: flex-end;
     display: flex;
     width: 100%;
+
+    .md-text-field-container--input-block & {
+      align-items: center;
+    }
   }
 }
 
