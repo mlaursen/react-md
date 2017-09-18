@@ -726,11 +726,8 @@ export default class Layover extends PureComponent {
     let node = this._container;
     while (node) {
       const fixed = window.getComputedStyle(node).position === 'fixed';
-      if (fixed && node.classList.contains('md-dialog--full-page')) {
+      if (fixed && node.className.match(/md-dialog--(full-page|centered)/)) {
         this._dialog = node;
-        return;
-      } else if (fixed && node.classList.contains('md-dialog-container')) {
-        this._dialog = node.firstChild;
         return;
       } else if (fixed && !node.classList.contains('md-layover-child')) {
         this._inFixed = true;
