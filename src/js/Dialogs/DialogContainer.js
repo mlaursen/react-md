@@ -329,6 +329,12 @@ export default class DialogContainer extends PureComponent {
       PropTypes.string,
     ]),
 
+    /**
+     * Boolean if the actions should be stacked on top of each other. If this value is `undefined`, it will
+     * automatically attempt to guess if the items should be stacked.
+     */
+    stackedActions: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),

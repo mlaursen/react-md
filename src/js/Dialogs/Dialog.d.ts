@@ -24,6 +24,7 @@ export interface DialogProps extends Props {
   autosizeContent?: boolean;
   height?: number;
   width?: number;
+  stackedActions?: boolean;
 }
 
 declare const Dialog: React.ComponentClass<DialogProps>;

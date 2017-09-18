@@ -241,6 +241,12 @@ export default class Dialog extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]),
+
+    /**
+     * Boolean if the actions should be stacked on top of each other. If this value is `undefined`, it will
+     * automatically attempt to guess if the items should be stacked.
+     */
+    stackedActions: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -362,6 +368,7 @@ export default class Dialog extends PureComponent {
       autopadContent,
       paddedContent,
       autosizeContent,
+      stackedActions,
       /* eslint-disable no-unused-vars */
       style,
       contentStyle,
@@ -398,7 +405,7 @@ export default class Dialog extends PureComponent {
         {autosizeContent ? <ResizeObserver watchHeight watchWidth onResize={this._handleContentResize} /> : null}
         {children}
       </Content>,
-      <DialogFooter key="footer" actions={actions} />,
+      <DialogFooter key="footer" actions={actions} stacked={stackedActions} />,
     ];
 
     return (
