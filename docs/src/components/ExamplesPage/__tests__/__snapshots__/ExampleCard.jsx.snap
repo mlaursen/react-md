@@ -16,6 +16,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
+      tabIndex={null}
     >
       <div
         className="quick-link__container"
@@ -111,6 +112,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
+      tabIndex={null}
     >
       <div
         className="quick-link__container"
@@ -219,6 +221,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
+      tabIndex={null}
     >
       <div
         className="quick-link__container"
@@ -310,6 +313,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id={undefined}
+      tabIndex={null}
     >
       <div
         className="quick-link__container"

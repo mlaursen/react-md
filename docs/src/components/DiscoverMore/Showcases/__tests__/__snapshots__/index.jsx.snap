@@ -47,6 +47,7 @@ interface might not be implemented with react-md, but it should give a good idea
           <h2
             className="md-card-title--title md-card-title--large md-text"
             id={undefined}
+            tabIndex={null}
           >
             Les Passions de Peronnes
           </h2>

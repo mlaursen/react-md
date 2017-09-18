@@ -11,6 +11,7 @@ exports[`ComponentTitle should render correctly 1`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
+      tabIndex={-1}
     >
       <div
         className="quick-link__container"
@@ -98,6 +99,7 @@ exports[`ComponentTitle should render correctly 2`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
+      tabIndex={-1}
     >
       <span>
         Autocomplete
