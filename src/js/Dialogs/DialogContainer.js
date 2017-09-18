@@ -288,6 +288,47 @@ export default class DialogContainer extends PureComponent {
      */
     disableScrollLocking: PropTypes.bool,
 
+    /**
+     * Boolean if the dialog should automatically try to determine if the content
+     * should be padded. It will be padded if the dialog does not contain a `List`.
+     */
+    autopadContent: PropTypes.bool,
+
+    /**
+     * Boolean if the dialog content's size should automatically be resized to overflow
+     * correctly when there is a lot of content. This will calculate and apply some `maxHeight`
+     * to the `contentStyle`.
+     */
+    autosizeContent: PropTypes.bool,
+
+    /**
+     * An optional height to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #width}
+     */
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional width to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #height}
+     */
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -298,6 +339,8 @@ export default class DialogContainer extends PureComponent {
   };
 
   static defaultProps = {
+    autopadContent: true,
+    autosizeContent: true,
     component: 'span',
     closeOnEsc: true,
     contentComponent: 'section',

@@ -27,8 +27,11 @@ h3,
   word-break: break-word;
 }
 
-*[tabindex="-1"]:focus {
-  outline-style: none;
+*[tabindex="-1"],
+.no-tab-outline {
+  &:focus {
+    outline-style: none;
+  }
 }
 
 .md-icon.fa {
