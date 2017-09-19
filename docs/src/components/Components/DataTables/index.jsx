@@ -7,14 +7,16 @@ import SimplePlainTable from './SimplePlainTable';
 import SimplePlainTableRaw from '!!raw-loader!./SimplePlainTable.jsx';
 import SimpleSelectableTable from './SimpleSelectableTable';
 import SimpleSelectableTableRaw from '!!raw-loader!./SimpleSelectableTable.jsx';
+import SimplePagination from './SimplePagination';
+import SimplePaginationRaw from '!!raw-loader!./SimplePagination.jsx';
+import Sortable from './Sortable';
+import SortableRaw from '!!raw-loader!./Sortable.jsx';
 import WithMenus from './WithMenus';
 import WithMenusRaw from './WithMenus/code';
 import EditableTables from './EditableTables';
 import EditableTablesRaw from '!!raw-loader!./EditableTables.jsx';
 import EditDialogExample from './EditDialogExample';
 import EditDialogExampleRaw from '!!raw-loader!./EditDialogExample.jsx';
-import SimplePagination from './SimplePagination';
-import SimplePaginationRaw from '!!raw-loader!./SimplePagination.jsx';
 import FixedTablePagination from './FixedTablePagination';
 import FixedTablePaginationRaw from './FixedTablePagination/code';
 import DynamicContentTable from './DynamicContentTable';
@@ -64,6 +66,18 @@ each row. Sometimes you want the styles of a non-plain \`DataTable\` but without
 `,
   code: SimplePaginationRaw,
   children: <SimplePagination />,
+}, {
+  tableCard: true,
+  title: 'Sortable Tables',
+  description: `
+\`DataTable\`s can become sortable by applying the \`sorted\` prop to one-to-many of the \`TableColumn\` that appear in the
+\`TableHeader\`. If the \`sorted\` prop is a \`boolean\`, it will inject a sort icon before the content in the column. When
+the \`sorted\` prop is \`true\`, it will assume that the content is sorted "ascending" while \`false\` will assume "descending".
+This will also update the column with the corresponding \`aria-sort\` value. You can then just add a simple \`onClick\` handler
+to your \`TableColumn\` to change the sort direction.
+  `,
+  code: SortableRaw,
+  children: <Sortable />,
 }, {
   tableCard: true,
   title: 'Editable Content Tables',

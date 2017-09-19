@@ -2,6 +2,7 @@ export books from './books';
 export desserts from './desserts';
 export languages from './languages';
 export mealPreferences from './mealPreferences';
+export movies from './movies';
 export pastries from './pastries';
 export programmingLanguages from './programmingLanguages';
 export states from './states';
