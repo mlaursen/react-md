@@ -736,7 +736,7 @@ export default class SelectField extends PureComponent {
     if (visible && this._container) {
       let node = e.target;
       while (this._container.contains(node)) {
-        if (typeof node.dataset.id !== 'undefined') {
+        if (node.dataset && typeof node.dataset.id !== 'undefined') {
           const { id, value } = node.dataset;
           this._selectItem(parseInt(id, 10), value, e);
           return;
@@ -881,6 +881,10 @@ export default class SelectField extends PureComponent {
     let match = -1;
     const search = `${lastSearch || ''}${letter}`.toUpperCase();
     menuItems.some((item, index) => {
+      if (item && typeof item === 'object' && item.disabled) {
+        return false;
+      }
+
       const label = String(this._getItemPart(item, itemLabel, itemValue, true));
       if (label && label.toUpperCase().replace(/\s/g, '').indexOf(search) === 0) {
         match = index;
@@ -941,18 +945,19 @@ export default class SelectField extends PureComponent {
     const active = dataValue === value || dataValue === parseInt(value, 10);
     const stripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && active;
     if (!stripped) {
+      const disabled = (props && props.disabled) || false;
       items.push(
         <ListItem
           {...props}
-          ref={this._setListItem}
+          ref={disabled ? null : this._setListItem}
           id={active ? `${id}-options-active` : null}
           active={active}
           tabIndex={-1}
           primaryText={primaryText}
           key={item.key || dataValue}
           role="option"
-          data-id={i}
-          data-value={dataValue}
+          data-id={disabled ? null : i}
+          data-value={disabled ? null : dataValue}
         />
       );
     }
