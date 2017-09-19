@@ -876,7 +876,7 @@ export default class SelectField extends PureComponent {
     const search = `${lastSearch || ''}${letter}`.toUpperCase();
     menuItems.some((item, index) => {
       const label = String(this._getItemPart(item, itemLabel, itemValue, true));
-      if (label && label.toUpperCase().indexOf(search) === 0) {
+      if (label && label.toUpperCase().replace(/\s/g, '').indexOf(search) === 0) {
         match = index;
       }
 
