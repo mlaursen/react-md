@@ -37,17 +37,8 @@ function loadIntl() {
   return null;
 }
 
-(async function renderApp() {
-  if (!navigator.onLine || __DEV__) {
-    store.dispatch(updateCustomTheme(store.getState().theme.href));
-  }
-  store.dispatch(updateLocale(locale));
-
-  const bundles = window.__WEBPACK_BUNDLES__ || [];
-  await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
-  await loadIntl();
+function renderApp(App) {
   const root = document.getElementById('app');
-
   render(
     <AppContainer>
       <Router>
@@ -58,6 +49,25 @@ function loadIntl() {
     </AppContainer>,
     root
   );
+}
+
+(async function start(App) {
+  if (!navigator.onLine || __DEV__) {
+    store.dispatch(updateCustomTheme(store.getState().theme.href));
+  }
+  store.dispatch(updateLocale(locale));
+
+  const bundles = window.__WEBPACK_BUNDLES__ || [];
+  await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
+  await loadIntl();
+
+  renderApp(App);
 
   registerServiceWorker(store);
-}());
+}(App));
+
+if (module.hot) {
+  module.hot.accept('components/App', () => {
+    renderApp(App);
+  });
+}

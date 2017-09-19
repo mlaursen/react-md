@@ -120,7 +120,7 @@ module.exports = ({ production }) => {
   return {
     bail: production,
     cache: !production,
-    devtool: !production ? 'cheap-module-eval-source-map' : 'source-map',
+    devtool: !production ? 'cheap-module-eval-source-map' : 'eval',
     entry: production ? PROD_ENTRY : DEV_ENTRY,
     output: {
       path: dist,
@@ -250,15 +250,8 @@ module.exports = ({ production }) => {
       }],
     },
     plugins: [
-      // Use async routes in production and synchronous in development
-      new webpack.NormalModuleReplacementPlugin(
-        /routes$/,
-        `routes/${production ? 'a' : ''}sync.js`
-      ),
-      new webpack.NormalModuleReplacementPlugin(
-        /^\.\/routes$/,
-        `./${production ? 'a' : ''}sync.js`
-      ),
+      new webpack.NormalModuleReplacementPlugin(/routes$/, 'routes/async.js'),
+      new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, './async.js'),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {
