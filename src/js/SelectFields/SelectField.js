@@ -686,17 +686,9 @@ export default class SelectField extends PureComponent {
       (onMenuToggle || onVisibilityChange)(visible, e);
     }
 
-    const value = getField(this.props, this.state, 'value');
     let state;
-    if (e.type === 'keydown' && !value && this.state.activeIndex === -1) {
-      // When there is no value, need to change the default active index to 0 instead of -1
-      // so that the next DOWN arrow increments correctly
-      state = { activeIndex: 0 };
-    }
-
     if (typeof isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      state = state || {};
-      state.visible = visible;
+      state = { visible };
     }
 
     if (state) {
@@ -829,15 +821,18 @@ export default class SelectField extends PureComponent {
   };
 
   _advanceFocus = (decrement) => {
-    const { menuItems, position } = this.props;
+    const { position, stripActiveItem } = this.props;
     const { activeIndex } = this.state;
 
     const below = position === SelectField.Positions.BELOW;
+    const value = getField(this.props, this.state, 'value');
+    const valued = !!value || value === 0;
+    const itemStripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && valued;
 
     // If the select field is positioned below and there is no value, need to increment the last index
     // by one since this select field removes the active item. Need to account for that here when there
     // is no value.
-    const lastIndex = menuItems.length - (below && !getField(this.props, this.state, 'value') ? 0 : 1);
+    const lastIndex = this._items.length - (itemStripped ? 0 : 1);
     if ((decrement && activeIndex <= 0) || (!decrement && activeIndex >= lastIndex)) {
       return;
     }
@@ -847,11 +842,7 @@ export default class SelectField extends PureComponent {
       return;
     }
 
-    this._attemptItemFocus(nextIndex - (below ? 1 : 0));
-    if (below && decrement && nextIndex === 0) {
-      return;
-    }
-
+    this._attemptItemFocus(nextIndex - (itemStripped ? 1 : 0));
     this.setState({ activeIndex: nextIndex });
   };
 
@@ -942,7 +933,7 @@ export default class SelectField extends PureComponent {
     }
 
     const active = dataValue === value || dataValue === parseInt(value, 10);
-    const stripped = typeof stripActiveItem !== 'undefined' ? stripActiveItem : below && active;
+    const stripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && active;
     if (!stripped) {
       items.push(
         <ListItem
