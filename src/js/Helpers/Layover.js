@@ -471,7 +471,7 @@ export default class Layover extends PureComponent {
 
     if (!this.props.simplified) {
       this._manageFixedToListener(this.props.fixedTo, false);
-      window.removeEventListener('resize', this._handleWindowResize);
+      this._manageWindowResizeListener(false);
     }
   }
 
@@ -551,6 +551,23 @@ export default class Layover extends PureComponent {
       if (fixedTo !== window) {
         window[listener]('scroll', this._handleScroll);
       }
+    }
+  };
+
+  _manageWindowResizeListener = (enabled) => {
+    if (this._windowResizeTimeout) {
+      clearTimeout(this._windowResizeTimeout);
+      this._windowResizeTimeout = null;
+    }
+
+    if (enabled) {
+      // add a 2 second delay before watching resize events since Android soft keyboards trigger a resize event.
+      this._windowResizeTimeout = setTimeout(() => {
+        this._windowResizeTimeout = null;
+        window.addEventListener('resize', this._handleWindowResize);
+      }, 2000);
+    } else {
+      window.removeEventListener('resize', this._handleWindowResize);
     }
   };
 
@@ -837,7 +854,7 @@ export default class Layover extends PureComponent {
         return;
       }
 
-      window.addEventListener('resize', this._handleWindowResize);
+      this._manageWindowResizeListener(true);
       this._positionChild();
     } else if (this._childComponent && typeof this._childComponent.ref === 'function') {
       this._childComponent.ref(child);
@@ -966,7 +983,7 @@ export default class Layover extends PureComponent {
 
   _handleWindowResize = (e) => {
     this.props.onClose(e);
-    window.removeEventListener('resize', this._handleWindowResize);
+    this._manageWindowResizeListener(false);
   };
 
   /**
