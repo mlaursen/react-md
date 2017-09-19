@@ -486,6 +486,11 @@ export default class SelectField extends PureComponent {
      */
     fillViewportHeight: PropTypes.bool,
 
+    /**
+     * The direction that the underline should appear from.
+     */
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+
     iconChildren: deprecated(PropTypes.node, 'Use `dropdownIcon` instead'),
     iconClassName: deprecated(PropTypes.string, 'Use `dropdownIcon` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -516,6 +521,7 @@ export default class SelectField extends PureComponent {
     itemLabel: 'label',
     itemValue: 'value',
     dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
+    lineDirection: 'left',
     menuItems: [],
     defaultValue: '',
     defaultVisible: false,
