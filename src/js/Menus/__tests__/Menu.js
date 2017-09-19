@@ -305,4 +305,32 @@ describe('Menu', () => {
     jest.runAllTimers();
     expect(onClose.mock.calls.length).toBe(0);
   });
+
+  it('should not call the onClose function when a ListItem is disabled', () => {
+    const onClose = jest.fn();
+    const menu = mount(
+      <Menu id="test" visible onClose={onClose}>
+        <ListItem primaryText="My Test" disabled />
+        <ListItem primaryText="My Test 2" />
+      </Menu>
+    );
+
+    const item = menu.find(ListItem).at(0);
+    expect(item.props().disabled).toBe(true);
+    const event = {
+      target: {
+        // get attr isn't defined in tests, so mock it just like browser does
+        getAttribute(attr) {
+          if (attr === 'disabled') {
+            return '';
+          }
+
+          return null;
+        },
+      },
+    };
+    item.simulate('click', event);
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(0);
+  });
 });
