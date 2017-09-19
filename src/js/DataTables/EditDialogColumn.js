@@ -325,21 +325,21 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * This is how the dialog gets "anchored" to the table column.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position to use for the dialog.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     animationPosition: positionShape,
 
@@ -348,42 +348,42 @@ export default class EditDialogColumn extends PureComponent {
      * automatically use the responsive table as the fixture so that the dialog will close/adjust itself
      * to the scrolling of the table.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#transitionName}
+     * @see {@link Helpers/Layover#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 
@@ -406,7 +406,7 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#repositionOnScroll}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
 
@@ -414,7 +414,7 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the window resizes.
      *
-     * @see {@link Helpers/Layovers#repositionOnResize}
+     * @see {@link Helpers/Layover#repositionOnResize}
      */
     repositionOnResize: PropTypes.bool,
 
@@ -423,22 +423,22 @@ export default class EditDialogColumn extends PureComponent {
      * based on the relative position of the menu. This will most like require some additional
      * styles applied to the dialog.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedDialog: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#minLeft}
+     * @see {@link Helpers/Layover#minLeft}
      */
     minLeft: Layover.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minRight}
+     * @see {@link Helpers/Layover#minRight}
      */
     minRight: Layover.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minBottom}
+     * @see {@link Helpers/Layover#minBottom}
      */
     minBottom: Layover.propTypes.minBottom,
 

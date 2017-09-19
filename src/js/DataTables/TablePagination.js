@@ -96,7 +96,7 @@ export default class TablePagination extends PureComponent {
     /**
      * Boolean if the select field should use the simplified menu logic.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedMenu: PropTypes.bool,
 

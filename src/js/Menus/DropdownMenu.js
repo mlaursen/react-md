@@ -147,14 +147,14 @@ export default class DropdownMenu extends PureComponent {
     /**
      * The anchor position of the menu's list.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
@@ -264,7 +264,7 @@ export default class DropdownMenu extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#repositionOnScroll}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
 
@@ -272,7 +272,7 @@ export default class DropdownMenu extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the window resizes.
      *
-     * @see {@link Helpers/Layovers#repositionOnResize}
+     * @see {@link Helpers/Layover#repositionOnResize}
      */
     repositionOnResize: PropTypes.bool,
 
@@ -281,32 +281,32 @@ export default class DropdownMenu extends PureComponent {
      * based on the relative position of the menu. This will most like require some additional
      * styles applied to the menu.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedMenu: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#minLeft}
+     * @see {@link Helpers/Layover#minLeft}
      */
     minLeft: Menu.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minRight}
+     * @see {@link Helpers/Layover#minRight}
      */
     minRight: Menu.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minBottom}
+     * @see {@link Helpers/Layover#minBottom}
      */
     minBottom: Menu.propTypes.minBottom,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportWidth}
+     * @see {@link Helpers/Layover#fillViewportWidth}
      */
     fillViewportWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportHeight}
+     * @see {@link Helpers/Layover#fillViewportHeight}
      */
     fillViewportHeight: PropTypes.bool,
   };

@@ -56,7 +56,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * An optional id to provide to the menu's list.
      *
-     * @see {@link Menus#listId}
+     * @see {@link Menus/Menu#listId}
      */
     listId: PropTypes.oneOfType([
       PropTypes.number,
@@ -347,28 +347,28 @@ export default class Autocomplete extends PureComponent {
     /**
      * This is how the menu's `List` gets anchored to the `toggle` element.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -386,50 +386,50 @@ export default class Autocomplete extends PureComponent {
      * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
      * `$md-menu-desktop-max-height` values.
      *
-     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
-     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     * @see [md-menu-mobile-max-height](/components/menus?tab=2#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=2#variable-md-menu-desktop-max-height)
      */
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     * @see {@link Helpers/Layover#closeOnOutsideClick}
      */
     closeOnOutsideClick: PropTypes.bool,
 
     /**
      * An optional transition name to use for the list appearing/disappearing.
      *
-     * @see {@link Helpers/Layovers#transitionName}
+     * @see {@link Helpers/Layover#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: Menu.propTypes.centered,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: Menu.propTypes.sameWidth,
 
@@ -437,7 +437,7 @@ export default class Autocomplete extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#repositionOnScroll}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
 
@@ -445,7 +445,7 @@ export default class Autocomplete extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the window resizes.
      *
-     * @see {@link Helpers/Layovers#repositionOnResize}
+     * @see {@link Helpers/Layover#repositionOnResize}
      */
     repositionOnResize: PropTypes.bool,
 
@@ -454,32 +454,32 @@ export default class Autocomplete extends PureComponent {
      * based on the relative position of the menu. This will most like require some additional
      * styles applied to the menu.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedMenu: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#minLeft}
+     * @see {@link Helpers/Layover#minLeft}
      */
     minLeft: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#minRight}
+     * @see {@link Helpers/Layover#minRight}
      */
     minRight: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#minBottom}
+     * @see {@link Helpers/Layover#minBottom}
      */
     minBottom: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportWidth}
+     * @see {@link Helpers/Layover#fillViewportWidth}
      */
     fillViewportWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportHeight}
+     * @see {@link Helpers/Layover#fillViewportHeight}
      */
     fillViewportHeight: PropTypes.bool,
 

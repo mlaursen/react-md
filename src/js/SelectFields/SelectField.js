@@ -335,28 +335,28 @@ export default class SelectField extends PureComponent {
     /**
      * This is how the menu's `List` gets anchored to the select field.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -380,17 +380,17 @@ export default class SelectField extends PureComponent {
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     * @see {@link Helpers/Layover#closeOnOutsideClick}
      */
     closeOnOutsideClick: PropTypes.bool,
 
@@ -402,12 +402,12 @@ export default class SelectField extends PureComponent {
     menuTransitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     menuTransitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     menuTransitionLeaveTimeout: PropTypes.number,
 
@@ -422,12 +422,12 @@ export default class SelectField extends PureComponent {
     fullWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: Menu.propTypes.centered,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: Menu.propTypes.sameWidth,
 
@@ -449,7 +449,7 @@ export default class SelectField extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#repositionOnScroll}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
 
@@ -457,7 +457,7 @@ export default class SelectField extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the window resizes.
      *
-     * @see {@link Helpers/Layovers#repositionOnResize}
+     * @see {@link Helpers/Layover#repositionOnResize}
      */
     repositionOnResize: PropTypes.bool,
 
@@ -466,32 +466,32 @@ export default class SelectField extends PureComponent {
      * based on the relative position of the menu. This will most like require some additional
      * styles applied to the menu.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedMenu: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#minLeft}
+     * @see {@link Helpers/Layover#minLeft}
      */
     minLeft: Menu.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minRight}
+     * @see {@link Helpers/Layover#minRight}
      */
     minRight: Menu.propTypes.minLeft,
 
     /**
-     * @see {@link Helpers/Layovers#minBottom}
+     * @see {@link Helpers/Layover#minBottom}
      */
     minBottom: Menu.propTypes.minBottom,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportWidth}
+     * @see {@link Helpers/Layover#fillViewportWidth}
      */
     fillViewportWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#fillViewportHeight}
+     * @see {@link Helpers/Layover#fillViewportHeight}
      */
     fillViewportHeight: PropTypes.bool,
 

@@ -59,7 +59,7 @@ class SelectFieldColumn extends PureComponent {
      * it will automatically use the responsive table as the fixture so that the select field
      * will close/adjust itself to the scrolling of the table.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -111,7 +111,7 @@ class SelectFieldColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#repositionOnScroll}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
 
@@ -119,7 +119,7 @@ class SelectFieldColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the window resizes.
      *
-     * @see {@link Helpers/Layovers#repositionOnResize}
+     * @see {@link Helpers/Layover#repositionOnResize}
      */
     repositionOnResize: PropTypes.bool,
 
@@ -128,7 +128,7 @@ class SelectFieldColumn extends PureComponent {
      * based on the relative position of the menu. This will most like require some additional
      * styles applied to the menu.
      *
-     * @see {@link Helpers/Layovers#simplified}
+     * @see {@link Helpers/Layover#simplified}
      */
     simplifiedMenu: PropTypes.bool,
 
