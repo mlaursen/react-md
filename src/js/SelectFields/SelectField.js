@@ -132,6 +132,7 @@ export default class SelectField extends PureComponent {
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
+      PropTypes.element,
     ])).isRequired,
 
     /**
@@ -927,6 +928,9 @@ export default class SelectField extends PureComponent {
 
   _reduceItems = (items, item, i) => {
     if (item === null) {
+      return items;
+    } else if (React.isValidElement(item)) {
+      items.push(item);
       return items;
     }
 

@@ -20,7 +20,7 @@ export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldPr
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  menuItems?: Array<number | string | Object>;
+  menuItems?: Array<number | string | Object | React.ReactElement<any>>;
   keyboardMatchingTimeout?: number;
   itemLabel?: string;
   itemValue?: string;
