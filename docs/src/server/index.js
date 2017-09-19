@@ -24,6 +24,7 @@ const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seco
 const dist = path.resolve(process.cwd(), 'public');
 const app = express();
 
+app.set('etag', 'strong');
 app.use(helmet({
   noCache: false,
 }));
