@@ -285,9 +285,17 @@ export default class Menu extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layovers#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layovers#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
 
     /**
      * @see {@link Helpers/Layovers#simplified}
@@ -360,6 +368,7 @@ export default class Menu extends PureComponent {
     listHeightRestricted: true,
     cascadingZDepth: 3,
     repositionOnScroll: true,
+    repositionOnResize: false,
     simplified: true,
   };
 

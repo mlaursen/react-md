@@ -406,9 +406,17 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layovers#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layovers#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
 
     /**
      * Boolean if the dialog logic should be simplified without any viewport logic and position
@@ -541,6 +549,7 @@ export default class EditDialogColumn extends PureComponent {
     animationPosition: EditDialogColumn.Positions.BELOW,
     dialogZDepth: 1,
     repositionOnScroll: true,
+    repositionOnResize: false,
     scrollIntoView: true,
     scrollIntoViewPadding: 16,
     minLeft: 0,
@@ -747,6 +756,7 @@ export default class EditDialogColumn extends PureComponent {
       centered,
       sameWidth,
       repositionOnScroll,
+      repositionOnResize,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
@@ -879,6 +889,7 @@ export default class EditDialogColumn extends PureComponent {
           fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
           repositionOnScroll={repositionOnScroll}
+          repositionOnResize={repositionOnResize}
           transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}

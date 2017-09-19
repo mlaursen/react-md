@@ -313,6 +313,13 @@ export default class Layover extends PureComponent {
     repositionOnScroll: PropTypes.bool,
 
     /**
+     * Boolean if the layover should attempt to automatically adjust the position of the element to
+     * keep it within the viewport. If this value is set to `false`, the `onClose` prop will be called
+     * instead.
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
      * Boolean if the layover should become "simplified". This basically disables all the logic for
      * keeping the child within the viewport and allows you to manage all the positioning via CSS.
      *
@@ -338,6 +345,7 @@ export default class Layover extends PureComponent {
     },
     animationPosition: Layover.Positions.BELOW,
     repositionOnScroll: true,
+    repositionOnResize: false,
     component: 'div',
     fixedTo: typeof window !== 'undefined' ? window : {},
     toggleQuery: '.md-text-field-container,button,*[role="button"],*[role="listbox"]',
@@ -982,8 +990,13 @@ export default class Layover extends PureComponent {
   };
 
   _handleWindowResize = (e) => {
-    this.props.onClose(e);
-    this._manageWindowResizeListener(false);
+    const { onClose, repositionOnResize } = this.props;
+    if (repositionOnResize) {
+      this._handleResize();
+    } else {
+      onClose(e);
+      this._manageWindowResizeListener(false);
+    }
   };
 
   /**
@@ -1077,6 +1090,7 @@ export default class Layover extends PureComponent {
       belowAnchor,
       onClose,
       repositionOnScroll,
+      repositionOnResize,
       sameWidth,
       centered,
       fixedTo,
