@@ -219,12 +219,13 @@ export default class SelectionControlGroup extends PureComponent {
     }
 
     const groupValue = getField(props, this.state, 'value');
+    this._activeIndex = -1;
     props.controls.some(({ value }, i) => {
       if (value === groupValue) {
         this._activeIndex = i;
       }
 
-      return typeof this._activeIndex !== 'undefined';
+      return this._activeIndex > -1;
     });
   }
 
@@ -331,7 +332,7 @@ export default class SelectionControlGroup extends PureComponent {
         inline,
         disabled,
         checked,
-        tabIndex: !radio || checked ? undefined : -1,
+        tabIndex: !radio || checked || (i === 0 && this._activeIndex === -1) ? undefined : -1,
         ...control,
         style,
         className: cn(controlClassName, control.className),
