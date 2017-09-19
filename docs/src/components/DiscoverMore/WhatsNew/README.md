@@ -18,6 +18,25 @@ component's prop. This is probably more for me than anything else.
 list.
 - It is now possible to search for specific examples from the main search bar.
 
+### v1.1.4 Released
+#### Changelog
+- Fixed `FocusContainer`s so that they can trap focus with only one focusable element. [commit-e04ec5c]
+- Added a small fix so that `TextField`s can display icons a bit nicer when `block`-ed. [commit-1b9d911]
+- Updated `Dialog`s so that the content will automatically be scrollable when there is a lot of content. [issues-431]
+- Added a small fix so that `Layover`s can position better in `Dialog`s. [commit-fecd695]
+- Added a missing Typescript prop to the `Autocomplete`. ([@noseglid] - [pull-532])
+- Updated `SelectionControl` so that one of `label`, `aria-label`, or `aria-labelledby` is required instead of only
+`label` or `aria-label`. [commit-da5dd07]
+- `Dialog` actions being stacked can be fully controlled now. [commit-d4e1eea]
+- Using a `SelectionControlGroup` of `radio` no longer requires one of the radio to be checked by default. [issues-535]
+- Updated the `SelectField` so that it can disable some of the `menuItems` and render any element. [pull-536]
+  - Also updated the `Menu` so that clicking on a `disabled` `ListItem` will no longer close the menu.
+  - Also fixed the `undefined` `lineDirection` for `SelectField`s
+  - Also updated the tab-focus logic for `SelectField`s
+  - Also updated keyboard matching logic for `SelectField`s
+- Added a little bit better Android support for `Layover`s. [issues-534]
+- Updated `Layover` to conditionally reposition on window resize instead of only closing on window resize. [commit-e313ef4]
+
 ### v1.1.3 Released
 #### Changelog
 - Fixed the `Layover` positions in `DataTable`s. [issues-527]
