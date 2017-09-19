@@ -37,6 +37,7 @@ export default class Menu extends PureComponent {
           'in the next major release. To make the `Menu` behave as a context menu, provide ' +
           'the `onContextMenu` prop instead.'
         );
+        /* eslint-enable no-console */
       }
 
       this._warned = true;
@@ -419,6 +420,24 @@ export default class Menu extends PureComponent {
     }
   };
 
+  /**
+   * Checks if a provided event target or HTML Element is considered a menu click target.
+   * This normally is just a ListItem.
+   */
+  _isCloseTarget(target) {
+    return target.classList.contains('md-list-item')
+      && !target.classList.contains('md-list-item--nested-container');
+  }
+
+  /**
+   * Checks if a provided event target or HTML Element is something that should shortcut/break
+   * out of the click event loop because it **should not** close menus when clicked.
+   */
+  _isIgnoreTarget(target) {
+    return target.getAttribute('disabled') !== null
+      || target.classList.contains('md-list-control');
+  }
+
   _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
@@ -426,13 +445,11 @@ export default class Menu extends PureComponent {
 
     let node = e.target;
     while (this._container && this._container.contains(node)) {
-      if (node.classList.contains('md-list-control')) {
+      if (this._isIgnoreTarget(node)) {
         return;
-      } else if (
-        !node.classList.contains('md-list-item--nested-container') &&
-        node.classList.contains('md-list-item')
-      ) {
+      } else if (this._isCloseTarget(node)) {
         e.persist();
+        // set a timeout so item click events still trigger, and then close
         this._timeout = setTimeout(() => {
           this._timeout = null;
           this._handleClose(e);

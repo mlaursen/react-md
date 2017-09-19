@@ -125,7 +125,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
             </i>
           </div>
           <hr
-            class="md-divider md-divider--text-field md-divider--expand-from-undefined md-divider--select-field"
+            class="md-divider md-divider--text-field md-divider--expand-from-left md-divider--select-field"
           />
           <input
             id="primary"
@@ -175,7 +175,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
             </i>
           </div>
           <hr
-            class="md-divider md-divider--text-field md-divider--expand-from-undefined md-divider--select-field"
+            class="md-divider md-divider--text-field md-divider--expand-from-left md-divider--select-field"
           />
           <input
             id="secondary"
@@ -225,7 +225,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
             </i>
           </div>
           <hr
-            class="md-divider md-divider--text-field md-divider--expand-from-undefined md-divider--select-field"
+            class="md-divider md-divider--text-field md-divider--expand-from-left md-divider--select-field"
           />
           <input
             id="hue"

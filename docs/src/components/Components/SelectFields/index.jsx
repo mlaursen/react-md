@@ -4,6 +4,8 @@ import ExamplesPage from 'components/ExamplesPage';
 import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
+import ElementsAndDisabledItems from './ElementsAndDisabledItems';
+import ElementsAndDisabledItemsRaw from '!!raw-loader!./ElementsAndDisabledItems.jsx';
 import DefaultValuesAndControlling from './DefaultValuesAndControlling';
 import DefaultValuesAndControllingRaw from '!!raw-loader!./DefaultValuesAndControlling.jsx';
 import TextFieldStyling from './TextFieldStyling';
@@ -38,6 +40,19 @@ more information.
   `,
   code: SimpleRaw,
   children: <Simple />,
+}, {
+  title: 'Elements and Disabling Items',
+  description: `
+There are times where it is helpful to be able to render additional elements like \`Divider\`s or \`Subheader\`s
+in the selection list or disable specific items. If you want to render any additional elements, just add them to
+the \`menuItem\` list and they will be rendered. Any items that do not match the \`string\`, \`number\` or \`object\`
+shape **will be ignored** as valid selection targets for clicking, touching, or keyboard events.
+
+To disable an item, all that is required is to make sure it is an \`object\`, and add a key \`disabled: true\` to it.
+When the item is \`disabled\`, it will not be focusable or selectable.
+  `,
+  code: ElementsAndDisabledItemsRaw,
+  children: <ElementsAndDisabledItems />,
 }, {
   title: 'Default Values and Controlling',
   description: `

@@ -276,6 +276,7 @@ exports[`FormExample should render correctly 1`] = `
         <input
           aria-hidden={true}
           aria-label={undefined}
+          aria-labelledby={undefined}
           checked={false}
           className="md-selection-control-input"
           disabled={undefined}
@@ -327,6 +328,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={true}
             className="md-selection-control-input"
             disabled={undefined}
@@ -372,6 +374,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}
@@ -417,6 +420,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}
@@ -462,6 +466,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={true}
             className="md-selection-control-input"
             disabled={undefined}
@@ -507,6 +512,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}
