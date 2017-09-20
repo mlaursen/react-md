@@ -7,6 +7,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { UP, DOWN, ESC, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import omit from '../utils/omit';
+import isValued from '../utils/isValued';
 import getField from '../utils/getField';
 import isBetween from '../utils/NumberUtils/isBetween';
 import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
@@ -641,12 +642,12 @@ export default class SelectField extends PureComponent {
     let activeLabel = '';
     let activeIndex = -1;
     const value = getField(props, state, 'value');
-    if (value || value === 0) {
+    if (isValued(value)) {
       const { menuItems, itemLabel, itemValue } = props;
 
       menuItems.some((item, index) => {
         activeLabel = this._getActiveItemLabel(item, value, itemLabel, itemValue);
-        const found = activeLabel || activeLabel === 0;
+        const found = isValued(activeLabel);
         if (found) {
           activeIndex = index;
         }
@@ -842,7 +843,7 @@ export default class SelectField extends PureComponent {
 
     const below = position === SelectField.Positions.BELOW;
     const value = getField(this.props, this.state, 'value');
-    const valued = !!value || value === 0;
+    const valued = isValued(value);
     const itemStripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && valued;
 
     // If the select field is positioned below and there is no value, need to increment the last index

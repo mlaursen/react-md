@@ -4,6 +4,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import isValued from '../utils/isValued';
 import getField from '../utils/getField';
 import getTextWidth from '../utils/Positioning/getTextWidth';
 import controlled from '../utils/PropTypes/controlled';
@@ -395,7 +396,7 @@ export default class TextField extends PureComponent {
     this.state = {
       active: false,
       error: props.maxLength ? props.maxLength < currentLength : false,
-      floating: this._isValued(props.defaultValue) || this._isValued(props.value),
+      floating: isValued(props.defaultValue) || isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
       currentLength,
       width,
@@ -426,7 +427,7 @@ export default class TextField extends PureComponent {
       let { error, width } = this.state;
       const currentLength = this._getLength(value);
       if (required && error) {
-        error = !this._isValued(value);
+        error = !isValued(value);
       }
 
       if (maxLength) {
@@ -444,7 +445,7 @@ export default class TextField extends PureComponent {
         error,
         width,
         currentLength,
-        floating: this._isValued(value) || (this.state.floating && this.state.active),
+        floating: isValued(value) || (this.state.floating && this.state.active),
       });
     }
   }
@@ -525,10 +526,8 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _isValued = v => v === 0 || !!v;
-
   _getLength = (v) => {
-    if (this._isValued(v)) {
+    if (isValued(v)) {
       return String(v).length;
     }
 
@@ -573,11 +572,11 @@ export default class TextField extends PureComponent {
     const { value } = e.target;
     const state = {
       active: false,
-      error: (required && !this._isValued(value)) || (maxLength && String(value).length > maxLength),
+      error: (required && !isValued(value)) || (maxLength && String(value).length > maxLength),
     };
 
     if (!this.props.block) {
-      state.floating = this._isValued(value);
+      state.floating = isValued(value);
     }
 
     this.setState(state);
