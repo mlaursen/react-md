@@ -25,7 +25,7 @@ tar --exclude='docs/src/server/databases/.gitkeep' \
     docs/src/server/databases \
     docs/webpack-assets.json
 
-rm_assets="rm -rf public/sassdoc && find public ! -name 'robots.txt' ! -name 'react-md.png' ! -name 'favicon.ico' -type f -exec rm -f {} +"
+rm_assets="rm -rf public/sassdoc && find public ! -name 'robots.txt' ! -name 'react-md.png' ! -name 'favicon.ico' ! -path '**/themes/**' -type f -exec rm -f {} +"
 
 ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib && cd docs && $rm_assets && yarn --production"
 scp "$tar_name" "$ssh_alias":"$server_location"
