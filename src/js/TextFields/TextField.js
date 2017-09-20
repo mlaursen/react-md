@@ -403,16 +403,6 @@ export default class TextField extends PureComponent {
     };
   }
 
-  componentWillMount() {
-    const { value, defaultValue, resize } = this.props;
-    const v = typeof value !== 'undefined' ? value : defaultValue;
-    if (!resize || typeof document === 'undefined' || !v) {
-      return;
-    }
-
-    this.setState({ width: this._calcWidth(v) });
-  }
-
   componentDidMount() {
     const { value, defaultValue, resize } = this.props;
     const v = typeof value !== 'undefined' ? value : defaultValue;
