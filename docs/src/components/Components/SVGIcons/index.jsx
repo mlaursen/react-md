@@ -43,7 +43,7 @@ and this additional webpack config:
   }, {
 \`\`\`
 
-This allows any svg that I import from \`src/icons\` to be converted to an external url with a direct link to the SVG I want to use.
+This allows any SVG that I import from \`src/icons\` to be converted to an external URL with a direct link to the SVG I want to use.
 If your app needs to support IE11 or Edge < 12, you will need to also polyfill the \`<use>\` in SVG with
 [svgxuse](https://github.com/Keyamoon/svgxuse) or [svg4everybody](https://github.com/jonathantneal/svg4everybody) since they do not
 support \`<use xlink:href>\` and external SVG sprite maps. It is most likely simpler to not use the \`extract\` options when using

@@ -24,9 +24,9 @@ so that the ink will be contained.
   title: 'Disabling Ink',
   description: `
 This example will show how you can disable ink at an application level by defining context that will
-dsiable it. This can not be done dynamically since there are many ways to block context updates on
+disable it. This can not be done dynamically since there are many ways to block context updates on
 child components. When the ink is disabled, most of the components will have no keyboard indication
-that it is foucsed, so it is up to you to display something.
+that it is focused, so it is up to you to display something.
   `,
   code: DisablingInkRaw,
   children: <DisablingInk />,

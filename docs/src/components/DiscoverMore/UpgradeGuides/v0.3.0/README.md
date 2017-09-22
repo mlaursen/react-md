@@ -26,7 +26,7 @@ Six props: `mobileDrawerType`, `mobileMinWidth`, `tabletDrawerType`, `tabletMinW
 have been created to help with the media flows.
 
 The mobile drawer type can only be temporary or temporary mini, while the tablet and desktop
-drawer types can be any varient.
+drawer types can be any variant.
 
 The `mobileDrawerType` will be chosen if the `mobileMinWidth` matches in the media query
 and the max width is less than `desktopMinWidth - 1`.

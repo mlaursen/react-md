@@ -77,12 +77,12 @@ export default class BottomNavigation extends PureComponent {
     /**
      * Boolean if the bottom navigation should dynamically appear based on scrolling. When the user
      * scrolls the `dynamicThreshold` amount, this component will either disappear (scrolling down)
-     * or appera (scrolling up).
+     * or appear (scrolling up).
      */
     dynamic: PropTypes.bool,
 
     /**
-     * The distance a user must scroll before the bottom navigation appears or disappears when it is `dyanamic`.
+     * The distance a user must scroll before the bottom navigation appears or disappears when it is `dynamic`.
      */
     dynamicThreshold: PropTypes.number.isRequired,
 

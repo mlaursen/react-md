@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
-// This is pretty much copied from create-react-app
+// This is pretty much copied from create-react-app except for messages
+
+import { createRefreshMessage } from 'state/messages';
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -7,7 +9,7 @@ const isLocalhost = Boolean(
   window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
-function registerServiceWorker(swUrl) {
+function registerServiceWorker(swUrl, store) {
   navigator.serviceWorker.register(swUrl)
     .then((registration) => {
       registration.onupdatefound = () => {
@@ -15,7 +17,7 @@ function registerServiceWorker(swUrl) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              console.log('New content is available; please refresh.');
+              store.dispatch(createRefreshMessage());
             } else {
               console.log('Content is cached for offline use.');
             }
@@ -27,7 +29,7 @@ function registerServiceWorker(swUrl) {
     });
 }
 
-function registerLocalServiceWorker(swUrl) {
+function registerLocalServiceWorker(swUrl, store) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl).then((response) => {
     // Ensure service worker exists, and that we really are getting a JS file.
@@ -39,14 +41,14 @@ function registerLocalServiceWorker(swUrl) {
         });
       });
     } else {
-      registerServiceWorker(swUrl);
+      registerServiceWorker(swUrl, store);
     }
   }).catch(() => {
-    console.log('No internet connection found. App is running in offline mode.');
+    console.log('No network available. App is running in offline mode.');
   });
 }
 
-export default function register() {
+export default function register(store) {
   if (!__DEV__ && 'serviceWorker' in navigator) {
     const publicUrl = new URL(PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
@@ -54,14 +56,11 @@ export default function register() {
     }
 
     const swUrl = `${PUBLIC_URL}/${SERVICE_WORKER}`;
-    const offlineSWUrl = `${PUBLIC_URL}/offline-${SERVICE_WORKER}`;
     window.addEventListener('load', () => {
       if (isLocalhost) {
-        registerLocalServiceWorker(swUrl);
-        registerLocalServiceWorker(offlineSWUrl);
+        registerLocalServiceWorker(swUrl, store);
       } else {
-        registerServiceWorker(swUrl);
-        registerServiceWorker(offlineSWUrl);
+        registerServiceWorker(swUrl, store);
       }
     });
   }

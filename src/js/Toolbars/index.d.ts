@@ -1,1 +1,1 @@
-export { default, ToolbarProps } from './Toolbar';
+export { default, default as Toolbar, ToolbarProps } from './Toolbar';

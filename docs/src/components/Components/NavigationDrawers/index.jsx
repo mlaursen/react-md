@@ -30,9 +30,9 @@ might be a bit more helpful to look through on GitHub though.
   title: 'React Router Example',
   description: `
 This example will be almost exactly as the [Drawer](/components/drawers#react-router-example)
-except it will show how much boilerplace the \`NavigationDrawer\` removes for you.
+except it will show how much boilerplate the \`NavigationDrawer\` removes for you.
 
-My site uses path params to fetch documentation/examples/sassdocs, you will need to navigate to a different
+My site uses path params to fetch documentation/examples/SassDoc, you will need to navigate to a different
 route to actually view the demo. Please click the link below to see this example in action. The code for the example
 is still available here by clicking the code expander button.
   `,

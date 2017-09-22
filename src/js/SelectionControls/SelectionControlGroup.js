@@ -73,7 +73,7 @@ export default class SelectionControlGroup extends PureComponent {
 
     /**
      * An optional base id to apply to each `SelectionControl`. When this is included, the id for
-     * each control will start with this and end with their current index. If this is ommitted,
+     * each control will start with this and end with their current index. If this is omitted,
      * each `control` in the `controls` prop *must* have an `id` prop. This is required for
      * accessibility.
      */
@@ -145,8 +145,8 @@ export default class SelectionControlGroup extends PureComponent {
     /**
      * The default value for the `SelectionControlGroup`. This can either be a single value
      * or a comma-delimited string of checkbox values. When the `type` of the group is `radio`
-     * and the group is uncontrolled, it is recommened to set this prop. Otherwise the first
-     * value of the `controls` prop will be used as the defalt value.
+     * and the group is uncontrolled, it is recommended to set this prop. Otherwise the first
+     * value of the `controls` prop will be used as the default value.
      */
     defaultValue: PropTypes.oneOfType([
       PropTypes.bool,
@@ -166,7 +166,7 @@ export default class SelectionControlGroup extends PureComponent {
     ]), 'onChange'),
 
     /**
-     * A list of objects to create the `SelectControl` components. The shape of the object
+     * A list of objects to create the `SelectionControl` components. The shape of the object
      * is the `propTypes` of the `SelectionControl` component, except that `value` prop is
      * now required.
      *
@@ -231,12 +231,13 @@ export default class SelectionControlGroup extends PureComponent {
     }
 
     const groupValue = getField(props, this.state, 'value');
+    this._activeIndex = -1;
     props.controls.some(({ value }, i) => {
       if (value === groupValue) {
         this._activeIndex = i;
       }
 
-      return typeof this._activeIndex !== 'undefined';
+      return this._activeIndex > -1;
     });
   }
 
@@ -343,7 +344,7 @@ export default class SelectionControlGroup extends PureComponent {
         inline,
         disabled,
         checked,
-        tabIndex: !radio || checked ? undefined : -1,
+        tabIndex: !radio || checked || (i === 0 && this._activeIndex === -1) ? undefined : -1,
         checkedRadioIcon: !radio ? undefined : this.props.checkedRadioIcon,
         uncheckedRadioIcon: !radio ? undefined : this.props.uncheckedRadioIcon,
         ...control,

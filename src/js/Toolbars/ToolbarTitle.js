@@ -25,6 +25,7 @@ export default class ToolbarTitle extends PureComponent {
       const titleEl = Children.only(title);
       return cloneElement(title, {
         ...props,
+        id: titleEl.props.id || props.id,
         className: cn(fullClassName, titleEl.props.className),
       });
     }

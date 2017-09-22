@@ -24,7 +24,7 @@ export default class SnackbarContainer extends PureComponent {
   static propTypes = {
     /**
      * An id for the Snackbar once a toast has been added and is visible. This is a recommended
-     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbar-alert'`
+     * prop for accessibility concerns. If it is omitted, the id will become `'snackbar-alert'`
      * when there is no action on the toast, or `'snackbar-alert-dialog'` when there is an action
      * on the toast.
      */
@@ -48,7 +48,7 @@ export default class SnackbarContainer extends PureComponent {
      * The snackbar will always display the first toast in this list. When the user has
      * either clicked the action of the toast, or the `autohideTimeout` has been reached,
      * the `onDismiss` function will be called. The `onDismiss` function should remove the
-     * the first toast and return a new list of remaining toasts.
+     * first toast and return a new list of remaining toasts.
      *
      * ```js
      * let toasts = [];

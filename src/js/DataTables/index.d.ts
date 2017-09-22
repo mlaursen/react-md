@@ -8,5 +8,8 @@ export { default as TableColumn, TableColumnProps } from './TableColumn';
 
 export { default as EditDialogColumn, EditDialogColumnProps } from './EditDialogColumn';
 export { default as SelectFieldColumn, SelectFieldColumnProps } from './SelectFieldColumn';
+export { default as MenuButtonColumn, MenuButtonColumnProps } from './MenuButtonColumn';
+export { default as DropdownMenuColumn, DropdownMenuColumnProps } from './DropdownMenuColumn';
 
 export { default as TablePagination, TablePaginationProps } from './TablePagination';
+export { default as TableCardHeader, TableCardHeaderProps } from './TableCardHeader';

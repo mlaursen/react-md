@@ -175,6 +175,9 @@ export default class FocusContainer extends PureComponent {
     this._shifted = e.shiftKey;
     if (!isValidFocusKeypress(e, this.props.additionalFocusKeys)) {
       return;
+    } else if (this._focusables.length === 1) {
+      e.preventDefault();
+      return;
     }
 
     const { target, shiftKey } = e;

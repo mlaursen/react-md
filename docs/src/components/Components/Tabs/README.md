@@ -7,7 +7,7 @@ Within react-md, tabs are implemented with several components to handle differen
 
 ### TabsContainer
 The `TabsContainer` is used when you want to have swipeable tabs and a full page view. This will manage the state of selecting
-and displaing a tab's content. The user can swipe left or right on mobile devices to advance/retract to
+and displaying a tab's content. The user can swipe left or right on mobile devices to advance/retract to
 other tabs.
 
 ### Tabs

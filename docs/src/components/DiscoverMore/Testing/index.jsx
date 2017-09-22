@@ -9,8 +9,8 @@ import Markdown from 'components/Markdown';
 
 import testing from '!!raw-loader!utils/testing.js';
 
-import Preview from '!!raw-loader!components/Customization/Themes/ThemeBuilder/Preview.jsx';
-import PreviewTest from '!!raw-loader!components/Customization/Themes/ThemeBuilder/__tests__/Preview.jsx';
+import Preview from '!!raw-loader!components/Customization/ThemeBuilder/Preview.jsx';
+import PreviewTest from '!!raw-loader!components/Customization/ThemeBuilder/__tests__/Preview.jsx';
 import Search from '!!raw-loader!components/Search/index.jsx';
 import SearchTest from '!!raw-loader!components/Search/__tests__/index.jsx';
 
@@ -48,7 +48,7 @@ Some of my components use \`findDOMNode\` behind the scenes to be able to do cal
 things, but this doesn't work with [react-test-renderer](https://github.com/facebook/react/issues/7371#issuecomment-260946945).
 Another problem that happens is that the \`CSSTransitionGroup\` can not read \`willComponentMount\` of \`null\`.
 
-There are a couple of ways to work arount this:
+There are a couple of ways to work around this:
 - mock the \`react-md\` components that fail
   > The problem with mocking out the \`react-md\` components is that it becomes difficult if you want some reasonable
   > markup after mocking. It will basically be the entire component from \`react-md\`, but without some of the
@@ -59,6 +59,8 @@ There are a couple of ways to work arount this:
 - snapshot something other than the html
 
 Out of these three, I prefer using a different renderer for the snapshots and this is how this documentation site is tested.
+The \`enzyme\` renderer works quite well as long as you also install the
+[enzyme-to-json](https://github.com/adriantoine/enzyme-to-json#serializer) package to create the snapshots as well.
 
 ### Helper Utils
 I normally create a test helper file for re-use across tests. Here is the one I use for this website:

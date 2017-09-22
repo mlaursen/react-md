@@ -32,12 +32,12 @@ export default class Toolbar extends PureComponent {
     className: PropTypes.string,
 
     /*
-     * An optional style to apply to the `h2` surroudning the `title` prop.
+     * An optional style to apply to the `h2` surrounding the `title` prop.
      */
     titleStyle: PropTypes.object,
 
     /*
-     * An optional className to apply to the `h2` surroudning the `title` prop.
+     * An optional className to apply to the `h2` surrounding the `title` prop.
      */
     titleClassName: PropTypes.string,
 

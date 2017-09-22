@@ -40,7 +40,7 @@ module.exports = function build({ production }) {
       inline: true,
       hot: true,
       port: 3000,
-      distPath: '/',
+      publicPath: '/',
       stats: 'errors-only',
       historyApiFallback: true,
     },

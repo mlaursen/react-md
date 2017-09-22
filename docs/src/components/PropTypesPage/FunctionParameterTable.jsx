@@ -34,7 +34,7 @@ const FunctionParameterTable = ({ params }) => {
             <TableColumn>
               <CodeVariable lang="js">{type}</CodeVariable>
             </TableColumn>
-            <TableColumn>
+            <TableColumn className="prop-types__cell">
               <Markdown markdown={description} />
             </TableColumn>
           </TableRow>

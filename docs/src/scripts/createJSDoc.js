@@ -7,7 +7,7 @@ import { JSDOC_DATABASE } from 'server/constants';
 
 const writeFile = Promise.promisify(fs.writeFile);
 
-import jsdoc from '../../jsdoc.json';
+import jsdoc from 'server/databases/jsdoc.json';
 
 function reduceProperties(props, { name, description, defaultvalue: value, kind }) {
   if (kind === 'member') {

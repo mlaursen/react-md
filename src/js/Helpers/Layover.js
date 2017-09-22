@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
-import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
-import getSelectedTextPosition from '../utils/getSelectedTextPosition';
-import getScroll from '../utils/getScroll';
-import viewport from '../utils/viewport';
-import isOutOfBounds from '../utils/isOutOfBounds';
+import getSelectedTextPosition from '../utils/Positioning/getSelectedTextPosition';
+import getScroll from '../utils/Positioning/getScroll';
+import viewport from '../utils/Positioning/viewport';
+import isOutOfBounds from '../utils/Positioning/isOutOfBounds';
 import anchorShape from './anchorShape';
 import fixedToShape from './fixedToShape';
 import positionShape from './positionShape';
@@ -115,6 +114,94 @@ export default class Layover extends PureComponent {
     sameWidth: PropTypes.bool,
 
     /**
+     * The minimum value the `left` style can be for the child component. This is really just used
+     * to make sure it doesn't scroll off the left of the page. It can also be used to make
+     * full screen layovers on devices when when the `fillViewportWidth` prop is enabled.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #minRight}
+     * @see {@link #fillViewportWidth}
+     */
+    minLeft: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The minimum value the `right` style can be for the child component. This is really just used
+     * to make sure it doesn't scroll off the right of the page when the `fillViewportWidth` prop is
+     * enabled.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #minLeft}
+     * @see {@link #fillViewportWidth}
+     */
+    minRight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The minimum value that can be used for the `bottom` prop when the `fillViewportHeight` prop is enabled.
+     * It is generally recommended to keep this value at `0` to keep it stretched to the bottom of the viewport
+     * or setting it to a small positive number to add some padding.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #fillViewportHeight}
+     */
+    minBottom: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the layover should make the child fill the entire viewport's width. This will just
+     * style the child element with:
+     *
+     * ```js
+     * childStyle = {
+     *   left: this.props.minLeft,
+     *   right: this.props.minRight,
+     * };
+     * ```
+     *
+     * If you add any additional constraints such as `width` or `max-width`, it will not span the entire viewport's
+     * width. This prop should generally really only be used on mobile devices. Using this prop along with
+     * `fillViewportHeight` for Autocompletes can create great Android mobile searches. See the `fillViewportHeight`
+     * for more information about why it is *only Android*.
+     *
+     * @see {@link #minLeft}
+     * @see {@link #minRight}
+     * @see {@link #fillViewportHeight}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should fill the height of the viewport from the current calculated `top`. This will just
+     * style the child element with:
+     *
+     * ```js
+     * childStyle = {
+     *   top: currentCalculatedTop,
+     *   bottom: this.props.minBottom,
+     *   maxHeight: 'none',
+     * };
+     * ```
+     *
+     * This is *super* nice on Android devices since it will allow you to create nice toolbar search autocompletes
+     * in your app and the list of items will grow until it reaches the soft keyboard. It isn't as nice on iOS since
+     * iOS does not subtract the soft keyboard from the viewport's size so the list will still extend to the bottom
+     * of the page.
+     *
+     * @see {@link #minBottom}
+     * @see {@link #fillViewportWidth}
+     */
+    fillViewportHeight: PropTypes.bool,
+
+    /**
      * A function used to hide the visibility of the children when the children are no longer
      * visible or an element outside of the layover is clicked.
      */
@@ -203,7 +290,7 @@ export default class Layover extends PureComponent {
     animationPosition: positionShape.isRequired,
 
     /**
-     * If you  would the the layover to interact as a context menu, provide this prop. It will
+     * If you would like the layover to interact as a context menu, provide this prop. It will
      * make the children appear relative to the context menu origin automatically.
      *
      * @see {@link #preventContextMenu}
@@ -224,6 +311,27 @@ export default class Layover extends PureComponent {
      * instead.
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should attempt to automatically adjust the position of the element to
+     * keep it within the viewport. If this value is set to `false`, the `onClose` prop will be called
+     * instead.
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should become "simplified". This basically disables all the logic for
+     * keeping the child within the viewport and allows you to manage all the positioning via CSS.
+     *
+     * When this is enabled, it updates the `Layover` to have `position: relative` while the child will
+     * have `position: absolute` which will allow for simple `top`, `right`, `bottom`, and/or `left` CSS
+     * to position as wanted.
+     *
+     * This is really only helpful in cases where the layover can't calculate things correctly due to
+     * being in fixed containers somewhere in the page or some other weird stuff. Hopefully this won't
+     * really need to be used much.
+     */
+    simplified: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -237,6 +345,7 @@ export default class Layover extends PureComponent {
     },
     animationPosition: Layover.Positions.BELOW,
     repositionOnScroll: true,
+    repositionOnResize: false,
     component: 'div',
     fixedTo: typeof window !== 'undefined' ? window : {},
     toggleQuery: '.md-text-field-container,button,*[role="button"],*[role="listbox"]',
@@ -247,10 +356,16 @@ export default class Layover extends PureComponent {
     xThreshold: 0.38,
     closeOnOutsideClick: true,
     preventContextMenu: true,
+    simplified: false,
+    minLeft: 0,
+    minRight: 0,
+    minBottom: 0,
+    fillViewportWidth: false,
+    fillViewportHeight: false,
   };
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super();
 
     const child = React.Children.only(props.children);
     this.state = {
@@ -276,10 +391,16 @@ export default class Layover extends PureComponent {
       });
     }
 
-    const { visible, fixedTo, sameWidth, centered } = this.props;
+    const { visible, fixedTo, sameWidth, centered, simplified } = this.props;
     const anchor = this._getAnchor(this.props);
     if (visible) {
       handleWindowClickListeners(this._handleOutsideClick, true);
+
+      // Don't worry about any of the other logic for a "simple" layover
+      if (simplified) {
+        return;
+      }
+
       const rect = this._contextRect || this._toggle.getBoundingClientRect();
       if (this._dialog) {
         this._manageFixedToListener(this._dialog, true);
@@ -292,57 +413,74 @@ export default class Layover extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fixedTo, visible, children, sameWidth, centered } = nextProps;
+    const { fixedTo, visible, children, sameWidth, centered, simplified } = nextProps;
+    if (simplified) {
+      if (this.props.simplified !== simplified) {
+        this._reset();
+      }
+      return;
+    }
+
     const anchor = this._getAnchor(nextProps);
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
 
-    if (visibileDiff && !visible) {
-      // Reset all the bookkeeping variables for a fresh start on re-visible
-      this._lastXFix = null;
-      this._lastYFix = null;
-      this._initialX = null;
-      this._initialY = null;
-      this._initialTop = null;
-      this._initialLeft = null;
-    }
+    if (visibileDiff) {
+      if (!visible) {
+        this._reset();
+      } else {
+        // Initialize the layover logic
+        const rect = this._contextRect || this._toggle.getBoundingClientRect();
+        if (this._dialog) {
+          this._manageFixedToListener(this._dialog, true);
+        } else if (!this._inFixed) {
+          this._manageFixedToListener(fixedTo, true);
+        }
 
-    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible) {
+        this._init(fixedTo, anchor, sameWidth, centered, rect);
+      }
+    } else if (fixedTo !== this.props.fixedTo && visible) {
+      // swap the fixedTo listeners
       this._manageFixedToListener(this.props.fixedTo, false);
       this._manageFixedToListener(fixedTo, true);
-    } else if (visibileDiff && visible) {
-      const rect = this._contextRect || this._toggle.getBoundingClientRect();
-      if (this._dialog) {
-        this._manageFixedToListener(this._dialog, true);
-      } else if (!this._inFixed) {
-        this._manageFixedToListener(fixedTo, true);
-      }
-
-      this._init(fixedTo, anchor, sameWidth, centered, rect);
-    } else if (visibileDiff && !visible && !this._inFixed) {
-      if (this._dialog) {
-        this._manageFixedToListener(this._dialog, false);
-      }
-      this._manageFixedToListener(fixedTo, false);
     } else if (childStyle !== React.Children.only(this.props.children).props.style) {
-      // Re-merge styles...
+      // Re-merge styles... This is only required if all the others fail since all the other
+      // logic always merges styles with the children styles
       this.setState({ styles: { ...this.state.styles, ...childStyle } });
     }
   }
 
   componentDidUpdate(prevProps) {
     const { visible, closeOnOutsideClick } = this.props;
-    if (visible !== prevProps.visible && closeOnOutsideClick) {
-      handleWindowClickListeners(this._handleOutsideClick, visible);
-    } else if (closeOnOutsideClick !== prevProps.closeOnOutsideClick && visible) {
-      handleWindowClickListeners(this._handleOutsideClick, closeOnOutsideClick);
+    const enabled = visible && closeOnOutsideClick;
+    const prevEnabled = prevProps.visible && prevProps.closeOnOutsideClick;
+    if (enabled !== prevEnabled) {
+      if (this._clickTimeout) {
+        clearTimeout(this._clickTimeout);
+        this._clickTimeout = null;
+      }
+
+      // This is really an arbitrary timeout time, but firefox needs to have a timeout
+      // so the context menu doesn't close automatically due to an "outside click" being
+      // triggered
+      this._clickTimeout = setTimeout(() => {
+        this._clickTimeout = null;
+        handleWindowClickListeners(this._handleOutsideClick, enabled);
+      }, enabled ? 300 : 0);
     }
   }
 
   componentWillUnmount() {
-    this._manageFixedToListener(this.props.fixedTo, false);
+    if (this._clickTimeout) {
+      clearTimeout(this._clickTimeout);
+      this._clickTimeout = null;
+    }
     handleWindowClickListeners(this._handleOutsideClick, false);
-    window.removeEventListener('resize', this._handleWindowResize);
+
+    if (!this.props.simplified) {
+      this._manageFixedToListener(this.props.fixedTo, false);
+      this._manageWindowResizeListener(false);
+    }
   }
 
   _getAnchor({ anchor, belowAnchor, animationPosition }) {
@@ -356,8 +494,7 @@ export default class Layover extends PureComponent {
     let left;
     let top;
     if (x === HorizontalAnchors.CENTER) {
-      const { left: childLeft } = child.getBoundingClientRect();
-      left = (childLeft + (rect.width / 2) - (offsetWidth / 2));
+      left = rect.left + (rect.width / 2) - (offsetWidth / 2);
     } else if (x === HorizontalAnchors.INNER_RIGHT) {
       left = rect.right - offsetWidth;
     } else if (x === HorizontalAnchors.LEFT) {
@@ -425,18 +562,67 @@ export default class Layover extends PureComponent {
     }
   };
 
-  /**
-   * This is just a simple utility function to merge the existing state styles,
-   * any new styles, and the children's styles (with most precidence).
-   */
-  _mergeStyles = (style) => ({
-    ...this.state.styles,
-    ...style,
-    ...React.Children.only(this.props.children).props.style,
-  });
+  _manageWindowResizeListener = (enabled) => {
+    if (this._windowResizeTimeout) {
+      clearTimeout(this._windowResizeTimeout);
+      this._windowResizeTimeout = null;
+    }
+
+    if (enabled) {
+      // add a 2 second delay before watching resize events since Android soft keyboards trigger a resize event.
+      this._windowResizeTimeout = setTimeout(() => {
+        this._windowResizeTimeout = null;
+        window.addEventListener('resize', this._handleWindowResize);
+      }, 2000);
+    } else {
+      window.removeEventListener('resize', this._handleWindowResize);
+    }
+  };
 
   /**
-   * This initializes the popover with the default styles, and the intitial bookkeeping
+   * This is just a simple utility function to merge the existing state styles,
+   * any new styles, and the children's styles (with most precedence).
+   */
+  _mergeStyles = (style) => {
+    const {
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
+    } = this.props;
+    if (fillViewportWidth) {
+      style.left = minLeft;
+      style.right = minRight;
+    } else {
+      if (style.left) {
+        style.left = Math.max(minLeft, style.left);
+      }
+
+      if (style.right) {
+        style.right = Math.max(minRight, style.right);
+      }
+    }
+
+    if (fillViewportHeight) {
+      style.bottom = minBottom;
+      style.maxHeight = 'none';
+    } else {
+      // These styles are only created when filling the viewport height, so clear
+      // them out again
+      style.bottom = null;
+      style.maxHeight = null;
+    }
+
+    return {
+      ...this.state.styles,
+      ...style,
+      ...React.Children.only(this.props.children).props.style,
+    };
+  };
+
+  /**
+   * This initializes the popover with the default styles, and the initial bookkeeping
    * variables to update while it is open.
    */
   _init = (fixedTo, anchor, sameWidth, centered, rect) => {
@@ -517,6 +703,24 @@ export default class Layover extends PureComponent {
     this.setState({ styles });
   };
 
+  _reset = ({ fixedTo } = this.props) => {
+    // Reset all the bookkeeping variables for a fresh start on re-visible
+    this._lastXFix = null;
+    this._lastYFix = null;
+    this._initialX = null;
+    this._initialY = null;
+    this._initialTop = null;
+    this._initialLeft = null;
+
+    if (!this._inFixed) {
+      if (this._dialog) {
+        this._manageFixedToListener(this._dialog, false);
+      }
+
+      this._manageFixedToListener(fixedTo, false);
+    }
+  };
+
   _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._toggle = null;
@@ -547,11 +751,8 @@ export default class Layover extends PureComponent {
     let node = this._container;
     while (node) {
       const fixed = window.getComputedStyle(node).position === 'fixed';
-      if (fixed && node.classList.contains('md-dialog--full-page')) {
+      if (fixed && node.className.match(/md-dialog--(full-page|centered)/)) {
         this._dialog = node;
-        return;
-      } else if (fixed && node.classList.contains('md-dialog-container')) {
-        this._dialog = node.firstChild;
         return;
       } else if (fixed && !node.classList.contains('md-layover-child')) {
         this._inFixed = true;
@@ -577,6 +778,7 @@ export default class Layover extends PureComponent {
 
     this._child.parentNode.appendChild(clone);
     const vp = viewport(clone);
+    const { offsetHeight: childHeight, offsetWidth: childWidth } = clone;
     this._child.parentNode.removeChild(clone);
 
     if (vp === true || !this._toggle || !this._child) {
@@ -584,7 +786,6 @@ export default class Layover extends PureComponent {
     }
 
     const { x, y } = this._getAnchor(this.props);
-    const { offsetHeight: childHeight, offsetWidth: childWidth } = this._child;
     let toggleHeight;
     let toggleWidth;
     if (this._contextRect) {
@@ -597,7 +798,11 @@ export default class Layover extends PureComponent {
 
     let addToTop = 0;
     let addToLeft = 0;
-    if (!vp.top || !vp.bottom) {
+
+    // Android devices will never get this far because they consider the keyboard as part
+    // of the viewport, iOS will and cause it to be a giant negative number. *sigh*
+    // Prevent any additional vertical positioning for iOS
+    if (!this.props.fillViewportHeight && (!vp.top || !vp.bottom)) {
       const multiplier = vp.top ? -1 : 1;
       if (!vp.bottom && y === VerticalAnchors.OVERLAP) {
         addToTop += toggleHeight;
@@ -610,7 +815,7 @@ export default class Layover extends PureComponent {
       this._lastYFix = vp.top ? 'bottom' : 'top';
     }
 
-    if (x !== HorizontalAnchors.CENTER && (!vp.left || !vp.right)) {
+    if (!this.props.fillViewportWidth && x !== HorizontalAnchors.CENTER && (!vp.left || !vp.right)) {
       if (!vp.left && x === HorizontalAnchors.LEFT) {
         addToLeft += toggleWidth + childWidth;
         this._lastXFix = 'left';
@@ -625,7 +830,6 @@ export default class Layover extends PureComponent {
         this._lastXFix = 'right';
       }
     }
-
 
     if (addToTop !== 0 || addToLeft !== 0) {
       this._initialTop += addToTop;
@@ -643,7 +847,6 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      window.addEventListener('resize', this._handleWindowResize);
       this._childComponent = React.Children.only(this.props.children);
 
       // If child also has a ref callback, simulate the same thing
@@ -651,7 +854,7 @@ export default class Layover extends PureComponent {
         this._childComponent.ref(child);
       }
 
-      if (!this._child || (!this._toggle && !this._contextRect)) {
+      if (this.props.simplified || !this._child || (!this._toggle && !this._contextRect)) {
         return;
       }
 
@@ -659,6 +862,7 @@ export default class Layover extends PureComponent {
         return;
       }
 
+      this._manageWindowResizeListener(true);
       this._positionChild();
     } else if (this._childComponent && typeof this._childComponent.ref === 'function') {
       this._childComponent.ref(child);
@@ -786,8 +990,13 @@ export default class Layover extends PureComponent {
   };
 
   _handleWindowResize = (e) => {
-    this.props.onClose(e);
-    window.removeEventListener('resize', this._handleWindowResize);
+    const { onClose, repositionOnResize } = this.props;
+    if (repositionOnResize) {
+      this._handleResize();
+    } else {
+      onClose(e);
+      this._manageWindowResizeListener(false);
+    }
   };
 
   /**
@@ -858,8 +1067,6 @@ export default class Layover extends PureComponent {
       e.preventDefault();
     }
 
-    // If this isn't done, firefox immediate closes the context menu. :/
-    captureNextEvent('click');
     onContextMenu(e);
     if (visible) {
       this._init(fixedTo, anchor, sameWidth, centered, this._contextRect);
@@ -875,11 +1082,15 @@ export default class Layover extends PureComponent {
       children,
       fullWidth,
       animationPosition,
+      simplified,
+      fillViewportWidth,
+      fillViewportHeight,
       /* eslint-disable no-unused-vars */
       anchor,
       belowAnchor,
       onClose,
       repositionOnScroll,
+      repositionOnResize,
       sameWidth,
       centered,
       fixedTo,
@@ -889,6 +1100,9 @@ export default class Layover extends PureComponent {
       onContextMenu,
       preventContextMenu,
       closeOnOutsideClick,
+      minLeft,
+      minRight,
+      minBottom,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -906,15 +1120,30 @@ export default class Layover extends PureComponent {
       child = React.cloneElement(children, {
         ref: this._fixateChild,
         id: childId,
-        style: this.state.styles,
-        className: cn(`md-layover-child md-layover-child--${animationPosition}`, child.props.className),
+        style: simplified ? child.props.style : this.state.styles,
+        className: cn(`md-layover-child md-layover-child--${animationPosition}`, {
+          'md-layover-child--simplified': simplified,
+        }, child.props.className),
       });
+    }
+
+    let observer = null;
+    if (!simplified && (!fillViewportWidth && !fillViewportHeight)) {
+      observer = (
+        <ResizeObserver
+          watchWidth={!fillViewportWidth}
+          watchHeight={!fillViewportHeight}
+          target={this._child}
+          onResize={this._handleResize}
+        />
+      );
     }
 
     return (
       <CSSTransitionGroup
         {...props}
         className={cn('md-layover', {
+          'md-layover--simplified': simplified,
           'md-inline-block': !block && !fullWidth,
           'md-full-width': fullWidth,
         }, className)}
@@ -926,7 +1155,7 @@ export default class Layover extends PureComponent {
         transitionLeave={props.transitionLeaveTimeout !== 0}
         onContextMenu={this._handleContextMenu}
       >
-        <ResizeObserver watchWidth watchHeight target={this._child} onResize={this._handleResize} />
+        {observer}
         {toggle}
         {child}
       </CSSTransitionGroup>

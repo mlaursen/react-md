@@ -11,6 +11,7 @@ import { PureSearch as Search } from '../';
 jest.mock('react-router-dom', () => ({ children, className, to }) => <a className={className} href={to}>{children}</a>);
 
 const PROPS = {
+  mobile: false,
   searching: true,
   search: () => {},
   searchNext: () => {},
@@ -77,6 +78,7 @@ describe('Search', () => {
   });
 
   it('should clear any timeouts if it unmounts', () => {
+    jest.useFakeTimers();
     const search = shallow(<Search {...PROPS} />);
     expect(setTimeout).not.toBeCalled();
     search.setProps({ searching: false });

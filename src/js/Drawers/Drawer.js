@@ -726,7 +726,7 @@ export default class Drawer extends PureComponent {
           'md-drawer--inline': inline,
           'md-drawer--active': mini || drawerActive,
           'md-drawer--mini': mini,
-          'md-transition--decceleration': !mini && !permanent && visible,
+          'md-transition--deceleration': !mini && !permanent && visible,
           'md-transition--acceleration': !mini && !permanent && !visible,
           'md-background': inline || floating,
           'md-background--card': !floating && !inline,

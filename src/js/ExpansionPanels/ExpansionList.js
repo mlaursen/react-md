@@ -13,7 +13,7 @@ import ResizeObserver from '../Helpers/ResizeObserver';
  * sizes in the header of the `ExpansionPanel`.
  *
  * The `ExpansionList` and `ExpansionPanel` components should have probably been
- * implemented as a `table` insead of a `ul || ol` since it is more column based,
+ * implemented as a `table` instead of a `ul || ol` since it is more column based,
  * but it would complicate the API to have dynamic row generation for the expanded
  * panels. The expanded panels _might_ not follow the same column widths as their labels
  * so a singular row with a div for expanded content might not work correctly.

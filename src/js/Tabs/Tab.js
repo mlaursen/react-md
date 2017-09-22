@@ -7,7 +7,7 @@ import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
 /**
  * The `Tab` component is used for rendering a single tab in the `Tabs` component.
- * It can opionally have either a `label`, an `icon` or both.
+ * It can optionally have either a `label`, an `icon` or both.
  */
 export default class Tab extends PureComponent {
   static propTypes = {

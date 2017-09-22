@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dotenv = require('dotenv');
 const autoprefixer = require('autoprefixer');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -39,9 +38,6 @@ const PROD_PLUGINS = [
     comments: false,
     sourceMap: true,
   }),
-  // Better caching. hash on file content instead of build time. Hashes
-  // will only change on content change now
-  new WebpackMd5Hash(),
   new ManifestPlugin(),
   new webpack.HashedModuleIdsPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
@@ -75,9 +71,15 @@ const PROD_PLUGINS = [
     filename: SERVICE_WORKER,
     minify: true,
     runtimeCaching: [{
-      urlPattern: new RegExp(`^${PUBLIC_URL}/api`),
+      // Cache all the documentation server API calls or the custom themees that get created.
+      urlPattern: new RegExp(`^${PUBLIC_URL}/(api|themes)`),
+      handler: 'networkFirst',
+    }, {
+      // Cache all the external fonts/icons
+      urlPattern: /^https:\/\/((cdnjs\.cloudflare)|(fonts\.(gstatic|googleapis))\.com)/,
       handler: 'networkFirst',
     }],
+    mergeStaticsConfig: true,
     // Include the additional offline service worker hooks to redirect to the
     // offline.html page if the user has no internet connection.
     // Ideally this would use the `chunkName` of `offline` and not require the second plugin,

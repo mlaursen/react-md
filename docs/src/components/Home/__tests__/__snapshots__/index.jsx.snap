@@ -61,6 +61,7 @@ exports[`Home should render correctly 1`] = `
         <h2
           className="md-card-title--title md-card-title--large md-text"
           id={undefined}
+          tabIndex={null}
         >
           Getting Started
         </h2>
@@ -89,6 +90,7 @@ exports[`Home should render correctly 1`] = `
         <h2
           className="md-card-title--title md-card-title--large md-text"
           id={undefined}
+          tabIndex={null}
         >
           Customization
         </h2>
@@ -117,6 +119,7 @@ exports[`Home should render correctly 1`] = `
         <h2
           className="md-card-title--title md-card-title--large md-text"
           id={undefined}
+          tabIndex={null}
         >
           Customization
         </h2>

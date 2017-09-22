@@ -15,7 +15,7 @@
 /// @group snackbars, z-indexes
 $md-snackbar-z-index: 20 !default;
 
-/// The default transiiton time for the snackbar to appear and disappear
+/// The default transition time for the snackbar to appear and disappear
 $md-snackbar-transition-time: $md-transition-time * 2 !default;
 
 /// The background color for the snackbar.
@@ -65,7 +65,7 @@ $md-snackbar-desktop-max-width: 568px !default;
 
 /// Creates the styles for snackbars
 ///
-/// @param {Boolean} include-media [$md-media-included] - BOolean if the media queries should
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should
 ///   be included by default.
 @mixin react-md-snackbars($include-media: $md-media-included) {
   .md-snackbar-container {

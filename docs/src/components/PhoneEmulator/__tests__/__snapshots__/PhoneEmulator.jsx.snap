@@ -2,7 +2,7 @@
 
 exports[`PhoneEmulator should be able to render without a toolbar 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -46,7 +46,7 @@ exports[`PhoneEmulator should be able to render without a toolbar 1`] = `
 
 exports[`PhoneEmulator should render correctly with the base required props 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -124,7 +124,7 @@ exports[`PhoneEmulator should render correctly with the base required props 1`] 
 
 exports[`PhoneEmulator should render correctly with the base required props 2`] = `
 <div
-  className="md-paper md-paper--0 phone-emulator"
+  className="md-paper md-paper--0 phone-emulator md-background"
   style={undefined}
 >
   <header

@@ -2,7 +2,7 @@
 
 exports[`EmulatorController should render correctly with the base required props 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -85,8 +85,8 @@ exports[`EmulatorController should render correctly with the base required props
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>The current example will need to be opened in a dialog to be viewed because
-      it requires the full screen on mobile devices to be viewed correctly.</p>
-      ",
+it requires the full screen on mobile devices to be viewed correctly.</p>
+",
       }
     }
   />

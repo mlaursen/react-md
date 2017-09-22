@@ -24,8 +24,8 @@ import omit from '../utils/omit';
  * ```
  *
  * An upload can be aborted by calling the `abort(file || fileName)` function. If
- * the file or fileName are ommitted, it will *attempt* to abort the current
- * file that is uploading. Unreliable for multiselect.
+ * the file or fileName are omitted, it will *attempt* to abort the current
+ * file that is uploading. Unreliable for multi-select.
  *
  * ```js
  * <FileUpload ref="upload" />
@@ -43,6 +43,16 @@ export default class FileUpload extends PureComponent {
      * An optional className to apply.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the label.
+     */
+    labelClassName: PropTypes.string,
 
     /**
      * Boolean if the `FileInput` should be styled with the primary color.
@@ -162,7 +172,7 @@ export default class FileUpload extends PureComponent {
      * ```
      *
      * The load result will either be:
-     * - a data url
+     * - a data URL
      * - a plain text string
      * - an array buffer
      *
@@ -194,6 +204,12 @@ export default class FileUpload extends PureComponent {
     onProgress: PropTypes.func,
 
     /**
+     * Boolean if the same file is allowed to be uploaded multiple times. This will basically make the
+     * `value` of the file input always blank.
+     */
+    allowDuplicates: PropTypes.bool,
+
+    /**
      * An optional function to call when a file selects or unselects a file.
      * This will be called before any local uploading occurs.
      *
@@ -202,6 +218,14 @@ export default class FileUpload extends PureComponent {
      * ```
      */
     onChange: PropTypes.func,
+
+    /**
+     * An optional value to apply to the `FileInput`. This is usually not needed and the
+     * `allowDuplicates` is what you are probably looking for instead.
+     *
+     * @see {@link #allowDuplicates}
+     */
+    value: PropTypes.string,
   };
 
   state = {};
@@ -211,7 +235,7 @@ export default class FileUpload extends PureComponent {
    * as it's parameter. If the parameter is omitted, it attempts to abort the first file that was
    * added. If the `onAbort` function was given, it will be called as well.
    *
-   * @param {Object|string=} file - The file or the file name to use to find the
+   * @param {Object|string} file - The file or the file name to use to find the
    *     correct `FileReader`.
    */
   abort = (file) => {
@@ -353,8 +377,6 @@ export default class FileUpload extends PureComponent {
       ...props
     } = this.props;
 
-    return (
-      <FileInput {...props} onChange={this._handleUpload} />
-    );
+    return <FileInput {...props} onChange={this._handleUpload} />;
   }
 }

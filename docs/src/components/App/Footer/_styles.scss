@@ -12,6 +12,7 @@ $footer-padding: 2.5em;
   background: $md-grey-800;
   color: $md-white-base;
 
+  .loading-content + &,
   &:only-child {
     margin-top: 100vh;
   }

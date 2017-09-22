@@ -62,5 +62,5 @@ const MENU_ITEMS = [{
   rightIcon: `${COMMAND}+${SHIFT}+H`,
 }];
 
-const EditMenu = () => <DocumentMenu id="edit" text="Edit" menuItems={MENU_ITEMS} />;
+const EditMenu = props => <DocumentMenu {...props} id="edit" text="Edit" menuItems={MENU_ITEMS} />;
 export default EditMenu;

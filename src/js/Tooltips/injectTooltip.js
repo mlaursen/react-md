@@ -70,8 +70,8 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
   _composed = null;
 
   /**
-   * Gets the composed component as a ref. This is usefull if you need to access the ref of the
-   * composed component instead of the `injectTooltip` HOC to use some publically accessible methods.
+   * Gets the composed component as a ref. This is useful if you need to access the ref of the
+   * composed component instead of the `injectTooltip` HOC to use some publicly accessible methods.
    *
    * ```js
    * <SomeTooltippedComponent

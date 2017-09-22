@@ -26,9 +26,22 @@ it might not work as expected.
 mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
+
+### dev:full
+Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
+and then concurrently run all the watchers and start up the dev server.
+
+> SEE: [watch:all](#watchall)
 $ vim .env              # change port to whatever you want
+
+# This one is optional. A webpack-assets.json file must be created before the server will work correctly
+# and the dev server will _mock_ one out for you. If the mocking fails, you can fallback to this one. After
+# a successful build, you will _almost never_ need to run this command again.
+$ yarn build:dev        # Run the dev webpack build to get initial webpack-assets.json to be created
+
+# Start the server with one of the two options
 $ yarn dev              # watch react-md source changes and run dev server
-$ yarn dev:all          # watch all changes and run dev server
+$ yarn dev:full          # watch all changes and run dev server
 ```
 
 > See the [scripts](#scripts) section for all of the other available commands
@@ -84,8 +97,8 @@ are running. If it has not restarted, you can check your changes and how it gets
 - [yarn sassdoc](#sassdoc)
 - [yarn docgen](#docgen)
 
-The reason this is needed is because my documentation server takes in "databases" of json data from these scripts, loads
-them into memory, and then serves them as needed when the api is called. There probably is some better way to handle this,
+The reason this is needed is because my documentation server takes in "databases" of JSON data from these scripts, loads
+them into memory, and then serves them as needed when the API is called. There probably is some better way to handle this,
 but I needed this functionality so that the site's search could also work.
 
 ### Digging deeper
@@ -133,13 +146,13 @@ used `redux-thunk`, but I wanted to learn about sagas so I used them here. There
 here if you have used sagas before, but this is how I handle my API calls.
 
 #### server
-This is the main express server that runs both development and production mode. The server is equipped to handle api calls and server
+This is the main express server that runs both development and production mode. The server is equipped to handle API calls and server
 side rendering when needed. The API server was really only added because I wanted to pre-fetch some data before server rendering. It
 might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
 a full server call... but I wanted to learn how to do some node work.
 
-The only "exciting" thing about this server if you are familiar with node is the [github](src/server/api/github.js) proxy settings. I end
-up proxying requests to the Github API through my server so I can track some of the rate limiting aspects.
+The only "exciting" thing about this server if you are familiar with node is the [GitHub](src/server/api/github.js) proxy settings. I end
+up proxying requests to the GitHub API through my server so I can track some of the rate limiting aspects.
 
 #### state
 This is where I combine all the logic for the redux state.
@@ -209,7 +222,7 @@ experience. Some of the things I wanted to solve with this server compared to my
 - long-term caching of static assets
 
 ### Development startup time
-Before this version, I thought I was "smart" by having a separate server for the api calls to get the documentation
+Before this version, I thought I was "smart" by having a separate server for the API calls to get the documentation
 and another server for handling the server side rendering and pre-fetching data. This actually ended up causing a
 lot of problems since I also had to transpile all the server code so it could be run on older versions of node. A
 typical "dev" setup while adding new features for react-md was opening 5 terminals/tabs and running:
@@ -254,7 +267,7 @@ to nodemon to restart the server with this because it uses `concurrently` behind
 and still send keyboard commands to one of the scripts, all would be set.
 
 This was mostly fixed by using [webpack-isomorphic-tools](https://github.com/catamphetamine/webpack-isomorphic-tools) with my server.
-There are probably better wasy of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
+There are probably better ways of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
 at the time so I never bothered learning. (_I'm so sorry_)
 
 ### Testing SSR
@@ -273,7 +286,7 @@ Webpack is hard. (See more in [Long term caching](#long-term-caching))
 Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
 that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
 you split up your code and you already have `React` rendering your page! While the browser is loading your additional chunks required
-for your page, react will have erased the DOM with what it has avaialbe and then render it again once they have loaded. Ugh. You now
+for your page, react will have erased the DOM with what it has available and then render it again once they have loaded. Ugh. You now
 get an amazing screen "flash" because of this. Before webpack 2, this was pretty hard to fix. Luckily webpack 2 introduced a way to
 name dynamic imports with the "magic comment" `/* webpackChunkName: MyDynamicModule */`. This is super helpful because you can use
 this along with the `manifest.json` that can be created by webpack so that you can load all the bundles for a page before calling
@@ -281,7 +294,7 @@ the first `ReactDOM.render()` in your app. This works great with `react-router@4
 which bundles need to be loaded, and pass it to the client.
 
 To help with this, I ended up making a [syncComponent](src/utils/syncComponent.js) and [asyncComponent](src/utils/asyncComponent.js)
-HOC. The syncronous component (which should be used by the server) will update the `staticContext` provided by the `StaticRouter` and
+HOC. The synchronous component (which should be used by the server) will update the `staticContext` provided by the `StaticRouter` and
 push the `chunkName` to a list of bundles that need to be loaded before the page can render. This can be seen in the [routes/sync](src.routes/sync.js)
 and [routes/async](src/routes/async.js) files. With all this set up, the final things are just to provide the list of bundles to the client
 in a "hidden" window variable, load all the bundles, and then render `React`. Here is the updated [client/index.jsx](src/client/index.jsx) file to show
@@ -301,7 +314,7 @@ theme before rendering, I can get `react-helmet` to create the custom `<link>` t
 > See more about `react-helmet` in next section
 
 Some other problems that happened are related to the `ExtractTextPlugin` for webpack. Something that I didn't understand for awhile is that
-if the `allChunks` option was not enabled, all the styles would be dynamically loaded and injected after the javascript loads. This was pretty
+if the `allChunks` option was not enabled, all the styles would be dynamically loaded and injected after the Javascript loads. This was pretty
 terrible when most of my additional styles were small and had no reason to be dynamically loaded. This "feature" is probably super nice when
 you create all your styles from the ground up, but when you are using an already existing framework/library for styles, it causes a lot of
 page repaints and flashing while these styles are loaded.
@@ -310,11 +323,11 @@ page repaints and flashing while these styles are loaded.
 Part of the problem with the first server is that the page's title was always the same for each page you were on. It wasn't very helpful
 when glancing at your tabs to tell what you were looking at. With this server, I used `react-helmet` to dynamically update the page's title
 based on the route to give some more context. It is now possible to tell if you are on the home page of react-md, looking at a component's
-example/prop type/sassdoc page.
+example/prop type/SassDoc page.
 
 Some other things I changed are that I now attempt to support some of the [Open Graph Protocol](http://ogp.me/) so that react-md can
 be linked in other sites with some nice content. This wasn't too big and I haven't fully tested it to see if it did anything since
-I don't really use Facebook or Twiiter. Oh well.
+I don't really use Facebook or Twitter. Oh well.
 
 ### Long term caching
 Webpack is hard. (Again)
@@ -343,7 +356,7 @@ and you're all set!
 sorta.
 
 Now how do you handle production builds? How can I make sure that my latest changes will actually
-show up on the client since the browser caches data? How do I add css/sass/less? How do I hot reload?
+show up on the client since the browser caches data? How do I add CSS/Sass/less? How do I hot reload?
 How do I hot reload styles?
 
 Well, now that some more time has passed, [create-react-app](https://github.com/facebookincubator/create-react-app) _is_
@@ -362,7 +375,7 @@ for the hash and each build will generate new hashes even if the content didn't 
 
 I ended up following a [couple](https://survivejs.com/webpack/optimizing/separating-manifest/)
 [of](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31)
-[articles](https://webpack.js.org/guides/caching/) about this and endup going with:
+[articles](https://webpack.js.org/guides/caching/) about this and end up going with:
 - using the `WebpackMd5Hash` plugin
 - using the `ManifestPlugin`
 - using the `HashedModuleIdsPlugin`
@@ -396,10 +409,12 @@ it to the output directory. It isn't super ideal since I don't know how to trigg
 
 ## Scripts
 * [clean](#clean)
+  * [clean:dbs](#cleandbs)
   * [clean:assets](#cleanassets)
 * [prebuild](#prebuild)
 * [build](#build)
   * [build:dev](#buildev)
+* [doc-dbs](#doc-dbs)
 * [jsdoc](#jsdoc)
   * [jsdoc:build](#jsdocbuild)
   * [jsdoc:create](#jsdoccreate)
@@ -407,17 +422,18 @@ it to the output directory. It isn't super ideal since I don't know how to trigg
   * [docgen:create](#docgencreate)
 * [sassdoc](#sassdoc)
   * [sassdoc:site](#sassdocsite)
+* [examples-db](#examples-db)
 * [air-quality](#air-quality)
-* [start](#start)
-  * [start:dev](#startdev)
-  * [start:prod](#startprod)
-* [dev](#dev)
-  * [dev:minimal](#devminimal)
-  * [dev:all](#devall)
 * [watch:all](#watchall)
   * [watch:docgen](#watchdocgen)
   * [watch:sassdoc](#watchsassdoc)
   * [watch:react-md](#watchreact-md)
+* [start](#start)
+  * [start:dev](#startdev)
+  * [start:prod](#startprod)
+* [dev](#dev)
+  * [dev:full](#devfull)
+  * [dev:minimal](#devminimal)
 * [test](#test)
   * [test:watch](#testwatch)
 
@@ -428,6 +444,10 @@ script.
 
 > SEE: [jsdoc](#jsdoc), [sassdoc](#sassdoc), or [docgen](#docgen) for more information
 about "databases".
+
+### clean:dbs
+This will just remove any generated databases except for the airQuality database. See [air-quality](#air-quality) for
+more information.
 
 ### clean:assets
 This will just remove any existing assets or themes.
@@ -454,14 +474,18 @@ This will build a development version of the website. This is useful if you are 
 debugging server side stuff and the client won't be changing that much.
 
 ### jsdoc
-This task just runs the `jsdoc:build` follwed by `jsdoc:create`.
+This task just runs the `jsdoc:build` followed by `jsdoc:create`.
 > SEE: [jsdoc:build](#jsdocbuild) and [jsdoc:create](#jsdoccreate) for more information.
 
 ### jsdoc:build
-This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
+This will run jsdoc on the `react-md/src/js` folder and extract jsdoc for some specific files to get additional
 documentation on static component class attributes that are not picked up with `react-docgen`. Examples are the
 `Layover.HorizontalAnchors` and `Autocomplete.fuzzyFilter`.This will create a `jsdoc.json` file in the home directory
 to be parsed by [jsdoc:create](#jsdoccreate).
+
+### jsdoc:create
+This parses the created docgen so that the components can be linked in with these special enums and external functions
+for additional documentation.
 
 ### docgen
 This will run the [jsdoc](#jsdoc) script followed by the [docgen:create](#docgencreate) task. The jsdoc "database" *must*
@@ -470,7 +494,7 @@ be created before the `docgen:create` script can be ran.
 > SEE: [jsdoc](#jsdoc) or [docgen:create](#docgencreate) for more information.
 
 ### docgen:create
-This will create a "database" of component documentation that can be used for the api
+This will create a "database" of component documentation that can be used for the API
 endpoints. The "database" is just a JSON file of the results of [react-docgen](https://github.com/reactjs/react-docgen)
 component's endpoint and it's docgen. This will also create another "database" that is used for searching within the
 site for specific component Prop Types or SassDoc.
@@ -481,45 +505,15 @@ it is a simple mapping of the component group to related documentation. This com
 "database" so that functions, mixins, selectors, and variables can be found in the main search.
 
 ### sassdoc:site
-This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for sassdoc. This is mostly used
+This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.
+
+### examples-db
+This will create a "database" to be used to search for specific examples in the documentation site.
 
 ### air-quality
 This will remake the airQuality "database" by fetching the data from the https://data.gov website, parse/format the response,
 and limit the number of results. This is really only useful if you need to get some fresher data.
-
-### start
-This will start the production server. The [build](#build) **must** have been run before the production server can
-be started.
-
-> SEE: [start:prod](#startprod) for a simple wrapper to run the build and then start the server immediately.
-
-### start:dev
-This will start up the server in development mode. This is helpful if you don't need every watcher running and have already
-built the databases or you need to test server code independently so you have access to the `nodemon` `restart` ability. Both
-[dev](#dev) and [dev:all](#devall) end up using this behind the scenes.
-
-The development server will be restarted each time any config file changes, or server related files.
-
-### start:prod
-This will run the [build](#build) command followed by the [start](#start). It is really just for testing
-the production mode quickly without deploying to my main website.
-
-### dev
-This is the second most useful development script. It will only run the [prebuild](#prebuild) script
-and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
-use this script if you only need to see the examples changes without any docgen or SassDoc updates.
-
-### dev:minimal
-This is a script that will remove any existing assets, run the webpack watcher, and start the development
-server. This is assuming that all the databases have been built and the react-md code has been compiled
-already.
-
-### dev:all
-Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
-and then concurrently run all the watchers and start up the dev server.
-
-> SEE: [watch:all](#watchall)
 
 ### watch:all
 This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md
@@ -538,6 +532,39 @@ writing.
 ### watch:react-md
 This will just recompile a changed react-md source file into the `lib/` folder so the changes can be seen in the documentation
 site.
+
+### start
+This will start the production server. The [build](#build) **must** have been run before the production server can
+be started.
+
+> SEE: [start:prod](#startprod) for a simple wrapper to run the build and then start the server immediately.
+
+### start:dev
+This will start up the server in development mode. This is helpful if you don't need every watcher running and have already
+built the databases or you need to test server code independently so you have access to the `nodemon` `restart` ability. Both
+[dev](#dev) and [dev:full](#devfull) end up using this behind the scenes.
+
+The development server will be restarted each time any config file changes, or server related files.
+
+### start:prod
+This will run the [build](#build) command followed by the [start](#start). It is really just for testing
+the production mode quickly without deploying to my main website.
+
+### dev
+This is the second most useful development script. It will only run the [prebuild](#prebuild) script
+and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
+use this script if you only need to see the examples changes without any docgen or SassDoc updates.
+
+### dev:full
+Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
+and then concurrently run all the watchers and start up the dev server.
+
+> SEE: [watch:all](#watchall)
+
+### dev:minimal
+This is a script that will remove any existing assets, run the webpack watcher, and start the development
+server. This is assuming that all the databases have been built and the react-md code has been compiled
+already.
 
 ### test
 This will run tests only for the documentation server.
@@ -558,7 +585,7 @@ One of the problems of using the Amazon Linux instance is that certbot has **ver
 with it, so it constantly breaks. If the certbot decides to update itself or any security updates
 from Amazon, certbot will most likely stop working.
 
-Here are the initial steps of getting cerbot setup:
+Here are the initial steps of getting certbot setup:
 ```bash
 $ wget https://dl.eff.org/certbot-auto
 $ chmod a+x certbot-auto

@@ -6,9 +6,12 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import FocusContainer from '../Helpers/FocusContainer';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import Paper from '../Papers/Paper';
 import DialogTitle from './DialogTitle';
 import DialogFooter from './DialogFooter';
+
+const DIFF_KEYS = ['style', 'height', 'width', 'contentStyle'];
 
 /**
  * The `Dialog` is just a static component for creating dialogs. Dialogs
@@ -17,7 +20,6 @@ import DialogFooter from './DialogFooter';
  * the `DialogContainer` component.
  */
 export default class Dialog extends PureComponent {
-  /* eslint-disable max-len */
   static propTypes = {
     /**
      * @see {@link Dialogs/DialogContainer#id}
@@ -26,7 +28,6 @@ export default class Dialog extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ])),
-    /* eslint-enable max-len */
 
     /**
      * @see {@link Dialogs/DialogContainer#aria-describedby}
@@ -191,9 +192,9 @@ export default class Dialog extends PureComponent {
     centered: PropTypes.bool,
 
     /**
-     * Boolean if the content should be padded. This will take precidence
+     * Boolean if the content should be padded. This will take precedence
      * over the `autopadContent` prop. So if this is defined, that value
-     * will be used instead of any thing that was was caclulated in this
+     * will be used instead of any thing that was was calculated in this
      * component.
      *
      * @see {@link #autopadContent}
@@ -205,10 +206,52 @@ export default class Dialog extends PureComponent {
      * should be padded. It will be padded if the dialog does not contain a `List`.
      */
     autopadContent: PropTypes.bool,
+
+    /**
+     * Boolean if the dialog content's size should automatically be resized to overflow
+     * correctly when there is a lot of content. This will calculate and apply some `maxHeight`
+     * to the `contentStyle`.
+     */
+    autosizeContent: PropTypes.bool,
+
+    /**
+     * An optional height to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #width}
+     */
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional width to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #height}
+     */
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * Boolean if the actions should be stacked on top of each other. If this value is `undefined`, it will
+     * automatically attempt to guess if the items should be stacked.
+     */
+    stackedActions: PropTypes.bool,
   };
 
   static defaultProps = {
     autopadContent: true,
+    autosizeContent: true,
     contentComponent: 'section',
     zDepth: 5,
   };
@@ -217,21 +260,34 @@ export default class Dialog extends PureComponent {
     renderNode: PropTypes.object,
   };
 
-  state = { transformOrigin: null };
+  constructor(props) {
+    super();
+
+    const { height, width } = props;
+    let styles = props.style;
+    if (height || width) {
+      styles = styles || {};
+      styles = { height, width, ...styles };
+    }
+
+    this.state = {
+      styles,
+      contentStyles: props.contentStyle,
+      contentPadded: false,
+    };
+  }
 
   getChildContext() {
     return { renderNode: this._renderNode };
   }
 
   componentWillMount() {
-    const { pageX, containerX, pageY, containerY } = this.props;
+    const { pageX, pageY } = this.props;
     if (!pageX || !pageY) {
       return;
     }
 
-    this.setState({
-      transformOrigin: `${pageX - containerX}px ${pageY - containerY}px`,
-    });
+    this.setState({ styles: this._getStyles(this.props) });
   }
 
   componentDidMount() {
@@ -240,11 +296,27 @@ export default class Dialog extends PureComponent {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (DIFF_KEYS.some(key => nextProps[key] !== this.props[key])) {
+      this.setState({
+        styles: this._getStyles(nextProps),
+        contentStyles: { ...this.state.contentStyles, ...nextProps.contentStyle },
+      });
+    }
+  }
+
   componentWillUnmount() {
     if (this.props.onLeave) {
       this.props.onLeave();
     }
   }
+
+  _getStyles = ({ pageX, containerX, pageY, containerY, height, width, style } = this.props) => ({
+    height: typeof height !== 'undefined' ? height : null,
+    width: typeof width !== 'undefined' ? width : null,
+    transformOrigin: pageX || pageY ? `${pageX - containerX}px ${pageY - containerY}px` : null,
+    ...style,
+  });
 
   _setRenderNode = (dialog) => {
     this._renderNode = findDOMNode(dialog);
@@ -259,12 +331,32 @@ export default class Dialog extends PureComponent {
     }
   };
 
+  _handleContentResize = ({ height, scrollHeight, el: content }) => {
+    if (height !== scrollHeight) {
+      const maxHeight = content.style.maxHeight;
+      const dialog = content.parentNode;
+      content.style.maxHeight = 'none';
+      const title = this.props.title ? dialog.querySelector('.md-title--dialog') : null;
+      const footer = this.props.actions ? dialog.querySelector('.md-dialog-footer') : null;
+
+      const totalHeight = dialog.offsetHeight - (title ? title.offsetHeight : 0) - (footer ? footer.offsetHeight : 0);
+      content.style.maxHeight = maxHeight;
+      const equalHeight = totalHeight === scrollHeight;
+      if (equalHeight) {
+        if (this.state.contentStyles && this.state.contentStyles.maxHeight) {
+          this.setState({ contentStyles: this.props.contentStyle });
+        }
+      } else {
+        this.setState({ contentStyles: { maxHeight: totalHeight, ...this.props.contentStyle } });
+      }
+    }
+  };
+
   render() {
-    const { contentPadded, transformOrigin } = this.state;
+    const { contentPadded, styles, contentStyles } = this.state;
     const {
       id,
       className,
-      contentStyle,
       contentClassName,
       title,
       contentComponent: Content,
@@ -275,19 +367,24 @@ export default class Dialog extends PureComponent {
       centered,
       autopadContent,
       paddedContent,
+      autosizeContent,
+      stackedActions,
       /* eslint-disable no-unused-vars */
-      style: propStyle,
+      style,
+      contentStyle,
       pageX,
       pageY,
       containerX,
       containerY,
       onOpen,
       onLeave,
+      height,
+      width,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
-    let { 'aria-labelledby': labelledBy, style } = this.props;
+    let { 'aria-labelledby': labelledBy } = this.props;
     const titleId = `${id}-title`;
     if (!labelledBy && title) {
       labelledBy = titleId;
@@ -300,19 +397,16 @@ export default class Dialog extends PureComponent {
         ref={!padDefined && autopadContent ? this._setContent : null}
         key="content"
         {...contentProps}
-        style={contentStyle}
+        style={contentStyles}
         className={cn('md-dialog-content', {
           'md-dialog-content--padded': padDefined ? paddedContent : contentPadded,
         }, contentClassName)}
       >
+        {autosizeContent ? <ResizeObserver watchHeight watchWidth onResize={this._handleContentResize} /> : null}
         {children}
       </Content>,
-      <DialogFooter key="footer" actions={actions} />,
+      <DialogFooter key="footer" actions={actions} stacked={stackedActions} />,
     ];
-
-    if (transformOrigin) {
-      style = Object.assign({}, style, { transformOrigin });
-    }
 
     return (
       <Paper
@@ -320,7 +414,7 @@ export default class Dialog extends PureComponent {
         id={id}
         component={FocusContainer}
         ref={this._setRenderNode}
-        style={style}
+        style={styles}
         className={cn('md-dialog', {
           'md-dialog--full-page': fullPage,
           'md-dialog--centered': centered,

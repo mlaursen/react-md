@@ -33,10 +33,11 @@ export default class Menu extends PureComponent {
       if (!this._warned) {
         /* eslint-disable no-console */
         console.error(
-          'The `Menu.Positions.CONTEXT` position has been depreacted and will be removed ' +
+          'The `Menu.Positions.CONTEXT` position has been deprecated and will be removed ' +
           'in the next major release. To make the `Menu` behave as a context menu, provide ' +
           'the `onContextMenu` prop instead.'
         );
+        /* eslint-enable no-console */
       }
 
       this._warned = true;
@@ -88,7 +89,7 @@ export default class Menu extends PureComponent {
     /**
      * The component to render the main container as.
      *
-     * @see {@link Helpers/Layovers#component}
+     * @see {@link Helpers/Layover#component}
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -98,7 +99,7 @@ export default class Menu extends PureComponent {
     /**
      * This is how the menu's `List` gets anchored to the `toggle` element.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
@@ -106,28 +107,28 @@ export default class Menu extends PureComponent {
      * This is the optional anchor to use when the `position` is set to `Menu.Positions.BELOW`.
      * Set this to `null` to use the default `anchor` prop.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     position: positionShape,
 
     /**
      * This is the component/element that should toggle the menu open.
      *
-     * @see {@link Helpers/Layovers#toggle}
+     * @see {@link Helpers/Layover#toggle}
      */
     toggle: PropTypes.node,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -173,7 +174,7 @@ export default class Menu extends PureComponent {
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when a key is pressed anywhere in the menn.
+     * An optional function to call when a key is pressed anywhere in the menu.
      */
     onKeyDown: PropTypes.func,
 
@@ -192,7 +193,7 @@ export default class Menu extends PureComponent {
     /**
      * This is how the cascading lists get anchored to the list item.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     cascadingAnchor: Layover.propTypes.anchor,
 
@@ -215,19 +216,19 @@ export default class Menu extends PureComponent {
     block: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: Layover.propTypes.centered,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: Layover.propTypes.sameWidth,
 
     /**
      * If you would like the menu to interact as a context menu, provide this prop.
      *
-     * @see {@link Helpers/Layovers#onContextMenu}
+     * @see {@link Helpers/Layover#onContextMenu}
      */
     onContextMenu: Layover.propTypes.onContextMenu,
 
@@ -235,27 +236,27 @@ export default class Menu extends PureComponent {
      * Boolean if the default behavior of the context menu should be prevented when using the
      * `onContextMenu` prop.
      *
-     * @see {@link Helpers/Layovers#preventContextMenu}
+     * @see {@link Helpers/Layover#preventContextMenu}
      */
     preventContextMenu: Layover.propTypes.preventContextMenu,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     * @see {@link Helpers/Layover#closeOnOutsideClick}
      */
     closeOnOutsideClick: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#toggleQuery}
+     * @see {@link Helpers/Layover#toggleQuery}
      */
     toggleQuery: PropTypes.oneOfType([
       PropTypes.func,
@@ -266,17 +267,17 @@ export default class Menu extends PureComponent {
     /**
      * An optional transition name to use for the list appearing/disappearing.
      *
-     * @see {@link Helpers/Layovers#transitionName}
+     * @see {@link Helpers/Layover#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 
@@ -284,9 +285,56 @@ export default class Menu extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layover#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplified: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#minLeft}
+     */
+    minLeft: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layover#minRight}
+     */
+    minRight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layover#minBottom}
+     */
+    minBottom: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
 
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
@@ -320,6 +368,8 @@ export default class Menu extends PureComponent {
     listHeightRestricted: true,
     cascadingZDepth: 3,
     repositionOnScroll: true,
+    repositionOnResize: false,
+    simplified: true,
   };
 
   static contextTypes = {
@@ -379,6 +429,24 @@ export default class Menu extends PureComponent {
     }
   };
 
+  /**
+   * Checks if a provided event target or HTML Element is considered a menu click target.
+   * This normally is just a ListItem.
+   */
+  _isCloseTarget(target) {
+    return target.classList.contains('md-list-item')
+      && !target.classList.contains('md-list-item--nested-container');
+  }
+
+  /**
+   * Checks if a provided event target or HTML Element is something that should shortcut/break
+   * out of the click event loop because it **should not** close menus when clicked.
+   */
+  _isIgnoreTarget(target) {
+    return target.getAttribute('disabled') !== null
+      || target.classList.contains('md-list-control');
+  }
+
   _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
@@ -386,13 +454,11 @@ export default class Menu extends PureComponent {
 
     let node = e.target;
     while (this._container && this._container.contains(node)) {
-      if (node.classList.contains('md-list-control')) {
+      if (this._isIgnoreTarget(node)) {
         return;
-      } else if (
-        !node.classList.contains('md-list-item--nested-container') &&
-        node.classList.contains('md-list-item')
-      ) {
+      } else if (this._isCloseTarget(node)) {
         e.persist();
+        // set a timeout so item click events still trigger, and then close
         this._timeout = setTimeout(() => {
           this._timeout = null;
           this._handleClose(e);
@@ -425,13 +491,14 @@ export default class Menu extends PureComponent {
       listZDepth,
       listInline,
       listHeightRestricted,
+      cascading,
       sameWidth,
+      simplified,
       contained, // deprecated
       isOpen, // deprecated
       /* eslint-disable no-unused-vars */
       fixedTo: propFixedTo,
       listId: propListId,
-      cascading,
       cascadingAnchor,
       cascadingZDepth,
       onClose,
@@ -452,17 +519,23 @@ export default class Menu extends PureComponent {
       listId = `${id}-list`;
     }
 
+    // can't have a simplified menu for cascading and context menus
+    const simple = !cascading && !props.onContextMenu && position !== 'context' && simplified;
     if (position === 'context') {
       position = Menu.Positions.BELOW;
     }
 
+    const below = position === Menu.Positions.BELOW;
     const fixedTo = typeof propFixedTo !== 'undefined' ? propFixedTo : this.context.cascadingFixedTo;
     const listVisible = typeof isOpen !== 'undefined' ? isOpen : visible;
     return (
       <Layover
-        id={id}
-        className={cn('md-menu-container', className)}
         {...props}
+        id={id}
+        className={cn('md-menu-container', {
+          'md-menu-container--menu-below': simplified && below,
+        }, className)}
+        simplified={simple}
         sameWidth={contained || sameWidth}
         fixedTo={fixedTo}
         onClick={this._handleClick}
@@ -481,6 +554,8 @@ export default class Menu extends PureComponent {
           style={listStyle}
           className={cn('md-list--menu', {
             'md-list--menu-restricted': listHeightRestricted,
+            'md-list--menu-contained': simplified && (sameWidth || contained),
+            [`md-list--menu-${position}`]: simplified,
             [`md-paper md-paper--${listZDepth}`]: listZDepth,
           }, listClassName)}
           inline={listInline}

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
 import SVGIcon from 'react-md/lib/SVGIcons';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import Slider from 'react-md/lib/Sliders';
 
 import alarm from 'icons/alarm.svg';
@@ -26,7 +26,7 @@ export default class WithIcons extends PureComponent {
         <Button raised secondary onClick={this.show}>
           Change volume
         </Button>
-        <Dialog
+        <DialogContainer
           id="volume-changer"
           visible={visible}
           onHide={this.hide}
@@ -40,20 +40,20 @@ export default class WithIcons extends PureComponent {
             max={12}
           />
           <Slider
-            id="volumn-changer-alarm"
+            id="volume-changer-alarm"
             label="Alarm volume"
             leftIcon={<SVGIcon use={alarm.url} />}
             defaultValue={8}
             max={12}
           />
           <Slider
-            id="volumn-changer-ring"
+            id="volume-changer-ring"
             label="Ring volume"
             leftIcon={<FontIcon>vibration</FontIcon>}
             defaultValue={10}
             max={12}
           />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

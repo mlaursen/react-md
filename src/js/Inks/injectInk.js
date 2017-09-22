@@ -129,7 +129,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   }
 
   /**
-   * A publically accessible way to manually create an ink. This can be used with the `refs`.
+   * A publicly accessible way to manually create an ink. This can be used with the `refs`.
    * The ink can either be created by using the `pageX` and `pageY` from a click/touch event
    * or it will be created in the center of the `ComposedComponent`.
    *
@@ -162,8 +162,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   };
 
   /**
-   * Gets the composed component as a ref. This is usefull if you need to access the ref of the
-   * composed component instead of the `injectInk` HOC to use some publically accessible methods.
+   * Gets the composed component as a ref. This is useful if you need to access the ref of the
+   * composed component instead of the `injectInk` HOC to use some publicly accessible methods.
    *
    * ```js
    * <SomeInkedComponent

@@ -158,12 +158,12 @@ exports[`AutoResizing should render correctly 1`] = `
       <div
         className="md-text-field-message-container md-full-width md-text--disabled"
       >
-        <p
+        <div
           aria-hidden={false}
           className="md-text-field-message md-text-field-message--active"
         >
           This field will not shrink
-        </p>
+        </div>
       </div>
     </div>
   </div>

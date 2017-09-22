@@ -129,6 +129,10 @@
     @include react-md-buttons-mobile;
     @include react-md-snackbars-mobile;
 
+    .md-text-field--search {
+      font-size: $md-title-font-size;
+    }
+
     .material-icons.md-icon {
       font-size: $md-font-icon-size;
     }

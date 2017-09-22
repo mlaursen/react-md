@@ -36,7 +36,7 @@ import TimePicker from './TimePicker';
 export default class TimePickerContainer extends PureComponent {
   static propTypes = {
     /**
-     * An id for the text field in the time picker. This is require for a11u.
+     * An id for the text field in the time picker. This is require for a11y.
      */
     id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.string,
@@ -135,7 +135,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * A function to format the dates since it should be formatted to the user's
      * locale. This _should_ be the `Intl.DateTimeFormat` function. You
-     * can also create your own if you really wanted. Unadvisable though.
+     * can also create your own if you really wanted. Inadvisable though.
      *
      * See [intl-polyfill](https://github.com/andyearnshaw/Intl.js/) for more info.
      */
@@ -143,7 +143,7 @@ export default class TimePickerContainer extends PureComponent {
 
     /**
      * The locales to use for formatting the date. This will default to using
-     * the user's language in the browser or `'en-US'` when server renering.
+     * the user's language in the browser or `'en-US'` when server rendering.
      */
     locales: PropTypes.oneOfType([
       PropTypes.string,
@@ -234,7 +234,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * If true the hover mode of the Time Picker is activated.
      * In hover mode no clicks are required to start selecting an hour
-     * and the timemode switches automatically when a time was chosen.
+     * and the time mode switches automatically when a time was chosen.
      * When a minute is selected the chosen time is applied automatically.
      */
     hoverMode: PropTypes.bool,

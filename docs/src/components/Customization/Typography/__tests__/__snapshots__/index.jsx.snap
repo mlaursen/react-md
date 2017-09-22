@@ -15,29 +15,29 @@ exports[`Typography should render correctly 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<h1 id=\\"material-design-typography\\">Material Design Typography</h1>
-          <p>The typography has been built off of the <a href=\\"https://www.google.com/design/spec/style/typography.html\\" class=\\"link\\">typography specs</a>.
-          The default font used in react-md is <code>&#39;Roboto&#39;</code>. This can be changed by overriding
-          <a href=\\"/customization/typography?tab=1#variable-md-font-name\\" class=\\"link\\">$md-font-name</a> and/or
-          <a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">$md-font-family</a> before <code>@include react-md-everything</code>
-          or <code>@include react-md-typography</code>.</p>
-          <p>The base html tags will be modified by default unless you set the sass variable <code>$md-typography-extended</code>
-          to <code>false</code>. The tags will be implemented as:</p>
-          <ul>
-          <li><code>h1</code> - <code>.md-display-1</code></li>
-          <li><code>h2</code> - <code>.md-headline</code></li>
-          <li><code>h3</code> - <code>.md-title</code></li>
-          <li><code>h4</code> - <code>.md-subheading-2</code></li>
-          <li><code>h5</code> - <code>.md-subheading-1</code></li>
-          <li><code>h6</code> - <code>.md-body-2</code></li>
-          <li><code>p</code> - <code>.md-body-1</code></li>
-          <li><code>caption</code> - <code>.md-caption</code></li>
-          </ul>
-          <p>All the class names in order of largest to smallest are:
-          <code>.md-display-4</code>, <code>.md-display-3</code>, <code>.md-display-2</code>, <code>.md-display-1</code>, <code>.md-headline</code>,
-          <code>.md-title</code>, <code>.md-subheading-2</code>, <code>.md-subheading-1</code>, <code>.md-body-2</code>, <code>.md-body-1</code>,
-          and <code>.md-caption</code>.</p>
-          <h4 id=\\"examples\\">Examples</h4>
-          ",
+<p>The typography has been built off of the <a href=\\"https://www.google.com/design/spec/style/typography.html\\" class=\\"link\\">typography specs</a>.
+The default font used in react-md is <code>&#39;Roboto&#39;</code>. This can be changed by overriding
+<a href=\\"/customization/typography?tab=1#variable-md-font-name\\" class=\\"link\\">$md-font-name</a> and/or
+<a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">$md-font-family</a> before <code>@include react-md-everything</code>
+or <code>@include react-md-typography</code>.</p>
+<p>The base html tags will be modified by default unless you set the sass variable <code>$md-typography-extended</code>
+to <code>false</code>. The tags will be implemented as:</p>
+<ul>
+<li><code>h1</code> - <code>.md-display-1</code></li>
+<li><code>h2</code> - <code>.md-headline</code></li>
+<li><code>h3</code> - <code>.md-title</code></li>
+<li><code>h4</code> - <code>.md-subheading-2</code></li>
+<li><code>h5</code> - <code>.md-subheading-1</code></li>
+<li><code>h6</code> - <code>.md-body-2</code></li>
+<li><code>p</code> - <code>.md-body-1</code></li>
+<li><code>caption</code> - <code>.md-caption</code></li>
+</ul>
+<p>All the class names in order of largest to smallest are:
+<code>.md-display-4</code>, <code>.md-display-3</code>, <code>.md-display-2</code>, <code>.md-display-1</code>, <code>.md-headline</code>,
+<code>.md-title</code>, <code>.md-subheading-2</code>, <code>.md-subheading-1</code>, <code>.md-body-2</code>, <code>.md-body-1</code>,
+and <code>.md-caption</code>.</p>
+<h4 id=\\"examples\\">Examples</h4>
+",
           }
         }
       />
@@ -112,26 +112,30 @@ exports[`Typography should render correctly 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>If the <code>$md-typography-include-utilities</code> variable is <code>true !default</code>, the following utility
-          class names will be created:</p>
-          <ul>
-          <li><code>.md-text-left</code> - aligns text left</li>
-          <li><code>.md-text-center</code> - aligns text center</li>
-          <li><code>.md-text-right</code> - aligns text right</li>
-          <li><code>.md-text-justify</code>, - aligns text by justify</li>
-          <li><code>.md-text-capitalize</code> - capitlizes the text</li>
-          <li><code>.md-text-uppercase</code> - uppercases the text</li>
-          <li><code>.md-text-lowercase</code> - lowercases the text</li>
-          <li><code>.md-text-nowrap</code> - does not allow line breaks</li>
-          <li><code>.md-text-no-select</code> - Does not allow use-select</li>
-          <li><code>.md-font-light</code> - the material design light font weight.</li>
-          <li><code>.md-font-regular</code> - the material design regular font weight.</li>
-          <li><code>.md-font-medium</code> - the material design medium font weight.</li>
-          <li><code>.md-font-bold</code> - the material design bold font weight.</li>
-          </ul>
-          <p>If the <code>$md-typography-include-text-container</code> variable is <code>true !default</code>, a <code>md-text-container</code>
-          class name will be created to position text in the center of the page and keep the line length within
-          the <code>$md-typography-max-line-length</code> value.</p>
-          ",
+class names will be created:</p>
+<ul>
+<li><code>.md-text-left</code> - aligns text left</li>
+<li><code>.md-text-center</code> - aligns text center</li>
+<li><code>.md-text-right</code> - aligns text right</li>
+<li><code>.md-text-justify</code>, - aligns text by justify</li>
+<li><code>.md-text-capitalize</code> - capitalizes the text</li>
+<li><code>.md-text-uppercase</code> - uppercases the text</li>
+<li><code>.md-text-lowercase</code> - lowercases the text</li>
+<li><code>.md-text-nowrap</code> - does not allow line breaks</li>
+<li><code>.md-text-no-select</code> - Does not allow use-select</li>
+<li><code>.md-font-light</code> - the material design light font weight (300).</li>
+<li><code>.md-font-regular</code> - the material design regular font weight (400).</li>
+<li><code>.md-font-medium</code> - the material design medium font weight (500).</li>
+<li><code>.md-font-semibold</code> - the semibold font weight used by some Google fonts (600).</li>
+<li><code>.md-font-bold</code> - the material design bold font weight (700).</li>
+</ul>
+<blockquote>
+<p>Font weights can be changed by sass variables</p>
+</blockquote>
+<p>If the <code>$md-typography-include-text-container</code> variable is <code>true !default</code>, a <code>md-text-container</code>
+class name will be created to position text in the center of the page and keep the line length within
+the <code>$md-typography-max-line-length</code> value.</p>
+",
           }
         }
       />

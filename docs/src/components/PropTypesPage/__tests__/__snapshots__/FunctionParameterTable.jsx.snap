@@ -78,7 +78,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
         </td>
         <td
           aria-sort={undefined}
-          className="md-table-column md-text-left md-table-column--plain md-text"
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           scope={undefined}
         >
           <section
@@ -86,7 +86,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>It is something that does something. Quite amazing</p>
-              ",
+",
               }
             }
           />
@@ -121,7 +121,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
         </td>
         <td
           aria-sort={undefined}
-          className="md-table-column md-text-left md-table-column--plain md-text"
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           scope={undefined}
         >
           <section
@@ -129,7 +129,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p>This is a param that is required.</p>
-              ",
+",
               }
             }
           />

@@ -64,6 +64,23 @@ $md-tablet-min-width: 768px !default;
 /// @group media-queries
 $md-desktop-min-width: 1025px !default;
 
+/// The media query to detect devices in portrait mode. Normally you could just do something
+/// like `(orientation: portrait)`, but this doesn't work when the soft keyboard appears. The
+/// only part of the specification for portrait is that the "height" is greater than the "width"
+/// of the device. Android devices reduce the screen height when the soft keyboard appears and
+/// it is now considered landscape with this logic.
+///
+/// @type String
+/// @group media-queries
+$md-portrait-media: '(max-aspect-ratio: 13/9)' !default;
+
+/// The media query to detect devices in landscape mode.
+///
+/// @see md-portrait-media
+/// @type String
+/// @group media-queries
+$md-landscape-media: '(min-aspect-ratio: 13/9)' !default;
+
 /// The default mobile media query.
 /// @type String
 /// @group media-queries
@@ -72,12 +89,12 @@ $md-mobile-media: 'screen and (min-width: #{$md-mobile-min-width})' !default;
 /// The default media query for a portrait mobile device.
 /// @type String
 /// @group media-queries
-$md-mobile-portrait-media: 'screen and (min-width: #{$md-mobile-min-width}) and (orientation: portrait)' !default;
+$md-mobile-portrait-media: 'screen and (min-width: #{$md-mobile-min-width}) and #{$md-portrait-media}' !default;
 
 /// The default media query for a landscape mobile device.
 /// @type String
 /// @group media-queries
-$md-mobile-landscape-media: 'screen and (min-width: #{$md-mobile-min-width}) and (orientation: landscape)' !default;
+$md-mobile-landscape-media: 'screen and (min-width: #{$md-mobile-min-width}) and #{$md-landscape-media}' !default;
 
 /// The default media query for a tablet device.
 /// @type String
@@ -87,12 +104,12 @@ $md-tablet-media: 'screen and (min-width: #{$md-tablet-min-width})' !default;
 /// The default media query for a portrait tablet device.
 /// @type String
 /// @group media-queries
-$md-tablet-portrait-media: 'screen and (min-width: #{$md-tablet-min-width}) and (orientation: protrait)' !default;
+$md-tablet-portrait-media: 'screen and (min-width: #{$md-tablet-min-width}) and #{$md-portrait-media}' !default;
 
 /// The default media query for a landscape tablet device.
 /// @type String
 /// @group media-queries
-$md-tablet-landscape-media: 'screen and (min-width: #{$md-tablet-min-width}) and (orientation: landscape)' !default;
+$md-tablet-landscape-media: 'screen and (min-width: #{$md-tablet-min-width}) and #{$md-landscape-media}' !default;
 
 /// The default media query for a desktop device.
 /// @type String

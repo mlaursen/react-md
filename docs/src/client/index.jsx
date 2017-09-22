@@ -59,5 +59,5 @@ function loadIntl() {
     root
   );
 
-  registerServiceWorker();
+  registerServiceWorker(store);
 }());

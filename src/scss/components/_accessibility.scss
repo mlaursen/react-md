@@ -44,11 +44,11 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
     position: relative;
 
     &--no-outline {
-      outline-width: 0;
+      outline-style: none;
     }
   }
 
-  // Need to add one additional level of precidence for some dialogs,
+  // Need to add one additional level of precedence for some dialogs,
   // but don't want to use !important
   .md-no-scroll.md-no-scroll {
     overflow: hidden;

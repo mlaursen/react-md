@@ -88,7 +88,7 @@ $md-divider-height: 1px !default;
 /// Updates the background color of dividers ONLY if the `$light-theme` does
 /// not equal the `$md-light-theme`.
 ///
-/// @example scss - Example Usage SCS
+/// @example scss - Example Usage SCSS
 ///   @include react-md-theme-dividers;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.

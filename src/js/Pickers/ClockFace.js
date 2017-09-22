@@ -5,7 +5,7 @@ import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';
-import calcPageOffset from '../utils/calcPageOffset';
+import calcPageOffset from '../utils/Positioning/calcPageOffset';
 import ResizeObserver from '../Helpers/ResizeObserver';
 
 import ClockTime from './ClockTime';

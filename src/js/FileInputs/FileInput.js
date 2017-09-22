@@ -5,6 +5,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import { TAB, SPACE, ENTER } from '../constants/keyCodes';
+import getField from '../utils/getField';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import getBtnStyles from '../Buttons/getBtnStyles';
 import FontIcon from '../FontIcons/FontIcon';
@@ -42,6 +43,16 @@ export default class FileInput extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the label.
+     */
+    labelClassName: PropTypes.string,
+
+    /**
      * Boolean if the `FileInput` should be styled with the primary color.
      */
     primary: PropTypes.bool,
@@ -58,7 +69,7 @@ export default class FileInput extends PureComponent {
     flat: PropTypes.bool,
 
     /**
-     * Boolean if the themeing should be swapped from text to background or vice-versa.
+     * Boolean if the theming should be swapped from text to background or vice-versa.
      *
      * @see {@link Buttons/Button#swapTheming}
      */
@@ -80,6 +91,12 @@ export default class FileInput extends PureComponent {
     accept: PropTypes.string,
 
     /**
+     * Boolean if the same file is allowed to be uploaded multiple times. This will basically make the
+     * `value` of the file input always blank.
+     */
+    allowDuplicates: PropTypes.bool,
+
+    /**
      * Boolean if multiple files will be accepted.
      */
     multiple: PropTypes.bool,
@@ -88,10 +105,10 @@ export default class FileInput extends PureComponent {
      * A label to display on the `FileInput`. This will be used with the `AccessibleFakeInkedButton` component to
      * create a `<label>` for the `<input type="file">`.
      */
-    label: PropTypes.node.isRequired,
+    label: PropTypes.node,
 
     /**
-     * Boolean if the icons hould appear before the label.
+     * Boolean if the icons should appear before the label.
      */
     iconBefore: PropTypes.bool,
 
@@ -119,47 +136,55 @@ export default class FileInput extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * An optional value to apply to the `FileInput`. This is usually not needed and the
+     * `allowDuplicates` is what you are probably looking for instead.
+     *
+     * @see {@link #allowDuplicates}
+     */
+    value: PropTypes.string,
+
+    /**
      * Boolean if the `FileInput` is currently disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * An optional function to call when they keyup event is triggerred on the file input's label.
+     * An optional function to call when they keyup event is triggered on the file input's label.
      */
     onKeyUp: PropTypes.func,
 
     /**
-     * An optional function to call when they keydown event is triggerred on the file input's label.
+     * An optional function to call when they keydown event is triggered on the file input's label.
      */
     onKeyDown: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseup event is triggerred on the file input's label.
+     * An optional function to call when they mouseup event is triggered on the file input's label.
      */
     onMouseUp: PropTypes.func,
 
     /**
-     * An optional function to call when they mousedown event is triggerred on the file input's label.
+     * An optional function to call when they mousedown event is triggered on the file input's label.
      */
     onMouseDown: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseover event is triggerred on the file input's label.
+     * An optional function to call when they mouseover event is triggered on the file input's label.
      */
     onMouseOver: PropTypes.func,
 
     /**
-     * An optional function to call when they mouseleave event is triggerred on the file input's label.
+     * An optional function to call when they mouseleave event is triggered on the file input's label.
      */
     onMouseLeave: PropTypes.func,
 
     /**
-     * An optional function to call when they touchend event is triggerred on the file input's label.
+     * An optional function to call when they touchend event is triggered on the file input's label.
      */
     onTouchEnd: PropTypes.func,
 
     /**
-     * An optional function to call when they touchstart event is triggerred on the file input's label.
+     * An optional function to call when they touchstart event is triggered on the file input's label.
      */
     onTouchStart: PropTypes.func,
 
@@ -170,13 +195,18 @@ export default class FileInput extends PureComponent {
   static defaultProps = {
     label: 'Select a file',
     icon: <FontIcon>file_upload</FontIcon>,
+    allowDuplicates: false,
   };
 
-  state = { hover: false, pressed: false };
+  state = { hover: false, pressed: false, value: '' };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
       this.setState({ hover: false });
+    }
+
+    if (nextProps.allowDuplicates && this.state.value) {
+      this.setState({ value: '' });
     }
   }
 
@@ -204,16 +234,18 @@ export default class FileInput extends PureComponent {
   }
 
   _handleChange = (e) => {
-    const { multiple, onChange } = this.props;
-    if (!onChange) {
-      return;
+    const { multiple, onChange, allowDuplicates } = this.props;
+    const { files, value } = e.target;
+    if (onChange) {
+      if (!multiple) {
+        onChange(files[0] || null, e);
+      } else {
+        onChange(Array.prototype.slice.call(files), e);
+      }
     }
 
-    const { files } = e.target;
-    if (!multiple) {
-      onChange(files[0] || null, e);
-    } else {
-      onChange(Array.prototype.slice.call(files), e);
+    if (!allowDuplicates) {
+      this.setState({ value });
     }
   };
 
@@ -319,6 +351,8 @@ export default class FileInput extends PureComponent {
     const {
       style,
       className,
+      labelStyle,
+      labelClassName,
       label,
       primary,
       secondary,
@@ -336,6 +370,8 @@ export default class FileInput extends PureComponent {
       iconClassName,
       /* eslint-disable no-unused-vars */
       icon: propIcon,
+      value: propValue,
+      allowDuplicates,
       onChange,
       onKeyUp,
       onKeyDown,
@@ -348,6 +384,7 @@ export default class FileInput extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+    const value = getField(this.props, this.state, 'value');
     let { icon } = this.props;
     if (iconClassName || iconChildren) {
       icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
@@ -355,6 +392,7 @@ export default class FileInput extends PureComponent {
 
     let labelChildren = label;
     if (icon) {
+      icon = React.cloneElement(icon, { inherit: true });
       labelChildren = <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>;
     }
 
@@ -376,6 +414,7 @@ export default class FileInput extends PureComponent {
           onKeyUp={this._handleKeyUp}
           onMouseOver={this._handleMouseOver}
           onMouseLeave={this._handleMouseLeave}
+          style={labelStyle}
           className={getBtnStyles({
             flat,
             raised: !flat,
@@ -385,7 +424,7 @@ export default class FileInput extends PureComponent {
             hover,
             swapTheming,
             pressed,
-          })}
+          }, labelClassName)}
         >
           {labelChildren}
         </AccessibleFakeInkedButton>
@@ -399,6 +438,8 @@ export default class FileInput extends PureComponent {
           aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}
+          value={value}
+          tabIndex={-1}
         />
       </div>
     );

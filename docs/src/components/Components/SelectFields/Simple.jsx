@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SVGIcon from 'react-md/lib/SVGIcons';
 import SelectField from 'react-md/lib/SelectFields';
 
@@ -25,7 +26,7 @@ const OBJECT_ITEMS = [{
 
 const icon = <SVGIcon use={arrowDropDown.url} />;
 
-const Simple = () => (
+const Simple = ({ simplifiedMenu }) => (
   <div className="md-grid">
     <h4 className="md-cell md-cell--12">Normal SelectFields</h4>
     <SelectField
@@ -34,6 +35,7 @@ const Simple = () => (
       placeholder="Placeholder"
       className="md-cell"
       menuItems={NUMBER_ITEMS}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-2"
@@ -41,6 +43,7 @@ const Simple = () => (
       placeholder="Placeholder"
       className="md-cell"
       menuItems={STRING_ITEMS}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-3"
@@ -48,6 +51,7 @@ const Simple = () => (
       placeholder="Placeholder"
       className="md-cell"
       menuItems={OBJECT_ITEMS}
+      simplifiedMenu={simplifiedMenu}
     />
     <h4 className="md-cell md-cell--12">SelectField Buttons</h4>
     <SelectField
@@ -56,6 +60,7 @@ const Simple = () => (
       className="md-cell"
       menuItems={NUMBER_ITEMS}
       position={SelectField.Positions.BELOW}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-5"
@@ -63,6 +68,7 @@ const Simple = () => (
       className="md-cell"
       menuItems={STRING_ITEMS}
       position={SelectField.Positions.BELOW}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-6"
@@ -70,6 +76,7 @@ const Simple = () => (
       className="md-cell"
       menuItems={OBJECT_ITEMS}
       position={SelectField.Positions.BELOW}
+      simplifiedMenu={simplifiedMenu}
     />
     <h4 className="md-cell md-cell--12">Using SVGIcons</h4>
     <SelectField
@@ -79,6 +86,7 @@ const Simple = () => (
       className="md-cell md-cell--bottom"
       menuItems={NUMBER_ITEMS}
       dropdownIcon={icon}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-8"
@@ -87,6 +95,7 @@ const Simple = () => (
       menuItems={STRING_ITEMS}
       position={SelectField.Positions.BELOW}
       dropdownIcon={icon}
+      simplifiedMenu={simplifiedMenu}
     />
     <SelectField
       id="select-field-9"
@@ -95,8 +104,13 @@ const Simple = () => (
       menuItems={STRING_ITEMS}
       disabled
       dropdownIcon={icon}
+      simplifiedMenu={simplifiedMenu}
     />
   </div>
 );
+
+Simple.propTypes = {
+  simplifiedMenu: PropTypes.bool,
+};
 
 export default Simple;

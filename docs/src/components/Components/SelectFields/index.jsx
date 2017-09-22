@@ -4,10 +4,14 @@ import ExamplesPage from 'components/ExamplesPage';
 import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
+import ElementsAndDisabledItems from './ElementsAndDisabledItems';
+import ElementsAndDisabledItemsRaw from '!!raw-loader!./ElementsAndDisabledItems.jsx';
 import DefaultValuesAndControlling from './DefaultValuesAndControlling';
 import DefaultValuesAndControllingRaw from '!!raw-loader!./DefaultValuesAndControlling.jsx';
 import TextFieldStyling from './TextFieldStyling';
 import TextFieldStylingRaw from '!!raw-loader!./TextFieldStyling.jsx';
+import UsingSmartMenus from './UsingSmartMenus';
+import UsingSmartMenusRaw from '!!raw-loader!./UsingSmartMenus.jsx';
 
 const examples = [{
   title: 'Simple Examples',
@@ -37,6 +41,19 @@ more information.
   code: SimpleRaw,
   children: <Simple />,
 }, {
+  title: 'Elements and Disabling Items',
+  description: `
+There are times where it is helpful to be able to render additional elements like \`Divider\`s or \`Subheader\`s
+in the selection list or disable specific items. If you want to render any additional elements, just add them to
+the \`menuItem\` list and they will be rendered. Any items that do not match the \`string\`, \`number\` or \`object\`
+shape **will be ignored** as valid selection targets for clicking, touching, or keyboard events.
+
+To disable an item, all that is required is to make sure it is an \`object\`, and add a key \`disabled: true\` to it.
+When the item is \`disabled\`, it will not be focusable or selectable.
+  `,
+  code: ElementsAndDisabledItemsRaw,
+  children: <ElementsAndDisabledItems />,
+}, {
   title: 'Default Values and Controlling',
   description: `
 The \`SelectField\` can be updated to have a \`defaultValue\` that is initially selected. When this value
@@ -57,6 +74,16 @@ help text, error text/error states and others.
   `,
   code: TextFieldStylingRaw,
   children: <TextFieldStyling />,
+}, {
+  title: 'Using "Smart" Menus',
+  description: `
+This example shows how you can enable the "smart" menu feature that was introduced in \`react-md@1.1.0\`. This
+will allow the select field list to automatically position itself within the viewport. For more information and
+documentation, see [the Menus examples](/components/menus#smart-positioning-menus).
+The code for this example is exactly the same as the first example except that the \`simplifiedMenu\` prop is disabled.
+  `,
+  code: UsingSmartMenusRaw,
+  children: <UsingSmartMenus />,
 }];
 
 const SelectFields = () => <ExamplesPage description={README} examples={examples} />;

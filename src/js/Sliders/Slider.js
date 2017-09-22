@@ -56,7 +56,7 @@ export default class Slider extends PureComponent {
     thumbStyle: PropTypes.object,
 
     /**
-     * An optionl className to apply to the slider's thumb.
+     * An optional className to apply to the slider's thumb.
      */
     thumbClassName: PropTypes.string,
 
@@ -119,7 +119,7 @@ export default class Slider extends PureComponent {
         } else if (min < 0 && props.max > 0) {
           err = new Error(
             `The '${component}' is unable to have a range spanning from negative to positive. The range ` +
-            'must either be all negative or all postive.'
+            'must either be all negative or all positive.'
           );
         }
       }
@@ -196,7 +196,7 @@ export default class Slider extends PureComponent {
 
     /**
      * This is only called when the user is dragging the slider with either
-     * the mouse or touch. Probably not really usefull. It just includes the
+     * the mouse or touch. Probably not really useful. It just includes the
      * new drag percentage while the `onChange` does not.
      *
      * The callback for this function is defined as:
@@ -338,7 +338,7 @@ export default class Slider extends PureComponent {
 
     /**
      * The width of each tick for a discrete slider with ticks. This can either be a number
-     * which gets converted to `px`, or a valid css unit.
+     * which gets converted to `px`, or a valid CSS unit.
      */
     tickWidth: PropTypes.oneOfType([
       PropTypes.number,
@@ -406,7 +406,7 @@ export default class Slider extends PureComponent {
       return err;
     },
 
-    stepPrecision: deprecated(PropTypes.number, 'Use `step` and `valuePreceision` instead'),
+    stepPrecision: deprecated(PropTypes.number, 'Use `step` and `valuePrecision` instead'),
   };
 
   static defaultProps = {
@@ -563,7 +563,7 @@ export default class Slider extends PureComponent {
    * Updates the slider's thumb position and the slider's track fill width based
    * on the thumb's current x position on the screen.
    *
-   * The slider distance will be *noralized* when:
+   * The slider distance will be *normalized* when:
    *  - The user does a quick jump
    *  - The user stops dragging with the mouse
    *  - The user drops dragging with touch
@@ -747,7 +747,7 @@ export default class Slider extends PureComponent {
   };
 
   /**
-   * This will increment the Slider's value by the `step` prop. if the left or
+   * This will increment the Slider's value by the `step` prop. If the left or
    * right key arrow is pressed.
    *
    * @param {Object} e - the keydown event.
@@ -850,7 +850,7 @@ export default class Slider extends PureComponent {
   };
 
   /**
-   * This is a helper function for focusing the Slider's thumb comopnent. There
+   * This is a helper function for focusing the Slider's thumb component. There
    * is a short delay because the body sometimes gets focused immediately after
    * if there is no timeout..
    */

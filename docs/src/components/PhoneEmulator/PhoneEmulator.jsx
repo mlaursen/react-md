@@ -91,7 +91,7 @@ const PhoneEmulator = ({
   }
 
   return (
-    <Paper style={style} className={cn('phone-emulator', className)} zDepth={mobile ? 0 : undefined}>
+    <Paper style={style} className={cn('phone-emulator md-background', className)} zDepth={mobile ? 0 : undefined}>
       {emulatorStatusBar}
       {emulatorToolbar}
       <CSSTransitionGroup

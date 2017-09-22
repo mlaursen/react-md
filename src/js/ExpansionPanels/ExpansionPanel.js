@@ -51,12 +51,12 @@ export default class ExpansionPanel extends PureComponent {
     headerClassName: PropTypes.string,
 
     /**
-     * An optional style to applt to the element surrounding the children when expanded.
+     * An optional style to apply to the element surrounding the children when expanded.
      */
     contentStyle: PropTypes.object,
 
     /**
-     * An optional className to applt to the element surrounding the children when expanded.
+     * An optional className to apply to the element surrounding the children when expanded.
      */
     contentClassName: PropTypes.string,
 
@@ -291,8 +291,8 @@ export default class ExpansionPanel extends PureComponent {
           'The `ExpansionPanel` component expects the `columnWidths` prop to be injected from the ' +
           '`ExpansionList` component. It could be missing because:' +
           '\n - you have a wrapper component with extra functionality' +
-          '\n - the `ExpansionPanel` is not a direct child of the `ExpansonList` component' +
-          '\n\nYou can fix this by making sure to pass `this.props.focused` and `this.props.columWidths` ' +
+          '\n - the `ExpansionPanel` is not a direct child of the `ExpansionList` component' +
+          '\n\nYou can fix this by making sure to pass `this.props.focused` and `this.props.columnWidths` ' +
           'within your wrapper component and making the `ExpansionPanel` a direct child of `ExpansionList`.'
         );
       }

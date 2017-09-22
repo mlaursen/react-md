@@ -13,6 +13,8 @@ const File = jest.fn(name => ({
   type: 'image/jpg',
 }));
 
+const FAKE_FILE_PATH = 'C:\\fakepath\\Test.png';
+
 describe('FileInput', () => {
   it('should apply styles correctly', () => {
     global.expectRenderSnapshot(<FileInput id="test-input" style={{ height: 200 }} className="test-class" onChange={() => {}} />);
@@ -25,7 +27,7 @@ describe('FileInput', () => {
     // can't instantiate fully, so we can make an almost exact reference
     const file = new File();
     const files = [file];
-    const event = { target: { files } };
+    const event = { target: { files, value: FAKE_FILE_PATH } };
     fileInput.find('input').simulate('change', event);
     expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toEqual(file);
@@ -36,14 +38,14 @@ describe('FileInput', () => {
     const fileInput = mount(<FileInput id="test-input" multiple onChange={onChange} />);
 
     const files = [new File()];
-    const event = { target: { files } };
+    const event = { target: { files, value: FAKE_FILE_PATH } };
     fileInput.find('input').simulate('change', event);
     expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toEqual(files);
     onChange.mockClear();
 
     const files2 = [new File(), new File(), new File(), new File()];
-    const event2 = { target: { files: files2 } };
+    const event2 = { target: { files: files2, value: FAKE_FILE_PATH } };
     fileInput.find('input').simulate('change', event2);
     expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toEqual(files2);
@@ -54,7 +56,7 @@ describe('FileInput', () => {
     const fileInput = mount(<FileInput id="test-input" onChange={onChange} />);
 
     // Cancel returns an empty list
-    const event = { target: { files: [] } };
+    const event = { target: { files: [], value: '' } };
     fileInput.find('input').simulate('change', event);
     expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toBe(null);
@@ -63,7 +65,7 @@ describe('FileInput', () => {
   it('should return an empty list when a user cancels the file input and multiple is enabled', () => {
     const onChange = jest.fn();
     const fileInput = mount(<FileInput id="test-input" onChange={onChange} multiple />);
-    const event = { target: { files: [] } };
+    const event = { target: { files: [], value: '' } };
     fileInput.find('input').simulate('change', event);
     expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toEqual([]);
@@ -78,5 +80,35 @@ describe('FileInput', () => {
         onChange={() => {}}
       />
     );
+  });
+
+  it('should set the value state with the file name if the allowDuplicates prop is false', () => {
+    const input = mount(<FileInput id="test" allowDuplicates={false} />);
+    expect(input.state('value')).toBe('');
+
+    const file = new File();
+    const event = { target: { files: [file], value: FAKE_FILE_PATH } };
+    input.find('input').simulate('change', event);
+    expect(input.state('value')).toBe(FAKE_FILE_PATH);
+
+    input.setProps({ multiple: true });
+    const event2 = { target: { files: [file, file], value: FAKE_FILE_PATH } };
+    input.find('input').simulate('change', event2);
+    expect(input.state('value')).toBe(FAKE_FILE_PATH);
+  });
+
+  it('should keep the value state as the empty string when the allowDuplicates prop is enabled', () => {
+    const input = mount(<FileInput id="test" allowDuplicates />);
+    expect(input.state('value')).toBe('');
+
+    const file = new File();
+    const event = { target: { files: [file], value: FAKE_FILE_PATH } };
+    input.find('input').simulate('change', event);
+    expect(input.state('value')).toBe('');
+
+    input.setProps({ multiple: true });
+    const event2 = { target: { files: [file, file], value: FAKE_FILE_PATH } };
+    input.find('input').simulate('change', event2);
+    expect(input.state('value')).toBe('');
   });
 });

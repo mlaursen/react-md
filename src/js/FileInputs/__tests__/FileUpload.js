@@ -18,6 +18,8 @@ const File = jest.fn((size, type) => ({
   type: typeof type === 'string' ? type : 'image/jpg',
 }));
 
+const FAKE_FILE_PATH = 'C:\\fakepath\\Test.png';
+
 describe('FileUpload', () => {
   it('merges className and style', () => {
     const style = { display: 'block' };
@@ -46,7 +48,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toEqual(files[0]);
   });
@@ -66,12 +68,12 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onSizeError.mock.calls.length).toBe(0);
 
     files = [new File(1025)];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onSizeError.mock.calls.length).toBe(1);
     expect(onSizeError.mock.calls[0][0]).toEqual(files);
   });
@@ -94,7 +96,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onError.mock.calls.length).toBe(1);
     expect(onError.mock.calls[0][0]).toEqual(files[0]);
     expect(onError.mock.calls[0][1]).toEqual(new Error('Something went wrong'));
@@ -119,7 +121,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onAbort.mock.calls.length).toBe(1);
     expect(onAbort.mock.calls[0][0]).toEqual(files[0]);
     expect(onAbort.mock.calls[0][1]).toBeDefined();
@@ -143,7 +145,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onLoadStart.mock.calls.length).toBe(1);
     expect(onLoadStart.mock.calls[0][0]).toEqual(files[0]);
     expect(onLoadStart.mock.calls[0][1]).toBeDefined();
@@ -167,7 +169,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onLoadEnd.mock.calls.length).toBe(1);
     expect(onLoadEnd.mock.calls[0][0]).toEqual(files[0]);
     expect(onLoadEnd.mock.calls[0][1]).toBeDefined();
@@ -192,7 +194,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onLoad.mock.calls.length).toBe(1);
     expect(onLoad.mock.calls[0][0]).toBe(files[0]);
     expect(onLoad.mock.calls[0][1]).toBe(result);
@@ -217,7 +219,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(onProgress.mock.calls.length).toBe(1);
     expect(onProgress.mock.calls[0][0]).toBe(files[0]);
     expect(onProgress.mock.calls[0][1]).toBe((22 / files[0].size) * 100);
@@ -239,7 +241,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(1);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
@@ -247,7 +249,7 @@ describe('FileUpload', () => {
 
     files = [new File(1024, 'video/mp4')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(2);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
@@ -255,7 +257,7 @@ describe('FileUpload', () => {
 
     files = [new File(1024, 'audio/mp3')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(3);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
@@ -277,7 +279,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File(1024, 'application/gzip')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(0);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(1);
@@ -286,7 +288,7 @@ describe('FileUpload', () => {
     // no idea what real model would be
     files = [new File(1024, 'model/airoplaine')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(0);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(2);
@@ -295,7 +297,7 @@ describe('FileUpload', () => {
     // not sure what real multipart would be.
     files = [new File(1024, 'multipart/form-data')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(0);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(3);
@@ -317,7 +319,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File(1024, 'text/x-java')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(0);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
@@ -325,7 +327,7 @@ describe('FileUpload', () => {
 
     files = [new File(1024, '')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
 
     expect(frMock.readAsDataURL.mock.calls.length).toBe(0);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
@@ -347,7 +349,7 @@ describe('FileUpload', () => {
     let input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File(2024, 'application/javascript')];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(frMock.readAsDataURL.mock.calls.length).toBe(1);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
     expect(frMock.readAsText.mock.calls.length).toBe(0);
@@ -355,7 +357,7 @@ describe('FileUpload', () => {
     fileUpload = renderIntoDocument(<FileUpload id="test" readAs="ArrayBuffer" />);
     input = findRenderedDOMComponentWithTag(fileUpload, 'input');
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(frMock.readAsDataURL.mock.calls.length).toBe(1);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(1);
     expect(frMock.readAsText.mock.calls.length).toBe(0);
@@ -363,7 +365,7 @@ describe('FileUpload', () => {
     fileUpload = renderIntoDocument(<FileUpload id="test" readAs="Text" />);
     input = findRenderedDOMComponentWithTag(fileUpload, 'input');
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(frMock.readAsDataURL.mock.calls.length).toBe(1);
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(1);
     expect(frMock.readAsText.mock.calls.length).toBe(1);
@@ -385,7 +387,7 @@ describe('FileUpload', () => {
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
-    Simulate.change(input, { target: { files } });
+    Simulate.change(input, { target: { files, value: FAKE_FILE_PATH } });
     expect(readAs.mock.calls.length).toBe(1);
     expect(readAs.mock.calls[0][0]).toBe(files[0].type);
     expect(readAs.mock.calls[0][1]).toEqual(files[0]);

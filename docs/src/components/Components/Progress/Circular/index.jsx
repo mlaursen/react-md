@@ -4,8 +4,8 @@ import ExamplesPage from 'components/ExamplesPage';
 import description from '../description';
 import Indeterminate from './Indeterminate';
 import IndeterminateRaw from '!!raw-loader!./Indeterminate.jsx';
-import FakeFeedRaw from '!!raw-loader!components/Components/progress/FakeFeed.jsx';
-import styles from '!!raw-loader!components/Components/progress/_fake-feed.scss';
+import FakeFeedRaw from '!!raw-loader!components/Components/Progress/FakeFeed.jsx';
+import styles from '!!raw-loader!components/Components/Progress/_fake-feed.scss';
 
 import Determinate from './Determinate';
 import DeterminateRaw from '!!raw-loader!./Determinate.jsx';
@@ -19,10 +19,10 @@ should be used when the action's progress is measurable.
 `;
 
 const examples = [{
-  title: 'Inderterminate Example',
+  title: 'Indeterminate Example',
   description: `
 As stated above, \`indeterminate\` progress bars should be used when an action's progress can not be measurable.
-This examle will show how you can create a fake feed of data and show a progress indicator while that data is
+This example will show how you can create a fake feed of data and show a progress indicator while that data is
 being "fetched" from a server or if the page was refreshed.
   `,
   code: `/* Indeterminate.jsx */

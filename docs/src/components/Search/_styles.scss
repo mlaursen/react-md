@@ -24,8 +24,11 @@ $search-size: 180px;
   }
 
   &__results.md-list {
-    max-width: 300px;
     width: 100%;
+
+    @media #{$md-tablet-media} {
+      max-width: 300px;
+    }
 
     pre {
       margin: 0;

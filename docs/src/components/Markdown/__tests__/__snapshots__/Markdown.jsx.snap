@@ -6,22 +6,22 @@ exports[`Markdown should render correctly with simple markdown 1`] = `
   dangerouslySetInnerHTML={
     Object {
       "__html": "<pre><code># Title
-    
-    - list
-    - of
-    - items
-    
-    ### Subheader
-    This is stuff.
-    
-    * another
-    * list
-    * of
-    * stuff
-    
-    
-    &gt; NOTE!
-    </code></pre>",
+
+- list
+- of
+- items
+
+### Subheader
+This is stuff.
+
+* another
+* list
+* of
+* stuff
+
+
+&gt; NOTE!
+</code></pre>",
     }
   }
 />

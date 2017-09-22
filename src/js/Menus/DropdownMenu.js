@@ -91,7 +91,7 @@ export default class DropdownMenu extends PureComponent {
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * Bolean if the menu's list is currently visible. If this is defined, it will
+     * Boolean if the menu's list is currently visible. If this is defined, it will
      * require the `onVisibilityChange` function to be defined since it will become
      * a controlled component.
      */
@@ -147,14 +147,14 @@ export default class DropdownMenu extends PureComponent {
     /**
      * The anchor position of the menu's list.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
@@ -173,7 +173,7 @@ export default class DropdownMenu extends PureComponent {
     position: positionShape,
 
     /**
-     * Boolean if the menu's list should gan the cascading styles.
+     * Boolean if the menu's list should gain the cascading styles.
      *
      * @see {@link Menus/Menu#cascading}
      */
@@ -187,7 +187,7 @@ export default class DropdownMenu extends PureComponent {
     cascadingZDepth: PropTypes.number,
 
     /**
-     * The anchor position for the cascanding lists.
+     * The anchor position for the cascading lists.
      *
      * @see {@link Menus/Menu#cascadingAnchor}
      */
@@ -264,14 +264,57 @@ export default class DropdownMenu extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layover#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#minLeft}
+     */
+    minLeft: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minRight}
+     */
+    minRight: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minBottom}
+     */
+    minBottom: Menu.propTypes.minBottom,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
   };
 
   static defaultProps = {
     defaultVisible: false,
     repositionOnScroll: true,
+    repositionOnResize: false,
   };
 
   constructor(props) {
@@ -318,6 +361,7 @@ export default class DropdownMenu extends PureComponent {
       listId,
       menuItems,
       children: propChildren,
+      simplifiedMenu,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       onVisibilityChange,
@@ -344,6 +388,7 @@ export default class DropdownMenu extends PureComponent {
     return (
       <Menu
         {...props}
+        simplified={simplifiedMenu}
         id={id}
         listId={listId}
         toggle={toggle}

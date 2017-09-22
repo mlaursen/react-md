@@ -35,8 +35,8 @@ not need to support one of the browsers from [caniuse](http://caniuse.com/#searc
 
 #### Fonts
 Material design was designed to be used with either the [Roboto](https://www.google.com/fonts/specimen/Roboto)
-or [Noto](https://www.google.com/get/noto/) font. You can use whichever font you prefer though. In additiona,
+or [Noto](https://www.google.com/get/noto/) font. You can use whichever font you prefer though. In addition,
 icons can either be included by your favorite SVG library or a font icon library such as 
 [material-icons](https://design.google.com/icons/) or [FontAwesome](http://fontawesome.io/). react-md uses
-`material-icons` as a default for all icons beceause it is has consistent sizes. If you use another font icon libary,
+`material-icons` as a default for all icons because it is has consistent sizes. If you use another font icon library,
 you may need to enforce equal width and height to get a consistent look.

@@ -16,7 +16,7 @@ import TabPanel from './TabPanel';
  * the `SwipeableViews`. This component will traverse the children subtree and extract out
  * the `children` from each tab, and render them in a swipeable container. However,
  * since this is using the `React.Children` traversal, You will have to keep the `Tabs`
- * and `Tab` component as a direct decendent. You are unable to make a separate component
+ * and `Tab` component as a direct descendent. You are unable to make a separate component
  * that encompasses the `Tab` component.
  *
  * ```js
@@ -87,11 +87,22 @@ export default class TabsContainer extends PureComponent {
     swipeableViewsClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to each slide component.
+     * An optional style to apply to each slide component or a function that returns such style.
+     *
+     * Default style and height of slide component will be passed in the function.
+     * The function should return a style that will be merged with default style, or `null`.
      *
      * @see https://github.com/oliviertassinari/react-swipeable-views#user-content-swipeableviews-
      */
-    slideStyle: PropTypes.object,
+    slideStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.func,
+    ]),
+
+    /**
+     * The property that should be used to set height of a slide component.
+     */
+    slideHeightProp: PropTypes.oneOf(['height', 'minHeight', 'maxHeight']),
 
     /**
      * This should be a `Tabs` component with children of `Tab`. This is used to figure out which
@@ -127,7 +138,7 @@ export default class TabsContainer extends PureComponent {
     activeTabIndex: controlled(PropTypes.number, 'onTabChange', 'defaultTabIndex'),
 
     /**
-     * An optional function to call when a new tab is seleced by swiping or clicking a tab. When
+     * An optional function to call when a new tab is selected by swiping or clicking a tab. When
      * a new tab has been clicked, the callback will include the active tab index, the tab's `id`,
      * the tab's `controlsId`, the tab's `children`, and the click event.
      *
@@ -195,6 +206,7 @@ export default class TabsContainer extends PureComponent {
     component: 'section',
     defaultTabIndex: 0,
     headerZDepth: 1,
+    slideHeightProp: 'height',
   };
 
   constructor(props) {
@@ -260,6 +272,7 @@ export default class TabsContainer extends PureComponent {
       headerStyle,
       headerClassName,
       slideStyle,
+      slideHeightProp,
       swipeableViewsStyle,
       swipeableViewsClassName,
       headerComponent,
@@ -339,6 +352,8 @@ export default class TabsContainer extends PureComponent {
       );
     }
 
+    const baseSlideStyle = { [slideHeightProp]: panelHeight };
+
     return (
       <Component
         style={style}
@@ -360,7 +375,10 @@ export default class TabsContainer extends PureComponent {
             'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon && !prominentToolbar,
             'md-tabs-content--offset-toolbar-prominent-icon': fixed && toolbar && labelAndIcon && prominentToolbar,
           }, swipeableViewsClassName)}
-          slideStyle={{ height: panelHeight, ...slideStyle }}
+          slideStyle={{
+            ...baseSlideStyle,
+            ...(typeof slideStyle === 'function' ? slideStyle(baseSlideStyle, panelHeight) : slideStyle),
+          }}
           index={activeTabIndex}
           onChangeIndex={this._handleSwipeChange}
         >

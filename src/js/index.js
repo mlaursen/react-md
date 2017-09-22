@@ -18,12 +18,15 @@ import Chip from './Chips';
 import DataTable, {
   TableHeader,
   TableBody,
+  TableFooter,
   TableRow,
   TableColumn,
   TableCardHeader,
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
+  MenuButtonColumn,
+  DropdownMenuColumn,
 } from './DataTables';
 import DialogContainer, { Dialog } from './Dialogs';
 import Divider from './Dividers';
@@ -87,12 +90,15 @@ export { Chip };
 export { DataTable };
 export { TableHeader };
 export { TableBody };
+export { TableFooter };
 export { TableRow };
 export { TableColumn };
 export { TableCardHeader };
 export { EditDialogColumn };
 export { TablePagination };
 export { SelectFieldColumn };
+export { MenuButtonColumn };
+export { DropdownMenuColumn };
 export { DialogContainer };
 export { Dialog };
 export { Divider };
@@ -172,12 +178,15 @@ export default {
   DataTable,
   TableHeader,
   TableBody,
+  TableFooter,
   TableRow,
   TableColumn,
   TableCardHeader,
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
+  MenuButtonColumn,
+  DropdownMenuColumn,
 
   DialogContainer,
   Dialog,

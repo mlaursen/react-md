@@ -19,6 +19,7 @@ export default class DialogFooter extends PureComponent {
         PropTypes.object,
       ])),
     ]),
+    stacked: PropTypes.bool,
   };
 
   state = { stacked: false };
@@ -75,16 +76,22 @@ export default class DialogFooter extends PureComponent {
   };
 
   render() {
-    const { stacked } = this.state;
     const {
       actions,
       className,
       children,
+      stacked: propStacked,
       ...props
     } = this.props;
 
     if (!children && (!actions || (Array.isArray(actions) && !actions.length))) {
       return null;
+    }
+
+    let { stacked } = this.props;
+    const stackedDefined = typeof propStacked !== 'undefined';
+    if (!stackedDefined) {
+      stacked = this.state.stacked;
     }
 
     return (
@@ -94,7 +101,7 @@ export default class DialogFooter extends PureComponent {
           'md-dialog-footer--inline': !stacked,
           'md-dialog-footer--stacked': stacked,
         }, className)}
-        ref={this._setContainer}
+        ref={!stackedDefined ? this._setContainer : null}
       >
         {this._generateActions()}
         {children}

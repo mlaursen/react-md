@@ -31,7 +31,7 @@ $md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26) !default;
 /// @type Color
 $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 
-/// Includes the css for using `md-icon`.
+/// Includes the CSS for using `md-icon`.
 ///
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the application is using the
 ///     light-theme or not.
@@ -103,7 +103,7 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 /// spec of icons.
 ///
 /// @param {Boolean} include-dense [$md-font-icon-include-dense] - Boolean if the dense
-///   specs for icons shoul be included.
+///   specs for icons should be included.
 /// @param {Boolean} include-dense-material-icons [$md-font-icon-include-dense-material-icons] - Boolean if
 ///   the material-icons font icon library should be adjusted to support dense icons.
 /// @group media-queries, icons
@@ -116,7 +116,7 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 }
 
 
-/// Updates the color of the base `md-icon` if the `$light-theme` paramater
+/// Updates the color of the base `md-icon` if the `$light-theme` parameter
 /// does not equal the global `$md-light-theme`.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if using the
 ///     light theme.

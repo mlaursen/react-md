@@ -10,7 +10,6 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import { updateMedia } from 'state/media';
 import { updateLocation } from 'state/routing';
 import navItems from 'constants/navItems';
-import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 import Messages from 'components/Messages';
@@ -62,6 +61,7 @@ export default class App extends PureComponent {
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
     visibleBoxShadow: PropTypes.bool.isRequired,
+    contentProps: PropTypes.object,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     children: PropTypes.node,
@@ -93,17 +93,12 @@ export default class App extends PureComponent {
         window.ga('send', 'pageview', location.pathname);
       }
     });
-    scrollRestoration();
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location !== nextProps.location) {
       this.setState({ key: this.getCurrentKey(nextProps) });
     }
-  }
-
-  componentDidUpdate() {
-    scrollRestoration();
   }
 
   getCurrentKey = ({ location: { pathname, search } }) => {
@@ -130,6 +125,7 @@ export default class App extends PureComponent {
       toolbarTitle,
       visibleBoxShadow,
       toolbarProminent,
+      contentProps,
       searching,
       mobile,
       meta,
@@ -157,6 +153,7 @@ export default class App extends PureComponent {
         toolbarProminent={!mobile && toolbarProminent}
         toolbarChildren={<DocumentationTabs visible={!mobile && toolbarProminent} />}
         toolbarActions={<Search key="search" />}
+        contentProps={contentProps}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {
             return { divider, subheader, ...route };

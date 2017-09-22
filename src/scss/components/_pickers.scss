@@ -30,7 +30,7 @@ $md-picker-include-forceful-classes: false !default;
 $md-picker-inline-z-index: 12 !default;
 
 
-/// The width for the the picker while portrait.
+/// The width for the picker while portrait.
 /// @type Number
 $md-picker-portrait-width: 320px !default;
 
@@ -43,7 +43,7 @@ $md-picker-portrait-content-height: 340px !default;
 $md-picker-portrait-header-height: 110px !default;
 
 
-/// The width for the the picker while landscape.
+/// The width for the picker while landscape.
 /// @type Number
 $md-picker-landscape-width: 560px !default;
 
@@ -61,7 +61,7 @@ $md-picker-landscape-header-width: 180px !default;
 /// @type Number
 $md-picker-mobile-margin: 16px !default;
 
-/// This is an optional fix for devices that have a really small width (iphone 5). This
+/// This is an optional fix for devices that have a really small width (iPhone 5). This
 /// will add an additional media query to hack the size of the dialogs to fit the pickers.
 /// If this is null, it will not be included.
 /// @type Number
@@ -375,7 +375,7 @@ $md-clock-padding: 4px !default;
   }
 }
 
-/// Creates the styles for the the date picker only.
+/// Creates the styles for the date picker only.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-pickers-date;
@@ -488,7 +488,7 @@ $md-clock-padding: 4px !default;
 }
 
 
-/// Creates the styles for the the date picker only.
+/// Creates the styles for the date picker only.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-pickers-date;
@@ -570,7 +570,7 @@ $md-clock-padding: 4px !default;
     z-index: 8;
 
     &:focus {
-      outline-width: 0;
+      outline-style: none;
     }
   }
 

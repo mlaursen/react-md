@@ -4,8 +4,8 @@ import ExamplesPage from 'components/ExamplesPage';
 import description from '../description';
 import Indeterminate from './Indeterminate';
 import IndeterminateRaw from '!!raw-loader!./Indeterminate.jsx';
-import FakeFeedRaw from '!!raw-loader!components/Components/progress/FakeFeed.jsx';
-import styles from '!!raw-loader!components/Components/progress/_fake-feed.scss';
+import FakeFeedRaw from '!!raw-loader!components/Components/Progress/FakeFeed.jsx';
+import styles from '!!raw-loader!components/Components/Progress/_fake-feed.scss';
 
 import Determinate from './Determinate';
 import DeterminateRaw from '!!raw-loader!./Determinate.jsx';
@@ -22,10 +22,10 @@ happens in two stages, one where the action length is not measurable and then th
 `;
 
 const examples = [{
-  title: 'Inderterminate Example',
+  title: 'Indeterminate Example',
   description: `
 As stated above, \`indeterminate\` progress bars should be used when an action's progress can not be measurable.
-This examle will show how you can create a fake feed of data and show a progress indicator while that data is
+This example will show how you can create a fake feed of data and show a progress indicator while that data is
 being "fetched" from a server or if the page was refreshed.
   `,
   code: `/* Indeterminate.jsx */
@@ -56,7 +56,7 @@ will update the progress so that it does not spin infinitely and will grow relat
 The query indeterminate progress is only available on \`LinearProgress\`. It will display a "reverse" loading indicator
 until a progress value has been applied to the progress bar.
 
-Since the example below isn't really the best example of a real world exmple, here are the steps that are happening:
+Since the example below isn't really the best example of a real world example, here are the steps that are happening:
 1. Render the \`LinearProgress\` with \`query={true}\` and the \`value\` prop to either \`null\` or \`undefined\`
 2. Once the "measurable" progress can begin, set the \`value\` prop to your progress amount and keep
 incrementing until it reaches \`100\`.

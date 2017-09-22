@@ -1,6 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -250,6 +251,116 @@ describe('SelectionControlGroup', () => {
     const [f, s] = scryRenderedComponentsWithType(group, SelectionControl);
     expect(f.props.checked).toBe(false);
     expect(s.props.checked).toBe(true);
+  });
+
+  it('should not check any of the radio buttons if the defaultValue does not match any of their values', () => {
+    const props = {
+      id: 'test-radio-group',
+      name: 'test-radio-group',
+      defaultValue: '',
+      type: 'radio',
+      controls: [{
+        value: '1',
+        label: 'First',
+      }, {
+        value: '2',
+        label: 'Second',
+      }, {
+        value: '3',
+        label: 'Third',
+      }],
+    };
+
+    const findChecked = c => c.props().checked === true;
+
+    let group = mount(<SelectionControlGroup {...props} />);
+    expect(group.findWhere(findChecked).length).toBe(0);
+
+    group = mount(<SelectionControlGroup {...props} defaultValue="non-existant" />);
+    expect(group.findWhere(findChecked).length).toBe(0);
+  });
+
+  it('should set the tabIndex to be undefined for the first radio input when the defaultValue does not match any radio values', () => {
+    const props = {
+      id: 'test-radio-group',
+      name: 'test-radio-group',
+      defaultValue: '',
+      type: 'radio',
+      controls: [{
+        value: '1',
+        label: 'First',
+      }, {
+        value: '2',
+        label: 'Second',
+      }, {
+        value: '3',
+        label: 'Third',
+      }],
+    };
+
+    const group = mount(<SelectionControlGroup {...props} />);
+    const controls = group.find(SelectionControl);
+    const getTabIndex = i => controls.at(i).props().tabIndex;
+    expect(controls.length).toBe(3);
+    expect(getTabIndex(0)).toBeUndefined();
+    expect(getTabIndex(1)).toBe(-1);
+    expect(getTabIndex(2)).toBe(-1);
+  });
+
+  it('should not check any of the radio buttons if the defaultValue does not match any of their values', () => {
+    const props = {
+      id: 'test-radio-group',
+      name: 'test-radio-group',
+      value: '',
+      onChange: jest.fn(),
+      type: 'radio',
+      controls: [{
+        value: '1',
+        label: 'First',
+      }, {
+        value: '2',
+        label: 'Second',
+      }, {
+        value: '3',
+        label: 'Third',
+      }],
+    };
+
+    const findChecked = c => c.props().checked === true;
+
+    let group = mount(<SelectionControlGroup {...props} />);
+    expect(group.findWhere(findChecked).length).toBe(0);
+
+    group = mount(<SelectionControlGroup {...props} value="non-existant" />);
+    expect(group.findWhere(findChecked).length).toBe(0);
+  });
+
+  it('should set the tabIndex to be undefined for the first radio input when the defaultValue does not match any radio values', () => {
+    const props = {
+      id: 'test-radio-group',
+      name: 'test-radio-group',
+      value: '',
+      onChange: jest.fn(),
+      type: 'radio',
+      controls: [{
+        value: '1',
+        label: 'First',
+      }, {
+        value: '2',
+        label: 'Second',
+      }, {
+        value: '3',
+        label: 'Third',
+      }],
+    };
+
+    const group = mount(<SelectionControlGroup {...props} />);
+    const controls = group.find(SelectionControl);
+    const getTabIndex = i => controls.at(i).props().tabIndex;
+    expect(controls.length).toBe(3);
+    expect(getTabIndex(0)).toBeUndefined();
+    expect(getTabIndex(1)).toBe(-1);
+    expect(getTabIndex(2)).toBe(-1);
   });
 
   it('calls the onChange prop with the comma-delimited list of checked values when the type is checkbox', () => {

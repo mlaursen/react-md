@@ -5,6 +5,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
+import getTextWidth from '../utils/Positioning/getTextWidth';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -226,7 +227,7 @@ export default class TextField extends PureComponent {
 
     /**
      * An optional boolean if the `floating` state of the text field's floating label can be
-     * externally modified as well. The floating state is true when the tet field gains focus
+     * externally modified as well. The floating state is true when the text field gains focus
      * or there is a value in the text field.
      *
      * If this prop is set, it will check both the floating prop and the floating state to
@@ -297,7 +298,7 @@ export default class TextField extends PureComponent {
     maxRows: PropTypes.number,
 
     /**
-     * An optional customsize to apply to the text field. This is used along with
+     * An optional custom size to apply to the text field. This is used along with
      * the `$md-text-field-custom-sizes` variable. It basically applies a className of
      * `md-text-field--NAME`.
      */
@@ -490,7 +491,7 @@ export default class TextField extends PureComponent {
 
   /**
    * A helper function for blurring the `input` field or the `textarea` in the `TextField`.
-   * This is accessibile if you use `refs`.
+   * This is accessible if you use `refs`.
    * Example:
    *
    * ```js
@@ -512,9 +513,9 @@ export default class TextField extends PureComponent {
       const iconEl = Children.only(icon);
       return cloneElement(iconEl, {
         key: iconEl.key || `icon-${dir}`,
-        disabled,
-        primary: stateful && !error && active,
-        error: stateful && error,
+        disabled: stateful ? disabled : undefined,
+        primary: stateful ? !error && active : undefined,
+        error: stateful ? error : undefined,
         className: cn('md-text-field-icon', {
           'md-text-field-icon--positioned': !block,
         }, iconEl.props.className),
@@ -541,35 +542,16 @@ export default class TextField extends PureComponent {
   };
 
   _calcWidth = (value) => {
-    const field = (this._field && this._field.getField()) || null;
-    if (!field) {
-      return null;
-    }
-
-    if (!this._canvas) {
-      this._canvas = document.createElement('canvas');
-    }
-
-    const context = this._canvas.getContext('2d');
-    if (!context) { // Doesn't exist in testing
-      return null;
-    }
-
-    const styles = window.getComputedStyle(field);
-    let font = styles.font;
-    // Some browsers do not actually supply the font style since they are on an older version of CSSProperties,
-    // so the font string needs to be made manually.
-    if (!font) {
-      // font-style font-variant font-weight font-size/line-height font-family
-      const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
-      font = `${styles.fontStyle} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
+    const width = getTextWidth(value, this._field && this._field.getField());
+    if (width === null) {
+      // some error happened, don't do other logic
+      return width;
     }
 
     const { max } = this.props.resize;
     const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
-    context.font = font;
-    return Math.min(max, Math.max(min, context.measureText(value).width));
+    return Math.min(max, Math.max(min, width));
   };
 
   _handleContainerClick = (e) => {

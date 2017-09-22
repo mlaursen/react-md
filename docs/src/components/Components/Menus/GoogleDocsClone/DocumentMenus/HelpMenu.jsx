@@ -23,5 +23,5 @@ const MENU_ITEMS = [
   'Keyboard shortcuts',
 ];
 
-const HelpMenu = () => <DocumentMenu id="help" text="Help" menuItems={MENU_ITEMS} />;
+const HelpMenu = props => <DocumentMenu {...props} id="help" text="Help" menuItems={MENU_ITEMS} />;
 export default HelpMenu;

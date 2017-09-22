@@ -83,7 +83,7 @@ export default class WeatherCard extends PureComponent {
     const { time, temperature, wind, rain } = this.state;
     return (
       <Card className="cards__weather">
-        <CardTitle title="San Francisico" subtitle={`${this._formatter.format(time)}, Mostly Sunny`} />
+        <CardTitle title="San Francisco" subtitle={`${this._formatter.format(time)}, Mostly Sunny`} />
         <CardText className="cards__weather__temperature">
           <h4 className="md-display-4 cards__weather__degrees">{temperature}</h4>
           <h5 className="md-display-2 cards__weather__celcius">{CELCIUS}</h5>

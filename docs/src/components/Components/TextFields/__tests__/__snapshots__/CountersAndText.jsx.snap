@@ -51,12 +51,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={true}
         className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
       >
         0 / 20
-      </p>
+      </div>
     </div>
   </div>
   <div
@@ -128,12 +128,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={true}
         className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
       >
         0 / 200
-      </p>
+      </div>
     </div>
   </div>
   <h4
@@ -183,12 +183,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={false}
         className="md-text-field-message md-text-field-message--active"
       >
         Look at me. I am always here!
-      </p>
+      </div>
     </div>
   </div>
   <div
@@ -233,12 +233,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={true}
         className="md-text-field-message md-text-field-message--inactive"
       >
         I magically appear when the user focuses the text field.
-      </p>
+      </div>
     </div>
   </div>
   <div
@@ -283,18 +283,18 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={false}
         className="md-text-field-message md-text-field-message--active"
       >
         I have help text and a counter. It is quite amazing.
-      </p>
-      <p
+      </div>
+      <div
         aria-hidden={true}
         className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
       >
         0 / 40
-      </p>
+      </div>
     </div>
   </div>
   <h4
@@ -344,12 +344,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-full-width md-text--error"
     >
-      <p
+      <div
         aria-hidden={false}
         className="md-text-field-message md-text-field-message--active"
       >
         Uh oh! It looks like there is a constant error on this field. It should somehow be fixed.
-      </p>
+      </div>
     </div>
   </div>
   <div
@@ -394,12 +394,12 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={false}
         className="md-text-field-message md-text-field-message--active"
       >
         Try to focus and blur this field without adding any input. Then add some content.
-      </p>
+      </div>
     </div>
   </div>
   <div
@@ -458,18 +458,18 @@ exports[`CountersAndText should render correctly 1`] = `
     <div
       className="md-text-field-message-container md-text-field-message-container--left-icon-offset md-full-width md-text--disabled"
     >
-      <p
+      <div
         aria-hidden={false}
         className="md-text-field-message md-text-field-message--active"
       >
         The icons also gain the error state.
-      </p>
-      <p
+      </div>
+      <div
         aria-hidden={true}
         className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
       >
         0 / 40
-      </p>
+      </div>
     </div>
   </div>
 </div>

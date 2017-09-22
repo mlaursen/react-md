@@ -2,7 +2,8 @@ import Fuse from 'fuse.js';
 import { toTitle } from 'utils/strings';
 import { baseRoutes } from 'server/routes';
 import proptypesDatabase from 'server/databases/proptypeLinks.json';
-import sassdocsDatabase from 'server/databases/sassdocLinks';
+import sassdocsDatabase from 'server/databases/sassdocLinks.json';
+import examplesDatabase from 'server/databases/examplesLinks.json';
 import createPaginatedRoute from 'server/utils/createPaginatedRoute';
 
 const searchRoutes = baseRoutes.map((route) => {
@@ -23,16 +24,20 @@ const searchRoutes = baseRoutes.map((route) => {
     ref: route,
   };
 });
-searchRoutes.push({
-  name: 'Theme Builder',
-  ref: '/customization/themes?tab=1',
-  type: 'Info',
-});
 
-const database = searchRoutes.concat(proptypesDatabase).concat(sassdocsDatabase);
+const database = [...searchRoutes, ...proptypesDatabase, ...sassdocsDatabase, ...examplesDatabase];
 
 const indexer = new Fuse(database, {
-  keys: [{ name: 'name', weight: 0.85 }, { name: 'type', weight: 0.15 }],
+  keys: [{
+    name: 'name',
+    weight: 0.50,
+  }, {
+    name: 'type',
+    weight: 0.35,
+  }, {
+    name: 'description',
+    weight: 0.15,
+  }],
 });
 
-export default createPaginatedRoute(q => indexer.search(q));
+export default createPaginatedRoute(q => indexer.search(q), { omitKeys: 'description' });

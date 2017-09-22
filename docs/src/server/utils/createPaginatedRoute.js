@@ -1,5 +1,6 @@
 import { BAD_REQUEST } from 'constants/responseCodes';
 import { getUrl } from 'server/utils/getServerUrl';
+import { omit } from 'lodash';
 
 function isInt(x) {
   return !Number.isNaN(x) && x % 1 === 0;
@@ -15,10 +16,14 @@ function isInt(x) {
  *
  * @param {function} getData - a function to get the data for the current route. It will provide the current
  *    query string.
- * @param {boolean=true} queryable - boolean if the route should be queryable.
+ * @param {Object=} config - Any additional config to use.
+ * @param {boolean=true} config.queryable - boolean if the route should be queryable.
+ * @param {number=50} config.maxResults - the maximun number of results allowed.
+ * @param {Array.<String>|String=} config.omitKeys - An optional list or sintr string of keys to remove
+ *    from the response.
  * @return {function} a route handler for getting paginated data.
  */
-export default function createPaginatedRoute(getData, queryable = true, maxResults = 50) {
+export default function createPaginatedRoute(getData, { queryable = true, maxResults = 50, omitKeys = null } = {}) {
   return function handlePaginationRequest(req, res) {
     const { q } = req.query;
     let { start, limit } = req.query;
@@ -61,6 +66,8 @@ export default function createPaginatedRoute(getData, queryable = true, maxResul
       previous = `${url}start=${Math.max(0, start - limit)}&limit=${limit}`;
     }
 
+    const sliced = data.slice(start, start + limit);
+
     res.json({
       meta: {
         start,
@@ -69,7 +76,7 @@ export default function createPaginatedRoute(getData, queryable = true, maxResul
         next,
         previous,
       },
-      data: data.slice(start, start + limit),
+      data: omitKeys && omitKeys.length ? sliced.map(datum => omit(datum, omitKeys)) : sliced,
     });
   };
 }

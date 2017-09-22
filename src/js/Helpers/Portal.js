@@ -51,7 +51,7 @@ export default class Portal extends PureComponent {
     renderNode: PropTypes.object,
 
     /**
-     * Boolean if the portal should render the childeren as the last child of the `renderNode`
+     * Boolean if the portal should render the children as the last child of the `renderNode`
      * or `body` instead of the first.
      */
     lastChild: PropTypes.bool,
@@ -131,7 +131,7 @@ export default class Portal extends PureComponent {
   };
 
   render() {
-    // When doing server side rendering, actualy render the component as a direct child of its parent.
+    // When doing server side rendering, actually render the component as a direct child of its parent.
     // Once it has been rendered and working client side, it will be removed correctly.
     if (typeof window === 'undefined' && this.props.visible) {
       const { component: Component, className, children } = this.props;

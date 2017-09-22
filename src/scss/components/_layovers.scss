@@ -2,6 +2,12 @@
 /// @group layovers
 ////
 
+
+/// Boolean if the minimal styles for the simple layovers should be included.
+/// These styles are required if the `simplified` prop is enabled on the `Layover`
+/// @type Boolean
+$md-layover-include-simplified: true !default;
+
 /// The transition time for a layover's child to appear or disappear.
 /// @type Number
 $md-layover-transition-time: .2s !default;
@@ -23,7 +29,7 @@ $md-layover-child-positions: (
 ) !default;
 
 /// Creates the styles for layovers
-@mixin react-md-layovers {
+@mixin react-md-layovers($include-simplified: $md-layover-include-simplified) {
   .md-layover-enter {
     transform: scale(0);
 
@@ -65,6 +71,16 @@ $md-layover-child-positions: (
           }
         }
       }
+    }
+  }
+
+  @if $include-simplified {
+    .md-layover--simplified {
+      position: relative;
+    }
+
+    .md-layover-child--simplified {
+      position: absolute;
     }
   }
 }

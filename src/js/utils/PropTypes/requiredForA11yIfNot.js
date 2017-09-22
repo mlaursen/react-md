@@ -1,7 +1,7 @@
 /** @module utils/PropTypes/requiredForA11yIfNot */
 
 /**
- * This validator checkes that the current prop is valid and defined ONLY if
+ * This validator checks that the current prop is valid and defined ONLY if
  * any of the `otherPropNames` are not true or defined.
  *
  * @param {function} validator - The React PropTypes validator to use for the given prop.

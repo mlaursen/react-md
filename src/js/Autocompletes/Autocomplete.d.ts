@@ -17,13 +17,15 @@ export interface AutocompleteProps extends BaseMenuProps {
   textFieldClassName?: string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
+  inlineSuggestionStyle?: React.CSSProperties;
+  inlineSuggestionClassName?: string;
   disabled?: boolean;
   label?: React.ReactNode;
   placeholder?: string;
   value?: string | number;
   defaultValue?: string | number;
   dataLabel?: string;
-  dataValue?: string
+  dataValue?: string;
   deleteKeys?: string | Array<string>;
   data: DataType;
   total?: number;
@@ -36,16 +38,35 @@ export interface AutocompleteProps extends BaseMenuProps {
   onAutocomplete?: (suggestion: string | number, suggestionIndex: number, matches: DataType) => void;
   onChange?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
   clearOnAutocomplete?: boolean;
+  focusInputOnAutocomplete?: boolean;
   onMenuOpen?: Function;
   onMenuClose?: Function;
   autoComplete?: OnOffType;
   position?: LayoverPositions;
+  simplifiedMenu?: boolean;
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {
-  Positions: LayoverPositions;
-  HorizontalAnchors: HorizontalAnchors;
-  VerticalAnchors: VerticalAnchors;
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
   caseInsensitiveFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   fuzzyFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   findIgnoreCase(data: DataType, filterText: string, dataLabel?: string): string;

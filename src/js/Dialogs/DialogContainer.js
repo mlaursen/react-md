@@ -44,8 +44,8 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog id="accessibleExample" visible aria-describedby="accessibleContent">
-     *   <p id="accessibleContent">This is some content that describes the dialog.</p>
+     * <Dialog id="accessible-example" visible aria-describedby="accessible-content">
+     *   <p id="accessible-content">This is some content that describes the dialog.</p>
      * </Dialog>
      * ```
      */
@@ -61,8 +61,8 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog visible id="accessibleExample" aria-labelledby="accessibleDialogLabel">
-     *   <h2 id="accessibleDialogLabel">Some Accessible Dialog</h2>
+     * <Dialog visible id="accessible-example" aria-labelledby="accessible-dialog-label">
+     *   <h2 id="accessible-dialog-label">Some Accessible Dialog</h2>
      * </Dialog>
      * ```
      */
@@ -78,7 +78,7 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog visible id="accessibleExample" aria-label="Some Accessible Dialog">
+     * <Dialog visible id="accessible-example" aria-label="Some Accessible Dialog">
      *   <p>Lorem Ipsum</p>
      * </Dialog>
      * ```
@@ -150,7 +150,7 @@ export default class DialogContainer extends PureComponent {
     ]),
 
     /**
-     * Bolean if the `Dialog` is current visible.
+     * Boolean if the `Dialog` is current visible.
      */
     visible: PropTypes.bool.isRequired,
 
@@ -242,7 +242,7 @@ export default class DialogContainer extends PureComponent {
     transitionLeaveTimeout: PropTypes.number.isRequired,
 
     /**
-     * Boolean if the dialog should be closeable by pressing the escape key.
+     * Boolean if the dialog should be closable by pressing the escape key.
      * This will always be considered `false` of the `modal` props is `true`.
      */
     closeOnEsc: PropTypes.bool,
@@ -288,6 +288,53 @@ export default class DialogContainer extends PureComponent {
      */
     disableScrollLocking: PropTypes.bool,
 
+    /**
+     * Boolean if the dialog should automatically try to determine if the content
+     * should be padded. It will be padded if the dialog does not contain a `List`.
+     */
+    autopadContent: PropTypes.bool,
+
+    /**
+     * Boolean if the dialog content's size should automatically be resized to overflow
+     * correctly when there is a lot of content. This will calculate and apply some `maxHeight`
+     * to the `contentStyle`.
+     */
+    autosizeContent: PropTypes.bool,
+
+    /**
+     * An optional height to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #width}
+     */
+    height: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional width to apply to the dialog. This is used if it is easier to just apply height/width
+     * with for specific dialogs instead of in CSS.
+     *
+     * **This prop should not be used if the `fullPage` prop is enabled.**
+     *
+     * @see {@link #fullPage}
+     * @see {@link #height}
+     */
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * Boolean if the actions should be stacked on top of each other. If this value is `undefined`, it will
+     * automatically attempt to guess if the items should be stacked.
+     */
+    stackedActions: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -298,6 +345,8 @@ export default class DialogContainer extends PureComponent {
   };
 
   static defaultProps = {
+    autopadContent: true,
+    autosizeContent: true,
     component: 'span',
     closeOnEsc: true,
     contentComponent: 'section',

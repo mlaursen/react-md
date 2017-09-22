@@ -19,7 +19,7 @@ function isMediaChange(props, nextProps) {
 export default class FixedTablePagination extends PureComponent {
   static propTypes = {
     /**
-     * A simple api call to fetch the columns for the "large" dataset. I keep it in redux
+     * A simple API call to fetch the columns for the "large" dataset. I keep it in redux
      * for some SSR benefits and caching for later, but you can interpret it as..
      *
      * fetch('/api/air-quality/columns')
@@ -33,7 +33,7 @@ export default class FixedTablePagination extends PureComponent {
     fetchColumns: PropTypes.func.isRequired,
 
     /**
-     * A simple api call to fetch the data with a start and limit from the "large" dataset. Same
+     * A simple API call to fetch the data with a start and limit from the "large" dataset. Same
      * reasons as above for keeping it in redux, but you can interpret it as:
      *
      * fetch(`/api/air-quality/data?start=${start}&limit=${limit}`)
@@ -131,7 +131,7 @@ export default class FixedTablePagination extends PureComponent {
     // attempt to lazily-fetch the next results
     this.props.fetchData(start, rowsPerPage);
 
-    // Check if all the data already exists. if it does, go ahead and set the spliced data
+    // Check if all the data already exists. If it does, go ahead and set the spliced data
     const sliced = this.props.data.slice(start, start + rowsPerPage).filter(d => !!d);
     this.setState({
       start,

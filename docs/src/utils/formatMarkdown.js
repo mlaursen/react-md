@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import marked from 'marked';
 import { GITHUB_URL } from 'constants/application';
 
@@ -22,6 +23,7 @@ marked.setOptions({
  *
  * @param {String} markdown - the transformed markdown
  * @return {String} the markdown updated with github links.
+ * @deprecated Use addGithubLinking instead
  */
 function addSimpleGithubLinking(markdown) {
   return markdown.replace(/#(commit|pull|issues)-(\w+)/g, `${GITHUB_URL}/$1/$2`);
@@ -34,7 +36,7 @@ function addSimpleGithubLinking(markdown) {
  * @return {String} the markdown updated with link styles.
  */
 function addLinkStyles(markdown) {
-  return markdown.replace(/<a (href=".*")>/g, '<a $1 class="link">');
+  return markdown.replace(/<a (href="[^"]+")>/g, '<a $1 class="link">');
 }
 
 /**
@@ -52,12 +54,54 @@ function removeMarginFromSeeParagraphs(markdown) {
   return markdown.replace(/<p>@see/g, '<p style="margin-bottom:0">@see');
 }
 
-const transforms = [
+function addEmojiItems(markdown) {
+  return markdown.replace(/\r?\n<li>✨\s?/g, '<li class="emoji-item emoji-item--sparkles">')
+    .replace(/\r?\n<li>🎉\s?/g, '<li class="emoji-item emoji-item--tada">')
+    .replace(/\r?\n<li>🐛\s?/g, '<li class="emoji-item emoji-item--bug">');
+}
+
+function addGithubLinks(markdown) {
+  if (__DEV__) {
+    const short = markdown.match(/\[commit-\w{0,6}]/g);
+    const long = markdown.match(/\[commit-\w{8,}]/g);
+    if (short || long) {
+      let joined = short;
+      if (long) {
+        joined = joined ? joined.concat(long) : long;
+      }
+
+      const msg = 'Failed attempting to create a GitHub commit shortcut link. The commit hash must be 7 characters in length.';
+      console.error(`${msg} Please fix the following: \`${joined.join(', ')}\``);
+    }
+  }
+
+  return markdown.replace(/\[(pull|issues)-((\w+)(#issuecomment-\w+)?)]/g, `[#$3](${GITHUB_URL}/$1/$2)`)
+    .replace(/\[commit-(\w{7})]/g, `[$1](${GITHUB_URL}/commit/$1)`);
+}
+
+function addGithubUserLinks(markdown) {
+  return markdown.replace(/(\[@(\w+)])/g, '$1(https://github.com/$2)');
+}
+
+
+const preTransforms = [
+  addGithubLinks,
+  addGithubUserLinks,
+  addAdditionalLineToSee,
+  marked,
+];
+
+const postTransforms = [
   addSimpleGithubLinking,
   addLinkStyles,
+  addEmojiItems,
   removeMarginFromSeeParagraphs,
 ];
 
+function reduce(transforms, markdown) {
+  return transforms.reduce((formatted, transform) => transform(formatted), markdown);
+}
+
 export default function formatMarkdown(markdown) {
-  return transforms.reduce((formatted, transform) => transform(formatted), marked(addAdditionalLineToSee(markdown)));
+  return reduce(postTransforms, reduce(preTransforms, markdown));
 }

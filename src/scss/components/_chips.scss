@@ -110,7 +110,7 @@ $md-chip-contact-font-size: 14px !default;
 
     &:focus {
       @include md-box-shadow(1);
-      outline-width: 0;
+      outline-style: none;
     }
   }
 
@@ -137,7 +137,7 @@ $md-chip-contact-font-size: 14px !default;
     @include react-md-chips-contact;
   }
 
-  // has to go last so it has higher precidence.
+  // has to go last so it has higher precedence.
   .md-chip-text--hover {
     color: $md-white-base;
   }

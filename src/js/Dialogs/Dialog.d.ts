@@ -21,6 +21,10 @@ export interface DialogProps extends Props {
   containFocus?: boolean;
   fullPage?: boolean;
   title?: React.ReactNode;
+  autosizeContent?: boolean;
+  height?: number;
+  width?: number;
+  stackedActions?: boolean;
 }
 
 declare const Dialog: React.ComponentClass<DialogProps>;

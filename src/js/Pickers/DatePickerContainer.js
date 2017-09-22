@@ -37,7 +37,7 @@ import DatePicker from './DatePicker';
 export default class DatePickerContainer extends PureComponent {
   static propTypes = {
     /**
-     * An id for the text field in the date picker. This is require for a11u.
+     * An id for the text field in the date picker. This is require for a11y.
      */
     id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.string,
@@ -178,7 +178,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * A function to format the dates since it should be formatted to the user's
      * locale. This _should_ be the `Intl.DateTimeFormat` function. You
-     * can also create your own if you really wanted. Unadvisable though.
+     * can also create your own if you really wanted. Inadvisable though.
      *
      * See [intl-polyfill](https://github.com/andyearnshaw/Intl.js/) for more info.
      */
@@ -186,7 +186,7 @@ export default class DatePickerContainer extends PureComponent {
 
     /**
      * The locales to use for formatting the date. This will default to using
-     * the user's language in the browser or `'en-US'` when server renering.
+     * the user's language in the browser or `'en-US'` when server rendering.
      */
     locales: PropTypes.oneOfType([
       PropTypes.string,

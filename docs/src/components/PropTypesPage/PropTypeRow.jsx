@@ -5,6 +5,7 @@ import { kebabCase } from 'lodash/string';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 
+import QuickLink from 'components/QuickLink';
 import Markdown from 'components/Markdown';
 
 const PropTypesRow = ({ propName, type, required, defaultValue, description, baseId }) => {
@@ -14,25 +15,27 @@ const PropTypesRow = ({ propName, type, required, defaultValue, description, bas
   }
 
   const deprecated = type.indexOf('deprecated') !== -1;
+  const id = `${baseId}-proptypes-${kebabCase(propName)}`;
 
   return (
-    <TableRow id={`${baseId}-proptypes-${kebabCase(propName)}`} tabIndex={-1}>
+    <TableRow id={id} tabIndex={-1} className="quick-link">
       <TableColumn
-        className={cn('prop-types__prop-name', {
+        className={cn('quick-link__container prop-types__cell prop-types__prop-name', {
           'prop-types__prop-name--deprecated md-text--secondary': deprecated,
         })}
       >
+        <QuickLink id={id} props />
         {propName}
       </TableColumn>
       <TableColumn
-        className="prop-types__prop-type"
+        className="prop-types__cell prop-types__prop-type"
         tooltipLabel={required ? 'Required' : null}
         tooltipDelay={300}
         tooltipPosition="top"
       >
         <Markdown markdown={`\`\`\`js\n${type}${required ? ' *' : ''}\n\`\`\``} lineNumbers={false} />
       </TableColumn>
-      <TableColumn className="prop-types__normal-column">
+      <TableColumn className="prop-types__cell prop-types__normal-column">
         <Markdown markdown={descriptionMarkdown} lineNumbers={false} />
       </TableColumn>
     </TableRow>

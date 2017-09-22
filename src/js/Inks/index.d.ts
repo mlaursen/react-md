@@ -1,1 +1,1 @@
-export { default, InjectedInkProps, InkedComponent } from './injectInk';
+export { default, default as injectInk, InjectedInkProps, InkedComponent } from './injectInk';

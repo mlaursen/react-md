@@ -9,37 +9,37 @@ exports[`Colors should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<h2 id=\\"color-definitions\\">Color Definitions</h2>
-      <p>Every material design color is available as a sass variable in the form of
-      <code>$md-COLOR-HUE</code> and <code>$md-COLOR-a-HUE</code> to get a base color and accent color
-      respectively. If you waned to style something with a background of blue and
-      a text color of a green accent, you can use the variables as follows:</p>
-      <pre><code class=\\"lang-scss\\">.some-class {
-        background: $md-blue-500;
-        color: $md-green-a-100;
-      }
-      </code></pre>
-      <p>All colors will have primary colors with suffixes: <code>50, 100, 200, 300, 400, 500, 600, 700, 800, 900</code>
-      and all colors except for <code>brown</code>, <code>grey</code> and <code>blue-grey</code> will have accent suffixes of
-      <code>100, 200, 400, 700</code>. In addition, the <code>$md-black-base</code> and <code>$md-white-base</code> variables are available.</p>
-      <p>To help with getting specific colors, there is a Sass Map of every color and a mixin that will create
-      two class names for each material design color.</p>
-      <h3 id=\\"-md-color-map-\\"><code>$md-color-map</code></h3>
-      <p>This map contains every material design color so that you can quickly access them and optionally use
-      the <a href=\\"http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions\\" class=\\"link\\">Sass Map functions</a>
-      to programatically get colors. This is really just used for the <code>react-md-color-class-names mixin</code>.</p>
-      <h3 id=\\"-mixin-react-md-color-class-names-\\"><code>mixin react-md-color-class-names</code></h3>
-      <p>This mixin will create two class names for every material design color: one for styling <code>color</code> (<code>--color</code>) and the
-      other for styling <code>background</code> (<code>--background</code>).</p>
-      <p>For example, if you want to display a warning by styling the background orange, you could apply
-      <code>.md-orange--background</code> to your component.</p>
-      <blockquote>
-      <p>By default, these utility class names will not be included with the <code>react-md-everything mixin</code>.
-      They can be included by either manually using the <code>react-md-color-class-names mixin</code> or by setting
-      the <code>$md-colors-include-class-names</code> variable to <code>true</code> before include the <code>react-md-everything mixin</code>;</p>
-      </blockquote>
-      <p>View the SassDoc tab for more information.</p>
-      <h2 id=\\"available-colors\\">Available Colors</h2>
-      ",
+<p>Every material design color is available as a sass variable in the form of
+<code>$md-COLOR-HUE</code> and <code>$md-COLOR-a-HUE</code> to get a base color and accent color
+respectively. If you waned to style something with a background of blue and
+a text color of a green accent, you can use the variables as follows:</p>
+<pre><code class=\\"lang-scss\\">.some-class {
+  background: $md-blue-500;
+  color: $md-green-a-100;
+}
+</code></pre>
+<p>All colors will have primary colors with suffixes: <code>50, 100, 200, 300, 400, 500, 600, 700, 800, 900</code>
+and all colors except for <code>brown</code>, <code>grey</code> and <code>blue-grey</code> will have accent suffixes of
+<code>100, 200, 400, 700</code>. In addition, the <code>$md-black-base</code> and <code>$md-white-base</code> variables are available.</p>
+<p>To help with getting specific colors, there is a Sass Map of every color and a mixin that will create
+two class names for each material design color.</p>
+<h3 id=\\"-md-color-map-\\"><code>$md-color-map</code></h3>
+<p>This map contains every material design color so that you can quickly access them and optionally use
+the <a href=\\"http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions\\" class=\\"link\\">Sass Map functions</a>
+to programmatically get colors. This is really just used for the <code>react-md-color-class-names mixin</code>.</p>
+<h3 id=\\"-mixin-react-md-color-class-names-\\"><code>mixin react-md-color-class-names</code></h3>
+<p>This mixin will create two class names for every material design color: one for styling <code>color</code> (<code>--color</code>) and the
+other for styling <code>background</code> (<code>--background</code>).</p>
+<p>For example, if you want to display a warning by styling the background orange, you could apply
+<code>.md-orange--background</code> to your component.</p>
+<blockquote>
+<p>By default, these utility class names will not be included with the <code>react-md-everything mixin</code>.
+They can be included by either manually using the <code>react-md-color-class-names mixin</code> or by setting
+the <code>$md-colors-include-class-names</code> variable to <code>true</code> before include the <code>react-md-everything mixin</code>;</p>
+</blockquote>
+<p>View the SassDoc tab for more information.</p>
+<h2 id=\\"available-colors\\">Available Colors</h2>
+",
       }
     }
   />

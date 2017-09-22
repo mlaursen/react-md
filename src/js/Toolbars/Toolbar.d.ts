@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Props } from '../index';
 
 export interface ToolbarProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   titleStyle?: React.CSSProperties;
   titleClassName?: string;
   prominent?: boolean;

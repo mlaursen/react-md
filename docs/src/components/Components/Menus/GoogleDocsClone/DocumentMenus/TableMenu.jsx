@@ -44,5 +44,5 @@ const MENU_ITEMS = [{
   disabled: true,
 }];
 
-const TableMenu = () => <DocumentMenu id="table" text="Table" menuItems={MENU_ITEMS} />;
+const TableMenu = props => <DocumentMenu {...props} id="table" text="Table" menuItems={MENU_ITEMS} />;
 export default TableMenu;

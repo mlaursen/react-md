@@ -10,7 +10,7 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-transition-group": "^15.5.2",
     "react-dom": "^15.5.4",
-    "react-md": "*",
+    "react-md": "latest",
     "react-router-dom": "^4.1.1",
     "webfontloader": "^1.6.27"
   },
