@@ -399,7 +399,7 @@ export default class TextField extends PureComponent {
       floating: isValued(props.defaultValue) || isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
       currentLength,
-      width,
+      styles: width ? { width, ...props.style } : props.style,
     };
   }
 
@@ -412,32 +412,24 @@ export default class TextField extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { value, maxLength, required, resize } = nextProps;
-    if (this.props.value !== value) {
-      let { error, width } = this.state;
-      const currentLength = this._getLength(value);
-      if (required && error) {
-        error = !isValued(value);
-      }
-
-      if (maxLength) {
-        error = error || currentLength > maxLength;
-      }
-
-      if (resize) {
-        const nextWidth = this._calcWidth(value);
-        if (!resize.disableShrink || nextWidth > width) {
-          width = nextWidth;
-        }
-      }
-
-      this.setState({
-        error,
-        width,
-        currentLength,
-        floating: isValued(value) || (this.state.floating && this.state.active),
-      });
+    const { value, resize, style } = nextProps;
+    const nextState = {};
+    if (value !== this.props.value) {
+      nextState.error = this._isErrored(nextProps);
+      nextState.floating = isValued(value);
+      nextState.currentLength = this._getLength(value);
     }
+
+    if (style !== this.props.style || value !== this.props.value || resize !== this.props.resize) {
+      if (!resize) {
+        nextState.styles = style;
+      } else {
+        const width = this._calcWidth(value, nextProps);
+        nextState.styles = { width, ...style };
+      }
+    }
+
+    this.setState(nextState);
   }
 
   /**
@@ -524,23 +516,49 @@ export default class TextField extends PureComponent {
     return 0;
   };
 
+  _setContainer = (div) => {
+    this._container = div;
+  };
+
   _setField = (field) => {
     if (field !== null) {
       this._field = field;
     }
   };
 
-  _calcWidth = (value) => {
-    const width = getTextWidth(value, this._field && this._field.getField());
-    if (width === null) {
+  _calcWidth = (value, props = this.props) => {
+    const field = this._field && this._field.getField();
+    let width = getTextWidth(value, field);
+    if (width === null || !field) {
       // some error happened, don't do other logic
       return width;
     }
 
-    const { max } = this.props.resize;
-    const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
+    const { max } = props.resize;
+    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
-    return Math.min(max, Math.max(min, width));
+    if (this._container) {
+      const indicator = this._container.querySelector('.md-text-field-inline-indicator');
+      if (indicator) {
+        width += indicator.getBoundingClientRect().width;
+      }
+    }
+
+    return Math.ceil(Math.min(max, Math.max(min, width)));
+  };
+
+  _isErrored = ({ value, maxLength, required } = this.props) => {
+    let { error } = this.state;
+    const currentLength = this._getLength(value);
+    if (required && error) {
+      error = !isValued(value);
+    }
+
+    if (maxLength) {
+      error = error || currentLength > maxLength;
+    }
+
+    return error;
   };
 
   _handleContainerClick = (e) => {
@@ -619,11 +637,10 @@ export default class TextField extends PureComponent {
   };
 
   render() {
-    const { currentLength, passwordVisible, width } = this.state;
+    const { currentLength, passwordVisible, styles } = this.state;
     const {
       id,
       type,
-      style,
       className,
       inputStyle,
       inputClassName,
@@ -659,6 +676,7 @@ export default class TextField extends PureComponent {
       passwordIconChildren,
       passwordIconClassName,
       /* eslint-disable no-unused-vars */
+      style,
       label: propLabel,
       placeholder: propPlaceholder,
       error: propError,
@@ -824,7 +842,7 @@ export default class TextField extends PureComponent {
     const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        style={{ width, ...style }}
+        style={styles}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
@@ -845,6 +863,7 @@ export default class TextField extends PureComponent {
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchCancel}
         onTouchMove={onTouchMove}
+        ref={this._setContainer}
       >
         {ink}
         {children}
