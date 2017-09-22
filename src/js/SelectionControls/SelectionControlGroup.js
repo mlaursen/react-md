@@ -7,7 +7,6 @@ import getField from '../utils/getField';
 import minMaxLoop from '../utils/NumberUtils/minMaxLoop';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
-import FontIcon from '../FontIcons/FontIcon';
 
 
 /**
