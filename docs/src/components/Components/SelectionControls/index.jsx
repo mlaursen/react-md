@@ -6,6 +6,8 @@ import SimpleCheckboxesAndSwitches from './SimpleCheckboxesAndSwitches';
 import SimpleCheckboxesAndSwitchesRaw from '!!raw-loader!./SimpleCheckboxesAndSwitches.jsx';
 import RadioExample from './RadioExample';
 import RadioExampleRaw from '!!raw-loader!./RadioExample.jsx';
+import UsingCustomIcons from './UsingCustomIcons';
+import UsingCustomIconsRaw from '!!raw-loader!./UsingCustomIcons.jsx';
 
 const examples = [{
   title: 'Simple Checkboxes and Switches',
@@ -34,6 +36,23 @@ will immediately select the radio, trigger the \`onChange\` event, and loop arou
   `,
   code: RadioExampleRaw,
   children: <RadioExample />,
+}, {
+  title: 'Using Custom Icons',
+  description: `
+By default, the \`Checkbox\` and \`Radio\` components will use \`FontIcon\` to display the checked/unchecked icons.
+If you want to change the displayed icon, you can use the \`checkedIcon\`/\`uncheckedIcon\` props on the \`Checkbox\`
+or provide the correct \`checkedCheckboxIcon\`, \`checkedRadioIcon\`, \`uncheckedCheckboxIcon\`, and \`uncheckedRadioIcon\`
+on the \`SelectionControl\`.
+
+The \`SelectionControlGroup\` has also been updated to apply these icons across the entire \`controls\` list. It is possible
+to update the icon either at the \`SelectionControlGroup\` level or the \`control\` level by applying the correct props. Check
+out the code and the following example to see how it in action. 
+
+> This example also shows how you can easily make lists of checkboxes with the \`SelectionControlGroup\` component as well. It is not
+limited to only rendering radios.
+  `,
+  code: UsingCustomIconsRaw,
+  children: <UsingCustomIcons />,
 }];
 
 const SelectionControls = () => <ExamplesPage description={README} examples={examples} />;
