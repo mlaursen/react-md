@@ -7,6 +7,8 @@ import getField from '../utils/getField';
 import minMaxLoop from '../utils/NumberUtils/minMaxLoop';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
+import FontIcon from '../FontIcons/FontIcon';
+
 
 /**
  * A custom PropTypes validator to make sure that each `control` in the `controls` prop
@@ -48,7 +50,10 @@ export default class SelectionControlGroup extends PureComponent {
      * An optional style to apply to the container.
      */
     style: PropTypes.object,
-
+    /**
+     * An Icon used for the radio control when checked
+     */
+    checkedRadioIcon: PropTypes.object,
     /**
      * An optional className to apply to the container.
      */
@@ -194,12 +199,19 @@ export default class SelectionControlGroup extends PureComponent {
      * An optional function to call when the keydown event is triggered.
      */
     onKeyDown: PropTypes.func,
+
+    /**
+     * An Icon used for the radio control when unchecked
+     */
+    uncheckedRadioIcon: PropTypes.object,
   };
 
   static defaultProps = {
     component: 'fieldset',
     labelComponent: 'legend',
     labelClassName: 'md-subheading-1',
+    checkedRadioIcon: <FontIcon>radio_button_checked</FontIcon>,
+    uncheckedRadioIcon: <FontIcon>radio_button_unchecked</FontIcon>,
   };
 
   constructor(props) {
@@ -333,6 +345,8 @@ export default class SelectionControlGroup extends PureComponent {
         disabled,
         checked,
         tabIndex: !radio || checked || (i === 0 && this._activeIndex === -1) ? undefined : -1,
+        checkedRadioIcon: !radio ? undefined : this.props.checkedRadioIcon,
+        uncheckedRadioIcon: !radio ? undefined : this.props.uncheckedRadioIcon,
         ...control,
         style,
         className: cn(controlClassName, control.className),
