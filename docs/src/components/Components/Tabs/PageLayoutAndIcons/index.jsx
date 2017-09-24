@@ -45,7 +45,7 @@ function scrollToTop(activeTabIndex, tabId, tabPanelId) {
 }
 
 const PageLayoutAndIcons = () => (
-  <PhoneEmulator toolbar={false} tabsDemo>
+  <PhoneEmulator toolbar={false}>
     <TabsContainer
       className="tabs__page-layout"
       fixed
