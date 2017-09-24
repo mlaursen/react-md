@@ -83,9 +83,10 @@ export default class Simple extends PureComponent {
             contentId="main-demo-content"
             temporaryIcon={<SVGIcon use={menu.url} />}
             persistentIcon={<SVGIcon use={arrowBack.url} />}
+            contentClassName="md-grid"
           >
-            <h2>Currently on page: {page}</h2>
-            <section className="md-text-container">
+            <h2 className="md-cell md-cell--12">Currently on page: {page}</h2>
+            <section className="md-text-container md-cell md-cell--12">
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>

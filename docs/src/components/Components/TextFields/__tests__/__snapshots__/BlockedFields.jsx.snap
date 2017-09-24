@@ -92,7 +92,7 @@ exports[`BlockedFields should render correctly 1`] = `
     </div>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--padded phone-emulator__content--offset"
+    className="phone-emulator__content phone-emulator__content--offset"
     id={undefined}
     style={undefined}
   >

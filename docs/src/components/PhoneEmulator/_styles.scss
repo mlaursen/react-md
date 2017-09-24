@@ -7,13 +7,20 @@
   $gutter: $md-grid-phone-gutter / 2;
 
   &__content {
-    height: 100%;
 
-    &--padded {
+    &--offset {
       padding-top: $md-toolbar-mobile-portrait-height;
 
       &.md-grid {
         padding-top: $md-toolbar-mobile-portrait-height + $gutter;
+      }
+    }
+
+    &--offset-prominent {
+      padding-top: $md-toolbar-prominent-height;
+
+      &.md-grid {
+        padding-top: $md-toolbar-prominent-height + $gutter;
       }
     }
   }
