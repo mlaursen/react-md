@@ -53,7 +53,7 @@ exports[`Button should apply styles correctly 3`] = `
 
 exports[`Button should apply styles correctly 4`] = `
 <button
-  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block custom-btn"
+  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block custom-btn"
   style="font-size:200px;"
   type="button"
 >
@@ -347,7 +347,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 
 exports[`Button should be able to render FontIcons or SVGIcons using the iconEl prop 4`] = `
 <button
-  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
+  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block"
   type="button"
 >
   <div
@@ -376,7 +376,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 
 exports[`Button should be able to render FontIcons or SVGIcons using the iconEl prop 5`] = `
 <button
-  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
+  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block"
   type="button"
 >
   <div
@@ -411,7 +411,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 
 exports[`Button should be able to render FontIcons or SVGIcons using the iconEl prop 6`] = `
 <button
-  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
+  class="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block"
   type="button"
 >
   <div
