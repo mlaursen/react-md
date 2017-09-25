@@ -1024,6 +1024,7 @@ export default class SelectField extends PureComponent {
       defaultVisible,
       onClick,
       onKeyDown,
+      onVisibilityChange,
       deleteKeys,
       stripActiveItem,
       keyboardMatchingTimeout,
