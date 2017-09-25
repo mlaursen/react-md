@@ -401,6 +401,11 @@ export default class DialogContainer extends PureComponent {
     this._pageX = pageX;
     this._pageY = pageY;
 
+    if (this._inTimeout) {
+      clearTimeout(this._inTimeout);
+      this._inTimeout = null;
+    }
+
     if (visible) {
       this._activeElement = document.activeElement;
       this._mountPortal(nextProps);
@@ -460,6 +465,7 @@ export default class DialogContainer extends PureComponent {
   _handleEscClose = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       (this.props.onHide || this.props.close)(e);
+      window.removeEventListener('keydown', this._handleEscClose);
     }
   };
 
