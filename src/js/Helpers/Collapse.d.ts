@@ -4,7 +4,7 @@ import { Props } from '../index';
 export interface CollapseProps extends Props {
   defaultStyle?: React.CSSProperties;
   collapsed: boolean;
-  springConfig: Object;
+  springConfig?: Object;
   children?: React.ReactElement<any>;
   animate?: boolean;
 }
