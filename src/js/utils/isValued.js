@@ -1,3 +1,5 @@
+/** @module utils/isValied */
+
 /**
  * A really simple utility function to check if an input's value is considered "valued".
  *
