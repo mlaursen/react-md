@@ -526,9 +526,26 @@ export default class TextField extends PureComponent {
     }
   };
 
+  /**
+   * A small utility function for calculating an inline-icon's width keeping the SVG Icons
+   * in mind and any margin that gets applied for spacing.
+   */
+  _calcIconWidth = (icon) => {
+    const style = window.getComputedStyle(icon);
+
+    return icon.getBoundingClientRect().width
+      + parseInt(style.marginLeft, 10);
+  };
+
   _calcWidth = (value, props = this.props) => {
+    let text = value;
+    // if it is a password, use the bullet unicode instead
+    if (props.type === 'password') {
+      text = [...new Array(value.length)].reduce(s => `${s}\u2022`, '');
+    }
+
     const field = this._field && this._field.getField();
-    let width = getTextWidth(value, field);
+    let width = getTextWidth(text, field);
     if (width === null || !field) {
       // some error happened, don't do other logic
       return width;
@@ -541,6 +558,23 @@ export default class TextField extends PureComponent {
       const indicator = this._container.querySelector('.md-text-field-inline-indicator');
       if (indicator) {
         width += indicator.getBoundingClientRect().width;
+      }
+
+      const iconContainer = this._container.querySelector('.md-text-field-icon-container');
+      if (iconContainer) {
+        // There is conditionally an icon before and after the text field, or only an icon before/after
+        // There is never a third icon if the indicator is defined
+        const [first, second, third] = iconContainer.children;
+        if (first.classList.contains('md-icon')) {
+          width += first.getBoundingClientRect().width;
+          width += parseInt(window.getComputedStyle(second).marginLeft, 10);
+
+          if (third) {
+            width += this._calcIconWidth(third);
+          }
+        } else if (second) {
+          width += this._calcIconWidth(second);
+        }
       }
     }
 
@@ -621,9 +655,9 @@ export default class TextField extends PureComponent {
 
     if (typeof this.props.value === 'undefined' && resize) {
       const width = this._calcWidth(value);
-      if (!resize.disableShrink || width > this.state.width) {
+      if (!resize.disableShrink || !this.state.styles || width > this.state.styles.width) {
         state = state || {};
-        state.width = this._calcWidth(value);
+        state.styles = { ...this.state.styles, width };
       }
     }
 
