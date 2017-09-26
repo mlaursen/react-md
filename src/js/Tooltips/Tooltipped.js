@@ -46,22 +46,18 @@ export default function Tooltipped({ children, setPosition, ...props }) {
   const targetProps = target.props;
 
   if (props.label) {
-    target = React.cloneElement(
-      target,
-      setPosition
-        ? {
-          ...targetProps,
-          style: { ...targetProps.style, position: 'relative' },
-        }
-        : targetProps,
-      [
-        targetProps.children,
-        (<TooltipContainer
-          key="tooltipContainer"
-          {...props}
-        />),
-      ]
-    );
+    let clonedProps = targetProps;
+    if (setPosition) {
+      clonedProps = {
+        ...clonedProps,
+        style: { ...clonedProps.style, position: 'relative' },
+      };
+    }
+
+    target = React.cloneElement(target, clonedProps, [
+      targetProps.children,
+      <TooltipContainer key="tooltipContainer" {...props} />,
+    ]);
   }
 
   return target;
