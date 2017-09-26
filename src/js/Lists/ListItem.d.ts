@@ -20,6 +20,12 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   // for the `component` prop until refactored out
   [key: string]: any;
 
+  contentStyle?: React.CSSProperties;
+  contentClassName?: string;
+  primaryTextStyle?: React.CSSProperties;
+  primaryTextClassName?: string;
+  secondaryTextStyle?: React.CSSProperties;
+  secondaryTextClassName?: string;
   nestedListStyle?: React.CSSProperties;
   nestedListClassName?: string;
   nestedListHeightRestricted?: boolean;

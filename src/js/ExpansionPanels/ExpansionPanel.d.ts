@@ -9,7 +9,9 @@ export interface ExpansionPanelProps extends Props {
   headerStyle?: React.CSSProperties;
   headerClassName?: string;
   contentStyle?: React.CSSProperties;
-  contentClassName: string;
+  contentClassName?: string;
+  footerStyle?: React.CSSProperties;
+  footerClassName?: string;
   label: React.ReactNode;
   secondaryLabel?: React.ReactNode;
   expandedSecondaryLabel?: React.ReactNode;

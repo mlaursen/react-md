@@ -51,6 +51,38 @@ export default class ListItem extends PureComponent {
     tileClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the nested `List` that gets created when using `nestedItems`.
      */
     nestedListStyle: PropTypes.object,
@@ -471,6 +503,12 @@ export default class ListItem extends PureComponent {
       className,
       tileStyle,
       tileClassName,
+      contentStyle,
+      contentClassName,
+      primaryTextStyle,
+      primaryTextClassName,
+      secondaryTextStyle,
+      secondaryTextClassName,
       nestedListStyle,
       nestedListClassName,
       nestedListHeightRestricted,
@@ -607,11 +645,16 @@ export default class ListItem extends PureComponent {
           primaryText={primaryText}
           secondaryText={secondaryText}
           threeLines={threeLines}
+          style={contentStyle}
           className={cn({
             'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
             'md-tile-content--left-avatar': leftAvatar,
             'md-tile-content--right-padding': rightIcon || rightAvatar,
-          })}
+          }, contentClassName)}
+          primaryTextStyle={primaryTextStyle}
+          primaryTextClassName={primaryTextClassName}
+          secondaryTextStyle={secondaryTextStyle}
+          secondaryTextClassName={secondaryTextClassName}
         />
         {rightNode}
         {children}

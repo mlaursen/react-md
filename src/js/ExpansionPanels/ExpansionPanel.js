@@ -61,6 +61,20 @@ export default class ExpansionPanel extends PureComponent {
     contentClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the footer when the `footer` prop is `undefined`.
+     *
+     * @see {@link #footer}
+     */
+    footerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the footer when the `footer` prop is `undefined`.
+     *
+     * @see {@link #footer}
+     */
+    footerClassName: PropTypes.string,
+
+    /**
      * The main label to display in the unexpanded panel.
      */
     label: PropTypes.node.isRequired,
@@ -394,6 +408,8 @@ export default class ExpansionPanel extends PureComponent {
       overflown,
       footer,
       footerChildren,
+      footerStyle,
+      footerClassName,
 
       // deprecated
       expandIconChildren,
@@ -472,6 +488,8 @@ export default class ExpansionPanel extends PureComponent {
           <PanelContent
             style={contentStyle}
             className={contentClassName}
+            footerStyle={footerStyle}
+            footerClassName={footerClassName}
             onSave={this._handleSave}
             onCancel={this._handleCancel}
             saveType={saveType}

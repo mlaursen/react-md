@@ -13,6 +13,9 @@ export interface AvatarProps extends Props {
   suffix?: string;
   iconSized?: boolean;
   role?: Role;
+
+  contentStyle?: React.CSSProperties;
+  contentClassName?: string;
 }
 
 declare const Avatar: React.ComponentClass<AvatarProps>;

@@ -106,6 +106,28 @@ export default class DialogContainer extends PureComponent {
     dialogClassName: PropTypes.string,
 
     /**
+     * An optional styke to apply to the title.
+     */
+    titleStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the title.
+     */
+    titleClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the dialog's content.
      */
     contentStyle: PropTypes.object,

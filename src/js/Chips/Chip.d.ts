@@ -7,6 +7,8 @@ export interface ChipProps extends Props {
   removable?: boolean;
   avatar?: React.ReactElement<any>;
   children?: React.ReactNode;
+  labelStyle?: React.CSSProperties;
+  labelClassName?: string;
 
   /**
    * @deprecated

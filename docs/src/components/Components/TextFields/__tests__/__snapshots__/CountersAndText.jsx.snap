@@ -21,11 +21,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -71,11 +67,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -153,11 +145,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -203,11 +191,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -253,11 +237,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -314,11 +294,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--error"
@@ -364,11 +340,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -414,11 +386,7 @@ exports[`CountersAndText should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
