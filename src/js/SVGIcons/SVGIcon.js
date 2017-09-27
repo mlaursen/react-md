@@ -112,7 +112,7 @@ export default class SVGIcon extends PureComponent {
      * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default since IE11
      * and Edge actually default this to true and keyboard's will tab focus all SVGs.
      */
-    focusable: PropTypes.bool,
+    focusable: PropTypes.string,
 
     /**
      * An optional size to apply to the SVG. This can be used to set both the
@@ -167,7 +167,7 @@ export default class SVGIcon extends PureComponent {
 
   static defaultProps = {
     role: 'img',
-    focusable: false,
+    focusable: 'false',
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
   };

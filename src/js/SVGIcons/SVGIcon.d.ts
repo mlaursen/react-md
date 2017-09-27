@@ -12,7 +12,7 @@ export interface SVGIconProps extends Props {
   title?: string;
   desc?: string;
   use?: string;
-  focusable?: boolean;
+  focusable?: string;
   size?: number;
   children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   viewBox?: string;
