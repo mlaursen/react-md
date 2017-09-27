@@ -29,7 +29,7 @@ every themeable component has a mixin to update the colors. In addition, the new
 be created if the new values do not match the global `$md-primary-color`, `$md-secondary-color`,
 or `$md-light-theme` variables.
 
-The a component that is themeable will have a mixin name `react-md-theme-COMPONENT`. For simplicity,
+The component that is themeable will have a mixin name `react-md-theme-COMPONENT`. For simplicity,
 there is also a `react-md-theme-everything` mixin that can be used.
 
 Example usage:

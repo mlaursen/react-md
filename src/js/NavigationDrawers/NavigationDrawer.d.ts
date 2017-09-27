@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Props } from '../index';
 import {
-  DrawerTypes,
-  DrawerTypesType,
-  MobileDrawerTypes,
-  MobileDrawerTypesType,
-  DrawerPositions,
-  MediaTypes,
+  DrawerType,
+  MobileDrawerType,
+  DrawerPosition,
+  MediaType,
 } from '../Drawers';
 
 export interface NavigationDrawerProps extends Props {
@@ -26,20 +24,20 @@ export interface NavigationDrawerProps extends Props {
   drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
   drawerChildren?: React.ReactNode;
-  position?: DrawerPositions;
+  position?: DrawerPosition;
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: React.ReactNode }>;
-  mobileDrawerType?: MobileDrawerTypes | MobileDrawerTypesType;
-  tabletDrawerType?: DrawerTypes | DrawerTypesType;
-  desktopDrawerType?: DrawerTypes | DrawerTypesType;
-  drawerType?: DrawerTypes | DrawerTypesType;
-  defaultMedia?: MediaTypes;
+  mobileDrawerType?: MobileDrawerType;
+  tabletDrawerType?: DrawerType;
+  desktopDrawerType?: DrawerType;
+  drawerType?: DrawerType;
+  defaultMedia?: MediaType;
   mobileMinWidth?: number;
   tabletMinWidth?: number;
   desktopMinWidth?: number;
   portal?: boolean;
   lastChild?: boolean;
   renderNode?: Object;
-  onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
+  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, event: Event) => void;
@@ -55,7 +53,7 @@ export interface NavigationDrawerProps extends Props {
   toolbarProminentTitle?: boolean;
   toolbarActions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   toolbarChildren?: React.ReactNode;
-  contentComponent?: Function | string;
+  contentComponent?: React.ReactType;
   footer?: React.ReactNode;
   transitionName?: string;
   transitionEnterTimeout?: number;
@@ -66,6 +64,7 @@ export interface NavigationDrawerProps extends Props {
   jumpLabel?: string;
   temporaryIcon?: React.ReactElement<any>;
   persistentIcon?: React.ReactElement<any>;
+  constantDrawerType?: boolean;
 
   /**
    * @deprecated
@@ -94,14 +93,28 @@ export interface NavigationDrawerProps extends Props {
 }
 
 interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawerProps> {
+  DrawerTypes: {
+    // Permanent drawers
+    FULL_HEIGHT: 'full-height',
+    CLIPPED: 'clipped',
+    FLOATING: 'floating',
+
+    // Persistent drawers
+    PERSISTENT: 'persistent',
+    PERSISTENT_MINI: 'persistent-mini',
+
+    // Temporary
+    TEMPORARY: 'temporary',
+    TEMPORARY_MINI: 'temporary-mini',
+  };
   getCurrentMedia(props?: {
     mobileMinWidth: number,
     tabletMinWidth: number,
     desktopMinWidth: number,
-    mobileDrawerType: MobileDrawerTypes | MobileDrawerTypesType,
-    tabletDrawerType: DrawerTypes | DrawerTypesType,
-    desktopDrawerType: DrawerTypes | DrawerTypesType,
-  }): { type: DrawerTypesType | DrawerTypes, mobile: boolean, tablet: boolean, desktop: boolean };
+    mobileDrawerType: MobileDrawerType,
+    tabletDrawerType: DrawerType,
+    desktopDrawerType: DrawerType,
+  }): { type: DrawerType, mobile: boolean, tablet: boolean, desktop: boolean };
 }
 
 declare const NavigationDrawer: NavigationDrawerComponent;

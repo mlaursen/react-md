@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 
 export default class SimpleModal extends PureComponent {
   state = { visible: false };
@@ -28,7 +28,7 @@ export default class SimpleModal extends PureComponent {
     return (
       <div>
         <Button raised onClick={this.show}>Open the Dialog</Button>
-        <Dialog
+        <DialogContainer
           id="speed-boost"
           visible={visible}
           title="Use Google's location service?"
@@ -38,10 +38,10 @@ export default class SimpleModal extends PureComponent {
           actions={actions}
         >
           <p id="speed-boost-description" className="md-color--secondary-text">
-            Let Google help apps determine location. This means sending ananymous
+            Let Google help apps determine location. This means sending anonymous
             location data to Google, even when no apps are running.
           </p>
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

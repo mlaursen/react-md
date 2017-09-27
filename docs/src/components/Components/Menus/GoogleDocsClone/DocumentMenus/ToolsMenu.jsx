@@ -38,5 +38,5 @@ const MENU_ITEMS = [
   'Personal dictionary...',
 ];
 
-const ToolsMenu = () => <DocumentMenu id="tools" text="Tools" menuItems={MENU_ITEMS} />;
+const ToolsMenu = props => <DocumentMenu {...props} id="tools" text="Tools" menuItems={MENU_ITEMS} />;
 export default ToolsMenu;

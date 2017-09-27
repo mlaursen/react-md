@@ -34,13 +34,13 @@ class TableColumn extends PureComponent {
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the surroudning div when the DataTable has been
+     * An optional style to apply to the surrounding div when the DataTable has been
      * set to include a fixed header or a fixed footer.
      */
     fixedStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the surroudning div when the DataTable has been
+     * An optional className to apply to the surrounding div when the DataTable has been
      * set to include a fixed header or a fixed footer.
      */
     fixedClassName: PropTypes.string,

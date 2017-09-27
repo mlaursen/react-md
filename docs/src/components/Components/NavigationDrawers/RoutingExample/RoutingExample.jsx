@@ -74,6 +74,7 @@ export default class RoutingExample extends PureComponent {
         navItems={navItems.map(props => <NavItemLink {...props} key={props.to} />)}
         contentId="main-demo-content"
         contentStyle={styles.content}
+        contentClassName="md-grid"
       >
         <Switch key={location.pathname}>
           <Route path={navItems[0].to} exact component={Inbox} />

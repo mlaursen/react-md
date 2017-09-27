@@ -3,7 +3,7 @@ import { IdPropType } from '../index';
 import { BaseMenuProps } from './Menu';
 import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
 
-export interface DropdownMenuProps extends BaseMenuProps {
+export interface SharedDropdownMenuProps extends BaseMenuProps {
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, e: React.MouseEvent<HTMLElement>) => void;
@@ -11,8 +11,12 @@ export interface DropdownMenuProps extends BaseMenuProps {
   cascadingAnchor?: { x: HorizontalAnchors, y: VerticalAnchors };
   cascadingZDepth?: number;
   menuItems?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
-  children?: React.ReactElement<any>;
   position?: LayoverPositions;
+  simplifiedMenu?: boolean;
+}
+
+export interface DropdownMenuProps extends SharedDropdownMenuProps {
+  children?: React.ReactElement<any>;
 }
 
 interface DropdownMenuComponent extends React.ComponentClass<DropdownMenuProps> {

@@ -165,7 +165,6 @@ export default class ServerUpload extends PureComponent {
           onLoad={this.handleLoad}
           onLoadStart={this.handleLoadStart}
           onProgress={this.handleProgress}
-          onChange={this.handleChange}
           name="file"
           className="file-inputs__upload-form__file-upload"
           primary

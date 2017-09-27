@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 
 import Markdown from 'components/Markdown';
 import PhoneEmulator from './PhoneEmulator';
@@ -74,7 +74,7 @@ export default class EmulatorController extends PureComponent {
       <section>
         {description}
         <Button raised onClick={this.showDemo}>{toggleLabel}</Button>
-        <Dialog
+        <DialogContainer
           id={demoId}
           visible={visible}
           aria-label={demoLabel}
@@ -83,7 +83,7 @@ export default class EmulatorController extends PureComponent {
           fullPage
         >
           <PhoneEmulator {...props} toolbarNavIcon={props.toolbarNavIcon || 'keyboard_arrow_left'} />
-        </Dialog>
+        </DialogContainer>
       </section>
     );
   }

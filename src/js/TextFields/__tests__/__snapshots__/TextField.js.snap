@@ -13,11 +13,7 @@ exports[`TextField should be able to be snapshottable 1`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <input
     className="md-text-field md-text-field--margin md-full-width md-text"
@@ -50,11 +46,7 @@ exports[`TextField should be able to be snapshottable 2`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -93,11 +85,7 @@ exports[`TextField should be able to be snapshottable 3`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -163,11 +151,7 @@ exports[`TextField should be able to be snapshottable 4`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <input
     className="md-text-field md-full-width md-text"
@@ -197,11 +181,7 @@ exports[`TextField should be able to be snapshottable 5`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <div
     className="md-text-field-multiline-container"
@@ -302,11 +282,7 @@ exports[`TextField should be able to be snapshottable 7`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -333,12 +309,12 @@ exports[`TextField should be able to be snapshottable 7`] = `
   <div
     className="md-text-field-message-container md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={false}
       className="md-text-field-message md-text-field-message--active"
     >
       Look at me!
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -356,11 +332,7 @@ exports[`TextField should be able to be snapshottable 8`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--error"
@@ -387,12 +359,12 @@ exports[`TextField should be able to be snapshottable 8`] = `
   <div
     className="md-text-field-message-container md-full-width md-text--error"
   >
-    <p
+    <div
       aria-hidden={false}
       className="md-text-field-message md-text-field-message--active"
     >
       Some error
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -410,11 +382,7 @@ exports[`TextField should be able to be snapshottable 9`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -441,12 +409,12 @@ exports[`TextField should be able to be snapshottable 9`] = `
   <div
     className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={true}
       className="md-text-field-message md-text-field-message--inactive"
     >
       Look at me!
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -464,11 +432,7 @@ exports[`TextField should be able to be snapshottable 10`] = `
   onTouchEnd={undefined}
   onTouchMove={undefined}
   onTouchStart={undefined}
-  style={
-    Object {
-      "width": null,
-    }
-  }
+  style={undefined}
 >
   <label
     className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
@@ -495,12 +459,12 @@ exports[`TextField should be able to be snapshottable 10`] = `
   <div
     className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={true}
       className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
     >
       0 / 20
-    </p>
+    </div>
   </div>
 </div>
 `;

@@ -9,5 +9,5 @@ const MENU_ITEMS = [
   },
 ];
 
-const AddOnsMenu = () => <DocumentMenu id="add-ons" text="Add-ons" menuItems={MENU_ITEMS} />;
+const AddOnsMenu = props => <DocumentMenu {...props} id="add-ons" text="Add-ons" menuItems={MENU_ITEMS} />;
 export default AddOnsMenu;

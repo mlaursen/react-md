@@ -7,6 +7,10 @@ export interface DialogProps extends Props {
   'aria-describedby'?: IdPropType;
   'aria-labelledby'?: IdPropType;
   'aria-label'?: string;
+  titleStyle? : React.CSSProperties;
+  titleClassName?: string;
+  footerStyle?: React.CSSProperties;
+  footerClassName?: string;
   contentStyle?: React.CSSProperties;
   contentClassName?: string;
   contentComponent?: React.ReactType;
@@ -21,6 +25,10 @@ export interface DialogProps extends Props {
   containFocus?: boolean;
   fullPage?: boolean;
   title?: React.ReactNode;
+  autosizeContent?: boolean;
+  height?: number;
+  width?: number;
+  stackedActions?: boolean;
 }
 
 declare const Dialog: React.ComponentClass<DialogProps>;

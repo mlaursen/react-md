@@ -93,7 +93,7 @@ export default class TableRow extends Component {
   }
 
   /**
-   * Need to ignore adding the hvoer state if the mouse is over a menu/menu item
+   * Need to ignore adding the hover state if the mouse is over a menu/menu item
    * or the edit dialog is open.
    *
    * @param {Function} classList - the classList to use for checking cn

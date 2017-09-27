@@ -9,8 +9,8 @@ import {
 } from '../Helpers/Layover';
 import { BaseMenuProps } from '../Menus/Menu';
 
-export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
-  id: IdPropType;
+export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
+  id?: IdPropType;
   menuId?: IdPropType;
   listId?: IdPropType;
   listStyle?: React.CSSProperties;
@@ -20,7 +20,7 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  menuItems?: Array<number | string | Object>;
+  menuItems?: Array<number | string | Object | React.ReactElement<any>>;
   keyboardMatchingTimeout?: number;
   itemLabel?: string;
   itemValue?: string;
@@ -37,6 +37,12 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   menuTransitionEnterTimeout?: number;
   menuTransitionLeaveTiemout?: number;
   deleteKeys?: number | string | Array<number | string>;
+  simplifiedMenu?: boolean;
+  position?: LayoverPositions;
+}
+
+export interface SelectFieldProps extends SharedSelectFieldProps {
+  id: IdPropType;
 
   /**
    * @deprecated
@@ -99,5 +105,28 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   iconClassName?: string;
 }
 
-declare const SelectField: React.ComponentClass<SelectFieldProps>;
+interface SelectFieldComponent extends React.ComponentClass<SelectFieldProps> {
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
+}
+
+declare const SelectField: SelectFieldComponent;
 export default SelectField;

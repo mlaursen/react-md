@@ -118,21 +118,6 @@ exports[`DocumentationTabs should correctly render on customization routes 3`] =
     aria-pressed="false"
     aria-selected="false"
     class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive"
-    id="theme-builder"
-    role="tab"
-    tabindex="0"
-  >
-    <div
-      class="md-tab-label"
-    >
-      Theme Builder
-    </div>
-  </li>
-  <li
-    aria-controls="documentation-panel-2"
-    aria-pressed="false"
-    aria-selected="false"
-    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive"
     id="documentation-sassdoc"
     role="tab"
     tabindex="0"

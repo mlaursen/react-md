@@ -7,13 +7,20 @@
   $gutter: $md-grid-phone-gutter / 2;
 
   &__content {
-    height: 100%;
 
-    &--padded {
+    &--offset {
       padding-top: $md-toolbar-mobile-portrait-height;
 
       &.md-grid {
         padding-top: $md-toolbar-mobile-portrait-height + $gutter;
+      }
+    }
+
+    &--offset-prominent {
+      padding-top: $md-toolbar-prominent-height;
+
+      &.md-grid {
+        padding-top: $md-toolbar-prominent-height + $gutter;
       }
     }
   }
@@ -128,6 +135,10 @@
     @include react-md-lists-mobile;
     @include react-md-buttons-mobile;
     @include react-md-snackbars-mobile;
+
+    .md-text-field--search {
+      font-size: $md-title-font-size;
+    }
 
     .material-icons.md-icon {
       font-size: $md-font-icon-size;

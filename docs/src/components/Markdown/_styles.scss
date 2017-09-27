@@ -15,3 +15,28 @@ blockquote {
     margin: 0;
   }
 }
+
+.emoji-item {
+  list-style: none;
+  padding-bottom: 1em;
+  position: relative;
+
+  &::before {
+    font-size: $md-title-font-size;
+    left: -30px;
+    position: absolute;
+    top: -4px;
+  }
+
+  &--sparkles::before {
+    content: '\2728';
+  }
+
+  &--tada::before {
+    content: '\1f389';
+  }
+
+  &--bug::before {
+    content: '\1F41B';
+  }
+}

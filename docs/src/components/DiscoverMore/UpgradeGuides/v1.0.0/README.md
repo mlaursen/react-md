@@ -53,7 +53,7 @@ Typography will now extend the base `html` tags by default when included. You ca
 be setting the `$md-typography-extended` variable to `false`;
 
 ## Avatars
-- The `role` or `alt` prop is now reqired for `a11y` when the `src` prop has been defined.
+- The `role` or `alt` prop is now required for `a11y` when the `src` prop has been defined.
 - The suffixes were changed from `color-NUMBER` to the material design color name. `color-1` -> `red`.
 
 ## Bottom Navigations

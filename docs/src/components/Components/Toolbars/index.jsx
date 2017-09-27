@@ -15,7 +15,7 @@ import KebabMenuRaw from '!!raw-loader!./common/KebabMenu.jsx';
 import TitleMenuRaw from '!!raw-loader!./common/TitleMenu.jsx';
 
 const examples = [{
-  title: 'Simple Exmaples',
+  title: 'Simple Examples',
   description: `
 This will showcase some of the styling that you can apply to a toolbar and example usage
 of adding a navigation button or additional actions.
@@ -86,7 +86,7 @@ This class name is similar to the \`md-toolbar-relative\` except that it is used
 
 #### \`md-btn--toolbar\`
 This applies additional margin to buttons to center them vertically in the toolbar. This should only be used if
-the buttons are not occuring in the \`actions\` or \`nav\` props.
+the buttons are not occurring in the \`actions\` or \`nav\` props.
 
 #### \`md-toolbar--action-left\`
 This applies additional \`margin-left\` to any elements to position to the left keyline in a toolbar. This should really

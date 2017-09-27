@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 
 export interface TablePaginationProps extends Props {
+  id?: IdPropType;
+  incrementId?: IdPropType;
+  decrementId?: IdPropType;
+  selectFieldStyle?: React.CSSProperties;
+  selectFieldClassName?: string;
+  selectFieldInputStyle?: React.CSSProperties;
+  selectFieldInputClassName?: string;
   onPagination: (startIndex: number, rowsPerPage: number, currentPage: number) => void;
   rowsPerPage?: number;
   page?: number;
@@ -12,6 +19,7 @@ export interface TablePaginationProps extends Props {
   rows: number;
   incrementIcon?: React.ReactElement<any>;
   decrementIcon?: React.ReactElement<any>;
+  simplifiedMenu?: boolean;
 
   /**
    * @deprecated

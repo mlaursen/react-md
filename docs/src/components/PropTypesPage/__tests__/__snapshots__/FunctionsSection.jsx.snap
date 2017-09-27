@@ -10,8 +10,8 @@ exports[`FunctionsSection should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass()
-      </code></pre>
-      ",
+</code></pre>
+",
       }
     }
   />
@@ -20,7 +20,7 @@ exports[`FunctionsSection should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>This does stuff. Yah</p>
-      ",
+",
       }
     }
   />
@@ -37,8 +37,8 @@ exports[`FunctionsSection should render correctly 2`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(): string
-      </code></pre>
-      ",
+</code></pre>
+",
       }
     }
   />
@@ -47,7 +47,7 @@ exports[`FunctionsSection should render correctly 2`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>This does stuff. Yah</p>
-      ",
+",
       }
     }
   />
@@ -64,8 +64,8 @@ exports[`FunctionsSection should render correctly 3`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething)
-      </code></pre>
-      ",
+</code></pre>
+",
       }
     }
   />
@@ -74,7 +74,7 @@ exports[`FunctionsSection should render correctly 3`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>This does stuff. Yah</p>
-      ",
+",
       }
     }
   />
@@ -153,7 +153,7 @@ exports[`FunctionsSection should render correctly 3`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -161,7 +161,7 @@ exports[`FunctionsSection should render correctly 3`] = `
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>It is something that does something. Quite amazing</p>
-                ",
+",
                 }
               }
             />
@@ -196,7 +196,7 @@ exports[`FunctionsSection should render correctly 3`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -204,7 +204,7 @@ exports[`FunctionsSection should render correctly 3`] = `
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>This is a param that is required.</p>
-                ",
+",
                 }
               }
             />
@@ -226,8 +226,8 @@ exports[`FunctionsSection should render correctly 4`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething): string
-      </code></pre>
-      ",
+</code></pre>
+",
       }
     }
   />
@@ -236,7 +236,7 @@ exports[`FunctionsSection should render correctly 4`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>This does stuff. Yah</p>
-      ",
+",
       }
     }
   />
@@ -315,7 +315,7 @@ exports[`FunctionsSection should render correctly 4`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -323,7 +323,7 @@ exports[`FunctionsSection should render correctly 4`] = `
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>It is something that does something. Quite amazing</p>
-                ",
+",
                 }
               }
             />
@@ -358,7 +358,7 @@ exports[`FunctionsSection should render correctly 4`] = `
           </td>
           <td
             aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text"
+            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
             scope={undefined}
           >
             <section
@@ -366,7 +366,7 @@ exports[`FunctionsSection should render correctly 4`] = `
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>This is a param that is required.</p>
-                ",
+",
                 }
               }
             />

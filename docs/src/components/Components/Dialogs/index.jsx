@@ -10,6 +10,8 @@ import SimpleModal from './SimpleModal.jsx';
 import SimpleModalRaw from '!!raw-loader!./SimpleModal.jsx';
 import FocusControlDialog from './FocusControlDialog';
 import FocusControlDialogRaw from '!!raw-loader!./FocusControlDialog.jsx';
+import ScrollingContentAndSizing from './ScrollingContentAndSizing';
+import ScrollingContentAndSizingRaw from './ScrollingContentAndSizing/code';
 import SimpleFullPageDialog from './SimpleFullPageDialog';
 import SimpleFullPageDialogRaw from '!!raw-loader!./SimpleFullPageDialog.jsx';
 import StaticDialog from './StaticDialog';
@@ -53,6 +55,22 @@ no longer be able to click the overlay to close it.
   `,
   code: SimpleModalRaw,
   children: <SimpleModal />,
+}, {
+  title: 'Scrolling Content and Sizing',
+  description: `
+When there is a lot of content in a \`Dialog\`, it will automatically attempt to update the height of the content
+so that only it scrolls. It will make it so that the \`title\` and \`actions\` will be fixed within the dialog
+and only the \`children\` of the \`Dialog\` will scroll. If you want to implement your own solution, you can
+disable the \`autosizeContent\` prop.
+
+In addition, the sizing of the dialogs can always be controlled globally at a CSS level, or a \`className\` level,
+but there are one-off cases where it is simpler to just apply sizing for a specific dialog. This can be done by using
+the \`height\` and \`width\` props which will just apply some inline-styles to set the size. These values will still
+stay within the \`max-height\` and \`max-width\` rules applied to dialogs, so you can set a large size for desktop and
+it will auto-scale down for mobile devices.
+  `,
+  code: ScrollingContentAndSizingRaw,
+  children: <ScrollingContentAndSizing />,
 }, {
   title: 'Simple Full Page Dialog',
   description: `

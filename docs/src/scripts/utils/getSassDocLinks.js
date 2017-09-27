@@ -1,4 +1,4 @@
-import { baseRoutes as routes } from 'server/routes';
+import { componentRoutes as routes } from 'server/routes';
 import { toTitle } from 'utils/strings';
 
 let lastLink = '';

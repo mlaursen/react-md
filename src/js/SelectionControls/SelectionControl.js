@@ -47,7 +47,15 @@ export default class SelectionControl extends PureComponent {
     /**
      * An optional label to apply to the checkbox when there is no visible label.
      */
-    'aria-label': oneRequiredForA11y(PropTypes.string, 'label'),
+    'aria-label': oneRequiredForA11y(PropTypes.string, 'label', 'aria-labelledby'),
+
+    /**
+     * An optional id that points to a label for the selection control when there is no visible label.
+     */
+    'aria-labelledby': PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * An optional style to apply to the selection control's container.
@@ -96,7 +104,7 @@ export default class SelectionControl extends PureComponent {
      * - the currently changed radio's value
      * - the next checked state for the `Switch` or `Checkbox`.
      *
-     * as the first paramater followed by the change event.
+     * as the first parameter followed by the change event.
      *
      * ```js
      * // Radio
@@ -142,9 +150,24 @@ export default class SelectionControl extends PureComponent {
      */
     inline: PropTypes.bool,
 
+    /**
+     * The icon to use for a checked `checkbox` selection control.
+     */
     checkedCheckboxIcon: PropTypes.element,
+
+    /**
+     * The icon to use for an unchecked `checkbox` selection control.
+     */
     uncheckedCheckboxIcon: PropTypes.element,
+
+    /**
+     * The icon to use for a checked `radio` selection control.
+     */
     checkedRadioIcon: PropTypes.element,
+
+    /**
+     * The icon to use for an unchecked `radio` selection control.
+     */
     uncheckedRadioIcon: PropTypes.element,
 
     /**
@@ -250,7 +273,8 @@ export default class SelectionControl extends PureComponent {
       return <FontIcon iconClassName={iconClassName} inherit>{children}</FontIcon>;
     }
 
-    return React.cloneElement(this.props[prefix], { inherit: true });
+    const icon = this.props[prefix];
+    return icon ? React.cloneElement(icon, { inherit: true }) : null;
   };
 
   _handleKeyDown = (e) => {
@@ -291,6 +315,7 @@ export default class SelectionControl extends PureComponent {
       inkDisabled,
       disabledInteractions,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       /* eslint-disable no-unused-vars */
       label: propLabel,
       checked: propChildren,
@@ -368,6 +393,7 @@ export default class SelectionControl extends PureComponent {
           value={value}
           aria-hidden
           aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
         />
         <label
           htmlFor={id}

@@ -1,5 +1,6 @@
 // Type definitions for react-md
 // Project: https://github.com/mlaursen/react-md
+// Typescript Version: 2.4
 
 export { default as Autocomplete, AutocompleteProps } from './lib/Autocompletes';
 export { default as Avatar, AvatarProps } from './lib/Avatars';
@@ -31,7 +32,7 @@ export {
   Dialog, DialogProps,
 } from './lib/Dialogs';
 export { default as Divider, DividerProps } from './lib/Dividers';
-export { default as Drawer, DrawerProps, MobileDrawerTypes, DrawerTypes } from './lib/Drawers';
+export { default as Drawer, DrawerProps, MobileDrawerType, DrawerType } from './lib/Drawers';
 export {
   ExpansionPanel, ExpansionPanelProps,
   ExpansionList, ExpansionListProps,
@@ -94,6 +95,6 @@ export {
   TabPanel, TabPanelProps,
   MenuTab, MenuTabProps,
 } from './lib/Tabs';
-export { default as TextField, TextFieldProps } from './lib/TextFields';
+export { default as TextField, TextFieldProps, TextFieldTypes, TextFieldLineDirections } from './lib/TextFields';
 export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
 export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent, TooltippedProps } from './lib/Tooltips';

@@ -235,7 +235,11 @@ export default class TableCardHeader extends PureComponent {
 
     if (contextualTitle) {
       contextualTitle = (
-        <h2 id={contextualTitleId} className="md-card-title--title md-card-title--title-contextual">
+        <h2
+          id={contextualTitleId}
+          className="md-card-title--title md-card-title--title-contextual"
+          tabIndex={contextualTitleId ? -1 : null}
+        >
           {contextualTitle}
         </h2>
       );

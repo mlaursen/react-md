@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import Toolbar from 'react-md/lib/Toolbars';
 
 import FormGroup from './FormGroup';
@@ -40,7 +40,7 @@ export default class AddDessertsDialog extends PureComponent {
     ));
 
     return (
-      <Dialog
+      <DialogContainer
         id="add-desserts-dialog"
         aria-labelledby="add-desserts-dialog-title"
         visible={visible}
@@ -67,7 +67,7 @@ export default class AddDessertsDialog extends PureComponent {
           {groups}
         </CSSTransitionGroup>
         <Button floating fixed onClick={this.addDessert} primary>add</Button>
-      </Dialog>
+      </DialogContainer>
     );
   }
 }

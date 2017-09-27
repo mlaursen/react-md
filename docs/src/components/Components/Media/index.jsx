@@ -1,7 +1,6 @@
 import React from 'react';
 import ExamplesPage from 'components/ExamplesPage';
 
-import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from './Simple/code';
 import OtherMediaTypes from './OtherMediaTypes';
@@ -21,10 +20,9 @@ The \`Media\` component will scale to whatever the size of its container is and 
 }, {
   title: 'Other Media Types',
   description: `
-By default, the only elements that will be scaled correctly in the media component are \`img\`,
-\`iframe\`, and \`svg\`. You can either update the \`$md-media-embedded-selectors\` sass variable
-to include additional values, apply the \`.md-media-embedded\` class name, or apply the \`%md-media-embedded\`
-placeholder.
+By default, \`img\`, \`iframe\`, \`svg\`, \`video\`, \`embed\`, and \`object\` elements will be
+scaled correctly within a \`Media\` component. These defaults can be changed  by updating the
+[md-media-embedded-selectors](/components/media?tab=2#variable-md-media-embedded-selectors).
 
 The \`MediaOverlay\` component can even be used above videos, even though that might not really be
 the best idea.
@@ -33,5 +31,5 @@ the best idea.
   children: <OtherMediaTypes />,
 }];
 
-const Media = () => <ExamplesPage description={README} examples={examples} />;
+const Media = () => <ExamplesPage examples={examples} />;
 export default Media;

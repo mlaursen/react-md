@@ -49,7 +49,7 @@ function toMiniListItem(item, index) {
  * listed below will be provided to the `Drawer` component. So if there are props on the `Drawer`
  * that are not listed here, they will be passed along.
  *
- * The main benfit of using this component is that it will manage adding respective offset
+ * The main benefit of using this component is that it will manage adding respective offset
  * classes automatically for you to the content and the drawer. It will also manage using
  * a mini drawer type for you.
  */
@@ -278,7 +278,7 @@ export default class NavigationDrawer extends PureComponent {
 
     /**
      * Any additional children to display in the drawer's header `Toolbar`. If the `drawerHeader` prop is defined,
-     * this is invalud.
+     * this is invalid.
      */
     drawerHeaderChildren: invalidIf(PropTypes.node, 'drawerHeader'),
 
@@ -316,7 +316,7 @@ export default class NavigationDrawer extends PureComponent {
     ]).isRequired,
 
     /**
-     * The drawer tye to use for tablets.
+     * The drawer type to use for tablets.
      */
     tabletDrawerType: PropTypes.oneOf([
       DrawerTypes.FULL_HEIGHT,
@@ -627,13 +627,13 @@ export default class NavigationDrawer extends PureComponent {
      */
     constantDrawerType: PropTypes.bool,
 
-    menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
-    menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
-    closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
-    closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIconClassName` instead'),
-    temporaryIconChildren: deprecated(PropTypes.node, 'Use the `temporaryIcon` prop instead'),
-    temporaryIconClassName: deprecated(PropTypes.string, 'Use the `temporaryIcon` prop instead.'),
-    persistentIconChildren: deprecated(PropTypes.node, 'Use the `persistentIcon` prop instead'),
+    menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIcon` instead'),
+    menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIcon` instead'),
+    closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIcon` instead'),
+    closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIcon` instead'),
+    temporaryIconChildren: deprecated(PropTypes.node, 'Use the `temporaryIcon` instead'),
+    temporaryIconClassName: deprecated(PropTypes.string, 'Use the `temporaryIcon` instead.'),
+    persistentIconChildren: deprecated(PropTypes.node, 'Use the `persistentIcon` instead'),
     persistentIconClassName: deprecated(PropTypes.string, 'Use the `persistentIcon` prop instead'),
     onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityChange` or `onMediaTypeChange` instead'),
     onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
@@ -986,7 +986,7 @@ export default class NavigationDrawer extends PureComponent {
           titleStyle={toolbarTitleStyle}
           titleClassName={cn({
             'md-title--drawer-active': contentActive,
-            'md-transition--decceleration': offset && visible,
+            'md-transition--deceleration': offset && visible,
             'md-transition--acceleration': offset && !visible,
             'md-title--permanent-offset': desktopOffset && isPermanent(drawerType),
             'md-title--persistent-offset': desktopOffset && persistent,
@@ -1034,7 +1034,7 @@ export default class NavigationDrawer extends PureComponent {
             'md-navigation-drawer-content--active': contentActive,
             'md-navigation-drawer-content--inactive': !visible,
             'md-navigation-drawer-content--prominent-offset': toolbarProminent || toolbarProminentTitle,
-            'md-transition--decceleration': visible,
+            'md-transition--deceleration': visible,
             'md-transition--acceleration': !visible,
             'md-drawer-relative': offset,
             'md-drawer-relative--mini': mini && (!visible || temporary),

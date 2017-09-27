@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { IdPropType, Props, BaseProps } from '../index';
-import { MediaTypes } from '../Drawers';
 import { TabsProps as Tabs } from './Tabs';
 
 export interface TabsContainerProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   panelStyle?: React.CSSProperties;
   panelClassName?: string;
   headerStyle?: React.CSSProperties;

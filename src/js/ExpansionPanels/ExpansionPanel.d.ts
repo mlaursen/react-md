@@ -3,10 +3,15 @@ import { Props } from '../index';
 import { ButtonTypes } from '../Buttons';
 
 export interface ExpansionPanelProps extends Props {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   headerStyle?: React.CSSProperties;
   headerClassName?: string;
   contentStyle?: React.CSSProperties;
-  contentClassName: string;
+  contentClassName?: string;
+  footerStyle?: React.CSSProperties;
+  footerClassName?: string;
   label: React.ReactNode;
   secondaryLabel?: React.ReactNode;
   expandedSecondaryLabel?: React.ReactNode;
@@ -30,7 +35,7 @@ export interface ExpansionPanelProps extends Props {
   cancelLabel?: React.ReactNode;
   cancelPrimary?: boolean;
   cancelSecondary?: boolean;
-  canelProps?: Object;
+  cancelProps?: Object;
   tabIndex?: number;
   children?: React.ReactNode;
   animateContent?: boolean;

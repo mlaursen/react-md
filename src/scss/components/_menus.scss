@@ -74,7 +74,7 @@ $md-menu-mobile-min-width: null !default;
 ///
 /// @see md-menu-max-width
 /// @type Number
-$md-menu-mobile-max-width: calc(100vw - 32px) !default;
+$md-menu-mobile-max-width: null !default;
 
 /// The max height for menus on mobile devices.
 /// @type Number
@@ -91,7 +91,7 @@ $md-menu-desktop-min-width: null !default;
 /// @type Number
 $md-menu-desktop-max-width: null !default;
 
-/// The max height for menus on deskop screens.
+/// The max height for menus on desktop screens.
 /// @type Number
 $md-menu-desktop-max-height: $md-height * 5 + $md-height / 3 + $md-list-desktop-padding * 2 !default;
 
@@ -128,8 +128,40 @@ $md-menu-cascading-list-padding: 16px !default;
     z-index: $md-menu-z-index;
 
     &-restricted {
+      @include md-ios-scroll-momentum;
+
       max-height: $md-menu-max-height;
       overflow-y: auto;
+    }
+
+    &-contained {
+      width: 100%;
+    }
+
+    &-below {
+      left: 0;
+      top: 100%;
+      transform-origin: 50% 0;
+    }
+
+    &-tr {
+      right: 0;
+      top: 0;
+      transform-origin: 100% 0;
+    }
+
+    &-tl {
+      top: 0;
+      transform-origin: 0 0;
+    }
+
+    &-br {
+      right: 0;
+      transform-origin: 100% 100%;
+    }
+
+    &-bl {
+      transform-origin: 0 100%;
     }
   }
 

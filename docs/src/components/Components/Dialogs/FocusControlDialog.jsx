@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
@@ -93,7 +93,7 @@ export default class FocusControlDialog extends PureComponent {
           />
         </form>
         <Button raised onClick={this.show}>Open the Dialog</Button>
-        <Dialog
+        <DialogContainer
           id="focus-control-dialog"
           title="Focus Control Example"
           visible={visible}
@@ -106,7 +106,7 @@ export default class FocusControlDialog extends PureComponent {
         >
           <TextField id="field-1" label="Field 1" placeholder="Lorem ipsum" className="md-cell md-cell--12" />
           <TextField id="field-2" label="Field 2" placeholder="Multiline text here" rows={2} className="md-cell md-cell--12" />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

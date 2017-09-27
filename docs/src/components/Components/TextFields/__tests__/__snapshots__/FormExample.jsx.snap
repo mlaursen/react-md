@@ -2,7 +2,7 @@
 
 exports[`FormExample should render correctly 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -67,7 +67,7 @@ exports[`FormExample should render correctly 1`] = `
     </h2>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--padded phone-emulator__content--offset"
+    className="phone-emulator__content phone-emulator__content--offset"
     id={undefined}
     style={undefined}
   >
@@ -87,11 +87,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--title md-floating-label--floating md-text--secondary"
@@ -128,11 +124,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"
@@ -172,11 +164,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"
@@ -213,11 +201,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"
@@ -276,6 +260,7 @@ exports[`FormExample should render correctly 1`] = `
         <input
           aria-hidden={true}
           aria-label={undefined}
+          aria-labelledby={undefined}
           checked={false}
           className="md-selection-control-input"
           disabled={undefined}
@@ -327,6 +312,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={true}
             className="md-selection-control-input"
             disabled={undefined}
@@ -372,6 +358,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}
@@ -417,6 +404,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}
@@ -462,6 +450,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={true}
             className="md-selection-control-input"
             disabled={undefined}
@@ -507,6 +496,7 @@ exports[`FormExample should render correctly 1`] = `
           <input
             aria-hidden={true}
             aria-label={undefined}
+            aria-labelledby={undefined}
             checked={false}
             className="md-selection-control-input"
             disabled={undefined}

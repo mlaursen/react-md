@@ -2,6 +2,9 @@ import * as React from 'react';
 import { IdPropType, BaseProps } from '../index';
 
 export interface TabProps extends BaseProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   id?: IdPropType;
   controlsId?: IdPropType;
   component?: React.ReactType;

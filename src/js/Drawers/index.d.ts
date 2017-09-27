@@ -1,10 +1,9 @@
 export {
   default,
+  default as Drawer,
   DrawerProps,
-  MobileDrawerTypes,
-  MobileDrawerTypesType,
-  DrawerTypes,
-  DrawerTypesType,
-  MediaTypes,
-  DrawerPositions,
+  MobileDrawerType,
+  DrawerType,
+  MediaType,
+  DrawerPosition,
 } from './Drawer';

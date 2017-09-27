@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 
+import BackButton from 'components/BackButton';
 import RoutingExample from './RoutingExample';
 
 const RoutingExampleDialog = () => (
-  <Dialog
+  <DialogContainer
     id="navigation-drawer-routing-example-dialog"
     visible
     fullPage
@@ -15,18 +14,8 @@ const RoutingExampleDialog = () => (
     closeOnEsc={false}
   >
     <RoutingExample />
-    <Button
-      floating
-      fixed
-      secondary
-      to="/components/navigation-drawers#react-router-example"
-      component={Link}
-      tooltipLabel="Return to drawer examples"
-      tooltipPosition="left"
-    >
-      arrow_back
-    </Button>
-  </Dialog>
+    <BackButton />
+  </DialogContainer>
 );
 
 export default RoutingExampleDialog;

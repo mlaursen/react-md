@@ -23,6 +23,39 @@ import TableColumn from './TableColumn';
 export default class TablePagination extends PureComponent {
   static propTypes = {
     /**
+     * An optional id to provide to the select field. If this is omitted, it will be
+     * the `DataTable`'s `baseId` with '-pagination'.
+     *
+     * @see {@link DataTables/DataTable#baseId}
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the increment icon button. If this is omitted, it will be
+     * the `id` with '-increment-btn'.
+     *
+     * @see {@link #id}
+     */
+    incrementId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the decrement icon button. If this is omitted, it will be
+     * the `id` with '-decrement-btn'.
+     *
+     * @see {@link #id}
+     */
+    decrementId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
      * An optional style to apply to the `tfoot` tag.
      */
     style: PropTypes.object,
@@ -31,6 +64,41 @@ export default class TablePagination extends PureComponent {
      * An optional className to apply to the `tfoot` tag.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field.
+     *
+     * @see {@link SelectFields/SelectField#style}
+     */
+    selectFieldStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field.
+     *
+     * @see {@link SelectFields/SelectField#className}
+     */
+    selectFieldClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field's input.
+     *
+     * @see {@link SelectFields/SelectField#inputStyle}
+     */
+    selectFieldInputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field's input.
+     *
+     * @see {@link SelectFields/SelectField#inputClassName}
+     */
+    selectFieldInputClassName: PropTypes.string,
+
+    /**
+     * Boolean if the select field should use the simplified menu logic.
+     *
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
 
     /**
      * A function to call when a user clicks the increment or decrement pagination
@@ -49,7 +117,7 @@ export default class TablePagination extends PureComponent {
     rowsPerPage: PropTypes.number,
 
     /**
-     * The current page for the pagination. This will make the comonent controlled, so the only way to get pagination
+     * The current page for the pagination. This will make the component controlled, so the only way to get pagination
      * is making sure you are updating this prop after the `onPagination` callback is called.
      *
      * Pages start from 1 instead of 0.
@@ -116,6 +184,7 @@ export default class TablePagination extends PureComponent {
     rowsPerPageItems: [10, 20, 30, 40, 50, 100],
     incrementIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
     decrementIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
+    simplifiedMenu: false,
   };
 
   constructor(props, context) {
@@ -242,11 +311,16 @@ export default class TablePagination extends PureComponent {
     const { controlsMarginLeft, start } = this.state;
     const {
       className,
+      selectFieldStyle,
+      selectFieldClassName,
+      selectFieldInputStyle,
+      selectFieldInputClassName,
       rows,
       rowsPerPageLabel,
       rowsPerPageItems,
       incrementIcon,
       decrementIcon,
+      simplifiedMenu,
 
       // deprecated
       incrementIconChildren,
@@ -254,6 +328,9 @@ export default class TablePagination extends PureComponent {
       decrementIconChildren,
       decrementIconClassName,
       /* eslint-disable no-unused-vars */
+      id: propId,
+      incrementId: propIncrementId,
+      decrementId: propDecrementId,
       onPagination,
       rowsPerPage: propRowsPerPage,
       page: propPage,
@@ -263,7 +340,20 @@ export default class TablePagination extends PureComponent {
       ...props
     } = this.props;
 
+    const { baseId } = this.context;
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
+    let { id, incrementId, decrementId } = this.props;
+    if (!id) {
+      id = `${baseId}-pagination`;
+    }
+
+    if (!incrementId) {
+      incrementId = `${id}-increment-btn`;
+    }
+
+    if (!decrementId) {
+      decrementId = `${id}-decrement-btn`;
+    }
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
@@ -282,21 +372,27 @@ export default class TablePagination extends PureComponent {
                 {rowsPerPageLabel}
               </span>
               <SelectField
-                id={`${this.context.baseId}-pagination`}
+                id={id}
                 menuItems={rowsPerPageItems}
                 position={SelectField.Positions.BELOW}
-                inputClassName="md-select-field--pagination"
+                style={selectFieldStyle}
+                className={selectFieldClassName}
+                inputStyle={selectFieldInputStyle}
+                inputClassName={cn('md-select-field--pagination', selectFieldInputClassName)}
                 value={rowsPerPage}
                 onChange={this._setRowsPerPage}
+                simplifiedMenu={simplifiedMenu}
               />
               <span className="md-table-pagination--label">{pagination}</span>
               <Button
+                id={decrementId}
                 icon
                 onClick={this._decrement}
                 disabled={start === 0}
                 iconEl={getDeprecatedIcon(decrementIconClassName, decrementIconChildren, decrementIcon)}
               />
               <Button
+                id={incrementId}
                 icon
                 onClick={this._increment}
                 disabled={start + rowsPerPage >= rows}

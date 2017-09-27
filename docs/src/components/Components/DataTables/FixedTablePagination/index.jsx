@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import Toolbar from 'react-md/lib/Toolbars';
 
 import ControlledFixedTablePagination from './ControlledFixedTablePagination';
@@ -19,7 +19,7 @@ export default class FixedTablePaginationDemo extends PureComponent {
     return (
       <div>
         <Button raised primary onClick={this.show}>Open the demo</Button>
-        <Dialog
+        <DialogContainer
           id="demo-dialog"
           visible={visible}
           fullPage
@@ -36,7 +36,7 @@ export default class FixedTablePaginationDemo extends PureComponent {
             zDepth={2}
           />
           <ControlledFixedTablePagination />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

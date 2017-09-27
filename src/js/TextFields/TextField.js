@@ -4,7 +4,9 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import isValued from '../utils/isValued';
 import getField from '../utils/getField';
+import getTextWidth from '../utils/Positioning/getTextWidth';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -226,7 +228,7 @@ export default class TextField extends PureComponent {
 
     /**
      * An optional boolean if the `floating` state of the text field's floating label can be
-     * externally modified as well. The floating state is true when the tet field gains focus
+     * externally modified as well. The floating state is true when the text field gains focus
      * or there is a value in the text field.
      *
      * If this prop is set, it will check both the floating prop and the floating state to
@@ -297,7 +299,7 @@ export default class TextField extends PureComponent {
     maxRows: PropTypes.number,
 
     /**
-     * An optional customsize to apply to the text field. This is used along with
+     * An optional custom size to apply to the text field. This is used along with
      * the `$md-text-field-custom-sizes` variable. It basically applies a className of
      * `md-text-field--NAME`.
      */
@@ -394,21 +396,11 @@ export default class TextField extends PureComponent {
     this.state = {
       active: false,
       error: props.maxLength ? props.maxLength < currentLength : false,
-      floating: this._isValued(props.defaultValue) || this._isValued(props.value),
+      floating: isValued(props.defaultValue) || isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
       currentLength,
-      width,
+      styles: width ? { width, ...props.style } : props.style,
     };
-  }
-
-  componentWillMount() {
-    const { value, defaultValue, resize } = this.props;
-    const v = typeof value !== 'undefined' ? value : defaultValue;
-    if (!resize || typeof document === 'undefined' || !v) {
-      return;
-    }
-
-    this.setState({ width: this._calcWidth(v) });
   }
 
   componentDidMount() {
@@ -420,32 +412,24 @@ export default class TextField extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { value, maxLength, required, resize } = nextProps;
-    if (this.props.value !== value) {
-      let { error, width } = this.state;
-      const currentLength = this._getLength(value);
-      if (required && error) {
-        error = !this._isValued(value);
-      }
-
-      if (maxLength) {
-        error = error || currentLength > maxLength;
-      }
-
-      if (resize) {
-        const nextWidth = this._calcWidth(value);
-        if (!resize.disableShrink || nextWidth > width) {
-          width = nextWidth;
-        }
-      }
-
-      this.setState({
-        error,
-        width,
-        currentLength,
-        floating: this._isValued(value) || (this.state.floating && this.state.active),
-      });
+    const { value, resize, style } = nextProps;
+    const nextState = {};
+    if (value !== this.props.value) {
+      nextState.error = this._isErrored(nextProps);
+      nextState.floating = isValued(value);
+      nextState.currentLength = this._getLength(value);
     }
+
+    if (style !== this.props.style || value !== this.props.value || resize !== this.props.resize) {
+      if (!resize) {
+        nextState.styles = style;
+      } else {
+        const width = this._calcWidth(value, nextProps);
+        nextState.styles = { width, ...style };
+      }
+    }
+
+    this.setState(nextState);
   }
 
   /**
@@ -490,7 +474,7 @@ export default class TextField extends PureComponent {
 
   /**
    * A helper function for blurring the `input` field or the `textarea` in the `TextField`.
-   * This is accessibile if you use `refs`.
+   * This is accessible if you use `refs`.
    * Example:
    *
    * ```js
@@ -512,9 +496,9 @@ export default class TextField extends PureComponent {
       const iconEl = Children.only(icon);
       return cloneElement(iconEl, {
         key: iconEl.key || `icon-${dir}`,
-        disabled,
-        primary: stateful && !error && active,
-        error: stateful && error,
+        disabled: stateful ? disabled : undefined,
+        primary: stateful ? !error && active : undefined,
+        error: stateful ? error : undefined,
         className: cn('md-text-field-icon', {
           'md-text-field-icon--positioned': !block,
         }, iconEl.props.className),
@@ -524,14 +508,16 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _isValued = v => v === 0 || !!v;
-
   _getLength = (v) => {
-    if (this._isValued(v)) {
+    if (isValued(v)) {
       return String(v).length;
     }
 
     return 0;
+  };
+
+  _setContainer = (div) => {
+    this._container = div;
   };
 
   _setField = (field) => {
@@ -540,36 +526,73 @@ export default class TextField extends PureComponent {
     }
   };
 
-  _calcWidth = (value) => {
-    const field = (this._field && this._field.getField()) || null;
-    if (!field) {
-      return null;
+  /**
+   * A small utility function for calculating an inline-icon's width keeping the SVG Icons
+   * in mind and any margin that gets applied for spacing.
+   */
+  _calcIconWidth = (icon) => {
+    const style = window.getComputedStyle(icon);
+
+    return icon.getBoundingClientRect().width
+      + parseInt(style.marginLeft, 10);
+  };
+
+  _calcWidth = (value, props = this.props) => {
+    let text = value;
+    // if it is a password, use the bullet unicode instead
+    if (props.type === 'password') {
+      text = [...new Array(value.length)].reduce(s => `${s}\u2022`, '');
     }
 
-    if (!this._canvas) {
-      this._canvas = document.createElement('canvas');
+    const field = this._field && this._field.getField();
+    let width = getTextWidth(text, field);
+    if (width === null || !field) {
+      // some error happened, don't do other logic
+      return width;
     }
 
-    const context = this._canvas.getContext('2d');
-    if (!context) { // Doesn't exist in testing
-      return null;
+    const { max } = props.resize;
+    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
+
+    if (this._container) {
+      const indicator = this._container.querySelector('.md-text-field-inline-indicator');
+      if (indicator) {
+        width += indicator.getBoundingClientRect().width;
+      }
+
+      const iconContainer = this._container.querySelector('.md-text-field-icon-container');
+      if (iconContainer) {
+        // There is conditionally an icon before and after the text field, or only an icon before/after
+        // There is never a third icon if the indicator is defined
+        const [first, second, third] = iconContainer.children;
+        if (first.classList.contains('md-icon')) {
+          width += first.getBoundingClientRect().width;
+          width += parseInt(window.getComputedStyle(second).marginLeft, 10);
+
+          if (third) {
+            width += this._calcIconWidth(third);
+          }
+        } else if (second) {
+          width += this._calcIconWidth(second);
+        }
+      }
     }
 
-    const styles = window.getComputedStyle(field);
-    let font = styles.font;
-    // Some browsers do not actually supply the font style since they are on an older version of CSSProperties,
-    // so the font string needs to be made manually.
-    if (!font) {
-      // font-style font-variant font-weight font-size/line-height font-family
-      const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
-      font = `${styles.fontStyle} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
+    return Math.ceil(Math.min(max, Math.max(min, width)));
+  };
+
+  _isErrored = ({ value, maxLength, required } = this.props) => {
+    let { error } = this.state;
+    const currentLength = this._getLength(value);
+    if (required && error) {
+      error = !isValued(value);
     }
 
-    const { max } = this.props.resize;
-    const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
+    if (maxLength) {
+      error = error || currentLength > maxLength;
+    }
 
-    context.font = font;
-    return Math.min(max, Math.max(min, context.measureText(value).width));
+    return error;
   };
 
   _handleContainerClick = (e) => {
@@ -591,11 +614,11 @@ export default class TextField extends PureComponent {
     const { value } = e.target;
     const state = {
       active: false,
-      error: (required && !this._isValued(value)) || (maxLength && String(value).length > maxLength),
+      error: (required && !isValued(value)) || (maxLength && String(value).length > maxLength),
     };
 
     if (!this.props.block) {
-      state.floating = this._isValued(value);
+      state.floating = isValued(value);
     }
 
     this.setState(state);
@@ -632,9 +655,9 @@ export default class TextField extends PureComponent {
 
     if (typeof this.props.value === 'undefined' && resize) {
       const width = this._calcWidth(value);
-      if (!resize.disableShrink || width > this.state.width) {
+      if (!resize.disableShrink || !this.state.styles || width > this.state.styles.width) {
         state = state || {};
-        state.width = this._calcWidth(value);
+        state.styles = { ...this.state.styles, width };
       }
     }
 
@@ -648,11 +671,10 @@ export default class TextField extends PureComponent {
   };
 
   render() {
-    const { currentLength, passwordVisible, width } = this.state;
+    const { currentLength, passwordVisible, styles } = this.state;
     const {
       id,
       type,
-      style,
       className,
       inputStyle,
       inputClassName,
@@ -688,6 +710,7 @@ export default class TextField extends PureComponent {
       passwordIconChildren,
       passwordIconClassName,
       /* eslint-disable no-unused-vars */
+      style,
       label: propLabel,
       placeholder: propPlaceholder,
       error: propError,
@@ -853,7 +876,7 @@ export default class TextField extends PureComponent {
     const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        style={{ width, ...style }}
+        style={styles}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
@@ -874,6 +897,7 @@ export default class TextField extends PureComponent {
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchCancel}
         onTouchMove={onTouchMove}
+        ref={this._setContainer}
       >
         {ink}
         {children}

@@ -40,14 +40,14 @@ export default class CircularProgress extends PureComponent {
     /* eslint-enable max-len */
 
     /**
-     * A style object to apply to the svg. If this is a determinate `CircularProgress`,
+     * A style object to apply to the SVG. If this is a determinate `CircularProgress`,
      * the `transform` (and vendor prefixes) styles will be merged with the current
      * progress rotation.
      */
     style: PropTypes.object.isRequired,
 
     /**
-     * An optional className to apply to the svg.
+     * An optional className to apply to the SVG.
      */
     className: PropTypes.string,
 
@@ -66,13 +66,13 @@ export default class CircularProgress extends PureComponent {
     scale: PropTypes.number.isRequired,
 
     /**
-     * You probably don't want to update this. I'm not good at svg. This should
-     * match the scss variable `$md-circular-progress-stroke-dashoffset`.
+     * You probably don't want to update this. I'm not good at SVG. This should
+     * match the SCSS variable `$md-circular-progress-stroke-dashoffset`.
      */
     determinateDashoffset: PropTypes.number.isRequired,
 
     /**
-     * Boolean if the the progress should be centered in it's container.
+     * Boolean if the progress should be centered in it's container.
      */
     centered: PropTypes.bool,
   };

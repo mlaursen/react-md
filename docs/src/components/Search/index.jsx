@@ -25,26 +25,37 @@ export class PureSearch extends PureComponent {
     showSearch: PropTypes.func.isRequired,
     hideSearch: PropTypes.func.isRequired,
 
+    mobile: PropTypes.bool.isRequired,
+
     /**
      * A list of matches/results from the current search.
      */
     results: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
-      type: PropTypes.oneOf([
-        'Info',
-        'Examples',
-        'SassDoc',
-        'Prop Types',
-        'Mixin',
-        'Variable',
-        'Placeholder',
-        'Function',
-      ]).isRequired,
+      type: (props, propName, component, ...others) => {
+        const error = PropTypes.oneOf([
+          'Info',
+          'Examples',
+          'SassDoc',
+          'Prop Types',
+          'Mixin',
+          'Variable',
+          'Placeholder',
+          'Function',
+        ]).isRequired(props, propName, component, ...others);
+
+        // If it doesn't match one of the above, it should match `ComponentName Example`
+        if (error && !props[propName].match(/^\w+ Example$/)) {
+          return error;
+        }
+
+        return null;
+      },
       ref: PropTypes.string.isRequired,
     })).isRequired,
 
     /**
-     * The meta object containg the last search's start index, the total results,
+     * The meta object containing the last search's start index, the total results,
      * the last search's limit of results, an optional link to get the next results,
      * and an optional link to get the previous results.
      */
@@ -188,6 +199,7 @@ export class PureSearch extends PureComponent {
   render() {
     const { animating, data, value } = this.state;
     const {
+      mobile,
       searching,
       hideSearch,
       meta: { total },
@@ -221,6 +233,11 @@ export class PureSearch extends PureComponent {
           listClassName="search__results"
           onClick={this.handleClick}
           value={value}
+          sameWidth={false}
+          simplifiedMenu={false}
+          minBottom={20}
+          fillViewportWidth={mobile}
+          fillViewportHeight={mobile}
         />
         {hideBtn}
       </div>
@@ -238,7 +255,7 @@ export default connectAdvanced((dispatch) => {
   }, dispatch);
 
   return (state, props) => {
-    const nextResult = { ...props, ...actions, ...state.search };
+    const nextResult = { ...props, ...actions, ...state.search, mobile: state.media.mobile };
 
     if (!shallowEqual(result, nextResult)) {
       result = nextResult;

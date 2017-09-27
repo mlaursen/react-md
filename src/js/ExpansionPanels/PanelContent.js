@@ -6,13 +6,15 @@ import DialogFooter from '../Dialogs/DialogFooter';
 
 /**
  * The `PanelContent` component is for displaying the expanded content
- * for an `ExpansionPanel`. It wil display any children in a `md-panel-content`
+ * for an `ExpansionPanel`. It will display any children in a `md-panel-content`
  * container followed by a `Divider` and the `PanelControls` .
  */
 export default class PanelContent extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
+    footerStyle: PropTypes.object,
+    footerClassName: PropTypes.string,
     contentStyle: PropTypes.object,
     children: PropTypes.node,
     onSave: PropTypes.func.isRequired,
@@ -34,6 +36,8 @@ export default class PanelContent extends PureComponent {
   render() {
     const {
       style,
+      footerStyle,
+      footerClassName,
       contentStyle,
       className,
       children,
@@ -72,7 +76,11 @@ export default class PanelContent extends PureComponent {
     let actionFooter = null;
     if (typeof footer === 'undefined') {
       actionFooter = (
-        <DialogFooter actions={actions} className="md-divider-border md-divider-border--top">
+        <DialogFooter
+          actions={actions}
+          style={footerStyle}
+          className={cn('md-divider-border md-divider-border--top', footerClassName)}
+        >
           {footerChildren}
         </DialogFooter>
       );

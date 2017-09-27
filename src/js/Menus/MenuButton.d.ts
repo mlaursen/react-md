@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { IdPropType } from '../index';
-import { DropdownMenuProps } from './DropdownMenu';
+import { SharedDropdownMenuProps } from './DropdownMenu';
 import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
 import { SharedButtonProps } from '../Buttons/Button';
+import { InjectedInkProps } from '../Inks/injectInk';
+import { InjectedTooltipProps } from '../Tooltips/injectTooltip';
 
-export interface MenuButtonProps extends DropdownMenuProps, SharedButtonProps {
+export interface MenuButtonProps extends SharedDropdownMenuProps, SharedButtonProps, InjectedTooltipProps, InjectedInkProps {
+  children?: React.ReactNode;
+  simplifiedMenu?: boolean;
+
   /**
    * @deprecated
    * */

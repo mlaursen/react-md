@@ -365,7 +365,7 @@ $md-tab-desktop-padding: 24px !default;
   }
 }
 
-/// This is mostly an interal mixin for tabs. It will create the tabs content offset class names
+/// This is mostly an internal mixin for tabs. It will create the tabs content offset class names
 /// related to the current parameters.
 ///
 /// @param {Number} toolbar-height - The current toolbar height.
@@ -424,7 +424,7 @@ $md-tab-desktop-padding: 24px !default;
 ///     tabs content when there is a tab with both a label and an icon.
 /// @param {Boolean} include-toolbars [$md-tab-include-toolbars] - Boolean if the styles for offsetting
 ///     the tabs content when there is a `.md-tabs-container` containing both a toolbar and tabs.
-/// @param {Boolean} include-prominent-toolbars [$md-tabinclude-prominent-toolbars] - Boolean if the styles
+/// @param {Boolean} include-prominent-toolbars [$md-tab-include-prominent-toolbars] - Boolean if the styles
 ///   for offsetting the tabs content when there is a `.md-tabs-container` containing both a prominent toolbar
 ///   and tabs.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the tab's content is swipeable.
@@ -478,7 +478,7 @@ $md-tab-desktop-padding: 24px !default;
 ///     tabs content when there is a tab with both a label and an icon.
 /// @param {Boolean} include-toolbars [$md-tab-include-toolbars] - Boolean if the styles for offsetting
 ///     the tabs content when there is a `.md-tabs-container` containing both a toolbar and tabs.
-/// @param {Boolean} include-prominent-toolbars [$md-tabinclude-prominent-toolbars] - Boolean if the styles
+/// @param {Boolean} include-prominent-toolbars [$md-tab-include-prominent-toolbars] - Boolean if the styles
 ///   for offsetting the tabs content when there is a `.md-tabs-container` containing both a prominent toolbar
 ///   and tabs.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the tab's content is swipeable.

@@ -9,6 +9,8 @@ import DropdownMenuExamples from './DropdownMenuExamples';
 import DropdownMenuExamplesRaw from './DropdownMenuExamples/code';
 import GoogleDocsClone from './GoogleDocsClone';
 import GoogleDocsCloneRaw from './GoogleDocsClone/code';
+import SmartPositioningMenus from './SmartPositioningMenus';
+import SmartPositioningMenusRaw from '!!raw-loader!./SmartPositioningMenus.jsx';
 
 const examples = [{
   title: 'Menu Button Examples',
@@ -35,6 +37,30 @@ some more interesting components than what is only available with the \`MenuButt
   `,
   code: DropdownMenuExamplesRaw,
   children: <DropdownMenuExamples />,
+}, {
+  title: '"Smart" Positioning Menus',
+  description: `
+Starting from \`react-md@1.1.0\`, menus can be updated to use "smart" positioning to move their location
+to stay within the viewport. If a user attempts to open a menu that is near the bottom of the screen, the
+menu will now appear above instead of below. When the user scrolls the page while the menu is open, the
+menu will move with the page until it can no longer be displayed in the viewport and then automatically hides.
+If it is possible to switch the location of the menu from top to bottom or bottom to top, it will do so. The
+menu can also be hidden automatically if the user attempts to scroll instead by disabling the \`repositionOnScroll\`
+prop.
+
+The biggest difference between these menus and the default version is that their positioning is handled by inline
+styles instead of external CSS. Because of the inline styling, it might be better to keep the non-"smart" menus
+enabled in general cases when complex positioning is required or the menus are tied to text fields.
+
+> See the Autocomplete example below for more details about problems with "smart" menus and text fields.
+
+Try scrolling around the page before and after opening the menus below to see how the "smart" menus can reposition
+or hide based on screen location. You can also check out these examples:
+- [Autocomplete "Smart" Menus](/components/autocompletes#using-smart-menus)
+- [SelectField "Smart" Menus](/components/select-fields#using-smart-menus)
+  `,
+  code: SmartPositioningMenusRaw,
+  children: <SmartPositioningMenus />,
 }, {
   title: 'Google Docs Clone',
   description: `

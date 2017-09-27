@@ -6,18 +6,20 @@ type Types = 'checkbox' | 'radio' | 'switch';
 export interface BaseSelectionControlProps extends Props {
   id: IdPropType;
   name: number | string;
+  label?: React.ReactNode;
   labelBefore?: boolean;
   disabled?: boolean;
   value?: number | string;
   checked?: boolean;
   defaultChecked?: boolean;
   inline?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: IdPropType;
 }
 
 export interface SelectionControlProps extends BaseSelectionControlProps {
   onChange?: (result: boolean | number | string, event: Event) => void;
   type: Types;
-  'aria-label'?: string;
   checkedCheckboxIcon?: React.ReactElement<any>;
   uncheckedCheckboxIcon?: React.ReactElement<any>;
   checkedRadioIcon?: React.ReactElement<any>;

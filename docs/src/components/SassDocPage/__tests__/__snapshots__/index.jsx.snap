@@ -31,8 +31,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">%md-tracking--10 { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -60,7 +60,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>A placeholder for styling a class with the material design tracking of -10.</p>
-          ",
+",
           }
         }
       />
@@ -83,7 +83,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\" class=\\"link\\">md-display-4</a></p>
-              ",
+",
               }
             }
           />
@@ -117,8 +117,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<pre><code class=\\"lang-scss\\">$md-typography-extended: true !default;
-          </code></pre>
-          ",
+</code></pre>
+",
           }
         }
         disabled={true}
@@ -139,7 +139,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Boolean if the typography should extend the base html tags as well.</p>
-          ",
+",
           }
         }
       />
@@ -182,8 +182,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">@function get-font-suffix($font-weight) { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -211,7 +211,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Converts a font weight into the google font suffix.</p>
-          ",
+",
           }
         }
       />
@@ -234,7 +234,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>the font suffix</p>
-            ",
+",
             }
           }
         />
@@ -258,7 +258,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-light\\" class=\\"link\\">md-font-light</a></p>
-              ",
+",
               }
             }
           />
@@ -274,7 +274,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\" class=\\"link\\">md-font-regular</a></p>
-              ",
+",
               }
             }
           />
@@ -290,7 +290,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-medium\\" class=\\"link\\">md-font-medium</a></p>
-              ",
+",
               }
             }
           />
@@ -306,7 +306,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-bold\\" class=\\"link\\">md-font-bold</a></p>
-              ",
+",
               }
             }
           />
@@ -331,7 +331,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-host-google-font\\" class=\\"link\\">host-google-font</a></p>
-              ",
+",
               }
             }
           />
@@ -366,8 +366,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -395,12 +395,12 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>This includes the css for simple typography in react-md. It will
-          update all items to use <code>box-sizing: border-box</code>, set the font
-          family, set the line-height, text-rendering, and create the base
-          class names for the typography. If the <code>$extend-html-tags</code> is true,
-          the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
-          corresponding css class name.</p>
-          ",
+update all items to use <code>box-sizing: border-box</code>, set the font
+family, set the line-height, text-rendering, and create the base
+class names for the typography. If the <code>$extend-html-tags</code> is true,
+the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
+corresponding css class name.</p>
+",
           }
         }
       />
@@ -423,7 +423,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-media\\" class=\\"link\\">react-md-typography-media</a></p>
-              ",
+",
               }
             }
           />
@@ -439,7 +439,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-utilities\\" class=\\"link\\">react-md-typography-utilities</a></p>
-              ",
+",
               }
             }
           />
@@ -455,7 +455,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-text-container\\" class=\\"link\\">react-md-typography-text-container</a></p>
-              ",
+",
               }
             }
           />
@@ -471,7 +471,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#function-get-color\\" class=\\"link\\">get-color</a></p>
-              ",
+",
               }
             }
           />
@@ -487,7 +487,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-1\\" class=\\"link\\">md-display-1</a></p>
-              ",
+",
               }
             }
           />
@@ -503,7 +503,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-headline\\" class=\\"link\\">md-headline</a></p>
-              ",
+",
               }
             }
           />
@@ -519,7 +519,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-title\\" class=\\"link\\">md-title</a></p>
-              ",
+",
               }
             }
           />
@@ -535,7 +535,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-2\\" class=\\"link\\">md-subheading-2</a></p>
-              ",
+",
               }
             }
           />
@@ -551,7 +551,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-1\\" class=\\"link\\">md-subheading-1</a></p>
-              ",
+",
               }
             }
           />
@@ -567,7 +567,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-2\\" class=\\"link\\">md-body-2</a></p>
-              ",
+",
               }
             }
           />
@@ -583,7 +583,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-1\\" class=\\"link\\">md-body-1</a></p>
-              ",
+",
               }
             }
           />
@@ -599,7 +599,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-caption\\" class=\\"link\\">md-caption</a></p>
-              ",
+",
               }
             }
           />
@@ -615,7 +615,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-2\\" class=\\"link\\">md-display-2</a></p>
-              ",
+",
               }
             }
           />
@@ -631,7 +631,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-3\\" class=\\"link\\">md-display-3</a></p>
-              ",
+",
               }
             }
           />
@@ -647,7 +647,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\" class=\\"link\\">md-display-4</a></p>
-              ",
+",
               }
             }
           />
@@ -663,7 +663,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/sassdoc/#transitions-variable-md-transition-standard\\" class=\\"link\\">md-transition-standard</a></p>
-              ",
+",
               }
             }
           />
@@ -679,7 +679,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-light-theme-background-color\\" class=\\"link\\">md-light-theme-background-color</a></p>
-              ",
+",
               }
             }
           />
@@ -695,7 +695,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-dark-theme-background-color\\" class=\\"link\\">md-dark-theme-background-color</a></p>
-              ",
+",
               }
             }
           />
@@ -711,7 +711,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-size-base\\" class=\\"link\\">md-font-size-base</a></p>
-              ",
+",
               }
             }
           />
@@ -727,7 +727,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-html-min-width\\" class=\\"link\\">md-html-min-width</a></p>
-              ",
+",
               }
             }
           />
@@ -743,7 +743,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">md-font-family</a></p>
-              ",
+",
               }
             }
           />
@@ -759,7 +759,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\" class=\\"link\\">md-font-regular</a></p>
-              ",
+",
               }
             }
           />
@@ -775,7 +775,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-line-height\\" class=\\"link\\">md-line-height</a></p>
-              ",
+",
               }
             }
           />
@@ -800,7 +800,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/sassdoc/#base, themes-mixin-react-md-everything\\" class=\\"link\\">react-md-everything</a></p>
-              ",
+",
               }
             }
           />
@@ -864,8 +864,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">%md-tracking--10 { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -893,7 +893,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>A placeholder for styling a class with the material design tracking of -10.</p>
-          ",
+",
           }
         }
       />
@@ -916,7 +916,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\" class=\\"link\\">md-display-4</a></p>
-              ",
+",
               }
             }
           />
@@ -950,8 +950,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<pre><code class=\\"lang-scss\\">$md-typography-extended: true !default;
-          </code></pre>
-          ",
+</code></pre>
+",
           }
         }
         disabled={true}
@@ -972,7 +972,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Boolean if the typography should extend the base html tags as well.</p>
-          ",
+",
           }
         }
       />
@@ -1015,8 +1015,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">@function get-font-suffix($font-weight) { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -1044,7 +1044,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Converts a font weight into the google font suffix.</p>
-          ",
+",
           }
         }
       />
@@ -1067,7 +1067,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>the font suffix</p>
-            ",
+",
             }
           }
         />
@@ -1091,7 +1091,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-light\\" class=\\"link\\">md-font-light</a></p>
-              ",
+",
               }
             }
           />
@@ -1107,7 +1107,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\" class=\\"link\\">md-font-regular</a></p>
-              ",
+",
               }
             }
           />
@@ -1123,7 +1123,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-medium\\" class=\\"link\\">md-font-medium</a></p>
-              ",
+",
               }
             }
           />
@@ -1139,7 +1139,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-bold\\" class=\\"link\\">md-font-bold</a></p>
-              ",
+",
               }
             }
           />
@@ -1164,7 +1164,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-host-google-font\\" class=\\"link\\">host-google-font</a></p>
-              ",
+",
               }
             }
           />
@@ -1199,8 +1199,8 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
-            </code></pre>
-            ",
+</code></pre>
+",
             }
           }
           disabled={undefined}
@@ -1228,12 +1228,12 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>This includes the css for simple typography in react-md. It will
-          update all items to use <code>box-sizing: border-box</code>, set the font
-          family, set the line-height, text-rendering, and create the base
-          class names for the typography. If the <code>$extend-html-tags</code> is true,
-          the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
-          corresponding css class name.</p>
-          ",
+update all items to use <code>box-sizing: border-box</code>, set the font
+family, set the line-height, text-rendering, and create the base
+class names for the typography. If the <code>$extend-html-tags</code> is true,
+the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
+corresponding css class name.</p>
+",
           }
         }
       />
@@ -1256,7 +1256,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-media\\" class=\\"link\\">react-md-typography-media</a></p>
-              ",
+",
               }
             }
           />
@@ -1272,7 +1272,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-utilities\\" class=\\"link\\">react-md-typography-utilities</a></p>
-              ",
+",
               }
             }
           />
@@ -1288,7 +1288,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-text-container\\" class=\\"link\\">react-md-typography-text-container</a></p>
-              ",
+",
               }
             }
           />
@@ -1304,7 +1304,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#function-get-color\\" class=\\"link\\">get-color</a></p>
-              ",
+",
               }
             }
           />
@@ -1320,7 +1320,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-1\\" class=\\"link\\">md-display-1</a></p>
-              ",
+",
               }
             }
           />
@@ -1336,7 +1336,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-headline\\" class=\\"link\\">md-headline</a></p>
-              ",
+",
               }
             }
           />
@@ -1352,7 +1352,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-title\\" class=\\"link\\">md-title</a></p>
-              ",
+",
               }
             }
           />
@@ -1368,7 +1368,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-2\\" class=\\"link\\">md-subheading-2</a></p>
-              ",
+",
               }
             }
           />
@@ -1384,7 +1384,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-1\\" class=\\"link\\">md-subheading-1</a></p>
-              ",
+",
               }
             }
           />
@@ -1400,7 +1400,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-2\\" class=\\"link\\">md-body-2</a></p>
-              ",
+",
               }
             }
           />
@@ -1416,7 +1416,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-1\\" class=\\"link\\">md-body-1</a></p>
-              ",
+",
               }
             }
           />
@@ -1432,7 +1432,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-caption\\" class=\\"link\\">md-caption</a></p>
-              ",
+",
               }
             }
           />
@@ -1448,7 +1448,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-2\\" class=\\"link\\">md-display-2</a></p>
-              ",
+",
               }
             }
           />
@@ -1464,7 +1464,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-3\\" class=\\"link\\">md-display-3</a></p>
-              ",
+",
               }
             }
           />
@@ -1480,7 +1480,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\" class=\\"link\\">md-display-4</a></p>
-              ",
+",
               }
             }
           />
@@ -1496,7 +1496,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/sassdoc/#transitions-variable-md-transition-standard\\" class=\\"link\\">md-transition-standard</a></p>
-              ",
+",
               }
             }
           />
@@ -1512,7 +1512,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-light-theme-background-color\\" class=\\"link\\">md-light-theme-background-color</a></p>
-              ",
+",
               }
             }
           />
@@ -1528,7 +1528,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-dark-theme-background-color\\" class=\\"link\\">md-dark-theme-background-color</a></p>
-              ",
+",
               }
             }
           />
@@ -1544,7 +1544,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-size-base\\" class=\\"link\\">md-font-size-base</a></p>
-              ",
+",
               }
             }
           />
@@ -1560,7 +1560,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-html-min-width\\" class=\\"link\\">md-html-min-width</a></p>
-              ",
+",
               }
             }
           />
@@ -1576,7 +1576,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">md-font-family</a></p>
-              ",
+",
               }
             }
           />
@@ -1592,7 +1592,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\" class=\\"link\\">md-font-regular</a></p>
-              ",
+",
               }
             }
           />
@@ -1608,7 +1608,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-line-height\\" class=\\"link\\">md-line-height</a></p>
-              ",
+",
               }
             }
           />
@@ -1633,7 +1633,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             dangerouslySetInnerHTML={
               Object {
                 "__html": "<p><a href=\\"/sassdoc/#base, themes-mixin-react-md-everything\\" class=\\"link\\">react-md-everything</a></p>
-              ",
+",
               }
             }
           />

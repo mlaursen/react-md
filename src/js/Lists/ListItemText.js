@@ -14,7 +14,11 @@ export default class ListItemText extends PureComponent {
     activeClassName: PropTypes.string,
     disabled: PropTypes.bool,
     primaryText: PropTypes.node.isRequired,
+    primaryTextStyle: PropTypes.object,
+    primaryTextClassName: PropTypes.string,
     secondaryText: PropTypes.node,
+    secondaryTextStyle: PropTypes.object,
+    secondaryTextClassName: PropTypes.string,
     className: PropTypes.string,
     threeLines: PropTypes.bool,
   };
@@ -25,7 +29,11 @@ export default class ListItemText extends PureComponent {
       activeClassName,
       disabled,
       primaryText,
+      primaryTextStyle,
+      primaryTextClassName,
       secondaryText,
+      secondaryTextStyle,
+      secondaryTextClassName,
       className,
       threeLines,
       ...props
@@ -35,9 +43,10 @@ export default class ListItemText extends PureComponent {
     if (secondaryText) {
       secondaryTextNode = (
         <div
+          style={secondaryTextStyle}
           className={cn('md-tile-text--secondary', {
             'md-tile-text--three-lines': threeLines,
-          }, themeColors({ disabled, hint: !disabled }))}
+          }, themeColors({ disabled, hint: !disabled }), secondaryTextClassName)}
         >
           {secondaryText}
         </div>
@@ -47,9 +56,10 @@ export default class ListItemText extends PureComponent {
     return (
       <div {...props} className={cn('md-tile-content', className)}>
         <div
+          style={primaryTextStyle}
           className={cn('md-tile-text--primary', {
             [activeClassName]: !disabled && active,
-          }, themeColors({ disabled, text: !active }))}
+          }, themeColors({ disabled, text: !active }), primaryTextClassName)}
         >
           {primaryText}
         </div>

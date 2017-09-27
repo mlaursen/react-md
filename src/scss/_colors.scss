@@ -843,7 +843,7 @@ $md-black-base: #000;
 /// @type Color
 $md-white-base: #fff;
 
-/// This is a map of all the material design base colors so that you can programatically get
+/// This is a map of all the material design base colors so that you can programmatically get
 /// variables with the neat sass-map functions.
 ///
 /// @example scss - Example Usage SCSS
@@ -1254,7 +1254,7 @@ $md-dark-theme-colors: (
 ///     class name.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
-/// @param {Color} error-color [$md-error-color] - The text folor for any text that appears in the `md-text--error` class name.
+/// @param {Color} error-color [$md-error-color] - The text color for any text that appears in the `md-text--error` class name.
 /// @group colors, themes
 @mixin react-md-colors(
   $primary-color: $md-primary-color,
@@ -1348,7 +1348,7 @@ $md-dark-theme-colors: (
 /// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
-/// @param {Color} error-color [$md-error-color] - The text folor for any text that appears in the `md-text--error` class name.
+/// @param {Color} error-color [$md-error-color] - The text color for any text that appears in the `md-text--error` class name.
 /// @group colors, themes
 @mixin react-md-theme-colors(
   $primary-color: $md-primary-color,

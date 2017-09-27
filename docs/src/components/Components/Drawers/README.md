@@ -12,7 +12,7 @@ const {
 } = Drawer.DrawerTypes;
 ```
 
-The `TEMPORARY` or `TEMPORARY_MINI` type *must* be used for mobile deivces. By default,
+The `TEMPORARY` or `TEMPORARY_MINI` type *must* be used for mobile devices. By default,
 a `TEMPORARY` drawer will be used for mobile devices, a `PERSISTENT` drawer for tablets,
 and a `FULL_HEIGHT` drawer for desktops.
 

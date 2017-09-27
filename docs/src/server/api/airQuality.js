@@ -10,7 +10,7 @@ const airQualityRouter = express.Router();
 airQualityRouter.get(AIR_QUALITY_COLUMNS_ENDPOINT, (req, res) => {
   res.json(airQuality.columns);
 });
-airQualityRouter.get(AIR_QUALITY_DATA_ENDPOINT, createPaginatedRoute(() => airQuality.data, false, 100));
+airQualityRouter.get(AIR_QUALITY_DATA_ENDPOINT, createPaginatedRoute(() => airQuality.data, { queryable: false, maxResults: 100 }));
 
 airQualityRouter.get('*', (req, res) => {
   res.send(NOT_FOUND);

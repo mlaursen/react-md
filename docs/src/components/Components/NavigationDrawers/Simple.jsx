@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import SVGIcon from 'react-md/lib/SVGIcons';
 
@@ -63,7 +63,7 @@ export default class Simple extends PureComponent {
     return (
       <div>
         <Button raised onClick={this.show}>Open the Demo</Button>
-        <Dialog
+        <DialogContainer
           id="navigation-drawer-demo"
           aria-label="Navigation Drawer Demo"
           visible={visible}
@@ -83,9 +83,10 @@ export default class Simple extends PureComponent {
             contentId="main-demo-content"
             temporaryIcon={<SVGIcon use={menu.url} />}
             persistentIcon={<SVGIcon use={arrowBack.url} />}
+            contentClassName="md-grid"
           >
-            <h2>Currently on page: {page}</h2>
-            <section className="md-text-container">
+            <h2 className="md-cell md-cell--12">Currently on page: {page}</h2>
+            <section className="md-text-container md-cell md-cell--12">
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
@@ -94,7 +95,7 @@ export default class Simple extends PureComponent {
               <p>{loremIpsum({ units: 'paragraphs', count: 1 })}</p>
             </section>
           </NavigationDrawer>
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

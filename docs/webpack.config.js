@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dotenv = require('dotenv');
 const autoprefixer = require('autoprefixer');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -39,9 +38,6 @@ const PROD_PLUGINS = [
     comments: false,
     sourceMap: true,
   }),
-  // Better caching. hash on file content instead of build time. Hashes
-  // will only change on content change now
-  new WebpackMd5Hash(),
   new ManifestPlugin(),
   new webpack.HashedModuleIdsPlugin(),
   new webpack.optimize.CommonsChunkPlugin({

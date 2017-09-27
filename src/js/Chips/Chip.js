@@ -18,6 +18,16 @@ export default class Chip extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the chip's label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the chip's label.
+     */
+    labelClassName: PropTypes.string,
+
+    /**
      * Boolean if the `.md-chip-icon--rotate` style should be applied to the remove icon.
      * The `.md-chip-icon--rotate` just rotates the icon 45 degrees.
      */
@@ -92,6 +102,8 @@ export default class Chip extends PureComponent {
     const {
       label,
       className,
+      labelStyle,
+      labelClassName,
       avatar,
       children,
       removable,
@@ -142,9 +154,10 @@ export default class Chip extends PureComponent {
       >
         {avatar}
         <span
+          style={labelStyle}
           className={cn('md-chip-text', {
             'md-chip-text--hover': hover,
-          })}
+          }, labelClassName)}
         >
           {label}
         </span>

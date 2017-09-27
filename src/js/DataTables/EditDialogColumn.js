@@ -7,7 +7,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import themeColors from '../utils/themeColors';
-import viewport from '../utils/viewport';
+import viewport from '../utils/Positioning/viewport';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
@@ -254,7 +254,7 @@ export default class EditDialogColumn extends PureComponent {
 
     /**
      * An optional function to call when the "Cancel" button has been clicked in large edit dialogs.
-     * The callback will include the text field's value before any edits occured and the click event.
+     * The callback will include the text field's value before any edits occurred and the click event.
      *
      * ```js
      * onCancelClick(previousValue, event)
@@ -310,6 +310,12 @@ export default class EditDialogColumn extends PureComponent {
     closeOnOutsideClick: PropTypes.bool,
 
     /**
+     * Boolean if the edit dialog should automatically open when the text field is focused for non-inline
+     * dialogs. This is enabled by default for backwards compatibility.
+     */
+    visibleOnFocus: PropTypes.bool,
+
+    /**
      * The type for the text field in the edit dialog.
      *
      * @see {@link TextFields/TextField#type}
@@ -319,21 +325,21 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * This is how the dialog gets "anchored" to the table column.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position to use for the dialog.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     animationPosition: positionShape,
 
@@ -342,42 +348,42 @@ export default class EditDialogColumn extends PureComponent {
      * automatically use the responsive table as the fixture so that the dialog will close/adjust itself
      * to the scrolling of the table.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#transitionName}
+     * @see {@link Helpers/Layover#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 
@@ -400,9 +406,41 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layover#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * Boolean if the dialog logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the dialog.
+     *
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplifiedDialog: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#minLeft}
+     */
+    minLeft: Layover.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minRight}
+     */
+    minRight: Layover.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minBottom}
+     */
+    minBottom: Layover.propTypes.minBottom,
 
     /**
      * Boolean if the edit dialog should attempt to scroll into view if the full
@@ -419,22 +457,22 @@ export default class EditDialogColumn extends PureComponent {
     scrollIntoViewPadding: PropTypes.number,
 
     /**
-     * An optional function to call when the `click` event is triggered inthe column.
+     * An optional function to call when the `click` event is triggered in the column.
      */
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when the `mousedown` event is triggered inthe column.
+     * An optional function to call when the `mousedown` event is triggered in the column.
      */
     onMouseDown: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseup` event is triggered inthe column.
+     * An optional function to call when the `mouseup` event is triggered in the column.
      */
     onMouseUp: PropTypes.func,
 
     /**
-     * An optional function to call when the `touchstart` event is triggered inthe column.
+     * An optional function to call when the `touchstart` event is triggered in the column.
      */
     onTouchStart: PropTypes.func,
 
@@ -444,22 +482,22 @@ export default class EditDialogColumn extends PureComponent {
     onTouchEnd: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseenter` event is triggered inthe column.
+     * An optional function to call when the `mouseenter` event is triggered in the column.
      */
     onMouseEnter: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseover` event is triggered inthe column.
+     * An optional function to call when the `mouseover` event is triggered in the column.
      */
     onMouseOver: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseleave` event is triggered inthe column.
+     * An optional function to call when the `mouseleave` event is triggered in the column.
      */
     onMouseLeave: PropTypes.func,
 
     /**
-     * An optional function to call when the `touchmove` event is triggered inthe column.
+     * An optional function to call when the `touchmove` event is triggered in the column.
      */
     onTouchMove: PropTypes.func,
 
@@ -511,8 +549,13 @@ export default class EditDialogColumn extends PureComponent {
     animationPosition: EditDialogColumn.Positions.BELOW,
     dialogZDepth: 1,
     repositionOnScroll: true,
+    repositionOnResize: false,
     scrollIntoView: true,
     scrollIntoViewPadding: 16,
+    minLeft: 0,
+    minRight: 0,
+    minBottom: 0,
+    visibleOnFocus: true,
   };
 
   static contextTypes = {
@@ -587,10 +630,10 @@ export default class EditDialogColumn extends PureComponent {
     }];
   };
 
-  _handleOpen = () => {
+  _handleOpen = (e) => {
     if (this._skipNextOpen) {
       this._skipNextOpen = false;
-    } else {
+    } else if (this.props.visibleOnFocus || !e || e.type !== 'focus') {
       const { scrollIntoView, scrollIntoViewPadding } = this.props;
       if (scrollIntoView) {
         const vp = viewport(this._column);
@@ -713,6 +756,7 @@ export default class EditDialogColumn extends PureComponent {
       centered,
       sameWidth,
       repositionOnScroll,
+      repositionOnResize,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
@@ -728,6 +772,10 @@ export default class EditDialogColumn extends PureComponent {
       onMouseOver,
       onMouseLeave,
       onTouchMove,
+      simplifiedDialog,
+      minLeft,
+      minRight,
+      minBottom,
 
       // deprecated
       noIcon,
@@ -750,6 +798,7 @@ export default class EditDialogColumn extends PureComponent {
       adjusted,
       scrollIntoView,
       scrollIntoViewPadding,
+      visibleOnFocus,
 
       // deprecated
       scrollThreshold,
@@ -826,6 +875,7 @@ export default class EditDialogColumn extends PureComponent {
           title={title}
           header={header}
           placeholder={dialogLabel === placeholder || dialogLabel === label}
+          simplified={simplifiedDialog}
           anchor={anchor}
           belowAnchor={belowAnchor}
           animationPosition={animationPosition}
@@ -833,9 +883,13 @@ export default class EditDialogColumn extends PureComponent {
           yThreshold={yThreshold}
           centered={centered}
           sameWidth={sameWidth}
+          minLeft={minLeft}
+          minRight={minRight}
+          minBottom={minBottom}
           fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
           repositionOnScroll={repositionOnScroll}
+          repositionOnResize={repositionOnResize}
           transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import Dialog from 'react-md/lib/Dialogs';
+import DialogContainer from 'react-md/lib/Dialogs';
 import TextField from 'react-md/lib/TextFields';
 
 export default class SimpleModal extends PureComponent {
@@ -18,7 +18,7 @@ export default class SimpleModal extends PureComponent {
     const { visible } = this.state;
     // Actions can either be an object of props to build a Button,
     // or valid react components. When the action is a set of props,
-    // it defaults to creating a flat button. unique keys will automatically
+    // it defaults to creating a flat button. Unique keys will automatically
     // be cloned into the buttons along with an additional class name for styling
 
     const actions = [];
@@ -28,7 +28,7 @@ export default class SimpleModal extends PureComponent {
     return (
       <div>
         <Button raised onClick={this.show}>Open the Dialog</Button>
-        <Dialog
+        <DialogContainer
           id="simple-action-dialog"
           visible={visible}
           onHide={this.hide}
@@ -41,7 +41,7 @@ export default class SimpleModal extends PureComponent {
             placeholder="Content..."
             defaultValue="Hello, world!"
           />
-        </Dialog>
+        </DialogContainer>
       </div>
     );
   }

@@ -6,6 +6,8 @@ export type FileReaderTypes = 'DataURL' | 'ArrayBuffer' | 'Text';
 export interface FileInputProps extends Props {
   id: IdPropType;
   name?: IdPropType;
+  labelStyle?: React.CSSProperties;
+  labelClassName?: string;
   primary?: boolean;
   secondary?: boolean;
   flat?: boolean;
@@ -17,6 +19,7 @@ export interface FileInputProps extends Props {
   onChange: (files: File | Array<File> | null) => void;
   disabled?: boolean;
   swapTheming?: boolean;
+  allowDuplicates?: boolean;
 
   /**
    * @deprecated

@@ -75,18 +75,41 @@ export class PureMarkdown extends PureComponent {
     const links = this.container.querySelectorAll('a');
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
-      if (link.href.match(/sassdoc/)) {
-        return;
+      if (!link.href.match(/sassdoc/)) {
+        if (link.href.match(/^(https?:\/\/(localhost|react-md).*\/)|(\?tab=(1|2)#.*)/)) {
+          link.onclick = (e) => {
+            e.preventDefault();
+            const href = link.href.replace(window.location.origin, '');
+            history.push(href);
+          };
+        } else {
+          link.rel = 'noopener noreferrer';
+        }
       }
+    }
 
-      if (link.href.match(/https?:\/\/(localhost|react-md).*\//)) {
+    const headers = this.container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    for (let i = 0; i < headers.length; i += 1) {
+      const h = headers[i];
+      if (h.id) {
+        const link = document.createElement('a');
+        link.href = `#${h.id}`;
+        link.className = 'quick-link__link quick-link__link--markdown';
+
+        const i = document.createElement('i');
+        i.className = 'md-icon material-icons';
+        i.innerHTML = 'link';
+        i.setAttribute('title', `Quick Link to ${h.textContent}`);
+
+        link.appendChild(i);
         link.onclick = (e) => {
           e.preventDefault();
           const href = link.href.replace(window.location.origin, '');
           history.push(href);
         };
-      } else {
-        link.rel = 'noopener noreferrer';
+        h.appendChild(link);
+        h.classList.add('quick-link');
+        h.classList.add('quick-link__container');
       }
     }
   };

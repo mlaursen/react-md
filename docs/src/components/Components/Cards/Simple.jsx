@@ -11,7 +11,7 @@ const Simple = () => (
     <CardTitle title="Using CardTitle" subtitle="With CardText" />
     <CardText>
       <p>
-        The <code>CardText</code> component is really just usefull for displaying any
+        The <code>CardText</code> component is really just useful for displaying any
         content with some additional padding.
       </p>
       <Slider id="example-card-slider" />

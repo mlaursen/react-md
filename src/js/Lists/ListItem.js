@@ -51,6 +51,38 @@ export default class ListItem extends PureComponent {
     tileClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the nested `List` that gets created when using `nestedItems`.
      */
     nestedListStyle: PropTypes.object,
@@ -191,7 +223,7 @@ export default class ListItem extends PureComponent {
     visible: controlled(PropTypes.bool, 'onClick', 'defaultVisible'),
 
     /**
-     * An icon to use for the exapnder icon when there are nested items.
+     * An icon to use for the expander icon when there are nested items.
      */
     expanderIcon: PropTypes.element,
 
@@ -289,7 +321,7 @@ export default class ListItem extends PureComponent {
      * Any additional props you would like to add to the inner `AccessibleFakeButton`. By default, all the
      * remaining props will be provided to the `AccessibleFakeButton`, so this prop is probably useless.
      * Enabling the `passPropsToItem` prop will change the default behavior so that the remaining props
-     * are provided to the surrounding `<li>` node instead and this prop becomes usefull.
+     * are provided to the surrounding `<li>` node instead and this prop becomes useful.
      */
     tileProps: PropTypes.object,
 
@@ -301,7 +333,7 @@ export default class ListItem extends PureComponent {
      */
     passPropsToItem: PropTypes.bool,
     expanderIconChildren: deprecated(PropTypes.node, 'Use `expanderIcon` instead'),
-    expanderIconClassName: deprecated(PropTypes.string, 'Use `exapnderIcon` instead'),
+    expanderIconClassName: deprecated(PropTypes.string, 'Use `expanderIcon` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -471,6 +503,12 @@ export default class ListItem extends PureComponent {
       className,
       tileStyle,
       tileClassName,
+      contentStyle,
+      contentClassName,
+      primaryTextStyle,
+      primaryTextClassName,
+      secondaryTextStyle,
+      secondaryTextClassName,
       nestedListStyle,
       nestedListClassName,
       nestedListHeightRestricted,
@@ -607,11 +645,16 @@ export default class ListItem extends PureComponent {
           primaryText={primaryText}
           secondaryText={secondaryText}
           threeLines={threeLines}
+          style={contentStyle}
           className={cn({
-            'md-tile-content--left-icon': leftIcon,
+            'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
             'md-tile-content--left-avatar': leftAvatar,
             'md-tile-content--right-padding': rightIcon || rightAvatar,
-          })}
+          }, contentClassName)}
+          primaryTextStyle={primaryTextStyle}
+          primaryTextClassName={primaryTextClassName}
+          secondaryTextStyle={secondaryTextStyle}
+          secondaryTextClassName={secondaryTextClassName}
         />
         {rightNode}
         {children}
@@ -635,6 +678,7 @@ export default class ListItem extends PureComponent {
           onClose={this._handleClick}
           toggle={tile}
           block
+          simplified={false}
           anchor={cascadingAnchor}
           belowAnchor={null}
           position={Menu.Positions.BELOW}

@@ -2,6 +2,14 @@
 /// @group text-fields
 ////
 
+/// The box shadow to apply to text fields that have been autocompleted by the browser's
+/// autocomplete ability. The default styles are to remove the yellow color and just display
+/// as a normal text field. This value can be set to `null` to allow normal browser behavior
+/// or any other valid box-shadow style.
+///
+/// @type String
+$md-text-field-autocompleted-shadow: 0 0 0 50px $md-white-base inset !default;
+
 /// The error color to use on text fields. This will be applied to the
 /// any icons, text field error message, floating label, and the text
 /// field divider when there is an error.
@@ -143,13 +151,18 @@ $md-text-field-mobile-floating-label-margin: 37px !default;
 $md-text-field-desktop-floating-label-margin: 33px !default;
 
 /// The line-height to use for the text field's input. This will not be applied to multiline
-/// text fields. This value should be more than 1 to support firefox clipping letters.
+/// text fields. This value should be more than 1 to support Firefox clipping letters.
 /// @type Number
 $md-text-field-line-height: 1.15 !default;
 
+/// The line-height to apply to the text field message. This is really only required in case the
+/// text field appears as a title in a toolbar.
+/// @type Number
+$md-text-field-message-line-height: $md-line-height !default;
+
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,
-/// icons, or password styles can be ommitted by disabling the defaults or passing
+/// icons, or password styles can be omitted by disabling the defaults or passing
 /// false here. This should normally be used within a media query for mobile devices.
 ///
 /// > Note: If the password is included, icons will automatically be included since they
@@ -170,7 +183,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     using icons should be included.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
-/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Boolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
@@ -204,7 +217,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 /// Creates the styles for text fields on desktop screens. The floating labels, blocks,
-/// icons, or password styles can be ommitted by disabling the defaults or passing
+/// icons, or password styles can be omitted by disabling the defaults or passing
 /// false here. This should normally be used within a media query for desktop screens.
 ///
 /// > Note: If the password is included, icons will automatically be included since they
@@ -224,10 +237,10 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
 /// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
+///     styling should be included. This is the CSS for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
-/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Boolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
@@ -279,7 +292,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 /// Includes the media queries for text fields on mobile devices and desktop screens. The floating
-/// labels, blocks, icons, or password styles can be ommitted by disabling the defaults or passing
+/// labels, blocks, icons, or password styles can be omitted by disabling the defaults or passing
 /// false here. This should normally be used within a media query for mobile devices.
 ///
 /// > Note: If the password is included, icons will automatically be included since they
@@ -297,10 +310,10 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
 /// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
+///     styling should be included. This is the CSS for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
-/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Boolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
@@ -327,7 +340,7 @@ $md-text-field-line-height: 1.15 !default;
   }
 }
 
-/// Includes the css for text fields. The floating label, block styling, icon, password, and
+/// Includes the CSS for text fields. The floating label, block styling, icon, password, and
 /// messages are all optional. These sections can be enabled or disabled by modifying the params
 /// on this mixin or modifying the default values. If the `$include-media` param is true, the
 /// mobile and desktop media queries will be included for all included parts of the text fields.
@@ -360,10 +373,10 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
 /// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
+///     styling should be included. This is the CSS for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
-/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Boolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
@@ -438,7 +451,7 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
 /// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
+///     styling should be included. This is the CSS for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
 /// @group text-fields, themes
@@ -553,7 +566,7 @@ $md-text-field-line-height: 1.15 !default;
   }
 }
 
-/// Includes only the `md-text-field-container` css. This should normally be used from
+/// Includes only the `md-text-field-container` CSS. This should normally be used from
 /// the `react-md-text-fields` mixin. The placeholders will also be styled accordingly.
 ///
 /// @example scss - Example Usage SCSS
@@ -567,7 +580,7 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if currently using the light
 ///     theme.
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the
-///     multiline text field css should be included.
+///     multiline text field CSS should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styling
 ///     for text fields should be included.
 /// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the styles for the inline
@@ -620,7 +633,7 @@ $md-text-field-line-height: 1.15 !default;
 
 
 
-/// Includes the css for the input / textarea tags for text fields. This is normally
+/// Includes the CSS for the input / textarea tags for text fields. This is normally
 /// used only within the `react-md-text-fields` mixin.
 ///
 /// @example scss - Basic Usage SCSS
@@ -645,12 +658,17 @@ $md-text-field-line-height: 1.15 !default;
     }
 
     &:focus {
-      outline-width: 0;
+      outline-style: none;
+    }
+
+    &[type="search"] {
+      // This fixes the weird styling Safari applies to search text fields.
+      -webkit-appearance: textfield;
     }
 
     &:-webkit-autofill,
     &:-webkit-autofill:focus {
-      box-shadow: 0 0 0 50px $md-white-base inset;
+      box-shadow: $md-text-field-autocompleted-shadow;
     }
 
     &--margin {
@@ -679,7 +697,7 @@ $md-text-field-line-height: 1.15 !default;
   }
 }
 
-/// Creates the css for styling text fields on a mobile device. This should
+/// Creates the CSS for styling text fields on a mobile device. This should
 /// be used within media queries.
 ///
 /// @example scss - Example Usage SCSS
@@ -703,7 +721,7 @@ $md-text-field-line-height: 1.15 !default;
 
 }
 
-/// Creates the css for styling text fields on a mobile device. This should
+/// Creates the CSS for styling text fields on a mobile device. This should
 /// be used within media queries.
 ///
 /// @example scss - Example Usage SCSS
@@ -784,7 +802,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 
-/// @deprecated This is no longer neaded since the colors come from the `.md-text--{color-type}`.
+/// @deprecated This is no longer needed since the colors come from the `.md-text--{color-type}`.
 @mixin react-md-theme-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-error-color) {
 }
 
@@ -854,7 +872,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 
-/// Includes only css for the text field dividers. This is really used if
+/// Includes only CSS for the text field dividers. This is really used if
 /// you do not use the `react-md-text-fields` mixin.
 ///
 /// @example scss - Example Usage SCSS
@@ -985,7 +1003,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the styles for text fields
-///     with icons and messages shuld be included.
+///     with icons and messages should be included.
 @mixin react-md-text-field-message($light-theme: $md-light-theme, $error-color: $md-error-color, $include-icon: $md-text-field-include-icon) {
   .md-text-field-message-container {
     display: flex;
@@ -1014,6 +1032,7 @@ $md-text-field-line-height: 1.15 !default;
   .md-text-field-message {
     color: inherit;
     flex-grow: 1;
+    line-height: $md-text-field-message-line-height;
     transition-duration: $md-transition-time;
     transition-property: opacity;
     white-space: normal;
@@ -1071,6 +1090,10 @@ $md-text-field-line-height: 1.15 !default;
     align-items: flex-end;
     display: flex;
     width: 100%;
+
+    .md-text-field-container--input-block & {
+      align-items: center;
+    }
   }
 }
 
@@ -1159,7 +1182,7 @@ $md-text-field-line-height: 1.15 !default;
     width: $md-font-icon-size;
 
     &:not(.md-password-btn--focus):focus {
-      outline-width: 0;
+      outline-style: none;
     }
 
     .md-icon {
@@ -1224,7 +1247,7 @@ $md-text-field-line-height: 1.15 !default;
   }
 }
 
-/// Creates teh styles for the text field's inline indicator. This is is for showing a password button
+/// Creates the styles for the text field's inline indicator. This is is for showing a password button
 /// or some other icon within the text field.
 ///
 /// @example scss - Example Usage SCSS
@@ -1248,7 +1271,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     @include react-md-text-field-inline-indicator-mobile;
 ///   }
 ///
-/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+/// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included
@@ -1279,7 +1302,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     @include react-md-text-field-inline-indicator-desktop;
 ///   }
 ///
-/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+/// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included.
@@ -1313,7 +1336,7 @@ $md-text-field-line-height: 1.15 !default;
 /// @example scss - Example Usage SCSS
 ///   @include react-md-text-field-inline-indicator-media;
 ///
-/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+/// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included
@@ -1424,7 +1447,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 
-/// Includes the css for custom sizes for text fields. This will create some class names with the
+/// Includes the CSS for custom sizes for text fields. This will create some class names with the
 /// components they modify and a `--#{$name}` suffix.
 ///
 /// @example scss - Example Usage SCSS
@@ -1446,13 +1469,14 @@ $md-text-field-line-height: 1.15 !default;
   @if $font-sizes != null {
     @each $name, $list in $font-sizes {
       $font-size: nth($list, 1);
-      $time: nth($list, 2);
 
       .md-text-field--#{$name} {
         font-size: $font-size;
       }
 
       @if $include-floating-label {
+        $time: nth($list, 2);
+
         @if $time != null {
           .md-floating-label--#{$name} {
             transition-duration: $time;
@@ -1479,7 +1503,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     }
 ///   }
 ///
-///   .some-field-contaner {
+///   .some-field-container {
 ///     @include react-md-style-placeholders(true) {
 ///       color: red;
 ///     }
@@ -1577,7 +1601,7 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 
-/// Applies a color to all the browser placeholder psuedo elements.
+/// Applies a color to all the browser placeholder pseudo elements.
 ///
 /// @example scss - Basic Usage SCSS
 ///   .md-primary.md-toolbar {

@@ -12,9 +12,26 @@ export interface MenuButtonColumnProps extends MenuButtonProps {
 }
 
 interface MenuButtonColumnComponent extends React.ComponentClass<MenuButtonColumnProps> {
-  Positions: LayoverPositions;
-  HorizontalAnchors: HorizontalAnchors;
-  VerticalAnchors: VerticalAnchors;
+  Positions: {
+    TOP_LEFT: 'tl',
+    TOP_RIGHT: 'tr',
+    BOTTOM_LEFT: 'bl',
+    BOTTOM_RIGHT: 'br',
+    BELOW: 'below'
+  };
+  VerticalAnchors: {
+    TOP: 'top',
+    CENTER: 'center',
+    OVERLAP: 'overlap',
+    BOTTOM: 'bottom'
+  };
+  HorizontalAnchors: {
+    LEFT: 'left',
+    INNER_LEFT: 'inner left',
+    CENTER: 'center',
+    RIGHT: 'right',
+    INNER_RIGHT: 'inner right'
+  };
 }
 
 declare const MenuButtonColumn: MenuButtonColumnComponent;

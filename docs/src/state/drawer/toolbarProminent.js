@@ -1,7 +1,9 @@
 import { LOCATION_CHANGE, NOT_FOUND } from 'state/routing';
 
 function isProminent({ pathname }) {
-  return !pathname.match(/minimizing/) && !!pathname.match(/components|customization/);
+  return !pathname.match(/minimizing/)
+    && !!pathname.match(/components|customization/)
+    && !pathname.match(/theme-builder/);
 }
 
 export default function toolbarProminent(state = false, action) {

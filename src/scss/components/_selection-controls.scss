@@ -76,7 +76,7 @@ $md-switch-dark-theme-thumb-disabled: $md-grey-800 !default;
 /// @type Color
 $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1) !default;
 
-/// An optional fallback color to use for the switch's ball when the the `$md-seconary-color` is not
+/// An optional fallback color to use for the switch's ball when the `$md-secondary-color` is not
 /// a material design color.
 /// @type Color
 /// @see get-swatch
@@ -221,7 +221,7 @@ $md-switch-ball-fallback-color: null !default;
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
-/// @param {Boolean} incude-switches [$md-selection-controls-include-switches] - Boolean if the switches
+/// @param {Boolean} include-switches [$md-selection-controls-include-switches] - Boolean if the switches
 ///     should be included.
 /// @param {Color} fallback-color [$md-switch-ball-fallback-color] - The fallback color to use for the
 ///     switch's ball when the `$md-secondary-color` is not a material design color.
@@ -304,7 +304,7 @@ $md-switch-ball-fallback-color: null !default;
   }
 }
 
-/// Creates the media queries for selection controls for moble and desktop.
+/// Creates the media queries for selection controls for mobile and desktop.
 ///
 /// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
 ///     controls should be updated for the dense icon spec.

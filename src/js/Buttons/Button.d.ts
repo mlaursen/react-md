@@ -34,6 +34,9 @@ export interface SharedButtonProps {
 }
 
 export interface ButtonProps extends Props, SharedButtonProps, InjectedTooltipProps, InjectedInkProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   children?: React.ReactNode;
   component?: React.ReactType;
   fixed?: boolean;

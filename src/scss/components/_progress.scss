@@ -18,7 +18,7 @@ $md-progress-margin: 1em !default;
 /// @type Number
 $md-progress-duration: 2.4s !default;
 
-/// The initial stroke-dasharray for the indetermate progress.
+/// The initial stroke-dasharray for the indeterminate progress.
 /// I have no idea how this stuff works.. So change have fun changing that.
 ///
 /// @type Number
@@ -50,7 +50,7 @@ $md-linear-progress-fallback-color: null !default;
 /// are `true`.
 ///
 /// Progress bars are always styled with the `secondary-color`. When using a `linear` progress bar,
-/// the default background will be a swatch that is ligher than the `secondary-color`.
+/// the default background will be a swatch that is lighter than the `secondary-color`.
 ///
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress

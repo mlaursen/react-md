@@ -18,6 +18,7 @@ import Chip from './Chips';
 import DataTable, {
   TableHeader,
   TableBody,
+  TableFooter,
   TableRow,
   TableColumn,
   TableCardHeader,
@@ -89,6 +90,7 @@ export { Chip };
 export { DataTable };
 export { TableHeader };
 export { TableBody };
+export { TableFooter };
 export { TableRow };
 export { TableColumn };
 export { TableCardHeader };
@@ -176,6 +178,7 @@ export default {
   DataTable,
   TableHeader,
   TableBody,
+  TableFooter,
   TableRow,
   TableColumn,
   TableCardHeader,

@@ -35,7 +35,6 @@ export default class DocumentationTabs extends PureComponent {
 
     const activeTabIndex = getTab(search) || 0;
     const colors = pathname.indexOf('colors') !== -1;
-    const themes = pathname.indexOf('themes') !== -1;
     const customization = pathname.indexOf('customization') !== -1;
     const firstTabLabel = customization && pathname.indexOf('grid') === -1
       ? 'Info' : 'Examples';
@@ -49,10 +48,6 @@ export default class DocumentationTabs extends PureComponent {
 
     if (colors || pathname.match(/layovers/) || !pathname.match(/helpers|svg/)) {
       sassdocTab = <Tab label="SassDoc" id="documentation-sassdoc" key="sassdoc" />;
-    }
-
-    if (themes) {
-      themer = <Tab label="Theme Builder" id="theme-builder" key="themer" />;
     }
 
     return (

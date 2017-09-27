@@ -7,7 +7,7 @@ exports[`FileInput should apply styles correctly 1`] = `
 >
   <label
     aria-pressed="false"
-    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover"
+    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover md-text"
     for="test-input"
     role="button"
     tabindex="0"
@@ -28,7 +28,7 @@ exports[`FileInput should apply styles correctly 1`] = `
         Select a file
       </span>
       <i
-        class="md-icon material-icons"
+        class="md-icon material-icons md-text--inherit"
       >
         file_upload
       </i>
@@ -38,7 +38,9 @@ exports[`FileInput should apply styles correctly 1`] = `
     aria-hidden="true"
     class="md-file-input"
     id="test-input"
+    tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;
@@ -49,7 +51,7 @@ exports[`FileInput should render the form control props correctly 1`] = `
 >
   <label
     aria-pressed="false"
-    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover"
+    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover md-text"
     for="file-input-1"
     role="button"
     tabindex="0"
@@ -70,7 +72,7 @@ exports[`FileInput should render the form control props correctly 1`] = `
         Select a file
       </span>
       <i
-        class="md-icon material-icons"
+        class="md-icon material-icons md-text--inherit"
       >
         file_upload
       </i>
@@ -82,7 +84,9 @@ exports[`FileInput should render the form control props correctly 1`] = `
     class="md-file-input"
     id="file-input-1"
     name="images"
+    tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;

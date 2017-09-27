@@ -59,7 +59,7 @@ and switch to the minute view. When the user touches/clicks a minute, it will au
 call the "OK" action to close the dialog.
 
 There is an additional "hover mode" that can be enabled for time pickers that will make it a bit simpler on desktop
-screens so that hoevering around the clock would be the same as dragging.
+screens so that hovering around the clock would be the same as dragging.
   `,
   code: AutoOkAndHoverRaw,
   children: <AutoOkAndHover />,

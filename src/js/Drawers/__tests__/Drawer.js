@@ -59,11 +59,11 @@ describe('Drawer', () => {
     expect(paper2.length).toBe(1);
     expect(paper3.length).toBe(1);
 
-    expect(paper1.hasClass('md-transition--decceleration')).toBe(true);
+    expect(paper1.hasClass('md-transition--deceleration')).toBe(true);
     expect(paper1.hasClass('md-transition--acceleration')).toBe(false);
-    expect(paper2.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper2.hasClass('md-transition--deceleration')).toBe(false);
     expect(paper2.hasClass('md-transition--acceleration')).toBe(false);
-    expect(paper3.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper3.hasClass('md-transition--deceleration')).toBe(false);
     expect(paper3.hasClass('md-transition--acceleration')).toBe(false);
   });
 

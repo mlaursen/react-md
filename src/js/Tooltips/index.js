@@ -1,4 +1,5 @@
 import injectTooltip from './injectTooltip';
-import Tooltipped from './Tooltipped';
 export default injectTooltip;
-export { Tooltipped };
+
+export injectTooltip from './injectTooltip';
+export Tooltipped from './Tooltipped';

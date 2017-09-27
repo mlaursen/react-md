@@ -2,7 +2,7 @@
 
 exports[`BlockedFields should render correctly 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -92,7 +92,7 @@ exports[`BlockedFields should render correctly 1`] = `
     </div>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--padded phone-emulator__content--offset"
+    className="phone-emulator__content phone-emulator__content--offset"
     id={undefined}
     style={undefined}
   >
@@ -114,10 +114,12 @@ exports[`BlockedFields should render correctly 1`] = `
             className="md-avatar-img"
             role={undefined}
             src="https://unplash.it/300?random&time=3"
+            style={undefined}
           />
         </div>
         <span
           className="md-chip-text"
+          style={undefined}
         >
           Freddy Kruger
         </span>
@@ -143,10 +145,12 @@ exports[`BlockedFields should render correctly 1`] = `
             className="md-avatar-img"
             role={undefined}
             src="https://unplash.it/300?random&time=3"
+            style={undefined}
           />
         </div>
         <span
           className="md-chip-text"
+          style={undefined}
         >
           Bob Belcher
         </span>
@@ -173,11 +177,7 @@ exports[`BlockedFields should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={
-        Object {
-          "width": null,
-        }
-      }
+      style={undefined}
     >
       <input
         className="md-text-field md-full-width md-text"
@@ -195,12 +195,12 @@ exports[`BlockedFields should render correctly 1`] = `
       <div
         className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
-        <p
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           21 / 80
-        </p>
+        </div>
       </div>
     </div>
     <hr
@@ -218,11 +218,7 @@ exports[`BlockedFields should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={
-        Object {
-          "width": null,
-        }
-      }
+      style={undefined}
     >
       <div
         className="md-text-field-multiline-container"
@@ -239,7 +235,7 @@ exports[`BlockedFields should render correctly 1`] = `
           aria-hidden={true}
           className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
           defaultValue="Hi,
-        I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
+I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
           readOnly={true}
           rows={4}
           style={undefined}
@@ -249,7 +245,7 @@ exports[`BlockedFields should render correctly 1`] = `
         <textarea
           className="md-text-field md-text-field--multiline md-full-width md-text"
           defaultValue="Hi,
-        I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
+I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
           disabled={undefined}
           id="email-body"
           onBlur={[Function]}
@@ -268,18 +264,18 @@ exports[`BlockedFields should render correctly 1`] = `
       <div
         className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
-        <p
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive"
         >
           Max 1000 characters.
-        </p>
-        <p
+        </div>
+        <div
           aria-hidden={true}
           className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           181 / 1000
-        </p>
+        </div>
       </div>
     </div>
   </section>

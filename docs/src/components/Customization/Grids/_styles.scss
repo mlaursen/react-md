@@ -1,0 +1,14 @@
+@import '~globals';
+
+.grid-example {
+  &:first-of-type .md-cell {
+    height: 50px;
+  }
+
+  .md-cell {
+    background: $md-blue-grey-300;
+    color: $md-white-base;
+    height: 200px;
+    padding: $md-default-padding;
+  }
+}

@@ -85,7 +85,7 @@ export default function withTableFixes(ComposedComponent, suffix) {
       } = this.props;
 
       let { id } = this.props;
-      const fixedTo = propFixedTo == null || propFixedTo ? propFixedTo : this._fixedTo;
+      const fixedTo = this._fixedTo === null || propFixedTo ? propFixedTo : this._fixedTo;
       const cellIndex = getField(this.props, this.state, 'cellIndex');
       if (!id) {
         id = `${rowId}-${cellIndex}-${suffix}`;

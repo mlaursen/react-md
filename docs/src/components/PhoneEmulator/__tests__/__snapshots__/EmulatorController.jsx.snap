@@ -2,7 +2,7 @@
 
 exports[`EmulatorController should render correctly with the base required props 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header
@@ -67,7 +67,7 @@ exports[`EmulatorController should render correctly with the base required props
     </h2>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--padded phone-emulator__content--offset"
+    className="phone-emulator__content phone-emulator__content--offset"
     id={undefined}
     style={undefined}
   >
@@ -85,13 +85,13 @@ exports[`EmulatorController should render correctly with the base required props
     dangerouslySetInnerHTML={
       Object {
         "__html": "<p>The current example will need to be opened in a dialog to be viewed because
-      it requires the full screen on mobile devices to be viewed correctly.</p>
-      ",
+it requires the full screen on mobile devices to be viewed correctly.</p>
+",
       }
     }
   />
   <button
-    className="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
+    className="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}

@@ -5,8 +5,8 @@ import NewsItem from './NewsItem';
 
 const news = [{
   key: 'news-1',
-  title: 'Day reappeared. The tempest still raged with undimished termoil.',
-  subtitle: 'Corned beef proscuitto ground something',
+  title: 'Day reappeared. The tempest still raged with undiminished turmoil.',
+  subtitle: 'Corned beef prosciutto ground something',
   time: '10 min',
   titleClassName: 'two-line-clamp',
   subtitleClassName: 'line-clamp',
@@ -29,7 +29,7 @@ const news = [{
   img: randomImage({ width: 100, height: 80 }),
 }, {
   key: 'news-4',
-  title: 'Pork loin sausage shankle, keilbasas bacon beef rips',
+  title: 'Pork loin sausage shankle, kielbasas bacon beef rips',
   subtitle: 'Drumstick turkey shoulder spare parts',
   time: '1 hr',
   titleClassName: 'line-clamp',

@@ -4,6 +4,9 @@ import { Props } from '../index';
 import { DialogProps } from './Dialog';
 
 export interface DialogContainerProps extends DialogProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
   dialogStyle?: React.CSSProperties;
   dialogClassName?: string;
   component?: React.ReactType;

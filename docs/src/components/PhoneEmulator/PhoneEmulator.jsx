@@ -32,7 +32,6 @@ const PhoneEmulator = ({
   contentTransitionEnterTimeout,
   contentTransitionLeaveTimeout,
   children,
-  tabsDemo,
 }) => {
   const contentProps = {
     id: contentId,
@@ -91,13 +90,12 @@ const PhoneEmulator = ({
   }
 
   return (
-    <Paper style={style} className={cn('phone-emulator', className)} zDepth={mobile ? 0 : undefined}>
+    <Paper style={style} className={cn('phone-emulator md-background', className)} zDepth={mobile ? 0 : undefined}>
       {emulatorStatusBar}
       {emulatorToolbar}
       <CSSTransitionGroup
         {...contentProps}
         className={cn('phone-emulator__content', {
-          'phone-emulator__content--padded': !tabsDemo && !mobile,
           'phone-emulator__content--offset': toolbar,
           'phone-emulator__content--offset-prominent': toolbar && (toolbarProminent || toolbarProminentTitle),
         }, contentClassName)}
@@ -141,7 +139,6 @@ PhoneEmulator.propTypes = {
    * the children will be displayed as-is instead of in the emulator.
    */
   mobileOnly: PropTypes.bool,
-  tabsDemo: PropTypes.bool,
   mobile: PropTypes.bool,
   children: PropTypes.node,
 };

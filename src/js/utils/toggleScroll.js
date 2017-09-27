@@ -1,5 +1,5 @@
 /** @module utils/toggleScroll */
-import getPagePosition from './getPagePosition';
+import getPagePosition from './Positioning/getPagePosition';
 
 /**
  * A utility function for toggling the overflow visibility on an element. This will either target

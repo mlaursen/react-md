@@ -24,6 +24,7 @@ export default class CardTitleBlock extends PureComponent {
         className={cn('md-card-title--title', {
           'md-card-title--large': !avatar,
         }, themeColors({ text: true }))}
+        tabIndex={id ? -1 : null}
       >
         {title}
       </h2>

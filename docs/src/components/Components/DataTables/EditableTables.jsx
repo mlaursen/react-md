@@ -29,7 +29,7 @@ const EditableTables = () => (
   <DataTable baseId="table-with-interactions">
     <TableHeader>
       <TableRow>
-        {headers.map(({ name, ...props }) => <TableColumn {...props}>{name}</TableColumn>)}
+        {headers.map(({ name, ...props }, i) => <TableColumn {...props} grow={i === 0}>{name}</TableColumn>)}
       </TableRow>
     </TableHeader>
     <TableBody>

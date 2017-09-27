@@ -24,6 +24,12 @@ const EditDialogExample = () => (
         <EditDialogColumn placeholder="Inline edits" inline />
       </TableRow>
       <TableRow>
+        <EditDialogColumn label="No focus open" visibleOnFocus={false} />
+      </TableRow>
+      <TableRow>
+        <EditDialogColumn label="Large edit dialog (no focus open)" large title="Large!" visibleOnFocus={false} />
+      </TableRow>
+      <TableRow>
         <EditDialogColumn
           placeholder="With a counter"
           maxLength={20}

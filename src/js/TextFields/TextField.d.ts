@@ -38,6 +38,7 @@ export interface SharedTextFieldProps {
   step?: number;
   pattern?: string;
   resize?: { min: number, max: number, disableShrink?: boolean };
+  tabIndex?: number;
 
   /**
    * @deprecated
@@ -56,6 +57,7 @@ export interface TextFieldProps extends SharedTextFieldProps, Props {
   defaultValue?: number | string;
   onChange?: (value: number | string, event: Event) => void;
   onDoubleClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onPaste?: (event: React.ClipboardEvent<HTMLElement>) => void;
 
   /**
    * @deprecated

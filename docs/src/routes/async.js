@@ -6,6 +6,8 @@ export const NotFound = asyncComponent(() => import(/* webpackChunkName: NotFoun
 export const GettingStarted = asyncComponent(() => import(/* webpackChunkName: GettingStarted */ 'components/GettingStarted'));
 export const Colors = asyncComponent(() => import(/* webpackChunkName: Colors */ 'components/Customization/Colors'));
 export const Themes = asyncComponent(() => import(/* webpackChunkName: Themes */ 'components/Customization/Themes'));
+export const ThemeBuilder = asyncComponent(() => import(/* webpackChunkName: ThemeBuilder */ 'components/Customization/ThemeBuilder'));
+export const Grids = asyncComponent(() => import(/* webpackChunkName: Grids */ 'components/Customization/Grids'));
 export const Typography = asyncComponent(() => import(/* webpackChunkName: Typography */ 'components/Customization/Typography'));
 export const MediaQueries = asyncComponent(() => import(/* webpackChunkName: MediaQueries */ 'components/Customization/MediaQueries'));
 export const MinimizingBundle = asyncComponent(() => import(/* webpackChunkName: MinimizingBundle */ 'components/Customization/MinimizingBundle'));

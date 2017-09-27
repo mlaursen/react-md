@@ -9,10 +9,11 @@ import omit from '../utils/omit';
 import findIgnoreCase from '../utils/findIgnoreCase';
 import fuzzyFilter from '../utils/fuzzyFilter';
 import caseInsensitiveFilter from '../utils/caseInsensitiveFilter';
+import getTextWidth from '../utils/Positioning/getTextWidth';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
-import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
+import { UP, DOWN, TAB } from '../constants/keyCodes';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
@@ -55,7 +56,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * An optional id to provide to the menu's list.
      *
-     * @see {@link Menus#listId}
+     * @see {@link Menus/Menu#listId}
      */
     listId: PropTypes.oneOfType([
       PropTypes.number,
@@ -88,7 +89,7 @@ export default class Autocomplete extends PureComponent {
     inputStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the autocomplete's input field iteself.
+     * An optional className to apply to the autocomplete's input field itself.
      */
     inputClassName: PropTypes.string,
 
@@ -105,6 +106,16 @@ export default class Autocomplete extends PureComponent {
     listClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the inline suggestion when using `inline` mode.
+     */
+    inlineSuggestionStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the inline suggestion when using `inline` mode.
+     */
+    inlineSuggestionClassName: PropTypes.string,
+
+    /**
      * Boolean if the autocomplete is disabled.
      */
     disabled: PropTypes.bool,
@@ -115,7 +126,7 @@ export default class Autocomplete extends PureComponent {
     label: PropTypes.node,
 
     /**
-     * An optional value to use for the text field. This will forse this component
+     * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
     value: controlled(PropTypes.oneOfType([
@@ -133,7 +144,7 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * An object key to use to extract the text to be compared for filtering.
-     * This will only be applied if the the given `data` prop is an array of objects.
+     * This will only be applied if the given `data` prop is an array of objects.
      */
     dataLabel: PropTypes.string.isRequired,
 
@@ -171,6 +182,7 @@ export default class Autocomplete extends PureComponent {
      *     [dataLabel]: PropTypes.oneOfType([
      *       PropTypes.string,
      *       PropTypes.number,
+     *       PropTypes.node,
      *     ]).isRequired,
      *   }),
      * ])).isRequired
@@ -186,6 +198,7 @@ export default class Autocomplete extends PureComponent {
           [dataLabel]: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
+            PropTypes.node,
           ]).isRequired,
         }),
       ])).isRequired(props, propName, component, ...others);
@@ -264,6 +277,11 @@ export default class Autocomplete extends PureComponent {
     inline: PropTypes.bool,
 
     /**
+     * The amount of padding to use between the current text and the inline suggestion text.
+     */
+    inlineSuggestionPadding: PropTypes.number.isRequired,
+
+    /**
      * The function to call to find a suggestion for an inline autocomplete. This function
      * expects to return a single result of a number or a string.
      *
@@ -297,7 +315,7 @@ export default class Autocomplete extends PureComponent {
 
     /**
      * A boolean if the text field's value should be reset to the empty string when
-     * an item is auto-completed. This is usefull if you do not want a fully controlled
+     * an item is auto-completed. This is useful if you do not want a fully controlled
      * component and the values are stored outside of the `TextField`. (like `Chips`).
      */
     clearOnAutocomplete: PropTypes.bool,
@@ -329,28 +347,28 @@ export default class Autocomplete extends PureComponent {
     /**
      * This is how the menu's `List` gets anchored to the `toggle` element.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -368,50 +386,50 @@ export default class Autocomplete extends PureComponent {
      * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
      * `$md-menu-desktop-max-height` values.
      *
-     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
-     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     * @see [md-menu-mobile-max-height](/components/menus?tab=2#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=2#variable-md-menu-desktop-max-height)
      */
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     * @see {@link Helpers/Layover#closeOnOutsideClick}
      */
     closeOnOutsideClick: PropTypes.bool,
 
     /**
      * An optional transition name to use for the list appearing/disappearing.
      *
-     * @see {@link Helpers/Layoers#transitionName}
+     * @see {@link Helpers/Layover#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layoers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layoers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: Menu.propTypes.centered,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: Menu.propTypes.sameWidth,
 
@@ -419,9 +437,51 @@ export default class Autocomplete extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layover#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#minLeft}
+     */
+    minLeft: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layover#minRight}
+     */
+    minRight: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layover#minBottom}
+     */
+    minBottom: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
 
     /**
      * @see {@link TextFields#toolbar}
@@ -441,6 +501,8 @@ export default class Autocomplete extends PureComponent {
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
     repositionOnScroll: true,
+    repositionOnResize: true,
+    inlineSuggestionPadding: 6,
   };
 
   constructor(props) {
@@ -471,24 +533,8 @@ export default class Autocomplete extends PureComponent {
     };
   }
 
-
-  componentDidMount() {
-    if (this.props.inline) {
-      window.addEventListener('resize', this._updateFont);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    const { inline, value: nextValue, data, filter, dataLabel } = nextProps;
-    if (inline !== this.props.inline) {
-      if (inline) {
-        this._updateFont();
-        window.addEventListener('resize', this._updateFont);
-      } else {
-        window.removeEventListener('resize', this._updateFont);
-      }
-    }
-
+    const { value: nextValue, data, filter, dataLabel } = nextProps;
     const dataDiff = data !== this.props.data;
     if (nextValue !== this.props.value || dataDiff) {
       let { visible, matches } = this.state;
@@ -517,20 +563,6 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { suggestion } = this.state;
-    this._updateSuggestionStyle(
-      suggestion && !prevState.suggestion,
-      !suggestion && prevState.suggestion
-    );
-  }
-
-  componentWillUnmount() {
-    if (this.props.inline) {
-      window.removeEventListener('resize', this._updateFont);
-    }
-  }
-
   /**
    * Gets the current value from the text field. This is used when you have an uncontrolled
    * text field and simply need the value from a ref callback.
@@ -540,30 +572,6 @@ export default class Autocomplete extends PureComponent {
   get value() {
     return getField(this.props, this.state, 'value');
   }
-
-  _updateSuggestionStyle = (isNew, isDeleted) => {
-    const { suggestionStyle } = this.state;
-    if (isNew) {
-      const msg = findDOMNode(this).querySelector('.md-text-field-message');
-
-      if (msg) {
-        const cs = window.getComputedStyle(this._suggestion);
-        const bottom = parseInt(cs.bottom, 10) + msg.offsetHeight;
-
-        this.setState({ suggestionStyle: { ...suggestionStyle, bottom } });
-      }
-    } else if (isDeleted && suggestionStyle) {
-      this.setState({ suggestionStyle: { left: suggestionStyle.left } });
-    }
-  };
-
-  _updateFont = () => {
-    if (this._field) {
-      const cs = window.getComputedStyle(this._field);
-      this._fontSize = parseInt(cs.fontSize, 10);
-      this._font = cs.font;
-    }
-  };
 
   _close = (e) => {
     if (this.props.onBlur) {
@@ -625,9 +633,9 @@ export default class Autocomplete extends PureComponent {
       if (this.props.onBlur) {
         this.props.onBlur(e);
       }
-
-      this.setState({ focus: false });
     }
+
+    this.setState({ focus: false });
   };
 
   _handleInlineAutocomplete = () => {
@@ -650,9 +658,7 @@ export default class Autocomplete extends PureComponent {
       if (typeof value === 'object') {
         if (!label) {
           v = value[dataValue];
-        }
-
-        if (typeof v === 'undefined') {
+        } else {
           v = value[dataLabel];
         }
       }
@@ -697,8 +703,6 @@ export default class Autocomplete extends PureComponent {
       this.setState({ visible: false });
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
-    } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
-      this._handleItemClick(this.state.matchIndex);
     }
   };
 
@@ -743,9 +747,7 @@ export default class Autocomplete extends PureComponent {
       if (typeof v === 'object') {
         if (!label) {
           v = value[dataValue];
-        }
-
-        if (typeof v === 'undefined') {
+        } else {
           v = value[dataLabel];
         }
       }
@@ -801,10 +803,7 @@ export default class Autocomplete extends PureComponent {
   };
 
   _findInlineSuggestions = (value) => {
-    const { data, dataLabel, findInlineSuggestion } = this.props;
-    const font = this._font;
-    const fontSize = this._fontSize;
-    let { suggestionStyle } = this.state;
+    const { data, dataLabel, findInlineSuggestion, inlineSuggestionPadding } = this.props;
 
     let suggestion = findInlineSuggestion(data, value, dataLabel);
     if (typeof suggestion === 'object') {
@@ -814,6 +813,7 @@ export default class Autocomplete extends PureComponent {
       );
     }
 
+    let { suggestionStyle } = this.state;
     let suggestionIndex = -1;
     if (suggestion) {
       // Find index of suggestion
@@ -829,17 +829,14 @@ export default class Autocomplete extends PureComponent {
       // Strip already used letters
       suggestion = suggestion.toString().substring(value.length, suggestion.length);
 
-      // Calculate distance to move the suggestion to already existing text
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      // Position the inline suggestion next to the text
+      let width = getTextWidth(value, this._field);
+      if (width !== null) {
+        width += inlineSuggestionPadding;
+      }
 
-      if (context) { // context doesn't exist in jsdom with jest
-        context.font = font;
-        const padding = this.props.block ? (fontSize * 1.5) : 8;
-
-        // Update suggestion style to be offset and not expand past text field
-        const left = context.measureText(value).width + padding;
-        suggestionStyle = { ...suggestionStyle, left };
+      if (width !== null && (!suggestionStyle || suggestionStyle.left !== width)) {
+        suggestionStyle = { left: width };
       }
     }
 
@@ -919,19 +916,11 @@ export default class Autocomplete extends PureComponent {
   _setField = (field) => {
     if (field) {
       this._field = field.getField();
-
-      if (this.props.inline) {
-        this._updateFont();
-      }
     }
   };
 
   _setMenu = (menu) => {
     this._menu = findDOMNode(menu);
-  };
-
-  _setSuggestion = (suggestion) => {
-    this._suggestion = suggestion;
   };
 
   render() {
@@ -945,6 +934,8 @@ export default class Autocomplete extends PureComponent {
       listClassName,
       textFieldStyle,
       textFieldClassName,
+      inlineSuggestionStyle,
+      inlineSuggestionClassName,
       menuId,
       inline,
       anchor,
@@ -964,6 +955,13 @@ export default class Autocomplete extends PureComponent {
       centered,
       sameWidth,
       repositionOnScroll,
+      repositionOnResize,
+      simplifiedMenu,
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -977,6 +975,7 @@ export default class Autocomplete extends PureComponent {
       clearOnAutocomplete,
       autocompleteWithLabel,
       findInlineSuggestion,
+      inlineSuggestionPadding,
       onAutocomplete,
       onMenuOpen,
       onMenuClose,
@@ -1016,13 +1015,12 @@ export default class Autocomplete extends PureComponent {
       if (focus && this.state.suggestion) {
         suggestion = (
           <span
-            ref={this._setSuggestion}
             key="suggestion"
-            style={suggestionStyle}
+            style={{ ...suggestionStyle, ...inlineSuggestionStyle }}
             className={cn('md-autocomplete-suggestion', {
               'md-autocomplete-suggestion--floating': props.label,
               'md-autocomplete-suggestion--block': block,
-            })}
+            }, inlineSuggestionClassName)}
           >
             {this.state.suggestion}
           </span>
@@ -1058,6 +1056,7 @@ export default class Autocomplete extends PureComponent {
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
+        simplified={simplifiedMenu}
         sameWidth={sameWidth}
         centered={centered}
         anchor={anchor}
@@ -1079,6 +1078,12 @@ export default class Autocomplete extends PureComponent {
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
         repositionOnScroll={repositionOnScroll}
+        repositionOnResize={repositionOnResize}
+        minLeft={minLeft}
+        minRight={minRight}
+        minBottom={minBottom}
+        fillViewportWidth={fillViewportWidth}
+        fillViewportHeight={fillViewportHeight}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

@@ -7,6 +7,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { UP, DOWN, ESC, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import omit from '../utils/omit';
+import isValued from '../utils/isValued';
 import getField from '../utils/getField';
 import isBetween from '../utils/NumberUtils/isBetween';
 import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
@@ -132,6 +133,7 @@ export default class SelectField extends PureComponent {
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
+      PropTypes.element,
     ])).isRequired,
 
     /**
@@ -168,7 +170,7 @@ export default class SelectField extends PureComponent {
     itemLabel: PropTypes.string.isRequired,
 
     /**
-     * The key to use for extracting a menu item'value label if the menu item is an object.
+     * The key to use for extracting a menu item's value if the menu item is an object.
      *
      * Example:
      *
@@ -252,7 +254,7 @@ export default class SelectField extends PureComponent {
     error: PropTypes.bool,
 
     /**
-     * An optional text to display whent he text select field is in an error state.
+     * An optional text to display when the text select field is in an error state.
      *
      * @see {@link TextFields/TextField#errorText}
      */
@@ -334,28 +336,28 @@ export default class SelectField extends PureComponent {
     /**
      * This is how the menu's `List` gets anchored to the select field.
      *
-     * @see {@link Helpers/Layovers#anchor}
+     * @see {@link Helpers/Layover#anchor}
      */
     anchor: anchorShape,
 
     /**
      * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
      *
-     * @see {@link Helpers/Layovers#belowAnchor}
+     * @see {@link Helpers/Layover#belowAnchor}
      */
     belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
-     * @see {@link Helpers/Layovers#animationPosition}
+     * @see {@link Helpers/Layover#animationPosition}
      */
     position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#fixedTo}
      */
     fixedTo: fixedToShape,
 
@@ -379,17 +381,17 @@ export default class SelectField extends PureComponent {
     listHeightRestricted: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#xThreshold}
+     * @see {@link Helpers/Layover#xThreshold}
      */
     xThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#yThreshold}
+     * @see {@link Helpers/Layover#yThreshold}
      */
     yThreshold: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     * @see {@link Helpers/Layover#closeOnOutsideClick}
      */
     closeOnOutsideClick: PropTypes.bool,
 
@@ -401,12 +403,12 @@ export default class SelectField extends PureComponent {
     menuTransitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     * @see {@link Helpers/Layover#transitionEnterTimeout}
      */
     menuTransitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layover#transitionLeaveTimeout}
      */
     menuTransitionLeaveTimeout: PropTypes.number,
 
@@ -421,18 +423,18 @@ export default class SelectField extends PureComponent {
     fullWidth: PropTypes.bool,
 
     /**
-     * @see {@link Helpers/Layovers#centered}
+     * @see {@link Helpers/Layover#centered}
      */
     centered: Menu.propTypes.centered,
 
     /**
-     * @see {@link Helpers/Layovers#sameWidth}
+     * @see {@link Helpers/Layover#sameWidth}
      */
     sameWidth: Menu.propTypes.sameWidth,
 
     /**
      * Since the `menuItems` get mapped into `ListItem`, this prop is used to remove
-     * any unneccessary props from the `ListItem` itself. This is where you
+     * any unnecessary props from the `ListItem` itself. This is where you
      * would remove parts of your object such as `description` or `__metadata__`.
      */
     deleteKeys: PropTypes.oneOfType([
@@ -448,9 +450,56 @@ export default class SelectField extends PureComponent {
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
-     * @see {@link Helpers/Layovers#fixedTo}
+     * @see {@link Helpers/Layover#repositionOnScroll}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the window resizes.
+     *
+     * @see {@link Helpers/Layover#repositionOnResize}
+     */
+    repositionOnResize: PropTypes.bool,
+
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layover#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#minLeft}
+     */
+    minLeft: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minRight}
+     */
+    minRight: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layover#minBottom}
+     */
+    minBottom: Menu.propTypes.minBottom,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layover#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
+
+    /**
+     * The direction that the underline should appear from.
+     */
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
 
     iconChildren: deprecated(PropTypes.node, 'Use `dropdownIcon` instead'),
     iconClassName: deprecated(PropTypes.string, 'Use `dropdownIcon` instead'),
@@ -482,6 +531,7 @@ export default class SelectField extends PureComponent {
     itemLabel: 'label',
     itemValue: 'value',
     dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
+    lineDirection: 'left',
     menuItems: [],
     defaultValue: '',
     defaultVisible: false,
@@ -489,6 +539,7 @@ export default class SelectField extends PureComponent {
     transitionName: 'md-drop',
     transitionTime: 300,
     repositionOnScroll: true,
+    repositionOnResize: false,
   };
 
   constructor(props) {
@@ -591,12 +642,12 @@ export default class SelectField extends PureComponent {
     let activeLabel = '';
     let activeIndex = -1;
     const value = getField(props, state, 'value');
-    if (value || value === 0) {
+    if (isValued(value)) {
       const { menuItems, itemLabel, itemValue } = props;
 
       menuItems.some((item, index) => {
         activeLabel = this._getActiveItemLabel(item, value, itemLabel, itemValue);
-        const found = activeLabel || activeLabel === 0;
+        const found = isValued(activeLabel);
         if (found) {
           activeIndex = index;
         }
@@ -652,17 +703,9 @@ export default class SelectField extends PureComponent {
       (onMenuToggle || onVisibilityChange)(visible, e);
     }
 
-    const value = getField(this.props, this.state, 'value');
     let state;
-    if (e.type === 'keydown' && !value && this.state.activeIndex === -1) {
-      // When there is no value, need to change the default active index to 0 instead of -1
-      // so that the next DOWN arrow increments correctly
-      state = { activeIndex: 0 };
-    }
-
     if (typeof isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      state = state || {};
-      state.visible = visible;
+      state = { visible };
     }
 
     if (state) {
@@ -704,7 +747,7 @@ export default class SelectField extends PureComponent {
     if (visible && this._container) {
       let node = e.target;
       while (this._container.contains(node)) {
-        if (typeof node.dataset.id !== 'undefined') {
+        if (node.dataset && typeof node.dataset.id !== 'undefined') {
           const { id, value } = node.dataset;
           this._selectItem(parseInt(id, 10), value, e);
           return;
@@ -795,15 +838,18 @@ export default class SelectField extends PureComponent {
   };
 
   _advanceFocus = (decrement) => {
-    const { menuItems, position } = this.props;
+    const { position, stripActiveItem } = this.props;
     const { activeIndex } = this.state;
 
     const below = position === SelectField.Positions.BELOW;
+    const value = getField(this.props, this.state, 'value');
+    const valued = isValued(value);
+    const itemStripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && valued;
 
     // If the select field is positioned below and there is no value, need to increment the last index
     // by one since this select field removes the active item. Need to account for that here when there
     // is no value.
-    const lastIndex = menuItems.length - (below && !getField(this.props, this.state, 'value') ? 0 : 1);
+    const lastIndex = this._items.length - (itemStripped ? 0 : 1);
     if ((decrement && activeIndex <= 0) || (!decrement && activeIndex >= lastIndex)) {
       return;
     }
@@ -813,11 +859,7 @@ export default class SelectField extends PureComponent {
       return;
     }
 
-    this._attemptItemFocus(nextIndex - (below ? 1 : 0));
-    if (below && decrement && nextIndex === 0) {
-      return;
-    }
-
+    this._attemptItemFocus(nextIndex - (itemStripped ? 1 : 0));
     this.setState({ activeIndex: nextIndex });
   };
 
@@ -850,8 +892,12 @@ export default class SelectField extends PureComponent {
     let match = -1;
     const search = `${lastSearch || ''}${letter}`.toUpperCase();
     menuItems.some((item, index) => {
+      if (item && typeof item === 'object' && item.disabled) {
+        return false;
+      }
+
       const label = String(this._getItemPart(item, itemLabel, itemValue, true));
-      if (label && label.toUpperCase().indexOf(search) === 0) {
+      if (label && label.toUpperCase().replace(/\s/g, '').indexOf(search) === 0) {
         match = index;
       }
 
@@ -893,6 +939,9 @@ export default class SelectField extends PureComponent {
   _reduceItems = (items, item, i) => {
     if (item === null) {
       return items;
+    } else if (React.isValidElement(item)) {
+      items.push(item);
+      return items;
     }
 
     const { id, itemLabel, itemValue, position, stripActiveItem } = this.props;
@@ -908,20 +957,21 @@ export default class SelectField extends PureComponent {
     }
 
     const active = dataValue === value || dataValue === parseInt(value, 10);
-    const stripped = typeof stripActiveItem !== 'undefined' ? stripActiveItem : below && active;
+    const stripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && active;
     if (!stripped) {
+      const disabled = (props && props.disabled) || false;
       items.push(
         <ListItem
           {...props}
-          ref={this._setListItem}
+          ref={disabled ? null : this._setListItem}
           id={active ? `${id}-options-active` : null}
           active={active}
           tabIndex={-1}
           primaryText={primaryText}
           key={item.key || dataValue}
           role="option"
-          data-id={i}
-          data-value={dataValue}
+          data-id={disabled ? null : i}
+          data-value={disabled ? null : dataValue}
         />
       );
     }
@@ -953,6 +1003,13 @@ export default class SelectField extends PureComponent {
       sameWidth,
       fullWidth,
       repositionOnScroll,
+      repositionOnResize,
+      simplifiedMenu,
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
       menuTransitionName,
       menuTransitionEnterTimeout,
       menuTransitionLeaveTimeout,
@@ -967,6 +1024,7 @@ export default class SelectField extends PureComponent {
       defaultVisible,
       onClick,
       onKeyDown,
+      onVisibilityChange,
       deleteKeys,
       stripActiveItem,
       keyboardMatchingTimeout,
@@ -1033,6 +1091,7 @@ export default class SelectField extends PureComponent {
         onClose={this._close}
         onKeyDown={this._handleKeyDown}
         onClick={this._handleClick}
+        simplified={simplifiedMenu}
         anchor={anchor}
         belowAnchor={belowAnchor}
         fixedTo={fixedTo}
@@ -1046,7 +1105,13 @@ export default class SelectField extends PureComponent {
         block={block}
         centered={centered}
         fullWidth={fullWidth}
+        minLeft={minLeft}
+        minRight={minRight}
+        minBottom={minBottom}
+        fillViewportWidth={fillViewportWidth}
+        fillViewportHeight={fillViewportHeight}
         repositionOnScroll={repositionOnScroll}
+        repositionOnResize={repositionOnResize}
         transitionName={menuTransitionName}
         transitionEnterTimeout={menuTransitionEnterTimeout}
         transitionLeaveTimeout={menuTransitionLeaveTimeout}

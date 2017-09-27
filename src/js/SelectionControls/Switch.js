@@ -54,7 +54,7 @@ export default class Switch extends PureComponent {
 
     /**
      * An optional function to call when the `checked` state of the `Switch` changes.
-     * The callback will incude the new checked state and the changeEvent.
+     * The callback will include the new checked state and the changeEvent.
      *
      * ```js
      * onChange(changeEvent.target.checked, changeEvent);

@@ -2,7 +2,7 @@
 
 exports[`ComponentTitle should render correctly 1`] = `
 <header
-  className="md-table-card-header"
+  className="md-table-card-header quick-link"
   style={undefined}
 >
   <div
@@ -11,8 +11,25 @@ exports[`ComponentTitle should render correctly 1`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
+      tabIndex={-1}
     >
-      Autocomplete
+      <div
+        className="quick-link__container"
+      >
+        Autocomplete
+        <a
+          className="quick-link__link quick-link__link--title"
+          href="#autocompletes-proptypes"
+          onClick={[Function]}
+        >
+          <i
+            className="md-icon material-icons"
+            style={undefined}
+          >
+            link
+          </i>
+        </a>
+      </div>
     </h2>
     <div
       className="md-text-field-container md-inline-block md-text-field-container--input md-cell--right"
@@ -26,11 +43,7 @@ exports[`ComponentTitle should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={
-        Object {
-          "width": null,
-        }
-      }
+      style={undefined}
     >
       <input
         className="md-text-field md-text-field--margin md-text"
@@ -73,7 +86,7 @@ exports[`ComponentTitle should render correctly 1`] = `
 
 exports[`ComponentTitle should render correctly 2`] = `
 <header
-  className="md-table-card-header"
+  className="md-table-card-header quick-link"
   style={undefined}
 >
   <div
@@ -82,8 +95,11 @@ exports[`ComponentTitle should render correctly 2`] = `
     <h2
       className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
+      tabIndex={-1}
     >
-      Autocomplete
+      <span>
+        Autocomplete
+      </span>
     </h2>
     <button
       className="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"

@@ -9,7 +9,6 @@ import Button from 'react-md/lib/Buttons/Button';
 
 import sassdocPageShape from 'propTypes/sassdocPageShape';
 import { sassdocRequest } from 'state/sassdocs';
-import scrollRestoration from 'utils/scrollRestoration';
 import DocumentationPage from 'components/DocumentationPage';
 
 import './_styles.scss';
@@ -32,18 +31,6 @@ export class PureSassDocPage extends PureComponent {
   componentDidMount() {
     const { sassdocRequest, component, section } = this.props;
     sassdocRequest(component, section);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.sassdoc !== prevProps.sassdoc) {
-      scrollRestoration();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
   }
 
   toggleFinder = () => {

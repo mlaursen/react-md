@@ -20,7 +20,15 @@ export default class DataTable extends PureComponent {
   static propTypes = {
     /**
      * A base id to use for every checkbox or `EditDialogColumn` in the data table. This is
-     * required for a11y if the data table is not plain.
+     * required for a11y if the data table is not plain. It is recommended to always provide
+     * this prop if you are using any of the advanced table components to auto-generate unique
+     * ids for each element.
+     *
+     * @see {@link DataTables/EditDialogColumn}
+     * @see {@link DataTables/SelectFieldColumn}
+     * @see {@link DataTables/DropdownMenuColumn}
+     * @see {@link DataTables/MenuButtonColumn}
+     * @see {@link DataTables/TablePagination}
      */
     baseId: requiredForA11yIfNot(PropTypes.oneOfType([
       PropTypes.number,
@@ -88,7 +96,7 @@ export default class DataTable extends PureComponent {
     fixedWrapperClassName: PropTypes.string,
 
     /**
-     * An optional sty;e to apply to the fixed table wrapper's scroll container that appears when there is a fixed
+     * An optional style to apply to the fixed table wrapper's scroll container that appears when there is a fixed
      * header or a fixed footer.
      *
      * @see {@link #fixedHeader}
@@ -394,7 +402,7 @@ export default class DataTable extends PureComponent {
   _removeCheckbox = (index) => {
     this.setState((state) => {
       // When multiple checkboxes are removed in a render cycle, they are removed in list order.
-      // So to keep the index correct while removing, need to keep subract the provided index by
+      // So to keep the index correct while removing, need to keep subtract the provided index by
       // the current number of removed elements. This value gets reset to 0 after a finished cycle.
       const selectedRows = state.selectedRows.slice();
       selectedRows.splice(index - this._removed, 1);

@@ -10,6 +10,8 @@ import SimpleFileUpload from './SimpleFileUpload';
 import SimpleFileUploadRaw from './SimpleFileUpload/code';
 import ServerUpload from './ServerUpload';
 import ServerUploadRaw from './ServerUpload/code';
+import AllowingDuplicates from './AllowingDuplicates';
+import AllowingDuplicatesRaw from '!!raw-loader!./AllowingDuplicates.jsx';
 
 const examples = [{
   title: 'Simple FileInput Examples',
@@ -40,6 +42,20 @@ a file to my documentation server.
   `,
   code: ServerUploadRaw,
   children: <ServerUpload />,
+}, {
+  title: 'Allowing Duplicates',
+  description: `
+Since the \`FileInput\` is a simple wrapper of the \`<input type="file" />\` element, this means that the native
+behavior is enabled by default. Once a user selects a file, they will not be able to select that file again
+immediately. They will need to select a different file and then select the file again if they want to upload/select
+it again. This is because the file input stores the path of the files as its value and does not trigger the \`onChange\`
+event again.
+
+This behavior can be overridden by enabling the \`allowDuplicates\` prop to never store the \`value\` of the file's path
+and triggering the \`onChange\` event every time a file is selected.
+  `,
+  code: AllowingDuplicatesRaw,
+  children: <AllowingDuplicates />,
 }];
 
 const FileInputs = () => <ExamplesPage description={README} examples={examples} />;
