@@ -11,6 +11,8 @@ import Determinate from './Determinate';
 import DeterminateRaw from '!!raw-loader!./Determinate.jsx';
 import QueryIndeterminate from './QueryIndeterminate';
 import QueryIndeterminateRaw from '!!raw-loader!./QueryIndeterminate.jsx';
+import ProgressStyle from './ProgressStyle';
+import ProgressStyleRaw from '!!raw-loader!./ProgressStyle.jsx';
 
 const fullDescription = `
 ${description}
@@ -63,6 +65,12 @@ incrementing until it reaches \`100\`.
   `,
   code: QueryIndeterminateRaw,
   children: <QueryIndeterminate />,
+}, {
+  title: 'Progress styling',
+  description: `
+Use \`progressClassName\` and \`progressStyle\` properties to apply necessary styling to progress component.`,
+  code: ProgressStyleRaw,
+  children: <ProgressStyle />,
 }];
 
 const LinearProgress = () => <ExamplesPage description={fullDescription} examples={examples} />;

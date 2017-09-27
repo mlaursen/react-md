@@ -46,6 +46,28 @@ export default class LinearProgress extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional className to apply to the progress bar element.
+     *
+     * If a function is specified it will be called to get necessary className.
+     * Current progress value and reference to the component will be passed into the function.
+     */
+    progressClassName: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional style to apply to the progress bar element.
+     *
+     * If a function is specified it will be called to get necessary style.
+     * Current progress value and reference to the component will be passed into the function.
+     */
+    progressStyle: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
+
+    /**
      * The current value of the progress. If this value is defined, it will
      * be converted to a determinate circular progress. The progress will not
      * advance unless this value changes.
@@ -71,7 +93,7 @@ export default class LinearProgress extends PureComponent {
   };
 
   render() {
-    const { className, value, query, centered, ...props } = this.props;
+    const { className, progressClassName, progressStyle, value, query, centered, ...props } = this.props;
     const isDeterminate = typeof value === 'number';
 
     const accessibilityProps = {
@@ -85,6 +107,14 @@ export default class LinearProgress extends PureComponent {
       style = { width: `${value}%` };
       accessibilityProps['aria-valuenow'] = value;
     }
+    if (progressStyle) {
+      style = Object.assign(
+        style || {},
+        typeof progressStyle === 'function'
+          ? progressStyle(value, this)
+          : progressStyle
+      );
+    }
 
     return (
       <div
@@ -94,11 +124,16 @@ export default class LinearProgress extends PureComponent {
         <div
           {...accessibilityProps}
           style={style}
-          className={cn('md-progress--linear-active', {
-            'md-progress--linear-query': query,
-            'md-progress--linear-determinate': isDeterminate,
-            'md-progress--linear-indeterminate': !isDeterminate,
-          })}
+          className={cn('md-progress--linear-active',
+            {
+              'md-progress--linear-query': query,
+              'md-progress--linear-determinate': isDeterminate,
+              'md-progress--linear-indeterminate': !isDeterminate,
+            },
+            typeof progressClassName === 'function'
+              ? progressClassName(value, this)
+              : progressClassName
+          )}
         />
       </div>
     );
