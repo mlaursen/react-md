@@ -55,7 +55,7 @@ exports[`Avatar should be able to render an icon or a letter 2`] = `
     <svg
       aria-labelledby={null}
       className="md-icon"
-      focusable={false}
+      focusable="false"
       role="img"
       style={undefined}
       title={undefined}
@@ -81,7 +81,7 @@ exports[`Avatar should be able to render an icon or a letter 3`] = `
     <svg
       aria-labelledby={null}
       className="md-icon"
-      focusable={false}
+      focusable="false"
       role="img"
       style={undefined}
       title={undefined}
