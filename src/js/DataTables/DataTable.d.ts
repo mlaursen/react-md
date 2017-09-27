@@ -29,6 +29,7 @@ export interface DataTableProps extends Props {
   fixedWidth?: number;
   headerHeight?: number;
   footerHeight?: number;
+  fullWidth?: boolean;
 
   /**
    * @deprecated
