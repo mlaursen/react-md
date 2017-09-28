@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import LinearProgress from 'react-md/lib/Progress/LinearProgress';
 
-import './_progress-style.scss';
-
 export default class ProgressStyle extends PureComponent {
   state = { progress: 0 };
 
@@ -11,21 +9,21 @@ export default class ProgressStyle extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.clearTimeout();
+    this.clearInterval();
   }
 
-  timeout = null;
+  interval = null;
 
-  clearTimeout = () => {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
+  clearInterval = () => {
+    if (this.interval) {
+      clearInterval(this.interval);
     }
   };
 
   start = () => {
-    this.clearTimeout();
+    this.clearInterval();
 
-    this.timeout = setInterval(() => {
+    this.interval = setInterval(() => {
       const progress = this.state.progress + 10;
       this.setState({ progress: progress <= 100 ? progress : 0 });
     }, 1000);
@@ -35,11 +33,10 @@ export default class ProgressStyle extends PureComponent {
     return (
       <section>
         <LinearProgress
-          id="progressStyleExample"
+          id="progress-style-example"
           value={this.state.progress}
           className="vertical-progress"
-          style={{ height: '100px', width: '20px' }}
-          progressClassName="vertical-progress-bar"
+          style={{ height: 100, width: 20 }}
           progressStyle={value => ({ top: `${100 - value}%`, width: '100%' })}
         />
       </section>

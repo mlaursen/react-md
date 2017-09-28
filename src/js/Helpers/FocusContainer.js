@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import invariant from 'invariant';
 
 import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 
@@ -132,13 +131,14 @@ export default class FocusContainer extends PureComponent {
       debugError += 'If this was supposed to be an `id`, make sure to prefix with the `#` symbol.';
     }
 
-    invariant(
-      toFocus,
-      'You specified that the `FocusContainer` should focus an element on mount, ' +
-      'but a focusable element was not found in the children. This could be because ' +
-      'the `initialFocus` prop is an invalid id or query selector, or the children ' +
-      `do not contain a valid focusable element.${debugError}`
-    );
+    if (process.env.NODE_ENV !== 'production' && !toFocus) {
+      throw new Error(
+        'You specified that the `FocusContainer` should focus an element on mount, ' +
+        'but a focusable element was not found in the children. This could be because ' +
+        'the `initialFocus` prop is an invalid id or query selector, or the children ' +
+        `do not contain a valid focusable element.${debugError}`
+      );
+    }
 
     if (toFocus) {
       toFocus.focus();

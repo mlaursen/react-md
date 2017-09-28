@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import marked from 'marked';
-import { GITHUB_URL } from 'constants/application';
+import { GITHUB_URL, VERSION } from 'constants/application';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -83,11 +83,16 @@ function addGithubUserLinks(markdown) {
   return markdown.replace(/(\[@(\w+)])/g, '$1(https://github.com/$2)');
 }
 
+function updateUMDForVersion(markdown) {
+  return markdown.replace(/unpkg.com\/react-md\/dist/g, `unpkg.com/react-md@${VERSION}/dist`);
+}
+
 
 const preTransforms = [
   addGithubLinks,
   addGithubUserLinks,
   addAdditionalLineToSee,
+  updateUMDForVersion,
   marked,
 ];
 

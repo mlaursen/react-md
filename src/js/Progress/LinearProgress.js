@@ -108,8 +108,7 @@ export default class LinearProgress extends PureComponent {
       accessibilityProps['aria-valuenow'] = value;
     }
     if (progressStyle) {
-      style = Object.assign(
-        style || {},
+      style = Object.assign(style || {},
         typeof progressStyle === 'function'
           ? progressStyle(value, this)
           : progressStyle
@@ -124,13 +123,11 @@ export default class LinearProgress extends PureComponent {
         <div
           {...accessibilityProps}
           style={style}
-          className={cn('md-progress--linear-active',
-            {
-              'md-progress--linear-query': query,
-              'md-progress--linear-determinate': isDeterminate,
-              'md-progress--linear-indeterminate': !isDeterminate,
-            },
-            typeof progressClassName === 'function'
+          className={cn('md-progress--linear-active', {
+            'md-progress--linear-query': query,
+            'md-progress--linear-determinate': isDeterminate,
+            'md-progress--linear-indeterminate': !isDeterminate,
+          }, typeof progressClassName === 'function'
               ? progressClassName(value, this)
               : progressClassName
           )}

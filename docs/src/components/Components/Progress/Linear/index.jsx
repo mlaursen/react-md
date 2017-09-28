@@ -66,9 +66,12 @@ incrementing until it reaches \`100\`.
   code: QueryIndeterminateRaw,
   children: <QueryIndeterminate />,
 }, {
-  title: 'Progress styling',
+  title: 'Additional Styling Control',
   description: `
-Use \`progressClassName\` and \`progressStyle\` properties to apply necessary styling to progress component.`,
+If it is desired to have additional control over the progress bar's style, you can use the \`progressStyle\` and \`progressClassName\`
+props. These two props can either be a static style object or className that gets applied to the progress bar, or they can be functions
+that return the style or className based on the current value.
+  `,
   code: ProgressStyleRaw,
   children: <ProgressStyle />,
 }];
