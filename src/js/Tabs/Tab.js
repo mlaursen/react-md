@@ -84,8 +84,7 @@ export default class Tab extends PureComponent {
     active: PropTypes.bool,
 
     /**
-     * Boolean if the tab is currently active. If you use the `Tabs` component, this is automatically
-     * injected.
+     * Tab's index. If you use the `Tabs` component, this is automatically injected.
      */
     index: PropTypes.number,
   };

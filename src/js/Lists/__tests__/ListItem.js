@@ -5,12 +5,16 @@ import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
+  findRenderedDOMComponentWithClass,
 } from 'react-dom/test-utils';
 
 import ListItem from '../ListItem';
+import FontIcon from '../../FontIcons';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
 
 describe('ListItem', () => {
+  const StarIcon = () => <FontIcon>star</FontIcon>;
+
   it('merges className and style', () => {
     const props = {
       style: { background: 'black' },
@@ -28,6 +32,48 @@ describe('ListItem', () => {
     expect(listItemNode.className).toContain(props.className);
     expect(btn.props.style).toEqual(props.tileStyle);
     expect(btn.props.className).toContain(props.tileClassName);
+  });
+
+  it('should use "leftNodeClassName" and "leftNodeStyle" properties', () => {
+    const props = {
+      primaryText: 'Test leftNode props',
+      leftIcon: new StarIcon(),
+      leftNodeClassName: 'left-icon-class',
+      leftNodeStyle: {
+        width: '20px',
+      },
+    };
+    const listItem = renderIntoDocument(<ListItem {...props} />);
+
+    const leftNode = findRenderedDOMComponentWithClass(listItem, props.leftNodeClassName);
+    expect(leftNode.style.width).toBe(props.leftNodeStyle.width);
+  });
+
+  it('should use "rightNodeClassName" and "rightNodeStyle" properties', () => {
+    const props = {
+      primaryText: 'Test rightNode props',
+      rightIcon: new StarIcon(),
+      rightNodeClassName: 'right-icon-class',
+      rightNodeStyle: {
+        height: '10px',
+      },
+    };
+    const listItem = renderIntoDocument(<ListItem {...props} />);
+
+    const rightNode = findRenderedDOMComponentWithClass(listItem, props.rightNodeClassName);
+    expect(rightNode.style.height).toBe(props.rightNodeStyle.height);
+  });
+
+  it.only('should provide reference to container element', () => {
+    let itemRef;
+    const props = {
+      primaryText: 'Test itemRef prop',
+      itemRef: (ref) => { itemRef = ref; },
+    };
+    renderIntoDocument(<ListItem {...props} />);
+
+    expect(itemRef.nodeName).toBe('LI');
+    expect(itemRef.classList.contains('md-list-item')).toBe(true);
   });
 
   it('passes event listeners to the AccessibleFakeInkedButton', () => {
