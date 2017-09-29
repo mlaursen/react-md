@@ -114,10 +114,12 @@ exports[`BlockedFields should render correctly 1`] = `
             className="md-avatar-img"
             role={undefined}
             src="https://unplash.it/300?random&time=3"
+            style={undefined}
           />
         </div>
         <span
           className="md-chip-text"
+          style={undefined}
         >
           Freddy Kruger
         </span>
@@ -143,10 +145,12 @@ exports[`BlockedFields should render correctly 1`] = `
             className="md-avatar-img"
             role={undefined}
             src="https://unplash.it/300?random&time=3"
+            style={undefined}
           />
         </div>
         <span
           className="md-chip-text"
+          style={undefined}
         >
           Bob Belcher
         </span>
@@ -173,11 +177,7 @@ exports[`BlockedFields should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={
-        Object {
-          "width": null,
-        }
-      }
+      style={undefined}
     >
       <input
         className="md-text-field md-full-width md-text"
@@ -218,11 +218,7 @@ exports[`BlockedFields should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={
-        Object {
-          "width": null,
-        }
-      }
+      style={undefined}
     >
       <div
         className="md-text-field-multiline-container"

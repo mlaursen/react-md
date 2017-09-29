@@ -550,9 +550,13 @@ export default class Drawer extends PureComponent {
   };
 
   _animate = (visible, type, timeout, overlay, desktop) => {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
     if (visible) {
-      this.timeout = setTimeout(() => {
-        this.timeout = null;
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
 
         this.setState({
           overlayActive: overlay || (isTemporary(type) && !desktop),

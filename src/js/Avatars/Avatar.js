@@ -19,6 +19,18 @@ export default class Avatar extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to either the `<img>` or `<div>` surrounding the content. The `<img>` tag
+     * will be used with the `src` prop is defined.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to either the `<img>` or `<div>` surrounding the content. The `<img>` tag
+     * will be used with the `src` prop is defined.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
      * An optional image source to use for the avatar.
      */
     src: oneRequiredForA11yIf(PropTypes.string, 'role', 'alt'),
@@ -130,6 +142,8 @@ export default class Avatar extends PureComponent {
   render() {
     const {
       className,
+      contentStyle,
+      contentClassName,
       src,
       alt,
       icon,
@@ -142,6 +156,27 @@ export default class Avatar extends PureComponent {
       ...props
     } = this.props;
 
+    let content;
+    if (src) {
+      content = (
+        <img
+          src={src}
+          alt={alt}
+          role={role}
+          style={contentStyle}
+          className={cn('md-avatar-img', contentClassName)}
+        />
+      );
+    } else {
+      content = (
+        <div
+          style={contentStyle}
+          className={cn('md-avatar-content', contentClassName)}
+        >
+          {icon || children}
+        </div>
+      );
+    }
     return (
       <div
         {...props}
@@ -149,12 +184,7 @@ export default class Avatar extends PureComponent {
           'md-avatar--icon-sized': iconSized,
         }, className)}
       >
-        {src && <img src={src} alt={alt} role={role} className="md-avatar-img" />}
-        {!src &&
-          <div className="md-avatar-content">
-            {icon || children}
-          </div>
-        }
+        {content}
       </div>
     );
   }

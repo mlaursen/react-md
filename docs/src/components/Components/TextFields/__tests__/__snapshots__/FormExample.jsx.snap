@@ -87,11 +87,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--title md-floating-label--floating md-text--secondary"
@@ -128,11 +124,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"
@@ -172,11 +164,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"
@@ -213,11 +201,7 @@ exports[`FormExample should render correctly 1`] = `
         onTouchEnd={undefined}
         onTouchMove={undefined}
         onTouchStart={undefined}
-        style={
-          Object {
-            "width": null,
-          }
-        }
+        style={undefined}
       >
         <label
           className="md-floating-label md-floating-label--floating md-text--secondary"

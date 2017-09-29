@@ -65,7 +65,7 @@ exports[`AutoResizing should render correctly 1`] = `
       onTouchStart={undefined}
       style={
         Object {
-          "width": null,
+          "width": 200,
         }
       }
     >

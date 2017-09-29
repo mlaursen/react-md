@@ -8,6 +8,7 @@ import minMaxLoop from '../utils/NumberUtils/minMaxLoop';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
 
+
 /**
  * A custom PropTypes validator to make sure that each `control` in the `controls` prop
  * contains the given `propName`, or the `SelectionControlGroup` has defined that prop.
@@ -194,6 +195,62 @@ export default class SelectionControlGroup extends PureComponent {
      * An optional function to call when the keydown event is triggered.
      */
     onKeyDown: PropTypes.func,
+
+    /**
+     * An icon to use for a checked `radio` control. This will be applied to each
+     * control that has a `type="radio"` in the `controls` list. This is just a simpler
+     * way of applying the custom icons for each radio in the list.
+     *
+     * This will default to the `checkedRadioIcon` on the `SelectionControl`.
+     *
+     * @see {@link #controls}
+     * @see {@link #uncheckedRadioIcon}
+     * @see {@link SelectionControls/SelectionControls#checkedRadioIcon}
+     * @see {@link SelectionControls/SelectionControls#uncheckedRadioIcon}
+     */
+    checkedRadioIcon: PropTypes.node,
+
+    /**
+     * An icon to use for an unchecked `radio` control. This will be applied to each
+     * control that has a `type="radio"` in the `controls` list. This is just a simpler
+     * way of applying the custom icons for each radio in the list.
+     *
+     * This will default to the `uncheckedRadioIcon` on the `SelectionControl`.
+     *
+     * @see {@link #controls}
+     * @see {@link #checkedRadioIcon}
+     * @see {@link SelectionControls/SelectionControls#checkedRadioIcon}
+     * @see {@link SelectionControls/SelectionControls#uncheckedRadioIcon}
+     */
+    uncheckedRadioIcon: PropTypes.node,
+
+    /**
+     * An icon to use for a checked `checkbox` control. This will be applied to each
+     * control that has a `type="checkbox"` in the `controls` list. This is just a simpler
+     * way of applying the custom icons for each checkbox in the list.
+     *
+     * This will default to the `checkedCheckboxIcon` on the `SelectionControl`.
+     *
+     * @see {@link #controls}
+     * @see {@link #uncheckedCheckboxIcon}
+     * @see {@link SelectionControls/SelectionControls#checkedCheckboxIcon}
+     * @see {@link SelectionControls/SelectionControls#uncheckedCheckboxIcon}
+     */
+    checkedCheckboxIcon: PropTypes.node,
+
+    /**
+     * An icon to use for an unchecked `checkbox` control. This will be applied to each
+     * control that has a `type="checkbox"` in the `controls` list. This is just a simpler
+     * way of applying the custom icons for each checkbox in the list.
+     *
+     * This will default to the `uncheckedCheckboxIcon` on the `SelectionControl`.
+     *
+     * @see {@link #controls}
+     * @see {@link #checkedCheckboxIcon}
+     * @see {@link SelectionControls/SelectionControls#checkedCheckboxIcon}
+     * @see {@link SelectionControls/SelectionControls#uncheckedCheckboxIcon}
+     */
+    uncheckedCheckboxIcon: PropTypes.node,
   };
 
   static defaultProps = {
@@ -306,6 +363,10 @@ export default class SelectionControlGroup extends PureComponent {
       labelComponent: LabelComponent,
       inline,
       disabled,
+      checkedRadioIcon,
+      uncheckedRadioIcon,
+      checkedCheckboxIcon,
+      uncheckedCheckboxIcon,
       /* eslint-disable no-unused-vars */
       value: propValue,
       controls: propControls,
@@ -333,6 +394,10 @@ export default class SelectionControlGroup extends PureComponent {
         disabled,
         checked,
         tabIndex: !radio || checked || (i === 0 && this._activeIndex === -1) ? undefined : -1,
+        checkedRadioIcon,
+        uncheckedRadioIcon,
+        checkedCheckboxIcon,
+        uncheckedCheckboxIcon,
         ...control,
         style,
         className: cn(controlClassName, control.className),

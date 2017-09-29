@@ -61,6 +61,28 @@ export default class Dialog extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional styke to apply to the title.
+     */
+    titleStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the title.
+     */
+    titleClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the dialog's content.
      */
     contentStyle: PropTypes.object,
@@ -357,6 +379,10 @@ export default class Dialog extends PureComponent {
     const {
       id,
       className,
+      titleStyle,
+      titleClassName,
+      footerStyle,
+      footerClassName,
       contentClassName,
       title,
       contentComponent: Content,
@@ -392,7 +418,14 @@ export default class Dialog extends PureComponent {
 
     const padDefined = typeof paddedContent !== 'undefined';
     const dialogChildren = fullPage ? children : [
-      <DialogTitle key="title" id={titleId}>{title}</DialogTitle>,
+      <DialogTitle
+        key="title"
+        id={titleId}
+        style={titleStyle}
+        className={titleClassName}
+      >
+        {title}
+      </DialogTitle>,
       <Content
         ref={!padDefined && autopadContent ? this._setContent : null}
         key="content"
@@ -405,7 +438,13 @@ export default class Dialog extends PureComponent {
         {autosizeContent ? <ResizeObserver watchHeight watchWidth onResize={this._handleContentResize} /> : null}
         {children}
       </Content>,
-      <DialogFooter key="footer" actions={actions} stacked={stackedActions} />,
+      <DialogFooter
+        key="footer"
+        style={footerStyle}
+        className={footerClassName}
+        actions={actions}
+        stacked={stackedActions}
+      />,
     ];
 
     return (

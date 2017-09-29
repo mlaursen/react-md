@@ -106,6 +106,28 @@ export default class DialogContainer extends PureComponent {
     dialogClassName: PropTypes.string,
 
     /**
+     * An optional styke to apply to the title.
+     */
+    titleStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the title.
+     */
+    titleClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the footer. This is used when the `actions`
+     * prop is defined.
+     */
+    footerClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the dialog's content.
      */
     contentStyle: PropTypes.object,
@@ -401,6 +423,11 @@ export default class DialogContainer extends PureComponent {
     this._pageX = pageX;
     this._pageY = pageY;
 
+    if (this._inTimeout) {
+      clearTimeout(this._inTimeout);
+      this._inTimeout = null;
+    }
+
     if (visible) {
       this._activeElement = document.activeElement;
       this._mountPortal(nextProps);
@@ -460,6 +487,7 @@ export default class DialogContainer extends PureComponent {
   _handleEscClose = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       (this.props.onHide || this.props.close)(e);
+      window.removeEventListener('keydown', this._handleEscClose);
     }
   };
 

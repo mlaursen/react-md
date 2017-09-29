@@ -16,6 +16,9 @@ import TextFieldDivider from '../TextFieldDivider';
 import PasswordButton from '../PasswordButton';
 import FloatingLabel from '../FloatingLabel';
 import FontIcon from '../../FontIcons/FontIcon';
+import getTextWidth from '../../utils/Positioning/getTextWidth';
+
+jest.mock('../../utils/Positioning/getTextWidth');
 
 describe('TextField', () => {
   it('merges style and classNames correctly', () => {
@@ -374,5 +377,51 @@ describe('TextField', () => {
     expect(tree8).toMatchSnapshot();
     expect(tree9).toMatchSnapshot();
     expect(tree10).toMatchSnapshot();
+  });
+
+  it('should correctly re-apply styles', () => {
+    const field = shallow(<TextField id="test-field" style={{ height: 100 }} />);
+
+    const getStyle = () => field.first().props().style;
+    expect(getStyle().height).toBe(100);
+
+    field.setProps({ style: { height: 150, background: 'red' } });
+    expect(getStyle().height).toBe(150);
+    expect(getStyle().background).toBe('red');
+
+    field.setProps({ style: null });
+    expect(getStyle()).toBe(null);
+  });
+
+  describe('resizing', () => {
+    beforeEach(() => {
+      getTextWidth.mockClear();
+      getTextWidth.mockImplementation((s) => {
+        if (!s) {
+          return 0;
+        }
+
+        return s.length * 10; // pretend each character is 10px wide
+      });
+    });
+
+    it('should correctly apply the resize styles', () => {
+      const field = mount(<TextField id="test-field" resize={{ min: 180, max: 380 }} value="" onChange={() => {}} />);
+      const getStyle = () => field.find('div').first().props().style;
+
+      expect(getStyle().width).toBe(180);
+
+      field.setProps({ style: { background: 'red' } });
+      expect(getStyle().background).toBe('red');
+      expect(getStyle().width).toBe(180);
+
+      field.setProps({ resize: { min: 200, max: 350 } });
+      expect(getStyle().background).toBe('red');
+      expect(getStyle().width).toBe(200);
+
+      field.setProps({ value: '01234567890123456789012345678' });
+      expect(getStyle().background).toBe('red');
+      expect(getStyle().width).toBe(290);
+    });
   });
 });

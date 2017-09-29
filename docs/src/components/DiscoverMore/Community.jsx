@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Media from 'react-md/lib/Media/Media';
 
 import Markdown from 'components/Markdown';
+import withMinHeight from 'components/hoc/withMinHeight';
 
 const markdown = `
 # Community
@@ -12,8 +14,8 @@ If you want to see the progress of \`react-md\` or reach out to the community wi
 you can chat with me on [Slack](https://react-md.herokuapp.com/) or use the contact email.
 `;
 
-const Community = () => (
-  <section className="md-grid">
+const Community = ({ style }) => (
+  <section style={style} className="md-grid md-grid--stacked">
     <Markdown markdown={markdown} className="md-text-container md-cell md-cell--12" />
     <div className="md-text-container md-cell md-cell--12">
       <Media>
@@ -23,4 +25,8 @@ const Community = () => (
   </section>
 );
 
-export default Community;
+Community.propTypes = {
+  style: PropTypes.object,
+};
+
+export default withMinHeight(Community);

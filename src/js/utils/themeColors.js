@@ -1,3 +1,4 @@
+/** @module utils/themeColors */
 import cn from 'classnames';
 
 /**

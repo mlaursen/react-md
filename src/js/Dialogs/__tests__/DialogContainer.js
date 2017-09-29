@@ -113,4 +113,36 @@ describe('DialogContainer', () => {
     const dialog = shallow(<DialogContainer {...PROPS} portal />);
     expect(dialog.find(Portal).length).toBe(1);
   });
+
+  it('should correctly reset the timeout if the dialog is closed before the enter animation finishes', () => {
+    // Get parallel errors otherwise
+    jest.runAllTimers();
+    setTimeout.mockClear();
+    clearTimeout.mockClear();
+
+    const container = mount(
+      <DialogContainer
+        id="dialog-1"
+        aria-labelledby="dialog-title"
+        visible={false}
+        onHide={() => {}}
+        focusOnMount={false}
+      >
+        <h1 id="dialog-title">Hello</h1>
+      </DialogContainer>
+    );
+
+    expect(setTimeout.mock.calls.length).toBe(0);
+    container.setProps({ visible: true });
+
+    expect(setTimeout.mock.calls.length).toBe(1);
+    container.setProps({ visible: false });
+
+    expect(setTimeout.mock.calls.length).toBe(1);
+    expect(clearTimeout.mock.calls.length).toBe(1);
+    jest.runAllTimers();
+
+    expect(setTimeout.mock.calls.length).toBe(1);
+    expect(clearTimeout.mock.calls.length).toBe(1);
+  });
 });

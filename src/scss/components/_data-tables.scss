@@ -451,9 +451,16 @@ $md-data-table-contextual-fallback-color: null !default;
 @mixin react-md-data-table-checkboxes {
   $margin: $md-data-table-padding - $md-btn-icon-padding;
 
-  .md-table-checkbox .md-selection-control-container {
-    margin-left: $margin;
-    margin-right: $margin;
+  .md-table-checkbox {
+
+    .md-selection-control-label {
+      display: block;
+    }
+
+    .md-selection-control-container {
+      margin-left: $margin;
+      margin-right: $margin;
+    }
   }
 }
 

@@ -69,7 +69,7 @@ import Subheader from './Subheaders';
 import { TabsContainer, Tabs, Tab, MenuTab, TabPanel } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
-import injectTooltip from './Tooltips';
+import injectTooltip, { Tooltipped } from './Tooltips';
 
 // Exposes for UMD -> ReactMD.Autocomplete
 export { Autocomplete };
@@ -153,6 +153,7 @@ export { TabPanel };
 export { TextField };
 export { Toolbar };
 export { injectTooltip };
+export { Tooltipped };
 
 // Exposes for ES6 modules
 export default {
@@ -260,4 +261,5 @@ export default {
   TextField,
   Toolbar,
   injectTooltip,
+  Tooltipped,
 };

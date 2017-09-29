@@ -20,7 +20,15 @@ export default class DataTable extends PureComponent {
   static propTypes = {
     /**
      * A base id to use for every checkbox or `EditDialogColumn` in the data table. This is
-     * required for a11y if the data table is not plain.
+     * required for a11y if the data table is not plain. It is recommended to always provide
+     * this prop if you are using any of the advanced table components to auto-generate unique
+     * ids for each element.
+     *
+     * @see {@link DataTables/EditDialogColumn}
+     * @see {@link DataTables/SelectFieldColumn}
+     * @see {@link DataTables/DropdownMenuColumn}
+     * @see {@link DataTables/MenuButtonColumn}
+     * @see {@link DataTables/TablePagination}
      */
     baseId: requiredForA11yIfNot(PropTypes.oneOfType([
       PropTypes.number,

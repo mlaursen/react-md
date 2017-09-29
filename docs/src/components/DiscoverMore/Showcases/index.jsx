@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Markdown from 'components/Markdown';
+import withMinHeight from 'components/hoc/withMinHeight';
 import LesPassionsdePeronnes from './LesPassionsdePeronnes';
 import './_styles.scss';
 
@@ -30,4 +31,4 @@ Showcases.propTypes = {
   className: PropTypes.string,
 };
 
-export default Showcases;
+export default withMinHeight(Showcases);

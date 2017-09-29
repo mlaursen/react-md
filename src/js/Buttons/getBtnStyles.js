@@ -23,7 +23,9 @@ export default function getBtnStyles({
   const flatStyles = flat || icon;
   const raisedStyles = raised || floating;
   const textTheming = (flatStyles && !swapTheming) || (raisedStyles && swapTheming);
-  const backgroundTheming = (!disabled && raisedStyles && !swapTheming) || (flatStyles && swapTheming);
+  const backgroundTheming = ((!disabled && raisedStyles && !swapTheming)
+    || (flatStyles && swapTheming))
+    && (primary || secondary);
 
   return cn('md-btn', {
     'md-btn--flat': flat || (disabled && raised),

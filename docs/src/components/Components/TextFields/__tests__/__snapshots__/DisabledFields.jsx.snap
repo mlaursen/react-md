@@ -16,11 +16,7 @@ exports[`DisabledFields should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--disabled"
@@ -56,11 +52,7 @@ exports[`DisabledFields should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <input
       className="md-text-field md-text-field--margin md-full-width md-text--disabled"
@@ -90,11 +82,7 @@ exports[`DisabledFields should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--disabled"
@@ -157,11 +145,7 @@ exports[`DisabledFields should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <div
       className="md-text-field-multiline-container md-text-field--margin"
@@ -218,11 +202,7 @@ exports[`DisabledFields should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <label
       className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--disabled"

@@ -499,6 +499,8 @@ export default class Layover extends PureComponent {
       left = rect.right - offsetWidth;
     } else if (x === HorizontalAnchors.LEFT) {
       left = rect.left - offsetWidth;
+    } else if (x === HorizontalAnchors.RIGHT) {
+      left = rect.right;
     }
 
     if (centered && x === HorizontalAnchors.CENTER && y === VerticalAnchors.CENTER) {

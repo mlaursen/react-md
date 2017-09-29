@@ -91,7 +91,7 @@ it requires the full screen on mobile devices to be viewed correctly.</p>
     }
   />
   <button
-    className="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
+    className="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}

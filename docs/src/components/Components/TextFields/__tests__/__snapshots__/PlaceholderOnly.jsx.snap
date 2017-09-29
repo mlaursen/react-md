@@ -16,11 +16,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <input
       className="md-text-field md-text-field--margin md-full-width md-text"
@@ -50,11 +46,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <div
       className="md-text-field-multiline-container md-text-field--margin"
@@ -111,11 +103,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
     onTouchEnd={undefined}
     onTouchMove={undefined}
     onTouchStart={undefined}
-    style={
-      Object {
-        "width": null,
-      }
-    }
+    style={undefined}
   >
     <input
       className="md-text-field md-text-field--inline-indicator md-text-field--margin md-full-width md-text"

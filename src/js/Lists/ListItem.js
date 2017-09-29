@@ -51,6 +51,58 @@ export default class ListItem extends PureComponent {
     tileClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div that surrounds the `primaryText` and `secondaryText`
+     * nodes.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the element that is rendered before content node.
+     */
+    leftNodeStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the element that is rendered before content node.
+     */
+    leftNodeClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the element that is rendered after content node.
+     */
+    rightNodeStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the element that is rendered after content node.
+     */
+    rightNodeClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `primaryText`.
+     */
+    primaryTextClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the div surrounding the `secondaryText`.
+     */
+    secondaryTextClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the nested `List` that gets created when using `nestedItems`.
      */
     nestedListStyle: PropTypes.object,
@@ -160,6 +212,12 @@ export default class ListItem extends PureComponent {
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
+
+    /**
+     * An optional ref callback to get reference to the top-most element of the `ListItem` component.
+     * Just like other refs, this will provide null when it unmounts.
+     */
+    itemRef: PropTypes.func,
 
     /**
      * An optional list of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` components
@@ -280,7 +338,7 @@ export default class ListItem extends PureComponent {
     /**
      * Any additional props you would like to supply to the surrounding `<li>` tag for the `ListItem`.
      * By default, all props will be provided to the inner `AccessibleFakeButton`. If the `passPropsToItem`
-     * prop is enabled, the remaining props will be provided to the `<lI>` tag instead and this prop
+     * prop is enabled, the remaining props will be provided to the `<li>` tag instead and this prop
      * is probably useless.
      */
     itemProps: PropTypes.object,
@@ -378,8 +436,12 @@ export default class ListItem extends PureComponent {
   };
 
   _setContainer = (container) => {
+    const { itemRef } = this.props;
     if (container) {
       this._container = findDOMNode(container);
+    }
+    if (itemRef) {
+      itemRef(container ? this._container : null);
     }
   };
 
@@ -471,6 +533,16 @@ export default class ListItem extends PureComponent {
       className,
       tileStyle,
       tileClassName,
+      contentStyle,
+      contentClassName,
+      leftNodeStyle,
+      leftNodeClassName,
+      rightNodeStyle,
+      rightNodeClassName,
+      primaryTextStyle,
+      primaryTextClassName,
+      secondaryTextStyle,
+      secondaryTextClassName,
       nestedListStyle,
       nestedListClassName,
       nestedListHeightRestricted,
@@ -523,6 +595,8 @@ export default class ListItem extends PureComponent {
     let leftNode = (
       <TileAddon
         key="left-addon"
+        style={leftNodeStyle}
+        className={leftNodeClassName}
         active={active}
         activeClassName={activeClassName}
         icon={leftIcon}
@@ -533,6 +607,8 @@ export default class ListItem extends PureComponent {
     let rightNode = (
       <TileAddon
         key="right-addon"
+        style={rightNodeStyle}
+        className={rightNodeClassName}
         active={active}
         activeClassName={activeClassName}
         icon={rightIcon}
@@ -607,11 +683,16 @@ export default class ListItem extends PureComponent {
           primaryText={primaryText}
           secondaryText={secondaryText}
           threeLines={threeLines}
+          style={contentStyle}
           className={cn({
             'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
             'md-tile-content--left-avatar': leftAvatar,
             'md-tile-content--right-padding': rightIcon || rightAvatar,
-          })}
+          }, contentClassName)}
+          primaryTextStyle={primaryTextStyle}
+          primaryTextClassName={primaryTextClassName}
+          secondaryTextStyle={secondaryTextStyle}
+          secondaryTextClassName={secondaryTextClassName}
         />
         {rightNode}
         {children}

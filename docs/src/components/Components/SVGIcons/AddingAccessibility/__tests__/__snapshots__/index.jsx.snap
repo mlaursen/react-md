@@ -11,7 +11,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby="menu-icon-inline-title menu-icon-inline-desc"
       className="md-icon"
-      focusable={false}
+      focusable="false"
       role="img"
       style={undefined}
       title={undefined}
@@ -35,7 +35,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby="menu-icon-prop-title menu-icon-prop-desc"
       className="md-icon"
-      focusable={false}
+      focusable="false"
       role="img"
       style={undefined}
       title={undefined}
@@ -66,7 +66,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby="twitter-usage-title twitter-usage-desc"
       className="md-icon"
-      focusable={false}
+      focusable="false"
       role="img"
       style={undefined}
       title={undefined}
@@ -97,7 +97,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby={null}
       className="md-icon twitter-logo"
-      focusable={false}
+      focusable="false"
       role="img"
       style={
         Object {
@@ -124,7 +124,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby={null}
       className="md-icon twitter-logo"
-      focusable={false}
+      focusable="false"
       role="presentation"
       style={
         Object {
@@ -149,7 +149,7 @@ exports[`AddingAccessibility should render correctly 1`] = `
     <svg
       aria-labelledby={null}
       className="md-icon twitter-logo"
-      focusable={false}
+      focusable="false"
       role="img"
       style={
         Object {
