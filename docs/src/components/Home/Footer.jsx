@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import gettingStarted from './getting-started.svg';
 import customization from './customization.svg';
 import components from './components.svg';
 import SVGCard from './SVGCard';
 
-const Footer = () => (
-  <footer className="md-grid home__footer">
+const Footer = ({ style }) => (
+  <footer style={style} className="md-grid home__footer">
     <SVGCard
       to="getting-started"
       src={gettingStarted}
@@ -27,5 +28,9 @@ const Footer = () => (
     />
   </footer>
 );
+
+Footer.propTypes = {
+  style: PropTypes.object,
+};
 
 export default Footer;

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Markdown from './Markdown';
 
+import withMinHeight from 'components/hoc/withMinHeight';
+
 const MarkdownPage = ({ style, className, markdownStyle, markdownClassName, markdown }) => (
   <section style={style} className={cn('md-grid md-grid--stacked', className)}>
     <Markdown
@@ -26,4 +28,4 @@ MarkdownPage.defaultProps = {
   markdown: '',
 };
 
-export default MarkdownPage;
+export default withMinHeight(MarkdownPage);
