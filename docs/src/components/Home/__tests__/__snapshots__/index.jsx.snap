@@ -45,6 +45,7 @@ exports[`Home should render correctly 1`] = `
   </h3>
   <footer
     className="md-grid home__footer"
+    style={undefined}
   >
     <a
       className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"

@@ -74,7 +74,7 @@ exports[`ExamplesPage should render correctly 1`] = `
         <svg
           aria-labelledby={null}
           className="md-icon md-text--inherit"
-          focusable={false}
+          focusable="false"
           role="img"
           style={undefined}
           title={undefined}

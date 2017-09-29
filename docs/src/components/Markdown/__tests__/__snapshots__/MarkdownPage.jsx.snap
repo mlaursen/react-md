@@ -15,7 +15,11 @@ and examples.</p>
 <h1 id=\\"table-of-contents\\">Table of Contents</h1>
 <ul>
 <li><a href=\\"#getting-started\\" class=\\"link\\">Getting Started</a></li>
-<li><a href=\\"#contributing\\" class=\\"link\\">Contributing</a></li>
+<li><a href=\\"#contributing\\" class=\\"link\\">Contributing</a><ul>
+<li><a href=\\"#contributing-example\\" class=\\"link\\">Contributing Example</a></li>
+<li><a href=\\"#checking-documentaiton-description\\" class=\\"link\\">Checking documentation description</a></li>
+</ul>
+</li>
 <li><a href=\\"#about\\" class=\\"link\\">About</a><ul>
 <li><a href=\\"#development-startup-time\\" class=\\"link\\">Development startup time</a></li>
 <li><a href=\\"#testing-ssr\\" class=\\"link\\">Testing SSR</a></li>
@@ -38,12 +42,6 @@ it might not work as expected.</p>
 <pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
-
-### dev:full
-Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
-and then concurrently run all the watchers and start up the dev server.
-
-&gt; SEE: [watch:all](#watchall)
 $ vim .env              # change port to whatever you want
 
 # This one is optional. A webpack-assets.json file must be created before the server will work correctly
@@ -53,7 +51,7 @@ $ yarn build:dev        # Run the dev webpack build to get initial webpack-asset
 
 # Start the server with one of the two options
 $ yarn dev              # watch react-md source changes and run dev server
-$ yarn dev:full          # watch all changes and run dev server
+$ yarn dev:full         # watch all changes and run dev server
 </code></pre>
 <blockquote>
 <p>See the <a href=\\"#scripts\\" class=\\"link\\">scripts</a> section for all of the other available commands</p>
@@ -61,7 +59,7 @@ $ yarn dev:full          # watch all changes and run dev server
 <h2 id=\\"contributing\\">Contributing</h2>
 <p>The most common use case when contributing is to update an example page with some more documentation or a new
 feature. This can be done by modifying the logic for how the <code>ExamplesPage</code> is rendered for that component.</p>
-<h3 id=\\"example\\">Example</h3>
+<h3 id=\\"contributing-example\\">Contributing Example</h3>
 <p>Let&#39;s take the <code>Autocomplete</code> component for an example. Let&#39;s say that you want to add a new feature that allows
 the <code>Autocomplete</code> to automatically cache results into a Service Worker when calling external APIS (I probably wouldn&#39;t
 merge this feature in...). Here are the following steps:</p>

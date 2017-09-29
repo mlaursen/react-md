@@ -6,6 +6,8 @@ Table of Contents
 =====
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
+  * [Contributing Example](#contributing-example)
+  * [Checking documentation description](#checking-documentaiton-description)
 * [About](#about)
   * [Development startup time](#development-startup-time)
   * [Testing SSR](#testing-ssr)
@@ -26,12 +28,6 @@ it might not work as expected.
 mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
-
-### dev:full
-Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
-and then concurrently run all the watchers and start up the dev server.
-
-> SEE: [watch:all](#watchall)
 $ vim .env              # change port to whatever you want
 
 # This one is optional. A webpack-assets.json file must be created before the server will work correctly
@@ -41,7 +37,7 @@ $ yarn build:dev        # Run the dev webpack build to get initial webpack-asset
 
 # Start the server with one of the two options
 $ yarn dev              # watch react-md source changes and run dev server
-$ yarn dev:full          # watch all changes and run dev server
+$ yarn dev:full         # watch all changes and run dev server
 ```
 
 > See the [scripts](#scripts) section for all of the other available commands
@@ -50,7 +46,7 @@ $ yarn dev:full          # watch all changes and run dev server
 The most common use case when contributing is to update an example page with some more documentation or a new
 feature. This can be done by modifying the logic for how the `ExamplesPage` is rendered for that component.
 
-### Example
+### Contributing Example
 Let's take the `Autocomplete` component for an example. Let's say that you want to add a new feature that allows
 the `Autocomplete` to automatically cache results into a Service Worker when calling external APIS (I probably wouldn't
 merge this feature in...). Here are the following steps:
