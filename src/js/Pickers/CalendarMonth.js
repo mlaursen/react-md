@@ -62,6 +62,16 @@ export default class CalendarMonth extends PureComponent {
      * An optional className to apply to a date.
      */
     dateClassName: PropTypes.string,
+
+    /**
+     * True if dates from adjacent months should be shown.
+     */
+    showAllDays: PropTypes.bool,
+
+    /**
+     * An optional className to apply to a date from an adjacent month.
+     */
+    outerDateClassName: PropTypes.string,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
       PropTypes.string,
@@ -86,6 +96,8 @@ export default class CalendarMonth extends PureComponent {
       firstDayOfWeek,
       disableWeekEnds,
       dateClassName,
+      showAllDays,
+      outerDateClassName,
       ...props
     } = this.props;
 
@@ -95,8 +107,8 @@ export default class CalendarMonth extends PureComponent {
     const lastDay = getLastDay(calendarDate);
     let currentDate = stripTime(getDayOfWeek(firstDay, 0));
     let endDate = stripTime(getDayOfWeek(lastDay, 6));
-    const activeDate = stripTime(new Date(calendarTempDate));
-    const today = stripTime(new Date());
+    const activeDateTime = stripTime(new Date(calendarTempDate)).getTime();
+    const todayTime = stripTime(new Date()).getTime();
 
     if (firstDayOfWeek) {
       currentDate = addDate(currentDate, firstDayOfWeek > firstDay.getDay() ? firstDayOfWeek - 7 : firstDayOfWeek, 'D');
@@ -104,9 +116,10 @@ export default class CalendarMonth extends PureComponent {
     }
     while (currentDate <= endDate) {
       const key = `${currentDate.getMonth()}-${currentDate.getDate()}`;
+      const currentMonth = currentDate.getMonth() === calendarDate.getMonth();
 
       let date;
-      if (currentDate.getMonth() === calendarDate.getMonth()) {
+      if (currentMonth || showAllDays) {
         const time = currentDate.getTime();
         const isMinDateDisabled = minDate && minDate.getTime() > time;
         const isMaxDateDisabled = maxDate && maxDate.getTime() < time;
@@ -114,9 +127,9 @@ export default class CalendarMonth extends PureComponent {
         date = (
           <CalendarDate
             key={key}
-            className={dateClassName}
-            today={time === today.getTime()}
-            active={time === activeDate.getTime()}
+            className={currentMonth ? dateClassName : outerDateClassName}
+            today={time === todayTime}
+            active={time === activeDateTime}
             disabled={isMinDateDisabled || isMaxDateDisabled || isWeekendDisabled}
             onClick={onCalendarDateClick}
             date={currentDate}

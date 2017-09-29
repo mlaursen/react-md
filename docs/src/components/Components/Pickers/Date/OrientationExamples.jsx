@@ -16,9 +16,11 @@ const OrientationExamples = () => (
     />
     <DatePicker
       id="appointment-date-landscape"
-      label="Landscape mode"
+      label="Landscape mode with defined first weekday and all days"
       className="md-cell"
       displayMode="landscape"
+      firstDayOfWeek={1}
+      showAllDays
     />
   </div>
 );

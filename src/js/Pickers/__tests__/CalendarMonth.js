@@ -47,6 +47,23 @@ describe('CalendarMonth', () => {
     expect(days[11].props.active).toBe(true);
   });
 
+  it('renders days from adjacent months', () => {
+    const props = {
+      DateTimeFormat,
+      locales: 'en-US',
+      calendarDate: new Date(2017, 8, 29),
+      calendarTempDate: new Date(2017, 8, 29),
+      onCalendarDateClick: jest.fn(),
+      firstDayOfWeek: 1,
+      showAllDays: true,
+    };
+
+    const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);
+    const days = scryRenderedComponentsWithType(calendarMonth, CalendarDate);
+    expect(days.length).toBe(35);
+    expect(days[32].props.active).toBe(true);
+  });
+
   it('should change days order when "firstDayOfWeek" property is not 0', () => {
     function checkEmptyDayNode(node) {
       expect(node.nodeName).toBe('DIV');
