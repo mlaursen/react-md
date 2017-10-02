@@ -438,9 +438,19 @@ export default class DatePickerContainer extends PureComponent {
     disableWeekEnds: PropTypes.bool,
 
     /**
+     * True if dates from adjacent months should be shown in calendar.
+     */
+    showAllDays: PropTypes.bool,
+
+    /**
      * An optional className to apply to a date in calendar.
      */
     calendarDateClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to a date from an adjacent month in calendar.
+     */
+    calendarOuterDateClassName: PropTypes.string,
 
     /**
      * An optional className to apply to the title in calendar header.
