@@ -67,6 +67,7 @@ export default class CalendarMonth extends PureComponent {
      * True if dates from adjacent months should be shown.
      */
     showAllDays: PropTypes.bool,
+    disableOuterDates: PropTypes.bool,
 
     /**
      * An optional className to apply to a date from an adjacent month.
@@ -98,6 +99,7 @@ export default class CalendarMonth extends PureComponent {
       dateClassName,
       showAllDays,
       outerDateClassName,
+      disableOuterDates,
       ...props
     } = this.props;
 
@@ -124,13 +126,18 @@ export default class CalendarMonth extends PureComponent {
         const isMinDateDisabled = minDate && minDate.getTime() > time;
         const isMaxDateDisabled = maxDate && maxDate.getTime() < time;
         const isWeekendDisabled = disableWeekEnds && (currentDate.getDay() === 0 || currentDate.getDay() === 6);
+        const disabled = (!currentMonth && disableOuterDates)
+          || isMinDateDisabled
+          || isMaxDateDisabled
+          || isWeekendDisabled;
+
         date = (
           <CalendarDate
             key={key}
-            className={currentMonth ? dateClassName : outerDateClassName}
+            className={cn(dateClassName, { [outerDateClassName]: !currentMonth && outerDateClassName })}
             today={time === todayTime}
             active={time === activeDateTime}
-            disabled={isMinDateDisabled || isMaxDateDisabled || isWeekendDisabled}
+            disabled={disabled}
             onClick={onCalendarDateClick}
             date={currentDate}
             DateTimeFormat={DateTimeFormat}

@@ -6,10 +6,10 @@ import OrientationExamples from './OrientationExamples';
 import OrientationExamplesRaw from '!!raw-loader!./OrientationExamples.jsx';
 import InlineExample from './InlineExample';
 import InlineExampleRaw from '!!raw-loader!./InlineExample.jsx';
+import AdditionalDisplaySettings from './AdditionalDisplaySettings';
+import AdditionalDisplaySettingsRaw from '!!raw-loader!./AdditionalDisplaySettings.jsx';
 import Formatting from './Formatting';
 import FormattingRaw from '!!raw-loader!./Formatting.jsx';
-import AutoOkAndRangeExamples from './AutoOkAndRangeExamples';
-import AutoOkAndRangeExamplesRaw from '!!raw-loader!./AutoOkAndRangeExamples.jsx';
 import TextFieldStyling from './TextFieldStyling';
 import TextFieldStylingRaw from '!!raw-loader!./TextFieldStyling.jsx';
 import Controlled from './Controlled';
@@ -38,6 +38,19 @@ providing the \`inline\` prop to the picker.
   code: InlineExampleRaw,
   children: <InlineExample />,
 }, {
+  title: 'Additional Display Settings',
+  description: `
+The Calendar can be updated with some additional display settings to disable dates,
+show dates from other months, and setting a custom first day of the week. In addition,
+you can specify a min and max date for the picker to display. The user can navigate
+through the months like normal until the min or max date is reached. The invalid dates
+will be disabled and dulled to prevent selection as well as preventing the user from
+seeing any other months that are past the min or max dates. Combine these props as much
+as you desire.
+  `,
+  code: AdditionalDisplaySettingsRaw,
+  children: <AdditionalDisplaySettings />,
+}, {
   title: 'Formatting',
   description: `
 As stated above, the date and time formatting is done with the \`Intl.DateTimeFormat\`
@@ -51,18 +64,6 @@ The \`DatePicker\` can also be updated with any of the
   `,
   code: FormattingRaw,
   children: <Formatting />,
-}, {
-  title: 'Auto OK and Min/Max Dates',
-  description: `
-The \`DatePicker\` can be updated so that when a user touches/clicks a date, it will automatically do the "OK" action
-of selecting the date and closing the dialog.
-
-In addition, you can specify a min and max date for the picker to display. The user can navigate through the months like
-normal until the min or max date is reached. The invalid dates will be disabled and dulled to prevent selection as well
-as preventing the user from seeing any other months that are past the min or max dates.
-  `,
-  code: AutoOkAndRangeExamplesRaw,
-  children: <AutoOkAndRangeExamples />,
 }, {
   title: 'Text Field Styling',
   description: `

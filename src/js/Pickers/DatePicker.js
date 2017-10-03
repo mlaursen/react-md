@@ -44,6 +44,7 @@ export default class DatePicker extends PureComponent {
      * True if dates from adjacent months should be shown in calendar.
      */
     showAllDays: PropTypes.bool,
+    disableOuterDates: PropTypes.bool,
 
     /**
      * An optional className to apply to the header of date picker.
@@ -126,6 +127,7 @@ export default class DatePicker extends PureComponent {
       firstDayOfWeek,
       disableWeekEnds,
       showAllDays,
+      disableOuterDates,
       headerClassName,
       contentClassName,
       footerClassName,
@@ -153,6 +155,7 @@ export default class DatePicker extends PureComponent {
           firstDayOfWeek={firstDayOfWeek}
           disableWeekEnds={disableWeekEnds}
           showAllDays={showAllDays}
+          disableOuterDates={disableOuterDates}
           dateClassName={calendarDateClassName}
           outerDateClassName={calendarOuterDateClassName}
           titleClassName={calendarTitleClassName}

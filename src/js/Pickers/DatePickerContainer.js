@@ -443,12 +443,27 @@ export default class DatePickerContainer extends PureComponent {
     showAllDays: PropTypes.bool,
 
     /**
+     * Boolean if the dates from adjacent months should be disabled. This will only
+     * do something if the `showAllDays` prop is enabled as well.
+     *
+     * This is really only helpful if youd like the other days to appear, but not be
+     * clickable until the user switches to that month.
+     *
+     * @see {@link #showAllDays}
+     */
+    disableOuterDates: PropTypes.bool,
+
+    /**
      * An optional className to apply to a date in calendar.
      */
     calendarDateClassName: PropTypes.string,
 
     /**
-     * An optional className to apply to a date from an adjacent month in calendar.
+     * An optional className to apply to a date from an adjacent month in calendar. This will be applied
+     * along with the `calendarDateClassName`.
+     *
+     * @see {@link #showAllDays}
+     * @see {@link #calendarDateClassName}
      */
     calendarOuterDateClassName: PropTypes.string,
 

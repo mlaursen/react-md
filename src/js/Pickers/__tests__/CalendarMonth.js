@@ -1,5 +1,6 @@
 /* eslint-env jest*/
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -62,6 +63,24 @@ describe('CalendarMonth', () => {
     const days = scryRenderedComponentsWithType(calendarMonth, CalendarDate);
     expect(days.length).toBe(35);
     expect(days[32].props.active).toBe(true);
+  });
+
+  it('should disable days from the other months when showAllDays and disableOuterDates is enabled', () => {
+    const props = {
+      DateTimeFormat,
+      locales: 'en-US',
+      calendarDate: new Date(2017, 8, 29),
+      calendarTempDate: new Date(2017, 8, 29),
+      onCalendarDateClick: jest.fn(),
+      firstDayOfWeek: 1,
+      showAllDays: true,
+      disableOuterDates: true,
+    };
+    const month = shallow(<CalendarMonth {...props} />);
+    const days = month.find(CalendarDate);
+    expect(days.length).toBe(35);
+    // 30 days in september and shows 1 day of october and 4 days of november
+    expect(days.filter({ disabled: true }).length).toBe(5);
   });
 
   it('should change days order when "firstDayOfWeek" property is not 0', () => {
