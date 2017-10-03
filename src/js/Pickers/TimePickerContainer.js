@@ -390,6 +390,14 @@ export default class TimePickerContainer extends PureComponent {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        tempTime: nextProps.value,
+      });
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if (getField(this.props, this.state, 'value') !== getField(nextProps, nextState, 'value')) {
       this.setState(this._getTimeParts(getField(nextProps, nextState, 'value'), nextProps));
