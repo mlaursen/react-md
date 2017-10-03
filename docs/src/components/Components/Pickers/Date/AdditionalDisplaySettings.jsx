@@ -17,7 +17,7 @@ const AdditionalDisplaySettings = () => (
       showAllDays
     />
     <DatePicker
-      id="show-all-days disabled-outer"
+      id="show-all-days-disabled-outer"
       label="All days, others disabled"
       className="md-cell"
       showAllDays
