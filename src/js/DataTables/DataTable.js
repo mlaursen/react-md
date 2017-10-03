@@ -265,7 +265,7 @@ export default class DataTable extends PureComponent {
      * variable.
      *
      * @see [md-data-table-header-height](/components/data-tables?tab=2#variable-md-data-table-header-height)
-     * @see {@link fixedHeight}
+     * @see {@link #fixedHeight}
      */
     headerHeight: PropTypes.number.isRequired,
 
@@ -274,7 +274,7 @@ export default class DataTable extends PureComponent {
      * variable.
      *
      * @see [md-data-table-column-height](/components/data-tables?tab=2#variable-md-data-table-column-height)
-     * @see {@link fixedHeight}
+     * @see {@link #fixedHeight}
      */
     footerHeight: PropTypes.number.isRequired,
 
