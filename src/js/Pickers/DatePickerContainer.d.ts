@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BasePickerProps, IntlFormat } from './index';
+import { BasePickerProps, IntlFormat, CalendarTitleFormat, NSL } from './index';
 
 export interface DatePickerProps extends BasePickerProps {
   value?: string | Date,
@@ -13,6 +13,17 @@ export interface DatePickerProps extends BasePickerProps {
   defaultCalendarDate?: string | Date;
   nextIcon?: React.ReactElement<any>;
   previousIcon?: React.ReactElement<any>;
+  firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  calendarClassName?: string;
+  yearPickerClassName?: string;
+  calendarDateClassName?: string;
+  calendarOuterDateClassName?: string;
+  calendarTitleClassName?: string;
+  calendarTitleFormat?: CalendarTitleFormat;
+  calendarWeekdayClassName?: string;
+  calendarWeekdayFormat?: NSL;
+  showAllDays?: boolean;
+  disableOuterDates: boolean;
 
   /**
    * @deprecated
