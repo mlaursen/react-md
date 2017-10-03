@@ -253,6 +253,16 @@ export default class EditDialogColumn extends PureComponent {
     okSecondary: PropTypes.bool,
 
     /**
+     * Any additional props to apply to the "Ok" button. This will override any of the other
+     * button props.
+     *
+     * @see {@link #okLabel}
+     * @see {@link #okPrimary}
+     * @see {@link #okSecondary}
+     */
+    okProps: PropTypes.object,
+
+    /**
      * An optional function to call when the "Cancel" button has been clicked in large edit dialogs.
      * The callback will include the text field's value before any edits occurred and the click event.
      *
@@ -290,6 +300,16 @@ export default class EditDialogColumn extends PureComponent {
     cancelSecondary: PropTypes.bool,
 
     /**
+     * Any additional props to apply to the "Cancel" button. This will override any of the other
+     * button props.
+     *
+     * @see {@link #cancelLabel}
+     * @see {@link #cancelPrimary}
+     * @see {@link #cancelSecondary}
+     */
+    cancelProps: PropTypes.object,
+
+    /**
      * Boolean if the action for clicking somewhere on on the page while the dialog is open
      * saves the changes or cancels to the previous value before opening the dialog.
      *
@@ -308,6 +328,12 @@ export default class EditDialogColumn extends PureComponent {
      * while the dialog is open.
      */
     closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * Boolean if the Edit Dialog should be visible by default. This only applies when the `inline` prop
+     * is not enabled.
+     */
+    defaultVisible: PropTypes.bool,
 
     /**
      * Boolean if the edit dialog should automatically open when the text field is focused for non-inline
@@ -556,6 +582,7 @@ export default class EditDialogColumn extends PureComponent {
     minRight: 0,
     minBottom: 0,
     visibleOnFocus: true,
+    defaultVisible: false,
   };
 
   static contextTypes = {
@@ -569,7 +596,7 @@ export default class EditDialogColumn extends PureComponent {
     super(props);
 
     this.state = {
-      visible: false,
+      visible: props.defaultVisible,
       value: props.defaultValue,
       cancelValue: props.defaultValue,
       actions: this._makeActions(props),
@@ -592,10 +619,21 @@ export default class EditDialogColumn extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { okLabel, okPrimary, okSecondary, cancelLabel, cancelPrimary, cancelSecondary } = this.props;
+    const {
+      okLabel,
+      okPrimary,
+      okSecondary,
+      okProps,
+      cancelLabel,
+      cancelPrimary,
+      cancelSecondary,
+      cancelProps,
+    } = this.props;
+
     if (okLabel !== nextProps.okLabel || okPrimary !== nextProps.okPrimary
       || okSecondary !== nextProps.okSecondary || cancelLabel !== nextProps.cancelLabel
       || cancelPrimary !== nextProps.cancelPrimary || cancelSecondary !== nextProps.cancelSecondary
+      || okProps !== nextProps.okProps || cancelProps !== nextProps.cancelProps
     ) {
       this.setState({ actions: this._makeActions(nextProps) });
     }
@@ -610,23 +648,27 @@ export default class EditDialogColumn extends PureComponent {
       okLabel,
       okPrimary,
       okSecondary,
+      okProps,
       cancelLabel,
       cancelPrimary,
       cancelSecondary,
+      cancelProps,
     } = props;
 
     return [{
       key: 'cancel',
       children: cancelLabel,
-      onClick: this._handleCancel,
       primary: cancelPrimary && !cancelSecondary,
       secondary: cancelSecondary,
+      ...okProps,
+      onClick: this._handleCancel,
     }, {
       key: 'ok',
       children: okLabel,
-      onClick: this._handleOk,
       primary: okPrimary && !okSecondary,
       secondary: okSecondary,
+      ...cancelProps,
+      onClick: this._handleOk,
     }];
   };
 
@@ -789,15 +831,18 @@ export default class EditDialogColumn extends PureComponent {
       okLabel,
       okPrimary,
       okSecondary,
+      okProps,
       onCancelClick,
       cancelLabel,
       cancelPrimary,
       cancelSecondary,
+      cancelProps,
       okOnOutsideClick,
       defaultValue,
       adjusted,
       scrollIntoView,
       scrollIntoViewPadding,
+      defaultVisible,
       visibleOnFocus,
 
       // deprecated
@@ -813,7 +858,7 @@ export default class EditDialogColumn extends PureComponent {
 
     let { id, dialogId } = this.props;
     if (!dialogId) {
-      dialogId = `${rowId}-${cellIndex}-edit-dialog`;
+      dialogId = `${id || `${rowId}-${cellIndex}`}-edit-dialog`;
     }
 
     if (!id) {
