@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from 'react-md/lib/Avatars';
-import FontIcon from 'react-md/lib/FontIcons';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
-import DropdownMenu from 'react-md/lib/Menus/DropdownMenu';
+import {
+  Avatar,
+  FontIcon,
+  AccessibleFakeButton,
+  IconSeparator,
+  DropdownMenu,
+} from 'react-md';
 
 const AccountMenu = ({ simplifiedMenu }) => (
   <DropdownMenu

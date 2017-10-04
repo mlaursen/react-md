@@ -2,108 +2,70 @@
 
 exports[`InlineIcons should render correctly 1`] = `
 <div
-  className="md-grid text-fields"
+  class="md-grid text-fields"
 >
   <div
-    className="md-cell text-fields__blocked-phones"
+    class="md-cell text-fields__blocked-phones"
   >
     <div
-      className="md-text-field-container md-inline-block md-text-field-container--input"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-inline-block md-text-field-container--input"
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
-        htmlFor="phone-number-with-icon-left"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
+        for="phone-number-with-icon-left"
       >
         Phone
       </label>
       <div
-        className="md-text-field-icon-container"
+        class="md-text-field-icon-container"
       >
         <i
-          className="md-icon material-icons md-text-field-icon md-text-field-icon--positioned"
-          style={undefined}
+          class="md-icon material-icons md-text-field-icon md-text-field-icon--positioned"
         >
           phone
         </i>
         <div
-          className="md-text-field-divider-container"
+          class="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text-field--floating-margin md-text"
-            disabled={undefined}
+            class="md-text-field md-text-field--floating-margin md-text"
             id="phone-number-with-icon-left"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder={null}
-            rows={undefined}
-            size={10}
-            style={undefined}
+            size="10"
             type="tel"
           />
           <hr
-            className="md-divider md-divider--text-field md-divider--expand-from-left"
+            class="md-divider md-divider--text-field md-divider--expand-from-left"
           />
         </div>
       </div>
     </div>
     <div
-      className="md-text-field-container md-inline-block md-text-field-container--input"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-inline-block md-text-field-container--input"
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
-        htmlFor="phone-number-with-icon-right"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+        for="phone-number-with-icon-right"
       >
         Phone
       </label>
       <div
-        className="md-text-field-icon-container"
+        class="md-text-field-icon-container"
       >
         <div
-          className="md-text-field-divider-container"
+          class="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text-field--floating-margin md-text"
-            disabled={undefined}
+            class="md-text-field md-text-field--floating-margin md-text"
             id="phone-number-with-icon-right"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder={null}
-            rows={undefined}
-            size={10}
-            style={undefined}
+            size="10"
             type="tel"
           />
           <hr
-            className="md-divider md-divider--text-field md-divider--expand-from-left"
+            class="md-divider md-divider--text-field md-divider--expand-from-left"
           />
         </div>
         <i
-          className="md-icon material-icons md-text-field-icon md-text-field-icon--positioned"
-          style={undefined}
+          class="md-icon material-icons md-text-field-icon md-text-field-icon--positioned"
         >
           phone
         </i>
@@ -111,226 +73,138 @@ exports[`InlineIcons should render correctly 1`] = `
     </div>
   </div>
   <div
-    className="md-cell text-fields__blocked-phones"
+    class="md-cell text-fields__blocked-phones"
   >
     <div
-      className="md-text-field-container md-inline-block md-text-field-container--input"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-inline-block md-text-field-container--input"
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
-        htmlFor="phone-number-with-svg-icon-left"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
+        for="phone-number-with-svg-icon-left"
       >
         Phone
       </label>
       <div
-        className="md-text-field-icon-container"
+        class="md-text-field-icon-container"
       >
         <svg
-          aria-labelledby={null}
-          className="md-icon md-text-field-icon md-text-field-icon--positioned"
+          class="md-icon md-text-field-icon md-text-field-icon--positioned"
           focusable="false"
           role="img"
-          style={undefined}
-          title={undefined}
-          viewBox="0 0 24 24"
+          viewbox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         />
         <div
-          className="md-text-field-divider-container"
+          class="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text-field--floating-margin md-text"
-            disabled={undefined}
+            class="md-text-field md-text-field--floating-margin md-text"
             id="phone-number-with-svg-icon-left"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder={null}
-            rows={undefined}
-            size={10}
-            style={undefined}
+            size="10"
             type="tel"
           />
           <hr
-            className="md-divider md-divider--text-field md-divider--expand-from-left"
+            class="md-divider md-divider--text-field md-divider--expand-from-left"
           />
         </div>
       </div>
     </div>
     <div
-      className="md-text-field-container md-inline-block md-text-field-container--input"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-inline-block md-text-field-container--input"
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
-        htmlFor="phone-number-with-svg-icon-right"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+        for="phone-number-with-svg-icon-right"
       >
         Phone
       </label>
       <div
-        className="md-text-field-icon-container"
+        class="md-text-field-icon-container"
       >
         <div
-          className="md-text-field-divider-container"
+          class="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text-field--floating-margin md-text"
-            disabled={undefined}
+            class="md-text-field md-text-field--floating-margin md-text"
             id="phone-number-with-svg-icon-right"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder={null}
-            rows={undefined}
-            size={10}
-            style={undefined}
+            size="10"
             type="tel"
           />
           <hr
-            className="md-divider md-divider--text-field md-divider--expand-from-left"
+            class="md-divider md-divider--text-field md-divider--expand-from-left"
           />
         </div>
         <svg
-          aria-labelledby={null}
-          className="md-icon md-text-field-icon md-text-field-icon--positioned"
+          class="md-icon md-text-field-icon md-text-field-icon--positioned"
           focusable="false"
           role="img"
-          style={undefined}
-          title={undefined}
-          viewBox="0 0 24 24"
+          viewbox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         />
       </div>
     </div>
   </div>
   <div
-    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
-    onClick={[Function]}
-    onDoubleClick={undefined}
-    onMouseDown={undefined}
-    onMouseLeave={undefined}
-    onMouseOver={undefined}
-    onMouseUp={undefined}
-    onTouchCancel={undefined}
-    onTouchEnd={undefined}
-    onTouchMove={undefined}
-    onTouchStart={undefined}
-    style={undefined}
+    class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
-      htmlFor="text-with-close-button"
+      class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      for="text-with-close-button"
     >
       Some text
     </label>
     <input
-      className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
-      disabled={undefined}
+      class="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
       id="text-with-close-button"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      placeholder={null}
-      rows={undefined}
-      style={undefined}
       type="text"
     />
     <hr
-      className="md-divider md-divider--text-field md-divider--expand-from-left"
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-text-field-inline-indicator md-text-field-inline-indicator--floating text-fields__inline-btn"
-      disabled={undefined}
-      href={undefined}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-text-field-inline-indicator md-text-field-inline-indicator--floating text-fields__inline-btn"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+        class="md-icon material-icons md-text--inherit"
       >
         clear
       </i>
     </button>
   </div>
   <div
-    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
-    onClick={[Function]}
-    onDoubleClick={undefined}
-    onMouseDown={undefined}
-    onMouseLeave={undefined}
-    onMouseOver={undefined}
-    onMouseUp={undefined}
-    onTouchCancel={undefined}
-    onTouchEnd={undefined}
-    onTouchMove={undefined}
-    onTouchStart={undefined}
-    style={undefined}
+    class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
-      htmlFor="text-field-with-svg-password"
+      class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      for="text-field-with-svg-password"
     >
       Password with SVG
     </label>
     <input
-      className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
-      disabled={undefined}
+      class="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
       id="text-field-with-svg-password"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      placeholder={null}
-      rows={undefined}
-      style={undefined}
       type="password"
     />
     <hr
-      className="md-divider md-divider--text-field md-divider--expand-from-left"
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
-      onBlur={[Function]}
-      onClick={[Function]}
-      onKeyUp={[Function]}
+      class="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
       type="button"
     >
       <svg
-        aria-labelledby={null}
-        className="md-icon"
+        class="md-icon"
         focusable="false"
         role="img"
-        style={undefined}
-        title={undefined}
-        viewBox="0 0 24 24"
+        viewbox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>

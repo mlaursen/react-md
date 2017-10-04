@@ -1,13 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import { mount } from 'enzyme';
-import { createSnapshot } from 'utils/testing';
+import { mount, render } from 'enzyme';
 
 import Preview from '../Preview';
 
 describe('Preview', () => {
   it('should render correctly', () => {
-    const tree = createSnapshot(<Preview />);
+    const tree = render(<Preview />);
     expect(tree).toMatchSnapshot();
   });
 

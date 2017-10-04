@@ -1,9 +1,12 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Divider from 'react-md/lib/Dividers';
-import FontIcon from 'react-md/lib/FontIcons';
-import { List, ListItem } from 'react-md/lib/Lists';
-import Subheader from 'react-md/lib/Subheaders';
+import {
+  Avatar,
+  Divider,
+  FontIcon,
+  List,
+  ListItem,
+  Subheader,
+} from 'react-md';
 
 const InfoIcon = () => <FontIcon>info</FontIcon>;
 const StarIcon = () => <FontIcon>star</FontIcon>;

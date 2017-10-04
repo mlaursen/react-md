@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 import { mount } from 'enzyme';
 import { PureSassDocPage } from '../';
 
@@ -212,15 +212,15 @@ const TYPOGRAPHY_SASSDOC = {
 
 describe('PureSassDocPage', () => {
   it('should render correctly when there is no sassdoc', () => {
-    let tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop toolbarTitle="Test" />);
+    let tree = renderRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop toolbarTitle="Test" />);
     expect(tree).toMatchSnapshot();
 
-    tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop={false} toolbarTitle="Test" />);
+    tree = renderRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop={false} toolbarTitle="Test" />);
     expect(tree).toMatchSnapshot();
   });
 
   it('should render correctly when there is a sassdoc', () => {
-    let tree = createRouterSnapshot(
+    let tree = renderRouterSnapshot(
       <PureSassDocPage
         desktop
         sassdoc={TYPOGRAPHY_SASSDOC}
@@ -230,7 +230,7 @@ describe('PureSassDocPage', () => {
     );
     expect(tree).toMatchSnapshot();
 
-    tree = createRouterSnapshot(
+    tree = renderRouterSnapshot(
       <PureSassDocPage
         desktop={false}
         sassdoc={TYPOGRAPHY_SASSDOC}

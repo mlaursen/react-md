@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Button from 'react-md/lib/Buttons/Button';
-import Drawer from 'react-md/lib/Drawers';
-import TextField from 'react-md/lib/TextFields';
-import Toolbar from 'react-md/lib/Toolbars';
+import {
+  Autocomplete,
+  Button,
+  Drawer,
+  TextField,
+  Toolbar,
+} from 'react-md';
 
 import { toTitle } from 'utils/strings';
 

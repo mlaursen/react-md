@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Toolbar } from 'react-md';
 
 import ShowOnMedia from 'components/ShowOnMedia';
 import PhoneEmulator from 'components/PhoneEmulator';

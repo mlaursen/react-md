@@ -1,7 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import MenuButton from 'react-md/lib/Menus/MenuButton';
+import { FontIcon, ListItem, MenuButton } from 'react-md';
 
 const MenuButtonExamples = () => (
   <div className="menus__examples">

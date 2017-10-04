@@ -36,6 +36,13 @@ exports[`ThemeBuilder should render correctly 1`] = `
           role="checkbox"
           tabindex="0"
         >
+          <div
+            class="md-ink-container"
+          >
+            <span
+              aria-hidden="true"
+            />
+          </div>
           <i
             class="md-icon material-icons md-text--inherit"
           >
@@ -287,6 +294,13 @@ or
           id="theme-builder-preview-drawer-toggle"
           type="button"
         >
+          <div
+            class="md-ink-container"
+          >
+            <span
+              aria-hidden="true"
+            />
+          </div>
           <i
             class="md-icon material-icons md-text--inherit"
           >
@@ -313,6 +327,13 @@ or
           id="theme-builder-preview-btn"
           type="button"
         >
+          <div
+            class="md-ink-container"
+          >
+            <span
+              aria-hidden="true"
+            />
+          </div>
           Button
         </button>
       </div>
@@ -321,6 +342,13 @@ or
         id="theme-builder-preview-floating-btn"
         type="button"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >

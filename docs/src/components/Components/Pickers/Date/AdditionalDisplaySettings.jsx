@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+import { DatePicker } from 'react-md';
 
 const DEFAULT_DATE = new Date(2017, 3, 15, 0, 0, 0);
 const TWO_MONTHS_BEFORE = new Date(DEFAULT_DATE);

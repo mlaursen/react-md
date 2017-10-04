@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
+import { SelectionControlGroup } from 'react-md';
 
 const RadioExample = () => (
   <SelectionControlGroup

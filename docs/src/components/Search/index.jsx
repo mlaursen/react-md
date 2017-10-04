@@ -6,9 +6,7 @@ import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import Waypoint from 'react-waypoint';
 import { Link } from 'react-router-dom';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Button from 'react-md/lib/Buttons/Button';
-import FontIcon from 'react-md/lib/FontIcons';
+import { Autocomplete, Button, FontIcon } from 'react-md';
 
 import './_styles.scss';
 import { searchRequest, searchNextRequest, showSearch, hideSearch } from 'state/search';

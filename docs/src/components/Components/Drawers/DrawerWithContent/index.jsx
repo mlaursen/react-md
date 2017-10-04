@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
-import Button from 'react-md/lib/Buttons/Button';
-import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import { Button, LinearProgress } from 'react-md';
 import PhoneEmulator from 'components/PhoneEmulator';
 
 import './_styles.scss';

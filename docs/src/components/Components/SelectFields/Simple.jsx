@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SVGIcon from 'react-md/lib/SVGIcons';
-import SelectField from 'react-md/lib/SelectFields';
+import { SVGIcon, SelectField } from 'react-md';
 
 import arrowDropDown from 'icons/arrow_drop_down.svg';
 

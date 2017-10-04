@@ -2,11 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import FontIcon from 'react-md/lib/FontIcons';
-import Media from 'react-md/lib/Media';
+import { Button, Card, CardTitle, FontIcon, Media } from 'react-md';
 
 import Markdown from 'components/Markdown';
 

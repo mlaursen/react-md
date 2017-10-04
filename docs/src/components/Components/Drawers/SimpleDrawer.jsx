@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import Drawer from 'react-md/lib/Drawers';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, Drawer, Toolbar } from 'react-md';
 
 import inboxListItems from 'constants/inboxListItems';
 

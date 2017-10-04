@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
+import { CardTitle } from 'react-md';
 
 import { QuickLinkTitle } from 'components/QuickLink';
 

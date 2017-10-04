@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
+import { Button } from 'react-md';
 import { GITHUB_URL } from 'constants/application';
 
 const Contribute = () => (

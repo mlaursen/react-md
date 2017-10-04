@@ -1,7 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+import { FontIcon, AccessibleFakeButton, IconSeparator } from 'react-md';
 
 const Account = () => (
   <AccessibleFakeButton

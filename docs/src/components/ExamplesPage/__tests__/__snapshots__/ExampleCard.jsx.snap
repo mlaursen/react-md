@@ -2,34 +2,26 @@
 
 exports[`ExampleCard should display correctly as a table card 1`] = `
 <div
-  className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
   id="table-example"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={-1}
+  tabindex="-1"
 >
   <div
-    className="md-card-title md-card-title--primary quick-link"
-    style={undefined}
+    class="md-card-title md-card-title--primary quick-link"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
-      id={undefined}
-      tabIndex={null}
+      class="md-card-title--title md-card-title--large md-text"
     >
       <div
-        className="quick-link__container"
+        class="quick-link__container"
       >
         Table Example
         <a
-          className="quick-link__link quick-link__link--title"
+          class="quick-link__link quick-link__link--title"
           href="#table-example"
-          onClick={[Function]}
         >
           <i
-            className="md-icon material-icons"
-            style={undefined}
+            class="md-icon material-icons"
           >
             link
           </i>
@@ -37,56 +29,56 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
+      <div
+        class="md-tooltip-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <svg
-        aria-labelledby={null}
-        className="md-icon md-text--inherit"
+        class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        style={undefined}
-        title={undefined}
-        viewBox="0 0 24 24"
+        viewbox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
   </div>
   <table
-    className="md-data-table"
+    class="md-data-table"
   >
     <thead
-      className="md-table-header"
+      class="md-table-header"
     >
       <tr
-        className="md-table-row"
+        class="md-table-row"
       >
         <th
-          className="md-table-column md-table-column--header"
+          class="md-table-column md-table-column--header"
         >
           Hello!
         </th>
       </tr>
     </thead>
     <tbody
-      className="md-table-body"
+      class="md-table-body"
     >
       <tr
-        className="md-table-row"
+        class="md-table-row"
       >
         <td
-          className="md-table-column md-table-column--header"
+          class="md-table-column md-table-column--header"
         >
           Hello!
         </td>
@@ -98,34 +90,26 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
 
 exports[`ExampleCard should display correctly as a table card 2`] = `
 <div
-  className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
   id="table-example"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={-1}
+  tabindex="-1"
 >
   <div
-    className="md-card-title md-card-title--primary quick-link"
-    style={undefined}
+    class="md-card-title md-card-title--primary quick-link"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
-      id={undefined}
-      tabIndex={null}
+      class="md-card-title--title md-card-title--large md-text"
     >
       <div
-        className="quick-link__container"
+        class="quick-link__container"
       >
         Table Example
         <a
-          className="quick-link__link quick-link__link--title"
+          class="quick-link__link quick-link__link--title"
           href="#table-example"
-          onClick={[Function]}
         >
           <i
-            className="md-icon material-icons"
-            style={undefined}
+            class="md-icon material-icons"
           >
             link
           </i>
@@ -133,69 +117,76 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
+      <div
+        class="md-tooltip-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <svg
-        aria-labelledby={null}
-        className="md-icon md-text--inherit"
+        class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        style={undefined}
-        title={undefined}
-        viewBox="0 0 24 24"
+        viewbox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
   </div>
   <section
-    className="md-card-text"
+    class="md-card-text"
   >
     <div
-      className="markdown-container md-text-container examples-page__card__description"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<p>Some <strong>description</strong> <em>markdown</em></p>
-",
-        }
-      }
-    />
+      class="markdown-container md-text-container examples-page__card__description"
+    >
+      <p>
+        Some 
+        <strong>
+          description
+        </strong>
+         
+        <em>
+          markdown
+        </em>
+      </p>
+      
+
+    </div>
   </section>
   <table
-    className="md-data-table"
+    class="md-data-table"
   >
     <thead
-      className="md-table-header"
+      class="md-table-header"
     >
       <tr
-        className="md-table-row"
+        class="md-table-row"
       >
         <th
-          className="md-table-column md-table-column--header"
+          class="md-table-column md-table-column--header"
         >
           Hello!
         </th>
       </tr>
     </thead>
     <tbody
-      className="md-table-body"
+      class="md-table-body"
     >
       <tr
-        className="md-table-row"
+        class="md-table-row"
       >
         <td
-          className="md-table-column md-table-column--header"
+          class="md-table-column md-table-column--header"
         >
           Hello!
         </td>
@@ -207,34 +198,26 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
 
 exports[`ExampleCard should display correctly with a description 1`] = `
 <div
-  className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
   id="second-example"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={-1}
+  tabindex="-1"
 >
   <div
-    className="md-card-title md-card-title--primary quick-link"
-    style={undefined}
+    class="md-card-title md-card-title--primary quick-link"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
-      id={undefined}
-      tabIndex={null}
+      class="md-card-title--title md-card-title--large md-text"
     >
       <div
-        className="quick-link__container"
+        class="quick-link__container"
       >
         Second Example
         <a
-          className="quick-link__link quick-link__link--title"
+          class="quick-link__link quick-link__link--title"
           href="#second-example"
-          onClick={[Function]}
         >
           <i
-            className="md-icon material-icons"
-            style={undefined}
+            class="md-icon material-icons"
           >
             link
           </i>
@@ -242,40 +225,41 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
+      <div
+        class="md-tooltip-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <svg
-        aria-labelledby={null}
-        className="md-icon md-text--inherit"
+        class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        style={undefined}
-        title={undefined}
-        viewBox="0 0 24 24"
+        viewbox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
   </div>
   <section
-    className="md-card-text"
+    class="md-card-text"
   >
     <div
-      className="markdown-container md-text-container examples-page__card__description"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<pre><code># Second Example
+      class="markdown-container md-text-container examples-page__card__description"
+    >
+      <pre>
+        <code>
+          # Second Example
 That contains some markdown!
 
 - one
@@ -283,10 +267,10 @@ That contains some markdown!
 - three
 
 &gt; some note
-</code></pre>",
-        }
-      }
-    />
+
+        </code>
+      </pre>
+    </div>
     <h1>
       Hello, World!
     </h1>
@@ -299,34 +283,26 @@ That contains some markdown!
 
 exports[`ExampleCard should display correctly without a description 1`] = `
 <div
-  className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
   id="first-example"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={-1}
+  tabindex="-1"
 >
   <div
-    className="md-card-title md-card-title--primary quick-link"
-    style={undefined}
+    class="md-card-title md-card-title--primary quick-link"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
-      id={undefined}
-      tabIndex={null}
+      class="md-card-title--title md-card-title--large md-text"
     >
       <div
-        className="quick-link__container"
+        class="quick-link__container"
       >
         First Example
         <a
-          className="quick-link__link quick-link__link--title"
+          class="quick-link__link quick-link__link--title"
           href="#first-example"
-          onClick={[Function]}
         >
           <i
-            className="md-icon material-icons"
-            style={undefined}
+            class="md-icon material-icons"
           >
             link
           </i>
@@ -334,34 +310,34 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
+      <div
+        class="md-tooltip-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <svg
-        aria-labelledby={null}
-        className="md-icon md-text--inherit"
+        class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        style={undefined}
-        title={undefined}
-        viewBox="0 0 24 24"
+        viewbox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
   </div>
   <section
-    className="md-card-text"
+    class="md-card-text"
   >
     <div />
   </section>

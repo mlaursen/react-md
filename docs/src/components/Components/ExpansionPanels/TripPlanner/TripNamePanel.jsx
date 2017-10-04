@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import TextField from 'react-md/lib/TextFields';
+import { ExpansionPanel, TextField } from 'react-md';
 
 export default class TripNamePanel extends PureComponent {
   static propTypes = {

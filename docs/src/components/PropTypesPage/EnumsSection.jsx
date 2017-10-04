@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { kebabCase } from 'lodash/string';
-import CardText from 'react-md/lib/Cards/CardText';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import TableBody from 'react-md/lib/DataTables/TableBody';
+import {
+  CardText,
+  DataTable,
+  TableHeader,
+  TableRow,
+  TableColumn,
+  TableBody,
+} from 'react-md';
 
 import Markdown from 'components/Markdown';
 

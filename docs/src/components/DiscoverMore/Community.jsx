@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Media from 'react-md/lib/Media/Media';
+import { Media } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import withMinHeight from 'components/hoc/withMinHeight';

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { connect } from 'react-redux';
 import { throttle } from 'lodash/function';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Avatar from 'react-md/lib/Avatars';
-import Button from 'react-md/lib/Buttons/Button';
+import { Autocomplete, Avatar, Button } from 'react-md';
 
 import scrollTo from 'utils/scrollTo';
 import { userShape } from 'propTypes/github';

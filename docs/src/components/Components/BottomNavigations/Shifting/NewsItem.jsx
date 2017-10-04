@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Media from 'react-md/lib/Media';
+import { Media } from 'react-md';
 
 const styles = {
   media: { width: 140 },

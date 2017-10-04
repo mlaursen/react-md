@@ -1,5 +1,5 @@
 import React from 'react';
-import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+import { TimePicker } from 'react-md';
 
 const TextFieldStyling = () => (
   <div className="md-grid">

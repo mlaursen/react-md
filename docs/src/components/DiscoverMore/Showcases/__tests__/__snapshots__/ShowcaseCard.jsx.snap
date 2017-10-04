@@ -2,13 +2,10 @@
 
 exports[`ShowcaseCard should render correctly 1`] = `
 <li
-  className="md-paper md-paper--1 md-card md-background--card showcase-card"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
+  class="md-paper md-paper--1 md-card md-background--card showcase-card"
 >
   <a
-    className="md-media md-media--16-9"
+    class="md-media md-media--16-9"
     href="https://react-md.mlaursen.com"
     title="react-md Documentation website"
   >
@@ -18,28 +15,25 @@ exports[`ShowcaseCard should render correctly 1`] = `
     />
   </a>
   <div
-    className="md-card-title md-card-title--primary"
-    style={undefined}
+    class="md-card-title md-card-title--primary"
   >
     <div
-      className="md-card-title--title-block"
+      class="md-card-title--title-block"
     >
       <h2
-        className="md-card-title--title md-card-title--large md-text"
-        id={undefined}
-        tabIndex={null}
+        class="md-card-title--title md-card-title--large md-text"
       >
         react-md Documentation website
       </h2>
       <h3
-        className="md-card-title--title md-text--secondary"
+        class="md-card-title--title md-text--secondary"
       >
         MIkkel Laursen
       </h3>
     </div>
   </div>
   <section
-    className="md-card-text"
+    class="md-card-text"
   >
     It is a website about documenting react-md. Who'da thunk?
   </section>
@@ -48,13 +42,10 @@ exports[`ShowcaseCard should render correctly 1`] = `
 
 exports[`ShowcaseCard should render correctly 2`] = `
 <li
-  className="md-paper md-paper--1 md-card md-background--card showcase-card"
-  onMouseLeave={[Function]}
-  onMouseOver={[Function]}
-  onTouchStart={[Function]}
+  class="md-paper md-paper--1 md-card md-background--card showcase-card"
 >
   <a
-    className="md-media md-media--16-9"
+    class="md-media md-media--16-9"
     href="https://react-md.mlaursen.com"
     title="react-md Documentation website"
   >
@@ -64,46 +55,40 @@ exports[`ShowcaseCard should render correctly 2`] = `
     />
   </a>
   <div
-    className="md-card-title md-card-title--primary"
-    style={undefined}
+    class="md-card-title md-card-title--primary"
   >
     <div
-      className="md-card-title--title-block"
+      class="md-card-title--title-block"
     >
       <h2
-        className="md-card-title--title md-card-title--large md-text"
-        id={undefined}
-        tabIndex={null}
+        class="md-card-title--title md-card-title--large md-text"
       >
         react-md Documentation website
       </h2>
       <h3
-        className="md-card-title--title md-text--secondary"
+        class="md-card-title--title md-text--secondary"
       >
         MIkkel Laursen
       </h3>
     </div>
     <a
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block"
-      disabled={undefined}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block"
       href="https://github.com/mlaursen/react-md"
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon fa fa-github md-text--inherit"
-        style={undefined}
+        class="md-icon fa fa-github md-text--inherit"
       />
     </a>
   </div>
   <section
-    className="md-card-text"
+    class="md-card-text"
   >
     It is a website about documenting react-md. Who'da thunk?
   </section>

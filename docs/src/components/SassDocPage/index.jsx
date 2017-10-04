@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import { get } from 'lodash/object';
-import Button from 'react-md/lib/Buttons/Button';
+import { Button } from 'react-md';
 
 import sassdocPageShape from 'propTypes/sassdocPageShape';
 import { sassdocRequest } from 'state/sassdocs';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from 'react-md/lib/Papers';
+import { Paper } from 'react-md';
 
 import './_styles.scss';
 

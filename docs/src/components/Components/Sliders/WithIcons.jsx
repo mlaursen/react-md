@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import FontIcon from 'react-md/lib/FontIcons';
-import SVGIcon from 'react-md/lib/SVGIcons';
-import DialogContainer from 'react-md/lib/Dialogs';
-import Slider from 'react-md/lib/Sliders';
+import {
+  Button,
+  FontIcon,
+  SVGIcon,
+  DialogContainer,
+  Slider,
+} from 'react-md';
 
 import alarm from 'icons/alarm.svg';
 

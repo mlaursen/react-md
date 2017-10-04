@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import { ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import SelectField from 'react-md/lib/SelectFields';
+import { ExpansionPanel, SelectField } from 'react-md';
 
 // From United Airlines
 import mealPreferences from 'constants/sampleData/mealPreferences';

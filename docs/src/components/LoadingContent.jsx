@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import { CircularProgress } from 'react-md';
 
 import { ACCESSIBILITY_PROPS } from 'state/drawer/contentProps';
 

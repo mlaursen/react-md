@@ -1,5 +1,5 @@
 import React from 'react';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { DialogContainer } from 'react-md';
 
 import './_styles.scss';
 import BackButton from 'components/BackButton';

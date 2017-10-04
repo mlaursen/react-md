@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { Button, DialogContainer } from 'react-md';
 
 export default class SimpleModal extends PureComponent {
   state = { visible: false };

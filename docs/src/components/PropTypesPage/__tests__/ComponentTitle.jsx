@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import ComponentTitle from '../ComponentTitle';
 
@@ -17,8 +17,8 @@ const PROPS = {
 };
 describe('ComponentTitle', () => {
   it('should render correctly', () => {
-    const tree1 = createRouterSnapshot(<ComponentTitle {...PROPS} />);
-    const tree2 = createRouterSnapshot(<ComponentTitle {...PROPS} mobile />);
+    const tree1 = renderRouterSnapshot(<ComponentTitle {...PROPS} />);
+    const tree2 = renderRouterSnapshot(<ComponentTitle {...PROPS} mobile />);
     expect(tree1).toMatchSnapshot();
     expect(tree2).toMatchSnapshot();
   });

@@ -1,6 +1,5 @@
 import React from 'react';
-import DropdownMenu from 'react-md/lib/Menus/DropdownMenu';
-import TextField from 'react-md/lib/TextFields';
+import { DropdownMenu, TextField } from 'react-md';
 
 import vacationSpots from 'constants/sampleData/vacationSpots';
 

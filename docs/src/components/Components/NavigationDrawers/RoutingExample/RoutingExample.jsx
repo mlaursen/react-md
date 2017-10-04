@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+import { NavigationDrawer } from 'react-md';
 import { toTitle } from 'utils/strings';
 
 import './_styles.scss';

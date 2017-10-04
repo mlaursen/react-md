@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'react-md/lib/SelectFields';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
+import { SelectField, SelectionControl } from 'react-md';
 
 import { SECONDARY_HUES, PRIMARY, SECONDARY, HUE, LIGHT } from 'constants/colors';
 import Message from './Message';

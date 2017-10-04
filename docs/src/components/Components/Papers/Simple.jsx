@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import Paper from 'react-md/lib/Papers';
+import { Paper } from 'react-md';
 
 const Simple = () => (
   <div className="papers__container">

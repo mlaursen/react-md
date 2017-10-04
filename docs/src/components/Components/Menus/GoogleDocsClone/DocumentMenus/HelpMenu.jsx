@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from 'react-md/lib/TextFields';
+import { TextField } from 'react-md';
 
 import { ALT } from 'constants/unicode';
 import { DIVIDER } from './constants';

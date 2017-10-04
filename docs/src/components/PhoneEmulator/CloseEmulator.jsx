@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
+import { Button } from 'react-md';
 
 export default class CloseEmulator extends PureComponent {
   static propTypes = {

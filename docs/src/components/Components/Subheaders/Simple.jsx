@@ -1,9 +1,11 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Subheader from 'react-md/lib/Subheaders';
-import Divider from 'react-md/lib/Dividers';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
+import {
+  Avatar,
+  Subheader,
+  Divider,
+  List,
+  ListItem,
+} from 'react-md';
 
 import { randomImage } from 'utils/random';
 

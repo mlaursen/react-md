@@ -2,9 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, DialogContainer, Toolbar } from 'react-md';
 
 import FormGroup from './FormGroup';
 

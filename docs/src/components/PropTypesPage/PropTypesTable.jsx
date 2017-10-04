@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import TableRow from 'react-md/lib/DataTables/TableRow';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+} from 'react-md';
 
 import PropTypeRow from './PropTypeRow';
 

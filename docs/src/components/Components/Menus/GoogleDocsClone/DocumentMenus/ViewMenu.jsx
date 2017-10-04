@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon } from 'react-md';
 
 import { CONTROL, SHIFT } from 'constants/unicode';
 import { DIVIDER, ICON_TILE_CLASS_NAME } from './constants';

@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem } from 'react-md/lib/Lists';
-import Button from 'react-md/lib/Buttons/Button';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
+import {
+  Button,
+  List,
+  ListItem,
+  SelectionControl,
+  SelectionControlGroup,
+} from 'react-md';
 
 export default class DisablingInk extends PureComponent {
   static childContextTypes = {

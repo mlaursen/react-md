@@ -1,9 +1,13 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import { List, ListItem, ListItemControl } from 'react-md/lib/Lists';
-import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
-import Switch from 'react-md/lib/SelectionControls/Switch';
-import FontIcon from 'react-md/lib/FontIcons';
+import {
+  Avatar,
+  List,
+  ListItem,
+  ListItemControl,
+  Checkbox,
+  Switch,
+  FontIcon,
+} from 'react-md';
 
 const chat = <FontIcon key="chat">chat</FontIcon>;
 

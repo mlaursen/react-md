@@ -1,8 +1,10 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import FontIcon from 'react-md/lib/FontIcons';
-import SVGIcon from 'react-md/lib/SVGIcons';
-import TextField from 'react-md/lib/TextFields';
+import {
+  Button,
+  FontIcon,
+  SVGIcon,
+  TextField,
+} from 'react-md';
 
 import removeRedEye from 'icons/remove_red_eye.svg';
 import phone from 'icons/phone.svg';

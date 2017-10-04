@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import BottomNavigation from 'react-md/lib/BottomNavigations';
-import FontIcon from 'react-md/lib/FontIcons';
+import { BottomNavigation, FontIcon } from 'react-md';
 
 import Recent from './Recent';
 import Favorites from './Favorites';

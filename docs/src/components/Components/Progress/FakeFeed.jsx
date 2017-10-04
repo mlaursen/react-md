@@ -1,11 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import Collapse from 'react-md/lib/Helpers/Collapse';
+import {
+  Button,
+  Card,
+  CardText,
+  CardTitle,
+  Collapse,
+} from 'react-md';
 import loremIpsum from 'lorem-ipsum';
 
 import { randomInt } from 'utils/random';

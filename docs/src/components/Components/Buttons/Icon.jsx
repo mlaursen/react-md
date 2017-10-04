@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Button, SVGIcon } from 'react-md';
 import { GITHUB_URL } from 'constants/application';
 
 import deleteIcon from 'icons/delete.svg';

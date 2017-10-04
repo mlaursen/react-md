@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import { LinearProgress } from 'react-md';
 
 export default class ProgressStyle extends PureComponent {
   state = { progress: 0 };

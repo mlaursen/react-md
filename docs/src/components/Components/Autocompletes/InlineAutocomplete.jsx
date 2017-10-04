@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Button from 'react-md/lib/Buttons/Button';
-import TextField from 'react-md/lib/TextFields';
+import { Autocomplete, Button, TextField } from 'react-md';
 import { pastries } from 'constants/sampleData';
 
 export default class InlineAutocomplete extends Component {

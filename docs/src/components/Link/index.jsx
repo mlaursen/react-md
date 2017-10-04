@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink, Route } from 'react-router-dom';
-import Avatar from 'react-md/lib/Avatars';
-import FontIcon from 'react-md/lib/FontIcons';
-import ListItem from 'react-md/lib/Lists/ListItem';
+import { Avatar, FontIcon, ListItem } from 'react-md';
 
 import { routeRef, scrollIntoView } from './scrollIntoView';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Autocomplete from 'react-md/lib/Autocompletes';
+import { Autocomplete } from 'react-md';
 import { programmingLanguages as sampleData } from 'constants/sampleData';
 
 const UsingSmartMenus = () => (

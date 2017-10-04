@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon } from 'react-md';
 
 import { COMMAND, SHIFT, ALT } from 'constants/unicode';
 import languages from 'constants/sampleData/languages';

@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Button from 'react-md/lib/Buttons/Button';
-import Chip from 'react-md/lib/Chips';
-import Divider from 'react-md/lib/Dividers';
-import TextField from 'react-md/lib/TextFields';
+import {
+  Avatar,
+  Autocomplete,
+  Button,
+  Chip,
+  Divider,
+  TextField,
+} from 'react-md';
 import guid from 'uuid/v1';
 
 import { randomImage } from 'utils/random';

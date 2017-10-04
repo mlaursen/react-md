@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key, react/prop-types */
 import React from 'react';
-import MenuButton from 'react-md/lib/Menus/MenuButton';
+import {
+  MenuButton,
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+  MenuButtonColumn,
+} from 'react-md';
+
 import AccountMenu from './DropdownMenuExamples/AccountMenu';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import MenuButtonColumn from 'react-md/lib/DataTables/MenuButtonColumn';
 
 const items = ['Item One', 'Item Two', 'Item Three', 'Item Four'];
 

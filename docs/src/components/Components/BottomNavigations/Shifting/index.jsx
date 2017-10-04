@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
-import BottomNavigation from 'react-md/lib/BottomNavigations';
-import FontIcon from 'react-md/lib/FontIcons';
+import { BottomNavigation, FontIcon } from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 

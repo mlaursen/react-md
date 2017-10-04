@@ -1,12 +1,14 @@
 import React from 'react';
 import { upperFirst } from 'lodash/string';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
-import SelectFieldColumn from 'react-md/lib/DataTables/SelectFieldColumn';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+  EditDialogColumn,
+  SelectFieldColumn,
+} from 'react-md';
 
 import desserts from 'constants/sampleData/desserts';
 

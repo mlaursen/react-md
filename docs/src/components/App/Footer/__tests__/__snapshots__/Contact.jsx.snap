@@ -2,38 +2,34 @@
 
 exports[`Contact should render correctly 1`] = `
 <section
-  className="md-cell md-cell--4"
+  class="md-cell md-cell--4"
 >
   <h4
-    className="md-title"
+    class="md-title"
   >
     Contact
   </h4>
   <a
-    className="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block"
-    disabled={undefined}
+    class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block"
     href="mailto:mlaursen03@gmail.com"
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
   >
     <div
-      className="md-icon-separator"
+      class="md-ink-container"
+    >
+      <span
+        aria-hidden="true"
+      />
+    </div>
+    <div
+      class="md-icon-separator"
     >
       <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+        class="md-icon material-icons md-text--inherit"
       >
         mail
       </i>
       <span
-        className="md-icon-text"
-        style={undefined}
+        class="md-icon-text"
       >
         Mikkel Laursen
       </span>

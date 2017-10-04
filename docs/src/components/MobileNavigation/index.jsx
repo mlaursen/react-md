@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { stringify } from 'qs';
-import BottomNavigation from 'react-md/lib/BottomNavigations';
-import FontIcon from 'react-md/lib/FontIcons';
+import { BottomNavigation, FontIcon } from 'react-md';
 
 import { getTab } from 'utils/routing';
 import { updateFinderVisibility } from 'state/sassdocFab';

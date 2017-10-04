@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import Layover from 'react-md/lib/Helpers/Layover';
-import { List, ListItem } from 'react-md/lib/Lists';
+import { Layover, List, ListItem } from 'react-md';
 
 const anchor = {
   x: Layover.HorizontalAnchors.CENTER,

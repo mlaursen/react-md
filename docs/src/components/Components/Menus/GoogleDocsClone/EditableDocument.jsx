@@ -1,9 +1,5 @@
 import React, { PureComponent } from 'react';
-import CardText from 'react-md/lib/Cards/CardText';
-import FontIcon from 'react-md/lib/FontIcons';
-import Menu from 'react-md/lib/Menus/Menu';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import TextField from 'react-md/lib/TextFields';
+import { CardText, FontIcon, Menu, ListItem, TextField } from 'react-md';
 
 const anchor = {
   x: Menu.HorizontalAnchors.CENTER,

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+import { Button, DatePicker } from 'react-md';
 
 export default class Controlled extends PureComponent {
   state = {

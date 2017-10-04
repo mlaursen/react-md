@@ -2,89 +2,73 @@
 
 exports[`BlockedFields should render correctly 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator md-background"
-  style={undefined}
+  class="md-paper md-paper--1 phone-emulator md-background"
 >
   <header
-    className="phone-emulator__status-bar"
+    class="phone-emulator__status-bar"
   >
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       network_wifi
     </i>
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       network_cell
     </i>
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       battery_full
     </i>
     <span
-      className="phone-emulator__status-bar__time"
+      class="phone-emulator__status-bar__time"
     >
       12:30
     </span>
   </header>
   <header
-    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
-    style={undefined}
+    class="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
   >
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+        class="md-icon material-icons md-text--inherit"
       >
         menu
       </i>
     </button>
     <h2
-      className="md-title md-title--toolbar"
-      id={undefined}
-      style={undefined}
+      class="md-title md-title--toolbar"
     >
       Title
     </h2>
     <div
-      className="md-cell--right md-toolbar--action-right"
+      class="md-cell--right md-toolbar--action-right"
     >
       <button
-        className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar"
-        disabled={undefined}
-        href={undefined}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
+        class="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar"
         type="button"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
-          className="md-icon material-icons md-text--inherit"
-          style={undefined}
+          class="md-icon material-icons md-text--inherit"
         >
           send
         </i>
@@ -92,187 +76,148 @@ exports[`BlockedFields should render correctly 1`] = `
     </div>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--offset"
-    id={undefined}
-    style={undefined}
+    class="phone-emulator__content phone-emulator__content--offset"
   >
     <div
-      className="text-fields__contacts"
+      class="text-fields__contacts"
     >
       <button
-        className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
+        class="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
         type="button"
       >
         <div
-          className="md-inline-block md-avatar md-avatar--default"
+          class="md-inline-block md-avatar md-avatar--default"
         >
           <img
             alt="Freddy Kruger's avatar"
-            className="md-avatar-img"
-            role={undefined}
+            class="md-avatar-img"
             src="https://unplash.it/300?random&time=3"
-            style={undefined}
           />
         </div>
         <span
-          className="md-chip-text"
-          style={undefined}
+          class="md-chip-text"
         >
           Freddy Kruger
         </span>
         <i
-          className="md-icon material-icons md-chip-icon md-chip-icon--rotate"
-          style={undefined}
+          class="md-icon material-icons md-chip-icon md-chip-icon--rotate"
         >
           add_circle
         </i>
       </button>
       <button
-        className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
+        class="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
         type="button"
       >
         <div
-          className="md-inline-block md-avatar md-avatar--default"
+          class="md-inline-block md-avatar md-avatar--default"
         >
           <img
             alt="Bob Belcher's avatar"
-            className="md-avatar-img"
-            role={undefined}
+            class="md-avatar-img"
             src="https://unplash.it/300?random&time=3"
-            style={undefined}
           />
         </div>
         <span
-          className="md-chip-text"
-          style={undefined}
+          class="md-chip-text"
         >
           Bob Belcher
         </span>
         <i
-          className="md-icon material-icons md-chip-icon md-chip-icon--rotate"
-          style={undefined}
+          class="md-icon material-icons md-chip-icon md-chip-icon--rotate"
         >
           add_circle
         </i>
       </button>
     </div>
+    <div
+      aria-expanded="false"
+      aria-haspopup="true"
+      class="md-layover md-layover--simplified md-full-width md-menu-container md-menu-container--menu-below md-autocomplete-container"
+      id="email-to-menu"
+    >
+      <div
+        class="md-text-field-container md-full-width md-text-field-container--input md-text-field-container--input-block md-text-field-container--padded-block md-autocomplete"
+      >
+        <input
+          aria-autocomplete="list"
+          autocomplete="off"
+          class="md-text-field md-full-width md-text"
+          id="email-to"
+          placeholder="To"
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
     <hr
-      className="md-divider"
+      class="md-divider"
     />
     <div
-      className="md-text-field-container md-full-width md-text-field-container--input md-text-field-container--input-block md-text-field-container--padded-block"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-full-width md-text-field-container--input md-text-field-container--input-block md-text-field-container--padded-block"
     >
       <input
-        className="md-text-field md-full-width md-text"
-        defaultValue="Plans for the weekend"
-        disabled={undefined}
+        class="md-text-field md-full-width md-text"
         id="email-subject"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
         placeholder="Subject"
-        rows={undefined}
-        style={undefined}
         type="text"
+        value="Plans for the weekend"
       />
       <div
-        className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
+        class="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
         <div
-          aria-hidden={true}
-          className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+          aria-hidden="true"
+          class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           21 / 80
         </div>
       </div>
     </div>
     <hr
-      className="md-divider"
+      class="md-divider"
     />
     <div
-      className="md-text-field-container md-full-width md-text-field-container--multiline md-text-field-container--multiline-block md-text-field-container--padded-block"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-full-width md-text-field-container--multiline md-text-field-container--multiline-block md-text-field-container--padded-block"
     >
       <div
-        className="md-text-field-multiline-container"
-        style={
-          Object {
-            "height": null,
-          }
-        }
+        class="md-text-field-multiline-container"
       >
         <span
-          aria-hidden={true}
+          aria-hidden="true"
         />
         <textarea
-          aria-hidden={true}
-          className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
-          defaultValue="Hi,
-I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
-          readOnly={true}
-          rows={4}
-          style={undefined}
-          tabIndex={-1}
-          value={undefined}
-        />
+          aria-hidden="true"
+          class="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
+          readonly=""
+          rows="4"
+          tabindex="-1"
+        >
+          Hi,
+I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations.
+        </textarea>
         <textarea
-          className="md-text-field md-text-field--multiline md-full-width md-text"
-          defaultValue="Hi,
-I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
-          disabled={undefined}
+          class="md-text-field md-text-field--multiline md-full-width md-text"
           id="email-body"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
           placeholder="Body"
-          rows={4}
-          style={
-            Object {
-              "height": null,
-            }
-          }
-          value={undefined}
-        />
+          rows="4"
+        >
+          Hi,
+I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations.
+        </textarea>
       </div>
       <div
-        className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
+        class="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
         <div
-          aria-hidden={true}
-          className="md-text-field-message md-text-field-message--inactive"
+          aria-hidden="true"
+          class="md-text-field-message md-text-field-message--inactive"
         >
           Max 1000 characters.
         </div>
         <div
-          aria-hidden={true}
-          className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+          aria-hidden="true"
+          class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
         >
           181 / 1000
         </div>

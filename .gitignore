@@ -4,6 +4,7 @@
 node_modules
 
 # Compiled files
+es
 lib
 dist
 src/scss/bundles

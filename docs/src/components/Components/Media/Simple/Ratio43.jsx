@@ -1,6 +1,5 @@
 import React from 'react';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import Media, { MediaOverlay } from 'react-md/lib/Media';
+import { CardTitle, Media, MediaOverlay } from 'react-md';
 
 import { randomImage } from 'utils/random';
 import Example from './Example';

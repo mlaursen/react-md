@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
-import { ExpansionList } from 'react-md/lib/ExpansionPanels';
+import { ExpansionList } from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 

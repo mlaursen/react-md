@@ -2,41 +2,37 @@
 
 exports[`Contribute should render correctly 1`] = `
 <section
-  className="md-cell md-cell--8"
+  class="md-cell md-cell--8"
 >
   <h4
-    className="md-title"
+    class="md-title"
   >
     Contributing
   </h4>
   <p
-    className="md-body-2"
+    class="md-body-2"
   >
     This project is currently developed by a single person. Feel free to contribute!
   </p>
   <a
-    className="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-secondary md-ink--secondary md-inline-block"
-    disabled={undefined}
+    class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-secondary md-ink--secondary md-inline-block"
     href="https://github.com/mlaursen/react-md"
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
   >
     <div
-      className="md-icon-separator"
+      class="md-ink-container"
+    >
+      <span
+        aria-hidden="true"
+      />
+    </div>
+    <div
+      class="md-icon-separator"
     >
       <i
-        className="md-icon fa fa-github md-text--inherit"
-        style={undefined}
+        class="md-icon fa fa-github md-text--inherit"
       />
       <span
-        className="md-icon-text"
-        style={undefined}
+        class="md-icon-text"
       >
         Github
       </span>

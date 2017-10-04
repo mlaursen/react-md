@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+import { FontIcon, IconSeparator } from 'react-md';
 
 import './_styles.scss';
 

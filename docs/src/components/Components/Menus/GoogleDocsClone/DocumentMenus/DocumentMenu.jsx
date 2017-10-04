@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import AccessibleFakeInkedButton from 'react-md/lib/Helpers/AccessibleFakeInkedButton';
-import DropdownMenu from 'react-md/lib/Menus/DropdownMenu';
+import {
+  AccessibleFakeInkedButton,
+  DropdownMenu,
+} from 'react-md';
 
 const anchor = {
   x: DropdownMenu.HorizontalAnchors.INNER_LEFT,

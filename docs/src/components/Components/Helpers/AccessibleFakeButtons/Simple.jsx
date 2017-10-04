@@ -1,6 +1,8 @@
 import React from 'react';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
-import AccessibleFakeInkedButton from 'react-md/lib/Helpers/AccessibleFakeInkedButton';
+import {
+  AccessibleFakeButton,
+  AccessibleFakeInkedButton,
+} from 'react-md';
 
 import './_styles.scss';
 

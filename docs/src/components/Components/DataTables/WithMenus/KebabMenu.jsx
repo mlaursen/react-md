@@ -1,6 +1,5 @@
 import React from 'react';
-import MenuButtonColumn from 'react-md/lib/DataTables/MenuButtonColumn';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { MenuButtonColumn, SVGIcon } from 'react-md';
 
 import info from 'icons/info_outline.svg';
 import download from 'icons/file_download.svg';

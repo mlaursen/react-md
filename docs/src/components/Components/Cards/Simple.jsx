@@ -1,8 +1,5 @@
 import React from 'react';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import Slider from 'react-md/lib/Sliders';
+import { Card, CardTitle, CardText, Slider } from 'react-md';
 
 const style = { maxWidth: 320 };
 

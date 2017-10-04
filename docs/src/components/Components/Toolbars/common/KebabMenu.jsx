@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuButton from 'react-md/lib/Menus/MenuButton';
+import { MenuButton } from 'react-md';
 
 const KebabMenu = ({ id, className, menuItems }) => (
   <MenuButton

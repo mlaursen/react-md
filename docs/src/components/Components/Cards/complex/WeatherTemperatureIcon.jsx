@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+import { IconSeparator } from 'react-md';
 
 import { DEGREES } from 'constants/unicode';
 import WeatherIcon from './WeatherIcon';

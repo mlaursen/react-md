@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+import { DatePicker } from 'react-md';
 
 const DEFAULT_DATE = new Date(2017, 10, 22, 0, 0, 0);
 const FORMAT_OPTIONS = {

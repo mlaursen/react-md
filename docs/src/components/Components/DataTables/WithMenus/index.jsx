@@ -1,10 +1,12 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import {
+  Avatar,
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+} from 'react-md';
 
 import books from 'constants/sampleData/books';
 

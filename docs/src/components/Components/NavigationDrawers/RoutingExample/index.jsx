@@ -1,5 +1,5 @@
 import React from 'react';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { DialogContainer } from 'react-md';
 
 import BackButton from 'components/BackButton';
 import RoutingExample from './RoutingExample';

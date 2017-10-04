@@ -2,29 +2,26 @@
 
 exports[`ComponentTitle should render correctly 1`] = `
 <header
-  className="md-table-card-header quick-link"
-  style={undefined}
+  class="md-table-card-header quick-link"
 >
   <div
-    className="md-card-title"
+    class="md-card-title"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
+      class="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
-      tabIndex={-1}
+      tabindex="-1"
     >
       <div
-        className="quick-link__container"
+        class="quick-link__container"
       >
         Autocomplete
         <a
-          className="quick-link__link quick-link__link--title"
+          class="quick-link__link quick-link__link--title"
           href="#autocompletes-proptypes"
-          onClick={[Function]}
         >
           <i
-            className="md-icon material-icons"
-            style={undefined}
+            class="md-icon material-icons"
           >
             link
           </i>
@@ -32,52 +29,32 @@ exports[`ComponentTitle should render correctly 1`] = `
       </div>
     </h2>
     <div
-      className="md-text-field-container md-inline-block md-text-field-container--input md-cell--right"
-      onClick={[Function]}
-      onDoubleClick={undefined}
-      onMouseDown={undefined}
-      onMouseLeave={undefined}
-      onMouseOver={undefined}
-      onMouseUp={undefined}
-      onTouchCancel={undefined}
-      onTouchEnd={undefined}
-      onTouchMove={undefined}
-      onTouchStart={undefined}
-      style={undefined}
+      class="md-text-field-container md-inline-block md-text-field-container--input md-cell--right"
     >
       <input
-        className="md-text-field md-text-field--margin md-text"
-        disabled={undefined}
+        class="md-text-field md-text-field--margin md-text"
         id="autocompletes-proptypes-filter"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
         placeholder="Filter props"
-        rows={undefined}
-        style={undefined}
         type="text"
         value=""
       />
       <hr
-        className="md-divider md-divider--text-field md-divider--expand-from-left"
+        class="md-divider md-divider--text-field md-divider--expand-from-left"
       />
     </div>
     <a
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block"
-      disabled={undefined}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block"
       href="https://github.com/malursen/react-md/master/tree/src/js/Autocompletes/Autocomplete.js"
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon fa fa-github md-text--inherit"
-        style={undefined}
+        class="md-icon fa fa-github md-text--inherit"
       />
     </a>
   </div>
@@ -86,39 +63,33 @@ exports[`ComponentTitle should render correctly 1`] = `
 
 exports[`ComponentTitle should render correctly 2`] = `
 <header
-  className="md-table-card-header quick-link"
-  style={undefined}
+  class="md-table-card-header quick-link"
 >
   <div
-    className="md-card-title"
+    class="md-card-title"
   >
     <h2
-      className="md-card-title--title md-card-title--large md-text"
+      class="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
-      tabIndex={-1}
+      tabindex="-1"
     >
       <span>
         Autocomplete
       </span>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+        class="md-icon material-icons md-text--inherit"
       >
         filter_list
       </i>

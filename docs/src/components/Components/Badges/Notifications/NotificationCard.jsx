@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-md/lib/Cards/Card';
-import Media from 'react-md/lib/Media/Media';
+import { Card, Media } from 'react-md';
 
 import Dismiss from './Dismiss';
 

@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
-import FontIcon from 'react-md/lib/FontIcons';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Avatar, IconSeparator, FontIcon, SVGIcon } from 'react-md';
 
 import { randomImage } from 'utils/random';
 import done from 'icons/done.svg';

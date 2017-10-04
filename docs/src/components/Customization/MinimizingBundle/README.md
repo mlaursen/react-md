@@ -1,7 +1,9 @@
 ## Minimizing JS Bundle Size
-For convenience, `react-md` exposes its full API on the top level `react-md` import. However this
-cause the entire library and its dependencies to be included in the bundles. This is true even when
-there is a component that exports multiple components.
+For convenience, `react-md` exposes its full API at the top-level `react-md` import. If you are not
+using ES6 modules, this will cause the entire library and its dependencies to be included in your bundle.
+
+The simplist solution is to make sure that your babel config has `modules: false` set correctly. If you can
+not use ES6 modules, you can do the following.
 
 Assuming you are using ES2015 modules, instead of:
 

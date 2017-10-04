@@ -2,14 +2,14 @@
 
 exports[`ExamplesPage should render correctly 1`] = `
 <section
-  className="md-grid md-grid--40-16 examples-page"
-  style={undefined}
+  class="md-grid md-grid--40-16 examples-page"
 >
   <header
-    className="markdown-container md-text-container md-cell md-cell--12"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<pre><code>  ## Some Example page
+    class="markdown-container md-text-container md-cell md-cell--12"
+  >
+    <pre>
+      <code>
+          ## Some Example page
   That has content
 
   And some amazing **markdown**!
@@ -17,39 +17,31 @@ exports[`ExamplesPage should render correctly 1`] = `
   - one
   - two
   - three
-</code></pre>",
-      }
-    }
-  />
+
+      </code>
+    </pre>
+  </header>
   <div
-    className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+    class="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
     id="first-example"
-    onMouseLeave={[Function]}
-    onMouseOver={[Function]}
-    onTouchStart={[Function]}
-    tabIndex={-1}
+    tabindex="-1"
   >
     <div
-      className="md-card-title md-card-title--primary quick-link"
-      style={undefined}
+      class="md-card-title md-card-title--primary quick-link"
     >
       <h2
-        className="md-card-title--title md-card-title--large md-text"
-        id={undefined}
-        tabIndex={null}
+        class="md-card-title--title md-card-title--large md-text"
       >
         <div
-          className="quick-link__container"
+          class="quick-link__container"
         >
           First Example
           <a
-            className="quick-link__link quick-link__link--title"
+            class="quick-link__link quick-link__link--title"
             href="#first-example"
-            onClick={[Function]}
           >
             <i
-              className="md-icon material-icons"
-              style={undefined}
+              class="md-icon material-icons"
             >
               link
             </i>
@@ -57,44 +49,52 @@ exports[`ExamplesPage should render correctly 1`] = `
         </div>
       </h2>
       <button
-        className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
-        disabled={undefined}
-        href={undefined}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
+        class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
         type="button"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
+        <div
+          class="md-tooltip-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <svg
-          aria-labelledby={null}
-          className="md-icon md-text--inherit"
+          class="md-icon md-text--inherit"
           focusable="false"
           role="img"
-          style={undefined}
-          title={undefined}
-          viewBox="0 0 24 24"
+          viewbox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         />
       </button>
     </div>
     <section
-      className="md-card-text"
+      class="md-card-text"
     >
       <div
-        className="markdown-container md-text-container examples-page__card__description"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<p>Something that has some <strong>markdown</strong> and <strong>other stuff</strong>.</p>
-",
-          }
-        }
-      />
+        class="markdown-container md-text-container examples-page__card__description"
+      >
+        <p>
+          Something that has some 
+          <strong>
+            markdown
+          </strong>
+           and 
+          <strong>
+            other stuff
+          </strong>
+          .
+        </p>
+        
+
+      </div>
       <h1>
         Wowwwwwwwwwwwwww
       </h1>

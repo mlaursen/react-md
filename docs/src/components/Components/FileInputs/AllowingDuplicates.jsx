@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FileInput from 'react-md/lib/FileInputs/FileInput';
-import TextField from 'react-md/lib/TextFields';
-import Snackbar from 'react-md/lib/Snackbars';
+import { FileInput, TextField, Snackbar } from 'react-md';
 
 import { QUOTATION_MARK } from 'constants/unicode';
 

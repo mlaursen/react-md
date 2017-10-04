@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import TableCardHeader from 'react-md/lib/DataTables/TableCardHeader';
+import { Button, TableCardHeader } from 'react-md';
 
 import FlatOrIconButton from './FlatOrIconButton';
 

@@ -1,4 +1,4 @@
-import Drawer from 'react-md/lib/Drawers';
+import { Drawer } from 'react-md';
 
 export const UPDATE_MEDIA = 'UPDATE_MEDIA';
 

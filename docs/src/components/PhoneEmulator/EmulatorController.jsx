@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { DialogContainer, Button } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import PhoneEmulator from './PhoneEmulator';

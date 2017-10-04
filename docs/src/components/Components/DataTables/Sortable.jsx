@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import TableBody from 'react-md/lib/DataTables/TableBody';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+} from 'react-md';
 import { sortBy } from 'lodash/collection';
 
 import { movies } from 'constants/sampleData';

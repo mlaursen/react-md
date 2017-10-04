@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import SelectField from 'react-md/lib/SelectFields';
+import { SelectField } from 'react-md';
 import states from 'constants/sampleData/states';
 
 const statesWithEmpty = ['', ...states];

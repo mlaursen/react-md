@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
+import { Button, DialogContainer, List, ListItem } from 'react-md';
 
 export default class SimpleListDialog extends PureComponent {
   state = { visible: false };

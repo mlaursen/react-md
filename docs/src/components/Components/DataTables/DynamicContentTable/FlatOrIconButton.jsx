@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connectAdvanced } from 'react-redux';
-import Button from 'react-md/lib/Buttons/Button';
+import { Button } from 'react-md';
 
 const FlatOrIconButton = ({ mobile, children, ...props }) => (
   <Button

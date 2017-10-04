@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import FocusContainer from 'react-md/lib/Helpers/FocusContainer';
-import TextField from 'react-md/lib/TextFields';
+import {
+  Button,
+  CardActions,
+  FocusContainer,
+  TextField,
+} from 'react-md';
 
 export default class ContainedFormExample extends PureComponent {
   state = { containFocus: true };

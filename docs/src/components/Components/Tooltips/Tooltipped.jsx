@@ -1,6 +1,5 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Tooltipped from 'react-md/lib/Tooltips/Tooltipped';
+import { Avatar, Tooltipped } from 'react-md';
 
 const TooltippedExamples = () => (
   <section>

@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import FontIcon from 'react-md/lib/FontIcons';
+import {
+  Button,
+  Card,
+  CardText,
+  CardTitle,
+  FontIcon,
+} from 'react-md';
 
 export default class SendMail extends PureComponent {
   state = { sending: false };

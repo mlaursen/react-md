@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+import { ExpansionPanel, DatePicker } from 'react-md';
 
 const START_DATE = new Date(2016, 1, 29, 0, 0, 0);
 

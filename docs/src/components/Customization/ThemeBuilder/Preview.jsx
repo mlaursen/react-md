@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import Toolbar from 'react-md/lib/Toolbars';
-import Drawer from 'react-md/lib/Drawers';
+import { Button, Toolbar, Drawer } from 'react-md';
 
 const NAV_ITEMS = [
   { primaryText: 'Woop woop' },

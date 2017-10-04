@@ -2,73 +2,58 @@
 
 exports[`Home should render correctly 1`] = `
 <section
-  className="home"
+  class="home"
 >
   <header
-    className="home__banner"
+    class="home__banner"
   >
     <h1
-      className="md-display-2"
+      class="md-display-2"
     >
       react-md
     </h1>
     <div
-      className="home__logo"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "some static content",
-        }
-      }
-    />
-    <a
-      className="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--secondary md-background--secondary-hover md-inline-block"
-      disabled={undefined}
-      href="/components"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      type={null}
+      class="home__logo"
     >
+      some static content
+    </div>
+    <a
+      class="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--secondary md-background--secondary-hover md-inline-block"
+      href="/components"
+    >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       View Demo
     </a>
   </header>
   <h3
-    className="md-text-container home__about"
+    class="md-text-container home__about"
   >
     This project's goal is to be able to create a fully accessible material design styled website using React Components and Sass. With the separation of styles in Sass instead of inline styles, it should hopefully be easy to create custom components with the existing styles.
   </h3>
   <footer
-    className="md-grid home__footer"
-    style={undefined}
+    class="md-grid home__footer"
   >
     <a
-      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      class="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
       href="/getting-started"
-      onClick={[Function]}
-      onMouseLeave={[Function]}
-      onMouseOver={[Function]}
-      onTouchStart={[Function]}
     >
       <div
-        className="md-card-title md-card-title--primary"
-        style={undefined}
+        class="md-card-title md-card-title--primary"
       >
         <h2
-          className="md-card-title--title md-card-title--large md-text"
-          id={undefined}
-          tabIndex={null}
+          class="md-card-title--title md-card-title--large md-text"
         >
           Getting Started
         </h2>
       </div>
       <section
-        className="md-media md-media--1-1"
+        class="md-media md-media--1-1"
       >
         <img
           alt="A Mac and a Macbook with design mock ups."
@@ -77,27 +62,20 @@ exports[`Home should render correctly 1`] = `
       </section>
     </a>
     <a
-      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      class="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
       href="/customization"
-      onClick={[Function]}
-      onMouseLeave={[Function]}
-      onMouseOver={[Function]}
-      onTouchStart={[Function]}
     >
       <div
-        className="md-card-title md-card-title--primary"
-        style={undefined}
+        class="md-card-title md-card-title--primary"
       >
         <h2
-          className="md-card-title--title md-card-title--large md-text"
-          id={undefined}
-          tabIndex={null}
+          class="md-card-title--title md-card-title--large md-text"
         >
           Customization
         </h2>
       </div>
       <section
-        className="md-media md-media--1-1"
+        class="md-media md-media--1-1"
       >
         <img
           alt="A chemistry set with material design colors flowing into a text editor."
@@ -106,27 +84,20 @@ exports[`Home should render correctly 1`] = `
       </section>
     </a>
     <a
-      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      class="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
       href="/components"
-      onClick={[Function]}
-      onMouseLeave={[Function]}
-      onMouseOver={[Function]}
-      onTouchStart={[Function]}
     >
       <div
-        className="md-card-title md-card-title--primary"
-        style={undefined}
+        class="md-card-title md-card-title--primary"
       >
         <h2
-          className="md-card-title--title md-card-title--large md-text"
-          id={undefined}
-          tabIndex={null}
+          class="md-card-title--title md-card-title--large md-text"
         >
           Customization
         </h2>
       </div>
       <section
-        className="md-media md-media--1-1"
+        class="md-media md-media--1-1"
       >
         <img
           alt="A chemistry set with material design colors flowing into a text editor."

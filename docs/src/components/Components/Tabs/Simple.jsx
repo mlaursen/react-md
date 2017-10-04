@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
-import Tabs from 'react-md/lib/Tabs/Tabs';
-import Tab from 'react-md/lib/Tabs/Tab';
+import { TabsContainer, Tabs, Tab } from 'react-md';
 
 const Simple = ({ mobile }) => (
   <TabsContainer panelClassName="md-grid" colored>

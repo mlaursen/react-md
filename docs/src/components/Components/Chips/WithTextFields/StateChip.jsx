@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import Avatar from 'react-md/lib/Avatars';
-import Chip from 'react-md/lib/Chips';
+import { Avatar, Chip } from 'react-md';
 
 export default class StateChip extends PureComponent {
   static propTypes = {

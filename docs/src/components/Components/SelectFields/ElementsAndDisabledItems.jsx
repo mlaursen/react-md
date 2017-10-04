@@ -1,7 +1,5 @@
 import React from 'react';
-// import Divider from 'react-md/lib/Dividers';
-import Subheader from 'react-md/lib/Subheaders';
-import SelectField from 'react-md/lib/SelectFields';
+import { Subheader, SelectField } from 'react-md';
 
 const ITEMS_WITH_DISABLED = [...new Array(15)].map((_, i) => ({
   label: `Item ${i + 1}`,

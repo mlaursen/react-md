@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardText } from 'react-md/lib/Cards';
-import Slider from 'react-md/lib/Sliders';
+import { CardText, Slider } from 'react-md';
 
 const ticks = [...new Array(11)].map((_, i) => (
   <span key={i} className="cards__weather__time-tick" />
