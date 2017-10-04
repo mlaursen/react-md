@@ -6,7 +6,6 @@
   "module": "./es/react-md.js",
   "files": [
     "es/",
-    "umd/",
     "lib/",
     "dist/",
     "src/",
@@ -60,6 +59,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "bluebird": "^3.5.1",
     "cpx": "^1.5.0",
     "cross-env": "^3.1.4",
     "enzyme": "^2.9.1",
