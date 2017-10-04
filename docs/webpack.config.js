@@ -251,14 +251,8 @@ module.exports = ({ production }) => {
     },
     plugins: [
       // Use async routes in production and synchronous in development
-      new webpack.NormalModuleReplacementPlugin(
-        /routes$/,
-        `routes/${production ? 'a' : ''}sync.js`
-      ),
-      new webpack.NormalModuleReplacementPlugin(
-        /^\.\/routes$/,
-        `./${production ? 'a' : ''}sync.js`
-      ),
+      new webpack.NormalModuleReplacementPlugin(/routes$/, 'routes/async.js'),
+      new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, './async.js'),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {
