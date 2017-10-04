@@ -36,10 +36,15 @@ const plugins = [
     main: true,
     browser: true,
   }),
-  replace({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  }),
 ];
+
+if (format === 'umd') {
+  plugins.push(
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    })
+  );
+}
 
 if (production) {
   plugins.push(uglify());
