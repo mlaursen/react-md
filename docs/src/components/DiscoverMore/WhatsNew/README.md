@@ -1,4 +1,8 @@
 ## October 2017
+### v1.1.7 Released
+#### Changelog
+- Fixed a Typescript definition for `DatePicker`. ([@noseglid] - [pull-564])
+
 ### v1.1.6 Released
 This fixed some of the bad markdown linking in my documentation as well as including a few more date picker examples.
 
