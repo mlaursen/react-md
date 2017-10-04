@@ -1,3 +1,19 @@
+## October 2017
+### v1.1.7 Released
+#### Changelog
+- Fixed a Typescript definition for `DatePicker`. ([@noseglid] - [pull-564])
+
+### v1.1.6 Released
+This fixed some of the bad markdown linking in my documentation as well as including a few more date picker examples.
+
+#### Changelog
+- Fixed the `Slider` when its value is controlled. [issues-561]
+- Fixed the `TimePicker` when its value is controlled. [issues-559]
+- Added some additional styling props to the `ListItem`. ([@gamtiq] - [pull-553])
+- Added ability to see additional days in the `DatePicker`. ([@gamtiq] - [pull-557]) and [commit-8504b7a]
+- Exposed additional props for the `EditDialogColumn`'s ok and cancel buttons. [commit-124272b]
+- Correctly exported the `Tooltipped` component. [commit-e647877]
+
 ## September 2017
 ### v1.1.5 Released
 #### Changelog

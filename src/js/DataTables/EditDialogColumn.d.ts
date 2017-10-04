@@ -24,10 +24,12 @@ export interface EditDialogColumnProps extends SharedLayoverProps, InjectedToolt
   okLabel?: React.ReactNode;
   okPrimary?: boolean;
   okSecondary?: boolean;
+  okProps?: Object;
   onCancelClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
   cancelLabel?: React.ReactNode;
   cancelPrimary?: boolean;
   cancelSecondary?: boolean;
+  cancelProps?: Object;
   okOnOutsideClick?: boolean;
   onOutsideClick?: (event: React.MouseEvent<HTMLElement>) => void;
   closeOnOutsideClick?: boolean;
@@ -36,6 +38,7 @@ export interface EditDialogColumnProps extends SharedLayoverProps, InjectedToolt
   cellIndex?: number;
   simplifiedDialog?: boolean;
   visibleOnFocus?: boolean;
+  defaultVisible?: boolean;
 
   /**
    * @deprecated

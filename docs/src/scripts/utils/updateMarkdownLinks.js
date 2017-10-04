@@ -124,6 +124,17 @@ export function addComponentProps(markdown, component) {
   );
 }
 
+export function addComponentLinks(markdown) {
+  return markdown.replace(
+    /\{@link (\w+)(\/\w+)?}/g,
+    (match, section, componentMatch) => {
+      const { component, path } = getComponentAndPath(section, componentMatch);
+
+      return `[${component}](/components/${path}?tab=1${createHash(component, '', 'proptypes')})`;
+    }
+  );
+}
+
 /**
  * Updates the provded markdown to have a GitHub flavored markdown url for directly linking to
  * any component's prop. This is to replace any of the `@see {@link GROUP/?COMPONENT#someProp}`
@@ -139,7 +150,7 @@ export function addComponentProps(markdown, component) {
  */
 export function addExternalProps(markdown) {
   return markdown.replace(
-    /\{@link (\w+)(\/\w+)?#(\w+(-\w)*)}/g,
+    /\{@link (\w+)(\/\w+)?#(\w+(-\w+)*)}/g,
     (match, section, componentMatch, propName) => {
       const { component, path } = getComponentAndPath(section, componentMatch);
 
@@ -153,6 +164,7 @@ const transforms = [
   addComponentEnums,
   addExternalEnums,
   addComponentProps,
+  addComponentLinks,
   addExternalProps,
 ];
 

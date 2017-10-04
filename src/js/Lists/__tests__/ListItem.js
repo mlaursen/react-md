@@ -64,7 +64,7 @@ describe('ListItem', () => {
     expect(rightNode.style.height).toBe(props.rightNodeStyle.height);
   });
 
-  it.only('should provide reference to container element', () => {
+  it('should provide reference to container element', () => {
     let itemRef;
     const props = {
       primaryText: 'Test itemRef prop',

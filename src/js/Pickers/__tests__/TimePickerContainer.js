@@ -1,7 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -82,5 +82,15 @@ describe('TimePickerContainer', () => {
 
     container._toggleOpen({ target: { tagName: 'input' } });
     expect(container.state.visible).toBe(false);
+  });
+
+  it('should update the tempTime when the value prop changes', () => {
+    const value = new Date(2017, 8, 29);
+    const picker = shallow(<TimePickerContainer id="test-picker" value={value} onChange={() => {}} />);
+    expect(picker.state('tempTime')).toEqual(value);
+
+    const nextValue = new Date(2017, 8, 5);
+    picker.setProps({ value: nextValue });
+    expect(picker.state('tempTime')).toEqual(nextValue);
   });
 });

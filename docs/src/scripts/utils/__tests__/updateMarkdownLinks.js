@@ -190,6 +190,7 @@ describe('addExternalProps', () => {
 
     @see ${s2}
     `;
+    const s5 = '@see {@link Dialogs/DialogContainer#aria-describbedby}';
 
     const expected1 = '[ListItem#inkDisabled](/components/lists?tab=1#list-item-proptypes-ink-disabled)';
     const expected2 = '[Autocomplete#data](/components/autocompletes?tab=1#autocomplete-proptypes-data)';
@@ -203,10 +204,12 @@ describe('addExternalProps', () => {
 
     @see ${expected2}
     `;
+    const expected5 = '@see [DialogContainer#aria-describbedby](/components/dialogs?tab=1#dialog-container-proptypes-aria-describbedby)';
 
     expect(addExternalProps(s1)).toBe(expected1);
     expect(addExternalProps(s2)).toBe(expected2);
     expect(addExternalProps(s3)).toBe(expected3);
     expect(addExternalProps(s4)).toBe(expected4);
+    expect(addExternalProps(s5)).toBe(expected5);
   });
 });
