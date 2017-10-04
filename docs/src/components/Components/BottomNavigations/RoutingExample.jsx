@@ -9,6 +9,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 import SVGIcon from 'react-md/lib/SVGIcons';
 
 import PhoneEmulator from 'components/PhoneEmulator';
+import withMinHeight from 'components/hoc/withMinHeight';
 import video from 'icons/ondemand_video.svg';
 import music from 'icons/music_note.svg';
 import book from 'icons/book.svg';
@@ -47,8 +48,10 @@ const links = [{
 const contentId = 'shifting-bottom-navigation-example';
 
 @withRouter
+@withMinHeight
 export class RoutingExample extends PureComponent {
   static propTypes = {
+    style: PropTypes.object,
     mobile: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
   };
@@ -109,12 +112,12 @@ export class RoutingExample extends PureComponent {
 
   render() {
     const { className, visible, defaultIndex } = this.state;
-    const { mobile, location } = this.props;
+    const { mobile, location, style } = this.props;
     const { pathname } = location;
     const inset = !pathname.match(/news-stand/);
 
     return (
-      <div className="md-grid md-grid--40-16">
+      <div style={style} className="md-grid md-grid--40-16">
         <div className="md-cell md-cell--12">
           <PhoneEmulator
             className={cn('bottom-navigations', className)}

@@ -7,6 +7,7 @@ import Helmet from 'react-helmet';
 
 import { updateTheme, clearTheme } from 'state/theme';
 import Markdown from 'components/Markdown';
+import withMinHeight from 'components/hoc/withMinHeight';
 
 import './_styles.scss';
 import Preview from './Preview';
@@ -22,6 +23,7 @@ or [pre-compiled themes](#pre-compiled-themes). Not all themes will already be c
 
 export class PureThemeBuilder extends PureComponent {
   static propTypes = {
+    style: PropTypes.object,
     primary: PropTypes.string.isRequired,
     secondary: PropTypes.string.isRequired,
     hue: PropTypes.number.isRequired,
@@ -76,7 +78,7 @@ export class PureThemeBuilder extends PureComponent {
 
   render() {
     const { primaryColor, secondaryColor } = this.state;
-    const { light, hue } = this.props;
+    const { light, hue, style } = this.props;
     const { href, updateTheme, clearTheme, ...props } = this.props; // eslint-disable-line no-unused-vars
     let howToUse = `
 #### Using with Sass
@@ -116,7 +118,7 @@ precompiled.
 `;
     }
     return (
-      <div className="md-grid">
+      <div style={style} className="md-grid">
         <Helmet title="Theme Builder" />
         <Configuration {...props} onChange={this.handleChange} onSelectChange={this.handleSelectChange} />
         <section className="md-cell md-cell--8 md-cell--6-desktop">
@@ -140,4 +142,4 @@ export default connectAdvanced((dispatch) => {
 
     return result;
   };
-})(PureThemeBuilder);
+})(withMinHeight(PureThemeBuilder));

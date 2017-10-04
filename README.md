@@ -76,3 +76,97 @@ Please see the list of [examples](examples/) for how you can get a project start
 * Bottom sheets
 * Steppers
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
+
+## Contributing
+Please see the [documentation site README](https://github.com/mlaursen/react-md/tree/master/docs#react-md-documentation)
+for information about contributing using the documentation server. Otherwise, here is some information about only working
+within `react-md`.
+
+Right now I am using the `Ruby` version of `scss_lint` to lint scss files. This means that you will need to have Ruby installed
+and the `sass-lint` gem.
+
+```bash
+$ gem install scss_lint
+```
+
+I have an issue (#274) open about switching over to the node port, but it hasn't really been worked on because I don't like
+the little amount of features that have been ported over so far.
+
+Otherwise this _should_ work on most systems with node >= 4.
+
+Development Scripts
+=====
+* [test](#test)
+  * [test:tsc](#testtsc)
+  * [test:watch](#test-watch)
+* [scripts](#scripts)
+  * [scripts:watch](#scriptswatch)
+* [lint](#lint)
+  * [lint:fix](#lintfix)
+  * [lint:styles](#lintstyles)
+  * [lint:scripts](#lintscripts)
+* [tsd](#tsd)
+* [prebuild](#prebuild)
+* [css-bundles](#css-bundles)
+* [build](#build)
+  * [build:umd](#buildumd)
+
+### test
+This command will run [test:tsc](#testtsc) followed by `jest`.
+
+#### test:tsc
+This will do a simple Typescript compliation test to make sure there aren't any syntax errors or
+invalid types. There should probably be a better testing system put in place.
+
+#### test:watch
+This will just run `jest` in watch mode.
+
+### scripts
+This will compile all the components and utilities in the `src/js` using babel with the `babel-preset-env`.
+All the files will be output into the `lib` directory.
+
+#### scripts:watch
+This is the same as above, but it will be done in watch mode. This is very helpful when running the development server and want to see
+immediate changes.
+
+### lint
+This will run both the [lint:styles](#lintstyles) and [lint:scripts](#lintscripts) commands.
+
+#### lint:fix
+This will attempt to automatically fix any `eslint` errors that can be fixed.
+
+#### lint:styles
+As stated above, this will lint all the scss files within the `src/scss` directory. Unfortunately, this requires the Ruby gems
+version of `scss-lint` to be installed to work because the node port isn't quite there yet for me. You can either
+remove this temporarily from the build process or:
+
+```bash
+$ gem install scss_lint
+```
+
+#### lint:scripts
+This will run `eslint` over all the files in the `src/js` folder.
+
+### tsd
+This command will just copy all the Typescript definitions into the `lib` folder so that it can be used correctly
+by Typescript users.
+
+### prebuild
+This command is automatically run before [build](#build). It will basically remove all the old artifacts and compiled
+files followed by linting the entire project.
+
+### build
+This command will do the full build of `react-md` before a release. It runs almost all of the other scripts in a specified
+order so that the `lib` and `dist` folders are created and contain the correct files for release.
+
+> Please note: This command should not really be used if you are not doing a release or just want to test some things locally.
+This will take ~8 minutes to complete since it must compile 255 css bundles as well as all the compilation of javascript. You
+should probably use the [scripts](#scripts) or [scripts:watch](scripts:watch) commands instead.
+
+### css-bundles
+This script makes 255 different scss files to be compiled for production use. This is automatically run before
+[build:umd](#buildumd)
+
+#### build:umd
+This command will create the UMD bundles for development and production use. In addition, it will create all the
+pre-compiled css bundles for production use.

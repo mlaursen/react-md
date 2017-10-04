@@ -2,8 +2,8 @@ import * as React from 'react';
 import { IdPropType, Props } from '../index';
 import { SharedTextFieldProps } from '../TextFields';
 
-type NSL = 'narrow' | 'short' | 'long';
-type N2D = 'numeric' | '2-digit';
+export type NSL = 'narrow' | 'short' | 'long';
+export type N2D = 'numeric' | '2-digit';
 
 export interface IntlTimeFormat {
   hour?: N2D;
@@ -36,8 +36,6 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   pickerHeaderClassName?: string;
   pickerContentClassName?: string;
   pickerFooterClassName?: string;
-  calendarClassName?: string;
-  yearPickerClassName?: string;
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
   icon?: React.ReactNode;
@@ -59,12 +57,6 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
-  firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-  calendarDateClassName?: string;
-  calendarTitleClassName?: string;
-  calendarTitleFormat?: CalendarTitleFormat;
-  calendarWeekdayClassName?: string;
-  calendarWeekdayFormat?: NSL;
 }
 
 export { default as DatePicker, default as DatePickerContainer, DatePickerProps } from './DatePickerContainer';

@@ -213,4 +213,21 @@ describe('Slider', () => {
     track = slider.find(Track).get(0);
     expect(track.props.on).toBe(true);
   });
+
+  it('should correctly update the position of the track when the value prop changes', () => {
+    const slider = shallow(<Slider id="test-slider" onChange={() => {}} value={0} />);
+    expect(slider.state('distance')).toBe(0);
+    expect(slider.state('thumbLeft')).toBe('calc(0% - 6px)');
+    expect(slider.state('trackFillWidth')).toBe('0%');
+
+    slider.setProps({ value: 50 });
+    expect(slider.state('distance')).toBe(50);
+    expect(slider.state('thumbLeft')).toBe('calc(50% - 6px)');
+    expect(slider.state('trackFillWidth')).toBe('50%');
+
+    slider.setProps({ value: 33 });
+    expect(slider.state('distance')).toBe(33);
+    expect(slider.state('thumbLeft')).toBe('calc(33% - 6px)');
+    expect(slider.state('trackFillWidth')).toBe('33%');
+  });
 });

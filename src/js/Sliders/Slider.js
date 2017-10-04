@@ -461,7 +461,12 @@ export default class Slider extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { leftIcon, rightIcon, label, min, max, step } = this.props;
+    const { leftIcon, rightIcon, label, min, max, step, value } = this.props;
+    if (value !== nextProps.value) {
+      const distance = this._calcDistance(nextProps.value, nextProps.min, nextProps.max);
+      this.setState({ distance, trackFillWidth: `${distance}%`, thumbLeft: this._calcLeft(distance) });
+    }
+
     if (leftIcon !== nextProps.leftIcon
       || rightIcon !== nextProps.rightIcon
       || label !== nextProps.label

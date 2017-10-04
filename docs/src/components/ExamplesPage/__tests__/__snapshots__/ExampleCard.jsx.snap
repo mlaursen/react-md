@@ -54,7 +54,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       <svg
         aria-labelledby={null}
         className="md-icon md-text--inherit"
-        focusable={false}
+        focusable="false"
         role="img"
         style={undefined}
         title={undefined}
@@ -150,7 +150,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       <svg
         aria-labelledby={null}
         className="md-icon md-text--inherit"
-        focusable={false}
+        focusable="false"
         role="img"
         style={undefined}
         title={undefined}
@@ -259,7 +259,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       <svg
         aria-labelledby={null}
         className="md-icon md-text--inherit"
-        focusable={false}
+        focusable="false"
         role="img"
         style={undefined}
         title={undefined}
@@ -351,7 +351,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       <svg
         aria-labelledby={null}
         className="md-icon md-text--inherit"
-        focusable={false}
+        focusable="false"
         role="img"
         style={undefined}
         title={undefined}

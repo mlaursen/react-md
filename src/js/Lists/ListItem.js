@@ -63,6 +63,26 @@ export default class ListItem extends PureComponent {
     contentClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the element that is rendered before content node.
+     */
+    leftNodeStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the element that is rendered before content node.
+     */
+    leftNodeClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the element that is rendered after content node.
+     */
+    rightNodeStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the element that is rendered after content node.
+     */
+    rightNodeClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the div surrounding the `primaryText`.
      */
     primaryTextStyle: PropTypes.object,
@@ -194,6 +214,12 @@ export default class ListItem extends PureComponent {
     ]).isRequired,
 
     /**
+     * An optional ref callback to get reference to the top-most element of the `ListItem` component.
+     * Just like other refs, this will provide null when it unmounts.
+     */
+    itemRef: PropTypes.func,
+
+    /**
      * An optional list of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` components
      * to render in a nested list. This will inject an expander icon to the right of the text
      * in the `.md-list-tile` that rotates 180 degrees when open.
@@ -312,7 +338,7 @@ export default class ListItem extends PureComponent {
     /**
      * Any additional props you would like to supply to the surrounding `<li>` tag for the `ListItem`.
      * By default, all props will be provided to the inner `AccessibleFakeButton`. If the `passPropsToItem`
-     * prop is enabled, the remaining props will be provided to the `<lI>` tag instead and this prop
+     * prop is enabled, the remaining props will be provided to the `<li>` tag instead and this prop
      * is probably useless.
      */
     itemProps: PropTypes.object,
@@ -410,8 +436,12 @@ export default class ListItem extends PureComponent {
   };
 
   _setContainer = (container) => {
+    const { itemRef } = this.props;
     if (container) {
       this._container = findDOMNode(container);
+    }
+    if (itemRef) {
+      itemRef(container ? this._container : null);
     }
   };
 
@@ -505,6 +535,10 @@ export default class ListItem extends PureComponent {
       tileClassName,
       contentStyle,
       contentClassName,
+      leftNodeStyle,
+      leftNodeClassName,
+      rightNodeStyle,
+      rightNodeClassName,
       primaryTextStyle,
       primaryTextClassName,
       secondaryTextStyle,
@@ -561,6 +595,8 @@ export default class ListItem extends PureComponent {
     let leftNode = (
       <TileAddon
         key="left-addon"
+        style={leftNodeStyle}
+        className={leftNodeClassName}
         active={active}
         activeClassName={activeClassName}
         icon={leftIcon}
@@ -571,6 +607,8 @@ export default class ListItem extends PureComponent {
     let rightNode = (
       <TileAddon
         key="right-addon"
+        style={rightNodeStyle}
+        className={rightNodeClassName}
         active={active}
         activeClassName={activeClassName}
         icon={rightIcon}

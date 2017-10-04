@@ -11,6 +11,8 @@ import Determinate from './Determinate';
 import DeterminateRaw from '!!raw-loader!./Determinate.jsx';
 import QueryIndeterminate from './QueryIndeterminate';
 import QueryIndeterminateRaw from '!!raw-loader!./QueryIndeterminate.jsx';
+import ProgressStyle from './ProgressStyle';
+import ProgressStyleRaw from '!!raw-loader!./ProgressStyle.jsx';
 
 const fullDescription = `
 ${description}
@@ -63,6 +65,15 @@ incrementing until it reaches \`100\`.
   `,
   code: QueryIndeterminateRaw,
   children: <QueryIndeterminate />,
+}, {
+  title: 'Additional Styling Control',
+  description: `
+If it is desired to have additional control over the progress bar's style, you can use the \`progressStyle\` and \`progressClassName\`
+props. These two props can either be a static style object or className that gets applied to the progress bar, or they can be functions
+that return the style or className based on the current value.
+  `,
+  code: ProgressStyleRaw,
+  children: <ProgressStyle />,
 }];
 
 const LinearProgress = () => <ExamplesPage description={fullDescription} examples={examples} />;

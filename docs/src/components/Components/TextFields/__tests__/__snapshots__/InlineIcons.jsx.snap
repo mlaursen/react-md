@@ -139,7 +139,7 @@ exports[`InlineIcons should render correctly 1`] = `
         <svg
           aria-labelledby={null}
           className="md-icon md-text-field-icon md-text-field-icon--positioned"
-          focusable={false}
+          focusable="false"
           role="img"
           style={undefined}
           title={undefined}
@@ -214,7 +214,7 @@ exports[`InlineIcons should render correctly 1`] = `
         <svg
           aria-labelledby={null}
           className="md-icon md-text-field-icon md-text-field-icon--positioned"
-          focusable={false}
+          focusable="false"
           role="img"
           style={undefined}
           title={undefined}
@@ -326,7 +326,7 @@ exports[`InlineIcons should render correctly 1`] = `
       <svg
         aria-labelledby={null}
         className="md-icon"
-        focusable={false}
+        focusable="false"
         role="img"
         style={undefined}
         title={undefined}

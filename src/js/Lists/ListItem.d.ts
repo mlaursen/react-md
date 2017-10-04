@@ -22,6 +22,10 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
 
   contentStyle?: React.CSSProperties;
   contentClassName?: string;
+  leftNodeStyle?: React.CSSProperties;
+  leftNodeClassName?: string;
+  rightNodeStyle?: React.CSSProperties;
+  rightNodeClassName?: string;
   primaryTextStyle?: React.CSSProperties;
   primaryTextClassName?: string;
   secondaryTextStyle?: React.CSSProperties;
@@ -44,6 +48,7 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   active?: boolean;
   activeClassName?: string;
   animateNestedItems?: boolean;
+  itemRef?: (ref: React.ReactHTMLElement<any> | null) => null;
 
   /**
    * @deprecated

@@ -1,4 +1,36 @@
+## October 2017
+### v1.1.7 Released
+#### Changelog
+- Fixed a Typescript definition for `DatePicker`. ([@noseglid] - [pull-564])
+
+### v1.1.6 Released
+This fixed some of the bad markdown linking in my documentation as well as including a few more date picker examples.
+
+#### Changelog
+- Fixed the `Slider` when its value is controlled. [issues-561]
+- Fixed the `TimePicker` when its value is controlled. [issues-559]
+- Added some additional styling props to the `ListItem`. ([@gamtiq] - [pull-553])
+- Added ability to see additional days in the `DatePicker`. ([@gamtiq] - [pull-557]) and [commit-8504b7a]
+- Exposed additional props for the `EditDialogColumn`'s ok and cancel buttons. [commit-124272b]
+- Correctly exported the `Tooltipped` component. [commit-e647877]
+
 ## September 2017
+### v1.1.5 Released
+#### Changelog
+- Updated the `SelectionControlGroup` so that it is easier to apply icons through the entire list of controls.
+[commit-883e6ee]
+- Updated `Button`s to correctly apply `md-text` when they do not have `primary` or `secondary` colors applied.
+[commit-2250d91]
+- Fixed the `Layover.HorizontalAnchors.RIGHT` not applying the correct styles. [issues-540]
+- Fixed a weird case where `Dialog`s can be stuck visible. [issues-539]
+- Exposed a lot more style and className props. [commit-f6fa91f]
+- Exposed additional ways to style the `LinearProgress`. ([@gamtiq] - [pull-550])
+- Updated the `focusable` attribute to be a `string` instead of a `boolean` on `SVGIcon`. [commit-849021a]
+- Updated the `TextField` `resize` ability to also account for icons. [commit-a20bab4], [commit-58802eb], and [commit-4a5a55c]
+- Fixed the `DataTable`'s `Checkbox` displaying weird if there is little content in a table. [issues-549]
+- Updated `Collapse` Typescript definition to have `springConfig` optional. ([@noseglid] - [pull-534])
+- Updated `DataTable` Typescript definition to include `fullWidth`. ([@noseglid] - [pull-548])
+
 ### General Website Updates
 This is one of the other exciting things for me. With the release of 1.1.0, the documentation website
 has also been rewritten from the ground up for better SSR, response time, and a first pass at offline
