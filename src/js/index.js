@@ -70,6 +70,7 @@ import { TabsContainer, Tabs, Tab, MenuTab, TabPanel } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import injectTooltip, { Tooltipped } from './Tooltips';
+import bem from './utils/bem';
 
 // Exposes for UMD -> ReactMD.Autocomplete
 export { Autocomplete };
@@ -154,6 +155,7 @@ export { TextField };
 export { Toolbar };
 export { injectTooltip };
 export { Tooltipped };
+export { bem };
 
 // Exposes for ES6 modules
 export default {
@@ -262,4 +264,6 @@ export default {
   Toolbar,
   injectTooltip,
   Tooltipped,
+
+  bem,
 };
