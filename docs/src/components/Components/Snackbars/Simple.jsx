@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Button from 'react-md/lib/Buttons/Button';
-import Snackbar from 'react-md/lib/Snackbars';
+import { Button, Snackbar } from 'react-md';
 
 const MOBILE_MULTILINE = 'This item has the label "travel". You can add a new label.';
 const DESKTOP_MULTILINE = `There aren't really any examples of a multiline snackbar on non-mobile devices.

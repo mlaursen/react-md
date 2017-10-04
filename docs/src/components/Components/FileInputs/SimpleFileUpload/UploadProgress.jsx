@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import { Button, LinearProgress } from 'react-md';
 
 const UploadProgress = ({ progress, onAbortClick, file }) => {
   if (typeof progress !== 'number') {

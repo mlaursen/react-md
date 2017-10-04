@@ -1,5 +1,5 @@
 import React from 'react';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { SVGIcon } from 'react-md';
 
 import './_sprites.scss';
 import copyright from 'icons/copyright.svg';

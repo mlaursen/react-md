@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import FontIcon from 'react-md/lib/FontIcons';
-import ListItemControl from 'react-md/lib/Lists/ListItemControl';
-import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
+import { FontIcon, ListItemControl, Checkbox } from 'react-md';
 
 export default class CheckboxListItem extends PureComponent {
   static propTypes = {

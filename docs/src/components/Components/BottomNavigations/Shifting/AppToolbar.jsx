@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Button from 'react-md/lib/Buttons/Button';
-import TextField from 'react-md/lib/TextFields';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, TextField, Toolbar } from 'react-md';
 
 const AppToolbar = ({ inset }) => {
   let search;

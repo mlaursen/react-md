@@ -2,10 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import Media from 'react-md/lib/Media';
+import { Button, Card, CardTitle, Media } from 'react-md';
 
 const Section = ({ className, listClassName, cardClassName, title, data, titleIcon, ...props }) => {
   let titleChildren;

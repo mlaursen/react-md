@@ -1,13 +1,13 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import PropTypesTable from '../PropTypesTable';
 
 describe('PropTypesTable', () => {
   it('should render correctly with no props', () => {
-    const tree = createRouterSnapshot(<PropTypesTable ascending visibleProps={[]} baseId="wowza" />);
+    const tree = renderRouterSnapshot(<PropTypesTable ascending visibleProps={[]} baseId="wowza" />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -50,7 +50,7 @@ describe('PropTypesTable', () => {
       type: 'custom',
     }];
 
-    const tree = createRouterSnapshot(<PropTypesTable ascending visibleProps={props} baseId="font-icons-proptypes" />);
+    const tree = renderRouterSnapshot(<PropTypesTable ascending visibleProps={props} baseId="font-icons-proptypes" />);
     expect(tree).toMatchSnapshot();
   });
 });

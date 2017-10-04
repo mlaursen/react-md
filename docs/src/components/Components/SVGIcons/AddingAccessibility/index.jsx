@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { SVGIcon } from 'react-md';
 
 import './_styles.scss';
 

@@ -1,11 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import loremIpsum from 'lorem-ipsum';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+} from 'react-md';
 
 const SimpleSelectableTable = () => (
   <DataTable baseId="simple-selectable-table" indeterminate>

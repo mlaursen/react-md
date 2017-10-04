@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectField from 'react-md/lib/SelectFields';
+import { SelectField } from 'react-md';
 
 const MENU_ITEMS = [{
   title: 'The Flight',

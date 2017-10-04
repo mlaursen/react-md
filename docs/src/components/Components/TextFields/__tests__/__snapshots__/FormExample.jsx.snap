@@ -2,292 +2,191 @@
 
 exports[`FormExample should render correctly 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator md-background"
-  style={undefined}
+  class="md-paper md-paper--1 phone-emulator md-background"
 >
   <header
-    className="phone-emulator__status-bar"
+    class="phone-emulator__status-bar"
   >
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       network_wifi
     </i>
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       network_cell
     </i>
     <i
-      className="md-icon material-icons"
-      style={undefined}
+      class="md-icon material-icons"
     >
       battery_full
     </i>
     <span
-      className="phone-emulator__status-bar__time"
+      class="phone-emulator__status-bar__time"
     >
       12:30
     </span>
   </header>
   <header
-    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
-    style={undefined}
+    class="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
   >
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
-      disabled={undefined}
-      href={undefined}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       type="button"
     >
+      <div
+        class="md-ink-container"
+      >
+        <span
+          aria-hidden="true"
+        />
+      </div>
       <i
-        className="md-icon material-icons md-text--inherit"
-        style={undefined}
+        class="md-icon material-icons md-text--inherit"
       >
         menu
       </i>
     </button>
     <h2
-      className="md-title md-title--toolbar"
-      id={undefined}
-      style={undefined}
+      class="md-title md-title--toolbar"
     >
       Application
     </h2>
   </header>
   <section
-    className="phone-emulator__content phone-emulator__content--offset"
-    id={undefined}
-    style={undefined}
+    class="phone-emulator__content phone-emulator__content--offset"
   >
     <form
-      className="md-grid text-fields__application"
-      onSubmit={[Function]}
+      class="md-grid text-fields__application"
     >
       <div
-        className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--12"
-        onClick={[Function]}
-        onDoubleClick={undefined}
-        onMouseDown={undefined}
-        onMouseLeave={undefined}
-        onMouseOver={undefined}
-        onMouseUp={undefined}
-        onTouchCancel={undefined}
-        onTouchEnd={undefined}
-        onTouchMove={undefined}
-        onTouchStart={undefined}
-        style={undefined}
+        class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--12"
       >
         <label
-          className="md-floating-label md-floating-label--title md-floating-label--floating md-text--secondary"
-          htmlFor="application-title"
+          class="md-floating-label md-floating-label--title md-floating-label--floating md-text--secondary"
+          for="application-title"
         >
           Title *
         </label>
         <input
-          className="md-text-field md-text-field--floating-margin md-text-field--title md-full-width md-text"
-          defaultValue="Vintage 50's Dress"
-          disabled={undefined}
+          class="md-text-field md-text-field--floating-margin md-text-field--title md-full-width md-text"
           id="application-title"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder={undefined}
-          rows={undefined}
-          style={undefined}
           type="text"
+          value="Vintage 50's Dress"
         />
         <hr
-          className="md-divider md-divider--text-field md-divider--expand-from-left"
+          class="md-divider md-divider--text-field md-divider--expand-from-left"
         />
       </div>
       <div
-        className="md-text-field-container md-full-width md-text-field-container--input text-fields__application__price md-cell md-cell--3 md-cell--1-phone"
-        onClick={[Function]}
-        onDoubleClick={undefined}
-        onMouseDown={undefined}
-        onMouseLeave={undefined}
-        onMouseOver={undefined}
-        onMouseUp={undefined}
-        onTouchCancel={undefined}
-        onTouchEnd={undefined}
-        onTouchMove={undefined}
-        onTouchStart={undefined}
-        style={undefined}
+        class="md-text-field-container md-full-width md-text-field-container--input text-fields__application__price md-cell md-cell--3 md-cell--1-phone"
       >
         <label
-          className="md-floating-label md-floating-label--floating md-text--secondary"
-          htmlFor="application-price"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
+          for="application-price"
         >
           Price *
         </label>
         <input
-          className="md-text-field md-text-field--floating-margin md-full-width md-text"
-          defaultValue={10}
-          disabled={undefined}
+          class="md-text-field md-text-field--floating-margin md-full-width md-text"
           id="application-price"
-          min={0}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
+          min="0"
           pattern="^d+(\\\\.|\\\\,)\\\\d{2}"
-          placeholder={undefined}
-          rows={undefined}
-          step={0.01}
-          style={undefined}
+          step="0.01"
           type="number"
+          value="10"
         />
         <hr
-          className="md-divider md-divider--text-field md-divider--expand-from-left"
+          class="md-divider md-divider--text-field md-divider--expand-from-left"
         />
       </div>
       <div
-        className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--9 md-cell--3-phone md-cell--5-tablet"
-        onClick={[Function]}
-        onDoubleClick={undefined}
-        onMouseDown={undefined}
-        onMouseLeave={undefined}
-        onMouseOver={undefined}
-        onMouseUp={undefined}
-        onTouchCancel={undefined}
-        onTouchEnd={undefined}
-        onTouchMove={undefined}
-        onTouchStart={undefined}
-        style={undefined}
+        class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--9 md-cell--3-phone md-cell--5-tablet"
       >
         <label
-          className="md-floating-label md-floating-label--floating md-text--secondary"
-          htmlFor="application-location"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
+          for="application-location"
         >
           Location (optional)
         </label>
         <input
-          className="md-text-field md-text-field--floating-margin md-full-width md-text"
-          defaultValue="Fremont Bridge"
-          disabled={undefined}
+          class="md-text-field md-text-field--floating-margin md-full-width md-text"
           id="application-location"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder={undefined}
-          rows={undefined}
-          style={undefined}
           type="text"
+          value="Fremont Bridge"
         />
         <hr
-          className="md-divider md-divider--text-field md-divider--expand-from-left"
+          class="md-divider md-divider--text-field md-divider--expand-from-left"
         />
       </div>
       <div
-        className="md-text-field-container md-full-width md-text-field-container--multiline md-cell md-cell--12"
-        onClick={[Function]}
-        onDoubleClick={undefined}
-        onMouseDown={undefined}
-        onMouseLeave={undefined}
-        onMouseOver={undefined}
-        onMouseUp={undefined}
-        onTouchCancel={undefined}
-        onTouchEnd={undefined}
-        onTouchMove={undefined}
-        onTouchStart={undefined}
-        style={undefined}
+        class="md-text-field-container md-full-width md-text-field-container--multiline md-cell md-cell--12"
       >
         <label
-          className="md-floating-label md-floating-label--floating md-text--secondary"
-          htmlFor="application-description"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
+          for="application-description"
         >
           Description
         </label>
         <div
-          className="md-text-field-multiline-container md-text-field--floating-margin"
-          style={
-            Object {
-              "height": null,
-            }
-          }
+          class="md-text-field-multiline-container md-text-field--floating-margin"
         >
           <span
-            aria-hidden={true}
+            aria-hidden="true"
           />
           <textarea
-            aria-hidden={true}
-            className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
-            defaultValue="Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures."
-            readOnly={true}
-            rows={2}
-            style={undefined}
-            tabIndex={-1}
-            value={undefined}
-          />
+            aria-hidden="true"
+            class="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
+            readonly=""
+            rows="2"
+            tabindex="-1"
+          >
+            Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures.
+          </textarea>
           <textarea
-            className="md-text-field md-text-field--multiline md-full-width md-text"
-            defaultValue="Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures."
-            disabled={undefined}
+            class="md-text-field md-text-field--multiline md-full-width md-text"
             id="application-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder={undefined}
-            rows={2}
-            style={
-              Object {
-                "height": null,
-              }
-            }
-            value={undefined}
-          />
+            rows="2"
+          >
+            Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures.
+          </textarea>
         </div>
         <hr
-          className="md-divider md-divider--text-field md-divider--expand-from-left"
+          class="md-divider md-divider--text-field md-divider--expand-from-left"
         />
       </div>
       <div
-        className="md-selection-control-container md-selection-control-container--inline md-switch-container md-cell md-cell--12"
-        onKeyDown={[Function]}
-        style={undefined}
+        class="md-selection-control-container md-selection-control-container--inline md-switch-container md-cell md-cell--12"
       >
         <input
-          aria-hidden={true}
-          aria-label={undefined}
-          aria-labelledby={undefined}
-          checked={false}
-          className="md-selection-control-input"
-          disabled={undefined}
+          aria-hidden="true"
+          class="md-selection-control-input"
           id="application-publish"
           name="publishing"
-          onChange={[Function]}
           type="checkbox"
-          value={undefined}
         />
         <label
-          className="md-selection-control-label md-pointer--hover md-text"
-          htmlFor="application-publish"
+          class="md-selection-control-label md-pointer--hover md-text"
+          for="application-publish"
         >
           <div
-            className="md-switch-track md-pointer--hover md-switch-track--off"
+            class="md-switch-track md-pointer--hover md-switch-track--off"
           >
             <div
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-switch-thumb md-switch-thumb--off"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-switch-thumb md-switch-thumb--off"
               role="button"
-              tabIndex={0}
-            />
+              tabindex="0"
+            >
+              <div
+                class="md-ink-container md-ink-container--2x"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
           </div>
           <span>
             Publish immediately?
@@ -295,52 +194,45 @@ exports[`FormExample should render correctly 1`] = `
         </label>
       </div>
       <fieldset
-        className="md-selection-control-group md-cell md-cell--12 text-fields__application__publishes"
-        onChange={[Function]}
-        onKeyDown={null}
+        class="md-selection-control-group md-cell md-cell--12 text-fields__application__publishes"
       >
         <legend
-          className="md-subheading-1"
+          class="md-subheading-1"
         >
           Publish to:
         </legend>
         <div
-          className="md-selection-control-container"
-          onKeyDown={[Function]}
-          style={undefined}
+          class="md-selection-control-container"
         >
           <input
-            aria-hidden={true}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            checked={true}
-            className="md-selection-control-input"
-            disabled={undefined}
+            aria-hidden="true"
+            checked=""
+            class="md-selection-control-input"
             id="publish-to0"
             name="publish-places[]"
-            onChange={[Function]}
             type="checkbox"
             value="MAS"
           />
           <label
-            className="md-selection-control-label md-pointer--hover md-text"
-            htmlFor="publish-to0"
+            class="md-selection-control-label md-pointer--hover md-text"
+            for="publish-to0"
           >
             <div
-              aria-checked={true}
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-checked="true"
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
               role="checkbox"
-              tabIndex={0}
+              tabindex="0"
             >
+              <div
+                class="md-ink-container"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
               <i
-                className="md-icon material-icons md-text--inherit"
-                style={undefined}
+                class="md-icon material-icons md-text--inherit"
               >
                 check_box
               </i>
@@ -351,42 +243,36 @@ exports[`FormExample should render correctly 1`] = `
           </label>
         </div>
         <div
-          className="md-selection-control-container"
-          onKeyDown={[Function]}
-          style={undefined}
+          class="md-selection-control-container"
         >
           <input
-            aria-hidden={true}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            checked={false}
-            className="md-selection-control-input"
-            disabled={undefined}
+            aria-hidden="true"
+            class="md-selection-control-input"
             id="publish-to1"
             name="publish-places[]"
-            onChange={[Function]}
             type="checkbox"
             value="AMZ"
           />
           <label
-            className="md-selection-control-label md-pointer--hover md-text"
-            htmlFor="publish-to1"
+            class="md-selection-control-label md-pointer--hover md-text"
+            for="publish-to1"
           >
             <div
-              aria-checked={false}
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-checked="false"
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
               role="checkbox"
-              tabIndex={0}
+              tabindex="0"
             >
+              <div
+                class="md-ink-container"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
               <i
-                className="md-icon material-icons md-text--inherit"
-                style={undefined}
+                class="md-icon material-icons md-text--inherit"
               >
                 check_box_outline_blank
               </i>
@@ -397,42 +283,36 @@ exports[`FormExample should render correctly 1`] = `
           </label>
         </div>
         <div
-          className="md-selection-control-container"
-          onKeyDown={[Function]}
-          style={undefined}
+          class="md-selection-control-container"
         >
           <input
-            aria-hidden={true}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            checked={false}
-            className="md-selection-control-input"
-            disabled={undefined}
+            aria-hidden="true"
+            class="md-selection-control-input"
             id="publish-to2"
             name="publish-places[]"
-            onChange={[Function]}
             type="checkbox"
             value="PTS"
           />
           <label
-            className="md-selection-control-label md-pointer--hover md-text"
-            htmlFor="publish-to2"
+            class="md-selection-control-label md-pointer--hover md-text"
+            for="publish-to2"
           >
             <div
-              aria-checked={false}
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-checked="false"
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
               role="checkbox"
-              tabIndex={0}
+              tabindex="0"
             >
+              <div
+                class="md-ink-container"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
               <i
-                className="md-icon material-icons md-text--inherit"
-                style={undefined}
+                class="md-icon material-icons md-text--inherit"
               >
                 check_box_outline_blank
               </i>
@@ -443,42 +323,37 @@ exports[`FormExample should render correctly 1`] = `
           </label>
         </div>
         <div
-          className="md-selection-control-container"
-          onKeyDown={[Function]}
-          style={undefined}
+          class="md-selection-control-container"
         >
           <input
-            aria-hidden={true}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            checked={true}
-            className="md-selection-control-input"
-            disabled={undefined}
+            aria-hidden="true"
+            checked=""
+            class="md-selection-control-input"
             id="publish-to3"
             name="publish-places[]"
-            onChange={[Function]}
             type="checkbox"
             value="EBY"
           />
           <label
-            className="md-selection-control-label md-pointer--hover md-text"
-            htmlFor="publish-to3"
+            class="md-selection-control-label md-pointer--hover md-text"
+            for="publish-to3"
           >
             <div
-              aria-checked={true}
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-checked="true"
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
               role="checkbox"
-              tabIndex={0}
+              tabindex="0"
             >
+              <div
+                class="md-ink-container"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
               <i
-                className="md-icon material-icons md-text--inherit"
-                style={undefined}
+                class="md-icon material-icons md-text--inherit"
               >
                 check_box
               </i>
@@ -489,42 +364,36 @@ exports[`FormExample should render correctly 1`] = `
           </label>
         </div>
         <div
-          className="md-selection-control-container"
-          onKeyDown={[Function]}
-          style={undefined}
+          class="md-selection-control-container"
         >
           <input
-            aria-hidden={true}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            checked={false}
-            className="md-selection-control-input"
-            disabled={undefined}
+            aria-hidden="true"
+            class="md-selection-control-input"
             id="publish-to4"
             name="publish-places[]"
-            onChange={[Function]}
             type="checkbox"
             value="SOS"
           />
           <label
-            className="md-selection-control-label md-pointer--hover md-text"
-            htmlFor="publish-to4"
+            class="md-selection-control-label md-pointer--hover md-text"
+            for="publish-to4"
           >
             <div
-              aria-checked={false}
-              aria-pressed={false}
-              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
-              disabled={undefined}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
+              aria-checked="false"
+              aria-pressed="false"
+              class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
               role="checkbox"
-              tabIndex={0}
+              tabindex="0"
             >
+              <div
+                class="md-ink-container"
+              >
+                <span
+                  aria-hidden="true"
+                />
+              </div>
               <i
-                className="md-icon material-icons md-text--inherit"
-                style={undefined}
+                class="md-icon material-icons md-text--inherit"
               >
                 check_box_outline_blank
               </i>
@@ -536,22 +405,19 @@ exports[`FormExample should render correctly 1`] = `
         </div>
       </fieldset>
       <section
-        className="md-dialog-footer--card md-dialog-footer--inline md-cell md-cell--12"
+        class="md-dialog-footer--card md-dialog-footer--inline md-cell md-cell--12"
       >
         <button
-          className="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--primary md-background--primary-hover md-inline-block md-cell--right"
-          disabled={undefined}
-          href={undefined}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchStart={[Function]}
+          class="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--primary md-background--primary-hover md-inline-block md-cell--right"
           type="submit"
         >
+          <div
+            class="md-ink-container"
+          >
+            <span
+              aria-hidden="true"
+            />
+          </div>
           Submit
         </button>
       </section>

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Autocomplete from 'react-md/lib/Autocompletes';
+import { Autocomplete } from 'react-md';
 
 import states from 'constants/sampleData/states';
 

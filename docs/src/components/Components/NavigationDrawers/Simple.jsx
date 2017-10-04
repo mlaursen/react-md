@@ -1,9 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import NavigationDrawer from 'react-md/lib/NavigationDrawers';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Button, DialogContainer, NavigationDrawer, SVGIcon } from 'react-md';
 
 import menu from 'icons/menu.svg';
 import arrowBack from 'icons/arrow_back.svg';

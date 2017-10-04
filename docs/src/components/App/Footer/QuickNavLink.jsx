@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon } from 'react-md';
 
 function focusContent() {
   document.getElementById('main-content').focus();

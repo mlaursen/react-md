@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createSnapshot } from 'utils/testing';
+import { render } from 'enzyme';
 
 import PhoneEmulator from '../PhoneEmulator';
 
@@ -25,14 +25,14 @@ class ContextProvider extends React.Component {
 
 describe('PhoneEmulator', () => {
   it('should render correctly with the base required props', () => {
-    const tree1 = createSnapshot(
+    const tree1 = render(
       <ContextProvider>
         <PhoneEmulator mobile={false}>
           <h2>This is some content that should appear in the phone emulator!</h2>
         </PhoneEmulator>
       </ContextProvider>
     );
-    const tree2 = createSnapshot(
+    const tree2 = render(
       <ContextProvider>
         <PhoneEmulator mobile>
           <h2>This is some content that should appear in the phone emulator!</h2>
@@ -44,7 +44,7 @@ describe('PhoneEmulator', () => {
   });
 
   it('should be able to render without a toolbar', () => {
-    const tree = createSnapshot(
+    const tree = render(
       <ContextProvider>
         <PhoneEmulator toolbar={false}>
           <h2>This is some content that should appear in the phone emulator!</h2>
@@ -55,14 +55,14 @@ describe('PhoneEmulator', () => {
   });
 
   it('should render only the children if mobileOnly is provided and not mobile', () => {
-    const tree1 = createSnapshot(
+    const tree1 = render(
       <ContextProvider>
         <PhoneEmulator mobileOnly mobile={false}>
           <h2>This is some content that should appear in the phone emulator!</h2>
         </PhoneEmulator>
       </ContextProvider>
     );
-    const tree2 = createSnapshot(
+    const tree2 = render(
       <ContextProvider>
         <PhoneEmulator mobileOnly mobile={false}>
           <div>Line 1</div>

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { withRouter } from 'react-router';
 import { Link, Route, Switch } from 'react-router-dom';
-import Button from 'react-md/lib/Buttons/Button';
-import Drawer from 'react-md/lib/Drawers';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, Drawer, Toolbar } from 'react-md';
 
 import NavItemLink from './NavItemLink';
 import Inbox from './Inbox';

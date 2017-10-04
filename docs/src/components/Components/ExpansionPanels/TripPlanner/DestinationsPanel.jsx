@@ -2,11 +2,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Chip from 'react-md/lib/Chips';
-import { ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import FontIcon from 'react-md/lib/FontIcons';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+import {
+  Autocomplete,
+  Chip,
+  ExpansionPanel,
+  FontIcon,
+  IconSeparator,
+} from 'react-md';
 
 import vacationSpots from 'constants/sampleData/vacationSpots';
 

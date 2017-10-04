@@ -1,6 +1,5 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Subheader from 'react-md/lib/Subheaders';
+import { Avatar, Subheader } from 'react-md';
 
 const style = { margin: '1em' };
 

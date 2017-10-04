@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
+import { AccessibleFakeButton } from 'react-md';
 import { Motion, spring } from 'react-motion';
 
 import './_styles.scss';

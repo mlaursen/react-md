@@ -1,5 +1,5 @@
 import React from 'react';
-import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+import { TimePicker } from 'react-md';
 
 const DEFAULT_DATE = new Date(2017, 10, 22, 2, 22, 56, 330);
 const FORMAT_OPTIONS = {

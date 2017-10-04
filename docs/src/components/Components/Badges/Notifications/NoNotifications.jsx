@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import Paper from 'react-md/lib/Papers';
+import { FontIcon, Paper } from 'react-md';
 
 const NoNotifications = () => (
   <div className="badges__notifications__empty">

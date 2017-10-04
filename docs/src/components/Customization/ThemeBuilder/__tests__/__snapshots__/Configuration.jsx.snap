@@ -33,6 +33,13 @@ exports[`Configuration should render correctly 1`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -66,6 +73,13 @@ exports[`Configuration should render correctly 1`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -264,6 +278,13 @@ exports[`Configuration should render correctly 2`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -494,6 +515,13 @@ exports[`Configuration should render correctly 3`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -527,6 +555,13 @@ exports[`Configuration should render correctly 3`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -724,6 +759,13 @@ exports[`Configuration should render correctly 4`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -756,6 +798,13 @@ exports[`Configuration should render correctly 4`] = `
         role="checkbox"
         tabindex="0"
       >
+        <div
+          class="md-ink-container"
+        >
+          <span
+            aria-hidden="true"
+          />
+        </div>
         <i
           class="md-icon material-icons md-text--inherit"
         >

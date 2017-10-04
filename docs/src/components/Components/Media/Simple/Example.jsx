@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import loremIpsum from 'lorem-ipsum';
-import Paper from 'react-md/lib/Papers';
+import { Paper } from 'react-md';
 
 const Example = ({ children }) => (
   <Paper className="md-cell md-cell--12 md-grid">

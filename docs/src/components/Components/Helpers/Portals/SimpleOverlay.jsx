@@ -1,9 +1,6 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
-import Button from 'react-md/lib/Buttons/Button';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
-import Portal from 'react-md/lib/Helpers/Portal';
+import { AccessibleFakeButton, Button, Portal } from 'react-md';
 
 export default class SimpleOverlay extends PureComponent {
   state = {

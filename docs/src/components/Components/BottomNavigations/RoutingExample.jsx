@@ -4,9 +4,7 @@ import cn from 'classnames';
 import { withRouter } from 'react-router';
 import { Route, Link, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BottomNavigation from 'react-md/lib/BottomNavigations';
-import FontIcon from 'react-md/lib/FontIcons';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { BottomNavigation, FontIcon, SVGIcon } from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 import withMinHeight from 'components/hoc/withMinHeight';

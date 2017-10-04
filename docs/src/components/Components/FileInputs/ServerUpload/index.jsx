@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import { FileUpload } from 'react-md/lib/FileInputs';
-import Button from 'react-md/lib/Buttons/Button';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import Snackbar from 'react-md/lib/Snackbars';
-import TextField from 'react-md/lib/TextFields';
-import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import {
+  Button,
+  CardActions,
+  FileUpload,
+  LinearProgress,
+  Snackbar,
+  TextField,
+} from 'react-md';
 
 import { API_ENDPOINT, FAKE_UPLOAD_ENDPOINT } from 'constants/application';
 

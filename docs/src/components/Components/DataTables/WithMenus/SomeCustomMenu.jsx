@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from 'react-md/lib/Avatars';
-import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
-import DropdownMenuColumn from 'react-md/lib/DataTables/DropdownMenuColumn';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import {
+  Avatar,
+  AccessibleFakeButton,
+  IconSeparator,
+  DropdownMenuColumn,
+  SVGIcon,
+} from 'react-md';
 
 import arrow from 'icons/arrow_drop_down.svg';
 

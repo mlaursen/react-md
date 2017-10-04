@@ -1,11 +1,11 @@
 /* eslint-env jest */
 import React from 'react';
-import { createSnapshot } from 'utils/testing';
+import { render } from 'enzyme';
 import Contact from '../Contact';
 
 describe('Contact', () => {
   it('should render correctly', () => {
-    const tree = createSnapshot(<Contact />);
+    const tree = render(<Contact />);
     expect(tree).toMatchSnapshot();
   });
 });

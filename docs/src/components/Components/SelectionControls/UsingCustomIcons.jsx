@@ -1,8 +1,10 @@
 import React from 'react';
-import SVGIcon from 'react-md/lib/SVGIcons';
-import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
+import {
+  SVGIcon,
+  Checkbox,
+  SelectionControl,
+  SelectionControlGroup,
+} from 'react-md';
 
 import check from 'icons/check.svg';
 import favorite from 'icons/favorite.svg';

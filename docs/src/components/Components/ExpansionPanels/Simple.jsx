@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
-import { ExpansionList, ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import Slider from 'react-md/lib/Sliders';
+import { ExpansionList, ExpansionPanel, Slider } from 'react-md';
 import loremIpsum from 'lorem-ipsum';
 
 import PhoneEmulator from 'components/PhoneEmulator';

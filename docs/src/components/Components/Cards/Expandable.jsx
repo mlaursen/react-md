@@ -1,10 +1,12 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Button from 'react-md/lib/Buttons';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import CardText from 'react-md/lib/Cards/CardText';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardActions,
+  CardText,
+  CardTitle,
+} from 'react-md';
 
 import { randomImage } from 'utils/random';
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, Toolbar } from 'react-md';
 
 import CloseEmulator from 'components/PhoneEmulator/CloseEmulator';
 

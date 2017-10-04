@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Route } from 'react-router-dom';
-import FontIcon from 'react-md/lib/FontIcons';
-import ListItem from 'react-md/lib/Lists/ListItem';
+import { FontIcon, ListItem } from 'react-md';
 
 /**
  * Due to the fact that react-router uses context and most of the components

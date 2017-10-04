@@ -1,10 +1,12 @@
 import React from 'react';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+  EditDialogColumn,
+} from 'react-md';
 
 const EditDialogExample = () => (
   <DataTable baseId="edit-dialog-example" fullWidth={false} className="data-tables__edit-table-example">

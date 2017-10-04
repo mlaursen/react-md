@@ -5,7 +5,7 @@ import { connectAdvanced } from 'react-redux';
 import { withRouter } from 'react-router';
 import shallowEqual from 'shallowequal';
 import Helmet from 'react-helmet';
-import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+import { NavigationDrawer } from 'react-md';
 
 import { updateMedia } from 'state/media';
 import { updateLocation } from 'state/routing';

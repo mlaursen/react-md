@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, Toolbar } from 'react-md';
 
 import BadgeWithDialog from './BadgeWithDialog';
 

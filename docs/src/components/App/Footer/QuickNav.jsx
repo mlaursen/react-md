@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
-import Collapse from 'react-md/lib/Helpers/Collapse';
+import { Collapse } from 'react-md';
 import QuickNavLink from './QuickNavLink';
 
 export const PureQuickNav = ({

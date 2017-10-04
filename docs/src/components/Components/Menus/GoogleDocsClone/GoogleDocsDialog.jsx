@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { DialogContainer } from 'react-md';
 
 import DocumentToolbar from './DocumentToolbar';
 import DocumentContainer from './DocumentContainer';

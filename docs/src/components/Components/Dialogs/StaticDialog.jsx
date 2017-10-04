@@ -1,6 +1,5 @@
 import React from 'react';
-import Dialog from 'react-md/lib/Dialogs/Dialog';
-import FontIcon from 'react-md/lib/FontIcons';
+import { Dialog, FontIcon } from 'react-md';
 
 import './_styles.scss';
 

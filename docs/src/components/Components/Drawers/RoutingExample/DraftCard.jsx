@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
+import { Card, CardText, CardTitle } from 'react-md';
 
 const DraftCard = ({ title, to, message }) => (
   <Card className="md-cell md-cell--12 md-text-container">

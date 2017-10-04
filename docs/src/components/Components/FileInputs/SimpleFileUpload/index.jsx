@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import Button from 'react-md/lib/Buttons/Button';
-import { FileUpload } from 'react-md/lib/FileInputs';
+import { Button, FileUpload } from 'react-md';
 import guid from 'uuid/v1';
 import { without } from 'lodash/array';
 

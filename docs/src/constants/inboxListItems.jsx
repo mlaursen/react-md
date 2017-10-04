@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon } from 'react-md';
 
 export default [{
   key: 'inbox',

@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import injectTooltip from 'react-md/lib/Tooltips';
+import { FontIcon, injectTooltip } from 'react-md';
 
 const styles = {
   tooltipContainer: {

@@ -2,33 +2,46 @@
 
 exports[`Showcases should render all the showcases 1`] = `
 <div
-  className="md-grid"
-  style={undefined}
+  class="md-grid"
 >
   <section
-    className="markdown-container md-text-container md-cell md-cell--12"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<h2 id=\\"showcases\\">Showcases</h2>
-<p>The following is a list of products/apps that use react-md other than this documentation site. Their entire
-interface might not be implemented with react-md, but it should give a good idea of how it is used.</p>
-<p>Want to showcase your app/product? Either open a pull request adding your application or look at
-<a href=\\"https://github.com/mlaursen/react-md/issues/196\\" class=\\"link\\">the github issue</a> for getting your site added.</p>
-",
-      }
-    }
-  />
+    class="markdown-container md-text-container md-cell md-cell--12"
+  >
+    <h2
+      id="showcases"
+    >
+      Showcases
+    </h2>
+    
+
+    <p>
+      The following is a list of products/apps that use react-md other than this documentation site. Their entire
+interface might not be implemented with react-md, but it should give a good idea of how it is used.
+    </p>
+    
+
+    <p>
+      Want to showcase your app/product? Either open a pull request adding your application or look at
+
+      <a
+        class="link"
+        href="https://github.com/mlaursen/react-md/issues/196"
+      >
+        the github issue
+      </a>
+       for getting your site added.
+    </p>
+    
+
+  </section>
   <ul
-    className="md-grid md-grid--no-spacing md-list-unstyled md-cell md-cell--12"
+    class="md-grid md-grid--no-spacing md-list-unstyled md-cell md-cell--12"
   >
     <li
-      className="md-paper md-paper--1 md-card md-background--card showcase-card"
-      onMouseLeave={[Function]}
-      onMouseOver={[Function]}
-      onTouchStart={[Function]}
+      class="md-paper md-paper--1 md-card md-background--card showcase-card"
     >
       <a
-        className="md-media md-media--16-9"
+        class="md-media md-media--16-9"
         href="https://bredariol.be/product"
         title="Les Passions de Peronnes"
       >
@@ -38,46 +51,40 @@ interface might not be implemented with react-md, but it should give a good idea
         />
       </a>
       <div
-        className="md-card-title md-card-title--primary"
-        style={undefined}
+        class="md-card-title md-card-title--primary"
       >
         <div
-          className="md-card-title--title-block"
+          class="md-card-title--title-block"
         >
           <h2
-            className="md-card-title--title md-card-title--large md-text"
-            id={undefined}
-            tabIndex={null}
+            class="md-card-title--title md-card-title--large md-text"
           >
             Les Passions de Peronnes
           </h2>
           <h3
-            className="md-card-title--title md-text--secondary"
+            class="md-card-title--title md-text--secondary"
           >
             Fadi Khadra
           </h3>
         </div>
         <a
-          className="md-btn md-btn--icon md-pointer--hover md-inline-block"
-          disabled={undefined}
+          class="md-btn md-btn--icon md-pointer--hover md-inline-block"
           href="https://github.com/fkhadra"
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchStart={[Function]}
         >
+          <div
+            class="md-ink-container"
+          >
+            <span
+              aria-hidden="true"
+            />
+          </div>
           <i
-            className="md-icon fa fa-github md-text--inherit"
-            style={undefined}
+            class="md-icon fa fa-github md-text--inherit"
           />
         </a>
       </div>
       <section
-        className="md-card-text"
+        class="md-card-text"
       >
         
 Les Passions de Péronnes offers you to discover wines of terroirs, wines of

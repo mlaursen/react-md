@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/img-has-alt */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import Drawer from 'react-md/lib/Drawers';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import Media, { MediaOverlay } from 'react-md/lib/Media';
-import Toolbar from 'react-md/lib/Toolbars';
+import {
+  Button,
+  Drawer,
+  CardTitle,
+  Media,
+  MediaOverlay,
+  Toolbar,
+} from 'react-md';
 
 const actions = [
   <Button key="share" icon>person_add</Button>,

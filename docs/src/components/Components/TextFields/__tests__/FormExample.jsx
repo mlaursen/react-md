@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import { createReduxSnapshot } from 'utils/testing';
+import { renderReduxSnapshot } from 'utils/testing';
 
 import FormExample from '../FormExample';
 
 describe('FormExample', () => {
   it('should render correctly', () => {
-    const tree = createReduxSnapshot(<FormExample />);
+    const tree = renderReduxSnapshot(<FormExample />);
     expect(tree).toMatchSnapshot();
   });
 });

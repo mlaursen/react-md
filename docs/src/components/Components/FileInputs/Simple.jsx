@@ -1,6 +1,5 @@
 import React from 'react';
-import FileInput from 'react-md/lib/FileInputs';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { FileInput, SVGIcon } from 'react-md';
 
 import fileDownload from 'icons/file_download.svg';
 

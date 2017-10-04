@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
+import { Card, CardTitle } from 'react-md';
 import { sortBy } from 'lodash/collection';
 
 import componentFunctions from 'propTypes/componentFunctions';

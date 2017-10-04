@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from 'react-md/lib/Papers';
+import { Paper } from 'react-md';
 
 const FakeResult = ({ index, value }) => {
   let children;

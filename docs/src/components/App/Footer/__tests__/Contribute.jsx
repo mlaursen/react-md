@@ -1,11 +1,11 @@
 /* eslint-env jest */
 import React from 'react';
-import { createSnapshot } from 'utils/testing';
+import { render } from 'enzyme';
 import Contribute from '../Contribute';
 
 describe('Contribute', () => {
   it('should render correctly', () => {
-    const tree = createSnapshot(<Contribute />);
+    const tree = render(<Contribute />);
     expect(tree).toMatchSnapshot();
   });
 });

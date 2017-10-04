@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import { TableRow, TableColumn } from 'react-md';
 
 export default class DessertRow extends PureComponent {
   static propTypes = {

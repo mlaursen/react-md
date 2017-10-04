@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import TextField from 'react-md/lib/TextFields';
+import { TextField } from 'react-md';
 
 export default class AutoResizing extends PureComponent {
   state = {

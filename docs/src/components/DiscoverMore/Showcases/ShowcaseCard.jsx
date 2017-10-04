@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import Media from 'react-md/lib/Media/Media';
+import {
+  Button,
+  Card,
+  CardText,
+  CardTitle,
+  Media,
+} from 'react-md';
 
 const ShowcaseCard = ({ link, logo, name, author, description }) => (
   <Card className="showcase-card" component="li">

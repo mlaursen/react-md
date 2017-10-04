@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'react-md/lib/SelectFields';
+import { SelectField } from 'react-md';
 
 const TitleMenu = props => <SelectField {...props} />;
 

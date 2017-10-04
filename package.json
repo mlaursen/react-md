@@ -23,6 +23,7 @@
     "scripts:watch": "npm run scripts -- --watch",
     "prebuild": "rimraf es lib dist",
     "build:es": "cross-env NODE_ENV=development BABEL_ENV=es rollup -c",
+    "build:es:watch": "npm run build:es -- -w",
     "build:umd:dev": "cross-env NODE_ENV=development BABEL_ENV=umd rollup -c",
     "build:umd:prod": "cross-env NODE_ENV=production BABEL_ENV=umd rollup -c",
     "build": "npm run scripts && npm run build:es && npm run build:umd:dev && npm run build:umd:prod",

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Badge from 'react-md/lib/Badges';
-import Button from 'react-md/lib/Buttons/Button';
+import { Badge, Button } from 'react-md';
 
 import NotificationDialog from './NotificationDialog';
 

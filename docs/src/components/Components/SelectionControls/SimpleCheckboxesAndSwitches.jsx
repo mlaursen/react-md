@@ -1,7 +1,5 @@
 import React from 'react';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
-import Switch from 'react-md/lib/SelectionControls/Switch';
+import { SelectionControl, Checkbox, Switch } from 'react-md';
 
 const SimpleCheckboxesAndSwitches = () => (
   <div>

@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import TextField from 'react-md/lib/TextFields';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
+import {
+  Button,
+  DialogContainer,
+  TextField,
+  SelectionControl,
+  SelectionControlGroup,
+} from 'react-md';
 
 const controls = [{
   label: 'Auto',

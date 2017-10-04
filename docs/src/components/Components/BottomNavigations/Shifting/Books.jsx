@@ -1,10 +1,6 @@
 /* eslint-disable jsx-a11y/img-has-alt */
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import Media from 'react-md/lib/Media';
+import { Button, Card, CardTitle, CardActions, Media } from 'react-md';
 
 import { randomImage } from 'utils/random';
 import books from 'constants/sampleData/books';

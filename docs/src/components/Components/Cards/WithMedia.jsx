@@ -1,7 +1,12 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons';
-import { Card, CardTitle, CardText } from 'react-md/lib/Cards';
-import Media, { MediaOverlay } from 'react-md/lib/Media';
+import {
+  Button,
+  Card,
+  CardTitle,
+  CardText,
+  Media,
+  MediaOverlay,
+} from 'react-md';
 import { QUOTATION_MARK } from 'constants/unicode';
 
 import { randomImage } from 'utils/random';

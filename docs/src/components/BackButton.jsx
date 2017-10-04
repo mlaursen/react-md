@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import Button from 'react-md/lib/Buttons/Button';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Button, SVGIcon } from 'react-md';
 
 import arrowBack from 'icons/arrow_back.svg';
 

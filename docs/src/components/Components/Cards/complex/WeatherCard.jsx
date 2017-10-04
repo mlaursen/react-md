@@ -1,7 +1,13 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import { Card, CardTitle, CardText, CardActions } from 'react-md/lib/Cards/';
-import { List, ListItem } from 'react-md/lib/Lists';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardText,
+  CardTitle,
+  List,
+  ListItem,
+} from 'react-md';
 
 import { CELCIUS } from 'constants/unicode';
 import './_styles.scss';

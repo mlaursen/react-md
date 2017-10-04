@@ -25,7 +25,7 @@
     "watch:all": "concurrently -k \"npm run watch:react-md\" \"npm run watch:docgen\" \"npm run watch:sassdoc\"",
     "watch:docgen": "watch \"npm run docgen\" ../src/js -d -u",
     "watch:sassdoc": "watch \"npm run sassdoc\" ../src/scss -d -u",
-    "watch:react-md": "cross-env BABEL_ENV=build babel --ignore __tests__,__mocks__,beforeTest.js ../src/js --watch --quiet --source-maps -d ../lib",
+    "watch:react-md": "cd .. && npm run build:es:watch",
     "start": "cross-env NODE_ENV=production node index.js",
     "start:dev": "nodemon index.js",
     "start:prod": "npm run build && npm run start",
@@ -158,7 +158,7 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
-      "react-md/(.*)": "<rootDir>/../$1"
+      "react-md": "<rootDir>/.."
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import Fuse from 'fuse.js';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
+import { Autocomplete, SelectionControlGroup } from 'react-md';
 
 import { programmingLanguages as sampleData } from 'constants/sampleData';
 

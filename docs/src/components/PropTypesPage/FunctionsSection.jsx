@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardText from 'react-md/lib/Cards/CardText';
+import { CardText } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import FunctionParameterTable from './FunctionParameterTable';

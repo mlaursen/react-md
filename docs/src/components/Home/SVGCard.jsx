@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Media from 'react-md/lib/Media';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
+import { Media, Card, CardTitle } from 'react-md';
 
 const SVGCard = ({ src, alt, title, to, ...props }) => (
   <Card

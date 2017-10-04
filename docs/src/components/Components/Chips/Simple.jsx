@@ -1,8 +1,5 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Chip from 'react-md/lib/Chips';
-
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Avatar, Chip, SVGIcon } from 'react-md';
 
 import done from 'icons/done.svg';
 

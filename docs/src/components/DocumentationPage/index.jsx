@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Helmet from 'react-helmet';
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import { CircularProgress } from 'react-md';
 
 const ACCESSIBILITY_PROPS = {
   'aria-describedby': 'loading-documentation',

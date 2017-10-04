@@ -1,5 +1,5 @@
 import React from 'react';
-import Media from 'react-md/lib/Media';
+import { Media } from 'react-md';
 
 import Example from './Example';
 import { randomImage } from 'utils/random';

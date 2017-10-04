@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'react-md/lib/Cards/Card';
+import { Card } from 'react-md';
 
 import EditableDocument from './EditableDocument';
 

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ResizeObserver from 'react-md/lib/Helpers/ResizeObserver';
-import TextField from 'react-md/lib/TextFields';
+import { ResizeObserver, TextField } from 'react-md';
 
 import StarDocument from './StarDocument';
 import MoveDocument from './MoveDocument';

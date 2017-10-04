@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
-import DialogContainer from 'react-md/lib/Dialogs';
+import { DialogContainer } from 'react-md';
 import loremIpsum from 'lorem-ipsum';
 
 import Configuration from './Configuration';

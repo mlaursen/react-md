@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
-import Snackbar from 'react-md/lib/Snackbars';
-import TextField from 'react-md/lib/TextFields';
+import {
+  Button,
+  CardActions,
+  SelectionControl,
+  SelectionControlGroup,
+  Snackbar,
+  TextField,
+} from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 

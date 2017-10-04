@@ -1,5 +1,5 @@
 import React from 'react';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Toolbar } from 'react-md';
 
 import Nav from './common/Nav';
 import KebabMenu from './common/KebabMenu';

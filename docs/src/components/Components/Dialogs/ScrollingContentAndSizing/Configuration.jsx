@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
-import TextField from 'react-md/lib/TextFields';
-import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
+import { Button, Checkbox, TextField } from 'react-md';
 
 const Configuration = ({ onChange, onSubmit }) => (
   <form name="with-scrolling-content-form" onChange={onChange} onSubmit={onSubmit}>

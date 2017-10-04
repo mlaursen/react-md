@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
-import Collapse from 'react-md/lib/Helpers/Collapse';
-import { Dialog } from 'react-md/lib/Dialogs';
+import { Collapse, Dialog } from 'react-md';
 
 import NotificationCard from './NotificationCard';
 import NoNotifications from './NoNotifications';

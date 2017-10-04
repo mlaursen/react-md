@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import Divider from 'react-md/lib/Dividers';
-import TextField from 'react-md/lib/TextFields';
-import Toolbar from 'react-md/lib/Toolbars';
+import {
+  Button,
+  DialogContainer,
+  Divider,
+  TextField,
+  Toolbar,
+} from 'react-md';
 
 export default class SimpleFullPageDialog extends PureComponent {
   state = { visible: false, pageX: null, pageY: null };

@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import Card from 'react-md/lib/Cards/Card';
-import CardText from 'react-md/lib/Cards/CardText';
+import { Button, Card, CardText } from 'react-md';
 
 import { repoShape } from 'propTypes/github';
 

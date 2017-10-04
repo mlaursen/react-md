@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import { TabsContainer, Tabs, Tab } from 'react-md/lib/Tabs';
+import { FontIcon, TabsContainer, Tabs, Tab } from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 

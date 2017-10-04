@@ -1,7 +1,5 @@
 import React from 'react';
-import Badge from 'react-md/lib/Badges';
-import Button from 'react-md/lib/Buttons/Button';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Badge, Button, SVGIcon } from 'react-md';
 import { COPYRIGHT } from 'constants/unicode';
 
 import notifications from 'icons/notifications.svg';

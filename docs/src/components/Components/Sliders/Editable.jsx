@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import Slider from 'react-md/lib/Sliders';
+import { Button, DialogContainer, Slider } from 'react-md';
 
 import './_editable.scss';
 

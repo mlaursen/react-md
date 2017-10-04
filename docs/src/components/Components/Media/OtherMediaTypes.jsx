@@ -1,7 +1,10 @@
 import React from 'react';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import Media, { MediaOverlay } from 'react-md/lib/Media';
-import Paper from 'react-md/lib/Papers';
+import {
+  CardTitle,
+  Media,
+  MediaOverlay,
+  Paper,
+} from 'react-md';
 
 import components from 'components/Home/components.svg';
 

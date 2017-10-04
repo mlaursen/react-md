@@ -1,7 +1,5 @@
 import React from 'react';
-import injectTooltip from 'react-md/lib/Tooltips/injectTooltip';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon, SelectionControl, injectTooltip } from 'react-md';
 
 const Checkbox = injectTooltip(SelectionControl);
 

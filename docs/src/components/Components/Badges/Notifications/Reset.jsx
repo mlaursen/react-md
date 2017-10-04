@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-md/lib/Buttons/Button';
+import { Button } from 'react-md';
 
 const Reset = ({ onClick, onRef }) => (
   <Button

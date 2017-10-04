@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import DialogContainer from 'react-md/lib/Dialogs';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Button, DialogContainer, Toolbar } from 'react-md';
 
 import ControlledFixedTablePagination from './ControlledFixedTablePagination';
 

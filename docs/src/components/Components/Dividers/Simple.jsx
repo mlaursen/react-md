@@ -1,10 +1,12 @@
 import React from 'react';
-import Avatar from 'react-md/lib/Avatars';
-import Divider from 'react-md/lib/Dividers';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import Subheader from 'react-md/lib/Subheaders';
-import TextField from 'react-md/lib/TextFields';
+import {
+  Avatar,
+  Divider,
+  List,
+  ListItem,
+  Subheader,
+  TextField,
+} from 'react-md';
 
 import './_styles.scss';
 

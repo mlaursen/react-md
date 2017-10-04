@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import TextField from 'react-md/lib/TextFields';
+import { FontIcon, TextField } from 'react-md';
 
 const DisabledFields = () => (
   <div className="md-grid">

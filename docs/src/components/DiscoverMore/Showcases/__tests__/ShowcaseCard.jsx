@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import ShowcaseCard from '../ShowcaseCard';
 
@@ -14,11 +14,11 @@ const PROPS = {
 
 describe('ShowcaseCard', () => {
   it('should render correctly', () => {
-    let tree = createRouterSnapshot(<ShowcaseCard {...PROPS} />);
+    let tree = renderRouterSnapshot(<ShowcaseCard {...PROPS} />);
     expect(tree).toMatchSnapshot();
 
     const author = { name: PROPS.author, github: 'https://github.com/mlaursen/react-md' };
-    tree = createRouterSnapshot(<ShowcaseCard {...PROPS} author={author} />);
+    tree = renderRouterSnapshot(<ShowcaseCard {...PROPS} author={author} />);
     expect(tree).toMatchSnapshot();
   });
 });

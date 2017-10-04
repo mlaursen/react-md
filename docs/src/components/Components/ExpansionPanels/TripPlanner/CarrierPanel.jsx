@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ExpansionPanel } from 'react-md/lib/ExpansionPanels';
-import SelectField from 'react-md/lib/SelectFields';
+import { ExpansionPanel, SelectField } from 'react-md';
 
 const carriers = [
   'The best cruise line',

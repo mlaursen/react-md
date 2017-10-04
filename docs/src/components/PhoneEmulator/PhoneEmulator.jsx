@@ -2,8 +2,7 @@ import React, { Children } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Paper from 'react-md/lib/Papers';
-import Toolbar from 'react-md/lib/Toolbars';
+import { Paper, Toolbar } from 'react-md';
 
 import './_styles.scss';
 import StatusBar from './StatusBar';

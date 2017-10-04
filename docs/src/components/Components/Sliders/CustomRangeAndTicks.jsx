@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-md/lib/Sliders';
+import { Slider } from 'react-md';
 
 const CustomRangeAndTicks = () => (
   <div>

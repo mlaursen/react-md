@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Autocomplete from 'react-md/lib/Autocompletes';
-import Button from 'react-md/lib/Buttons/Button';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import Toolbar from 'react-md/lib/Toolbars';
+import {
+  Autocomplete,
+  Button,
+  List,
+  ListItem,
+  Toolbar,
+} from 'react-md';
 
 import pastries from 'constants/sampleData/pastries';
 import PhoneEmulator from 'components/PhoneEmulator';

@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import Tabs from 'react-md/lib/Tabs/Tabs';
-import Tab from 'react-md/lib/Tabs/Tab';
 import { stringify } from 'qs';
+import { withRouter } from 'react-router';
+import { Tabs, Tab } from 'react-md';
 import { getTab } from 'utils/routing';
 
 import './_styles.scss';

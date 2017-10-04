@@ -4,7 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import { padStart } from 'lodash/string';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
+import {
+  DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+} from 'react-md';
 
 import Markdown from 'components/Markdown';
 import { githubRateLimitRequest } from 'state/github';

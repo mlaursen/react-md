@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import SVGIcon from 'react-md/lib/SVGIcons';
+import { Button, SVGIcon } from 'react-md';
 
 import done from 'icons/done.svg';
 

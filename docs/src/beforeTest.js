@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.mock('react-md/lib/Inks/InkContainer');
-jest.mock('react-md/lib/Tooltips/TooltipContainer');
-
 jest.mock('utils/random', () => ({
   randomInt: () => 3,
   randomImage: () => 'https://unplash.it/300?random&time=3',

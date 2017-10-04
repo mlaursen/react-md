@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
-import Snackbar from 'react-md/lib/Snackbars';
+import { Snackbar } from 'react-md';
 
 import { removeMessage, REFRESH_MESSAGE } from 'state/messages';
 

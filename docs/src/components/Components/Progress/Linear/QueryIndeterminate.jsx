@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
-import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import { Button, LinearProgress } from 'react-md';
 
 const REFRESH_TIME = 3000;
 const UPDATE_INTERVAL = 15;

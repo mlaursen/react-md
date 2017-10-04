@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import loremIpsum from 'lorem-ipsum';
-import Button from 'react-md/lib/Buttons/Button';
-import Collapse from 'react-md/lib/Helpers/Collapse';
+import { Button, Collapse } from 'react-md';
 
 export default class Simple extends PureComponent {
   state = {

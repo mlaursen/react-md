@@ -1,17 +1,17 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import EmulatorController from '../EmulatorController';
 
 describe('EmulatorController', () => {
   it('should render correctly with the base required props', () => {
-    const tree1 = createRouterSnapshot(
+    const tree1 = renderRouterSnapshot(
       <EmulatorController mobile={false}>
         <h1>Wowza!</h1>
       </EmulatorController>
     );
-    const tree2 = createRouterSnapshot(
+    const tree2 = renderRouterSnapshot(
       <EmulatorController mobile>
         <h1>Wowza!</h1>
       </EmulatorController>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import FontIcon from 'react-md/lib/FontIcons';
+import { FontIcon } from 'react-md';
 
 import NativeLink from 'components/NativeLink';
 

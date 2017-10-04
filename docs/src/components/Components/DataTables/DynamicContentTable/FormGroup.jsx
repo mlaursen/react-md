@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'react-md/lib/SelectFields';
-import TextField from 'react-md/lib/TextFields';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
+import {
+  SelectField,
+  TextField,
+  SelectionControl,
+} from 'react-md';
 import loremIpsum from 'lorem-ipsum';
 
 import { randomInt } from 'utils/random';
