@@ -96,38 +96,27 @@ Otherwise this _should_ work on most systems with node >= 4.
 
 Development Scripts
 =====
-* [test](#test)
-  * [test:tsc](#testtsc)
-  * [test:watch](#test-watch)
-* [scripts](#scripts)
-  * [scripts:watch](#scriptswatch)
 * [lint](#lint)
   * [lint:fix](#lintfix)
   * [lint:styles](#lintstyles)
   * [lint:scripts](#lintscripts)
+* [test](#test)
+  * [test:tsc](#testtsc)
+  * [test:watch](#test-watch)
 * [tsd](#tsd)
-* [prebuild](#prebuild)
 * [css-bundles](#css-bundles)
+* [dev](#dev)
+  - [dev:minimal](#devminimal)
+* [docs](#docs)
+  - [docs:minimal](#docsminimal)
+* [scripts](#scripts)
+  * [scripts:watch](#scriptswatch)
+* [prebuild](#prebuild)
 * [build](#build)
-  * [build:umd](#buildumd)
-
-### test
-This command will run [test:tsc](#testtsc) followed by `jest`.
-
-#### test:tsc
-This will do a simple Typescript compliation test to make sure there aren't any syntax errors or
-invalid types. There should probably be a better testing system put in place.
-
-#### test:watch
-This will just run `jest` in watch mode.
-
-### scripts
-This will compile all the components and utilities in the `src/js` using babel with the `babel-preset-env`.
-All the files will be output into the `lib` directory.
-
-#### scripts:watch
-This is the same as above, but it will be done in watch mode. This is very helpful when running the development server and want to see
-immediate changes.
+  * [build:es](#buildes)
+  * [build:es:watch](#buildeswatch)
+  * [build:umd:dev](#buildumddev)
+  * [build:umd:prod](#buildumdprod)
 
 ### lint
 This will run both the [lint:styles](#lintstyles) and [lint:scripts](#lintscripts) commands.
@@ -147,9 +136,58 @@ $ gem install scss_lint
 #### lint:scripts
 This will run `eslint` over all the files in the `src/js` folder.
 
+### dev
+This command will run the `build:`
+
+### test
+This command will run [test:tsc](#testtsc) followed by `jest`.
+
+#### test:tsc
+This will do a simple Typescript compliation test to make sure there aren't any syntax errors or
+invalid types. There should probably be a better testing system put in place.
+
+#### test:watch
+This will just run `jest` in watch mode.
+
+#### test:docs
+This will just run `jest` in the docs folder.
+
+#### test:docs:watch
+This will just run `jest` in watch mode in the docs folder.
+
+#### test:all
+This will run tests for Typescript definitions, the base react-md repo, and the docs folder.
+
 ### tsd
 This command will just copy all the Typescript definitions into the `lib` folder so that it can be used correctly
 by Typescript users.
+
+### css-bundles
+This script makes 255 different scss files to be compiled for production use. This is automatically run before
+[build](#build).
+
+### scripts
+This will compile all the components and utilities in the `src/js` using babel with the `babel-preset-env`.
+All the files will be output into the `lib` directory.
+
+#### scripts:watch
+This is the same as above, but it will be done in watch mode. This is very helpful when running the development server and want to see
+immediate changes.
+
+### dev
+This will start up the documentation server in development mode as well as watching for changes within the base react-md library.
+Please look at the [Getting Started](docs/README.md#getting-started) for some preliminary setup required.
+
+### dev:minimal
+This will start up the documentation server in development mode as well as watching for changes within the base react-md library.
+The only difference is that the [docs:minimal](#docsminimal) command will be run instead of [docs](#docs)
+
+### docs
+This will start up the documentation server in development mode. For some more information about this command,
+please see the [documentation server scripts](docs/README.md#Scripts).
+
+### docs:minimal
+This will start up the documentation server in development mode without rebuilding all the "databases" before startup.
 
 ### prebuild
 This command is automatically run before [build](#build). It will basically remove all the old artifacts and compiled
@@ -157,15 +195,7 @@ files followed by linting the entire project.
 
 ### build
 This command will do the full build of `react-md` before a release. It runs almost all of the other scripts in a specified
-order so that the `lib` and `dist` folders are created and contain the correct files for release.
-
-> Please note: This command should not really be used if you are not doing a release or just want to test some things locally.
-This will take ~8 minutes to complete since it must compile 255 css bundles as well as all the compilation of javascript. You
-should probably use the [scripts](#scripts) or [scripts:watch](scripts:watch) commands instead.
-
-### css-bundles
-This script makes 255 different scss files to be compiled for production use. This is automatically run before
-[build:umd](#buildumd)
+order so that the `es`, `lib`,`dist` folders are created and contain the correct files for release.
 
 #### build:umd
 This command will create the UMD bundles for development and production use. In addition, it will create all the
