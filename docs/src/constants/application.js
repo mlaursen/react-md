@@ -14,3 +14,6 @@ export const FAKE_UPLOAD_ENDPOINT = '/fake-upload';
 export const GITHUB_API_ENDPOINT = 'https://api.github.com';
 
 export const MAX_FILE_SIZE = 50 * 1024 * 1024;
+
+export const UNSPLASH_IT = 'https://unsplash.it';
+export const LOREM_PIXEL = 'http://lorempixel.com';

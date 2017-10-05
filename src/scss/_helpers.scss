@@ -39,3 +39,13 @@
     @extend %md-block-centered;
   }
 }
+
+
+@function is-map($var) {
+  @return type-of($var) == 'map';
+}
+
+@function map-value-default($map, $key, $value: null) {
+  $map-value: map-get($map, $key);
+  @return if($map-value, $map-value, $value);
+}

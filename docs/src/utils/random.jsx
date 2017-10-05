@@ -1,4 +1,5 @@
 import { defaults } from 'lodash/object';
+import { UNSPLASH_IT, LOREM_PIXEL } from 'constants/application';
 
 const INT_DEFAULTS = { min: 0, max: 10 };
 
@@ -21,10 +22,10 @@ export function randomImage(options = {}) {
   const { height, width, section } = defaults(options, IMAGE_DEFAULTS);
   const size = `${width}/${height}`;
   if (section) {
-    return `http://lorempixel.com/${size}/${section}`;
+    return `${LOREM_PIXEL}/${size}/${section}`;
   }
 
-  return `https://unsplash.it/${size}?random&time=${randomInt()}`;
+  return `${UNSPLASH_IT}/${size}?random&time=${randomInt()}`;
 }
 
 export function randomImages(num, options = { width: 40 }) {

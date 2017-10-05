@@ -12,7 +12,8 @@ export const componentRoutes = [
   'drawers',
   'expansion-panels',
   'file-inputs',
-  'font-icons', {
+  'font-icons',
+  'grids', {
     to: 'helpers',
     routes: [
       'accessible-fake-buttons',
@@ -61,7 +62,6 @@ const navigationRoutes = [{
     'colors',
     'themes',
     'theme-builder',
-    'grids',
     'typography',
     'media-queries',
     'minimizing-bundle', {

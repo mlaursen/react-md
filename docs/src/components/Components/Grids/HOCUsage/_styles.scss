@@ -1,0 +1,13 @@
+@import '~globals';
+
+$sizes: (
+  default: 800px,
+  mobile: 240px,
+  tablet: 550px,
+);
+@include react-md-make-grid-container($sizes, 'pictures');
+
+.examples-page {
+  // Create a grid that only allows 3 columns on all devices
+  @include react-md-make-custom-grid('pictures', $md-grid-phone-margin, $md-grid-phone-gutter, 3, 3, 3);
+}

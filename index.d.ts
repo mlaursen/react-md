@@ -39,6 +39,7 @@ export {
 } from './lib/ExpansionPanels';
 export { FileInput, FileInputProps, FileUpload, FileUploadProps } from './lib/FileInputs';
 export { default as FontIcon, FontIconProps } from './lib/FontIcons';
+export { Grid, GridProps, Cell, CellProps, GridList, GridListProps } from './lib/Grids';
 export {
   AccessibleFakeButton, AccessibleFakeButtonProps,
   AccessibleFakeInkedButton, AccessibleFakeInkedButtonProps,

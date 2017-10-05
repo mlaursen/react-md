@@ -6,7 +6,6 @@ import {
   Colors,
   Themes,
   ThemeBuilder,
-  Grids,
   Typography,
   MediaQueries,
   MinimizingBundle,
@@ -17,12 +16,11 @@ import {
 const COLORS = 'colors';
 const THEMES = 'themes';
 const THEME_BUILDER = 'theme-builder';
-const GRIDS = 'grids';
 const TYPOGRAPHY = 'typography';
 const MEDIA_QUERIES = 'media-queries';
 const MINIMIZING_BUNDLE = 'minimizing-bundle';
 
-const SASSDOC_ROUTES = [COLORS, THEMES, GRIDS, TYPOGRAPHY, MEDIA_QUERIES];
+const SASSDOC_ROUTES = [COLORS, THEMES, TYPOGRAPHY, MEDIA_QUERIES];
 
 const Customization = (props) => {
   const {
@@ -44,8 +42,6 @@ const Customization = (props) => {
       return <Themes staticContext={staticContext} />;
     case THEME_BUILDER:
       return <ThemeBuilder staticContext={staticContext} />;
-    case GRIDS:
-      return <Grids staticContext={staticContext} />;
     case TYPOGRAPHY:
       return <Typography tab={tab} staticContext={staticContext} />;
     case MEDIA_QUERIES:

@@ -15,6 +15,7 @@ import {
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Redirect from="/customization/grids" to="/components/grids" />
     <Route path="/getting-started/:location" component={GettingStarted} />
     <Route path="/customization/:location" component={Customization} />
     <Route path="/discover-more/routing-examples/bottom-navigations" component={BottomNavigationRouting} />

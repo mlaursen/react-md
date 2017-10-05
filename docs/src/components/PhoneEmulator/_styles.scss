@@ -27,6 +27,7 @@
 
   @media #{$md-tablet-media} {
     @include react-md-toolbars-mobile;
+    @include react-md-grid-mobile;
 
     margin-left: auto;
     margin-right: auto;

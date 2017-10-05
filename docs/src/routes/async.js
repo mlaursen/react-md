@@ -7,7 +7,6 @@ export const GettingStarted = asyncComponent(() => import(/* webpackChunkName: G
 export const Colors = asyncComponent(() => import(/* webpackChunkName: Colors */ 'components/Customization/Colors'));
 export const Themes = asyncComponent(() => import(/* webpackChunkName: Themes */ 'components/Customization/Themes'));
 export const ThemeBuilder = asyncComponent(() => import(/* webpackChunkName: ThemeBuilder */ 'components/Customization/ThemeBuilder'));
-export const Grids = asyncComponent(() => import(/* webpackChunkName: Grids */ 'components/Customization/Grids'));
 export const Typography = asyncComponent(() => import(/* webpackChunkName: Typography */ 'components/Customization/Typography'));
 export const MediaQueries = asyncComponent(() => import(/* webpackChunkName: MediaQueries */ 'components/Customization/MediaQueries'));
 export const MinimizingBundle = asyncComponent(() => import(/* webpackChunkName: MinimizingBundle */ 'components/Customization/MinimizingBundle'));
@@ -43,6 +42,7 @@ export const Drawers = asyncComponent(() => import(/* webpackChunkName: Drawers 
 export const ExpansionPanels = asyncComponent(() => import(/* webpackChunkName: ExpansionPanels */ 'components/Components/ExpansionPanels'));
 export const FileInputs = asyncComponent(() => import(/* webpackChunkName: FileInputs */ 'components/Components/FileInputs'));
 export const FontIcons = asyncComponent(() => import(/* webpackChunkName: FontIcons */ 'components/Components/FontIcons'));
+export const Grids = asyncComponent(() => import(/* webpackChunkName: Grids */ 'components/Components/Grids'));
 export const AccessibleFakeButtons = asyncComponent(() => import(/* webpackChunkName: AccessibleFakeButtons */ 'components/Components/Helpers/AccessibleFakeButtons'));
 export const Collapses = asyncComponent(() => import(/* webpackChunkName: Collapses */ 'components/Components/Helpers/Collapses'));
 export const FocusContainers = asyncComponent(() => import(/* webpackChunkName: FocusContainers */ 'components/Components/Helpers/FocusContainers'));
