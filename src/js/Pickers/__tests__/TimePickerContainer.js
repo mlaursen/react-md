@@ -71,11 +71,6 @@ describe('TimePickerContainer', () => {
     expect(dialog.find(Portal).length).toBe(0);
   });
 
-  it('should render in the Portal component when the portal prop is enabled', () => {
-    const dialog = mount(<TimePickerContainer id="test" defaultVisible portal />);
-    expect(dialog.find(Portal).length).toBe(1);
-  });
-
   it('should not open the TimePicker if it is disabled and the text field is clicked', () => {
     const props = { id: 'test', disabled: true };
     const container = renderIntoDocument(<TimePickerContainer {...props} />);

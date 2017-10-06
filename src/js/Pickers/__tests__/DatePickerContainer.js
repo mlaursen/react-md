@@ -200,11 +200,6 @@ describe('DatePickerContainer', () => {
     expect(dialog.find(Portal).length).toBe(0);
   });
 
-  it('should render in the Portal component when the portal prop is enabled', () => {
-    const dialog = mount(<DatePickerContainer id="test" defaultVisible portal />);
-    expect(dialog.find(Portal).length).toBe(1);
-  });
-
   it('should not open the DatePicker if it is disabled and the text field is clicked', () => {
     const props = { id: 'test', disabled: true };
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
