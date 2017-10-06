@@ -6,10 +6,6 @@ import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';
 import SVGIcon from '../../SVGIcons/SVGIcon';
 
-function getButton(wrapper) {
-  return wrapper.instance().getComposedComponent().getComposedComponent();
-}
-
 describe('Button', () => {
   it('should apply styles correctly', () => {
     const button = shallow(<Button flat className="custom-btn" style={{ fontSize: 200 }}>Hello</Button>);
@@ -126,224 +122,257 @@ describe('Button', () => {
     describe('flat buttons', () => {
       it('should correctly apply the text color themes', () => {
         const flat = mount(<Button flat primary>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(true);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        let btn = flat.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(true);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(true);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = flat.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(true);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
+        btn.simulate('mouseLeave');
         flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(true);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn = flat.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(true);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(true);
+        btn.simulate('mouseEnter');
+        btn = flat.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(true);
       });
 
       it('should correctly swap the text color themes', () => {
         const flat = mount(<Button flat primary swapTheming>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(true);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        let btn = flat.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(true);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = flat.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
+        btn.simulate('mouseLeave');
         flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(true);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn = flat.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(true);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = flat.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
       });
     });
 
     describe('raised buttons', () => {
       it('should correctly apply the text color themes', () => {
-        const flat = mount(<Button raised primary>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(true);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const raised = mount(<Button raised primary>Hello</Button>);
+        let btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(true);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(true);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        raised.setProps({ primary: false, secondary: true });
+        btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(true);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
       });
 
       it('should correctly swap the text color themes', () => {
-        const flat = mount(<Button raised primary swapTheming>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(true);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const raised = mount(<Button raised primary swapTheming>Hello</Button>);
+        let btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(true);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(true);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(true);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(true);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        raised.setProps({ primary: false, secondary: true });
+        btn = raised.find('button');
+        raised.setProps({ primary: false, secondary: true });
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(true);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(true);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(true);
       });
     });
 
     describe('icon buttons', () => {
       it('should correctly apply the text color themes', () => {
-        const flat = mount(<Button icon primary>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(true);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const icon = mount(<Button icon primary>Hello</Button>);
+        let btn = icon.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(true);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(true);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = icon.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(true);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(true);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        icon.setProps({ primary: false, secondary: true });
+        btn = icon.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(true);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(true);
+        btn.simulate('mouseEnter');
+        btn = icon.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(true);
       });
 
       it('should correctly swap the text color themes', () => {
-        const flat = mount(<Button icon primary swapTheming>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(true);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const icon = mount(<Button icon primary swapTheming>Hello</Button>);
+        let btn = icon.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(true);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = icon.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(true);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        icon.setProps({ primary: false, secondary: true });
+        btn = icon.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(true);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = icon.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
       });
     });
 
     describe('floating buttons', () => {
       it('should correctly apply the text color themes', () => {
-        const flat = mount(<Button floating primary>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(true);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const raised = mount(<Button floating primary>Hello</Button>);
+        let btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(true);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(true);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        raised.setProps({ primary: false, secondary: true });
+        btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(true);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
       });
 
       it('should correctly swap the text color themes', () => {
-        const flat = mount(<Button floating primary swapTheming>Hello</Button>);
-        expect(flat.hasClass('md-text--theme-primary')).toBe(true);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(false);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        const raised = mount(<Button floating primary swapTheming>Hello</Button>);
+        let btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(true);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(false);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(true);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(true);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: false });
-        flat.setProps({ primary: false, secondary: true });
-        expect(flat.hasClass('md-text--theme-primary')).toBe(false);
-        expect(flat.hasClass('md-background--primary')).toBe(false);
-        expect(flat.hasClass('md-text--theme-secondary')).toBe(true);
-        expect(flat.hasClass('md-background--secondary')).toBe(false);
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(false);
+        btn.simulate('mouseLeave');
+        raised.setProps({ primary: false, secondary: true });
+        btn = raised.find('button');
+        expect(btn.hasClass('md-text--theme-primary')).toBe(false);
+        expect(btn.hasClass('md-background--primary')).toBe(false);
+        expect(btn.hasClass('md-text--theme-secondary')).toBe(true);
+        expect(btn.hasClass('md-background--secondary')).toBe(false);
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(false);
 
-        getButton(flat).setState({ hover: true });
-        expect(flat.hasClass('md-btn--color-primary-active')).toBe(false);
-        expect(flat.hasClass('md-btn--color-secondary-active')).toBe(true);
+        btn.simulate('mouseEnter');
+        btn = raised.find('button');
+        expect(btn.hasClass('md-btn--color-primary-active')).toBe(false);
+        expect(btn.hasClass('md-btn--color-secondary-active')).toBe(true);
       });
     });
   });
