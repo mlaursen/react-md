@@ -13,7 +13,7 @@ export interface DataTableProps extends Props {
   defaultSelectedRows?: Array<boolean>;
   responsive?: boolean;
   plain?: boolean;
-  onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent<HTMLElement>) => void;
+  onRowToggle?: (rowId: number, checked: boolean, selectedCount: number, event: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
   selectableRows?: boolean;
   indeterminate?: boolean;
