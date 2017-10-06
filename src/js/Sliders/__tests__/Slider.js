@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -39,67 +39,6 @@ describe('Slider', () => {
     expect(track.props.thumbClassName).toBe(props.thumbClassName);
     expect(track.props.discreteValueStyle).toEqual(props.discreteValueStyle);
     expect(track.props.discreteValueClassName).toBe(props.discreteValueClassName);
-  });
-
-  it('passes the event listeners correctly', () => {
-    const onClick = jest.fn();
-    const onMouseUp = jest.fn();
-    const onMouseDown = jest.fn();
-    const onMouseOver = jest.fn();
-    const onMouseLeave = jest.fn();
-    const onTouchStart = jest.fn();
-    const onTouchEnd = jest.fn();
-    const onTouchCancel = jest.fn();
-    const onKeyUp = jest.fn();
-    const onKeyDown = jest.fn();
-
-    const props = {
-      onClick,
-      onMouseUp,
-      onMouseDown,
-      onMouseOver,
-      onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
-      onTouchCancel,
-      onKeyUp,
-      onKeyDown,
-    };
-
-    const slider = renderIntoDocument(
-      <Slider {...props} />
-    );
-    const sliderNode = findDOMNode(slider);
-
-    Simulate.click(sliderNode);
-    expect(onClick).toBeCalled();
-
-    Simulate.mouseOver(sliderNode);
-    expect(onMouseOver).toBeCalled();
-
-    Simulate.mouseLeave(sliderNode);
-    expect(onMouseLeave).toBeCalled();
-
-    Simulate.mouseDown(sliderNode);
-    expect(onMouseDown).toBeCalled();
-
-    Simulate.mouseUp(sliderNode);
-    expect(onMouseUp).toBeCalled();
-
-    Simulate.touchStart(sliderNode);
-    expect(onTouchStart).toBeCalled();
-
-    Simulate.touchEnd(sliderNode);
-    expect(onTouchEnd).toBeCalled();
-
-    Simulate.touchCancel(sliderNode);
-    expect(onTouchCancel).toBeCalled();
-
-    Simulate.keyUp(sliderNode);
-    expect(onKeyUp).toBeCalled();
-
-    Simulate.keyDown(sliderNode);
-    expect(onKeyDown).toBeCalled();
   });
 
   it('renders a text field with the correct props when the editable prop is true', () => {
@@ -189,28 +128,28 @@ describe('Slider', () => {
   });
 
   it('should consider the track to be "on" correctly', () => {
-    let slider = shallow(<Slider id="some-slider" />);
-    let track = slider.find(Track).get(0);
+    let slider = mount(<Slider id="some-slider" />);
+    let track = slider.find(Track).instance();
     expect(track.props.on).toBe(false);
 
     slider.instance()._handleIncrement(1, {});
-    track = slider.find(Track).get(0);
+    track = slider.find(Track).instance();
     expect(track.props.on).toBe(true);
 
-    slider = shallow(<Slider id="some-slider" defaultValue={50} />);
-    track = slider.find(Track).get(0);
+    slider = mount(<Slider id="some-slider" defaultValue={50} />);
+    track = slider.find(Track).instance();
     expect(track.props.on).toBe(true);
 
-    slider = shallow(<Slider id="some-slider" discrete min={50} />);
-    track = slider.find(Track).get(0);
+    slider = mount(<Slider id="some-slider" discrete min={50} />);
+    track = slider.find(Track).instance();
     expect(track.props.on).toBe(false);
 
     slider.instance()._handleIncrement(51, {});
-    track = slider.find(Track).get(0);
+    track = slider.find(Track).instance();
     expect(track.props.on).toBe(true);
 
-    slider = shallow(<Slider id="some-slider" discrete min={50} defaultValue={75} />);
-    track = slider.find(Track).get(0);
+    slider = mount(<Slider id="some-slider" discrete min={50} defaultValue={75} />);
+    track = slider.find(Track).instance();
     expect(track.props.on).toBe(true);
   });
 
