@@ -405,8 +405,14 @@ export default class DataTable extends PureComponent {
       // So to keep the index correct while removing, need to keep subtract the provided index by
       // the current number of removed elements. This value gets reset to 0 after a finished cycle.
       const selectedRows = state.selectedRows.slice();
-      selectedRows.splice(index - this._removed, 1);
-      this._removed += 1;
+
+      // This is really ugly. React 16 doesn't need to track all this while React 15 does
+      if (React.version && React.version.match(/^16\./)) {
+        selectedRows.splice(index, 1);
+      } else {
+        selectedRows.splice(index - this._removed, 1);
+        this._removed += 1;
+      }
       return { selectedRows, allSelected: this._allSelected(selectedRows) };
     });
   };
