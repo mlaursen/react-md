@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import addSuffix from '../utils/StringUtils/addSuffix';
+import isValued from '../utils/isValued';
 import FloatingLabel from '../TextFields/FloatingLabel';
 import TextFieldMessage from '../TextFields/TextFieldMessage';
 
@@ -77,7 +78,7 @@ export default class SelectFieldToggle extends PureComponent {
           htmlFor={id}
           active={active || visible}
           error={error}
-          floating={!!activeLabel || activeLabel === 0 || active || visible}
+          floating={isValued(activeLabel) || active || visible}
           disabled={disabled}
         />
         <SelectFieldInput

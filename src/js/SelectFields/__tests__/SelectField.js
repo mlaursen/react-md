@@ -8,6 +8,7 @@ import {
 } from 'react-dom/test-utils';
 
 import SelectField from '../SelectField';
+import SelectFieldInput from '../SelectFieldInput';
 import FloatingLabel from '../../TextFields/FloatingLabel';
 import Menu from '../../Menus/Menu';
 
@@ -137,10 +138,10 @@ describe('SelectField', () => {
 
     const test = mount(<Test />);
     expect(renderCount).toBe(1);
-    expect(test.find(SelectField).get(0).state.activeLabel).toBe('2');
-    test.update();
+    expect(test.find(SelectField).instance().state.activeLabel).toBe('2');
+    test.instance().forceUpdate();
     expect(renderCount).toBe(2);
-    expect(test.find(SelectField).get(0).state.activeLabel).toBe('2');
+    expect(test.find(SelectField).instance().state.activeLabel).toBe('2');
   });
 
   it('should still have the correct label if the menuItems of objects are defined as a list in the render and the parent component rerenders', () => {
@@ -163,10 +164,10 @@ describe('SelectField', () => {
 
     const test = mount(<Test />);
     expect(renderCount).toBe(1);
-    expect(test.find(SelectField).get(0).state.activeLabel).toBe('World');
-    test.update();
+    expect(test.find(SelectField).instance().state.activeLabel).toBe('World');
+    test.instance().forceUpdate();
     expect(renderCount).toBe(2);
-    expect(test.find(SelectField).get(0).state.activeLabel).toBe('World');
+    expect(test.find(SelectField).instance().state.activeLabel).toBe('World');
   });
 
   it('should not update the error state on update if it has not been focused yet', () => {
@@ -190,15 +191,15 @@ describe('SelectField', () => {
     const test = mount(<Test />);
     expect(renderCount).toBe(1);
 
-    let field = test.find(SelectField).get(0);
+    let field = test.find(SelectField).instance();
     expect(field.state.error).toBe(false);
 
-    test.update();
+    test.instance().forceUpdate();
     expect(renderCount).toBe(2);
-    field = test.find(SelectField).get(0);
+    field = test.find(SelectField).instance();
     expect(field.state.error).toBe(false);
 
-    const input = test.find('.md-select-field');
+    const input = test.find(SelectFieldInput);
     expect(input.length).toBe(1);
 
     input.simulate('focus');
