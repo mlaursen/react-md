@@ -26,7 +26,7 @@ describe('Layover', () => {
       </Layover>
     );
 
-    expect(layover.getNode().props.style).toEqual(style);
+    expect(layover.instance().props.style).toEqual(style);
     expect(layover.hasClass(className)).toBe(true);
   });
 
