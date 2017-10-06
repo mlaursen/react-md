@@ -762,21 +762,11 @@ export default class NavigationDrawer extends PureComponent {
     };
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     const visible = getField(this.props, this.state, 'visible');
-    const nVisible = getField(nextProps, nextState, 'visible');
-    const drawerType = getField(nextProps, nextState, 'drawerType');
-
-    if (!isTemporary(drawerType) && visible !== nVisible) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
-      }
-
-      this._timeout = setTimeout(() => {
-        this.setState({ contentActive: false });
-      }, nextProps.drawerTransitionDuration);
-
-      this.setState({ contentActive: true });
+    const nVisible = getField(nextProps, this.state, 'visible');
+    if (visible !== nVisible) {
+      this._animate(nextProps);
     }
   }
 
@@ -785,6 +775,22 @@ export default class NavigationDrawer extends PureComponent {
       clearTimeout(this._timeout);
     }
   }
+
+  _animate = (props = this.props, state = this.state) => {
+    if (isTemporary(getField(props, state, 'drawerType'))) {
+      return;
+    }
+
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this.setState({ contentActive: false });
+    }, props.drawerTransitionDuration);
+
+    this.setState({ contentActive: true });
+  };
 
   _toggleVisibility = (e) => {
     const { onVisibilityToggle, onVisibilityChange, onDrawerChange } = this.props;
@@ -796,6 +802,7 @@ export default class NavigationDrawer extends PureComponent {
 
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible });
+      this._animate(this.props);
     }
   };
 
@@ -808,6 +815,7 @@ export default class NavigationDrawer extends PureComponent {
 
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible });
+      this._animate(this.props);
     }
   };
 
@@ -821,6 +829,7 @@ export default class NavigationDrawer extends PureComponent {
     if (typeof this.props.drawerType === 'undefined') {
       state = { ...mediaState, drawerType };
     }
+
 
     this.setState(state);
   };

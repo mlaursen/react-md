@@ -28,7 +28,7 @@ export default class CalendarDate extends PureComponent {
     this.state = { ...this._getFormattedDate(props), desktopActive: false };
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { DateTimeFormat, locales, date } = this.props;
     if (DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales || date !== nextProps.date) {
       this.setState(this._getFormattedDate(nextProps));

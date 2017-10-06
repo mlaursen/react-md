@@ -22,6 +22,7 @@ import ListItem from '../Lists/ListItem';
 import SelectFieldToggle from './SelectFieldToggle';
 
 const MOBILE_LIST_PADDING = 8;
+const ARIA_ACTIVE = 'aria-activedescendant';
 
 export default class SelectField extends PureComponent {
   static HorizontalAnchors = Menu.HorizontalAnchors;
@@ -552,7 +553,7 @@ export default class SelectField extends PureComponent {
       listProps: {
         role: 'listbox',
         ref: this._scrollActiveIntoView,
-        'aria-activedescendant': null,
+        [ARIA_ACTIVE]: null,
       },
       match: null,
       lastSearch: null,
@@ -575,27 +576,9 @@ export default class SelectField extends PureComponent {
     if (deleteKeys !== nextProps.deleteKeys || itemLabel !== nextProps.itemLabel || itemValue !== nextProps.itemValue) {
       this._deleteKeys = this._getDeleteKeys(nextProps);
     }
-  }
 
-  componentWillUpdate(nextProps, nextState) {
-    const { value, menuItems } = this.props;
-    const { active, listProps } = nextState;
-
-    let state;
-    if (value !== nextProps.value || menuItems !== nextProps.menuItems) {
-      state = this._getActive(nextProps, nextState);
-    }
-
-    if (this.state.active !== active) {
-      state = state || {};
-      state.listProps = {
-        ...listProps,
-        'aria-activedescendant': active ? `${nextProps.id}-options-active` : null,
-      };
-    }
-
-    if (state) {
-      this.setState(state);
+    if (this.props.value !== nextProps.value || this.props.menuItems !== nextProps.menuItems) {
+      this.setState(this._getActive(nextProps, this.state));
     }
   }
 
@@ -678,6 +661,10 @@ export default class SelectField extends PureComponent {
     if (item.props.active) {
       this._activeItem = findDOMNode(item);
       item.focus();
+
+      if (!this.state.listProps[ARIA_ACTIVE]) {
+        this.setState({ listProps: { ...this.state.listProps, [ARIA_ACTIVE]: `${this.props.id}-options-active` } });
+      }
     }
 
     this._items.push(item);

@@ -9,26 +9,23 @@ import StateChip from './StateChip';
 export default class WithTextFields extends PureComponent {
   state = { selectedStates: [], filteredStates: states };
 
-  componentWillUpdate(nextProps, nextState) {
-    const { selectedStates } = nextState;
-    if (this.state.selectedStates !== selectedStates) {
-      // when a new state is removed or added, add or remove it from the autocomplete list
-      this.setState({
-        filteredStates: states.filter(state => selectedStates.indexOf(state) === -1),
-      });
-    }
-  }
+  setNextState = (selectedStates) => {
+    this.setState({
+      selectedStates,
+      filteredStates: states.filter(state => selectedStates.indexOf(state) === -1),
+    });
+  };
 
   addState = (abbreviation, index, matches) => {
     const state = matches[index];
     const selectedStates = uniqBy([...this.state.selectedStates, state], s => s.name);
-    this.setState({ selectedStates });
+    this.setNextState(selectedStates);
   };
 
   removeState = (state) => {
     const selectedStates = this.state.selectedStates.slice();
     selectedStates.splice(selectedStates.indexOf(state), 1);
-    this.setState({ selectedStates });
+    this.setNextState(selectedStates);
   };
 
   render() {

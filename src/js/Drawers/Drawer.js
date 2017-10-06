@@ -474,15 +474,6 @@ export default class Drawer extends PureComponent {
     this._animate(visible, type, transitionDuration, overlay, this.state.desktop);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const { visible } = nextState;
-    if (typeof nextProps.visible !== 'undefined' || this.state.visible === visible) {
-      return;
-    }
-    const type = getField(nextProps, nextState, 'type');
-    this._animate(visible, type, nextProps.transitionDuration, nextProps.overlay, nextState.desktop);
-  }
-
   componentWillUnmount() {
     if (this._timeout) {
       clearTimeout(this._timeout);
@@ -499,6 +490,7 @@ export default class Drawer extends PureComponent {
     const {
       onMediaTypeChange,
       overlay,
+      transitionDuration,
     } = props;
 
     const onVisibilityChange = props.onVisibilityToggle || props.onVisibilityChange;
@@ -530,6 +522,7 @@ export default class Drawer extends PureComponent {
 
       if (typeof props.visible === 'undefined') {
         state.visible = visible;
+        this._animate(visible, state.type, transitionDuration, overlay, state.desktop);
       }
     } else if (this._initialFix && diffMedia) {
       state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(state.type) && !state.desktop)
@@ -606,7 +599,7 @@ export default class Drawer extends PureComponent {
   };
 
   _closeDrawer = () => {
-    const { onVisibilityChange, onVisibilityToggle } = this.props;
+    const { onVisibilityChange, onVisibilityToggle, transitionDuration, overlay } = this.props;
     const callback = onVisibilityToggle || onVisibilityChange;
     if (callback) {
       callback(false);
@@ -614,6 +607,7 @@ export default class Drawer extends PureComponent {
 
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible: false });
+      this._animate(false, getField(this.props, this.state, 'type'), transitionDuration, overlay, this.state.desktop);
     }
   };
 

@@ -392,15 +392,8 @@ export default class TimePickerContainer extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
-      this.setState({ tempTime: nextProps.value });
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (getField(this.props, this.state, 'value') !== getField(nextProps, nextState, 'value')) {
-      this.setState(this._getTimeParts(getField(nextProps, nextState, 'value'), nextProps));
-    } else if (this.state.tempTime !== nextState.tempTime) {
-      this.setState(this._getTimeParts(nextState.tempTime, nextProps));
+      const time = nextProps.value || new Date();
+      this.setState({ tempTime: time, ...this._getTimeParts(time, nextProps) });
     }
   }
 
@@ -483,15 +476,19 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _setTimeMode = (timeMode) => {
-    if (this.state.timeMode === timeMode) { return; }
+    if (this.state.timeMode === timeMode) {
+      return;
+    }
 
     this.setState({ timeMode });
   };
 
   _setTempTime = (time) => {
-    if (this.state.tempTime === time) { return; }
+    if (this.state.tempTime === time) {
+      return;
+    }
 
-    this.setState({ tempTime: time });
+    this.setState({ tempTime: time, ...this._getTimeParts(time, this.props) });
   };
 
   _handleKeyDown = (e) => {
@@ -513,7 +510,7 @@ export default class TimePickerContainer extends PureComponent {
       onVisibilityChange(false, e);
     }
 
-    const state = { time: value };
+    const state = { time: value, ...this._getTimeParts(value, this.props) };
     if (typeof this.props.value === 'undefined') {
       state.value = value;
     }
@@ -535,8 +532,9 @@ export default class TimePickerContainer extends PureComponent {
       state = { visible: false };
     }
 
-    if (getField(this.props, this.state, 'value')) {
-      state = state || {};
+    const value = getField(this.props, this.state, 'value');
+    if (value) {
+      state = { ...state, ...this._getTimeParts(value, this.props) };
       state.tempTime = this.state.time;
     }
 
