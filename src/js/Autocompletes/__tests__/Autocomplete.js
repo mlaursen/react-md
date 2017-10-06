@@ -225,39 +225,11 @@ describe('Autocomplete', () => {
     expect(onBlur.mock.calls.length).toBe(1);
   });
 
-  it('should manually focus a list item when the menu is open and the users presses the down arrow key', () => {
-    const autocomplete = mount(<Autocomplete id="test" data={DATA} defaultValue="o" />);
-    autocomplete.setState({ visible: true });
-    expect(autocomplete.state('matchIndex')).toBe(-1);
-
-    const menu = autocomplete.find(Menu);
-    expect(menu.length).toBe(1);
-    menu.simulate('keyDown', { which: DOWN, keyCode: DOWN });
-
-    expect(autocomplete.state('matchIndex')).toBe(0);
-    const items = autocomplete.find('.md-list-tile');
-    expect(items.length).toBe(3);
-    expect(document.activeElement).toEqual(items.get(0));
-  });
-
-  it('should manually focus the previous list item when the menu is open and the user presses the up arrow key', () => {
-    const autocomplete = mount(<Autocomplete id="test" data={DATA} defaultValue="o" />);
-    autocomplete.setState({ visible: true, matchIndex: 2 });
-
-    const menu = autocomplete.find(Menu);
-    menu.simulate('keyDown', { which: UP, keyCode: UP });
-
-    expect(autocomplete.state('matchIndex')).toBe(1);
-    const items = autocomplete.find('.md-list-tile');
-    expect(items.length).toBe(3);
-    expect(document.activeElement).toEqual(items.get(1));
-  });
-
   it('should select the current list item when the enter key is pressed when the menu is open', () => {
     const autocomplete = mount(<Autocomplete id="test" data={DATA} defaultValue="o" />);
     autocomplete.setState({ visible: true, matchIndex: 1 });
 
-    const items = autocomplete.find('.md-list-tile');
+    const items = autocomplete.find(ListItem);
     items.at(1).simulate('keyDown', { which: ENTER, keyCode: ENTER });
     expect(autocomplete.state('value')).toBe(DATA[1]);
     expect(autocomplete.state('visible')).toBe(false);
@@ -268,7 +240,7 @@ describe('Autocomplete', () => {
     const autocomplete = mount(<Autocomplete id="test" data={DATA} defaultValue="o" />);
     autocomplete.setState({ visible: true, matchIndex: 1 });
 
-    const items = autocomplete.find('.md-list-tile');
+    const items = autocomplete.find(ListItem);
     items.at(1).simulate('keyDown', { which: SPACE, keyCode: SPACE });
     expect(autocomplete.state('value')).toBe(DATA[1]);
     expect(autocomplete.state('visible')).toBe(false);
