@@ -578,6 +578,7 @@ export default class ListItem extends PureComponent {
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       defaultVisible,
+      itemRef,
 
       // deprecated
       defaultOpen,

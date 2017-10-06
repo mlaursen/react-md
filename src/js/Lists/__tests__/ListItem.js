@@ -188,7 +188,7 @@ describe('ListItem', () => {
         }
       },
     };
-    const otherProp = 'other-prop';
+    const dataValue = 'other-prop';
     const itemProps = { onClick: jest.fn() };
     const tileProps = { onMouseDown: jest.fn() };
     const item = mount(
@@ -196,7 +196,7 @@ describe('ListItem', () => {
         primaryText="Test"
         itemProps={itemProps}
         tileProps={tileProps}
-        otherProp={otherProp}
+        data-value={dataValue}
         passPropsToItem={false}
       />
     );
@@ -204,13 +204,13 @@ describe('ListItem', () => {
     let button = item.find(AccessibleFakeInkedButton);
     expect(li.props().onClick).toBe(itemProps.onClick);
     expect(button.props().onMouseDown).toBe(tileProps.onMouseDown);
-    expect(button.props().otherProp).toBe('other-prop');
+    expect(button.props()['data-value']).toBe(dataValue);
 
     item.setProps({ passPropsToItem: true });
     li = item.find('li');
     button = item.find(AccessibleFakeInkedButton);
     expect(li.props().onClick).toBe(itemProps.onClick);
-    expect(li.props().otherProp).toBe('other-prop');
+    expect(li.props()['data-value']).toBe(dataValue);
     expect(button.props().onMouseDown).toBe(tileProps.onMouseDown);
 
     global.console = console;
