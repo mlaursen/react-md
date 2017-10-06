@@ -39,6 +39,7 @@ export {
 } from './lib/ExpansionPanels';
 export { FileInput, FileInputProps, FileUpload, FileUploadProps } from './lib/FileInputs';
 export { default as FontIcon, FontIconProps } from './lib/FontIcons';
+export { Grid, GridProps, Cell, CellProps, GridList, GridListProps } from './lib/Grids';
 export {
   AccessibleFakeButton, AccessibleFakeButtonProps,
   AccessibleFakeInkedButton, AccessibleFakeInkedButtonProps,
@@ -98,3 +99,4 @@ export {
 export { default as TextField, TextFieldProps, TextFieldTypes, TextFieldLineDirections } from './lib/TextFields';
 export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
 export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent, TooltippedProps } from './lib/Tooltips';
+export { default as bem } from './lib/utils/bem';

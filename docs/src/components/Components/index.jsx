@@ -29,6 +29,7 @@ import {
   ExpansionPanels,
   FileInputs,
   FontIcons,
+  Grids,
   AccessibleFakeButtons,
   Collapses,
   FocusContainers,
@@ -122,6 +123,9 @@ const Components = (props) => {
       break;
     case 'font-icons':
       Component = FontIcons;
+      break;
+    case 'grids':
+      Component = Grids;
       break;
     case 'accessible-fake-buttons':
       Component = AccessibleFakeButtons;

@@ -28,6 +28,9 @@ export ExpansionList from './js/ExpansionPanels/ExpansionList';
 export FileInput from './js/FileInputs/FileInput';
 export FileUpload from './js/FileInputs/FileUpload';
 export FontIcon from './js/FontIcons/FontIcon';
+export Grid from './js/Grids/Grid';
+export Cell from './js/Grids/Cell';
+export GridList from './js/Grids/GridList';
 export AccessibleFakeButton from './js/Helpers/AccessibleFakeButton';
 export AccessibleFakeInkedButton from './js/Helpers/AccessibleFakeInkedButton';
 export Collapse from './js/Helpers/Collapse';
@@ -70,3 +73,5 @@ export TextField from './js/TextFields/TextField';
 export Toolbar from './js/Toolbars/Toolbar';
 export injectTooltip from './js/Tooltips/injectTooltip';
 export Tooltipped from './js/Tooltips/Tooltipped';
+
+export bem from './js/utils/bem';

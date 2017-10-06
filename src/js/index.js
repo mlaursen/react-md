@@ -1,5 +1,6 @@
 import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
+import Badge from './Badges';
 import BottomNavigation from './BottomNavigations';
 import Button, {
   FlatButton,
@@ -70,11 +71,13 @@ import { TabsContainer, Tabs, Tab, MenuTab, TabPanel } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import injectTooltip, { Tooltipped } from './Tooltips';
+import bem from './utils/bem';
 
 // Exposes for UMD -> ReactMD.Autocomplete
 export { Autocomplete };
 export { Avatar };
 export { BottomNavigation };
+export { Badge };
 export { Button };
 export { FlatButton };
 export { RaisedButton };
@@ -154,11 +157,13 @@ export { TextField };
 export { Toolbar };
 export { injectTooltip };
 export { Tooltipped };
+export { bem };
 
 // Exposes for ES6 modules
 export default {
   Autocomplete,
   Avatar,
+  Badge,
   BottomNavigation,
 
   Button,
@@ -262,4 +267,6 @@ export default {
   Toolbar,
   injectTooltip,
   Tooltipped,
+
+  bem,
 };

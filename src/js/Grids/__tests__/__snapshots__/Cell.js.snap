@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell should correctly provide the style and className props in the children callback function 1`] = `
+<div
+  class="md-cell"
+/>
+`;
+
+exports[`Cell should correctly provide the style and className props in the children callback function 2`] = `
+<div
+  class="md-cell boop"
+  style="width: 500px; background: red;"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 1`] = `
+<div
+  class="md-cell"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 2`] = `
+<div
+  class="md-cell md-cell--top"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 3`] = `
+<div
+  class="md-cell md-cell--middle"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 4`] = `
+<div
+  class="md-cell md-cell--bottom"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 5`] = `
+<div
+  class="md-cell md-cell--stretch"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 6`] = `
+<div
+  class="md-cell md-cell--center"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 7`] = `
+<div
+  class="md-cell md-cell--right"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 8`] = `
+<div
+  class="md-cell md-cell--5"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 9`] = `
+<div
+  class="md-cell md-cell--order-3"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 10`] = `
+<div
+  class="md-cell md-cell--1-offset"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 11`] = `
+<div
+  class="md-cell md-cell--1-phone"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 12`] = `
+<div
+  class="md-cell md-cell--1-phone-offset"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 13`] = `
+<div
+  class="md-cell md-cell--order-2-phone"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 14`] = `
+<div
+  class="md-cell md-cell--phone-hidden"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 15`] = `
+<div
+  class="md-cell md-cell--1-tablet"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 16`] = `
+<div
+  class="md-cell md-cell--1-tablet-offset"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 17`] = `
+<div
+  class="md-cell md-cell--order-2-tablet"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 18`] = `
+<div
+  class="md-cell md-cell--tablet-hidden"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 19`] = `
+<div
+  class="md-cell md-cell--1-desktop"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 20`] = `
+<div
+  class="md-cell md-cell--1-desktop-offset"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 21`] = `
+<div
+  class="md-cell md-cell--order-2-desktop"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 22`] = `
+<div
+  class="md-cell md-cell--desktop-hidden"
+/>
+`;
+
+exports[`Cell should render correctly after a prop change 23`] = `
+<div
+  class="md-cell woop-woop"
+/>
+`;
+
+exports[`Cell should render correctly based on different props 1`] = `
+<div
+  className="md-cell md-cell--top"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 2`] = `
+<div
+  className="md-cell md-cell--center"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 3`] = `
+<div
+  className="md-cell md-cell--4"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 4`] = `
+<div
+  className="md-cell md-cell--order-4"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 5`] = `
+<div
+  className="md-cell md-cell--4-offset"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 6`] = `
+<div
+  className="md-cell md-cell--4-phone"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 7`] = `
+<div
+  className="md-cell md-cell--order-4-phone"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 8`] = `
+<div
+  className="md-cell md-cell--4-phone-offset"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 9`] = `
+<div
+  className="md-cell md-cell--phone-hidden"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 10`] = `
+<div
+  className="md-cell md-cell--4-tablet"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 11`] = `
+<div
+  className="md-cell md-cell--order-4-tablet"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 12`] = `
+<div
+  className="md-cell md-cell--4-tablet-offset"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 13`] = `
+<div
+  className="md-cell md-cell--tablet-hidden"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 14`] = `
+<div
+  className="md-cell md-cell--4-desktop"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 15`] = `
+<div
+  className="md-cell md-cell--order-4-desktop"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 16`] = `
+<div
+  className="md-cell md-cell--4-desktop-offset"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 17`] = `
+<div
+  className="md-cell md-cell--desktop-hidden"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly based on different props 18`] = `
+<div
+  className="md-cell md-cell--3 a-custom-class-name"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly without any props 1`] = `
+<div
+  className="md-cell"
+  style={undefined}
+/>
+`;
+
+exports[`Cell should render correctly without any props 2`] = `
+<div
+  className="md-cell"
+  style={undefined}
+>
+  <span />
+</div>
+`;
