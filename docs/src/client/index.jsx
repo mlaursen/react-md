@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import 'svgxuse';
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
@@ -47,6 +47,11 @@ function loadIntl() {
   await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
   await loadIntl();
   const root = document.getElementById('app');
+
+  let render = ReactDOM.render;
+  if (!__DEV__ || __SSR__) {
+    render = ReactDOM.hydrate;
+  }
 
   render(
     <AppContainer>
