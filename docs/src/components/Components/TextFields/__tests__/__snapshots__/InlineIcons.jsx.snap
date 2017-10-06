@@ -91,7 +91,7 @@ exports[`InlineIcons should render correctly 1`] = `
           class="md-icon md-text-field-icon md-text-field-icon--positioned"
           focusable="false"
           role="img"
-          viewbox="0 0 24 24"
+          viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         />
         <div
@@ -138,7 +138,7 @@ exports[`InlineIcons should render correctly 1`] = `
           class="md-icon md-text-field-icon md-text-field-icon--positioned"
           focusable="false"
           role="img"
-          viewbox="0 0 24 24"
+          viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         />
       </div>
@@ -204,7 +204,7 @@ exports[`InlineIcons should render correctly 1`] = `
         class="md-icon"
         focusable="false"
         role="img"
-        viewbox="0 0 24 24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>

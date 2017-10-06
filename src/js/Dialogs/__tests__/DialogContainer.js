@@ -98,10 +98,10 @@ describe('DialogContainer', () => {
       </Dialog>
     );
 
-    const { renderNode } = dialog.get(0).getChildContext();
+    const { renderNode } = dialog.instance().getChildContext();
 
     const container = dialog.find(DialogContainer);
-    expect(container.get(0).context.renderNode).toBe(renderNode);
+    expect(container.instance().context.renderNode).toBe(renderNode);
   });
 
   it('should not render in the Portal component by default', () => {

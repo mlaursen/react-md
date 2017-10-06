@@ -3,7 +3,7 @@ before_install:
   - rvm install 2.2
   - gem install sass scss_lint
 node_js:
-  - "4"
+  - "6"
 env:
   - CXX=g++-4.8
 addons:

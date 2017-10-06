@@ -4,6 +4,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
+import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
 import SelectionControl from '../SelectionControl';
 import SwitchTrack from '../SwitchTrack';
 import SwitchThumb from '../SwitchThumb';
@@ -36,7 +37,7 @@ describe('SelectionControl', () => {
     const control = mount(<SelectionControl {...props} />);
     let input = control.find('input');
     expect(input.length).toBe(1);
-    input = input.get(0);
+    input = input.instance();
     expect(input.id).toBe(props.id);
     expect(input.type).toBe(props.type);
     expect(input.name).toBe(props.name);
@@ -69,23 +70,23 @@ describe('SelectionControl', () => {
     const control = mount(<SelectionControl {...PROPS} onChange={onChange} />);
 
     // While testing, the input.click() doesn't do anything, so mock it in here
-    let input = control.find('input').get(0);
+    let input = control.find('input').instance();
     input.click = () => onChange();
 
-    let toggle = control.find('.md-selection-control-toggle');
+    let toggle = control.find(AccessibleFakeInkedButton);
     toggle.simulate('keyDown', { which: SPACE, keyCode: SPACE });
 
     expect(onChange.mock.calls.length).toBe(1);
 
     control.setProps({ type: 'radio' });
-    input = control.find('input').get(0);
+    input = control.find('input').instance();
     input.click = () => onChange();
-    toggle = control.find('.md-selection-control-toggle');
+    toggle = control.find(AccessibleFakeInkedButton);
     toggle.simulate('keyDown', { which: SPACE, keyCode: SPACE });
     expect(onChange.mock.calls.length).toBe(2);
 
     control.setProps({ type: 'switch' });
-    input = control.find('input').get(0);
+    input = control.find('input').instance();
     input.click = () => onChange();
 
     toggle = control.find(SwitchThumb);

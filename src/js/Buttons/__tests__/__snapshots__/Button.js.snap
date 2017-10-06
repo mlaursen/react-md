@@ -3,7 +3,7 @@
 exports[`Button should apply styles correctly 1`] = `
 <button
   class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -20,7 +20,7 @@ exports[`Button should apply styles correctly 1`] = `
 exports[`Button should apply styles correctly 2`] = `
 <button
   class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -37,7 +37,7 @@ exports[`Button should apply styles correctly 2`] = `
 exports[`Button should apply styles correctly 3`] = `
 <button
   class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-secondary md-ink--secondary md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -54,7 +54,7 @@ exports[`Button should apply styles correctly 3`] = `
 exports[`Button should apply styles correctly 4`] = `
 <button
   class="md-btn md-btn--raised md-btn--text md-pointer--hover md-text md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -71,7 +71,7 @@ exports[`Button should apply styles correctly 4`] = `
 exports[`Button should apply styles correctly 5`] = `
 <button
   class="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--primary md-background--primary-hover md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -88,7 +88,7 @@ exports[`Button should apply styles correctly 5`] = `
 exports[`Button should apply styles correctly 6`] = `
 <button
   class="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--secondary md-background--secondary-hover md-inline-block custom-btn"
-  style="font-size:200px;"
+  style="font-size:200px"
   type="button"
 >
   <div
@@ -138,7 +138,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -164,11 +164,11 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      xlink:href="#some-href"
+      href="#some-href"
     />
   </svg>
 </button>
@@ -210,7 +210,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -236,11 +236,11 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      xlink:href="#some-href"
+      href="#some-href"
     />
   </svg>
 </button>
@@ -294,7 +294,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
       class="md-icon md-text--inherit"
       focusable="false"
       role="img"
-      viewbox="0 0 24 24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -329,11 +329,11 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
       class="md-icon md-text--inherit"
       focusable="false"
       role="img"
-      viewbox="0 0 24 24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <use
-        xlink:href="#some-href"
+        href="#some-href"
       />
     </svg>
     <span
@@ -393,7 +393,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
       class="md-icon md-text--inherit"
       focusable="false"
       role="img"
-      viewbox="0 0 24 24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -428,11 +428,11 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
       class="md-icon md-text--inherit"
       focusable="false"
       role="img"
-      viewbox="0 0 24 24"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <use
-        xlink:href="#some-href"
+        href="#some-href"
       />
     </svg>
     <span
@@ -480,7 +480,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -506,11 +506,11 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      xlink:href="#some-href"
+      href="#some-href"
     />
   </svg>
 </button>
@@ -552,7 +552,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -578,11 +578,11 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      xlink:href="#some-href"
+      href="#some-href"
     />
   </svg>
 </button>

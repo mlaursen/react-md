@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
+  createPortal,
   unmountComponentAtNode as unmount,
   unstable_renderSubtreeIntoContainer as render,
 } from 'react-dom';
+
+const isReact16 = typeof createPortal === 'function';
 
 /**
  * Creates a "Portal" for the children to be rendered in. Basically it will render the
@@ -64,14 +67,22 @@ export default class Portal extends PureComponent {
   componentDidMount() {
     if (this.props.visible) {
       this._renderPortal(this.props);
+
+      if (isReact16) {
+        // Need to update after the renderPortal created the DOM element.
+        this.forceUpdate();
+      }
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const { visible, onOpen } = nextProps;
-    if (this.props.visible === visible && this._container) {
-      // Need to just re-render the subtree
-      this._renderPortal(nextProps);
+    if (this.props.visible === visible) {
+      if (!isReact16) {
+        // Need to just re-render the subtree
+        this._renderPortal(nextProps);
+      }
+
       return;
     }
 
@@ -79,6 +90,7 @@ export default class Portal extends PureComponent {
       if (onOpen) {
         onOpen();
       }
+
       this._renderPortal(nextProps);
     } else {
       this._removePortal();
@@ -113,7 +125,9 @@ export default class Portal extends PureComponent {
       this._applyStyles(props);
     }
 
-    this._portal = render(this, props.children, this._container);
+    if (!isReact16) {
+      this._portal = render(this, props.children, this._container);
+    }
   };
 
   _removePortal = () => {
@@ -122,7 +136,10 @@ export default class Portal extends PureComponent {
     }
 
     if (this._container) {
-      unmount(this._container);
+      if (!isReact16) {
+        unmount(this._container);
+      }
+
       (this.props.renderNode || document.body).removeChild(this._container);
     }
 
@@ -131,11 +148,14 @@ export default class Portal extends PureComponent {
   };
 
   render() {
+    const { component: Component, className, children, visible } = this.props;
+
     // When doing server side rendering, actually render the component as a direct child of its parent.
     // Once it has been rendered and working client side, it will be removed correctly.
-    if (typeof window === 'undefined' && this.props.visible) {
-      const { component: Component, className, children } = this.props;
+    if (typeof window === 'undefined' && visible) {
       return <Component className={className}>{children}</Component>;
+    } else if (isReact16 && visible && this._container && typeof window !== 'undefined') {
+      return createPortal(children, this._container);
     }
 
     return null;

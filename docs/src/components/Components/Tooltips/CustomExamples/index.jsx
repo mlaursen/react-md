@@ -1,27 +1,7 @@
 import React from 'react';
-import { FontIcon, injectTooltip } from 'react-md';
 
-const styles = {
-  tooltipContainer: {
-    position: 'relative',
-    display: 'inline-block',
-    margin: '1em',
-  },
-};
-
-const TooltipFontIcon = injectTooltip(({ children, iconClassName, tooltip }) => (
-  <div style={styles.tooltipContainer}>
-    {tooltip}
-    <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
-  </div>
-));
-
-const TooltipLink = injectTooltip(({ children, tooltip }) => (
-  <a style={styles.tooltipContainer} className="link">
-    {tooltip}
-    {children}
-  </a>
-));
+import TooltipFontIcon from './TooltipFontIcon';
+import TooltipLink from './TooltipLink';
 
 const CustomExamples = () => (
   <section>

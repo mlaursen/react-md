@@ -266,6 +266,7 @@ module.exports = ({ production }) => {
         SERVICE_WORKER: JSON.stringify(SERVICE_WORKER),
         __DEV__: !production,
         __CLIENT__: true,
+        __SSR__: !!process.env.USE_SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
       }),
       new SpriteLoaderPlugin(),

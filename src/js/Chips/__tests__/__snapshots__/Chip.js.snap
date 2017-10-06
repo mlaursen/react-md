@@ -3,7 +3,7 @@
 exports[`Chip should apply the correct styles 1`] = `
 <button
   class="md-chip custom-chip"
-  style="width:200px;"
+  style="width:200px"
   type="button"
 >
   <span
@@ -122,7 +122,7 @@ exports[`Chip should render correctly based on the props 5`] = `
     class="md-icon md-chip-icon md-chip-icon--rotate"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

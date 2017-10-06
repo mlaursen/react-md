@@ -5,7 +5,7 @@ import README from './README.md';
 import ButtonExamples from './ButtonExamples';
 import ButtonExamplesRaw from '!!raw-loader!./ButtonExamples.jsx';
 import CustomExamples from './CustomExamples';
-import CustomExamplesRaw from '!!raw-loader!./CustomExamples.jsx';
+import CustomExamplesRaw from './CustomExamples/code';
 import TooltippedExamples from './Tooltipped';
 import TooltippedExamplesRaw from '!!raw-loader!./Tooltipped.jsx';
 

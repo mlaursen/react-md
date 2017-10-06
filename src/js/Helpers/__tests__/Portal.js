@@ -1,20 +1,11 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Portal from '../Portal';
 
 describe('Portal', () => {
-  it('should always render null', () => {
-    const child = <div id="test">hello</div>;
-    const portal = shallow(<Portal visible={false}>{child}</Portal>);
-    expect(portal.equals(null)).toBe(true);
-
-    portal.setProps({ visible: true });
-    expect(portal.equals(null)).toBe(true);
-  });
-
   it('should call the onOpen prop when the visibility changes from false to true', () => {
     const onOpen = jest.fn();
     const portal = shallow(<Portal visible={false} onOpen={onOpen}><div /></Portal>);
@@ -55,12 +46,6 @@ describe('Portal', () => {
     expect(document.body.lastChild).toEqual(portal.instance()._container);
   });
 
-  it('should render the span element if the portal starts as visible', () => {
-    const portal = mount(<Portal visible><div /></Portal>);
-    expect(portal.instance()._container).not.toBe(null);
-    expect(document.body.firstChild).toEqual(portal.instance()._container);
-  });
-
   it('should apply the className prop to the created element', () => {
     const className = 'my-super-amazing-class-name';
     const portal = shallow(<Portal visible={false} className={className}><div /></Portal>);
@@ -68,15 +53,5 @@ describe('Portal', () => {
     portal.setProps({ visible: true });
     expect(portal.instance()._container).not.toBe(null);
     expect(portal.instance()._container.className).toBe(className);
-  });
-
-  it('should remove the portal from the body when the visibility is changed from true to false', () => {
-    const portal = mount(<Portal visible><div /></Portal>);
-    expect(portal.instance()._container).not.toBe(null);
-    expect(document.body.firstChild).toEqual(portal.instance()._container);
-
-    portal.setProps({ visible: false });
-    expect(portal.instance()._container).toBe(null);
-    expect(document.body.firstChild).not.toEqual(portal.instance()._container);
   });
 });

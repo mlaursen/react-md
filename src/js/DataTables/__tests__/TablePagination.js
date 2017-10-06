@@ -31,28 +31,28 @@ describe('TablePagination', () => {
   it('should not define a page state if the page prop is defined', () => {
     const props = { onPagination: jest.fn(), page: 1, rows: 30 };
     const table = mount(<Table><TablePagination {...props} /></Table>);
-    const pagination = table.find(TablePagination).get(0);
+    const pagination = table.find(TablePagination).instance();
     expect(pagination.state.page).toBeUndefined();
   });
 
   it('should set the page state to the defaultPage prop', () => {
     const props = { onPagination: jest.fn(), defaultPage: 1, rows: 30 };
     const table = mount(<Table><TablePagination {...props} /></Table>);
-    const pagination = table.find(TablePagination).get(0);
+    const pagination = table.find(TablePagination).instance();
     expect(pagination.state.page).toBe(props.defaultPage);
   });
 
   it('should not define a rowsPerPage state if the rowsPerPage prop is defined', () => {
     const props = { onPagination: jest.fn(), rowsPerPage: 10, rows: 30 };
     const table = mount(<Table><TablePagination {...props} /></Table>);
-    const pagination = table.find(TablePagination).get(0);
+    const pagination = table.find(TablePagination).instance();
     expect(pagination.state.rowsPerPage).toBeUndefined();
   });
 
   it('should set the rowsPerPage state to the defaultRowsPerPage prop', () => {
     const props = { onPagination: jest.fn(), defaultRowsPerPage: 10, rows: 30 };
     const table = mount(<Table><TablePagination {...props} /></Table>);
-    const pagination = table.find(TablePagination).get(0);
+    const pagination = table.find(TablePagination).instance();
     expect(pagination.state.rowsPerPage).toBe(props.defaultRowsPerPage);
   });
 
@@ -102,7 +102,7 @@ describe('TablePagination', () => {
       };
 
       const table = mount(<Table><TablePagination {...props} /></Table>);
-      const pagination = table.find(TablePagination).get(0);
+      const pagination = table.find(TablePagination).instance();
       expect(pagination.state.start).toBe(10);
 
       pagination._setRowsPerPage(30);
@@ -158,7 +158,7 @@ describe('TablePagination', () => {
       };
 
       const table = mount(<Table><TablePagination {...props} /></Table>);
-      const pagination = table.find(TablePagination).get(0);
+      const pagination = table.find(TablePagination).instance();
       expect(pagination.state.start).toBe(10);
 
       pagination._increment();
@@ -214,7 +214,7 @@ describe('TablePagination', () => {
       };
 
       const table = mount(<Table><TablePagination {...props} /></Table>);
-      const pagination = table.find(TablePagination).get(0);
+      const pagination = table.find(TablePagination).instance();
       expect(pagination.state.start).toBe(10);
 
       pagination._decrement();
@@ -248,11 +248,11 @@ describe('TablePagination', () => {
     }
 
     const test = mount(<TestTable />);
-    let pagination = test.find(TablePagination).get(0);
+    let pagination = test.find(TablePagination).instance();
     expect(pagination.state.start).toBe(2);
 
     test.setState({ page: 1 });
-    pagination = test.find(TablePagination).get(0);
+    pagination = test.find(TablePagination).instance();
     expect(pagination.state.start).toBe(0);
   });
 });

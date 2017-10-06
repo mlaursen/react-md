@@ -121,7 +121,7 @@ describe('TableColumn', () => {
       </table>
     );
 
-    let column = table.find(TableColumn);
+    let column = table.find(TableColumn).find('th');
     expect(column.hasClass('md-table-column')).toBe(true);
     expect(column.hasClass('md-table-column--header')).toBe(true);
     expect(column.hasClass('md-table-column--data')).toBe(false);
@@ -145,7 +145,7 @@ describe('TableColumn', () => {
         </tbody>
       </table>
     );
-    column = table.find(TableColumn);
+    column = table.find(TableColumn).find('td');
 
     expect(column.hasClass('md-table-column--header')).toBe(false);
     expect(column.hasClass('md-table-column--data')).toBe(true);
@@ -161,7 +161,7 @@ describe('TableColumn', () => {
         </tbody>
       </table>
     );
-    column = table.find(TableColumn);
+    column = table.find(TableColumn).find('td');
 
     expect(column.hasClass('md-table-column--adjusted')).toBe(false);
     expect(column.hasClass('md-table-column--grow')).toBe(true);
@@ -178,7 +178,7 @@ describe('TableColumn', () => {
         </tbody>
       </table>
     );
-    column = table.find(TableColumn);
+    column = table.find(TableColumn).find('td');
     expect(column.hasClass('md-table-column--header')).toBe(false);
     expect(column.hasClass('md-table-column--data')).toBe(false);
     expect(column.hasClass('md-table-column--plain')).toBe(true);
@@ -192,7 +192,7 @@ describe('TableColumn', () => {
         </tbody>
       </table>
     );
-    column = table.find(TableColumn);
+    column = table.find(TableColumn).find('td');
     expect(column.hasClass('md-table-column--sortable')).toBe(true);
   });
 
@@ -276,9 +276,11 @@ describe('TableColumn', () => {
       </DataTable>
     );
 
-    expect(table.find('#head').hasClass('md-table-column--fixed')).toBe(true);
-    expect(table.find('#body').hasClass('md-table-column--fixed')).toBe(false);
-    expect(table.find('#foot').hasClass('md-table-column--fixed')).toBe(true);
+    const columns = table.find(TableColumn);
+    expect(columns.length).toBe(3);
+    expect(columns.at(0).find('th').hasClass('md-table-column--fixed')).toBe(true);
+    expect(columns.at(1).find('td').hasClass('md-table-column--fixed')).toBe(false);
+    expect(columns.at(2).find('td').hasClass('md-table-column--fixed')).toBe(true);
   });
 
   it('should create 2 additional divs for fixed columns', () => {

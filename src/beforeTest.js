@@ -1,6 +1,9 @@
 /* eslint-env jest */
 import renderer from 'react-test-renderer';
-import { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
 window.matchMedia = jest.fn(query => ({
   matches: !!query.match(/min-width: 1025/),
