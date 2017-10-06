@@ -160,7 +160,7 @@ exports[`BottomNav should be able to render an SVGIcon or a FontIcon 2`] = `
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -193,11 +193,11 @@ exports[`BottomNav should be able to render an SVGIcon or a FontIcon 3`] = `
     class="md-icon md-text--inherit"
     focusable="false"
     role="img"
-    viewbox="0 0 24 24"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      xlink:href="#some-url"
+      href="#some-url"
     />
   </svg>
   <div

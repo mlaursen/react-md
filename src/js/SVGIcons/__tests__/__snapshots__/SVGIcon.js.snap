@@ -5,12 +5,12 @@ exports[`SVGIcon should correctly apply style since it is cached 1`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="background:red;"
-  viewbox="0 0 24 24"
+  style="background:red"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-img"
+    href="#some-img"
   />
 </svg>
 `;
@@ -20,12 +20,12 @@ exports[`SVGIcon should correctly apply style since it is cached 2`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="background:orange;"
-  viewbox="0 0 24 24"
+  style="background:orange"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-img"
+    href="#some-img"
   />
 </svg>
 `;
@@ -35,12 +35,12 @@ exports[`SVGIcon should correctly apply style since it is cached 3`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="height:32px;width:32px;background:orange;"
-  viewbox="0 0 24 24"
+  style="height:32px;width:32px;background:orange"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-img"
+    href="#some-img"
   />
 </svg>
 `;
@@ -50,12 +50,12 @@ exports[`SVGIcon should correctly apply style since it is cached 4`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="height:32px;width:20px;background:red;"
-  viewbox="0 0 24 24"
+  style="height:32px;width:20px;background:red"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-img"
+    href="#some-img"
   />
 </svg>
 `;
@@ -65,7 +65,7 @@ exports[`SVGIcon should render correctly based on props 1`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 />
 `;
@@ -75,7 +75,7 @@ exports[`SVGIcon should render correctly based on props 2`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -89,7 +89,7 @@ exports[`SVGIcon should render correctly based on props 3`] = `
   class="md-icon md-text--disabled"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -103,7 +103,7 @@ exports[`SVGIcon should render correctly based on props 4`] = `
   class="md-icon md-text--disabled"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -117,7 +117,7 @@ exports[`SVGIcon should render correctly based on props 5`] = `
   class="md-icon md-text--theme-primary"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -131,7 +131,7 @@ exports[`SVGIcon should render correctly based on props 6`] = `
   class="md-icon md-text--theme-secondary"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -145,7 +145,7 @@ exports[`SVGIcon should render correctly based on props 7`] = `
   class="md-icon md-text--inherit"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -159,7 +159,7 @@ exports[`SVGIcon should render correctly based on props 8`] = `
   class="md-icon md-text--error"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
@@ -173,11 +173,11 @@ exports[`SVGIcon should render correctly based on props 9`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  viewbox="0 0 24 24"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-hash-tag"
+    href="#some-hash-tag"
   />
 </svg>
 `;
@@ -187,12 +187,12 @@ exports[`SVGIcon should render correctly based on props 10`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="height:100px;width:100px;"
-  viewbox="0 0 24 24"
+  style="height:100px;width:100px"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-hash-tag"
+    href="#some-hash-tag"
   />
 </svg>
 `;
@@ -202,12 +202,12 @@ exports[`SVGIcon should render correctly based on props 11`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="height:100px;width:30px;background:red;"
-  viewbox="0 0 24 24"
+  style="height:100px;width:30px;background:red"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-hash-tag"
+    href="#some-hash-tag"
   />
 </svg>
 `;
@@ -217,12 +217,12 @@ exports[`SVGIcon should render correctly based on props 12`] = `
   class="md-icon"
   focusable="false"
   role="img"
-  style="height:100px;width:100px;background:red;"
-  viewbox="0 0 24 24"
+  style="height:100px;width:100px;background:red"
+  viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
   <use
-    xlink:href="#some-hash-tag"
+    href="#some-hash-tag"
   />
 </svg>
 `;

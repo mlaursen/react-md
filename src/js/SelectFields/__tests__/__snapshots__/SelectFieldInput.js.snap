@@ -38,7 +38,7 @@ exports[`SelectFieldInput should render correctly 2`] = `
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field test-name"
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
   tabindex="0"
 >
   <div
@@ -71,7 +71,7 @@ exports[`SelectFieldInput should render correctly 3`] = `
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
   tabindex="0"
 >
   <div
@@ -106,7 +106,7 @@ exports[`SelectFieldInput should render correctly 4`] = `
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
   tabindex="0"
 >
   <div
@@ -142,7 +142,7 @@ exports[`SelectFieldInput should render correctly 5`] = `
   disabled=""
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
 >
   <div
     class="md-icon-separator md-text-field md-text-field--margin md-select-field--text-field"
@@ -178,7 +178,7 @@ exports[`SelectFieldInput should render correctly 6`] = `
   disabled=""
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
 >
   <div
     class="md-icon-separator md-text-field md-select-field--btn"
@@ -210,7 +210,7 @@ exports[`SelectFieldInput should render correctly 7`] = `
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
   id="test-field-toggle"
   role="listbox"
-  style="height:150px;"
+  style="height:150px"
   tabindex="0"
 >
   <div
