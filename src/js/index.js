@@ -1,5 +1,6 @@
 import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
+import Badge from './Badges';
 import BottomNavigation from './BottomNavigations';
 import Button, {
   FlatButton,
@@ -76,6 +77,7 @@ import bem from './utils/bem';
 export { Autocomplete };
 export { Avatar };
 export { BottomNavigation };
+export { Badge };
 export { Button };
 export { FlatButton };
 export { RaisedButton };
@@ -161,6 +163,7 @@ export { bem };
 export default {
   Autocomplete,
   Avatar,
+  Badge,
   BottomNavigation,
 
   Button,
