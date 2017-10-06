@@ -1,10 +1,9 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import SelectFieldInput from '../SelectFieldInput';
-import IconSeparator from '../../Helpers/IconSeparator';
 import FontIcon from '../../FontIcons/FontIcon';
 
 jest.useFakeTimers();

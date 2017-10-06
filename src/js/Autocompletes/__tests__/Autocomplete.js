@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
-import { TAB, DOWN, UP, ENTER, SPACE } from '../../constants/keyCodes';
+import { TAB, ENTER, SPACE } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
 import Menu from '../../Menus/Menu';
 import TextField from '../../TextFields/TextField';

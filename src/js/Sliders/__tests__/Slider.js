@@ -3,7 +3,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
-  Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,

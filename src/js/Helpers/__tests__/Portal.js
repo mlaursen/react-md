@@ -1,7 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Portal from '../Portal';
 
