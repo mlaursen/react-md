@@ -83,7 +83,7 @@ export default class GridList extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.node,
-    ]).isRequired,
+    ]),
 
     /**
      * An optional container name to apply to the Grid. This should be the same name as provided
@@ -258,6 +258,12 @@ export default class GridList extends PureComponent {
 
   componentWillMount() {
     this.setState(GridList.getClassNames(this.props));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (DIFF_KEYS.some(key => this.props[key] !== nextProps[key])) {
+      this.setState(GridList.getClassNames(nextProps));
+    }
   }
 
   render() {

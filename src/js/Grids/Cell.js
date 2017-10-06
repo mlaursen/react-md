@@ -59,7 +59,7 @@ export default class Cell extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.node,
-    ]).isRequired,
+    ]),
 
     /**
      * An optional cell alignment to apply. When the `Grid` is not `stacked`,

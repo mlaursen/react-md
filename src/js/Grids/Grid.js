@@ -48,7 +48,7 @@ export default class Grid extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.node,
-    ]).isRequired,
+    ]),
 
     /**
      * An optional container name to apply to the Grid. This should be the same name as provided
@@ -133,6 +133,7 @@ export default class Grid extends PureComponent {
       children,
       /* eslint-disable no-unused-vars */
       className: propClassName,
+      container,
       stacked,
       noSpacing,
       gutter,
