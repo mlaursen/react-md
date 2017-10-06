@@ -56,7 +56,7 @@
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
     "@types/react": "^16.0.5",
-    "autoprefixer": "^6.5.1",
+    "autoprefixer": "^7.1.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -81,6 +81,7 @@
     "jest-cli": "^21.0.2",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
+    "postcss": "^6.0.13",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-test-renderer": "^15.5.4",

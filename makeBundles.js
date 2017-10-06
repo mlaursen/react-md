@@ -2,7 +2,11 @@
 const fs = require('fs');
 const path = require('path');
 const sass = require('node-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
 const Promise = require('bluebird');
+
+const prefixer = postcss([autoprefixer({ browsers: ['last 2 versions', 'safari > 7'] })]);
 
 const render = Promise.promisify(sass.render);
 const writeFile = Promise.promisify(fs.writeFile);
@@ -41,7 +45,8 @@ $md-secondary-color: $md-${accent}-a-400;
         outFile: fileName,
         sourceMap: false,
         includePaths: [scss],
-      }).then((result) => writeFile(fileName, result.css, 'UTF-8')));
+      }).then((result) => prefixer.process(result.css))
+        .then((result) => writeFile(fileName, result.css, 'UTF-8')));
     }
   });
 
