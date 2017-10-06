@@ -272,13 +272,13 @@ describe('DataTable', () => {
       }
     }
 
-    const findTableState = (table) => table.find(DataTable).get(0).state;
+    const findTableState = (table) => table.find(DataTable).instance().state;
     const table = mount(<Test />);
     let state = findTableState(table);
     let expected = [false, false];
     expect(state.selectedRows).toEqual(expected);
 
-    table.find(DataTable).get(0).setState({ selectedRows: [false, true] });
+    table.find(DataTable).instance().setState({ selectedRows: [false, true] });
     expected = [false, true];
     state = findTableState(table);
     expect(state.selectedRows).toEqual(expected);
@@ -313,7 +313,7 @@ describe('DataTable', () => {
         );
       }
     }
-    const findTableState = (table) => table.find(DataTable).get(0).state;
+    const findTableState = (table) => table.find(DataTable).instance().state;
     const table = mount(<Test />);
     let state = findTableState(table);
     let expected = [false, false, false, false, false, false];
@@ -321,7 +321,7 @@ describe('DataTable', () => {
 
     // Check row 3, 5, and 6
     expected = [false, false, true, false, true, true];
-    table.find(DataTable).get(0).setState({ selectedRows: expected });
+    table.find(DataTable).instance().setState({ selectedRows: expected });
     state = findTableState(table);
     expect(state.selectedRows).toEqual(expected);
 
@@ -430,7 +430,7 @@ describe('DataTable', () => {
       </DataTable>
     );
 
-    const getHeight = (t) => t.find('.md-data-table__scroll-wrapper').get(0).style.height;
+    const getHeight = (t) => t.find('.md-data-table__scroll-wrapper').instance().style.height;
 
     let height = getHeight(table);
     expect(height).toBe('410px');
