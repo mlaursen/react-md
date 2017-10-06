@@ -30,7 +30,7 @@ describe('DocumentationTabs', () => {
 
   it('should add the Prop Types tab when not on customization routes', () => {
     const tabs = mountWithRouter(<DocumentationTabs visible />, '/components/autocompletes');
-    expect(tabs.find('#documentation-prop-types').length).toBe(1);
+    expect(tabs.find('#documentation-prop-types').length).toBeGreaterThan(0);
   });
 
   it('should add the Sass Doc tab on the correct routes', () => {
@@ -39,9 +39,9 @@ describe('DocumentationTabs', () => {
     const tabs3 = mountWithRouter(<DocumentationTabs visible />, '/components/helpers/layovers');
     const tabs4 = mountWithRouter(<DocumentationTabs visible />, '/customization/colors');
 
-    expect(tabs1.find('#documentation-sassdoc').length).toBe(1);
+    expect(tabs1.find('#documentation-sassdoc').length).toBeGreaterThan(0);
     expect(tabs2.find('#documentation-sassdoc').length).toBe(0);
-    expect(tabs3.find('#documentation-sassdoc').length).toBe(1);
-    expect(tabs4.find('#documentation-sassdoc').length).toBe(1);
+    expect(tabs3.find('#documentation-sassdoc').length).toBeGreaterThan(0);
+    expect(tabs4.find('#documentation-sassdoc').length).toBeGreaterThan(0);
   });
 });

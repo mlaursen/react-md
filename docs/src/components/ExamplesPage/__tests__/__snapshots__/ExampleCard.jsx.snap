@@ -50,7 +50,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
         class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        viewbox="0 0 24 24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
@@ -138,7 +138,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
         class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        viewbox="0 0 24 24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
@@ -246,7 +246,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
         class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        viewbox="0 0 24 24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>
@@ -331,7 +331,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
         class="md-icon md-text--inherit"
         focusable="false"
         role="img"
-        viewbox="0 0 24 24"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
     </button>

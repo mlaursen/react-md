@@ -1889,7 +1889,7 @@ exports[`PureSassDocPage should render correctly when there is no sassdoc 1`] = 
     height="24"
     id="loading-documentation"
     role="progressbar"
-    viewbox="0 0 66 66"
+    viewBox="0 0 66 66"
     width="24"
   >
     <circle
@@ -1917,7 +1917,7 @@ exports[`PureSassDocPage should render correctly when there is no sassdoc 2`] = 
     height="24"
     id="loading-documentation"
     role="progressbar"
-    viewbox="0 0 66 66"
+    viewBox="0 0 66 66"
     width="24"
   >
     <circle

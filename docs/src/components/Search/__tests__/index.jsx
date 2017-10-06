@@ -3,6 +3,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Waypoint from 'react-waypoint';
+import { Button } from 'react-md';
 
 import { renderRouterSnapshot, mountWithRouter, captureConsole } from 'utils/testing';
 import { PureSearch as Search } from '../';
@@ -163,7 +164,7 @@ describe('Search', () => {
     const search = mount(<Search {...PROPS} hideSearch={hideSearch} />);
     expect(hideSearch).not.toBeCalled();
 
-    const btn = search.find('#documentation-search-hide');
+    const btn = search.find(Button);
     expect(btn.length).toBe(1);
 
     btn.simulate('click');

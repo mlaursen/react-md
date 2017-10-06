@@ -54,7 +54,7 @@ exports[`DocumentationTabs should correctly render on customization routes 1`] =
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
@@ -113,7 +113,7 @@ exports[`DocumentationTabs should correctly render on customization routes 2`] =
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
@@ -172,7 +172,7 @@ exports[`DocumentationTabs should correctly render on customization routes 3`] =
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
@@ -255,7 +255,7 @@ exports[`DocumentationTabs should render correctly on component routes 1`] = `
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
@@ -336,7 +336,7 @@ exports[`DocumentationTabs should render correctly on component routes 2`] = `
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
@@ -395,7 +395,7 @@ exports[`DocumentationTabs should render correctly on component routes 3`] = `
   </li>
   <span
     class="md-tab-indicator"
-    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0);"
+    style="height:2px;width:160px;-webkit-transform:translate3d(0px, 0, 0);-moz-transform:translate3d(0px, 0, 0);-ms-transform:translate3d(0px, 0, 0);transform:translate3d(0px, 0, 0)"
   />
 </ul>
 `;
