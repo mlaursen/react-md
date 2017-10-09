@@ -7,6 +7,7 @@ export interface TableColumnProps extends Props, InjectedTooltipProps {
   fixedClassName?: string;
   sorted?: boolean;
   sortIcon?: React.ReactElement<any>;
+  sortIconBefore?: boolean;
   numeric?: boolean;
   adjusted?: boolean;
   grow?: boolean;
