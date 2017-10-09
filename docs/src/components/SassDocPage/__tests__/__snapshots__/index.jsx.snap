@@ -809,7 +809,7 @@ corresponding css class name.</p>
     </div>
   </section>
   <button
-    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
+    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-btn--tooltip md-inline-block sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}
@@ -1642,7 +1642,7 @@ corresponding css class name.</p>
     </div>
   </section>
   <button
-    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
+    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-btn--tooltip md-inline-block sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}

@@ -37,7 +37,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-btn--tooltip md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -133,7 +133,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-btn--tooltip md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -242,7 +242,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-btn--tooltip md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -334,7 +334,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       </div>
     </h2>
     <button
-      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-btn--tooltip md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
