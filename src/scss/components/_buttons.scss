@@ -240,6 +240,11 @@ $md-btn-floating-margin: null !default;
       pointer-events: none;
     }
 
+    &--tooltip {
+      // This is required for IE11, the other browsers appear to do this by default.
+      overflow: visible;
+    }
+
     &:focus {
       outline-style: none;
     }

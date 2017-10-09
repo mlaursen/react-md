@@ -554,6 +554,7 @@ class Button extends PureComponent {
           fixed,
           fixedPosition,
         }, {
+          'md-btn--tooltip': tooltip,
           'md-btn--snackbar-floating': snackbar,
           [`md-btn--snackbar-floating-${snackbarType}adjust`]: snackbar && snackbarType !== null,
         }, 'md-inline-block', className)}
