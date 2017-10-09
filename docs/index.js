@@ -85,8 +85,9 @@ const ROOT_DIR = path.resolve(process.cwd());
 let timeout = setTimeout(() => {
   const icons = [
     'alarm', 'arrow_back', 'arrow_drop_down', 'book', 'code', 'content_copy', 'copyright',
-    'delete', 'done', 'file_download', 'info_outline', 'kebab', 'menu', 'music_note',
-    'notifications', 'ondemand_video', 'phone', 'redo', 'remove_red_eye', 'twitter',
+    'delete', 'done', 'favorite', 'favorite_border', 'file_download', 'info_outline', 'kebab',
+    'menu', 'music_note', 'notifications', 'ondemand_video', 'phone', 'redo', 'remove_red_eye',
+    'twitter',
   ];
 
   if (__DEV__) {
