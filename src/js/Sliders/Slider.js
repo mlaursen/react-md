@@ -97,8 +97,7 @@ export default class Slider extends PureComponent {
     defaultValue: PropTypes.number,
 
     /**
-     * The min value for the slider. The min and max values must be on the same
-     * side of 0. It is currently invalid to have a range from negative to positive.
+     * The min value for the slider. This value **must** be less than the `max` value.
      */
     min: (props, propName, component, ...others) => {
       let err = PropTypes.number.isRequired(props, propName, component, ...others);
@@ -116,11 +115,6 @@ export default class Slider extends PureComponent {
             `The '${propName}' prop must be less than or equal to the '${name}' prop for the '${component}' but ` +
             `received: 'min: ${min}' and '${name}: ${props[name]}'`
           );
-        } else if (min < 0 && props.max > 0) {
-          err = new Error(
-            `The '${component}' is unable to have a range spanning from negative to positive. The range ` +
-            'must either be all negative or all positive.'
-          );
         }
       }
 
@@ -128,9 +122,7 @@ export default class Slider extends PureComponent {
     },
 
     /**
-     * The max value for the slider. The max value must be greater than the min value
-     * and the min and max values must be on the same side of 0. It is currently
-     * invalid to have a range from negative to positive.
+     * The max value for the slider. This value **must** be greater than the `min` value.
      */
     max: (props, propName, component, ...others) => {
       let err = PropTypes.number.isRequired(props, propName, component, ...others);

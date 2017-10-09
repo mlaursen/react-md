@@ -49,7 +49,7 @@ exports[`ExamplesPage should render correctly 1`] = `
         </div>
       </h2>
       <button
-        class="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
+        class="md-btn md-btn--icon md-pointer--hover md-btn--tooltip md-inline-block md-collapser md-collapser--card"
         type="button"
       >
         <div

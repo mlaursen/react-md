@@ -1,4 +1,10 @@
 ## October 2017
+### v1.1.8 Released
+#### Changelog
+- Fixed the Typescript definitions for `DataTable` checkbox callbacks. ([@domszyn] - [pull-575])
+- Removed the unneeded range prop type validation on sliders. [issues-570]
+- Updated tooltips to work better in IE11. [issues-574]
+
 ### v1.1.7 Released
 #### Changelog
 - Fixed a Typescript definition for `DatePicker`. ([@noseglid] - [pull-564])

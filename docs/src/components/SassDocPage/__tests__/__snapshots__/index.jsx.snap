@@ -912,7 +912,7 @@ corresponding css class name.
     </div>
   </section>
   <button
-    class="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
+    class="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-btn--tooltip md-inline-block sassdoc__fab"
     type="button"
   >
     <div
@@ -1850,7 +1850,7 @@ corresponding css class name.
     </div>
   </section>
   <button
-    class="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
+    class="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-btn--tooltip md-inline-block sassdoc__fab"
     type="button"
   >
     <div

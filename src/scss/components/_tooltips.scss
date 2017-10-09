@@ -14,6 +14,10 @@ $md-tooltip-mobile-tile-height: 32px !default;
 /// @type Number
 $md-tooltip-mobile-lr-padding: 16px !default;
 
+/// The top and bottom padding for tooltips on mobile devices.
+/// @type Number
+$md-tooltip-mobile-tb-padding: ($md-tooltip-mobile-tile-height - $md-tooltip-mobile-font-size) / 2 !default;
+
 /// The margin between a tooltip and its corresponding element on mobile devices.
 /// @type Number
 $md-tooltip-mobile-top-margin: 24px !default;
@@ -29,6 +33,10 @@ $md-tooltip-desktop-tile-height: 22px !default;
 /// The left and right padding for tooltips on desktop screens.
 /// @type Number
 $md-tooltip-desktop-lr-padding: 8px !default;
+
+/// The top and bottom padding for tooltips on desktop screens.
+/// @type Number
+$md-tooltip-desktop-tb-padding: ($md-tooltip-desktop-tile-height - $md-tooltip-desktop-font-size) / 2 !default;
 
 /// The margin between a tooltip and its corresponding element on desktop screens.
 /// @type Number
@@ -66,10 +74,9 @@ $md-tooltip-opacity: .9 !default;
   }
 
   .md-tooltip {
-    align-items: center;
     background: $md-tooltip-color;
     color: $md-white-base;
-    display: inline-flex;
+    display: block;
     font-weight: $md-font-medium;
     opacity: $md-tooltip-opacity;
     outline-style: none;
@@ -134,9 +141,7 @@ $md-tooltip-opacity: .9 !default;
 @mixin react-md-tooltips-mobile {
   .md-tooltip {
     font-size: $md-tooltip-mobile-font-size;
-    height: $md-tooltip-mobile-tile-height;
-    padding-left: $md-tooltip-mobile-lr-padding;
-    padding-right: $md-tooltip-mobile-lr-padding;
+    padding: $md-tooltip-mobile-tb-padding $md-tooltip-mobile-lr-padding;
 
     &--top {
       top: -$md-tooltip-mobile-top-margin;
@@ -167,9 +172,7 @@ $md-tooltip-opacity: .9 !default;
 @mixin react-md-tooltips-desktop {
   .md-tooltip {
     font-size: $md-tooltip-desktop-font-size;
-    height: $md-tooltip-desktop-tile-height;
-    padding-left: $md-tooltip-desktop-lr-padding;
-    padding-right: $md-tooltip-desktop-lr-padding;
+    padding: $md-tooltip-desktop-tb-padding $md-tooltip-desktop-lr-padding;
 
     &--top {
       top: -$md-tooltip-desktop-top-margin;
