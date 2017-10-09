@@ -1,4 +1,8 @@
 ## October 2017
+### v1.1.9 Released
+#### Changelog
+- Fixed the order of the `okProps` and `cancelProps` on the `EditDialogColumn`. [issues-581]
+
 ### v1.1.8 Released
 #### Changelog
 - Fixed the Typescript definitions for `DataTable` checkbox callbacks. ([@domszyn] - [pull-575])

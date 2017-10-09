@@ -82,8 +82,8 @@ describe('EditDialogColumn', () => {
     const wrapper = mount(<Wrapper><EditDialogColumn {...props} /></Wrapper>);
     const buttons = wrapper.find(Button);
     expect(buttons.length).toBe(2);
-    expect(buttons.get(0).props.disabled).toBe(true);
-    expect(buttons.get(1).props.iconEl).toBe(props.cancelProps.iconEl);
+    expect(buttons.get(0).props.iconEl).toBe(props.cancelProps.iconEl);
+    expect(buttons.get(1).props.disabled).toBe(true);
   });
 
   it('should prefer the okProps and cancelProps over the other ok/cancel EditDialogColumn props except for onClick', () => {
@@ -121,8 +121,8 @@ describe('EditDialogColumn', () => {
     const buttons = wrapper.find(Button);
     expect(buttons.length).toBe(2);
 
-    const ok = buttons.get(0);
-    const cancel = buttons.get(1);
+    const cancel = buttons.get(0);
+    const ok = buttons.get(1);
     expect(ok.props.onClick).not.toBe(props.okProps.onClick);
     expect(ok.props.primary).toBe(props.okProps.primary);
     expect(ok.props.secondary).toBe(props.okProps.secondary);
