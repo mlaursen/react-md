@@ -660,14 +660,14 @@ export default class EditDialogColumn extends PureComponent {
       children: cancelLabel,
       primary: cancelPrimary && !cancelSecondary,
       secondary: cancelSecondary,
-      ...okProps,
+      ...cancelProps,
       onClick: this._handleCancel,
     }, {
       key: 'ok',
       children: okLabel,
       primary: okPrimary && !okSecondary,
       secondary: okSecondary,
-      ...cancelProps,
+      ...okProps,
       onClick: this._handleOk,
     }];
   };
