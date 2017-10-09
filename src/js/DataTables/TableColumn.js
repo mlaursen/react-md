@@ -66,6 +66,11 @@ class TableColumn extends PureComponent {
     sortIcon: PropTypes.element,
 
     /**
+     * Boolean if the sortIcon should appear before the text in the column.
+     */
+    sortIconBefore: PropTypes.bool,
+
+    /**
      * A boolean if the column has numeric data. It will right-align the data.
      */
     numeric: PropTypes.bool,
@@ -143,6 +148,7 @@ class TableColumn extends PureComponent {
     header: false,
     adjusted: true,
     sortIcon: <FontIcon>arrow_upward</FontIcon>,
+    sortIconBefore: true,
   };
 
   static contextTypes = {
@@ -166,6 +172,7 @@ class TableColumn extends PureComponent {
       selectColumnHeader,
       adjusted,
       grow,
+      sortIconBefore,
       /* eslint-disable no-unused-vars */
       plain: propPlain,
       scope: propScope,
@@ -189,7 +196,7 @@ class TableColumn extends PureComponent {
       ariaSort = sorted ? 'ascending' : 'descending';
       const icon = React.Children.only(getDeprecatedIcon(sortIconClassName, sortIconChildren, sortIcon));
       displayedChildren = (
-        <IconSeparator label={children} iconBefore>
+        <IconSeparator label={children} iconBefore={sortIconBefore}>
           {React.cloneElement(icon, { className: getCollapserStyles({ flipped: !sorted }, icon.props.className) })}
         </IconSeparator>
       );
