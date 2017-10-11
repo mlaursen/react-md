@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'react-md/lib/Sliders';
+import { Slider } from 'react-md';
 
 export default class Page3 extends Component {
   render() {

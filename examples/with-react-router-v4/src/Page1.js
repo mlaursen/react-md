@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
+import { Card, CardTitle, CardText } from 'react-md';
 
 export default class Page1 extends Component {
   render() {
     return (
-      <div className="md-grid">
-        <h2 className="md-cell md-cell--12 md-text-container">
+      <div className="md-grid md-text-container">
+        <h2 className="md-cell md-cell--12">
           Page 1
         </h2>
         <Card className="md-cell">

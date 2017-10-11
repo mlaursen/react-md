@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link as RouterLink, Route } from 'react-router-dom';
-import FontIcon from 'react-md/lib/FontIcons';
-import ListItem from 'react-md/lib/Lists/ListItem';
+import { FontIcon, ListItem } from 'react-md';
 
 const NavLink = ({ label, to, exact, icon }) => (
   <Route path={to} exact={exact}>
@@ -24,11 +23,5 @@ const NavLink = ({ label, to, exact, icon }) => (
   </Route>
 );
 
-NavLink.propTypes = {
-  label: PropTypes.string.isRequired,
-  to: PropTypes.string,
-  exact: PropTypes.bool,
-  icon: PropTypes.node,
-};
 export default NavLink;
 
