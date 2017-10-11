@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "React material design components",
   "main": "./lib",
   "module": "./es/react-md.js",
@@ -36,7 +36,7 @@
     "build:es:watch": "npm run build:es -- -w",
     "build:umd:dev": "cross-env NODE_ENV=development BABEL_ENV=umd rollup -c",
     "build:umd:prod": "cross-env NODE_ENV=production BABEL_ENV=umd rollup -c",
-    "build": "npm-run-all -p css-bundles scripts build:es build:umd:dev build:umd:prod"
+    "build": "npm-run-all -p tsd css-bundles scripts build:es build:umd:dev build:umd:prod"
   },
   "repository": {
     "type": "git",

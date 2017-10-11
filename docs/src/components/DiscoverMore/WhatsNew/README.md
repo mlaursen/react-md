@@ -1,4 +1,7 @@
 ## October 2017
+### v1.2.2 Released
+- Correctly published to `npm` with the Typescript definition files.
+
 ### v1.2.1 Released
 #### Changelog
 - Correctly exported the new `Grid`, `Cell`, and `GridList` for non-ES6 module imports. [commit-27c86e8]
