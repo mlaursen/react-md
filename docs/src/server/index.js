@@ -24,10 +24,7 @@ const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seco
 const dist = path.resolve(process.cwd(), 'public');
 const app = express();
 
-app.set('etag', 'strong');
-app.use(helmet({
-  noCache: false,
-}));
+app.use(helmet());
 app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
@@ -122,7 +119,7 @@ app.listen(port, (err) => {
   // This gets set during the webpack config, but it is completely possible to have no PUBLIC_URL
   // in dev mode, so set it to any address on server side by default
   global.PUBLIC_URL = process.env.PUBLIC_URL || `http://localhost:${port}`;
-  if (__DEV__ && !global.__SERVER_ONLY) {
+  if (__DEV__ && !global.__SERVER_ONLY__) {
     winston.info('Starting webpack compilation...');
     winston.info(`Please wait until webpack spams your console, then you can navigate to ${global.PUBLIC_URL}`);
   } else {
