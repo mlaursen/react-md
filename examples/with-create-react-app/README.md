@@ -1,7 +1,8 @@
 # react-md with-create-react-app
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 This project just followed the steps for [adding a css-preprocessor](#adding-a-css-preprocessor-sass-less-etc),
-added `react-md`, and the `webfontloader`.
+added `react-md`, and the `webfontloader`. If you have already installed the css-preprocessor, feel free to skip
+to [adding react-md](#adding-react-md).
 
 ## First Setup
 The following steps will outline how to add `react-md` into a project that was bootstrapped with `create-react-app` with a simplified
@@ -15,7 +16,7 @@ yarn add node-sass-chokidar
 
 Then in `package.json`, add the following lines to `scripts`:
 ```diff
-+  "scripts": {
+   "scripts": {
 +    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
 +    "watch-css": "npm run build-css && npm run build-css --watch --recursive",
      "start": "react-scripts start",
@@ -100,6 +101,8 @@ Now let's update the `src_globals.scss` file so that we import react-md and defi
 
 > Note: Notice the `@import 'react-md/src/scss/react-md';` statement. This is only possible if the `--include-path ./node_modules` has been added
 to the `build-css` command. If this is not added, you will need to change this line to `@import '../node_modules/react-md/src/scss/react-md';`;
+
+Now the `src/_globals.scss` file can be imported into any of our Sass files and have access to any helpers, mixins, and variables that have been defined.
 
 Next, let's update the `src/index.scss` file to import all the styles from `react-md` using our defined theme:
 ```diff
