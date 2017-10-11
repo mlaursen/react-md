@@ -4,39 +4,104 @@ This project just followed the steps for [adding a css-preprocessor](#adding-a-c
 added `react-md`, and the `webfontloader`.
 
 ## First Setup
-The following steps will outline how to add `react-md` into a project that was bootstrapped with `create-react-app` after
-adding the pre-processor steps have been completed.
+The following steps will outline how to add `react-md` into a project that was bootstrapped with `create-react-app` with a simplified
+version of adding the css-preprocessor.
 
-> Note: The steps the steps for [adding a css-preprocessor](#adding-a-css-preprocessor-sass-less-etc) **must** be completed
-before continuing.
+### Adding a CSS Preprocessor (Simplified)
+First, let's install the command-line interface for Sass:
+```sh
+yarn add node-sass-chokidar
+```
 
+Then in `package.json`, add the following lines to `scripts`:
+```diff
++  "scripts": {
++    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
++    "watch-css": "npm run build-css && npm run build-css --watch --recursive",
+     "start": "react-scripts start",
+     "build": "react-scripts build",
+     "test": "react-scripts test --env=jsdom",
+```
+
+> Note: This is a bit different than the `create-react-app` example since it includes `--include-path ./node_modules`. This
+is added so that we can later just do `@import 'react-md/src/scss/react-md'` without having to do relative paths.
+
+Next, let's rename `src/App.css` and `src/index.css` to `src/App.scss` and `src/index.scss` and run `npm run watch-css`.
+```sh
+$ mv src/index.css src/index.scss
+$ mv src/App.css src/App.scss
+```
+
+The watcher will find every Sass file in `src` subdirectories, and create a corresponding CSS file next to it, in our case
+overwriting `src/App.css`. Since `src/App.js` still imports `src/App.css`, the styles become a part of your application.
+You can now edit `src/App.scss`, and `src/App.css` will be regenerated.
+
+At this point you might want to remove all CSS files from the source control, and add `src/**/*.css `to your `.gitignore` file.
+It is generally a good practice to keep the build products outside of the source control. Edit `.gitignore`:
+```diff
+ npm-debug.log*
+ yarn-debug.log*
+ yarn-error.log*
++
++# build artifacts
++src/**/*.css
+```
+
+As a final step, you may find it convenient to run `watch-css` automatically with `npm start`, and run `build-css` as a part of
+`npm run build`. You can use the `&&` operator to execute two scripts sequentially. However, there is no cross-platform way to
+run two scripts in parallel, so we will install a package for this:
+```sh
+$ yarn add npm-run-all
+```
+
+Then we can change `start` and `build` scripts to include the CSS preprocessor commands:
+```diff
+   "scripts": {
+     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
+     "watch-css": "npm run build-css && npm run build-css --watch --recursive",
+-    "start": "react-scripts start",
+-    "build": "react-scripts build",
++    "start-js": "react-scripts start",
++    "start": "npm-run-all -p watch-css start-js",
++    "build": "react-scripts build",
+     "test": "react-scripts test --env=jsdom",
+     "eject": "react-scripts eject"
+   }
+```
+
+Now running `npm start` and `npm run build` also builds Sass files.
+
+Continue reading the `create-react-app`'s documentation about [adding a css-preprocessor](#adding-a-css-preprocessor-sass-less-etc) for some more information.
+
+## Adding react-md
 First, let's install `react-md`:
 ```sh
 $ yarn add react-md
 ```
 
-Next, let's update the styles to use Sass so we can include the `react-md` styles and remove the existing css files:
+Next, let's create a helper file that stores all variables and imports the `react-md` Sass files so that the helpers, mixins, and variables
+can be used within any of our Sass files.
 ```sh
 $ touch src/_globals.scss
-$ mv src/index.css src/index.scss
-$ mv src/App.css src/App.scss
 ```
 
-In the step above, we created a `_globals.scss` file that is used to store any variables/mixins/helpers that can be
-used in any scss file. We also updated the existing css files so that they can be pre-processed by `node-sass`.
+> Note: Please note the leading `_` in the filename. Sass **will not compile** files that start with a leading `_` since they
+are considered to be import-only files. This is exactly that we want since this should only be used for importing helpers, mixins,
+and variables into our other Sass files.
 
-Next, let's create the `src/_globals.scss` file to import all of `react-md` to have access to variables/mixins/helpers and set the theme:
+Now let's update the `src_globals.scss` file so that we import react-md and define a them:
 ```diff
-+// Can't use the nice '~react-md/src/scss/react-md' since this isn't being bundled with webpack
-+@import '../node_modules/react-md/src/scss/react-md';
++@import 'react-md/src/scss/react-md';
 +
 +// Any variable overrides. The following just changes the default theme to use teal and purple.
 +$md-primary-color: $md-teal-500;
 +$md-secondary-color: $md-purple-a-400;
 ```
 
-Next, let's update the `src/index.scss` file to import all the styles from `react-md` using our defined theme:
+> Note: Notice the `@import 'react-md/src/scss/react-md';` statement. This is only possible if the `--include-path ./node_modules` has been added
+to the `build-css` command. If this is not added, you will need to change this line to `@import '../node_modules/react-md/src/scss/react-md';`;
 
+Next, let's update the `src/index.scss` file to import all the styles from `react-md` using our defined theme:
 ```diff
 +@import 'globals';
 +
@@ -47,24 +112,27 @@ Next, let's update the `src/index.scss` file to import all the styles from `reac
  }
 ```
 
-Next, let's update the `src/index.js` so that we can use the `Roboto` font and display `material-icons` in
+Now that all the styles have been included, let's update the `src/index.js` so that we can use the `Roboto` font and display `material-icons` in
 the `FontIcon` components:
 ```diff
-  import registerServiceWorker from './registerServiceWorker';
-+ import WebFontLoader from 'webfontloader';
-+ 
-+ WebFontLoader.load({
-+   google: {
-+     families: ['Roboto:300,400,500,700', 'Material Icons'],
-+   },
-+ });
-  
-  ReactDOM.render(<App />, document.getElementById('root'));
-  registerServiceWorker();
+ import React from 'react';
+ import ReactDOM from 'react-dom';
+ import './index.css';
+ import App from './App';
+ import registerServiceWorker from './registerServiceWorker';
++import WebFontLoader from 'webfontloader';
++
++WebFontLoader.load({
++  google: {
++    families: ['Roboto:300,400,500,700', 'Material Icons'],
++  },
++});
+ 
+ ReactDOM.render(<App />, document.getElementById('root'));
+ registerServiceWorker();
 ```
 
-> Note: There are other ways of importing and including the font libraries. This is the simplest for demo examples, but
-you can choose whichever method you think is best.
+The `webfontloader` is not a required way of importing fonts and font libraries but it is the simplest for demo examples.
 
 Next, let's start the development server to see that it renders as expected:
 ```sh
