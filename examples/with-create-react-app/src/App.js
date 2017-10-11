@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+import { NavigationDrawer, Button, FontIcon } from 'react-md';
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +18,7 @@ class App extends Component {
           <p className="App-intro">
             To get started, edit <code>src/App.js</code> and save to reload.
           </p>
+          <Button raised primary iconEl={<FontIcon>home</FontIcon>}>Button</Button>
         </div>
       </NavigationDrawer>
     );

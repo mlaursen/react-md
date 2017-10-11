@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
-
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 import WebFontLoader from 'webfontloader';
 
 WebFontLoader.load({
@@ -11,7 +11,5 @@ WebFontLoader.load({
   },
 });
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
