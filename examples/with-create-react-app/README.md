@@ -4,8 +4,11 @@ This project just followed the steps for [adding a css-preprocessor](#adding-a-c
 added `react-md`, and the `webfontloader`.
 
 ## First Setup
-The following steps will outline how to add `react-md` into a project that was boostrapped with `create-react-app` after
+The following steps will outline how to add `react-md` into a project that was bootstrapped with `create-react-app` after
 adding the pre-processor steps have been completed.
+
+> Note: The steps the steps for [adding a css-preprocessor](#adding-a-css-preprocessor-sass-less-etc) **must** be completed
+before continuing.
 
 First, let's install `react-md`:
 ```sh
@@ -44,7 +47,8 @@ Next, let's update the `src/index.scss` file to import all the styles from `reac
  }
 ```
 
-Next, let's update the `src/index.js` so that we can use the default `material-icons` in `FontIcon`s:
+Next, let's update the `src/index.js` so that we can use the `Roboto` font and display `material-icons` in
+the `FontIcon` components:
 ```diff
   import registerServiceWorker from './registerServiceWorker';
 + import WebFontLoader from 'webfontloader';
@@ -58,6 +62,9 @@ Next, let's update the `src/index.js` so that we can use the default `material-i
   ReactDOM.render(<App />, document.getElementById('root'));
   registerServiceWorker();
 ```
+
+> Note: There are other ways of importing and including the font libraries. This is the simplest for demo examples, but
+you can choose whichever method you think is best.
 
 Next, let's start the development server to see that it renders as expected:
 ```sh
@@ -105,8 +112,9 @@ component from `react-md` to set the application layout:
  }
 ```
 
-And tada! You should now see a basic `NavigationDrawer` surrounding the default `create-react-app`
-`App.js` file.
+And 🎉! You should now see a basic `NavigationDrawer` surrounding the default `create-react-app`
+`App.js` file. Now that all of this has been setup, look around the [documentation website](https://react-md.mlaursen.com)
+to see how you can use all the components in `react-md` and examples.
 
 ## create-react-app documentation
 
