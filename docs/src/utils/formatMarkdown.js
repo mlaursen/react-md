@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import marked from 'marked';
-import { GITHUB_URL, VERSION } from 'constants/application';
+import { GITHUB_URL } from 'constants/application';
+import { Version } from 'react-md';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -84,7 +85,7 @@ function addGithubUserLinks(markdown) {
 }
 
 function updateUMDForVersion(markdown) {
-  return markdown.replace(/unpkg.com\/react-md\/dist/g, `unpkg.com/react-md@${VERSION}/dist`);
+  return markdown.replace(/unpkg.com\/react-md\/dist/g, `unpkg.com/react-md@${Version}/dist`);
 }
 
 

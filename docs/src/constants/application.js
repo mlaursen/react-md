@@ -1,6 +1,5 @@
-import { version, bugs } from '../../../package.json';
+import { bugs } from '../../../package.json';
 
-export const VERSION = version;
 export const GITHUB_URL = bugs.url.replace('/issues', '');
 export const API_ENDPOINT = '/api';
 export const SEARCH_ENDPOINT = '/search';

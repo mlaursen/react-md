@@ -73,5 +73,6 @@ export TextField from './js/TextFields/TextField';
 export Toolbar from './js/Toolbars/Toolbar';
 export injectTooltip from './js/Tooltips/injectTooltip';
 export Tooltipped from './js/Tooltips/Tooltipped';
+export Version from './js/Version';
 
 export bem from './js/utils/bem';

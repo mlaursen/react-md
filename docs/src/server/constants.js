@@ -1,5 +1,6 @@
 import path from 'path';
-import { GITHUB_URL, VERSION } from 'constants/application';
+import { GITHUB_URL } from 'constants/application';
+import { Version } from 'react-md';
 
 const REACT_MD_SRC = path.resolve(process.cwd(), '..', 'src');
 
@@ -18,4 +19,4 @@ export const SASSDOC_DATABASE = path.join(DBS_PATH, 'sassdocs.json');
 export const SASSDOC_LINKS_DATABASE = path.join(DBS_PATH, 'sassdocLinks.json');
 export const EXAMPLES_LINKS_DATABASE = path.join(DBS_PATH, 'examplesLinks.json');
 
-export const BASE_SOURCE_PATH = `${GITHUB_URL}/blob/release/${VERSION.replace(/([0-9]\.[0-9]\.)([0-9A-z]|-)+/, '$1x')}`;
+export const BASE_SOURCE_PATH = `${GITHUB_URL}/blob/release/${Version.replace(/([0-9]\.[0-9]\.)([0-9A-z]|-)+/, '$1x')}`;

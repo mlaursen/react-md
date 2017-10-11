@@ -1,14 +1,14 @@
 import express from 'express';
-import { VERSION } from 'constants/application';
 import { RATE_LIMIT, RATE_REMAINING, RATE_RESET } from 'constants/headerKeys';
 import { FORBIDDEN } from 'constants/responseCodes';
+import { Version } from 'react-md';
 import { fetchGithub } from 'utils/api';
 
 const githubRouter = express.Router();
 
 const headers = new Headers({
   Accept: 'application/vnd.github.v3+json',
-  'User-Agent': `react-md-documentation/${VERSION} mlaursen`,
+  'User-Agent': `react-md-documentation/${Version} mlaursen`,
 });
 
 function setHeader(key, res, { headers }) {
