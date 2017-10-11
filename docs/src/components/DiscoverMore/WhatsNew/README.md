@@ -1,7 +1,7 @@
 ## October 2017
 ### v1.2.1 Released
 #### Changelog
-- Correctly exported the new `Grid`, `Cell`, and `GridList` for non-ES6 imports. [commit-27c86e8]
+- Correctly exported the new `Grid`, `Cell`, and `GridList` for non-ES6 module imports. [commit-27c86e8]
 
 ### v1.2.0 Released
 This release was focused on making the entire `react-md` library smaller, adding easier imports, and adding React 16
