@@ -24,7 +24,8 @@
             "imgs": "./src/imgs",
             "constants": "./src/constants",
             "server": "./src/server",
-            "utils": "./src/utils"
+            "utils": "./src/utils",
+            "react-md": "../"
           }
         }]
       ]
