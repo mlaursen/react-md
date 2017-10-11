@@ -1,4 +1,30 @@
 ## October 2017
+### v1.2.0 Released
+This release was focused on making the entire `react-md` library smaller, adding easier imports, and adding React 16
+support. If your bundler supports ES6 modules (webpack 3+), you can now do:
+```js
+import { NavigationDrawer, ...OtherComponents } from 'react-md';
+```
+
+without importing the entire library AND reducing the bundle size compared to:
+
+```js
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+```
+
+The initial update changed production UMD build from 705kB to 361kB as well as changing the entire documentation
+server size from 8MB to 5.7MB, so it is a pretty nice difference. Check the changelog below for all the information.
+
+#### Changelog
+- Added ES6 module support and switch build from webpack to rollup. [pull-566]
+  - Related to [issues-510] and [issues-205]
+- Fully implemented React 16 support with React 15 fallback. [pull-576]
+- Updated compoennts to no longer do `this.setState` in `componentWillUpdate` since React 16 no longer supports it. [commit-a82d314]
+- Created three new components: `Grid`, `Cell`, and `GridList` to easily make grids. [pull-573]
+  - Related to [issues-507] and [issues-472]. This implemented a "container" system for Grids.
+- Update `TableColumn` so the sort icon can appear after the children. ([@cpboone] - [pull-579])
+- Added a `Version` so that the current version of react-md can be determinted easily. [commit-32ecbc7]
+
 ### v1.1.9 Released
 #### Changelog
 - Fixed the order of the `okProps` and `cancelProps` on the `EditDialogColumn`. [issues-581]
