@@ -1,4 +1,8 @@
 ## October 2017
+### v1.2.1 Released
+#### Changelog
+- Correctly exported the new `Grid`, `Cell`, and `GridList` for non-ES6 imports. [commit-27c86e8]
+
 ### v1.2.0 Released
 This release was focused on making the entire `react-md` library smaller, adding easier imports, and adding React 16
 support. If your bundler supports ES6 modules (webpack 3+), you can now do:
