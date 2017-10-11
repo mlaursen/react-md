@@ -24,7 +24,7 @@ const Footer = ({ style }) => (
       to="components"
       src={components}
       alt="A chemistry set with material design colors flowing into a text editor."
-      title="Customization"
+      title="Components"
     />
   </footer>
 );
