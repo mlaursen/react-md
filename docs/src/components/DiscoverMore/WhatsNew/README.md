@@ -19,11 +19,11 @@ server size from 8MB to 5.7MB, so it is a pretty nice difference. Check the chan
 - Added ES6 module support and switch build from webpack to rollup. [pull-566]
   - Related to [issues-510] and [issues-205]
 - Fully implemented React 16 support with React 15 fallback. [pull-576]
-- Updated compoennts to no longer do `this.setState` in `componentWillUpdate` since React 16 no longer supports it. [commit-a82d314]
+- Updated components to no longer do `this.setState` in `componentWillUpdate` since React 16 no longer supports it. [commit-a82d314]
 - Created three new components: `Grid`, `Cell`, and `GridList` to easily make grids. [pull-573]
   - Related to [issues-507] and [issues-472]. This implemented a "container" system for Grids.
 - Update `TableColumn` so the sort icon can appear after the children. ([@cpboone] - [pull-579])
-- Added a `Version` so that the current version of react-md can be determinted easily. [commit-32ecbc7]
+- Added a `Version` so that the current version of react-md can be determined easily. [commit-32ecbc7]
 
 ### v1.1.9 Released
 #### Changelog
