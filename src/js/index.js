@@ -36,6 +36,7 @@ import { ExpansionPanel, ExpansionList } from './ExpansionPanels';
 import { SpeedDial } from './FABTransitions';
 import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
+import { Grid, Cell, GridList } from './Grids';
 import {
   AccessibleFakeButton,
   AccessibleFakeInkedButton,
@@ -113,6 +114,9 @@ export { SpeedDial };
 export { FileInput };
 export { FileUpload };
 export { FontIcon };
+export { Grid };
+export { Cell };
+export { GridList };
 export { AccessibleFakeButton };
 export { AccessibleFakeInkedButton };
 export { Collapse };
@@ -210,6 +214,11 @@ export default {
   FileUpload,
 
   FontIcon,
+
+  Grid,
+  Cell,
+  GridList,
+
   AccessibleFakeButton,
   AccessibleFakeInkedButton,
   Collapse,
