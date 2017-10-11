@@ -94,6 +94,20 @@ the little amount of features that have been ported over so far.
 
 Otherwise this _should_ work on most systems with node >= 6.
 
+### Minimal Setup
+```bash
+mlaursen @ ~/code/react-md
+$ yarn
+$ yarn scripts
+$ cd docs
+mlaursen @ ~/code/react-md/docs
+$ yarn
+$ cp .env.example .env
+$ cd ..
+mlaursen @ ~/code/react-md
+$ yarn dev
+```
+
 Development Scripts
 =====
 * [lint](#lint)
