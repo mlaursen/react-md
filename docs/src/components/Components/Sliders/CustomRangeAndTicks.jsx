@@ -11,6 +11,15 @@ const CustomRangeAndTicks = () => (
       step={0.5}
     />
     <Slider
+      id="custom-range-step-slider"
+      label="Discrete Min = 1, Max = 3, Step = 0.25"
+      min={1}
+      max={3}
+      step={0.25}
+      valuePrecision={2}
+      discrete
+    />
+    <Slider
       id="disctete-ticks-slider"
       label="Discrete with ticks and precision"
       discrete
