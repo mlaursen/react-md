@@ -45,4 +45,34 @@ describe('calculateValueDistance', () => {
     });
     expect(calculateValueDistance(pageX, width, left, scale, step, min, max, normalized)).toEqual(expected);
   });
+
+  describe('handle min values with step < 1', () => {
+    const value = 1.75;
+    const pxOffset = 5;
+    const width = 210;
+    const left = 0;
+    const step = 0.25;
+    const min = 1;
+    const max = 3;
+    // introduce an error of pxOffset to demonstrate it is rounding to nearest step
+    const pageX = (value - min) / (max - min) * width + left - pxOffset;
+    const scale = (max - min) / step;
+    it('should correctly round the value to the nearest step with normalized = false', () => {
+      const normalized = false;
+      const expected = expect.objectContaining({
+        value,
+        distance: (pageX - left) / width * 100,
+      });
+      expect(calculateValueDistance(pageX, width, left, scale, step, min, max, normalized)).toEqual(expected);
+    });
+    it('should correctly round the value and the distance to the nearest step with normalized = true', () => {
+      // modify to test normalized calculation
+      const normalized = true;
+      const expected = expect.objectContaining({
+        value,
+        distance: (pageX + pxOffset - left) / width * 100, // it should compensate for the error introduced above
+      });
+      expect(calculateValueDistance(pageX, width, left, scale, step, min, max, normalized)).toEqual(expected);
+    });
+  });
 });
