@@ -317,6 +317,16 @@ export default class Drawer extends PureComponent {
      */
     constantType: PropTypes.bool.isRequired,
 
+    /**
+     * An optional zDepth to apply to the drawer. If this is omitted, the value will be set as follows:
+     * - floating || inline = 1
+     * - temporary = 5
+     * - all others = 1
+     *
+     * @see {@link Papers/Paper#zDepth}
+     */
+    zDepth: PropTypes.number,
+
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
     onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
   };
@@ -636,6 +646,7 @@ export default class Drawer extends PureComponent {
       visible: propVisible,
       renderNode: propRenderNode,
       navItemsId: propNavItemsId,
+      zDepth: propZDepth,
       constantType,
       defaultVisible,
       defaultMedia,
@@ -657,7 +668,7 @@ export default class Drawer extends PureComponent {
       ...props
     } = this.props;
 
-    let { navItemsId } = this.props;
+    let { navItemsId, zDepth } = this.props;
     if (!navItemsId && id) {
       navItemsId = `${id}-nav-items`;
     }
@@ -698,11 +709,14 @@ export default class Drawer extends PureComponent {
         </List>
       );
     }
-    let zDepth = 1;
-    if (floating || inline) {
-      zDepth = 0;
-    } else if (!mini && temporary && visible) {
-      zDepth = 5;
+
+    if (typeof zDepth === 'undefined') {
+      zDepth = 1;
+      if (floating || inline) {
+        zDepth = 0;
+      } else if (!mini && temporary) {
+        zDepth = 5;
+      }
     }
 
     const overlayVisible = !mini && (!desktop || clickableDesktopOverlay)

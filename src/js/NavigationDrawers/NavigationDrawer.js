@@ -277,15 +277,25 @@ export default class NavigationDrawer extends PureComponent {
     drawerTitle: invalidIf(PropTypes.node, 'drawerHeader'),
 
     /**
-     * Any additional children to display in the drawer's header `Toolbar`. If the `drawerHeader` prop is defined,
-     * this is invalid.
+     * An optional zDepth to apply to the drawer. If this is omitted, the value will be set as follows:
+     * - floating || inline = 1
+     * - temporary = 5
+     * - all others = 1
+     *
+     * @see {@link Papers/Paper#zDepth}
      */
-    drawerHeaderChildren: invalidIf(PropTypes.node, 'drawerHeader'),
+    drawerZDepth: PropTypes.number,
 
     /**
      * Any additional children to display after the `drawerHeader` and `navItems` list in the drawer.
      */
     drawerChildren: PropTypes.node,
+
+    /**
+     * Any additional children to display in the drawer's header `Toolbar`. If the `drawerHeader` prop is defined,
+     * this is invalid.
+     */
+    drawerHeaderChildren: invalidIf(PropTypes.node, 'drawerHeader'),
 
     /**
      * The position for the drawer to be displayed.
@@ -850,6 +860,7 @@ export default class NavigationDrawer extends PureComponent {
       children,
       drawerId,
       drawerTitle,
+      drawerZDepth,
       drawerChildren,
       drawerHeaderChildren,
       drawerTransitionDuration,
@@ -1023,6 +1034,7 @@ export default class NavigationDrawer extends PureComponent {
           desktopType={desktopType}
           type={getNonMiniType(drawerType)}
           visible={visible}
+          zDepth={drawerZDepth}
           onVisibilityChange={this._handleVisibility}
           onMediaTypeChange={this._handleTypeChange}
         >

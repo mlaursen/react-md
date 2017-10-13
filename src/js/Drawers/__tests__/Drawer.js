@@ -1,7 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -80,6 +80,79 @@ describe('Drawer', () => {
     expect(overlay.length).toBe(1);
     expect(overlay.hasClass(props.overlayClassName));
     expect(overlay.props().style).toBe(props.overlayStyle);
+  });
+
+  describe('zDepth', () => {
+    it('should correctly set the zDepth when the prop is undefined based on the type prop', () => {
+      const drawer = shallow(
+        <Drawer
+          visible
+          type={Drawer.DrawerTypes.FULL_HEIGHT}
+          onVisibilityChange={() => {}}
+          onMediaTypeChange={() => {}}
+        />
+      );
+
+      const getZDepth = () => drawer.find(Paper).props().zDepth;
+      expect(getZDepth()).toBe(1);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.CLIPPED });
+      expect(getZDepth()).toBe(1);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.FLOATING });
+      expect(getZDepth()).toBe(0);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.PERSISTENT });
+      expect(getZDepth()).toBe(1);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.PERSISTENT_MINI });
+      expect(getZDepth()).toBe(1);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.TEMPORARY });
+      expect(getZDepth()).toBe(5);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.TEMPORARY_MINI });
+      expect(getZDepth()).toBe(1);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.FULL_HEIGHT, inline: true });
+      expect(getZDepth()).toBe(0);
+    });
+
+    it('should always use the provided zDepth prop if it exists', () => {
+      const drawer = shallow(
+        <Drawer
+          visible
+          type={Drawer.DrawerTypes.FULL_HEIGHT}
+          onVisibilityChange={() => {}}
+          onMediaTypeChange={() => {}}
+          zDepth={4}
+        />
+      );
+
+      const getZDepth = () => drawer.find(Paper).props().zDepth;
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.CLIPPED });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.FLOATING });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.PERSISTENT });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.PERSISTENT_MINI });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.TEMPORARY });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.TEMPORARY_MINI });
+      expect(getZDepth()).toBe(4);
+
+      drawer.setProps({ type: Drawer.DrawerTypes.FULL_HEIGHT, inline: true });
+      expect(getZDepth()).toBe(4);
+    });
   });
 
   describe('updateType', () => {

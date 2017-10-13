@@ -23,6 +23,7 @@ export interface NavigationDrawerProps extends Props {
   drawerHeader?: React.ReactNode;
   drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
+  drawerZDepth?: number;
   drawerChildren?: React.ReactNode;
   position?: DrawerPosition;
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: React.ReactNode }>;

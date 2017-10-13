@@ -41,6 +41,7 @@ export interface DrawerProps extends Props {
   clickableDesktopOverlay?: boolean;
   children?: React.ReactNode;
   constantType?: boolean;
+  zDepth?: number;
 
   /**
    * @deprecated
