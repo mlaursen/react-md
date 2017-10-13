@@ -78,7 +78,7 @@ export default class Portal extends PureComponent {
   componentWillReceiveProps(nextProps) {
     const { visible, onOpen } = nextProps;
     if (this.props.visible === visible) {
-      if (!isReact16) {
+      if (visible && !isReact16) {
         // Need to just re-render the subtree
         this._renderPortal(nextProps);
       }
