@@ -3,7 +3,7 @@
 #### Changelog
 - Correctly passed `disableScrollLocking` for `DatePicker` and `TimePicker`. [commit-bc0423e]
 - Fixed the React 15 `Portal` support. [issues-589]
-- Fixed the `Slider` step behhavior where the `min` value is not zero. ([@strickc] -  [issues-585] and [pull-588])
+- Fixed the `Slider` step behavior where the `min` value is not zero. ([@strickc] -  [issues-585] and [pull-588])
 - Updated the `Drawer` and `NavigationDrawer` to be able to apply manual `zDepth`. [issues-590]
 
 #### Website changes
