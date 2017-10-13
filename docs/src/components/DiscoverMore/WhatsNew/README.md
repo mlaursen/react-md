@@ -1,5 +1,21 @@
 ## October 2017
+### v1.2.3 Release
+#### Changelog
+- Correctly passed `disableScrollLocking` for `DatePicker` and `TimePicker`. [commit-bc0423e]
+- Fixed the React 15 `Portal` support. [issues-589]
+- Fixed the `Slider` step behhavior where the `min` value is not zero. ([@strickc] -  [issues-585] and [pull-588])
+- Updated the `Drawer` and `NavigationDrawer` to be able to apply manual `zDepth`. [issues-590]
+
+#### Website changes
+- Fixed the search functionality for: media queries, colors, themes, and typography. [commit-adb8bad]
+
+#### Other Changes
+- Updated the [with-create-react-app](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-create-react-app),
+[with-react-router-v4](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-react-router-v4), and
+[with-typescript](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-typescript) examples.
+
 ### v1.2.2 Released
+#### Changelog
 - Correctly published to `npm` with the Typescript definition files.
 
 ### v1.2.1 Released
