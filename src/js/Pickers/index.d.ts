@@ -57,6 +57,7 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
+  disableScrollLocking?: boolean;
 }
 
 export { default as DatePicker, default as DatePickerContainer, DatePickerProps } from './DatePickerContainer';

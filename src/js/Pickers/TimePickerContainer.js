@@ -337,6 +337,11 @@ export default class TimePickerContainer extends PureComponent {
     lastChild: PropTypes.bool,
 
     /**
+     * @see {@link Dialogs/DialogContainer#disableScrollLocking}
+     */
+    disableScrollLocking: PropTypes.bool,
+
+    /**
      * Boolean if the TimePicker should be read only. This will prevent the user from opening the picker
      * and only display the current date in the text field.
      */
@@ -360,6 +365,7 @@ export default class TimePickerContainer extends PureComponent {
     cancelLabel: 'Cancel',
     cancelPrimary: true,
     closeOnEsc: true,
+    disableScrollLocking: false,
     'aria-label': 'Select a time',
     hoverMode: false,
   };
@@ -603,6 +609,7 @@ export default class TimePickerContainer extends PureComponent {
       helpText,
       helpOnFocus,
       inlineIndicator,
+      disableScrollLocking,
       'aria-label': ariaLabel,
       /* eslint-disable no-unused-vars */
       value: propValue,
@@ -662,6 +669,7 @@ export default class TimePickerContainer extends PureComponent {
           lastChild={lastChild}
           renderNode={renderNode}
           focusOnMount={false}
+          disableScrollLocking={disableScrollLocking}
         >
           {picker}
         </Dialog>

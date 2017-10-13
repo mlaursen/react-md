@@ -492,6 +492,11 @@ export default class DatePickerContainer extends PureComponent {
     calendarWeekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
 
     /**
+     * @see {@link Dialogs/DialogContainer#disableScrollLocking}
+     */
+    disableScrollLocking: PropTypes.bool,
+
+    /**
      * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
      * of the first.
      */
@@ -532,6 +537,7 @@ export default class DatePickerContainer extends PureComponent {
     cancelLabel: 'Cancel',
     cancelPrimary: true,
     closeOnEsc: true,
+    disableScrollLocking: false,
     'aria-label': 'Pick a date',
   };
 
@@ -886,6 +892,7 @@ export default class DatePickerContainer extends PureComponent {
       helpText,
       helpOnFocus,
       inlineIndicator,
+      disableScrollLocking,
       'aria-label': ariaLabel,
       nextIcon: propNextIcon,
       previousIcon: propPreviousIcon,
@@ -961,6 +968,7 @@ export default class DatePickerContainer extends PureComponent {
           portal={portal}
           lastChild={lastChild}
           focusOnMount={false}
+          disableScrollLocking={disableScrollLocking}
         >
           {picker}
         </Dialog>
