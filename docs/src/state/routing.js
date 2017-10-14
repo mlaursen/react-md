@@ -17,7 +17,9 @@ export function pageNotFound() {
   return { type: NOT_FOUND };
 }
 
-export default function routing(state = {}, action) {
+const INITIAL_STATE = typeof window !== 'undefined' ? { ...window.location } : {};
+
+export default function routing(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOCATION_CHANGE:
       return action.payload.location;

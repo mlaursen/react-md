@@ -117,6 +117,8 @@ module.exports = ({ production }) => {
     disable: !production,
   });
 
+  const routesName = production ? 'async' : 'sync';
+
   return {
     bail: production,
     cache: !production,
@@ -249,8 +251,8 @@ module.exports = ({ production }) => {
     },
     plugins: [
       // Use async routes in production and synchronous in development
-      new webpack.NormalModuleReplacementPlugin(/routes$/, 'routes/async.js'),
-      new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, './async.js'),
+      new webpack.NormalModuleReplacementPlugin(/routes$/, `routes/${routesName}.js`),
+      new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, `./${routesName}.js`),
       new webpack.NormalModuleReplacementPlugin(/^\.\/render$/, `./render.${SSR || production ? 'ssr' : 'dev'}.jsx`),
       new webpack.LoaderOptionsPlugin({
         options: {
