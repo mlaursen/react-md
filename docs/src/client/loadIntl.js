@@ -1,3 +1,11 @@
+/**
+ * This will polyfill intl with the current locale only when required. To keep the
+ * total bundle size small, the intl module as well as locale data will be code-split
+ * and only imported when needed.
+ *
+ * @param {String} locale - The current user's locale
+ * @return {Array.<Promise>} a list of import promises or null.
+ */
 export default function loadIntl(locale) {
   if (!global.Intl) {
     const imports = [import('intl')];

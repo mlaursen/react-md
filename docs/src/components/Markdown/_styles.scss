@@ -40,3 +40,7 @@ blockquote {
     content: '\1F41B';
   }
 }
+
+.markdown-container + .markdown-container {
+  margin-top: 1em;
+}

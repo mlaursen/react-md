@@ -44,7 +44,7 @@ ExamplesPage.propTypes = {
   description: PropTypes.string,
   examples: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
+    code: PropTypes.string,
     description: PropTypes.string,
     children: PropTypes.node,
     tableCard: PropTypes.bool,

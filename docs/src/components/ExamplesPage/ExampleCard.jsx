@@ -9,11 +9,14 @@ import Markdown from 'components/Markdown';
 import Title from './Title';
 
 const ExampleCard = ({ title, description, code, children: propChildren, tableCard, className, ...props }) => {
-  const markdown = `
+  let markdown = '';
+  if (code !== null) {
+    markdown = `
 \`\`\`jsx
 ${code}
 \`\`\`
 `;
+  }
 
   let descriptionMarkdown;
   if (description) {
@@ -50,7 +53,7 @@ ${code}
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
     >
-      <Title id={id} title={title} expander />
+      <Title id={id} title={title} expander={!!code} />
       <CardText expandable>
         <Markdown markdown={markdown} />
       </CardText>
@@ -62,7 +65,7 @@ ${code}
 ExampleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  code: PropTypes.string.isRequired,
+  code: PropTypes.string,
   children: PropTypes.node,
   tableCard: PropTypes.bool,
   className: PropTypes.string,

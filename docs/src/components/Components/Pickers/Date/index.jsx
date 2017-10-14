@@ -14,6 +14,7 @@ import TextFieldStyling from './TextFieldStyling';
 import TextFieldStylingRaw from '!!raw-loader!./TextFieldStyling.jsx';
 import Controlled from './Controlled';
 import ControlledRaw from '!!raw-loader!./Controlled.jsx';
+import IntlPolyfill from '../IntlPolyfill';
 
 const examples = [{
   title: 'Orientation Examples',
@@ -80,6 +81,10 @@ providing the \`value\` prop and an \`onChange\` prop or \`visible\` with \`onVi
   `,
   code: ControlledRaw,
   children: <Controlled />,
+}, {
+  title: 'Intl Polyfill',
+  code: null,
+  children: <IntlPolyfill />,
 }];
 
 const DatePickers = () => <ExamplesPage description={description} examples={examples} />;
