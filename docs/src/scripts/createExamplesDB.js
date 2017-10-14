@@ -4,7 +4,9 @@ import path from 'path';
 import Promise from 'bluebird';
 import { flattenDeep, kebabCase } from 'lodash';
 import { singular } from 'pluralize';
+import { Version } from 'react-md';
 
+import { GITHUB_URL } from 'constants/application';
 import { EXAMPLES_LINKS_DATABASE } from 'server/constants';
 
 const writeFile = Promise.promisify(fs.writeFile);
@@ -31,7 +33,13 @@ async function woop() {
   const allComponents = await Promise.all(baseFolders.map(async (folder) => {
     if (folder.match(/Helpers|Progress|Pickers/)) {
       const subfolders = await getDirectories(path.join(baseDir, folder));
-      return subfolders.map(subfolder => `${folder}${path.sep}${subfolder}`);
+      return subfolders.reduce((subfolders, subfolder) => {
+        if (!subfolder.match(/IntlPolyfill/)) {
+          subfolders.push(`${folder}${path.sep}${subfolder}`);
+        }
+
+        return subfolders;
+      }, []);
     }
 
     return folder;
@@ -58,7 +66,11 @@ async function woop() {
         return `${examples}\n${line}`;
       }, '');
 
-    return { component, examples: eval(examplesString) }; // eslint-disable-line no-eval
+    /* eslint-disable no-eval, no-template-curly-in-string */
+    return {
+      component,
+      examples: eval(examplesString.replace('${Version}', Version).replace('${GITHUB_URL}', GITHUB_URL)),
+    };
   }));
 
   const allLinks = flattenDeep(examples.map(({ component, examples }) => examples.map(({ title, description }) => {
