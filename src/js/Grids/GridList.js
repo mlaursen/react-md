@@ -308,7 +308,7 @@ export default class GridList extends PureComponent {
 
     return (
       <Component {...props} className={className}>
-        {React.Children.map(children, (child) => React.cloneElement(child, {
+        {React.Children.map(children, (child) => child && React.cloneElement(child, {
           className: cn(child.props.className, cellClassName),
         }))}
       </Component>
