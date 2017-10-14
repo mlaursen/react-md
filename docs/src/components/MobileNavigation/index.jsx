@@ -10,9 +10,7 @@ import { updateFinderVisibility } from 'state/sassdocFab';
 
 import './_styles.scss';
 
-@withRouter
-@connect(({ media: { defaultMedia } }) => ({ defaultMedia }), { updateFinderVisibility })
-export default class DocumentationTabs extends PureComponent {
+class MobileNavigation extends PureComponent {
   static propTypes = {
     defaultMedia: PropTypes.string.isRequired,
     location: PropTypes.object.isRequired,
@@ -83,3 +81,4 @@ export default class DocumentationTabs extends PureComponent {
     );
   }
 }
+export default withRouter(connect(({ media: { defaultMedia } }) => ({ defaultMedia }), { updateFinderVisibility })(MobileNavigation));

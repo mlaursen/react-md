@@ -9,8 +9,7 @@ import notFound from '!!raw-loader!./404.svg';
 
 import './_styles.scss';
 
-@connect(null)
-export default class NotFound extends PureComponent {
+class NotFound extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -43,3 +42,5 @@ export default class NotFound extends PureComponent {
     );
   }
 }
+
+export default connect(null)(NotFound);

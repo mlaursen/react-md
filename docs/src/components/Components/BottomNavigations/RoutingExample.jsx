@@ -45,9 +45,7 @@ const links = [{
 
 const contentId = 'shifting-bottom-navigation-example';
 
-@withRouter
-@withMinHeight
-export class RoutingExample extends PureComponent {
+class RoutingExample extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     mobile: PropTypes.bool.isRequired,
@@ -155,4 +153,4 @@ export class RoutingExample extends PureComponent {
   }
 }
 
-export default connect(({ media: { mobile } }) => ({ mobile }))(RoutingExample);
+export default withRouter(withMinHeight(connect(({ media: { mobile } }) => ({ mobile }))(RoutingExample)));

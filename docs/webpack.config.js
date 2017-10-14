@@ -3,7 +3,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dotenv = require('dotenv');
-const autoprefixer = require('autoprefixer');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -21,6 +20,7 @@ const modules = path.resolve(__dirname, 'node_modules');
 
 const SERVICE_WORKER = 'service-worker.js';
 const PUBLIC_URL = process.env.PUBLIC_URL || homepage;
+const SSR = !!process.env.USE_SSR;
 const PROD_ENTRY = client;
 const DEV_ENTRY = ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', client];
 
@@ -173,7 +173,6 @@ module.exports = ({ production }) => {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-              plugins: [autoprefixer],
             },
           }],
           fallback: 'style-loader',
@@ -192,7 +191,6 @@ module.exports = ({ production }) => {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-              plugins: [autoprefixer],
             },
           }, {
             loader: 'sass-loader',
@@ -253,6 +251,7 @@ module.exports = ({ production }) => {
       // Use async routes in production and synchronous in development
       new webpack.NormalModuleReplacementPlugin(/routes$/, 'routes/async.js'),
       new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, './async.js'),
+      new webpack.NormalModuleReplacementPlugin(/^\.\/render$/, `./render.${SSR || production ? 'ssr' : 'dev'}.jsx`),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {
@@ -266,7 +265,7 @@ module.exports = ({ production }) => {
         SERVICE_WORKER: JSON.stringify(SERVICE_WORKER),
         __DEV__: !production,
         __CLIENT__: true,
-        __SSR__: !!process.env.USE_SSR,
+        __SSR__: SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
       }),
       new SpriteLoaderPlugin(),

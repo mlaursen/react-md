@@ -25,36 +25,7 @@ const helmetConfig = {
   titleTemplate: '%s - react-md',
 };
 
-@withRouter
-@connectAdvanced((dispatch) => {
-  let result;
-
-  return (state, props) => {
-    const {
-      drawer,
-      helmet,
-      media: { defaultMedia, mobile },
-      search: { searching },
-    } = state;
-
-    const nextResult = {
-      ...props,
-      ...drawer,
-      ...helmet,
-      searching,
-      dispatch,
-      defaultMedia,
-      mobile,
-    };
-
-    if (!shallowEqual(result, nextResult)) {
-      result = nextResult;
-    }
-
-    return result;
-  };
-})
-export default class App extends PureComponent {
+class App extends PureComponent {
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
     defaultMedia: PropTypes.string.isRequired,
@@ -171,3 +142,32 @@ export default class App extends PureComponent {
     );
   }
 }
+
+export default withRouter(connectAdvanced((dispatch) => {
+  let result;
+
+  return (state, props) => {
+    const {
+      drawer,
+      helmet,
+      media: { defaultMedia, mobile },
+      search: { searching },
+    } = state;
+
+    const nextResult = {
+      ...props,
+      ...drawer,
+      ...helmet,
+      searching,
+      dispatch,
+      defaultMedia,
+      mobile,
+    };
+
+    if (!shallowEqual(result, nextResult)) {
+      result = nextResult;
+    }
+
+    return result;
+  };
+})(App));

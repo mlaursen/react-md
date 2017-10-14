@@ -23,8 +23,7 @@ const data = [...new Array(350)].map((_, i) => ({
 }));
 const rows = data.length;
 
-@connect(({ media: { mobile } }) => ({ mobile }))
-export default class SimplePagination extends PureComponent {
+class SimplePagination extends PureComponent {
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
   };
@@ -62,3 +61,4 @@ export default class SimplePagination extends PureComponent {
     );
   }
 }
+export default connect(({ media: { mobile } }) => ({ mobile }))(SimplePagination);

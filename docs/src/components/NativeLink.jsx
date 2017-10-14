@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
-@withRouter
-export default class NativeLink extends PureComponent {
+class NativeLink extends PureComponent {
   static propTypes = {
     href: PropTypes.string.isRequired,
     history: PropTypes.object,
@@ -49,3 +48,5 @@ export default class NativeLink extends PureComponent {
     );
   }
 }
+
+export default withRouter(NativeLink);

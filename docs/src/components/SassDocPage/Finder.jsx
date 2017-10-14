@@ -31,8 +31,7 @@ function buildSubList(docs, { location: { pathname, search } }) {
   }];
 }
 
-@withRouter
-export default class FindInPage extends PureComponent {
+class FindInPage extends PureComponent {
   static propTypes = {
     visible: PropTypes.bool.isRequired,
     onVisibilityChange: PropTypes.func.isRequired,
@@ -119,3 +118,4 @@ export default class FindInPage extends PureComponent {
     );
   }
 }
+export default withRouter(FindInPage);

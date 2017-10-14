@@ -11,8 +11,7 @@ const FORMAT_OPTIONS = {
   year: 'numeric',
 };
 
-@connect(({ locale }) => ({ locale }))
-export default class TravelDatesPanel extends PureComponent {
+class TravelDatesPanel extends PureComponent {
   static propTypes = {
     locale: PropTypes.string.isRequired,
     dispatch: PropTypes.func,
@@ -131,3 +130,4 @@ export default class TravelDatesPanel extends PureComponent {
     );
   }
 }
+export default connect(({ locale }) => ({ locale }))(TravelDatesPanel);
