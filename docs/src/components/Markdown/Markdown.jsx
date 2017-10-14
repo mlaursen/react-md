@@ -22,7 +22,7 @@ import './_styles.scss';
 export class PureMarkdown extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    markdown: PropTypes.string.isRequired,
+    markdown: PropTypes.string,
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
@@ -114,6 +114,10 @@ export class PureMarkdown extends PureComponent {
   };
 
   updateHTML = ({ markdown }) => {
+    if (!markdown) {
+      return;
+    }
+
     this.setState({ html: { __html: formatMarkdown(markdown) } }, () => {
       if (this.container) {
         const pres = this.container.querySelectorAll('pre');
@@ -136,8 +140,8 @@ export class PureMarkdown extends PureComponent {
     const {
       component: Component,
       className,
-      /* eslint-disable no-unused-vars */
       markdown,
+      /* eslint-disable no-unused-vars */
       history,
       location,
       match,
@@ -147,6 +151,10 @@ export class PureMarkdown extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+
+    if (!markdown) {
+      return null;
+    }
 
     return (
       <Component
