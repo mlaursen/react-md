@@ -5,7 +5,7 @@ exports[`Colors should render correctly 1`] = `
   className="md-grid"
 >
   <div
-    className="markdown-container md-cel md-cell--12 md-text-container"
+    className="md-cell md-cell--12 markdown-container md-text-container"
     dangerouslySetInnerHTML={
       Object {
         "__html": "<h2 id=\\"color-definitions\\">Color Definitions</h2>
@@ -42,12 +42,13 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
 ",
       }
     }
+    style={undefined}
   />
   <section
     className="md-grid color-palette"
   >
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-red-500 color-palette__color--primary"
@@ -64,7 +65,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-red-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-red-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -73,7 +74,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-red-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-red-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -82,7 +83,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-red-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-red-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -91,7 +92,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-red-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-red-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -154,7 +155,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-red-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-red-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -191,7 +192,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-pink-500 color-palette__color--primary"
@@ -208,7 +209,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-pink-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-pink-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -217,7 +218,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-pink-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-pink-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -226,7 +227,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-pink-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-pink-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -298,7 +299,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-pink-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-pink-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -335,7 +336,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-purple-500 color-palette__color--primary"
@@ -352,7 +353,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-purple-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-purple-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -361,7 +362,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-purple-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-purple-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -370,7 +371,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-purple-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-purple-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -442,7 +443,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-purple-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-purple-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -479,7 +480,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-deep-purple-500 color-palette__color--primary"
@@ -496,7 +497,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-purple-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-purple-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -505,7 +506,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-purple-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-purple-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -514,7 +515,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-purple-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-purple-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -586,7 +587,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-purple-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-deep-purple-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -623,7 +624,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-indigo-500 color-palette__color--primary"
@@ -640,7 +641,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-indigo-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-indigo-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -649,7 +650,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-indigo-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-indigo-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -658,7 +659,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-indigo-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-indigo-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -730,7 +731,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-indigo-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-indigo-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -767,7 +768,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-blue-500 color-palette__color--primary"
@@ -784,7 +785,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -793,7 +794,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -802,7 +803,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -811,7 +812,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -820,7 +821,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -874,7 +875,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-blue-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -911,10 +912,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-light-blue-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -928,7 +929,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -937,7 +938,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -946,7 +947,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -955,7 +956,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -964,7 +965,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -973,7 +974,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1018,7 +1019,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-light-blue-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1027,7 +1028,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1036,7 +1037,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-blue-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1055,10 +1056,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-cyan-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1072,7 +1073,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1081,7 +1082,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1090,7 +1091,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1099,7 +1100,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1108,7 +1109,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1117,7 +1118,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1126,7 +1127,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -1162,7 +1163,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-cyan-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1171,7 +1172,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1180,7 +1181,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1189,7 +1190,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-cyan-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-cyan-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1199,7 +1200,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-teal-500 color-palette__color--primary"
@@ -1216,7 +1217,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1225,7 +1226,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1234,7 +1235,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1243,7 +1244,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1252,7 +1253,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1306,7 +1307,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-teal-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1315,7 +1316,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1324,7 +1325,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1333,7 +1334,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-teal-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-teal-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1343,10 +1344,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-green-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1360,7 +1361,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1369,7 +1370,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1378,7 +1379,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1387,7 +1388,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1396,7 +1397,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1405,7 +1406,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1450,7 +1451,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-green-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1459,7 +1460,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1468,7 +1469,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1477,7 +1478,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-green-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-green-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1487,10 +1488,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-light-green-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1504,7 +1505,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1513,7 +1514,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1522,7 +1523,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1531,7 +1532,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1540,7 +1541,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1549,7 +1550,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1558,7 +1559,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -1594,7 +1595,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-light-green-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1603,7 +1604,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1612,7 +1613,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1621,7 +1622,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-light-green-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-light-green-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1631,10 +1632,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-lime-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1648,7 +1649,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1657,7 +1658,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1666,7 +1667,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1675,7 +1676,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1684,7 +1685,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1693,7 +1694,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1702,7 +1703,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -1711,7 +1712,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1720,7 +1721,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-800 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-800"
       >
         <div
           className="color-palette__sass-variable"
@@ -1738,7 +1739,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-lime-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1747,7 +1748,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1756,7 +1757,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1765,7 +1766,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-lime-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-lime-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1775,10 +1776,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-yellow-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1792,7 +1793,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1801,7 +1802,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1810,7 +1811,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1819,7 +1820,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1828,7 +1829,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1837,7 +1838,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1846,7 +1847,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -1855,7 +1856,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1864,7 +1865,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-800 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-800"
       >
         <div
           className="color-palette__sass-variable"
@@ -1873,7 +1874,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-900 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-900"
       >
         <div
           className="color-palette__sass-variable"
@@ -1882,7 +1883,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-yellow-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1891,7 +1892,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1900,7 +1901,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1909,7 +1910,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-yellow-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-yellow-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -1919,10 +1920,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-amber-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -1936,7 +1937,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -1945,7 +1946,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -1954,7 +1955,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -1963,7 +1964,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -1972,7 +1973,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -1981,7 +1982,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -1990,7 +1991,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -1999,7 +2000,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -2008,7 +2009,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-800 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-800"
       >
         <div
           className="color-palette__sass-variable"
@@ -2017,7 +2018,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-900 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-900"
       >
         <div
           className="color-palette__sass-variable"
@@ -2026,7 +2027,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-amber-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2035,7 +2036,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2044,7 +2045,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -2053,7 +2054,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-amber-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-amber-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -2063,10 +2064,10 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
-        className="color-palette__color color-palette__color--md-orange-500 color-palette__color--primary color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-500 color-palette__color--primary"
       >
         <h4
           className="color-palette__color-name md-text-capitalize"
@@ -2080,7 +2081,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -2089,7 +2090,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2098,7 +2099,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2107,7 +2108,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -2116,7 +2117,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -2125,7 +2126,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-500 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-500"
       >
         <div
           className="color-palette__sass-variable"
@@ -2134,7 +2135,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-600 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-600"
       >
         <div
           className="color-palette__sass-variable"
@@ -2143,7 +2144,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -2170,7 +2171,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-orange-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2179,7 +2180,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2188,7 +2189,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-a-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-a-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -2197,7 +2198,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-orange-a-700 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-orange-a-700"
       >
         <div
           className="color-palette__sass-variable"
@@ -2207,7 +2208,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-deep-orange-500 color-palette__color--primary"
@@ -2224,7 +2225,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -2233,7 +2234,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2242,7 +2243,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2251,7 +2252,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-300 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-300"
       >
         <div
           className="color-palette__sass-variable"
@@ -2260,7 +2261,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-400 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-400"
       >
         <div
           className="color-palette__sass-variable"
@@ -2314,7 +2315,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-a-100 color-palette__color--light color-palette__color--divide"
+        className="color-palette__color color-palette__color--light color-palette__color--divide color-palette__color--md-deep-orange-a-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2323,7 +2324,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-deep-orange-a-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-deep-orange-a-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2351,7 +2352,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-brown-500 color-palette__color--primary"
@@ -2368,7 +2369,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-brown-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-brown-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -2377,7 +2378,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-brown-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-brown-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2386,7 +2387,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-brown-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-brown-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2459,7 +2460,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-grey-500 color-palette__color--primary"
@@ -2476,7 +2477,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-grey-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-grey-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -2485,7 +2486,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-grey-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-grey-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2494,7 +2495,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-grey-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-grey-200"
       >
         <div
           className="color-palette__sass-variable"
@@ -2567,7 +2568,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
       </li>
     </ul>
     <ul
-      className="md-paper md-paper--1 md-cell md-cell--top md-list-unstyled"
+      className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
     >
       <li
         className="color-palette__color color-palette__color--md-blue-grey-500 color-palette__color--primary"
@@ -2584,7 +2585,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-grey-50 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-grey-50"
       >
         <div
           className="color-palette__sass-variable"
@@ -2593,7 +2594,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-grey-100 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-grey-100"
       >
         <div
           className="color-palette__sass-variable"
@@ -2602,7 +2603,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
         </div>
       </li>
       <li
-        className="color-palette__color color-palette__color--md-blue-grey-200 color-palette__color--light"
+        className="color-palette__color color-palette__color--light color-palette__color--md-blue-grey-200"
       >
         <div
           className="color-palette__sass-variable"

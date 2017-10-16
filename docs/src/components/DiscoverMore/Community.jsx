@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Media } from 'react-md';
+import { GridList, Media } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import withMinHeight from 'components/hoc/withMinHeight';
@@ -15,14 +15,14 @@ you can chat with me on [Slack](https://react-md.herokuapp.com/) or use the cont
 `;
 
 const Community = ({ style }) => (
-  <section style={style} className="md-grid md-grid--stacked">
-    <Markdown markdown={markdown} className="md-text-container md-cell md-cell--12" />
-    <div className="md-text-container md-cell md-cell--12">
+  <GridList stacked component="section" size={12} style={style} cellClassName="md-text-container">
+    <Markdown markdown={markdown} />
+    <div>
       <Media>
         <iframe src="https://www.youtube.com/embed/8Mn_GHPETaU" />
       </Media>
     </div>
-  </section>
+  </GridList>
 );
 
 Community.propTypes = {

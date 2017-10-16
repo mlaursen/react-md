@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import { get } from 'lodash/object';
-import { Button } from 'react-md';
+import { Button, bem } from 'react-md';
 
 import sassdocPageShape from 'propTypes/sassdocPageShape';
 import { sassdocRequest } from 'state/sassdocs';
@@ -52,9 +51,7 @@ export class PureSassDocPage extends PureComponent {
           floating
           secondary
           fixed
-          className={cn('sassdoc__fab', {
-            'sassdoc__fab--offset': fabOffset,
-          })}
+          className={bem('sassdoc', 'fab', { offset: fabOffset })}
           onClick={this.toggleFinder}
           tooltipPosition="left"
           tooltipLabel="Find SassDoc in Page"

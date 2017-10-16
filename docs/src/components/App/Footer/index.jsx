@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { Grid } from 'react-md';
 
 import './_styles.scss';
 
@@ -10,12 +11,12 @@ import Contribute from './Contribute';
 import Version from './Version';
 
 const Footer = ({ className, ...props }) => (
-  <footer {...props} id="main-footer" className={cn('md-grid footer', className)}>
+  <Grid {...props} id="main-footer" component="footer" className={cn('footer', className)}>
     <QuickNav />
     <Contact />
     <Contribute />
     <Version />
-  </footer>
+  </Grid>
 );
 
 Footer.propTypes = {

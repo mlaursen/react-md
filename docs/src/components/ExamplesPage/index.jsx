@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { GridList } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import withMinHeight from 'components/hoc/withMinHeight';
@@ -17,24 +18,19 @@ const ExamplesPage = ({
 }) => {
   const cards = examples.map(example => <ExampleCard key={example.title} {...example} />);
 
-  let componentDescription;
-  if (description) {
-    componentDescription = (
-      <Markdown
-        key="description"
-        component="header"
-        className="md-text-container md-cell md-cell--12"
-        markdown={description}
-      />
-    );
-  }
-
   return (
-    <section style={style} className={cn('md-grid md-grid--40-16 examples-page', className)}>
-      {componentDescription}
+    <GridList
+      component="section"
+      gutter={40}
+      spacing={16}
+      size={12}
+      style={style}
+      className={cn('examples-page', className)}
+    >
+      <Markdown component="header" className="md-text-container" markdown={description} />
       {cards}
       {children}
-    </section>
+    </GridList>
   );
 };
 

@@ -37,7 +37,7 @@ exports[`Preview should render correctly 1`] = `
     class="md-grid md-toolbar-relative"
   >
     <h2
-      class="md-display-1 md-cell md-cell--12"
+      class="md-cell md-cell--12 md-display-1"
     >
       Look at this
     </h2>

@@ -81,4 +81,8 @@ class MobileNavigation extends PureComponent {
     );
   }
 }
-export default withRouter(connect(({ media: { defaultMedia } }) => ({ defaultMedia }), { updateFinderVisibility })(MobileNavigation));
+
+const mapStateToProps = ({ media: { defaultMedia } }) => ({ defaultMedia });
+const ConnectedMobileNavigation = connect(mapStateToProps, { updateFinderVisibility })(MobileNavigation);
+
+export default withRouter(ConnectedMobileNavigation);

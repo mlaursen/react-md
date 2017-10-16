@@ -2,11 +2,13 @@ import React, { Children } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { Paper, Toolbar } from 'react-md';
+import { Paper, Toolbar, bem } from 'react-md';
 
 import './_styles.scss';
 import StatusBar from './StatusBar';
 import CloseEmulator from './CloseEmulator';
+
+const base = 'phone-emulator';
 
 const PhoneEmulator = ({
   style,
@@ -73,7 +75,7 @@ const PhoneEmulator = ({
         fixed
         colored
         style={toolbarStyle}
-        className={cn('phone-emulator__toolbar', toolbarClassName)}
+        className={bem(base, 'toolbar', {}, toolbarClassName)}
         nav={<CloseEmulator icon>{toolbarNavIcon}</CloseEmulator>}
         actions={toolbarActions}
         title={toolbarTitle}
@@ -89,14 +91,14 @@ const PhoneEmulator = ({
   }
 
   return (
-    <Paper style={style} className={cn('phone-emulator md-background', className)} zDepth={mobile ? 0 : undefined}>
+    <Paper style={style} className={bem(base, {}, 'md-background', className)} zDepth={mobile ? 0 : undefined}>
       {emulatorStatusBar}
       {emulatorToolbar}
       <CSSTransitionGroup
         {...contentProps}
-        className={cn('phone-emulator__content', {
-          'phone-emulator__content--offset': toolbar,
-          'phone-emulator__content--offset-prominent': toolbar && (toolbarProminent || toolbarProminentTitle),
+        className={bem(base, 'content', {
+          'offset': toolbar,
+          'offset-prominent': toolbar && (toolbarProminent || toolbarProminentTitle),
         }, contentClassName)}
       >
         {children}

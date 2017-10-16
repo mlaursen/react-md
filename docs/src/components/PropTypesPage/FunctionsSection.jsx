@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardText } from 'react-md';
+import { CardText, bem } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import FunctionParameterTable from './FunctionParameterTable';
@@ -9,7 +9,7 @@ const FunctionsSection = ({ id, name, description, returns, params }) => {
   const fnParams = params.reduce((str, p) => `${str}${str.length ? ', ' : ''}${p.name}`, '');
 
   return (
-    <section className="prop-types__functions" id={`${id}-${name}`}>
+    <section className={bem('prop-types', 'functions')} id={`${id}-${name}`}>
       <Markdown component="h3" markdown={`\`\`\`js\n${name}(${fnParams})${returns ? `: ${returns.type}` : ''}\n\`\`\``} />
       <Markdown markdown={description} component={CardText} />
       <FunctionParameterTable params={params} />

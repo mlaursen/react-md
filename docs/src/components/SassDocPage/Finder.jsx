@@ -8,6 +8,7 @@ import {
   Drawer,
   TextField,
   Toolbar,
+  bem,
 } from 'react-md';
 
 import { toTitle } from 'utils/strings';
@@ -96,7 +97,7 @@ class FindInPage extends PureComponent {
       <TextField
         id="sassdoc-finder"
         placeholder="Filter SassDoc"
-        className="md-select-field--toolbar sassdoc__filter"
+        className={bem('sassdoc', 'filter', {}, 'md-select-field--toolbar')}
         onChange={this.filter}
       />
     );

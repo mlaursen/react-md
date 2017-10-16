@@ -87,11 +87,13 @@ exports[`ThemeBuilder should render correctly 1`] = `
         </span>
       </label>
     </div>
-    <i
-      class="md-text theme-configuration__message"
+    <p
+      class="theme-configuration__message"
     >
-      When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
-    </i>
+      <i>
+        When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
+      </i>
+    </p>
     <div
       aria-expanded="false"
       aria-haspopup="true"
@@ -318,7 +320,7 @@ or
         class="md-grid md-toolbar-relative"
       >
         <h2
-          class="md-display-1 md-cell md-cell--12"
+          class="md-cell md-cell--12 md-display-1"
         >
           Look at this
         </h2>
@@ -357,8 +359,8 @@ or
       </button>
     </section>
   </section>
-  <section
-    class="markdown-container md-cell md-cell--12"
+  <div
+    class="md-cell md-cell--12 markdown-container"
   >
     <h4
       id="using-with-sass"
@@ -407,6 +409,6 @@ precompiled.
     </p>
     
 
-  </section>
+  </div>
 </div>
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SelectField, SelectionControl } from 'react-md';
+import { Cell, SelectField, SelectionControl } from 'react-md';
 
 import { SECONDARY_HUES, PRIMARY, SECONDARY, HUE, LIGHT } from 'constants/colors';
 import Message from './Message';
@@ -19,11 +19,13 @@ const Configuration = ({
   filteredPrimaries,
   filteredSecondaries,
 }) => (
-  <form
+  <Cell
+    component="form"
     id="theme-configuration-form"
     name={NAME}
-    className="md-cell md-cell--8 md-cell--6-desktop"
     onChange={onChange}
+    size={8}
+    desktopSize={6}
   >
     <h3 className="md-title">Theme Configuration</h3>
     <SelectionControl
@@ -69,7 +71,7 @@ const Configuration = ({
       onChange={onSelectChange}
       simplifiedMenu={false}
     />
-  </form>
+  </Cell>
 );
 
 Configuration.propTypes = {

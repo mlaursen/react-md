@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Markdown from './Markdown';
+import { GridList } from 'react-md';
 
 import withMinHeight from 'components/hoc/withMinHeight';
+import Markdown from './Markdown';
 
 const MarkdownPage = ({ style, className, markdownStyle, markdownClassName, markdown }) => (
-  <section style={style} className={cn('md-grid md-grid--stacked', className)}>
-    <Markdown
-      style={markdownStyle}
-      className={cn('md-cell md-cell--12 md-text-container', markdownClassName)}
-      markdown={markdown}
-      component="div"
-    />
-  </section>
+  <GridList
+    component="section"
+    size={12}
+    style={style}
+    className={className}
+    cellStyle={markdownStyle}
+    cellClassName={cn('md-text-container', markdownClassName)}
+  >
+    <Markdown markdown={markdown} component="div" />
+  </GridList>
 );
 
 MarkdownPage.propTypes = {

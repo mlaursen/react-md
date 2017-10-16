@@ -1,4 +1,3 @@
-@import '~globals';
 
 :not(pre) > .code-variable.code-variable {
   background: transparent;
@@ -6,4 +5,8 @@
   .token.operator {
     background: transparent;
   }
+}
+
+.code-variable.md-text-nowrap {
+  white-space: nowrap;
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
-import { Card, CardTitle } from 'react-md';
+import { Card, CardTitle, Cell, bem } from 'react-md';
 import { sortBy } from 'lodash/collection';
 
 import componentFunctions from 'propTypes/componentFunctions';
@@ -99,7 +99,7 @@ export default class PropTypesCard extends PureComponent {
     }
 
     return (
-      <Card className="md-cell md-cell--12 prop-types__card">
+      <Cell size={12} className={bem('prop-types', 'card')} component={Card}>
         <ComponentTitle
           id={id}
           source={source}
@@ -114,7 +114,7 @@ export default class PropTypesCard extends PureComponent {
         <Description description={description} mobileFilterVisible={mobileFilterVisible} />
         <PropTypesTable ascending={ascending} sortProps={this.handleSort} visibleProps={visibleProps} baseId={id} />
         {sections}
-      </Card>
+      </Cell>
     );
   }
 }

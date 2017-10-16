@@ -6,6 +6,7 @@ exports[`Typography should render correctly 1`] = `
 >
   <div
     className="md-cell md-cell--12"
+    style={undefined}
   >
     <section
       className="md-text-container typography-container"

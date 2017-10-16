@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TabsContainer, Tabs, Tab } from 'react-md';
+import { Grid, Cell, TabsContainer, Tabs, Tab } from 'react-md';
 
 import Markdown from 'components/Markdown';
 
@@ -72,8 +72,8 @@ Here are a couple of tests that use the utility functions.
 `;
 
 const Testing = ({ mobile }) => (
-  <section className="md-grid md-grid--stacked testing">
-    <Markdown markdown={markdown} component="div" className="md-cell md-cell--12 md-text-container" />
+  <Grid component="section" className="testing" stacked>
+    <Markdown markdown={markdown} component={Cell} size={12} className="md-text-container" />
     <TabsContainer colored className="md-text-container source-code">
       <Tabs tabId="source-code" mobile={mobile} overflowMenu>
         <Tab label="Preview.jsx">
@@ -90,7 +90,7 @@ const Testing = ({ mobile }) => (
         </Tab>
       </Tabs>
     </TabsContainer>
-  </section>
+  </Grid>
 );
 
 Testing.propTypes = {

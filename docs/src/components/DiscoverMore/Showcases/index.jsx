@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import { Grid, GridList } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import withMinHeight from 'components/hoc/withMinHeight';
@@ -18,12 +18,12 @@ Want to showcase your app/product? Either open a pull request adding your applic
 `;
 
 const Showcases = ({ style, className }) => (
-  <div className={cn('md-grid', className)} style={style}>
-    <Markdown markdown={markdown} className="md-text-container md-cell md-cell--12" />
-    <ul className="md-grid md-grid--no-spacing md-list-unstyled md-cell md-cell--12">
+  <GridList size={12} style={style} className={className}>
+    <Markdown markdown={markdown} className="md-text-container" />
+    <Grid component="ul" noSpacing className="md-list-unstyled">
       <LesPassionsdePeronnes />
-    </ul>
-  </div>
+    </Grid>
+  </GridList>
 );
 
 Showcases.propTypes = {

@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import { kebabCase } from 'lodash/string';
-import { TableRow, TableColumn } from 'react-md';
+import { TableRow, TableColumn, bem } from 'react-md';
 
 import QuickLink from 'components/QuickLink';
 import Markdown from 'components/Markdown';
+
+const quick = 'quick-link';
+const base = 'prop-types';
+const cell = bem(base, 'cell');
 
 const PropTypesRow = ({ propName, type, required, defaultValue, description, baseId }) => {
   let descriptionMarkdown = description;
@@ -17,24 +20,24 @@ const PropTypesRow = ({ propName, type, required, defaultValue, description, bas
   const id = `${baseId}-proptypes-${kebabCase(propName)}`;
 
   return (
-    <TableRow id={id} tabIndex={-1} className="quick-link">
+    <TableRow id={id} tabIndex={-1} className={quick}>
       <TableColumn
-        className={cn('quick-link__container prop-types__cell prop-types__prop-name', {
-          'prop-types__prop-name--deprecated md-text--secondary': deprecated,
-        })}
+        className={bem(quick, 'container', {}, cell, bem(base, 'prop-name', {
+          'deprecated md-text--secondary': deprecated,
+        }))}
       >
         <QuickLink id={id} props />
         {propName}
       </TableColumn>
       <TableColumn
-        className="prop-types__cell prop-types__prop-type"
+        className={bem(base, 'prop-type', {}, cell)}
         tooltipLabel={required ? 'Required' : null}
         tooltipDelay={300}
         tooltipPosition="top"
       >
         <Markdown markdown={`\`\`\`js\n${type}${required ? ' *' : ''}\n\`\`\``} lineNumbers={false} />
       </TableColumn>
-      <TableColumn className="prop-types__cell prop-types__normal-column">
+      <TableColumn className={bem(base, 'normal-column', {}, cell)}>
         <Markdown markdown={descriptionMarkdown} lineNumbers={false} />
       </TableColumn>
     </TableRow>

@@ -2,7 +2,8 @@
 
 exports[`Version should render with the version prop 1`] = `
 <p
-  className="md-text-right md-cell md-cell--12"
+  className="md-cell md-cell--12 md-text-right"
+  style={undefined}
 >
   Current version 
   <i>

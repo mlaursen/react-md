@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
-import { Collapse } from 'react-md';
+import { Collapse, Grid, Cell, bem } from 'react-md';
 import QuickNavLink from './QuickNavLink';
+
+const className = bem('footer', 'quick-nav', {}, Grid.getClassName({ noSpacing: true }), Cell.getClassName({ size: 12 }));
 
 export const PureQuickNav = ({
   previousTo,
@@ -13,7 +15,7 @@ export const PureQuickNav = ({
   mobile,
 }) => (
   <Collapse collapsed={!previousName && !nextName}>
-    <nav className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing">
+    <nav className={className}>
       <QuickNavLink
         to={previousTo}
         titles={!mobile || !nextTo}

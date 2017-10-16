@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import Helmet from 'react-helmet';
-import { NavigationDrawer } from 'react-md';
+import { NavigationDrawer, bem } from 'react-md';
 
 import navItems from 'constants/navItems';
 import Link from 'components/Link';
@@ -48,9 +47,7 @@ const App = ({
       onMediaTypeChange={updateMedia}
       toolbarId="main-toolbar"
       toolbarTitle={toolbarTitle}
-      toolbarTitleClassName={cn('main-toolbar__title', {
-        'main-toolbar__title--minified': searching,
-      })}
+      toolbarTitleClassName={bem('main-toolbar', 'title', { 'minified': searching })}
       toolbarZDepth={visibleBoxShadow ? undefined : 0}
       toolbarProminent={!mobile && toolbarProminent}
       toolbarChildren={<DocumentationTabs visible={!mobile && toolbarProminent} />}
