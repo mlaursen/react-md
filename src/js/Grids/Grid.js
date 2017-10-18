@@ -146,6 +146,6 @@ export default class Grid extends PureComponent {
       return children({ style, className });
     }
 
-    return <Component {...props} className={className}>{children}</Component>;
+    return <Component {...props} style={style} className={className}>{children}</Component>;
   }
 }
