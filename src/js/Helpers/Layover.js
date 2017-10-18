@@ -487,7 +487,9 @@ export default class Layover extends PureComponent {
     return animationPosition === Layover.Positions.BELOW && belowAnchor || anchor;
   }
 
-  _createStyles(anchor, centered, child, rect) {
+  _isCenteredDialog = () => this._dialog && this._dialog.classList.contains('md-dialog--centered');
+
+  _createStyles = (anchor, centered, child, rect) => {
     const { x, y } = anchor;
     const { offsetWidth, offsetHeight } = child;
 
@@ -513,6 +515,12 @@ export default class Layover extends PureComponent {
       top = rect.bottom;
     }
 
+    if (this._isCenteredDialog()) {
+      const dialogRect = this._dialog.getBoundingClientRect();
+      left -= dialogRect.left;
+      top -= dialogRect.top;
+    }
+
     const style = {};
     if (top) {
       style.top = top;
@@ -523,7 +531,7 @@ export default class Layover extends PureComponent {
     }
 
     return style;
-  }
+  };
 
   /**
    * Whew. Ok. So since the fixedTo prop can either be two elements or a single item,
@@ -634,7 +642,6 @@ export default class Layover extends PureComponent {
       return;
     }
 
-    const centeredDialog = this._dialog && this._dialog.classList.contains('md-dialog--centered');
     const { height, width } = rect;
     let { top, left, right } = rect;
     let x;
@@ -644,7 +651,7 @@ export default class Layover extends PureComponent {
       x = scroll.x;
       y = scroll.y;
 
-      if (centeredDialog) {
+      if (this._isCenteredDialog()) {
         const dialogRect = this._dialog.getBoundingClientRect();
         left -= dialogRect.left;
         top -= dialogRect.top;
