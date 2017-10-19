@@ -21,6 +21,9 @@ import TextFieldDivider from './TextFieldDivider';
 
 const DEFAULT_TEXT_FIELD_SIZE = 180;
 
+const WILL_RECEIVE_KEYS = ['style', 'value', 'resize'];
+const DID_UPDATE_KEYS = ['leftIcon', 'rightIcon', 'passwordIcon', 'inlineIndicator'];
+
 /**
  * The `TextField` component can either be a single line `input` field or a multiline
  * `textarea` field. `FontIcon`s, messages, and password indicators can also be added
@@ -406,7 +409,7 @@ export default class TextField extends PureComponent {
   componentDidMount() {
     const { value, defaultValue, resize } = this.props;
     const v = typeof value !== 'undefined' ? value : defaultValue;
-    if (resize && v) {
+    if (resize) { // always want to set width on mount
       this.setState({ width: this._calcWidth(v) }); // eslint-disable-line react/no-did-mount-set-state
     }
   }
@@ -420,7 +423,7 @@ export default class TextField extends PureComponent {
       nextState.currentLength = this._getLength(value);
     }
 
-    if (style !== this.props.style || value !== this.props.value || resize !== this.props.resize) {
+    if (WILL_RECEIVE_KEYS.some(key => this.props[key] !== nextProps[key])) {
       if (!resize) {
         nextState.styles = style;
       } else {
@@ -430,6 +433,14 @@ export default class TextField extends PureComponent {
     }
 
     this.setState(nextState);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { resize, value, style } = this.props;
+    if (resize && DID_UPDATE_KEYS.some(key => this.props[key] !== prevProps[key])) {
+      const width = this._calcWidth(value, this.props);
+      this.setState({ styles: { width, ...style } }); // eslint-disable-line react/no-did-update-set-state
+    }
   }
 
   /**
@@ -545,6 +556,10 @@ export default class TextField extends PureComponent {
     }
 
     const field = this._field && this._field.getField();
+    if (!isValued(text) && field) {
+      text = field.value;
+    }
+
     let width = getTextWidth(text, field);
     if (width === null || !field) {
       // some error happened, don't do other logic

@@ -1,4 +1,5 @@
 /* eslint-env jest */
+/* eslint-disable max-len */
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
@@ -422,6 +423,63 @@ describe('TextField', () => {
       field.setProps({ value: '01234567890123456789012345678' });
       expect(getStyle().background).toBe('red');
       expect(getStyle().width).toBe(290);
+    });
+
+    it('should attempt to recalculate the width and update styles when the style, value, or resize props change', () => {
+      const field = mount(
+        <TextField
+          id="test-field"
+          resize={{ min: 180, max: 380 }}
+          value="Hello"
+          onChange={() => {}}
+        />
+      );
+      expect(getTextWidth.mock.calls.length).toBe(1);
+      expect(getTextWidth).toBeCalledWith('Hello', field.instance().getField());
+
+      field.setProps({ style: { background: 'red' } });
+      expect(getTextWidth.mock.calls.length).toBe(2);
+
+      field.setProps({ value: 'World' });
+      expect(getTextWidth.mock.calls.length).toBe(3);
+      expect(getTextWidth).toBeCalledWith('World', field.instance().getField());
+
+      field.setProps({ resize: { min: 200, max: 300 } });
+      expect(getTextWidth.mock.calls.length).toBe(4);
+    });
+
+    it('should attempt to recalculate the width and update styles if any of the icon props change', () => {
+      const { getComputedStyle } = window;
+      window.getComputedStyle = () => ({ marginLeft: 0 });
+
+      const field = mount(<TextField id="test-field" resize={{ min: 180, max: 380 }} value="" onChange={() => {}} />);
+      expect(getTextWidth.mock.calls.length).toBe(1);
+
+      field.setProps({ leftIcon: <FontIcon /> });
+      expect(getTextWidth.mock.calls.length).toBe(2);
+
+      field.setProps({ leftIcon: null });
+      expect(getTextWidth.mock.calls.length).toBe(3);
+
+      field.setProps({ rightIcon: <FontIcon /> });
+      expect(getTextWidth.mock.calls.length).toBe(4);
+
+      field.setProps({ rightIcon: null });
+      expect(getTextWidth.mock.calls.length).toBe(5);
+
+      field.setProps({ passwordIcon: <FontIcon /> });
+      expect(getTextWidth.mock.calls.length).toBe(6);
+
+      field.setProps({ passwordIcon: null });
+      expect(getTextWidth.mock.calls.length).toBe(7);
+
+      field.setProps({ inlineIndicator: <FontIcon /> });
+      expect(getTextWidth.mock.calls.length).toBe(8);
+
+      field.setProps({ inlineIndicator: null });
+      expect(getTextWidth.mock.calls.length).toBe(9);
+
+      window.getComputedStyle = getComputedStyle;
     });
   });
 });
