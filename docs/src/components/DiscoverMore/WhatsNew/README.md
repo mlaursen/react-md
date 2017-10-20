@@ -1,5 +1,12 @@
 ## October 2017
-### v1.2.3 Release
+### v1.2.4 Released
+#### Changelog
+- Updated `GridList` to support false-ish children. [commit-e53e080]
+- Fixed `Grid` and `GridList` not applying `style`. [issues-596]
+- Fixed `Layover`s that appear in centered dialogs. [issues-580]
+- Fixed `TextField` resizing for when icons are added or removed. [commit-d7b5cf0]
+
+### v1.2.3 Released
 #### Changelog
 - Correctly passed `disableScrollLocking` for `DatePicker` and `TimePicker`. [commit-bc0423e]
 - Fixed the React 15 `Portal` support. [issues-589]
