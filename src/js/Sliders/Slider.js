@@ -554,7 +554,7 @@ export default class Slider extends PureComponent {
    * @param {Object} target - The event target.
    * @return {Boolean} true if the target is in the text field.
    */
-  _isTextField = (target) => this._textField && this._textField.contains(target);
+  _isTextField = (target) => this._field && this._field.contains(target);
 
   /**
    * Updates the slider's thumb position and the slider's track fill width based
@@ -701,15 +701,15 @@ export default class Slider extends PureComponent {
     }
   };
 
-    /**
-     * Updates the slider with the `step` prop and calls the `onChange`
-     * function with the new value.
-     *
-     * @param {number} incrementedValue - The newly incremented value of the slider.
-     * @param {Object} e - Either the text field's change event, mouse down event, or
-     *    touch start event.
-     * @param {bool} disableTransition - Boolean if the jump's transition should be disabled.
-     */
+  /**
+   * Updates the slider with the `step` prop and calls the `onChange`
+   * function with the new value.
+   *
+   * @param {number} incrementedValue - The newly incremented value of the slider.
+   * @param {Object} e - Either the text field's change event, mouse down event, or
+   *    touch start event.
+   * @param {bool} disableTransition - Boolean if the jump's transition should be disabled.
+   */
   _handleIncrement = (incrementedValue, e, disableTransition) => {
     const { onChange, min, max, discrete } = this.props;
 
@@ -814,7 +814,7 @@ export default class Slider extends PureComponent {
     if (!leftIcon && !rightIcon && !editable) {
       trackWidth = '100%';
     } else if (editable && !leftIcon) {
-      const cs = window.getComputedStyle(this._textField);
+      const cs = window.getComputedStyle(this._field);
       const pl = parseInt(cs.getPropertyValue('padding-left'), 10);
       const ml = parseInt(cs.getPropertyValue('margin-left'), 10);
 
