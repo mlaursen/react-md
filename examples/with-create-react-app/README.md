@@ -108,7 +108,7 @@ Next, let's update the `src/index.scss` file to import all the styles from `reac
 ```diff
 +@import 'globals';
 +
-+@include react-md-everything
++@include react-md-everything;
 +
  body {
    margin: 0;
