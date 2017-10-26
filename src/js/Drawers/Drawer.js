@@ -219,6 +219,9 @@ export default class Drawer extends PureComponent {
      * Boolean if there should be a visible overlay when the drawer is visible. The default behavior
      * is to only include a visible overlay when the `type` is `TEMPORARY` or `TEMPORARY_MINI` and
      * the device is not a desktop.
+     *
+     * Definining this variable as `true` or `false` will override any default behavior. This means that
+     * if this is enabled for a full-height drawer, an overlay will still be created.
      */
     overlay: PropTypes.bool,
 
@@ -719,9 +722,10 @@ export default class Drawer extends PureComponent {
       }
     }
 
-    const overlayVisible = !mini && (!desktop || clickableDesktopOverlay)
-      && (overlay || temporary)
-      && (animating || visible);
+    let overlayVisible = overlay;
+    if (typeof overlayVisible !== 'boolean') {
+      overlayVisible = temporary && !mini && (!desktop || clickableDesktopOverlay) && (animating || visible);
+    }
 
     const drawer = (
       <Paper
