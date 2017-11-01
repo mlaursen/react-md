@@ -78,6 +78,12 @@ export default class CalendarMonth extends PureComponent {
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+
+    /**
+     * The timeZone to be used in all formatting operations.
+     * For a full list of possible timeZone values check https://www.iana.org/time-zones.
+     */
+    timeZone: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -100,6 +106,7 @@ export default class CalendarMonth extends PureComponent {
       showAllDays,
       outerDateClassName,
       disableOuterDates,
+      timeZone,
       ...props
     } = this.props;
 
@@ -142,6 +149,7 @@ export default class CalendarMonth extends PureComponent {
             date={currentDate}
             DateTimeFormat={DateTimeFormat}
             locales={locales}
+            timeZone={timeZone}
           />
         );
       } else {
@@ -149,7 +157,8 @@ export default class CalendarMonth extends PureComponent {
       }
 
       days.push(date);
-      currentDate = addDate(currentDate, 1, 'D');
+      // stripTime again to avoid problems when time is forwarded an hour for DST
+      currentDate = stripTime(addDate(currentDate, 1, 'D'));
     }
 
     return (

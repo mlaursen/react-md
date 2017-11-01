@@ -55,7 +55,9 @@ as you desire.
   title: 'Formatting',
   description: `
 As stated above, the date and time formatting is done with the \`Intl.DateTimeFormat\`
-formatter. The examples below will show the default formatting differences between:
+formatter. By default, all formatting operations are done using **UTC** \`timeZone\`. 
+
+The examples below will show the default formatting differences between:
 - the browser's locale
 - an en-US locale
 - a da-DK locale

@@ -21,6 +21,7 @@ export default class DatePickerHeader extends PureComponent {
     calendarTempDate: PropTypes.instanceOf(Date).isRequired,
     calendarMode: PropTypes.oneOf(['calendar', 'year']).isRequired,
     changeCalendarMode: PropTypes.func.isRequired,
+    timeZone: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -39,11 +40,11 @@ export default class DatePickerHeader extends PureComponent {
     }
   }
 
-  _getFormattedDate({ DateTimeFormat, locales, calendarTempDate }) {
+  _getFormattedDate({ DateTimeFormat, locales, calendarTempDate, timeZone }) {
     return {
-      year: DateTimeFormat(locales, { year: 'numeric' }).format(calendarTempDate),
-      weekday: DateTimeFormat(locales, { weekday: 'short' }).format(calendarTempDate),
-      date: DateTimeFormat(locales, { month: 'short', day: '2-digit' }).format(calendarTempDate),
+      year: DateTimeFormat(locales, { year: 'numeric', timeZone }).format(calendarTempDate),
+      weekday: DateTimeFormat(locales, { weekday: 'short', timeZone }).format(calendarTempDate),
+      date: DateTimeFormat(locales, { month: 'short', day: '2-digit', timeZone }).format(calendarTempDate),
     };
   }
 
