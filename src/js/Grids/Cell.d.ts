@@ -24,7 +24,7 @@ export interface CellProps extends Props {
   desktopHidden?: boolean;
 }
 
-interface CellComponent extends React.ComponentClass<CellProps> {
+export interface CellComponent extends React.ComponentClass<CellProps> {
   getClassName(props?: CellProps): string;
 }
 

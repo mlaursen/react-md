@@ -71,7 +71,7 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   expanderIconClassName?: string;
 }
 
-interface ListItemComponent extends React.ComponentClass<ListItemProps> {
+export interface ListItemComponent extends React.ComponentClass<ListItemProps> {
   focus(): void;
   blur(): void;
 }

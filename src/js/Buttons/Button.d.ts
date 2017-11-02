@@ -43,7 +43,7 @@ export interface ButtonProps extends Props, SharedButtonProps, InjectedTooltipPr
   fixedPosition?: FixedPositions;
 }
 
-interface ButtonComponent extends React.ComponentClass<ButtonProps> {
+export interface ButtonComponent extends React.ComponentClass<ButtonProps> {
   createInk(pageX?: number, pageY?: number): void;
   focus(): void;
   getComposedComponent(): TooltippedComponent;

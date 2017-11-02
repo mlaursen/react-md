@@ -75,11 +75,10 @@ export interface TextFieldProps extends SharedTextFieldProps, Props {
   adjustMinWidth?: boolean;
 }
 
-interface TextFieldComponent extends React.ComponentClass<TextFieldProps> {
+export interface TextFieldComponent extends React.ComponentClass<TextFieldProps> {
   focus(): void;
   getField(): React.ReactHTMLElement<any> | null; // should be input or textarea, but get warning
 }
 
 declare const TextField: TextFieldComponent;
 export default TextField;
-

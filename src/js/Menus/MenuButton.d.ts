@@ -31,7 +31,7 @@ export interface MenuButtonProps extends SharedDropdownMenuProps, SharedButtonPr
   defaultOpen?: boolean;
 }
 
-interface MenuButtonComponent extends React.ComponentClass<MenuButtonProps> {
+export interface MenuButtonComponent extends React.ComponentClass<MenuButtonProps> {
   Positions: LayoverPositions;
   HorizontalAnchors: HorizontalAnchors;
   VerticalAnchors: VerticalAnchors;

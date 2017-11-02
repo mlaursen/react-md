@@ -11,7 +11,7 @@ export interface MenuButtonColumnProps extends MenuButtonProps {
   tooltipPosition?: Positions;
 }
 
-interface MenuButtonColumnComponent extends React.ComponentClass<MenuButtonColumnProps> {
+export interface MenuButtonColumnComponent extends React.ComponentClass<MenuButtonColumnProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',
