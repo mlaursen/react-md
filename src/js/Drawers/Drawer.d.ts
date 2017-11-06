@@ -49,7 +49,7 @@ export interface DrawerProps extends Props {
   onVisibilityToggle?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
-interface DrawerComponent extends React.ComponentClass<DrawerProps> {
+export interface DrawerComponent extends React.ComponentClass<DrawerProps> {
   DrawerTypes: {
     // Permanent drawers
     FULL_HEIGHT: 'full-height',

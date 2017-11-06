@@ -15,7 +15,7 @@ export interface AccessibleFakeButtonProps {
   children?: React.ReactNode;
 }
 
-interface AccessibleFakeButtonComponent extends React.ComponentClass<AccessibleFakeButtonProps> {
+export interface AccessibleFakeButtonComponent extends React.ComponentClass<AccessibleFakeButtonProps> {
   focus: () => void;
   blur: () => void;
 }

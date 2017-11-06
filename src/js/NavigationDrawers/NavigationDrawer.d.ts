@@ -93,7 +93,7 @@ export interface NavigationDrawerProps extends Props {
   persistentIconClassName?: string;
 }
 
-interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawerProps> {
+export interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawerProps> {
   DrawerTypes: {
     // Permanent drawers
     FULL_HEIGHT: 'full-height',

@@ -105,7 +105,7 @@ export interface SelectFieldProps extends SharedSelectFieldProps {
   iconClassName?: string;
 }
 
-interface SelectFieldComponent extends React.ComponentClass<SelectFieldProps> {
+export interface SelectFieldComponent extends React.ComponentClass<SelectFieldProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',
