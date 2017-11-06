@@ -20,6 +20,7 @@ export default class CalendarDate extends PureComponent {
     onClick: PropTypes.func.isRequired,
     active: PropTypes.bool,
     today: PropTypes.bool,
+    timeZone: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -35,9 +36,9 @@ export default class CalendarDate extends PureComponent {
     }
   }
 
-  _getFormattedDate({ DateTimeFormat, locales, date }) {
+  _getFormattedDate({ DateTimeFormat, locales, date, timeZone }) {
     return {
-      date: new DateTimeFormat(locales, { day: 'numeric' }).format(date),
+      date: new DateTimeFormat(locales, { day: 'numeric', timeZone }).format(date),
     };
   }
 

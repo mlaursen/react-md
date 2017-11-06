@@ -54,6 +54,12 @@ export default class CalendarHeader extends PureComponent {
      * The DateTimeFormat option to apply to format a weekday.
      */
     weekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
+
+    /**
+     * The timeZone to be used in all formatting operations.
+     * For a full list of possible timeZone values check https://www.iana.org/time-zones.
+     */
+    timeZone: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -83,9 +89,10 @@ export default class CalendarHeader extends PureComponent {
     titleFormat,
     weekdayClassName,
     weekdayFormat,
+    timeZone,
   } = this.props) {
     const firstDay = getDayOfWeek(date, firstDayOfWeek);
-    const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat });
+    const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat, timeZone });
     const dows = [];
     for (let i = 0; i < 7; i++) {
       const dow = formatter.format(addDate(firstDay, i, 'D'));
@@ -101,7 +108,7 @@ export default class CalendarHeader extends PureComponent {
 
     return {
       dows,
-      title: new DateTimeFormat(locales, titleFormat).format(date),
+      title: new DateTimeFormat(locales, { ...titleFormat, timeZone }).format(date),
     };
   }
 

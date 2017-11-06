@@ -5,6 +5,7 @@ import {
   findRenderedDOMComponentWithClass,
   scryRenderedComponentsWithType,
 } from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 import DatePicker from '../DatePicker';
 import DatePickerHeader from '../DatePickerHeader';
@@ -38,6 +39,7 @@ const PROPS = {
   nextIcon: <FontIcon>a</FontIcon>,
   previousIcon: <FontIcon>a</FontIcon>,
   yearsDisplayed: 30,
+  timeZone: 'UTC',
 };
 
 describe('DatePicker', () => {
@@ -53,6 +55,19 @@ describe('DatePicker', () => {
 
     const footers = scryRenderedComponentsWithType(picker, DialogFooter);
     expect(footers.length).toBe(1);
+  });
+
+  it('passes props.timeZone to rendered child components', () => {
+    const wrapper = mount(<DatePicker {...PROPS} />);
+
+    // test timeZone in header
+    const header = wrapper.find('DatePickerHeader');
+    expect(header.prop('timeZone')).toEqual(PROPS.timeZone);
+
+    // test timeZone in calendar
+    wrapper.setProps({ calendarMode: 'calendar' });
+    const picker = wrapper.find('DatePickerCalendar');
+    expect(picker.prop('timeZone')).toEqual(PROPS.timeZone);
   });
 
   it('renders a calendar when the calendarMode is calendar', () => {
