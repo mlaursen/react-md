@@ -156,7 +156,7 @@ export default class EditDialogColumn extends PureComponent {
     value: controlled(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ])),
+    ]), 'onChange', 'defaultValue'),
 
     /**
      * An optional function to call when the text field's value has changed. This is required
