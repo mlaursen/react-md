@@ -119,8 +119,200 @@ export default class MenuButton extends PureComponent {
 
     /**
      * An optional function to call when the button is clicked.
+     *
+     * @see {@link #onMenuClick}
      */
     onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mousedown` event is triggered by the button.
+     *
+     * @see {@link #onMenuMouseDown}
+     */
+    onMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseup` event is triggered by the button.
+     *
+     * @see {@link #onMenuMouseUp}
+     */
+    onMouseUp: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseenter` event is triggered by the button.
+     *
+     * @see {@link #onMenuMouseEnter}
+     */
+    onMouseEnter: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mousemove` event is triggered by the button.
+     *
+     * @see {@link #onMenuMouseMove}
+     */
+    onMouseMove: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseleave` event is triggered by the button.
+     *
+     * @see {@link #onMenuMouseLeave}
+     */
+    onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchstart` event is triggered by the button.
+     *
+     * @see {@link #onMenuTouchStart}
+     */
+    onTouchStart: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchmove` event is triggered by the button.
+     *
+     * @see {@link #onMenuTouchMove}
+     */
+    onTouchMove: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchend` event is triggered by the button.
+     *
+     * @see {@link #onMenuTouchEnd}
+     */
+    onTouchEnd: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchcancel` event is triggered by the button.
+     *
+     * @see {@link #onMenuTouchCancel}
+     */
+    onTouchCancel: PropTypes.func,
+
+    /**
+     * An optional function to call when the `focus` event is triggered by the button.
+     *
+     * @see {@link #onMenuFocus}
+     */
+    onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the `blur` event is triggered by the button.
+     *
+     * @see {@link #onMenuBlur}
+     */
+    onBlur: PropTypes.func,
+
+    /**
+     * An optional function to call when the `keydown` event is triggered by the button.
+     *
+     * @see {@link #onMenuKeyDown}
+     */
+    onKeyDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the `keyup` event is triggered by the button.
+     *
+     * @see {@link #onMenuKeyUp}
+     */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the entire `MenuButton` is clicked. This can be triggered
+     * by clicking the button or any list item that appears in the menu list.
+     *
+     * @see {@link #onClick}
+     */
+    onMenuClick: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `mousedown` event.
+     *
+     * @see {@link #onMouseDown}
+     */
+    onMenuMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `mouseup` event.
+     *
+     * @see {@link #onMouseUp}
+     */
+    onMenuMouseUp: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `mouseenter` event.
+     *
+     * @see {@link #onMouseEnter}
+     */
+    onMenuMouseEnter: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `mousemove` event.
+     *
+     * @see {@link #onMouseMove}
+     */
+    onMenuMouseMove: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `mouseleave` event.
+     *
+     * @see {@link #onMouseLeave}
+     */
+    onMenuMouseLeave: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `touchstart` event.
+     *
+     * @see {@link @onTouchStart}
+     */
+    onMenuTouchStart: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `touchmove` event.
+     *
+     * @see {@link @onTouchMove}
+     */
+    onMenuTouchMove: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `touchend` event.
+     *
+     * @see {@link @onTouchEnd}
+     */
+    onMenuTouchEnd: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `touchcancel` event.
+     *
+     * @see {@link @onTouchCancel}
+     */
+    onMenuTouchCancel: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `focus` event.
+     *
+     * @see {@link #onFocus}
+     */
+    onMenuFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `blur` event.
+     *
+     * @see {@link #onBlur}
+     */
+    onMenuBlur: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `keydown` event.
+     *
+     * @see {@link #onKeyDown}
+     */
+    onMenuKeyDown: PropTypes.func,
+
+    /**
+     * An optional function to call when any element in the `MenuButton` triggers the `keyup` event.
+     *
+     * @see {@link #onKeyUp}
+     */
+    onMenuKeyUp: PropTypes.func,
 
     /**
      * An optional function to call when the visibility changes for the menu. The callback will
@@ -387,6 +579,20 @@ export default class MenuButton extends PureComponent {
       minBottom,
       fillViewportWidth,
       fillViewportHeight,
+      onMenuClick,
+      onMenuMouseDown,
+      onMenuMouseUp,
+      onMenuMouseEnter,
+      onMenuMouseMove,
+      onMenuMouseLeave,
+      onMenuTouchStart,
+      onMenuTouchMove,
+      onMenuTouchCancel,
+      onMenuTouchEnd,
+      onMenuFocus,
+      onMenuBlur,
+      onMenuKeyDown,
+      onMenuKeyUp,
       isOpen, // deprecated
       defaultOpen, // deprecated
       onMenuToggle, // deprecated
@@ -441,6 +647,20 @@ export default class MenuButton extends PureComponent {
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
         onVisibilityChange={onMenuToggle || onVisibilityChange}
+        onClick={onMenuClick}
+        onMouseDown={onMenuMouseDown}
+        onMouseUp={onMenuMouseUp}
+        onMouseEnter={onMenuMouseEnter}
+        onMouseMove={onMenuMouseMove}
+        onMouseLeave={onMenuMouseLeave}
+        onTouchStart={onMenuTouchStart}
+        onTouchMove={onMenuTouchMove}
+        onTouchCancel={onMenuTouchCancel}
+        onTouchEnd={onMenuTouchEnd}
+        onFocus={onMenuFocus}
+        onBlur={onMenuBlur}
+        onKeyDown={onMenuKeyDown}
+        onKeyUp={onMenuKeyUp}
       >
         <Button {...props} id={buttonId}>
           {toggleChildren}
