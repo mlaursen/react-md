@@ -1,4 +1,5 @@
 ## November 2017
+### v1.2.5 Released
 #### Changelog
 - Fixed a problem with editable `Slider`s using the wrong ref. [commit-34d26de]
 - Fixed `MenuButton`'s not opening with a space keypress. [issues-601]
