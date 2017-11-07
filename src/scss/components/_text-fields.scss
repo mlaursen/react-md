@@ -885,6 +885,7 @@ $md-text-field-message-line-height: $md-line-height !default;
 @mixin react-md-text-field-divider($primary-color: $md-primary-color, $error-color: $md-error-color) {
   .md-divider--text-field {
     margin-top: $md-text-field-divider-top-padding;
+    overflow: visible;
 
     &::after {
       background: $primary-color;
