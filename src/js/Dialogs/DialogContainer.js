@@ -611,6 +611,7 @@ export default class DialogContainer extends PureComponent {
         ref={this._setContainer}
         style={style}
         className={cn('md-dialog-container', {
+          'md-dialog-container--centered': !fullPage,
           'md-overlay': !fullPage && overlay,
           'md-pointer--hover': !fullPage && overlay && !modal,
           'md-overlay--active': !fullPage && active && overlay,

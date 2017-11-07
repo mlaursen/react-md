@@ -1,3 +1,15 @@
+## November 2017
+#### Changelog
+- Fixed a problem with editable `Slider`s using the wrong ref. [commit-34d26de]
+- Fixed `MenuButton`'s not opening with a space keypress. [issues-601]
+- Fixed the `overlay` prop on `Drawer` and `NavigationDrawer`. [issues-602]
+- Fixed the `DatePicker` for timezone problems. ([@hisapy] - [pull-605])
+- Exported the component interface Typescript definitions. ([@noseglid] - [pull-606])
+- Fixed the `EditDialogColumn` controlled PropTypes warning. [issues-604]
+- Fixed the `MenuButton` not supplying event listeners to the surrounding `DropdownMenu`. [issues-610]
+- Fixed the weird `TextField` display bug in newer versions of Chrome. [issues-565]
+- Fixed the Sass variables that the icon's color is derived from. [issues-609]
+
 ## October 2017
 ### v1.2.4 Released
 #### Changelog
