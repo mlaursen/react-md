@@ -1,4 +1,7 @@
 ## November 2017
+### v1.2.6 Released
+- Removed some `Dialog` code that shouldn't have been included. [commit-fb36c0e]
+
 ### v1.2.5 Released
 #### Changelog
 - Fixed a problem with editable `Slider`s using the wrong ref. [commit-34d26de]
