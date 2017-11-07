@@ -24,6 +24,7 @@ export interface DatePickerProps extends BasePickerProps {
   calendarWeekdayFormat?: NSL;
   showAllDays?: boolean;
   disableOuterDates?: boolean;
+  timeZone?: string;
 
   /**
    * @deprecated
