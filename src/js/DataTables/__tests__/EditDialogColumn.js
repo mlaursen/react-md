@@ -139,6 +139,6 @@ describe('EditDialogColumn', () => {
   });
 
   it('should render without errors when the inlineIcon is set to null', () => {
-    const tree = mount(<Wrapper><EditDialogColumn id="test" inlineIcon={null} inline placeholder="Placeholder" /></Wrapper>);
+    mount(<Wrapper><EditDialogColumn id="test" inlineIcon={null} inline placeholder="Placeholder" /></Wrapper>);
   });
 });
