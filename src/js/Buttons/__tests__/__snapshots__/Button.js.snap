@@ -8,11 +8,7 @@ exports[`Button should apply styles correctly 1`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -25,11 +21,7 @@ exports[`Button should apply styles correctly 2`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -42,11 +34,7 @@ exports[`Button should apply styles correctly 3`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -59,11 +47,7 @@ exports[`Button should apply styles correctly 4`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -76,11 +60,7 @@ exports[`Button should apply styles correctly 5`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -93,11 +73,7 @@ exports[`Button should apply styles correctly 6`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Hello
 </button>
 `;
@@ -109,11 +85,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <i
     class="md-icon material-icons md-text--inherit"
   >
@@ -129,11 +101,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -155,11 +123,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -181,11 +145,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <i
     class="md-icon material-icons md-text--inherit"
   >
@@ -201,11 +161,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -227,11 +183,7 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -253,11 +205,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -282,11 +230,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -317,11 +261,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -352,11 +292,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -381,11 +317,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -416,11 +348,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-icon-separator"
   >
@@ -451,11 +379,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <i
     class="md-icon material-icons md-text--inherit"
   >
@@ -471,11 +395,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -497,11 +417,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -523,11 +439,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <i
     class="md-icon material-icons md-text--inherit"
   >
@@ -543,11 +455,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -569,11 +477,7 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -595,11 +499,7 @@ exports[`Button should render as either a <button> or an <a> based on the href p
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Woop
 </button>
 `;
@@ -611,11 +511,7 @@ exports[`Button should render as either a <button> or an <a> based on the href p
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   Woop
 </a>
 `;

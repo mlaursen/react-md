@@ -44,7 +44,6 @@ This should allow your tests to work as expected and not crash.
 ## Snapshot Testing
 Some of my components use \`findDOMNode\` behind the scenes to be able to do calculations for positioning and other
 things, but this doesn't work with [react-test-renderer](https://github.com/facebook/react/issues/7371#issuecomment-260946945).
-Another problem that happens is that the \`CSSTransitionGroup\` can not read \`willComponentMount\` of \`null\`.
 
 There are a couple of ways to work around this:
 - mock the \`react-md\` components that fail
