@@ -167,11 +167,7 @@ exports[`InlineIcons should render correctly 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <i
         class="md-icon material-icons md-text--inherit"
       >

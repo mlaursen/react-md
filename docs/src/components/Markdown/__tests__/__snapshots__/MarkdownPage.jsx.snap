@@ -3,6 +3,7 @@
 exports[`MarkdownPage should render correctly 1`] = `
 <section
   className="md-grid"
+  style={undefined}
 >
   <div
     className="markdown-container md-cell md-cell--12 md-text-container"
@@ -581,6 +582,7 @@ so far.</p>
 ",
       }
     }
+    style={undefined}
   />
 </section>
 `;

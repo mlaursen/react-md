@@ -37,11 +37,7 @@ exports[`FormExample should render correctly 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <i
         class="md-icon material-icons md-text--inherit"
       >
@@ -181,11 +177,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container md-ink-container--2x"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
             </div>
           </div>
           <span>
@@ -226,11 +218,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
               <i
                 class="md-icon material-icons md-text--inherit"
               >
@@ -266,11 +254,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
               <i
                 class="md-icon material-icons md-text--inherit"
               >
@@ -306,11 +290,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
               <i
                 class="md-icon material-icons md-text--inherit"
               >
@@ -347,11 +327,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
               <i
                 class="md-icon material-icons md-text--inherit"
               >
@@ -387,11 +363,7 @@ exports[`FormExample should render correctly 1`] = `
             >
               <div
                 class="md-ink-container"
-              >
-                <span
-                  aria-hidden="true"
-                />
-              </div>
+              />
               <i
                 class="md-icon material-icons md-text--inherit"
               >
@@ -413,11 +385,7 @@ exports[`FormExample should render correctly 1`] = `
         >
           <div
             class="md-ink-container"
-          >
-            <span
-              aria-hidden="true"
-            />
-          </div>
+          />
           Submit
         </button>
       </section>

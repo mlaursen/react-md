@@ -75,11 +75,7 @@ exports[`PhoneEmulator should render correctly with the base required props 1`] 
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <i
         class="md-icon material-icons md-text--inherit"
       >
@@ -115,11 +111,7 @@ exports[`PhoneEmulator should render correctly with the base required props 2`] 
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <i
         class="md-icon material-icons md-text--inherit"
       >

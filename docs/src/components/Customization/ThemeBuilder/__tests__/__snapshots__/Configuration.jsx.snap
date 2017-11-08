@@ -35,11 +35,7 @@ exports[`Configuration should render correctly 1`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -75,11 +71,7 @@ exports[`Configuration should render correctly 1`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -282,11 +274,7 @@ exports[`Configuration should render correctly 2`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -521,11 +509,7 @@ exports[`Configuration should render correctly 3`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -561,11 +545,7 @@ exports[`Configuration should render correctly 3`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -767,11 +747,7 @@ exports[`Configuration should render correctly 4`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -806,11 +782,7 @@ exports[`Configuration should render correctly 4`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >

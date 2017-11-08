@@ -3,6 +3,7 @@
 exports[`Typography should render correctly 1`] = `
 <div
   className="md-grid"
+  style={undefined}
 >
   <div
     className="md-cell md-cell--12"

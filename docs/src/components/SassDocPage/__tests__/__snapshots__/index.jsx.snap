@@ -67,7 +67,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -240,7 +240,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         Requires
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -325,7 +325,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -441,7 +441,7 @@ corresponding css class name.
         Requires
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -887,7 +887,7 @@ corresponding css class name.
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -917,11 +917,7 @@ corresponding css class name.
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tooltip-container"
     >
@@ -1005,7 +1001,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -1178,7 +1174,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         Requires
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -1263,7 +1259,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -1379,7 +1375,7 @@ corresponding css class name.
         Requires
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -1825,7 +1821,7 @@ corresponding css class name.
         Used by
       </h4>
       <ul
-        class="md-list-unstyled sassdoc__section sassdoc__reference-list"
+        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
       >
         <li
           class="sassdoc__reference-item"
@@ -1855,11 +1851,7 @@ corresponding css class name.
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tooltip-container"
     >

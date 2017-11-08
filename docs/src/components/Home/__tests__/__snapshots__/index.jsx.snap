@@ -23,11 +23,7 @@ exports[`Home should render correctly 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       View Demo
     </a>
   </header>

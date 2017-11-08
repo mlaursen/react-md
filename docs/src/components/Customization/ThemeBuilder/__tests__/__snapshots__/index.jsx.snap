@@ -38,11 +38,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         >
           <div
             class="md-ink-container"
-          >
-            <span
-              aria-hidden="true"
-            />
-          </div>
+          />
           <i
             class="md-icon material-icons md-text--inherit"
           >
@@ -298,11 +294,7 @@ or
         >
           <div
             class="md-ink-container"
-          >
-            <span
-              aria-hidden="true"
-            />
-          </div>
+          />
           <i
             class="md-icon material-icons md-text--inherit"
           >
@@ -331,11 +323,7 @@ or
         >
           <div
             class="md-ink-container"
-          >
-            <span
-              aria-hidden="true"
-            />
-          </div>
+          />
           Button
         </button>
       </div>
@@ -346,11 +334,7 @@ or
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >

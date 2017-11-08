@@ -16,7 +16,7 @@ const base = bem('sassdoc', 'section');
 
 const ParameterTable = ({ parameters }) => {
   if (!parameters.length) {
-    return <h5 className={bem}>None</h5>;
+    return <h5 className={base}>None</h5>;
   }
 
   const rows = parameters.map(({ name, description, type, default: defaultValue }) => (
@@ -33,7 +33,7 @@ const ParameterTable = ({ parameters }) => {
   ));
 
   return (
-    <DataTable className={bem('sassdoc', 'parametertable', {}, base)} plain>
+    <DataTable className={bem('sassdoc', 'parameter-table', {}, base)} plain>
       <TableHeader>
         <TableRow>
           <TableColumn>Name</TableColumn>

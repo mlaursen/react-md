@@ -73,11 +73,7 @@ interface might not be implemented with react-md, but it should give a good idea
         >
           <div
             class="md-ink-container"
-          >
-            <span
-              aria-hidden="true"
-            />
-          </div>
+          />
           <i
             class="md-icon fa fa-github md-text--inherit"
           />

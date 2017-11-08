@@ -3,6 +3,7 @@
 exports[`Colors should render correctly 1`] = `
 <section
   className="md-grid"
+  style={undefined}
 >
   <div
     className="md-cell md-cell--12 markdown-container md-text-container"
@@ -46,9 +47,11 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
   />
   <section
     className="md-grid color-palette"
+    style={undefined}
   >
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-red-500 color-palette__color--primary"
@@ -193,6 +196,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-pink-500 color-palette__color--primary"
@@ -337,6 +341,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-purple-500 color-palette__color--primary"
@@ -481,6 +486,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-deep-purple-500 color-palette__color--primary"
@@ -625,6 +631,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-indigo-500 color-palette__color--primary"
@@ -769,6 +776,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-blue-500 color-palette__color--primary"
@@ -913,6 +921,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-light-blue-500 color-palette__color--primary"
@@ -1057,6 +1066,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-cyan-500 color-palette__color--primary"
@@ -1201,6 +1211,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-teal-500 color-palette__color--primary"
@@ -1345,6 +1356,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-green-500 color-palette__color--primary"
@@ -1489,6 +1501,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-light-green-500 color-palette__color--primary"
@@ -1633,6 +1646,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-lime-500 color-palette__color--primary"
@@ -1777,6 +1791,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-yellow-500 color-palette__color--primary"
@@ -1921,6 +1936,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-amber-500 color-palette__color--primary"
@@ -2065,6 +2081,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--light color-palette__color--md-orange-500 color-palette__color--primary"
@@ -2209,6 +2226,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-deep-orange-500 color-palette__color--primary"
@@ -2353,6 +2371,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-brown-500 color-palette__color--primary"
@@ -2461,6 +2480,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-grey-500 color-palette__color--primary"
@@ -2569,6 +2589,7 @@ the <code>$md-colors-include-class-names</code> variable to <code>true</code> be
     </ul>
     <ul
       className="md-paper md-paper--1 md-list-unstyled md-cell md-cell--top"
+      style={undefined}
     >
       <li
         className="color-palette__color color-palette__color--md-blue-grey-500 color-palette__color--primary"
