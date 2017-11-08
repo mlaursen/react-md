@@ -49,6 +49,7 @@ export const FocusContainers = syncComponent('FocusContainers', require('compone
 export const IconSeparators = syncComponent('IconSeparators', require('components/Components/Helpers/IconSeparators'));
 export const Layovers = syncComponent('Layovers', require('components/Components/Helpers/Layovers'));
 export const Portals = syncComponent('Portals', require('components/Components/Helpers/Portals'));
+export const ResizeObservers = syncComponent('ResizeObservers', require('components/Components/Helpers/ResizeObservers'));
 export const Inks = syncComponent('Inks', require('components/Components/Inks'));
 export const Lists = syncComponent('Lists', require('components/Components/Lists'));
 export const Media = syncComponent('Media', require('components/Components/Media'));

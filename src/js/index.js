@@ -45,6 +45,7 @@ import {
   Layover,
   IconSeparator,
   Portal,
+  ResizeObserver,
 } from './Helpers';
 import injectInk from './Inks';
 import { List, ListItem, ListItemControl } from './Lists';
@@ -226,6 +227,7 @@ export default {
   Layover,
   FocusContainer,
   Portal,
+  ResizeObserver,
 
   injectInk,
 
