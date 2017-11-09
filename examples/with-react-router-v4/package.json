@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path --watch --recursive ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --watch --recursive --include-path ./node_modules src/ -o src/",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "react-scripts build",
