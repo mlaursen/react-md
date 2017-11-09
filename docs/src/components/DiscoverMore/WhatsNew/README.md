@@ -1,4 +1,15 @@
 ## November 2017
+### v1.2.7 Released
+- Fixed the `Ink` `TransitionGroup` issues when snapshot testing. [issues-611]
+- Fixed the `EditDialogColumn` `TypeError` when setting the `inlineIcon` to `null`. [issues-612]
+- Updated the `Dialog`'s `autosizeContent` to work with some more use cases. [commit-9573ef3]
+
+#### Website Changes
+With the `v1.2.7` release, I also finally documented the [ResizeObserver](/components/helpers/resize-observers) component
+that has been exposed in the `UMD` build for awhile now. I also disabled the service workers to see if that stops the weird
+React error whenever I update the website and causes a blank page to appear. Finally, I _should_ have fixed the pages animating
+in when coming from server side rendering. It should only animate when changing routes now.
+
 ### v1.2.6 Released
 - Removed some `Dialog` code that shouldn't have been included. [commit-fb36c0e]
 
