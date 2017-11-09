@@ -6,7 +6,7 @@ import * as Routes from 'routes';
 import App from 'components/App';
 
 import loadIntl from './loadIntl';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister as registerServiceWorker } from './registerServiceWorker';
 
 /**
  * Renders the application after it has been server side rendered. It will wait
