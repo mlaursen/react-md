@@ -1,5 +1,6 @@
 ## November 2017
 ### v1.2.7 Released
+#### Changelog
 - Fixed the `Ink` `TransitionGroup` issues when snapshot testing. [issues-611]
 - Fixed the `EditDialogColumn` `TypeError` when setting the `inlineIcon` to `null`. [issues-612]
 - Updated the `Dialog`'s `autosizeContent` to work with some more use cases. [commit-9573ef3]
