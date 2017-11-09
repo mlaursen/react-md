@@ -353,7 +353,7 @@ export default class Dialog extends PureComponent {
     }
   };
 
-  _handleContentResize = ({ height, el: content }) => {
+  _handleContentResize = ({ scrollHeight, el: content }) => {
     const maxHeight = content.style.maxHeight;
     const dialog = content.parentNode;
     content.style.maxHeight = 'none';
@@ -362,7 +362,7 @@ export default class Dialog extends PureComponent {
 
     const totalHeight = dialog.offsetHeight - (title ? title.offsetHeight : 0) - (footer ? footer.offsetHeight : 0);
     content.style.maxHeight = maxHeight;
-    const equalHeight = totalHeight === height;
+    const equalHeight = totalHeight === scrollHeight;
     if (equalHeight) {
       if (this.state.contentStyles && this.state.contentStyles.maxHeight) {
         this.setState({ contentStyles: this.props.contentStyle });
