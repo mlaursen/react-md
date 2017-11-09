@@ -125,6 +125,7 @@ export { IconSeparator };
 export { FocusContainer };
 export { Layover };
 export { Portal };
+export { ResizeObserver };
 export { injectInk };
 export { List };
 export { ListItem };
