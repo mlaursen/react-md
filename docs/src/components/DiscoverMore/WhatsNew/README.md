@@ -1,4 +1,7 @@
 ## November 2017
+### v1.2.8 Released
+- Another fix for the `Dialog`'s `autosizeContent` so that it doesn't infinitely toggle the max-height. [commit-2ccce1a]
+
 ### v1.2.7 Released
 #### Changelog
 - Fixed the `Ink` `TransitionGroup` issues when snapshot testing. [issues-611]
@@ -12,6 +15,7 @@ React error whenever I update the website and causes a blank page to appear. Fin
 in when coming from server side rendering. It should only animate when changing routes now.
 
 ### v1.2.6 Released
+#### Changelog
 - Removed some `Dialog` code that shouldn't have been included. [commit-fb36c0e]
 
 ### v1.2.5 Released
