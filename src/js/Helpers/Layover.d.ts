@@ -3,19 +3,19 @@ import { IdPropType, Props } from '../index';
 
 export type toggleQueryFn = () => string;
 
-export type HorizontalAnchors = {
-  LEFT: 'left',
-  INNER_LEFT: 'inner left',
-  CENTER: 'center',
-  RIGHT: 'right',
-  INNER_RIGHT: 'inner right'
+export enum HorizontalAnchors {
+  LEFT = 'left',
+  INNER_LEFT = 'inner left',
+  CENTER = 'center',
+  RIGHT = 'right',
+  INNER_RIGHT = 'inner right'
 }
 
-export type VerticalAnchors = {
-  TOP: 'top',
-  CENTER: 'center',
-  OVERLAP: 'overlap',
-  BOTTOM: 'bottom'
+export enum VerticalAnchors {
+  TOP = 'top',
+  CENTER = 'center',
+  OVERLAP = 'overlap',
+  BOTTOM = 'bottom'
 }
 
 export type LayoverPositions = 'tl' | 'tr' | 'bl' | 'br' | 'below';
