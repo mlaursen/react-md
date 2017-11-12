@@ -1,13 +1,14 @@
 import React from 'react';
+import { Grid, Cell } from 'react-md';
 import Markdown from 'components/Markdown';
 import ColorPalette from './ColorPalette';
 
 import markdown from './README.md';
 
 const Colors = () => (
-  <section className="md-grid">
-    <Markdown markdown={markdown} className="md-cel md-cell--12 md-text-container" component="div" />
+  <Grid component="section">
+    <Markdown markdown={markdown} className="md-text-container" component={Cell} size={12} />
     <ColorPalette />
-  </section>
+  </Grid>
 );
 export default Colors;

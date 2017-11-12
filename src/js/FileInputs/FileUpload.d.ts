@@ -13,7 +13,7 @@ export interface FileUploadProps extends FileInputProps {
   onProgress?: (file: File, progress: number, event: Event) => void;
 }
 
-interface FileUploadComponent extends React.ComponentClass<FileUploadProps> {
+export interface FileUploadComponent extends React.ComponentClass<FileUploadProps> {
   abort(file: string | File): void;
 }
 

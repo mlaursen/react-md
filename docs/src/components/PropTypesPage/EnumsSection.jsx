@@ -8,12 +8,15 @@ import {
   TableRow,
   TableColumn,
   TableBody,
+  bem,
 } from 'react-md';
 
 import Markdown from 'components/Markdown';
 
+const base = 'prop-types';
+
 const EnumsTable = ({ id, name, description, properties }) => (
-  <section id={`${id}-enums-${kebabCase(name)}`} className="prop-types__enums">
+  <section id={`${id}-enums-${kebabCase(name)}`} className={bem(base, 'enums')}>
     <CardText component={Markdown} markdown={`### ${name}\n${description}`} />
     <DataTable plain>
       <TableHeader>
@@ -28,7 +31,7 @@ const EnumsTable = ({ id, name, description, properties }) => (
           <TableRow key={name}>
             <TableColumn><code>{name}</code></TableColumn>
             <TableColumn><code>{`'${value}'`}</code></TableColumn>
-            <TableColumn className="prop-types__cell">{description}</TableColumn>
+            <TableColumn className={bem(base, 'cell')}>{description}</TableColumn>
           </TableRow>
         ))}
       </TableBody>

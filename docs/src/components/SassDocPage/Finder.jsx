@@ -8,6 +8,7 @@ import {
   Drawer,
   TextField,
   Toolbar,
+  bem,
 } from 'react-md';
 
 import { toTitle } from 'utils/strings';
@@ -31,8 +32,7 @@ function buildSubList(docs, { location: { pathname, search } }) {
   }];
 }
 
-@withRouter
-export default class FindInPage extends PureComponent {
+class FindInPage extends PureComponent {
   static propTypes = {
     visible: PropTypes.bool.isRequired,
     onVisibilityChange: PropTypes.func.isRequired,
@@ -97,7 +97,7 @@ export default class FindInPage extends PureComponent {
       <TextField
         id="sassdoc-finder"
         placeholder="Filter SassDoc"
-        className="md-select-field--toolbar sassdoc__filter"
+        className={bem('sassdoc', 'filter', {}, 'md-select-field--toolbar')}
         onChange={this.filter}
       />
     );
@@ -119,3 +119,4 @@ export default class FindInPage extends PureComponent {
     );
   }
 }
+export default withRouter(FindInPage);

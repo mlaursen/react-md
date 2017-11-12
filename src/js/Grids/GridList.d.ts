@@ -16,7 +16,7 @@ export interface GridListProps extends Props, GridProps, CellProps {
   cellClassName?: string;
 }
 
-interface GridListComponent extends React.ComponentClass<GridListProps> {
+export interface GridListComponent extends React.ComponentClass<GridListProps> {
   getClassNames(props?: GridListProps): { className: string, cellClassName: string };
 }
 

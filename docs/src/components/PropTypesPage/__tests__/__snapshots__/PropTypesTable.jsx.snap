@@ -71,7 +71,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           style
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -89,7 +89,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -123,7 +123,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           className
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -141,7 +141,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -179,7 +179,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           iconClassName
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text md-table-column--relative prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text md-table-column--relative prop-types__prop-type prop-types__cell"
         >
           <div
             class="md-tooltip-container"
@@ -204,7 +204,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -246,7 +246,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           children
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -264,7 +264,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -298,7 +298,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           disabled
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -316,7 +316,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -354,7 +354,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           forceSize
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -372,7 +372,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -408,7 +408,7 @@ size.
           forceFontSize
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__cell prop-types__prop-type"
+          class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type prop-types__cell"
         >
           <section
             class="markdown-container"
@@ -426,7 +426,7 @@ size.
           </section>
         </td>
         <td
-          class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell prop-types__normal-column"
+          class="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column prop-types__cell"
         >
           <section
             class="markdown-container"

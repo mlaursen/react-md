@@ -14,6 +14,7 @@ import TextFieldStyling from './TextFieldStyling';
 import TextFieldStylingRaw from '!!raw-loader!./TextFieldStyling.jsx';
 import Controlled from './Controlled';
 import ControlledRaw from '!!raw-loader!./Controlled.jsx';
+import IntlPolyfill from '../IntlPolyfill';
 
 const examples = [{
   title: 'Orientation Examples',
@@ -54,7 +55,9 @@ as you desire.
   title: 'Formatting',
   description: `
 As stated above, the date and time formatting is done with the \`Intl.DateTimeFormat\`
-formatter. The examples below will show the default formatting differences between:
+formatter. By default, all formatting operations are done using **UTC** \`timeZone\`. 
+
+The examples below will show the default formatting differences between:
 - the browser's locale
 - an en-US locale
 - a da-DK locale
@@ -80,6 +83,10 @@ providing the \`value\` prop and an \`onChange\` prop or \`visible\` with \`onVi
   `,
   code: ControlledRaw,
   children: <Controlled />,
+}, {
+  title: 'Intl Polyfill',
+  code: null,
+  children: <IntlPolyfill />,
 }];
 
 const DatePickers = () => <ExamplesPage description={description} examples={examples} />;

@@ -12,11 +12,7 @@ exports[`BottomNavigation should be able to render correctly 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -31,11 +27,7 @@ exports[`BottomNavigation should be able to render correctly 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -50,11 +42,7 @@ exports[`BottomNavigation should be able to render correctly 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -77,11 +65,7 @@ exports[`BottomNavigation should be able to render correctly 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -96,11 +80,7 @@ exports[`BottomNavigation should be able to render correctly 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -115,11 +95,7 @@ exports[`BottomNavigation should be able to render correctly 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -142,11 +118,7 @@ exports[`BottomNavigation should be able to render correctly 3`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -161,11 +133,7 @@ exports[`BottomNavigation should be able to render correctly 3`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"
@@ -180,11 +148,7 @@ exports[`BottomNavigation should be able to render correctly 3`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-bottom-nav-label"
       style="overflow: hidden;"

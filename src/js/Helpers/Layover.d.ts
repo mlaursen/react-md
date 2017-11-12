@@ -56,7 +56,7 @@ export interface LayoverProps extends SharedLayoverProps {
   simplified?: boolean;
 }
 
-interface LayoverComponent extends React.ComponentClass<LayoverProps> {
+export interface LayoverComponent extends React.ComponentClass<LayoverProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',

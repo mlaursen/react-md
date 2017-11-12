@@ -90,7 +90,7 @@ $ touch src/_globals.scss
 are considered to be import-only files. This is exactly that we want since this should only be used for importing helpers, mixins,
 and variables into our other Sass files.
 
-Now let's update the `src_globals.scss` file so that we import react-md and define a them:
+Now let's update the `src/_globals.scss` file so that we import react-md and define a them:
 ```diff
 +@import 'react-md/src/scss/react-md';
 +
@@ -108,15 +108,21 @@ Next, let's update the `src/index.scss` file to import all the styles from `reac
 ```diff
 +@import 'globals';
 +
-+@import react-md-everything
++@include react-md-everything;
 +
  body {
    margin: 0;
  }
 ```
 
-Now that all the styles have been included, let's update the `src/index.js` so that we can use the `Roboto` font and display `material-icons` in
-the `FontIcon` components:
+Now that all the styles have been included, let's add the `Roboto` font and `material-icons` using the [webfontloader](https://github.com/typekit/webfontloader). First install `webfontloader`:
+
+```sh
+$ yarn add webfontloader
+```
+
+Next, update `src/index.js` to use the `webfontloader` to load the fonts:
+
 ```diff
  import React from 'react';
  import ReactDOM from 'react-dom';

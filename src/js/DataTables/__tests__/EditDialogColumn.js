@@ -137,4 +137,8 @@ describe('EditDialogColumn', () => {
     expect(cancel.props.flat).toBe(props.cancelProps.flat);
     expect(cancel.props.raised).toBe(props.cancelProps.raised);
   });
+
+  it('should render without errors when the inlineIcon is set to null', () => {
+    mount(<Wrapper><EditDialogColumn id="test" inlineIcon={null} inline placeholder="Placeholder" /></Wrapper>);
+  });
 });

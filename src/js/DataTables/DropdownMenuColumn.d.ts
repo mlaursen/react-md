@@ -11,7 +11,7 @@ export interface DropdownMenuColumnProps extends DropdownMenuProps {
   tooltipPosition?: Positions;
 }
 
-interface DropdownMenuColumnComponent extends React.ComponentClass<DropdownMenuColumnProps> {
+export interface DropdownMenuColumnComponent extends React.ComponentClass<DropdownMenuColumnProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',

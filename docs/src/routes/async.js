@@ -49,6 +49,7 @@ export const FocusContainers = asyncComponent(() => import(/* webpackChunkName: 
 export const IconSeparators = asyncComponent(() => import(/* webpackChunkName: IconSeparators */ 'components/Components/Helpers/IconSeparators'));
 export const Layovers = asyncComponent(() => import(/* webpackChunkName: Layovers */ 'components/Components/Helpers/Layovers'));
 export const Portals = asyncComponent(() => import(/* webpackChunkName: Portals */ 'components/Components/Helpers/Portals'));
+export const ResizeObservers = asyncComponent(() => import(/* webpackChunkName: ResizeObservers */ 'components/Components/Helpers/ResizeObservers'));
 export const Inks = asyncComponent(() => import(/* webpackChunkName: Inks */ 'components/Components/Inks'));
 export const Lists = asyncComponent(() => import(/* webpackChunkName: Lists */ 'components/Components/Lists'));
 export const Media = asyncComponent(() => import(/* webpackChunkName: Media */ 'components/Components/Media'));

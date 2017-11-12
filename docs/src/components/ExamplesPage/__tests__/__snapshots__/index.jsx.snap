@@ -54,11 +54,7 @@ exports[`ExamplesPage should render correctly 1`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <div
           class="md-tooltip-container"
         >
@@ -79,7 +75,7 @@ exports[`ExamplesPage should render correctly 1`] = `
       class="md-card-text"
     >
       <div
-        class="markdown-container md-text-container examples-page__card__description"
+        class="markdown-container examples-page__card__description md-text-container"
       >
         <p>
           Something that has some 

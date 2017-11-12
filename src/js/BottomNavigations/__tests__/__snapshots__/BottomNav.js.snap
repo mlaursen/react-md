@@ -8,11 +8,7 @@ exports[`BottomNav should apply the correct styling based on props 1`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
 </a>
 `;
 
@@ -24,11 +20,7 @@ exports[`BottomNav should apply the correct styling based on props 2`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-bottom-nav-label"
   >
@@ -45,11 +37,7 @@ exports[`BottomNav should apply the correct styling based on props 3`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-bottom-nav-label"
   >
@@ -66,11 +54,7 @@ exports[`BottomNav should apply the correct styling based on props 4`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
 </a>
 `;
 
@@ -82,11 +66,7 @@ exports[`BottomNav should apply the correct styling based on props 5`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-bottom-nav-label"
   >
@@ -103,11 +83,7 @@ exports[`BottomNav should apply the correct styling based on props 6`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-bottom-nav-label"
   >
@@ -124,11 +100,7 @@ exports[`BottomNav should be able to render an SVGIcon or a FontIcon 1`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <i
     class="md-icon material-icons md-text--inherit"
   >
@@ -151,11 +123,7 @@ exports[`BottomNav should be able to render an SVGIcon or a FontIcon 2`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -184,11 +152,7 @@ exports[`BottomNav should be able to render an SVGIcon or a FontIcon 3`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <svg
     class="md-icon md-text--inherit"
     focusable="false"
@@ -217,11 +181,7 @@ exports[`BottomNav should be able to render elements as the label prop 1`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <span
     class="md-bottom-nav-label"
     style="overflow: hidden;"
@@ -239,11 +199,7 @@ exports[`BottomNav should be able to render elements as the label prop 2`] = `
 >
   <div
     class="md-ink-container"
-  >
-    <span
-      aria-hidden="true"
-    />
-  </div>
+  />
   <div
     class="md-bottom-nav-label"
   >

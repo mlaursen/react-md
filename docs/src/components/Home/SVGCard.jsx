@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 import { Media, Card, CardTitle } from 'react-md';
 
 const SVGCard = ({ src, alt, title, to, ...props }) => (
-  <Card
-    {...props}
-    component={Link}
-    to={`/${to}`}
-    className="md-cell home__svg-card"
-  >
+  <Card {...props} component={Link} to={`/${to}`}>
     <CardTitle title={title} />
     <Media aspectRatio="1-1">
       <img src={src} alt={alt} />

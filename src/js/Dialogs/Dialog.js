@@ -353,24 +353,22 @@ export default class Dialog extends PureComponent {
     }
   };
 
-  _handleContentResize = ({ height, scrollHeight, el: content }) => {
-    if (height !== scrollHeight) {
-      const maxHeight = content.style.maxHeight;
-      const dialog = content.parentNode;
-      content.style.maxHeight = 'none';
-      const title = this.props.title ? dialog.querySelector('.md-title--dialog') : null;
-      const footer = this.props.actions ? dialog.querySelector('.md-dialog-footer') : null;
+  _handleContentResize = ({ scrollHeight, el: content }) => {
+    const maxHeight = content.style.maxHeight;
+    const dialog = content.parentNode;
+    content.style.maxHeight = 'none';
+    const title = this.props.title ? dialog.querySelector('.md-title--dialog') : null;
+    const footer = this.props.actions ? dialog.querySelector('.md-dialog-footer') : null;
 
-      const totalHeight = dialog.offsetHeight - (title ? title.offsetHeight : 0) - (footer ? footer.offsetHeight : 0);
-      content.style.maxHeight = maxHeight;
-      const equalHeight = totalHeight === scrollHeight;
-      if (equalHeight) {
-        if (this.state.contentStyles && this.state.contentStyles.maxHeight) {
-          this.setState({ contentStyles: this.props.contentStyle });
-        }
-      } else {
-        this.setState({ contentStyles: { maxHeight: totalHeight, ...this.props.contentStyle } });
+    const totalHeight = dialog.offsetHeight - (title ? title.offsetHeight : 0) - (footer ? footer.offsetHeight : 0);
+    content.style.maxHeight = maxHeight;
+    const equalHeight = totalHeight === scrollHeight;
+    if (equalHeight) {
+      if (this.state.contentStyles && this.state.contentStyles.maxHeight) {
+        this.setState({ contentStyles: this.props.contentStyle });
       }
+    } else {
+      this.setState({ contentStyles: { maxHeight: totalHeight, ...this.props.contentStyle } });
     }
   };
 

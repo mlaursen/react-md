@@ -48,7 +48,13 @@ export default class ResizeObserver extends PureComponent {
      * The callback will include the current height, width, scrollHeight and scrollWidth of the target.
      *
      * ```js
-     * onResize({ height: nextHeight, width: nextWidth, scrollHeight: nextScrollHeight, scrollWidth: nextScrollWidth });
+     * onResize({
+     *   height: nextHeight,
+     *   width: nextWidth,
+     *   scrollHeight: nextScrollHeight,
+     *   scrollWidth: nextScrollWidth,
+     *   el: resizeTarget,
+     * });
      * ```
      */
     onResize: PropTypes.func.isRequired,
@@ -56,6 +62,9 @@ export default class ResizeObserver extends PureComponent {
     /**
      * An optional ref callback that will include the `target` or the parent node of the resize observer. Just
      * like other refs, this will provide null when it unmounts.
+     *
+     * This is really only helpful if you'd like the DOM node for a parent Component without needing to use
+     * `ReactDOM.findDOMNode(this)`.
      */
     elRef: PropTypes.func,
   };

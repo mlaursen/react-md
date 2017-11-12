@@ -19,11 +19,7 @@ exports[`DocumentationTabs should correctly render on customization routes 1`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -41,11 +37,7 @@ exports[`DocumentationTabs should correctly render on customization routes 1`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -78,11 +70,7 @@ exports[`DocumentationTabs should correctly render on customization routes 2`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -100,11 +88,7 @@ exports[`DocumentationTabs should correctly render on customization routes 2`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -137,11 +121,7 @@ exports[`DocumentationTabs should correctly render on customization routes 3`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -159,11 +139,7 @@ exports[`DocumentationTabs should correctly render on customization routes 3`] =
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -198,11 +174,7 @@ exports[`DocumentationTabs should render correctly on component routes 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -220,11 +192,7 @@ exports[`DocumentationTabs should render correctly on component routes 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -242,11 +210,7 @@ exports[`DocumentationTabs should render correctly on component routes 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -279,11 +243,7 @@ exports[`DocumentationTabs should render correctly on component routes 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -301,11 +261,7 @@ exports[`DocumentationTabs should render correctly on component routes 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -323,11 +279,7 @@ exports[`DocumentationTabs should render correctly on component routes 2`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -360,11 +312,7 @@ exports[`DocumentationTabs should render correctly on component routes 3`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >
@@ -382,11 +330,7 @@ exports[`DocumentationTabs should render correctly on component routes 3`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-tab-label"
     >

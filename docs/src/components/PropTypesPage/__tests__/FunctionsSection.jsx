@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import FunctionsSection from '../FunctionsSection';
 
@@ -14,10 +14,10 @@ const returns = { type: 'string', description: 'SOmethingk sdafjkad jflkadsjf' }
 
 describe('FunctionsSection', () => {
   it('should render correctly', () => {
-    const tree1 = createRouterSnapshot(<FunctionsSection {...PROPS} params={[]} />);
+    const tree1 = renderRouterSnapshot(<FunctionsSection {...PROPS} params={[]} />);
     expect(tree1).toMatchSnapshot();
 
-    const tree2 = createRouterSnapshot(<FunctionsSection {...PROPS} params={[]} returns={returns} />);
+    const tree2 = renderRouterSnapshot(<FunctionsSection {...PROPS} params={[]} returns={returns} />);
     expect(tree2).toMatchSnapshot();
 
     const params = [{
@@ -31,10 +31,10 @@ describe('FunctionsSection', () => {
       type: 'boolean',
       required: true,
     }];
-    const tree3 = createRouterSnapshot(<FunctionsSection {...PROPS} params={params} />);
+    const tree3 = renderRouterSnapshot(<FunctionsSection {...PROPS} params={params} />);
     expect(tree3).toMatchSnapshot();
 
-    const tree4 = createRouterSnapshot(<FunctionsSection {...PROPS} params={params} returns={returns} />);
+    const tree4 = renderRouterSnapshot(<FunctionsSection {...PROPS} params={params} returns={returns} />);
     expect(tree4).toMatchSnapshot();
   });
 });

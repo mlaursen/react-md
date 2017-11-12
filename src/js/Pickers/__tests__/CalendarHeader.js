@@ -15,20 +15,25 @@ describe('CalendarHeader', () => {
     return jest.fn(() => ({ format: (date) => date.toLocaleString() }));
   }
 
-  it('renders the day of week abbreviations', () => {
+  it('renders the day of week abbreviations (using the timeZone passed as prop)', () => {
     const props = {
-      DateTimeFormat,
+      DateTimeFormat: getDateTimeFormatMock(),
       locales: 'en-US',
       onPreviousClick: jest.fn(),
       onNextClick: jest.fn(),
       previousIconChildren: 'a',
       nextIconChildren: 'a',
       date: new Date(),
+      timeZone: 'UTC',
     };
 
     const header = renderIntoDocument(<CalendarHeader {...props} />);
     const dows = findRenderedDOMComponentWithClass(header, 'md-calendar-dows');
     expect(dows.childNodes.length).toBe(7);
+    expect(props.DateTimeFormat).toHaveBeenCalledWith(props.locales, {
+      weekday: CalendarHeader.defaultProps.weekdayFormat,
+      timeZone: props.timeZone,
+    });
   });
 
   it('should change order of the day of week abbreviations when "firstDayOfWeek" property is not 0', () => {
@@ -41,6 +46,7 @@ describe('CalendarHeader', () => {
       nextIconChildren: 'a',
       date: new Date(),
       firstDayOfWeek: 3,
+      timeZone: 'America/Los_Angeles',
     };
 
     const header = renderIntoDocument(<CalendarHeader {...props} />);
@@ -57,13 +63,14 @@ describe('CalendarHeader', () => {
       previousIconChildren: 'a',
       nextIconChildren: 'a',
       date: new Date(),
+      timeZone: 'America/Los_Angeles',
     };
 
     renderIntoDocument(<CalendarHeader {...props} />);
     // first call is from generateDows
     const formatCall = props.DateTimeFormat.mock.calls[1];
     expect(formatCall[0]).toBe(props.locales);
-    expect(formatCall[1]).toEqual({ month: 'long', year: 'numeric' });
+    expect(formatCall[1]).toEqual({ month: 'long', year: 'numeric', timeZone: props.timeZone });
   });
 
   it('should use "titleClassName" property', () => {
@@ -74,6 +81,7 @@ describe('CalendarHeader', () => {
       onNextClick: jest.fn(),
       date: new Date(),
       titleClassName: 'test-title-class',
+      timeZone: 'UTC',
     };
 
     const header = renderIntoDocument(<CalendarHeader {...props} />);
@@ -91,13 +99,14 @@ describe('CalendarHeader', () => {
       nextIconChildren: 'a',
       date: new Date(),
       titleFormat: { month: 'numeric', year: '2-digit' },
+      timeZone: 'America/New_York',
     };
 
     renderIntoDocument(<CalendarHeader {...props} />);
     // first call is from generateDows
     const formatCall = props.DateTimeFormat.mock.calls[1];
     expect(formatCall[0]).toBe(props.locales);
-    expect(formatCall[1]).toEqual(props.titleFormat);
+    expect(formatCall[1]).toEqual({ ...props.titleFormat, timeZone: props.timeZone });
   });
 
   it('should use "weekdayClassName" property', () => {
@@ -109,6 +118,7 @@ describe('CalendarHeader', () => {
       date: new Date(),
       titleClassName: 'test-title-class',
       weekdayClassName: 'test-weekday-class',
+      timeZone: 'UTC',
     };
 
     const header = renderIntoDocument(<CalendarHeader {...props} />);
@@ -126,11 +136,12 @@ describe('CalendarHeader', () => {
       nextIconChildren: 'a',
       date: new Date(),
       weekdayFormat: 'short',
+      timeZone: 'America/New_York',
     };
 
     renderIntoDocument(<CalendarHeader {...props} />);
     const formatCall = props.DateTimeFormat.mock.calls[0];
     expect(formatCall[0]).toBe(props.locales);
-    expect(formatCall[1]).toEqual({ weekday: props.weekdayFormat });
+    expect(formatCall[1]).toEqual({ weekday: props.weekdayFormat, timeZone: props.timeZone });
   });
 });

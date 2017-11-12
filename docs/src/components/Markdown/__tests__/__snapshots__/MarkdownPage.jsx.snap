@@ -2,7 +2,7 @@
 
 exports[`MarkdownPage should render correctly 1`] = `
 <section
-  className="md-grid md-grid--stacked"
+  className="md-grid"
   style={undefined}
 >
   <div

@@ -5,6 +5,7 @@ exports[`DocumentationPage should render correctly based on the loading prop 1`]
   aria-busy={true}
   aria-describedby="loading-documentation"
   className="md-grid md-grid--40-16"
+  style={undefined}
 >
   <svg
     aria-valuemax={100}
@@ -33,6 +34,7 @@ exports[`DocumentationPage should render correctly based on the loading prop 1`]
 exports[`DocumentationPage should render correctly based on the loading prop 2`] = `
 <section
   className="md-grid md-grid--40-16"
+  style={undefined}
 >
   <h1>
     Hello, World!
@@ -45,6 +47,7 @@ exports[`DocumentationPage should render correctly based on the loading prop 3`]
   aria-busy={true}
   aria-describedby="loading-documentation"
   className="md-grid md-grid--40-16"
+  style={undefined}
 >
   <svg
     aria-valuemax={100}

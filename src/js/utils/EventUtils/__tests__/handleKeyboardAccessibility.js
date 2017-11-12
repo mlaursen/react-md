@@ -6,11 +6,11 @@ import closest from '../../closest';
 import { ENTER, SPACE } from '../../../constants/keyCodes';
 
 const preventDefault = jest.fn();
-const FAKE_BUTTON = { getAttribute: jest.fn(() => 'button') };
+const FAKE_BUTTON = { getAttribute: jest.fn(() => 'button'), tagName: 'DIV' };
 
-const FAKE_RADIO = { getAttribute: jest.fn(() => 'radio') };
+const FAKE_RADIO = { getAttribute: jest.fn(() => 'radio'), tagName: 'DIV' };
 
-const FAKE_CHECKBOX = { getAttribute: jest.fn(() => 'checkbox') };
+const FAKE_CHECKBOX = { getAttribute: jest.fn(() => 'checkbox'), tagName: 'DIV' };
 
 describe('handleKeyboardAccessibility', () => {
   it('should trigger the onClick callback when listenToEnter is true and the enter key was pressed', () => {
@@ -64,5 +64,22 @@ describe('handleKeyboardAccessibility', () => {
     expect(closest).toBeCalledWith(event.target, 'form');
     expect(form.querySelector).toBeCalledWith('*[type="submit"]');
     expect(submit.click).toBeCalled();
+  });
+
+  it('should not prevent the default behavior if the spacebar is pressed on an input, textarea, or button', () => {
+    const cancelled = jest.fn();
+    const button = { tagName: 'BUTTON', getAttribute: () => '' };
+    const input = { tagName: 'INPUT', getAttribute: () => '' };
+    const area = { tagName: 'TEXTAREA', getAttribute: () => '' };
+
+    const onClick = jest.fn();
+    const event1 = { which: SPACE, keyCode: SPACE, target: button, preventDefault: cancelled };
+    const event2 = { which: SPACE, keyCode: SPACE, target: input, preventDefault: cancelled };
+    const event3 = { which: SPACE, keyCode: SPACE, target: area, preventDefault: cancelled };
+
+    handleKeyboardAccessibility(event1, onClick);
+    handleKeyboardAccessibility(event2, onClick);
+    handleKeyboardAccessibility(event3, onClick);
+    expect(onClick.mock.calls.length).toBe(3);
   });
 });

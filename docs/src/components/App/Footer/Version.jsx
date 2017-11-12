@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Version as ReactMDVersion } from 'react-md';
+import { Cell, Version as ReactMDVersion } from 'react-md';
 
 const Version = ({ version }) => (
-  <p className="md-text-right md-cell md-cell--12">
+  <Cell component="p" className="md-text-right" size={12}>
     Current version <i>{version}</i>
-  </p>
+  </Cell>
 );
 
 Version.propTypes = {

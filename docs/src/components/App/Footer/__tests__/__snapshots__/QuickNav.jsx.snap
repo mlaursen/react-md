@@ -2,7 +2,7 @@
 
 exports[`PureQuickNav should render as null when at the home page 1`] = `
 <nav
-  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  className="footer__quick-nav md-grid md-grid--no-spacing md-cell md-cell--12"
   style={
     Object {
       "height": undefined,
@@ -18,7 +18,7 @@ exports[`PureQuickNav should render as null when there is no previous name and n
 
 exports[`PureQuickNav should render correctly on mobile devices 1`] = `
 <nav
-  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  className="footer__quick-nav md-grid md-grid--no-spacing md-cell md-cell--12"
   style={
     Object {
       "height": undefined,
@@ -71,7 +71,7 @@ exports[`PureQuickNav should render correctly on mobile devices 1`] = `
 
 exports[`PureQuickNav should render correctly on non-mobile devices 1`] = `
 <nav
-  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  className="footer__quick-nav md-grid md-grid--no-spacing md-cell md-cell--12"
   style={
     Object {
       "height": undefined,

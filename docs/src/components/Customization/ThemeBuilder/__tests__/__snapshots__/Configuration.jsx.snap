@@ -35,11 +35,7 @@ exports[`Configuration should render correctly 1`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -75,11 +71,7 @@ exports[`Configuration should render correctly 1`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -91,11 +83,13 @@ exports[`Configuration should render correctly 1`] = `
       </span>
     </label>
   </div>
-  <i
-    class="md-text theme-configuration__message"
+  <p
+    class="theme-configuration__message"
   >
-    When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
-  </i>
+    <i>
+      When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
+    </i>
+  </p>
   <div
     aria-expanded="false"
     aria-haspopup="true"
@@ -280,11 +274,7 @@ exports[`Configuration should render correctly 2`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -329,11 +319,13 @@ exports[`Configuration should render correctly 2`] = `
       </span>
     </label>
   </div>
-  <i
-    class="md-text theme-configuration__message"
+  <p
+    class="theme-configuration__message"
   >
-    When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
-  </i>
+    <i>
+      When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
+    </i>
+  </p>
   <div
     aria-expanded="false"
     aria-haspopup="true"
@@ -517,11 +509,7 @@ exports[`Configuration should render correctly 3`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -557,11 +545,7 @@ exports[`Configuration should render correctly 3`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -573,11 +557,13 @@ exports[`Configuration should render correctly 3`] = `
       </span>
     </label>
   </div>
-  <i
-    class="md-text theme-configuration__message"
+  <p
+    class="theme-configuration__message"
   >
-    When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
-  </i>
+    <i>
+      When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
+    </i>
+  </p>
   <div
     aria-expanded="false"
     aria-haspopup="true"
@@ -761,11 +747,7 @@ exports[`Configuration should render correctly 4`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -800,11 +782,7 @@ exports[`Configuration should render correctly 4`] = `
       >
         <div
           class="md-ink-container"
-        >
-          <span
-            aria-hidden="true"
-          />
-        </div>
+        />
         <i
           class="md-icon material-icons md-text--inherit"
         >
@@ -816,11 +794,13 @@ exports[`Configuration should render correctly 4`] = `
       </span>
     </label>
   </div>
-  <i
-    class="md-text theme-configuration__message"
+  <p
+    class="theme-configuration__message"
   >
-    When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
-  </i>
+    <i>
+      When the save for future visits checkbox is checked, cookies will be created to store your theme for later visits and other pages. If you do not check this checkbox, the default theme will be applied when you leave this page.
+    </i>
+  </p>
   <div
     aria-expanded="false"
     aria-haspopup="true"

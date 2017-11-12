@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper } from 'react-md';
+import { GridList, Paper } from 'react-md';
 
 import './_styles.scss';
 
@@ -55,7 +55,7 @@ const ColorPalette = () => {
         component="ul"
         zDepth={1}
         key={colorHues[0].color}
-        className="md-cell md-cell--top md-list-unstyled"
+        className="md-list-unstyled"
       >
         <Color
           key={primary}
@@ -70,9 +70,9 @@ const ColorPalette = () => {
   });
 
   return (
-    <section className="md-grid color-palette">
+    <GridList component="section" className="color-palette" align="top">
       {palette}
-    </section>
+    </GridList>
   );
 };
 

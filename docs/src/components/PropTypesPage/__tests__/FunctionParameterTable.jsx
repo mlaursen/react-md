@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 
 import FunctionParameterTable from '../FunctionParameterTable';
 
 describe('FunctionParameterTable', () => {
   it('should render correctly', () => {
-    const nullTree = createRouterSnapshot(<FunctionParameterTable params={[]} />);
+    const nullTree = renderRouterSnapshot(<FunctionParameterTable params={[]} />);
     expect(nullTree).toMatchSnapshot();
 
     const params = [{
@@ -20,7 +20,7 @@ describe('FunctionParameterTable', () => {
       type: 'boolean',
       required: true,
     }];
-    const renderedTree = createRouterSnapshot(<FunctionParameterTable params={params} />);
+    const renderedTree = renderRouterSnapshot(<FunctionParameterTable params={params} />);
     expect(renderedTree).toMatchSnapshot();
   });
 });

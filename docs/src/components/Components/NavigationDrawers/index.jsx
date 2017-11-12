@@ -1,12 +1,14 @@
 import React from 'react';
+import { Version } from 'react-md';
 import { Link } from 'react-router-dom';
+import { GITHUB_URL } from 'constants/application';
 import ExamplesPage from 'components/ExamplesPage';
 
 import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
 
-import AppRaw from '!!raw-loader!components/App/index.jsx';
+import AppRaw from '!!raw-loader!components/App/App.jsx';
 import RoutingExampleRaw from '!!raw-loader!./RoutingExample/RoutingExample.jsx';
 
 const examples = [{
@@ -22,7 +24,7 @@ to pass to both the \`Drawer\` and \`Toolbar\` components.
   title: 'This App\'s NavigationDrawer',
   description: `
 You can also look at how this entire website was set up by checking the source code here. It
-might be a bit more helpful to look through on GitHub though.
+might be a bit more helpful to look through on [GitHub](${GITHUB_URL}/tree/v${Version}/docs/src/components/App) though.
   `,
   code: AppRaw,
   children: null,

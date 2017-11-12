@@ -36,6 +36,7 @@ import {
   IconSeparators,
   Layovers,
   Portals,
+  ResizeObservers,
   Inks,
   Lists,
   Media,
@@ -144,6 +145,9 @@ const Components = (props) => {
       break;
     case 'portals':
       Component = Portals;
+      break;
+    case 'resize-observers':
+      Component = ResizeObservers;
       break;
     case 'inks':
       Component = Inks;

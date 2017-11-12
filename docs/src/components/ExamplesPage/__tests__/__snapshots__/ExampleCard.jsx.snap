@@ -2,7 +2,7 @@
 
 exports[`ExampleCard should display correctly as a table card 1`] = `
 <div
-  class="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-card--table md-background--card"
   id="table-example"
   tabindex="-1"
 >
@@ -34,11 +34,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <div
         class="md-tooltip-container"
       >
@@ -55,6 +51,9 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       />
     </button>
   </div>
+  <section
+    class="md-card-text"
+  />
   <table
     class="md-data-table"
   >
@@ -90,7 +89,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
 
 exports[`ExampleCard should display correctly as a table card 2`] = `
 <div
-  class="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-card--table md-background--card"
   id="table-example"
   tabindex="-1"
 >
@@ -122,11 +121,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <div
         class="md-tooltip-container"
       >
@@ -147,7 +142,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
     class="md-card-text"
   >
     <div
-      class="markdown-container md-text-container examples-page__card__description"
+      class="markdown-container examples-page__card__description md-text-container"
     >
       <p>
         Some 
@@ -198,7 +193,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
 
 exports[`ExampleCard should display correctly with a description 1`] = `
 <div
-  class="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-background--card"
   id="second-example"
   tabindex="-1"
 >
@@ -230,11 +225,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <div
         class="md-tooltip-container"
       >
@@ -255,7 +246,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
     class="md-card-text"
   >
     <div
-      class="markdown-container md-text-container examples-page__card__description"
+      class="markdown-container examples-page__card__description md-text-container"
     >
       <pre>
         <code>
@@ -283,7 +274,7 @@ That contains some markdown!
 
 exports[`ExampleCard should display correctly without a description 1`] = `
 <div
-  class="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  class="md-paper md-paper--1 md-card md-background--card"
   id="first-example"
   tabindex="-1"
 >
@@ -315,11 +306,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <div
         class="md-tooltip-container"
       >

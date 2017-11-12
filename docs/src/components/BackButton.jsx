@@ -5,8 +5,7 @@ import { Button, SVGIcon } from 'react-md';
 
 import arrowBack from 'icons/arrow_back.svg';
 
-@withRouter
-export default class BackButton extends PureComponent {
+class BackButton extends PureComponent {
   static propTypes = {
     onClick: PropTypes.func,
     iconEl: PropTypes.element,
@@ -36,3 +35,5 @@ export default class BackButton extends PureComponent {
     return <Button {...props} onClick={this.handleClick} />;
   }
 }
+
+export default withRouter(BackButton);

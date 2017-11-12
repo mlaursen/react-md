@@ -5,3 +5,4 @@ export FocusContainer from './FocusContainer';
 export IconSeparator from './IconSeparator';
 export Layover from './Layover';
 export Portal from './Portal';
+export ResizeObserver from './ResizeObserver';

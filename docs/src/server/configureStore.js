@@ -5,14 +5,12 @@ import winston from 'winston';
 import routes, { componentRoutes } from 'server/routes';
 import rootReducer from 'state';
 import { updateCustomTheme } from 'state/helmet';
-import { pageNotFound } from 'state/routing';
+import { pageNotFound, updateLocation } from 'state/routing';
 import { getInitialState as getInitialThemeState } from 'state/theme';
-import { DEFAULT_STATE as DEFAULT_QUICK_NAV_STATE, handleLocationChange } from 'state/quickNav';
 import { docgenSuccess } from 'state/docgens';
 import { sassdocSuccess } from 'state/sassdocs';
 import { airQualityColumnsSuccess, airQualityDataSuccess } from 'state/airQuality';
 import { fetchSassdoc, fetchDocgen, fetchAirQualityColumns, fetchAirQualityData } from 'utils/api';
-import { toPageTitle } from 'utils/strings';
 import getServerUrl from 'server/utils/getServerUrl';
 
 function isSassDocRoute(pathname, tab) {
@@ -53,16 +51,17 @@ export default async function configureStore(req) {
 
   const store = createStore(rootReducer, {
     media: { mobile, tablet, desktop, defaultMedia },
-    drawer: {
-      toolbarTitle: toPageTitle(pathname),
-      toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
-      visibleBoxShadow: pathname !== '/',
-    },
-    quickNav: handleLocationChange(DEFAULT_QUICK_NAV_STATE, pathname),
     theme: getInitialThemeState(req.cookies),
   });
 
   store.dispatch(updateCustomTheme(store.getState().theme.href));
+
+  const searchIndex = req.url.indexOf('?');
+  store.dispatch(updateLocation({
+    pathname,
+    search: searchIndex > -1 ? req.url.substring(searchIndex) : '',
+  }));
+
   try {
     const server = getServerUrl(req);
     if (routes.indexOf(pathname.replace(/\?.*/, '')) === -1) {

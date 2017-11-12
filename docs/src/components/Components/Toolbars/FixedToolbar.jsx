@@ -18,8 +18,7 @@ const pastryData = pastries.map((pastry, i) => ({
   name: pastry,
 }));
 
-@connect(({ media: { mobile } }) => ({ mobile }))
-export default class FixedToolbar extends PureComponent {
+class FixedToolbar extends PureComponent {
   static propTypes = {
     mobile: PropTypes.bool,
   };
@@ -120,3 +119,4 @@ export default class FixedToolbar extends PureComponent {
     );
   }
 }
+export default connect(({ media: { mobile } }) => ({ mobile }))(FixedToolbar);

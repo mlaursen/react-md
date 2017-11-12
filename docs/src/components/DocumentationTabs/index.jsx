@@ -7,8 +7,7 @@ import { getTab } from 'utils/routing';
 
 import './_styles.scss';
 
-@withRouter
-export default class DocumentationTabs extends PureComponent {
+class DocumentationTabs extends PureComponent {
   static propTypes = {
     visible: PropTypes.bool,
     location: PropTypes.object.isRequired,
@@ -65,3 +64,4 @@ export default class DocumentationTabs extends PureComponent {
     );
   }
 }
+export default withRouter(DocumentationTabs);

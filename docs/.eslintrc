@@ -24,6 +24,7 @@
       "exports": "always-multiline",
       "functions": "ignore"
     }],
+    "quote-props": 0,
 
     "import/extensions": 0,
     "import/first": 0,

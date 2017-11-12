@@ -23,12 +23,17 @@ $md-font-icon-include-dense-material-icons: $md-font-icon-include-dense !default
 /// @type Number
 $md-font-icon-separator-padding: $md-default-padding !default;
 
-/// The light theme's disabled color for icons.
+/// The light theme's disabled color for icons. This is actually not used. Use the
+/// `$md-light-theme-colors` Sass map instead.
 /// @type Color
+/// @deprecated
+/// @see md-light-theme-colors
 $md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26) !default;
 
-/// The dark theme's disabled color for icons.
+/// The dark theme's disabled color for icons. This is actually not used. Use the
+/// `$md-dark-theme-colors` Sass map instead.
 /// @type Color
+/// @deprecated
 $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 
 /// Includes the CSS for using `md-icon`.
@@ -51,10 +56,8 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
   $include-dense: $md-font-icon-include-dense,
   $include-dense-material-icons: $md-font-icon-include-dense-material-icons
 ) {
-  $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
-
   .md-icon {
-    color: $md-icon-color;
+    color: get-color('icon', $light-theme);
     font-size: $md-font-icon-size;
     text-align: center;
     transition-duration: $md-transition-time;

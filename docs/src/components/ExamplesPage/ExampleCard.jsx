@@ -1,40 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-import { Card, CardText, SVGIcon } from 'react-md';
+import { Card, CardText, SVGIcon, bem } from 'react-md';
 import { toCaterpillarCase } from 'utils/strings';
 
 import codeIcon from 'icons/code.svg';
 import Markdown from 'components/Markdown';
 import Title from './Title';
 
-const ExampleCard = ({ title, description, code, children: propChildren, tableCard, className, ...props }) => {
-  const markdown = `
+const ExampleCard = ({ title, description: propDescription, code, children: propChildren, tableCard, ...props }) => {
+  let markdown = '';
+  if (code !== null) {
+    markdown = `
 \`\`\`jsx
 ${code}
 \`\`\`
 `;
-
-  let descriptionMarkdown;
-  if (description) {
-    descriptionMarkdown = (
-      <Markdown
-        key="description"
-        component="div"
-        markdown={description}
-        className="md-text-container examples-page__card__description"
-      />
-    );
   }
+
+  const description = (
+    <Markdown
+      key="description"
+      component="div"
+      markdown={propDescription}
+      className={bem('examples-page', 'card', 'description', {}, 'md-text-container')}
+    />
+  );
 
   let children = propChildren;
   if (tableCard && description) {
     children = [
-      <CardText key="description">{descriptionMarkdown}</CardText>,
+      <CardText key="description">{description}</CardText>,
       React.cloneElement(children, { key: 'table-card-example' }),
     ];
   } else if (!tableCard) {
-    children = <CardText key="example-card-text">{descriptionMarkdown}{children}</CardText>;
+    children = <CardText key="example-card-text">{description}{children}</CardText>;
   }
 
   const id = toCaterpillarCase(title.replace(/["'()'".]/g, ''));
@@ -45,12 +44,11 @@ ${code}
       {...props}
       tabIndex={-1}
       tableCard={tableCard}
-      className={cn('md-cell md-cell--12', className)}
       expanderIcon={<SVGIcon use={codeIcon.url} />}
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
     >
-      <Title id={id} title={title} expander />
+      <Title id={id} title={title} expander={!!code} />
       <CardText expandable>
         <Markdown markdown={markdown} />
       </CardText>
@@ -62,7 +60,7 @@ ${code}
 ExampleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  code: PropTypes.string.isRequired,
+  code: PropTypes.string,
   children: PropTypes.node,
   tableCard: PropTypes.bool,
   className: PropTypes.string,

@@ -37,8 +37,7 @@ const styles = {
   content: { minHeight: 'auto' },
 };
 
-@withRouter
-export default class RoutingExample extends PureComponent {
+class RoutingExample extends PureComponent {
   static propTypes = {
     location: PropTypes.object.isRequired,
   };
@@ -86,3 +85,4 @@ export default class RoutingExample extends PureComponent {
     );
   }
 }
+export default withRouter(RoutingExample);

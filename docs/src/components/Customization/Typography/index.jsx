@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Cell } from 'react-md';
 import Markdown from 'components/Markdown';
 
 import './_styles.scss';
@@ -59,8 +60,8 @@ the \`$md-typography-max-line-length\` value.
 `;
 
 const Typography = () => (
-  <div className="md-grid">
-    <div className="md-cell md-cell--12">
+  <Grid>
+    <Cell size={12}>
       <section className="md-text-container typography-container">
         <Markdown markdown={markdown} component="article" />
         <h1 className="md-display-4">md-display-4</h1>
@@ -112,8 +113,8 @@ const Typography = () => (
         <h2>Helper Classes</h2>
         <Markdown markdown={helperMarkdown} component="article" />
       </section>
-    </div>
-  </div>
+    </Cell>
+  </Grid>
 );
 
 export default Typography;

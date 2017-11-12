@@ -6,14 +6,17 @@ import {
   TableBody,
   TableRow,
   TableColumn,
+  bem,
 } from 'react-md';
 
 import Markdown from 'components/Markdown';
 import parameterShape from 'propTypes/parameterShape';
 
+const base = bem('sassdoc', 'section');
+
 const ParameterTable = ({ parameters }) => {
   if (!parameters.length) {
-    return <h5 className="sassdoc__section">None</h5>;
+    return <h5 className={base}>None</h5>;
   }
 
   const rows = parameters.map(({ name, description, type, default: defaultValue }) => (
@@ -30,7 +33,7 @@ const ParameterTable = ({ parameters }) => {
   ));
 
   return (
-    <DataTable className="sassdoc__section sassdoc__parameter-table" plain>
+    <DataTable className={bem('sassdoc', 'parameter-table', {}, base)} plain>
       <TableHeader>
         <TableRow>
           <TableColumn>Name</TableColumn>

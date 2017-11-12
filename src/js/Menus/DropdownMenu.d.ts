@@ -41,6 +41,5 @@ interface DropdownMenuComponent extends React.ComponentClass<DropdownMenuProps> 
     INNER_RIGHT: 'inner right'
   };
 }
-
 declare const DropdownMenu: DropdownMenuComponent;
 export default DropdownMenu;

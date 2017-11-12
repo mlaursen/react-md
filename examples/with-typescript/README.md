@@ -1,7 +1,7 @@
 # react-md with-typescript
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-This project was created the same was as the [with-create-reacet-app](../with-create-react-app) example except
-the project was created by doing:
+This project was created the same was as the [with-create-react-app](../with-create-react-app) example except
+the project was created using `--scripts-verions=react-scripts-ts`:
 
 ```sh
 $ create-react-app <PROJECT_NAME> --scripts-version=react-scripts-ts

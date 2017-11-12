@@ -2,119 +2,120 @@
 
 exports[`FunctionsSection should render correctly 1`] = `
 <section
-  className="prop-types__functions"
+  class="prop-types__functions"
   id="some-test-id-welcomeToTheTestingClass"
 >
   <h3
-    className="markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass()
-</code></pre>
-",
-      }
-    }
-  />
+    class="markdown-container"
+  >
+    <pre>
+      <code
+        class="lang-js"
+      >
+        welcomeToTheTestingClass()
+
+      </code>
+    </pre>
+    
+
+  </h3>
   <section
-    className="md-card-text markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<p>This does stuff. Yah</p>
-",
-      }
-    }
-  />
+    class="md-card-text markdown-container"
+  >
+    <p>
+      This does stuff. Yah
+    </p>
+    
+
+  </section>
 </section>
 `;
 
 exports[`FunctionsSection should render correctly 2`] = `
 <section
-  className="prop-types__functions"
+  class="prop-types__functions"
   id="some-test-id-welcomeToTheTestingClass"
 >
   <h3
-    className="markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(): string
-</code></pre>
-",
-      }
-    }
-  />
+    class="markdown-container"
+  >
+    <pre>
+      <code
+        class="lang-js"
+      >
+        welcomeToTheTestingClass(): string
+
+      </code>
+    </pre>
+    
+
+  </h3>
   <section
-    className="md-card-text markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<p>This does stuff. Yah</p>
-",
-      }
-    }
-  />
+    class="md-card-text markdown-container"
+  >
+    <p>
+      This does stuff. Yah
+    </p>
+    
+
+  </section>
 </section>
 `;
 
 exports[`FunctionsSection should render correctly 3`] = `
 <section
-  className="prop-types__functions"
+  class="prop-types__functions"
   id="some-test-id-welcomeToTheTestingClass"
 >
   <h3
-    className="markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething)
-</code></pre>
-",
-      }
-    }
-  />
+    class="markdown-container"
+  >
+    <pre>
+      <code
+        class="lang-js"
+      >
+        welcomeToTheTestingClass(something, requiredSomething)
+
+      </code>
+    </pre>
+    
+
+  </h3>
   <section
-    className="md-card-text markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<p>This does stuff. Yah</p>
-",
-      }
-    }
-  />
+    class="md-card-text markdown-container"
+  >
+    <p>
+      This does stuff. Yah
+    </p>
+    
+
+  </section>
   <div
-    className="md-data-table--responsive"
-    style={
-      Object {
-        "width": undefined,
-      }
-    }
+    class="md-data-table--responsive"
   >
     <table
-      className="md-data-table md-data-table--plain md-data-table--full-width"
-      style={undefined}
+      class="md-data-table md-data-table--plain md-data-table--full-width"
     >
       <thead
-        className="md-table-header"
+        class="md-table-header"
       >
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
             scope="col"
           >
             Name
           </th>
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
             scope="col"
           >
             Type
           </th>
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-text--secondary"
             scope="col"
           >
             Description
@@ -122,92 +123,83 @@ exports[`FunctionsSection should render correctly 3`] = `
         </tr>
       </thead>
       <tbody
-        className="md-table-body"
+        class="md-table-body"
       >
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js"
             >
               something
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js md-text-nowrap"
             >
               string
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           >
             <section
-              className="markdown-container"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<p>It is something that does something. Quite amazing</p>
-",
-                }
-              }
-            />
+              class="markdown-container"
+            >
+              <p>
+                It is something that does something. Quite amazing
+              </p>
+              
+
+            </section>
           </td>
         </tr>
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js"
             >
-              requiredSomething *
+              requiredSomething
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text md-table-column--relative"
           >
-            <code
-              className="code-variable language-js"
+            <div
+              class="md-tooltip-container"
             >
-              boolean
+              <span
+                aria-hidden="true"
+              />
+            </div>
+            <code
+              class="code-variable language-js md-text-nowrap"
+            >
+              boolean *
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           >
             <section
-              className="markdown-container"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<p>This is a param that is required.</p>
-",
-                }
-              }
-            />
+              class="markdown-container"
+            >
+              <p>
+                This is a param that is required.
+              </p>
+              
+
+            </section>
           </td>
         </tr>
       </tbody>
@@ -218,65 +210,58 @@ exports[`FunctionsSection should render correctly 3`] = `
 
 exports[`FunctionsSection should render correctly 4`] = `
 <section
-  className="prop-types__functions"
+  class="prop-types__functions"
   id="some-test-id-welcomeToTheTestingClass"
 >
   <h3
-    className="markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething): string
-</code></pre>
-",
-      }
-    }
-  />
+    class="markdown-container"
+  >
+    <pre>
+      <code
+        class="lang-js"
+      >
+        welcomeToTheTestingClass(something, requiredSomething): string
+
+      </code>
+    </pre>
+    
+
+  </h3>
   <section
-    className="md-card-text markdown-container"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<p>This does stuff. Yah</p>
-",
-      }
-    }
-  />
+    class="md-card-text markdown-container"
+  >
+    <p>
+      This does stuff. Yah
+    </p>
+    
+
+  </section>
   <div
-    className="md-data-table--responsive"
-    style={
-      Object {
-        "width": undefined,
-      }
-    }
+    class="md-data-table--responsive"
   >
     <table
-      className="md-data-table md-data-table--plain md-data-table--full-width"
-      style={undefined}
+      class="md-data-table md-data-table--plain md-data-table--full-width"
     >
       <thead
-        className="md-table-header"
+        class="md-table-header"
       >
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
             scope="col"
           >
             Name
           </th>
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
             scope="col"
           >
             Type
           </th>
           <th
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--header md-text--secondary"
+            class="md-table-column md-text-left md-table-column--header md-text--secondary"
             scope="col"
           >
             Description
@@ -284,92 +269,83 @@ exports[`FunctionsSection should render correctly 4`] = `
         </tr>
       </thead>
       <tbody
-        className="md-table-body"
+        class="md-table-body"
       >
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js"
             >
               something
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js md-text-nowrap"
             >
               string
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           >
             <section
-              className="markdown-container"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<p>It is something that does something. Quite amazing</p>
-",
-                }
-              }
-            />
+              class="markdown-container"
+            >
+              <p>
+                It is something that does something. Quite amazing
+              </p>
+              
+
+            </section>
           </td>
         </tr>
         <tr
-          className="md-table-row"
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
+          class="md-table-row"
         >
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
           >
             <code
-              className="code-variable language-js"
+              class="code-variable language-js"
             >
-              requiredSomething *
+              requiredSomething
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text md-table-column--relative"
           >
-            <code
-              className="code-variable language-js"
+            <div
+              class="md-tooltip-container"
             >
-              boolean
+              <span
+                aria-hidden="true"
+              />
+            </div>
+            <code
+              class="code-variable language-js md-text-nowrap"
+            >
+              boolean *
             </code>
           </td>
           <td
-            aria-sort={undefined}
-            className="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
-            scope={undefined}
+            class="md-table-column md-text-left md-table-column--plain md-text prop-types__cell"
           >
             <section
-              className="markdown-container"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<p>This is a param that is required.</p>
-",
-                }
-              }
-            />
+              class="markdown-container"
+            >
+              <p>
+                This is a param that is required.
+              </p>
+              
+
+            </section>
           </td>
         </tr>
       </tbody>

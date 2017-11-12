@@ -17,11 +17,7 @@ exports[`PanelContent should apply the correct styles 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Cancel
     </button>
     <button
@@ -30,11 +26,7 @@ exports[`PanelContent should apply the correct styles 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Save
     </button>
   </footer>
@@ -55,11 +47,7 @@ exports[`PanelContent should render correctly based on props 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Cancel
     </button>
     <button
@@ -68,11 +56,7 @@ exports[`PanelContent should render correctly based on props 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Save
     </button>
   </footer>
@@ -93,11 +77,7 @@ exports[`PanelContent should render correctly based on props 2`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Cancel
     </button>
     <button
@@ -106,11 +86,7 @@ exports[`PanelContent should render correctly based on props 2`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       Save
     </button>
   </footer>

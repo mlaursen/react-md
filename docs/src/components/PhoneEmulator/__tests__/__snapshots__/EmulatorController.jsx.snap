@@ -37,11 +37,7 @@ exports[`EmulatorController should render correctly with the base required props
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       <i
         class="md-icon material-icons md-text--inherit"
       >
@@ -82,11 +78,7 @@ it requires the full screen on mobile devices to be viewed correctly.
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     View Example
   </button>
 </section>

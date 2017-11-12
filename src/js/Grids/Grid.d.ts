@@ -12,7 +12,7 @@ export interface GridProps extends Props {
   spacing?: number;
 }
 
-interface GridComponent extends React.ComponentClass<GridProps> {
+export interface GridComponent extends React.ComponentClass<GridProps> {
   getClassName(props?: GridProps): string;
 }
 

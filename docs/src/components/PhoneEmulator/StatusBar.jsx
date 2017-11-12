@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-import { FontIcon } from 'react-md';
+import { FontIcon, bem } from 'react-md';
+
+const base = bem('phone-emulator', 'status-bar');
 
 const StatusBar = ({ className, ...props }) => (
-  <header {...props} className={cn('phone-emulator__status-bar', className)}>
+  <header {...props} className={bem(base, {}, className)}>
     <FontIcon>network_wifi</FontIcon>
     <FontIcon>network_cell</FontIcon>
     <FontIcon>battery_full</FontIcon>
-    <span className="phone-emulator__status-bar__time">12:30</span>
+    <span className={bem(base, 'time')}>12:30</span>
   </header>
 );
 

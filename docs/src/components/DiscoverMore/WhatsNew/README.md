@@ -1,5 +1,60 @@
+## November 2017
+### v1.2.8 Released
+- Another fix for the `Dialog`'s `autosizeContent` so that it doesn't infinitely toggle the max-height. [commit-2ccce1a]
+
+### v1.2.7 Released
+#### Changelog
+- Fixed the `Ink` `TransitionGroup` issues when snapshot testing. [issues-611]
+- Fixed the `EditDialogColumn` `TypeError` when setting the `inlineIcon` to `null`. [issues-612]
+- Updated the `Dialog`'s `autosizeContent` to work with some more use cases. [commit-9573ef3]
+
+#### Website Changes
+With the `v1.2.7` release, I also finally documented the [ResizeObserver](/components/helpers/resize-observers) component
+that has been exposed in the `UMD` build for awhile now. I also disabled the service workers to see if that stops the weird
+React error whenever I update the website and causes a blank page to appear. Finally, I _should_ have fixed the pages animating
+in when coming from server side rendering. It should only animate when changing routes now.
+
+### v1.2.6 Released
+#### Changelog
+- Removed some `Dialog` code that shouldn't have been included. [commit-fb36c0e]
+
+### v1.2.5 Released
+#### Changelog
+- Fixed a problem with editable `Slider`s using the wrong ref. [commit-34d26de]
+- Fixed `MenuButton`'s not opening with a space keypress. [issues-601]
+- Fixed the `overlay` prop on `Drawer` and `NavigationDrawer`. [issues-602]
+- Fixed the `DatePicker` for timezone problems. ([@hisapy] - [pull-605])
+- Exported the component interface Typescript definitions. ([@noseglid] - [pull-606])
+- Fixed the `EditDialogColumn` controlled PropTypes warning. [issues-604]
+- Fixed the `MenuButton` not supplying event listeners to the surrounding `DropdownMenu`. [issues-610]
+- Fixed the weird `TextField` display bug in newer versions of Chrome. [issues-565]
+- Fixed the Sass variables that the icon's color is derived from. [issues-609]
+
 ## October 2017
+### v1.2.4 Released
+#### Changelog
+- Updated `GridList` to support false-ish children. [commit-e53e080]
+- Fixed `Grid` and `GridList` not applying `style`. [issues-596]
+- Fixed `Layover`s that appear in centered dialogs. [issues-580]
+- Fixed `TextField` resizing for when icons are added or removed. [commit-d7b5cf0]
+
+### v1.2.3 Released
+#### Changelog
+- Correctly passed `disableScrollLocking` for `DatePicker` and `TimePicker`. [commit-bc0423e]
+- Fixed the React 15 `Portal` support. [issues-589]
+- Fixed the `Slider` step behavior where the `min` value is not zero. ([@strickc] -  [issues-585] and [pull-588])
+- Updated the `Drawer` and `NavigationDrawer` to be able to apply manual `zDepth`. [issues-590]
+
+#### Website changes
+- Fixed the search functionality for: media queries, colors, themes, and typography. [commit-adb8bad]
+
+#### Other Changes
+- Updated the [with-create-react-app](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-create-react-app),
+[with-react-router-v4](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-react-router-v4), and
+[with-typescript](https://github.com/mlaursen/react-md/tree/release/1.2.x/examples/with-typescript) examples.
+
 ### v1.2.2 Released
+#### Changelog
 - Correctly published to `npm` with the Typescript definition files.
 
 ### v1.2.1 Released

@@ -10,6 +10,7 @@ import {
   TableBody,
   TableRow,
   TableColumn,
+  bem,
 } from 'react-md';
 
 import Markdown from 'components/Markdown';
@@ -23,6 +24,8 @@ This example uses the [GitHub API](https://developer.github.com/v3/) and is subj
 to [rate limiting](https://developer.github.com/v3/#rate-limiting). The current rate
 limits are listed below (and automatically updated).
 `;
+
+const base = bem('github', 'rate-limits');
 
 export class AboutRateLimiting extends PureComponent {
   static propTypes = {
@@ -81,10 +84,10 @@ export class AboutRateLimiting extends PureComponent {
     const { coreResetTime, searchResetTime } = this.state;
     const { core, search } = this.props.rateLimits;
     return (
-      <div className="github__rate-limits">
+      <div className={base}>
         <Markdown markdown={markdown} />
-        <h4 id="github-rate-limits" className="github__rate-limits__title">Rate Limits</h4>
-        <DataTable plain className="github__rate-limits__table" aria-labelledby="github-rate-limits">
+        <h4 id="github-rate-limits" className={bem(base, 'title')}>Rate Limits</h4>
+        <DataTable plain className={bem(base, 'table')} aria-labelledby="github-rate-limits">
           <TableHeader>
             <TableRow>
               <TableColumn />

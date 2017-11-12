@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import { bem } from 'react-md';
+
+const base = 'color-palette';
 
 const Color = ({ name, light, divide, color }) => {
   let colorName;
   if (color) {
-    colorName = <h4 className="color-palette__color-name md-text-capitalize">{color.replace(/-/g, ' ')}</h4>;
+    colorName = <h4 className={bem(base, 'color-name', {}, 'md-text-capitalize')}>{color.replace(/-/g, ' ')}</h4>;
   }
 
   return (
-    <li
-      className={cn('color-palette__color', `color-palette__color--${name}`, {
-        'color-palette__color--primary': color,
-        'color-palette__color--light': light,
-        'color-palette__color--divide': divide,
-      })}
-    >
+    <li className={bem(base, 'color', { light, divide, [name]: name, 'primary': color })}>
       {colorName}
-      <div className="color-palette__sass-variable">{name}</div>
+      <div className={bem(base, 'sass-variable')}>{name}</div>
     </li>
   );
 };

@@ -25,7 +25,7 @@ export interface SelectFieldColumnProps extends SharedSelectFieldProps, Injected
   wrapperClassName?: string;
 }
 
-interface SelectFieldColumnComponent extends React.ComponentClass<SelectFieldColumnProps> {
+export interface SelectFieldColumnComponent extends React.ComponentClass<SelectFieldColumnProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',

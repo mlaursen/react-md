@@ -29,9 +29,21 @@ export default function withMinHeight(Component) {
       }
     }
 
+    componentWillUnmount() {
+      if (this.frame) {
+        window.cancelAnimationFrame(this.frame);
+      }
+
+      window.removeEventListener('resize', this.handleResize);
+      if (__DEV__) {
+        window.removeEventListener('load', () => this.updateMinHeight(this.props));
+      }
+    }
+
     handleResize = () => {
       if (!this.ticking) {
-        requestAnimationFrame(() => {
+        this.frame = window.requestAnimationFrame(() => {
+          this.frame = null;
           this.ticking = false;
           this.updateMinHeight(this.props);
         });

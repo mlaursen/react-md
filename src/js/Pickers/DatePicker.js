@@ -104,6 +104,12 @@ export default class DatePicker extends PureComponent {
      * The DateTimeFormat option to apply to format a weekday in calendar header.
      */
     calendarWeekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
+
+    /**
+     * The timeZone to be used in all formatting operations.
+     * For a full list of possible timeZone values check https://www.iana.org/time-zones.
+     */
+    timeZone: PropTypes.string.isRequired,
   };
 
   render() {
@@ -139,6 +145,7 @@ export default class DatePicker extends PureComponent {
       calendarTitleFormat,
       calendarWeekdayClassName,
       calendarWeekdayFormat,
+      timeZone,
       ...props
     } = this.props;
 
@@ -162,6 +169,7 @@ export default class DatePicker extends PureComponent {
           titleFormat={calendarTitleFormat}
           weekdayClassName={calendarWeekdayClassName}
           weekdayFormat={calendarWeekdayFormat}
+          timeZone={timeZone}
         />
       );
     } else {
@@ -207,6 +215,7 @@ export default class DatePicker extends PureComponent {
           calendarTempDate={calendarTempDate}
           calendarMode={calendarMode}
           changeCalendarMode={changeCalendarMode}
+          timeZone={timeZone}
         />
         <div className={cn('md-picker-content-container', contentClassName)}>
           {picker}

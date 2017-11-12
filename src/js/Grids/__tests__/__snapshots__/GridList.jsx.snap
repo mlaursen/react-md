@@ -315,39 +315,46 @@ exports[`GridList should correctly update after props change 29`] = `
 exports[`GridList should render correctly with the different props applied 1`] = `
 <div
   className="md-grid md-grid--stacked"
+  style={undefined}
 />
 `;
 
 exports[`GridList should render correctly with the different props applied 2`] = `
 <div
   className="md-grid md-grid--stacked md-grid--no-spacing"
+  style={undefined}
 />
 `;
 
 exports[`GridList should render correctly with the different props applied 3`] = `
 <div
   className="md-grid md-grid--stacked md-grid--no-spacing md-grid--look-at-me"
+  style={undefined}
 />
 `;
 
 exports[`GridList should render correctly with the different props applied 4`] = `
 <div
   className="md-grid md-grid--48-16"
+  style={undefined}
 />
 `;
 
 exports[`GridList should render correctly without any props 1`] = `
 <div
   className="md-grid"
+  style={undefined}
 />
 `;
 
 exports[`GridList should render correctly without any props 2`] = `
 <div
   className="md-grid"
+  style={undefined}
 >
   <span
     className="md-cell"
+    style={undefined}
   />
 </div>
 `;

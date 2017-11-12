@@ -15,11 +15,7 @@ exports[`Contact should render correctly 1`] = `
   >
     <div
       class="md-ink-container"
-    >
-      <span
-        aria-hidden="true"
-      />
-    </div>
+    />
     <div
       class="md-icon-separator"
     >

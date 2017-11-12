@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import Helmet from 'react-helmet';
+import { Grid, Cell } from 'react-md';
 
 import { updateTheme, clearTheme } from 'state/theme';
 import Markdown from 'components/Markdown';
@@ -118,18 +119,20 @@ precompiled.
 `;
     }
     return (
-      <div style={style} className="md-grid">
+      <Grid style={style}>
         <Helmet title="Theme Builder" />
         <Configuration {...props} onChange={this.handleChange} onSelectChange={this.handleSelectChange} />
-        <section className="md-cell md-cell--8 md-cell--6-desktop">
+        <Cell component="section" size={8} desktopSize={6}>
           <Markdown markdown={ABOUT_THEME_BUILDER} className="md-text-container" />
           <Preview />
-        </section>
-        <Markdown markdown={howToUse} className="md-cell md-cell--12" />
-      </div>
+        </Cell>
+        <Markdown markdown={howToUse} component={Cell} size={12} />
+      </Grid>
     );
   }
 }
+
+const WithMinHeight = withMinHeight(PureThemeBuilder);
 
 export default connectAdvanced((dispatch) => {
   let result;
@@ -142,4 +145,4 @@ export default connectAdvanced((dispatch) => {
 
     return result;
   };
-})(withMinHeight(PureThemeBuilder));
+})(WithMinHeight);

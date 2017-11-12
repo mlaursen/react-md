@@ -23,16 +23,12 @@ exports[`Home should render correctly 1`] = `
     >
       <div
         class="md-ink-container"
-      >
-        <span
-          aria-hidden="true"
-        />
-      </div>
+      />
       View Demo
     </a>
   </header>
   <h3
-    class="md-text-container home__about"
+    class="home__about md-text-container"
   >
     This project's goal is to be able to create a fully accessible material design styled website using React Components and Sass. With the separation of styles in Sass instead of inline styles, it should hopefully be easy to create custom components with the existing styles.
   </h3>
@@ -93,7 +89,7 @@ exports[`Home should render correctly 1`] = `
         <h2
           class="md-card-title--title md-card-title--large md-text"
         >
-          Customization
+          Components
         </h2>
       </div>
       <section

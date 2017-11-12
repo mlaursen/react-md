@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { injectInk } from 'react-md';
 
 import './_styles.scss';
 
-const Button = ({ ink, className, children, ...props }) => (
-  <button type="button" className={cn('button', className)} {...props}>
-    {ink}
-    {children}
-  </button>
-);
+/**
+ * Starting with React 16, Stateless functions are no longer allowed refs, but the injectInk relies
+ * on a ref, so just use `Component` or `PureComponent` to get it to work.
+ */
+class Button extends PureComponent { // eslint-disable-line react/prefer-stateless-function
+  static propTypes = {
+    ink: PropTypes.node,
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+  };
 
-Button.propTypes = {
-  ink: PropTypes.node,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
+  render() {
+    const { ink, className, children, ...props } = this.props;
+
+    return (
+      <button type="button" className={cn('button', className)} {...props}>
+        {ink}
+        {children}
+      </button>
+    );
+  }
+}
 
 const InkedButton = injectInk(Button);
 

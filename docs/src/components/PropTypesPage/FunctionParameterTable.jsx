@@ -6,6 +6,7 @@ import {
   TableBody,
   TableRow,
   TableColumn,
+  bem,
 } from 'react-md';
 
 import Markdown from 'components/Markdown';
@@ -29,14 +30,12 @@ const FunctionParameterTable = ({ params }) => {
         {params.map(({ name, type, description, required }) => (
           <TableRow key={name}>
             <TableColumn>
-              <CodeVariable lang="js">
-                {`${name}${required ? ' *' : ''}`}
-              </CodeVariable>
+              <CodeVariable lang="js">{name}</CodeVariable>
             </TableColumn>
-            <TableColumn>
-              <CodeVariable lang="js">{type}</CodeVariable>
+            <TableColumn tooltipLabel={required ? 'Required' : null} tooltipDelay={300} tooltipPosition="top">
+              <CodeVariable lang="js" className="md-text-nowrap">{type}{required ? ' *' : ''}</CodeVariable>
             </TableColumn>
-            <TableColumn className="prop-types__cell">
+            <TableColumn className={bem('prop-types', 'cell')}>
               <Markdown markdown={description} />
             </TableColumn>
           </TableRow>

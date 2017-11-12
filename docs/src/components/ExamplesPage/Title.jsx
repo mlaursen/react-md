@@ -5,8 +5,7 @@ import { CardTitle } from 'react-md';
 
 import { QuickLinkTitle } from 'components/QuickLink';
 
-@connect(({ media: { desktop } }) => ({ desktop }))
-export default class Title extends PureComponent {
+class Title extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -32,3 +31,4 @@ export default class Title extends PureComponent {
     );
   }
 }
+export default connect(({ media: { desktop } }) => ({ desktop }))(Title);

@@ -64,14 +64,9 @@ export default class EmulatorController extends PureComponent {
       return <PhoneEmulator {...props} />;
     }
 
-    let description;
-    if (demoDescription) {
-      description = <Markdown markdown={demoDescription} />;
-    }
-
     return (
       <section>
-        {description}
+        <Markdown markdown={demoDescription} />
         <Button raised onClick={this.showDemo}>{toggleLabel}</Button>
         <DialogContainer
           id={demoId}

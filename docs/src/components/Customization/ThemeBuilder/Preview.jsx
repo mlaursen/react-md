@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Toolbar, Drawer } from 'react-md';
+import { Button, Grid, Cell, Toolbar, Drawer, bem } from 'react-md';
 
 const NAV_ITEMS = [
   { primaryText: 'Woop woop' },
@@ -30,12 +30,12 @@ export default class Preview extends PureComponent {
           colored
           fixed
         />
-        <div className="md-grid md-toolbar-relative">
-          <h2 className="md-display-1 md-cell md-cell--12">Look at this</h2>
-          <Button id={`${idPrefix}-btn`} primary raised className="theme-preview__btn">
+        <Grid className="md-toolbar-relative">
+          <Cell component="h2" size={12} className="md-display-1">Look at this</Cell>
+          <Button id={`${idPrefix}-btn`} primary raised className={bem('theme-preview', 'btn')}>
             Button
           </Button>
-        </div>
+        </Grid>
         <Drawer
           id={`${idPrefix}-drawer`}
           renderNode={this._container}

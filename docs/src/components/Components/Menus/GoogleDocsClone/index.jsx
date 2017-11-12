@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 import PureGoogleDocsClone from './GoogleDocsClone';
 
-@connect(({ media: { desktop } }) => ({ desktop }))
-export default class GoogleDocsClone extends PureComponent {
+class GoogleDocsClone extends PureComponent {
   static propTypes = {
     desktop: PropTypes.bool.isRequired,
   };
@@ -32,3 +31,4 @@ export default class GoogleDocsClone extends PureComponent {
     );
   }
 }
+export default connect(({ media: { desktop } }) => ({ desktop }))(GoogleDocsClone);

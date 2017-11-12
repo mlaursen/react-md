@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bem } from 'react-md';
 
 import QuickLink from './QuickLink';
 
@@ -9,7 +10,7 @@ const QuickLinkTitle = ({ id, title, desktop }) => {
   }
 
   return (
-    <div className="quick-link__container">
+    <div className={bem('quick-link', 'container')}>
       {title}
       <QuickLink id={id} title />
     </div>

@@ -1,7 +1,7 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -12,6 +12,62 @@ import DatePickerContainer from '../DatePickerContainer';
 import Portal from '../../Helpers/Portal';
 
 describe('DatePickerContainer', () => {
+  it('default timeZone prop is UTC', () => {
+    expect(DatePickerContainer.defaultProps.timeZone).toBe('UTC');
+  });
+
+  it('calls DateTimeFormat using props.timeZone', () => {
+    const date = new Date(2017, 9, 1);
+    const DateTimeFormat = jest.fn(() => ({ format: () => {} }));
+    const timeZone = DatePickerContainer.defaultProps.timeZone;
+    const locales = DatePickerContainer.defaultProps.locales;
+    const render = (props) => shallow(
+      <DatePickerContainer
+        id="test"
+        DateTimeFormat={DateTimeFormat}
+        {...props}
+      />
+    );
+    const assertFirstCallOk = (formatterMock) => {
+      expect(formatterMock.mock.calls[0][0]).toEqual(locales);
+      expect(formatterMock.mock.calls[0][1]).toEqual({ timeZone });
+    };
+
+    // test with defaultValue
+    render({ defaultValue: date });
+    expect(DateTimeFormat).toHaveBeenCalledWith(locales, { timeZone });
+
+    // test with value
+    DateTimeFormat.mockClear();
+    render({ value: date, onChange: () => {} });
+    expect(DateTimeFormat).toHaveBeenCalledWith(locales, { timeZone });
+
+    // test when _handleOkClick()
+    let wrapper = render({ value: date, onChange: () => {} });
+    DateTimeFormat.mockClear(); // clear after "rendering"
+    wrapper.instance()._handleOkClick({ preventDefault: () => {} });
+    assertFirstCallOk(DateTimeFormat);
+
+    // test when _setCalendarTempDate() with autoOk
+    wrapper = render({ autoOk: true, value: date, onChange: () => {} });
+    DateTimeFormat.mockClear(); // clear after "rendering"
+    wrapper.instance()._setCalendarTempDate(new Date());
+    assertFirstCallOk(DateTimeFormat);
+
+    // test with custom formatOptions
+    DateTimeFormat.mockClear();
+    const formatOptions = { timeZoneName: 'long' };
+    render({ defaultValue: date, formatOptions });
+    expect(DateTimeFormat).toHaveBeenCalledWith(locales, { ...formatOptions, timeZone });
+  });
+
+  it('passes props.timeZone to rendered DatePicker', () => {
+    const wrapper = mount(<DatePickerContainer id="test" defaultVisible />);
+    const timeZone = DatePickerContainer.defaultProps.timeZone;
+
+    expect(wrapper.find('DatePicker').prop('timeZone')).toEqual(timeZone);
+  });
+
   it('merges className and style', () => {
     const style = { display: 'block' };
     const className = 'test';

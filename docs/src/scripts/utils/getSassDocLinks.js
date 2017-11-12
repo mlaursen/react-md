@@ -1,5 +1,13 @@
-import { componentRoutes as routes } from 'server/routes';
+import { componentRoutes } from 'server/routes';
 import { toTitle } from 'utils/strings';
+
+const routes = [
+  ...componentRoutes,
+  '/customization/colors',
+  '/customization/themes',
+  '/customization/typography',
+  '/customization/media-queries',
+];
 
 let lastLink = '';
 

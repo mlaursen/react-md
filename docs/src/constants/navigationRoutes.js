@@ -22,6 +22,7 @@ export const componentRoutes = [
       'icon-separators',
       'layovers',
       'portals',
+      'resize-observers',
     ],
   }, 'inks',
   'lists',

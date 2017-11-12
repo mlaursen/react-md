@@ -2,6 +2,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -214,5 +215,10 @@ describe('ListItem', () => {
     expect(button.props().onMouseDown).toBe(tileProps.onMouseDown);
 
     global.console = console;
+  });
+
+  it('should render correctly with a snapshot tester', () => {
+    const tree = renderer.create(<ListItem primaryText="Test" />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
