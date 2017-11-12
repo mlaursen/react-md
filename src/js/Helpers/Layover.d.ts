@@ -3,20 +3,9 @@ import { IdPropType, Props } from '../index';
 
 export type toggleQueryFn = () => string;
 
-export type HorizontalAnchors = {
-  LEFT: 'left',
-  INNER_LEFT: 'inner left',
-  CENTER: 'center',
-  RIGHT: 'right',
-  INNER_RIGHT: 'inner right'
-}
+export type HorizontalAnchors = 'inner left' | 'left' | 'center' | 'right' | 'inner right';
 
-export type VerticalAnchors = {
-  TOP: 'top',
-  CENTER: 'center',
-  OVERLAP: 'overlap',
-  BOTTOM: 'bottom'
-}
+export type VerticalAnchors = 'top' | 'center' | 'overlap' | 'bottom';
 
 export type LayoverPositions = 'tl' | 'tr' | 'bl' | 'br' | 'below';
 
