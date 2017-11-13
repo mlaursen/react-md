@@ -65,6 +65,21 @@ describe('ListItem', () => {
     expect(rightNode.style.height).toBe(props.rightNodeStyle.height);
   });
 
+  it('should use "activeBoxClassName" and "activeBoxStyle" properties', () => {
+    const props = {
+      primaryText: 'Test activeBox props',
+      active: true,
+      activeBoxClassName: 'active-box-class',
+      activeBoxStyle: {
+        width: '30px',
+      },
+    };
+    const listItem = renderIntoDocument(<ListItem {...props} />);
+
+    const node = findRenderedDOMComponentWithClass(listItem, props.activeBoxClassName);
+    expect(node.style.width).toBe(props.activeBoxStyle.width);
+  });
+
   it('should provide reference to container element', () => {
     let itemRef;
     const props = {
