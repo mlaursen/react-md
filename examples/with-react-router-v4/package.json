@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-md": "^1.2.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-md": "^1.2.8",
     "react-router-dom": "^4.2.2",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "node-sass-chokidar": "^0.0.3",
-    "npm-run-all": "^4.1.1",
-    "react-scripts": "1.0.14"
+    "npm-run-all": "^4.1.2",
+    "react-scripts": "1.0.17"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && npm run build-css --watch --recursive",
+    "watch-css": "npm run build-css && npm run build-css -- --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",

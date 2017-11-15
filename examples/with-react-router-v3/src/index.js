@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import WebFontLoader from 'webfontloader';
 
-WebFontLoader.load({
-  google: {
-    families: ['Roboto:300,400,500,700', 'Material Icons'],
-  },
-});
-
 import './index.css';
 import App from './App';
 import Home from './Home';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
+
+WebFontLoader.load({
+  google: {
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
+  },
+});
 
 ReactDOM.render(
   <Router history={browserHistory}>

@@ -4,22 +4,20 @@
   "private": true,
   "description": "An example usage of react-md and create-react-app.",
   "dependencies": {
-    "node-sass": "^4.5.2",
-    "npm-run-all": "^4.0.2",
-    "react": "^15.5.4",
-    "react-addons-css-transition-group": "^15.5.2",
-    "react-addons-transition-group": "^15.5.2",
-    "react-dom": "^15.5.4",
-    "react-md": "latest",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-md": "^1.2.1",
     "react-router": "3",
-    "webfontloader": "^1.6.27"
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.1",
+    "react-scripts": "1.0.14"
   },
   "scripts": {
-    "build-css": "node-sass src/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && npm run build-css -- --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
