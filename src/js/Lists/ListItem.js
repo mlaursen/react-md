@@ -307,6 +307,18 @@ export default class ListItem extends PureComponent {
     activeClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the top-most element of the `ListItem` component (`.md-list-item`)
+     * when the `active` prop is `true`.
+     */
+    activeBoxStyle: PropTypes.object,
+
+    /**
+     * The className to apply to the top-most element of the `ListItem` component (`.md-list-item`)
+     * when the `active` prop is `true`.
+     */
+    activeBoxClassName: PropTypes.string,
+
+    /**
      * Boolean if the nested items should animate when they appear or disappear.
      */
     animateNestedItems: PropTypes.bool,
@@ -560,6 +572,8 @@ export default class ListItem extends PureComponent {
       prependNested,
       active,
       activeClassName,
+      activeBoxStyle,
+      activeBoxClassName,
       animateNestedItems,
       expanderIcon,
       expanderLeft,
@@ -703,8 +717,11 @@ export default class ListItem extends PureComponent {
     const sharedProps = {
       ...itemProps,
       ...(passPropsToItem ? props : undefined),
-      style,
-      className: cn('md-list-item', { 'md-list-item--nested-container': nestedItems }, className),
+      style: Object.assign({}, style, active ? activeBoxStyle : null),
+      className: cn('md-list-item', {
+        'md-list-item--nested-container': nestedItems,
+        [activeBoxClassName]: active,
+      }, className),
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
       ref: this._setContainer,

@@ -5,7 +5,7 @@ exports[`ListItem should render correctly with a snapshot tester 1`] = `
   aria-posinset={undefined}
   aria-setsize={undefined}
   className="md-list-item"
-  style={undefined}
+  style={Object {}}
 >
   <div
     aria-expanded={null}
