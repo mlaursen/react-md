@@ -71,7 +71,7 @@ export interface MenuProps extends BaseMenuProps {
   expanderIconChildren?: React.ReactNode;
 }
 
-interface MenuComponent extends React.ComponentClass<MenuProps> {
+export interface MenuComponent extends React.ComponentClass<MenuProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',
