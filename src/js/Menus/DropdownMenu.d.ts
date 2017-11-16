@@ -19,7 +19,7 @@ export interface DropdownMenuProps extends SharedDropdownMenuProps {
   children?: React.ReactElement<any>;
 }
 
-interface DropdownMenuComponent extends React.ComponentClass<DropdownMenuProps> {
+export interface DropdownMenuComponent extends React.ComponentClass<DropdownMenuProps> {
   Positions: {
     TOP_LEFT: 'tl',
     TOP_RIGHT: 'tr',
