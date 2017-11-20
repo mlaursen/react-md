@@ -36,10 +36,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   findInlineSuggestion?: (data: DataType, value: string | number, dataLabel?: string) => string | number;
   autocompleteWithLabel?: boolean;
   onAutocomplete?: (suggestion: string | number, suggestionIndex: number, matches: DataType) => void;
-  onBlur?: (event: React.FocusEvent<HTMLFormElement>) => void,
   onChange?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
-  onFocus?: (event: React.FocusEvent<HTMLFormElement>) => void,
-  onKeyDown?: (event: React.KeyboardEvent<HTMLFormElement>) => void,,
   clearOnAutocomplete?: boolean;
   focusInputOnAutocomplete?: boolean;
   onMenuOpen?: Function;
@@ -47,7 +44,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   autoComplete?: OnOffType;
   position?: LayoverPositions;
   simplifiedMenu?: boolean;
-  toolbar: boolean;
+  toolbar?: boolean;
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {
