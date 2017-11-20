@@ -18,6 +18,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
   inlineSuggestionStyle?: React.CSSProperties;
+  inlineSuggestionPadding?: number;
   inlineSuggestionClassName?: string;
   disabled?: boolean;
   label?: React.ReactNode;
@@ -31,7 +32,6 @@ export interface AutocompleteProps extends BaseMenuProps {
   total?: number;
   offset?: number;
   filter?: (data: DataType, filterText: string | number, dataLabel?: string) => Array<string>;
-  fullWidth?: boolean;
   inline?: boolean;
   findInlineSuggestion?: (data: DataType, value: string | number, dataLabel?: string) => string | number;
   autocompleteWithLabel?: boolean;
@@ -44,6 +44,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   autoComplete?: OnOffType;
   position?: LayoverPositions;
   simplifiedMenu?: boolean;
+  toolbar?: boolean;
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {
