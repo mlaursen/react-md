@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 
 export type MobileDrawerType = 'temporary' | 'temporary-mini';
 export type DrawerType = 'full-height' | 'clipped' | 'floating' | 'persistent' | 'persistent-mini' | MobileDrawerType;
@@ -7,17 +7,44 @@ export type DrawerType = 'full-height' | 'clipped' | 'floating' | 'persistent' |
 export type MediaType = 'mobile' | 'tablet' | 'desktop';
 export type DrawerPosition = 'left' | 'right';
 
-export interface DrawerProps extends Props {
-  // for the `component` prop until refactored out
+interface NavItem {
+  // This is really any shape, but give some *hints* about additional formatting behind the scenes
   [key: string]: any;
+  divider?: boolean;
+  subheader?: boolean;
+  primaryText?: React.ReactNode;
+}
 
+export interface SharedDrawerProps extends Props {
+  navItemsId?: IdPropType;
   navStyle?: React.CSSProperties;
   navClassName?: string;
   overlayStyle?: React.CSSProperties;
   overlayClassName?: string;
-  component?: React.ReactType;
-  navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: string }>;
+  navItems?: Array<React.ReactElement<any> | NavItem>;
+  children?: React.ReactNode;
+  defaultMedia?: MediaType;
+  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
+  overlay?: boolean;
+  portal?: boolean;
+  renderNode?: Object;
+  lastChild?: boolean;
+  defaultVisible?: boolean;
+  visible?: boolean;
+  onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
+  position?: DrawerPosition;
+  inline?: boolean;
+  clickableDesktopOverlay?: boolean;
+  autocloseAfterInk?: boolean;
+
   autoclose?: boolean;
+}
+
+export interface DrawerProps extends SharedDrawerProps {
+  // for the `component` prop until refactored out
+  [key: string]: any;
+
+  component?: React.ReactType;
   header?: React.ReactNode;
   mobileType?: MobileDrawerType;
   mobileMinWidth?: number;
@@ -26,20 +53,7 @@ export interface DrawerProps extends Props {
   desktopType?: DrawerType;
   desktopMinWidth?: number;
   type?: DrawerType;
-  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
-  onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  defaultMedia?: MediaType;
-  overlay?: boolean;
-  portal?: boolean;
-  renderNode?: Object;
-  lastChild?: boolean;
-  defaultVisible?: boolean;
-  visible?: boolean;
-  position?: DrawerPosition;
-  inline?: boolean;
   transitionDuration?: number;
-  clickableDesktopOverlay?: boolean;
-  children?: React.ReactNode;
   constantType?: boolean;
   zDepth?: number;
 

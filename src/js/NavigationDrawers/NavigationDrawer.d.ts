@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType } from '../index';
 import {
+  SharedDrawerProps,
   DrawerType,
   MobileDrawerType,
   DrawerPosition,
   MediaType,
 } from '../Drawers';
 
-export interface NavigationDrawerProps extends Props {
+export interface NavigationDrawerProps extends SharedDrawerProps {
+  drawerId?: IdPropType;
+  navItemsId?: IdPropType;
+  toolbarId?: IdPropType;
+  contentId?: IdPropType;
+
   toolbarStyle?: React.CSSProperties;
   toolbarClassName?: string;
   toolbarTitleStyle?: React.CSSProperties;
@@ -16,17 +22,12 @@ export interface NavigationDrawerProps extends Props {
   drawerClassName?: string;
   contentStyle?: React.CSSProperties;
   contentClassName?: string;
-  overlayStyle?: React.CSSProperties;
-  overlayClassName?: string;
-  children?: React.ReactNode;
   includeDrawerHeader?: boolean;
   drawerHeader?: React.ReactNode;
-  drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
   drawerZDepth?: number;
   drawerChildren?: React.ReactNode;
-  position?: DrawerPosition;
-  navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: React.ReactNode }>;
+  drawerHeaderChildren?: React.ReactNode;
   mobileDrawerType?: MobileDrawerType;
   tabletDrawerType?: DrawerType;
   desktopDrawerType?: DrawerType;
@@ -35,17 +36,9 @@ export interface NavigationDrawerProps extends Props {
   mobileMinWidth?: number;
   tabletMinWidth?: number;
   desktopMinWidth?: number;
-  portal?: boolean;
-  lastChild?: boolean;
-  renderNode?: Object;
-  onMediaTypeChange?: (type: DrawerType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
-  defaultVisible?: boolean;
-  visible?: boolean;
-  onVisibilityChange?: (visible: boolean, event: Event) => void;
   extractMini?: boolean;
   miniDrawerHeader?: React.ReactNode;
   miniDrawerChildren?: React.ReactNode;
-  autoclose?: boolean;
   toolbarTitle?: React.ReactNode;
   toolbarTitleMenu?: React.ReactElement<any>;
   toolbarThemeType?: 'default' | 'colored' | 'themed';
@@ -54,17 +47,17 @@ export interface NavigationDrawerProps extends Props {
   toolbarProminentTitle?: boolean;
   toolbarActions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   toolbarChildren?: React.ReactNode;
+  toolbarZDepth?: number;
   contentComponent?: React.ReactType;
   footer?: React.ReactNode;
+  temporaryIcon?: React.ReactElement<any>;
+  persistentIcon?: React.ReactElement<any>;
   transitionName?: string;
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
   drawerTransitionDuration?: number;
   contentProps?: Object;
-  contentId?: number | string;
-  jumpLabel?: string;
-  temporaryIcon?: React.ReactElement<any>;
-  persistentIcon?: React.ReactElement<any>;
+  jumpLabel?: React.ReactNode;
   constantDrawerType?: boolean;
 
   /**
