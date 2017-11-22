@@ -124,11 +124,11 @@ export default class SelectField extends PureComponent {
 
     /**
      * A list of `number`, `string`, or `object` that should be used to create `ListItem`
-     * in the menu's list. When it is an `object`, it will use the `dataLabel` prop as the
-     * `primaryText` and use the value of `dataValue`.
+     * in the menu's list. When it is an `object`, it will use the `itemLabel` prop as the
+     * `primaryText` and use the value of `itemValue`.
      *
-     * @see {@link #dataLabel}
-     * @see {@link #dataValue}
+     * @see {@link #itemLabel}
+     * @see {@link #itemValue}
      */
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
@@ -206,7 +206,7 @@ export default class SelectField extends PureComponent {
      * - `index` - item's index
      * - `active` - whether item is active
      * - `disabled` - whether item is disabled
-     * - `dataValue` - item's value
+     * - `itemValue` - item's value
      * - `value` - current list value
      * - `props` - default `ListItem` props
      * - `item` - source item's data
@@ -218,7 +218,7 @@ export default class SelectField extends PureComponent {
      * The default value to use for the select field. If this is set, it should either match
      * one of the `number` or `string` in your `menuItems` list or be the empty string. If
      * the `menuItems` is a list of `object`, this value should match one of the menu item's
-     * `dataValue` or be the empty string.
+     * `itemValue` or be the empty string.
      *
      * ```js
      * const menuItems = [{ label: 'Something': value: 0 }, { label: 'Something else', value: 1 }];
@@ -992,7 +992,7 @@ export default class SelectField extends PureComponent {
           index: i,
           active,
           disabled,
-          dataValue,
+          itemValue,
           value,
           props,
           item,
@@ -1000,11 +1000,7 @@ export default class SelectField extends PureComponent {
         }));
       }
 
-      items.push(
-        <ListItem
-          {...props}
-        />
-      );
+      items.push(<ListItem {...props} />);
     }
 
     return items;
