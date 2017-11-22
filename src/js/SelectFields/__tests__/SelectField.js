@@ -9,6 +9,7 @@ import {
 
 import SelectField from '../SelectField';
 import SelectFieldInput from '../SelectFieldInput';
+import ListItem from '../../Lists/ListItem';
 import FloatingLabel from '../../TextFields/FloatingLabel';
 import Menu from '../../Menus/Menu';
 
@@ -120,6 +121,49 @@ describe('SelectField', () => {
 
     field.setProps({ menuItems: [...menuItems, 'Missing'] });
     expect(field.state('activeLabel')).toBe('Missing');
+  });
+
+  it('should set additional props for active item', () => {
+    const text = 'active item';
+    function getProps({ active }) {
+      return active ? { secondaryText: text } : null;
+    }
+
+    const field = shallow(<SelectField id="test" menuItems={['1', '2', '3']} value="2" getItemProps={getProps} onChange={jest.fn()} />);
+    let items = field.find(ListItem);
+    const defaultValue = ListItem.defaultProps.secondaryText;
+    expect(items.at(0).prop('secondaryText')).toBe(defaultValue);
+    expect(items.at(1).prop('secondaryText')).toBe(text);
+    expect(items.at(2).prop('secondaryText')).toBe(defaultValue);
+
+    field.setProps({ value: '3' });
+    items = field.find(ListItem);
+    expect(items.at(0).prop('secondaryText')).toBe(defaultValue);
+    expect(items.at(1).prop('secondaryText')).toBe(defaultValue);
+    expect(items.at(2).prop('secondaryText')).toBe(text);
+  });
+
+  it('should use specified field from item data to get additional props for the item', () => {
+    const activeText = 'active item';
+    function getProps({ active }) {
+      return active ? { secondaryText: activeText } : null;
+    }
+
+    const lastText = 'last item';
+
+    const field = shallow(
+      <SelectField
+        id="test"
+        menuItems={['1', '2', { label: 'last', value: 3, addProps: () => ({ secondaryText: lastText }) }]}
+        itemProps="addProps"
+        defaultValue="2"
+        getItemProps={getProps}
+      />
+    );
+    const items = field.find(ListItem);
+    expect(items.at(0).prop('secondaryText')).toBe(ListItem.defaultProps.secondaryText);
+    expect(items.at(1).prop('secondaryText')).toBe(activeText);
+    expect(items.at(2).prop('secondaryText')).toBe(lastText);
   });
 
   it('should still have the correct label if the menuItems are defined as a list in the render and the parent component rerenders', () => {

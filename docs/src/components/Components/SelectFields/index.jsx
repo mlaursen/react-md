@@ -28,7 +28,7 @@ string.  This means that the \`SelectField\`'s list would show these values as t
 and when one of those items are selected, the \`SelectField\`'s value would be updated to that
 label as well.
 
-If the item is an object, it will extract the \`itemLabel\` and \`itemValue\` from the object and
+If the item is an object, it will extract the \`itemLabel\`, \`itemValue\` and \`itemProps\` from the object and
 apply all the remaining keys to the \`ListItem\` component. Additional keys can be removed by
 specifying the \`deleteKeys\` prop.
 

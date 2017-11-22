@@ -24,6 +24,8 @@ export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldPr
   keyboardMatchingTimeout?: number;
   itemLabel?: string;
   itemValue?: string;
+  itemProps?: string;
+  getItemProps?: (data: Object) => Object;
   defaultValue?: number | string;
   value?: number | string;
   onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>) => void;

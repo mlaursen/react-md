@@ -184,6 +184,37 @@ export default class SelectField extends PureComponent {
     itemValue: PropTypes.string.isRequired,
 
     /**
+     * The key to use for extracting a menu item's function
+     * to get additional `ListItem` props if the menu item is an object.
+     *
+     * Example:
+     *
+     * ```js
+     * const item = { something: 'My Label', addProps: ({active}) => active ? {secondaryText: 'some text'} : null };
+     * const itemLabel = 'something';
+     * const itemProps = 'addProps';
+     * ```
+     *
+     * @see {@link #getItemProps}
+     */
+    itemProps: PropTypes.string.isRequired,
+
+    /**
+     * An optional function to get additional `ListItem` props if the menu item is an object.
+     *
+     * An object with the following fields will be passed into the function:
+     * - `index` - item's index
+     * - `active` - whether item is active
+     * - `disabled` - whether item is disabled
+     * - `dataValue` - item's value
+     * - `value` - current list value
+     * - `props` - default `ListItem` props
+     * - `item` - source item's data
+     * - `field` - reference to the component instance
+     */
+    getItemProps: PropTypes.func,
+
+    /**
      * The default value to use for the select field. If this is set, it should either match
      * one of the `number` or `string` in your `menuItems` list or be the empty string. If
      * the `menuItems` is a list of `object`, this value should match one of the menu item's
@@ -531,6 +562,7 @@ export default class SelectField extends PureComponent {
     position: SelectField.Positions.TOP_LEFT,
     itemLabel: 'label',
     itemValue: 'value',
+    itemProps: 'getProps',
     dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
     lineDirection: 'left',
     menuItems: [],
@@ -605,8 +637,8 @@ export default class SelectField extends PureComponent {
     return '';
   }
 
-  _getDeleteKeys({ itemLabel, itemValue, deleteKeys }) {
-    const keys = [itemLabel, itemValue];
+  _getDeleteKeys({ itemLabel, itemValue, itemProps, deleteKeys }) {
+    const keys = [itemLabel, itemValue, itemProps];
     if (deleteKeys) {
       return keys.concat(Array.isArray(deleteKeys) ? deleteKeys : [deleteKeys]);
     }
@@ -931,34 +963,46 @@ export default class SelectField extends PureComponent {
       return items;
     }
 
-    const { id, itemLabel, itemValue, position, stripActiveItem } = this.props;
+    const { getItemProps, id, itemLabel, itemProps, itemValue, position, stripActiveItem } = this.props;
     const below = position === SelectField.Positions.BELOW;
     const value = getField(this.props, this.state, 'value');
-    const type = typeof item;
 
-    let props;
     const dataValue = this._getItemPart(item, itemLabel, itemValue);
     const primaryText = this._getItemPart(item, itemLabel, itemValue, true);
-    if (type === 'object') {
-      props = omit(item, this._deleteKeys);
-    }
 
     const active = dataValue === value || dataValue === parseInt(value, 10);
     const stripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && active;
     if (!stripped) {
-      const disabled = (props && props.disabled) || false;
+      const objectType = typeof item === 'object';
+      const props = objectType ? omit(item, this._deleteKeys) : {};
+      const disabled = props.disabled || false;
+      props.ref = disabled ? null : this._setListItem;
+      props.id = active ? `${id}-options-active` : null;
+      props.active = active;
+      props.tabIndex = -1;
+      props.primaryText = primaryText;
+      props.key = item.key || dataValue;
+      props.role = 'option';
+      props['data-id'] = disabled ? null : i;
+      props['data-value'] = disabled ? null : dataValue;
+
+      const getProps = (objectType && item[itemProps]) || getItemProps;
+      if (typeof getProps === 'function') {
+        Object.assign(props, getProps({
+          index: i,
+          active,
+          disabled,
+          dataValue,
+          value,
+          props,
+          item,
+          field: this,
+        }));
+      }
+
       items.push(
         <ListItem
           {...props}
-          ref={disabled ? null : this._setListItem}
-          id={active ? `${id}-options-active` : null}
-          active={active}
-          tabIndex={-1}
-          primaryText={primaryText}
-          key={item.key || dataValue}
-          role="option"
-          data-id={disabled ? null : i}
-          data-value={disabled ? null : dataValue}
         />
       );
     }
@@ -1007,6 +1051,8 @@ export default class SelectField extends PureComponent {
       visible: propVisible,
       itemLabel,
       itemValue,
+      itemProps,
+      getItemProps,
       defaultValue,
       defaultVisible,
       onClick,
