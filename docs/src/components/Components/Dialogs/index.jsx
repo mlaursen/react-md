@@ -16,6 +16,8 @@ import SimpleFullPageDialog from './SimpleFullPageDialog';
 import SimpleFullPageDialogRaw from '!!raw-loader!./SimpleFullPageDialog.jsx';
 import StaticDialog from './StaticDialog';
 import StaticDialogRaw from '!!raw-loader!./StaticDialog.jsx';
+import NestedDialogs from './NestedDialogs';
+import NestedDialogsRaw from './NestedDialogs/code';
 
 import stylesRaw from '!!raw-loader!./_styles.scss';
 
@@ -87,7 +89,7 @@ The default export from the dialogs module is a wrapper for dynamically displayi
 or creating some overlay and displaying the dialog inside. There is also the base \`Dialog\` element that can be used.
 This element will always be visible and can be styled/placed with your own styles.
   `,
-  code: `/* StaticDialig.jsx */
+  code: `/* StaticDialog.jsx */
 ${StaticDialogRaw}
 \`\`\`
 
@@ -96,6 +98,38 @@ ${StaticDialogRaw}
 ${stylesRaw}
   `,
   children: <StaticDialog />,
+}, {
+  title: 'Nested Dialogs',
+  description: `
+One of the features of the \`Dialog\` is to automatically prevent scrolling of all content underneath
+the dialog. Normally this will just disable scrolling on the window and hide the scrollbars. However,
+this can cause problems when dialogs are nested since it will prevent scrolling on the parent dialog which
+applies some styles that might mess up the layout.
+
+To get nested dialogs working, you will need to apply:
+\`\`\`jsx
+portal={true}
+lastChild={true}
+disableScrollLocking={true}
+renderNode={document.body} // or whatever render node you want
+\`\`\`
+
+to the inner dialogs. Each of these props are applied to fix some part of the layout bug. Due to
+each browser calculationg view height and view-width differently, the dialog's size is based on
+fixing the dialog to a parent element. In most cases this will be the full window size and work as expected,
+however some browsers treat \`position: fixed\` as a new relative container for nested \`position: fixed\` elements.
+This means that a nested dialog would have a max height and width of the parent dialog instead of the full page size.
+Enabling the \`portal\` prop and setting the \`renderNode={document.body}\` will make this inner dialog appear outside
+of the parent dialog and fully expand to the window size. The next problem is that now it has been portal-ed out, it
+will appear underneath the parent dialog because it was created as the first element in the dom. Enabling \`lastChild\`
+will make the portal created as the last child in the dom and thus appear over the parent dialog. Finally enabling
+\`disableScrollLocking\` will stop the unneeded scroll locking and fix the parent dialog being fixed to the top of the page.
+
+> The \`renderNode\` is really only needed at this point because there is built-in logic pre-1.1.0 for supporting nested dialogs
+that automatically sets the \`renderNode\` to a parent dialog. This is useful for full-page dialogs, but not smaller ones.
+  `,
+  code: NestedDialogsRaw,
+  children: <NestedDialogs />,
 }];
 
 const Dialogs = () => <ExamplesPage description={README} examples={examples} />;

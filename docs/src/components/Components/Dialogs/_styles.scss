@@ -1,10 +1,28 @@
 @import '~globals';
 
 .dialogs__static {
-  margin: 2em auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  max-width: $md-btn-icon-size;
   position: relative;
 
+  &__icon {
+    margin-right: $md-font-icon-size;
+
+    @media #{$md-desktop-media} {
+      margin-right: $md-font-icon-dense-size;
+    }
+  }
+
   .md-dialog {
+    left: 50%;
     position: absolute;
+    top: 150%;
+    transform: translate3d(-50%, 0, 0);
+    z-index: 1;
   }
 }
