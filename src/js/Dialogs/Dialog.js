@@ -364,7 +364,8 @@ export default class Dialog extends PureComponent {
     content.style.maxHeight = maxHeight;
     const equalHeight = totalHeight === scrollHeight;
     if (equalHeight) {
-      if (this.state.contentStyles && this.state.contentStyles.maxHeight) {
+      const currentHeight = (this.state.contentStyles && this.state.contentStyles.maxHeight) || null;
+      if (currentHeight && currentHeight !== scrollHeight) {
         this.setState({ contentStyles: this.props.contentStyle });
       }
     } else {
