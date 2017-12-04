@@ -12,7 +12,7 @@
 #### Documentation
 - Added an example for handling [nested dialogs](/components/dialogs#nested-dialogs).
 - Fixed the invalid prop linking for the `SelectField`. [issues-628]
-- Fixed the `onOkClick` documentation for the `EditDialogColumn`. [commit-2b3a3be]
+- Fixed the `onOkClick` documentation for the `EditDialogColumn`. [commit-8d50ccb]
 - Updated the [examples](https://github.com/mlaursen/react-md/tree/master/examples) to correctly watch
 Sass files. [pull-626]
 
