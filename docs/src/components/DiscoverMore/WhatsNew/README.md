@@ -1,3 +1,21 @@
+## December 2017
+### v1.2.9 Released
+#### Changelog
+- Correctly added an export for the [ResizeObserver](/components/helpers/resize-observers) for non-UMD builds. [commit-99b688d]
+- Added some missing Typescript definitions to the `Drawer` and `NavigationDrawer`. [commit-55c3040]
+- Added another fix for the `Menu` Typescript definitions. ([@dave-hillier] - [pull-618])
+- Updated the `Autocomplete` Typescript definitions. ([@arlyon] - [pull-638])
+- Added some more props to customize the `ListItem`. ([@gamtiq] - [pull-620])
+- Added some more props to customize the `SelectField` ([@gamtiq] - [pull-630])
+- Added another fix for the `Dialog`'s `autosizeContent` infinitely toggling the `max-height`. [commit-3e45390]
+
+#### Documentation
+- Added an example for handling [nested dialogs](/components/dialogs#nested-dialogs).
+- Fixed the invalid prop linking for the `SelectField`. [issues-628]
+- Fixed the `onOkClick` documentation for the `EditDialogColumn`. [commit-2b3a3be]
+- Updated the [examples](https://github.com/mlaursen/react-md/tree/master/examples) to correctly watch
+Sass files. [pull-626]
+
 ## November 2017
 ### v1.2.8 Released
 - Another fix for the `Dialog`'s `autosizeContent` so that it doesn't infinitely toggle the max-height. [commit-2ccce1a]
