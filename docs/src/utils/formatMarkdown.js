@@ -81,7 +81,7 @@ function addGithubLinks(markdown) {
 }
 
 function addGithubUserLinks(markdown) {
-  return markdown.replace(/(\[@(\w+)])/g, '$1(https://github.com/$2)');
+  return markdown.replace(/(\[@(\w+(-\w+)*)])/g, '$1(https://github.com/$2)');
 }
 
 function updateUMDForVersion(markdown) {
