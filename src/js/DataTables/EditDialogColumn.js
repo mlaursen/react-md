@@ -215,8 +215,9 @@ export default class EditDialogColumn extends PureComponent {
     maxLength: PropTypes.number,
 
     /**
-     * An optional function to call when the "Ok" button has been clicked. This
-     * is only valid if the edit dialog is `large`.
+     * An optional function to call when the "Ok" button has been clicked, the user presses enter
+     * on * the text field or when the `okOnOutsideClick` prop has been enabled and the user clicks
+     * somewhere on the page.
      *
      * The callback will include the current value and the click or keypress event.
      * ```js
