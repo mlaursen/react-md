@@ -12,7 +12,7 @@ us their wines, their hopes sometimes very crazy.
 const LesPassionsdePeronnes = () => (
   <ShowcaseCard
     name="Les Passions de Peronnes"
-    link="https://bredariol.be/product"
+    link="https://bredariol.be"
     logo={logo}
     author={{
       name: 'Fadi Khadra',
