@@ -116,21 +116,24 @@ Development Scripts
   * [lint:scripts](#lintscripts)
 * [test](#test)
   * [test:tsc](#testtsc)
-  * [test:watch](#test-watch)
+  * [test:watch](#testwatch)
+  * [test:docs](#testdocs)
+  * [test:docs:watch](#testdocswatch)
+  * [test:all](#testall)
 * [tsd](#tsd)
 * [css-bundles](#css-bundles)
 * [dev](#dev)
   - [dev:minimal](#devminimal)
 * [docs](#docs)
   - [docs:minimal](#docsminimal)
-* [scripts](#scripts)
-  * [scripts:watch](#scriptswatch)
 * [prebuild](#prebuild)
 * [build](#build)
+  * [build:watch](#buildwatch)
+  * [build:cjs](#buildcjs)
+  * [build:cjs:watch](#buildcjswatch)
   * [build:es](#buildes)
   * [build:es:watch](#buildeswatch)
-  * [build:umd:dev](#buildumddev)
-  * [build:umd:prod](#buildumdprod)
+  * [build:umd](#buildumd)
 
 ### lint
 This will run both the [lint:styles](#lintstyles) and [lint:scripts](#lintscripts) commands.
@@ -149,9 +152,6 @@ $ gem install scss_lint
 
 #### lint:scripts
 This will run `eslint` over all the files in the `src/js` folder.
-
-### dev
-This command will run the `build:`
 
 ### test
 This command will run [test:tsc](#testtsc) followed by `jest`.
@@ -180,14 +180,6 @@ by Typescript users.
 This script makes 255 different scss files to be compiled for production use. This is automatically run before
 [build](#build).
 
-### scripts
-This will compile all the components and utilities in the `src/js` using babel with the `babel-preset-env`.
-All the files will be output into the `lib` directory.
-
-#### scripts:watch
-This is the same as above, but it will be done in watch mode. This is very helpful when running the development server and want to see
-immediate changes.
-
 ### dev
 This will start up the documentation server in development mode as well as watching for changes within the base react-md library.
 Please look at the [Getting Started](docs/README.md#getting-started) for some preliminary setup required.
@@ -211,6 +203,22 @@ files followed by linting the entire project.
 This command will do the full build of `react-md` before a release. It runs almost all of the other scripts in a specified
 order so that the `es`, `lib`,`dist` folders are created and contain the correct files for release.
 
+#### build:watch
+This command will just build and watch changes for the CommonJS and ES6 modules distributables. This is just used behind
+the scenes for the [dev](#dev) command for hot reloads.
+
+#### build:cjs
+This command will build the CommonJS distributables for react-md.
+
+#### build:cjs:watch
+This command will build the CommonJS distributables for react-md and recompile when changes occur.
+
+#### build:es
+This command will build the ES6 modules distributables for react-md.
+
+#### build:es:watch
+This command will build the ES6 modules distributables for react-md and recomple when changes occur.
+
 #### build:umd
-This command will create the UMD bundles for development and production use. In addition, it will create all the
-pre-compiled css bundles for production use.
+This command will create the UMD bundles for development and production use. It will also display the
+size of the production UMD bundle in pretty format bytes.
