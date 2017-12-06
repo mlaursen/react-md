@@ -9,6 +9,12 @@ import {
 } from '../Helpers/Layover';
 import { BaseMenuProps } from '../Menus/Menu';
 
+export interface FieldData {
+  id: string;
+  name: string;
+  value: number | string;
+}
+
 export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   id?: IdPropType;
   menuId?: IdPropType;
@@ -25,10 +31,11 @@ export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldPr
   itemLabel?: string;
   itemValue?: string;
   itemProps?: string;
+  name?: string;
   getItemProps?: (data: Object) => Object;
   defaultValue?: number | string;
   value?: number | string;
-  onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>) => void;
+  onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>, data: FieldData) => void;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   dropdownIcon?: React.ReactElement<any>;
   toolbar?: boolean;
