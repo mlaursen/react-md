@@ -98,7 +98,6 @@ Otherwise this _should_ work on most systems with node >= 6.
 ```bash
 mlaursen @ ~/code/react-md
 $ yarn
-$ yarn scripts
 $ cd docs
 mlaursen @ ~/code/react-md/docs
 $ yarn
