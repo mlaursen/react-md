@@ -123,12 +123,12 @@ export default class ExpansionList extends PureComponent {
 
   _isOverflown = (widths) => {
     if (!this._container) {
-      return 0;
+      return false;
     }
 
     const panel = this._container.querySelector('.md-panel-header');
     if (!panel) {
-      return 0;
+      return false;
     }
 
     const collapser = this._container.querySelector('.md-expansion-panel__collapser');

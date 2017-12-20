@@ -112,6 +112,7 @@ export default class FixedTablePagination extends PureComponent {
 
   componentDidMount() {
     this.calcHeight();
+    window.addEventListener('resize', this.calcHeight);
     this.props.fetchColumns();
     this.props.fetchData(this.state.start, this.state.limit);
   }
@@ -127,6 +128,10 @@ export default class FixedTablePagination extends PureComponent {
     if (isMediaChange(this.props, nextProps)) {
       this.calcHeight();
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.calcHeight);
   }
 
   handlePagination = (start, rowsPerPage, page) => {

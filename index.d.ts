@@ -98,5 +98,5 @@ export {
 } from './lib/Tabs';
 export { default as TextField, TextFieldProps, TextFieldTypes, TextFieldLineDirections } from './lib/TextFields';
 export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
-export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent, TooltippedProps } from './lib/Tooltips';
+export { default as injectTooltip, InjectedTooltipProps, Tooltipped, TooltippedComponent, TooltippedProps } from './lib/Tooltips';
 export { default as bem } from './lib/utils/bem';
