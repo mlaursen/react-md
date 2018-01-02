@@ -31,7 +31,9 @@ export default function handleKeyboardAccessibility(e, onClick, listenToEnter = 
   const enter = key === ENTER;
 
   const { tagName } = e.target;
-  if (space && !tagName.match(/input|textarea|button/i)) { // it is valid to press space in text fields and buttons
+  const isContentEditable = e.target.getAttribute('contenteditable') === "true";
+  if (space && !tagName.match(/input|textarea|button/i) &&
+    !isContentEditable) { // it is valid to press space in text fields and buttons
     // Stop page scrolling
     e.preventDefault();
   }
