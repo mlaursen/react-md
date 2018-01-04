@@ -486,7 +486,6 @@ export default class DialogContainer extends PureComponent {
   _handleEscClose = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       (this.props.onHide || this.props.close)(e);
-      window.removeEventListener('keydown', this._handleEscClose);
     }
   };
 
