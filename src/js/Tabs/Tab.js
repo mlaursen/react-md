@@ -41,6 +41,25 @@ export default class Tab extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * The className to use when the tab is currently active. The default className does
+     * not actually apply any styles.
+     *
+     * @see {@link Tabs/Tabs#activeTabClassName}
+     */
+    activeClassName: PropTypes.string,
+
+    /**
+     * The className to use when the tab is not active. By default, this will set inactive
+     * tabs' color to `$md-white-base`. This works great if the tabs are placed on a
+     * colored toolbar but fails when the tabs are not colored or on a white background.
+     * In these cases, it is recommended to change this value to `md-text--secondary`
+     * or some other class name.
+     *
+     * @see {@link Tabs/Tabs#inactiveTabClassName}
+     */
+    inactiveClassName: PropTypes.string,
+
+    /**
      * The component to render as.
      */
     component: PropTypes.oneOfType([
@@ -91,6 +110,8 @@ export default class Tab extends PureComponent {
 
   static defaultProps = {
     component: 'li',
+    activeClassName: 'md-tab--active',
+    inactiveClassName: 'md-tab--inactive',
   };
 
   _handleClick = (e) => {
@@ -104,6 +125,8 @@ export default class Tab extends PureComponent {
       id,
       controlsId,
       className,
+      activeClassName,
+      inactiveClassName,
       active,
       /* eslint-disable no-unused-vars */
       icon: propIcon,
@@ -136,9 +159,9 @@ export default class Tab extends PureComponent {
         role="tab"
         onClick={this._handleClick}
         className={cn('md-tab', {
-          'md-tab--active': active,
-          'md-tab--inactive': !active,
           'md-tab--icon': label && icon,
+          [activeClassName]: activeClassName && active,
+          [inactiveClassName]: inactiveClassName && !active,
         }, className)}
         aria-controls={controlsId}
         aria-selected={active}

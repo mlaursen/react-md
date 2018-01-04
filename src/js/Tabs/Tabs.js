@@ -46,6 +46,33 @@ export default class Tabs extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * The className to use when a tab is currently active. The default className does not
+     * actually apply any styles.
+     *
+     * If this prop is set, it will override any `activeClassName` props applied to the child
+     * `Tab`s. Either set a custom `activeClassName` on each `Tab`, or use this prop to apply
+     * the same `activeClassName` to each `Tab`.
+     *
+     * @see {@link Tabs/Tab#activeClassName}
+     */
+    activeTabClassName: PropTypes.string,
+
+    /**
+     * The className to use when the tab is not active and not selected. By default,
+     * this will set inactive tabs' color to `$md-white-base`. This works great
+     * if the tabs are placed on a colored toolbar but fails when the tabs are not colored
+     * or on a white background. In these cases, it is recommended to change this value
+     * to `md-text--secondary` or some other class name.
+     *
+     * If this prop is set, it will override any `inactiveClassName` props applied to the child
+     * `Tab`s. Either set a custom `inactiveClassName` on each `Tab`, or use this prop to apply
+     * the same `inactiveClassName` to each `Tab`.
+     *
+     * @see {@link Tabs/Tab#inactiveClassName}
+     */
+    inactiveTabClassName: PropTypes.string,
+
+    /**
      * The component to render the tabs in.
      */
     component: PropTypes.oneOfType([
@@ -386,6 +413,8 @@ export default class Tabs extends PureComponent {
       component: Component,
       style,
       className,
+      activeTabClassName,
+      inactiveTabClassName,
       colored,
       centered,
       tabId,
@@ -434,6 +463,8 @@ export default class Tabs extends PureComponent {
 
       return cloneElement(tab, {
         index,
+        activeClassName: activeTabClassName,
+        inactiveClassName: inactiveTabClassName,
         id: tab.props.id || `${tabId}-${index}`,
         controlsId: tab.props.controlsId || `${tabId}-panel-${index}`,
         active: index === activeTabIndex,

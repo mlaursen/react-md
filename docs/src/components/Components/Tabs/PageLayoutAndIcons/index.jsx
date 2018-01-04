@@ -3,7 +3,6 @@ import { FontIcon, TabsContainer, Tabs, Tab } from 'react-md';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 
-import './_styles.scss';
 import AppToolbar from './AppToolbar';
 import Recents from './Recents';
 import Favorites from './Favorites';
@@ -46,7 +45,6 @@ function scrollToTop(activeTabIndex, tabId, tabPanelId) {
 const PageLayoutAndIcons = () => (
   <PhoneEmulator toolbar={false}>
     <TabsContainer
-      className="tabs__page-layout"
       fixed
       themed
       labelAndIcon
@@ -54,7 +52,7 @@ const PageLayoutAndIcons = () => (
       panelClassName="md-grid"
       onTabChange={scrollToTop}
     >
-      <Tabs tabId="phone-stuffs" mobile>
+      <Tabs tabId="phone-stuffs" mobile inactiveTabClassName="md-text--secondary">
         <Tab label="Recents" icon={<FontIcon>phone</FontIcon>}>
           <Recents />
         </Tab>
