@@ -454,7 +454,7 @@ $md-data-table-contextual-fallback-color: null !default;
   .md-table-checkbox {
 
     .md-selection-control-label {
-      display: block;
+      display: flex;
     }
 
     .md-selection-control-container {

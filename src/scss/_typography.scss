@@ -332,14 +332,14 @@ $md-line-height: 20 / $md-font-size-base !default;
 %md-body-1 {
   @extend %md-tracking-10;
 
-  line-height: $md-line-height;
+  line-height: $md-body-1-line-height;
 }
 
 /// A placeholder for the body-2 typography
 %md-body-2 {
   @extend %md-tracking-10;
 
-  line-height: $md-line-height;
+  line-height: $md-body-2-line-height;
 }
 
 

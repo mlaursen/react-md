@@ -3,7 +3,6 @@ import AppToolbar from '!!raw-loader!./AppToolbar.jsx';
 import Recents from '!!raw-loader!./Recents.jsx';
 import Favorites from '!!raw-loader!./Favorites.jsx';
 import Nearby from '!!raw-loader!./Nearby.jsx';
-import styles from '!!raw-loader!./_styles.scss';
 
 export default `/* PageLayoutAndIcons.jsx */
 ${PageLayoutAndIcons}
@@ -27,9 +26,4 @@ ${Favorites}
 \`\`\`jsx
 /* Nearby */
 ${Nearby}
-\`\`\`
-
-\`\`\`scss
-/* _styles.scss */
-${styles}
 `;
