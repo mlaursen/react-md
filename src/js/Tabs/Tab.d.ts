@@ -5,6 +5,8 @@ export interface TabProps extends BaseProps {
   // for the `component` prop until refactored out
   [key: string]: any;
 
+  activeClassName?: string;
+  inactiveClassName?: string;
   id?: IdPropType;
   controlsId?: IdPropType;
   component?: React.ReactType;
