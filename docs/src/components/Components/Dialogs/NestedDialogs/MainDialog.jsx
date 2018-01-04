@@ -9,7 +9,12 @@ export default class MainDialog extends PureComponent {
     fixed: PropTypes.bool,
   };
 
-  state = { visible: false };
+  state = { visible: false, renderNode: null };
+
+  componentDidMount() {
+    this.setState({ renderNode: document.body }); // eslint-disable-line react/no-did-mount-set-state
+  }
+
   show = () => {
     this.setState({ visible: true });
   };
@@ -19,7 +24,7 @@ export default class MainDialog extends PureComponent {
   };
 
   render() {
-    const { visible } = this.state;
+    const { visible, renderNode } = this.state;
     const { fixed } = this.props;
 
     return [
@@ -38,7 +43,7 @@ export default class MainDialog extends PureComponent {
           portal={fixed}
           lastChild={fixed}
           disableScrollLocking={fixed}
-          renderNode={document.body}
+          renderNode={renderNode}
         />
       </DialogContainer>,
     ];
