@@ -1,3 +1,22 @@
+## January 2018
+### v1.2.10 Released
+#### Changelog
+- Fixed the `SelectField` `onChange` Typescript definition. ([@matus1997] - [pull-646])
+- Correctly exported the `Tooltipped` Typescript definitions. ([@noseglid] - [pull-647])
+- Fixed the `ExpansionList` cloning a `0` instead of `false` into each `ExpansionPanel`. [issues-645]
+- Fixed context menus for elements that are "contenteditable". ([@erkkaha] - [pull-656])
+- Fixed the `DataTable` with fixed headers and footers to display the header checkbox correctly. [issues-657]
+- Fixed Dialogs in IE11/Edge to no longer flash when appearing. [issues-655]
+- Fixed Dialogs immediately removing the keydown listener so pressing escape multiple times now works. [issues-648]
+- Added missing props to style the mini drawer and mini navigation list in the `NavigationDrawer`. [issues-636]
+- Added props to help style `Tab`s when not `colored`. [issues-621]
+- Fixed the `line-height` for `md-body-1` and `md-body-2`. [issues-622]
+
+### Documentation Changes
+- Fixed the `DataTable` example [with fixed headers and footers](/components/data-tables#fixed-headers-footers-and-pagination)
+to recalculate on page resize. ([@lepirlouit] - [pull-651])
+- Updated the Les Passions de Peronnes [showcase link](/discover-more/showcases). [commit-d5bba4b]
+
 ## December 2017
 ### v1.2.9 Released
 #### Changelog
