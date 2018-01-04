@@ -153,7 +153,7 @@ export default class NavigationDrawer extends PureComponent {
      * defined, it will be defaulted to `${drawerId}-nav-items`.
      *
      * @see {@link #drawerId}
-     * @see {@link Drawers#navItemsId}
+     * @see {@link Drawer#navItemsId}
      */
     navItemsId: PropTypes.oneOfType([
       PropTypes.number,
