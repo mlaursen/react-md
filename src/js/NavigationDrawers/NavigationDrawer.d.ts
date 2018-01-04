@@ -10,7 +10,9 @@ import {
 
 export interface NavigationDrawerProps extends SharedDrawerProps {
   drawerId?: IdPropType;
+  miniDrawerId?: IdPropType;
   navItemsId?: IdPropType;
+  miniNavItemsId?: IdPropType;
   toolbarId?: IdPropType;
   contentId?: IdPropType;
 
@@ -20,6 +22,10 @@ export interface NavigationDrawerProps extends SharedDrawerProps {
   toolbarTitleClassName?: string;
   drawerStyle?: React.CSSProperties;
   drawerClassName?: string;
+  miniDrawerStyle?: React.CSSProperties;
+  miniDrawerClassName?: string;
+  miniNavStyle?: React.CSSProperties;
+  miniNavClassName?: string;
   contentStyle?: React.CSSProperties;
   contentClassName?: string;
   includeDrawerHeader?: boolean;
