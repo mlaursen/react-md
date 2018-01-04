@@ -142,6 +142,7 @@ export default class NavigationDrawer extends PureComponent {
      * there are any `navItems` defined.
      *
      * @see {@link #navItemsId}
+     * @see {@link #miniDrawerId}
      */
     drawerId: PropTypes.oneOfType([
       PropTypes.number,
@@ -156,6 +157,30 @@ export default class NavigationDrawer extends PureComponent {
      * @see {@link Drawer#navItemsId}
      */
     navItemsId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to apply to mini drawer that gets created when the `drawerType` is set to
+     * one of the mini types.
+     *
+     * @see {@link #drawerId}
+     * @see {@link #miniNavItemsId}
+     */
+    miniDrawerId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to apply to mini drawer's navigation list that gets created when the `drawerType`
+     * is set to one of the mini types.
+     *
+     * @see {@link #navItemsId}
+     * @see {@link #miniDrawerId}
+     */
+    miniNavItemsId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -228,6 +253,46 @@ export default class NavigationDrawer extends PureComponent {
      * An optional className to apply to the `List` surrounding the `navItems`.
      */
     navClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the mini drawer that gets created when the `drawerType` is set
+     * to one of the mini types.
+     *
+     * @see {@link #miniDrawerClassName}
+     * @see {@link #miniNavStyle}
+     * @see {@link #miniNavClassName}
+     */
+    miniDrawerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the mini drawer that gets created when the `drawerType` is set
+     * to one of the mini types.
+     *
+     * @see {@link #miniDrawerStyle}
+     * @see {@link #miniNavStyle}
+     * @see {@link #miniNavClassName}
+     */
+    miniDrawerClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the mini drawer's navigation list when the `drawerType` is set
+     * to one of the mini types.
+     *
+     * @see {@link #miniDrawerStyle}
+     * @see {@link #miniDrawerClassName}
+     * @see {@link #miniNavClassName}
+     */
+    miniNavStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the mini drawer's navigation list when the `drawerType` is set
+     * to one of the mini types.
+     *
+     * @see {@link #miniDrawerStyle}
+     * @see {@link #miniDrawerClassName}
+     * @see {@link #miniNavStyle}
+     */
+    miniNavClassName: PropTypes.string,
 
     /**
      * An optional style to apply to the content. This is the container surrounding whatever
@@ -856,6 +921,12 @@ export default class NavigationDrawer extends PureComponent {
       contentStyle,
       contentClassName,
       contentComponent: Content,
+      miniDrawerStyle,
+      miniDrawerClassName,
+      miniNavStyle,
+      miniNavClassName,
+      miniDrawerId,
+      miniNavItemsId,
       navItems,
       children,
       drawerId,
@@ -973,12 +1044,28 @@ export default class NavigationDrawer extends PureComponent {
     if (mini) {
       let miniList;
       if (extractMini) {
-        miniList = navItems.map(toMiniListItem);
-        miniList = <List key="mini-nav-items" className={toolbarRelative}>{miniList}</List>;
+        miniList = (
+          <List
+            id={miniNavItemsId}
+            key="mini-nav-items"
+            style={miniNavStyle}
+            className={cn(miniNavClassName, toolbarRelative)}
+          >
+            {navItems.map(toMiniListItem)}
+          </List>
+        );
       }
 
       miniDrawer = (
-        <Drawer key="mini-drawer" type={drawerType} renderNode={renderNode} aria-hidden={visible}>
+        <Drawer
+          id={miniDrawerId}
+          key="mini-drawer"
+          type={drawerType}
+          renderNode={renderNode}
+          aria-hidden={visible}
+          style={miniDrawerStyle}
+          className={miniDrawerClassName}
+        >
           {miniDrawerHeader}
           {miniList}
           {miniDrawerChildren}
@@ -989,7 +1076,7 @@ export default class NavigationDrawer extends PureComponent {
     const desktopOffset = !clipped && !floating && offset;
 
     return (
-      <div style={style} className={className} id={id}>
+      <div id={id} style={style} className={className}>
         <Toolbar
           id={toolbarId}
           colored={toolbarThemeType === 'colored'}
