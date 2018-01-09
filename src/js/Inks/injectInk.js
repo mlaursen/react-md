@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import getField from '../utils/getField';
@@ -156,7 +157,12 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * ```
    */
   focus = () => {
-    if (this._inkContainer) {
+    if (this.props.inkDisabled) {
+      const composed = findDOMNode(this._composed);
+      if (composed) {
+        composed.focus();
+      }
+    } else if (this._inkContainer) {
       this._inkContainer.focus();
     }
   };
