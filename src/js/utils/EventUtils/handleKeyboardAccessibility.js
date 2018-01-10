@@ -32,7 +32,7 @@ export default function handleKeyboardAccessibility(e, onClick, listenToEnter = 
 
   const { tagName } = e.target;
   // it is valid to press space in text fields, contenteditable, and buttons
-  if (space && !tagName.match(/input|textarea|button/i) && !e.target.getAttribute('contenteditable') === 'true') {
+  if (space && !tagName.match(/input|textarea|button/i) && e.target.getAttribute('contenteditable') !== 'true') {
     // Stop page scrolling
     e.preventDefault();
   }

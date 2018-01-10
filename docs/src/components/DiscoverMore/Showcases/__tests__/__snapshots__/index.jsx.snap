@@ -42,7 +42,7 @@ interface might not be implemented with react-md, but it should give a good idea
     >
       <a
         class="md-media md-media--16-9"
-        href="https://bredariol.be/product"
+        href="https://bredariol.be"
         title="Les Passions de Peronnes"
       >
         <img

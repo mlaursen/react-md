@@ -1,4 +1,10 @@
 ## January 2018
+### v1.2.11 Released
+#### Changelog
+- Fixed the `injectInk` HOC's focus function to work when the ink has been disabled. [issues-666]
+- Fixed `SelectField`s applying an `undefined` class name when active. [issues-663]
+- Reverted changes for attempting to fix the IE/Edge Dialog animation since it broke other stuff. [issues-655] and [issues-664]
+
 ### v1.2.10 Released
 #### Changelog
 - Fixed the `SelectField` `onChange` Typescript definition. ([@matus1997] - [pull-646])

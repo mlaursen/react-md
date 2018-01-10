@@ -720,7 +720,7 @@ export default class ListItem extends PureComponent {
       style: Object.assign({}, style, active ? activeBoxStyle : null),
       className: cn('md-list-item', {
         'md-list-item--nested-container': nestedItems,
-        [activeBoxClassName]: active,
+        [activeBoxClassName]: activeBoxClassName && active,
       }, className),
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
