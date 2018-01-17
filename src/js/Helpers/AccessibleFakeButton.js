@@ -150,6 +150,7 @@ export default class AccessibleFakeButton extends PureComponent {
   };
 
   _handleClick = (e) => {
+
     if (this.props.disabled) {
       return;
     }
@@ -227,6 +228,41 @@ export default class AccessibleFakeButton extends PureComponent {
       childElements = Children.toArray(children);
       childElements.unshift(ink);
     }
+    
+    // map children recursively
+    const mapChildren = (children, callback) => {
+
+      return React.Children.map(children, child => {
+
+        if (!React.isValidElement(child))
+          return child
+
+        if (child.props.children)
+          child = React.cloneElement(child, {
+            children: mapChildren(child.props.children, callback)
+          })
+
+        return callback(child)
+      })
+    }
+
+    // ^ callback function
+    const clickFixer = (element) => {
+      
+      // does the element have an onClick prop?
+      if (!element.props.onClick)
+        return element
+      
+      // wrap the element with an element that probably fixes the click event bubbling
+      return (
+        <div onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()}>
+          {element}
+        </div>
+      )
+    }
+    
+    // let's fix those children!
+    childElements = mapChildren(childElements, clickFixer)
 
     return (
       <Component
