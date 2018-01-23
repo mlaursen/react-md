@@ -1,0 +1,11 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "watch": [
+    ".env",
+    ".eslintrc",
+    "src/server/index.js",
+    "nodemon.server.json"
+  ]
+}

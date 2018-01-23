@@ -1,30 +1,42 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dotenv = require('dotenv');
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const SWPrecachePlugin = require('sw-precache-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-const WITConfig = require('./WIT.config');
-const { homepage, name } = require('./package.json');
-const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
+const StartServerPlugin = require('start-server-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SWPrecachePlugin = require('sw-precache-webpack-plugin');
+const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
+const { name, homepage } = require('./package.json');
 
 dotenv.config();
 const src = path.resolve(__dirname, 'src');
-const dist = path.resolve(__dirname, 'public');
-const client = path.join(src, 'client', 'index.jsx');
 const modules = path.resolve(__dirname, 'node_modules');
-
-const SERVICE_WORKER = 'service-worker.js';
+const clientEntry = path.join(src, 'client', 'index.jsx');
+const serverEntry = path.join(src, 'server', 'index.js');
+const clientDist = path.resolve(__dirname, 'public');
+const serverDist = path.join(__dirname, 'dist');
 const PUBLIC_URL = process.env.PUBLIC_URL || homepage;
+const SERVICE_WORKER = 'service-worker.js';
 const SSR = !!process.env.USE_SSR;
-const PROD_ENTRY = client;
-const DEV_ENTRY = ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', client];
-
-const PROD_PLUGINS = [
+const HOT_RELOAD_PORT = process.env.HOT_RELOAD_PORT || 3001;
+const POLL_ENTRY = 'webpack/hot/poll?1000';
+const PRODUCTION_SUFFIX = '.[chunkhash:8].min';
+const CLIENT_HOT_ENTRIES = [
+  'react-hot-loader/patch',
+  `webpack-dev-server/client?http://localhost:${HOT_RELOAD_PORT}`,
+  'webpack/hot/only-dev-server',
+];
+const DEV_PLUGINS = [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
+];
+const PROD_PLUGINS = [];
+const CLIENT_DEV_PLUGINS = [];
+const CLIENT_PROD_PLUGINS = [
   new webpack.optimize.UglifyJsPlugin({
     beautify: false,
     mangle: {
@@ -97,38 +109,151 @@ const PROD_PLUGINS = [
     filename: `offline-${SERVICE_WORKER}`,
   }),
 ];
-const DEV_PLUGINS = [
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NamedModulesPlugin(),
+const SERVER_DEV_PLUGINS = [
+  new StartServerPlugin({
+    name: 'server.js',
+    nodeArgs: [
+      // '--inspect', // allow node debugging for the server
+      '-r', 'dotenv/config', // before starting, run dotenv.config
+    ],
+  }),
 ];
+const SERVER_PROD_PLUGINS = [];
 
-module.exports = ({ production }) => {
+
+function makeConfig(server, production) {
   let publicUrl = PUBLIC_URL;
   if (!production && PUBLIC_URL === homepage) {
     publicUrl = '';
   }
 
-  const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(WITConfig)
-    .development(!production);
+  let dist;
+  let entry;
+  let target;
+  let externals;
+  let filename;
+  let chunkFilename;
+  let nodeTargets;
+  let browserTargets;
+  let devServer;
+  const babelPlugins = [];
+  const additionalPlugins = [];
+  const additionalLoaders = [];
+  if (server) {
+    const whitelist = [/prismjs.*\.css$/, /webpack-assets\.json$/];
+    if (!production) {
+      whitelist.push(POLL_ENTRY);
+    }
 
-  const extractStyles = new ExtractTextPlugin({
-    filename: 'styles.[chunkhash:8].min.css',
-    allChunks: true,
-    disable: !production,
-  });
+    dist = serverDist;
+    entry = production ? serverEntry : [POLL_ENTRY, serverEntry];
+    externals = [nodeExternals({ whitelist })];
+    filename = 'server.js';
+    target = 'node';
+    nodeTargets = '6';
+    additionalPlugins.push(
+      new webpack.NormalModuleReplacementPlugin(/\.s?css$/, 'node-noop'),
+      ...(production ? SERVER_PROD_PLUGINS : SERVER_DEV_PLUGINS)
+    );
+  } else {
+    const extractStyles = new ExtractTextPlugin({
+      filename: `styles${PRODUCTION_SUFFIX}.css`,
+      allChunks: true,
+      disable: !production,
+    });
+    dist = clientDist;
+    entry = production ? clientEntry : [...CLIENT_HOT_ENTRIES, clientEntry];
+    filename = `[name]${production ? PRODUCTION_SUFFIX : ''}.js`;
+    chunkFilename = `[name]${production ? PRODUCTION_SUFFIX : ''}.js`;
+    browserTargets = ['last 2 versions', 'safari >= 7'];
+    additionalPlugins.push(
+      extractStyles,
+      new AssetsPlugin(),
+      ...(production ? CLIENT_PROD_PLUGINS : CLIENT_DEV_PLUGINS)
+    );
+    additionalLoaders.push({
+      // Loading css dependencies from dependencies (normalize.css and Prism.css)
+      test: /\.css$/,
+      loader: extractStyles.extract({
+        use: [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            importLoaders: 1,
+          },
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+          },
+        }],
+        fallback: 'style-loader',
+      }),
+    }, {
+      test: /\.scss$/,
+      include: src,
+      loader: extractStyles.extract({
+        use: [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            importLoaders: 2,
+          },
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+          },
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            outputStyle: !production ? 'expanded' : 'compressed',
+          },
+        }],
+        fallback: 'style-loader',
+      }),
+    });
+    babelPlugins.push('react-hot-loader/babel');
+    devServer = {
+      host: 'localhost',
+      port: HOT_RELOAD_PORT,
+      historyApiFallback: true,
+      hot: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
+  }
 
-  const routesName = production ? 'async' : 'sync';
+  const envPresetTargets = {};
+  if (browserTargets) {
+    envPresetTargets.browsers = browserTargets;
+  }
+
+  if (nodeTargets) {
+    envPresetTargets.node = nodeTargets;
+  }
+
+  const routesName = !server && production ? 'async' : 'sync';
+  let publicPath = `${publicUrl}/`;
+  if (!production && !server && publicPath === '/') {
+    publicPath = `http://localhost:${HOT_RELOAD_PORT}${publicPath}`;
+  }
 
   return {
     bail: production,
     cache: !production,
-    devtool: !production ? 'cheap-module-eval-source-map' : 'source-map',
-    entry: production ? PROD_ENTRY : DEV_ENTRY,
+    devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
+    devServer,
+    entry,
+    target,
+    externals,
     output: {
       path: dist,
-      publicPath: `${publicUrl}/`,
-      filename: `[name]${!production ? '' : '.[chunkhash:8].min'}.js`,
-      chunkFilename: `[name]${!production ? '' : '.[chunkhash:8].min'}.js`,
+      publicPath,
+      filename,
+      chunkFilename,
     },
     module: {
       rules: [{
@@ -139,70 +264,24 @@ module.exports = ({ production }) => {
       }, {
         test: /\.jsx?$/,
         include: src,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           babelrc: false,
           presets: [
             ['env', {
-              targets: {
-                browsers: ['last 2 versions', 'safari >= 7'],
-              },
+              targets: envPresetTargets,
               modules: false,
+              loose: true,
             }],
             'react',
             'stage-0',
           ],
           plugins: [
-            'react-hot-loader/babel',
-            'transform-decorators-legacy',
-            'syntax-dynamic-import',
-            'syntax-async-functions',
-            'transform-regenerator',
+            ...babelPlugins,
             'lodash',
           ],
         },
-      }, {
-        // Loading css dependencies from dependencies (normalize.css and Prism.css)
-        test: /\.css$/,
-        loader: extractStyles.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              importLoaders: 1,
-            },
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
-          }],
-          fallback: 'style-loader',
-        }),
-      }, {
-        test: /\.scss$/,
-        include: src,
-        loader: extractStyles.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              importLoaders: 2,
-            },
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
-          }, {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              outputStyle: !production ? 'expanded' : 'compressed',
-            },
-          }],
-          fallback: 'style-loader',
-        }),
       }, {
         test: /\.md$/,
         include: src,
@@ -233,7 +312,7 @@ module.exports = ({ production }) => {
           loader: 'svgo-loader',
         }],
       }, {
-        test: webpackIsomorphicToolsPlugin.regularExpression('images'),
+        test: /\.(png|jpe?g|gif|svg)/,
         include: src,
         exclude: /icons/,
         use: [{
@@ -247,11 +326,10 @@ module.exports = ({ production }) => {
             bypassOnDebug: true,
           },
         }],
-      }],
+      }, ...additionalLoaders],
     },
     plugins: [
-      // Use async routes in production and synchronous in development
-      new webpack.NormalModuleReplacementPlugin(/routes$/, `routes/${routesName}.js`),
+      new webpack.NormalModuleReplacementPlugin(/^routes$/, `routes/${routesName}.js`),
       new webpack.NormalModuleReplacementPlugin(/^\.\/routes$/, `./${routesName}.js`),
       new webpack.NormalModuleReplacementPlugin(/^\.\/render$/, `./render.${SSR || production ? 'ssr' : 'dev'}.jsx`),
       new webpack.LoaderOptionsPlugin({
@@ -264,21 +342,18 @@ module.exports = ({ production }) => {
       }),
       new webpack.DefinePlugin({
         PUBLIC_URL: JSON.stringify(publicUrl),
-        SERVICE_WORKER: JSON.stringify(SERVICE_WORKER),
+        __NGINX__: !!process.env.USE_NGINX,
         __DEV__: !production,
-        __CLIENT__: true,
+        __CLIENT__: !server,
         __SSR__: SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
       }),
       new SpriteLoaderPlugin(),
-      extractStyles,
-      webpackIsomorphicToolsPlugin,
+      ...additionalPlugins,
       ...(production ? PROD_PLUGINS : DEV_PLUGINS),
     ],
     resolve: {
       alias: {
-        // I think it's prettier here
-        /* eslint-disable quote-props */
         'globals': path.join(src, '_globals.scss'),
         'react-md': path.resolve(__dirname, '..'),
         'react': path.join(modules, 'react'),
@@ -292,4 +367,13 @@ module.exports = ({ production }) => {
     },
     stats: 'errors-only',
   };
+}
+
+module.exports = ({ production, server }) => {
+  const config = makeConfig(server, production);
+  if (production) {
+    return [config, makeConfig(!server, production)];
+  }
+
+  return config;
 };

@@ -98,7 +98,6 @@ Otherwise this _should_ work on most systems with node >= 6.
 ```bash
 mlaursen @ ~/code/react-md
 $ yarn
-$ yarn scripts
 $ cd docs
 mlaursen @ ~/code/react-md/docs
 $ yarn
@@ -116,7 +115,10 @@ Development Scripts
   * [lint:scripts](#lintscripts)
 * [test](#test)
   * [test:tsc](#testtsc)
-  * [test:watch](#test-watch)
+  * [test:watch](#testwatch)
+  * [test:docs](#testdocs)
+  * [test:docs:watch](#testdocswatch)
+  * [test:all](#testall)
 * [tsd](#tsd)
 * [css-bundles](#css-bundles)
 * [dev](#dev)

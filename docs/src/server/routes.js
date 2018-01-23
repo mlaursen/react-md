@@ -21,6 +21,7 @@ function extractRealRoute(route, parents = []) {
 export const baseRoutes = flattenDeep(definedRoutes.map(route => extractRealRoute(route))).filter(r => !!r);
 export const componentRoutes = flattenDeep(definedComponentRoutes.map(route => extractRealRoute(route, ['components']))).filter(r => !!r);
 
+
 const routes = baseRoutes.slice();
 routes.push('/');
 // add redirects

@@ -29,7 +29,7 @@
     "scripts:watch": "npm run scripts -- --watch",
     "dev": "npm-run-all -p build:es:watch docs",
     "dev:minimal": "npm-run-all -p build:es:watch docs:minimal",
-    "docs": "cd docs && npm run prebuild && npm run start:dev",
+    "docs": "cd docs && npm run clean && npm run doc-dbs && npm-run-all -p start:dev watch:all",
     "docs:minimal": "cd docs && npm run start:dev",
     "prebuild": "rimraf es lib dist",
     "build:es": "cross-env NODE_ENV=development BABEL_ENV=es rollup -c",

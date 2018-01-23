@@ -262,9 +262,11 @@ This could technically be done with the `yarn dev` script, but one of the proble
 to nodemon to restart the server with this because it uses `concurrently` behind the scenes. If I can figure out a way to use that
 and still send keyboard commands to one of the scripts, all would be set.
 
-This was mostly fixed by using [webpack-isomorphic-tools](https://github.com/catamphetamine/webpack-isomorphic-tools) with my server.
-There are probably better ways of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
-at the time so I never bothered learning. (_I'm so sorry_)
+~~This was mostly fixed by using [webpack-isomorphic-tools](https://github.com/catamphetamine/webpack-isomorphic-tools) with my server.~~
+This has now been fixed by using webpack to bundle the server again and allowing hot reloading server side as well. There are probably
+better ways of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
+at the time so I never bothered learning. (_I'm so sorry_) It also doesn't have any good examples for how to use Sass with it, so
+sort of a no-go for me.
 
 ### Testing SSR
 One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
