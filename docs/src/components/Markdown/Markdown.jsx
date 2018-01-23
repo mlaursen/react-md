@@ -12,6 +12,10 @@ import 'prismjs/components/prism-css-extras';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-typescript';
+import 'prismjs/plugins/previewer-base/prism-previewer-base';
+import 'prismjs/plugins/previewer-base/prism-previewer-base.css';
+import 'prismjs/plugins/previewer-color/prism-previewer-color';
+import 'prismjs/plugins/previewer-color/prism-previewer-color.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/toolbar/prism-toolbar';
@@ -47,7 +51,7 @@ export class PureMarkdown extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.markdown !== nextProps.markdown) {
+    if (__DEV__ || this.props.markdown !== nextProps.markdown) {
       this.updateHTML(nextProps);
     }
   }
