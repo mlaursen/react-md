@@ -1,5 +1,8 @@
 @import '~globals';
 
+$color-size: 14px;
+$color-padding: 3px;
+
 pre,
 code {
   word-wrap: break-word;
@@ -13,6 +16,21 @@ blockquote {
   p {
     color: get-color('secondary', $md-light-theme);
     margin: 0;
+  }
+}
+
+.color-markdown {
+  padding-left: $color-size + ($color-padding * 2);
+  position: relative;
+
+  &__preview {
+    content: '';
+    height: $color-size;
+    left: $color-padding;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    width: $color-size;
   }
 }
 

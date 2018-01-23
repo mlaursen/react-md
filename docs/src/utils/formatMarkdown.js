@@ -88,6 +88,12 @@ function updateUMDForVersion(markdown) {
   return markdown.replace(/unpkg.com\/react-md\/dist/g, `unpkg.com/react-md@${Version}/dist`);
 }
 
+function addInlineColors(markdown) {
+  return markdown.replace(/#color-([0-9A-z]{6})/g, (match, color) => (
+    `<span class="color-markdown"><span style="background:#${color}" class="color-markdown__preview"></span>#${color}</span>`
+  ));
+}
+
 
 const preTransforms = [
   addGithubLinks,
@@ -98,6 +104,7 @@ const preTransforms = [
 ];
 
 const postTransforms = [
+  addInlineColors,
   addSimpleGithubLinking,
   addLinkStyles,
   addEmojiItems,
