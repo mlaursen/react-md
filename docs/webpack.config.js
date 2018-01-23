@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const path = require('path');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
@@ -56,58 +57,60 @@ const CLIENT_PROD_PLUGINS = [
     name: ['chunks', 'manifest'],
     minChunks: Infinity,
   }),
+  // service workers disabled for awhile until it gets farther along. Too many bugs
+  // with repeated releases
   // Create the offline html fallback page to work with the service workers.
-  new HtmlWebpackPlugin({
-    filename: 'offline.html',
-    inject: true,
-    template: path.join(src, 'utils', 'serviceWorkerTemplate.ejs'),
-    minify: {
-      removeComments: true,
-      collapseWhitespace: true,
-      removeRedundantAttributes: true,
-      useShortDoctype: true,
-      removeEmptyAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      keepClosingSlash: true,
-      minifyJS: true,
-      minifyCSS: true,
-      minifyURLs: true,
-    },
-    publicUrl: PUBLIC_URL,
-  }),
-  // Create a service worker for caching the static assets
-  new SWPrecachePlugin({
-    cacheId: name,
-    // Skip hashing urls when it was already hashed by webpack
-    dontCacheBustUrlsMatching: /\.\w{8}\./,
-    filename: SERVICE_WORKER,
-    minify: true,
-    runtimeCaching: [{
-      // Cache all the documentation server API calls or the custom themees that get created.
-      urlPattern: new RegExp(`^${PUBLIC_URL}/(api|themes)`),
-      handler: 'networkFirst',
-    }, {
-      // Cache all the external fonts/icons
-      urlPattern: /^https:\/\/((cdnjs\.cloudflare)|(fonts\.(gstatic|googleapis))\.com)/,
-      handler: 'networkFirst',
-    }],
-    mergeStaticsConfig: true,
-    // Include the additional offline service worker hooks to redirect to the
-    // offline.html page if the user has no internet connection.
-    // Ideally this would use the `chunkName` of `offline` and not require the second plugin,
-    // but since the manifest is extracted, it sort of breaks :/
-    importScripts: [{ filename: `offline-${SERVICE_WORKER}` }],
-    // Skip caching big files
-    staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/],
-  }),
-  // Create the 'offline-service-worker.js' file that gets imported by the
-  // main service worker. This creates an alternative offline html page to
-  // use when there is no connection.
-  new SWOfflinePlugin({
-    cacheId: name,
-    entry: path.join(src, 'offline.js'),
-    filename: `offline-${SERVICE_WORKER}`,
-  }),
+  // new HtmlWebpackPlugin({
+  //   filename: 'offline.html',
+  //   inject: true,
+  //   template: path.join(src, 'utils', 'serviceWorkerTemplate.ejs'),
+  //   minify: {
+  //     removeComments: true,
+  //     collapseWhitespace: true,
+  //     removeRedundantAttributes: true,
+  //     useShortDoctype: true,
+  //     removeEmptyAttributes: true,
+  //     removeStyleLinkTypeAttributes: true,
+  //     keepClosingSlash: true,
+  //     minifyJS: true,
+  //     minifyCSS: true,
+  //     minifyURLs: true,
+  //   },
+  //   publicUrl: PUBLIC_URL,
+  // }),
+  // // Create a service worker for caching the static assets
+  // new SWPrecachePlugin({
+  //   cacheId: name,
+  //   // Skip hashing urls when it was already hashed by webpack
+  //   dontCacheBustUrlsMatching: /\.\w{8}\./,
+  //   filename: SERVICE_WORKER,
+  //   minify: true,
+  //   runtimeCaching: [{
+  //     // Cache all the documentation server API calls or the custom themees that get created.
+  //     urlPattern: new RegExp(`^${PUBLIC_URL}/(api|themes)`),
+  //     handler: 'networkFirst',
+  //   }, {
+  //     // Cache all the external fonts/icons
+  //     urlPattern: /^https:\/\/((cdnjs\.cloudflare)|(fonts\.(gstatic|googleapis))\.com)/,
+  //     handler: 'networkFirst',
+  //   }],
+  //   mergeStaticsConfig: true,
+  //   // Include the additional offline service worker hooks to redirect to the
+  //   // offline.html page if the user has no internet connection.
+  //   // Ideally this would use the `chunkName` of `offline` and not require the second plugin,
+  //   // but since the manifest is extracted, it sort of breaks :/
+  //   importScripts: [{ filename: `offline-${SERVICE_WORKER}` }],
+  //   // Skip caching big files
+  //   staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/],
+  // }),
+  // // Create the 'offline-service-worker.js' file that gets imported by the
+  // // main service worker. This creates an alternative offline html page to
+  // // use when there is no connection.
+  // new SWOfflinePlugin({
+  //   cacheId: name,
+  //   entry: path.join(src, 'offline.js'),
+  //   filename: `offline-${SERVICE_WORKER}`,
+  // }),
 ];
 const SERVER_DEV_PLUGINS = [
   new StartServerPlugin({
