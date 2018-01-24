@@ -419,7 +419,7 @@ export default class TextField extends PureComponent {
     const nextState = {};
     if (value !== this.props.value) {
       nextState.error = this._isErrored(nextProps);
-      nextState.floating = isValued(value);
+      nextState.floating = this._focus || isValued(value);
       nextState.currentLength = this._getLength(value);
     }
 
@@ -552,7 +552,7 @@ export default class TextField extends PureComponent {
     let text = value;
     // if it is a password, use the bullet unicode instead
     if (props.type === 'password') {
-      text = [...new Array(value.length)].reduce(s => `${s}\u2022`, '');
+      text = Array.from(Array(value.length)).reduce(s => `${s}\u2022`, '');
     }
 
     const field = this._field && this._field.getField();
@@ -621,6 +621,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleBlur = (e) => {
+    this._focus = false;
     const { required, maxLength, onBlur } = this.props;
     if (onBlur) {
       onBlur(e);
@@ -640,6 +641,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleFocus = (e) => {
+    this._focus = true;
     const { onFocus, block } = this.props;
     if (onFocus) {
       onFocus(e);
