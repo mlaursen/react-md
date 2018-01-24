@@ -407,10 +407,11 @@ export default class TextField extends PureComponent {
   }
 
   componentDidMount() {
-    const { value, defaultValue, resize } = this.props;
+    const { value, defaultValue, resize, style } = this.props;
     const v = typeof value !== 'undefined' ? value : defaultValue;
+    /* eslint-disable react/no-did-mount-set-state */
     if (resize) { // always want to set width on mount
-      this.setState({ width: this._calcWidth(v) }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ styles: { width: this._calcWidth(v), ...style } });
     }
   }
 
