@@ -1,14 +1,4 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
-  "plugins": [
-    "syntax-dynamic-import",
-    "syntax-async-functions",
-    "transform-regenerator",
-    "transform-decorators-legacy",
-    ["inline-import", {
-      "extensions": [".md"]
-    }]
-  ],
   "env": {
     "scripts": {
       "presets": [
@@ -16,7 +6,9 @@
           "targets": {
             "node": "current"
           }
-        }]
+        }],
+        "react",
+        "stage-0"
       ],
       "plugins": [
         ["module-resolver", {
