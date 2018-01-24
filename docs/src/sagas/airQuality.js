@@ -28,7 +28,7 @@ export function* watchDataRequests() {
   yield takeEvery([AIR_QUALITY_DATA_REQUEST, AIR_QUALITY_DATA_REQUEST_NEXT], function* handleAirQualityDataRequests(action) {
     const { start, limit, href } = action.payload;
     const keys = Object.keys(yield select(state => state.airQuality.data));
-    const nextKeys = [...new Array(start + limit)].map((_, i) => `${i}`);
+    const nextKeys = Array.from(Array(start + limit)).map((_, i) => `${i}`);
     const isMissingData = nextKeys.some(key => keys.indexOf(key) === -1);
     if (!href && !isMissingData) {
       return;

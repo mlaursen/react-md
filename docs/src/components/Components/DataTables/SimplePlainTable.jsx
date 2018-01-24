@@ -18,7 +18,7 @@ const SimplePlainTable = () => (
       </TableRow>
     </TableHeader>
     <TableBody>
-      {[...new Array(10)].map((_, i) => (
+      {Array.from(Array(10)).map((_, i) => (
         <TableRow key={i}>
           <TableColumn>{loremIpsum({ count: 5, units: 'words' })}</TableColumn>
           <TableColumn>{loremIpsum({ count: 5, units: 'words' })}</TableColumn>

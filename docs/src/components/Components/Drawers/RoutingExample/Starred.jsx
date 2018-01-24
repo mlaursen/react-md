@@ -14,7 +14,7 @@ const Starred = () => (
     <CardTitle title="Starred" />
     <CardText>
       <List>
-        {[...new Array(8)].map((_, i) => (
+        {Array.from(Array(8)).map((_, i) => (
           <ListItem key={i} primaryText={`Starred ${i}`} leftIcon={<FontIcon>star</FontIcon>} />
         ))}
       </List>

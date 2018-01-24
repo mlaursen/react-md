@@ -251,7 +251,7 @@ describe('DataTable', () => {
     class Test extends React.Component {
       state = { rowCount: 2 };
       render() {
-        const rows = [...new Array(this.state.rowCount)].map((_, i) => (
+        const rows = Array.from(Array(this.state.rowCount)).map((_, i) => (
           <TableRow key={i}>
             <TableColumn />
             <TableColumn />

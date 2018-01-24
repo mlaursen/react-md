@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CardText, Slider } from 'react-md';
 
-const ticks = [...new Array(11)].map((_, i) => (
+const ticks = Array.from(Array(11)).map((_, i) => (
   <span key={i} className="cards__weather__time-tick" />
 ));
 

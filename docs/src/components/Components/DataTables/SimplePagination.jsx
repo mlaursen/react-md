@@ -11,8 +11,8 @@ import {
 } from 'react-md';
 import loremIpsum from 'lorem-ipsum';
 
-const headers = [...new Array(6)].map((_, i) => `Column ${i + 1}`);
-const data = [...new Array(350)].map((_, i) => ({
+const headers = Array.from(Array(6)).map((_, i) => `Column ${i + 1}`);
+const data = Array.from(Array(350)).map((_, i) => ({
   key: i,
   cell1: loremIpsum({ count: 5, units: 'words' }),
   cell2: loremIpsum({ count: 5, units: 'words' }),

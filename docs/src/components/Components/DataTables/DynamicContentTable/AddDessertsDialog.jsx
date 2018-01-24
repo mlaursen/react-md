@@ -33,7 +33,7 @@ export default class AddDessertsDialog extends PureComponent {
   render() {
     const { visible, onHide } = this.props;
 
-    const groups = [...new Array(this.state.count)].map((_, i) => (
+    const groups = Array.from(Array(this.state.count)).map((_, i) => (
       <FormGroup key={i} index={i} />
     ));
 

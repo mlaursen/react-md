@@ -5,10 +5,10 @@ import { Grid, Cell } from 'react-md';
 const Simple = () => (
   <div>
     <Grid className="grid-example">
-      {[...new Array(12)].map((_, i) => <Cell key={i} size={1}>1</Cell>)}
+      {Array.from(Array(12)).map((_, i) => <Cell key={i} size={1}>1</Cell>)}
     </Grid>
     <Grid className="grid-example">
-      {[...new Array(3)].map((_, i) => <Cell key={i} size={4}>4</Cell>)}
+      {Array.from(Array(3)).map((_, i) => <Cell key={i} size={4}>4</Cell>)}
     </Grid>
     <Grid className="grid-example">
       <Cell size={6}>6</Cell>

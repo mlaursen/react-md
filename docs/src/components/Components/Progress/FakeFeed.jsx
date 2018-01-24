@@ -20,7 +20,7 @@ import './_fake-feed.scss';
 function makeContent(i) {
   return {
     title: `Content ${i + 1}`,
-    content: [...new Array(randomInt({ min: 1, max: 3 }))]
+    content: Array.from(Array(randomInt({ min: 1, max: 3 })))
       .map(() => loremIpsum({ count: 1, units: 'paragraphs' })),
   };
 }
