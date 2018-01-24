@@ -411,7 +411,7 @@ export default class TextField extends PureComponent {
     const v = typeof value !== 'undefined' ? value : defaultValue;
     /* eslint-disable react/no-did-mount-set-state */
     if (resize) { // always want to set width on mount
-      this.setState({ styles: { width: this._calcWidth(v), ...style } });
+      this.setState({ styles: { width: this._calcWidth(v, this.props), ...style } });
     }
   }
 
@@ -561,14 +561,14 @@ export default class TextField extends PureComponent {
       text = field.value;
     }
 
+    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
     let width = getTextWidth(text, field);
     if (width === null || !field) {
       // some error happened, don't do other logic
-      return width;
+      return width || min;
     }
 
     const { max } = props.resize;
-    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
     if (this._container) {
       const indicator = this._container.querySelector('.md-text-field-inline-indicator');
