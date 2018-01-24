@@ -282,6 +282,7 @@ function makeConfig(server, production) {
           ],
           plugins: [
             ...babelPlugins,
+            'transform-decorators-legacy',
             'lodash',
           ],
         },
