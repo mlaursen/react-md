@@ -6,6 +6,7 @@
     ".env",
     ".eslintrc",
     "src/server/index.js",
+    "webpack.config.js",
     "nodemon.server.json"
   ]
 }

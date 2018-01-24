@@ -5,6 +5,7 @@
   "watch": [
     ".env",
     ".eslintrc",
+    "webpack.config.js",
     "nodemon.client.json"
   ]
 }
