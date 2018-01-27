@@ -349,7 +349,7 @@ function makeConfig(server, production) {
         __NGINX__: !!process.env.USE_NGINX,
         __DEV__: !production,
         __CLIENT__: !server,
-        __SSR__: SSR,
+        __SSR__: production || SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
       }),
       new SpriteLoaderPlugin(),
