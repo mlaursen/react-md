@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -172,6 +173,7 @@ function makeConfig(server, production) {
     additionalPlugins.push(
       extractStyles,
       new AssetsPlugin(),
+      new OptimizeCssAssetsPlugin(),
       ...(production ? CLIENT_PROD_PLUGINS : CLIENT_DEV_PLUGINS)
     );
     additionalLoaders.push({
