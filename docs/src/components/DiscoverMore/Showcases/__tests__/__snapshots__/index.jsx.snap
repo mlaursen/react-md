@@ -8,8 +8,20 @@ exports[`Showcases should render all the showcases 1`] = `
     class="markdown-container md-text-container md-cell md-cell--12"
   >
     <h2
+      class="quick-link quick-link__container"
       id="showcases"
     >
+      <a
+        class="quick-link__link quick-link__link--markdown"
+        href="#showcases"
+      >
+        <i
+          class="md-icon material-icons"
+          title="Quick link to Showcases"
+        >
+          link
+        </i>
+      </a>
       Showcases
     </h2>
     
@@ -26,6 +38,7 @@ interface might not be implemented with react-md, but it should give a good idea
       <a
         class="link"
         href="https://github.com/mlaursen/react-md/issues/196"
+        rel="noopener noreferrer"
       >
         the github issue
       </a>

@@ -76,16 +76,35 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 object
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -128,16 +147,35 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 string
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -191,16 +229,41 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
-                string *
+                string 
+                <span
+                  class="token operator"
+                >
+                  *
+                </span>
+                
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -251,16 +314,35 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 node
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -303,16 +385,35 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 bool
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -359,16 +460,67 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
-                oneOfType([bool, number])
+                <span
+                  class="token function"
+                >
+                  oneOfType
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  (
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  [
+                </span>
+                bool
+                <span
+                  class="token punctuation"
+                >
+                  ,
+                </span>
+                 number
+                <span
+                  class="token punctuation"
+                >
+                  ]
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  )
+                </span>
+                
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td
@@ -413,16 +565,35 @@ size.
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="line-numbers code-toolbar language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 custom
 
+                <span
+                  aria-hidden="true"
+                  class="line-numbers-rows"
+                >
+                  <span />
+                </span>
               </code>
-            </pre>
-            
+              <div
+                class="toolbar"
+              >
+                <div
+                  class="toolbar-item"
+                >
+                  <span>
+                    Js
+                  </span>
+                </div>
+                
 
+              </div>
+            </pre>
           </section>
         </td>
         <td

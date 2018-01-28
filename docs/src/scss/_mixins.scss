@@ -121,3 +121,21 @@
     }
   }
 }
+
+@mixin caret($direction, $color, $size: 8px) {
+  $noops: null;
+  $position: null;
+  @if $direction == 'left' or $direction == 'right' {
+    $noops: 'top' 'bottom';
+    $position: if($direction == 'left', 'right', 'left');
+  } @else {
+    $noops: 'left' 'right';
+    $position: if($direction == 'top', 'bottom', 'top');
+  }
+
+  border-#{nth($noops, 1)}: $size solid transparent;
+  border-#{nth($noops, 2)}: $size solid transparent;
+  border-#{$position}: $size solid $color;
+  content: '';
+  position: absolute;
+}

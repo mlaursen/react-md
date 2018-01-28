@@ -9,26 +9,26 @@ exports[`Colors should render correctly 1`] = `
     className="md-cell md-cell--12 markdown-container md-text-container"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<h2 id=\\"color-definitions\\">Color Definitions</h2>
+        "__html": "<h2 id=\\"color-definitions\\" class=\\"quick-link quick-link__container\\"><a href=\\"#color-definitions\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Color Definitions\\">link</i></a>Color Definitions</h2>
 <p>Every material design color is available as a sass variable in the form of
 <code>$md-COLOR-HUE</code> and <code>$md-COLOR-a-HUE</code> to get a base color and accent color
 respectively. If you waned to style something with a background of blue and
 a text color of a green accent, you can use the variables as follows:</p>
-<pre><code class=\\"lang-scss\\">.some-class {
-  background: $md-blue-500;
-  color: $md-green-a-100;
-}
-</code></pre>
+<pre class=\\"line-numbers code-toolbar language-scss\\"><code class=\\"language-scss\\"><span class=\\"token selector\\">.some-class </span><span class=\\"token punctuation\\">{</span>
+  <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-blue-500</span><span class=\\"token punctuation\\">;</span>
+  <span class=\\"token property\\">color</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-green-a-100</span><span class=\\"token punctuation\\">;</span>
+<span class=\\"token punctuation\\">}</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
 <p>All colors will have primary colors with suffixes: <code>50, 100, 200, 300, 400, 500, 600, 700, 800, 900</code>
 and all colors except for <code>brown</code>, <code>grey</code> and <code>blue-grey</code> will have accent suffixes of
 <code>100, 200, 400, 700</code>. In addition, the <code>$md-black-base</code> and <code>$md-white-base</code> variables are available.</p>
 <p>To help with getting specific colors, there is a Sass Map of every color and a mixin that will create
 two class names for each material design color.</p>
-<h3 id=\\"-md-color-map-\\"><code>$md-color-map</code></h3>
+<h3 id=\\"-md-color-map-tab-1-variable-md-color-map-\\" class=\\"quick-link quick-link__container\\"><a href=\\"#-md-color-map-tab-1-variable-md-color-map-\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to $md-color-map\\">link</i></a><a href=\\"?tab=1#variable-md-color-map\\" class=\\"link\\">$md-color-map</a></h3>
 <p>This map contains every material design color so that you can quickly access them and optionally use
-the <a href=\\"http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions\\" class=\\"link\\">Sass Map functions</a>
+the <a href=\\"http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions\\" class=\\"link\\" rel=\\"noopener noreferrer\\">Sass Map functions</a>
 to programmatically get colors. This is really just used for the <code>react-md-color-class-names mixin</code>.</p>
-<h3 id=\\"-mixin-react-md-color-class-names-\\"><code>mixin react-md-color-class-names</code></h3>
+<h3 id=\\"-mixin-react-md-color-class-names-tab-1-mixin-react-md-color-class-names-\\" class=\\"quick-link quick-link__container\\"><a href=\\"#-mixin-react-md-color-class-names-tab-1-mixin-react-md-color-class-names-\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to mixin react-md-color-class-names\\">link</i></a><a href=\\"?tab=1#mixin-react-md-color-class-names\\" class=\\"link\\">mixin react-md-color-class-names</a></h3>
 <p>This mixin will create two class names for every material design color: one for styling <code>color</code> (<code>--color</code>) and the
 other for styling <code>background</code> (<code>--background</code>).</p>
 <p>For example, if you want to display a warning by styling the background orange, you could apply
@@ -38,8 +38,8 @@ other for styling <code>background</code> (<code>--background</code>).</p>
 They can be included by either manually using the <code>react-md-color-class-names mixin</code> or by setting
 the <code>$md-colors-include-class-names</code> variable to <code>true</code> before include the <code>react-md-everything mixin</code>;</p>
 </blockquote>
-<p>View the SassDoc tab for more information.</p>
-<h2 id=\\"available-colors\\">Available Colors</h2>
+<p>View the <a href=\\"/customization/colors?tab=1\\" class=\\"link\\">SassDoc tab</a> for more information.</p>
+<h2 id=\\"available-colors\\" class=\\"quick-link quick-link__container\\"><a href=\\"#available-colors\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Available Colors\\">link</i></a>Available Colors</h2>
 ",
       }
     }

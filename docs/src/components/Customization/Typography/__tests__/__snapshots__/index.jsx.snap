@@ -16,8 +16,8 @@ exports[`Typography should render correctly 1`] = `
         className="markdown-container"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<h1 id=\\"material-design-typography\\">Material Design Typography</h1>
-<p>The typography has been built off of the <a href=\\"https://www.google.com/design/spec/style/typography.html\\" class=\\"link\\">typography specs</a>.
+            "__html": "<h1 id=\\"material-design-typography\\" class=\\"quick-link quick-link__container\\"><a href=\\"#material-design-typography\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Material Design Typography\\">link</i></a>Material Design Typography</h1>
+<p>The typography has been built off of the <a href=\\"https://www.google.com/design/spec/style/typography.html\\" class=\\"link\\" rel=\\"noopener noreferrer\\">typography specs</a>.
 The default font used in react-md is <code>&#39;Roboto&#39;</code>. This can be changed by overriding
 <a href=\\"/customization/typography?tab=1#variable-md-font-name\\" class=\\"link\\">$md-font-name</a> and/or
 <a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">$md-font-family</a> before <code>@include react-md-everything</code>
@@ -38,7 +38,7 @@ to <code>false</code>. The tags will be implemented as:</p>
 <code>.md-display-4</code>, <code>.md-display-3</code>, <code>.md-display-2</code>, <code>.md-display-1</code>, <code>.md-headline</code>,
 <code>.md-title</code>, <code>.md-subheading-2</code>, <code>.md-subheading-1</code>, <code>.md-body-2</code>, <code>.md-body-1</code>,
 and <code>.md-caption</code>.</p>
-<h4 id=\\"examples\\">Examples</h4>
+<h4 id=\\"examples\\" class=\\"quick-link quick-link__container\\"><a href=\\"#examples\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Examples\\">link</i></a>Examples</h4>
 ",
           }
         }

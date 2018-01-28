@@ -9,10 +9,10 @@ exports[`MarkdownPage should render correctly 1`] = `
     className="markdown-container md-cell md-cell--12 md-text-container"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<h1 id=\\"react-md-documentation\\">react-md documentation</h1>
+        "__html": "<h1 id=\\"react-md-documentation\\" class=\\"quick-link quick-link__container\\"><a href=\\"#react-md-documentation\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to react-md documentation\\">link</i></a>react-md documentation</h1>
 <p>This is the main website for <a href=\\"https://react-md.mlaursen.com\\" class=\\"link\\">https://react-md.mlaursen.com</a> that holds all the documentation
 and examples.</p>
-<h1 id=\\"table-of-contents\\">Table of Contents</h1>
+<h1 id=\\"table-of-contents\\" class=\\"quick-link quick-link__container\\"><a href=\\"#table-of-contents\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Table of Contents\\">link</i></a>Table of Contents</h1>
 <ul>
 <li><a href=\\"#getting-started\\" class=\\"link\\">Getting Started</a></li>
 <li><a href=\\"#contributing\\" class=\\"link\\">Contributing</a><ul>
@@ -36,30 +36,30 @@ and examples.</p>
 </ul>
 </li>
 </ul>
-<h2 id=\\"getting-started\\">Getting Started</h2>
+<h2 id=\\"getting-started\\" class=\\"quick-link quick-link__container\\"><a href=\\"#getting-started\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Getting Started\\">link</i></a>Getting Started</h2>
 <p>This repo uses <code>yarn</code> instead of <code>npm</code> as the package manager. If you use npm,
 it might not work as expected.</p>
-<pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md/docs
-$ yarn                  # you should also install dependencies in the parent directory if not done already
-$ cp .env.example .env
-$ vim .env              # change port to whatever you want
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">mlaursen @ ~/code/react-md/docs
+$ yarn                  <span class=\\"token comment\\"># you should also install dependencies in the parent directory if not done already</span>
+$ <span class=\\"token function\\">cp</span> .env.example .env
+$ vim .env              <span class=\\"token comment\\"># change port to whatever you want</span>
 
-# This one is optional. A webpack-assets.json file must be created before the server will work correctly
-# and the dev server will _mock_ one out for you. If the mocking fails, you can fallback to this one. After
-# a successful build, you will _almost never_ need to run this command again.
-$ yarn build:dev        # Run the dev webpack build to get initial webpack-assets.json to be created
+<span class=\\"token comment\\"># This one is optional. A webpack-assets.json file must be created before the server will work correctly</span>
+<span class=\\"token comment\\"># and the dev server will _mock_ one out for you. If the mocking fails, you can fallback to this one. After</span>
+<span class=\\"token comment\\"># a successful build, you will _almost never_ need to run this command again.</span>
+$ yarn build:dev        <span class=\\"token comment\\"># Run the dev webpack build to get initial webpack-assets.json to be created</span>
 
-# Start the server with one of the two options
-$ yarn dev              # watch react-md source changes and run dev server
-$ yarn dev:full         # watch all changes and run dev server
-</code></pre>
+<span class=\\"token comment\\"># Start the server with one of the two options</span>
+$ yarn dev              <span class=\\"token comment\\"># watch react-md source changes and run dev server</span>
+$ yarn dev:full         <span class=\\"token comment\\"># watch all changes and run dev server</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <blockquote>
 <p>See the <a href=\\"#scripts\\" class=\\"link\\">scripts</a> section for all of the other available commands</p>
 </blockquote>
-<h2 id=\\"contributing\\">Contributing</h2>
+<h2 id=\\"contributing\\" class=\\"quick-link quick-link__container\\"><a href=\\"#contributing\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Contributing\\">link</i></a>Contributing</h2>
 <p>The most common use case when contributing is to update an example page with some more documentation or a new
 feature. This can be done by modifying the logic for how the <code>ExamplesPage</code> is rendered for that component.</p>
-<h3 id=\\"contributing-example\\">Contributing Example</h3>
+<h3 id=\\"contributing-example\\" class=\\"quick-link quick-link__container\\"><a href=\\"#contributing-example\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Contributing Example\\">link</i></a>Contributing Example</h3>
 <p>Let&#39;s take the <code>Autocomplete</code> component for an example. Let&#39;s say that you want to add a new feature that allows
 the <code>Autocomplete</code> to automatically cache results into a Service Worker when calling external APIS (I probably wouldn&#39;t
 merge this feature in...). Here are the following steps:</p>
@@ -68,7 +68,7 @@ merge this feature in...). Here are the following steps:</p>
 \`\`\`bash
 $ touch src/components/Components/Autocompletes/<DESCRIPTIVE_NAME_HERE>.jsx</li>
 </ol>
-<h1 id=\\"so-for-this-example-\\">so for this example...</h1>
+<h1 id=\\"so-for-this-example-\\" class=\\"quick-link quick-link__container\\"><a href=\\"#so-for-this-example-\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to so for this example...\\">link</i></a>so for this example...</h1>
 <p>  $ touch src/components/Components/Autocompletes/ServiceWorkerAPICache.jsx</p>
 <pre><code>2. Update the component \`ExamplePage\` examples list to include your new example.
   \`\`\`jsx
@@ -95,8 +95,8 @@ $ touch src/components/Components/Autocompletes/<DESCRIPTIVE_NAME_HERE>.jsx</li>
 </ol>
 <p>Every component uses the <a href=\\"src/components/ExamplesPage\\" class=\\"link\\">ExamplesPage</a> component to be able to add a title, an
 optional description, some source code to be viewed, and the renderable example.</p>
-<h3 id=\\"checking-documentation-description\\">Checking documentation description</h3>
-<p>This server relies on the <a href=\\"https://github.com/reactjs/react-docgen\\" class=\\"link\\">react-docgen</a> to be able to document
+<h3 id=\\"checking-documentation-description\\" class=\\"quick-link quick-link__container\\"><a href=\\"#checking-documentation-description\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Checking documentation description\\">link</i></a>Checking documentation description</h3>
+<p>This server relies on the <a href=\\"https://github.com/reactjs/react-docgen\\" class=\\"link\\" rel=\\"noopener noreferrer\\">react-docgen</a> to be able to document
 prop types. It is pretty simple since it is just another version of jsdoc. The Sass uses <a href=\\"http://sassdoc.com/\\" class=\\"link\\">SassDoc</a>
 to be documented.</p>
 <p>Once a new prop or sass doc has been added, your server might automatically reload based on the <a href=\\"#scripts\\" class=\\"link\\">script</a> you
@@ -108,7 +108,7 @@ are running. If it has not restarted, you can check your changes and how it gets
 <p>The reason this is needed is because my documentation server takes in &quot;databases&quot; of JSON data from these scripts, loads
 them into memory, and then serves them as needed when the API is called. There probably is some better way to handle this,
 but I needed this functionality so that the site&#39;s search could also work.</p>
-<h3 id=\\"digging-deeper\\">Digging deeper</h3>
+<h3 id=\\"digging-deeper\\" class=\\"quick-link quick-link__container\\"><a href=\\"#digging-deeper\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Digging deeper\\">link</i></a>Digging deeper</h3>
 <p>This server is separated into a few main parts:</p>
 <pre><code>src
 ├── client
@@ -124,31 +124,31 @@ but I needed this functionality so that the site&#39;s search could also work.</
 and reducers). When a component needs to be connected to state, I export a &quot;pure&quot; version and the connected version as the default.
 I don&#39;t find it helpful to create additional files just to connect to state and with the two exports, it is easy to test either one.
 You can most likely ignore all directories except for the <code>components</code> directory, but I&#39;ll explain the rest if curious.</p>
-<h4 id=\\"client\\">client</h4>
+<h4 id=\\"client\\" class=\\"quick-link quick-link__container\\"><a href=\\"#client\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to client\\">link</i></a>client</h4>
 <p>This directly will be client only code -- so stuff that runs in the browser. The basics of this folder is to defined
 the base styles, configure the redux store, and render the page.</p>
-<h4 id=\\"components\\">components</h4>
+<h4 id=\\"components\\" class=\\"quick-link quick-link__container\\"><a href=\\"#components\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to components\\">link</i></a>components</h4>
 <p>Will come back to later. This is the &quot;meat&quot; of the repo.</p>
-<h4 id=\\"constants\\">constants</h4>
+<h4 id=\\"constants\\" class=\\"quick-link quick-link__container\\"><a href=\\"#constants\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to constants\\">link</i></a>constants</h4>
 <p>This will just be some reusable constants across internal components as well as some <code>sampleData</code> that can be reused.</p>
-<h4 id=\\"routes\\">routes</h4>
+<h4 id=\\"routes\\" class=\\"quick-link quick-link__container\\"><a href=\\"#routes\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to routes\\">link</i></a>routes</h4>
 <p>This might be badly named, but this folder is more about holding the async or sync route components that should be rendered
 from <code>react-router</code>. When in development mode, everything will be synchronous. In production, everything in the server will
 be synchronous while the client will be asynchronous. If a new component needs to be added, both the <a href=\\"src/routes/async.js\\" class=\\"link\\">async.js</a>
 and the <a href=\\"src/routes/sync.js\\" class=\\"link\\">sync.js</a> will need to be updated.</p>
 <p>There are two higher order components that can be used for these routes and you can just look at the source files on how to use them.</p>
-<h4 id=\\"sagas\\">sagas</h4>
+<h4 id=\\"sagas\\" class=\\"quick-link quick-link__container\\"><a href=\\"#sagas\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to sagas\\">link</i></a>sagas</h4>
 <p>I ended up going with <code>redux-saga</code> instead of <code>redux-thunk</code> to handle most of my action creator logic. My first version of this server
 used <code>redux-thunk</code>, but I wanted to learn about sagas so I used them here. There probably isn&#39;t anything too exciting to talk about
 here if you have used sagas before, but this is how I handle my API calls.</p>
-<h4 id=\\"server\\">server</h4>
+<h4 id=\\"server\\" class=\\"quick-link quick-link__container\\"><a href=\\"#server\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to server\\">link</i></a>server</h4>
 <p>This is the main express server that runs both development and production mode. The server is equipped to handle API calls and server
 side rendering when needed. The API server was really only added because I wanted to pre-fetch some data before server rendering. It
 might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
 a full server call... but I wanted to learn how to do some node work.</p>
 <p>The only &quot;exciting&quot; thing about this server if you are familiar with node is the <a href=\\"src/server/api/github.js\\" class=\\"link\\">GitHub</a> proxy settings. I end
 up proxying requests to the GitHub API through my server so I can track some of the rate limiting aspects.</p>
-<h4 id=\\"state\\">state</h4>
+<h4 id=\\"state\\" class=\\"quick-link quick-link__container\\"><a href=\\"#state\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to state\\">link</i></a>state</h4>
 <p>This is where I combine all the logic for the redux state.</p>
 <pre><code>src/state/
 ├── __tests__
@@ -192,9 +192,9 @@ up proxying requests to the GitHub API through my server so I can track some of 
 8 directories, 29 files
 </code></pre><p>The basic idea is that simple state is in a top-level file while more complex and combined states are put
 into folders and then separate files.</p>
-<h4 id=\\"utils\\">utils</h4>
+<h4 id=\\"utils\\" class=\\"quick-link quick-link__container\\"><a href=\\"#utils\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to utils\\">link</i></a>utils</h4>
 <p>Just your basic utils for generating random data and other stuff for formatting. Not super exciting.</p>
-<h2 id=\\"about\\">About</h2>
+<h2 id=\\"about\\" class=\\"quick-link quick-link__container\\"><a href=\\"#about\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to About\\">link</i></a>About</h2>
 <p>This section will mostly be rants about me making terrible design decisions and being a terrible developer. Enjoy!</p>
 <p>This documentation server is probably over-engineered for the amount of traffic I&#39;ll get, but it was a neat learning
 experience. Some of the things I wanted to solve with this server compared to my previous ones were:</p>
@@ -208,57 +208,59 @@ experience. Some of the things I wanted to solve with this server compared to my
 <li>quicker response time</li>
 <li>long-term caching of static assets</li>
 </ul>
-<h3 id=\\"development-startup-time\\">Development startup time</h3>
+<h3 id=\\"development-startup-time\\" class=\\"quick-link quick-link__container\\"><a href=\\"#development-startup-time\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Development startup time\\">link</i></a>Development startup time</h3>
 <p>Before this version, I thought I was &quot;smart&quot; by having a separate server for the API calls to get the documentation
 and another server for handling the server side rendering and pre-fetching data. This actually ended up causing a
 lot of problems since I also had to transpile all the server code so it could be run on older versions of node. A
 typical &quot;dev&quot; setup while adding new features for react-md was opening 5 terminals/tabs and running:</p>
-<pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">mlaursen @ ~/code/react-md
 $ yarn scripts:watch
 
-# Next tab
+<span class=\\"token comment\\"># Next tab</span>
 mlaursen @ ~/code/react-md/api
 $ yarn build:watch
 
-# Next tab
+<span class=\\"token comment\\"># Next tab</span>
 mlaursen @ ~/code/react-md/api
 $ yarn dev
 
-# Next tab
+<span class=\\"token comment\\"># Next tab</span>
 mlaursen @ ~/code/react-md/docs
 $ yarn build:watch
 
-# Next tab
+<span class=\\"token comment\\"># Next tab</span>
 $ yarn start:dev
-</code></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>Whew. And if I ever wanted to run automated tests, I would need another terminal or tab to run the test watcher command!
 Now I have a single script that can do everything needed for watching updates, restarted the server on changes, etc. I do
 normally go with a 3 tab approach still by doing:</p>
-<pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">mlaursen @ ~/code/react-md
 $ yarn scripts:watch
 
-# Next tab
+<span class=\\"token comment\\"># Next tab</span>
 mlaursen @ ~/code/react-md/docs
 $ yarn start:dev
 
-# Final tab switches between base and docs directories to run tests
-</code></pre>
+<span class=\\"token comment\\"># Final tab switches between base and docs directories to run tests</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>This could technically be done with the <code>yarn dev</code> script, but one of the problems is that I can&#39;t send the <code>rs</code> (restart) signal
 to nodemon to restart the server with this because it uses <code>concurrently</code> behind the scenes. If I can figure out a way to use that
 and still send keyboard commands to one of the scripts, all would be set.</p>
-<p>This was mostly fixed by using <a href=\\"https://github.com/catamphetamine/webpack-isomorphic-tools\\" class=\\"link\\">webpack-isomorphic-tools</a> with my server.
-There are probably better ways of doing this now like <a href=\\"https://github.com/zeit/next.js/\\" class=\\"link\\">next.js</a>, but I am not a fan of their documentation
-at the time so I never bothered learning. (<em>I&#39;m so sorry</em>)</p>
-<h3 id=\\"testing-ssr\\">Testing SSR</h3>
+<p><del>This was mostly fixed by using <a href=\\"https://github.com/catamphetamine/webpack-isomorphic-tools\\" class=\\"link\\">webpack-isomorphic-tools</a> with my server.</del>
+This has now been fixed by using webpack to bundle the server again and allowing hot reloading server side as well. There are probably
+better ways of doing this now like <a href=\\"https://github.com/zeit/next.js/\\" class=\\"link\\">next.js</a>, but I am not a fan of their documentation
+at the time so I never bothered learning. (<em>I&#39;m so sorry</em>) It also doesn&#39;t have any good examples for how to use Sass with it, so
+sort of a no-go for me.</p>
+<h3 id=\\"testing-ssr\\" class=\\"quick-link quick-link__container\\"><a href=\\"#testing-ssr\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Testing SSR\\">link</i></a>Testing SSR</h3>
 <p>One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
 with the production build is that it doesn&#39;t warn you when the markup is different between client and server, so this wasn&#39;t ideal.
 I ended up making some additional changes to the webpack configs to allow a &quot;development&quot; version of the production build, and it was
 pretty hacky.</p>
 <p>Just like above, switching to <code>webpack-isomorphic-tools</code> was part of the solution as well as adding a variable to the <code>.env</code> file
 to switch between the two. The server will now automatically restart with no additional watchers when the value is changed.</p>
-<h3 id=\\"making-a-better-server\\">Making a better server</h3>
+<h3 id=\\"making-a-better-server\\" class=\\"quick-link quick-link__container\\"><a href=\\"#making-a-better-server\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Making a better server\\">link</i></a>Making a better server</h3>
 <p>Webpack is hard. (See more in <a href=\\"#long-term-caching\\" class=\\"link\\">Long term caching</a>)</p>
-<h4 id=\\"screen-flashing\\">Screen flashing</h4>
+<h4 id=\\"screen-flashing\\" class=\\"quick-link quick-link__container\\"><a href=\\"#screen-flashing\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Screen flashing\\">link</i></a>Screen flashing</h4>
 <p>Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
 that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
 you split up your code and you already have <code>React</code> rendering your page! While the browser is loading your additional chunks required
@@ -276,7 +278,7 @@ in a &quot;hidden&quot; window variable, load all the bundles, and then render <
 it in action.</p>
 <p>Sadly, there is another step that is needed for all of this. When your page is rendered from the server, you will need to inline the webpack
 manifest to help with these chunk loads. Checkout the <a href=\\"src/server/utils/renderHtmlPage.js\\" class=\\"link\\">renderHtmlPage.js</a> for some more info on that.</p>
-<h4 id=\\"screen-flashing-part-two-styles-\\">Screen flashing (Part Two: Styles)</h4>
+<h4 id=\\"screen-flashing-part-two-styles-\\" class=\\"quick-link quick-link__container\\"><a href=\\"#screen-flashing-part-two-styles-\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Screen flashing (Part Two: Styles)\\">link</i></a>Screen flashing (Part Two: Styles)</h4>
 <p>The next step was to fix the weird delay when a user uses a custom style from the Theme Builder page. I ended up holding the custom styles
 in the <code>localStorage</code> of the client. This basically meant that the page had to render, then do logic client side to figure out if they had
 a custom theme. If they did, I would have to update create a new <code>&lt;link&gt;</code> with the custom <code>href</code> and inject into the head after the initial
@@ -291,7 +293,7 @@ if the <code>allChunks</code> option was not enabled, all the styles would be dy
 terrible when most of my additional styles were small and had no reason to be dynamically loaded. This &quot;feature&quot; is probably super nice when
 you create all your styles from the ground up, but when you are using an already existing framework/library for styles, it causes a lot of
 page repaints and flashing while these styles are loaded.</p>
-<h4 id=\\"better-seo\\">Better SEO</h4>
+<h4 id=\\"better-seo\\" class=\\"quick-link quick-link__container\\"><a href=\\"#better-seo\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Better SEO\\">link</i></a>Better SEO</h4>
 <p>Part of the problem with the first server is that the page&#39;s title was always the same for each page you were on. It wasn&#39;t very helpful
 when glancing at your tabs to tell what you were looking at. With this server, I used <code>react-helmet</code> to dynamically update the page&#39;s title
 based on the route to give some more context. It is now possible to tell if you are on the home page of react-md, looking at a component&#39;s
@@ -299,20 +301,20 @@ example/prop type/SassDoc page.</p>
 <p>Some other things I changed are that I now attempt to support some of the <a href=\\"http://ogp.me/\\" class=\\"link\\">Open Graph Protocol</a> so that react-md can
 be linked in other sites with some nice content. This wasn&#39;t too big and I haven&#39;t fully tested it to see if it did anything since
 I don&#39;t really use Facebook or Twitter. Oh well.</p>
-<h3 id=\\"long-term-caching\\">Long term caching</h3>
+<h3 id=\\"long-term-caching\\" class=\\"quick-link quick-link__container\\"><a href=\\"#long-term-caching\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Long term caching\\">link</i></a>Long term caching</h3>
 <p>Webpack is hard. (Again)</p>
 <p>Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correct loader for
 your filetype and you&#39;re set!</p>
-<pre><code class=\\"lang-js\\">import path from &#39;path&#39;;
+<pre class=\\"line-numbers code-toolbar language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">import</span> path <span class=\\"token keyword\\">from</span> <span class=\\"token string\\">'path'</span><span class=\\"token punctuation\\">;</span>
 
-export default {
-  entry: &#39;src/index.jsx&#39;,
-  output: {
-    path: path.resolve(__dirname, &#39;public&#39;),
-    filename: &#39;bundle.js&#39;,
-  },
-};
-</code></pre>
+<span class=\\"token keyword\\">export</span> <span class=\\"token keyword\\">default</span> <span class=\\"token punctuation\\">{</span>
+  entry<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'src/index.jsx'</span><span class=\\"token punctuation\\">,</span>
+  output<span class=\\"token punctuation\\">:</span> <span class=\\"token punctuation\\">{</span>
+    path<span class=\\"token punctuation\\">:</span> path<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">resolve</span><span class=\\"token punctuation\\">(</span>__dirname<span class=\\"token punctuation\\">,</span> <span class=\\"token string\\">'public'</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">,</span>
+    filename<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'bundle.js'</span><span class=\\"token punctuation\\">,</span>
+  <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">,</span>
+<span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">;</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Js</span></div></pre>
 <p>and you&#39;re all set!</p>
 <p>...
 ...
@@ -345,7 +347,7 @@ for the hash and each build will generate new hashes even if the content didn&#3
 <p>The webpack config was updated to include <a href=\\"webpack.config.js#L40-L48\\" class=\\"link\\">these lines</a> for longer hashing and my server rendered
 page <a href=\\"src/server/utils/renderHtmlPage.js#L5-L21\\" class=\\"link\\">inlined the manifiest</a> in the <a href=\\"src/server/utils/renderHtmlPage.js#L99\\" class=\\"link\\">head</a>.
 This actually allowed for some better bundle loading support and extracting some of the common code out again for smaller bundles.</p>
-<h3 id=\\"quick-response-times\\">Quick Response Times</h3>
+<h3 id=\\"quick-response-times\\" class=\\"quick-link quick-link__container\\"><a href=\\"#quick-response-times\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Quick Response Times\\">link</i></a>Quick Response Times</h3>
 <p>One of the other goals of this was to get some better response time. This hasn&#39;t fully been updated, but I ended up adding service workers
 to do additional caching of assets throughout the website. The whole Service Worker thing was a pain though since most of the examples
 and tutorials are not about handling server rendered pages (who needs em now anyways?). <code>create-react-app</code> has been updated somewhat recently
@@ -362,7 +364,7 @@ to be imported by the Service Worker so you get all the compilation minification
 this doesn&#39;t work since the manifest was extracted and the service worker fails. <strong>sigh</strong></p>
 <p>I ended up &quot;fixing&quot; this by creating a small <a href=\\"src/utils/SWOfflinePlugin.js\\" class=\\"link\\">SWOfflinePlugin</a> that transpiles the code, minifies it, and then writes
 it to the output directory. It isn&#39;t super ideal since I don&#39;t know how to trigger events correctly yet for displaying offline or normal modes.</p>
-<h2 id=\\"scripts\\">Scripts</h2>
+<h2 id=\\"scripts\\" class=\\"quick-link quick-link__container\\"><a href=\\"#scripts\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Scripts\\">link</i></a>Scripts</h2>
 <ul>
 <li><a href=\\"#clean\\" class=\\"link\\">clean</a><ul>
 <li><a href=\\"#cleandbs\\" class=\\"link\\">clean:dbs</a></li>
@@ -411,7 +413,7 @@ it to the output directory. It isn&#39;t super ideal since I don&#39;t know how 
 </ul>
 </li>
 </ul>
-<h3 id=\\"clean\\">clean</h3>
+<h3 id=\\"clean\\" class=\\"quick-link quick-link__container\\"><a href=\\"#clean\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to clean\\">link</i></a>clean</h3>
 <p>This will clean up any existing assets, generated themes for the website,
 and any of the &quot;databases&quot; that have been built. This also runs the <a href=\\"#cleanassets\\" class=\\"link\\">clean:assets</a>
 script.</p>
@@ -419,12 +421,12 @@ script.</p>
 <p>SEE: <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a>, <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a>, or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
 about &quot;databases&quot;.</p>
 </blockquote>
-<h3 id=\\"clean-dbs\\">clean:dbs</h3>
+<h3 id=\\"clean-dbs\\" class=\\"quick-link quick-link__container\\"><a href=\\"#clean-dbs\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to clean:dbs\\">link</i></a>clean:dbs</h3>
 <p>This will just remove any generated databases except for the airQuality database. See <a href=\\"#air-quality\\" class=\\"link\\">air-quality</a> for
 more information.</p>
-<h3 id=\\"clean-assets\\">clean:assets</h3>
+<h3 id=\\"clean-assets\\" class=\\"quick-link quick-link__container\\"><a href=\\"#clean-assets\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to clean:assets\\">link</i></a>clean:assets</h3>
 <p>This will just remove any existing assets or themes.</p>
-<h3 id=\\"prebuild\\">prebuild</h3>
+<h3 id=\\"prebuild\\" class=\\"quick-link quick-link__container\\"><a href=\\"#prebuild\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to prebuild\\">link</i></a>prebuild</h3>
 <p>This script automatically gets run before the <a href=\\"#build\\" class=\\"link\\">build</a> script. It will
 run (in order):</p>
 <ul>
@@ -433,7 +435,7 @@ run (in order):</p>
 <li><a href=\\"#docgen\\" class=\\"link\\">docgen</a></li>
 <li><a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a></li>
 </ul>
-<h3 id=\\"build\\">build</h3>
+<h3 id=\\"build\\" class=\\"quick-link quick-link__container\\"><a href=\\"#build\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to build\\">link</i></a>build</h3>
 <p>This will build the website for production. All the files will be bundled and
 minified. In addition, all the &quot;databases&quot; will be created for searching and documentation.
 Once it has been built, you can run <a href=\\"#start\\" class=\\"link\\">start</a> to run the production server
@@ -442,92 +444,92 @@ with server side rendering.</p>
 <p>SEE: <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a> or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
 about &quot;databases&quot;.</p>
 </blockquote>
-<h3 id=\\"build-dev\\">build:dev</h3>
+<h3 id=\\"build-dev\\" class=\\"quick-link quick-link__container\\"><a href=\\"#build-dev\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to build:dev\\">link</i></a>build:dev</h3>
 <p>This will build a development version of the website. This is useful if you are really just
 debugging server side stuff and the client won&#39;t be changing that much.</p>
-<h3 id=\\"jsdoc\\">jsdoc</h3>
+<h3 id=\\"jsdoc\\" class=\\"quick-link quick-link__container\\"><a href=\\"#jsdoc\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to jsdoc\\">link</i></a>jsdoc</h3>
 <p>This task just runs the <code>jsdoc:build</code> followed by <code>jsdoc:create</code>.</p>
 <blockquote>
 <p>SEE: <a href=\\"#jsdocbuild\\" class=\\"link\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a> for more information.</p>
 </blockquote>
-<h3 id=\\"jsdoc-build\\">jsdoc:build</h3>
+<h3 id=\\"jsdoc-build\\" class=\\"quick-link quick-link__container\\"><a href=\\"#jsdoc-build\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to jsdoc:build\\">link</i></a>jsdoc:build</h3>
 <p>This will run jsdoc on the <code>react-md/src/js</code> folder and extract jsdoc for some specific files to get additional
 documentation on static component class attributes that are not picked up with <code>react-docgen</code>. Examples are the
 <code>Layover.HorizontalAnchors</code> and <code>Autocomplete.fuzzyFilter</code>.This will create a <code>jsdoc.json</code> file in the home directory
 to be parsed by <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a>.</p>
-<h3 id=\\"jsdoc-create\\">jsdoc:create</h3>
+<h3 id=\\"jsdoc-create\\" class=\\"quick-link quick-link__container\\"><a href=\\"#jsdoc-create\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to jsdoc:create\\">link</i></a>jsdoc:create</h3>
 <p>This parses the created docgen so that the components can be linked in with these special enums and external functions
 for additional documentation.</p>
-<h3 id=\\"docgen\\">docgen</h3>
+<h3 id=\\"docgen\\" class=\\"quick-link quick-link__container\\"><a href=\\"#docgen\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to docgen\\">link</i></a>docgen</h3>
 <p>This will run the <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
 be created before the <code>docgen:create</code> script can be ran.</p>
 <blockquote>
 <p>SEE: <a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a> or <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> for more information.</p>
 </blockquote>
-<h3 id=\\"docgen-create\\">docgen:create</h3>
+<h3 id=\\"docgen-create\\" class=\\"quick-link quick-link__container\\"><a href=\\"#docgen-create\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to docgen:create\\">link</i></a>docgen:create</h3>
 <p>This will create a &quot;database&quot; of component documentation that can be used for the API
 endpoints. The &quot;database&quot; is just a JSON file of the results of <a href=\\"https://github.com/reactjs/react-docgen\\" class=\\"link\\">react-docgen</a>
 component&#39;s endpoint and it&#39;s docgen. This will also create another &quot;database&quot; that is used for searching within the
 site for specific component Prop Types or SassDoc.</p>
-<h3 id=\\"sassdoc\\">sassdoc</h3>
+<h3 id=\\"sassdoc\\" class=\\"quick-link quick-link__container\\"><a href=\\"#sassdoc\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to sassdoc\\">link</i></a>sassdoc</h3>
 <p>This will create a &quot;database&quot; of SassDoc to be used for the SassDoc tabs. Just like the docgen,
 it is a simple mapping of the component group to related documentation. This command will also create a SassDoc search
 &quot;database&quot; so that functions, mixins, selectors, and variables can be found in the main search.</p>
-<h3 id=\\"sassdoc-site\\">sassdoc:site</h3>
+<h3 id=\\"sassdoc-site\\" class=\\"quick-link quick-link__container\\"><a href=\\"#sassdoc-site\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to sassdoc:site\\">link</i></a>sassdoc:site</h3>
 <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.</p>
-<h3 id=\\"examples-db\\">examples-db</h3>
+<h3 id=\\"examples-db\\" class=\\"quick-link quick-link__container\\"><a href=\\"#examples-db\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to examples-db\\">link</i></a>examples-db</h3>
 <p>This will create a &quot;database&quot; to be used to search for specific examples in the documentation site.</p>
-<h3 id=\\"air-quality\\">air-quality</h3>
+<h3 id=\\"air-quality\\" class=\\"quick-link quick-link__container\\"><a href=\\"#air-quality\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to air-quality\\">link</i></a>air-quality</h3>
 <p>This will remake the airQuality &quot;database&quot; by fetching the data from the <a href=\\"https://data.gov\\" class=\\"link\\">https://data.gov</a> website, parse/format the response,
 and limit the number of results. This is really only useful if you need to get some fresher data.</p>
-<h3 id=\\"watch-all\\">watch:all</h3>
+<h3 id=\\"watch-all\\" class=\\"quick-link quick-link__container\\"><a href=\\"#watch-all\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to watch:all\\">link</i></a>watch:all</h3>
 <p>This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md
 source code into the <code>lib/</code> folder.</p>
-<h3 id=\\"watch-docgen\\">watch:docgen</h3>
+<h3 id=\\"watch-docgen\\" class=\\"quick-link quick-link__container\\"><a href=\\"#watch-docgen\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to watch:docgen\\">link</i></a>watch:docgen</h3>
 <p>This will create a watcher for the <a href=\\"#docgen\\" class=\\"link\\">docgen</a> script and rebuild the &quot;database&quot; when a component&#39;s
 source code has changed. This isn&#39;t completely optimized since it doesn&#39;t check differences in content before
 writing.</p>
-<h3 id=\\"watch-sassdoc\\">watch:sassdoc</h3>
+<h3 id=\\"watch-sassdoc\\" class=\\"quick-link quick-link__container\\"><a href=\\"#watch-sassdoc\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to watch:sassdoc\\">link</i></a>watch:sassdoc</h3>
 <p>This will create a watcher for the <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a> script and rebuild the &quot;database&quot; when a component&#39;s
 source code has changed. This isn&#39;t completely optimized since it doesn&#39;t check differences in content before
 writing.</p>
-<h3 id=\\"watch-react-md\\">watch:react-md</h3>
+<h3 id=\\"watch-react-md\\" class=\\"quick-link quick-link__container\\"><a href=\\"#watch-react-md\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to watch:react-md\\">link</i></a>watch:react-md</h3>
 <p>This will just recompile a changed react-md source file into the <code>lib/</code> folder so the changes can be seen in the documentation
 site.</p>
-<h3 id=\\"start\\">start</h3>
+<h3 id=\\"start\\" class=\\"quick-link quick-link__container\\"><a href=\\"#start\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to start\\">link</i></a>start</h3>
 <p>This will start the production server. The <a href=\\"#build\\" class=\\"link\\">build</a> <strong>must</strong> have been run before the production server can
 be started.</p>
 <blockquote>
 <p>SEE: <a href=\\"#startprod\\" class=\\"link\\">start:prod</a> for a simple wrapper to run the build and then start the server immediately.</p>
 </blockquote>
-<h3 id=\\"start-dev\\">start:dev</h3>
+<h3 id=\\"start-dev\\" class=\\"quick-link quick-link__container\\"><a href=\\"#start-dev\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to start:dev\\">link</i></a>start:dev</h3>
 <p>This will start up the server in development mode. This is helpful if you don&#39;t need every watcher running and have already
 built the databases or you need to test server code independently so you have access to the <code>nodemon</code> <code>restart</code> ability. Both
 <a href=\\"#dev\\" class=\\"link\\">dev</a> and <a href=\\"#devfull\\" class=\\"link\\">dev:full</a> end up using this behind the scenes.</p>
 <p>The development server will be restarted each time any config file changes, or server related files.</p>
-<h3 id=\\"start-prod\\">start:prod</h3>
+<h3 id=\\"start-prod\\" class=\\"quick-link quick-link__container\\"><a href=\\"#start-prod\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to start:prod\\">link</i></a>start:prod</h3>
 <p>This will run the <a href=\\"#build\\" class=\\"link\\">build</a> command followed by the <a href=\\"#start\\" class=\\"link\\">start</a>. It is really just for testing
 the production mode quickly without deploying to my main website.</p>
-<h3 id=\\"dev\\">dev</h3>
+<h3 id=\\"dev\\" class=\\"quick-link quick-link__container\\"><a href=\\"#dev\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to dev\\">link</i></a>dev</h3>
 <p>This is the second most useful development script. It will only run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
 and concurrently run the <a href=\\"#watchreact-md\\" class=\\"link\\">watch:react-md</a> and <a href=\\"#startdev\\" class=\\"link\\">start:dev</a>. Mostly
 use this script if you only need to see the examples changes without any docgen or SassDoc updates.</p>
-<h3 id=\\"dev-full\\">dev:full</h3>
+<h3 id=\\"dev-full\\" class=\\"quick-link quick-link__container\\"><a href=\\"#dev-full\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to dev:full\\">link</i></a>dev:full</h3>
 <p>Whew. This is the most useful development script to use. It will run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
 and then concurrently run all the watchers and start up the dev server.</p>
 <blockquote>
 <p>SEE: <a href=\\"#watchall\\" class=\\"link\\">watch:all</a></p>
 </blockquote>
-<h3 id=\\"dev-minimal\\">dev:minimal</h3>
+<h3 id=\\"dev-minimal\\" class=\\"quick-link quick-link__container\\"><a href=\\"#dev-minimal\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to dev:minimal\\">link</i></a>dev:minimal</h3>
 <p>This is a script that will remove any existing assets, run the webpack watcher, and start the development
 server. This is assuming that all the databases have been built and the react-md code has been compiled
 already.</p>
-<h3 id=\\"test\\">test</h3>
+<h3 id=\\"test\\" class=\\"quick-link quick-link__container\\"><a href=\\"#test\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to test\\">link</i></a>test</h3>
 <p>This will run tests only for the documentation server.</p>
-<h3 id=\\"test-watch\\">test:watch</h3>
+<h3 id=\\"test-watch\\" class=\\"quick-link quick-link__container\\"><a href=\\"#test-watch\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to test:watch\\">link</i></a>test:watch</h3>
 <p>This will run the tests in jest watch mode.</p>
-<h2 id=\\"production-stack\\">Production Stack</h2>
+<h2 id=\\"production-stack\\" class=\\"quick-link quick-link__container\\"><a href=\\"#production-stack\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Production Stack\\">link</i></a>Production Stack</h2>
 <p>When running the react-md.mlaursen.com website for production, my setup is as follows:</p>
 <ul>
 <li>Amazon Linux Micro EC2 Instance</li>
@@ -536,46 +538,46 @@ already.</p>
 <li>express for server side rendering</li>
 <li><a href=\\"https://github.com/Unitech/pm2\\" class=\\"link\\">pm2</a> for running the servers as background processes</li>
 </ul>
-<h3 id=\\"ssl-certs\\">SSL Certs</h3>
+<h3 id=\\"ssl-certs\\" class=\\"quick-link quick-link__container\\"><a href=\\"#ssl-certs\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to SSL Certs\\">link</i></a>SSL Certs</h3>
 <p>One of the problems of using the Amazon Linux instance is that certbot has <strong>very</strong> limited support
 with it, so it constantly breaks. If the certbot decides to update itself or any security updates
 from Amazon, certbot will most likely stop working.</p>
 <p>Here are the initial steps of getting certbot setup:</p>
-<pre><code class=\\"lang-bash\\">$ wget https://dl.eff.org/certbot-auto
-$ chmod a+x certbot-auto
-$ sudo su -
-$ mv certbot-auto /usr/local/bin/
-</code></pre>
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">$ <span class=\\"token function\\">wget</span> https://dl.eff.org/certbot-auto
+$ <span class=\\"token function\\">chmod</span> a+x certbot-auto
+$ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
+$ <span class=\\"token function\\">mv</span> certbot-auto /usr/local/bin/
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>Once it has been moved to your bin, you can set up new certs with:</p>
-<pre><code class=\\"lang-bash\\">$ sudo su -
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">$ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
 $ certbot-auto certonly \\\\
     --debug \\\\
     --standalone \\\\
     -d HOSTNAME.com \\\\
-    --pre-hook=&quot;service nginx stop&quot; \\\\
-    --post-hook=&quot;service nginx start&quot;
-</code></pre>
+    --pre-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx stop\\"</span> \\\\
+    --post-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx start\\"</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>or renew all certs:</p>
-<pre><code class=\\"lang-bash\\">$ sudo su -
+<pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">$ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
 $ certbot-only renew \\\\
     --no-self-upgrade
     --debug \\\\
-    --pre-hook=&quot;service nginx stop&quot; \\\\
-    --post-hook=&quot;service nginx start&quot;
-</code></pre>
+    --pre-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx stop\\"</span> \\\\
+    --post-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx start\\"</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <blockquote>
 <p>--debug is the important part. It won&#39;t work otherwise.</p>
 </blockquote>
 <p>I end up creating the renewal script to be run twice daily via a cron job.</p>
 <p>When certbot breaks, <a href=\\"https://github.com/certbot/certbot/issues/2872#issuecomment-297845668\\" class=\\"link\\">this thread</a> and comment
 is a good resource. The linked comment has worked the last 2 times it has broken.</p>
-<h3 id=\\"nginx\\">nginx</h3>
+<h3 id=\\"nginx\\" class=\\"quick-link quick-link__container\\"><a href=\\"#nginx\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to nginx\\">link</i></a>nginx</h3>
 <p>Right now, I am using nginx to handle the majority of the heavy networking. It has been set up
 to handle the gzipping of static content, caching and serving static assets as well as handling
 the virtual hosts + SSL certs. All of this <em>could</em> be done via express and additional modules,
 but nginx is quite more performant than the node counterparts.</p>
 <p>The nginx config files I use can be found in the <a href=\\"src/nginx\\" class=\\"link\\">nginx folder</a> if this is interesting.</p>
-<h3 id=\\"pm2\\">pm2</h3>
+<h3 id=\\"pm2\\" class=\\"quick-link quick-link__container\\"><a href=\\"#pm2\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to pm2\\">link</i></a>pm2</h3>
 <p>I end up running the current and next versions of the react-md documentation websites with pm2.
 There are probably other ways to run node web servers as processes, but this is the easiest way
 so far.</p>

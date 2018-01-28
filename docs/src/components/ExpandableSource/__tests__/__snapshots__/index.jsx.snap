@@ -7,136 +7,136 @@ exports[`ExpandableSource should render correctly when not collapsed 1`] = `
     className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-buttons(
-  $primary-color: $md-primary-color,
-  $secondary-color: $md-secondary-color,
-  $light-theme: $md-light-theme,
-  $include-media: $md-media-included,
-  $include-flat: $md-btn-include-flat,
-  $include-raised: $md-btn-include-raised,
-  $include-icon: $md-btn-include-icon,
-  $include-floating: $md-btn-include-floating,
-  $include-dense-icons: $md-font-icon-include-dense
-) {
-  // scss-lint:disable QualifyingElement
-  a.md-btn {
-    text-decoration: none;
-  }
+        "__html": "<pre class=\\"line-numbers code-toolbar language-scss\\"><code class=\\"language-scss\\"><span class=\\"token keyword\\">@mixin</span> <span class=\\"token function\\">react-md-buttons</span><span class=\\"token punctuation\\">(</span>
+  <span class=\\"token property\\"><span class=\\"token variable\\">$primary-color</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-primary-color</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$secondary-color</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-secondary-color</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$light-theme</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-light-theme</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-media</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-media-included</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-flat</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-flat</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-raised</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-raised</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-icon</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-icon</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-floating</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-floating</span>,
+  <span class=\\"token property\\"><span class=\\"token variable\\">$include-dense-icons</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-font-icon-include-dense</span>
+<span class=\\"token punctuation\\">)</span> <span class=\\"token punctuation\\">{</span>
+  <span class=\\"token comment\\">// scss-lint:disable QualifyingElement</span>
+  <span class=\\"token selector\\">a.md-btn </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token property\\">text-decoration</span><span class=\\"token punctuation\\">:</span> none<span class=\\"token punctuation\\">;</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  .md-btn {
-    background: transparent;
-    border: 0;
-    position: relative;
-    transition-duration: $md-transition-time;
-    transition-property: background, color;
+  <span class=\\"token selector\\">.md-btn </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> transparent<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token property\\">border</span><span class=\\"token punctuation\\">:</span> <span class=\\"token number\\">0</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token property\\">position</span><span class=\\"token punctuation\\">:</span> relative<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token property\\">transition-duration</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-transition-time</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token property\\">transition-property</span><span class=\\"token punctuation\\">:</span> background, color<span class=\\"token punctuation\\">;</span>
 
-    // Prevents click event from firing when clicking a child
-    &amp;[disabled] * {
-      pointer-events: none;
-    }
+    <span class=\\"token comment\\">// Prevents click event from firing when clicking a child</span>
+    <span class=\\"token selector\\"><span class=\\"token parent important\\">&amp;</span>[disabled] * </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">pointer-events</span><span class=\\"token punctuation\\">:</span> none<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    &amp;:focus {
-      outline-style: none;
-    }
+    <span class=\\"token selector\\"><span class=\\"token parent important\\">&amp;</span>:focus </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">outline-style</span><span class=\\"token punctuation\\">:</span> none<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-icon {
-      color: inherit;
-    }
+    <span class=\\"token selector\\">.md-icon </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">color</span><span class=\\"token punctuation\\">:</span> inherit<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-icon-separator {
-      height: 100%;
-    }
+    <span class=\\"token selector\\">.md-icon-separator </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">height</span><span class=\\"token punctuation\\">:</span> <span class=\\"token number\\">100%</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-icon-text {
-      @extend %md-font-medium;
-    }
-  }
+    <span class=\\"token selector\\">.md-icon-text </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@extend</span> <span class=\\"token number\\">%</span>md-font-medium<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  .md-btn--hover {
-    background: if($light-theme, $md-btn-light-theme-hover-color, $md-btn-dark-theme-hover-color);
-  }
+  <span class=\\"token selector\\">.md-btn--hover </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token function\\">if</span><span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$light-theme</span>, <span class=\\"token variable\\">$md-btn-light-theme-hover-color</span>, <span class=\\"token variable\\">$md-btn-dark-theme-hover-color</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  .md-btn--color-primary-active {
-    background: rgba($primary-color, .12);
-  }
+  <span class=\\"token selector\\">.md-btn--color-primary-active </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token function\\">rgba</span><span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$primary-color</span>, <span class=\\"token number\\">.12</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  .md-btn--color-secondary-active {
-    background: rgba($secondary-color, .12);
-  }
+  <span class=\\"token selector\\">.md-btn--color-secondary-active </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token function\\">rgba</span><span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$secondary-color</span>, <span class=\\"token number\\">.12</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  @if $include-flat or $include-raised {
-    .md-btn--text {
-      border-radius: $md-btn-text-border-radius;
-      font-size: $md-btn-text-font-size;
-      font-weight: $md-font-medium;
-      height: $md-btn-text-height;
-      min-width: $md-btn-min-width;
-      padding: $md-btn-tb-padding $md-btn-lr-padding;
-      text-transform: uppercase;
-    }
-  }
+  <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$include-flat</span> or <span class=\\"token variable\\">$include-raised</span> </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token selector\\">.md-btn--text </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">border-radius</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-text-border-radius</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">font-size</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-text-font-size</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">font-weight</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-font-medium</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">height</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-text-height</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">min-width</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-min-width</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">padding</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-tb-padding</span> <span class=\\"token variable\\">$md-btn-lr-padding</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">text-transform</span><span class=\\"token punctuation\\">:</span> uppercase<span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  @if $include-raised or $include-floating {
-    .md-btn--raised {
-      @include md-box-shadow(1);
+  <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$include-raised</span> or <span class=\\"token variable\\">$include-floating</span> </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token selector\\">.md-btn--raised </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">md-box-shadow</span><span class=\\"token punctuation\\">(</span><span class=\\"token number\\">1</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
 
-      transition: background $md-transition-time, box-shadow $md-transition-time * 2, color $md-transition-time;
-    }
+      <span class=\\"token property\\">transition</span><span class=\\"token punctuation\\">:</span> background <span class=\\"token variable\\">$md-transition-time</span>, box-shadow <span class=\\"token variable\\">$md-transition-time</span> <span class=\\"token operator\\">*</span> <span class=\\"token number\\">2</span>, color <span class=\\"token variable\\">$md-transition-time</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-btn--raised-disabled {
-      background: get-color(&#39;divider&#39;, $light-theme);
-    }
+    <span class=\\"token selector\\">.md-btn--raised-disabled </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token function\\">get-color</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'divider'</span>, <span class=\\"token variable\\">$light-theme</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-btn--raised-pressed {
-      @include md-box-shadow(2);
-    }
-  }
+    <span class=\\"token selector\\">.md-btn--raised-pressed </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">md-box-shadow</span><span class=\\"token punctuation\\">(</span><span class=\\"token number\\">2</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  @if $include-icon or $include-floating {
-    .md-btn--icon {
-      border-radius: $md-btn-icon-border-radius;
-      color: get-color(&#39;icon&#39;, $light-theme);
-      height: $md-btn-icon-size;
-      padding: $md-btn-icon-padding;
-      width: $md-btn-icon-size;
-    }
-  }
+  <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$include-icon</span> or <span class=\\"token variable\\">$include-floating</span> </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token selector\\">.md-btn--icon </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">border-radius</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-icon-border-radius</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">color</span><span class=\\"token punctuation\\">:</span> <span class=\\"token function\\">get-color</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'icon'</span>, <span class=\\"token variable\\">$light-theme</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">height</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-icon-size</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">padding</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-icon-padding</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">width</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-icon-size</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  @if $include-floating {
-    .md-btn--floating {
-      @include md-box-shadow(2);
+  <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$include-floating</span> </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token selector\\">.md-btn--floating </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">md-box-shadow</span><span class=\\"token punctuation\\">(</span><span class=\\"token number\\">2</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
 
-      height: $md-btn-floating-size;
-      padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
-      transition-property: background, box-shadow, color;
-      width: $md-btn-floating-size;
-    }
+      <span class=\\"token property\\">height</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-floating-size</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">padding</span><span class=\\"token punctuation\\">:</span> <span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$md-btn-floating-size</span> <span class=\\"token operator\\">-</span> <span class=\\"token variable\\">$md-font-icon-size</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">/</span> <span class=\\"token number\\">2</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">transition-property</span><span class=\\"token punctuation\\">:</span> background, box-shadow, color<span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">width</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-floating-size</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-btn--floating-pressed {
-      @include md-box-shadow(4);
-    }
+    <span class=\\"token selector\\">.md-btn--floating-pressed </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">md-box-shadow</span><span class=\\"token punctuation\\">(</span><span class=\\"token number\\">4</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-btn--floating-mini {
-      height: $md-btn-floating-mini-size;
-      padding: ($md-btn-floating-mini-size - $md-font-icon-size) / 2;
-      width: $md-btn-floating-mini-size;
-    }
+    <span class=\\"token selector\\">.md-btn--floating-mini </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">height</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-floating-mini-size</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">padding</span><span class=\\"token punctuation\\">:</span> <span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$md-btn-floating-mini-size</span> <span class=\\"token operator\\">-</span> <span class=\\"token variable\\">$md-font-icon-size</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">/</span> <span class=\\"token number\\">2</span><span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">width</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-floating-mini-size</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    .md-btn--fixed {
-      position: fixed;
-      z-index: $md-btn-fixed-z-index;
-    }
+    <span class=\\"token selector\\">.md-btn--fixed </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token property\\">position</span><span class=\\"token punctuation\\">:</span> fixed<span class=\\"token punctuation\\">;</span>
+      <span class=\\"token property\\">z-index</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-fixed-z-index</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
 
-    @if $md-btn-floating-margin != null {
-      @include react-md-button-fixed-positions($md-btn-floating-margin);
-    }
-  }
+    <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$md-btn-floating-margin</span> != null </span><span class=\\"token punctuation\\">{</span>
+      <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">react-md-button-fixed-positions</span><span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$md-btn-floating-margin</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+    <span class=\\"token punctuation\\">}</span>
+  <span class=\\"token punctuation\\">}</span>
 
-  @if $include-media {
-    @include react-md-buttons-media($include-flat, $include-raised, $include-icon, $include-floating, $include-dense-icons);
-  }
-}
-</code></pre>
+  <span class=\\"token keyword\\">@if</span> <span class=\\"token selector\\"><span class=\\"token variable\\">$include-media</span> </span><span class=\\"token punctuation\\">{</span>
+    <span class=\\"token keyword\\">@include</span> <span class=\\"token function\\">react-md-buttons-media</span><span class=\\"token punctuation\\">(</span><span class=\\"token variable\\">$include-flat</span>, <span class=\\"token variable\\">$include-raised</span>, <span class=\\"token variable\\">$include-icon</span>, <span class=\\"token variable\\">$include-floating</span>, <span class=\\"token variable\\">$include-dense-icons</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+  <span class=\\"token punctuation\\">}</span>
+<span class=\\"token punctuation\\">}</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
 ",
       }
     }
@@ -163,8 +163,8 @@ exports[`ExpandableSource should render correctly while collapsed 1`] = `
   className="md-fake-btn md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
   dangerouslySetInnerHTML={
     Object {
-      "__html": "<pre><code class=\\"lang-scss\\">$md-primary-color: $md-red-500;
-</code></pre>
+      "__html": "<pre class=\\"line-numbers code-toolbar language-scss\\"><code class=\\"language-scss\\"><span class=\\"token property\\"><span class=\\"token variable\\">$md-primary-color</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-red-500</span><span class=\\"token punctuation\\">;</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
 ",
     }
   }
@@ -185,8 +185,8 @@ exports[`ExpandableSource should render correctly while collapsed 2`] = `
     className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-buttons($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-icon: $md-btn-include-icon, $include-floating: $md-btn-include-floating, $include-dense-icons: $md-font-icon-include-dense) { ... }
-</code></pre>
+        "__html": "<pre class=\\"line-numbers code-toolbar language-scss\\"><code class=\\"language-scss\\"><span class=\\"token keyword\\">@mixin</span> <span class=\\"token function\\">react-md-buttons</span><span class=\\"token punctuation\\">(</span><span class=\\"token property\\"><span class=\\"token variable\\">$primary-color</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-primary-color</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$secondary-color</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-secondary-color</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$light-theme</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-light-theme</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-media</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-media-included</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-flat</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-flat</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-raised</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-raised</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-icon</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-icon</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-floating</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-btn-include-floating</span>, <span class=\\"token property\\"><span class=\\"token variable\\">$include-dense-icons</span></span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-font-icon-include-dense</span><span class=\\"token punctuation\\">)</span> <span class=\\"token punctuation\\">{</span> <span class=\\"token number\\">...</span> <span class=\\"token punctuation\\">}</span>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
 ",
       }
     }

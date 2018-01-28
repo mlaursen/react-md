@@ -30,65 +30,105 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              %md-tracking--10 { … }
+              <span
+                class="token selector"
+              >
+                <span
+                  class="token placeholder"
+                >
+                  %md-tracking--10
+                </span>
+                 
+              </span>
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
+
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
           </pre>
+        </div>
+        <h4
+          class="md-title"
+        >
+          Description
+        </h4>
+        <section
+          class="markdown-container sassdoc__section"
+        >
+          <p>
+            A placeholder for styling a class with the material design tracking of -10.
+          </p>
           
 
-        </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        </section>
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          A placeholder for styling a class with the material design tracking of -10.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Placeholder]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-4"
-              >
-                md-display-4
-              </a>
-            </p>
-            
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-4"
+                >
+                  md-display-4
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-      </ul>
+            </section>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <section
@@ -116,41 +156,91 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
         disabled=""
         role="button"
       >
-        <pre>
+        <pre
+          class="line-numbers code-toolbar language-scss"
+        >
           <code
-            class="lang-scss"
+            class="language-scss"
           >
-            $md-typography-extended: true !default;
+            <span
+              class="token property"
+            >
+              <span
+                class="token variable"
+              >
+                $md-typography-extended
+              </span>
+            </span>
+            <span
+              class="token punctuation"
+            >
+              :
+            </span>
+             
+            <span
+              class="token boolean"
+            >
+              true
+            </span>
+             
+            <span
+              class="token statement keyword"
+            >
+              !default
+            </span>
+            <span
+              class="token punctuation"
+            >
+              ;
+            </span>
+            
 
+            <span
+              aria-hidden="true"
+              class="line-numbers-rows"
+            >
+              <span />
+            </span>
           </code>
+          <div
+            class="toolbar"
+          >
+            <div
+              class="toolbar-item"
+            >
+              <span>
+                Sass (Scss)
+              </span>
+            </div>
+            
+
+          </div>
+          <h4
+            class="md-title"
+          >
+            Description
+          </h4>
+          <section
+            class="markdown-container sassdoc__section"
+          >
+            <p>
+              Boolean if the typography should extend the base html tags as well.
+            </p>
+            
+
+          </section>
+          <h4
+            class="md-title md-grid md-grid--no-spacing"
+          >
+            Type 
+          </h4>
+          <pre
+            class="sassdoc__section sassdoc__variable md-text--theme-primary"
+          >
+            Boolean
+          </pre>
         </pre>
-        
-
       </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          Boolean if the typography should extend the base html tags as well.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title md-grid md-grid--no-spacing"
-      >
-        Type 
-      </h4>
-      <pre
-        class="sassdoc__section sassdoc__variable md-text--theme-primary"
-      >
-        Boolean
-      </pre>
     </div>
   </section>
   <section
@@ -179,174 +269,231 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              @function get-font-suffix($font-weight) { … }
+              <span
+                class="token keyword"
+              >
+                @function
+              </span>
+               
+              <span
+                class="token function"
+              >
+                get-font-suffix
+              </span>
+              <span
+                class="token punctuation"
+              >
+                (
+              </span>
+              <span
+                class="token variable"
+              >
+                $font-weight
+              </span>
+              <span
+                class="token punctuation"
+              >
+                )
+              </span>
+               
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
+
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
           </pre>
-          
-
         </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          Converts a font weight into the google font suffix.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title"
-      >
-        Returns
-      </h4>
-      <div
-        class="sassdoc__section sassdoc__returns"
-      >
-        <pre
-          class="sassdoc__variable md-text--primary-color"
-        >
-          String
-        </pre>
-        —
+          Description
+        </h4>
         <section
-          class="markdown-container"
+          class="markdown-container sassdoc__section"
         >
           <p>
-            the font suffix
+            Converts a font weight into the google font suffix.
           </p>
           
 
         </section>
+        <h4
+          class="md-title"
+        >
+          Returns
+        </h4>
+        <div
+          class="sassdoc__section sassdoc__returns"
+        >
+          <pre
+            class="sassdoc__variable md-text--primary-color"
+          >
+            String
+          </pre>
+          —
+          <section
+            class="markdown-container"
+          >
+            <p>
+              the font suffix
+            </p>
+            
+
+          </section>
+        </div>
+        <h4
+          class="md-title"
+        >
+          Requires
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
+        >
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-light"
+                >
+                  md-font-light
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-regular"
+                >
+                  md-font-regular
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-medium"
+                >
+                  md-font-medium
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-bold"
+                >
+                  md-font-bold
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
+        <h4
+          class="md-title"
+        >
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
+        >
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-host-google-font"
+                >
+                  host-google-font
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
       </div>
-      <h4
-        class="md-title"
-      >
-        Requires
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-light"
-              >
-                md-font-light
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-regular"
-              >
-                md-font-regular
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-medium"
-              >
-                md-font-medium
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-bold"
-              >
-                md-font-bold
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-host-google-font"
-              >
-                host-google-font
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
     </div>
   </section>
   <section
@@ -375,540 +522,696 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              @mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
+              <span
+                class="token keyword"
+              >
+                @mixin
+              </span>
+               
+              <span
+                class="token function"
+              >
+                react-md-typography
+              </span>
+              <span
+                class="token punctuation"
+              >
+                (
+              </span>
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $light-theme
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-light-theme
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-media
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-media-included
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $extend-html-tags
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-extended
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-text-container
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-include-text-container
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-utilities
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-include-utilities
+              </span>
+              <span
+                class="token punctuation"
+              >
+                )
+              </span>
+               
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
-          </pre>
-          
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
 
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
+          </pre>
         </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          This includes the css for simple typography in react-md. It will
+          Description
+        </h4>
+        <section
+          class="markdown-container sassdoc__section"
+        >
+          <p>
+            This includes the css for simple typography in react-md. It will
 update all items to use 
-          <code>
-            box-sizing: border-box
-          </code>
-          , set the font
+            <code>
+              box-sizing: border-box
+            </code>
+            , set the font
 family, set the line-height, text-rendering, and create the base
 class names for the typography. If the 
-          <code>
-            $extend-html-tags
-          </code>
-           is true,
+            <code>
+              $extend-html-tags
+            </code>
+             is true,
 the 
-          <code>
-            h1
-          </code>
-           - 
-          <code>
-            h6
-          </code>
-          , 
-          <code>
-            p
-          </code>
-          , and 
-          <code>
-            caption
-          </code>
-           tags will be updated with the
+            <code>
+              h1
+            </code>
+             - 
+            <code>
+              h6
+            </code>
+            , 
+            <code>
+              p
+            </code>
+            , and 
+            <code>
+              caption
+            </code>
+             tags will be updated with the
 corresponding css class name.
-        </p>
-        
+          </p>
+          
 
-      </section>
-      <h4
-        class="md-title"
-      >
-        Requires
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
+        </section>
+        <h4
+          class="md-title"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-media"
-              >
-                react-md-typography-media
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+          Requires
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-utilities"
-              >
-                react-md-typography-utilities
-              </a>
-            </p>
-            
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-media"
+                >
+                  react-md-typography-media
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-utilities"
+                >
+                  react-md-typography-utilities
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-text-container"
+                >
+                  react-md-typography-text-container
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Function]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#function-get-color"
+                >
+                  get-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-1"
+                >
+                  md-display-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-headline"
+                >
+                  md-headline
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-title"
+                >
+                  md-title
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-subheading-2"
+                >
+                  md-subheading-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-subheading-1"
+                >
+                  md-subheading-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-body-2"
+                >
+                  md-body-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-body-1"
+                >
+                  md-body-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-caption"
+                >
+                  md-caption
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-2"
+                >
+                  md-display-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-3"
+                >
+                  md-display-3
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-4"
+                >
+                  md-display-4
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/sassdoc/#transitions-variable-md-transition-standard"
+                >
+                  md-transition-standard
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#variable-md-light-theme-background-color"
+                >
+                  md-light-theme-background-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#variable-md-dark-theme-background-color"
+                >
+                  md-dark-theme-background-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-size-base"
+                >
+                  md-font-size-base
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-html-min-width"
+                >
+                  md-html-min-width
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-family"
+                >
+                  md-font-family
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-regular"
+                >
+                  md-font-regular
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-line-height"
+                >
+                  md-line-height
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
+        <h4
+          class="md-title"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-text-container"
-              >
-                react-md-typography-text-container
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Function]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#function-get-color"
-              >
-                get-color
-              </a>
-            </p>
-            
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/sassdoc/#base, themes-mixin-react-md-everything"
+                >
+                  react-md-everything
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-1"
-              >
-                md-display-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-headline"
-              >
-                md-headline
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-title"
-              >
-                md-title
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-subheading-2"
-              >
-                md-subheading-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-subheading-1"
-              >
-                md-subheading-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-body-2"
-              >
-                md-body-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-body-1"
-              >
-                md-body-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-caption"
-              >
-                md-caption
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-2"
-              >
-                md-display-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-3"
-              >
-                md-display-3
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-4"
-              >
-                md-display-4
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/sassdoc/#transitions-variable-md-transition-standard"
-              >
-                md-transition-standard
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#variable-md-light-theme-background-color"
-              >
-                md-light-theme-background-color
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#variable-md-dark-theme-background-color"
-              >
-                md-dark-theme-background-color
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-size-base"
-              >
-                md-font-size-base
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-html-min-width"
-              >
-                md-html-min-width
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-family"
-              >
-                md-font-family
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-regular"
-              >
-                md-font-regular
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-line-height"
-              >
-                md-line-height
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/sassdoc/#base, themes-mixin-react-md-everything"
-              >
-                react-md-everything
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
+            </section>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <button
@@ -964,65 +1267,105 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              %md-tracking--10 { … }
+              <span
+                class="token selector"
+              >
+                <span
+                  class="token placeholder"
+                >
+                  %md-tracking--10
+                </span>
+                 
+              </span>
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
+
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
           </pre>
+        </div>
+        <h4
+          class="md-title"
+        >
+          Description
+        </h4>
+        <section
+          class="markdown-container sassdoc__section"
+        >
+          <p>
+            A placeholder for styling a class with the material design tracking of -10.
+          </p>
           
 
-        </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        </section>
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          A placeholder for styling a class with the material design tracking of -10.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Placeholder]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-4"
-              >
-                md-display-4
-              </a>
-            </p>
-            
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-4"
+                >
+                  md-display-4
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-      </ul>
+            </section>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <section
@@ -1050,41 +1393,91 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
         disabled=""
         role="button"
       >
-        <pre>
+        <pre
+          class="line-numbers code-toolbar language-scss"
+        >
           <code
-            class="lang-scss"
+            class="language-scss"
           >
-            $md-typography-extended: true !default;
+            <span
+              class="token property"
+            >
+              <span
+                class="token variable"
+              >
+                $md-typography-extended
+              </span>
+            </span>
+            <span
+              class="token punctuation"
+            >
+              :
+            </span>
+             
+            <span
+              class="token boolean"
+            >
+              true
+            </span>
+             
+            <span
+              class="token statement keyword"
+            >
+              !default
+            </span>
+            <span
+              class="token punctuation"
+            >
+              ;
+            </span>
+            
 
+            <span
+              aria-hidden="true"
+              class="line-numbers-rows"
+            >
+              <span />
+            </span>
           </code>
+          <div
+            class="toolbar"
+          >
+            <div
+              class="toolbar-item"
+            >
+              <span>
+                Sass (Scss)
+              </span>
+            </div>
+            
+
+          </div>
+          <h4
+            class="md-title"
+          >
+            Description
+          </h4>
+          <section
+            class="markdown-container sassdoc__section"
+          >
+            <p>
+              Boolean if the typography should extend the base html tags as well.
+            </p>
+            
+
+          </section>
+          <h4
+            class="md-title md-grid md-grid--no-spacing"
+          >
+            Type 
+          </h4>
+          <pre
+            class="sassdoc__section sassdoc__variable md-text--theme-primary"
+          >
+            Boolean
+          </pre>
         </pre>
-        
-
       </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          Boolean if the typography should extend the base html tags as well.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title md-grid md-grid--no-spacing"
-      >
-        Type 
-      </h4>
-      <pre
-        class="sassdoc__section sassdoc__variable md-text--theme-primary"
-      >
-        Boolean
-      </pre>
     </div>
   </section>
   <section
@@ -1113,174 +1506,231 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              @function get-font-suffix($font-weight) { … }
+              <span
+                class="token keyword"
+              >
+                @function
+              </span>
+               
+              <span
+                class="token function"
+              >
+                get-font-suffix
+              </span>
+              <span
+                class="token punctuation"
+              >
+                (
+              </span>
+              <span
+                class="token variable"
+              >
+                $font-weight
+              </span>
+              <span
+                class="token punctuation"
+              >
+                )
+              </span>
+               
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
+
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
           </pre>
-          
-
         </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          Converts a font weight into the google font suffix.
-        </p>
-        
-
-      </section>
-      <h4
-        class="md-title"
-      >
-        Returns
-      </h4>
-      <div
-        class="sassdoc__section sassdoc__returns"
-      >
-        <pre
-          class="sassdoc__variable md-text--primary-color"
-        >
-          String
-        </pre>
-        —
+          Description
+        </h4>
         <section
-          class="markdown-container"
+          class="markdown-container sassdoc__section"
         >
           <p>
-            the font suffix
+            Converts a font weight into the google font suffix.
           </p>
           
 
         </section>
+        <h4
+          class="md-title"
+        >
+          Returns
+        </h4>
+        <div
+          class="sassdoc__section sassdoc__returns"
+        >
+          <pre
+            class="sassdoc__variable md-text--primary-color"
+          >
+            String
+          </pre>
+          —
+          <section
+            class="markdown-container"
+          >
+            <p>
+              the font suffix
+            </p>
+            
+
+          </section>
+        </div>
+        <h4
+          class="md-title"
+        >
+          Requires
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
+        >
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-light"
+                >
+                  md-font-light
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-regular"
+                >
+                  md-font-regular
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-medium"
+                >
+                  md-font-medium
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-bold"
+                >
+                  md-font-bold
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
+        <h4
+          class="md-title"
+        >
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
+        >
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-host-google-font"
+                >
+                  host-google-font
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
       </div>
-      <h4
-        class="md-title"
-      >
-        Requires
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-light"
-              >
-                md-font-light
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-regular"
-              >
-                md-font-regular
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-medium"
-              >
-                md-font-medium
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-bold"
-              >
-                md-font-bold
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-host-google-font"
-              >
-                host-google-font
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
     </div>
   </section>
   <section
@@ -1309,540 +1759,696 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
           role="button"
           tabindex="0"
         >
-          <pre>
+          <pre
+            class="line-numbers code-toolbar language-scss"
+          >
             <code
-              class="lang-scss"
+              class="language-scss"
             >
-              @mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
+              <span
+                class="token keyword"
+              >
+                @mixin
+              </span>
+               
+              <span
+                class="token function"
+              >
+                react-md-typography
+              </span>
+              <span
+                class="token punctuation"
+              >
+                (
+              </span>
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $light-theme
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-light-theme
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-media
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-media-included
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $extend-html-tags
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-extended
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-text-container
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-include-text-container
+              </span>
+              , 
+              <span
+                class="token property"
+              >
+                <span
+                  class="token variable"
+                >
+                  $include-utilities
+                </span>
+              </span>
+              <span
+                class="token punctuation"
+              >
+                :
+              </span>
+               
+              <span
+                class="token variable"
+              >
+                $md-typography-include-utilities
+              </span>
+              <span
+                class="token punctuation"
+              >
+                )
+              </span>
+               
+              <span
+                class="token punctuation"
+              >
+                {
+              </span>
+               … 
+              <span
+                class="token punctuation"
+              >
+                }
+              </span>
+              
 
+              <span
+                aria-hidden="true"
+                class="line-numbers-rows"
+              >
+                <span />
+              </span>
             </code>
-          </pre>
-          
+            <div
+              class="toolbar"
+            >
+              <div
+                class="toolbar-item"
+              >
+                <span>
+                  Sass (Scss)
+                </span>
+              </div>
+              
 
+            </div>
+            <h5
+              class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+            >
+              Click to expand
+            </h5>
+          </pre>
         </div>
-        <h5
-          class="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        <h4
+          class="md-title"
         >
-          Click to expand
-        </h5>
-      </div>
-      <h4
-        class="md-title"
-      >
-        Description
-      </h4>
-      <section
-        class="markdown-container sassdoc__section"
-      >
-        <p>
-          This includes the css for simple typography in react-md. It will
+          Description
+        </h4>
+        <section
+          class="markdown-container sassdoc__section"
+        >
+          <p>
+            This includes the css for simple typography in react-md. It will
 update all items to use 
-          <code>
-            box-sizing: border-box
-          </code>
-          , set the font
+            <code>
+              box-sizing: border-box
+            </code>
+            , set the font
 family, set the line-height, text-rendering, and create the base
 class names for the typography. If the 
-          <code>
-            $extend-html-tags
-          </code>
-           is true,
+            <code>
+              $extend-html-tags
+            </code>
+             is true,
 the 
-          <code>
-            h1
-          </code>
-           - 
-          <code>
-            h6
-          </code>
-          , 
-          <code>
-            p
-          </code>
-          , and 
-          <code>
-            caption
-          </code>
-           tags will be updated with the
+            <code>
+              h1
+            </code>
+             - 
+            <code>
+              h6
+            </code>
+            , 
+            <code>
+              p
+            </code>
+            , and 
+            <code>
+              caption
+            </code>
+             tags will be updated with the
 corresponding css class name.
-        </p>
-        
+          </p>
+          
 
-      </section>
-      <h4
-        class="md-title"
-      >
-        Requires
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
+        </section>
+        <h4
+          class="md-title"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-media"
-              >
-                react-md-typography-media
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+          Requires
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-utilities"
-              >
-                react-md-typography-utilities
-              </a>
-            </p>
-            
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-media"
+                >
+                  react-md-typography-media
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-utilities"
+                >
+                  react-md-typography-utilities
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#mixin-react-md-typography-text-container"
+                >
+                  react-md-typography-text-container
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Function]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#function-get-color"
+                >
+                  get-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-1"
+                >
+                  md-display-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-headline"
+                >
+                  md-headline
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-title"
+                >
+                  md-title
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-subheading-2"
+                >
+                  md-subheading-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-subheading-1"
+                >
+                  md-subheading-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-body-2"
+                >
+                  md-body-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-body-1"
+                >
+                  md-body-1
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-caption"
+                >
+                  md-caption
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-2"
+                >
+                  md-display-2
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-3"
+                >
+                  md-display-3
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Placeholder]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#placeholder-md-display-4"
+                >
+                  md-display-4
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/sassdoc/#transitions-variable-md-transition-standard"
+                >
+                  md-transition-standard
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#variable-md-light-theme-background-color"
+                >
+                  md-light-theme-background-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/colors?tab=1#variable-md-dark-theme-background-color"
+                >
+                  md-dark-theme-background-color
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-size-base"
+                >
+                  md-font-size-base
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-html-min-width"
+                >
+                  md-html-min-width
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-family"
+                >
+                  md-font-family
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-font-regular"
+                >
+                  md-font-regular
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+          <li
+            class="sassdoc__reference-item"
+          >
+            [Variable]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/customization/typography?tab=1#variable-md-line-height"
+                >
+                  md-line-height
+                </a>
+              </p>
+              
+
+            </section>
+          </li>
+        </ul>
+        <h4
+          class="md-title"
         >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#mixin-react-md-typography-text-container"
-              >
-                react-md-typography-text-container
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
+          Used by
+        </h4>
+        <ul
+          class="sassdoc__reference-list sassdoc__section md-list-unstyled"
         >
-          [Function]
-          <section
-            class="markdown-container"
+          <li
+            class="sassdoc__reference-item"
           >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#function-get-color"
-              >
-                get-color
-              </a>
-            </p>
-            
+            [Mixin]
+            <section
+              class="markdown-container"
+            >
+              <p>
+                <a
+                  class="link"
+                  href="/sassdoc/#base, themes-mixin-react-md-everything"
+                >
+                  react-md-everything
+                </a>
+              </p>
+              
 
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-1"
-              >
-                md-display-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-headline"
-              >
-                md-headline
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-title"
-              >
-                md-title
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-subheading-2"
-              >
-                md-subheading-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-subheading-1"
-              >
-                md-subheading-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-body-2"
-              >
-                md-body-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-body-1"
-              >
-                md-body-1
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-caption"
-              >
-                md-caption
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-2"
-              >
-                md-display-2
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-3"
-              >
-                md-display-3
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Placeholder]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#placeholder-md-display-4"
-              >
-                md-display-4
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/sassdoc/#transitions-variable-md-transition-standard"
-              >
-                md-transition-standard
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#variable-md-light-theme-background-color"
-              >
-                md-light-theme-background-color
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/colors?tab=1#variable-md-dark-theme-background-color"
-              >
-                md-dark-theme-background-color
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-size-base"
-              >
-                md-font-size-base
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-html-min-width"
-              >
-                md-html-min-width
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-family"
-              >
-                md-font-family
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-font-regular"
-              >
-                md-font-regular
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Variable]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/customization/typography?tab=1#variable-md-line-height"
-              >
-                md-line-height
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
-      <h4
-        class="md-title"
-      >
-        Used by
-      </h4>
-      <ul
-        class="sassdoc__reference-list sassdoc__section md-list-unstyled"
-      >
-        <li
-          class="sassdoc__reference-item"
-        >
-          [Mixin]
-          <section
-            class="markdown-container"
-          >
-            <p>
-              <a
-                class="link"
-                href="/sassdoc/#base, themes-mixin-react-md-everything"
-              >
-                react-md-everything
-              </a>
-            </p>
-            
-
-          </section>
-        </li>
-      </ul>
+            </section>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <button
