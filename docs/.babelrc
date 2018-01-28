@@ -1,26 +1,22 @@
 {
-  "env": {
-    "scripts": {
-      "presets": [
-        ["env", {
-          "targets": {
-            "node": "current"
-          }
-        }],
-        "react",
-        "stage-0"
-      ],
-      "plugins": [
-        ["module-resolver", {
-          "alias": {
-            "imgs": "./src/imgs",
-            "constants": "./src/constants",
-            "server": "./src/server",
-            "utils": "./src/utils",
-            "react-md": "../"
-          }
-        }]
-      ]
-    }
-  }
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "imgs": "./src/imgs",
+        "constants": "./src/constants",
+        "server": "./src/server",
+        "utils": "./src/utils",
+        "react-md": "../"
+      }
+    }]
+  ]
 }
