@@ -98,6 +98,9 @@ export default class Portal extends PureComponent {
   }
 
   componentWillUnmount() {
+    if (this.props.visible && this.props.onClose) {
+      this.props.onClose();
+    }
     this._removePortal();
   }
 
