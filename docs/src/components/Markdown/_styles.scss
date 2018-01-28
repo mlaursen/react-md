@@ -19,6 +19,58 @@ blockquote {
   }
 }
 
+.color-preview {
+  $size : 3em;
+  $caret-size: .5em;
+  $border-radius: 8px;
+  $transition-time: .3s;
+
+  background: get-color('card', $md-light-theme);
+  border-radius: $border-radius;
+  height: $size;
+  pointer-events: none;
+  position: fixed;
+  width: $size;
+  z-index: 100;
+
+  &__preview {
+    $offset: .25em;
+
+    border-radius: $border-radius;
+    bottom: $offset;
+    left: $offset;
+    right: $offset;
+    position: absolute;
+    top: $offset;
+  }
+
+  &::after {
+    @include caret(bottom, $md-white-base, $caret-size);
+
+    left: 50%;
+    top: 100%;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  &--enter {
+    opacity: .01;
+
+    &-active {
+      opacity: 1;
+      transition: opacity $transition-time $md-transition-sharp;
+    }
+  }
+
+  &--leave {
+    opacity: 1;
+
+    &-active {
+      opacity: 0;
+      transition: opacity $transition-time $md-transition-sharp;
+    }
+  }
+}
+
 .color-markdown {
   padding-left: $color-size + ($color-padding * 2);
   position: relative;

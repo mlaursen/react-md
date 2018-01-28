@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 
 import Prism from 'utils/Prism';
 import formatMarkdown from 'utils/formatMarkdown';
+import ColorPreviewer from './ColorPreviewer';
 import './_styles.scss';
 
 export class PureMarkdown extends PureComponent {
@@ -29,7 +30,7 @@ export class PureMarkdown extends PureComponent {
     lineNumbers: true,
   };
 
-  state = { html: { __html: null } };
+  state = { html: { __html: null }, previewerKey: 0 };
 
   componentWillMount() {
     this.updateHTML(this.props);
@@ -51,6 +52,10 @@ export class PureMarkdown extends PureComponent {
     if (process.env.NODE_ENV !== 'test') {
       this.container = findDOMNode(container);
       this.updateLinks();
+
+      if (this.container) {
+        this.forceUpdate();
+      }
     }
   };
 
@@ -83,12 +88,18 @@ export class PureMarkdown extends PureComponent {
       this.setState({
         html: { __html: formatMarkdown(markdown) },
         previewerKey: this.state.previewerKey + 1,
-      });
+      }, this.highlight);
+    }
+  };
+
+  highlight = () => {
+    if (false && this.container) { // eslint-disable-line
+      Prism.highlightAll();
     }
   };
 
   render() {
-    const { html } = this.state;
+    const { html, previewerKey } = this.state;
 
     const {
       component: Component,
@@ -109,14 +120,16 @@ export class PureMarkdown extends PureComponent {
       return null;
     }
 
-    return (
+    return [
       <Component
         {...props}
+        key="markdown"
         ref={this.setContainer}
         dangerouslySetInnerHTML={html}
         className={cn('markdown-container', className)}
-      />
-    );
+      />,
+      <ColorPreviewer key={previewerKey} container={this.container} />,
+    ];
   }
 }
 
