@@ -13,10 +13,10 @@ marked.setOptions({
   smartypants: false,
 });
 
-export function reduce(transforms, markdown) {
-  return transforms.reduce((formatted, transform) => transform(formatted), markdown);
+export function reduce(transforms, markdown, options) {
+  return transforms.reduce((formatted, transform) => transform(formatted, options), markdown);
 }
 
-export default function formatMarkdown(markdown) {
-  return reduce(postTransforms, reduce([...preTransforms, marked], markdown));
+export default function formatMarkdown(markdown, options) {
+  return reduce(postTransforms, reduce([...preTransforms, marked], markdown, options), options);
 }

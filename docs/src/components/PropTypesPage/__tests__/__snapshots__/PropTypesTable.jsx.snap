@@ -77,32 +77,17 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
               >
                 object
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -146,32 +131,17 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
               >
                 string
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -226,7 +196,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
@@ -239,25 +209,10 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 </span>
                 
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -309,32 +264,17 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
               >
                 node
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -378,32 +318,17 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
               >
                 bool
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -451,7 +376,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
@@ -490,25 +415,10 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 </span>
                 
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td
@@ -554,32 +464,17 @@ size.
             class="markdown-container"
           >
             <pre
-              class="line-numbers code-toolbar language-js"
+              class="language-js"
             >
               <code
                 class="language-js"
               >
                 custom
 
-                <span
-                  aria-hidden="true"
-                  class="line-numbers-rows"
-                />
               </code>
-              <div
-                class="toolbar"
-              >
-                <div
-                  class="toolbar-item"
-                >
-                  <span>
-                    Js
-                  </span>
-                </div>
-                
-
-              </div>
             </pre>
+            
+
           </section>
         </td>
         <td

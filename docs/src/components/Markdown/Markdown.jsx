@@ -85,7 +85,11 @@ export class PureMarkdown extends PureComponent {
       return;
     }
 
-    const html = formatMarkdown(markdown);
+    const { lineNumbers } = this.props;
+    const html = formatMarkdown(markdown, {
+      showToolbar: lineNumbers,
+      showLineNumbers: lineNumbers,
+    });
     if (!this.state.html || this.state.html.__html !== html) {
       // Kind of cheating here. I want to force an update on the ColorPreviewer
       // whenever the markdown changes, so just increment some arbitrary key

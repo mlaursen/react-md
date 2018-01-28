@@ -1,5 +1,6 @@
 import { get } from 'lodash/object';
 import { upperFirst } from 'lodash/string';
+import cn from 'classnames';
 import Prism from 'utils/Prism';
 
 /**
@@ -116,21 +117,28 @@ function getLanguage(lang) {
  * line numbers for multiline code blocks, highlighted code bits, and a toolbar with the current
  * language.
  */
-export function highlightCode(markdown) {
+export function highlightCode(markdown, { showToolbar = true, showLineNumbers = true } = {}) {
   return markdown.replace(/<pre><code class="(lang-\w+)">(.+\r?\n)((?!<).*\r?\n)*<\/code><\/pre>/g, (match, lang) => {
     const code = getCode(match, lang);
     const language = lang.replace('lang-', '');
     const lines = get(code.match(/\r?\n/g), 'length', 0);
     const highlighted = lang.match(/text/) ? code : Prism.highlight(code, Prism.languages[language]);
-    let lineNumbers = '<span aria-hidden="true" class="line-numbers-rows">';
-    for (let i = 0; lines > 1 && i < lines; i += 1) {
-      lineNumbers += '<span></span>';
+    let lineNumbers = '';
+    if (showLineNumbers && lines > 1) {
+      lineNumbers = '<span aria-hidden="true" class="line-numbers-rows">';
+      for (let i = 0; i <= lines; i += 1) {
+        lineNumbers += '<span></span>';
+      }
+      lineNumbers += '</span>';
     }
-    lineNumbers += '</span>';
 
+    const className = cn({ 'line-numbers': showLineNumbers, 'code-toolbar': showToolbar }, `language-${language}`);
     const codeTag = `<code class="language-${language}">${highlighted}${lineNumbers}</code>`;
-    const toolbar = `<div class="toolbar"><div class="toolbar-item"><span>${getLanguage(language)}</span></div>`;
-    return `<pre class="line-numbers code-toolbar language-${language}">${codeTag}${toolbar}</pre>`;
+    let toolbar = '';
+    if (showToolbar) {
+      toolbar = `<div class="toolbar"><div class="toolbar-item"><span>${getLanguage(language)}</span></div>`;
+    }
+    return `<pre class="${className}">${codeTag}${toolbar}</pre>`;
   });
 }
 

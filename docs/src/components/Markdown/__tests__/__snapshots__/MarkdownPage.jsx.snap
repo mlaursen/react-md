@@ -52,7 +52,7 @@ $ yarn build:dev        <span class=\\"token comment\\"># Run the dev webpack bu
 <span class=\\"token comment\\"># Start the server with one of the two options</span>
 $ yarn dev              <span class=\\"token comment\\"># watch react-md source changes and run dev server</span>
 $ yarn dev:full         <span class=\\"token comment\\"># watch all changes and run dev server</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <blockquote>
 <p>See the <a href=\\"#scripts\\" class=\\"link\\">scripts</a> section for all of the other available commands</p>
 </blockquote>
@@ -230,7 +230,7 @@ $ yarn build:watch
 
 <span class=\\"token comment\\"># Next tab</span>
 $ yarn start:dev
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>Whew. And if I ever wanted to run automated tests, I would need another terminal or tab to run the test watcher command!
 Now I have a single script that can do everything needed for watching updates, restarted the server on changes, etc. I do
 normally go with a 3 tab approach still by doing:</p>
@@ -242,7 +242,7 @@ mlaursen @ ~/code/react-md/docs
 $ yarn start:dev
 
 <span class=\\"token comment\\"># Final tab switches between base and docs directories to run tests</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>This could technically be done with the <code>yarn dev</code> script, but one of the problems is that I can&#39;t send the <code>rs</code> (restart) signal
 to nodemon to restart the server with this because it uses <code>concurrently</code> behind the scenes. If I can figure out a way to use that
 and still send keyboard commands to one of the scripts, all would be set.</p>
@@ -314,7 +314,7 @@ your filetype and you&#39;re set!</p>
     filename<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'bundle.js'</span><span class=\\"token punctuation\\">,</span>
   <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">,</span>
 <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">;</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Js</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Js</span></div></pre>
 <p>and you&#39;re all set!</p>
 <p>...
 ...
@@ -547,7 +547,7 @@ from Amazon, certbot will most likely stop working.</p>
 $ <span class=\\"token function\\">chmod</span> a+x certbot-auto
 $ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
 $ <span class=\\"token function\\">mv</span> certbot-auto /usr/local/bin/
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>Once it has been moved to your bin, you can set up new certs with:</p>
 <pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">$ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
 $ certbot-auto certonly \\\\
@@ -556,7 +556,7 @@ $ certbot-auto certonly \\\\
     -d HOSTNAME.com \\\\
     --pre-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx stop\\"</span> \\\\
     --post-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx start\\"</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <p>or renew all certs:</p>
 <pre class=\\"line-numbers code-toolbar language-bash\\"><code class=\\"language-bash\\">$ <span class=\\"token function\\">sudo</span> <span class=\\"token function\\">su</span> -
 $ certbot-only renew \\\\
@@ -564,7 +564,7 @@ $ certbot-only renew \\\\
     --debug \\\\
     --pre-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx stop\\"</span> \\\\
     --post-hook<span class=\\"token operator\\">=</span><span class=\\"token string\\">\\"service nginx start\\"</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Bash</span></div></pre>
 <blockquote>
 <p>--debug is the important part. It won&#39;t work otherwise.</p>
 </blockquote>
