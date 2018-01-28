@@ -91,6 +91,17 @@ $nephritis: #27ae60;
 $carrot: #e67e22;
 $pumpkin: #d35400;
 $peter-river: #3498db;
+$belize-hole: #2980b9;
+$alizarin: #e74c3c;
+$pomegranate: #c0392b;
+$amethyst: #9b59b6;
+$wisteria: #8e44ad;
+$clouds: #ecf0f1;
+$silver: #bdc3c7;
+$wet-asphalt: #34495e;
+$midnight-blue: #2c3e50;
+$concrete: #95a5a6;
+$asbestos: #7f8c8d;
 
 // Start overriding react-md variables
 $md-primary-color: $belize-hole;
