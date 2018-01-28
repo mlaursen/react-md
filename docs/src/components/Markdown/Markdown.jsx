@@ -49,19 +49,22 @@ export class PureMarkdown extends PureComponent {
   }
 
   setContainer = (container) => {
-    if (process.env.NODE_ENV !== 'test') {
-      this.container = findDOMNode(container);
-      this.updateLinks();
+    this.container = findDOMNode(container);
+    this.updateLinks();
 
-      if (this.container) {
-        this.forceUpdate();
-      }
+    if (this.container) {
+      // Need the container persisted to the ColorPreviewer
+      this.forceUpdate();
     }
   };
 
+  /**
+   * Update all local links except for the full Sassdoc page to use browser history
+   * instead of the default behavior.
+   */
   updateLinks = () => {
     const { history } = this.props;
-    if (!this.container) {
+    if (__TEST__ || !this.container) {
       return;
     }
 

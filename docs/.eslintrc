@@ -7,6 +7,7 @@
   },
   "globals": {
     "__DEV__": true,
+    "__TEST__": false,
     "__CLIENT__": true,
     "__SSR__": false,
     "PUBLIC_URL": "",
