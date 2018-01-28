@@ -162,7 +162,7 @@ function makeConfig(server, production) {
     const extractStyles = new ExtractTextPlugin({
       filename: `styles${PRODUCTION_SUFFIX}.css`,
       allChunks: true,
-      disable: !production,
+      disable: !production && !SSR,
     });
     dist = clientDist;
     entry = production ? clientEntry : [...CLIENT_HOT_ENTRIES, clientEntry];
@@ -226,6 +226,7 @@ function makeConfig(server, production) {
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
+      clientLogLevel: 'error',
     };
   }
 
