@@ -69,7 +69,7 @@ can update them at a component level.
 ```
 
 ### Creating a Theme without Material Design Colors
-Even though there are a bunch of "amazing" colors available to you in react-md and material design, it
+Even though there are a bunch of great colors available to you in react-md and material design, it
 is sometimes helpful to be able to define custom colors and not use defined colors to get a unique branding
 for your application. When you use a color that is not a part of material design, you will run _hopefully_ see
 some Sass warnings about applying fallback colors. Follow the example below to understand these warnings
