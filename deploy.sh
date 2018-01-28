@@ -23,6 +23,7 @@ tar --exclude='docs/src/server/databases/.gitkeep' \
     lib \
     docs/dist \
     docs/public \
+    docs/src/constants/scssColors.js
     docs/src/server/databases \
     docs/webpack-assets.json
 
