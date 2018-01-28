@@ -22,6 +22,7 @@
     "start:dev-server": "nodemon --config nodemon.server.json --exec \"npm run build:dev-server -- -w\"",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
+    "colors": "cross-env NODE_ENV=scripts babel-node src/scripts/createSassVariableConstants.js",
     "doc-dbs": "npm run sassdoc && npm run docgen && npm run examples-db",
     "jsdoc": "npm run jsdoc:build && npm run jsdoc:create",
     "jsdoc:build": "jsdoc -c jsdoc-conf.json ../src/js -X > src/server/databases/jsdoc.json",
