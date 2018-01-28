@@ -126,7 +126,7 @@ export function highlightCode(markdown, { showToolbar = true, showLineNumbers = 
     let lineNumbers = '';
     if (showLineNumbers && lines > 1) {
       lineNumbers = '<span aria-hidden="true" class="line-numbers-rows">';
-      for (let i = 0; i <= lines; i += 1) {
+      for (let i = 0; i < lines; i += 1) {
         lineNumbers += '<span></span>';
       }
       lineNumbers += '</span>';
