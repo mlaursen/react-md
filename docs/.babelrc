@@ -9,6 +9,9 @@
     "stage-0"
   ],
   "plugins": [
+    ["inline-import", {
+      "extensions": [".md"]
+    }],
     ["module-resolver", {
       "alias": {
         "imgs": "./src/imgs",
