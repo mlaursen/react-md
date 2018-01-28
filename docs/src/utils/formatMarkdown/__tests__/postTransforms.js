@@ -31,7 +31,7 @@ describe('postTransforms', () => {
   });
 
   describe('makeLink', () => {
-    it('should returna link with an icon related to the provided id and text', () => {
+    it('should return a link with an icon related to the provided id and text', () => {
       const expected1 = `<a href="#hello-world" class="quick-link__link quick-link__link--markdown">${makeIcon('Hello, World!')}</a>`;
       expect(makeLink('hello-world', 'Hello, World!')).toBe(expected1);
     });
