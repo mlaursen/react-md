@@ -140,7 +140,7 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += manifest;
 
   page += `</head><body ${head.bodyAttributes.toString()}><div id="app">${html}</div>`;
-  page += `<script>window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
+  page += `<script>window.Prism=${serialize({ manual: true })};window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
   if (store) {
     page += `window.__INITIAL_STATE__=${serialize(store.getState())};`;
   }
