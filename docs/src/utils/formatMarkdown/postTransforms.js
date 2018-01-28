@@ -9,7 +9,9 @@ import Prism from 'utils/Prism';
  * @return {String} an html string for the icon.
  */
 export function makeIcon(text) {
-  text = text.replace(/<a href=".*">(.+)<\/a>/g, '$1');
+  // remove any wrapping links in the text and escape any double quotes
+  text = text.replace(/<a href=".*">(.+)<\/a>/g, '$1')
+    .replace(/"/g, '\\"');
   return `<i class="md-icon material-icons" title="Quick link to ${text}">link</i>`;
 }
 
@@ -121,7 +123,7 @@ export function highlightCode(markdown) {
     const lines = get(code.match(/\r?\n/g), 'length', 0);
     const highlighted = lang.match(/text/) ? code : Prism.highlight(code, Prism.languages[language]);
     let lineNumbers = '<span aria-hidden="true" class="line-numbers-rows">';
-    for (let i = 0; i < lines; i += 1) {
+    for (let i = 0; lines > 1 && i < lines; i += 1) {
       lineNumbers += '<span></span>';
     }
     lineNumbers += '</span>';

@@ -36,6 +36,7 @@ blockquote {
   &__preview {
     $offset: .25em;
 
+    border: 1px solid $md-black-base;
     border-radius: $border-radius;
     bottom: $offset;
     left: $offset;

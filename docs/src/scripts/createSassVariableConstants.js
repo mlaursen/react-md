@@ -47,5 +47,5 @@ readFile(COLORS, 'utf8')
 export default ${JSON.stringify(variables, null, 2)}`)
   .then(fileContents => writeFile(COLOR_CONSTANTS, fileContents, 'utf8'))
   .then(() => {
-    console.log(`Created ${COLOR_CONSTANTS}`);
+    console.log(`Created '${COLOR_CONSTANTS}'`);
   });

@@ -62,9 +62,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"
@@ -198,9 +196,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
             <span
               aria-hidden="true"
               class="line-numbers-rows"
-            >
-              <span />
-            </span>
+            />
           </code>
           <div
             class="toolbar"
@@ -318,9 +314,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"
@@ -670,9 +664,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"
@@ -1299,9 +1291,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"
@@ -1435,9 +1425,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
             <span
               aria-hidden="true"
               class="line-numbers-rows"
-            >
-              <span />
-            </span>
+            />
           </code>
           <div
             class="toolbar"
@@ -1555,9 +1543,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"
@@ -1907,9 +1893,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
               <span
                 aria-hidden="true"
                 class="line-numbers-rows"
-              >
-                <span />
-              </span>
+              />
             </code>
             <div
               class="toolbar"

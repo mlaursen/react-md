@@ -4,7 +4,6 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import { withRouter } from 'react-router';
 
-import Prism from 'utils/Prism';
 import formatMarkdown from 'utils/formatMarkdown';
 import ColorPreviewer from './ColorPreviewer';
 import './_styles.scss';
@@ -88,16 +87,13 @@ export class PureMarkdown extends PureComponent {
 
     const html = formatMarkdown(markdown);
     if (!this.state.html || this.state.html.__html !== html) {
+      // Kind of cheating here. I want to force an update on the ColorPreviewer
+      // whenever the markdown changes, so just increment some arbitrary key
+      // whenever that happens so it will re-render.
       this.setState({
-        html: { __html: formatMarkdown(markdown) },
+        html: { __html: html },
         previewerKey: this.state.previewerKey + 1,
-      }, this.highlight);
-    }
-  };
-
-  highlight = () => {
-    if (false && this.container) { // eslint-disable-line
-      Prism.highlightAll();
+      });
     }
   };
 

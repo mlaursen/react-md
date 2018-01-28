@@ -87,9 +87,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -158,9 +156,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -246,9 +242,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -325,9 +319,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -396,9 +388,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -503,9 +493,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"
@@ -576,9 +564,7 @@ size.
                 <span
                   aria-hidden="true"
                   class="line-numbers-rows"
-                >
-                  <span />
-                </span>
+                />
               </code>
               <div
                 class="toolbar"

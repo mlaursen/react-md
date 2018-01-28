@@ -34,9 +34,7 @@ exports[`FunctionsSection should render correctly 1`] = `
         <span
           aria-hidden="true"
           class="line-numbers-rows"
-        >
-          <span />
-        </span>
+        />
       </code>
       <div
         class="toolbar"
@@ -104,9 +102,7 @@ exports[`FunctionsSection should render correctly 2`] = `
         <span
           aria-hidden="true"
           class="line-numbers-rows"
-        >
-          <span />
-        </span>
+        />
       </code>
       <div
         class="toolbar"
@@ -176,9 +172,7 @@ exports[`FunctionsSection should render correctly 3`] = `
         <span
           aria-hidden="true"
           class="line-numbers-rows"
-        >
-          <span />
-        </span>
+        />
       </code>
       <div
         class="toolbar"
@@ -368,9 +362,7 @@ exports[`FunctionsSection should render correctly 4`] = `
         <span
           aria-hidden="true"
           class="line-numbers-rows"
-        >
-          <span />
-        </span>
+        />
       </code>
       <div
         class="toolbar"

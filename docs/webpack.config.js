@@ -349,6 +349,7 @@ function makeConfig(server, production) {
         PUBLIC_URL: JSON.stringify(publicUrl),
         __NGINX__: !!process.env.USE_NGINX,
         __DEV__: !production,
+        __TEST__: false,
         __CLIENT__: !server,
         __SSR__: production || SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
