@@ -18,7 +18,7 @@
     "start": "cross-env NODE_ENV=production node -r dotenv/config dist/server.js",
     "start:prod": "npm run build && npm run start",
     "start:dev": "npm-run-all -p start:dev-client start:dev-server",
-    "start:dev-client": "nodemon --config nodemon.client.json --exec \"webpack-dev-server -w --env.development --env.client\"",
+    "start:dev-client": "nodemon --config nodemon.client.json --exec \"webpack-dev-server -w --progress --color --env.development --env.client\"",
     "start:dev-server": "nodemon --config nodemon.server.json --exec \"npm run build:dev-server -- -w\"",
     "test": "jest",
     "test:watch": "npm run test -- --watch",

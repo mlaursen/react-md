@@ -3,25 +3,29 @@ import http from 'http';
 import winston from 'winston';
 import server from './server';
 
-let port = process.env.NODE_PORT;
-if (!port) {
-  const message = 'The `NODE_PORT` environment variable has not been set. This can be done by copying '
-    + 'the `.env.example` to `.env` in the docs root directory and updating the `NODE_PORT` or set an '
+function log(name, defaultValue, required = true) {
+  const message = `The \`${name}\` environment variable has not been set. This can be done by copying `
+    + `the \`.env.example\` to \`.env\` in the docs root directory and updating the \`${name}\` or set an `
     + 'environment variable on your machine.';
 
-  if (__DEV__) {
-    winston.info('Defaulting `NODE_PORT` to `8080` for dev mode.');
-    winston.info('It is recommended to copy the `.env.example` file to `.env` and set the `NODE_PORT` there.');
-    port = 8080;
+  if (__DEV__ || !required) {
+    winston.info(`Defaulting \`${name}\` to \`${defaultValue}\` for dev mode.`);
+    winston.info(`It is recommended to copy the \`.env.example\` file to \`.env\` and set the \`${name}\` there.`);
   } else {
     throw new Error(message);
   }
 }
 
+let port = process.env.NODE_PORT;
+if (!port) {
+  log('NODE_PORT', '8080');
+  port = 8080;
+}
+
 const httpServer = http.createServer(server);
 
 let currentServer = server;
-httpServer.listen(process.env.NODE_PORT, (e) => {
+httpServer.listen(port, (e) => {
   if (e) {
     throw e;
   }
@@ -29,7 +33,7 @@ httpServer.listen(process.env.NODE_PORT, (e) => {
   const { port, address } = httpServer.address();
   let url = address;
   if (address === '::') {
-    url = `http://localhost:${port}`;
+    url = `${PUBLIC_URL}:${port}`;
   }
 
   winston.info(`Started documentation server at: '${url}'`);

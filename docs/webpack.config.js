@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -12,6 +12,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
+const winston = require('winston');
 const { name, homepage } = require('./package.json');
 
 dotenv.config();
@@ -21,17 +22,11 @@ const clientEntry = path.join(src, 'client', 'index.jsx');
 const serverEntry = path.join(src, 'server', 'index.js');
 const clientDist = path.resolve(__dirname, 'public');
 const serverDist = path.join(__dirname, 'dist');
-const PUBLIC_URL = process.env.PUBLIC_URL || homepage;
 const SERVICE_WORKER = 'service-worker.js';
 const SSR = !!process.env.USE_SSR;
 const HOT_RELOAD_PORT = process.env.HOT_RELOAD_PORT || 3001;
 const POLL_ENTRY = 'webpack/hot/poll?1000';
 const PRODUCTION_SUFFIX = '.[chunkhash:8].min';
-const CLIENT_HOT_ENTRIES = [
-  'react-hot-loader/patch',
-  `webpack-dev-server/client?http://localhost:${HOT_RELOAD_PORT}`,
-  'webpack/hot/only-dev-server',
-];
 const DEV_PLUGINS = [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
@@ -126,9 +121,21 @@ const SERVER_PROD_PLUGINS = [];
 
 
 function makeConfig(server, production) {
-  let publicUrl = PUBLIC_URL;
-  if (!production && PUBLIC_URL === homepage) {
-    publicUrl = '';
+  let publicUrl = process.env.PUBLIC_URL;
+  if (!publicUrl) {
+    publicUrl = production ? homepage : 'http://localhost';
+    winston.info(`The \`PUBLIC_URL\` environment variable was not set. Defaulting to \`${publicUrl}\`.`);
+  }
+
+  if (!publicUrl.match(/^https?:\/\//)) {
+    winston.info('Updating the `PUBLIC_URL` environment variable to be prefixed with `http://` since the protocol was missing.');
+    winston.info('Please update the `PUBLIC_URL` environment variable with a valid protocol if this is not desired.');
+    publicUrl = `http://${publicUrl}`;
+  }
+
+  let publicPath = `${publicUrl}/`;
+  if (!production) {
+    publicPath = `${publicUrl}:${HOT_RELOAD_PORT}/`;
   }
 
   let dist;
@@ -166,7 +173,15 @@ function makeConfig(server, production) {
       disable: !production && !SSR,
     });
     dist = clientDist;
-    entry = production ? clientEntry : [...CLIENT_HOT_ENTRIES, clientEntry];
+    entry = clientEntry;
+    if (!production) {
+      entry = [
+        'react-hot-loader/patch',
+        `webpack-dev-server/client?${publicPath}`,
+        'webpack/hot/only-dev-server',
+        entry,
+      ];
+    }
     filename = `[name]${production ? PRODUCTION_SUFFIX : ''}.js`;
     chunkFilename = `[name]${production ? PRODUCTION_SUFFIX : ''}.js`;
     browserTargets = ['last 2 versions', 'safari >= 7'];
@@ -221,7 +236,7 @@ function makeConfig(server, production) {
     });
     babelPlugins.push('react-hot-loader/babel');
     devServer = {
-      host: 'localhost',
+      host: publicUrl.replace(/https?:\/\/(.+)(:.+)?/, '$1'),
       port: HOT_RELOAD_PORT,
       historyApiFallback: true,
       hot: true,
@@ -242,11 +257,12 @@ function makeConfig(server, production) {
   }
 
   const routesName = !server && production ? 'async' : 'sync';
-  let publicPath = `${publicUrl}/`;
-  if (!production && !server && publicPath === '/') {
-    publicPath = `http://localhost:${HOT_RELOAD_PORT}${publicPath}`;
-  }
 
+  winston.info(`Starting compliation with:
+- \`publicUrl\` = \`${publicUrl}\`
+- \`publicPath\` = \`${publicPath}\`
+
+  `);
   return {
     bail: production,
     cache: !production,
@@ -313,7 +329,7 @@ function makeConfig(server, production) {
           loader: 'svg-sprite-loader',
           options: {
             extract: true,
-            spriteFilename: 'icon-sprites.[hash:8].svg',
+            spriteFilename: `icon-sprites${production ? '.[hash:8]' : ''}.svg`,
           },
         }, {
           loader: 'svgo-loader',
