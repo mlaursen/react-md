@@ -247,6 +247,10 @@ function makeConfig(server, production) {
     };
   }
 
+  if (!production) {
+    babelPlugins.push('transform-react-jsx-source');
+  }
+
   const envPresetTargets = {};
   if (browserTargets) {
     envPresetTargets.browsers = browserTargets;
