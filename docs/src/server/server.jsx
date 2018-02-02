@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
+import cors from 'cors';
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
@@ -34,7 +35,7 @@ if (!global.__NGINX__) {
   }));
 }
 
-app.use(API_ENDPOINT, api);
+app.use(API_ENDPOINT, cors({ origin: PUBLIC_URL }), api);
 app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
 
 app.get('*', cookieParser(), async (req, res) => {

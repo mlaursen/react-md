@@ -50,6 +50,7 @@
     "clipboard": "^1.7.1",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "cross-env": "^5.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
