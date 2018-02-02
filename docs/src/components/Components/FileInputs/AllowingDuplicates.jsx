@@ -39,8 +39,9 @@ export default class AllowingDuplicates extends PureComponent {
   };
 
   dismissToast = () => {
-    const [, ...toasts] = this.state.toasts;
-    this.setState({ toasts });
+    this.setState(prevState => ({
+      toasts: prevState.toasts.slice(1),
+    }));
   };
 
   render() {
