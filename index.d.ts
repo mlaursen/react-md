@@ -20,6 +20,7 @@ export {
   TableBody, TableBodyProps,
   TableFooter, TableFooterProps,
   TablePagination, TablePaginationProps,
+  TableCardHeader, TableCardHeaderProps,
   TableRow, TableRowProps,
   TableColumn, TableColumnProps,
   EditDialogColumn, EditDialogColumnProps,
