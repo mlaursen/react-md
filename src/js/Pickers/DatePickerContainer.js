@@ -294,12 +294,6 @@ export default class DatePickerContainer extends PureComponent {
     }),
 
     /**
-     * The timeZone to be used in all formatting operations.
-     * For a full list of possible timeZone values check https://www.iana.org/time-zones.
-     */
-    timeZone: PropTypes.string.isRequired,
-
-    /**
      * Boolean if the text field for the Date Picker should be displayed as full width.
      */
     fullWidth: PropTypes.bool,
@@ -545,7 +539,6 @@ export default class DatePickerContainer extends PureComponent {
     closeOnEsc: true,
     disableScrollLocking: false,
     'aria-label': 'Pick a date',
-    timeZone: 'UTC',
   };
 
   constructor(props) {
@@ -557,6 +550,7 @@ export default class DatePickerContainer extends PureComponent {
       defaultValue,
       DateTimeFormat,
       locales,
+      formatOptions,
       minDate,
       maxDate,
     } = props;
@@ -567,7 +561,7 @@ export default class DatePickerContainer extends PureComponent {
       date = this._getDate(defaultValue);
       value = typeof defaultValue === 'string'
         ? defaultValue
-        : DateTimeFormat(locales, this._getFormatOptions()).format(defaultValue);
+        : DateTimeFormat(locales, formatOptions).format(defaultValue);
     } else {
       date = new Date();
       value = '';
@@ -663,11 +657,6 @@ export default class DatePickerContainer extends PureComponent {
     return value;
   }
 
-  _getFormatOptions() {
-    const { formatOptions, timeZone } = this.props;
-    return { ...formatOptions, timeZone };
-  }
-
   _setContainer= (container) => {
     this._container = container;
   };
@@ -711,8 +700,8 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   _handleOkClick = (e) => {
-    const { DateTimeFormat, locales, onChange, onVisibilityChange } = this.props;
-    const value = DateTimeFormat(locales, this._getFormatOptions()).format(this.state.calendarTempDate);
+    const { DateTimeFormat, locales, onChange, formatOptions, onVisibilityChange } = this.props;
+    const value = DateTimeFormat(locales, formatOptions).format(this.state.calendarTempDate);
     if (onChange) {
       onChange(value, new Date(this.state.calendarTempDate), e);
     }
@@ -766,11 +755,11 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   _setCalendarTempDate = (calendarTempDate) => {
-    const { autoOk, DateTimeFormat, locales, onChange } = this.props;
+    const { autoOk, DateTimeFormat, locales, onChange, formatOptions } = this.props;
 
     const state = { calendarTempDate };
     if (autoOk) {
-      const value = DateTimeFormat(locales, this._getFormatOptions()).format(calendarTempDate);
+      const value = DateTimeFormat(locales, formatOptions).format(calendarTempDate);
       if (onChange) {
         onChange(value, new Date(calendarTempDate));
       }
@@ -826,12 +815,12 @@ export default class DatePickerContainer extends PureComponent {
    * @return {String} a formatted date string or the empty string.
    */
   _getFormattedValue(props, state) {
-    const { DateTimeFormat, locales } = props;
+    const { DateTimeFormat, locales, formatOptions } = props;
     const value = getField(props, state, 'value');
     if (!value) {
       return '';
     } else if (value instanceof Date) {
-      return DateTimeFormat(locales, this._getFormatOptions()).format(new Date(value));
+      return DateTimeFormat(locales, formatOptions).format(new Date(value));
     } else {
       return value;
     }

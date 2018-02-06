@@ -20,7 +20,7 @@ describe('CalendarDate', () => {
       date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      timeZone: 'UTC',
+      index: 0,
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
@@ -35,7 +35,7 @@ describe('CalendarDate', () => {
       date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      timeZone: 'UTC',
+      index: 0,
     };
 
     let date = renderIntoDocument(<CalendarDate {...props} />);
@@ -50,21 +50,17 @@ describe('CalendarDate', () => {
     expect(props.onClick.mock.calls.length).toBe(1);
   });
 
-  it('formats the date into the state using timeZone passed as prop', () => {
+  it('formats the date as the state', () => {
     const props = {
-      DateTimeFormat: jest.fn(() => ({ format: (date) => date.getDate() })),
+      DateTimeFormat,
       locales: 'en-US',
-      date: new Date(2017, 10, 2),
+      date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      timeZone: 'UTC',
+      index: 0,
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
-    expect(date.state.date).toBe(props.date.getDate());
-    expect(props.DateTimeFormat).toHaveBeenCalledWith(props.locales, {
-      day: 'numeric',
-      timeZone: props.timeZone,
-    });
+    expect(date.state.date).toBe('');
   });
 });
