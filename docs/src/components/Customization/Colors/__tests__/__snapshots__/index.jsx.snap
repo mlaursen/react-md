@@ -18,7 +18,7 @@ a text color of a green accent, you can use the variables as follows:</p>
   <span class=\\"token property\\">background</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-blue-500</span><span class=\\"token punctuation\\">;</span>
   <span class=\\"token property\\">color</span><span class=\\"token punctuation\\">:</span> <span class=\\"token variable\\">$md-green-a-100</span><span class=\\"token punctuation\\">;</span>
 <span class=\\"token punctuation\\">}</span>
-<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
+<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span><span></span></span></code><div class=\\"toolbar\\"><div class=\\"toolbar-item\\"><span>Sass (Scss)</span></div></pre>
 <p>All colors will have primary colors with suffixes: <code>50, 100, 200, 300, 400, 500, 600, 700, 800, 900</code>
 and all colors except for <code>brown</code>, <code>grey</code> and <code>blue-grey</code> will have accent suffixes of
 <code>100, 200, 400, 700</code>. In addition, the <code>$md-black-base</code> and <code>$md-white-base</code> variables are available.</p>
