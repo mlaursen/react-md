@@ -5,7 +5,7 @@ import loremIpsum from 'lorem-ipsum';
 
 import Configuration from './Configuration';
 
-const paragraphs = [...new Array(10)].map((_, i) => (
+const paragraphs = Array.from(Array(10)).map((_, i) => (
   <p key={i}>
     {loremIpsum({ units: 'paragraphs', count: 1 })}
   </p>

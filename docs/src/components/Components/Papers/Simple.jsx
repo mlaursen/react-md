@@ -4,7 +4,7 @@ import { Paper } from 'react-md';
 
 const Simple = () => (
   <div className="papers__container">
-    {[...new Array(6)].map((_, i) => (
+    {Array.from(Array(6)).map((_, i) => (
       <Paper
         key={i}
         zDepth={i}

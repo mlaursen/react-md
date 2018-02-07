@@ -18,6 +18,7 @@ docs/public
 docs/src/server/databases/*
 !docs/src/server/databases/airQuality.json
 src/scss/bundles
+docs/src/constants/scssColors.js
 
 # Testing
 coverage

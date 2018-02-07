@@ -33,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="md-grid">
         <Card className="md-cell">
-          <CardTitle title="Hello, World!"  />
+          <CardTitle title="Hello, World!" />
           <CardText>
             Lorem ipsum... pretend more ...
           </CardText>

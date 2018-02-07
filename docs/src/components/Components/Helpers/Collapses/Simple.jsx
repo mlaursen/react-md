@@ -1,15 +1,19 @@
 import React, { PureComponent } from 'react';
 import loremIpsum from 'lorem-ipsum';
-import { Button, Collapse } from 'react-md';
+import { Button, Collapse, GridList } from 'react-md';
 
 export default class Simple extends PureComponent {
-  state = {
-    collapsed: true,
-    ipsum: [...new Array(3)].map((_, i) => ({
-      key: i,
-      text: loremIpsum({ count: 1, units: 'paragraphs' }),
-    })),
-  };
+  state = { collapsed: true, ipsum: [] };
+
+  componentWillMount() {
+    this.setState({
+      collapsed: true,
+      ipsum: Array.from(Array(5)).map((_, i) => ({
+        key: i,
+        text: loremIpsum({ count: 1, units: 'paragraphs' }),
+      })),
+    });
+  }
 
   toggle = () => {
     this.setState({ collapsed: !this.state.collapsed });
@@ -24,9 +28,9 @@ export default class Simple extends PureComponent {
           Toggle Collapse
         </Button>
         <Collapse collapsed={collapsed}>
-          <div className="md-grid">
-            {ipsum.map(({ key, text }) => <p key={key} className="md-cell md-cell--12">{text}</p>)}
-          </div>
+          <GridList size={12}>
+            {ipsum.map(({ key, text }) => <p key={key}>{text}</p>)}
+          </GridList>
         </Collapse>
       </div>
     );

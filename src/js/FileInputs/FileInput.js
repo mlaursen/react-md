@@ -5,7 +5,6 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import { TAB, SPACE, ENTER } from '../constants/keyCodes';
-import getField from '../utils/getField';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import getBtnStyles from '../Buttons/getBtnStyles';
 import FontIcon from '../FontIcons/FontIcon';
@@ -136,14 +135,6 @@ export default class FileInput extends PureComponent {
     onChange: PropTypes.func,
 
     /**
-     * An optional value to apply to the `FileInput`. This is usually not needed and the
-     * `allowDuplicates` is what you are probably looking for instead.
-     *
-     * @see {@link #allowDuplicates}
-     */
-    value: PropTypes.string,
-
-    /**
      * Boolean if the `FileInput` is currently disabled.
      */
     disabled: PropTypes.bool,
@@ -190,6 +181,10 @@ export default class FileInput extends PureComponent {
 
     iconChildren: deprecated(PropTypes.node, 'Use `icon` instead'),
     iconClassName: deprecated(PropTypes.string, 'Use `icon` instead'),
+    value: deprecated(
+      PropTypes.string,
+      'There should\'t be a reason to set the value manually. Check out {@link #allowDuplicates} instead'
+    ),
   };
 
   static defaultProps = {
@@ -198,15 +193,11 @@ export default class FileInput extends PureComponent {
     allowDuplicates: false,
   };
 
-  state = { hover: false, pressed: false, value: '' };
+  state = { hover: false, pressed: false };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
       this.setState({ hover: false });
-    }
-
-    if (nextProps.allowDuplicates && this.state.value) {
-      this.setState({ value: '' });
     }
   }
 
@@ -234,18 +225,14 @@ export default class FileInput extends PureComponent {
   }
 
   _handleChange = (e) => {
-    const { multiple, onChange, allowDuplicates } = this.props;
-    const { files, value } = e.target;
+    const { multiple, onChange } = this.props;
+    const { files } = e.target;
     if (onChange) {
       if (!multiple) {
         onChange(files[0] || null, e);
       } else {
         onChange(Array.prototype.slice.call(files), e);
       }
-    }
-
-    if (!allowDuplicates) {
-      this.setState({ value });
     }
   };
 
@@ -364,14 +351,13 @@ export default class FileInput extends PureComponent {
       accept,
       multiple,
       swapTheming,
+      allowDuplicates,
 
       // Deprecated
       iconChildren,
       iconClassName,
       /* eslint-disable no-unused-vars */
       icon: propIcon,
-      value: propValue,
-      allowDuplicates,
       onChange,
       onKeyUp,
       onKeyDown,
@@ -381,10 +367,12 @@ export default class FileInput extends PureComponent {
       onMouseLeave,
       onTouchStart,
       onTouchEnd,
+
+      // deprecated
+      value: propValue,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    const value = getField(this.props, this.state, 'value');
     let { icon } = this.props;
     if (iconClassName || iconChildren) {
       icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
@@ -394,6 +382,11 @@ export default class FileInput extends PureComponent {
     if (icon) {
       icon = React.cloneElement(icon, { inherit: true });
       labelChildren = <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>;
+    }
+
+    let value;
+    if (allowDuplicates) {
+      value = '';
     }
 
     return (

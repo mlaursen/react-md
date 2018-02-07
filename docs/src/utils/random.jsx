@@ -29,5 +29,5 @@ export function randomImage(options = {}) {
 }
 
 export function randomImages(num, options = { width: 40 }) {
-  return [...new Array(num)].map(() => randomImage(options));
+  return Array.from(Array(num)).map(() => randomImage(options));
 }

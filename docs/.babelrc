@@ -1,34 +1,25 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "react",
+    "stage-0"
+  ],
   "plugins": [
-    "syntax-dynamic-import",
-    "syntax-async-functions",
-    "transform-regenerator",
-    "transform-decorators-legacy",
     ["inline-import", {
       "extensions": [".md"]
+    }],
+    ["module-resolver", {
+      "alias": {
+        "imgs": "./src/imgs",
+        "constants": "./src/constants",
+        "server": "./src/server",
+        "utils": "./src/utils",
+        "react-md": "../"
+      }
     }]
-  ],
-  "env": {
-    "scripts": {
-      "presets": [
-        ["env", {
-          "targets": {
-            "node": "current"
-          }
-        }]
-      ],
-      "plugins": [
-        ["module-resolver", {
-          "alias": {
-            "imgs": "./src/imgs",
-            "constants": "./src/constants",
-            "server": "./src/server",
-            "utils": "./src/utils",
-            "react-md": "../"
-          }
-        }]
-      ]
-    }
-  }
+  ]
 }

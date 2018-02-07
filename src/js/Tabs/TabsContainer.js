@@ -255,8 +255,8 @@ export default class TabsContainer extends PureComponent {
     }
 
     const activePanel = this._container.querySelector('.md-tab-panel[aria-hidden=false]');
-    if (activePanel && this.state.panelHeight !== activePanel.offsetHeight) {
-      this.setState({ panelHeight: activePanel.offsetHeight });
+    if (activePanel && this.state.panelHeight !== activePanel.scrollHeight) {
+      this.setState({ panelHeight: activePanel.scrollHeight });
     }
   };
 

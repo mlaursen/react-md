@@ -707,7 +707,7 @@ export default class NavigationDrawer extends PureComponent {
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIcon` instead'),
     closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIcon` instead'),
     temporaryIconChildren: deprecated(PropTypes.node, 'Use the `temporaryIcon` instead'),
-    temporaryIconClassName: deprecated(PropTypes.string, 'Use the `temporaryIcon` instead.'),
+    temporaryIconClassName: deprecated(PropTypes.string, 'Use the `temporaryIcon` instead'),
     persistentIconChildren: deprecated(PropTypes.node, 'Use the `persistentIcon` instead'),
     persistentIconClassName: deprecated(PropTypes.string, 'Use the `persistentIcon` prop instead'),
     onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityChange` or `onMediaTypeChange` instead'),

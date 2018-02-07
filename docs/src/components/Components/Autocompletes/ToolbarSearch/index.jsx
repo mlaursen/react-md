@@ -49,7 +49,8 @@ export default class ToolbarSearch extends PureComponent {
 
   search = (value) => {
     const now = Date.now();
-    const results = [...new Array(randomInt({ min: 2, max: 5 }))].map((_, i) => <FakeResult index={i} value={value} key={`${now}-${i}`} />);
+    const results = Array.from(Array(randomInt({ min: 2, max: 5 })))
+      .map((_, i) => <FakeResult index={i} value={value} key={`${now}-${i}`} />);
 
     this.setState({ search: value, results });
   };

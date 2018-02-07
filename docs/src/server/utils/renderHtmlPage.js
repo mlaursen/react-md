@@ -1,5 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
+import { get } from 'lodash';
 import { DEFAULT_DESCRIPTION } from 'state/helmet/meta';
 
 let manifest;
@@ -9,7 +12,7 @@ try {
   }
 
   /* eslint-disable global-require */
-  const manifestJSON = require('../../../public/assets/manifest.json');
+  const manifestJSON = require('../../../public/manifest.json');
 
   manifest = `<script>
 //<![CDATA[
@@ -60,9 +63,65 @@ const META = [{
   content: '/react-md.png',
 }].reduce((allMeta, meta) => `${allMeta}<meta${Object.keys(meta).reduce((s, key) => `${s} ${key}="${meta[key]}"`, '')}>`, '');
 
+function getStyleLinks(assets) {
+  const { css } = assets.main;
+  if (!css) {
+    return '';
+  }
+
+  return (Array.isArray(css) ? css : [css]).reduce((links, href) => {
+    let link;
+    if (href) {
+      link = `<link rel="stylesheet" type="text/css" href="${href}">`;
+    }
+
+    if (!links) {
+      return link || '';
+    } else if (!href) {
+      return links;
+    }
+
+    return `${links}${link}`;
+  }, '');
+}
+
+function getScriptLinks(assets) {
+  const js = get(assets, 'main.js', null);
+  const manifest = get(assets, 'manifest.js', null);
+
+  const links = [];
+  if (manifest) {
+    links.push(manifest);
+  }
+
+  if (js) {
+    links.push(js);
+  }
+
+  return links.reduce((links, src) => {
+    let script;
+    if (src) {
+      script = `<script src="${src}"></script>`;
+    }
+
+    if (!links) {
+      return script || '';
+    } else if (!script) {
+      return links;
+    }
+
+    return `${links}${script}`;
+  }, '');
+}
+
+const ANALYTICS_CODE = process.env.GOOGLE_ANALYTICS_CODE || 'UA-76079335-1';
+
+let assets;
 export default function renderHtmlPage(store, bundles = [], html = '') {
   const head = Helmet.renderStatic();
-  const assets = global.webpackIsomorphicTools.assets();
+  if (__DEV__ || !assets) {
+    assets = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'webpack-assets.json'), 'utf-8'));
+  }
 
   let page = `<!DOCTYPE html><html ${head.htmlAttributes.toString()}>`;
   page += '<head>';
@@ -77,44 +136,16 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   }
 
   page += '<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">';
-
-  const styleKeys = Object.keys(assets.styles).reverse();
-  if (__DEV__ && !styleKeys.length) {
-    // this should really be every scss file, but I just need the base styles
-    // const styles = require('../../client/styles.scss')._style;
-    // page += `<style>${styles}</style>`;
-
-    // Can also do this for faster page loads, but have to reload page if styles get removed
-    // const styles = require('../../client/styles.scss')._style
-    //   + require('../../components/App/Footer/_styles.scss')._style
-    //   + require('../../components/Customization/Colors/_styles.scss')._style
-    //   + require('../../components/Customization/Themes/ThemeBuilder/_styles.scss')._style
-    //   + require('../../components/DiscoverMore/Showcases/_styles.scss')._scss
-    //   + require('../../components/DocumentationTabs/_styles.scss')._style
-    //   + require('../../components/ExamplesPage/_styles.scss')._style
-    //   + require('../../components/ExpandableSource/_styles.scss')._style
-    //   + require('../../components/Home/_styles.scss')._style
-    //   + require('../../components/SassDocPage/_styles.scss')._style
-    //   + require('../../components/Search/_styles.scss')._style;
-
-    // page += `<style>${styles}</style>`;
-  }
-
-  page += styleKeys.map(style =>
-    `<link href="${assets.styles[style]}" rel="stylesheet" type="text/css">`
-  ).join('');
+  page += getStyleLinks(assets);
   page += manifest;
 
   page += `</head><body ${head.bodyAttributes.toString()}><div id="app">${html}</div>`;
-  page += `<script>window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
+  page += `<script>window.Prism=${serialize({ manual: true })};window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
   if (store) {
     page += `window.__INITIAL_STATE__=${serialize(store.getState())};`;
   }
   page += '</script>';
-
-  page += Object.keys(assets.javascript).reverse().map(script =>
-    `<script src="${assets.javascript[script]}"></script>`
-  ).join('');
+  page += getScriptLinks(assets);
   page += head.script.toString();
   if (!__DEV__) {
     // google analytics
@@ -123,7 +154,7 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
     page += '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),';
     page += 'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)';
     page += '})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');';
-    page += `ga('create', '${process.env.GOOGLE_ANALYTICS_CODE || 'UA-76079335-1'}', 'auto');`;
+    page += `ga('create', '${ANALYTICS_CODE}', 'auto');`;
     page += 'ga(\'send\', \'pageview\');';
     page += '</script>';
   }

@@ -27,7 +27,7 @@
     "css-bundles": "node ./makeBundles.js",
     "dev": "npm-run-all -p build:watch docs",
     "dev:minimal": "npm-run-all -p build:es:watch docs:minimal",
-    "docs": "cd docs && npm run prebuild && npm run start:dev",
+    "docs": "cd docs && npm run clean && npm run doc-dbs && npm-run-all -p start:dev watch:all",
     "docs:minimal": "cd docs && npm run start:dev",
     "prebuild": "rimraf es lib dist",
     "build:watch": "npm-run-all -p build:cjs:watch build:es:watch",

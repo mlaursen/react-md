@@ -248,8 +248,20 @@ exports[`ThemeBuilder should render correctly 1`] = `
       class="markdown-container md-text-container"
     >
       <h3
+        class="quick-link quick-link__container"
         id="custom-css-theme-builder"
       >
+        <a
+          class="quick-link__link quick-link__link--markdown"
+          href="#custom-css-theme-builder"
+        >
+          <i
+            class="md-icon material-icons"
+            title="Quick link to Custom CSS Theme Builder"
+          >
+            link
+          </i>
+        </a>
         Custom CSS Theme Builder
       </h3>
       
@@ -347,52 +359,272 @@ or
     class="md-cell md-cell--12 markdown-container"
   >
     <h4
+      class="quick-link quick-link__container"
       id="using-with-sass"
     >
+      <a
+        class="quick-link__link quick-link__link--markdown"
+        href="#using-with-sass"
+      >
+        <i
+          class="md-icon material-icons"
+          title="Quick link to Using with Sass"
+        >
+          link
+        </i>
+      </a>
       Using with Sass
     </h4>
     
 
-    <pre>
-      <code
-        class="lang-scss"
-      >
-        @import '~react-md/src/scss/react-md';
-
-$md-light-theme: true; // optional for light theme
-$md-primary-color: $md-light-blue-500;
-$md-secondary-color: $md-deep-orange-a-200;
-
-@include react-md-everything;
-
-// Or for a subsection
-@include react-md-theme-everything($md-light-blue-500, $md-deep-orange-a-200, $md-light-theme, 'custom-theme');
-
-      </code>
-    </pre>
-    
-
-    <h4
-      id="pre-compiled-themes"
+    <pre
+      class="line-numbers code-toolbar language-scss"
     >
-      Pre-compiled Themes
-    </h4>
-    
+      <code
+        class="language-scss"
+      >
+        <span
+          class="token keyword"
+        >
+          @import
+        </span>
+         
+        <span
+          class="token string"
+        >
+          '~react-md/src/scss/react-md'
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
 
-    <p>
-      This current theme is unavailable as a precomiled package. Only accents of 
-      <code>
-        400
+
+        <span
+          class="token property"
+        >
+          <span
+            class="token variable"
+          >
+            $md-light-theme
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token boolean"
+        >
+          true
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+         
+        <span
+          class="token comment"
+        >
+          // optional for light theme
+        </span>
+        
+
+        <span
+          class="token property"
+        >
+          <span
+            class="token variable"
+          >
+            $md-primary-color
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token variable"
+        >
+          $md-light-blue-500
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
+
+        <span
+          class="token property"
+        >
+          <span
+            class="token variable"
+          >
+            $md-secondary-color
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token variable"
+        >
+          $md-deep-orange-a-200
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
+
+
+        <span
+          class="token keyword"
+        >
+          @include
+        </span>
+         react-md-everything
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
+
+
+        <span
+          class="token comment"
+        >
+          // Or for a subsection
+        </span>
+        
+
+        <span
+          class="token keyword"
+        >
+          @include
+        </span>
+         
+        <span
+          class="token function"
+        >
+          react-md-theme-everything
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token variable"
+        >
+          $md-light-blue-500
+        </span>
+        , 
+        <span
+          class="token variable"
+        >
+          $md-deep-orange-a-200
+        </span>
+        , 
+        <span
+          class="token variable"
+        >
+          $md-light-theme
+        </span>
+        , 
+        <span
+          class="token string"
+        >
+          'custom-theme'
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
+
+        <span
+          aria-hidden="true"
+          class="line-numbers-rows"
+        >
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </span>
       </code>
-       and the 
-      <code>
-        light-theme
-      </code>
-       have been
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar-item"
+        >
+          <span>
+            Sass (Scss)
+          </span>
+        </div>
+        
+
+        <h4
+          class="quick-link quick-link__container"
+          id="pre-compiled-themes"
+        >
+          <a
+            class="quick-link__link quick-link__link--markdown"
+            href="#pre-compiled-themes"
+          >
+            <i
+              class="md-icon material-icons"
+              title="Quick link to Pre-compiled Themes"
+            >
+              link
+            </i>
+          </a>
+          Pre-compiled Themes
+        </h4>
+        
+
+        <p>
+          This current theme is unavailable as a precomiled package. Only accents of 
+          <code>
+            400
+          </code>
+           and the 
+          <code>
+            light-theme
+          </code>
+           have been
 precompiled.
-    </p>
-    
+        </p>
+        
 
+      </div>
+    </pre>
   </div>
 </div>
 `;

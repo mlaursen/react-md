@@ -76,9 +76,11 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 object
 
@@ -128,9 +130,11 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 string
 
@@ -191,11 +195,19 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
-                string *
+                string 
+                <span
+                  class="token operator"
+                >
+                  *
+                </span>
+                
 
               </code>
             </pre>
@@ -251,9 +263,11 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 node
 
@@ -303,9 +317,11 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 bool
 
@@ -359,11 +375,45 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
-                oneOfType([bool, number])
+                <span
+                  class="token function"
+                >
+                  oneOfType
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  (
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  [
+                </span>
+                bool
+                <span
+                  class="token punctuation"
+                >
+                  ,
+                </span>
+                 number
+                <span
+                  class="token punctuation"
+                >
+                  ]
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  )
+                </span>
+                
 
               </code>
             </pre>
@@ -413,9 +463,11 @@ size.
           <section
             class="markdown-container"
           >
-            <pre>
+            <pre
+              class="language-js"
+            >
               <code
-                class="lang-js"
+                class="language-js"
               >
                 custom
 

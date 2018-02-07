@@ -8,16 +8,44 @@ exports[`FunctionsSection should render correctly 1`] = `
   <h3
     class="markdown-container"
   >
-    <pre>
+    <pre
+      class="line-numbers code-toolbar language-js"
+    >
       <code
-        class="lang-js"
+        class="language-js"
       >
-        welcomeToTheTestingClass()
+        <span
+          class="token function"
+        >
+          welcomeToTheTestingClass
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        
 
       </code>
-    </pre>
-    
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar-item"
+        >
+          <span>
+            Js
+          </span>
+        </div>
+        
 
+      </div>
+    </pre>
   </h3>
   <section
     class="md-card-text markdown-container"
@@ -39,16 +67,49 @@ exports[`FunctionsSection should render correctly 2`] = `
   <h3
     class="markdown-container"
   >
-    <pre>
+    <pre
+      class="line-numbers code-toolbar language-js"
+    >
       <code
-        class="lang-js"
+        class="language-js"
       >
-        welcomeToTheTestingClass(): string
+        <span
+          class="token function"
+        >
+          welcomeToTheTestingClass
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         string
 
       </code>
-    </pre>
-    
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar-item"
+        >
+          <span>
+            Js
+          </span>
+        </div>
+        
 
+      </div>
+    </pre>
   </h3>
   <section
     class="md-card-text markdown-container"
@@ -70,16 +131,51 @@ exports[`FunctionsSection should render correctly 3`] = `
   <h3
     class="markdown-container"
   >
-    <pre>
+    <pre
+      class="line-numbers code-toolbar language-js"
+    >
       <code
-        class="lang-js"
+        class="language-js"
       >
-        welcomeToTheTestingClass(something, requiredSomething)
+        <span
+          class="token function"
+        >
+          welcomeToTheTestingClass
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        something
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+         requiredSomething
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        
 
       </code>
-    </pre>
-    
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar-item"
+        >
+          <span>
+            Js
+          </span>
+        </div>
+        
 
+      </div>
+    </pre>
   </h3>
   <section
     class="md-card-text markdown-container"
@@ -216,16 +312,56 @@ exports[`FunctionsSection should render correctly 4`] = `
   <h3
     class="markdown-container"
   >
-    <pre>
+    <pre
+      class="line-numbers code-toolbar language-js"
+    >
       <code
-        class="lang-js"
+        class="language-js"
       >
-        welcomeToTheTestingClass(something, requiredSomething): string
+        <span
+          class="token function"
+        >
+          welcomeToTheTestingClass
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        something
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+         requiredSomething
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         string
 
       </code>
-    </pre>
-    
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar-item"
+        >
+          <span>
+            Js
+          </span>
+        </div>
+        
 
+      </div>
+    </pre>
   </h3>
   <section
     class="md-card-text markdown-container"

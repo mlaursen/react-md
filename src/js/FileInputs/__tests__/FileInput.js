@@ -82,33 +82,19 @@ describe('FileInput', () => {
     );
   });
 
-  it('should set the value state with the file name if the allowDuplicates prop is false', () => {
-    const input = mount(<FileInput id="test" allowDuplicates={false} />);
-    expect(input.state('value')).toBe('');
-
-    const file = new File();
-    const event = { target: { files: [file], value: FAKE_FILE_PATH } };
-    input.find('input').simulate('change', event);
-    expect(input.state('value')).toBe(FAKE_FILE_PATH);
-
-    input.setProps({ multiple: true });
-    const event2 = { target: { files: [file, file], value: FAKE_FILE_PATH } };
-    input.find('input').simulate('change', event2);
-    expect(input.state('value')).toBe(FAKE_FILE_PATH);
-  });
-
   it('should keep the value state as the empty string when the allowDuplicates prop is enabled', () => {
     const input = mount(<FileInput id="test" allowDuplicates />);
-    expect(input.state('value')).toBe('');
+    const getInputValue = () => input.find('input').instance().value;
+    expect(getInputValue()).toBe('');
 
     const file = new File();
     const event = { target: { files: [file], value: FAKE_FILE_PATH } };
     input.find('input').simulate('change', event);
-    expect(input.state('value')).toBe('');
+    expect(getInputValue()).toBe('');
 
     input.setProps({ multiple: true });
     const event2 = { target: { files: [file, file], value: FAKE_FILE_PATH } };
     input.find('input').simulate('change', event2);
-    expect(input.state('value')).toBe('');
+    expect(getInputValue()).toBe('');
   });
 });

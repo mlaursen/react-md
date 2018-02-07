@@ -301,7 +301,7 @@ class Button extends PureComponent {
     noIcon: deprecated(
       PropTypes.bool,
       'This has been removed during the alpha release. Children will always attempt to be rendered outside of an ' +
-      'icon by default for flat and raised buttons.'
+      'icon by default for flat and raised buttons'
     ),
   };
 

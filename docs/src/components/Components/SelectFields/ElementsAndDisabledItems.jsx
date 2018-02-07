@@ -1,7 +1,7 @@
 import React from 'react';
 import { Subheader, SelectField } from 'react-md';
 
-const ITEMS_WITH_DISABLED = [...new Array(15)].map((_, i) => ({
+const ITEMS_WITH_DISABLED = Array.from(Array(15)).map((_, i) => ({
   label: `Item ${i + 1}`,
   value: i,
   disabled: i === 3 || i === 4 || i === 9 || i === 13,

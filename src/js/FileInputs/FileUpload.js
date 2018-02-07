@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import FileInput from './FileInput';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import omit from '../utils/omit';
 
@@ -218,14 +219,10 @@ export default class FileUpload extends PureComponent {
      * ```
      */
     onChange: PropTypes.func,
-
-    /**
-     * An optional value to apply to the `FileInput`. This is usually not needed and the
-     * `allowDuplicates` is what you are probably looking for instead.
-     *
-     * @see {@link #allowDuplicates}
-     */
-    value: PropTypes.string,
+    value: deprecated(
+      PropTypes.string,
+      'There should\'t be a reason to set the value manually. Check out {@link #allowDuplicates} instead'
+    ),
   };
 
   state = {};

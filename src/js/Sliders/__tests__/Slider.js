@@ -168,4 +168,22 @@ describe('Slider', () => {
     expect(slider.state('thumbLeft')).toBe('calc(33% - 6px)');
     expect(slider.state('trackFillWidth')).toBe('33%');
   });
+
+  it('should be able to go through the lifecycle methods without crashing', () => {
+    const slider1 = mount(<Slider id="slider-1" label="My Slider" />);
+    const slider2 = mount(<Slider id="slider-2" label="My Slider" editable />);
+    const slider3 = mount(<Slider id="slider-3" label="My Slider" rightIcon={<span />} />);
+
+    expect(slider1.render()).toMatchSnapshot();
+    slider1.unmount();
+    expect(slider1.render()).toMatchSnapshot();
+
+    expect(slider2.render()).toMatchSnapshot();
+    slider2.unmount();
+    expect(slider2.render()).toMatchSnapshot();
+
+    expect(slider3.render()).toMatchSnapshot();
+    slider3.unmount();
+    expect(slider3.render()).toMatchSnapshot();
+  });
 });

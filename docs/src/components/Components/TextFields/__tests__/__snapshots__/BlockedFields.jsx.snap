@@ -122,26 +122,6 @@ exports[`BlockedFields should render correctly 1`] = `
         </i>
       </button>
     </div>
-    <div
-      aria-expanded="false"
-      aria-haspopup="true"
-      class="md-layover md-layover--simplified md-full-width md-menu-container md-menu-container--menu-below md-autocomplete-container"
-      id="email-to-menu"
-    >
-      <div
-        class="md-text-field-container md-full-width md-text-field-container--input md-text-field-container--input-block md-text-field-container--padded-block md-autocomplete"
-      >
-        <input
-          aria-autocomplete="list"
-          autocomplete="off"
-          class="md-text-field md-full-width md-text"
-          id="email-to"
-          placeholder="To"
-          type="email"
-          value=""
-        />
-      </div>
-    </div>
     <hr
       class="md-divider"
     />

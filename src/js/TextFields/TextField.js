@@ -407,10 +407,11 @@ export default class TextField extends PureComponent {
   }
 
   componentDidMount() {
-    const { value, defaultValue, resize } = this.props;
+    const { value, defaultValue, resize, style } = this.props;
     const v = typeof value !== 'undefined' ? value : defaultValue;
+    /* eslint-disable react/no-did-mount-set-state */
     if (resize) { // always want to set width on mount
-      this.setState({ width: this._calcWidth(v) }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ styles: { width: this._calcWidth(v, this.props), ...style } });
     }
   }
 
@@ -419,7 +420,7 @@ export default class TextField extends PureComponent {
     const nextState = {};
     if (value !== this.props.value) {
       nextState.error = this._isErrored(nextProps);
-      nextState.floating = isValued(value);
+      nextState.floating = this._focus || isValued(value);
       nextState.currentLength = this._getLength(value);
     }
 
@@ -552,7 +553,7 @@ export default class TextField extends PureComponent {
     let text = value;
     // if it is a password, use the bullet unicode instead
     if (props.type === 'password') {
-      text = [...new Array(value.length)].reduce(s => `${s}\u2022`, '');
+      text = Array.from(Array(value.length)).reduce(s => `${s}\u2022`, '');
     }
 
     const field = this._field && this._field.getField();
@@ -560,14 +561,14 @@ export default class TextField extends PureComponent {
       text = field.value;
     }
 
+    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
     let width = getTextWidth(text, field);
     if (width === null || !field) {
       // some error happened, don't do other logic
-      return width;
+      return width || min;
     }
 
     const { max } = props.resize;
-    const min = getField(props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
     if (this._container) {
       const indicator = this._container.querySelector('.md-text-field-inline-indicator');
@@ -621,6 +622,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleBlur = (e) => {
+    this._focus = false;
     const { required, maxLength, onBlur } = this.props;
     if (onBlur) {
       onBlur(e);
@@ -640,6 +642,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleFocus = (e) => {
+    this._focus = true;
     const { onFocus, block } = this.props;
     if (onFocus) {
       onFocus(e);

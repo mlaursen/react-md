@@ -1,4 +1,10 @@
 ## January 2018
+### Documentation Changes
+- Added a `ColorPreviewer` to all the Sass/Scss examples so that the variables make a bit more sense.
+- Publicized the `ColorPreviewer` as a better and more exciting example for `Portal` use cases.
+[Check it out here](/components/helpers/portals#advanced-usage-markdown-previewer)!
+- Added more documentation about [how to use colors that are not apart of react-md](/customization/themes#creating-a-theme-without-material-design-colors).
+
 ### v1.2.11 Released
 #### Changelog
 - Fixed the `injectInk` HOC's focus function to work when the ink has been disabled. [issues-666]
