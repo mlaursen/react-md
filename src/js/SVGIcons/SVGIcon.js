@@ -129,7 +129,7 @@ export default class SVGIcon extends PureComponent {
      *
      * @see {@link #size}
      */
-    height: deprecated(PropTypes.number, 'Use the `size` prop instead.'),
+    height: deprecated(PropTypes.number, 'Use the `size` prop instead'),
 
     /**
      * The `width` prop should not be used since the `height` and `width` are controlled by CSS and the CSS
@@ -138,7 +138,7 @@ export default class SVGIcon extends PureComponent {
      *
      * @see {@link #size}
      */
-    width: deprecated(PropTypes.number, 'Use the `size` prop instead.'),
+    width: deprecated(PropTypes.number, 'Use the `size` prop instead'),
 
     /**
      * The viewBox attribute allows you to specify that a given set of graphics stretch to

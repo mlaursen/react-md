@@ -552,7 +552,7 @@ export default class EditDialogColumn extends PureComponent {
     noIcon: deprecated(PropTypes.bool, 'Set the `inlineIcon` prop to `null` instead'),
     enforceMinWidth: deprecated(
       PropTypes.bool,
-      'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable.'
+      'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable'
     ),
     scrollThreshold: deprecated(
       PropTypes.number,

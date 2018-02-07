@@ -363,7 +363,7 @@ export default class DialogContainer extends PureComponent {
     transitionLeave: deprecated(PropTypes.bool, 'The transition will always be enforced'),
     actionLeft: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
     actionRight: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
-    close: deprecated(PropTypes.func, 'Use `onHide` instead.'),
+    close: deprecated(PropTypes.func, 'Use `onHide` instead'),
   };
 
   static defaultProps = {

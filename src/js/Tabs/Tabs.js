@@ -166,7 +166,7 @@ export default class Tabs extends PureComponent {
      */
     mobile: PropTypes.bool,
     defaultMedia: deprecated(PropTypes.oneOf(['mobile', 'tablet', 'desktop']), 'Use `mobile` instead'),
-    desktopMinWidth: deprecated(PropTypes.number, 'Use `mobile` instead.'),
+    desktopMinWidth: deprecated(PropTypes.number, 'Use `mobile` instead'),
     nextIconChildren: deprecated(PropTypes.node, 'Use the `nextIcon` prop instead'),
     nextIconClassName: deprecated(PropTypes.string, 'Use the `nextIcon` prop instead'),
     previousIconChildren: deprecated(PropTypes.node, 'Use the `previousIcon` prop instead'),

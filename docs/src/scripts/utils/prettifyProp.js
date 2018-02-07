@@ -62,6 +62,26 @@ export function formatType({ name, value, raw, required }, customPropTypes, manu
   }
 }
 
+function formatDeprecated(propName, { type: { raw } }, component) {
+  const i = raw.indexOf('\'');
+  let s = raw.substring(i + 1) // remove deprecated and old proptype
+    .replace(/\r?\n/g, '') // remove new line characters
+    .replace(/('\s+\+\s*')|'\)/g, ''); // remove string concatenation and trailing ')
+  const punctuation = s.match(/[!.]$/);
+  if (punctuation) {
+    console.warn(
+      `The \`${propName}\` deprecated description ends in punctuation: \`${punctuation[0]}\` ` +
+      `but there should not be any. Please check the \`${component}\` component and fix the ` +
+      'deprecated description.'
+    );
+    s = s.replace(/[!.]$/, '');
+  }
+
+  return `The \`${propName}\` prop has been deprecated and will be removed in the next major release.
+    
+${s}.`;
+}
+
 /**
  * Takes in a prop from the output of react-docgen and formats it for use on the client.
  */
@@ -69,19 +89,18 @@ export default function prettifyProp(prop, propName, customPropTypes, file) {
   let { description, defaultValue } = prop;
   const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DOCGEN_DEFINTIION_REGEX), 0);
 
-  if (description) {
-    description = updateMarkdownLinks(description, file);
+  if (type.indexOf('deprecated') === 0) {
+    description = formatDeprecated(propName, prop, file);
   }
 
-  if (type.indexOf('deprecated') !== -1) {
-    description = `The \`${propName}\` prop has been deprecated and will be removed in the next major release.
-
-${prop.type.raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.`;
+  if (description) {
+    description = updateMarkdownLinks(description, file);
   }
 
   if (defaultValue) {
     defaultValue = defaultValue.value;
   }
+
 
   return {
     propName,
