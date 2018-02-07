@@ -609,8 +609,8 @@ export default class DialogContainer extends PureComponent {
         style={style}
         className={cn('md-dialog-container', {
           'md-overlay': !fullPage,
-          'md-overlay--active': !fullPage && active && dialogVisible,
-          'md-pointer--hover': !fullPage && !modal && dialogVisible,
+          'md-overlay--active': !fullPage && active && propVisible,
+          'md-pointer--hover': !fullPage && !modal && propVisible,
         }, className)}
         transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
         transitionEnterTimeout={transitionEnterTimeout}
