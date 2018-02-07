@@ -43,18 +43,15 @@ describe('DialogContainer', () => {
     const props = { ...PROPS, visible: false };
     const container = shallow(<DialogContainer {...props} />);
     expect(container.state('dialogVisible')).toBe(false);
-    expect(container.state('overlay')).toBe(false);
     expect(container.state('active')).toBe(false);
 
     container.setProps({ visible: true });
     jest.runOnlyPendingTimers();
     expect(container.state('dialogVisible')).toBe(true);
-    expect(container.state('overlay')).toBe(true);
     expect(container.state('active')).toBe(false);
 
     jest.runOnlyPendingTimers();
     expect(container.state('dialogVisible')).toBe(true);
-    expect(container.state('overlay')).toBe(true);
     expect(container.state('active')).toBe(true);
   });
 
@@ -62,18 +59,15 @@ describe('DialogContainer', () => {
     const props = { ...PROPS, visible: false, fullPage: true };
     const container = shallow(<DialogContainer {...props} />);
     expect(container.state('dialogVisible')).toBe(false);
-    expect(container.state('overlay')).toBe(false);
     expect(container.state('active')).toBe(false);
 
     container.setProps({ visible: true });
     jest.runOnlyPendingTimers();
     expect(container.state('dialogVisible')).toBe(true);
-    expect(container.state('overlay')).toBe(false);
     expect(container.state('active')).toBe(false);
 
     jest.runOnlyPendingTimers();
     expect(container.state('dialogVisible')).toBe(true);
-    expect(container.state('overlay')).toBe(false);
     expect(container.state('active')).toBe(false);
   });
 
