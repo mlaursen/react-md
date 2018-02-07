@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import themeColors from '../utils/themeColors';
-import isMonthBefore from '../utils/DateUtils/isMonthBefore';
-import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
-import addDate from '../utils/DateUtils/addDate';
+import isMonthBefore from '../utils/dates/isMonthBefore';
+import toDayOfWeek from '../utils/dates/toDayOfWeek';
+import addDate from '../utils/dates/addDate';
 import Button from '../Buttons/Button';
 
 /**
@@ -84,7 +84,7 @@ export default class CalendarHeader extends PureComponent {
     weekdayClassName,
     weekdayFormat,
   } = this.props) {
-    const firstDay = getDayOfWeek(date, firstDayOfWeek);
+    const firstDay = toDayOfWeek(date, firstDayOfWeek);
     const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat });
     const dows = [];
     for (let i = 0; i < 7; i++) {

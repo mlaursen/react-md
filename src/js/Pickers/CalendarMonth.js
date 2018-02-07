@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import addDate from '../utils/DateUtils/addDate';
-import stripTime from '../utils/DateUtils/stripTime';
-import getLastDay from '../utils/DateUtils/getLastDay';
-import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
+import addDate from '../utils/dates/addDate';
+import getLastDay from '../utils/dates/getLastDay';
+import stripTime from '../utils/dates/stripTime';
+import toDayOfWeek from '../utils/dates/toDayOfWeek';
 
 import CalendarDate from './CalendarDate';
 
@@ -104,18 +104,19 @@ export default class CalendarMonth extends PureComponent {
     } = this.props;
 
     const days = [];
-    const firstDay = new Date(calendarDate);
+    const firstDay = stripTime(calendarDate);
     firstDay.setDate(1);
     const lastDay = getLastDay(calendarDate);
-    let currentDate = stripTime(getDayOfWeek(firstDay, 0));
-    let endDate = stripTime(getDayOfWeek(lastDay, 6));
-    const activeDateTime = stripTime(new Date(calendarTempDate)).getTime();
-    const todayTime = stripTime(new Date()).getTime();
+    let currentDate = toDayOfWeek(firstDay, 0);
+    let endDate = toDayOfWeek(lastDay, 6);
+    const activeDateTime = stripTime(calendarTempDate).getTime();
+    const todayTime = new Date().getTime();
 
     if (firstDayOfWeek) {
       currentDate = addDate(currentDate, firstDayOfWeek > firstDay.getDay() ? firstDayOfWeek - 7 : firstDayOfWeek, 'D');
       endDate = addDate(endDate, firstDayOfWeek > lastDay.getDay() ? firstDayOfWeek - 7 : firstDayOfWeek, 'D');
     }
+
     while (currentDate <= endDate) {
       const key = `${currentDate.getMonth()}-${currentDate.getDate()}`;
       const currentMonth = currentDate.getMonth() === calendarDate.getMonth();

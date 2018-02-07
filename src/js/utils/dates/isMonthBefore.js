@@ -1,5 +1,4 @@
-/** @module utils/DateUtils/isMonthBefore */
-import stripTime from './stripTime';
+import isValidDate from './isValidDate';
 
 /**
  * Checks if a date is the month before another date without time
@@ -9,11 +8,11 @@ import stripTime from './stripTime';
  * @return true if the date is before the other date's first day of month.
  */
 export default function isMonthBefore(date, toCompare) {
-  if (!date || !toCompare) {
+  if (!isValidDate(date) || !isValidDate(toCompare)) {
     return false;
   }
 
-  const d1 = stripTime(new Date(date.getFullYear(), date.getMonth(), 1));
-  const d2 = stripTime(new Date(toCompare.getFullYear(), toCompare.getMonth() - 1, 1));
+  const d1 = new Date(date.getFullYear(), date.getMonth(), 1);
+  const d2 = new Date(toCompare.getFullYear(), toCompare.getMonth() - 1, 1);
   return d1 > d2;
 }

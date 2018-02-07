@@ -10,8 +10,8 @@ import getField from '../utils/getField';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
-import isDateEqual from '../utils/DateUtils/isDateEqual';
-import addDate from '../utils/DateUtils/addDate';
+import addDate from '../utils/dates/addDate';
+import isSameDay from '../utils/dates/isSameDay';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 
 import Collapse from '../Helpers/Collapse';
@@ -596,8 +596,8 @@ export default class DatePickerContainer extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { value, minDate, maxDate } = nextProps;
-    const minEqual = isDateEqual(this.props.minDate, minDate);
-    const maxEqual = isDateEqual(this.props.maxDate, maxDate);
+    const minEqual = isSameDay(this.props.minDate, minDate);
+    const maxEqual = isSameDay(this.props.maxDate, maxDate);
     if (this.props.value !== value || !minEqual || !maxEqual) {
       let { calendarDate } = this.state;
       if (typeof value !== 'undefined') {
@@ -606,7 +606,7 @@ export default class DatePickerContainer extends PureComponent {
 
       calendarDate = this._validateDateRange(calendarDate, minDate, maxDate);
 
-      if (!isDateEqual(this.state.calendarDate, calendarDate)) {
+      if (!isSameDay(this.state.calendarDate, calendarDate)) {
         this.setState({ calendarDate, calendarTempDate: calendarDate });
       }
     }
