@@ -390,7 +390,6 @@ export default class DialogContainer extends PureComponent {
 
     this.state = {
       active: visible && !props.fullPage,
-      overlay: visible && !props.fullPage,
       portalVisible: visible,
       dialogVisible,
     };
@@ -502,7 +501,7 @@ export default class DialogContainer extends PureComponent {
         this._inTimeout = null;
         this.setState({ active: true });
       }, TICK);
-      this.setState({ dialogVisible: true, overlay: !fullPage }, onShow);
+      this.setState({ dialogVisible: true }, onShow);
     }, TICK);
   };
 
@@ -531,7 +530,6 @@ export default class DialogContainer extends PureComponent {
       }
 
       this._activeElement = null;
-      this.setState({ overlay: false });
     } else {
       const container = document.querySelector(`#${this.props.id}`);
       if (!container || disableScrollLocking) {
@@ -554,7 +552,7 @@ export default class DialogContainer extends PureComponent {
   };
 
   render() {
-    const { overlay, active, dialogVisible, portalVisible } = this.state;
+    const { active, dialogVisible, portalVisible } = this.state;
     const {
       style,
       className,
@@ -610,9 +608,9 @@ export default class DialogContainer extends PureComponent {
         ref={this._setContainer}
         style={style}
         className={cn('md-dialog-container', {
-          'md-overlay': !fullPage && overlay,
-          'md-pointer--hover': !fullPage && overlay && !modal,
-          'md-overlay--active': !fullPage && active && overlay,
+          'md-overlay': !fullPage,
+          'md-overlay--active': !fullPage && active && propVisible,
+          'md-pointer--hover': !fullPage && !modal && propVisible,
         }, className)}
         transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
         transitionEnterTimeout={transitionEnterTimeout}
