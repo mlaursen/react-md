@@ -52,4 +52,18 @@ describe('addMonth', () => {
     expect(addMonth(JAN_1_2018, 1, 31)).toEqual(new Date(2018, 1, 1));
     expect(addMonth(new Date(2018, 1, 1), 2, 31)).toEqual(new Date(2018, 3, 1));
   });
+
+  it('should correctly keep any time when adding new months', () => {
+    const date1 = new Date(2018, 0, 1, 12, 30);
+    const expected1 = new Date(2018, 1, 1, 12, 30);
+    const expected2 = new Date(2020, 6, 1, 12, 30);
+    expect(addMonth(date1, 1)).toEqual(expected1);
+    expect(addMonth(date1, 30)).toEqual(expected2);
+
+    const date2 = new Date(2000, 3, 15, 15, 22, 59);
+    const expected3 = new Date(2000, 4, 15, 15, 22, 59);
+    const expected4 = new Date(2002, 9, 15, 15, 22, 59);
+    expect(addMonth(date2, 1)).toEqual(expected3);
+    expect(addMonth(date2, 30)).toEqual(expected4);
+  });
 });

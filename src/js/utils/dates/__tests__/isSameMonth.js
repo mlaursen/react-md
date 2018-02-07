@@ -44,6 +44,8 @@ describe('isSameMonth', () => {
     expect(isSameMonth(new Date(2018, 4, 15), new Date(2018, 4, 1))).toBe(true);
     expect(isSameMonth(new Date(2018, 4, 31), new Date(2018, 4, 15))).toBe(true);
 
+    expect(isSameMonth(new Date(2018, 0, 1), new Date(2014, 0, 1))).toBe(false);
+    expect(isSameMonth(new Date(2018, 0, 1), new Date(2017, 0, 1))).toBe(false);
     expect(isSameMonth(new Date(2018, 0, 1), new Date(2018, 1, 1))).toBe(false);
     expect(isSameMonth(new Date(2018, 0, 1), new Date(2018, 2, 15))).toBe(false);
   });

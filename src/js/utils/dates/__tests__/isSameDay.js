@@ -40,5 +40,6 @@ describe('isSameDay', () => {
 
     expect(isSameDay(new Date(2018, 0, 1), new Date(2018, 0, 2))).toBe(false);
     expect(isSameDay(new Date(2018, 0, 1), new Date(2019, 0, 2))).toBe(false);
+    expect(isSameDay(new Date(2018, 0, 1), new Date(2014, 0, 1))).toBe(false);
   });
 });

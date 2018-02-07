@@ -49,4 +49,24 @@ describe('addDay', () => {
     expect(addDay(JUNE_15_2018, -100)).toEqual(new Date(2018, 2, 7));
     expect(addDay(JUNE_15_2018, -365)).toEqual(new Date(2017, 5, 15));
   });
+
+  it('should correctly keep the time when adding days', () => {
+    const date1 = new Date(2018, 1, 2, 8, 0, 30);
+    const expected1 = new Date(2018, 1, 3, 8, 0, 30);
+    const expected2 = new Date(2018, 2, 4, 8, 0, 30);
+
+    expect(addDay(date1, 1)).toEqual(expected1);
+    expect(addDay(date1, 30)).toEqual(expected2);
+
+    const date2 = new Date(2018, 5, 15, 23, 59, 0);
+    const expected3 = new Date(2018, 5, 14, 23, 59, 0);
+    const expected4 = new Date(2018, 5, 16, 23, 59, 0);
+    expect(addDay(date2, -1)).toEqual(expected3);
+    expect(addDay(date2, 1)).toEqual(expected4);
+  });
+
+  it('should be able to add fractional dates even though it is never used', () => {
+    expect(addDay(JAN_1_2018, 1.5)).toEqual(new Date(2018, 0, 2, 12));
+    expect(addDay(JAN_1_2018, 0.5)).toEqual(new Date(2018, 0, 1, 12));
+  });
 });

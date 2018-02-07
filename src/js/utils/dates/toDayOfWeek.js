@@ -3,13 +3,12 @@ import isValidDate from './isValidDate';
 /**
  * Takes in a date and returns a new date at the specified day of week.
  *
- * @example
+ * Examples:
  * // to Sunday
- * toDayOfWeek(new Date(2018, 0, 1), 0) == new Date(2017, 11, 31)
+ * - toDayOfWeek(new Date(2018, 0, 1), 0) == new Date(2017, 11, 31)
  *
- * @example
- * // to monday
- * toDayOfWeek(new Date(2018, 0, 1), 1) == new Date(2018, 0, 1)
+ * // to Monday
+ * - toDayOfWeek(new Date(2018, 0, 1), 1) == new Date(2018, 0, 1)
  *
  * @param {Date} sourceDate - The date to convert to a day of week
  * @param {number=0} dow - The day of the week to convert to

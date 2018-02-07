@@ -20,7 +20,6 @@ describe('CalendarDate', () => {
       date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      index: 0,
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
@@ -35,7 +34,6 @@ describe('CalendarDate', () => {
       date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      index: 0,
     };
 
     let date = renderIntoDocument(<CalendarDate {...props} />);
@@ -57,7 +55,6 @@ describe('CalendarDate', () => {
       date: new Date(2016, 1, 1),
       disabled: false,
       onClick: jest.fn(),
-      index: 0,
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);

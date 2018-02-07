@@ -1,6 +1,11 @@
 /**
- * Checks if a variable provided is defined and a correctly
- * formatted date.
+ * Checks if a variable provided is defined and a correctly formatted date.
+ *
+ * Examples:
+ * - isValidDate(null) -> false
+ * - isValidDate('') -> false
+ * - isValidDate(new Date('23--33')) - false (malformed date)
+ * - isValidDate(new Date()) -> true
  *
  * @param d - Any value that should be checked if it is a valid date
  * @return {boolean} true if it is a valid date.
