@@ -33,7 +33,10 @@ httpServer.listen(port, (e) => {
   const { port, address } = httpServer.address();
   let url = address;
   if (address === '::') {
-    url = `${PUBLIC_URL}:${port}`;
+    url = PUBLIC_URL;
+    if (port !== 80 && !url.match(/:\d+/)) {
+      url = `${url}:${port}`;
+    }
   }
 
   winston.info(`Started documentation server at: '${url}'`);

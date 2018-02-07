@@ -11,7 +11,8 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
-const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
+const SWOfflinePlugin = require('./src/utils/webpack/SWOfflinePlugin');
+const ProductionCleanupPlugin = require('./src/utils/webpack/ProductionCleanupPlugin');
 const winston = require('winston');
 const { name, homepage } = require('./package.json');
 
@@ -47,6 +48,7 @@ const CLIENT_PROD_PLUGINS = [
     comments: false,
     sourceMap: true,
   }),
+  new ProductionCleanupPlugin(),
   new ManifestPlugin(),
   new webpack.HashedModuleIdsPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
@@ -59,7 +61,7 @@ const CLIENT_PROD_PLUGINS = [
   // new HtmlWebpackPlugin({
   //   filename: 'offline.html',
   //   inject: true,
-  //   template: path.join(src, 'utils', 'serviceWorkerTemplate.ejs'),
+  //   template: path.join(src, 'utils', 'webpack', 'serviceWorkerTemplate.ejs'),
   //   minify: {
   //     removeComments: true,
   //     collapseWhitespace: true,
