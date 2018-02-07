@@ -11,25 +11,25 @@ import getDaysInMonth from './getDaysInMonth';
  * the date in the old month if possible, if the new month does not have
  * include the new date, the `newMonthDate` will be used instead.
  *
- * @param {Date} sourceDate - The date to update
+ * @param {Date} date - The date to update
  * @param {number} amount - The number of months to add. This can be positive
  *    or negative.
  * @param {number=1} newMonthDate - An optional date to set in the new month
  *    if the new month does not have the old date.
  * @return {Date} a new date with the number of days added or null.
  */
-export default function addMonth(sourceDate, amount, newMonthDate) {
-  if (!isValidDate(sourceDate)) {
+export default function addMonth(date, amount, newMonthDate) {
+  if (!isValidDate(date)) {
     return null;
   } else if (amount === 0) {
-    return new Date(sourceDate);
+    return new Date(date);
   }
 
   if (!newMonthDate) { // 0 is invalid for this case
-    newMonthDate = sourceDate.getDate();
+    newMonthDate = date.getDate();
   }
 
-  const d = new Date(sourceDate);
+  const d = new Date(date);
   d.setDate(1); // reset to first day to prevent month overflows
   d.setMonth(d.getMonth() + amount);
 

@@ -5,17 +5,17 @@ import isValidDate from './isValidDate';
  * is null, an invalid formatted date, or not a Date instance, null
  * will be returned instead.
  *
- * @param {Date} sourceDate - The date to update
+ * @param {Date} date - The date to update
  * @param {number} amount - The number of days to add. This can be positive
  *    or negative.
  * @return {Date} a new date with the number of days added or null.
  */
-export default function addDay(sourceDate, amount) {
-  if (!isValidDate(sourceDate)) {
+export default function addDay(date, amount) {
+  if (!isValidDate(date)) {
     return null;
   }
-  const d = new Date(sourceDate);
-  d.setDate(d.getDate() + amount);
 
+  const d = new Date(date);
+  d.setDate(d.getDate() + amount);
   return d;
 }
