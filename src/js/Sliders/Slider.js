@@ -813,15 +813,15 @@ export default class Slider extends PureComponent {
     let trackWidth = null;
     if (!leftIcon && !rightIcon && !editable) {
       trackWidth = '100%';
-    } else if (editable && !leftIcon) {
+    } else if (this._field && editable && !leftIcon) {
       const cs = window.getComputedStyle(this._field);
-      const pl = parseInt(cs.getPropertyValue('padding-left'), 10);
-      const ml = parseInt(cs.getPropertyValue('margin-left'), 10);
+      const pl = parseInt(cs.getPropertyValue('padding-left'), 10) || 0;
+      const ml = parseInt(cs.getPropertyValue('margin-left'), 10) || 0;
 
       trackWidth = pl + ml + inputWidth;
     }
 
-    if (trackWidth) {
+    if (trackWidth !== this.state.trackWidth) {
       this.setState({ trackWidth });
     }
   };

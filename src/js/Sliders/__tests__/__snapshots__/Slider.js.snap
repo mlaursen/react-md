@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 1`] = `
+<div
+  class="md-slider-container md-pointer--hover"
+>
+  <label
+    class="md-slider-label md-text"
+    for="slider-1"
+  >
+    My Slider
+  </label>
+  <input
+    class="md-slider-input"
+    id="slider-1"
+    max="100"
+    min="0"
+    readonly=""
+    type="range"
+    value="0"
+  />
+  <div
+    class="md-slider-track"
+    style="width: 100%;"
+  >
+    <hr
+      class="md-slider-track-fill"
+      style="width: 0%;"
+    />
+    <div
+      aria-pressed="false"
+      class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-slider-thumb md-slider-thumb--continuous-off"
+      role="button"
+      tabindex="0"
+    />
+    <span
+      class="md-slider-thumb md-slider-thumb--mask"
+    />
+  </div>
+</div>
+`;
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 2`] = `null`;
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 3`] = `
+<div
+  class="md-slider-container md-pointer--hover"
+>
+  <label
+    class="md-slider-label md-text"
+    for="slider-2"
+  >
+    My Slider
+  </label>
+  <input
+    class="md-slider-input"
+    id="slider-2"
+    max="100"
+    min="0"
+    readonly=""
+    type="range"
+    value="0"
+  />
+  <div
+    class="md-slider-track"
+    style="width: 40px;"
+  >
+    <hr
+      class="md-slider-track-fill"
+      style="width: 0%;"
+    />
+    <div
+      aria-pressed="false"
+      class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-slider-thumb md-slider-thumb--continuous-off"
+      role="button"
+      tabindex="0"
+    />
+    <span
+      class="md-slider-thumb md-slider-thumb--mask"
+    />
+  </div>
+  <div
+    class="md-text-field-container md-full-width md-text-field-container--input"
+    style="width: 40px;"
+  >
+    <input
+      class="md-text-field md-text-field--margin md-full-width md-text md-slider-editor"
+      id="slider-2-editor"
+      step="1"
+      type="number"
+      value="0"
+    />
+    <hr
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+  </div>
+</div>
+`;
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 4`] = `null`;
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 5`] = `
+<div
+  class="md-slider-container md-pointer--hover"
+>
+  <label
+    class="md-slider-label md-text"
+    for="slider-3"
+  >
+    My Slider
+  </label>
+  <input
+    class="md-slider-input"
+    id="slider-3"
+    max="100"
+    min="0"
+    readonly=""
+    type="range"
+    value="0"
+  />
+  <div
+    class="md-slider-track md-slider-track--ind-right"
+  >
+    <hr
+      class="md-slider-track-fill"
+      style="width: 0%;"
+    />
+    <div
+      aria-pressed="false"
+      class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-slider-thumb md-slider-thumb--continuous-off"
+      role="button"
+      tabindex="0"
+    />
+    <span
+      class="md-slider-thumb md-slider-thumb--mask"
+    />
+  </div>
+  <span />
+</div>
+`;
+
+exports[`Slider should be able to go through the lifecycle methods without crashing 6`] = `null`;
