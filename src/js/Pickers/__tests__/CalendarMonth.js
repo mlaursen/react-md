@@ -25,7 +25,6 @@ describe('CalendarMonth', () => {
       onCalendarDateClick: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
-      timeZone: 'UTC',
     };
     const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);
 
@@ -41,14 +40,12 @@ describe('CalendarMonth', () => {
       calendarDate: new Date(2016, 3, 12),
       calendarTempDate: new Date(2016, 3, 12),
       onCalendarDateClick: jest.fn(),
-      timeZone: 'UTC',
     };
 
     const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);
     const days = scryRenderedComponentsWithType(calendarMonth, CalendarDate);
     expect(days.length).toBe(30);
     expect(days[11].props.active).toBe(true);
-    expect(days[11].props.timeZone).toEqual(props.timeZone);
   });
 
   it('renders days from adjacent months', () => {
@@ -60,14 +57,12 @@ describe('CalendarMonth', () => {
       onCalendarDateClick: jest.fn(),
       firstDayOfWeek: 1,
       showAllDays: true,
-      timeZone: 'UTC',
     };
 
     const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);
     const days = scryRenderedComponentsWithType(calendarMonth, CalendarDate);
     expect(days.length).toBe(35);
     expect(days[32].props.active).toBe(true);
-    expect(days[11].props.timeZone).toEqual(props.timeZone);
   });
 
   it('should disable days from the other months when showAllDays and disableOuterDates is enabled', () => {
@@ -80,7 +75,6 @@ describe('CalendarMonth', () => {
       firstDayOfWeek: 1,
       showAllDays: true,
       disableOuterDates: true,
-      timeZone: 'UTC',
     };
     const month = shallow(<CalendarMonth {...props} />);
     const days = month.find(CalendarDate);
@@ -106,7 +100,6 @@ describe('CalendarMonth', () => {
       calendarTempDate: new Date(2017, 6, 1),
       onCalendarDateClick: jest.fn(),
       firstDayOfWeek: 5,
-      timeZone: 'UTC',
     };
 
     let header = renderIntoDocument(<CalendarMonth {...props} />);
