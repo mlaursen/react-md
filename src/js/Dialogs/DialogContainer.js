@@ -531,7 +531,7 @@ export default class DialogContainer extends PureComponent {
 
       this._activeElement = null;
     } else {
-      const container = document.querySelector(`#${this.props.id}`);
+      const container = document.getElementById(this.props.id);
       if (!container || disableScrollLocking) {
         return;
       }
