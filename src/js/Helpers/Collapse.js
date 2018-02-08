@@ -152,7 +152,7 @@ export default class Collapse extends PureComponent {
             };
           }
           return cloneElement(child, {
-            ref: !collapsed && this._setHeight,
+            ref: !collapsed ? this._setHeight : null,
             style: nextStyle,
           });
         }}
