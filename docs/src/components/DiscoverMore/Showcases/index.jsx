@@ -5,6 +5,7 @@ import { Grid, GridList } from 'react-md';
 import Markdown from 'components/Markdown';
 import withMinHeight from 'components/hoc/withMinHeight';
 import LesPassionsdePeronnes from './LesPassionsdePeronnes';
+import Hostfully from './Hostfully';
 import './_styles.scss';
 
 const markdown = `
@@ -22,6 +23,7 @@ const Showcases = ({ style, className }) => (
     <Markdown markdown={markdown} className="md-text-container" />
     <Grid component="ul" noSpacing className="md-list-unstyled">
       <LesPassionsdePeronnes />
+      <Hostfully />
     </Grid>
   </GridList>
 );
