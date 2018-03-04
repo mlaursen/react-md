@@ -9,15 +9,18 @@ vignerons. Most of them are encountered during oeno-tourist trips, telling
 us their wines, their hopes sometimes very crazy.
 `;
 
-const LesPassionsdePeronnes = () => (
+const author = {
+  name: 'Fadi Khadra',
+  github: 'https://github.com/fkhadra',
+};
+
+const LesPassionsdePeronnes = props => (
   <ShowcaseCard
+    {...props}
     name="Les Passions de Peronnes"
     link="https://bredariol.be"
     logo={logo}
-    author={{
-      name: 'Fadi Khadra',
-      github: 'https://github.com/fkhadra',
-    }}
+    author={author}
     description={description}
   />
 );
