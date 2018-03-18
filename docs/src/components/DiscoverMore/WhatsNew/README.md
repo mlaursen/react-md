@@ -1,3 +1,25 @@
+## March 2018
+### v1.2.12 Released
+This release was a extremely delayed due to the attempted fix of `DatePicker`s displaying incorrectly. This patch _should_
+fix the majority of the display errors, but please look over the tickets below for more information especially if you were
+using the `timeZone` prop before.
+
+#### Changelog
+- Fixed most of the `DatePicker` display errors. [pull-680] and [issues-634]
+- Fixed the wrong height calculation for `Tabs`. [issues-662]
+- Fixed the `TextField` having the wrong styles on initial mount if using the `resize` prop. [issues-667]
+- Fixed the `Slider` crashing when using a label and enabling edit mode. [issues-675]
+- Fixed the DOM Exception for `FileUpload` when attempting to use the `value` prop. [issues-676]
+  > This also deprecates the `value` prop since it never actually worked or should be supported.
+- Fixed the `Collapse` prop type error when changing collapsed state. [issues-672]
+- Fixed the `DialogContainer`'s invalid PropType warning when setting `fullPage` to `false` and providing a `title`. [issues-700]
+- Correctly exported the `TableCardHeader` Typescript definitions. ([@Laurelin67] - [pull-679])
+- Correctly exported the `ResizeObserver` Typescript definitions. ([@domszyn] - [pull-703])
+
+### Documentation Changes
+- Fixed a small documentation typo for avatars. ([@hanayuki] - [pull-701])
+- Added [Hostfully](https://hostfully.com) to the [Showcases page](/discover-more/showcases).
+
 ## January 2018
 ### Documentation Changes
 - Added a `ColorPreviewer` to all the Sass/Scss examples so that the variables make a bit more sense.
