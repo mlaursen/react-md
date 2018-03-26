@@ -520,13 +520,13 @@ $md-slider-warn-md: true !default;
 
   $found: false;
   @each $name, $color in $md-color-map {
-    @if str-index($name, '-200') != null && str-index($name, '-a-200') == null && $color == $primary-color {
+    @if str-index($name, '-200') != null and str-index($name, '-a-200') == null and $color == $primary-color {
       @return true;
     }
   }
 
   $msg: "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix for a dark-themed slider.";
-  $msg: "#{$msg} This warning can be siabled by setting the '$md-slider-warn-md' or '$md-colors-warn-md' to 'false'.";
+  $msg: "#{$msg} This warning can be disabled by setting the '$md-slider-warn-md' or '$md-colors-warn-md' to 'false'.";
   @warn "#{$msg} See https://react-md.mlaursen.com/sassdoc/#sliders-variable-md-slider-warn-md for more information.";
 
   @return false;
