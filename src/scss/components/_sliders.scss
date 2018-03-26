@@ -520,7 +520,7 @@ $md-slider-warn-md: true !default;
 
   $found: false;
   @each $name, $color in $md-color-map {
-    @if str-index($name, '-200') != null && str-index($name, '-a-200') == null && $color == $primary-color {
+    @if str-index($name, '-200') != null and str-index($name, '-a-200') == null and $color == $primary-color {
       @return true;
     }
   }
