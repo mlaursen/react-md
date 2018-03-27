@@ -11,8 +11,10 @@ react-md is a set of React components and sass files for implementing [Google's 
 ## Installation
 
 ```bash
-$ npm i -S react react-dom react-md
+$ npm install --save react react-dom react-md
 ```
+
+There are also a few examples available within the [examples folder](examples/) to help get you started.
 
 ## Customizing the theme
 The application should define a `primary` and `secondary` color. The `primary` color
@@ -40,6 +42,34 @@ $md-secondary-color: $md-lime-a-400;
 
 See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
 is also a theme builder available to try mix and matching different colors.
+
+### Styling Links
+There are currently no styles applied to links by default for two reasons:
+1. There aren't many guidelines for link styling in Material Design (or there weren't when I started this project)
+2. Most of the time, links will mostly be handled by the `ListItem` component with a `react-router`'s `Link` component
+
+If you would like some default link styles, you can copy/paste the following block to get some _reasonable_ defaults.
+
+```scss
+// These are the styles that are applied to the documentation site.
+// If you want **ALL** links to have these styles, you can of course change it to be applied
+// to all <a> tags
+.link {
+  color: $md-primary-color;
+  display: inline-block;
+  text-decoration: none;
+  transition: color $md-transition-time;
+
+  &:visited {
+    color: get-swatch($md-primary-color, 200, true);
+  }
+
+  &:hover {
+    color: get-color('text', $md-light-theme);
+    text-decoration: underline;
+  }
+}
+```
 
 ## Usage
 Please see the list of [examples](examples/) for how you can get a project started off quickly with React and React MD.

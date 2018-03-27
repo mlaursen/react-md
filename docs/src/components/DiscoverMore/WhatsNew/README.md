@@ -11,7 +11,7 @@ using the `timeZone` prop before.
 
 #### Changelog
 - Fixed most of the `DatePicker` display errors. [pull-680] and [issues-634]
-- Fixed the wrong height calculation for `Tabs`. [issues-662]
+- Fixed the wrong height calculation for `Tabs`. [issues-662
 - Fixed the `TextField` having the wrong styles on initial mount if using the `resize` prop. [issues-667]
 - Fixed the `Slider` crashing when using a label and enabling edit mode. [issues-675]
 - Fixed the DOM Exception for `FileUpload` when attempting to use the `value` prop. [issues-676]
@@ -22,6 +22,7 @@ using the `timeZone` prop before.
 - Correctly exported the `ResizeObserver` Typescript definitions. ([@domszyn] - [pull-703])
 
 ### Documentation Changes
+- Updated the README about [styling links](https://github.com/mlaursen/react-md#styling-links).
 - Fixed a small documentation typo for avatars. ([@hanayuki] - [pull-701])
 - Added [Hostfully](https://hostfully.com) to the [Showcases page](/discover-more/showcases).
 
