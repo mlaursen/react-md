@@ -1,4 +1,9 @@
 ## March 2018
+### v1.2.13 Released
+#### Changelog
+- Fixed the invalid Scss in the sliders styles. ([@icflorescu] - [pull-712])
+  > Also ([@nduc] - [pull-713])
+
 ### v1.2.12 Released
 This release was a extremely delayed due to the attempted fix of `DatePicker`s displaying incorrectly. This patch _should_
 fix the majority of the display errors, but please look over the tickets below for more information especially if you were
