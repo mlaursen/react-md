@@ -90,11 +90,24 @@ describe('TimePicker', () => {
     expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 2, 55));
   });
 
-  it('updates the minutes for the time when _updateTime is called and the timeMode is hours', () => {
+  it('updates the minutes for the time when _updateTime is called and the timeMode is minutes', () => {
     const props = Object.assign({}, PROPS, { setTempTime: jest.fn(), timeMode: 'minute' });
     const picker = renderIntoDocument(<TimePicker {...props} />);
     picker._updateTime(2);
     expect(props.setTempTime.mock.calls.length).toBe(1);
     expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 3, 2));
+  });
+
+  it('updates the seconds for the time when _updateTime is called and the timeMode is seconds', () => {
+    const props = Object.assign({}, PROPS, {
+      setTempTime: jest.fn(),
+      timeMode: 'second',
+      showSeconds: true,
+      seconds: ':00',
+    });
+    const picker = renderIntoDocument(<TimePicker {...props} />);
+    picker._updateTime(2);
+    expect(props.setTempTime.mock.calls.length).toBe(1);
+    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 3, 55, 2));
   });
 });

@@ -173,7 +173,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * The default mode to open the time picker in.
      */
-    defaultTimeMode: PropTypes.oneOf(['hour', 'minute']),
+    defaultTimeMode: PropTypes.oneOf(['hour', 'minute', 'second']),
 
     /**
      * Boolean if the date should automatically be selected when a user clicks
@@ -238,6 +238,11 @@ export default class TimePickerContainer extends PureComponent {
      * When a minute is selected the chosen time is applied automatically.
      */
     hoverMode: PropTypes.bool,
+
+    /**
+     * If true seconds will be selectable in the Time Picker.
+     */
+    showSeconds: PropTypes.bool,
 
     /**
      * Boolean if the inline time picker's visibility should be animated.
@@ -368,6 +373,7 @@ export default class TimePickerContainer extends PureComponent {
     disableScrollLocking: false,
     'aria-label': 'Select a time',
     hoverMode: false,
+    showSeconds: false,
   };
 
   constructor(props) {
@@ -442,7 +448,7 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _getTimeParts(date, props) {
-    return extractTimeParts(props.DateTimeFormat, props.locales, date);
+    return extractTimeParts(props.DateTimeFormat, props.locales, props.showSeconds, date);
   }
 
   _closeOnEsc = (e) => {
@@ -506,10 +512,10 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _handleOkClick = (e) => {
-    const { onVisibilityChange, onChange, DateTimeFormat, locales } = this.props;
+    const { onVisibilityChange, onChange, DateTimeFormat, locales, showSeconds } = this.props;
     const value = new Date(this.state.tempTime);
     if (onChange) {
-      onChange(formatTime(DateTimeFormat, locales, value), value, e);
+      onChange(formatTime(DateTimeFormat, locales, showSeconds, value), value, e);
     }
 
     if (onVisibilityChange) {
@@ -550,12 +556,12 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _getTextFieldValue(props, state) {
-    const { DateTimeFormat, locales } = props;
+    const { DateTimeFormat, locales, showSeconds } = props;
     const value = getField(props, state, 'value');
     if (!value) {
       return '';
     } else if (value instanceof Date) {
-      return formatTime(DateTimeFormat, locales, value);
+      return formatTime(DateTimeFormat, locales, showSeconds, value);
     } else {
       // currently don't support value of string
       return value;
@@ -568,6 +574,7 @@ export default class TimePickerContainer extends PureComponent {
       tempTime,
       hours,
       minutes,
+      seconds,
       timePeriod,
     } = this.state;
 
@@ -591,6 +598,7 @@ export default class TimePickerContainer extends PureComponent {
       lineDirection,
       closeOnEsc,
       hoverMode,
+      showSeconds,
       portal,
       renderNode,
       lastChild,
@@ -638,6 +646,7 @@ export default class TimePickerContainer extends PureComponent {
         icon={!!icon}
         tempTime={tempTime}
         timeMode={timeMode}
+        seconds={seconds}
         hours={hours}
         minutes={minutes}
         timePeriod={timePeriod}
@@ -649,6 +658,7 @@ export default class TimePickerContainer extends PureComponent {
         setTimeMode={this._setTimeMode}
         setTempTime={this._setTempTime}
         hoverMode={hoverMode}
+        showSeconds={showSeconds}
       />
     );
 

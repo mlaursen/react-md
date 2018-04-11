@@ -44,7 +44,7 @@ export default class TimePicker extends PureComponent {
     /**
      * The current display mode of the time picker.
      */
-    timeMode: PropTypes.oneOf(['hour', 'minute']).isRequired,
+    timeMode: PropTypes.oneOf(['hour', 'minute', 'second']).isRequired,
 
     /**
      * The current time as a date object that is being displayed in the
@@ -66,6 +66,14 @@ export default class TimePicker extends PureComponent {
     minutes: PropTypes.string.isRequired,
 
     /**
+     * A string that is a representation of the seconds in the user's locale.
+     * This will also include any separator the locale uses.
+     *
+     * Example: ':00' in '3:15:00 PM' for 'en-US'
+     */
+    seconds: PropTypes.string,
+
+    /**
      * An optional time period if a user's locale uses it.
      */
     timePeriod: PropTypes.string,
@@ -77,6 +85,11 @@ export default class TimePicker extends PureComponent {
      * When a minute is selected the chosen time is applied automatically.
      */
     hoverMode: PropTypes.bool,
+
+    /**
+     * A boolean that if true, seconds are displayed
+     */
+    showSeconds: PropTypes.bool,
   };
 
   /**
@@ -97,8 +110,14 @@ export default class TimePicker extends PureComponent {
       }
 
       time.setHours(timePart);
-    } else {
+    }
+
+    if (timeMode === 'minute') {
       time.setMinutes(timePart);
+    }
+
+    if (timeMode === 'second') {
+      time.setSeconds(timePart);
     }
 
     setTempTime(time);
@@ -132,15 +151,20 @@ export default class TimePicker extends PureComponent {
       tempTime,
       hours,
       minutes,
+      seconds,
       timePeriod,
       displayMode,
       inline,
       icon,
       hoverMode,
+      showSeconds,
     } = this.props;
 
     const hoursInt = parseInt(hours, 10);
     const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''), 10);
+    let secondsInt;
+    if (showSeconds) secondsInt = parseInt(seconds.replace(/[^0-9]/g, ''), 10);
+
     const actions = [{
       key: 'cancel',
       onClick: onCancelClick,
@@ -154,6 +178,11 @@ export default class TimePicker extends PureComponent {
       secondary: !okPrimary,
       label: okLabel,
     }];
+
+    let time;
+    if (timeMode === 'hour') time = hoursInt;
+    if (timeMode === 'minute') time = minutesInt;
+    if (timeMode === 'second') time = secondsInt;
 
     return (
       <div
@@ -171,13 +200,15 @@ export default class TimePicker extends PureComponent {
           setTempTime={setTempTime}
           hours={hours}
           minutes={minutes}
+          seconds={seconds}
           timePeriod={timePeriod}
+          showSeconds={showSeconds}
         />
         <div className="md-picker-content-container">
           <div className="md-picker-content md-picker-content--clock">
             <ClockFace
-              time={timeMode === 'hour' ? hoursInt : minutesInt}
-              minutes={timeMode === 'minute'}
+              time={time}
+              minutes={timeMode === 'minute' || timeMode === 'second'}
               onChange={this._updateTime}
               timePeriod={timePeriod}
               hoverMode={hoverMode}

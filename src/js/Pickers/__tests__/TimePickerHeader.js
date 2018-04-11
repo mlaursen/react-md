@@ -26,6 +26,24 @@ describe('TimePickerHeader', () => {
     expect(controls.length).toBe(4); // what
   });
 
+  it('renders a picker control for the hour, the minutes and the seconds if showSeconds is enabled', () => {
+    const props = {
+      tempTime: new Date(2016, 3, 5, 5, 15),
+      timeMode: 'hour',
+      setTimeMode: jest.fn(),
+      setTempTime: jest.fn(),
+      hours: '5',
+      minutes: ':15',
+      seconds: ':00',
+      timePeriod: 'AM',
+      showSeconds: true,
+    };
+    const header = renderIntoDocument(<TimePickerHeader {...props} />);
+    const controls = scryRenderedComponentsWithType(header, PickerControl);
+
+    expect(controls.length).toBe(5);
+  });
+
   it('renders the TimePeriods component if there is a time period', () => {
     const props = {
       tempTime: new Date(2016, 3, 5, 5, 15),

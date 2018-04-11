@@ -27,7 +27,7 @@ describe('TimePickerContainer', () => {
     expect(timePickerContainerNode.className).toContain(props.className);
   });
 
-  it('renders a TextField witht he correct props', () => {
+  it('renders a TextField with the correct props', () => {
     const props = {
       id: 'test',
       disabled: false,
