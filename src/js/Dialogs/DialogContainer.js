@@ -204,14 +204,10 @@ export default class DialogContainer extends PureComponent {
      * Boolean if the dialog should be displayed as a full page dialog.
      */
     fullPage: (props, propName, componentName, ...args) => {
-      if (typeof props[propName] === 'undefined') {
-        return null;
-      }
       const componentNameSafe = componentName || '<<anonymous>>';
-
       let err = PropTypes.bool(props, propName, componentName, ...args);
 
-      if (!err && typeof props.title !== 'undefined') {
+      if (!err && props[propName] && typeof props.title !== 'undefined') {
         err = new Error(
           `You provided a \`title\` ${location} to the \`${componentNameSafe}\` when \`fullPage\` ` +
           'has been set to true. A title for a full page dialog should be rendered as a child instead.'
@@ -531,7 +527,7 @@ export default class DialogContainer extends PureComponent {
 
       this._activeElement = null;
     } else {
-      const container = document.querySelector(`#${this.props.id}`);
+      const container = document.getElementById(this.props.id);
       if (!container || disableScrollLocking) {
         return;
       }

@@ -23,7 +23,12 @@ exports[`ShowcaseCard should render correctly 1`] = `
       <h2
         class="md-card-title--title md-card-title--large md-text"
       >
-        react-md Documentation website
+        <a
+          class="link"
+          href="https://react-md.mlaursen.com"
+        >
+          react-md Documentation website
+        </a>
       </h2>
       <h3
         class="md-card-title--title md-text--secondary"
@@ -36,6 +41,19 @@ exports[`ShowcaseCard should render correctly 1`] = `
     class="md-card-text"
   >
     It is a website about documenting react-md. Who'da thunk?
+  </section>
+  <section
+    class="md-dialog-footer--card md-dialog-footer--inline"
+  >
+    <a
+      class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
+      href="https://react-md.mlaursen.com"
+    >
+      <div
+        class="md-ink-container"
+      />
+      View Product Demo
+    </a>
   </section>
 </li>
 `;
@@ -63,7 +81,12 @@ exports[`ShowcaseCard should render correctly 2`] = `
       <h2
         class="md-card-title--title md-card-title--large md-text"
       >
-        react-md Documentation website
+        <a
+          class="link"
+          href="https://react-md.mlaursen.com"
+        >
+          react-md Documentation website
+        </a>
       </h2>
       <h3
         class="md-card-title--title md-text--secondary"
@@ -72,7 +95,7 @@ exports[`ShowcaseCard should render correctly 2`] = `
       </h3>
     </div>
     <a
-      class="md-btn md-btn--icon md-pointer--hover md-inline-block"
+      class="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
       href="https://github.com/mlaursen/react-md"
     >
       <div
@@ -87,6 +110,19 @@ exports[`ShowcaseCard should render correctly 2`] = `
     class="md-card-text"
   >
     It is a website about documenting react-md. Who'da thunk?
+  </section>
+  <section
+    class="md-dialog-footer--card md-dialog-footer--inline"
+  >
+    <a
+      class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
+      href="https://react-md.mlaursen.com"
+    >
+      <div
+        class="md-ink-container"
+      />
+      View Product Demo
+    </a>
   </section>
 </li>
 `;

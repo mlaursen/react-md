@@ -12,3 +12,4 @@ export {
   LayoverAnchor,
 } from './Layover';
 export { default as Portal, PortalProps } from './Portal';
+export { default as ResizeObserver, ResizeObserverProps } from './ResizeObserver';

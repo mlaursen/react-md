@@ -72,7 +72,12 @@ interface might not be implemented with react-md, but it should give a good idea
           <h2
             class="md-card-title--title md-card-title--large md-text"
           >
-            Les Passions de Peronnes
+            <a
+              class="link"
+              href="https://bredariol.be"
+            >
+              Les Passions de Peronnes
+            </a>
           </h2>
           <h3
             class="md-card-title--title md-text--secondary"
@@ -81,7 +86,7 @@ interface might not be implemented with react-md, but it should give a good idea
           </h3>
         </div>
         <a
-          class="md-btn md-btn--icon md-pointer--hover md-inline-block"
+          class="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
           href="https://github.com/fkhadra"
         >
           <div
@@ -100,6 +105,94 @@ Les Passions de Péronnes offers you to discover wines of terroirs, wines of
 vignerons. Most of them are encountered during oeno-tourist trips, telling
 us their wines, their hopes sometimes very crazy.
 
+      </section>
+      <section
+        class="md-dialog-footer--card md-dialog-footer--inline"
+      >
+        <a
+          class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
+          href="https://bredariol.be"
+        >
+          <div
+            class="md-ink-container"
+          />
+          View Product Demo
+        </a>
+      </section>
+    </li>
+    <li
+      class="md-paper md-paper--1 md-card md-background--card showcase-card"
+    >
+      <a
+        class="md-media md-media--16-9"
+        href="https://hostfully.com"
+        title="Hostfully"
+      >
+        <img
+          alt="Hostfully"
+          src="some static content"
+        />
+      </a>
+      <div
+        class="md-card-title md-card-title--primary"
+      >
+        <div
+          class="md-card-title--title-block"
+        >
+          <h2
+            class="md-card-title--title md-card-title--large md-text"
+          >
+            <a
+              class="link"
+              href="https://hostfully.com"
+            >
+              Hostfully
+            </a>
+          </h2>
+          <h3
+            class="md-card-title--title md-text--secondary"
+          >
+            Hostfully
+          </h3>
+        </div>
+        <a
+          class="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
+          href="https://github.com/hostfully"
+        >
+          <div
+            class="md-ink-container"
+          />
+          <i
+            class="md-icon fa fa-github md-text--inherit"
+          />
+        </a>
+      </div>
+      <section
+        class="md-card-text"
+      >
+        
+Hostfully is a content generation and guest communications platform built for
+vacation rental management companies. Using Hostfully, managers upload
+property-specific content and local recommendations that travelers can use
+while they are at the destination. Companies also use Hostfully as a channel
+for guest communication – instead of overloading guests with too many details
+about the property, managers direct their guests to well-structured content in
+each property’s customized online guidebook – accessible on mobile, desktop, and
+in print.
+
+      </section>
+      <section
+        class="md-dialog-footer--card md-dialog-footer--inline"
+      >
+        <a
+          class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
+          href="https://v2.hostfully.com/california-dreaming"
+        >
+          <div
+            class="md-ink-container"
+          />
+          View Product Demo
+        </a>
       </section>
     </li>
   </ul>
