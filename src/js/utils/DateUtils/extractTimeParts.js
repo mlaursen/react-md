@@ -7,24 +7,46 @@ import formatTime from './formatTime';
  *
  * @param {function} DateTimeFormat the DateTimeFormat function to use.
  * @param {string|string[]} locales the locales to use.
+ * @param {Boolean} showSeconds boolean if seconds should be extracted
  * @param {Date} time the time to extract from.
  * @return {Object} an object of { hours, minutes, timePeriod }
  */
-export default function extractTimeParts(DateTimeFormat, locales, time) {
-  const formatted = formatTime(DateTimeFormat, locales, time);
-
+export default function extractTimeParts(DateTimeFormat, locales, showSeconds, time) {
+  let hours;
+  let minutes;
+  let seconds;
+  let minuteSeparator;
+  let secondSeparator;
+  let remaining;
+  const formatted = formatTime(DateTimeFormat, locales, showSeconds, time);
   // IE does not like lookaheads or splitting on [^0-9]
   // it will include the non-printable characters..
-  const [hours, minutes] = formatted.match(/[0-9]+/g);
-  const [separator, ...remaining] = formatted.match(/[ ,.:A-z]+/g);
+
+  if (showSeconds === true) {
+    [hours, minutes, seconds] = formatted.match(/[0-9]+/g);
+    [minuteSeparator, secondSeparator, ...remaining] = formatted.match(/[ ,.:A-z]+/g);
+  } else {
+    [hours, minutes] = formatted.match(/[0-9]+/g);
+    [minuteSeparator, ...remaining] = formatted.match(/[ ,.:A-z]+/g);
+  }
+
   let timePeriod;
   if (remaining && remaining.length) {
     timePeriod = remaining.join('').trim();
   }
 
+  if (showSeconds === true) {
+    return {
+      hours,
+      minutes: minuteSeparator + minutes,
+      seconds: secondSeparator + seconds,
+      timePeriod,
+    };
+  }
+
   return {
     hours,
-    minutes: separator + minutes,
+    minutes: minuteSeparator + minutes,
     timePeriod,
   };
 }

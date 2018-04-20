@@ -19,7 +19,7 @@ export default class TimePickerHeader extends PureComponent {
     /**
      * The current time type that is being changed.
      */
-    timeMode: PropTypes.oneOf(['hour', 'minute']).isRequired,
+    timeMode: PropTypes.oneOf(['hour', 'minute', 'second']).isRequired,
 
     /**
      * A function to update the time mode.
@@ -44,10 +44,21 @@ export default class TimePickerHeader extends PureComponent {
     minutes: PropTypes.string.isRequired,
 
     /**
+     * A formatted seconds string for the user's locale.
+     * This would be ':00' for en-US if the time was '3:15:00'.
+     */
+    seconds: PropTypes.string,
+
+    /**
      * An optional time period to use for locales that use
      * 12 hour clocks and AM/PM.
      */
     timePeriod: PropTypes.string,
+
+    /**
+     * A boolean that if true, seconds are displayed
+     */
+    showSeconds: PropTypes.bool,
   };
 
   _setHour = () => {
@@ -58,12 +69,23 @@ export default class TimePickerHeader extends PureComponent {
     this.props.setTimeMode('minute');
   };
 
+  _setSecond = () => {
+    this.props.setTimeMode('second');
+  };
+
   render() {
-    const { timeMode, hours, minutes, timePeriod, setTempTime, tempTime } = this.props;
+    const { timeMode, hours, minutes, seconds, timePeriod, setTempTime, tempTime, showSeconds } = this.props;
     let timePeriods;
     if (timePeriod) {
       timePeriods = <TimePeriods tempTime={tempTime} setTempTime={setTempTime} timePeriod={timePeriod} />;
     }
+
+    const secondsControl = showSeconds === true ?
+      (<PickerControl onClick={this._setSecond} active={timeMode === 'second'}>
+        <h4 className="md-display-3">
+          {seconds}
+        </h4>
+      </PickerControl>) : null;
 
     return (
       <header className="md-picker-header md-text-right">
@@ -77,6 +99,7 @@ export default class TimePickerHeader extends PureComponent {
             {minutes}
           </h4>
         </PickerControl>
+        {secondsControl}
         {timePeriods}
       </header>
     );

@@ -32,7 +32,7 @@ $md-picker-inline-z-index: 12 !default;
 
 /// The width for the picker while portrait.
 /// @type Number
-$md-picker-portrait-width: 320px !default;
+$md-picker-portrait-width: 330px !default;
 
 /// The height for the picker's content while portrait.
 /// @type Number
@@ -53,7 +53,7 @@ $md-picker-landscape-content-height: 280px !default;
 
 /// The height for the picker's header while landscape.
 /// @type Number
-$md-picker-landscape-header-width: 180px !default;
+$md-picker-landscape-header-width: 190px !default;
 
 /// The minimal about of margin for pickers on mobile devices. This is used when placing
 /// the picker in a dialog. The width and height can be larger than the default allowed
@@ -488,7 +488,7 @@ $md-clock-padding: 4px !default;
 }
 
 
-/// Creates the styles for the date picker only.
+/// Creates the styles for the time picker only.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-pickers-date;
@@ -650,7 +650,7 @@ $md-clock-padding: 4px !default;
   }
 
   .md-display-3 {
-    font-size: 4.8em;
+    font-size: 5em;
     line-height: 1;
   }
 
