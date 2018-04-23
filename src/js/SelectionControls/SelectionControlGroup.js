@@ -265,7 +265,7 @@ export default class SelectionControlGroup extends PureComponent {
     component: 'fieldset',
     labelComponent: 'legend',
     labelClassName: 'md-subheading-1',
-    selectionControl: SelectionControl
+    selectionControl: SelectionControl,
   };
 
   constructor(props) {
