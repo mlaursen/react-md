@@ -10,6 +10,7 @@ export interface SelectionControlGroupProps extends Props {
   id?: IdPropType;
   type: 'checkbox' | 'radio';
   component?: React.ReactType;
+  selectionControl?: React.ReactType;
   label?: React.ReactNode;
   labelClassName?: string;
   labelComponent?: React.ReactType;
