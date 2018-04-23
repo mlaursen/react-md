@@ -101,6 +101,14 @@ export default class SelectionControlGroup extends PureComponent {
     labelClassName: PropTypes.string,
 
     /**
+     * The component to render the `SelectionControl` in
+     */
+    selectionControl: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
+
+    /**
      * The component to render the optional `label` in.
      */
     labelComponent: PropTypes.oneOfType([
@@ -257,6 +265,7 @@ export default class SelectionControlGroup extends PureComponent {
     component: 'fieldset',
     labelComponent: 'legend',
     labelClassName: 'md-subheading-1',
+    selectionControl: SelectionControl
   };
 
   constructor(props) {
@@ -367,6 +376,7 @@ export default class SelectionControlGroup extends PureComponent {
       uncheckedRadioIcon,
       checkedCheckboxIcon,
       uncheckedCheckboxIcon,
+      selectionControl,
       /* eslint-disable no-unused-vars */
       value: propValue,
       controls: propControls,
@@ -403,7 +413,7 @@ export default class SelectionControlGroup extends PureComponent {
         className: cn(controlClassName, control.className),
       };
 
-      return <SelectionControl {...controlProps} />;
+      return React.createElement(selectionControl, controlProps);
     });
 
     let ariaLabel;
