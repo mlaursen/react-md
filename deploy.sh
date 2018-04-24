@@ -6,7 +6,7 @@ tar_name=react-md.tar.bz2
 ssh_alias=react-md
 server_location=/var/www/react-md/master
 
-yarn && yarn prebuild && yarn scripts && yarn build:es
+yarn && yarn build
 
 cd docs
 yarn && yarn build
