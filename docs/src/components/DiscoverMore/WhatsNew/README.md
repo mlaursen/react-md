@@ -1,3 +1,21 @@
+## April 2018
+### v1.3.0 Released
+Unfortunately I had to cut the scope of this release from what was originally targeted due to burn out and other things. I am going
+to be remaking my release schedule and planning to help alleviate this going forward and hopefully make bugs and features easier for
+contributors to pick up.
+
+This release only contains 2 new features and a change for how the ES6 modules are compiled.
+
+#### Changelog
+- Updated the `TimePicker` to also toggle on selecting seconds for a time. ([@abbiecat] - [pull-722])
+  - You can check out the example [here](/components/pickers/time#auto-ok-hover-modes-and-showing-seconds) for some small updates.
+  - This also updated the default styles of pickers to be a [bit larger](https://github.com/mlaursen/react-md/pull/722/commits/503411fe1229ae11d8fb22a62f4e4502967f463a#diff-9d7699b2e3d791845de32c718e51fb7d).
+- Updated the `SelectionControlGroup` component to allow custom control components to be rendered instead of only the `SelectionControl` component. ([@bioslife] - [pull-725])
+  - You can check out the example [here](/components/selection-controls#selection-control-group-custom-selection-control-component) for some more details.
+- Updated the ES6 modules export so that it correctly compiles to multiple files instead of a single UMD bundle. Unfortunately this did not seem to fix the
+[code splitting bug](https://github.com/mlaursen/react-md/issues/587) as there are things I am doing incorrectly in the internal code and will have to be fixed
+at another time. [commit-4015310], [commit-ac012b6] and [issues-587]
+
 ## March 2018
 ### v1.2.13 Released
 #### Changelog
