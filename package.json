@@ -4,6 +4,7 @@
   "description": "React material design components",
   "main": "./lib",
   "module": "./es",
+  "jsnext:main": "./es",
   "files": [
     "es/",
     "lib/",
