@@ -36,7 +36,7 @@ ${code}
     children = <CardText key="example-card-text">{description}{children}</CardText>;
   }
 
-  const id = toCaterpillarCase(title.replace(/["'()'".:]/g, ''));
+  const id = toCaterpillarCase(title.replace(/["'()'".:,]/g, '')).replace('-o-k-', '-ok-');
 
   return (
     <Card
