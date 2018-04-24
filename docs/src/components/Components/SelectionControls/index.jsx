@@ -6,6 +6,8 @@ import SimpleCheckboxesAndSwitches from './SimpleCheckboxesAndSwitches';
 import SimpleCheckboxesAndSwitchesRaw from '!!raw-loader!./SimpleCheckboxesAndSwitches.jsx';
 import RadioExample from './RadioExample';
 import RadioExampleRaw from '!!raw-loader!./RadioExample.jsx';
+import CustomControls from './CustomControls';
+import CustomControlsRaw from './CustomControls/code';
 import UsingCustomIcons from './UsingCustomIcons';
 import UsingCustomIconsRaw from '!!raw-loader!./UsingCustomIcons.jsx';
 
@@ -36,6 +38,16 @@ will immediately select the radio, trigger the \`onChange\` event, and loop arou
   `,
   code: RadioExampleRaw,
   children: <RadioExample />,
+}, {
+  title: 'SelectionControlGroup custom SelectionControl component',
+  description: `
+If the default \`SelectionControl\` component does not work with your needs, it is possible to provide a custom
+implementation to the \`SelectionControlGroup\` component. This example will not go into a lot of details, but you
+can check out the [controlComponent prop](?tab=1#selection-control-group-proptypes-control-component) for all the
+props that are provided.
+  `,
+  code: CustomControlsRaw,
+  children: <CustomControls />,
 }, {
   title: 'Using Custom Icons',
   description: `

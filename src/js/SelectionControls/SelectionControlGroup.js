@@ -101,9 +101,31 @@ export default class SelectionControlGroup extends PureComponent {
     labelClassName: PropTypes.string,
 
     /**
-     * The component to render the `SelectionControl` in
+     * The component to render each item in the `controls` list as. By default, this will be the
+     * `SelectionControl` component but you can change this to any React component that accepts
+     * the selection control props. It is currently provided:
+     *
+     * ```js
+     * const controlProps = {
+     *   id: `${id}${i}`,
+     *   key: `control${i}`,
+     *   name: `${name}${type === 'checkbox' ? '[]' : ''}`,
+     *   type,
+     *   inline,
+     *   disabled,
+     *   checked,
+     *   tabIndex: !radio || checked || (i === 0 && this._activeIndex === -1) ? undefined : -1,
+     *   checkedRadioIcon,
+     *   uncheckedRadioIcon,
+     *   checkedCheckboxIcon,
+     *   uncheckedCheckboxIcon,
+     *   ...control,
+     *   style,
+     *   className: cn(controlClassName, control.className),
+     * };
+     * ```
      */
-    selectionControl: PropTypes.oneOfType([
+    controlComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
@@ -265,7 +287,7 @@ export default class SelectionControlGroup extends PureComponent {
     component: 'fieldset',
     labelComponent: 'legend',
     labelClassName: 'md-subheading-1',
-    selectionControl: SelectionControl,
+    controlComponent: SelectionControl,
   };
 
   constructor(props) {
@@ -376,7 +398,7 @@ export default class SelectionControlGroup extends PureComponent {
       uncheckedRadioIcon,
       checkedCheckboxIcon,
       uncheckedCheckboxIcon,
-      selectionControl,
+      controlComponent: ControlComponent,
       /* eslint-disable no-unused-vars */
       value: propValue,
       controls: propControls,
@@ -413,7 +435,7 @@ export default class SelectionControlGroup extends PureComponent {
         className: cn(controlClassName, control.className),
       };
 
-      return React.createElement(selectionControl, controlProps);
+      return <ControlComponent {...controlProps} />;
     });
 
     let ariaLabel;
