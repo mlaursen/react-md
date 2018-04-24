@@ -15,6 +15,12 @@ const AutoOkAndHover = () => (
       className="md-cell md-cell--bottom"
       hoverMode
     />
+    <TimePicker
+      id="time-picker-show-seconds"
+      placeholder="Select a time (with seconds)"
+      className="md-cell md-cell--bottom"
+      showSeconds
+    />
   </div>
 );
 

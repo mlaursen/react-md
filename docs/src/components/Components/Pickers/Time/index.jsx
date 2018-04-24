@@ -52,7 +52,7 @@ The \`TimePicker\` can also be updated with any of the
   code: FormattingRaw,
   children: <Formatting />,
 }, {
-  title: 'Auto OK and Hover Modes',
+  title: 'Auto OK, Hover Modes, and Showing Seconds',
   description: `
 The \`TimePicker\` can be updated so that when a user touches/clicks an hour, it will automatically select the hour
 and switch to the minute view. When the user touches/clicks a minute, it will automatically select the minute and
@@ -60,6 +60,10 @@ call the "OK" action to close the dialog.
 
 There is an additional "hover mode" that can be enabled for time pickers that will make it a bit simpler on desktop
 screens so that hovering around the clock would be the same as dragging.
+
+Finally, you can enable allowing the user to select seconds in the \`TimePicker\` as well by enabling the \`showSeconds\`
+prop. The picker will default to starting with the user selecting hours first, but this can be configured with the
+[defaultTimeMode](?tab=1#time-picker-proptypes-default-time-mode) prop.
   `,
   code: AutoOkAndHoverRaw,
   children: <AutoOkAndHover />,
