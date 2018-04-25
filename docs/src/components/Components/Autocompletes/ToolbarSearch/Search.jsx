@@ -62,6 +62,7 @@ export default class Search extends PureComponent {
     return (
       <Autocomplete
         {...this.props}
+        id="toolbar-search"
         className="toolbar-search"
         type="search"
         data={filteredData}
