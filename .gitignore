@@ -3,23 +3,6 @@
 .sass-cache
 node_modules
 
-# Compiled files
-/es
-/lib
-/dist
-docs/dist
-docs/webpack-assets.json
-docs/webpack-stats.json
-docs/.env
-docs/public
-!docs/public/robots.txt
-!docs/public/favicon.ico
-!docs/public/react-md.png
-docs/src/server/databases/*
-!docs/src/server/databases/airQuality.json
-src/scss/bundles
-docs/src/constants/scssColors.js
-
 # Testing
 coverage
 
