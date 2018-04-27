@@ -19,7 +19,7 @@
     "build:commonjs:watch": "npm run build:commonjs -- --watch",
     "tsd": "tsc",
     "type-check": "tsc --p tsconfig.check-only.json",
-    "test": "jest",
+    "test": "cross-env BABEL_ENV=test jest",
     "check-version": "cross-env BABEL_ENV=node babel-node --extensions '.ts' src/scripts/checkVersion.ts",
     "prepublishOnly": "npm-run-all type-check test lint check-version build"
   },
