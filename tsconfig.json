@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "declarationDir": "./types"
+  },
+  "exclude": [
+    "old/**/*"
+  ]
+}

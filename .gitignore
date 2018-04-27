@@ -3,6 +3,12 @@
 .sass-cache
 node_modules
 
+# Compiled files
+/es
+/lib
+/dist
+/types
+
 # Testing
 coverage
 
