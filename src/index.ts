@@ -1,2 +1,2 @@
-export * from './Typography';
-export * from './Version';
+export * from "./Typography";
+export * from "./Version";

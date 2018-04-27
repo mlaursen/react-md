@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "strict": true,
     "noImplicitAny": true,
+    "noEmit": true,
+    "pretty": true,
+    "skipLibCheck": true,
     "jsx": "react",
     "moduleResolution": "node",
     "baseUrl": "src",
-    "skipLibCheck": true,
     "outDir": "./dist",
-    "declarationDir": "./types"
+    "typeRoots": [
+      "node_modules/@types/",
+      "typings.d.ts"
+    ]
   },
   "exclude": [
-    "old/**/*"
+    "old/**/*",
+    "src/utils/tests.ts",
+    "**/__tests__/*"
   ]
 }

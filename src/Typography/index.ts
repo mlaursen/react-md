@@ -1,3 +1,3 @@
-import { default as Text, TextProps } from './Text';
+import { default as Text, ITextProps } from "./Text";
 export default Text;
-export { TextProps };
+export { ITextProps };

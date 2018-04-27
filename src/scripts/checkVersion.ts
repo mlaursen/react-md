@@ -1,6 +1,8 @@
-import version from '../Version/version';
+import version from "../Version/version";
 
-const packageJSON = require('../../package.json');
+// tslint:disable-next-line:no-var-requires
+const packageJSON = require("../../package.json");
+
 const packageVersion = packageJSON.version;
 
 if (packageVersion !== version) {

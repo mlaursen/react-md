@@ -17,9 +17,10 @@
     "build:modules:watch": "npm run build:modules -- --watch",
     "build:commonjs": "cross-env NODE_ENV=development BABEL_ENV=commonjs npm run compile -- lib",
     "build:commonjs:watch": "npm run build:commonjs -- --watch",
+    "lint": "tslint -p .",
+    "lint:fix": "npm run lint -- --fix",
     "tsd": "tsc",
-    "type-check": "tsc --p tsconfig.check-only.json",
-    "test": "cross-env BABEL_ENV=test jest",
+    "test": "cross-env BABEL_ENV=test jest src",
     "check-version": "cross-env BABEL_ENV=node babel-node --extensions '.ts' src/scripts/checkVersion.ts",
     "prepublishOnly": "npm-run-all type-check test lint check-version build"
   },
@@ -43,11 +44,6 @@
     "cross-env": "^5.1.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.3",
     "npm-run-all": "^4.1.2",
     "object.assign": "^4.1.0",
@@ -56,7 +52,7 @@
     "react-test-renderer": "^16.3.2",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.4.4",
-    "ts-lint": "^4.5.1",
+    "tslint": "^5.9.1",
     "typescript": "^2.8.3"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { create, ReactTestRendererJSON } from 'react-test-renderer';
+import * as React from "react";
+import { create, ReactTestRendererJSON } from "react-test-renderer";
 
 export function createSnapshot(children: React.ReactElement<any>): ReactTestRendererJSON | null {
   return create(children).toJSON();

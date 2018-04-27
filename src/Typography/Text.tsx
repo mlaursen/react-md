@@ -1,19 +1,19 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as cn from 'classnames';
+import * as cn from "classnames";
+import * as PropTypes from "prop-types";
+import * as React from "react";
 import {
-  BaseProps,
+  IBaseProps,
   FontWeights,
   TextAligns,
-  TextDecorations
-} from '../types';
+  TextDecorations,
+} from "../types";
 
-export interface TextChildrenFunction {
+export interface ITextChildrenFunction {
   className: string;
 }
 
-export interface TextProps extends BaseProps {
-  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'section' | 'aside' | 'caption' | 'p' | 'span' | null;
+export interface ITextProps extends IBaseProps {
+  type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "section" | "aside" | "caption" | "p" | "span" | null;
   weight?: FontWeights;
   decoration?: TextDecorations;
   align?: TextAligns;
@@ -24,10 +24,10 @@ export interface TextProps extends BaseProps {
   title?: boolean;
   subheading?: boolean | 1 | 2 | null;
   caption?: boolean;
-  children?: React.ReactNode | ((props: TextChildrenFunction) => React.ReactNode | null);
+  children?: React.ReactNode | ((props: ITextChildrenFunction) => React.ReactNode | null);
 }
 
-export interface TextState {
+export interface ITextState {
   Component: React.ReactType | null;
 }
 
@@ -41,7 +41,7 @@ export interface TextState {
  * When the component should be rendered as text, null will be returned. Otherwise
  * the string html tag name will be returned.
  */
-function getComponent(props: TextProps): string | null {
+function getComponent(props: ITextProps): string | null {
   const {
     type,
     weight,
@@ -59,63 +59,63 @@ function getComponent(props: TextProps): string | null {
   if (type) {
     return type;
   } else if (display || headline) {
-    return 'h1';
+    return "h1";
   } else if (title) {
-    return 'h2';
+    return "h2";
   } else if (subheading) {
-    return subheading === true || subheading === 1 ? 'h4' : 'h3';
+    return subheading === true || subheading === 1 ? "h4" : "h3";
   } else if (p) {
-    return p === true || p === 1 ? 'p' : 'aside';
+    return p === true || p === 1 ? "p" : "aside";
   } else if (caption) {
-    return 'caption';
+    return "caption";
   } else if (h) {
     return `h${h}`;
   } else if (weight || decoration || align) {
-    return 'span';
+    return "span";
   }
 
   return null;
 }
 
-export default class Text extends React.Component<TextProps, TextState> {
-  static propTypes = {
+export default class Text extends React.Component<ITextProps, ITextState> {
+  public static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
     type: PropTypes.oneOf([
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'section',
-      'aside',
-      'caption',
-      'p',
-      'span',
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "section",
+      "aside",
+      "caption",
+      "p",
+      "span",
     ]),
     align: PropTypes.oneOf([
-      'left',
-      'center',
-      'right',
-      'justify',
-      'inherit',
-      'initial',
+      "left",
+      "center",
+      "right",
+      "justify",
+      "inherit",
+      "initial",
     ]),
     decoration: PropTypes.oneOf([
-      'overline',
-      'underline',
-      'line-through',
-      'none',
-      'initial',
-      'inherit'
+      "overline",
+      "underline",
+      "line-through",
+      "none",
+      "initial",
+      "inherit",
     ]),
     weight: PropTypes.oneOf([
-      'light',
-      'regular',
-      'medium',
-      'semibold',
-      'bold',
+      "light",
+      "regular",
+      "medium",
+      "semibold",
+      "bold",
     ]),
     children: PropTypes.oneOfType([
       PropTypes.func,
@@ -123,18 +123,18 @@ export default class Text extends React.Component<TextProps, TextState> {
     ]),
   };
 
-  static getDerivedStateFromProps(nextProps: TextProps, prevState: TextState): TextState | null {
+  public static getDerivedStateFromProps(nextProps: ITextProps, prevState: ITextState): ITextState | null {
     const Component = getComponent(nextProps);
     if (prevState.Component !== Component) {
       return { Component };
     }
 
     return null;
-  };
+  }
 
-  state = { Component: null };
+  public state = { Component: null };
 
-  render() {
+  public render() {
     const { Component } = this.state;
     const {
       className: propClassName,
@@ -150,24 +150,24 @@ export default class Text extends React.Component<TextProps, TextState> {
       align,
       caption,
       headline,
-      ...props
+      ...props,
     } = this.props;
 
-    const className = cn('md-typography', {
+    const className = cn("md-typography", {
       [`md-typography--${align}`]: !!align,
       [`md-typography--${weight}`]: !!weight,
       [`md-typography--${decoration}`]: !!decoration,
       [`md-typography--display-${display}`]: !!display,
-      'md-typography--headline': headline,
-      'md-typography--title': title,
-      'md-typography--subheading-1': subheading === true || subheading === 1,
-      'md-typography--subheading-2': subheading === 2,
-      'md-typography--body-1': p === 1 || p === true,
-      'md-typography--body-2': p === 2,
-      'md-typography--caption': caption,
+      "md-typography--headline": headline,
+      "md-typography--title": title,
+      "md-typography--subheading-1": subheading === true || subheading === 1,
+      "md-typography--subheading-2": subheading === 2,
+      "md-typography--body-1": p === 1 || p === true,
+      "md-typography--body-2": p === 2,
+      "md-typography--caption": caption,
     }, propClassName);
 
-    if (typeof children === 'function') {
+    if (typeof children === "function") {
       return children({ className });
     } else if (!Component) {
       return children;
