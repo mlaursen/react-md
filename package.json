@@ -10,6 +10,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "run-script": "cross-env BABEL_ENV=node babel-node --extensions '.ts'",
     "prebuild": "rimraf es lib dist",
     "compile": "babel src --extensions '.ts,.tsx,.js,.jsx' -s -d",
     "build": "npm-run-all -p \"build:modules\" \"build:commonjs\"",
@@ -21,7 +22,7 @@
     "lint:fix": "npm run lint -- --fix",
     "tsd": "tsc",
     "test": "cross-env BABEL_ENV=test jest src",
-    "check-version": "cross-env BABEL_ENV=node babel-node --extensions '.ts' src/scripts/checkVersion.ts",
+    "check-version": "npm run run-script -- src/scripts/checkVersion.ts",
     "prepublishOnly": "npm-run-all type-check test lint check-version build"
   },
   "dependencies": {
