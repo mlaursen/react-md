@@ -12,3 +12,5 @@ export interface IBaseStylingProps {
 export interface IBaseProps extends IBaseStylingProps {
   id?: Id;
 }
+
+export type RenderContainer = HTMLElement | null;

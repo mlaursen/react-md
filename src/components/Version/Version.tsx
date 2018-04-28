@@ -1,5 +1,5 @@
 import * as React from "react";
-import { default as Text, ITextProps } from "../Typography";
+import { default as Text, ITextProps } from "../Typography/Text";
 
 import version from "./version";
 

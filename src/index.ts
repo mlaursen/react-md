@@ -1,2 +1,3 @@
-export * from "./Typography";
-export * from "./Version";
+export * from "./components/Portal";
+export * from "./components/Typography";
+export * from "./components/Version";

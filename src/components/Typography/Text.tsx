@@ -6,7 +6,7 @@ import {
   FontWeights,
   TextAligns,
   TextDecorations,
-} from "../types";
+} from "../../types";
 
 export interface ITextChildrenFunction {
   className: string;
