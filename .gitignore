@@ -9,6 +9,9 @@ node_modules
 /dist
 /types
 
+# Hidden files
+/packages/*/.env
+
 # Testing
 coverage
 

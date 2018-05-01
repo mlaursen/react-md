@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "components/*": [
+        "src/components/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types/",
+      "../../typings.d.ts"
+    ],
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

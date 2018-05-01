@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /api
+Disallow: /*.json
+Allow: /
