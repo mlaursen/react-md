@@ -1,4 +1,3 @@
-const assign = require('object.assign');
 const env = require('@babel/preset-env').default;
 const react = require('@babel/preset-react').default;
 const typescript = require('@babel/preset-typescript');
@@ -36,7 +35,7 @@ module.exports = function (api) {
   if (isNode) {
     envConfig = NODE_ENV_CONFIG;
   } else if (isCommonJS) {
-    envConfig = assign({}, BROWSER_ENV_CONFIG, {
+    envConfig = Object.assign({}, BROWSER_ENV_CONFIG, {
       modules: 'commonjs',
     });
   }
