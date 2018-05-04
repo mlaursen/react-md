@@ -131,7 +131,6 @@ export default class Portal extends Component<PortalWithDefaultProps, IPortalSta
     render: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
-      PropTypes.instanceOf(HTMLElement),
     ]),
     lastChild: PropTypes.bool,
   };

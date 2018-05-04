@@ -1,6 +1,13 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 
-const App = () => <h1>Hello, world!</h1>;
+import PortalExample from "./PortalExample";
+
+const App = () => (
+  <React.Fragment>
+    <h1>Hello, world!</h1>
+    <PortalExample />
+  </React.Fragment>
+);
 
 export default hot(module)(App);
