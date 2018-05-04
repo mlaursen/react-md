@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "resize-observer-polyfill": "^1.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",
