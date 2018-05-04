@@ -1,4 +1,4 @@
-import version from "../Version/version";
+import version from "../components/Version/version";
 
 // tslint:disable-next-line:no-var-requires
 const packageJSON = require("../../package.json");

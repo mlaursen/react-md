@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
 import * as PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 
@@ -121,7 +120,7 @@ function renderPortal(props: PortalWithDefaultProps, state: IPortalState): IPort
   return { container };
 }
 
-export default class Portal extends Component<PortalWithDefaultProps, IPortalState> {
+export default class Portal extends React.Component<PortalWithDefaultProps, IPortalState> {
   public static propTypes = {
     id: PropTypes.string,
     className: PropTypes.string,
