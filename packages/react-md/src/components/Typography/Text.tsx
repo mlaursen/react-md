@@ -150,7 +150,7 @@ export default class Text extends React.Component<ITextProps, ITextState> {
       align,
       caption,
       headline,
-      ...props,
+      ...props
     } = this.props;
 
     const className = cn("md-typography", {

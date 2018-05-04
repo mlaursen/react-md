@@ -4,10 +4,10 @@
 node_modules
 
 # Compiled files
-/es
-/lib
-/dist
-/types
+/packages/*/es
+/packages/*/lib
+/packages/*/dist
+/packages/*/types
 
 # Hidden files
 /packages/*/.env

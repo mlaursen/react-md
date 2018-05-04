@@ -6,7 +6,7 @@ export interface IArgv {
 
 export interface IEnv {
   hotServer?: boolean;
-  server?: boolean;
+  onServer?: boolean;
 }
 
 export interface IBaseConfig {

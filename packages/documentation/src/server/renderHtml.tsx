@@ -21,9 +21,9 @@ interface IManifest {
 function createAssets(manifest: IManifest = {}): IDocumentAssets {
   return Object.keys(manifest).reduce(({ scripts, styles }, chunkName) => {
     const value = manifest[chunkName];
-    if (chunkName.endsWith(".js")) {
+    if (value.endsWith(".js")) {
       scripts.push(value);
-    } else if (chunkName.endsWith(".css")) {
+    } else if (value.endsWith(".css")) {
       styles.push(value);
     }
 
