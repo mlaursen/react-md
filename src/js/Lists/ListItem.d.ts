@@ -5,6 +5,7 @@ import { InjectedInkProps } from '../Inks';
 export interface BaseListItemProps {
   tileStyle?: React.CSSProperties;
   tileClassName?: string;
+  primaryText?: React.ReactNode;
   secondaryText?: React.ReactNode;
   leftIcon?: React.ReactNode;
   leftAvatar?: React.ReactNode;
