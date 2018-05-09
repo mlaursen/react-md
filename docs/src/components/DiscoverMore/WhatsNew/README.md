@@ -1,3 +1,8 @@
+## May 2018
+### v1.3.1 Released
+##### Changelog
+- Fixed the `ListItemControl` typescript definition. ([@ripldev] - [pull-735])
+
 ## April 2018
 ### v1.3.0 Released
 Unfortunately I had to cut the scope of this release from what was originally targeted due to burn out and other things. I am going
