@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react",
     "strict": true,
     "noImplicitAny": true,
@@ -10,6 +10,9 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "types",
     "typeRoots": [
       "node_modules/@types/",
       "typings.d.ts"
