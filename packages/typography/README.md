@@ -67,3 +67,62 @@ const App = () => (
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+## Updating Styles
+It is possible to add additional styles by creating global variables for each typography style in material design. Each variable is set up as `$md-typography-styles-STYLE_NAME` which must be a Map of style attributes with values. So for example:
+
+```scss
+// You really wouldn't want to do this...
+$md-typography-headline-1: (
+  color: white,
+  background: red,
+  padding: 1.235rem
+);
+```
+
+This would now have the base styles for `md-typography--headline-1` to be:
+```diff
+ .md-typography--headline-1 {
+   font-size: 6rem;
+   line-height: 6rem;
+   font-weight: 300;
+   letter-spacing: -.01562em;
+   text-decoration: inherit;
+   text-transform: inherit;
++  color: white;
++  background: red;
++  padding: 1.235rem;
+}
+```
+
+A full list of variables which can be used to override are:
+- `$md-typography-styles-headline-1`
+- `$md-typography-styles-headline-2`
+- `$md-typography-styles-headline-3`
+- `$md-typography-styles-headline-4`
+- `$md-typography-styles-headline-5`
+- `$md-typography-styles-headline-6`
+- `$md-typography-styles-subtitle-1`
+- `$md-typography-styles-subtitle-2`
+- `$md-typography-styles-body-1`
+- `$md-typography-styles-body-2`
+- `$md-typography-styles-button`
+- `$md-typography-styles-caption`
+- `$md-typography-styles-overline`
+
+Please note that this will only merge the base default values with your new styles.
+
+If you want to completely remove the default styles, you can set a `$md-typography-styles` variable **before** importing the typography scss.
+
+```
+$md-typography-styles: (
+  headline-1: (
+    display: none
+  )
+);
+
+@import '@react-md/typography/dist/typography';
+```
+
+Every key that you do not include in the map will no longer be created when including the base typography styles.
