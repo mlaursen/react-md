@@ -1,0 +1,13 @@
+{
+  "name": "@react-md/internal-types",
+  "version": "2.0.0-alpha-1",
+  "main": "index.d.ts",
+  "repository": "https://github.com/mlaursen/react-md",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/react": "^16.3.14",
+    "react": "^16.3.2"
+  }
+}
