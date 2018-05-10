@@ -1,6 +1,6 @@
 import * as React from "react";
 export type Id = string | number;
-export type FontWeights = "light" | "regular" | "medium" | "semibold" | "bold" | null;
+export type FontWeights = "thin" | "light" | "regular" | "medium" | "bold" | "black" | null;
 export type TextDecorations = "overline" | "underline" | "line-through" | "none" | "initial" | "inherit" | null;
 export type TextAligns = "left" | "center" | "right" | "justify" | "initial" | "inherit" | null;
 

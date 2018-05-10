@@ -1,0 +1,35 @@
+////
+/// @group typography
+////
+
+
+/// @private
+@function md-typography-get-global-variable($style) {
+  @if $style == 'headline-1' {
+    @return $md-typography-styles-headline-1;
+  } @else if $style == 'headline-2' {
+    @return $md-typography-styles-headline-2;
+  }
+
+  @return ();
+}
+
+/// @private
+@function md-typography-set-styles($base-styles, $additional-styles) {
+  @each $style, $style-props in $additional-styles {
+    $style-props: map-merge($base-styles, $style-props);
+
+    @if global-variable-exists(md-typography-styles-#{$style}) {
+      $style-props: map-merge($style-props, md-typography-get-global-variable(#{$style}));
+    }
+
+    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
+  }
+
+  @return $additional-styles;
+}
+
+/// @private
+@function md-typography-get-letter-spacing($tracking, $font-size) {
+  @return $tracking / ($font-size * 16) * 1em;
+}

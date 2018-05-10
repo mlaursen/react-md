@@ -1,0 +1,3 @@
+{
+    "extends": "@react-md/build/.babelrc.js"
+}

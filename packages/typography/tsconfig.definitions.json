@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.definitions.json",
+  "compilerOptions": {
+    "declarationDir": "./types"
+  }
+}
