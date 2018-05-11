@@ -2,8 +2,11 @@
 /// @group typography
 ////
 
-
+/// Gets the global variable value for a proided typography style name. This assumes that the global variable
+/// exists already.
 /// @private
+/// @param {String} style - The typography style name to return a variable for
+/// @return {Map} a map of the style properties from the global typograpy variable.
 @function md-typography-get-global-variable($style) {
   @if $style == 'headline-1' {
     @return $md-typography-styles-headline-1;
@@ -36,7 +39,12 @@
   @return ();
 }
 
+/// A utility function to help merge typography styles together with global definition overrides.
+///
 /// @private
+/// @param {Map} base-styles - The base styles to merge with
+/// @param {Map} additional-styles - Any additional styles to merge with
+/// @return {Map} a Map of the base-styles and additional styles merged together
 @function md-typography-set-styles($base-styles, $additional-styles) {
   @each $style, $style-props in $additional-styles {
     $style-props: map-merge($base-styles, $style-props);
@@ -51,7 +59,11 @@
   @return $additional-styles;
 }
 
+/// A small utility funciton to get the letter spacing based on tracking and font-size
 /// @private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @return {Number} the letter spacing value in em
 @function md-typography-get-letter-spacing($tracking, $font-size) {
   @return $tracking / ($font-size * 16) * 1em;
 }

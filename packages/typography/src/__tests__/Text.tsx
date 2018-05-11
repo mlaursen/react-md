@@ -42,31 +42,6 @@ describe("Text", () => {
       expectSnapshot(<Text type="button">{HELLO_WORLD}</Text>);
       expectSnapshot(<Text type="overline">{HELLO_WORLD}</Text>);
     });
-    it("should render as a span if a font weight is provided", () => {
-      expectSnapshot(<Text weight="light">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text weight="regular">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text weight="medium">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text weight="semibold">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text weight="bold">{HELLO_WORLD}</Text>);
-    });
-
-    it("should render as a span if a text alignment is provided", () => {
-      expectSnapshot(<Text align="left">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text align="center">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text align="right">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text align="inherit">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text align="initial">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text align="justify">{HELLO_WORLD}</Text>);
-    });
-
-    it("should render as a span if a text decoration is provided", () => {
-      expectSnapshot(<Text decoration="line-through">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text decoration="overline">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text decoration="underline">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text decoration="none">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text decoration="inherit">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text decoration="initial">{HELLO_WORLD}</Text>);
-    });
 
     it("should render as the provided tagName even if the type prop is set", () => {
       expectSnapshot(<Text tagName="h1" type="headline-1">{HELLO_WORLD}</Text>);
@@ -193,7 +168,7 @@ describe("Text", () => {
 
   it("should provide the className if the children is a callback function", () => {
     expectSnapshot((
-      <Text align="left">
+      <Text>
         {({ className }) => <div className={className}>{HELLO_WORLD}</div>}
       </Text>
     ));

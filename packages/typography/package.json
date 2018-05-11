@@ -2,10 +2,10 @@
   "name": "@react-md/typography",
   "version": "2.0.0-alpha-1",
   "description": "Typography style and components for react-md",
-  "main": "lib/index.js",
-  "esnext:main": "es/index.js",
-  "module": "es/index.js",
-  "types": "types/index.d.ts",
+  "main": "./lib/index.js",
+  "esnext:main": "./es/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
   "repository": "https://github.com/mlaursen/react-md",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
@@ -13,7 +13,8 @@
   "files": [
     "es/*",
     "lib/*",
-    "dist/*"
+    "dist/*",
+    "types/*"
   ],
   "scripts": {
     "build": "node build.js",

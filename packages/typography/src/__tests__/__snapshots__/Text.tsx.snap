@@ -1,142 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Text rendering return value should render a text string when there are no additional props provided 1`] = `"Hello, world!"`;
-
-exports[`Text rendering return value should render a text string when there are no additional props provided 2`] = `"This is another string that is just some text. I'm not sure how helpful this is though."`;
-
-exports[`Text rendering return value should render as a span if a font weight is provided 1`] = `
+exports[`Text rendering return value should render a text string when there are no additional props provided 1`] = `
 <span
-  className="md-typography md-typography--light"
+  className="md-typography"
 >
   Hello, world!
 </span>
 `;
 
-exports[`Text rendering return value should render as a span if a font weight is provided 2`] = `
+exports[`Text rendering return value should render a text string when there are no additional props provided 2`] = `
 <span
-  className="md-typography md-typography--regular"
+  className="md-typography"
 >
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a font weight is provided 3`] = `
-<span
-  className="md-typography md-typography--medium"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a font weight is provided 4`] = `
-<span
-  className="md-typography md-typography--semibold"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a font weight is provided 5`] = `
-<span
-  className="md-typography md-typography--bold"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 1`] = `
-<span
-  className="md-typography md-typography--left"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 2`] = `
-<span
-  className="md-typography md-typography--center"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 3`] = `
-<span
-  className="md-typography md-typography--right"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 4`] = `
-<span
-  className="md-typography md-typography--inherit"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 5`] = `
-<span
-  className="md-typography md-typography--initial"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text alignment is provided 6`] = `
-<span
-  className="md-typography md-typography--justify"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 1`] = `
-<span
-  className="md-typography md-typography--line-through"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 2`] = `
-<span
-  className="md-typography md-typography--overline"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 3`] = `
-<span
-  className="md-typography md-typography--underline"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 4`] = `
-<span
-  className="md-typography md-typography--none"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 5`] = `
-<span
-  className="md-typography md-typography--inherit"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as a span if a text decoration is provided 6`] = `
-<span
-  className="md-typography md-typography--initial"
->
-  Hello, world!
+  This is another string that is just some text. I'm not sure how helpful this is though.
 </span>
 `;
 
@@ -205,19 +81,19 @@ exports[`Text rendering return value should render as the correct tag based on t
 `;
 
 exports[`Text rendering return value should render as the correct tag based on the type prop 9`] = `
-<span
+<p
   className="md-typography md-typography--body-1"
 >
   Hello, world!
-</span>
+</p>
 `;
 
 exports[`Text rendering return value should render as the correct tag based on the type prop 10`] = `
-<span
+<p
   className="md-typography md-typography--body-2"
 >
   Hello, world!
-</span>
+</p>
 `;
 
 exports[`Text rendering return value should render as the correct tag based on the type prop 11`] = `
@@ -1214,7 +1090,7 @@ exports[`Text rendering return value should render as the provided tagName prop 
 
 exports[`Text should provide the className if the children is a callback function 1`] = `
 <div
-  className="md-typography md-typography--left"
+  className="md-typography"
 >
   Hello, world!
 </div>

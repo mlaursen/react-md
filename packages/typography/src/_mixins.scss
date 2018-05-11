@@ -2,45 +2,26 @@
 /// @group typography
 ////
 
-@import 'functions';
-@import 'variables';
-
-/// Applies the base typography styles to an element or class.
+/// Applies the base typography styles to an element.
 ///
-/// @example scss - Example SCSS Usage
-///   .my-class {
+/// @example scss - Example Usage SCSS
+///   .custom-class-name {
 ///     @include md-typography-base;
 ///
-///     font-size: 1.25rem;
-///   }
-///
-/// @example css- Example Usage CSS Output (with defaults)
-///   .my-class {
-///     font-family: Roboto, sans-serif,
-///     -moz-osx-font-smoothing: grayscale,
-///     -webkit-font-smoothing: antialiased,
-///     font-size: 1.25rem;
-///   }
+///     font-size: 1.3rem;
+///  }
 @mixin md-typography-base {
   @each $key, $value in $md-typography-base {
     #{$key}: $value;
   }
 }
 
-/// Applies one of the typography styles to an element or class.
-///
-/// @example scss - Example SCSS Usage
-///   // this would make all <p> tags have the body-1 styles
-///   p {
-///     @include md-typography(body-1);
-///   }
-///
-/// @param {String} style - one of the keys from `$md-typography-styles` to get applied.
+/// Applies one of the provided material design styles to an element.
 @mixin md-typography($style) {
   $style-props: map-get($md-typography-styles, $style);
 
   @if not map-has-key($md-typography-styles, $style) {
-    @error "Invalid style specified! #{$style} doesn't exist. Choose one of #{map-keys($md-typography-styles)}";
+    @error "Invalid style specified! #{$style} doesn't exist. Choose one of #{$map-keys($md-typography-styles)}";
   }
 
   @each $key, $value in $style-props {
@@ -48,18 +29,14 @@
   }
 }
 
-/// A simple mixin that will create all typography styles within react-md. This should only
-/// be included once.
-///
-/// @example scss - Example SCSS USage
-///   @include react-md-typography;
+/// Creates all the typography styles from the react-md typography variables.
 @mixin react-md-typography {
   .md-typography {
     @include md-typography-base;
 
-    @each $style in map-keys($md-typography-styles) {
-      &--#{$style} {
-        @include md-typography($style);
+    @each $suffix in map-keys($md-typography-styles) {
+      &--#{$suffix} {
+        @include md-typography($suffix);
       }
     }
   }

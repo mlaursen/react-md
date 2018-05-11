@@ -8,20 +8,28 @@ $ npm install --save @react-md/typography
 
 ## Usage
 ### Styles
-The styles can be used in a few ways. If you just want to include the typography styles and compile them:
+Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-typography`:
 
 ```scss
+// This import will generate styles by default.
 @import '@react-md/typography/dist/styles';
+```
 
-// OR
+or
+
+```scss
+// This import only includes all the utility variables, mixins, and functions.
 @import '@react-md/typography/dist/typography';
 
+// Once everything has been imported, you can generate the styles with the following mixin
 @include react-md-typography;
 ```
 
-If you would like to just import all the variables, mixins, and functions:
+If you would like to just import all the utility variables, mixins, and functions:
 ```scss
 @import '@react-md/typography/dist/typography';
+
+// Any custom styles that use the utilities
 ```
 
 ### Text Component

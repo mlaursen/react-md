@@ -119,7 +119,7 @@ $md-typography-styles: md-typography-set-styles($md-typography-base, (
     font-weight: map-get($md-typography-font-weights, regular),
     letter-spacing: md-typography-get-letter-spacing(.4, .75),
     text-decoration: inherit,
-    text-transform: inherit
+    text-transform: inherit,
   ),
   button: (
     font-size: .875rem, // 14sp
@@ -127,7 +127,7 @@ $md-typography-styles: md-typography-set-styles($md-typography-base, (
     font-weight: map-get($md-typography-font-weights, medium),
     letter-spacing: md-typography-get-letter-spacing(1.25, .875),
     text-decoration: none,
-    text-transform: uppercase
+    text-transform: uppercase,
   ),
   overline: (
     font-size: .75rem, // 12sp
@@ -135,6 +135,6 @@ $md-typography-styles: md-typography-set-styles($md-typography-base, (
     font-weight: map-get($md-typography-font-weights, medium),
     letter-spacing: md-typography-get-letter-spacing(2, .75),
     text-decoration: none,
-    text-transform: uppercase
+    text-transform: uppercase,
   ),
 ));
