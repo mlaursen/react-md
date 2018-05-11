@@ -1,0 +1,50 @@
+{
+  "name": "@react-md/portal",
+  "version": "2.0.0-alpha-1",
+  "description": "The Portal component is a simple wrapper with React's createPortal API that will automatically generate portal nodes behind the scenes for you.",
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "npm run build",
+    "test": "cross-env BABEL_ENV=test jest src"
+  },
+  "main": "./lib/index.js",
+  "esnext:main": "./es/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "dist/*",
+    "types/*"
+  ],
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "private": false,
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@react-md/build": "^2.0.0-alpha-1",
+    "@react-md/internal-testing": "^2.0.0-alpha-1",
+    "@react-md/internal-types": "^2.0.0-alpha-1",
+    "@types/node": "^8.10.14",
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "cross-env": "^5.1.4",
+    "jest": "^22.4.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-test-renderer": "^16.3.2",
+    "ts-jest": "^22.4.5",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  },
+  "peerDependencies": {
+    "react": ">= 16.3",
+    "react-dom": ">= 16.3"
+  }
+}

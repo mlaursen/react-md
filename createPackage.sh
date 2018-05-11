@@ -62,16 +62,9 @@ TSCONFIG_DEFINITIONS_TEMPLATE=$(cat <<-END
 END
 )
 
-README_TEMPLATE=$(cat <<-END
-# @react-md/$PACKAGE_NAME
-$DESCRIPTION
-
-## Installation
-\`\`\`sh
-$ npm install --save @react-md/$PACKAGE_NAME
-\`\`\`
-
-## Usage
+README_STYLE_TEMPLATE=""
+if [[ $INCLUDE_STYLES = true ]]; then
+  README_STYLE_TEMPLATE=$(cat <<-END
 ### Styles
 Including all the base styles can be done by either importing the styles file from the \`dist\` folder or importing the helpers file and using the mixin \`react-md-$PACKAGE_NAME\`:
 
@@ -96,6 +89,21 @@ If you would like to just import all the utility variables, mixins, and function
 
 // Any custom styles that use the utilities
 \`\`\`
+END
+)
+fi
+
+README_TEMPLATE=$(cat <<-END
+# @react-md/$PACKAGE_NAME
+$DESCRIPTION
+
+## Installation
+\`\`\`sh
+$ npm install --save @react-md/$PACKAGE_NAME
+\`\`\`
+
+## Usage
+$README_STYLE_TEMPLATE
 
 END
 )

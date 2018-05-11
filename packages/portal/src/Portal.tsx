@@ -2,7 +2,11 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 
-import { RenderContainer } from "../../types";
+import { RenderContainer } from "@react-md/internal-types";
+
+// can't figure out how to get it working right now. Works for building but not creating
+// typescript definition files
+declare const process: any;
 
 export interface IPortalProps {
   /**
