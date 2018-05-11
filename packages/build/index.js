@@ -13,7 +13,7 @@ module.exports = function build() {
   const command = 'babel src --extensions \'.ts,.tsx,.js,.jsx\' -s -d';
   return new Promise((resolve, reject) => {
     console.log('Cleaning old files...');
-    rimraf('+(es|lib|dist)', (err) => {
+    rimraf('+(es|lib|dist|types)', (err) => {
       if (err) {
         reject(err);
       }
