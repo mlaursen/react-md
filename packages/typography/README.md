@@ -64,7 +64,7 @@ import { Text } from "@react-md/typography";
 
 const App = () => (
   <main>
-    <Text weight="bold" type="body-1">
+    <Text type="body-1">
       {({ className }) => (
         <span className={className}>
           The children callback function will just supply an object of the current typography className to apply to any element(s).
@@ -123,7 +123,7 @@ Please note that this will only merge the base default values with your new styl
 
 If you want to completely remove the default styles, you can set a `$md-typography-styles` variable **before** importing the typography scss.
 
-```
+```scss
 $md-typography-styles: (
   headline-1: (
     display: none
