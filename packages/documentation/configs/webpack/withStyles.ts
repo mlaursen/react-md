@@ -1,4 +1,5 @@
 import * as webpack from "webpack";
+import path from "path";
 import MiniCSSPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 
@@ -29,7 +30,7 @@ function createLoader(name: string, options?: {}): webpack.Loader {
  * All styles will be removed from the bundle since it isn't needed on the server.
  */
 export default function withStyles(config: CustomConfig, options: IPluginOptions): CustomConfig {
-  const { isServer, isDev } = options;
+  const { isServer, isDev, srcPath, rootPath } = options;
 
   const styleLoader = isDev ? createLoader("style") : MiniCSSPlugin.loader;
   const plugins = [
@@ -39,12 +40,13 @@ export default function withStyles(config: CustomConfig, options: IPluginOptions
     }),
     isServer && new webpack.NormalModuleReplacementPlugin(/\.s?css$/, "node-noop"),
   ].filter(Boolean);
-  config.plugins.push(...plugins);
+  config.plugins.push.call(plugins);
 
   config.module.rules.push({
     test: /\.css$/,
     include: [
-      "node_modules/prismjs/themes",
+      path.join(rootPath, "node_modules", "prismjs", "themes"),
+      path.join(rootPath, "node_modules", "normalize.css"),
     ],
     use: [
       styleLoader,
@@ -54,7 +56,7 @@ export default function withStyles(config: CustomConfig, options: IPluginOptions
   }, {
     test: /\.scss$/,
     include: [
-      "src",
+      srcPath,
     ],
     use: [
       styleLoader,

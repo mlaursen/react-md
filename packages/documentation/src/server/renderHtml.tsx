@@ -8,7 +8,7 @@ import _ from "lodash";
 import { default as Document, IDocumentAssets } from "./Document";
 
 interface IManifest {
-  [chunkName: string]: string;
+  [chunkName: string]: string | string[];
 }
 
 /**
@@ -21,7 +21,13 @@ interface IManifest {
 function createAssets(manifest: IManifest = {}): IDocumentAssets {
   return Object.keys(manifest).reduce(({ scripts, styles }, chunkName) => {
     const value = manifest[chunkName];
-    if (value.endsWith(".js")) {
+    if (Array.isArray(value)) {
+      value.forEach((fileName) => {
+        if (scripts.indexOf(fileName) === -1) {
+          scripts.push(fileName);
+        }
+      });
+    } else if (value.endsWith(".js")) {
       scripts.push(value);
     } else if (value.endsWith(".css")) {
       styles.push(value);
@@ -49,5 +55,5 @@ export default function renderHtml(req, res) {
     assets = createAssets(res.locals.webpackStats.toJson().assetsByChunkName);
   }
 
-  res.send(renderToString(<Document assets={assets} />));
+  res.send(`<!DOCTYPE html>${renderToString(<Document assets={assets} />)}`);
 }

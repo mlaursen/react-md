@@ -10,13 +10,29 @@ export interface IDocumentProps {
   assets: IDocumentAssets;
 }
 
+function withLeadingSlash(path: string): string {
+  if (/^(?!\/|http)/.test(path)) {
+    return `/${path}`;
+  }
+
+  return path;
+}
+
+const FONTS = [
+  "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+];
+
 export default class Document extends React.Component<IDocumentProps, null> {
   public render() {
     const { assets } = this.props;
-    const styles = assets.styles.map((path) => <link key={path} rel="stylesheet" href={`${path}`} />);
-    const scripts = assets.scripts.map((path) => <script key={path} src={`${path}`} />);
+    const styles = assets.styles.concat(FONTS)
+      .map((path) => <link key={path} rel="stylesheet" href={withLeadingSlash(path)} />);
+
+    const scripts = assets.scripts
+      .map((path) => <script key={path} src={withLeadingSlash(path)} />);
+
     return (
-      <html className="md-typography">
+      <html lang="en" dir="ltr" className="md-typography">
         <head>
           <title>react-md</title>
           <meta charSet="utf-8" />

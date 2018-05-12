@@ -1,0 +1,7 @@
+@import '~scss/globals';
+
+body {
+  margin: 0;
+}
+
+@include react-md-typography;

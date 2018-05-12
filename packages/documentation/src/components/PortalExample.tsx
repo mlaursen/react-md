@@ -1,5 +1,6 @@
 import React from "react";
-import { Portal } from "react-md";
+import { Portal } from "@react-md/portal";
+import { Text } from "@react-md/typography";
 
 interface IPortalExampleState {
   visible: boolean;
@@ -13,16 +14,19 @@ export default class PortalExample extends React.Component<null, IPortalExampleS
 
     return (
       <React.Fragment>
-        <button onClick={this.show}>Show</button>
+        <button onClick={this.show}>
+          <Text type="button">Show</Text>
+        </button>
         <Portal visible={visible}>
-          <button onClick={this.hide}>Hide</button>
+          <button onClick={this.hide}>
+            <Text type="button">Hide</Text>
+          </button>
         </Portal>
       </React.Fragment>
     );
   }
 
   private show = () => {
-    console.log('SHOW');
     this.setState({ visible: true });
   }
 
