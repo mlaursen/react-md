@@ -172,16 +172,9 @@ PACKAGE_TEMPLATE=$(cat <<-END
 END
 )
 
-# When the package does not have styles associated with it, update the build script
-# to not try to copy files over.
-BUILD_SCRIPT_ARGS=""
-if [[ $INCLUDE_STYLES = false ]]; then
-  BUILD_SCRIPT_ARGS = "false"
-fi
-
 # This is the full build.js file that will run builds for the package.
 BUILD_SCRIPT_TEMPLATE=$(cat <<-END
-module.exports = require('@react-md/build')($BUILD_SCRIPT_ARGS);
+module.exports = require('@react-md/build')($INCLUDE_STYLES);
 END
 )
 

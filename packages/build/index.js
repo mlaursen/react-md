@@ -9,8 +9,9 @@ const exec = (command, env) => execSync(command, {
   env: _.assign({}, process.env, env),
 });
 
-module.exports = function build(isStyleable = true) {
-  const command = 'babel src --extensions \'.ts,.tsx,.js,.jsx\' -s -d';
+const command = 'babel src --extensions \'.ts,.tsx,.js,.jsx\' -s -d';
+
+function buildAll(isStyleable) {
   return new Promise((resolve, reject) => {
     console.log('Cleaning old files...');
     rimraf('+(es|lib|dist|types)', (err) => {
@@ -52,3 +53,22 @@ module.exports = function build(isStyleable = true) {
     });
   });
 };
+
+function watch(target) {
+  exec(`${command} ${target} --watch`, {
+    BABEL_ENV: target,
+    NODE_ENV: 'development',
+  });
+}
+
+function isArg(a) {
+  return process.argv.indexOf(a) !== -1;
+}
+
+module.exports = function build(isStyleable = true) {
+  if (isArg('--watch')) {
+    watch(isArg('--cjs') ? 'commonjs' : 'es');
+  } else {
+    buildAll(isStyleable);
+  }
+}

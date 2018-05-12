@@ -9,7 +9,7 @@ lerna add @react-md/build --dev --scope PACKAGE_NAME
 
 ### Create the build script
 ```js
-module.exports = require('@react-md/build')();
+require('@react-md/build')();
 ```
 
 ### Create tsconfig files
@@ -39,4 +39,13 @@ and a `tsconfig.definitions.json`
     "build": "node build.js"
   }
 }
+```
+
+### Running build or watch mode
+```sh
+$ npm run build
+```
+
+```sh
+$ npm run build -- --watch
 ```
