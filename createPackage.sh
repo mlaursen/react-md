@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# ==========================================================================
+# Read and validate user input
+
 # Get the package name from the first argument
 PACKAGE_NAME="$1"
 
@@ -45,6 +48,11 @@ else
   INCLUDE_STYLES=false
 fi
 
+
+# ==========================================================================
+# Create file templates
+
+# The base tsconfig.json file that should be created in each package to compile typescript.
 TSCONFIG_TEMPLATE=$(cat <<-END
 {
   "extends": "../../tsconfig.definitions.json"
@@ -52,6 +60,8 @@ TSCONFIG_TEMPLATE=$(cat <<-END
 END
 )
 
+# The tsconfig.definitions.json file that should be created in each package to create
+# typescript definition files.
 TSCONFIG_DEFINITIONS_TEMPLATE=$(cat <<-END
 {
   "extends": "../../tsconfig.definitions.json",
@@ -62,6 +72,10 @@ TSCONFIG_DEFINITIONS_TEMPLATE=$(cat <<-END
 END
 )
 
+
+# The package will sometimes include styles. When it does, we want to append some examples
+# and usage into the README. All packages _should_ follow the same naming scheme, so it can
+# be applied in this manor.
 README_STYLE_TEMPLATE=""
 if [[ $INCLUDE_STYLES = true ]]; then
   README_STYLE_TEMPLATE=$(cat <<-END
@@ -93,6 +107,7 @@ END
 )
 fi
 
+# The full README.md file
 README_TEMPLATE=$(cat <<-END
 # @react-md/$PACKAGE_NAME
 $DESCRIPTION
@@ -108,7 +123,7 @@ $README_STYLE_TEMPLATE
 END
 )
 
-
+# The package.json file template that should get created.
 PACKAGE_TEMPLATE=$(cat <<-END
 {
   "name": "@react-md/$PACKAGE_NAME",
@@ -157,11 +172,20 @@ PACKAGE_TEMPLATE=$(cat <<-END
 END
 )
 
+# When the package does not have styles associated with it, update the build script
+# to not try to copy files over.
+BUILD_SCRIPT_ARGS=""
+if [[ $INCLUDE_STYLES = false ]]; then
+  BUILD_SCRIPT_ARGS = "false"
+fi
+
+# This is the full build.js file that will run builds for the package.
 BUILD_SCRIPT_TEMPLATE=$(cat <<-END
-module.exports = require('@react-md/build')();
+module.exports = require('@react-md/build')($BUILD_SCRIPT_ARGS);
 END
 )
 
+# The simple babelrc file that extends the base babelrc from the build.
 BABELRC_TEMPLATE=$(cat <<-END
 {
   "extends": "@react-md/build/.babelrc.js"
@@ -169,6 +193,7 @@ BABELRC_TEMPLATE=$(cat <<-END
 END
 )
 
+# The simple jest config to use when running tests.
 JEST_CONFIG_TEMPLATE=$(cat <<-END
 module.exports = {
   testRegex: '(/__tests__/.*|(\.|/)(test|spec))\.(jsx?|tsx?)$',
@@ -189,6 +214,8 @@ module.exports = {
 END
 )
 
+# A simple file creator for scss files that will group them based on the package name.
+# This is really just helpful when I start doing SassDoc again
 SCSS_FILE_TEMPLATE=$(cat <<-END
 ////
 /// @group $PACKAGE_NAME
@@ -197,6 +224,20 @@ SCSS_FILE_TEMPLATE=$(cat <<-END
 END
 )
 
+# This is the "main" file template for a package that will include all the utilites
+# (mixins, functions, and variables) within the package.
+SCSS_PACKAGE_FILE_TEMPLATE=$(cat <<-END
+$SCSS_FILE_TEMPLATE
+
+@import 'functions';
+@import 'mixins';
+@import 'variables';
+
+END
+)
+
+# This is the file template for the scss file that will generate styles when included
+# in another scss file.
 STYLES_FILE_TEMPLATE=$(cat <<-END
 @import '$PACKAGE_NAME';
 
@@ -222,10 +263,10 @@ echo "Creating source files..."
 mkdir src
 touch src/index.ts
 if [[ $INCLUDE_STYLES = true ]]; then
-  echo "$SCSS_FILE_TEMPLATE" > src/_$PACKAGE_NAME.scss
   echo "$SCSS_FILE_TEMPLATE" > src/_functions.scss
   echo "$SCSS_FILE_TEMPLATE" > src/_variables.scss
   echo "$SCSS_FILE_TEMPLATE" > src/_mixins.scss
+  echo "$SCSS_PACKAGE_FILE_TEMPLATE" > src/_$PACKAGE_NAME.scss
   echo "$STYLES_FILE_TEMPLATE" > src/styles.scss
 fi
 
