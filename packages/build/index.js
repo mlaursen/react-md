@@ -9,7 +9,7 @@ const exec = (command, env) => execSync(command, {
   env: _.assign({}, process.env, env),
 });
 
-module.exports = function build() {
+module.exports = function build(isStyleable = true) {
   const command = 'babel src --extensions \'.ts,.tsx,.js,.jsx\' -s -d';
   return new Promise((resolve, reject) => {
     console.log('Cleaning old files...');
@@ -34,6 +34,11 @@ module.exports = function build() {
       console.log('\n');
       console.log('Creating typescript definition files...');
       exec('tsc -p tsconfig.definitions.json');
+
+      if (!isStyleable) {
+        resolve();
+        return;
+      }
 
       console.log('\n');
       console.log('Copying scss files into \'./dist\'');

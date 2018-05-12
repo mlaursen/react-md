@@ -1,1 +1,1 @@
-module.exports = require('@react-md/build')();
+module.exports = require('@react-md/build')(false);
