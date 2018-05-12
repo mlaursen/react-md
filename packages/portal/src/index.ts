@@ -1,1 +1,1 @@
-export { default, default as Portal, IPortalProps } from "./Portal";
+export { default, default as Portal } from "./Portal";
