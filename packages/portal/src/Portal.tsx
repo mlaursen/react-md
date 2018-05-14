@@ -62,8 +62,9 @@ export interface IPortalProps {
 }
 
 export interface IDefaultPortalProps {
-  id: "";
-  className: "";
+  id: string;
+  className: string;
+  lastChild: boolean;
 }
 
 export type PortalWithDefaultProps = IPortalProps & IDefaultPortalProps;
@@ -124,7 +125,7 @@ function renderPortal(props: PortalWithDefaultProps, state: IPortalState): IPort
   return { container };
 }
 
-export default class Portal extends React.Component<PortalWithDefaultProps, IPortalState> {
+export default class Portal extends React.Component<IPortalProps, IPortalState> {
   public static propTypes = {
     id: PropTypes.string,
     className: PropTypes.string,
@@ -138,11 +139,9 @@ export default class Portal extends React.Component<PortalWithDefaultProps, IPor
     lastChild: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IDefaultPortalProps = {
     id: "",
     className: "",
-    tag: "span",
-    render: null,
     lastChild: false,
   };
 

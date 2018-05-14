@@ -42,11 +42,12 @@ export default function withStyles(config: CustomConfig, options: IPluginOptions
   ].filter(Boolean);
   config.plugins.push.call(plugins);
 
+  const nodeModules = path.join(rootPath, "node_modules");
   config.module.rules.push({
     test: /\.css$/,
     include: [
-      path.join(rootPath, "node_modules", "prismjs", "themes"),
-      path.join(rootPath, "node_modules", "normalize.css"),
+      path.join(nodeModules, "prismjs", "themes"),
+      path.join(nodeModules, "normalize.css"),
     ],
     use: [
       styleLoader,
@@ -62,7 +63,7 @@ export default function withStyles(config: CustomConfig, options: IPluginOptions
       styleLoader,
       createLoader("css", { importLoaders: 2 }),
       createLoader("postcss"),
-      createLoader("sass"),
+      createLoader("sass", { includePaths: [nodeModules] }),
     ],
   });
 

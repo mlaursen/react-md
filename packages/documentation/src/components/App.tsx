@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { hot } from "react-hot-loader";
 import { Text } from "@react-md/typography";
 

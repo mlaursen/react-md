@@ -20,29 +20,35 @@ const CLIENT_ENV_CONFIG = {
 };
 
 export default function withTypescript(config: CustomConfig, options: IPluginOptions): CustomConfig {
-  const { isServer, rootPath } = options;
+  const { isServer, srcPath, rootPath } = options;
 
-  const envConfig = isServer ? SERVER_ENV_CONFIG : CLIENT_ENV_CONFIG;
   config.module.rules.push({
     test: /\.tsx?$/,
-    include: [
-      rootPath,
-    ],
-    use: [{
-      loader: "babel-loader",
-      options: {
-        babelrc: false,
-        presets: [
-          typescript,
-          [env, envConfig],
-          react,
-        ],
-        plugins: [
-          transformClassProperties,
-        ],
-      },
-    }],
+    include: [rootPath],
+    use: "ts-loader",
   });
+
+  // const envConfig = isServer ? SERVER_ENV_CONFIG : CLIENT_ENV_CONFIG;
+  // config.module.rules.push({
+  //   test: /\.tsx?$/,
+  //   include: [
+  //     rootPath,
+  //   ],
+  //   use: [{
+  //     loader: "babel-loader",
+  //     options: {
+  //       babelrc: false,
+  //       presets: [
+  //         typescript,
+  //         [env, envConfig],
+  //         react,
+  //       ],
+  //       plugins: [
+  //         transformClassProperties,
+  //       ],
+  //     },
+  //   }],
+  // });
 
   return config;
 }
