@@ -11,6 +11,19 @@ const exec = (command, env) => execSync(command, {
 
 const command = 'babel src --extensions \'.ts,.tsx,.js,.jsx\' -s -d';
 
+function copyStyles() {
+  return new Promise((resolve, reject) => {
+    console.log('Copying scss files into the dist folder...');
+    copyfiles(['src/**/*.scss', 'dist'], { up: 1 }, (err) => {
+      if (err) {
+        reject(err);
+      }
+
+      resolve();
+    });
+  });
+}
+
 function buildAll(isStyleable) {
   return new Promise((resolve, reject) => {
     console.log('Cleaning old files...');
@@ -42,14 +55,7 @@ function buildAll(isStyleable) {
       }
 
       console.log('\n');
-      console.log('Copying scss files into \'./dist\'');
-      copyfiles(['src/**/*.scss', 'dist'], { up: 1 }, (err2) => {
-        if (err2) {
-          reject(err2);
-        }
-
-        resolve();
-      });
+      copyStyles().then(resolve);
     });
   });
 };
@@ -68,6 +74,8 @@ function isArg(a) {
 module.exports = function build(isStyleable = true) {
   if (isArg('--watch')) {
     watch(isArg('--cjs') ? 'commonjs' : 'es');
+  } else if (isArg('--copy')) {
+    copyStyles();
   } else {
     buildAll(isStyleable);
   }
