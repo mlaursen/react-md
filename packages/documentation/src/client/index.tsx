@@ -7,4 +7,4 @@ import App from "components/App";
 
 const root = document.getElementById("root");
 
-ReactDOM.hydrate(<App />, root);
+ReactDOM.render(<App />, root);

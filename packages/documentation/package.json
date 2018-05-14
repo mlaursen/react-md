@@ -18,7 +18,11 @@
   "repository": "https://github.com/mlaursen/react-md",
   "license": "MIT",
   "dependencies": {
+    "@react-md/accessibility": "^2.0.0-alpha-1",
+    "@react-md/color": "^2.0.0-alpha-1",
     "@react-md/portal": "^2.0.0-alpha-1",
+    "@react-md/tooltip": "^2.0.0-alpha-1",
+    "@react-md/transition": "^2.0.0-alpha-1",
     "@react-md/typography": "^2.0.0-alpha-1",
     "express": "^4.16.3",
     "helmet": "^3.12.0",
