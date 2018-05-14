@@ -1,3 +1,56 @@
 ////
 /// @group color
 ////
+
+/// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
+///     color values can be used.
+/// @param {String} style - The type of theme style to use. This should be one of the `$md-theme-property-values` or a literal
+///     color value.
+/// @param {Boolean} important [false] - Boolean if the !important flag should also be applied. It is generally recommended
+///     to not use this flag.
+/// @param {Boolean} edge-opt-out [$md-theme-edge-opt-out] - Boolean whether to feature-detect around Edge to avoid emitting
+///     CSS variables for it. This is really only intended for use cases where interactions with pseudo-element styles cause
+///     problems due to Edge bugs.
+@mixin md-theme($property, $style, $important: false, $edge-opt-out: $md-theme-edge-opt-out) {
+  $suffix: if($important, " !important", "");
+  @if type-of($style) == "color" or $style == "currentColor" {
+    #{$property}: #{$style + $suffix};
+  } @else {
+    @if not map-has-key($md-theme-property-values, $style) {
+      @error "Invalid style: '#{$style}'. Choos one of: #{$map-keys(md-theme-property-values)}";
+    }
+
+    $color-value: map-get($md-theme-property-values, $style);
+    $var-value: var(--md-theme-#{$style}, $color-value) + $suffix;
+
+    // Apply the base property and color-value for browsers that do not support css-variables.
+    #{$property}: $color-value + $suffix;
+
+    @if $edge-opt-out {
+      @at-root {
+        @supports not (-ms-ime-align: auto) {
+          & {
+            #{$property}: $var-value;
+          }
+        }
+      }
+    } @else {
+      #{$property}: $var-value;
+    }
+  }
+}
+@mixin react-md-theme($primary-color, $secondary-color) {
+  $property-values: map-keys($md-theme-property-values);
+  :root {
+    @each $style in $property-values {
+      --md-theme-#{$style}: #{$map-get($md-theme-property-values, $style)};
+    }
+  }
+
+  @each $style in $property-values {
+    .md-theme--#{$style} {
+      $is-bg: $style == "background" or $style == "surface";
+      @include md-theme(if($is-bg, background-color, color), $style, not($is-bg));
+    }
+  }
+}

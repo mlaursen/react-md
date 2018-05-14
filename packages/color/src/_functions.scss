@@ -1,3 +1,42 @@
 ////
 /// @group color
 ////
+
+@import 'constants';
+
+
+/// Calculate the luminance for a color.
+/// https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function md-theme-luminance($color) {
+  $red: nth($md-theme-linear-channel-values, red($color) + 1);
+  $green: nth($md-theme-linear-channel-values, green($color) + 1);
+  $blue: nth($md-theme-linear-channel-values, blue($color) + 1);
+
+  @return (.2126 * $red) + (.7152 * $green) + (.0722 * $blue);
+}
+
+@function md-theme-contrast($back, $front) {
+  $back-luminance: md-theme-luminance($back) + .05;
+  $front-luminance: md-theme-luminance($front) + .05;
+
+  @return max($back-luminance, $front-luminance) / min($back-luminance, $front-luminance);
+}
+
+@function md-theme-tone($color, $min-contrast: 3.1) {
+  @if $color == "dark" or $color == "light" {
+    @return $color;
+  }
+
+  $light-contrast: md-theme-contrast($color, white);
+  $dark-contrast: md-theme-contrast($color, rgba(black, .87));
+
+  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
+    @return "light";
+  } @else {
+    @return "dark";
+  }
+}
+
+@function md-theme-contrast-tone($color) {
+  @return if(md-theme-tone($color) == "dark", "light", "dark");
+}

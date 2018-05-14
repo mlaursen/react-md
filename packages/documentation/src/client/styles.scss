@@ -5,6 +5,9 @@ body {
   background: #fefefe;
 }
 
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-pink-a-200;
+
 @include react-md-accessibility;
 @include react-md-typography;
 @include react-md-collapse;
