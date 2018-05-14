@@ -1,0 +1,15 @@
+////
+/// @group transition
+////
+
+$md-transitions: (
+  sharp: cubic-bezier(.4, 0, .6, 1),
+  standard: cubic-bezier(.4, 0, .2, 1),
+  acceleration: cubic-bezier(.4, 0, 1, 1),
+  deceleration: cubic-bezier(0, 0, .2, 1),
+) !default;
+
+$md-collapse-enter-transition-time: .25s !default;
+$md-collapse-enter-transition-func: deceleration !default;
+$md-collapse-leave-transition-time: .2s !default;
+$md-collapse-leave-transition-func: acceleration !default;

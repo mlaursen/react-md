@@ -1,0 +1,35 @@
+////
+/// @group transition
+////
+
+@import 'variables';
+
+@mixin md-transition($type) {
+  @if not map-has-key($md-transitions, $type) {
+    @error "Invalid transition specified! #{type} doesn't exist. Choose one of #{map-keys($md-transitions)}";
+  }
+
+  transition-timing-function: map-get($md-transitions, $type);
+}
+
+@mixin react-md-collapse {
+  .md-collapse {
+    transition-property: max-height, padding-bottom, padding-top;
+
+    &--no-overflow {
+      overflow: hidden;
+    }
+
+    &--enter {
+      @include md-transition($md-collapse-enter-transition-func);
+
+      transition-duration: $md-collapse-enter-transition-time
+    }
+
+    &--leave {
+      @include md-transition($md-collapse-leave-transition-func);
+
+      transition-duration: $md-collapse-leave-transition-time;
+    }
+  }
+}
