@@ -1,0 +1,11 @@
+////
+/// @group tooltip
+////
+
+@import '@react-md/color/dist/color';
+
+
+$md-tooltip-base: (
+  align-items: center,
+  background: $md-grey-700,
+)
