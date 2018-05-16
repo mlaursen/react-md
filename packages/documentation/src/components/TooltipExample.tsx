@@ -17,12 +17,15 @@ export default class TooltipExample extends React.Component<null, ITooltipExampl
   public render() {
     const { visible } = this.state;
     return (
-      <button id="button-1" aria-describedby="tooltip-1" type="button">
-        <Text type="button">Button</Text>
-        <Tooltip id="tooltip-1" visible={visible} onShow={this.show} onHide={this.hide}>
-          Tooltip!
-        </Tooltip>
-      </button>
+      <React.Fragment>
+        <Text type="headline-2">Tooltip Example</Text>
+        <button id="button-1" aria-describedby="tooltip-1" type="button">
+          <Text type="button">Button</Text>
+          <Tooltip id="tooltip-1" dense={true}>
+            Tooltip!
+          </Tooltip>
+        </button>
+      </React.Fragment>
     );
   }
 

@@ -1,3 +1,186 @@
 ////
 /// @group tooltip
 ////
+
+@import '@react-md/typography/dist/typography';
+@import 'variables';
+
+/// Creates the base tooltip styles only.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltip {
+///     @include md-tooltip-base;
+///   }
+///
+/// @example scss - Example Custom Tooltip
+///   .tooltip {
+///     @include md-tooltip-base;
+///
+///     padding-bottom: .825rem;
+///     padding-top: .825rem;
+///   }
+@mixin md-tooltip-base {
+  @include md-typography-base;
+
+  align-items: center;
+  background: $md-tooltip-background-color;
+  color: $md-tooltip-text-color;
+  display: flex;
+  font-size: $md-tooltip-font-size;
+  min-height: $md-tooltip-min-height;
+  opacity: 0;
+  padding-left: $md-tooltip-lr-padding;
+  padding-right: $md-tooltip-lr-padding;
+  position: absolute;
+  transition: opacity $md-tooltip-transition-time, transform $md-tooltip-transition-time;
+  user-select: none;
+  visibility: hidden;
+  z-index: -1;
+}
+
+/// Creates the active tooltip styles only. The active styles will increase the z-index and
+/// change the visibility from `hidden` to `visible`. This class should be applied during the
+/// entire enter and leave transition.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltio--active {
+///     @include md-tooltip-active;
+///   }
+@mixin md-tooltip-active {
+  visibility: visible;
+  z-index: $md-tooltip-z-index;
+}
+
+/// Creates the visible tooltip styles only. This should only be applied when the tooltip is visible
+/// as it will cause the enter and leave transition by being applied or removed.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltio--visible {
+///     @include md-tooltip-visible;
+///   }
+///
+/// @example scss - Example Custom Tooltip
+///   .tooltip-container:focus,
+///   .tooltip-container:hover {
+///     .tooltip {
+///       @include md-tooltip-active;
+///     }
+///   }
+@mixin md-tooltip-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/// Creates the dense tooltip style overrides. Since the base tooltip styles define
+/// these values as well, this should be included **after** the base styles have been
+/// included or with an additional selector depth.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltip--dense {
+///     @include md-tooltip-dense;
+///   }
+///
+/// @example scss - Overriding Default Styles
+///   .md-tooltip {
+///     @include md-tooltip-base;
+///     @include md-tooltip-dense;
+///   }
+///
+///   // or
+///   .md-tooltip {
+///     @include md-tooltip-base;
+///
+///       &--dense {
+///         @include md-tooltip-dense;
+///       }
+///   }
+///
+/// @example scss - Overriding Default Styles v2
+///   .md-tooltip--dense.md-tooltip--dense {
+///      @include md-tooltip-dense;
+///   }
+///
+///   // somewhere later in your stylesheet
+///   .md-tooltip {
+///     @include md-tooltip-base;
+///   }
+@mixin md-tooltip-dense {
+  font-size: $md-tooltip-dense-font-size;
+  min-height: $md-tooltip-dense-min-height;
+  padding-left: $md-tooltip-dense-lr-padding;
+  padding-right: $md-tooltip-dense-lr-padding;
+}
+
+/// Creates the styles for one of the four tooltip positions.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltip--left {
+///     @include md-tooltip-position(left, $md-tooltip-spacing);
+///   }
+///
+/// @param {String} position - One of the four tooltip positions. (top, right, bottom, or left)
+/// @param {Number} spacing - The amount of spacing to use between the tooltip and the container element. This should
+///   normally just be `$md-tooltip-spacing` or `$md-tooltip-dense-spacing`.
+@mixin md-tooltip-position($position, $spacing) {
+  @if index($md-tooltip-position-values, $position) == null {
+    @error "Invalid position specified! #{$position} doesn't exist. Choose one of #{$md-tooltip-position-values}.";
+  }
+
+  // add a negative spacing since the position will be transformed for centering below
+  #{$position}: -$spacing;
+
+  $horizontal: $position == "left" or $position == "right";
+
+  $inactive-x: if($horizontal, 0, -50%);
+  $inactive-y: if($horizontal, -50%, 0);
+
+  left: if($horizontal, null, 50%);
+  top: if($horizontal, 50%, null);
+  transform: translate3d($inactive-x, $inactive-y, 0);
+
+  &.md-tooltip--active {
+    $active-x: if($horizontal, 100%, -50%);
+    $active-y: if($horizontal, -50%, 100%);
+
+    transform: translate3d($active-x, $active-y, 0);
+  }
+}
+
+/// Creates all the base styles to get tooltips working with the `Tooltip` component.
+@mixin react-md-tooltip {
+  .md-tooltip {
+    @include md-tooltip-base;
+
+    &--active {
+      @include md-tooltip-active;
+    }
+
+    &--visible {
+      @include md-tooltip-visible;
+    }
+
+    &--enter {
+      @include md-transition(deceleration);
+    }
+
+    &--leave {
+      @include md-transition(acceleration)
+    }
+
+    @each $position in $md-tooltip-position-values {
+      &--#{$position} {
+        @include md-tooltip-position($position, $md-tooltip-spacing);
+      }
+    }
+
+    &--dense {
+      @include md-tooltip-dense;
+
+      @each $position in $md-tooltip-position-values {
+        &.md-tooltip--#{$position} {
+          #{$position}: -$md-tooltip-dense-spacing;
+        }
+      }
+    }
+  }
+}

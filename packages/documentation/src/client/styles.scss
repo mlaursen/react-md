@@ -10,6 +10,7 @@ $md-secondary-color: $md-pink-a-200;
 
 @include react-md-accessibility;
 @include react-md-typography;
+@include react-md-tooltip;
 @include react-md-collapse;
 
 
@@ -68,47 +69,6 @@ $md-secondary-color: $md-pink-a-200;
 .card {
   @include md-box-shadow(1);
   padding: 16px 24px;
-}
-
-.md-tooltip {
-  @each $key, $value in $md-tooltip-base {
-    #{$key}: $value;
-  }
-  align-items: center;
-  background: #616161;
-  color: #fff;
-  display: flex;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  padding: .85rem;
-  transition: opacity .15s, transform .15s;
-  transform: translate3d(0, -50%, 0);
-  user-select: none;
-  visibility: hidden;
-  z-index: -1;
-
-  &--visible {
-    visibility: visible;
-    z-index: 1;
-  }
-
-  &--enter {
-    transition-timing-function: cubic-bezier(0, 0, .2, 1);
-  }
-
-  &--leave {
-    transition-timing-function: cubic-bezier(.4, 0, 1, 1);
-  }
-
-  &--active {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-  &--fixed {
-    position: fixed;
-  }
 }
 
 .color {

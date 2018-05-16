@@ -4,8 +4,66 @@
 
 @import '@react-md/color/dist/color';
 
+/// The background color to use for tooltips.
+/// @type Color
+$md-tooltip-background-color: rgba($md-grey-700, .9) !default;
 
-$md-tooltip-base: (
-  align-items: center,
-  background: $md-grey-700,
-)
+/// The text color to use for tooltips. This will be white on dark backgrounds and black
+/// on light backgrounds by default.
+/// @type Color
+$md-tooltip-text-color: if(md-theme-contrast-tone($md-tooltip-background-color) == "light", #fff, #000) !default;
+
+/// The transition time for the tooltip to enter or to leave.
+/// @type Number
+$md-tooltip-transition-time: .15s !default;
+
+/// The z-index to use for tooltips when they are visible.
+/// @type Number
+$md-tooltip-z-index: 100 !default;
+
+/// The font size to use for tooltips
+///
+/// @see md-tooltip-dense-font-size
+/// @type Number
+$md-tooltip-font-size: 1rem !default; // 14px
+
+/// The min height to use for tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see md-tooltip-dense-min-height
+/// @type Number
+$md-tooltip-min-height: 2rem !default; // 32px
+
+/// The left and right padding to apply to tooltips.
+///
+/// @see md-tooltip-dense-lr-padding
+/// @type Number
+$md-tooltip-lr-padding: 1rem !default; // 16px
+
+/// The amount of spacing to place between the tooltip and the tooltip's container element.
+///
+/// @see md-tooltip-dense-spacing
+/// @type Number
+$md-tooltip-spacing: 1.5rem !default; // 24px
+
+/// The font size to use for dense tooltips.
+/// @type Number
+$md-tooltip-dense-font-size: .625rem !default; // 10px
+
+/// The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see md-tooltip-min-height
+/// @type Number
+$md-tooltip-dense-min-height: 1.375rem !default; // 22px
+
+/// The left and right padding to use for dense tooltips
+/// @type Number
+$md-tooltip-dense-lr-padding: .5rem !default; // 8px
+
+/// The amount of spacing to place between the dense tooltip and the tooltip's container element.
+/// @type Number
+$md-tooltip-dense-spacing: .875rem !default; // 14px
+
+/// @private
+$md-tooltip-position-values: top right bottom left;
