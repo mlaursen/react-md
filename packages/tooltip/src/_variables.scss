@@ -40,6 +40,12 @@ $md-tooltip-min-height: 2rem !default; // 32px
 /// @type Number
 $md-tooltip-lr-padding: 1rem !default; // 16px
 
+/// The top and bottom padding to apply to tooltips when line wrapping is enabled.
+///
+/// @see md-tooltip-dense-line-wrap-tb-padding
+/// @type Number
+$md-tooltip-line-wrap-tb-padding: .5625rem !default; // 9px
+
 /// The amount of spacing to place between the tooltip and the tooltip's container element.
 ///
 /// @see md-tooltip-dense-spacing
@@ -60,6 +66,12 @@ $md-tooltip-dense-min-height: 1.375rem !default; // 22px
 /// The left and right padding to use for dense tooltips
 /// @type Number
 $md-tooltip-dense-lr-padding: .5rem !default; // 8px
+
+/// The top and bottom padding to apply to dense tooltips when line wrapping is enabled.
+///
+/// @see md-tooltip-line-wrap-tb-padding
+/// @type Number
+$md-tooltip-dense-line-wrap-tb-padding: .375rem !default; // 6px
 
 /// The amount of spacing to place between the dense tooltip and the tooltip's container element.
 /// @type Number

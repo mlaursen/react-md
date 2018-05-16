@@ -32,9 +32,11 @@
   padding-left: $md-tooltip-lr-padding;
   padding-right: $md-tooltip-lr-padding;
   position: absolute;
+  pointer-events: none;
   transition: opacity $md-tooltip-transition-time, transform $md-tooltip-transition-time;
   user-select: none;
   visibility: hidden;
+  white-space: nowrap;
   z-index: -1;
 }
 
@@ -109,6 +111,17 @@
   min-height: $md-tooltip-dense-min-height;
   padding-left: $md-tooltip-dense-lr-padding;
   padding-right: $md-tooltip-dense-lr-padding;
+
+  @each $position in $md-tooltip-position-values {
+    &.md-tooltip--#{$position} {
+      #{$position}: -$md-tooltip-dense-spacing;
+    }
+  }
+
+  &.md-tooltip--line-wrap {
+    padding-bottom: $md-tooltip-dense-line-wrap-tb-padding;
+    padding-top: $md-tooltip-dense-line-wrap-tb-padding;
+  }
 }
 
 /// Creates the styles for one of the four tooltip positions.
@@ -146,6 +159,19 @@
   }
 }
 
+/// Creates the base styles to allow line-wrapping tooltips.
+///
+/// @example scss - Example SCSS Usage
+///   .md-tooltip--line-wrap {
+///     @include md-tooltip-line-wrap;
+///   }
+@mixin md-tooltip-line-wrap {
+  padding-bottom: $md-tooltip-line-wrap-tb-padding;
+  padding-top: $md-tooltip-line-wrap-tb-padding;
+  white-space: normal;
+  width: 100%;
+}
+
 /// Creates all the base styles to get tooltips working with the `Tooltip` component.
 @mixin react-md-tooltip {
   .md-tooltip {
@@ -173,14 +199,12 @@
       }
     }
 
+    &--line-wrap {
+      @include md-tooltip-line-wrap;
+    }
+
     &--dense {
       @include md-tooltip-dense;
-
-      @each $position in $md-tooltip-position-values {
-        &.md-tooltip--#{$position} {
-          #{$position}: -$md-tooltip-dense-spacing;
-        }
-      }
     }
   }
 }
