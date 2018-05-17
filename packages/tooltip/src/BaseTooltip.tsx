@@ -64,7 +64,7 @@ export interface IBaseTooltipProps extends ITooltipProps {
   /**
    * A function that will update the `visible` prop to `true`.
    */
-  onShow: () => void;
+  onShow: (container: HTMLElement) => void;
 
   /**
    * A function that will update the `visible` prop to be `false`.
@@ -88,6 +88,11 @@ export interface IBaseTooltipState {
   animatingOut: boolean;
 }
 
+/**
+ * The BaseTooltip component is just used to display the tooltip whenever the visible prop is enabled.
+ * It will add the event listeners to the tooltip's container and conditionally call the `onShow` and
+ * `onHide` props when needed.
+ */
 export default class BaseTooltip extends React.Component<IBaseTooltipProps, IBaseTooltipState> {
   public static propTypes = {
     id: PropTypes.string.isRequired,
@@ -265,14 +270,13 @@ export default class BaseTooltip extends React.Component<IBaseTooltipProps, IBas
       }
     }
 
-    if (delay > 0) {
-      this.timeout = window.setTimeout(() => {
-        this.timeout = null;
-        onShow();
-      }, delay);
-    } else {
-      onShow();
-    }
+    this.timeout = window.setTimeout(() => {
+      this.timeout = null;
+
+      if (this.container) {
+        onShow(this.container);
+      }
+    }, Math.max(0, delay));
 
     this.setState({ keyboard, animatingOut: false, animatingIn: false });
   }

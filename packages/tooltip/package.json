@@ -23,6 +23,7 @@
   "private": false,
   "dependencies": {
     "@react-md/color": "^2.0.0-alpha-1",
+    "@react-md/portal": "^2.0.0-alpha-1",
     "@react-md/typography": "^2.0.0-alpha-1",
     "classnames": "^2.2.5"
   },

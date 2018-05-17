@@ -14,6 +14,7 @@ const App = () => (
     <PortalExample />
     <CollapseExample />
     <ThemeExample />
+    <div id="portal-container" />
   </React.Fragment>
 );
 
