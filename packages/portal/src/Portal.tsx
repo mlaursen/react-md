@@ -52,7 +52,7 @@ export interface IPortalProps {
    *
    * Finally, if this is null, it will render in the `document.body`.
    */
-  render?: (() => HTMLElement) | string | HTMLElement | null;
+  render?: (() => HTMLElement | null) | string | HTMLElement | null;
 
   /**
    * Boolean if the Portal should render the children as the last child in the Portal's container
@@ -114,7 +114,7 @@ function renderPortal(props: PortalWithDefaultProps, state: IPortalState): IPort
     }
   }
 
-  if (container.id !== id && container !== document.body) {
+  if (id && container.id !== id && container !== document.body) {
     container.id = id;
   }
 
@@ -148,6 +148,9 @@ export default class Portal extends React.Component<IPortalProps, IPortalState> 
   public static getDerivedStateFromProps(nextProps: PortalWithDefaultProps, prevState: IPortalState) {
     const { container } = prevState;
     const { id, className, visible } = nextProps;
+    if (typeof document === "undefined") {
+      return null;
+    }
 
     const nextState = visible ? renderPortal(nextProps, prevState) : removePortal();
     if (container !== nextState.container) {
