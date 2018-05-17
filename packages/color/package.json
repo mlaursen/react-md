@@ -22,7 +22,8 @@
   "repository": "https://github.com/mlaursen/react-md",
   "private": false,
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "sass-math-pow": "^0.1.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",

@@ -2,19 +2,45 @@
 /// @group color
 ////
 
-@import 'constants';
+// Using math-pow from 'sass-math-pow just incase users are using another Ruby/Sass plugin
+// for adding more Number functionality into Scss. Math.pow() does not exist natively (year 2018)
+@import 'math-pow';
+
+/// Calculates the relatuve luminance of one of the r, g, or b values of the color using the formula
+/// on www.w3.org for color contrasts.
+///
+/// @private
+/// @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// @param {Number} intensity - This should be a number between 0 and 255 for the r, g, or b
+///   for the color value.
+/// @return {Number} the relative luminance value.
+@function md-relative-luminance($intensity) {
+  $color-intensity: $intensity / 255;
+
+  @if $color-intensity < .03928 {
+    @return $color-intensity / 12.92;
+  } @else {
+    @return poly-pow(($color-intensity + 0.055) / 1.055, 2.4);
+  }
+}
 
 
 /// Calculate the luminance for a color.
-/// https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// @private
+/// @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function md-theme-luminance($color) {
-  $red: nth($md-theme-linear-channel-values, red($color) + 1);
-  $green: nth($md-theme-linear-channel-values, green($color) + 1);
-  $blue: nth($md-theme-linear-channel-values, blue($color) + 1);
+  $red: md-relative-luminance(red($color) + 1);
+  $red-multiplier: .2126;
+  $green: md-relative-luminance(green($color) + 1);
+  $green-multiplier: .07152;
+  $blue: md-relative-luminance(blue($color) + 1);
+  $blue-multiplier: .0722;
 
-  @return (.2126 * $red) + (.7152 * $green) + (.0722 * $blue);
+  @return ($red * $red-multiplier) + ($green * $green-multiplier) + ($blue * $blue-multiplier);
 }
 
+/// Gets the contrast between two colors.
+/// @private
 @function md-theme-contrast($back, $front) {
   $back-luminance: md-theme-luminance($back) + .05;
   $front-luminance: md-theme-luminance($front) + .05;
