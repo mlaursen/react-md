@@ -10,7 +10,7 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 $ npm install --save @react-md/tooltip
 ```
 
-Live examples and full documentation are yet to come. You can view the old documentation and examples at [the current documentation site](https://react-md.mlaurse.com/components/tooltips).
+Live examples and full documentation are yet to come. You can view the old documentation and examples at [the current documentation site](https://react-md.mlaursen.com/components/tooltips).
 
 ## Usage
 ### Components
