@@ -10,6 +10,8 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 $ npm install --save @react-md/tooltip
 ```
 
+Live examples and full documentation are yet to come. You can view the old documentation and examples at [the current documentation site](https://react-md.mlaurse.com/components/tooltips).
+
 ## Usage
 ### Components
 The `@react-md/tooltip` package exports 3 components:
@@ -175,9 +177,9 @@ If you want to include the SCSS styles for `@react-md/tooltip`, you will need to
    }
 ```
 
+#### Including Styles
 Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-tooltip`:
 
-#### Including Styles
 ```scss
 // This import will generate styles by default.
 @import '@react-md/tooltip/dist/styles';
@@ -199,3 +201,40 @@ If you would like to just import all the utility variables, mixins, and function
 
 // Any custom styles that use the utilities
 ```
+
+#### Overriding default styles
+It is possible to override the default styles by either:
+- overriding the default variables
+- excluding the `@include react-md-tooltip` mixin and defining all styles manually
+
+
+##### Updating Default Variables
+It is possible to update _some_ of the default styles for tooltips with the following variables:
+- `$md-tooltip-background-color`
+- `$md-tooltip-text-color`
+- `$md-tooltip-transition-time`
+- `$md-tooltip-z-index`
+- `$md-tooltip-font-size`
+- `$md-tooltip-min-height`
+- `$md-tooltip-lr-padding`
+- `$md-tooltip-line-wrap-tb-padding`
+- `$md-tooltip-spacing`
+- `$md-tooltip-dense-font-size`
+- `$md-tooltip-dense-min-height`
+- `$md-tooltip-dense-lr-padding`
+- `$md-tooltip-dense-line-wrap-tb-padding`
+- `$md-tooltip-dense-spacing`
+
+These overrides *must* be defined before importing the `@react-md/tooltip/dist/styles` or `@react-md/tooltip/dist/toolip` files.
+
+Example:
+
+```scss
+$md-tooltip-background-color: orange;
+$md-tooltip-text-color: black;
+
+@import '@react-md/tooltip/dist/tooltip';
+
+@include react-md-tooltip;
+```
+
