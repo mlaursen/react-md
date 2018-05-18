@@ -173,6 +173,9 @@
 }
 
 /// Creates all the base styles to get tooltips working with the `Tooltip` component.
+///
+/// @example scss - Example SCSS Usage
+///   @include react-md-tooltip;
 @mixin react-md-tooltip {
   .md-tooltip {
     @include md-tooltip-base;
@@ -193,14 +196,14 @@
       @include md-transition(acceleration)
     }
 
+    &--line-wrap {
+      @include md-tooltip-line-wrap;
+    }
+
     @each $position in $md-tooltip-position-values {
       &--#{$position} {
         @include md-tooltip-position($position, $md-tooltip-spacing);
       }
-    }
-
-    &--line-wrap {
-      @include md-tooltip-line-wrap;
     }
 
     &--dense {

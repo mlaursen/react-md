@@ -20,16 +20,17 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
     style: PropTypes.object,
     className: PropTypes.string,
     children: PropTypes.node.isRequired,
+    position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
     delay: PropTypes.number,
     dense: PropTypes.bool,
-    position: PropTypes.oneOf(["left", "top", "right", "bottom"]),
+    lineWrap: PropTypes.bool,
   };
 
   public static defaultProps: IBaseTooltipDefaultProps = {
     dense: false,
     delay: 0,
-    position: "bottom",
     lineWrap: false,
+    position: "bottom",
   };
 
   constructor(props: TooltipWithDefaultProps) {

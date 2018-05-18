@@ -40,11 +40,6 @@ export interface ITooltipProps {
   dense?: boolean;
 
   /**
-   * The position of the tooltip to use.
-   */
-  position?: TooltipPositions;
-
-  /**
    * Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
    * will display weirdly when its container element is small in size. It is advised to only enable
    * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
@@ -54,7 +49,14 @@ export interface ITooltipProps {
   lineWrap?: boolean;
 }
 
-export interface IBaseTooltipProps extends ITooltipProps {
+export interface ITooltipWithPositionProps extends ITooltipProps {
+  /**
+   * The position of the tooltip to use.
+   */
+  position?: TooltipPositions;
+}
+
+export interface IBaseTooltipProps extends ITooltipWithPositionProps {
   /**
    * Boolean if the tooltip should be visible or not. When this prop changes state, the tooltip animation
    * for entering or leaving will start.
@@ -89,9 +91,10 @@ export interface IBaseTooltipState {
 }
 
 /**
- * The BaseTooltip component is just used to display the tooltip whenever the visible prop is enabled.
+ * The `BaseTooltip` component is just used to display the tooltip whenever the visible prop is enabled.
  * It will add the event listeners to the tooltip's container and conditionally call the `onShow` and
- * `onHide` props when needed.
+ * `onHide` props when needed. This should really only be used internally, but can also be used for custom
+ * tooltip implementations.
  */
 export default class BaseTooltip extends React.Component<IBaseTooltipProps, IBaseTooltipState> {
   public static propTypes = {
