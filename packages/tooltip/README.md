@@ -39,7 +39,7 @@ const Examples = () => (
       <Tooltip id="div-1-tooltip" position="left">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </Tooltip>
-    </button>
+    </div>
   </main>
 );
 ```
