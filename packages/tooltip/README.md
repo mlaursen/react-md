@@ -1,5 +1,5 @@
 # @react-md/tooltip
-Accessible tooltips for react-md following the [tooltip interactions](https://www.w3.org/TR/wai-aria-practices/#tooltip) specification from www.w3.org.]
+Accessible tooltips for react-md following the [tooltip interactions](https://www.w3.org/TR/wai-aria-practices/#tooltip) specification from www.w3.org.
 
 Tooltips are hooked up to other elements by connecting an `id` prop of the tooltip to an `aria-describedby` attribute on the container element for screenreader accessibility. If the tooltip can not find an element on the page with an `aria-describedby="TOOLTIP_ID"`, the tooltip will not work and an error will be thrown. For keyboard accessibility, make sure that your tooltip's container element is also focusable by tabbing (normally using a form control or adding `tabIndex={0}` should work) otherwise keyboard users will not be able to view tooltips.
 
@@ -11,74 +11,11 @@ $ npm install --save @react-md/tooltip
 ```
 
 ## Usage
-### Updating Sass to include `node_modules`
-If you want to include the SCSS styles for `@react-md/tooltip`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
-
-> If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
-
-#### webpack
-```diff
- {
-   test: /\.scss$/,
-   use: [{
-     loader: 'style-loader',
-     options: { sourceMap: true },
-   }, {
-     loader: 'css-loader',
-     options: { sourceMap: true, importLoaders: 2 },
-   }, {
-     loader: 'postcss',
-     options: { sourceMap: true },
-   }, {
-     loader: 'sass-loader',
-     options: {
-       sourceMap: true,
-+      includePaths: [
-+        './node_modules', // or whatever relative path it is to node_modules
-+      ],
-     },
-   }],
- }
-```
-
-#### create-react-app and node-sass-chokidar
-```diff
-   "scripts": {
-+    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
-+    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
-   }
-```
-
-### Styles
-Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-tooltip`:
-
-```scss
-// This import will generate styles by default.
-@import '@react-md/tooltip/dist/styles';
-```
-
-or
-
-```scss
-// This import only includes all the utility variables, mixins, and functions.
-@import '@react-md/tooltip/dist/typography';
-
-// Once everything has been imported, you can generate the styles with the following mixin
-@include react-md-tooltip;
-```
-
-If you would like to just import all the utility variables, mixins, and functions:
-```scss
-@import '@react-md/typography/dist/tooltip';
-
-// Any custom styles that use the utilities
-```
-
 ### Components
 The `@react-md/tooltip` package exports 3 components:
-- `Tooltip`
-- `MagicTooltip`
-- `BaseTooltip`
+- [Tooltip](#tooltip-example)
+- [MagicTooltip](#magictooltip-example)
+- [BaseTooltip](#basetooltip-example)
 
 #### Tooltip Example
 The `Tooltip` component is going to be the most used component within the package. It relies on the container element having `position: relative` set and can be positioned to the `top`, `right`, `bottom`, or `left` of it's container element with props.
@@ -197,4 +134,68 @@ class Example extends React.Component {
     );
   }
 }
+```
+
+### Styles
+#### Updating Sass to include `node_modules`
+If you want to include the SCSS styles for `@react-md/tooltip`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
+
+> If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
+
+#### webpack
+```diff
+ {
+   test: /\.scss$/,
+   use: [{
+     loader: 'style-loader',
+     options: { sourceMap: true },
+   }, {
+     loader: 'css-loader',
+     options: { sourceMap: true, importLoaders: 2 },
+   }, {
+     loader: 'postcss',
+     options: { sourceMap: true },
+   }, {
+     loader: 'sass-loader',
+     options: {
+       sourceMap: true,
++      includePaths: [
++        './node_modules', // or whatever relative path it is to node_modules
++      ],
+     },
+   }],
+ }
+```
+
+#### create-react-app and node-sass-chokidar
+```diff
+   "scripts": {
++    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
++    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
+   }
+```
+
+Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-tooltip`:
+
+#### Including Styles
+```scss
+// This import will generate styles by default.
+@import '@react-md/tooltip/dist/styles';
+```
+
+or
+
+```scss
+// This import only includes all the utility variables, mixins, and functions.
+@import '@react-md/tooltip/dist/typography';
+
+// Once everything has been imported, you can generate the styles with the following mixin
+@include react-md-tooltip;
+```
+
+If you would like to just import all the utility variables, mixins, and functions:
+```scss
+@import '@react-md/typography/dist/tooltip';
+
+// Any custom styles that use the utilities
 ```
