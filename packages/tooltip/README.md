@@ -1,7 +1,9 @@
 # @react-md/tooltip
-Accessible tooltips for react-md. Tooltips are hooked up to other elements by connecting an `id` prop of the tooltip to an `aria-describedby` attribute on the container element. This is to help with screenreader accessibility. If the tooltip can not find an element on the page with an `aria-describedby="TOOLTIP_ID"`, the tooltip will not work and an error will be thrown. In addition, tooltips can be rendered in any element that has `position: relative`, but it is recommended to make sure that the element is keyboard focusable so that keyboard users will still have a way to view tooltips.
+Accessible tooltips for react-md following the [tooltip interactions](https://www.w3.org/TR/wai-aria-practices/#tooltip) specification from www.w3.org.]
 
-The `@react-md/tooltip` implmentation follows the specifications defined on www.w3.org for [tooltip interactions](https://www.w3.org/TR/wai-aria-practices/#tooltip). The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/release/2.0.x/packages/tooltip
+Tooltips are hooked up to other elements by connecting an `id` prop of the tooltip to an `aria-describedby` attribute on the container element for screenreader accessibility. If the tooltip can not find an element on the page with an `aria-describedby="TOOLTIP_ID"`, the tooltip will not work and an error will be thrown. For keyboard accessibility, make sure that your tooltip's container element is also focusable by tabbing (normally using a form control or adding `tabIndex={0}` should work) otherwise keyboard users will not be able to view tooltips.
+
+The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/release/2.0.x/packages/tooltip
 
 ## Installation
 ```sh
