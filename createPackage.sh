@@ -113,7 +113,7 @@ If you want to include the SCSS styles for `@react-md/tooltip`, you will need to
 ```diff
    "scripts": {
 +    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
-+     "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
++    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
    }
 ```
 
@@ -129,7 +129,7 @@ or
 
 \`\`\`scss
 // This import only includes all the utility variables, mixins, and functions.
-@import '@react-md/$PACKAGE_NAME/dist/typography';
+@import '@react-md/$PACKAGE_NAME/dist/$PACKAGE_NAME';
 
 // Once everything has been imported, you can generate the styles with the following mixin
 @include react-md-$PACKAGE_NAME;
@@ -137,7 +137,7 @@ or
 
 If you would like to just import all the utility variables, mixins, and functions:
 \`\`\`scss
-@import '@react-md/typography/dist/$PACKAGE_NAME';
+@import '@react-md/$PACKAGE_NAME/dist/$PACKAGE_NAME';
 
 // Any custom styles that use the utilities
 \`\`\`

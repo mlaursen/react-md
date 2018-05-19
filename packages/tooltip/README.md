@@ -35,8 +35,8 @@ const Examples = () => (
         Amazing tooltip!
       </Tooltip>
     </button>
-    {/* add tab-index so keyboard users can still view the tooltip */}
-    <div tabIndex={0} id="div-1" aria-describedby="div-1-tooltip">
+    {/* add tabindex so keyboard users can still view the tooltip */}
+    <div id="div-1" aria-describedby="div-1-tooltip" role="button" tabIndex={0} style={buttonStyle}>
       Lorem ipsum ... adipiscing elit.
       <Tooltip id="div-1-tooltip" position="left">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -63,7 +63,7 @@ const Examples = () => (
         </MagicTooltip>
       </button>
     </div>
-    <div tabIndex={0} id="div-1" aria-describedby="div-1-tooltip" style={{ overflow: "hidden", width: 100, height: 100 }}>
+    <div id="div-1" aria-describedby="div-1-tooltip" role="button" tabIndex={0} style={{ overflow: "hidden", width: 100, height: 100 }}>
       Lorem ipsum ... adipiscing elit.
       {/* A normal Tooltip would not display here since there is `overflow: hidden` on the container element */}
       <MagicTooltip id="div-1-tooltip">
@@ -75,6 +75,9 @@ const Examples = () => (
 ```
 
 Since tooltips are based off of `aria-describedby` and `MagicTooltip`s are rendered in a separate DOM element, `MagicTooltip`s *do not* have to be direct children of the container element.
+
+> Note: Even though it is possible to put the `MagicTooltip` anywhere in the DOM, it is still considered _best practice_ to have the `MagicTooltip` as a direct descendant/child of the container
+for logical grouping and sanity.
 
 ```jsx
 const Example = () => (
@@ -93,8 +96,6 @@ const Example = () => (
   </main>
 );
 ```
-
-> Note: Even though it is possible to put the `MagicTooltip` anywhere in the DOM, it is still considered _best practice_ to have the `MagicTooltip` as a direct descendant of the container element to help debug.
 
 #### BaseTooltip Example
 If the two components above somehow do not meet your use cases, you can use the `BaseTooltip` component itself that will just handle rendering the tooltip based on the `visible` boolean prop and conditionally calling `onShow` and `onHide` when it determines that a tooltip should be shown.
@@ -189,7 +190,7 @@ or
 
 ```scss
 // This import only includes all the utility variables, mixins, and functions.
-@import '@react-md/tooltip/dist/typography';
+@import '@react-md/tooltip/dist/tooltip';
 
 // Once everything has been imported, you can generate the styles with the following mixin
 @include react-md-tooltip;
@@ -197,7 +198,7 @@ or
 
 If you would like to just import all the utility variables, mixins, and functions:
 ```scss
-@import '@react-md/typography/dist/tooltip';
+@import '@react-md/tooltip/dist/tooltip';
 
 // Any custom styles that use the utilities
 ```
