@@ -2,11 +2,8 @@
   "name": "react-md",
   "version": "2.0.0-alpha-1",
   "scripts": {
-    "start": "cd packages/documentation && npm run dev",
-    "build": "cd packages/documentation && npm run build",
-    "start:prod": "npm run build && cd packages/documentation && npm run start",
-    "lint": "tslint -p .",
-    "lint:fix": "npm run lint -- --fix"
+    "build": "lerna run build --ignore @react-md/documentation --ignore @react-md/build --ignore @react-md/internal-types --ignore @react-md/internal-testing --ignore react-md",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
