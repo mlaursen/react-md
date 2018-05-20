@@ -1,6 +1,5 @@
 const path = require('path');
 const chokidar = require('chokidar');
-const watch = require('watch');
 const clean = require('./clean');
 const { buildESModules } = require('./compileTypescript');
 const createTypescriptDefinitions = require('./createTypescriptDefinitions');
