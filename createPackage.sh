@@ -6,6 +6,7 @@ set -e
 
 # Get the package name from the first argument
 PACKAGE_NAME="$1"
+DESCRIPTION="$2"
 
 # "Validate" and fix the package name a bit, if it does not exist, allow the user to input something
 # and then continue
@@ -28,8 +29,11 @@ if [[ -z "$PACKAGE_NAME" ]]; then
   exit 1
 fi
 
-echo "Enter a description for the package. Leave empty if there is none right now."
-read DESCRIPTION
+if [[ -z "$DESCRIPTION" ]]; then
+  echo "Enter a description for the package. Leave empty if there is none right now."
+  read DESCRIPTION
+fi
+
 
 echo "Private (y or n)?"
 read PRIVATE
@@ -48,6 +52,13 @@ else
   INCLUDE_STYLES=false
 fi
 
+echo "Include PropTypes in README? (y or n)"
+read INCLUDE_PROPTYPES
+if [[ "$INCLUDE_PROPTYPES" =~ ^Y|y(es)?$ ]]; then
+  INCLUDE_PROPTYPES=true
+else
+  INCLUDE_PROPTYPES=false
+fi
 
 # ==========================================================================
 # Create file templates
@@ -55,7 +66,7 @@ fi
 # The base tsconfig.json file that should be created in each package to compile typescript.
 TSCONFIG_TEMPLATE=$(cat <<-END
 {
-  "extends": "../../tsconfig.definitions.json"
+  "extends": "../../tsconfig.json"
 }
 END
 )
@@ -79,13 +90,13 @@ END
 README_STYLE_TEMPLATE=""
 if [[ $INCLUDE_STYLES = true ]]; then
   README_STYLE_TEMPLATE=$(cat <<-END
-#### Updating Sass to include `node_modules`
-If you want to include the SCSS styles for `@react-md/tooltip`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
+#### Updating Sass to include \`node_modules\`
+If you want to include the SCSS styles for \`@react-md/tooltip\`, you will need to update your Sass compiler to include the \`node_modules\` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
 
 > If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
 
 #### webpack
-```diff
+\`\`\`diff
  {
    test: /\.scss$/,
    use: [{
@@ -107,15 +118,15 @@ If you want to include the SCSS styles for `@react-md/tooltip`, you will need to
      },
    }],
  }
-```
+\`\`\`
 
 #### create-react-app and node-sass-chokidar
-```diff
+\`\`\`diff
    "scripts": {
 +    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
 +    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
    }
-```
+\`\`\`
 
 ### Styles
 Including all the base styles can be done by either importing the styles file from the \`dist\` folder or importing the helpers file and using the mixin \`react-md-$PACKAGE_NAME\`:
@@ -145,12 +156,24 @@ END
 )
 fi
 
+README_PROPTYPE_TEMPLATE=""
+if [[ $INCLUDE_PROPTYPES = true ]]; then
+  README_PROPTYPE_TEMPLATE=$(cat <<-END
+<!-- PROPS_START -->
+<!-- PROPS_END -->
+END
+)
+fi
+
 # The full README.md file
 README_TEMPLATE=$(cat <<-END
 # @react-md/$PACKAGE_NAME
 $DESCRIPTION
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/release/2.0.x/packages/$PACKAGE_NAME
+
+<!-- TOC_START -->
+<!-- TOC_END -->
 
 ## Installation
 \`\`\`sh
@@ -160,6 +183,7 @@ $ npm install --save @react-md/$PACKAGE_NAME
 ## Usage
 $README_STYLE_TEMPLATE
 
+$README_PROPTYPE_TEMPLATE
 END
 )
 
