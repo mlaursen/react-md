@@ -5,6 +5,28 @@ Tooltips are hooked up to other elements by connecting an `id` prop of the toolt
 
 The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/release/2.0.x/packages/tooltip
 
+<!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+  * [Components](#components)
+    + [Tooltip Example](#tooltip-example)
+    + [MagicTooltip Example](#magictooltip-example)
+    + [BaseTooltip Example](#basetooltip-example)
+  * [Styles](#styles)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+    + [Including Styles](#including-styles)
+    + [Overriding default styles](#overriding-default-styles)
+      - [Updating Default Variables](#updating-default-variables)
+- [Prop Types](#prop-types)
+  * [Tooltip](#tooltip)
+  * [BaseTooltip](#basetooltip)
+  * [MagicTooltip](#magictooltip)
+
+<!-- TOC_END -->
+
 ## Installation
 ```sh
 $ npm install --save @react-md/tooltip
@@ -49,7 +71,7 @@ const Examples = () => (
 #### MagicTooltip Example
 The `MagicTooltip` component is a wrapper for the `Tooltip` component that is helpful for automagically determining the "best" location to render the tooltip relative to the viewport and the containing element. In addition, it should be used when there are overflow issues.
 
-Unlike the `Tooltip` component, the container element *does not* need `position: relative` since the tolltip is `position: fixed` within the page.
+Unlike the `Tooltip` component, the container element **does not** need `position: relative` since the tooltip is `position: fixed` within the page.
 
 ```jsx
 const Examples = () => (
@@ -226,7 +248,7 @@ It is possible to update _some_ of the default styles for tooltips with the foll
 - `$md-tooltip-dense-line-wrap-tb-padding`
 - `$md-tooltip-dense-spacing`
 
-These overrides *must* be defined before importing the `@react-md/tooltip/dist/styles` or `@react-md/tooltip/dist/toolip` files.
+These overrides **must** be defined before importing the `@react-md/tooltip/dist/styles` or `@react-md/tooltip/dist/toolip` files.
 
 Example:
 
@@ -239,3 +261,356 @@ $md-tooltip-text-color: black;
 @include react-md-tooltip;
 ```
 
+<!-- PROPS_START -->
+## Prop Types
+### Tooltip
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+<tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally
+just text.
+</td>
+</tr>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach
+event listeners to show and hide the tooltip.
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
+will display weirdly when its container element is small in size. It is advised to only enable
+line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+<br /><br />
+Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### BaseTooltip
+The `BaseTooltip` component is just used to display the tooltip whenever the visible prop is enabled.
+It will add the event listeners to the tooltip's container and conditionally call the `onShow` and
+`onHide` props when needed. This should really only be used internally, but can also be used for custom
+tooltip implementations.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+<tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally
+just text.
+</td>
+</tr>
+<tr>
+<td>visible *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the tooltip should be visible or not. When this prop changes state, the tooltip animation
+for entering or leaving will start.
+</td>
+</tr>
+<tr>
+<td>onShow *</td>
+<td><code>(container: HTMLElement) => void</code></td>
+<td><code>null</code></td>
+<td>
+A function that will update the <code>visible</code> prop to <code>true</code>.
+</td>
+</tr>
+<tr>
+<td>onHide *</td>
+<td><code>() => void</code></td>
+<td><code>null</code></td>
+<td>
+A function that will update the <code>visible</code> prop to be <code>false</code>.
+</td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>"top" | "right" | "bottom" | "left"</code></td>
+<td><code>bottom</code></td>
+<td>
+The position of the tooltip to use.
+</td>
+</tr>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach
+event listeners to show and hide the tooltip.
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
+will display weirdly when its container element is small in size. It is advised to only enable
+line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+<br /><br />
+Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### MagicTooltip
+The `MagicTooltip` component is a helpful wrapper of the `Tooltip` component that will automagically determine
+the "best" `position` to render the tooltip in based on the current position of the tooltip's container. In addition,
+it will create a portal for the tooltip to be rendered in so that the tooltips will not be hidden by overflow issues.
+
+This will be a little bit less performant than the `Tooltip` component since it will have to do run-time calculations
+to position, but it isn't _too_ bad. It is still preferred to use the `Tooltip` component in most cases.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+<tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally
+just text.
+</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td><code>string | number</code></td>
+<td><code>1.5rem</code></td>
+<td>
+The spacing between the tooltip and the tooltip's container element. This should be the value
+of <code>$md-tooltip-spacing</code> set in SCSS.
+</td>
+</tr>
+<tr>
+<td>denseSpacing</td>
+<td><code>string | number</code></td>
+<td><code>0.875</code></td>
+<td>
+The spacing between the tooltip and the tooltip's container element when the <code>dense</code> prop is enabled.
+This should be the value of <code>$md-tooltip-dense-spacing</code>.
+</td>
+</tr>
+<tr>
+<td>isDenseBasedOnMediaQuery</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+You might want to update the <code>Tooltip</code> so that it automatically becomes <code>dense</code> when viewing the website
+on desktop deisplays using media queries. To help position the tooltip "automagically", this flag will need
+to be enabled to calculate the current spacing of a tooltip.
+<br /><br />
+This is a little bit less performant than enabling the <code>dense</code> spec through props since it will need to create
+a temporary tooltip on the page to calculate the spacing before rendering the tooltip.
+</td>
+</tr>
+<tr>
+<td>viewportThreshold</td>
+<td><code>number</code></td>
+<td><code>0.03</code></td>
+<td>
+This prop is to help position the <code>Tooltip</code> within the viewport based on the tooltip's container element. When this
+value is less than <code>1</code>, it will be used as a viewport multiplier. If it is greater than <code>1</code>, it will be <code>x</code> number
+of pixels from the edge of the viewport.
+<br /><br />
+
+Multiplier Example:
+```js
+const viewportThreshold = 0.03;
+const isOutOfBoundsLeft = container.left < (viewportWidth * viewportThreshold);
+const isOutOfBoundsBottom = container.top < (viewportHeight = (viewportHeight * viewportThreshold));
+```
+
+Pixel Example:
+```js
+const viewportThreshold = 20;
+const isOutOfBoundsLeft = container.left < viewportThreshold;
+const isOutOfBoundsBottom = container.top < (viewportHeight - viewportThreshold);
+```
+</td>
+</tr>
+<tr>
+<td>portalContainerId</td>
+<td><code>string</code></td>
+<td><code>tooltip-container</code></td>
+<td>
+To help with automation testing(like Selenium) and to make the DOM "prettier", all the tooltips will be rendere
+within a container element instead of the default last child in the <code>document.body</code>. If an element does not exist
+in the DOM with this id, it will be created <b>client side only</b>.
+</td>
+</tr>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach
+event listeners to show and hide the tooltip.
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.
+</td>
+</tr>
+<tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
+will display weirdly when its container element is small in size. It is advised to only enable
+line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+<br /><br />
+Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- PROPS_END -->

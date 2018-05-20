@@ -4,6 +4,8 @@
   "description": "Accessible tooltips for react-md.",
   "scripts": {
     "build": "node build.js",
+    "readme": "npm run build -- --readme",
+    "docgen": "npm run build -- --docgen",
     "prepublishOnly": "npm run build",
     "test": "cross-env BABEL_ENV=test jest src"
   },
