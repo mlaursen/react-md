@@ -836,6 +836,7 @@ export default class TextField extends PureComponent {
     const field = (
       <InputField
         {...props}
+        required={required}
         key="field"
         ref={this._setField}
         id={id}
