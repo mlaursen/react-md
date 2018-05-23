@@ -1,4 +1,8 @@
 ## May 2018
+### v1.3.2 Released
+##### Changelog
+- Fixed the `required` attribute not being applied to `TextField`s. [issues-741]
+
 ### v1.3.1 Released
 ##### Changelog
 - Fixed the `ListItemControl` typescript definition. ([@ripldev] - [pull-735])
