@@ -11,6 +11,7 @@ export Chip from './Chips/Chip';
 export DataTable from './DataTables/DataTable';
 export TableHeader from './DataTables/TableHeader';
 export TableBody from './DataTables/TableBody';
+export TableFooter from './DataTables/TableFooter';
 export TableRow from './DataTables/TableRow';
 export TableColumn from './DataTables/TableColumn';
 export TablePagination from './DataTables/TablePagination';
