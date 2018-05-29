@@ -1,4 +1,8 @@
 ## May 2018
+### v1.3.3 Released
+##### Changelog
+- Correctly exported the `TableFooter` component for commonjs and modules. [issues-747]
+
 ### v1.3.2 Released
 ##### Changelog
 - Fixed the `required` attribute not being applied to `TextField`s. [issues-741]
