@@ -4,9 +4,9 @@ import { findDOMNode } from 'react-dom';
 
 import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 
-const hrefables = ['a', 'area'].map(tag => `${tag}[href],`).join('');
-const disableables = ['button', 'input', 'textarea', 'select'].map(tag => `${tag}:not([disabled]),`).join('');
-const FOCUSABLE_QUERY = `${hrefables}${disableables}*[tabIndex]`;
+const BASE_FOCUSABLE_ELEMENTS = '[href],[tabindex]:not([tabindex="-1"]),input:not([disabled]):not([type="hidden"])';
+const FOCUSABLE_QUERY = ['button', 'textarea', 'select']
+  .reduce((queryString, element) => `${queryString},${element}:not([disabled])`, BASE_FOCUSABLE_ELEMENTS);
 
 /**
  * This component is used for keeping the focus within some container. When the container
@@ -94,8 +94,7 @@ export default class FocusContainer extends PureComponent {
 
   componentDidUpdate() {
     if (this.props.containFocus && this._container) {
-      this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
-        .filter(el => el.tabIndex !== -1);
+      this._focusables = [].slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY));
     }
   }
 
@@ -159,8 +158,7 @@ export default class FocusContainer extends PureComponent {
 
     const { focusOnMount, containFocus } = this.props;
     this._container = findDOMNode(containerRef);
-    this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
-      .filter(el => el.tabIndex !== -1);
+    this._focusables = [].slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY));
 
     if (focusOnMount) {
       this._attemptInitialFocus();
