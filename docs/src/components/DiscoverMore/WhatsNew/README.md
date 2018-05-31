@@ -1,4 +1,9 @@
 ## May 2018
+### v1.3.4 Released
+##### Changelog
+- Fixed a small bug in the `FocusContainer` that would consider a hidden input focusable which caused the `FocusContainer` to stop working. [issues-749]
+- Fixed the `SelectionControlGroup` to no longer append a checkbox group's value with a comma. [issues-716]
+
 ### v1.3.3 Released
 ##### Changelog
 - Correctly exported the `TableFooter` component for commonjs and modules. [issues-747]
