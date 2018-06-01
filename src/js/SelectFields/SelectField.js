@@ -650,7 +650,7 @@ export default class SelectField extends PureComponent {
     const v = this._getItemPart(item, itemLabel, itemValue);
     const label = this._getItemPart(item, itemLabel, itemValue, true);
 
-    return v === value || v === parseInt(value, 10) ? label : '';
+    return v === value || v === parseFloat(value) ? label : '';
   };
 
   _getActive = (props, state) => {
@@ -970,7 +970,7 @@ export default class SelectField extends PureComponent {
     const dataValue = this._getItemPart(item, itemLabel, itemValue);
     const primaryText = this._getItemPart(item, itemLabel, itemValue, true);
 
-    const active = dataValue === value || dataValue === parseInt(value, 10);
+    const active = dataValue === value || dataValue === parseFloat(value);
     const stripped = (typeof stripActiveItem !== 'undefined' ? stripActiveItem : below) && active;
     if (!stripped) {
       const objectType = typeof item === 'object';
