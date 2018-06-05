@@ -1,3 +1,9 @@
+## June 2018
+### v1.3.5 Released
+##### Changelog
+- Specified `types` directory for changes in Typescript 2.9. ([@noseglid] - [pull-753])
+- Fixed `SelectField` to correctly allow float values instead of integers only. ([@henry-young] - [issues-751])
+
 ## May 2018
 ### v1.3.4 Released
 ##### Changelog
