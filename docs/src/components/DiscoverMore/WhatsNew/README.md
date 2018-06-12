@@ -1,4 +1,10 @@
 ## June 2018
+### v1.4.0 Released
+##### Changelog
+- Updated dialogs so that the blurry text rendering can be fixed by enabling a new Scss variable: `$md-dialog-use-flex-positioning`.
+You can read more about it [here](/components/dialogs?tab=2#variable-md-dialog-use-flex-positioning). [issues-337], [issues-599], and [issues-696]. 
+- Updated password text fields so that setting the `passwordIcon` prop to `null` will remove the password toggle button. [issues-738]
+
 ### v1.3.5 Released
 ##### Changelog
 - Specified `types` directory for changes in Typescript 2.9. ([@noseglid] - [pull-753])
