@@ -2,6 +2,17 @@
 /// @group dialogs
 ////
 
+
+/// Boolean if the dialog should use a flexbox based approach of centering a non-full page
+/// dialog instead of the old transform + left/top centering "hack". This will solve the
+/// weird blur issues in webkit browsers for text, but make positioning in the page a bit
+/// harder. When this is enabled, you can move the dialog's position by setting margin instead
+/// of top/right/bottom/left
+///
+/// Note: The next major release will have this enabled by default and remove the old functionality
+/// @type Boolean
+$md-dialog-use-flex-positioning: false !default;
+
 /// The transition time for the dialogs to enter or leave.
 /// @type Number
 $md-dialog-transition-time: $md-transition-time * 2 !default;
@@ -73,6 +84,12 @@ $md-dialog-horizontal-keyline: 40px !default;
   .md-dialog-container.md-overlay {
     transition-duration: $md-dialog-transition-time;
     z-index: $md-dialog-overlay-z-index;
+
+    @if $md-dialog-use-flex-positioning {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .md-dialog {
@@ -83,11 +100,14 @@ $md-dialog-horizontal-keyline: 40px !default;
   }
 
   .md-dialog--centered {
-    left: 50%;
+    @if not $md-dialog-use-flex-positioning {
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
     max-height: calc(100% - #{$md-dialog-vertical-keyline * 2});
     max-width: calc(100% - #{$md-dialog-horizontal-keyline * 2});
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
 
     .md-list {
       padding-bottom: $md-dialog-padding - $md-default-padding;
@@ -105,20 +125,38 @@ $md-dialog-horizontal-keyline: 40px !default;
   }
 
   .md-dialog--centered-enter {
-    transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+    @if $md-dialog-use-flex-positioning {
+      transform: translate3d(0, $md-dialog-translate-distance, 0);
+    } @else {
+      transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+    }
 
     &.md-dialog--centered-enter-active {
-      transform: translate3d(-50%, -50%, 0);
+      @if $md-dialog-use-flex-positioning {
+        transform: translate3d(0, 0, 0);
+      } @else {
+        transform: translate3d(-50%, -50%, 0);
+      }
+
       transition-duration: $md-dialog-transition-time;
       transition-property: transform;
     }
   }
 
   .md-dialog--centered-leave {
-    transform: translate3d(-50%, -50%, 0);
+    @if $md-dialog-use-flex-positioning {
+      transform: translate3d(0, 0, 0);
+    } @else {
+      transform: translate3d(-50%, -50%, 0);
+    }
 
     &.md-dialog--centered-leave-active {
-      transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+      @if $md-dialog-use-flex-positioning {
+        transform: translate3d(0, $md-dialog-translate-distance, 0);
+      } @else {
+        transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+      }
+
       transition-duration: $md-dialog-transition-time;
       transition-property: transform;
     }
