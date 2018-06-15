@@ -1,4 +1,7 @@
 ## June 2018
+### v1.4.1 Released
+- Fixed a small bug with dialogs trying to focus elements that are not focusable in IE11. ([@alaney] - [pull-760])
+
 ### v1.4.0 Released
 ##### Changelog
 - Updated dialogs so that the blurry text rendering can be fixed by enabling a new Scss variable: `$md-dialog-use-flex-positioning`.
