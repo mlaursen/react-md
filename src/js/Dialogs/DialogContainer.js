@@ -517,7 +517,7 @@ export default class DialogContainer extends PureComponent {
   _handleDialogMounting = (dialog) => {
     const { disableScrollLocking } = this.props;
     if (dialog === null) {
-      if (this._activeElement) {
+      if (this._activeElement && this._activeElement.focus) {
         this._activeElement.focus();
       }
 
