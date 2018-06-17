@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 1`] = `null`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 2`] = `
+<div
+  class="some-class-name--enter"
+/>
+`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 3`] = `
+<div
+  class="some-class-name--enter some-class-name--enter-active"
+/>
+`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 4`] = `
+<div
+  class=""
+/>
+`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 5`] = `
+<div
+  class="some-class-name--leave"
+/>
+`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 6`] = `
+<div
+  class="some-class-name--leave some-class-name--leave-active"
+/>
+`;
+
+exports[`withMountingTransition should follow the rendering flow when the visible prop is changed from false to true 7`] = `null`;
+
+exports[`withMountingTransition should render correctly based on the visible prop 1`] = `null`;
+
+exports[`withMountingTransition should render correctly based on the visible prop 2`] = `
+<div
+  className=""
+  onTransitionEnd={[Function]}
+/>
+`;

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "outDir": "./es",
+    "target": "es6",
+    "module": "es6",
+    "sourceMap": true
+  }
+}
