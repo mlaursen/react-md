@@ -1,0 +1,16 @@
+{
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://github.com/mlaursen/react-md#readme",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  }
+}
