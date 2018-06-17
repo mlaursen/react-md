@@ -40,8 +40,23 @@
   }
 }
 
-
-@mixin react-md-theme($primary-color, $secondary-color) {
+/// Creates all the styles for a theme in react-md. This will start by creating CSS Variables
+/// for each theme variable and then create class names for each variable.
+///
+/// @example scss - Normal SCSS Usage
+///   // declare your theme variables
+///   $md-primary-color: $md-teal-500;
+///   $md-secondary-color: $md-pink-a-400;
+///
+///   @include react-md-theme;
+///
+/// @example scss - Alternative SCSS Usage
+///   // if you want to create a theme without using the `$md-primary-color` and `$md-secondary-color` varaibles
+///   @include react-md-theme($md-teal-500, $mmd-pink-a-400);
+///
+/// @param {Color} primary-color [md-primary-color] - The primary color to use to theme your app.
+/// @param {Color} secondary-color [md-secondary-color] - The secondary color to use to theme your app.
+@mixin react-md-theme($primary-color: $md-primary-color, $secondary-color: $md-secondary-color) {
   $property-values: map-keys($rmd-theme-property-values);
   :root {
     @each $style in $property-values {

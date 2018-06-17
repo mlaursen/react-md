@@ -14,6 +14,7 @@
 /// This lookup table is needed since there is no `pow` in SCSS/Sass. You _can_ make your own,
 /// but it is recommended to pass the computed values from a "more complete" layer (like node)
 /// as a lookup table to speed up compilation time.
+/// @access private
 $rmd-theme-linear-channel-values:
   0
   .0003035269835488375

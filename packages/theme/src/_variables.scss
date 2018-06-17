@@ -79,7 +79,7 @@ $rmd-theme-text-colors: (
   ),
 );
 
-/// @private
+/// @access private
 @function rmd-theme-text-color($style, $color) {
   $contrast-tone: rmd-theme-contrast-tone($color);
 

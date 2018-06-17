@@ -5,6 +5,20 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 
 > NOTE: While react-md is in a pre-release stage, all SCSS variables, mixins, and functions will use a `rmd` prefix instead of the normal `md` prefix. This is so that you can have both the v1 and v2 versions working together. When v2 is finally released, the prefixes will switch back to `md`.
 
+<!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+  * [Declaring a Theme](#declaring-a-theme)
+  * [Styles](#styles)
+    + [CSS Variables](#css-variables)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+    + [Including Styles](#including-styles)
+
+<!-- TOC_END -->
+
 ## Installation
 ```sh
 $ npm install --save @react-md/theme
