@@ -11,11 +11,11 @@
 $rmd-theme-primary: $rmd-purple-500 !default;
 
 /// The color to use when text should be displayed on the primary theme color. The default behavior is to test if the primary
-/// color's contrast tone. If the color is considered "dark", `$md-white-base` will be used. Otherwise `$md-black-base` will
+/// color's contrast tone. If the color is considered "dark", `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == "dark", $md-black-base, $md-white-base) !default;
+$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == "dark", $rmd-black-base, $rmd-white-base) !default;
 
 /// The secondary theme color to use for your app. This is normally one of the material design colors with an accent
 /// suffix (`-a-100` or `-a-200` or `-a-400` or `-a-700`, but it can really be any color.
@@ -23,11 +23,11 @@ $rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == "dark",
 $rmd-theme-secondary: $rmd-pink-a-400 !default;
 
 /// The color to use when text should be displayed on the secondary theme color. The default behavior is to test if the secondary
-/// color's contrast tone. If the color is considered "dark", `$md-white-base` will be used. Otherwise `$md-black-base` will
+/// color's contrast tone. If the color is considered "dark", `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-secondary: if(rmd-theme-contrast-tone($rmd-theme-secondary) == "dark", $md-black-base, $md-white-base) !default;
+$rmd-theme-on-secondary: if(rmd-theme-contrast-tone($rmd-theme-secondary) == "dark", $rmd-black-base, $rmd-white-base) !default;
 
 /// The theme's background color.
 /// @type Color
@@ -40,11 +40,11 @@ $rmd-theme-background: #fff !default;
 $rmd-theme-surface: #fff !default;
 
 /// The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface
-/// color's contrast tone. If the color is considered "dark", `$md-white-base` will be used. Otherwise `$md-black-base` will
+/// color's contrast tone. If the color is considered "dark", `$rd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark", $md-black-base, $md-white-base);
+$rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark", $rmd-black-base, $rmd-white-base);
 
 /// A Map of all the text colors for the app. This will be Map of "light" and "dark" that has the following keys:
 /// - primary
@@ -64,18 +64,18 @@ $rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark",
 /// @type Map
 $rmd-theme-text-colors: (
   dark: (
-    primary: rgba($md-black-base, .87),
-    secondary: rgba($md-black-base, .54),
-    hint: rgba($md-black-base, .34),
-    disabled: rgba($md-black-base, .38),
-    icon: rgba($md-black-base, .38),
+    primary: rgba($rmd-black-base, .87),
+    secondary: rgba($rmd-black-base, .54),
+    hint: rgba($rmd-black-base, .34),
+    disabled: rgba($rmd-black-base, .38),
+    icon: rgba($rmd-black-base, .38),
   ),
   light: (
-    primary: $md-white-base,
-    secondary: rgba($md-white-base, .7),
-    hint: rgba($md-white-base, .5),
-    disabled: rgba($md-white-base, .5),
-    icon: rgba($md-white-base, .5),
+    primary: $rmd-white-base,
+    secondary: rgba($rmd-white-base, .7),
+    hint: rgba($rmd-white-base, .5),
+    disabled: rgba($rmd-white-base, .5),
+    icon: rgba($rmd-white-base, .5),
   ),
 );
 

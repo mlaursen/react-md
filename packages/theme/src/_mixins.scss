@@ -2,6 +2,8 @@
 /// @group theme
 ////
 
+@import 'variables';
+
 /// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
 ///     color values can be used.
 /// @param {String} style - The type of theme style to use. This should be one of the `$rmd-theme-property-values` or a literal
@@ -17,7 +19,7 @@
     #{$property}: #{$style + $suffix};
   } @else {
     @if not map-has-key($rmd-theme-property-values, $style) {
-      @error "Invalid style: '#{$style}'. Choose one of: #{$map-keys(rmd-theme-property-values)}";
+      @error "Invalid style: '#{$style}'. Choose one of: #{map-keys(rmd-theme-property-values)}";
     }
 
     $color-value: map-get($rmd-theme-property-values, $style);
@@ -45,22 +47,22 @@
 ///
 /// @example scss - Normal SCSS Usage
 ///   // declare your theme variables
-///   $md-primary-color: $md-teal-500;
-///   $md-secondary-color: $md-pink-a-400;
+///   $rmd-theme-primary: $rmd-teal-500;
+///   $rmd-theme-secondary: $rmd-pink-a-400;
 ///
 ///   @include react-md-theme;
 ///
 /// @example scss - Alternative SCSS Usage
-///   // if you want to create a theme without using the `$md-primary-color` and `$md-secondary-color` varaibles
-///   @include react-md-theme($md-teal-500, $mmd-pink-a-400);
+///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` varaibles
+///   @include react-md-theme($rmd-teal-500, $mmd-pink-a-400);
 ///
-/// @param {Color} primary-color [md-primary-color] - The primary color to use to theme your app.
-/// @param {Color} secondary-color [md-secondary-color] - The secondary color to use to theme your app.
-@mixin react-md-theme($primary-color: $md-primary-color, $secondary-color: $md-secondary-color) {
+/// @param {Color} primary-color [rmd-theme-primary] - The primary color to use to theme your app.
+/// @param {Color} secondary-color [rmd-theme-secondary] - The secondary color to use to theme your app.
+@mixin react-md-theme($primary-color: $rmd-theme-primary, $secondary-color: $rmd-theme-secondary) {
   $property-values: map-keys($rmd-theme-property-values);
   :root {
     @each $style in $property-values {
-      --rmd-theme-#{$style}: #{$map-get($rmd-theme-property-values, $style)};
+      --rmd-theme-#{$style}: #{map-get($rmd-theme-property-values, $style)};
     }
   }
 

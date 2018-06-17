@@ -3,6 +3,7 @@
 ////
 
 @import 'constants';
+@import 'color-palette';
 
 /// Calculate the luminance for a color.
 ///
@@ -41,8 +42,8 @@
     @return $color;
   }
 
-  $light-contrast: rmd-theme-contrast($color, $md-white-base);
-  $dark-contrast: rmd-theme-contrast($color, rgba($md-black-base, .87));
+  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
+  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, .87));
 
   @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
     @return "light";
