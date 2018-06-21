@@ -275,22 +275,25 @@ $md-list-addon-line-height: $md-line-height !default;
   .md-list-item--with-action-button {
     display: flex;
   }
+
   .md-list-tile--with-action-button {
     flex-grow: 1;
   }
+
   .md-list-item--action-delimiter {
     display: flex;
-    width: 2px;
     margin-left: 2px;
     margin-right: 2px;
-    padding-top: 2px;
     padding-bottom: 2px;
+    padding-top: 2px;
+    width: 2px;
 
     > div {
-      width: 100%;
       background: get-color('divider', $light-theme);
+      width: 100%;
     }
   }
+
   .md-list-item--action-button {
     margin-right: 2px;
   }
