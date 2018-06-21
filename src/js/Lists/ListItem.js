@@ -19,6 +19,7 @@ import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
 import Menu from '../Menus/Menu';
+import Button from '../Buttons/Button';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -364,6 +365,13 @@ export default class ListItem extends PureComponent {
     tileProps: PropTypes.object,
 
     /**
+     * An optional action button on the right side of the list item
+     */
+    actionButtonIcon: PropTypes.string,
+    actionButtonOnClick: PropTypes.func,
+    actionButtonPrimary: PropTypes.bool,
+
+    /**
      * All the remaining props should be passed to the surrounding `<li>` node instead of the `AccessibleFakeButton`.
      *
      * > NOTE: This will most likely become the default in the next *major* release. Migration warnings will be added
@@ -383,6 +391,7 @@ export default class ListItem extends PureComponent {
     component: 'div',
     itemComponent: 'li',
     expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
+    actionButtonPrimary: false,
   };
 
   static contextTypes = {
@@ -589,6 +598,9 @@ export default class ListItem extends PureComponent {
       isOpen,
       expanderIconChildren,
       expanderIconClassName,
+      actionButtonPrimary,
+      actionButtonIcon,
+      actionButtonOnClick,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       defaultVisible,
@@ -664,54 +676,68 @@ export default class ListItem extends PureComponent {
     const icond = !!leftIcon || !!rightIcon || !!nestedItems;
     const avatard = !!leftAvatar || !!rightAvatar;
 
+    const actionButton = actionButtonIcon ? (
+      <React.Fragment>
+        <div className="md-list-item--action-delimiter"><div /></div>
+
+        <Button icon primary={actionButtonPrimary} className="md-list-item--action-button" onClick={actionButtonOnClick}>
+          {actionButtonIcon}
+        </Button>
+      </React.Fragment>
+    ) : null;
+
     const tile = (
-      <AccessibleFakeInkedButton
-        {...tileProps}
-        {...(passPropsToItem ? undefined : props)}
-        component={component}
-        __SUPER_SECRET_REF__={this._setTile}
-        key="tile"
-        onClick={this._handleClick}
-        onMouseOver={this._handleMouseOver}
-        onMouseLeave={this._handleMouseLeave}
-        onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}
-        onKeyDown={this._handleKeyDown}
-        onKeyUp={this._handleKeyUp}
-        disabled={disabled}
-        style={tileStyle}
-        className={cn('md-list-tile', {
-          'md-list-tile--active': this.state.active && !this._touched,
-          'md-list-tile--icon': !secondaryText && icond && !avatard,
-          'md-list-tile--avatar': !secondaryText && avatard,
-          'md-list-tile--two-lines': secondaryText && !threeLines,
-          'md-list-tile--three-lines': secondaryText && threeLines,
-          'md-list-item--inset': inset && !leftIcon && !leftAvatar,
-        }, themeColors({ disabled, text: true }), tileClassName)}
-        aria-expanded={nestedList && !cascadingMenu ? visible : null}
-      >
-        {leftNode}
-        <ListItemText
-          active={active}
-          activeClassName={activeClassName}
+      <div className={cn({ 'md-list-item--with-action-button': actionButtonIcon })}>
+        <AccessibleFakeInkedButton
+          {...tileProps}
+          {...(passPropsToItem ? undefined : props)}
+          component={component}
+          __SUPER_SECRET_REF__={this._setTile}
+          key="tile"
+          onClick={this._handleClick}
+          onMouseOver={this._handleMouseOver}
+          onMouseLeave={this._handleMouseLeave}
+          onTouchStart={this._handleTouchStart}
+          onTouchEnd={this._handleTouchEnd}
+          onKeyDown={this._handleKeyDown}
+          onKeyUp={this._handleKeyUp}
           disabled={disabled}
-          primaryText={primaryText}
-          secondaryText={secondaryText}
-          threeLines={threeLines}
-          style={contentStyle}
-          className={cn({
-            'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
-            'md-tile-content--left-avatar': leftAvatar,
-            'md-tile-content--right-padding': rightIcon || rightAvatar,
-          }, contentClassName)}
-          primaryTextStyle={primaryTextStyle}
-          primaryTextClassName={primaryTextClassName}
-          secondaryTextStyle={secondaryTextStyle}
-          secondaryTextClassName={secondaryTextClassName}
-        />
-        {rightNode}
-        {children}
-      </AccessibleFakeInkedButton>
+          style={{ flexGrow: 1 }}
+          className={cn('md-list-tile', {
+            'md-list-tile--active': this.state.active && !this._touched,
+            'md-list-tile--icon': !secondaryText && icond && !avatard,
+            'md-list-tile--avatar': !secondaryText && avatard,
+            'md-list-tile--two-lines': secondaryText && !threeLines,
+            'md-list-tile--three-lines': secondaryText && threeLines,
+            'md-list-item--inset': inset && !leftIcon && !leftAvatar,
+          }, themeColors({ disabled, text: true }), tileClassName)}
+          aria-expanded={nestedList && !cascadingMenu ? visible : null}
+        >
+          {leftNode}
+          <ListItemText
+            active={active}
+            activeClassName={activeClassName}
+            disabled={disabled}
+            primaryText={primaryText}
+            secondaryText={secondaryText}
+            threeLines={threeLines}
+            style={contentStyle}
+            className={cn({
+              'md-tile-content--left-icon': leftIcon || expanderLeft && nestedItems,
+              'md-tile-content--left-avatar': leftAvatar,
+              'md-tile-content--right-padding': rightIcon || rightAvatar,
+            }, contentClassName)}
+            primaryTextStyle={primaryTextStyle}
+            primaryTextClassName={primaryTextClassName}
+            secondaryTextStyle={secondaryTextStyle}
+            secondaryTextClassName={secondaryTextClassName}
+          />
+          {rightNode}
+          {children}
+        </AccessibleFakeInkedButton>
+
+        {actionButton}
+      </div>
     );
 
     const sharedProps = {

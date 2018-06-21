@@ -78,6 +78,18 @@ const Simple = () => (
         threeLines
       />
     </List>
+    <List className="md-cell md-paper md-paper--1">
+      <ListItem primaryText="Additional information" />
+      <ListItem primaryText="Website" actionButtonIcon="public" actionButtonPrimary actionButtonOnClick={() => {}} />
+      <ListItem primaryText="Mail" actionButtonIcon="mail" actionButtonOnClick={() => {}} />
+      <ListItem
+        leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />}
+        primaryText="Work"
+        secondaryText="Jan 28, 2014"
+        actionButtonIcon="share"
+        actionButtonOnClick={() => {}}
+      />
+    </List>
   </div>
 );
 

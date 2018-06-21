@@ -272,6 +272,26 @@ $md-list-addon-line-height: $md-line-height !default;
   $include-inline: $md-list-include-inline,
   $include-dense-icons: $md-font-icon-include-dense
 ) {
+  .md-list-item--with-action-button {
+    display: flex;
+  }
+  .md-list-item--action-delimiter {
+    display: flex;
+    width: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    > div {
+      width: 100%;
+      background: get-color('divider', $light-theme);
+    }
+  }
+  .md-list-item--action-button {
+    margin-right: 2px;
+  }
+
   @if $include-unstyled {
     .md-list-unstyled {
       @extend %md-list-unstyled;
