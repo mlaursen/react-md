@@ -8,35 +8,39 @@ exports[`ListItem should render correctly with a snapshot tester 1`] = `
   style={Object {}}
 >
   <div
-    aria-expanded={null}
-    aria-pressed={false}
-    className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-text"
-    disabled={undefined}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseLeave={[Function]}
-    onMouseOver={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={undefined}
-    tabIndex={0}
+    className=""
   >
     <div
-      className="md-ink-container"
+      aria-expanded={null}
+      aria-pressed={false}
+      className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-text"
+      disabled={undefined}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
       style={undefined}
-    />
-    <div
-      className="md-tile-content"
-      style={undefined}
+      tabIndex={0}
     >
       <div
-        className="md-tile-text--primary md-text"
+        className="md-ink-container"
+        style={undefined}
+      />
+      <div
+        className="md-tile-content"
         style={undefined}
       >
-        Test
+        <div
+          className="md-tile-text--primary md-text"
+          style={undefined}
+        >
+          Test
+        </div>
       </div>
     </div>
   </div>

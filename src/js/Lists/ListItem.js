@@ -677,17 +677,17 @@ export default class ListItem extends PureComponent {
     const avatard = !!leftAvatar || !!rightAvatar;
 
     const actionButton = actionButtonIcon ? (
-      <React.Fragment>
+      <div>
         <div className="md-list-item--action-delimiter"><div /></div>
 
         <Button icon primary={actionButtonPrimary} className="md-list-item--action-button" onClick={actionButtonOnClick}>
           {actionButtonIcon}
         </Button>
-      </React.Fragment>
+      </div>
     ) : null;
 
     const tile = (
-      <div className={cn({ 'md-list-item--with-action-button': actionButtonIcon })}>
+      <div className={cn({' md-list-item--with-action-button' : actionButtonIcon })}>
         <AccessibleFakeInkedButton
           {...tileProps}
           {...(passPropsToItem ? undefined : props)}
@@ -702,7 +702,7 @@ export default class ListItem extends PureComponent {
           onKeyDown={this._handleKeyDown}
           onKeyUp={this._handleKeyUp}
           disabled={disabled}
-          style={{ flexGrow: 1 }}
+          style={tileStyle}
           className={cn('md-list-tile', {
             'md-list-tile--active': this.state.active && !this._touched,
             'md-list-tile--icon': !secondaryText && icond && !avatard,
@@ -710,6 +710,7 @@ export default class ListItem extends PureComponent {
             'md-list-tile--two-lines': secondaryText && !threeLines,
             'md-list-tile--three-lines': secondaryText && threeLines,
             'md-list-item--inset': inset && !leftIcon && !leftAvatar,
+            'md-list-tile--with-action-button': actionButtonIcon,
           }, themeColors({ disabled, text: true }), tileClassName)}
           aria-expanded={nestedList && !cascadingMenu ? visible : null}
         >

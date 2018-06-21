@@ -12,6 +12,7 @@ import {
 import ListItem from '../ListItem';
 import FontIcon from '../../FontIcons';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
+import Button from '../../Buttons/Button';
 
 describe('ListItem', () => {
   const StarIcon = () => <FontIcon>star</FontIcon>;
@@ -235,5 +236,20 @@ describe('ListItem', () => {
   it('should render correctly with a snapshot tester', () => {
     const tree = renderer.create(<ListItem primaryText="Test" />).toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('should use "actionButtonIcon", "actionButtonOnClick"  and "actionButtonPrimary" properties', () => {
+    const props = {
+      primaryText: 'Test actionButton props',
+      actionButtonIcon: 'mail',
+      actionButtonOnClick: () => {},
+      actionButtonPrimary: true,
+    };
+    const listItem = mount(<ListItem {...props} />);
+    const actionButton = listItem.find(Button);
+
+    expect(actionButton.props().children).toBe(props.actionButtonIcon);
+    expect(actionButton.props().onClick).toBe(props.actionButtonOnClick);
+    expect(actionButton.props().primary).toBe(props.actionButtonPrimary);
   });
 });

@@ -275,6 +275,9 @@ $md-list-addon-line-height: $md-line-height !default;
   .md-list-item--with-action-button {
     display: flex;
   }
+  .md-list-tile--with-action-button {
+    flex-grow: 1;
+  }
   .md-list-item--action-delimiter {
     display: flex;
     width: 2px;
