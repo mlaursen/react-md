@@ -676,20 +676,18 @@ export default class ListItem extends PureComponent {
     const icond = !!leftIcon || !!rightIcon || !!nestedItems;
     const avatard = !!leftAvatar || !!rightAvatar;
 
-    const actionButton = actionButtonIcon ? (
-      <div>
-        <div className="md-list-item--action-delimiter"><div /></div>
+    const actionButton = actionButtonIcon ? [
+      <div className="md-list-item--action-delimiter"><div /></div>,
 
-        <Button
-          icon
-          primary={actionButtonPrimary}
-          className="md-list-item--action-button"
-          onClick={actionButtonOnClick}
-        >
-          {actionButtonIcon}
-        </Button>
-      </div>
-    ) : null;
+      <Button
+        icon
+        primary={actionButtonPrimary}
+        className="md-list-item--action-button"
+        onClick={actionButtonOnClick}
+      >
+        {actionButtonIcon}
+      </Button>
+    ] : null;
 
     const tile = (
       <div className={cn({ 'md-list-item--with-action-button': actionButtonIcon })}>
