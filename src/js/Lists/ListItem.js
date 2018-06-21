@@ -686,7 +686,7 @@ export default class ListItem extends PureComponent {
         onClick={actionButtonOnClick}
       >
         {actionButtonIcon}
-      </Button>
+      </Button>,
     ] : null;
 
     const tile = (
