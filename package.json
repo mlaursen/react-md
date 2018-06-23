@@ -11,6 +11,7 @@
     "url": "git+https://github.com/mlaursen/react-md.git"
   },
   "devDependencies": {
+    "commander": "^2.15.1",
     "lerna": "^2.11.0"
   }
 }
