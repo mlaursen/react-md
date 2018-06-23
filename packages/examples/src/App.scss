@@ -1,0 +1,85 @@
+@import '@react-md/theme/dist/theme';
+@import '@react-md/elevation/dist/elevation';
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.opacity {
+  &--enter {
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  &--enter-active {
+    opacity: 1;
+  }
+
+  &--leave {
+    opacity: 1;
+    transition: opacity .2s;
+  }
+
+  &--leave-active {
+    opacity: 0;
+  }
+}
+
+.list {
+  @include rmd-theme('background-color', surface);
+  @include rmd-elevation(8);
+
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  position: fixed;
+
+  &--inline {
+    display: flex;
+    padding: 0 10px;
+  }
+}
+
+li {
+  align-items: center;
+  display: flex;
+  min-height: 48px;
+  padding-left: 12px;
+  padding-right: 12px;
+  outline-style: none;
+  z-index: 400;
+
+  &:hover {
+    background-color: rgba($rmd-black-base, .12);
+    cursor: pointer;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $rmd-blue-500;
+  }
+}
