@@ -11,6 +11,10 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [webpack](#webpack)
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
+      - [Example Usage SCSS](#example-usage-scss)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -83,5 +87,122 @@ If you would like to just import all the utility variables, mixins, and function
 // Any custom styles that use the utilities
 ```
 
+<!-- SASSDOC_START -->
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-elevation(z-value, color, opacity-boost)</code></td>
+<td>Create the box shadow based on a z-value.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>z-value</td>
+<td>Number</td>
+<td></td>
+<td>This should be a number between 0 and 24.</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Color</td>
+<td>rmd-elevation-color</td>
+<td>The color to use for the box-shadow.</td>
+</tr>
+<tr>
+<td>opacity-boost</td>
+<td>Number</td>
+<td>0</td>
+<td>The amount to boost the default opacity levels for the
+  three box-shadows applied.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Examples
 
 
+##### Example Usage SCSS
+
+```scss
+.my-class {
+  @include rmd-elevation(8);
+
+  background-color: white;
+  position: fixed;
+  z-index: 8;
+}
+```
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-elevation-color</code></td>
+<td>The normal elevation color to use.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-1-opacity</code></td>
+<td>The opacity to apply to the first box-shadow
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-2-opacity</code></td>
+<td>The opacity to apply to the second box-shadow
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-3-opacity</code></td>
+<td>The opacity to apply to the third box-shadow
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-1-map</code></td>
+<td>A Map of the first layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -> 24.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-2-map</code></td>
+<td>A Map of the second layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -> 24.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-elevation-shadow-3-map</code></td>
+<td>A Map of the third layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -> 24.
+<br /><br /></td>
+</tr>
+</tbody>
+</table>
+
+<!-- SASSDOC_END -->
