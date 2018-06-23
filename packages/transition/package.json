@@ -17,7 +17,7 @@
     "prebuild": "npm run clean",
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
-    "build:definitions": "tsc -p tsconfig.commonjs.json --noEmit -d --declarationDir ./types",
+    "build:definitions": "tsc -p tsconfig.commonjs.json -d --declarationDir ./types",
     "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\" \"styles\"",
     "styles": "copyfiles -u \"src/**/*.scss\" dist",
     "prepublishOnly": "npm run build && npm run docs",

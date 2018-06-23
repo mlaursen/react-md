@@ -5,9 +5,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
   * [Styles](#styles)
-- [Prop Types](#prop-types)
-  * [withMountingTransition](#withmountingtransition)
-
+  * [Mixins](#mixins)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -40,3 +39,73 @@ If you would like to just import all the utility variables, mixins, and function
 
 // Any custom styles that use the utilities
 ```
+
+<!-- SASSDOC_START -->
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-transition(type)</code></td>
+<td>Adds a transition timing function for the provided transition type.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td></td>
+<td>The transition type that should be used. This should be one of the
+    keys for <code>$rmd-transitions</code></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-transitions</code></td>
+<td>A Map of all the available transitions for react-md.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-enter-transition-time</code></td>
+<td>The default enter transition time.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-leave-transition-time</code></td>
+<td>The default leave transition time.
+<br /><br /></td>
+</tr>
+</tbody>
+</table>
+
+<!-- SASSDOC_END -->
