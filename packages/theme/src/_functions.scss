@@ -9,6 +9,7 @@
 ///
 /// @access private
 /// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// @returns {Number}
 @function rmd-theme-luminance($color) {
   $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
   $red-multiplier: .2126;
@@ -22,6 +23,7 @@
 
 /// Gets the contrast between two colors.
 /// @access private
+/// @returns {Number}
 @function rmd-theme-contrast($back, $front) {
   $back-luminance: rmd-theme-luminance($back) + .05;
   $front-luminance: rmd-theme-luminance($front) + .05;
@@ -35,7 +37,7 @@
 /// @param {Number} min-contrast [3.1] - The minimum contast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
-/// @return {String} - The string "light" if the color is considered light, otherwise "dark".
+/// @returns {String} - The string "light" if the color is considered light, otherwise "dark".
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 @function rmd-theme-tone($color, $min-contrast: 3.1) {
   @if $color == "dark" or $color == "light" {
@@ -59,7 +61,7 @@
 /// @param {Number} min-contrast [3.1] - The minimum contast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
-/// @return {String} - The string "dark" if the color is considered light, or "light" if the
+/// @returns {String} - The string "dark" if the color is considered light, or "light" if the
 ///     color is considered dark.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 @function rmd-theme-contrast-tone($color, $min-contrast: 3.1) {

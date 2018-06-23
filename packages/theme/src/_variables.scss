@@ -79,13 +79,19 @@ $rmd-theme-text-colors: (
   ),
 );
 
+/// A simple utility function only within the variables file for getting a text color based on contrasts.
+///
 /// @access private
+/// @returns {Color}
 @function rmd-theme-text-color($style, $color) {
   $contrast-tone: rmd-theme-contrast-tone($color);
 
   @return map-get(map-get($rmd-theme-text-colors, $contrast-tone), $style);
 }
 
+/// A Map of all the theme property values that can be used throughout the app. This is mainly created
+/// so that the specific `md-theme--NAME` classes can be created, but also for the `rmd-theme-prop-value` function
+/// to get a specific color within your theme.
 $rmd-theme-property-values: (
   primary: $rmd-theme-primary,
   on-primary: $rmd-theme-on-primary,
@@ -99,6 +105,38 @@ $rmd-theme-property-values: (
   text-hint-on-background: rmd-theme-text-color(hint, $rmd-theme-background),
   text-disabled-on-background: rmd-theme-text-color(disabled, $rmd-theme-background),
   text-icon-on-background: rmd-theme-text-color(icon, $rmd-theme-background),
+
+  text-primary-on-light: rmd-theme-text-color(primary, light),
+  text-secondary-on-light: rmd-theme-text-color(secondary, light),
+  text-hint-on-light: rmd-theme-text-color(hint, light),
+  text-disabled-on-light: rmd-theme-text-color(disabled, light),
+  text-icon-on-light: rmd-theme-text-color(icon, light),
+
+  text-primary-on-dark: rmd-theme-text-color(primary, dark),
+  text-secondary-on-dark: rmd-theme-text-color(secondary, dark),
+  text-hint-on-dark: rmd-theme-text-color(hint, dark),
+  text-disabled-on-dark: rmd-theme-text-color(disabled, dark),
+  text-icon-on-dark: rmd-theme-text-color(icon, dark),
 );
 
 $rmd-theme-edge-opt-out: false !default;
+
+
+/// Attempts to get a specific theme color based on the property provided.
+///
+/// If the property is a color or "currentColor", it will be returned instead.
+///
+/// NOTE: This has to be defined in variables so there aren't recursive imports.
+/// @param {String|Color} property - The property tog et from the theme colors.
+/// @returns {Color} a color value for the provided property.
+@function rmd-theme-prop-value($property) {
+  @if type-of($property) == "color" or $property == "currentColor" {
+    @return $property;
+  }
+
+  @if not map-has-key($rmd-theme-property-values, $property) {
+    @error "Invalid theme property: '#{$property}'. Choose one of '#{map-keys($rmd-theme-property-values)}'";
+  }
+
+  @return map-get($rmd-theme-property-values, $property);
+}

@@ -4,6 +4,8 @@
 
 @import 'variables';
 
+/// This is really for internal use with the `react-md-theme` mixin, but you might be able to use it for some other stuff.
+///
 /// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
 ///     color values can be used.
 /// @param {String} style - The type of theme style to use. This should be one of the `$rmd-theme-property-values` or a literal
@@ -54,7 +56,7 @@
 ///
 /// @example scss - Alternative SCSS Usage
 ///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` varaibles
-///   @include react-md-theme($rmd-teal-500, $mmd-pink-a-400);
+///   @include react-md-theme($rmd-teal-500, $rmd-pink-a-400);
 ///
 /// @param {Color} primary-color [rmd-theme-primary] - The primary color to use to theme your app.
 /// @param {Color} secondary-color [rmd-theme-secondary] - The secondary color to use to theme your app.
