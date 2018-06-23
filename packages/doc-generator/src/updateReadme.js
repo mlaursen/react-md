@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const updateTOC = require('./updateTOC');
 const updatePropTypes = require('./updatePropTypes');
-const createSassDoc = require('./createSassDoc');
+const updateSassDoc = require('./updateSassDoc');
 
 module.exports = async function updateReadme({ toc = true, proptypes = true, sassdoc = false } = {}) {
   const readmePath = path.join(process.cwd(), 'README.md');
@@ -16,7 +16,7 @@ module.exports = async function updateReadme({ toc = true, proptypes = true, sas
 
   if (sassdoc) {
     console.log('Updating the SassDoc...');
-    console.log(await createSassDoc());
+    readme = await updateSassDoc(readme);
   }
 
   if (toc) {

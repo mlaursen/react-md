@@ -1,42 +1,28 @@
 const path = require('path');
 const { parse } = require('sassdoc');
+const { formatVariable, formatFunction } = require('./sassdocFormats');
 
 module.exports = async function createSassDoc() {
   const rawSassDocs = await parse(path.join(process.cwd(), 'src'));
 
-  return rawSassDocs.reduce((sassdocs, sassdoc, i) => {
-    const {
-      context: {
-        name,
-        type,
-        value,
-        code,
-        access,
-      },
-      description,
-      type: sassdocType,
-      link: links,
-      example: examples = [],
-      parameter: parameters = [],
-      require: requires,
-      return: returns,
-    } = sassdoc;
-    if (access === 'private') {
+  return rawSassDocs.reduce((sassdocs, sassdoc) => {
+    if (sassdoc.access === 'private') {
       return sassdocs;
     }
 
-    console.log('name: ', name);
-    console.log('type: ', type);
-    console.log('value: ', value);
-    console.log('code: ', code);
-    console.log('description: ', description);
-    console.log('sassdocType: ', sassdocType);
-    console.log('links: ', links);
-    console.log('examples: ', examples);
-    console.log('parameters: ', parameters);
-    console.log('requires: ', requires);
-    console.log('returns: ', returns);
+    switch (sassdoc.context.type) {
+      case 'function':
+        sassdocs.functions.push(formatFunction(sassdoc));
+        break;
+      case 'variable':
+        sassdocs.variables.push(formatVariable(sassdoc));
+        break;
+      case 'mixin':
+        sassdocs.mixins.push(formatFunction(sassdoc));
+        break;
+      default:
+    }
 
     return sassdocs;
-  }, {});
+  }, { variables: [], functions: [], mixins: [] });
 };
