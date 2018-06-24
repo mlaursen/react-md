@@ -12,7 +12,7 @@
     "styles": "copyfiles -u 1 \"src/**/*.scss\" dist",
     "test": "jest src",
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
-    "docs": "doc-generator",
+    "docs": "doc-generator --no-proptypes",
     "prepublishOnly": "npm run build && npm run docs"
   },
   "main": "./lib/index.js",

@@ -90,5 +90,6 @@ $rmd-tooltip-border-radius: .25rem !default; // 4px
 /// @type Number
 $rmd-tooltip-transition-distance: .5rem !default;
 
-/// @private
+/// This is really just for internal use and a ncie way to loop over the four positions when creating styles.
+/// @access private
 $rmd-tooltip-position-values: top right bottom left;
