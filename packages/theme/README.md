@@ -8,15 +8,15 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 <!-- TOC_START -->
 ## Table of Contents
 - [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+    + [Including Styles](#including-styles)
 - [Usage](#usage)
   * [Declaring a Theme](#declaring-a-theme)
     + [Updating for any color](#updating-for-any-color)
     + [Updating for a react-md color](#updating-for-a-react-md-color)
     + [Updating for a Dark theme](#updating-for-a-dark-theme)
-    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
-    + [webpack](#webpack)
-    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
-    + [Including Styles](#including-styles)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Normal SCSS Usage](#normal-scss-usage)
@@ -29,63 +29,6 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 ```sh
 $ npm install --save @react-md/theme
 ```
-
-## Usage
-### Declaring a Theme
-Starting with v2.0.0, react-md will use both scss and css variables to define themes. This allows you to work with IE 11 (if needed) as well as
-the nice css variable support in evergreen browsers.
-
-The theme by default is:
-- `$rmd-theme-primary: $rmd-purple-500 !default;`
-- `$rmd-theme-secondary: $rmd-pink-a-400 !default;`
-- `$rmd-theme-background: #fff !default;` // the default background color. This is normally applied to the <html> tag
-- `$rmd-theme-surface: #fff !default;` // the background color to use for temporary material such as menus or dialogs.
-
-This can be overriden by setting these variables to new colors that are included in react-md, or a custom color.
-
-#### Updating for any color
-If the color does not need to come from react-md, it is a little bit easier since all you need to do is define your new variables before
-importing this package's styles.
-
-```scss
-$rmd-theme-primary: #9b59b6;
-$rmd-theme-secondary: #e67e22;
-
-@import '@react-md/theme/dist/theme';
-
-@include react-md-theme;
-```
-
-#### Updating for a react-md color
-If the color needs to come from react-md, you will need to first import **only** the color-palette file so that the Sass maps won't be "compiled" with their default values. Once you have defined your theme,
-you can import like normal.
-
-```scss
-@import '@react-md/theme/dist/color-palette';
-
-$rmd-theme-primary: $rmd-blue-500;
-$rmd-theme-secondary: $rmd-orange-a-400;
-
-@import '@react-md/theme/dist/theme';
-
-@include react-md-theme;
-```
-
-#### Updating for a Dark theme
-In the past version of react-md, the dark theme was enabled by setting a `$md-light-theme` variable to `false`, now it is done by updating both
-the `$rmd-theme-background` and `$rmd-theme-surface` variables. So here is an example of enabling the same dark theme as before.
-
-```scss
-@import '@react-md/theme/dist/color-palette';
-
-$rmd-theme-background: #303030;
-$rmd-theme-surface: $md-grey-800;
-
-@import '@react-md/theme/dist/theme';
-
-@include react-md-theme;
-```
-
 
 #### Updating Sass to include `node_modules`
 If you want to include the SCSS styles for `@react-md/theme`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
@@ -148,6 +91,62 @@ If you would like to just import all the utility variables, mixins, and function
 @import '@react-md/theme/dist/theme';
 
 // Any custom styles that use the utilities
+```
+
+## Usage
+### Declaring a Theme
+Starting with v2.0.0, react-md will use both scss and css variables to define themes. This allows you to work with IE 11 (if needed) as well as
+the nice css variable support in evergreen browsers.
+
+The theme by default is:
+- `$rmd-theme-primary: $rmd-purple-500 !default;`
+- `$rmd-theme-secondary: $rmd-pink-a-400 !default;`
+- `$rmd-theme-background: #fff !default;` // the default background color. This is normally applied to the <html> tag
+- `$rmd-theme-surface: #fff !default;` // the background color to use for temporary material such as menus or dialogs.
+
+This can be overriden by setting these variables to new colors that are included in react-md, or a custom color.
+
+#### Updating for any color
+If the color does not need to come from react-md, it is a little bit easier since all you need to do is define your new variables before
+importing this package's styles.
+
+```scss
+$rmd-theme-primary: #9b59b6;
+$rmd-theme-secondary: #e67e22;
+
+@import '@react-md/theme/dist/theme';
+
+@include react-md-theme;
+```
+
+#### Updating for a react-md color
+If the color needs to come from react-md, you will need to first import **only** the color-palette file so that the Sass maps won't be "compiled" with their default values. Once you have defined your theme,
+you can import like normal.
+
+```scss
+@import '@react-md/theme/dist/color-palette';
+
+$rmd-theme-primary: $rmd-blue-500;
+$rmd-theme-secondary: $rmd-orange-a-400;
+
+@import '@react-md/theme/dist/theme';
+
+@include react-md-theme;
+```
+
+#### Updating for a Dark theme
+In the past version of react-md, the dark theme was enabled by setting a `$md-light-theme` variable to `false`, now it is done by updating both
+the `$rmd-theme-background` and `$rmd-theme-surface` variables. So here is an example of enabling the same dark theme as before.
+
+```scss
+@import '@react-md/theme/dist/color-palette';
+
+$rmd-theme-background: #303030;
+$rmd-theme-surface: $md-grey-800;
+
+@import '@react-md/theme/dist/theme';
+
+@include react-md-theme;
 ```
 
 <!-- SASSDOC_START -->

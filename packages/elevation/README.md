@@ -6,11 +6,11 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 <!-- TOC_START -->
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
     + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
     + [webpack](#webpack)
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
+- [Usage](#usage)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
@@ -21,8 +21,6 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 ```sh
 $ npm install --save @react-md/elevation
 ```
-
-## Usage
 
 #### Updating Sass to include `node_modules`
 If you want to include the SCSS styles for `@react-md/elevation`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
@@ -86,6 +84,8 @@ If you would like to just import all the utility variables, mixins, and function
 
 // Any custom styles that use the utilities
 ```
+
+## Usage
 
 <!-- SASSDOC_START -->
 

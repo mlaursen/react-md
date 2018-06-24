@@ -1,10 +1,18 @@
 # @react-md/transition
+This package is for handling different transitions and anmimations within react-md.
+
+The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/transition
+
+> NOTE: While react-md is in a pre-release stage, all SCSS variables, mixins, and functions will use a `rmd` prefix instead of the normal `md` prefix. This is so that you can have both the v1 and v2 versions working together. When v2 is finally released, the prefixes will switch back to `md`.
 
 <!-- TOC_START -->
 ## Table of Contents
 - [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+    + [Including Styles](#including-styles)
 - [Usage](#usage)
-  * [Styles](#styles)
   * [Mixins](#mixins)
   * [Variables](#variables)
 <!-- TOC_END -->
@@ -14,8 +22,46 @@
 $ npm install --save @react-md/transition
 ```
 
-## Usage
-### Styles
+
+#### Updating Sass to include `node_modules`
+If you want to include the SCSS styles for `@react-md/transition`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
+
+> If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
+
+#### webpack
+```diff
+ {
+   test: /\.scss$/,
+   use: [{
+     loader: 'style-loader',
+     options: { sourceMap: true },
+   }, {
+     loader: 'css-loader',
+     options: { sourceMap: true, importLoaders: 2 },
+   }, {
+     loader: 'postcss',
+     options: { sourceMap: true },
+   }, {
+     loader: 'sass-loader',
+     options: {
+       sourceMap: true,
++      includePaths: [
++        './node_modules', // or whatever relative path it is to node_modules
++      ],
+     },
+   }],
+ }
+```
+
+#### create-react-app and node-sass-chokidar
+```diff
+   "scripts": {
++    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
++    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
+   }
+```
+
+#### Including Styles
 Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-transition`:
 
 ```scss
@@ -40,6 +86,7 @@ If you would like to just import all the utility variables, mixins, and function
 // Any custom styles that use the utilities
 ```
 
+## Usage
 <!-- SASSDOC_START -->
 
 ### Mixins
