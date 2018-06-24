@@ -1,0 +1,94 @@
+////
+/// @group tooltip
+////
+
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/transition/dist/transition';
+
+/// The background color to use for tooltips.
+/// @type Color
+$rmd-tooltip-background-color: #232f34 !default;
+
+/// The text color to use for tooltips. This will be white on dark backgrounds and black
+/// on light backgrounds by default.
+/// @type Color
+$rmd-tooltip-text-color: if(md-theme-contrast-tone($rmd-tooltip-background-color) == "light", $rmd-black-base, $rmd-white-base) !default;
+
+/// The enter transition time for the tooltip to enter or to leave.
+/// @type Number
+$rmd-tooltip-enter-transition-time: .15s !default;
+
+/// The leave transition time for the tooltip to enter or to leave.
+/// @type Number
+$rmd-tooltip-leave-transition-time: $rmd-tooltip-enter-transition-time / 2 !default;
+
+/// The z-index to use for tooltips when they are visible.
+/// @type Number
+$rmd-tooltip-z-index: 100 !default;
+
+/// The font size to use for tooltips
+///
+/// @see rmd-tooltip-dense-font-size
+/// @type Number
+$rmd-tooltip-font-size: 1rem !default; // 14px
+
+/// The min height to use for tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see rmd-tooltip-dense-min-height
+/// @type Number
+$rmd-tooltip-min-height: 2rem !default; // 32px
+
+/// The left and right padding to apply to tooltips.
+///
+/// @see rmd-tooltip-dense-lr-padding
+/// @type Number
+$rmd-tooltip-lr-padding: 1rem !default; // 16px
+
+/// The top and bottom padding to apply to tooltips when line wrapping is enabled.
+///
+/// @see rmd-tooltip-dense-line-wrap-tb-padding
+/// @type Number
+$rmd-tooltip-line-wrap-tb-padding: .5625rem !default; // 9px
+
+/// The amount of spacing to place between the tooltip and the tooltip's container element.
+///
+/// @see rmd-tooltip-dense-spacing
+/// @type Number
+$rmd-tooltip-spacing: 1.5rem !default; // 24px
+
+/// The font size to use for dense tooltips.
+/// @type Number
+$rmd-tooltip-dense-font-size: .625rem !default; // 10px
+
+/// The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see rmd-tooltip-min-height
+/// @type Number
+$rmd-tooltip-dense-min-height: 1.375rem !default; // 22px
+
+/// The left and right padding to use for dense tooltips
+/// @type Number
+$rmd-tooltip-dense-lr-padding: .5rem !default; // 8px
+
+/// The top and bottom padding to apply to dense tooltips when line wrapping is enabled.
+///
+/// @see rmd-tooltip-line-wrap-tb-padding
+/// @type Number
+$rmd-tooltip-dense-line-wrap-tb-padding: .375rem !default; // 6px
+
+/// The amount of spacing to place between the dense tooltip and the tooltip's container element.
+/// @type Number
+$rmd-tooltip-dense-spacing: .875rem !default; // 14px
+
+/// The border radius to apply to tooltips
+/// @type Number
+$rmd-tooltip-border-radius: .25rem !default; // 4px
+
+/// The distance that the tooltip should animate from the tooltip's control element.
+/// @type Number
+$rmd-tooltip-transition-distance: .5rem !default;
+
+/// @private
+$rmd-tooltip-position-values: top right bottom left;
