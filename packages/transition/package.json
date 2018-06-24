@@ -12,17 +12,17 @@
     "dist/*"
   ],
   "scripts": {
-    "docs": "doc-generator --no-proptypes",
-    "clean": "rimraf es lib types dist",
-    "prebuild": "npm run clean",
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
-    "build:definitions": "tsc -p tsconfig.commonjs.json -d --declarationDir ./types",
+    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types",
     "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\" \"styles\"",
-    "styles": "copyfiles -u \"src/**/*.scss\" dist",
-    "prepublishOnly": "npm run build && npm run docs",
+    "clean": "rimraf es lib types dist",
+    "prebuild": "npm run clean",
+    "styles": "copyfiles -u 1 \"src/**/*.scss\" dist",
     "test": "jest src",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch -d --declarationDir ./types\" \"build:modules -- --watch\""
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
+    "docs": "doc-generator",
+    "prepublishOnly": "npm run build && npm run docs"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",

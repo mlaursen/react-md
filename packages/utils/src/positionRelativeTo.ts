@@ -1,7 +1,5 @@
 import * as React from "react";
 
-export type PositionPlacements = "top" | "right" | "bottom" | "left" | "centered" | "auto";
-
 export enum HorizontalPosition {
   /**
    * This will force the `target` element to be positioned so the right side will align with the left side
@@ -286,11 +284,13 @@ export default function positionRelativeTo(fixedTo: HTMLElement | null, target: 
   }
 
   if (horizontalSpacing && !isTooWide) {
-    style.left = `calc(${style.left}px + ${horizontalSpacing})`;
+    const sign = horizontalPosition === HorizontalPosition.LEFT || horizontalPosition === HorizontalPosition.INNER_LEFT ? "-" : "+";
+    style.left = `calc(${style.left}px ${sign} ${horizontalSpacing})`;
   }
 
   if (verticalSpacing && !isTooTall) {
-    style.top = `calc(${style.top}px + ${verticalSpacing})`;
+    const sign = verticalPosition === VerticalPosition.TOP ? "-" : "+";
+    style.top = `calc(${style.top}px ${sign} ${verticalSpacing})`;
   }
 
   return style;

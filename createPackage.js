@@ -74,6 +74,10 @@ const TSCONFIG_TEMPLATE = {
     strictPropertyInitialization: true,
     alwaysStrict: true,
     esModuleInterop: true,
+    // this fixes importing classnames
+    allowSyntheticDefaultImports: true,
+    // this fixes the missing csstype issue
+    moduleResolution: 'node',
     declaration: false,
     typeRoots: [
       'node_modules/@types/',
@@ -104,8 +108,7 @@ const TSCONFIG_MODULE_TEMPLATE = {
   },
 };
 
-const README_STYLES_TEMPLATE = `
-#### Updating Sass to include \`node_modules\`
+const README_STYLES_TEMPLATE = `#### Updating Sass to include \`node_modules\`
 If you want to include the SCSS styles for \`@react-md/${name}\`, you will need to update your Sass compiler to include the \`node_modules\` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
 
 > If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
@@ -169,13 +172,11 @@ If you would like to just import all the utility variables, mixins, and function
 \`\`\`
 `;
 
-const README_PROPTYPES_TEMPLATE = `
-<!-- PROPS_START -->
+const README_PROPTYPES_TEMPLATE = `<!-- PROPS_START -->
 <!-- PROPS_END -->
 `;
 
-const README_TEMPLATE = `
-# @react-md/${name}
+const README_TEMPLATE = `# @react-md/${name}
 ${description}
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/${name}
@@ -187,15 +188,15 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 \`\`\`sh
 $ npm install --save @react-md/${name}
 \`\`\`
-
+${styles ? `\n${README_STYLES_TEMPLATE}\n` : ''}
 ## Usage
-${styles ? README_STYLES_TEMPLATE : ''}
-
-${proptypes ? README_PROPTYPES_TEMPLATE : ''}
+${proptypes ? `${README_PROPTYPES_TEMPLATE}\n` : ''}
+${styles ? '<!-- SASSDOC_START -->\n<!-- SASSDOC_END -->\n' : ''}
 `;
 
-const JEST_CONFIG_TEMPLATE = `
-module.exports = {
+const JEST_CONFIG_TEMPLATE = `module.exports = {
+  setupFiles: ['./jest.setup.js'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   testRegex: '(/__tests__/.*|(\.|/)(test|spec))\.(jsx?|tsx?)$',
   moduleFileExtensions: [
     'ts',
@@ -210,7 +211,12 @@ module.exports = {
     '/node_modules/',
   ],
 };
+`;
 
+const JEST_SETUP_TEMPLATE = `const { configure } = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+
+configure({ adapter: new Adapter() });
 `;
 
 /**
@@ -220,18 +226,15 @@ const SCSS_FILE_TEMPLATE = `////
 /// @group ${name}
 ////
 
-
 `;
 
 /**
  * This is the file contents for the src/_${name}.scss
  */
 const SCSS_PACKAGE_FILE_TEMPLATE = `${SCSS_FILE_TEMPLATE}
-
 @import 'functions';
 @import 'mixins';
 @import 'variables';
-
 `;
 
 /**
@@ -241,7 +244,6 @@ const SCSS_PACKAGE_FILE_TEMPLATE = `${SCSS_FILE_TEMPLATE}
 const STYLES_FILE_TEMPLATE = `@import '${name}';
 
 @include react-md-${name};
-
 `;
 
 
@@ -364,6 +366,7 @@ const filesToCreate = {
 if (typescript) {
   filesToCreate[path.join(src, 'index.ts')] = '';
   filesToCreate[path.join(dir, 'jest.config.js')] = JEST_CONFIG_TEMPLATE;
+  filesToCreate[path.join(dir, 'jest.setup.js')] = JEST_SETUP_TEMPLATE;
   filesToCreate[path.join(dir, 'tsconfig.json')] = TSCONFIG_TEMPLATE;
   filesToCreate[path.join(dir, 'tsconfig.commonjs.json')] = TSCONFIG_COMMONJS_TEMPLATE;
   filesToCreate[path.join(dir, 'tsconfig.modules.json')] = TSCONFIG_MODULE_TEMPLATE;
