@@ -1,0 +1,71 @@
+////
+/// @group typography
+////
+
+/// Gets the global variable value for a proided typography style name. This assumes that the global variable
+/// exists already.
+///
+/// @access private
+/// @param {String} style - The typography style name to return a variable for
+/// @return {Map} a map of the style properties from the global typograpy variable.
+@function rmd-typography-get-global-variable($style) {
+  @if $style == 'headline-1' {
+    @return $rmd-typography-styles-headline-1;
+  } @else if $style == 'headline-2' {
+    @return $rmd-typography-styles-headline-2;
+  } @else if $style == 'headline-3' {
+    @return $rmd-typography-styles-headline-3;
+  } @else if $style == 'headline-4' {
+    @return $rmd-typography-styles-headline-4;
+  } @else if $style == 'headline-5' {
+    @return $rmd-typography-styles-headline-5;
+  } @else if $style == 'headline-6' {
+    @return $rmd-typography-styles-headline-6;
+  } @else if $style == 'subtitle-1' {
+    @return $rmd-typography-styles-subtitle-1;
+  } @else if $style == 'subtitle-2' {
+    @return $rmd-typography-styles-subtitle-2;
+  } @else if $style == 'body-1' {
+    @return $rmd-typography-styles-body-1;
+  } @else if $style == 'body-2' {
+    @return $rmd-typography-styles-body-2;
+  } @else if $style == 'caption' {
+    @return $rmd-typography-styles-caption;
+  } @else if $style == 'button' {
+    @return $rmd-typography-styles-button;
+  } @else if $style == 'overline' {
+    @return $rmd-typography-styles-overline;
+  }
+
+  @return ();
+}
+
+/// A utility function to help merge typography styles together with global definition overrides.
+///
+/// @access private
+/// @param {Map} base-styles - The base styles to merge with
+/// @param {Map} additional-styles - Any additional styles to merge with
+/// @return {Map} a Map of the base-styles and additional styles merged together
+@function rmd-typography-set-styles($base-styles, $additional-styles) {
+  @each $style, $style-props in $additional-styles {
+    $style-props: map-merge($base-styles, $style-props);
+
+    @if global-variable-exists(md-typography-styles-#{$style}) {
+      $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
+    }
+
+    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
+  }
+
+  @return $additional-styles;
+}
+
+/// A small utility funciton to get the letter spacing based on tracking and font-size
+///
+/// @access private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @return {Number} the letter spacing value in em
+@function rmd-typography-get-letter-spacing($tracking, $font-size) {
+  @return $tracking / ($font-size * 16) * 1em;
+}

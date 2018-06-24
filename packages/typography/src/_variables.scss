@@ -1,0 +1,141 @@
+////
+/// @group typography
+////
+
+
+@import 'functions';
+
+/// The font family to use throughout the entire application.
+/// @type String
+$rmd-typography-font-family: Roboto, sans-serif !default;
+
+/// The base styles for typography.
+/// @type Map
+$rmd-typography-base: (
+  font-family: $rmd-typography-font-family,
+  -moz-osx-font-smoothing: grayscale,
+  -webkit-font-smoothing: antialiased,
+);
+
+/// A Map of all the font weights.
+///
+/// @type Map
+$rmd-typography-font-weights: (
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  black: 900,
+) !default;
+
+
+/// A Map of all the typography styles in react-md
+///
+/// @type Map
+$rmd-typography-styles: rmd-typography-set-styles($rmd-typography-base, (
+  headline-1: (
+    font-size: 6rem, // 96sp
+    line-height: 6rem,
+    font-weight: map-get($rmd-typography-font-weights, light),
+    letter-spacing: rmd-typography-get-letter-spacing(-1.5, 6),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  headline-2: (
+    font-size: 3.75rem, // 60sp
+    line-height: 3.75rem,
+    font-weight: map-get($rmd-typography-font-weights, light),
+    letter-spacing: rmd-typography-get-letter-spacing(-.5, 3.75),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  headline-3: (
+    font-size: 3rem, // 48sp
+    line-height: 3.125rem, // 50sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: normal,
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  headline-4: (
+    font-size: 2.125rem, // 34sp
+    line-height: 2.5rem, // 40sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: rmd-typography-get-letter-spacing(.25, 2.125),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  headline-5: (
+    font-size: 1.5rem, // 24sp
+    line-height: 2rem, // 32sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: normal,
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  headline-6: (
+    font-size: 1.25rem, // 20sp
+    line-height: 2rem, // 32sp
+    font-weight: map-get($rmd-typography-font-weights, medium),
+    letter-spacing: rmd-typography-get-letter-spacing(.25, 1.25),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  subtitle-1: (
+    font-size: 1rem, // 16sp
+    line-height: 1.75rem, // 28sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: rmd-typography-get-letter-spacing(.15, 1),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  subtitle-2: (
+    font-size: .875rem, // 14sp
+    line-height: 1.375rem, // 22sp
+    font-weight: map-get($rmd-typography-font-weights, medium),
+    letter-spacing: rmd-typography-get-letter-spacing(.1, .875),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  body-1: (
+    font-size: 1rem, // 16sp
+    line-height: 1.5rem, // 24sp,
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: rmd-typography-get-letter-spacing(.5, .875),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  body-2: (
+    font-size: .875rem, // 14sp
+    line-height: 1.25rem, // 20sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: rmd-typography-get-letter-spacing(.25, .875),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  caption: (
+    font-size: .75rem, // 12sp
+    line-height: 1.25rem, // 20sp
+    font-weight: map-get($rmd-typography-font-weights, regular),
+    letter-spacing: rmd-typography-get-letter-spacing(.4, .75),
+    text-decoration: inherit,
+    text-transform: inherit,
+  ),
+  button: (
+    font-size: .875rem, // 14sp
+    line-height: 2.25rem, // 36sp
+    font-weight: map-get($rmd-typography-font-weights, medium),
+    letter-spacing: rmd-typography-get-letter-spacing(1.25, .875),
+    text-decoration: none,
+    text-transform: uppercase,
+  ),
+  overline: (
+    font-size: .75rem, // 12sp
+    line-height: 2rem, // 32sp
+    font-weight: map-get($rmd-typography-font-weights, medium),
+    letter-spacing: rmd-typography-get-letter-spacing(2, .75),
+    text-decoration: none,
+    text-transform: uppercase,
+  ),
+));

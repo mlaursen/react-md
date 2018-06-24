@@ -1,0 +1,44 @@
+////
+/// @group typography
+////
+
+
+/// Applies the base typography styles to an element.
+///
+/// @example scss - Example Usage SCSS
+///   .custom-class-name {
+///     @include rmd-typography-base;
+///
+///     font-size: 1.3rem;
+///  }
+@mixin rmd-typography-base {
+  @each $key, $value in $rmd-typography-base {
+    #{$key}: $value;
+  }
+}
+
+/// Applies one of the provided material design styles to an element.
+@mixin rmd-typography($style) {
+  $style-props: map-get($rmd-typography-styles, $style);
+
+  @if not map-has-key($rmd-typography-styles, $style) {
+    @error "Invalid style specified! #{$style} doesn't exist. Choose one of #{$map-keys($rmd-typography-styles)}";
+  }
+
+  @each $key, $value in $style-props {
+    #{$key}: $value;
+  }
+}
+
+/// Creates all the typography styles from the react-md typography variables.
+@mixin react-md-typography {
+  .rmd-typography {
+    @include rmd-typography-base;
+
+    @each $suffix in map-keys($rmd-typography-styles) {
+      &--#{$suffix} {
+        @include rmd-typography($suffix);
+      }
+    }
+  }
+}
