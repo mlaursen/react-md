@@ -58,6 +58,13 @@ export default class SelectionControl extends PureComponent {
     ]),
 
     /**
+     * An optional id of an element that describes this selection control.
+     * In the case of a fieldset, this should be the id of the fieldset legend which ensures
+     * screen readers provides additional context about the selection control
+     */
+    'aria-describedby': PropTypes.string,
+
+    /**
      * An optional style to apply to the selection control's container.
      */
     style: PropTypes.object,
@@ -316,6 +323,7 @@ export default class SelectionControl extends PureComponent {
       disabledInteractions,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-describedby': ariaDescribedBy,
       /* eslint-disable no-unused-vars */
       label: propLabel,
       checked: propChildren,
@@ -344,7 +352,7 @@ export default class SelectionControl extends PureComponent {
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = this.props.label && <span>{this.props.label}</span>;
+    const label = this.props.label && <span id={`${id}-label`}>{this.props.label}</span>;
 
     let control;
     if (isSwitch) {
@@ -361,6 +369,9 @@ export default class SelectionControl extends PureComponent {
             secondary: checked,
           }))}
           aria-checked={checked}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy || `${id}-label`}
+          aria-describedby={ariaDescribedBy}
           tabIndex={tabIndex}
           disabled={disabled}
         >
@@ -392,8 +403,6 @@ export default class SelectionControl extends PureComponent {
           name={name}
           value={value}
           aria-hidden
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
         />
         <label
           htmlFor={id}
