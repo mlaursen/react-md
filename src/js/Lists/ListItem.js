@@ -325,6 +325,11 @@ export default class ListItem extends PureComponent {
     animateNestedItems: PropTypes.bool,
 
     /**
+     * Boolean if the children should be rendered outside auf the AccessibleFakeButton component.
+     */
+    renderChildrenOutside: PropTypes.bool,
+
+    /**
      * Defines the number of items in the list. This is only required when all items in the
      * list are not present in the DOM.
      *
@@ -548,6 +553,34 @@ export default class ListItem extends PureComponent {
     }
   };
 
+  _renderChildrenIfInside() {
+    const { children, renderChildrenOutside } = this.props;
+
+    return !renderChildrenOutside ? children : null;
+  }
+
+  _renderChildrenIfOutside() {
+    const { children, renderChildrenOutside } = this.props;
+
+    if (renderChildrenOutside) {
+      return (
+        <div className="md-list-item--flex">
+          <Divider vertical className="md-list-item--divider-vertical" />
+
+          <div className="md-list-item--children-inline">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  }
+
+  _renderChildrenIf(isValid) {
+    return isValid ? this.props.children : null;
+  }
+
   render() {
     const {
       style,
@@ -593,6 +626,7 @@ export default class ListItem extends PureComponent {
       passPropsToItem,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
+      renderChildrenOutside,
 
       // deprecated
       isOpen,
@@ -751,6 +785,7 @@ export default class ListItem extends PureComponent {
       className: cn('md-list-item', {
         'md-list-item--nested-container': nestedItems,
         [activeBoxClassName]: activeBoxClassName && active,
+        'md-list-item--flex': renderChildrenOutside,
       }, className),
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
@@ -784,6 +819,7 @@ export default class ListItem extends PureComponent {
       <ItemComponent {...sharedProps}>
         {prependNested ? nestedList : null}
         {tile}
+        {this._renderChildrenIfOutside()}
         {prependNested ? null : nestedList}
       </ItemComponent>
     );

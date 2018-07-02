@@ -348,8 +348,32 @@ $md-list-addon-line-height: $md-line-height !default;
     }
   }
 
-  .md-list-item--inset {
-    padding-left: $md-list-left-padding;
+  .md-list-item {
+    &--inset {
+      padding-left: $md-list-left-padding;
+    }
+
+    &--flex {
+      display: flex;
+    }
+
+    &--button-grow {
+      flex-grow: 1;
+    }
+
+    &--divider-vertical {
+      height: calc(100% - 4px);
+      width: 2px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-top: 2px !important;
+      flex-shrink: 0;
+    }
+
+    &--children-inline {
+      align-self: center;
+      padding-right: 2px;
+    }
   }
 
   .md-tile-content {

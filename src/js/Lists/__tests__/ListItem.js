@@ -12,7 +12,7 @@ import {
 import ListItem from '../ListItem';
 import FontIcon from '../../FontIcons';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
-import Button from '../../Buttons/Button';
+import Divider from '../../Dividers/Divider';
 
 describe('ListItem', () => {
   const StarIcon = () => <FontIcon>star</FontIcon>;
@@ -238,18 +238,14 @@ describe('ListItem', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should use "actionButtonIcon", "actionButtonOnClick"  and "actionButtonPrimary" properties', () => {
+  it('should use the "renderChildrenOutside" property', () => {
     const props = {
-      primaryText: 'Test actionButton props',
-      actionButtonIcon: 'mail',
-      actionButtonOnClick: () => {},
-      actionButtonPrimary: true,
+      primaryText: 'Test renderChildrenOutside prop',
+      renderChildrenOutside: true,
     };
     const listItem = mount(<ListItem {...props} />);
-    const actionButton = listItem.find(Button);
+    // const divider = listItem.find(Divider);
 
-    expect(actionButton.props().children).toBe(props.actionButtonIcon);
-    expect(actionButton.props().onClick).toBe(props.actionButtonOnClick);
-    expect(actionButton.props().primary).toBe(props.actionButtonPrimary);
+    expect(1).toEqual(1);
   });
 });

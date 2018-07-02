@@ -51,6 +51,7 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   activeBoxStyle?: React.CSSProperties;
   activeBoxClassName?: string;
   animateNestedItems?: boolean;
+  renderChildrenOutside?: boolean;
   itemRef?: (ref: React.ReactHTMLElement<any> | null) => null;
   actionButtonIcon?: string,
   actionButtonOnClick?: (event: React.MouseEvent<HTMLElement>) => void,
