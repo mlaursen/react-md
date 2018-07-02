@@ -244,8 +244,8 @@ describe('ListItem', () => {
       renderChildrenOutside: true,
     };
     const listItem = mount(<ListItem {...props} />);
-    // const divider = listItem.find(Divider);
+    const divider = listItem.find(Divider);
 
-    expect(1).toEqual(1);
+    expect(divider).toMatchSnapshot();
   });
 });
