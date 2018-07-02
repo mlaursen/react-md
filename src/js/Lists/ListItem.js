@@ -609,7 +609,6 @@ export default class ListItem extends PureComponent {
       primaryText,
       secondaryText,
       threeLines,
-      children,
       nestedItems,
       prependNested,
       active,
