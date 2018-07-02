@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
-
 import themeColors from '../utils/themeColors';
 import getCollapserStyles from '../utils/getCollapserStyles';
 import getField from '../utils/getField';
