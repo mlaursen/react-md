@@ -18,7 +18,6 @@ import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
 import Menu from '../Menus/Menu';
-import Button from '../Buttons/Button';
 import Divider from '../Dividers/Divider';
 
 /**
@@ -389,7 +388,7 @@ export default class ListItem extends PureComponent {
     component: 'div',
     itemComponent: 'li',
     expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
-    actionButtonPrimary: false,
+    renderChildrenOutside: false,
   };
 
   static contextTypes = {
@@ -620,9 +619,6 @@ export default class ListItem extends PureComponent {
       isOpen,
       expanderIconChildren,
       expanderIconClassName,
-      actionButtonPrimary,
-      actionButtonIcon,
-      actionButtonOnClick,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       defaultVisible,
