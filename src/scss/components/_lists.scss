@@ -272,32 +272,6 @@ $md-list-addon-line-height: $md-line-height !default;
   $include-inline: $md-list-include-inline,
   $include-dense-icons: $md-font-icon-include-dense
 ) {
-  .md-list-item--with-action-button {
-    display: flex;
-  }
-
-  .md-list-tile--with-action-button {
-    flex-grow: 1;
-  }
-
-  .md-list-item--action-delimiter {
-    display: flex;
-    margin-left: 2px;
-    margin-right: 2px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    width: 2px;
-
-    > div {
-      background: get-color('divider', $light-theme);
-      width: 100%;
-    }
-  }
-
-  .md-list-item--action-button {
-    margin-right: 2px;
-  }
-
   @if $include-unstyled {
     .md-list-unstyled {
       @extend %md-list-unstyled;
@@ -320,7 +294,7 @@ $md-list-addon-line-height: $md-line-height !default;
       flex-shrink: 0;
     }
 
-    .md-divider {
+    .md-divider:not(.md-list-item--divider-vertical) {
       margin-bottom: $md-list-divider-margin;
       margin-top: $md-list-divider-margin;
     }
@@ -366,7 +340,7 @@ $md-list-addon-line-height: $md-line-height !default;
       height: calc(100% - 4px);
       margin-left: 2px;
       margin-right: 2px;
-      margin-top: 2px; // FIXME: margin issue with default setting (8px)
+      margin-top: 2px !important; // FIXME: margin issue with default setting (8px)
       width: 2px;
     }
 

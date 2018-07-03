@@ -81,15 +81,20 @@ const Simple = () => (
     </List>
     <List className="md-cell md-paper md-paper--1">
       <ListItem primaryText="Additional information" />
-      <ListItem primaryText="Website" actionButtonIcon="public" actionButtonPrimary actionButtonOnClick={() => {}} />
-      <ListItem primaryText="Mail" actionButtonIcon="mail" actionButtonOnClick={() => {}} />
+      <ListItem primaryText="Website" renderChildrenOutside>
+        <Button icon primary>public</Button>
+      </ListItem>
+      <ListItem primaryText="Mail" renderChildrenOutside>
+        <Button icon>mail</Button>
+      </ListItem>
       <ListItem
         leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />}
         primaryText="Work"
         secondaryText="Jan 28, 2014"
-        actionButtonIcon="share"
-        actionButtonOnClick={() => {}}
-      />
+        renderChildrenOutside
+      >
+        <Button icon>share</Button>
+      </ListItem>
     </List>
   </div>
 );
