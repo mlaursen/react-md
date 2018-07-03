@@ -42,3 +42,14 @@ exports[`ListItem should render correctly with a snapshot tester 1`] = `
   </div>
 </li>
 `;
+
+exports[`ListItem should use the "renderChildrenOutside" property 1`] = `
+<Divider
+  className="md-list-item--divider-vertical"
+  vertical={true}
+>
+  <div
+    className="md-divider md-divider--vertical md-list-item--divider-vertical"
+  />
+</Divider>
+`;

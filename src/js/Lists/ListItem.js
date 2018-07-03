@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
-
 import themeColors from '../utils/themeColors';
 import getCollapserStyles from '../utils/getCollapserStyles';
 import getField from '../utils/getField';
@@ -19,6 +18,7 @@ import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
 import Menu from '../Menus/Menu';
+import Divider from '../Dividers/Divider';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -324,6 +324,11 @@ export default class ListItem extends PureComponent {
     animateNestedItems: PropTypes.bool,
 
     /**
+     * Boolean if the children should be rendered outside auf the AccessibleFakeButton component.
+     */
+    renderChildrenOutside: PropTypes.bool,
+
+    /**
      * Defines the number of items in the list. This is only required when all items in the
      * list are not present in the DOM.
      *
@@ -383,6 +388,7 @@ export default class ListItem extends PureComponent {
     component: 'div',
     itemComponent: 'li',
     expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
+    renderChildrenOutside: false,
   };
 
   static contextTypes = {
@@ -539,6 +545,30 @@ export default class ListItem extends PureComponent {
     }
   };
 
+  _renderChildrenIfInside() {
+    const { children, renderChildrenOutside } = this.props;
+
+    return !renderChildrenOutside ? children : null;
+  }
+
+  _renderChildrenIfOutside() {
+    const { children, renderChildrenOutside } = this.props;
+
+    if (renderChildrenOutside) {
+      return (
+        <div className="md-list-item--flex">
+          <Divider vertical className="md-list-item--divider-vertical" />
+
+          <div className="md-list-item--children-inline">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   render() {
     const {
       style,
@@ -567,7 +597,6 @@ export default class ListItem extends PureComponent {
       primaryText,
       secondaryText,
       threeLines,
-      children,
       nestedItems,
       prependNested,
       active,
@@ -584,6 +613,7 @@ export default class ListItem extends PureComponent {
       passPropsToItem,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
+      renderChildrenOutside,
 
       // deprecated
       isOpen,
@@ -687,6 +717,7 @@ export default class ListItem extends PureComponent {
           'md-list-tile--two-lines': secondaryText && !threeLines,
           'md-list-tile--three-lines': secondaryText && threeLines,
           'md-list-item--inset': inset && !leftIcon && !leftAvatar,
+          'md-list-item--button-grow': renderChildrenOutside,
         }, themeColors({ disabled, text: true }), tileClassName)}
         aria-expanded={nestedList && !cascadingMenu ? visible : null}
       >
@@ -710,7 +741,7 @@ export default class ListItem extends PureComponent {
           secondaryTextClassName={secondaryTextClassName}
         />
         {rightNode}
-        {children}
+        {this._renderChildrenIfInside()}
       </AccessibleFakeInkedButton>
     );
 
@@ -721,6 +752,7 @@ export default class ListItem extends PureComponent {
       className: cn('md-list-item', {
         'md-list-item--nested-container': nestedItems,
         [activeBoxClassName]: activeBoxClassName && active,
+        'md-list-item--flex': renderChildrenOutside,
       }, className),
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
@@ -754,6 +786,7 @@ export default class ListItem extends PureComponent {
       <ItemComponent {...sharedProps}>
         {prependNested ? nestedList : null}
         {tile}
+        {this._renderChildrenIfOutside()}
         {prependNested ? null : nestedList}
       </ItemComponent>
     );
