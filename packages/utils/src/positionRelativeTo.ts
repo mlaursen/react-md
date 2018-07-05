@@ -52,13 +52,14 @@ export enum VerticalPosition {
   CENTER = "center",
 
   /**
-   * This will force the `target` element to be positioned so its top edge will align with the top edge of the `fixedTo` element.
-   * This is really an alias to setting the `heightOverlapMultiplier` to `1` so you cannot set the `heightOverlapMultiplier` if
-   * using this position as it will break all positioning logic.
+   * This will force the `target` element to be positioned so its top edge will align with the top edge of the `fixedTo`
+   * element.  This is really an alias to setting the `heightOverlapMultiplier` to `1` so you cannot set the
+   * `heightOverlapMultiplier` if using this position as it will break all positioning logic.
    *
-   * In addition, the "auto" top or bottom positioning logic will still be in effect when this is set. So if the `target`
-   * element would not be able to be fully visible while centered and below, it will position itself so it is centered and
-   * above. If there is still not enough room above the element, it will be fixed to the top of the page using the `vhMargin`.
+   * In addition, the "auto" top or bottom positioning logic will still be in effect when this is set. So if the
+   * `target` element would not be able to be fully visible while centered and below, it will position itself so it is
+   * centered and above. If there is still not enough room above the element, it will be fixed to the top of the page
+   * using the `vhMargin`.
    */
   OVERLAP = "overlap",
 
@@ -73,8 +74,8 @@ export enum VerticalPosition {
    * This will automagically determine the "best" location to position the `target` element based on the `fixedTo`
    * element's location within the viewport. This will swap between the `VerticalPosition.BOTTOM` and
    * `VerticalPosition.TOP` as needed. So if the `target` element would not be able to be fully visible while centered
-   * and below, it will position itself so it is centered and above. If there is still not enough room above the element,
-   * it will be fixed to the top of the page using the `vhMargin`.
+   * and below, it will position itself so it is centered and above. If there is still not enough room above the
+   * element, it will be fixed to the top of the page using the `vhMargin`.
    */
   AUTO = "auto",
 }
@@ -145,7 +146,8 @@ export interface IPositionOptions {
 
   /**
    * The amount of spacing to put between the `fixedTo` element and the `target` element. This should be a string of a
-   * number of pixels or a number in rem. This will update the styles to do a `calc(${CALCULATED_POSITION}px - ${spacing})`.
+   * number of pixels or a number in rem. This will update the styles to do a
+   * `calc(${CALCULATED_POSITION}px - ${spacing})`.
    *
    * Examples:
    * - '20px'
@@ -155,7 +157,8 @@ export interface IPositionOptions {
 
   /**
    * The amount of spacing to put between the `fixedTo` element and the `target` element. This should be a string of a
-   * number of pixels or a number in rem. This will update the styles to do a `calc(${CALCULATED_POSITION}px - ${spacing})`.
+   * number of pixels or a number in rem. This will update the styles to do a
+   * `calc(${CALCULATED_POSITION}px - ${spacing})`.
    *
    * Examples:
    * - '20px'
@@ -193,7 +196,7 @@ function determineBestHorizontalPosition(position: HorizontalPosition, left: num
 export default function positionRelativeTo(
   fixedTo: HTMLElement | null,
   target: HTMLElement | null,
-  options: IPositionOptions = {}
+  options: IPositionOptions = {},
 ): React.CSSProperties | undefined {
   if (!fixedTo) {
     return undefined;
