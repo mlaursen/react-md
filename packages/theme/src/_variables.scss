@@ -2,8 +2,8 @@
 /// @group theme
 ////
 
-@import 'color-palette';
-@import 'functions';
+@import "color-palette";
+@import "functions";
 
 /// The primary theme color to use for your app. This is normally one of the material design colors with a `-500` suffix,
 /// but it can be any color.
@@ -15,7 +15,7 @@ $rmd-theme-primary: $rmd-purple-500 !default;
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == 'light', $rmd-black-base, $rmd-white-base) !default;
+$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == "light", $rmd-black-base, $rmd-white-base) !default;
 
 /// The secondary theme color to use for your app. This is normally one of the material design colors with an accent
 /// suffix (`-a-100` or `-a-200` or `-a-400` or `-a-700`, but it can really be any color.
@@ -64,18 +64,18 @@ $rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark",
 /// @type Map
 $rmd-theme-text-colors: (
   dark: (
-    primary: rgba($rmd-black-base, .87),
-    secondary: rgba($rmd-black-base, .54),
-    hint: rgba($rmd-black-base, .34),
-    disabled: rgba($rmd-black-base, .38),
-    icon: rgba($rmd-black-base, .38),
+    primary: rgba($rmd-black-base, 0.87),
+    secondary: rgba($rmd-black-base, 0.54),
+    hint: rgba($rmd-black-base, 0.34),
+    disabled: rgba($rmd-black-base, 0.38),
+    icon: rgba($rmd-black-base, 0.38),
   ),
   light: (
     primary: $rmd-white-base,
-    secondary: rgba($rmd-white-base, .7),
-    hint: rgba($rmd-white-base, .5),
-    disabled: rgba($rmd-white-base, .5),
-    icon: rgba($rmd-white-base, .5),
+    secondary: rgba($rmd-white-base, 0.7),
+    hint: rgba($rmd-white-base, 0.5),
+    disabled: rgba($rmd-white-base, 0.5),
+    icon: rgba($rmd-white-base, 0.5),
   ),
 );
 
@@ -99,19 +99,16 @@ $rmd-theme-property-values: (
   on-secondary: $rmd-theme-on-secondary,
   surface: $rmd-theme-surface,
   on-surface: $rmd-theme-on-surface,
-
   text-primary-on-background: rmd-theme-text-color(primary, $rmd-theme-background),
   text-secondary-on-background: rmd-theme-text-color(secondary, $rmd-theme-background),
   text-hint-on-background: rmd-theme-text-color(hint, $rmd-theme-background),
   text-disabled-on-background: rmd-theme-text-color(disabled, $rmd-theme-background),
   text-icon-on-background: rmd-theme-text-color(icon, $rmd-theme-background),
-
   text-primary-on-light: rmd-theme-text-color(primary, light),
   text-secondary-on-light: rmd-theme-text-color(secondary, light),
   text-hint-on-light: rmd-theme-text-color(hint, light),
   text-disabled-on-light: rmd-theme-text-color(disabled, light),
   text-icon-on-light: rmd-theme-text-color(icon, light),
-
   text-primary-on-dark: rmd-theme-text-color(primary, dark),
   text-secondary-on-dark: rmd-theme-text-color(secondary, dark),
   text-hint-on-dark: rmd-theme-text-color(hint, dark),
@@ -120,7 +117,6 @@ $rmd-theme-property-values: (
 );
 
 $rmd-theme-edge-opt-out: false !default;
-
 
 /// Attempts to get a specific theme color based on the property provided.
 ///

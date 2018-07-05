@@ -2,7 +2,7 @@
 /// @group theme
 ////
 
-@import 'variables';
+@import "variables";
 
 /// This is really for internal use with the `react-md-theme` mixin, but you might be able to use it for some other stuff.
 ///
@@ -70,7 +70,7 @@
 
   @each $style in $property-values {
     .rmd-theme--#{$style} {
-      $is-bg: $style == 'background' or $style == 'surface';
+      $is-bg: $style == "background" or $style == "surface";
       @include rmd-theme(if($is-bg, background-color, color), $style, not($is-bg));
     }
   }

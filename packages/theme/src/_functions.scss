@@ -2,8 +2,8 @@
 /// @group theme
 ////
 
-@import 'constants';
-@import 'color-palette';
+@import "constants";
+@import "color-palette";
 
 /// Calculate the luminance for a color.
 ///
@@ -12,11 +12,11 @@
 /// @returns {Number}
 @function rmd-theme-luminance($color) {
   $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
-  $red-multiplier: .2126;
+  $red-multiplier: 0.2126;
   $green: nth($rmd-theme-linear-channel-values, green($color) + 1);
-  $green-multiplier: .07152;
+  $green-multiplier: 0.07152;
   $blue: nth($rmd-theme-linear-channel-values, blue($color) + 1);
-  $blue-multiplier: .0722;
+  $blue-multiplier: 0.0722;
 
   @return ($red * $red-multiplier) + ($green * $green-multiplier) + ($blue * $blue-multiplier);
 }
@@ -25,8 +25,8 @@
 /// @access private
 /// @returns {Number}
 @function rmd-theme-contrast($back, $front) {
-  $back-luminance: rmd-theme-luminance($back) + .05;
-  $front-luminance: rmd-theme-luminance($front) + .05;
+  $back-luminance: rmd-theme-luminance($back) + 0.05;
+  $front-luminance: rmd-theme-luminance($front) + 0.05;
 
   @return max($back-luminance, $front-luminance) / min($back-luminance, $front-luminance);
 }
@@ -45,7 +45,7 @@
   }
 
   $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
-  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, .87));
+  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));
 
   @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
     @return "light";
