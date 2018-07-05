@@ -25,12 +25,7 @@ function toOneLineCode(code) {
 
 function formatVariable(sassdoc) {
   const {
-    context: {
-      name,
-      type,
-      value,
-      scope,
-    },
+    context: { name, type, value, scope },
     description,
     // file: { path },
     type: variableType,
@@ -73,7 +68,6 @@ function transformParams({ name, default: value }) {
 //   return { context: { name, type }, group };
 // }
 
-
 function formatFunction(sassdoc) {
   const {
     parameter: parameters,
@@ -82,9 +76,7 @@ function formatFunction(sassdoc) {
     context: { name, type, code },
   } = sassdoc;
 
-  const params = parameters
-    ? `(${parameters.map(transformParams).join(', ')})`
-    : '';
+  const params = parameters ? `(${parameters.map(transformParams).join(', ')})` : '';
 
   const requires = [];
   // if (require) {

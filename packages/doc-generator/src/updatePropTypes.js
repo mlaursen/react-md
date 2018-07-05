@@ -42,7 +42,8 @@ module.exports = function updatePropTypes(readme) {
     return readme;
   }
 
-  const update = docgens.reduce((s, { displayName, description, props }) => `${s}
+  const update = docgens.reduce(
+    (s, { displayName, description, props }) => `${s}
 ### ${displayName}
 ${description}
 
@@ -62,7 +63,9 @@ ${toPropTable(props)}
 </tbody>
 </table>
 
-`, '## Prop Types');
+`,
+    '## Prop Types'
+  );
 
   return replaceBlock(readme, update);
 };

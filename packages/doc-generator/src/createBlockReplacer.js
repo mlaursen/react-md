@@ -7,7 +7,6 @@
  * @return {function} a function to replace a block in the README.md file with the provided value.
  */
 module.exports = function createBlockReplacer(startToken, endToken) {
-
   /**
    * Replaces a block in the README.md with the provided value string. This replacement can be
    * multiple lines.
@@ -22,11 +21,11 @@ module.exports = function createBlockReplacer(startToken, endToken) {
     const end = readme.indexOf(endToken);
 
     if (start === -1 || end === -1) {
-      throw new Error((
+      throw new Error(
         'The README.md file does not have a valid block-replacement scope defined in th file. ' +
-        `There must be a block of "${startToken}" and "${endToken}". Please update the README.md ` +
-        'and run this command again.'
-      ));
+          `There must be a block of "${startToken}" and "${endToken}". Please update the README.md ` +
+          'and run this command again.'
+      );
     }
 
     if (value) {

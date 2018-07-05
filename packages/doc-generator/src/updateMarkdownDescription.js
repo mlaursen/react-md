@@ -1,5 +1,6 @@
 module.exports = function updateMarkdownDescription(description) {
-  const lines = description.replace(/`([^ `]+)`/g, '<code>$1</code>')
+  const lines = description
+    .replace(/`([^ `]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/, '<b>$1</b>')
     .replace(/_([^_]+)_/, '<i>$1</i>')
     .replace(/\r?\n\r?\n$/, '')
@@ -26,4 +27,4 @@ module.exports = function updateMarkdownDescription(description) {
 
     return `${desc}${line}`;
   }, '');
-}
+};

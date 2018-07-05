@@ -17,15 +17,15 @@ function createParameterTable(parameters) {
 </thead>
 <tbody>
 ${parameters.reduce((paramString, { name, type, description, default: value }) => {
-  const line = `<tr>
+    const line = `<tr>
 <td>${name}</td>
 <td>${type}</td>
 <td>${value || ''}</td>
 <td>${updateMarkdownDescription(description)}</td>
 </tr>`;
 
-  return `${paramString ? `${paramString}\n` : paramString}${line}`;
-}, '')}
+    return `${paramString ? `${paramString}\n` : paramString}${line}`;
+  }, '')}
 </tbody>
 </table>
 `;
@@ -166,11 +166,7 @@ module.exports = async function updateSassDoc(readme) {
     return readme;
   }
 
-  const update = [
-    createMixinTable(mixins),
-    createFunctionTable(functions),
-    createVariableTable(variables),
-  ].reduce((s, part) => {
+  const update = [createMixinTable(mixins), createFunctionTable(functions), createVariableTable(variables)].reduce((s, part) => {
     if (s && part) {
       s = `${s}\n`;
     }
@@ -179,4 +175,4 @@ module.exports = async function updateSassDoc(readme) {
   }, '');
 
   return replaceBlock(readme, update);
-}
+};
