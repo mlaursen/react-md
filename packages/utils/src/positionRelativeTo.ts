@@ -35,8 +35,8 @@ export enum HorizontalPosition {
    * element's location within the viewport. This will swap between the `HorizontalPosition.INNER_LEFT` and
    * `HorizontalPosition.INNER_RIGHT`.
    */
-  AUTO = "auto"
-};
+  AUTO = "auto",
+}
 
 export enum VerticalPosition {
   /**
@@ -76,8 +76,8 @@ export enum VerticalPosition {
    * and below, it will position itself so it is centered and above. If there is still not enough room above the element,
    * it will be fixed to the top of the page using the `vhMargin`.
    */
-  AUTO = "auto"
-};
+  AUTO = "auto",
+}
 
 export interface IPositionOptions {
   /**
@@ -190,7 +190,11 @@ function determineBestHorizontalPosition(position: HorizontalPosition, left: num
   return HorizontalPosition.INNER_LEFT;
 }
 
-export default function positionRelativeTo(fixedTo: HTMLElement | null, target: HTMLElement | null, options: IPositionOptions = {}): React.CSSProperties | undefined {
+export default function positionRelativeTo(
+  fixedTo: HTMLElement | null,
+  target: HTMLElement | null,
+  options: IPositionOptions = {}
+): React.CSSProperties | undefined {
   if (!fixedTo) {
     return undefined;
   }
@@ -206,7 +210,7 @@ export default function positionRelativeTo(fixedTo: HTMLElement | null, target: 
     vhMargin = 0,
   } = options;
   let { heightOverlapMultiplier } = options;
-  if (typeof heightOverlapMultiplier !== 'number') {
+  if (typeof heightOverlapMultiplier !== "number") {
     heightOverlapMultiplier = options.verticalPosition === VerticalPosition.OVERLAP ? 1 : 0;
   }
 
@@ -240,7 +244,7 @@ export default function positionRelativeTo(fixedTo: HTMLElement | null, target: 
 
   // using scrollHeight and scrollWIdth so transitions don't mess up the sizes
   const { scrollWidth: targetWidth, scrollHeight: targetHeight } = target;
-  if (vw - (vwMargin * 2) < targetWidth) {
+  if (vw - vwMargin * 2 < targetWidth) {
     isTooWide = true;
     style.left = vwMargin;
     style.right = vwMargin;
@@ -251,18 +255,18 @@ export default function positionRelativeTo(fixedTo: HTMLElement | null, target: 
         style.left = fixedToLeft - targetWidth + overlapWidth;
         break;
       case HorizontalPosition.CENTER:
-        style.left = (fixedToLeft + (fixedToWidth / 2)) - (targetWidth / 2);
+        style.left = fixedToLeft + fixedToWidth / 2 - targetWidth / 2;
         break;
       case HorizontalPosition.INNER_RIGHT:
-        style.left = (fixedToLeft + fixedToWidth) - targetWidth;
+        style.left = fixedToLeft + fixedToWidth - targetWidth;
         break;
       case HorizontalPosition.RIGHT:
-        style.left = fixedToLeft + fixedToWidth
+        style.left = fixedToLeft + fixedToWidth;
         break;
     }
   }
 
-  if (targetHeight > (vh - (vhMargin * 2))) {
+  if (targetHeight > vh - vhMargin * 2) {
     // The target element's height is larger than the viewport with margin, so just make it span the etnire
     // viewport height with the defined margin.
     isTooTall = true;
@@ -273,14 +277,14 @@ export default function positionRelativeTo(fixedTo: HTMLElement | null, target: 
     // the target element is somewhere near the center of the page.
     style.transformOrigin = `${left - targetHeight}px ${top - fixedToHeight}px`;
   } else if (verticalPosition === VerticalPosition.CENTER) {
-    style.top = (fixedToTop + (fixedToHeight / 2)) - (targetHeight / 2);
+    style.top = fixedToTop + fixedToHeight / 2 - targetHeight / 2;
   } else if (verticalPosition === VerticalPosition.TOP) {
     style.top = fixedToTop - targetHeight;
   } else if (verticalPosition !== VerticalPosition.BOTTOM && top + targetHeight > vh - vhMargin) {
     // The target element would be out of bounds at the bottom edge, so swap position to be above the element,
     // but it can overlap and restrict the top to be within the vh's defined margin.
-    style.top = Math.max(vhMargin, (fixedToRect.top + overlapHeight) - targetHeight);
-    style.transformOrigin = '0 100%';
+    style.top = Math.max(vhMargin, fixedToRect.top + overlapHeight - targetHeight);
+    style.transformOrigin = "0 100%";
   }
 
   if (horizontalSpacing && !isTooWide) {
