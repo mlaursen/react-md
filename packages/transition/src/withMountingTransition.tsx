@@ -80,7 +80,7 @@ export interface IInjectedMountingTransitionProps {
 export default function withMountingTransition<ComponentProps extends {}>(transitionName: string) {
   return function withMountingTransitionClassName(Component: React.ComponentType<ComponentProps & IInjectedMountingTransitionProps>) {
     type WithMountingTransitionProps = ComponentProps & IMountingTransitionProps;
-    let displayName = 'WithMountingTransition';
+    let displayName = "WithMountingTransition";
     if (process.env.NODE_ENV !== "produciton") {
       displayName = `withMountingTransition(${Component.displayName})`;
     }
@@ -139,12 +139,15 @@ export default function withMountingTransition<ComponentProps extends {}>(transi
         return (
           <Component
             {...props}
-            className={cn({
-              [`${transitionName}--enter`]: visible && transitioning,
-              [`${transitionName}--enter-active`]: visible && transitioning && transitioningActive,
-              [`${transitionName}--leave`]: !visible && transitioning,
-              [`${transitionName}--leave-active`]: !visible && transitioning && transitioningActive,
-            }, className)}
+            className={cn(
+              {
+                [`${transitionName}--enter`]: visible && transitioning,
+                [`${transitionName}--enter-active`]: visible && transitioning && transitioningActive,
+                [`${transitionName}--leave`]: !visible && transitioning,
+                [`${transitionName}--leave-active`]: !visible && transitioning && transitioningActive,
+              },
+              className
+            )}
             transitioning={transitioning}
             onTransitionEnd={this.handleTransitionEnd}
           />
@@ -156,7 +159,7 @@ export default function withMountingTransition<ComponentProps extends {}>(transi
           window.cancelAnimationFrame(this.frame);
           this.frame = null;
         }
-      }
+      };
 
       public handleTransitionEnd = (e: TransitionEvent) => {
         if (this.props.onTransitionEnd) {
@@ -170,7 +173,7 @@ export default function withMountingTransition<ComponentProps extends {}>(transi
             transitioningActive: false,
           });
         }
-      }
-    }
-  }
+      };
+    };
+  };
 }

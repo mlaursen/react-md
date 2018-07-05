@@ -46,9 +46,8 @@ describe("withMountingTransition", () => {
     jest.runOnlyPendingTimers();
     expect(test.render()).toMatchSnapshot();
 
-    test.simulate('transitionEnd');
+    test.simulate("transitionEnd");
     expect(test.render()).toMatchSnapshot();
-
 
     // test leave animation
     test.setProps({ visible: false });
@@ -57,7 +56,7 @@ describe("withMountingTransition", () => {
     jest.runOnlyPendingTimers();
     expect(test.render()).toMatchSnapshot();
 
-    test.simulate('transitionEnd');
+    test.simulate("transitionEnd");
     expect(test.render()).toMatchSnapshot();
 
     global.requestAnimationFrame = requestAnimationFrame;
