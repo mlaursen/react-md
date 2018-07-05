@@ -20,7 +20,8 @@
     "prebuild": "npm run clean",
     "styles": "copyfiles -u 1 \"src/**/*.scss\" dist",
     "test": "jest src",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:styles\"",
+    "watch:styles": "watch \"npm run styles\" src --filter ../../scssWatchFilter.js",
     "docs": "doc-generator",
     "prepublishOnly": "npm run build && npm run docs"
   },
@@ -49,6 +50,7 @@
     "rimraf": "^2.6.2",
     "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "watch": "^1.0.2"
   }
 }

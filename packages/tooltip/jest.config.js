@@ -1,4 +1,3 @@
-
 module.exports = {
   setupFiles: ['./jest.setup.js'],
   testRegex: '(/__tests__/.*|(.|/)(test|spec)).(jsx?|tsx?)$',

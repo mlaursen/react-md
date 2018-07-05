@@ -6,7 +6,8 @@
   "jsRules": {},
   "rules": {
     "object-literal-sort-keys": [0],
-    "ordered-imports": [0]
+    "ordered-imports": [0],
+    "trailing-comma": [0]
   },
   "rulesDirectory": []
 }

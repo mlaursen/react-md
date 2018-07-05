@@ -151,14 +151,14 @@ Including all the base styles can be done by either importing the styles file fr
 
 \`\`\`scss
 // This import will generate styles by default.
-@import '@react-md/${name}/dist/styles';
+@import "@react-md/${name}/dist/styles";
 \`\`\`
 
 or
 
 \`\`\`scss
 // This import only includes all the utility variables, mixins, and functions.
-@import '@react-md/${name}/dist/${name}';
+@import "@react-md/${name}/dist/${name}";
 
 // Once everything has been imported, you can generate the styles with the following mixin
 @include react-md-${name};
@@ -166,7 +166,7 @@ or
 
 If you would like to just import all the utility variables, mixins, and functions:
 \`\`\`scss
-@import '@react-md/${name}/dist/${name}';
+@import "@react-md/${name}/dist/${name}";
 
 // Any custom styles that use the utilities
 \`\`\`
@@ -246,7 +246,6 @@ const STYLES_FILE_TEMPLATE = `@import "${name}";
 @include react-md-${name};
 `;
 
-
 let main;
 let esModule;
 let types;
@@ -255,6 +254,7 @@ const scripts = {};
 if (styles || typescript) {
   let build = 'npm-run-all -p';
   let clean = 'rimraf';
+  const watch = [];
   if (typescript) {
     build = `${build} \"build:commonjs\" \"build:modules\" \"build:definitions\"`;
     clean = `${clean} es lib types`;
@@ -268,12 +268,16 @@ if (styles || typescript) {
     esModule = './es/index.js';
     types = './types/index.d.ts';
     files.push('es/*', 'lib/*', 'types/*');
+
+    watch.push('build:commonjs -- --watch');
+    watch.push('build:modules -- --watch');
   }
 
   if (styles) {
     build = `${build} \"styles\"`;
     clean = `${clean} dist`;
     files.push('dist/*');
+    watch.push('watch:styles');
   }
 
   scripts.build = build;
@@ -282,11 +286,15 @@ if (styles || typescript) {
 
   if (styles) {
     scripts.styles = 'copyfiles -u 1 \"src/**/*.scss\" dist';
+    scripts['watch:styles'] = 'watch \"npm run styles\" src --filter ../../scssWatchFilter.js';
+  }
+
+  if (watch.length) {
+    scripts.watch = `npm-run-all -p \"${watch.join('\" ')}\"`;
   }
 
   if (typescript) {
     scripts.test = 'jest src';
-    scripts.watch = 'npm-run-all -p \:build:commonjs -- --watch\" \"build:modules -- --watch -d --declarationDir ./types\"'
   }
 }
 
@@ -332,6 +340,7 @@ if (typescript) {
 
 if (styles) {
   devDependencies.copyfiles = '^2.0.0';
+  devDependencies.watch = '^1.0.2';
 }
 
 const package = {
@@ -384,9 +393,6 @@ if (styles) {
   filesToCreate[path.join(src, 'styles.scss')] = STYLES_FILE_TEMPLATE;
 }
 
-fs.mkdirSync(dir);
-fs.mkdirSync(src);
-
 function createFile(path, contents) {
   return new Promise((resolve, reject) => {
     if (typeof contents !== 'string') {
@@ -418,6 +424,9 @@ function createSymlink(path, target) {
 }
 
 console.log('Creating basic folder structure and files...')
+fs.mkdirSync(dir);
+fs.mkdirSync(src);
+
 const promises = Object.keys(filesToCreate).map(key => createFile(key, filesToCreate[key]))
   .concat(Object.keys(symlinksToCreate).map(key => createSymlink(key, symlinksToCreate[key])));
 
