@@ -232,16 +232,16 @@ const SCSS_FILE_TEMPLATE = `////
  * This is the file contents for the src/_${name}.scss
  */
 const SCSS_PACKAGE_FILE_TEMPLATE = `${SCSS_FILE_TEMPLATE}
-@import 'functions';
-@import 'mixins';
-@import 'variables';
+@import "functions";
+@import "mixins";
+@import "variables";
 `;
 
 /**
  * This is the file template that should be used for src/styles.scss. This is the one
  * that will generate all the styles if included.
  */
-const STYLES_FILE_TEMPLATE = `@import '${name}';
+const STYLES_FILE_TEMPLATE = `@import "${name}";
 
 @include react-md-${name};
 `;
@@ -363,6 +363,8 @@ const filesToCreate = {
   [path.join(dir, 'README.md')]: README_TEMPLATE,
 };
 
+const symlinksToCreate = {};
+
 if (typescript) {
   filesToCreate[path.join(src, 'index.ts')] = '';
   filesToCreate[path.join(dir, 'jest.config.js')] = JEST_CONFIG_TEMPLATE;
@@ -370,6 +372,8 @@ if (typescript) {
   filesToCreate[path.join(dir, 'tsconfig.json')] = TSCONFIG_TEMPLATE;
   filesToCreate[path.join(dir, 'tsconfig.commonjs.json')] = TSCONFIG_COMMONJS_TEMPLATE;
   filesToCreate[path.join(dir, 'tsconfig.modules.json')] = TSCONFIG_MODULE_TEMPLATE;
+
+  symlinksToCreate[path.join(process.cwd(), 'tslint.json')] = path.join(dir, 'tslint.json');
 }
 
 if (styles) {
@@ -400,10 +404,26 @@ function createFile(path, contents) {
   });
 }
 
+function createSymlink(path, target) {
+  return new Promise((resolve, reject) => {
+    fs.symlink(path, target, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
 console.log('Creating basic folder structure and files...')
-Promise.all(Object.keys(filesToCreate).map(key => createFile(key, filesToCreate[key])))
+const promises = Object.keys(filesToCreate).map(key => createFile(key, filesToCreate[key]))
+  .concat(Object.keys(symlinksToCreate).map(key => createSymlink(key, symlinksToCreate[key])));
+
+Promise.all(promises)
   .then(() => {
     console.log('Installing base dependencies...');
     execSync('lerna bootstrap');
     console.log(`Done! You can now \`cd\` into "packages/${name}" and start coding.`);
-  })
+  });

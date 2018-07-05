@@ -196,7 +196,7 @@ function determineBestHorizontalPosition(position: HorizontalPosition, left: num
 export default function positionRelativeTo(
   fixedTo: HTMLElement | null,
   target: HTMLElement | null,
-  options: IPositionOptions = {},
+  options: IPositionOptions = {}
 ): React.CSSProperties | undefined {
   if (!fixedTo) {
     return undefined;
