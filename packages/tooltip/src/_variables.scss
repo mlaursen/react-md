@@ -12,7 +12,11 @@ $rmd-tooltip-background-color: #232f34 !default;
 /// The text color to use for tooltips. This will be white on dark backgrounds and black
 /// on light backgrounds by default.
 /// @type Color
-$rmd-tooltip-text-color: if(md-theme-contrast-tone($rmd-tooltip-background-color) == "light", $rmd-black-base, $rmd-white-base) !default;
+$rmd-tooltip-text-color: if(
+  md-theme-contrast-tone($rmd-tooltip-background-color) == "light",
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
 
 /// The enter transition time for the tooltip to enter or to leave.
 /// @type Number

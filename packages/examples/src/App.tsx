@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './App.css';
-import logo from './logo.svg';
+import * as React from "react";
+import "./App.css";
+import logo from "./logo.svg";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 import { RelativeTooltip, MagicTooltipProvider, MagicTooltip } from "@react-md/tooltip";
 
@@ -29,13 +29,25 @@ class App extends React.Component<{}, IAppState> {
           <p className="App-intro">
             To get started, edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <button id="toggle-1" type="button" onClick={this.toggle}>Toggle</button>
+          <button id="toggle-1" type="button" onClick={this.toggle}>
+            Toggle
+          </button>
           <ul id="toggle-1-menu" role="menu" style={style} className="list list--inline">
-            <li role="menuitem" tabIndex={-1}>Item 1</li>
-            <li role="menuitem" tabIndex={-1}>Item 2</li>
-            <li role="menuitem" tabIndex={-1}>Item 3</li>
-            <li role="menuitem" tabIndex={-1}>Item 4</li>
-            <li role="menuitem" tabIndex={-1}>Item 5</li>
+            <li role="menuitem" tabIndex={-1}>
+              Item 1
+            </li>
+            <li role="menuitem" tabIndex={-1}>
+              Item 2
+            </li>
+            <li role="menuitem" tabIndex={-1}>
+              Item 3
+            </li>
+            <li role="menuitem" tabIndex={-1}>
+              Item 4
+            </li>
+            <li role="menuitem" tabIndex={-1}>
+              Item 5
+            </li>
           </ul>
           <button id="button-2" type="button" aria-describedby="button-2-tooltip" className="btn">
             Button
@@ -44,27 +56,19 @@ class App extends React.Component<{}, IAppState> {
           <div className="btn-group">
             <div id="div-1" aria-describedby="magic-tooltip-1" tabIndex={0} role="button" className="btn">
               This is a button
-              <MagicTooltip id="magic-tooltip-1">
-                This is some content
-              </MagicTooltip>
+              <MagicTooltip id="magic-tooltip-1">This is some content</MagicTooltip>
             </div>
             <div id="div-2" aria-describedby="magic-tooltip-2" tabIndex={0} role="button" className="btn">
               This is a button
-              <MagicTooltip id="magic-tooltip-2">
-                This is some content
-              </MagicTooltip>
+              <MagicTooltip id="magic-tooltip-2">This is some content</MagicTooltip>
             </div>
             <div id="div-3" aria-describedby="magic-tooltip-3" tabIndex={0} role="button" className="btn">
               This is a button
-              <MagicTooltip id="magic-tooltip-3">
-                This is some content
-              </MagicTooltip>
+              <MagicTooltip id="magic-tooltip-3">This is some content</MagicTooltip>
             </div>
             <div id="div-4" aria-describedby="magic-tooltip-4" tabIndex={0} role="button" className="btn">
               This is a button
-              <MagicTooltip id="magic-tooltip-4">
-                This is some content
-              </MagicTooltip>
+              <MagicTooltip id="magic-tooltip-4">This is some content</MagicTooltip>
             </div>
           </div>
         </div>
@@ -75,10 +79,9 @@ class App extends React.Component<{}, IAppState> {
     );
   }
 
-
   private toggleDense = () => {
     this.setState({ dense: !this.state.dense });
-  }
+  };
 
   private toggle = () => {
     const container = document.getElementById("toggle-1") as HTMLButtonElement;
@@ -92,7 +95,7 @@ class App extends React.Component<{}, IAppState> {
     });
     this.setState({ style: !style ? undefined : style });
     // this.setState({ style: style ? { ...styles,menu, ....style } : styles.menu });
-  }
+  };
 }
 
 export default App;

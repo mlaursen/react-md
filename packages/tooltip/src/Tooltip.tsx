@@ -6,8 +6,8 @@ export enum TooltipPosition {
   TOP = "top",
   RIGHT = "right",
   BOTTOM = "bottom",
-  LEFT = "left"
-};
+  LEFT = "left",
+}
 
 export type TransitionEvent = React.TransitionEvent<HTMLElement | React.ReactHTMLElement<any>>;
 
@@ -90,11 +90,16 @@ const Tooltip: React.SFC<ITooltipPropsWithVisibility> = ({
   <span
     {...props}
     role="tooltip"
-    className={cn("rmd-tooltip", {
-      "rmd-tooltip--visible": visible,
-      "rmd-tooltip--dense": dense,
-      "rmd-tooltip--line-wrap": lineWrap,
-    }, `rmd-tooltip--${position}`, className)}
+    className={cn(
+      "rmd-tooltip",
+      {
+        "rmd-tooltip--visible": visible,
+        "rmd-tooltip--dense": dense,
+        "rmd-tooltip--line-wrap": lineWrap,
+      },
+      `rmd-tooltip--${position}`,
+      className
+    )}
   >
     {children}
   </span>

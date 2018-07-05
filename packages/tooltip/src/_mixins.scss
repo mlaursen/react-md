@@ -156,7 +156,11 @@
   #{inverse-position($position)}: calc(100% + #{$spacing});
 
   $horizontal: $position == "left" or $position == "right";
-  $distance: if($position == "left" or $position == "top", -$rmd-tooltip-transition-distance, $rmd-tooltip-transition-distance);
+  $distance: if(
+    $position == "left" or $position == "top",
+    -$rmd-tooltip-transition-distance,
+    $rmd-tooltip-transition-distance
+  );
 
   $inactive-x: if($horizontal, $distance, -50%);
   $inactive-y: if($horizontal, -50%, $distance);
@@ -168,6 +172,7 @@
   &.rmd-tooltip--visible {
     $active-x: if($horizontal, 0, -50%);
     $active-y: if($horizontal, -50%, 0);
+
     transform: translate3d($active-x, $active-y, 0);
   }
 }

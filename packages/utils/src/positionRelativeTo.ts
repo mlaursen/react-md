@@ -288,7 +288,10 @@ export default function positionRelativeTo(
   }
 
   if (horizontalSpacing && !isTooWide) {
-    const sign = horizontalPosition === HorizontalPosition.LEFT || horizontalPosition === HorizontalPosition.INNER_LEFT ? "-" : "+";
+    const sign =
+      horizontalPosition === HorizontalPosition.LEFT || horizontalPosition === HorizontalPosition.INNER_LEFT
+        ? "-"
+        : "+";
     style.left = `calc(${style.left}px ${sign} ${horizontalSpacing})`;
   }
 

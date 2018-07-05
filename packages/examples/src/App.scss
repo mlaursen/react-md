@@ -1,5 +1,5 @@
-@import '@react-md/theme/dist/theme';
-@import '@react-md/elevation/dist/elevation';
+@import "@react-md/theme/dist/theme";
+@import "@react-md/elevation/dist/elevation";
 
 .App {
   text-align: center;
@@ -26,14 +26,18 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .opacity {
   &--enter {
     opacity: 0;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
   }
 
   &--enter-active {
@@ -42,7 +46,7 @@
 
   &--leave {
     opacity: 1;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
   }
 
   &--leave-active {
@@ -51,7 +55,7 @@
 }
 
 .list {
-  @include rmd-theme('background-color', surface);
+  @include rmd-theme("background-color", surface);
   @include rmd-elevation(8);
 
   list-style: none;
@@ -75,7 +79,7 @@ li {
   z-index: 400;
 
   &:hover {
-    background-color: rgba($rmd-black-base, .12);
+    background-color: rgba($rmd-black-base, 0.12);
     cursor: pointer;
   }
 

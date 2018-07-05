@@ -2,13 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 
-import {
-  default as Tooltip,
-  ITooltipProps,
-  TransitionEvent,
-  ITooltipDefaultProps,
-  TooltipPosition,
-} from "./Tooltip";
+import { default as Tooltip, ITooltipProps, TransitionEvent, ITooltipDefaultProps, TooltipPosition } from "./Tooltip";
 
 export interface IRelativeTooltipProps extends ITooltipProps {
   /**
@@ -93,17 +87,20 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     return (
       <Tooltip
         {...props}
-        className={cn({
-          "rmd-tooltip--active": visible || animatingIn || animatingOut,
-          "rmd-tooltip--enter": animatingIn,
-          "rmd-tooltip--leave": animatingOut,
-        }, className)}
+        className={cn(
+          {
+            "rmd-tooltip--active": visible || animatingIn || animatingOut,
+            "rmd-tooltip--enter": animatingIn,
+            "rmd-tooltip--leave": animatingOut,
+          },
+          className
+        )}
         visible={visible}
         onTransitionEnd={this.handleTransitionEnd}
       >
         {children}
       </Tooltip>
-    )
+    );
   }
 
   /**
@@ -114,10 +111,10 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     const { id } = this.props;
     const container: null | HTMLElement = document.querySelector(`[aria-describedby="${id}"]`);
     if (!container) {
-      throw new Error((
-        "A tooltip's container must have the attribute `aria-describedby=\"TOOLTIP_ID\"` for accessibility " +
-        `but none were found for a tooltip with id: \`${id}\``
-      ));
+      throw new Error(
+        'A tooltip\'s container must have the attribute `aria-describedby="TOOLTIP_ID"` for accessibility ' +
+          `but none were found for a tooltip with id: \`${id}\``
+      );
     }
 
     container.addEventListener("mouseenter", this.handleMouseEnter);
@@ -126,7 +123,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     container.addEventListener("keyup", this.handleKeyUp);
     container.addEventListener("blur", this.handleBlur);
     this.container = container;
-  }
+  };
 
   /**
    * This is normally just called when the component unmounts. It will remove all the event listeners
@@ -143,7 +140,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     this.container.removeEventListener("keydown", this.handleKeyDown);
     this.container.removeEventListener("keyup", this.handleKeyUp);
     this.container.removeEventListener("blur", this.handleBlur);
-  }
+  };
 
   private clear = () => {
     if (this.timeout) {
@@ -155,7 +152,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
       window.cancelAnimationFrame(this.frame);
       this.frame = null;
     }
-  }
+  };
 
   /**
    * This will conditionally show the tooltip from one of the container's event listeners. If there is a delay, it
@@ -178,11 +175,12 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
       const { position } = window.getComputedStyle(this.container);
       if (tooltip && this.container.contains(tooltip) && position !== "relative") {
         // tslint:disable-next-line:no-console
-        console.error((
+        console.error(
           "A tooltip's container must have `position: relative` as a style for a tooltip to appear but its position " +
-          `is: \`${position}\`. An inline style has been applied, but your container must be updated before going ` +
-          "into production as this functionality will be removed. Tooltip Container: "
-        ), this.container);
+            `is: \`${position}\`. An inline style has been applied, but your container must be updated before going ` +
+            "into production as this functionality will be removed. Tooltip Container: ",
+          this.container
+        );
 
         this.container.style.position = "relative";
       }
@@ -196,7 +194,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     if (this.state.keyboard !== keyboard || this.state.animatingOut || this.state.animatingIn) {
       this.setState({ keyboard, animatingOut: false, animatingIn: false });
     }
-  }
+  };
 
   private hide = (keyboard: boolean) => {
     const { visible } = this.state;
@@ -204,7 +202,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     if (visible && this.state.keyboard === keyboard) {
       this.setState({ animatingOut: true, animatingIn: false, keyboard: false, visible: false });
     }
-  }
+  };
 
   private animateIn = () => {
     this.setState({ animatingIn: true });
@@ -212,15 +210,15 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
       this.frame = null;
       this.setState({ visible: true });
     });
-  }
+  };
 
   private handleMouseEnter = () => {
     this.show(false);
-  }
+  };
 
   private handleMouseLeave = () => {
     this.hide(false);
-  }
+  };
 
   /**
    * This is way to capture focus events on the tooltip's container element. When the container is
@@ -230,18 +228,18 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     if (e.key === "Tab") {
       this.show(true);
     }
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       // always hide the tooltip immediately if escape is pressed
       this.hide(this.state.keyboard);
     }
-  }
+  };
 
   private handleBlur = () => {
     this.hide(true);
-  }
+  };
 
   private handleTransitionEnd = (e: TransitionEvent) => {
     if (this.props.onTransitionEnd) {
@@ -254,5 +252,5 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     } else if (!visible && animatingOut) {
       this.setState({ animatingOut: false });
     }
-  }
+  };
 }

@@ -78,7 +78,9 @@ export interface IInjectedMountingTransitionProps {
  * @return {function} a higher order component creator function.
  */
 export default function withMountingTransition<ComponentProps extends {}>(transitionName: string) {
-  return function withMountingTransitionClassName(Component: React.ComponentType<ComponentProps & IInjectedMountingTransitionProps>) {
+  return function withMountingTransitionClassName(
+    Component: React.ComponentType<ComponentProps & IInjectedMountingTransitionProps>
+  ) {
     type WithMountingTransitionProps = ComponentProps & IMountingTransitionProps;
     let displayName = "WithMountingTransition";
     if (process.env.NODE_ENV !== "produciton") {
@@ -93,7 +95,10 @@ export default function withMountingTransition<ComponentProps extends {}>(transi
         onTransitionEnd: PropTypes.func,
       };
 
-      public static getDerivedStateFromProps(nextProps: ComponentProps & IMountingTransitionProps, prevState: IMountingTransitionState) {
+      public static getDerivedStateFromProps(
+        nextProps: ComponentProps & IMountingTransitionProps,
+        prevState: IMountingTransitionState
+      ) {
         if (nextProps.visible && !prevState.rendered && !prevState.transitioning) {
           return { rendered: true, transitioning: true, transitioningActive: false };
         } else if (!nextProps.visible && prevState.rendered && !prevState.transitioning) {
@@ -116,7 +121,10 @@ export default function withMountingTransition<ComponentProps extends {}>(transi
         };
       }
 
-      public componentDidUpdate(prevProps: ComponentProps & IMountingTransitionProps, prevState: IMountingTransitionState) {
+      public componentDidUpdate(
+        prevProps: ComponentProps & IMountingTransitionProps,
+        prevState: IMountingTransitionState
+      ) {
         if (this.state.transitioning && !prevState.transitioning) {
           this.frame = window.requestAnimationFrame(() => {
             this.frame = null;
