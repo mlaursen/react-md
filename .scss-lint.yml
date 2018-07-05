@@ -209,7 +209,8 @@ linters:
     spaces: 0
 
   StringQuotes:
-    enabled: true
+    # disabled since prettier will change based on file..
+    enabled: false
     style: single_quotes # or double_quotes
 
   TrailingSemicolon:

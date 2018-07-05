@@ -2,19 +2,19 @@
 /// @group tooltip
 ////
 
-@import '@react-md/typography/dist/typography';
-@import 'variables';
+@import "@react-md/typography/dist/typography";
+@import "variables";
 
 @function inverse-position($position) {
-  @if $position == 'left' {
-    @return 'right';
-  } @else if $position == 'right' {
-    @return 'left';
-  } @else if $position == 'bottom' {
-    @return 'top';
+  @if $position == "left" {
+    @return "right";
+  } @else if $position == "right" {
+    @return "left";
+  } @else if $position == "bottom" {
+    @return "top";
   }
 
-  @return 'bottom';
+  @return "bottom";
 }
 
 /// Creates the base tooltip styles only.
