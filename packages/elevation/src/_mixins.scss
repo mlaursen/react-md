@@ -39,7 +39,6 @@
   $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);
   $shadow-3-color: rgba($color, $rmd-elevation-shadow-3-opacity + $opacity-boost);
 
-  box-shadow: #{"#{$shadow-1-value} #{$shadow-1-color}"},
-    #{"#{$shadow-2-value} #{$shadow-2-color}"},
-    #{"#{$shadow-3-value} #{$shadow-3-color}"};
+  box-shadow: #{'#{$shadow-1-value} #{$shadow-1-color}'}, #{'#{$shadow-2-value} #{$shadow-2-color}'},
+    #{'#{$shadow-3-value} #{$shadow-3-color}'};
 }
