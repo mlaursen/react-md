@@ -96,6 +96,8 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     hoverModeDelay: 1000,
     keyboardFocusDelay: 300,
     keyboardMovementKeys: [
+      "Home",
+      "End",
       "ArrowUp",
       "ArrowDown",
       "ArrowLeft",

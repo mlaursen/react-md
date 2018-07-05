@@ -15,7 +15,7 @@ $rmd-theme-primary: $rmd-purple-500 !default;
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == "dark", $rmd-black-base, $rmd-white-base) !default;
+$rmd-theme-on-primary: if(rmd-theme-contrast-tone($rmd-theme-primary) == 'light', $rmd-black-base, $rmd-white-base) !default;
 
 /// The secondary theme color to use for your app. This is normally one of the material design colors with an accent
 /// suffix (`-a-100` or `-a-200` or `-a-400` or `-a-700`, but it can really be any color.
@@ -27,7 +27,7 @@ $rmd-theme-secondary: $rmd-pink-a-400 !default;
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-secondary: if(rmd-theme-contrast-tone($rmd-theme-secondary) == "dark", $rmd-black-base, $rmd-white-base) !default;
+$rmd-theme-on-secondary: if(rmd-theme-contrast-tone($rmd-theme-secondary) == "light", $rmd-black-base, $rmd-white-base) !default;
 
 /// The theme's background color.
 /// @type Color

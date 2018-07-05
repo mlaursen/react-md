@@ -326,7 +326,7 @@ if (typescript) {
   devDependencies['react-dom'] = '^16.4.1';
   devDependencies['react-test-renderer'] = '^16.4.1';
   devDependencies['ts-jest'] = '^22.4.6';
-  devDependencies['ts-lint'] = '^4.5.1';
+  devDependencies['tslint'] = '^4.5.1';
   devDependencies['typescript'] = '^2.9.2';
 }
 

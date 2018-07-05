@@ -10,9 +10,8 @@
     "clean": "rimraf es lib types",
     "prebuild": "npm run clean",
     "test": "jest src",
-    "watch": "npm-run-all -p :build:commonjs -- --watch\" \"build:modules -- --watch -d --declarationDir ./types\"",
-    "docs": "doc-generator --no-proptypes --no-sassdoc",
     "watch": "npm-run-all -p \"build:modules -- --watch -d --declarationDir ./types\"",
+    "docs": "doc-generator --no-proptypes --no-sassdoc",
     "prepublishOnly": "npm run build && npm run docs"
   },
   "main": "./lib/index.js",
@@ -46,7 +45,7 @@
     "react-test-renderer": "^16.4.1",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.4.6",
-    "ts-lint": "^4.5.1",
+    "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   }
 }
