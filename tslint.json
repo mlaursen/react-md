@@ -7,7 +7,9 @@
   "rules": {
     "object-literal-sort-keys": [0],
     "ordered-imports": [0],
-    "trailing-comma": [0]
+    "trailing-comma": [0],
+    "arrow-parens": [0],
+    "semicolon": [0]
   },
   "rulesDirectory": []
 }

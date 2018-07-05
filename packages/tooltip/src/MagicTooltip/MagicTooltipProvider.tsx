@@ -51,14 +51,14 @@ export interface IMagicTooltipProviderProps {
   keyboardFocusDelay?: number;
 
   /**
-   * The keydown event's key names to consider keyboard "movement" keys. The default value _should_ be good enough for most
-   * cases.
+   * The keydown event's key names to consider keyboard "movement" keys. The default value _should_ be good enough for
+   * most cases.
    */
   keyboardMovementKeys?: string[];
 
   /**
-   * The `MagicTooltipProvider` should _normally_ be one of the top-most components in your react render, so the children
-   * for this will be any elements that contain a `MagicTooltip` component.
+   * The `MagicTooltipProvider` should _normally_ be one of the top-most components in your react render, so the
+   * children for this will be any elements that contain a `MagicTooltip` component.
    */
   children?: React.ReactNode;
 }
@@ -95,18 +95,10 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     hoverMode: true,
     hoverModeDelay: 1000,
     keyboardFocusDelay: 300,
-    keyboardMovementKeys: [
-      "Home",
-      "End",
-      "ArrowUp",
-      "ArrowDown",
-      "ArrowLeft",
-      "ArrowRight",
-      "Tab"
-    ],
+    keyboardMovementKeys: ["Home", "End", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"],
   };
 
-  private containers: Array<HTMLElement>;
+  private containers: HTMLElement[];
   private showTimeout: number | null;
   private focusTimeout: number | null;
   private hoverModeTimeout: number | null;
@@ -124,11 +116,13 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
   }
 
   public shouldComponentUpdate(nextProps: MagicTooltipProviderWithDefaultProps, nextState: IMagicTooltipProviderState) {
-    return this.state.visibleId !== nextState.visibleId
-      || this.props.children !== nextProps.children
-      || this.props.dense !== nextProps.dense
-      || this.props.spacing !== nextProps.spacing
-      || this.props.denseSpacing !== nextProps.denseSpacing;
+    return (
+      this.state.visibleId !== nextState.visibleId ||
+      this.props.children !== nextProps.children ||
+      this.props.dense !== nextProps.dense ||
+      this.props.spacing !== nextProps.spacing ||
+      this.props.denseSpacing !== nextProps.denseSpacing
+    );
   }
 
   public componentDidMount() {
@@ -144,7 +138,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     window.removeEventListener("blur", this.handleBlur, true);
     window.removeEventListener("focus", this.handleFocus, true);
     window.removeEventListener("keydown", this.handleKeyDown, true);
-    this.containers.forEach((container) => {
+    this.containers.forEach(container => {
       if (container) {
         container.removeEventListener("mouseenter", this.handleMouseEnter);
         container.removeEventListener("mouseleave", this.handleMouseLeave);
@@ -165,11 +159,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       deinit: this.deinit,
     } as IMagicTooltipContext;
 
-    return (
-      <Provider value={value}>
-        {this.props.children}
-      </Provider>
-    );
+    return <Provider value={value}>{this.props.children}</Provider>;
   }
 
   private clearShowTimeout = () => {
@@ -177,29 +167,29 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       window.clearTimeout(this.showTimeout);
       this.showTimeout = null;
     }
-  }
+  };
 
   private clearFocusTimeout = () => {
     if (this.focusTimeout) {
       window.clearTimeout(this.focusTimeout);
       this.focusTimeout = null;
     }
-  }
+  };
 
   private clearHoverModeTimeout = () => {
     if (this.hoverModeTimeout) {
       window.clearTimeout(this.hoverModeTimeout);
       this.hoverModeTimeout = null;
     }
-  }
+  };
 
   private init = (id: string) => {
     const container: null | HTMLElement = document.querySelector(`[aria-describedby="${id}"]`);
     if (!container) {
-      throw new Error((
-        "A tooltip's container must have the attribute `aria-describedby=\"TOOLTIP_ID\"` for accessibility " +
-        `but none were found for a tooltip with id: \`${id}\``
-      ));
+      throw new Error(
+        'A tooltip\'s container must have the attribute `aria-describedby="TOOLTIP_ID"` for accessibility ' +
+          `but none were found for a tooltip with id: \`${id}\``
+      );
     }
 
     if (this.containers.indexOf(container) === -1) {
@@ -207,11 +197,11 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       container.addEventListener("mouseleave", this.handleMouseLeave);
       this.containers.push(container);
     }
-  }
+  };
 
   private deinit = (id: string) => {
-    const containers: Array<HTMLElement> = [];
-    this.containers.forEach((container) => {
+    const containers: HTMLElement[] = [];
+    this.containers.forEach(container => {
       if (container.getAttribute("aria-describedby") === id) {
         container.removeEventListener("mouseenter", this.handleMouseEnter);
         container.removeEventListener("mouseleave", this.handleMouseLeave);
@@ -221,14 +211,14 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     });
 
     this.containers = containers;
-  }
+  };
 
   private handleMouseEnter = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) {
       return;
     }
 
-    const id = e.target.getAttribute("aria-describedby")
+    const id = e.target.getAttribute("aria-describedby");
     if (id === this.state.visibleId && this.showTimeout) {
       return;
     }
@@ -244,7 +234,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
         this.setState({ visibleId: id });
       }, Math.max(0, delay));
     }
-  }
+  };
 
   private handleMouseLeave = (e: MouseEvent) => {
     this.clearShowTimeout();
@@ -265,7 +255,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     }
 
     this.setState({ visibleId: null });
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     const { keyboardFocusDelay, keyboardMovementKeys } = this.props as MagicTooltipProviderWithDefaultProps;
@@ -281,7 +271,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
         this.focusTimeout = null;
       }, Math.max(0, keyboardFocusDelay));
     }
-  }
+  };
 
   private handleFocus = (e: FocusEvent) => {
     const { target } = e;
@@ -300,7 +290,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
         this.setState({ visibleId: id });
       }, Math.max(0, delay));
     }
-  }
+  };
 
   private handleBlur = (e: FocusEvent) => {
     const { target } = e;
@@ -312,5 +302,5 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     if (this.containers.indexOf(target) !== -1 && this.state.visibleId) {
       this.setState({ visibleId: null });
     }
-  }
+  };
 }
