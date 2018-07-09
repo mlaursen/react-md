@@ -131,7 +131,7 @@ $rmd-theme-edge-opt-out: false !default;
 /// If the property is a color or "currentColor", it will be returned instead.
 ///
 /// NOTE: This has to be defined in variables so there aren't recursive imports.
-/// @param {String|Color} property - The property tog et from the theme colors.
+/// @param {String|Color} property - The property to get from the theme colors.
 /// @returns {Color} a color value for the provided property.
 @function rmd-theme-prop-value($property) {
   @if type-of($property) == "color" or $property == "currentColor" {
