@@ -290,7 +290,7 @@ if (styles || typescript) {
   }
 
   if (watch.length) {
-    scripts.watch = `npm-run-all -p \"${watch.join('\" ')}\"`;
+    scripts.watch = `npm-run-all -p ${watch.reduce((s, script) => `${s} \"${script}\"`)}`;
   }
 
   if (typescript) {

@@ -4,13 +4,15 @@
     "url": "https://github.com/mlaursen/react-md/issues"
   },
   "scripts": {
+    "build": "lerna run build --ignore examples --ignore doc-generator",
     "format": "npm-run-all -p \"format:scss\" \"format:ts\" \"format:tsx\"",
     "format:scss": "prettier --write packages/*/**/*.scss",
     "format:ts": "prettier --write packages/*/**/*.ts",
     "format:tsx": "prettier --write packages/*/**/*.tsx",
     "start": "cd packages/examples && npm run start",
     "dev": "npm-run-all -p \"watch\" \"start\"",
-    "watch": "lerna run watch --ignore doc-generator --ignore examples"
+    "watch": "lerna run watch --ignore doc-generator --ignore examples",
+    "toc": "./packages/doc-generator/src/index.js --no-proptypes --no-sassdoc"
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "license": "MIT",
