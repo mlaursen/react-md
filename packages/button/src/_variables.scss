@@ -1,0 +1,55 @@
+////
+/// @group btn
+////
+
+@import "@react-md/theme/dist/color-palette";
+
+/// The border radius to apply to text buttons.
+/// @type Number
+$rmd-btn-text-border-radius: 0.5rem !default; // 8dp
+
+/// The amount of left and right padding to apply to text buttons.
+/// @type Number
+$rmd-btn-text-horizontal-padding: 1rem !default; // 16dp
+
+/// The amount of top and bottom padding to apply to text buttons. Since buttons
+/// are now displayed as inline-flex, it is generally recommended to keep this value
+/// at 0 and just increase the height of the button instead.
+///
+/// @type Number
+$rmd-btn-text-vertical-padding: 0 !default;
+
+/// The height for text buttons.
+/// @type Number
+$rmd-btn-text-height: 2.25rem !default; // 36dp
+
+/// The min width for text buttons.
+/// @type Number
+$rmd-btn-text-min-width: 4rem !default; // 64dp
+
+/// The border radius to apply to all icon buttons.
+/// @type Number
+$rmd-btn-icon-border-radius: 50% !default;
+
+/// The height and width to apply to an icon button.
+/// @type Number
+$rmd-btn-icon-size: 3rem !default; // 48dp
+
+/// The background color to apply when a button is hovered. this will be applied in the `::after`
+/// pseudo element so it is recommended to be either black or white with an opacity applied.
+///
+/// @type Color
+$rmd-btn-hover-background-color: rgba(if(rmd-theme-contrast-tone($rmd-theme-background) == "light", $rmd-white-base, $rmd-black-base), 0.2) !default;
+
+/// The transition duration for the hover background color to be applied.
+/// @type Number
+$rmd-btn-background-color-transition-time: 0.15s !default;
+
+/// The base box-shadow to apply for buttons when outlined. This will normally be used along with a color variable
+/// to define a box shadow.
+/// @type String
+$rmd-btn-box-shadow: inset 0 0 0 1px !default;
+
+/// The color to use for a button's "default" state.
+/// @type Number
+$rmd-btn-default-color: #999 !default;

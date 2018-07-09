@@ -1,0 +1,100 @@
+////
+/// @group button
+////
+
+@import "@react-md/theme/dist/theme";
+@import "@react-md/typography/dist/typography";
+@import "variables";
+
+@mixin rmd-btn-unstyled {
+  background-color: transparent;
+  border-width: 0;
+  outline-style: none;
+}
+
+@mixin rmd-btn-base {
+  @include rmd-typography(button);
+  @include rmd-btn-unstyled;
+
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+}
+
+@mixin react-md-button {
+  .rmd-btn {
+    @include rmd-btn-base;
+
+    &::after {
+      @include rmd-transition(standard);
+
+      background-color: transparent;
+      border-radius: inherit;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: background-color $rmd-btn-background-color-transition-time;
+    }
+
+    &--text {
+      border-radius: $rmd-btn-text-border-radius;
+      height: $rmd-btn-text-height;
+      min-width: $rmd-btn-text-min-width;
+      padding: $rmd-btn-text-vertical-padding $rmd-btn-text-horizontal-padding;
+    }
+
+    &--icon {
+      border-radius: $rmd-btn-icon-border-radius;
+      height: $rmd-btn-icon-size;
+      width: $rmd-btn-icon-size;
+    }
+
+    &--hoverable {
+      // scss-lint:disable SelectorDepth, NestingDepth
+      &:hover {
+        cursor: pointer;
+
+        &::after {
+          background-color: $rmd-btn-hover-background-color;
+        }
+      }
+    }
+
+    &--primary {
+      @include rmd-theme(background-color, primary);
+
+      color: map-get($rmd-theme-property-values, on-primary);
+    }
+
+    &--secondary {
+      @include rmd-theme(background-color, secondary);
+
+      color: map-get($rmd-theme-property-values, on-secondary);
+    }
+
+    &--text-primary {
+      @include rmd-theme(color, primary);
+    }
+
+    &--text-secondary {
+      @include rmd-theme(color, secondary);
+    }
+
+    &--outline-primary {
+      box-shadow: $rmd-btn-box-shadow rmd-theme(primary);
+      box-shadow: $rmd-btn-box-shadow rmd-theme-var(primary);
+    }
+
+    &--outline-secondary {
+      box-shadow: $rmd-btn-box-shadow rmd-theme(secondary);
+      box-shadow: $rmd-btn-box-shadow rmd-theme-var(secondary);
+    }
+
+    &--outline-default {
+      box-shadow: $rmd-btn-box-shadow $rmd-btn-default-color;
+    }
+  }
+}

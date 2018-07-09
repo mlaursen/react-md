@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./App.css";
-import logo from "./logo.svg";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 import { RelativeTooltip, MagicTooltipProvider, MagicTooltip } from "@react-md/tooltip";
+import { Button } from "@react-md/button";
 
 export interface IAppState {
   dense: boolean;
@@ -22,13 +22,14 @@ class App extends React.Component<{}, IAppState> {
     return (
       <MagicTooltipProvider dense={dense}>
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.tsx</code> and save to reload.
-          </p>
+          <section id="button-examples" className="btn-group">
+            <h3>Buttons</h3>
+            <Button>Example</Button>
+            <Button disabled={true}>Example</Button>
+            <Button>Example</Button>
+            <Button themeType="contained">Example 2</Button>
+            <Button themeType="outline">Example 2</Button>
+          </section>
           <button id="toggle-1" type="button" onClick={this.toggle}>
             Toggle
           </button>
