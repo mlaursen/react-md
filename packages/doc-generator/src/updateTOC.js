@@ -6,7 +6,8 @@ const END_TOKEN = '<!-- TOC_END -->';
 const replaceBlock = createBlockReplacer(START_TOKEN, END_TOKEN);
 
 module.exports = function updateTOC(readme) {
-  const tableOfContents = toc(replaceBlock(readme.replace(/^# @?react-md.*/, ''), '')).content;
+  // remove the first main heading
+  const tableOfContents = toc(replaceBlock(readme.replace(/^# .+/, ''), '')).content;
   const newTOC = `## Table of Contents
 ${tableOfContents}`;
 

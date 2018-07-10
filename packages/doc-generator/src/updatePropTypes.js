@@ -8,7 +8,14 @@ const END_TOKEN = '<!-- PROPS_END -->';
 const replaceBlock = createBlockReplacer(START_TOKEN, END_TOKEN);
 
 function toPropTable(props) {
+  // since all react-md components pass all remaining props down, need to check for the '@last-prop' in the description
+  // so all the normal html attributes are not applied.
+  let lastPropFound = false;
   return Object.keys(props).reduce((tableString, propName) => {
+    if (lastPropFound) {
+      return tableString;
+    }
+
     const prop = props[propName];
     const { required } = prop;
     let { defaultValue, type, description } = prop;
@@ -21,6 +28,12 @@ function toPropTable(props) {
     }
 
     if (description) {
+      const i = description.indexOf('@last-prop');
+      if (i !== -1) {
+        lastPropFound = true;
+        description = description.substring(0, i);
+      }
+
       description = updateMarkdownDescription(description);
     }
 
