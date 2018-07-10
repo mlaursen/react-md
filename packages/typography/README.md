@@ -1,5 +1,5 @@
 # @react-md/typography
-This package is for including typography for react-md.
+This package is for including typography for react-md as well as a simple helper component to render text.
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/typography
 
@@ -11,6 +11,9 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+  * [Text Component](#text-component)
+- [Prop Types](#prop-types)
+  * [Text](#text)
 - [Updating Styles](#updating-styles)
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
@@ -90,6 +93,97 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+### Text Component
+This package was also bundled with a small Text component that will either return the children or wrap the provided children with the required typography styles.
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Text } from "@react-md/typography";
+
+const App = () => (
+  <main>
+    <Text type="body-1">
+      This is some text that will be wrapped in a p tag and have the classes .md-typography and .md-typography--body-1.
+    </Text>
+    <Text>This will just be a react-text block without a wrapping tag</Text>
+    <Text tagName="span" type="headline-5">
+      This is some text that normally would be rendered in an h5 tag, but now is rendered in a span tag. It will also have the classes .md-typograhy and .md-typography--headline-5 applied.
+    </Text>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+The `Text` component also supports a children callback function if that is your thing as well.
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Text } from "@react-md/typography";
+
+const App = () => (
+  <main>
+    <Text type="body-1">
+      {({ className }) => (
+        <span className={className}>
+          The children callback function will just supply an object of the current typography className to apply to any element(s).
+        </span>
+      )}
+    </Text>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+<!-- PROPS_START -->
+## Prop Types
+### Text
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>string | number | boolean | {} | ReactElement<any> | ReactNodeArray | ReactPortal | ((props: ITex...</code></td>
+<td><code>null</code></td>
+<td>
+This can either be any renderable element or a children callback function that gets provided the current class&#10;name.&#10;
+</td>
+</tr>
+<tr>
+<td>tagName</td>
+<td><code>"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "a" | "button" | "caption" | "bo...</code></td>
+<td><code>null</code></td>
+<td>
+An optional html tag name to render in. If this is omitted, it will determine the &#34;best&#34; tag&#10;based on the provided <code>type</code>.&#10;
+</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>"button" | "caption" | "headline-1" | "headline-2" | "headline-3" | "headline-4" | "headline-5" |...</code></td>
+<td><code>null</code></td>
+<td>
+An optional text type to render as. If both this and the tagName are omitted, only the base typography styles&#10;will be applied.&#10;
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- PROPS_END -->
+
 ## Updating Styles
 It is possible to add additional styles by creating spherical variables for each typography style in material design. Each variable is set up as `$md-typography-styles-STYLE_NAME` which must be a Map of style attributes with values. So for example:
 
