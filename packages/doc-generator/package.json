@@ -4,6 +4,7 @@
   "bin": "./src/index.js",
   "private": true,
   "dependencies": {
+    "ent": "^2.2.0",
     "markdown-toc": "^1.2.0",
     "react-docgen-typescript": "^1.6.1",
     "typescript": "^2.9.2"
