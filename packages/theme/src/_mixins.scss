@@ -63,7 +63,7 @@
     $var-value: rmd-theme-var($style, $color-value);
 
     // Apply the base property and color-value for browsers that do not support css-variables.
-    #{$property}: $color-value + $suffix;
+    #{$property}: #{$color-value + $suffix};
 
     @if $edge-opt-out {
       @at-root {
