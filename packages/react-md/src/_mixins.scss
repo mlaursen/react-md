@@ -1,0 +1,15 @@
+@import '@react-md/button/dist/button';
+@import '@react-md/elevation/dist/elevation';
+@import '@react-md/icon/dist/icon';
+@import '@react-md/theme/dist/theme';
+@import '@react-md/tooltip/dist/tooltip';
+@import '@react-md/typography/dist/typography';
+
+@mixin react-md-everything {
+  @include react-md-button;
+  @include react-md-elevation;
+  @include react-md-icon;
+  @include react-md-theme;
+  @include react-md-toolip;
+  @include react-md-typography;
+}
