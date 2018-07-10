@@ -17,6 +17,7 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
     + [Updating for any color](#updating-for-any-color)
     + [Updating for a react-md color](#updating-for-a-react-md-color)
     + [Updating for a Dark theme](#updating-for-a-dark-theme)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Normal SCSS Usage](#normal-scss-usage)
@@ -150,6 +151,7 @@ $rmd-theme-surface: $md-grey-800;
 ```
 
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 

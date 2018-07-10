@@ -12,6 +12,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [Styles](#styles)
 - [Usage](#usage)
 - [Updating Styles](#updating-styles)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
@@ -148,6 +149,7 @@ $md-typography-styles: (
 Every key that you do not include in the map will no longer be created when including the base typography styles.
 
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 

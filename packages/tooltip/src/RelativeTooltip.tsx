@@ -7,6 +7,7 @@ import { default as Tooltip, ITooltipProps, TransitionEvent, ITooltipDefaultProp
 export interface IRelativeTooltipProps extends ITooltipProps {
   /**
    * An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
+   * @docgen
    */
   delay?: number;
 }

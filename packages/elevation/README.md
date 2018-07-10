@@ -11,6 +11,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
@@ -88,6 +89,7 @@ If you would like to just import all the utility variables, mixins, and function
 ## Usage
 
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 

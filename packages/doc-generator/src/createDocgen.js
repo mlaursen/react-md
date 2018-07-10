@@ -21,5 +21,17 @@ function findExports() {
 module.exports = function createDocgen() {
   const tsconfig = path.join(process.cwd(), 'tsconfig.json');
   const parser = typescriptDocgen.withCustomConfig(tsconfig).parse;
-  return findExports().map(fileName => parser(fileName)[0]);
+  return findExports().map((fileName) => {
+    const parsed = parser(fileName);
+    if (parsed.length > 1) {
+      for (let i = 0; i < parsed.length; i += 1) {
+        const docgen = parsed[i];
+        if (docgen.displayName.indexOf('Consumer') === -1) {
+          return docgen;
+        }
+      }
+    }
+
+    return parsed[0];
+  });
 };

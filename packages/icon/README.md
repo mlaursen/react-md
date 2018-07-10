@@ -16,6 +16,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 - [Prop Types](#prop-types)
   * [FontIcon](#fonticon)
   * [SVGIcon](#svgicon)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example SCSS Usage](#example-scss-usage)
@@ -168,7 +169,7 @@ ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 <td><code>ReactNode</code></td>
 <td><code>null</code></td>
 <td>
-Any children to render to create the font icon. This is required for material-icons.
+Any children to render to create the font icon. This is required for material-icons.&#10;
 </td>
 </tr>
 <tr>
@@ -176,7 +177,7 @@ Any children to render to create the font icon. This is required for material-ic
 <td><code>CSSProperties</code></td>
 <td><code>null</code></td>
 <td>
-An optional style to apply.
+An optional style to apply.&#10;
 </td>
 </tr>
 <tr>
@@ -184,7 +185,7 @@ An optional style to apply.
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional className to apply.
+An optional className to apply.&#10;
 </td>
 </tr>
 <tr>
@@ -192,7 +193,7 @@ An optional className to apply.
 <td><code>string</code></td>
 <td><code>material-icons</code></td>
 <td>
-The font icon class name to use.
+The font icon class name to use.&#10;
 </td>
 </tr>
 <tr>
@@ -200,7 +201,7 @@ The font icon class name to use.
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the font icon should use the dense spec.
+Boolean if the font icon should use the dense spec.&#10;
 </td>
 </tr>
 <tr>
@@ -208,7 +209,7 @@ Boolean if the font icon should use the dense spec.
 <td><code>number | boolean</code></td>
 <td><code>false</code></td>
 <td>
-Either a boolean that will enforce the 24x24 size of the font icon or a number of the size&#10;to enforce. This is useful when using other font icon libraries that do not have a consistent&#10;size.
+Either a boolean that will enforce the 24x24 size of the font icon or a number of the size&#10;to enforce. This is useful when using other font icon libraries that do not have a consistent&#10;size.&#10;
 </td>
 </tr>
 <tr>
@@ -216,7 +217,7 @@ Either a boolean that will enforce the 24x24 size of the font icon or a number o
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the <code>forceSize</code> prop should also force the <code>font-size</code> instead of only <code>width</code> and <code>height</code>.
+Boolean if the <code>forceSize</code> prop should also force the <code>font-size</code> instead of only <code>width</code> and <code>height</code>.&#10;
 </td>
 </tr>
 </tbody>
@@ -243,7 +244,7 @@ Boolean if the <code>forceSize</code> prop should also force the <code>font-size
 <td><code>ReactNode</code></td>
 <td><code>null</code></td>
 <td>
-Any <code>&#60;svg&#62;</code> children to render to create your icon. This can not be used with the <code>use</code> prop.
+Any <code>&#60;svg&#62;</code> children to render to create your icon. This can not be used with the <code>use</code> prop.&#10;
 </td>
 </tr>
 <tr>
@@ -251,7 +252,7 @@ Any <code>&#60;svg&#62;</code> children to render to create your icon. This can 
 <td><code>CSSProperties</code></td>
 <td><code>null</code></td>
 <td>
-An optional style to apply to the svg element.
+An optional style to apply to the svg element.&#10;
 </td>
 </tr>
 <tr>
@@ -259,7 +260,7 @@ An optional style to apply to the svg element.
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional className to apply to the svg element.
+An optional className to apply to the svg element.&#10;
 </td>
 </tr>
 <tr>
@@ -267,7 +268,7 @@ An optional className to apply to the svg element.
 <td><code>"img" | "presentation"</code></td>
 <td><code>img</code></td>
 <td>
-The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default&#10;<code>img</code> so that it is insured as a graphic.
+The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default&#10;<code>img</code> so that it is insured as a graphic.&#10;
 </td>
 </tr>
 <tr>
@@ -275,7 +276,7 @@ The role to apply to the SVG. When using icons, it is generally recommended to l
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-This prop is the title attribute to provide to the <code>&#60;svg&#62;</code> element itself. This should be used when you&#10;are using a spritesheet that has defined <code>&#60;title&#62;</code> with each SVG symbol.
+This prop is the title attribute to provide to the <code>&#60;svg&#62;</code> element itself. This should be used when you&#10;are using a spritesheet that has defined <code>&#60;title&#62;</code> with each SVG symbol.&#10;
 </td>
 </tr>
 <tr>
@@ -283,7 +284,7 @@ This prop is the title attribute to provide to the <code>&#60;svg&#62;</code> el
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the <code>title</code>&#10;and <code>desc</code> props as this is used to create ids for those two props. This is super beneficial to screen readers.&#10;&#10;When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If&#10;this is omitted and the <code>use</code> prop is defined, it will take everything after the <code>#</code> sign and append <code>-title</code> and&#10;<code>-desc</code> as a fallback. Check out the examples for more information about this.&#10;@see {&#10;@link #title}&#10;@see {&#10;@link #desc}
+An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the <code>title</code>&#10;and <code>desc</code> props as this is used to create ids for those two props. This is super beneficial to screen readers.&#10;&#10;When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If&#10;this is omitted and the <code>use</code> prop is defined, it will take everything after the <code>#</code> sign and append <code>-title</code> and&#10;<code>-desc</code> as a fallback. Check out the examples for more information about this.&#10;&#10;@link #title}&#10;@see {&#10;@link #desc}&#10;@docgen
 </td>
 </tr>
 <tr>
@@ -291,7 +292,7 @@ An optional list of ids to use to label the SVG icon with. This is helpful to ad
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional title to give to your SVG icon. This is generally recommended for accessibility when not using&#10;the <code>use</code> prop, or your spritemap does not contain <code>&#60;title&#62;</code> and `&#60;desc&#62;.&#10;   *&#10;   * @see {@link #aria-labelledby}&#10;   *
+An optional title to give to your SVG icon. This is generally recommended for accessibility when not using&#10;the <code>use</code> prop, or your spritemap does not contain <code>&#60;title&#62;</code> and `&#60;desc&#62;.&#10;   *&#10;   * &#10;   * @docgen&#10;   *
 </td>
 </tr>
 <tr>
@@ -299,7 +300,7 @@ An optional title to give to your SVG icon. This is generally recommended for ac
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional description to give to your SVG icon. This is generally recommended for accessibility when not using&#10;the <code>use</code> prop, or your spritemap does not contain <code>&#60;title&#62;</code> and `&#60;desc&#62;.&#10;   *&#10;   * @see {@link #aria-labelledby}&#10;   *
+An optional description to give to your SVG icon. This is generally recommended for accessibility when not using&#10;the <code>use</code> prop, or your spritemap does not contain <code>&#60;title&#62;</code> and `&#60;desc&#62;.&#10;   *&#10;   * &#10;   * @docgen&#10;   *
 </td>
 </tr>
 <tr>
@@ -307,7 +308,7 @@ An optional description to give to your SVG icon. This is generally recommended 
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the SVG should gain the <code>focusable</code> attribute. This is disabled by default since IE11&#10;and Edge actually default this to true and keyboard&#39;s will tab focus all SVGs.
+Boolean if the SVG should gain the <code>focusable</code> attribute. This is disabled by default since IE11&#10;and Edge actually default this to true and keyboard&#39;s will tab focus all SVGs.&#10;
 </td>
 </tr>
 <tr>
@@ -315,7 +316,7 @@ Boolean if the SVG should gain the <code>focusable</code> attribute. This is dis
 <td><code>number</code></td>
 <td><code>null</code></td>
 <td>
-An optional size to apply to the SVG. This can be used to set both the&#10;<code>height</code> and <code>width</code> simultaneously. This will be provided as inline styles&#10;since the <code>height</code> and <code>width</code> are normally controlled by CSS, and CSS has&#10;higher precedence than the <code>height</code>/<code>width</code> attributes.
+An optional size to apply to the SVG. This can be used to set both the&#10;<code>height</code> and <code>width</code> simultaneously. This will be provided as inline styles&#10;since the <code>height</code> and <code>width</code> are normally controlled by CSS, and CSS has&#10;higher precedence than the <code>height</code>/<code>width</code> attributes.&#10;
 </td>
 </tr>
 <tr>
@@ -323,7 +324,7 @@ An optional size to apply to the SVG. This can be used to set both the&#10;<code
 <td><code>string</code></td>
 <td><code>0 0 24 24</code></td>
 <td>
-The viewBox attribute allows you to specify that a given set of graphics stretch to&#10;fit a particular container element.&#10;&#10;The value of the viewBox attribute is a list of four numbers min-x, min-y, width and&#10;height, separated by white space and/or a comma, which specify a rectangle in user&#10;space which should be mapped to the bounds of the viewport established by the given&#10;element, taking into account attribute preserveAspectRatio.&#10;&#10;Negative values for width or height are not permitted and a value of zero disables&#10;rendering of the element.An optional viewbox for the SVG.&#10;&#10;For example, if the SVG element is 250 (width) by 200 (height) and you provide&#10;`viewBox=&#34;0 0 25 20&#34;`, the coordinates inside the SVG will go from the top left corner&#10;(0, 0) to the bottom right (25, 20) and each unit will be worth <code>10px</code>.
+The viewBox attribute allows you to specify that a given set of graphics stretch to&#10;fit a particular container element.&#10;&#10;The value of the viewBox attribute is a list of four numbers min-x, min-y, width and&#10;height, separated by white space and/or a comma, which specify a rectangle in user&#10;space which should be mapped to the bounds of the viewport established by the given&#10;element, taking into account attribute preserveAspectRatio.&#10;&#10;Negative values for width or height are not permitted and a value of zero disables&#10;rendering of the element.An optional viewbox for the SVG.&#10;&#10;For example, if the SVG element is 250 (width) by 200 (height) and you provide&#10;`viewBox=&#34;0 0 25 20&#34;`, the coordinates inside the SVG will go from the top left corner&#10;(0, 0) to the bottom right (25, 20) and each unit will be worth <code>10px</code>.&#10;
 </td>
 </tr>
 <tr>
@@ -331,7 +332,7 @@ The viewBox attribute allows you to specify that a given set of graphics stretch
 <td><code>string</code></td>
 <td><code>http://www.w3.org/2000/svg</code></td>
 <td>
-An optional xmlns string to provide. The <code>use</code> prop will not work without this prop&#10;defined.
+An optional xmlns string to provide. The <code>use</code> prop will not work without this prop&#10;defined.&#10;
 </td>
 </tr>
 <tr>
@@ -339,7 +340,7 @@ An optional xmlns string to provide. The <code>use</code> prop will not work wit
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-This should be a link to a part of an SVG spritemap. So normally one of the following:&#10;- <code>&#39;#some-custom-svg&#39;</code>&#10;- <code>&#39;/images/spritemap.svg#some-custom-svg&#39;</code>&#10;&#10;This prop <b>should not</b> be used with the <code>children</code> prop as only one will be rendered.&#10;&#10;&#62; NOTE: IE **does not support** external SVGs. Please see the demo for more details.
+This should be a link to a part of an SVG spritemap. So normally one of the following:&#10;- <code>&#39;#some-custom-svg&#39;</code>&#10;- <code>&#39;/images/spritemap.svg#some-custom-svg&#39;</code>&#10;&#10;This prop <b>should not</b> be used with the <code>children</code> prop as only one will be rendered.&#10;&#10;&#62; NOTE: IE **does not support** external SVGs. Please see the demo for more details.&#10;
 </td>
 </tr>
 </tbody>
@@ -350,6 +351,7 @@ This should be a link to a part of an SVG spritemap. So normally one of the foll
 
 
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 

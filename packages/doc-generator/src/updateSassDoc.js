@@ -172,7 +172,7 @@ module.exports = async function updateSassDoc(readme) {
     }
 
     return `${s}${part}`;
-  }, '');
+  }, '## SassDoc');
 
   return replaceBlock(readme, update);
 };

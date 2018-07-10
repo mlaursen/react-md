@@ -6,12 +6,14 @@ import { Provider, IMagicTooltipContext } from "./MagicTooltipContext";
 export interface IMagicTooltipProviderProps {
   /**
    * Boolean if the tooltip's dense spec should be applied to each `MagicTooltip` that appears as a child.
+   * @docgen
    */
   dense?: boolean;
 
   /**
    * The amount of spacing between the tooltip's container element and the tooltip. This should be the value
    * of `$rmd-tooltip-spacing` variable so if you haven't changed the default value, do not change this value.
+   * @docgen
    */
   spacing?: string | number;
 
@@ -19,6 +21,7 @@ export interface IMagicTooltipProviderProps {
    * The amount of spacing between the tooltip's container element and the tooltip when `dense`. This should be
    * the value of `$rmd-tooltip-dense-spacing` variable so if you haven't changed the default value, do not
    * change this value.
+   * @docgen
    */
   denseSpacing?: string | number;
 
@@ -26,6 +29,7 @@ export interface IMagicTooltipProviderProps {
    * The amount of time to wait before showing each tooltip if the `hoverMode` prop is disabled. If the `hoverMode`
    * prop is enabled, it will be the delay before showing the first tooltip. Each tooltip afterwards will be shown
    * immediately.
+   * @docgen
    */
   delay?: number;
 
@@ -34,12 +38,14 @@ export interface IMagicTooltipProviderProps {
    * after viewing a tooltip once with the mouse, all other tooltips will be shown immediately if the user mouses
    * over another element that has a tooltip. The hover mode will be disabled once no tooltip container elements
    * are moused over for the `hoverModeDelay` amount.
+   * @docgen
    */
   hoverMode?: boolean;
 
   /**
    * The amount of time to wait before ending the `hoverMode` for tooltips when the user mouses away from all tooltip
    * container elements.
+   * @docgen
    */
   hoverModeDelay?: number;
 
@@ -47,18 +53,21 @@ export interface IMagicTooltipProviderProps {
    * The amount of delay between a keydown event an a focus event on the page. If a focus event happen during the time
    * of this delay and a previous keypress was a "movement" key, the keyboard mode of tooltips will be enabled and
    * show a tooltip after the specified `delay`.
+   * @docgen
    */
   keyboardFocusDelay?: number;
 
   /**
    * The keydown event's key names to consider keyboard "movement" keys. The default value _should_ be good enough for
    * most cases.
+   * @docgen
    */
   keyboardMovementKeys?: string[];
 
   /**
    * The `MagicTooltipProvider` should _normally_ be one of the top-most components in your react render, so the
    * children for this will be any elements that contain a `MagicTooltip` component.
+   * @docgen
    */
   children?: React.ReactNode;
 }

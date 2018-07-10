@@ -11,6 +11,9 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
     + [Including Styles](#including-styles)
 - [Usage](#usage)
+- [Prop Types](#prop-types)
+  * [withMountingTransition](#withmountingtransition)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
   * [Variables](#variables)
 <!-- TOC_END -->
@@ -85,7 +88,55 @@ If you would like to just import all the utility variables, mixins, and function
 ```
 
 ## Usage
+<!-- PROPS_START -->
+## Prop Types
+### withMountingTransition
+This is like another version of CSSTransitionGroup (v1) that renders null instead
+of a span when empty and only works for one element at a time.
+
+When the visible prop is false, nothing will be rendered. When the visible prop is switched
+to true, it will start the in transition by:
+- rendering the component as normal (so no additional class names)
+- providing the component with an enter transition class name
+- providing the component with an enter and active transition class name
+- rendering the component as normal once transition has finished (so no additional class names)
+
+Now when the visible prop is switched to false, it will start the leave transition with the same flow as
+above but reversed. Once the transition is done, it will render nothing again.
+
+The class names generated will be:
+- `${transitionName}--enter`
+- `${transitionName}--enter-active`
+- `${transitionName}--leave`
+- `${transitionName}--leave-active`
+
+So to get the animation working correctly, your component being wrapped with this HOC **must** apply the
+provided className prop and apply the onTransitionEnd prop that gets passed down.
+@param transitionName - The transition name to use for the enter and leave transitions. Suffixes will
+be applied this this string for each stage of the transition.
+@return a higher order component creator function.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+
+
+<!-- PROPS_END -->
+
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 
@@ -99,7 +150,7 @@ If you would like to just import all the utility variables, mixins, and function
 <tbody>
 <tr>
 <td><code>rmd-transition(type)</code></td>
-<td>Adds a transition timing function for the provided transition type.
+<td>Adds a transition timing function for the provided transition type.&#10;&#10;
 <h5>Parameters</h5>
 <table>
 <thead>
@@ -114,8 +165,7 @@ If you would like to just import all the utility variables, mixins, and function
 <td>type</td>
 <td>String</td>
 <td></td>
-<td>The transition type that should be used. This should be one of the
-    keys for <code>$rmd-transitions</code></td>
+<td>The transition type that should be used. This should be one of the&#10;    keys for <code>$rmd-transitions</code></td>
 </tr>
 </tbody>
 </table>
@@ -137,18 +187,15 @@ If you would like to just import all the utility variables, mixins, and function
 <tbody>
 <tr>
 <td><code>rmd-transitions</code></td>
-<td>A Map of all the available transitions for react-md.
-<br /><br /></td>
+<td>A Map of all the available transitions for react-md.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-enter-transition-time</code></td>
-<td>The default enter transition time.
-<br /><br /></td>
+<td>The default enter transition time.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-leave-transition-time</code></td>
-<td>The default leave transition time.
-<br /><br /></td>
+<td>The default leave transition time.&#10;</td>
 </tr>
 </tbody>
 </table>

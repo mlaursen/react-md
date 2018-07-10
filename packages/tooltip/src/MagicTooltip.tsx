@@ -4,7 +4,7 @@ import cn from "classnames";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 
 import { Consumer } from "./MagicTooltipContext";
-import { default as Tooltip, TooltipPosition, ITooltipProps } from "../Tooltip";
+import { default as Tooltip, TooltipPosition, ITooltipProps } from "./Tooltip";
 
 export interface IMagicTooltipConsumerProps extends ITooltipProps {
   visibleId: string | null;

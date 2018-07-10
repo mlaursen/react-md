@@ -11,6 +11,12 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+- [Prop Types](#prop-types)
+  * [Tooltip](#tooltip)
+  * [RelativeTooltip](#relativetooltip)
+  * [MagicTooltipProvider](#magictooltipprovider)
+  * [MagicTooltip](#magictooltip)
+- [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example SCSS Usage](#example-scss-usage)
@@ -99,10 +105,368 @@ If you would like to just import all the utility variables, mixins, and function
 
 ## Usage
 <!-- PROPS_START -->
+## Prop Types
+### Tooltip
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the tooltip is currently visible to the user. For a11y, the tooltip should always be rendered&#10;on the page, so this flag will increase the opacity so it is actually visible to the user.&#10;
+</td>
+</tr>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach&#10;event listeners to show and hide the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally&#10;just text.&#10;&#10;If this is placed within a <code>&#60;button&#62;</code> element, make sure that there are no <code>&#60;div&#62;</code> since it is invalid html&#10;to have a <code>&#60;div&#62;</code> as a child of a <code>&#60;button&#62;</code>.&#10;
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.&#10;
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip&#10;will display weirdly when its container element is small in size. It is advised to only enable&#10;line wrapping when there are long tooltips or the tooltips are bigger than the container element.&#10;&#10;Once line wrapping is enabled, you will most likely need to set some additional padding and widths.&#10;
+</td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>TooltipPosition</code></td>
+<td><code>null</code></td>
+<td>
+The position of the tooltip to use.&#10;
+</td>
+</tr>
+<tr>
+<td>onTransitionEnd</td>
+<td><code>((e: TransitionEvent<HTMLElement | ReactHTMLElement<any>>) => void)</code></td>
+<td><code>null</code></td>
+<td>
+An optional function to call when the transition event has finished when animating in or out of visibility.&#10;
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### RelativeTooltip
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally&#10;just text.&#10;&#10;If this is placed within a <code>&#60;button&#62;</code> element, make sure that there are no <code>&#60;div&#62;</code> since it is invalid html&#10;to have a <code>&#60;div&#62;</code> as a child of a <code>&#60;button&#62;</code>.&#10;
+</td>
+</tr>
+<tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td><code>500</code></td>
+<td>
+An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip&#39;s container.&#10;
+</td>
+</tr>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach&#10;event listeners to show and hide the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.&#10;
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip&#10;will display weirdly when its container element is small in size. It is advised to only enable&#10;line wrapping when there are long tooltips or the tooltips are bigger than the container element.&#10;&#10;Once line wrapping is enabled, you will most likely need to set some additional padding and widths.&#10;
+</td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>TooltipPosition</code></td>
+<td><code>null</code></td>
+<td>
+The position of the tooltip to use.&#10;
+</td>
+</tr>
+<tr>
+<td>onTransitionEnd</td>
+<td><code>((e: TransitionEvent<HTMLElement | ReactHTMLElement<any>>) => void)</code></td>
+<td><code>null</code></td>
+<td>
+An optional function to call when the transition event has finished when animating in or out of visibility.&#10;
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### MagicTooltipProvider
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The <code>MagicTooltipProvider</code> should <i>normally</i> be one of the top-most components in your react render, so the&#10;children for this will be any elements that contain a <code>MagicTooltip</code> component.&#10;
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the tooltip&#39;s dense spec should be applied to each <code>MagicTooltip</code> that appears as a child.&#10;
+</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td><code>string | number</code></td>
+<td><code>1.5rem</code></td>
+<td>
+The amount of spacing between the tooltip&#39;s container element and the tooltip. This should be the value&#10;of <code>$rmd-tooltip-spacing</code> variable so if you haven&#39;t changed the default value, do not change this value.&#10;
+</td>
+</tr>
+<tr>
+<td>denseSpacing</td>
+<td><code>string | number</code></td>
+<td><code>0.875rem</code></td>
+<td>
+The amount of spacing between the tooltip&#39;s container element and the tooltip when <code>dense</code>. This should be&#10;the value of <code>$rmd-tooltip-dense-spacing</code> variable so if you haven&#39;t changed the default value, do not&#10;change this value.&#10;
+</td>
+</tr>
+<tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td><code>500</code></td>
+<td>
+The amount of time to wait before showing each tooltip if the <code>hoverMode</code> prop is disabled. If the <code>hoverMode</code>&#10;prop is enabled, it will be the delay before showing the first tooltip. Each tooltip afterwards will be shown&#10;immediately.&#10;
+</td>
+</tr>
+<tr>
+<td>hoverMode</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Boolean if the hover mode should be enabled. This will kind of mimic how browser title tooltips work so that&#10;after viewing a tooltip once with the mouse, all other tooltips will be shown immediately if the user mouses&#10;over another element that has a tooltip. The hover mode will be disabled once no tooltip container elements&#10;are moused over for the <code>hoverModeDelay</code> amount.&#10;
+</td>
+</tr>
+<tr>
+<td>hoverModeDelay</td>
+<td><code>number</code></td>
+<td><code>1000</code></td>
+<td>
+The amount of time to wait before ending the <code>hoverMode</code> for tooltips when the user mouses away from all tooltip&#10;container elements.&#10;
+</td>
+</tr>
+<tr>
+<td>keyboardFocusDelay</td>
+<td><code>number</code></td>
+<td><code>300</code></td>
+<td>
+The amount of delay between a keydown event an a focus event on the page. If a focus event happen during the time&#10;of this delay and a previous keypress was a &#34;movement&#34; key, the keyboard mode of tooltips will be enabled and&#10;show a tooltip after the specified <code>delay</code>.&#10;
+</td>
+</tr>
+<tr>
+<td>keyboardMovementKeys</td>
+<td><code>string[]</code></td>
+<td><code>null</code></td>
+<td>
+The keydown event&#39;s key names to consider keyboard &#34;movement&#34; keys. The default value <i>should</i> be good enough for&#10;most cases.&#10;
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### MagicTooltip
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An id for the tooltip. This is required for accessibility and finding an element to attach&#10;event listeners to show and hide the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to apply to the tooltip.&#10;
+</td>
+</tr>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The contents of the tooltip to display. This can be any renderable element, but this is normally&#10;just text.&#10;&#10;If this is placed within a <code>&#60;button&#62;</code> element, make sure that there are no <code>&#60;div&#62;</code> since it is invalid html&#10;to have a <code>&#60;div&#62;</code> as a child of a <code>&#60;button&#62;</code>.&#10;
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the dense styles for tooltips should be displayed.&#10;
+</td>
+</tr>
+<tr>
+<td>lineWrap</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip&#10;will display weirdly when its container element is small in size. It is advised to only enable&#10;line wrapping when there are long tooltips or the tooltips are bigger than the container element.&#10;&#10;Once line wrapping is enabled, you will most likely need to set some additional padding and widths.&#10;
+</td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>TooltipPosition</code></td>
+<td><code>null</code></td>
+<td>
+The position of the tooltip to use.&#10;
+</td>
+</tr>
+<tr>
+<td>onTransitionEnd</td>
+<td><code>((e: TransitionEvent<HTMLElement | ReactHTMLElement<any>>) => void)</code></td>
+<td><code>null</code></td>
+<td>
+An optional function to call when the transition event has finished when animating in or out of visibility.&#10;
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <!-- PROPS_END -->
 
 
 <!-- SASSDOC_START -->
+## SassDoc
 
 ### Mixins
 
@@ -116,36 +480,31 @@ If you would like to just import all the utility variables, mixins, and function
 <tbody>
 <tr>
 <td><code>rmd-tooltip-base</code></td>
-<td>Creates the base tooltip styles only.
+<td>Creates the base tooltip styles only.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-active</code></td>
-<td>Creates the active tooltip styles only. The active styles will increase the z-index and
-change the visibility from <code>hidden</code> to <code>visible</code>. This class should be applied during the
-entire enter and leave transition.
+<td>Creates the active tooltip styles only. The active styles will increase the z-index and&#10;change the visibility from <code>hidden</code> to <code>visible</code>. This class should be applied during the&#10;entire enter and leave transition.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-visible</code></td>
-<td>Creates the visible tooltip styles only. This should only be applied when the tooltip is visible
-as it will cause the enter and leave transition by being applied or removed.
+<td>Creates the visible tooltip styles only. This should only be applied when the tooltip is visible&#10;as it will cause the enter and leave transition by being applied or removed.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense</code></td>
-<td>Creates the dense tooltip style overrides. Since the base tooltip styles define
-these values as well, this should be included <b>after</b> the base styles have been
-included or with an additional selector depth.
+<td>Creates the dense tooltip style overrides. Since the base tooltip styles define&#10;these values as well, this should be included <b>after</b> the base styles have been&#10;included or with an additional selector depth.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-position(position, spacing)</code></td>
-<td>Creates the styles for one of the four tooltip positions.
+<td>Creates the styles for one of the four tooltip positions.&#10;&#10;
 <h5>Parameters</h5>
 <table>
 <thead>
@@ -166,8 +525,7 @@ included or with an additional selector depth.
 <td>spacing</td>
 <td>Number</td>
 <td></td>
-<td>The amount of spacing to use between the tooltip and the container element. This should
-  normally just be <code>$rmd-tooltip-spacing</code> or <code>$rmd-tooltip-dense-spacing</code>.</td>
+<td>The amount of spacing to use between the tooltip and the container element. This should&#10;  normally just be <code>$rmd-tooltip-spacing</code> or <code>$rmd-tooltip-dense-spacing</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -176,13 +534,13 @@ included or with an additional selector depth.
 </tr>
 <tr>
 <td><code>rmd-tooltip-line-wrap</code></td>
-<td>Creates the base styles to allow line-wrapping tooltips.
+<td>Creates the base styles to allow line-wrapping tooltips.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>react-md-tooltip</code></td>
-<td>Creates all the base styles to get tooltips working with the <code>Tooltip</code> component.
+<td>Creates all the base styles to get tooltips working with the <code>Tooltip</code> component.&#10;&#10;
 
 </td>
 </tr>
@@ -311,84 +669,71 @@ included or with an additional selector depth.
 <tbody>
 <tr>
 <td><code>rmd-tooltip-background-color</code></td>
-<td>The background color to use for tooltips.
-<br /><br /></td>
+<td>The background color to use for tooltips.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-text-color</code></td>
-<td>The text color to use for tooltips. This will be white on dark backgrounds and black
-on light backgrounds by default.
-<br /><br /></td>
+<td>The text color to use for tooltips. This will be white on dark backgrounds and black&#10;on light backgrounds by default.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-enter-transition-time</code></td>
-<td>The enter transition time for the tooltip to enter or to leave.
-<br /><br /></td>
+<td>The enter transition time for the tooltip to enter or to leave.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-leave-transition-time</code></td>
-<td>The leave transition time for the tooltip to enter or to leave.
-<br /><br /></td>
+<td>The leave transition time for the tooltip to enter or to leave.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-z-index</code></td>
-<td>The z-index to use for tooltips when they are visible.
-<br /><br /></td>
+<td>The z-index to use for tooltips when they are visible.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-font-size</code></td>
-<td>The font size to use for tooltips</td>
+<td>The font size to use for tooltips&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-min-height</code></td>
-<td>The min height to use for tooltips. This allows the tooltips to grow in height automatically
-based on line wrapping. You will need to add additional padding in these cases though.</td>
+<td>The min height to use for tooltips. This allows the tooltips to grow in height automatically&#10;based on line wrapping. You will need to add additional padding in these cases though.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-lr-padding</code></td>
-<td>The left and right padding to apply to tooltips.</td>
+<td>The left and right padding to apply to tooltips.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-line-wrap-tb-padding</code></td>
-<td>The top and bottom padding to apply to tooltips when line wrapping is enabled.</td>
+<td>The top and bottom padding to apply to tooltips when line wrapping is enabled.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-spacing</code></td>
-<td>The amount of spacing to place between the tooltip and the tooltip's container element.</td>
+<td>The amount of spacing to place between the tooltip and the tooltip&#39;s container element.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense-font-size</code></td>
-<td>The font size to use for dense tooltips.
-<br /><br /></td>
+<td>The font size to use for dense tooltips.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense-min-height</code></td>
-<td>The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
-based on line wrapping. You will need to add additional padding in these cases though.</td>
+<td>The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically&#10;based on line wrapping. You will need to add additional padding in these cases though.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense-lr-padding</code></td>
-<td>The left and right padding to use for dense tooltips
-<br /><br /></td>
+<td>The left and right padding to use for dense tooltips&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense-line-wrap-tb-padding</code></td>
-<td>The top and bottom padding to apply to dense tooltips when line wrapping is enabled.</td>
+<td>The top and bottom padding to apply to dense tooltips when line wrapping is enabled.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-dense-spacing</code></td>
-<td>The amount of spacing to place between the dense tooltip and the tooltip's container element.
-<br /><br /></td>
+<td>The amount of spacing to place between the dense tooltip and the tooltip&#39;s container element.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-border-radius</code></td>
-<td>The border radius to apply to tooltips
-<br /><br /></td>
+<td>The border radius to apply to tooltips&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-tooltip-transition-distance</code></td>
-<td>The distance that the tooltip should animate from the tooltip's control element.
-<br /><br /></td>
+<td>The distance that the tooltip should animate from the tooltip&#39;s control element.&#10;</td>
 </tr>
 </tbody>
 </table>

@@ -73,8 +73,8 @@ export interface IInjectedMountingTransitionProps {
  * So to get the animation working correctly, your component being wrapped with this HOC **must** apply the
  * provided className prop and apply the onTransitionEnd prop that gets passed down.
  *
- * @param {String} transitionName - The transition name to use for the enter and leave transitions. Suffixes will be applied
- *    this this string for each stage of the transition.
+ * @param {String} transitionName - The transition name to use for the enter and leave transitions. Suffixes will
+ *     be applied this this string for each stage of the transition.
  * @return {function} a higher order component creator function.
  */
 export default function withMountingTransition<ComponentProps extends {}>(transitionName: string) {

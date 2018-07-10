@@ -7,26 +7,30 @@ import memoizeOne from "memoize-one";
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
  */
-export interface ISVGIconProps {
+export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   /**
    * An optional style to apply to the svg element.
+   * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * An optional className to apply to the svg element.
+   * @docgen
    */
   className?: string;
 
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
    * `img` so that it is insured as a graphic.
+   * @docgen
    */
   role?: "img" | "presentation";
 
   /**
    * This prop is the title attribute to provide to the `<svg>` element itself. This should be used when you
    * are using a spritesheet that has defined `<title>` with each SVG symbol.
+   * @docgen
    */
   titleAttr?: string;
 
@@ -40,6 +44,7 @@ export interface ISVGIconProps {
    *
    * @see {@link #title}
    * @see {@link #desc}
+   * @docgen
    */
   "aria-labelledby"?: string;
 
@@ -48,6 +53,7 @@ export interface ISVGIconProps {
    * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
+   * @docgen
    */
   title?: string;
 
@@ -56,12 +62,14 @@ export interface ISVGIconProps {
    * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
+   * @docgen
    */
   desc?: string;
 
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default since IE11
    * and Edge actually default this to true and keyboard's will tab focus all SVGs.
+   * @docgen
    */
   focusable?: string;
 
@@ -70,6 +78,7 @@ export interface ISVGIconProps {
    * `height` and `width` simultaneously. This will be provided as inline styles
    * since the `height` and `width` are normally controlled by CSS, and CSS has
    * higher precedence than the `height`/`width` attributes.
+   * @docgen
    */
   size?: number;
 
@@ -88,12 +97,14 @@ export interface ISVGIconProps {
    * For example, if the SVG element is 250 (width) by 200 (height) and you provide
    * `viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corner
    * (0, 0) to the bottom right (25, 20) and each unit will be worth `10px`.
+   * @docgen
    */
   viewBox?: string;
 
   /**
    * An optional xmlns string to provide. The `use` prop will not work without this prop
    * defined.
+   * @docgen
    */
   xmlns?: string;
 
@@ -105,11 +116,13 @@ export interface ISVGIconProps {
    * This prop **should not** be used with the `children` prop as only one will be rendered.
    *
    * > NOTE: IE **does not support** external SVGs. Please see the demo for more details.
+   * @docgen
    */
   use?: string;
 
   /**
    * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
+   * @docgen
    */
   children?: React.ReactNode;
 }
