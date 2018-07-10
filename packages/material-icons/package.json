@@ -45,7 +45,8 @@
     "react-dom": "^16.4.1",
     "rimraf": "^2.6.2",
     "tslint": "^4.5.1",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "watch": "^1.0.2"
   },
   "peerDependencies": {
     "@react-md/icon": "^2.0.0-alpha-1"
