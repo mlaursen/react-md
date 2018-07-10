@@ -79,7 +79,7 @@ export default class FontIcon extends React.Component<IFontIconProps, IFontIconS
   private getStyle = memoizeOne(
     (style?: React.CSSProperties, forceSize?: boolean | number, forceFontSize?: boolean) => {
       let nextStyle = style;
-      if (typeof forceSize === "boolean") {
+      if (typeof forceSize === "boolean" && forceSize) {
         nextStyle = {
           fontSize: forceFontSize ? ICON_SIZE : undefined,
           height: ICON_SIZE,
