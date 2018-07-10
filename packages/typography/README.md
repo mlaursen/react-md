@@ -161,21 +161,19 @@ Every key that you do not include in the map will no longer be created when incl
 <tbody>
 <tr>
 <td><code>rmd-typography-base</code></td>
-<td>Applies the base typography styles to an element.
+<td>Applies the base typography styles to an element.&#10;&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-typography</code></td>
-<td>Applies one of the provided material design styles to an element.
-<br /><br />
+<td>Applies one of the provided material design styles to an element.&#10;
 
 </td>
 </tr>
 <tr>
 <td><code>react-md-typography</code></td>
-<td>Creates all the typography styles from the react-md typography variables.
-<br /><br />
+<td>Creates all the typography styles from the react-md typography variables.&#10;
 
 </td>
 </tr>
@@ -207,21 +205,19 @@ Every key that you do not include in the map will no longer be created when incl
 <tbody>
 <tr>
 <td><code>rmd-typography-font-family</code></td>
-<td>The font family to use throughout the entire application.
-<br /><br /></td>
+<td>The font family to use throughout the entire application.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-typography-base</code></td>
-<td>The base styles for typography.
-<br /><br /></td>
+<td>The base styles for typography.&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-typography-font-weights</code></td>
-<td>A Map of all the font weights.</td>
+<td>A Map of all the font weights.&#10;&#10;</td>
 </tr>
 <tr>
 <td><code>rmd-typography-styles</code></td>
-<td>A Map of all the typography styles in react-md</td>
+<td>A Map of all the typography styles in react-md&#10;&#10;</td>
 </tr>
 </tbody>
 </table>
