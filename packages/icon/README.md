@@ -7,6 +7,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 <!-- TOC_START -->
 ## Table of Contents
 - [Installation](#installation)
+  * [Including a font icon library](#including-a-font-icon-library)
     + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
     + [webpack](#webpack)
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
@@ -27,6 +28,40 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 ## Installation
 ```sh
 $ npm install --save @react-md/icon
+```
+
+`SVGIcon`s will be inline svgs by default to make it easier to install-and-use. If you want to use spritemaps, please read the documentation in the [@react-md/material-icons](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/README.md#creating-spritemaps) and if you
+want to use `FontIcon`s, you will need to first include the font icon library into your app for the icons to display.
+
+### Including a font icon library
+The easiest way to include a font icon library is to update your `index.html` file to have a link to material icons. The following example would show how you can update
+your `index.html` template file from create-react-app. Edit `public/index.html`;
+
+```diff
+     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
++    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
+
+Now you should have access to the material icons and can use them as expected.
+
+An alternative is to use the [webfontloader](https://github.com/typekit/webfontloader) to load the fonts. Edit `src/index.tsx`:
+
+```diff
+ import * as React from 'react';
+ import * as ReactDOM from 'react-dom';
++import * as WebFontLoader from 'webfontloader';
+ import App from './App';
+ import registerServiceWorker from './registerServiceWorker';
+ import './index.css';
+
++WebFontLoader.load({
++  google: {
++    families: ['Material Icons'],
++  },
++});
+
+ ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
+ registerServiceWorker();
 ```
 
 #### Updating Sass to include `node_modules`
@@ -94,6 +129,23 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { SVGIcon, FontIcon } from "@react-md/icon";
+
+const App = () => (
+  <main>
+    <FontIcon>home</FontIcon>
+    <FontIcon>menu</FontIcon>
+    <FontIcon iconClassName="fa fa-github" />
+    <SVGIcon><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></SVGIcon>{/* menu icon */}
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
 <!-- PROPS_START -->
 ## Prop Types
 ### FontIcon

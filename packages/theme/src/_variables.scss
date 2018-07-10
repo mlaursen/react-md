@@ -76,14 +76,14 @@ $rmd-theme-text-colors: (
     secondary: rgba($rmd-black-base, .54),
     hint: rgba($rmd-black-base, .34),
     disabled: rgba($rmd-black-base, .38),
-    icon: rgba($rmd-black-base, .38),
+    icon: rgba($rmd-black-base, .54),
   ),
   light: (
     primary: $rmd-white-base,
     secondary: rgba($rmd-white-base, .7),
     hint: rgba($rmd-white-base, .5),
     disabled: rgba($rmd-white-base, .5),
-    icon: rgba($rmd-white-base, .5),
+    icon: rgba($rmd-white-base, .7),
   ),
 );
 

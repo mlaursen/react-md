@@ -1,0 +1,53 @@
+{
+  "name": "@react-md/material-icons",
+  "version": "2.0.0-alpha-1",
+  "description": "This package is just a simple wrapper for using material icons within react-md as either font icons or svg icons.",
+  "scripts": {
+    "build:commonjs": "tsc -p tsconfig.commonjs.json",
+    "build:modules": "tsc -p tsconfig.modules.json",
+    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types",
+    "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\"",
+    "icons": "./createIcons.js",
+    "clean": "rimraf es lib types",
+    "prebuild": "npm run clean",
+    "update-definitions": "rimraf types && npm run build:definitions",
+    "watch:definitions": "watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js",
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:definitions\"",
+    "docs": "doc-generator --no-sassdoc --no-proptypes",
+    "prepublishOnly": "npm run build && npm run docs"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "svgs/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "license": "MIT",
+  "devDependencies": {
+    "@react-md/icon": "^2.0.0-alpha-1",
+    "@types/react": "^16.3.18",
+    "@types/react-dom": "^16.0.6",
+    "adm-zip": "^0.4.11",
+    "bluebird": "^3.5.1",
+    "commander": "^2.16.0",
+    "doc-generator": "^2.0.0-alpha-1",
+    "download": "^7.0.0",
+    "fs-extra": "^6.0.1",
+    "glob": "^7.1.2",
+    "lodash": "^4.17.10",
+    "npm-run-all": "^4.1.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "rimraf": "^2.6.2",
+    "tslint": "^4.5.1",
+    "typescript": "^2.9.2"
+  },
+  "peerDependencies": {
+    "@react-md/icon": "^2.0.0-alpha-1"
+  }
+}

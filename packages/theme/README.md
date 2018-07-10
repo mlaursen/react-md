@@ -276,7 +276,7 @@ $rmd-theme-secondary: $rmd-pink-a-400;
 <tbody>
 <tr>
 <td><code>rmd-theme-tone(color, min-contrast)</code></td>
-<td>String - The string "light" if the color is considered light, otherwise "dark".</td>
+<td>String - The string 'light' if the color is considered light, otherwise 'dark'.</td>
 <td>Determines if a provided color is considered light or dark.
 <h5>Parameters</h5>
 <table>
@@ -309,7 +309,7 @@ $rmd-theme-secondary: $rmd-pink-a-400;
 </tr>
 <tr>
 <td><code>rmd-theme-contrast-tone(color, min-contrast)</code></td>
-<td>String - The string "dark" if the color is considered light, or "light" if the
+<td>String - The string 'dark' if the color is considered light, or 'light' if the
     color is considered dark.</td>
 <td>Determines if the provided color should have a light or dark contrast using the
 luminance algorithm to maintain a required contrast ratio for accessibility.
@@ -403,7 +403,7 @@ You are <i>most</i> likely looking for the <code>rmd-theme</code> mixin and not 
 <td>Color - a color value for the provided property.</td>
 <td>Attempts to get a specific theme color based on the property provided.
 <br /><br />
-If the property is a color or "currentColor", it will be returned instead.
+If the property is a color or 'currentColor', it will be returned instead.
 <br /><br />
 NOTE: This has to be defined in variables so there aren't recursive imports.
 <br /><br />
@@ -455,7 +455,7 @@ but it can be any color.
 <tr>
 <td><code>rmd-theme-on-primary</code></td>
 <td>The color to use when text should be displayed on the primary theme color. The default behavior is to test if the primary
-color's contrast tone. If the color is considered "dark", <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+color's contrast tone. If the color is considered 'dark', <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
 be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 <br /><br /></td>
@@ -469,7 +469,7 @@ suffix (<code>-a-100</code> or <code>-a-200</code> or <code>-a-400</code> or <co
 <tr>
 <td><code>rmd-theme-on-secondary</code></td>
 <td>The color to use when text should be displayed on the secondary theme color. The default behavior is to test if the secondary
-color's contrast tone. If the color is considered "dark", <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+color's contrast tone. If the color is considered 'dark', <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
 be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 <br /><br /></td>
@@ -481,7 +481,7 @@ accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) an
 </tr>
 <tr>
 <td><code>rmd-theme-surface</code></td>
-<td>The theme's surface background color. This is the background color that will be used for any temporary "material" (or surface)
+<td>The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)
 <br /><br />
 Ex: Dialogs, Lists
 <br /><br /></td>
@@ -489,14 +489,14 @@ Ex: Dialogs, Lists
 <tr>
 <td><code>rmd-theme-on-surface</code></td>
 <td>The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface
-color's contrast tone. If the color is considered "dark", <code>$rd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+color's contrast tone. If the color is considered 'dark', <code>$rd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
 be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 <br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-theme-text-colors</code></td>
-<td>A Map of all the text colors for the app. This will be Map of "light" and "dark" that has the following keys:
+<td>A Map of all the text colors for the app. This will be Map of 'light' and 'dark' that has the following keys:
 - primary
 - secondary
 - hint
@@ -508,7 +508,7 @@ This is normally used along with the <code>rmd-theme-contrast-tone</code> and th
 <tr>
 <td><code>rmd-theme-property-values</code></td>
 <td>A Map of all the theme property values that can be used throughout the app. This is mainly created
-so that the specific <code>md-theme--NAME</code> classes can be created, but also for the <code>rmd-theme-prop-value</code> function
+so that the specific <code>rmd-theme--NAME</code> classes can be created, but also for the <code>rmd-theme-prop-value</code> function
 to get a specific color within your theme.
 <br /><br /></td>
 </tr>
