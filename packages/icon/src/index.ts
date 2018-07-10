@@ -1,2 +1,5 @@
-export { default as FontIcon, IFontIconProps } from "./FontIcon";
-export { default as SVGIcon, ISVGIconProps } from "./SVGIcon";
+export { default as FontIcon } from "./FontIcon";
+export * from "./FontIcon";
+
+export { default as SVGIcon } from "./SVGIcon";
+export * from "./SVGIcon";
