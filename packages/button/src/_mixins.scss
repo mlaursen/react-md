@@ -2,16 +2,35 @@
 /// @group button
 ////
 
+@import '@react-md/elevation/dist/elevation';
 @import '@react-md/theme/dist/theme';
 @import '@react-md/typography/dist/typography';
 @import 'variables';
 
+/// A simple mixin to create an unstyled button.
+///
+/// NOTE: An unstyled button removed the `outline-style` so you *must* add a custom focus behavior with
+/// either ripples or something else for keyboard users.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-btn-unstyled;
+///     @include rmd-typography(button);
+///
+///     display: inline-flex;
+///   }
 @mixin rmd-btn-unstyled {
   background-color: transparent;
   border-width: 0;
   outline-style: none;
 }
 
+/// The base styles for a button.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-btn-base;
+///   }
 @mixin rmd-btn-base {
   @include rmd-typography(button);
   @include rmd-btn-unstyled;
@@ -21,46 +40,96 @@
   position: relative;
 }
 
+/// The base styles to add hover effects to buttons. The hover effects are created by modifying
+/// the `::after` pseudo-selector so that if you apply the default `$rmd-btn-hover-background-color`
+/// or a color with an opacity, it will look good on any button background color.
+///
+/// NOTE: This requires the container element to have `position: relative` to work.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-btn-hover-base;
+///
+///     position: relative;
+///   }
+@mixin rmd-btn-hover-base {
+  &::after {
+    @include rmd-transition(standard);
+
+    background-color: transparent;
+    border-radius: inherit;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: background-color $rmd-btn-background-color-transition-time;
+  }
+}
+
+/// The styles to add the correct hover states to a button. This should really only be applied when the
+/// button is not in a `disabled` state.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-btn-hover-states;
+///   }
+///
+///   .my-button:not(:disabled) {
+///     @include rmd-btn-hover-states;
+///   }
+///
+///   // this version is preferred since it makes updating the disabled styles easier
+///   .my-button--hoverable {
+///     @include rmd-btn-hover-states;
+///   }
+@mixin rmd-btn-hover-states {
+  &:hover {
+    cursor: pointer;
+
+    &::after {
+      background-color: $rmd-btn-hover-background-color;
+    }
+  }
+}
+
+@mixin rmd-btn-text {
+  border-radius: $rmd-btn-text-border-radius;
+  height: $rmd-btn-text-height;
+  min-width: $rmd-btn-text-min-width;
+  padding: $rmd-btn-text-vertical-padding $rmd-btn-text-horizontal-padding;
+
+  // icons have smaller sizes due to the padding on buttons. This is also not applied
+  // below in the rmd-btn__icon since a user of this library _could_ include the icon styles
+  // after the button styles which would prevent these styles from working
+  .rmd-icon--font {
+    font-size: $rmd-btn-text-icon-size;
+  }
+
+  .rmd-icon--svg {
+    height: $rmd-btn-text-icon-size;
+    width: $rmd-btn-text-icon-size;
+  }
+}
+
 @mixin react-md-button {
   .rmd-btn {
     @include rmd-btn-base;
+    @include rmd-btn-hover-base;
 
-    &::after {
-      @include rmd-transition(standard);
-
-      background-color: transparent;
-      border-radius: inherit;
-      bottom: 0;
-      content: '';
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: background-color $rmd-btn-background-color-transition-time;
+    &--hoverable {
+      @include rmd-btn-hover-states;
     }
 
     &--text {
-      border-radius: $rmd-btn-text-border-radius;
-      height: $rmd-btn-text-height;
-      min-width: $rmd-btn-text-min-width;
-      padding: $rmd-btn-text-vertical-padding $rmd-btn-text-horizontal-padding;
+      @include rmd-btn-text;
     }
 
     &--icon {
       border-radius: $rmd-btn-icon-border-radius;
       height: $rmd-btn-icon-size;
       width: $rmd-btn-icon-size;
-    }
-
-    &--hoverable {
-      // scss-lint:disable SelectorDepth, NestingDepth
-      &:hover {
-        cursor: pointer;
-
-        &::after {
-          background-color: $rmd-btn-hover-background-color;
-        }
-      }
     }
 
     &--primary {
@@ -83,6 +152,17 @@
       @include rmd-theme(color, secondary);
     }
 
+    &--contained {
+      @include rmd-elevation($rmd-btn-contained-resting-elevation);
+      @include rmd-transition(standard);
+
+      transition: box-shadow $rmd-btn-contained-elevation-transition-time;
+
+      &-pressed {
+        @include rmd-elevation($rmd-btn-contained-pressed-elevation);
+      }
+    }
+
     &--outline-primary {
       // scss-lint:disable DuplicateProperty
       box-shadow: $rmd-btn-box-shadow rmd-theme(primary);
@@ -97,6 +177,18 @@
 
     &--outline-default {
       box-shadow: $rmd-btn-box-shadow $rmd-btn-default-color;
+    }
+
+    &__icon {
+      color: inherit;
+
+      &--before {
+        margin-right: $rmd-btn-text-icon-spacing;
+      }
+
+      &--after {
+        margin-left: $rmd-btn-text-icon-spacing;
+      }
     }
   }
 }

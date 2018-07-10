@@ -2,7 +2,7 @@
 /// @group button
 ////
 
-@import '@react-md/theme/dist/color-palette';
+@import '@react-md/theme/dist/theme';
 
 /// The border radius to apply to text buttons.
 /// @type Number
@@ -27,6 +27,15 @@ $rmd-btn-text-height: 2.25rem !default; // 36dp
 /// @type Number
 $rmd-btn-text-min-width: 4rem !default; // 64dp
 
+/// The amount of spacing to apply between the icon and text within a text button.
+/// @type Number
+$rmd-btn-text-icon-spacing: .5rem !default; // 8dp
+
+/// The text button's icon size. This is than the normal icon size by default since buttons
+/// have additional padding. You can set this to `null` if you want consistant icon sizes.
+/// @type Number
+$rmd-btn-text-icon-size: 1.125rem !default; // 18dp
+
 /// The border radius to apply to all icon buttons.
 /// @type Number
 $rmd-btn-icon-border-radius: 50% !default;
@@ -45,11 +54,28 @@ $rmd-btn-hover-background-color: rgba(if(rmd-theme-contrast-tone($rmd-theme-back
 /// @type Number
 $rmd-btn-background-color-transition-time: .15s !default;
 
-/// The base box-shadow to apply for buttons when outlined. This will normally be used along with a color variable
+/// The base box-shadow width to apply to buttons
+$rmd-btn-box-shadow-width: 1px !default;
+
+/// The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable
 /// to define a box shadow.
 /// @type String
-$rmd-btn-box-shadow: inset 0 0 0 1px !default;
+$rmd-btn-box-shadow: inset 0 0 0 $rmd-btn-box-shadow-width !default;
 
-/// The color to use for a button's 'default' state.
+/// The color to use for a button's "default" state.
 /// @type Number
 $rmd-btn-default-color: #999 !default;
+
+/// The transition time for a contained button to raise to the pressed elevation.
+/// @type Number
+$rmd-btn-contained-elevation-transition-time: .15s !default;
+
+/// The elevation to use for a resting contained button. This should be a number between
+/// 0 and 24.
+/// @type Number
+$rmd-btn-contained-resting-elevation: 2 !default;
+
+/// The elevation to use for a contained button that is being pressed. This should be a number
+/// between 0 and 24.
+/// @type Number
+$rmd-btn-contained-pressed-elevation: 8 !default;

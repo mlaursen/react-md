@@ -93,6 +93,34 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+After including the styles, you can create buttons using the provided props:
+
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Button } from "@react-md/button";
+import { FontIcon } from "@react-md/icon";
+
+const App = () => (
+  <main>
+    <h3>Text Buttons</h3>
+    <Button id="button-1">Text button</Button>
+    <Button id="button-2" theme="primary" themeType="outline">Text button</Button>
+    <Button id="button-3" theme="secondary" themeType="contained">Text button</Button>
+    <Button id="button-4" theme="default" themeType="text">Text button</Button>
+    <Button id="button-5" theme="default" themeType="text" icon={<FontIcon>favorite</FontIcon>}>
+      Text button
+    </Button>
+
+    <h3>Icon Buttons</h3>
+    <Button id="button-6" btnType="icon"><FontIcon>menu</FontIcon></Button>
+    <Button id="button-7" btnType="icon" theme="primary" themeType="outline"><FontIcon>menu</FontIcon></Button>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### Button
