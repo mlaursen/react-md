@@ -1,4 +1,3 @@
-
 # @react-md/utils
 General util functions for react-md
 
@@ -6,9 +5,8 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 
 <!-- TOC_START -->
 ## Table of Contents
-- [@react-md/utils](#react-mdutils)
-  * [Installation](#installation)
-  * [Usage](#usage)
+- [Installation](#installation)
+- [Usage](#usage)
 <!-- TOC_END -->
 
 ## Installation

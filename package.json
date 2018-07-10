@@ -12,7 +12,7 @@
     "start": "cd packages/examples && npm run start",
     "dev": "npm-run-all -p \"watch\" \"start\"",
     "watch": "lerna run watch --ignore doc-generator --ignore examples",
-    "docs": "lerna run docs --ignore examples --ginreo doc-generator",
+    "docs": "lerna run docs --ignore examples --ignore doc-generator",
     "toc": "./packages/doc-generator/src/index.js --no-proptypes --no-sassdoc"
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",

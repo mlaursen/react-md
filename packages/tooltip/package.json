@@ -15,7 +15,7 @@
     "watch:styles": "watch \"npm run styles\" src --filter ../../scssWatchFilter.js",
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:styles\" \"watch:definitions\"",
     "test": "jest src",
-    "docs": "doc-generator --no-proptypes",
+    "docs": "doc-generator",
     "prepublishOnly": "npm run build && npm run docs"
   },
   "main": "./lib/index.js",

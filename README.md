@@ -33,6 +33,12 @@ So if you want to install the theme and buttons:
 $ npm install --save @react-md/button @react-md/theme
 ```
 
+It is recommended to at least always install the following packages to have a good starting base:
+
+```sh
+$ npm install --save @react-md/theme @react-md/typography @react-md/icon
+```
+
 ### Compiling styles
 Each package that has styles will require Sass to compile. You can read more about how to get started with [webpack](#compiling-styles-with-webpack) or [create-react-app](#compiling-styles-with-cra) but the basics will
 require updating your Sass compiler (normally `node-sass`) to include `node_modules` in the `includePaths` as well as using an [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.

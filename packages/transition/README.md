@@ -3,8 +3,6 @@ This package is for handling different transitions and anmimations within react-
 
 The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/transition
 
-> NOTE: While react-md is in a pre-release stage, all SCSS variables, mixins, and functions will use a `rmd` prefix instead of the normal `md` prefix. This is so that you can have both the v1 and v2 versions working together. When v2 is finally released, the prefixes will switch back to `md`.
-
 <!-- TOC_START -->
 ## Table of Contents
 - [Installation](#installation)

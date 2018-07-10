@@ -1,32 +1,30 @@
-
 # @react-md/tooltip
-
+This package is for creating accessible tooltips following the tooltip spec on [W3C](https://www.w3.org/TR/wai-aria-practices/#tooltip).
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/tooltip
 
 <!-- TOC_START -->
 ## Table of Contents
-- [@react-md/tooltip](#react-mdtooltip)
-  * [Installation](#installation)
-      - [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
-      - [webpack](#webpack)
-      - [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
-    + [Styles](#styles)
-  * [Usage](#usage)
-    + [Mixins](#mixins)
-      - [Examples](#examples)
-        * [Example SCSS Usage](#example-scss-usage)
-        * [Example Custom Tooltip](#example-custom-tooltip)
-        * [Example SCSS Usage](#example-scss-usage-1)
-        * [Example SCSS Usage](#example-scss-usage-2)
-        * [Example Custom Tooltip](#example-custom-tooltip-1)
-        * [Example SCSS Usage](#example-scss-usage-3)
-        * [Overriding Default Styles](#overriding-default-styles)
-        * [Overriding Default Styles v2](#overriding-default-styles-v2)
-        * [Example SCSS Usage](#example-scss-usage-4)
-        * [Example SCSS Usage](#example-scss-usage-5)
-        * [Example SCSS Usage](#example-scss-usage-6)
-    + [Variables](#variables)
+- [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+  * [Styles](#styles)
+- [Usage](#usage)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
+      - [Example SCSS Usage](#example-scss-usage)
+      - [Example Custom Tooltip](#example-custom-tooltip)
+      - [Example SCSS Usage](#example-scss-usage-1)
+      - [Example SCSS Usage](#example-scss-usage-2)
+      - [Example Custom Tooltip](#example-custom-tooltip-1)
+      - [Example SCSS Usage](#example-scss-usage-3)
+      - [Overriding Default Styles](#overriding-default-styles)
+      - [Overriding Default Styles v2](#overriding-default-styles-v2)
+      - [Example SCSS Usage](#example-scss-usage-4)
+      - [Example SCSS Usage](#example-scss-usage-5)
+      - [Example SCSS Usage](#example-scss-usage-6)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
