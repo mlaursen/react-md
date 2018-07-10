@@ -263,7 +263,6 @@ if (styles || typescript) {
     scripts['build:modules'] = 'tsc -p tsconfig.modules.json';
     scripts['build:definitions'] = 'tsc -p tsconfig.modules.json -d --declarationDir ./types';
 
-
     main = './lib/index.js';
     esModule = './es/index.js';
     types = './types/index.d.ts';
@@ -271,6 +270,7 @@ if (styles || typescript) {
 
     watch.push('build:commonjs -- --watch');
     watch.push('build:modules -- --watch');
+    watch.push('watch:definitions');
   }
 
   if (styles) {
@@ -284,13 +284,18 @@ if (styles || typescript) {
   scripts.clean = clean;
   scripts.prebuild = 'npm run clean';
 
+  if (typescript) {
+    scripts['update-definitions'] = 'rimraf types && npm run build:definitions';
+    scripts['watch:definitions'] = 'watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js';
+  }
+
   if (styles) {
     scripts.styles = 'copyfiles -u 1 \"src/**/*.scss\" dist';
     scripts['watch:styles'] = 'watch \"npm run styles\" src --filter ../../scssWatchFilter.js';
   }
 
   if (watch.length) {
-    scripts.watch = `npm-run-all -p ${watch.reduce((s, script) => `${s} \"${script}\"`)}`;
+    scripts.watch = `npm-run-all -p ${watch.reduce((s, script) => `${s ? `${s} ` : ''}\"${script}\"`, '')}`;
   }
 
   if (typescript) {

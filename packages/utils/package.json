@@ -9,8 +9,10 @@
     "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\"",
     "clean": "rimraf es lib types",
     "prebuild": "npm run clean",
+    "update-definitions": "rimraf types && npm run build:definitions",
+    "watch:definitions": "watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js",
     "test": "jest src",
-    "watch": "npm-run-all -p \"build:modules -- --watch -d --declarationDir ./types\"",
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:definitions\"",
     "docs": "doc-generator --no-proptypes --no-sassdoc",
     "prepublishOnly": "npm run build && npm run docs"
   },
