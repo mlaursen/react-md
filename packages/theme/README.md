@@ -343,6 +343,62 @@ luminance algorithm to maintain a required contrast ratio for accessibility.
 </td>
 </tr>
 <tr>
+<td><code>rmd-theme(style)</code></td>
+<td>Color - the theme color.</td>
+<td>A small utility function to get a color from the current theme. This is normally used along with the
+<code>rmd-theme-var</code> function so that both css variables and a fallback can be applied.
+<br /><br />
+You are <i>most</i> likely looking for the <code>rmd-theme</code> mixin and not the functions instead.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>style</td>
+<td>String</td>
+<td></td>
+<td>The theme style to get. This should be one of the keys from <code>$rmd-theme-property-values</code>.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-theme-var(style)</code></td>
+<td>Color - the theme color.</td>
+<td>A small utility function to get a color from the current theme as a css variable. This is normally used along with the
+<code>rmd-theme</code> function so that both css variables and a fallback can be applied.
+<br /><br />
+You are <i>most</i> likely looking for the <code>rmd-theme</code> mixin and not the functions instead.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>style</td>
+<td>String</td>
+<td></td>
+<td>The theme style to get. This should be one of the keys from <code>$rmd-theme-property-values</code>.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
 <td><code>rmd-theme-prop-value(property)</code></td>
 <td>Color - a color value for the provided property.</td>
 <td>Attempts to get a specific theme color based on the property provided.
@@ -365,7 +421,7 @@ NOTE: This has to be defined in variables so there aren't recursive imports.
 <td>property</td>
 <td>String|Color</td>
 <td></td>
-<td>The property tog et from the theme colors.</td>
+<td>The property to get from the theme colors.</td>
 </tr>
 </tbody>
 </table>

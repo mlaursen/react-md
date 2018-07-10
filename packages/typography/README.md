@@ -4,6 +4,18 @@ This package is for including typography for react-md.
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/typography
 
 <!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+  * [Styles](#styles)
+- [Usage](#usage)
+- [Updating Styles](#updating-styles)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
+      - [Example Usage SCSS](#example-usage-scss)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -136,4 +148,82 @@ $md-typography-styles: (
 Every key that you do not include in the map will no longer be created when including the base typography styles.
 
 <!-- SASSDOC_START -->
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-typography-base</code></td>
+<td>Applies the base typography styles to an element.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-typography</code></td>
+<td>Applies one of the provided material design styles to an element.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-typography</code></td>
+<td>Creates all the typography styles from the react-md typography variables.
+<br /><br />
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Examples
+
+
+##### Example Usage SCSS
+
+```scss
+ .custom-class-name {
+   @include rmd-typography-base;
+
+   font-size: 1.3rem;
+}
+```
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-typography-font-family</code></td>
+<td>The font family to use throughout the entire application.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-typography-base</code></td>
+<td>The base styles for typography.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-typography-font-weights</code></td>
+<td>A Map of all the font weights.</td>
+</tr>
+<tr>
+<td><code>rmd-typography-styles</code></td>
+<td>A Map of all the typography styles in react-md</td>
+</tr>
+</tbody>
+</table>
+
 <!-- SASSDOC_END -->
