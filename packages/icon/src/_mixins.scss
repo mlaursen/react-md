@@ -1,0 +1,111 @@
+////
+/// @group icon
+////
+
+@import '@react-md/theme/dist/theme';
+@import 'variables';
+
+@mixin rmd-icon-base {
+  user-select: none;
+}
+
+/// Creates the base styles for a font icon.
+///
+/// @example scss - Example SCSS Usage
+///   .font-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-font;
+///   }
+@mixin rmd-icon-font {
+  @include rmd-theme(color, text-icon-on-background);
+
+  font-size: $rmd-icon-size;
+  text-align: center;
+}
+
+/// Creates the styles for updating a font icon to use the dense spec. This requires the
+/// base font icon styles to already be applied.
+///
+/// @example scss - Example SCSS Usage
+///   .font-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-font;
+///   }
+///
+///   @media (min-width: 1200px) {
+///     .font-icon {
+///       @include rmd-icon-font-dense;
+///     }
+///   }
+@mixin rmd-icon-font-dense {
+  font-size: $rmd-icon-dense-size;
+}
+
+/// Creates the base styles for an svg icon.
+///
+/// @example scss - Example SCSS Usage
+///   .svg-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-scg;
+///   }
+@mixin rmd-icon-svg {
+  @include rmd-theme(fill, text-icon-on-background);
+
+  height: $rmd-icon-size;
+  width: $rmd-icon-size;
+}
+
+/// Creates the styles for updating an svg icon to use the dense spec. This requires the
+/// base svg icon styles to already be applied.
+///
+/// @example scss - Example SCSS Usage
+///   .svg-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-svg;
+///   }
+///
+///   @media (min-width: 1200px) {
+///     .svg-icon {
+///       @include rmd-icon-svg-dense;
+///     }
+///   }
+@mixin rmd-icon-svg-dense {
+  height: $rmd-icon-dense-size;
+  width: $rmd-icon-dense-size;
+}
+
+/// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
+/// to be enabled to generate any styles.
+@mixin react-md-icon {
+  @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {
+    @error "Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.";
+  }
+
+  .rmd-icon {
+    @include rmd-icon-base;
+
+    @if $rmd-icon-use-font-icons {
+      &--font {
+        @include rmd-icon-font;
+
+        @if $rmd-icon-include-dense {
+          &--dense {
+            @include rmd-icon-font-dense;
+          }
+        }
+      }
+    }
+
+    @if $rmd-icon-use-svg-icons {
+      &--svg {
+        @include rmd-icon-svg;
+
+        @if $rmd-icon-include-dense {
+          &--dense {
+            @include rmd-icon-svg-dense;
+          }
+        }
+      }
+    }
+  }
+}

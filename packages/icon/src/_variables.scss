@@ -1,0 +1,33 @@
+////
+/// @group icon
+////
+
+/// The base icon size to use.
+/// @type Number
+$rmd-icon-size: 1.5rem !default; // 24dp
+
+/// The dense icon size to use. If you do not want to include the dense icon spec, disable the
+/// `$rmd-icon-include-dense` variable.
+/// @type Number
+/// @see rmd-icon-include-dense
+$rmd-icon-dense-size: 1.25rem !default; // 20dp
+
+/// Boolean if the dense spec for icons should be included. This will just generate `.md-icon--font-dense` and `.md-icon--svg-dense` class names
+/// that can be applied.
+///
+/// @type Boolean
+$rmd-icon-include-dense: true !default;
+
+/// Boolean if font icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
+/// disable the style generation for the unused type to save a few bytes.
+///
+/// @see rmd-icon-use-svg-icons
+/// @type Boolean
+$rmd-icon-use-font-icons: true !default;
+
+/// Boolean if svg icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
+/// disable the style generation for the unused type to save a few bytes.
+///
+/// @see rmd-icon-use-svg-icons
+/// @type Boolean
+$rmd-icon-use-svg-icons: true !default;

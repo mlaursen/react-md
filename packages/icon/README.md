@@ -1,0 +1,485 @@
+# @react-md/icon
+This package is for including icons within react-md. There is included support for both font icons and SVG icons.
+
+
+This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/icon
+
+<!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+  * [Styles](#styles)
+- [Usage](#usage)
+- [Prop Types](#prop-types)
+  * [FontIcon](#fonticon)
+  * [SVGIcon](#svgicon)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
+      - [Example SCSS Usage](#example-scss-usage)
+      - [Example SCSS Usage](#example-scss-usage-1)
+      - [Example SCSS Usage](#example-scss-usage-2)
+      - [Example SCSS Usage](#example-scss-usage-3)
+  * [Variables](#variables)
+<!-- TOC_END -->
+
+## Installation
+```sh
+$ npm install --save @react-md/icon
+```
+
+#### Updating Sass to include `node_modules`
+If you want to include the SCSS styles for `@react-md/icon`, you will need to update your Sass compiler to include the `node_modules` in the paths as well as add [autoprefixer](https://github.com/postcss/autoprefixer) to handle multiple browser compatibility.
+
+> If you are using [create-react-app](https://github.com/facebook/create-react-app), the autoprefixer is already included.
+
+#### webpack
+```diff
+ {
+   test: /.scss$/,
+   use: [{
+     loader: 'style-loader',
+     options: { sourceMap: true },
+   }, {
+     loader: 'css-loader',
+     options: { sourceMap: true, importLoaders: 2 },
+   }, {
+     loader: 'postcss',
+     options: { sourceMap: true },
+   }, {
+     loader: 'sass-loader',
+     options: {
+       sourceMap: true,
++      includePaths: [
++        './node_modules', // or whatever relative path it is to node_modules
++      ],
+     },
+   }],
+ }
+```
+
+#### create-react-app and node-sass-chokidar
+```diff
+   "scripts": {
++    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
++    "watch-css": "npm run build-csss && npm run build-css -- --watch --recursive"
+   }
+```
+
+### Styles
+Including all the base styles can be done by either importing the styles file from the `dist` folder or importing the helpers file and using the mixin `react-md-icon`:
+
+```scss
+// This import will generate styles by default.
+@import "@react-md/icon/dist/styles";
+```
+
+or
+
+```scss
+// This import only includes all the utility variables, mixins, and functions.
+@import "@react-md/icon/dist/icon";
+
+// Once everything has been imported, you can generate the styles with the following mixin
+@include react-md-icon;
+```
+
+If you would like to just import all the utility variables, mixins, and functions:
+```scss
+@import "@react-md/icon/dist/icon";
+
+// Any custom styles that use the utilities
+```
+
+
+## Usage
+<!-- PROPS_START -->
+## Prop Types
+### FontIcon
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+Any children to render to create the font icon. This is required for material-icons.
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply.
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply.
+</td>
+</tr>
+<tr>
+<td>iconClassName</td>
+<td><code>string</code></td>
+<td><code>material-icons</code></td>
+<td>
+The font icon class name to use.
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the font icon should use the dense spec.
+</td>
+</tr>
+<tr>
+<td>forceSize</td>
+<td><code>number | boolean</code></td>
+<td><code>false</code></td>
+<td>
+Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
+to enforce. This is useful when using other font icon libraries that do not have a consistent
+size.
+</td>
+</tr>
+<tr>
+<td>forceFontSize</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the <code>forceSize</code> prop should also force the <code>font-size</code> instead of only <code>width</code> and <code>height</code>.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### SVGIcon
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+Any <code><svg></code> children to render to create your icon. This can not be used with the <code>use</code> prop.
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the svg element.
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply to the svg element.
+</td>
+</tr>
+<tr>
+<td>role</td>
+<td><code>"img" | "presentation"</code></td>
+<td><code>img</code></td>
+<td>
+The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
+<code>img</code> so that it is insured as a graphic.
+</td>
+</tr>
+<tr>
+<td>titleAttr</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+This prop is the title attribute to provide to the <code><svg></code> element itself. This should be used when you
+are using a spritesheet that has defined <code><title></code> with each SVG symbol.
+</td>
+</tr>
+<tr>
+<td>aria-labelledby</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the <code>title</code>
+and <code>desc</code> props as this is used to create ids for those two props. This is super beneficial to screen readers.
+<br /><br />
+When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If
+this is omitted and the <code>use</code> prop is defined, it will take everything after the <code>#</code> sign and append <code>-title</code> and
+<code>-desc</code> as a fallback. Check out the examples for more information about this.
+@see {
+@link #title}
+@see {
+@link #desc}
+</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional title to give to your SVG icon. This is generally recommended for accessibility when not using
+the <code>use</code> prop, or your spritemap does not contain <code><title></code> and `<desc>.
+   *
+   * @see {@link #aria-labelledby}
+   *
+</td>
+</tr>
+<tr>
+<td>desc</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional description to give to your SVG icon. This is generally recommended for accessibility when not using
+the <code>use</code> prop, or your spritemap does not contain <code><title></code> and `<desc>.
+   *
+   * @see {@link #aria-labelledby}
+   *
+</td>
+</tr>
+<tr>
+<td>focusable</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the SVG should gain the <code>focusable</code> attribute. This is disabled by default since IE11
+and Edge actually default this to true and keyboard's will tab focus all SVGs.
+</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code>number</code></td>
+<td><code>null</code></td>
+<td>
+An optional size to apply to the SVG. This can be used to set both the
+<code>height</code> and <code>width</code> simultaneously. This will be provided as inline styles
+since the <code>height</code> and <code>width</code> are normally controlled by CSS, and CSS has
+higher precedence than the <code>height</code>/<code>width</code> attributes.
+</td>
+</tr>
+<tr>
+<td>viewBox</td>
+<td><code>string</code></td>
+<td><code>0 0 24 24</code></td>
+<td>
+The viewBox attribute allows you to specify that a given set of graphics stretch to
+fit a particular container element.
+<br /><br />
+The value of the viewBox attribute is a list of four numbers min-x, min-y, width and
+height, separated by white space and/or a comma, which specify a rectangle in user
+space which should be mapped to the bounds of the viewport established by the given
+element, taking into account attribute preserveAspectRatio.
+<br /><br />
+Negative values for width or height are not permitted and a value of zero disables
+rendering of the element.An optional viewbox for the SVG.
+<br /><br />
+For example, if the SVG element is 250 (width) by 200 (height) and you provide
+`viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corner
+(0, 0) to the bottom right (25, 20) and each unit will be worth <code>10px</code>.
+</td>
+</tr>
+<tr>
+<td>xmlns</td>
+<td><code>string</code></td>
+<td><code>http://www.w3.org/2000/svg</code></td>
+<td>
+An optional xmlns string to provide. The <code>use</code> prop will not work without this prop
+defined.
+</td>
+</tr>
+<tr>
+<td>use</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+This should be a link to a part of an SVG spritemap. So normally one of the following:
+- <code>'#some-custom-svg'</code>
+- <code>'/images/spritemap.svg#some-custom-svg'</code>
+<br /><br />
+This prop <b>should not</b> be used with the <code>children</code> prop as only one will be rendered.
+<br /><br />
+> NOTE: IE **does not support** external SVGs. Please see the demo for more details.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- PROPS_END -->
+
+
+<!-- SASSDOC_START -->
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-icon-font</code></td>
+<td>Creates the base styles for a font icon.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-font-dense</code></td>
+<td>Creates the styles for updating a font icon to use the dense spec. This requires the
+base font icon styles to already be applied.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-svg</code></td>
+<td>Creates the base styles for an svg icon.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-svg-dense</code></td>
+<td>Creates the styles for updating an svg icon to use the dense spec. This requires the
+base svg icon styles to already be applied.
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-icon</code></td>
+<td>Creates the styles for icons within react-md. This requires either the <code>rmd-icon-use-font-icons</code> or <code>rmd-icon-use-svg-icons</code> variables
+to be enabled to generate any styles.
+<br /><br />
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Examples
+
+
+##### Example SCSS Usage
+
+```scss
+.font-icon {
+  @include rmd-icon-base;
+  @include rmd-icon-font;
+}
+```
+,
+##### Example SCSS Usage
+
+```scss
+.font-icon {
+  @include rmd-icon-base;
+  @include rmd-icon-font;
+}
+
+@media (min-width: 1200px) {
+  .font-icon {
+    @include rmd-icon-font-dense;
+  }
+}
+```
+,
+##### Example SCSS Usage
+
+```scss
+.svg-icon {
+  @include rmd-icon-base;
+  @include rmd-icon-scg;
+}
+```
+,
+##### Example SCSS Usage
+
+```scss
+.svg-icon {
+  @include rmd-icon-base;
+  @include rmd-icon-svg;
+}
+
+@media (min-width: 1200px) {
+  .svg-icon {
+    @include rmd-icon-svg-dense;
+  }
+}
+```
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-icon-size</code></td>
+<td>The base icon size to use.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-icon-dense-size</code></td>
+<td>The dense icon size to use. If you do not want to include the dense icon spec, disable the
+<code>$rmd-icon-include-dense</code> variable.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-icon-include-dense</code></td>
+<td>Boolean if the dense spec for icons should be included. This will just generate <code>.md-icon--font-dense</code> and <code>.md-icon--svg-dense</code> class names
+that can be applied.</td>
+</tr>
+<tr>
+<td><code>rmd-icon-use-font-icons</code></td>
+<td>Boolean if font icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
+disable the style generation for the unused type to save a few bytes.</td>
+</tr>
+<tr>
+<td><code>rmd-icon-use-svg-icons</code></td>
+<td>Boolean if svg icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
+disable the style generation for the unused type to save a few bytes.</td>
+</tr>
+</tbody>
+</table>
+
+<!-- SASSDOC_END -->
+
