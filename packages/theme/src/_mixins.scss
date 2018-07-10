@@ -2,7 +2,7 @@
 /// @group theme
 ////
 
-@import "variables";
+@import 'variables';
 
 /// A small utility function to get a color from the current theme. This is normally used along with the
 /// `rmd-theme-var` function so that both css variables and a fallback can be applied.
@@ -55,8 +55,8 @@
 ///     CSS variables for it. This is really only intended for use cases where interactions with pseudo-element styles cause
 ///     problems due to Edge bugs.
 @mixin rmd-theme($property, $style, $important: false, $edge-opt-out: $rmd-theme-edge-opt-out) {
-  $suffix: if($important, " !important", "");
-  @if type-of($style) == "color" or $style == "currentColor" {
+  $suffix: if($important, ' !important', '');
+  @if type-of($style) == 'color' or $style == 'currentColor' {
     #{$property}: #{$style + $suffix};
   } @else {
     $color-value: rmd-theme($style);
@@ -97,6 +97,7 @@
 /// @param {Color} secondary-color [rmd-theme-secondary] - The secondary color to use to theme your app.
 @mixin react-md-theme($primary-color: $rmd-theme-primary, $secondary-color: $rmd-theme-secondary) {
   $property-values: map-keys($rmd-theme-property-values);
+
   :root {
     @each $style in $property-values {
       --rmd-theme-#{$style}: #{map-get($rmd-theme-property-values, $style)};
@@ -113,7 +114,7 @@
 
   @each $style in $property-values {
     .rmd-theme--#{$style} {
-      $is-bg: $style == "background" or $style == "surface";
+      $is-bg: $style == 'background' or $style == 'surface';
       @include rmd-theme(if($is-bg, background-color, color), $style, not($is-bg));
     }
   }

@@ -2,19 +2,19 @@
 /// @group tooltip
 ////
 
-@import "@react-md/typography/dist/typography";
-@import "variables";
+@import '@react-md/typography/dist/typography';
+@import 'variables';
 
 @function inverse-position($position) {
-  @if $position == "left" {
-    @return "right";
-  } @else if $position == "right" {
-    @return "left";
-  } @else if $position == "bottom" {
-    @return "top";
+  @if $position == 'left' {
+    @return 'right';
+  } @else if $position == 'right' {
+    @return 'left';
+  } @else if $position == 'bottom' {
+    @return 'top';
   }
 
-  @return "bottom";
+  @return 'bottom';
 }
 
 /// Creates the base tooltip styles only.
@@ -149,15 +149,15 @@
 ///   normally just be `$rmd-tooltip-spacing` or `$rmd-tooltip-dense-spacing`.
 @mixin rmd-tooltip-position($position, $spacing) {
   @if index($rmd-tooltip-position-values, $position) == null {
-    @error "Invalid position specified! #{$position} doesn't exist. Choose one of #{$rmd-tooltip-position-values}.";
+    @error "Invalid position specified! '#{$position}' doesn't exist. Choose one of #{$rmd-tooltip-position-values}.";
   }
 
   // add a negative spacing since the position will be transformed for centering below
   #{inverse-position($position)}: calc(100% + #{$spacing});
 
-  $horizontal: $position == "left" or $position == "right";
+  $horizontal: $position == 'left' or $position == 'right';
   $distance: if(
-    $position == "left" or $position == "top",
+    $position == 'left' or $position == 'top',
     -$rmd-tooltip-transition-distance,
     $rmd-tooltip-transition-distance
   );

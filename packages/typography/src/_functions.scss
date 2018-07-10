@@ -9,31 +9,31 @@
 /// @param {String} style - The typography style name to return a variable for
 /// @return {Map} a map of the style properties from the global typograpy variable.
 @function rmd-typography-get-global-variable($style) {
-  @if $style == "headline-1" {
+  @if $style == 'headline-1' {
     @return $rmd-typography-styles-headline-1;
-  } @else if $style == "headline-2" {
+  } @else if $style == 'headline-2' {
     @return $rmd-typography-styles-headline-2;
-  } @else if $style == "headline-3" {
+  } @else if $style == 'headline-3' {
     @return $rmd-typography-styles-headline-3;
-  } @else if $style == "headline-4" {
+  } @else if $style == 'headline-4' {
     @return $rmd-typography-styles-headline-4;
-  } @else if $style == "headline-5" {
+  } @else if $style == 'headline-5' {
     @return $rmd-typography-styles-headline-5;
-  } @else if $style == "headline-6" {
+  } @else if $style == 'headline-6' {
     @return $rmd-typography-styles-headline-6;
-  } @else if $style == "subtitle-1" {
+  } @else if $style == 'subtitle-1' {
     @return $rmd-typography-styles-subtitle-1;
-  } @else if $style == "subtitle-2" {
+  } @else if $style == 'subtitle-2' {
     @return $rmd-typography-styles-subtitle-2;
-  } @else if $style == "body-1" {
+  } @else if $style == 'body-1' {
     @return $rmd-typography-styles-body-1;
-  } @else if $style == "body-2" {
+  } @else if $style == 'body-2' {
     @return $rmd-typography-styles-body-2;
-  } @else if $style == "caption" {
+  } @else if $style == 'caption' {
     @return $rmd-typography-styles-caption;
-  } @else if $style == "button" {
+  } @else if $style == 'button' {
     @return $rmd-typography-styles-button;
-  } @else if $style == "overline" {
+  } @else if $style == 'overline' {
     @return $rmd-typography-styles-overline;
   }
 

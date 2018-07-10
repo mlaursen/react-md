@@ -21,7 +21,7 @@
   $style-props: map-get($rmd-typography-styles, $style);
 
   @if not map-has-key($rmd-typography-styles, $style) {
-    @error "Invalid style specified! #{$style} doesn't exist. Choose one of #{$map-keys($rmd-typography-styles)}";
+    @error "Invalid style specified! '#{$style}' doesn't exist. Choose one of #{$map-keys($rmd-typography-styles)}";
   }
 
   @each $key, $value in $style-props {

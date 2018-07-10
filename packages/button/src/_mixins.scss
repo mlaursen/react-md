@@ -2,9 +2,9 @@
 /// @group button
 ////
 
-@import "@react-md/theme/dist/theme";
-@import "@react-md/typography/dist/typography";
-@import "variables";
+@import '@react-md/theme/dist/theme';
+@import '@react-md/typography/dist/typography';
+@import 'variables';
 
 @mixin rmd-btn-unstyled {
   background-color: transparent;
@@ -84,11 +84,13 @@
     }
 
     &--outline-primary {
+      // scss-lint:disable DuplicateProperty
       box-shadow: $rmd-btn-box-shadow rmd-theme(primary);
       box-shadow: $rmd-btn-box-shadow rmd-theme-var(primary);
     }
 
     &--outline-secondary {
+      // scss-lint:disable DuplicateProperty
       box-shadow: $rmd-btn-box-shadow rmd-theme(secondary);
       box-shadow: $rmd-btn-box-shadow rmd-theme-var(secondary);
     }

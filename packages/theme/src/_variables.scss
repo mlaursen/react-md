@@ -2,8 +2,8 @@
 /// @group theme
 ////
 
-@import "color-palette";
-@import "functions";
+@import 'color-palette';
+@import 'functions';
 
 /// The primary theme color to use for your app. This is normally one of the material design colors with a `-500` suffix,
 /// but it can be any color.
@@ -11,12 +11,12 @@
 $rmd-theme-primary: $rmd-purple-500 !default;
 
 /// The color to use when text should be displayed on the primary theme color. The default behavior is to test if the primary
-/// color's contrast tone. If the color is considered "dark", `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
 $rmd-theme-on-primary: if(
-  rmd-theme-contrast-tone($rmd-theme-primary) == "light",
+  rmd-theme-contrast-tone($rmd-theme-primary) == 'light',
   $rmd-black-base,
   $rmd-white-base
 ) !default;
@@ -27,12 +27,12 @@ $rmd-theme-on-primary: if(
 $rmd-theme-secondary: $rmd-pink-a-400 !default;
 
 /// The color to use when text should be displayed on the secondary theme color. The default behavior is to test if the secondary
-/// color's contrast tone. If the color is considered "dark", `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
 $rmd-theme-on-secondary: if(
-  rmd-theme-contrast-tone($rmd-theme-secondary) == "light",
+  rmd-theme-contrast-tone($rmd-theme-secondary) == 'light',
   $rmd-black-base,
   $rmd-white-base
 ) !default;
@@ -41,20 +41,20 @@ $rmd-theme-on-secondary: if(
 /// @type Color
 $rmd-theme-background: #fff !default;
 
-/// The theme's surface background color. This is the background color that will be used for any temporary "material" (or surface)
+/// The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)
 ///
 /// Ex: Dialogs, Lists
 /// @type Color
 $rmd-theme-surface: #fff !default;
 
 /// The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface
-/// color's contrast tone. If the color is considered "dark", `$rd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// color's contrast tone. If the color is considered 'dark', `$rd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
-$rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark", $rmd-black-base, $rmd-white-base);
+$rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == 'dark', $rmd-black-base, $rmd-white-base);
 
-/// A Map of all the text colors for the app. This will be Map of "light" and "dark" that has the following keys:
+/// A Map of all the text colors for the app. This will be Map of 'light' and 'dark' that has the following keys:
 /// - primary
 /// - secondary
 /// - hint
@@ -72,18 +72,18 @@ $rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == "dark",
 /// @type Map
 $rmd-theme-text-colors: (
   dark: (
-    primary: rgba($rmd-black-base, 0.87),
-    secondary: rgba($rmd-black-base, 0.54),
-    hint: rgba($rmd-black-base, 0.34),
-    disabled: rgba($rmd-black-base, 0.38),
-    icon: rgba($rmd-black-base, 0.38),
+    primary: rgba($rmd-black-base, .87),
+    secondary: rgba($rmd-black-base, .54),
+    hint: rgba($rmd-black-base, .34),
+    disabled: rgba($rmd-black-base, .38),
+    icon: rgba($rmd-black-base, .38),
   ),
   light: (
     primary: $rmd-white-base,
-    secondary: rgba($rmd-white-base, 0.7),
-    hint: rgba($rmd-white-base, 0.5),
-    disabled: rgba($rmd-white-base, 0.5),
-    icon: rgba($rmd-white-base, 0.5),
+    secondary: rgba($rmd-white-base, .7),
+    hint: rgba($rmd-white-base, .5),
+    disabled: rgba($rmd-white-base, .5),
+    icon: rgba($rmd-white-base, .5),
   ),
 );
 
@@ -98,7 +98,7 @@ $rmd-theme-text-colors: (
 }
 
 /// A Map of all the theme property values that can be used throughout the app. This is mainly created
-/// so that the specific `md-theme--NAME` classes can be created, but also for the `rmd-theme-prop-value` function
+/// so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme-prop-value` function
 /// to get a specific color within your theme.
 $rmd-theme-property-values: (
   primary: $rmd-theme-primary,
@@ -128,18 +128,18 @@ $rmd-theme-edge-opt-out: false !default;
 
 /// Attempts to get a specific theme color based on the property provided.
 ///
-/// If the property is a color or "currentColor", it will be returned instead.
+/// If the property is a color or 'currentColor', it will be returned instead.
 ///
 /// NOTE: This has to be defined in variables so there aren't recursive imports.
 /// @param {String|Color} property - The property to get from the theme colors.
 /// @returns {Color} a color value for the provided property.
 @function rmd-theme-prop-value($property) {
-  @if type-of($property) == "color" or $property == "currentColor" {
+  @if type-of($property) == 'color' or $property == 'currentColor' {
     @return $property;
   }
 
   @if not map-has-key($rmd-theme-property-values, $property) {
-    @error "Invalid theme property: '#{$property}'. Choose one of '#{map-keys($rmd-theme-property-values)}'";
+    @error "Invalid theme property: '#{$property}'. Choose one of #{map-keys($rmd-theme-property-values)}";
   }
 
   @return map-get($rmd-theme-property-values, $property);
