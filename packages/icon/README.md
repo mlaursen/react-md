@@ -272,14 +272,6 @@ The role to apply to the SVG. When using icons, it is generally recommended to l
 </td>
 </tr>
 <tr>
-<td>titleAttr</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-This prop is the title attribute to provide to the <code>&#60;svg&#62;</code> element itself. This should be used when you&#10;are using a spritesheet that has defined <code>&#60;title&#62;</code> with each SVG symbol.&#10;
-</td>
-</tr>
-<tr>
 <td>aria-labelledby</td>
 <td><code>string</code></td>
 <td><code>null</code></td>

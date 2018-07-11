@@ -28,13 +28,6 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   role?: "img" | "presentation";
 
   /**
-   * This prop is the title attribute to provide to the `<svg>` element itself. This should be used when you
-   * are using a spritesheet that has defined `<title>` with each SVG symbol.
-   * @docgen
-   */
-  titleAttr?: string;
-
-  /**
    * An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the `title`
    * and `desc` props as this is used to create ids for those two props. This is super beneficial to screen readers.
    *
@@ -139,7 +132,6 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
     style: PropTypes.object,
     className: PropTypes.string,
     role: PropTypes.oneOf(["img", "presentation"]),
-    titleAttr: PropTypes.string,
     "aria-labelledby": PropTypes.string,
     title: PropTypes.string,
     desc: PropTypes.string,
@@ -204,7 +196,6 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
       style,
       className,
       use,
-      titleAttr,
       "aria-labelledby": ariaLabelledBy,
       size,
       title: propTitle,
@@ -222,8 +213,8 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
       children = <use xlinkHref={use} />;
     }
 
-    if (propTitle || titleAttr) {
-      title = <title id={titleId}>{title || titleAttr}</title>;
+    if (propTitle) {
+      title = <title id={titleId}>{propTitle}</title>;
     }
 
     if (desc) {
