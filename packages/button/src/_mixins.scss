@@ -32,7 +32,6 @@
 ///     @include rmd-btn-base;
 ///   }
 @mixin rmd-btn-base {
-  @include rmd-typography(button);
   @include rmd-btn-unstyled;
 
   align-items: center;
@@ -95,6 +94,8 @@
 }
 
 @mixin rmd-btn-text {
+  @include rmd-typography(button);
+
   border-radius: $rmd-btn-text-border-radius;
   height: $rmd-btn-text-height;
   min-width: $rmd-btn-text-min-width;
@@ -129,6 +130,8 @@
     &--icon {
       border-radius: $rmd-btn-icon-border-radius;
       height: $rmd-btn-icon-size;
+      justify-content: center;
+      padding: 0;
       width: $rmd-btn-icon-size;
     }
 
