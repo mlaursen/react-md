@@ -1,10 +1,11 @@
 /* tslint:disable:max-line-length */
-// This is a generated file from running the "createComponents" script. This file should not be updated manually.
+// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BatteryCharging60FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>battery_charging_60</FontIcon>;
+const BatteryCharging60FontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>battery_charging_60</FontIcon>
+);
 
 export default BatteryCharging60FontIcon;
-

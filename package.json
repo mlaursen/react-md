@@ -5,9 +5,7 @@
   },
   "scripts": {
     "build": "lerna run build --ignore examples --ignore doc-generator",
-    "format": "npm-run-all -p \"format:ts\" \"format:tsx\"",
-    "format:ts": "prettier --write packages/*/**/*.ts",
-    "format:tsx": "prettier --write packages/*/**/*.tsx",
+    "format": "prettier --write packages/*/**/*.tsx packages/*/**/*.ts",
     "start": "cd packages/examples && npm run start",
     "dev": "npm-run-all -p \"watch\" \"start\"",
     "watch": "lerna run watch --ignore doc-generator --ignore examples",

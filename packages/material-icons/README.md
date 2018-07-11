@@ -1,7 +1,9 @@
 # @react-md/material-icons
 This package is just a simple wrapper for using material icons within react-md as either font icons or svg icons. All of the icons
-were pulled directly from [material-icons](https://github.com/google/material-design-icons) using the [createIcons scripts](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/createIcons.js).
+were pulled directly from [material-icons](https://github.com/google/material-design-icons) using the [createIcons script](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/createIcons.js).
 Please thank all the contributors and maintainers of material icons for the work they have put in.
+
+You can look in the [source folder](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/src) to view a list of all the available icons.
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/material-icons
 

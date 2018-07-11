@@ -8,6 +8,7 @@ const AdmZip = require('adm-zip');
 const download = require('download');
 const commander = require('commander');
 const Bluebird = require('bluebird');
+const execSync = require('child_process').execSync;
 
 const readFile = Bluebird.promisify(fs.readFile);
 
@@ -15,7 +16,9 @@ commander
   .usage('<version> [options]')
   .option('-d, --download-only [downloadOnly]', 'This will only download and unzip the material-design-icons into the temp directory')
   .option('-i, --icons-only [iconsOnly]', 'This will only find and replace all icons within the temp directory for material-design-icons into the svg directory.')
-  .option('-c, --components-only [componentsOnly]', 'This will just update the generated component files only instead of downloading and finding icons from the source.')
+  .option('-u, --update-only [componentsOnly]', 'This will just update the generated component files only instead of downloading and finding icons from the source.')
+  .option('-c, --clean [clean]', 'This will remove all the temp files created by this script')
+  .option('--no-cleanup', 'This will prevent the script from automatically removing all the temp files if no other options are provided')
   .parse(process.argv);
 
 let [version] = commander.args;
@@ -87,7 +90,7 @@ function toPascalCase(fileName) {
 
 function createIconFile(componentName, children, iconType) {
   return `/* tslint:disable:max-line-length */
-// This is a generated file from running the "createComponents" script. This file should not be updated manually.
+// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 import * as React from "react";
 
 import { ${iconType}Icon, I${iconType}IconProps } from "@react-md/icon";
@@ -114,7 +117,7 @@ async function parseSVGFileAndCreateComponents(svgFilePath, componentName, iconN
 }
 
 async function createIndexFile(components) {
-  const contents = `// This is a generated file from running the "createComponents" script. This file should not be updated manually.
+  const contents = `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 ${components.reduce((s, c) => `${s ? `${s}\n` : ''}export { default as ${c} } from "./${c}";`, '')}
 `;
 
@@ -148,14 +151,25 @@ async function createComponentFiles() {
       }));
       console.log('Updating the main index file to include all the components...');
       await createIndexFile(components);
+
+      console.log('Running prettier on generated files...');
+      execSync('npm run prettier');
       console.log('Done!');
     });
   });
 }
 
+async function cleanFiles() {
+  console.log(`Removing the '${temp}' folder...`);
+  await fs.remove(temp);
+  console.log('Done!');
+}
+
 (async function run() {
-  const { componentsOnly, downloadOnly, iconsOnly } = commander;
-  if (downloadOnly) {
+  const { componentsOnly, downloadOnly, iconsOnly, clean, cleanup } = commander;
+  if (clean) {
+    await cleanFiles();
+  } else if (downloadOnly) {
     await downloadSource();
   } else if (iconsOnly) {
     await findAndCopyIcons();
@@ -165,5 +179,9 @@ async function createComponentFiles() {
     await downloadSource();
     await findAndCopyIcons();
     await createComponentFiles();
+
+    if (cleanup) {
+      await cleanFiles();
+    }
   }
 })();
