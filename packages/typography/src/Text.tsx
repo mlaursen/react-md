@@ -187,7 +187,7 @@ export default class Text extends React.Component<ITextProps, {}> {
     const className = cn(
       {
         "rmd-typography": !type,
-        [`md-typography--${type}`]: !!type,
+        [`rmd-typography--${type}`]: !!type,
       },
       propClassName
     );
