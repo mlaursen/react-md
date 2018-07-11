@@ -1,12 +1,16 @@
-@import "@react-md/theme/dist/color-palette";
+@import '@react-md/theme/dist/color-palette';
 
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-pink-a-200;
 
-@import "@react-md/button/dist/button";
-@import "@react-md/theme/dist/theme";
-@import "@react-md/tooltip/dist/tooltip";
+@import '@react-md/typography/dist/typography';
+@import '@react-md/button/dist/button';
+@import '@react-md/theme/dist/theme';
+@import '@react-md/tooltip/dist/tooltip';
+@import '@react-md/icon/dist/icon';
 
+@include react-md-typography;
+@include react-md-icon;
 @include react-md-button;
 @include react-md-theme;
 @include react-md-tooltip;
@@ -14,31 +18,4 @@ $rmd-theme-secondary: $rmd-pink-a-200;
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
-
-.btn-group {
-  .rmd-btn {
-    margin: 1rem;
-  }
-
-  margin-bottom: 10rem;
-}
-
-// .btn {
-//   @include rmd-typography(button);
-//
-//   border-radius: 4px;
-//   border-width: 0;
-//   background-color: $rmd-theme-primary;
-//   color: $rmd-white-base;
-//   display: inline-flex;
-//   outline-style: none;
-//   padding-left: 1rem;
-//   padding-right: 1rem;
-//   position: relative;
-//
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }

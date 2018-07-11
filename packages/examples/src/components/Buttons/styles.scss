@@ -1,0 +1,9 @@
+$rmd-btn-box-shadow-width: 2px;
+
+@import '@react-md/button/dist/variables';
+
+.temp-btn-focus .rmd-btn {
+  &:focus:not(.rmd-btn--contained) {
+    box-shadow: $rmd-btn-box-shadow $rmd-blue-500;
+  }
+}

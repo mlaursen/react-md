@@ -5,11 +5,14 @@
   "dependencies": {
     "@react-md/button": "^2.0.0-alpha-1",
     "@react-md/elevation": "^2.0.0-alpha-1",
+    "@react-md/icon": "^2.0.0-alpha-1",
+    "@react-md/material-icons": "^2.0.0-alpha-1",
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/tooltip": "^2.0.0-alpha-1",
     "@react-md/transition": "^2.0.0-alpha-1",
     "@react-md/typography": "^2.0.0-alpha-1",
     "@react-md/utils": "^2.0.0-alpha-1",
+    "classnames": "^2.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts-ts": "2.16.0"
@@ -24,6 +27,7 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.4",
     "@types/jest": "^23.1.0",
     "@types/node": "^10.3.3",
     "@types/react": "^16.3.18",

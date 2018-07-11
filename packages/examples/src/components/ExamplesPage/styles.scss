@@ -1,0 +1,40 @@
+@import '@react-md/elevation/dist/elevation';
+
+.examples-page {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  padding: 2rem;
+
+  &__block,
+  &__example {
+    margin: 1rem;
+    width: calc(100% - 1rem);
+  }
+
+  &__example {
+    @include rmd-elevation(1);
+
+    padding: 1.5rem;
+  }
+
+  &__example-title {
+    margin: 0;
+  }
+}
+
+.example-group {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+
+  .rmd-typography--headline-6 {
+    margin: 1rem 0;
+    width: 100%;
+  }
+
+  &__example {
+    margin: 1rem;
+  }
+}

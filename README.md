@@ -78,8 +78,8 @@ The watcher will find every Sass file in `src` subdirectories, and create a corr
 overwriting `src/App.css`. Since `src/App.js` still imports `src/App.css`, the styles become a part of your application.
 You can now edit `src/App.scss`, and `src/App.css` will be regenerated.
 
-At this point you might want to remove all CSS files from the source control, and add `src/**/*.css `to your `.gitignore` file.
-It is generally a good practice to keep the build products outside of the source control. Edit `.gitignore`:
+At this point you might want to remove all CSS files from the source control, and add `src/*.css` and  `src/**/*.css `to your
+`.gitignore` file.  It is generally a good practice to keep the build products outside of the source control. Edit `.gitignore`:
 
 ```diff
  npm-debug.log*
@@ -87,6 +87,7 @@ It is generally a good practice to keep the build products outside of the source
  yarn-error.log*
 +
 +# build artifacts
++src/*.css
 +src/**/*.css
 ```
 

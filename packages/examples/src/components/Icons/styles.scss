@@ -1,0 +1,15 @@
+
+.icon-group {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+
+  .rmd-typography--headline-6 {
+    margin: 1rem 0;
+    width: 100%;
+  }
+
+  .rmd-icon {
+    margin: 1rem;
+  }
+}

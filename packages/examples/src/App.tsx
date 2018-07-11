@@ -2,7 +2,9 @@ import * as React from "react";
 import "./App.css";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 import { RelativeTooltip, MagicTooltipProvider, MagicTooltip } from "@react-md/tooltip";
-import { Button } from "@react-md/button";
+
+import Buttons from "./components/Buttons";
+import Icons from "./components/Icons";
 
 export interface IAppState {
   dense: boolean;
@@ -21,56 +23,48 @@ class App extends React.Component<{}, IAppState> {
     const { style, dense } = this.state;
     return (
       <MagicTooltipProvider dense={dense}>
-        <div className="App">
-          <section id="button-examples" className="btn-group">
-            <h3>Buttons</h3>
-            <Button>Example</Button>
-            <Button disabled={true}>Example</Button>
-            <Button>Example</Button>
-            <Button themeType="contained">Example 2</Button>
-            <Button themeType="outline">Example 2</Button>
-          </section>
-          <button id="toggle-1" type="button" onClick={this.toggle}>
-            Toggle
-          </button>
-          <ul id="toggle-1-menu" role="menu" style={style} className="list list--inline">
-            <li role="menuitem" tabIndex={-1}>
-              Item 1
-            </li>
-            <li role="menuitem" tabIndex={-1}>
-              Item 2
-            </li>
-            <li role="menuitem" tabIndex={-1}>
-              Item 3
-            </li>
-            <li role="menuitem" tabIndex={-1}>
-              Item 4
-            </li>
-            <li role="menuitem" tabIndex={-1}>
-              Item 5
-            </li>
-          </ul>
-          <button id="button-2" type="button" aria-describedby="button-2-tooltip" className="btn">
-            Button
-            <RelativeTooltip id="button-2-tooltip">Tooltip contents!</RelativeTooltip>
-          </button>
-          <div className="btn-group">
-            <div id="div-1" aria-describedby="magic-tooltip-1" tabIndex={0} role="button" className="btn">
-              This is a button
-              <MagicTooltip id="magic-tooltip-1">This is some content</MagicTooltip>
-            </div>
-            <div id="div-2" aria-describedby="magic-tooltip-2" tabIndex={0} role="button" className="btn">
-              This is a button
-              <MagicTooltip id="magic-tooltip-2">This is some content</MagicTooltip>
-            </div>
-            <div id="div-3" aria-describedby="magic-tooltip-3" tabIndex={0} role="button" className="btn">
-              This is a button
-              <MagicTooltip id="magic-tooltip-3">This is some content</MagicTooltip>
-            </div>
-            <div id="div-4" aria-describedby="magic-tooltip-4" tabIndex={0} role="button" className="btn">
-              This is a button
-              <MagicTooltip id="magic-tooltip-4">This is some content</MagicTooltip>
-            </div>
+        <Buttons />
+        <Icons />
+        <button id="toggle-1" type="button" onClick={this.toggle}>
+          Toggle
+        </button>
+        <ul id="toggle-1-menu" role="menu" style={style} className="list list--inline">
+          <li role="menuitem" tabIndex={-1}>
+            Item 1
+          </li>
+          <li role="menuitem" tabIndex={-1}>
+            Item 2
+          </li>
+          <li role="menuitem" tabIndex={-1}>
+            Item 3
+          </li>
+          <li role="menuitem" tabIndex={-1}>
+            Item 4
+          </li>
+          <li role="menuitem" tabIndex={-1}>
+            Item 5
+          </li>
+        </ul>
+        <button id="button-2" type="button" aria-describedby="button-2-tooltip" className="btn">
+          Button
+          <RelativeTooltip id="button-2-tooltip">Tooltip contents!</RelativeTooltip>
+        </button>
+        <div className="btn-group">
+          <div id="div-1" aria-describedby="magic-tooltip-1" tabIndex={0} role="button" className="btn">
+            This is a button
+            <MagicTooltip id="magic-tooltip-1">This is some content</MagicTooltip>
+          </div>
+          <div id="div-2" aria-describedby="magic-tooltip-2" tabIndex={0} role="button" className="btn">
+            This is a button
+            <MagicTooltip id="magic-tooltip-2">This is some content</MagicTooltip>
+          </div>
+          <div id="div-3" aria-describedby="magic-tooltip-3" tabIndex={0} role="button" className="btn">
+            This is a button
+            <MagicTooltip id="magic-tooltip-3">This is some content</MagicTooltip>
+          </div>
+          <div id="div-4" aria-describedby="magic-tooltip-4" tabIndex={0} role="button" className="btn">
+            This is a button
+            <MagicTooltip id="magic-tooltip-4">This is some content</MagicTooltip>
           </div>
         </div>
         <button type="button" onClick={this.toggleDense} className="btn">
