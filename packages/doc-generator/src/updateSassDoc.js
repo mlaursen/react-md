@@ -82,7 +82,7 @@ function createMixinTable(mixins) {
 ${toMixinTable(mixins)}
 </tbody>
 </table>
-${examples.length ? `\n#### Examples\n\n${examples}` : ''}`;
+${examples.length ? `\n#### Examples\n\n${examples.join('\n')}` : ''}`;
 }
 
 function toFunctionTable(functions) {

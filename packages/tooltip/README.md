@@ -568,7 +568,8 @@ An optional function to call when the transition event has finished when animati
   padding-top: .825rem;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -576,7 +577,8 @@ An optional function to call when the transition event has finished when animati
   @include rmd-tooltip-active;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -595,7 +597,8 @@ An optional function to call when the transition event has finished when animati
   }
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -634,7 +637,8 @@ An optional function to call when the transition event has finished when animati
   @include rmd-tooltip-base;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -642,7 +646,8 @@ An optional function to call when the transition event has finished when animati
   @include rmd-tooltip-position(left, $rmd-tooltip-spacing);
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -650,7 +655,8 @@ An optional function to call when the transition event has finished when animati
   @include rmd-tooltip-line-wrap;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss

@@ -20,6 +20,11 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example Usage SCSS](#example-usage-scss-1)
       - [Example Usage SCSS](#example-usage-scss-2)
       - [Example Usage SCSS](#example-usage-scss-3)
+      - [Example Usage SCSS](#example-usage-scss-4)
+      - [Example Usage Generated CSS](#example-usage-generated-css)
+      - [Updating before and afer selectors](#updating-before-and-afer-selectors)
+      - [Updating before and after selectors css Output](#updating-before-and-after-selectors-css-output)
+      - [Example Usage SCSS](#example-usage-scss-5)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -315,14 +320,26 @@ An optional function to call when the touchend event is triggered within the but
 </td>
 </tr>
 <tr>
-<td><code>rmd-btn-hover-base</code></td>
-<td>The base styles to add hover effects to buttons. The hover effects are created by modifying&#10;the <code>::after</code> pseudo-selector so that if you apply the default <code>$rmd-btn-hover-background-color</code>&#10;or a color with an opacity, it will look good on any button background color.&#10;&#10;NOTE: This requires the container element to have `position: relative` to work.&#10;&#10;
+<td><code>rmd-btn-text</code></td>
+<td>A mixin that will generate only the styles for a text button. This depends on the base styles&#10;to be applied beforehand&#10;&#10;
 
 </td>
 </tr>
 <tr>
-<td><code>rmd-btn-hover-states</code></td>
-<td>The styles to add the correct hover states to a button. This should really only be applied when the&#10;button is not in a <code>disabled</code> state.&#10;&#10;
+<td><code>rmd-btn-icon</code></td>
+<td>Creates the styles only for the icon button spec. This depends on the base button styles to&#10;be applied beforehand.&#10;&#10;
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-btn-text-icon</code></td>
+<td>This mixin will create styles to place buttons before or after the text within a text&#10;button. By default, this will create 2 additional class names for placing the icon before&#10;and after the text, but can be configured to use any selector.&#10;&#10;
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-button</code></td>
+<td>Creates all the styles for buttons within react-md.&#10;&#10;
 
 </td>
 </tr>
@@ -342,7 +359,8 @@ An optional function to call when the touchend event is triggered within the but
   display: inline-flex;
 }
 ```
-,
+
+
 ##### Example Usage SCSS
 
 ```scss
@@ -350,32 +368,90 @@ An optional function to call when the touchend event is triggered within the but
   @include rmd-btn-base;
 }
 ```
-,
+
+
 ##### Example Usage SCSS
 
 ```scss
+// all buttons will only be set for the text button spec
 .my-button {
-  @include rmd-btn-hover-base;
-
-  position: relative;
+  @include rmd-btn-base;
+  @include rmd-btn-text;
 }
 ```
-,
+
+
 ##### Example Usage SCSS
 
 ```scss
-.my-button {
-  @include rmd-btn-hover-states;
+.my-icon-button {
+  @include rmd-btn-base;
+  @include rmd-btn-icon;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.my-text-button {
+  @include rmd-btn-base;
+
+  &__icon {
+    @include rmd-btn-text-icon;
+  }
+}
+```
+
+##### Example Usage Generated CSS
+
+```css
+.my-text-button__icon {
+  color: inherit;
 }
 
-.my-button:not(:disabled) {
-  @include rmd-btn-hover-states;
+.my-text-button__icon--before {
+  margin-right: .5rem;
 }
 
-// this version is preferred since it makes updating the disabled styles easier
-.my-button--hoverable {
-  @include rmd-btn-hover-states;
+.my-text-button__icon--after {
+  margin-left: .5rem;
 }
+```
+
+##### Updating before and afer selectors
+
+```scss
+.my-text-button {
+  @include rmd-btn-base;
+
+  &__icon {
+    @include rmd-btn-text-icon('&:first-child', '&:last-child');
+  }
+}
+```
+
+##### Updating before and after selectors css Output
+
+```css
+.my-text-button__icon {
+  color: inherit;
+}
+
+.my-text-button__icon:first-child {
+  margin-right: .5rem;
+}
+
+.my-text-button__icon:last-child {
+  margin-left: .5rem;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+@include react-md-button;
 ```
 
 

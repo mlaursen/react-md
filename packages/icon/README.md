@@ -399,7 +399,8 @@ This should be a link to a part of an SVG spritemap. So normally one of the foll
   @include rmd-icon-font;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -414,7 +415,8 @@ This should be a link to a part of an SVG spritemap. So normally one of the foll
   }
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
@@ -423,7 +425,8 @@ This should be a link to a part of an SVG spritemap. So normally one of the foll
   @include rmd-icon-scg;
 }
 ```
-,
+
+
 ##### Example SCSS Usage
 
 ```scss
