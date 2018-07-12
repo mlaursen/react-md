@@ -13,6 +13,7 @@
     "watch:definitions": "watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js",
     "test": "jest src",
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:definitions\"",
+    "watch:no-defs": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
     "docs": "doc-generator --no-proptypes --no-sassdoc",
     "prepublishOnly": "npm run build && npm run docs"
   },
