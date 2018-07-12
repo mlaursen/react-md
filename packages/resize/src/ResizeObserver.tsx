@@ -202,8 +202,7 @@ export default class ResizeObserverComp extends React.Component<IResizeObserverP
   };
 
   private measure = (entries: ResizeObserverEntry[]) => {
-    const { el } = this.state;
-    if (!this.observer || !el || entries.length > 1 || entries.length === 0) {
+    if (!this.observer || entries.length > 1 || entries.length === 0) {
       return;
     }
 

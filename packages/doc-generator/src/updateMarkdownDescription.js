@@ -2,6 +2,7 @@ const encode = require('ent/encode');
 
 module.exports = function updateMarkdownDescription(description) {
   const lines = encode(description)
+    .replace(/&#10;/g, '\n')
     .replace(/`([^ `]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/, '<b>$1</b>')
     .replace(/_([^_]+)_/, '<i>$1</i>')

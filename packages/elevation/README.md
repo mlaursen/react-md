@@ -103,7 +103,7 @@ If you would like to just import all the utility variables, mixins, and function
 <tbody>
 <tr>
 <td><code>rmd-elevation(z-value, color, opacity-boost)</code></td>
-<td>Create the box shadow based on a z-value.&#10;&#10;
+<td>Create the box shadow based on a z-value.
 <h5>Parameters</h5>
 <table>
 <thead>
@@ -130,7 +130,8 @@ If you would like to just import all the utility variables, mixins, and function
 <td>opacity-boost</td>
 <td>Number</td>
 <td>0</td>
-<td>The amount to boost the default opacity levels for the&#10;  three box-shadows applied.</td>
+<td>The amount to boost the default opacity levels for the
+  three box-shadows applied.</td>
 </tr>
 </tbody>
 </table>
@@ -167,31 +168,41 @@ If you would like to just import all the utility variables, mixins, and function
 <tbody>
 <tr>
 <td><code>rmd-elevation-color</code></td>
-<td>The normal elevation color to use.&#10;</td>
+<td>The normal elevation color to use.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-1-opacity</code></td>
-<td>The opacity to apply to the first box-shadow&#10;</td>
+<td>The opacity to apply to the first box-shadow
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-2-opacity</code></td>
-<td>The opacity to apply to the second box-shadow&#10;</td>
+<td>The opacity to apply to the second box-shadow
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-3-opacity</code></td>
-<td>The opacity to apply to the third box-shadow&#10;</td>
+<td>The opacity to apply to the third box-shadow
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-1-map</code></td>
-<td>A Map of the first layer of box-shadows to apply for elevation.&#10;This is a map of numbers from 0 -&#62; 24.&#10;</td>
+<td>A Map of the first layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -&#62; 24.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-2-map</code></td>
-<td>A Map of the second layer of box-shadows to apply for elevation.&#10;This is a map of numbers from 0 -&#62; 24.&#10;</td>
+<td>A Map of the second layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -&#62; 24.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-elevation-shadow-3-map</code></td>
-<td>A Map of the third layer of box-shadows to apply for elevation.&#10;This is a map of numbers from 0 -&#62; 24.&#10;</td>
+<td>A Map of the third layer of box-shadows to apply for elevation.
+This is a map of numbers from 0 -&#62; 24.
+<br /><br /></td>
 </tr>
 </tbody>
 </table>

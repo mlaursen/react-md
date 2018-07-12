@@ -159,7 +159,9 @@ ReactDOM.render(<App />, document.getElementById('root'));
 <td><code>string | number | boolean | {} | ReactElement<any> | ReactNodeArray | ReactPortal | ((props: ITex...</code></td>
 <td><code>null</code></td>
 <td>
-This can either be any renderable element or a children callback function that gets provided the current class&#10;name.&#10;
+This can either be any renderable element or a children callback function that gets provided the current class
+name.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -167,7 +169,9 @@ This can either be any renderable element or a children callback function that g
 <td><code>"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "a" | "button" | "caption" | "bo...</code></td>
 <td><code>null</code></td>
 <td>
-An optional html tag name to render in. If this is omitted, it will determine the &#34;best&#34; tag&#10;based on the provided <code>type</code>.&#10;
+An optional html tag name to render in. If this is omitted, it will determine the &#34;best&#34; tag
+based on the provided <code>type</code>.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -175,7 +179,9 @@ An optional html tag name to render in. If this is omitted, it will determine th
 <td><code>"button" | "caption" | "headline-1" | "headline-2" | "headline-3" | "headline-4" | "headline-5" |...</code></td>
 <td><code>null</code></td>
 <td>
-An optional text type to render as. If both this and the tagName are omitted, only the base typography styles&#10;will be applied.&#10;
+An optional text type to render as. If both this and the tagName are omitted, only the base typography styles
+will be applied.
+<br /><br />
 </td>
 </tr>
 </tbody>
@@ -257,19 +263,21 @@ Every key that you do not include in the map will no longer be created when incl
 <tbody>
 <tr>
 <td><code>rmd-typography-base</code></td>
-<td>Applies the base typography styles to an element.&#10;&#10;
+<td>Applies the base typography styles to an element.
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-typography</code></td>
-<td>Applies one of the provided material design styles to an element.&#10;
+<td>Applies one of the provided material design styles to an element.
+<br /><br />
 
 </td>
 </tr>
 <tr>
 <td><code>react-md-typography</code></td>
-<td>Creates all the typography styles from the react-md typography variables.&#10;
+<td>Creates all the typography styles from the react-md typography variables.
+<br /><br />
 
 </td>
 </tr>
@@ -301,19 +309,21 @@ Every key that you do not include in the map will no longer be created when incl
 <tbody>
 <tr>
 <td><code>rmd-typography-font-family</code></td>
-<td>The font family to use throughout the entire application.&#10;</td>
+<td>The font family to use throughout the entire application.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-typography-base</code></td>
-<td>The base styles for typography.&#10;</td>
+<td>The base styles for typography.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-typography-font-weights</code></td>
-<td>A Map of all the font weights.&#10;&#10;</td>
+<td>A Map of all the font weights.</td>
 </tr>
 <tr>
 <td><code>rmd-typography-styles</code></td>
-<td>A Map of all the typography styles in react-md&#10;&#10;</td>
+<td>A Map of all the typography styles in react-md</td>
 </tr>
 </tbody>
 </table>

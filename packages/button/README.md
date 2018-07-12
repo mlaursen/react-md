@@ -148,7 +148,11 @@ ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 <td><code>ReactNode</code></td>
 <td><code>null</code></td>
 <td>
-Any children to render within the button. This will normally just be text or an icon.&#10;&#10;Please note that it is considered invalid html to have a <code>&#60;div&#62;</code> as a descendant of a <code>&#60;button&#62;</code>.&#10;You can fix this by enabling the <code>asDiv</code> prop.&#10;
+Any children to render within the button. This will normally just be text or an icon.
+<br /><br />
+Please note that it is considered invalid html to have a <code>&#60;div&#62;</code> as a descendant of a <code>&#60;button&#62;</code>.
+You can fix this by enabling the <code>asDiv</code> prop.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -156,7 +160,8 @@ Any children to render within the button. This will normally just be text or an 
 <td><code>CSSProperties</code></td>
 <td><code>null</code></td>
 <td>
-An optional style to apply.&#10;
+An optional style to apply.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -164,7 +169,8 @@ An optional style to apply.&#10;
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
-An optional className to apply.&#10;
+An optional className to apply.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -172,7 +178,8 @@ An optional className to apply.&#10;
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the button is currently disabled.&#10;
+Boolean if the button is currently disabled.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -180,7 +187,8 @@ Boolean if the button is currently disabled.&#10;
 <td><code>"button" | "reset" | "submit"</code></td>
 <td><code>null</code></td>
 <td>
-The button&#39;s type attribute.&#10;
+The button&#39;s type attribute.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -188,7 +196,9 @@ The button&#39;s type attribute.&#10;
 <td><code>"icon" | "text"</code></td>
 <td><code>text</code></td>
 <td>
-The specific material design button type to use. A text button will display&#10;text while an icon button will only contain an icon.&#10;
+The specific material design button type to use. A text button will display
+text while an icon button will only contain an icon.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -196,7 +206,8 @@ The specific material design button type to use. A text button will display&#10;
 <td><code>"clear" | "primary" | "secondary" | "default"</code></td>
 <td><code>primary</code></td>
 <td>
-The material design theme to apply to the button.&#10;
+The material design theme to apply to the button.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -204,7 +215,8 @@ The material design theme to apply to the button.&#10;
 <td><code>"flat" | "outline" | "contained"</code></td>
 <td><code>flat</code></td>
 <td>
-The material design theme type to apply.&#10;
+The material design theme type to apply.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -212,7 +224,11 @@ The material design theme type to apply.&#10;
 <td><code>ReactNode</code></td>
 <td><code>null</code></td>
 <td>
-An optional icon to display with a text button. This is invalid for icon buttons. If this is&#10;a single element, a new class name will be cloned into the element to get correct spacing so&#10;if you have a custom icon element, you <b>must</b> also pass that class name down. If you are using&#10;one of the react-md icon component packages, this is handled automatically.&#10;
+An optional icon to display with a text button. This is invalid for icon buttons. If this is
+a single element, a new class name will be cloned into the element to get correct spacing so
+if you have a custom icon element, you <b>must</b> also pass that class name down. If you are using
+one of the react-md icon component packages, this is handled automatically.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -220,7 +236,8 @@ An optional icon to display with a text button. This is invalid for icon buttons
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the icon should appear after the text instead of before.&#10;
+Boolean if the icon should appear after the text instead of before.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -228,7 +245,10 @@ Boolean if the icon should appear after the text instead of before.&#10;
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the button should be rendered as a div instead. This will update the div to be fully&#10;accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want&#10;to have a <code>&#60;div&#62;</code> as a child of the button, you should enable this prop.&#10;
+Boolean if the button should be rendered as a div instead. This will update the div to be fully
+accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
+to have a <code>&#60;div&#62;</code> as a child of the button, you should enable this prop.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -236,7 +256,9 @@ Boolean if the button should be rendered as a div instead. This will update the 
 <td><code>number</code></td>
 <td><code>null</code></td>
 <td>
-An optional tabIndex to apply. When the <code>asDiv</code> prop is enabled, this will default to <code>0</code> if its value is&#10;<code>undefined</code> and the button is not disabled.&#10;
+An optional tabIndex to apply. When the <code>asDiv</code> prop is enabled, this will default to <code>0</code> if its value is
+<code>undefined</code> and the button is not disabled.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -244,7 +266,8 @@ An optional tabIndex to apply. When the <code>asDiv</code> prop is enabled, this
 <td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when the button is clicked.&#10;
+An optional function to call when the button is clicked.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -252,7 +275,8 @@ An optional function to call when the button is clicked.&#10;
 <td><code>((e: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when a keydown event is triggered within the button.&#10;
+An optional function to call when a keydown event is triggered within the button.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -260,7 +284,8 @@ An optional function to call when a keydown event is triggered within the button
 <td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when the mousedown event is triggered within the button.&#10;
+An optional function to call when the mousedown event is triggered within the button.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -268,7 +293,8 @@ An optional function to call when the mousedown event is triggered within the bu
 <td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when the mouseup event is triggered within the button.&#10;
+An optional function to call when the mouseup event is triggered within the button.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -276,7 +302,8 @@ An optional function to call when the mouseup event is triggered within the butt
 <td><code>((e: TouchEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when the touchstart event is triggered within the button.&#10;
+An optional function to call when the touchstart event is triggered within the button.
+<br /><br />
 </td>
 </tr>
 <tr>
@@ -284,7 +311,8 @@ An optional function to call when the touchstart event is triggered within the b
 <td><code>((e: TouchEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
-An optional function to call when the touchend event is triggered within the button.&#10;
+An optional function to call when the touchend event is triggered within the button.
+<br /><br />
 </td>
 </tr>
 </tbody>
@@ -309,37 +337,44 @@ An optional function to call when the touchend event is triggered within the but
 <tbody>
 <tr>
 <td><code>rmd-btn-unstyled</code></td>
-<td>A simple mixin to create an unstyled button.&#10;&#10;NOTE: An unstyled button removed the <code>outline-style</code> so you *must* add a custom focus behavior with&#10;either ripples or something else for keyboard users.&#10;&#10;
+<td>A simple mixin to create an unstyled button.
+<br /><br />
+NOTE: An unstyled button removed the <code>outline-style</code> so you *must* add a custom focus behavior with
+either ripples or something else for keyboard users.
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-btn-base</code></td>
-<td>The base styles for a button.&#10;&#10;
+<td>The base styles for a button.
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-btn-text</code></td>
-<td>A mixin that will generate only the styles for a text button. This depends on the base styles&#10;to be applied beforehand&#10;&#10;
+<td>A mixin that will generate only the styles for a text button. This depends on the base styles
+to be applied beforehand
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-btn-icon</code></td>
-<td>Creates the styles only for the icon button spec. This depends on the base button styles to&#10;be applied beforehand.&#10;&#10;
+<td>Creates the styles only for the icon button spec. This depends on the base button styles to
+be applied beforehand.
 
 </td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-icon</code></td>
-<td>This mixin will create styles to place buttons before or after the text within a text&#10;button. By default, this will create 2 additional class names for placing the icon before&#10;and after the text, but can be configured to use any selector.&#10;&#10;
+<td>This mixin will create styles to place buttons before or after the text within a text
+button. By default, this will create 2 additional class names for placing the icon before
+and after the text, but can be configured to use any selector.
 
 </td>
 </tr>
 <tr>
 <td><code>react-md-button</code></td>
-<td>Creates all the styles for buttons within react-md.&#10;&#10;
+<td>Creates all the styles for buttons within react-md.
 
 </td>
 </tr>
@@ -466,71 +501,93 @@ An optional function to call when the touchend event is triggered within the but
 <tbody>
 <tr>
 <td><code>rmd-btn-text-border-radius</code></td>
-<td>The border radius to apply to text buttons.&#10;</td>
+<td>The border radius to apply to text buttons.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-horizontal-padding</code></td>
-<td>The amount of left and right padding to apply to text buttons.&#10;</td>
+<td>The amount of left and right padding to apply to text buttons.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-vertical-padding</code></td>
-<td>The amount of top and bottom padding to apply to text buttons. Since buttons&#10;are now displayed as inline-flex, it is generally recommended to keep this value&#10;at 0 and just increase the height of the button instead.&#10;&#10;</td>
+<td>The amount of top and bottom padding to apply to text buttons. Since buttons
+are now displayed as inline-flex, it is generally recommended to keep this value
+at 0 and just increase the height of the button instead.</td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-height</code></td>
-<td>The height for text buttons.&#10;</td>
+<td>The height for text buttons.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-min-width</code></td>
-<td>The min width for text buttons.&#10;</td>
+<td>The min width for text buttons.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-icon-spacing</code></td>
-<td>The amount of spacing to apply between the icon and text within a text button.&#10;</td>
+<td>The amount of spacing to apply between the icon and text within a text button.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-text-icon-size</code></td>
-<td>The text button&#39;s icon size. This is than the normal icon size by default since buttons&#10;have additional padding. You can set this to <code>null</code> if you want consistant icon sizes.&#10;</td>
+<td>The text button&#39;s icon size. This is than the normal icon size by default since buttons
+have additional padding. You can set this to <code>null</code> if you want consistant icon sizes.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-icon-border-radius</code></td>
-<td>The border radius to apply to all icon buttons.&#10;</td>
+<td>The border radius to apply to all icon buttons.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-icon-size</code></td>
-<td>The height and width to apply to an icon button.&#10;</td>
+<td>The height and width to apply to an icon button.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-hover-background-color</code></td>
-<td>The background color to apply when a button is hovered. this will be applied in the <code>::after</code>&#10;pseudo element so it is recommended to be either black or white with an opacity applied.&#10;&#10;</td>
+<td>The background color to apply when a button is hovered. this will be applied in the <code>::after</code>
+pseudo element so it is recommended to be either black or white with an opacity applied.</td>
 </tr>
 <tr>
 <td><code>rmd-btn-background-color-transition-time</code></td>
-<td>The transition duration for the hover background color to be applied.&#10;</td>
+<td>The transition duration for the hover background color to be applied.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-box-shadow-width</code></td>
-<td>The base box-shadow width to apply to buttons&#10;</td>
+<td>The base box-shadow width to apply to buttons
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-box-shadow</code></td>
-<td>The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable&#10;to define a box shadow.&#10;</td>
+<td>The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable
+to define a box shadow.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-default-color</code></td>
-<td>The color to use for a button&#39;s &#34;default&#34; state.&#10;</td>
+<td>The color to use for a button&#39;s &#34;default&#34; state.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-contained-elevation-transition-time</code></td>
-<td>The transition time for a contained button to raise to the pressed elevation.&#10;</td>
+<td>The transition time for a contained button to raise to the pressed elevation.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-contained-resting-elevation</code></td>
-<td>The elevation to use for a resting contained button. This should be a number between&#10;0 and 24.&#10;</td>
+<td>The elevation to use for a resting contained button. This should be a number between
+0 and 24.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-btn-contained-pressed-elevation</code></td>
-<td>The elevation to use for a contained button that is being pressed. This should be a number&#10;between 0 and 24.&#10;</td>
+<td>The elevation to use for a contained button that is being pressed. This should be a number
+between 0 and 24.
+<br /><br /></td>
 </tr>
 </tbody>
 </table>

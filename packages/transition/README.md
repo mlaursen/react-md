@@ -150,7 +150,7 @@ be applied this this string for each stage of the transition.
 <tbody>
 <tr>
 <td><code>rmd-transition(type)</code></td>
-<td>Adds a transition timing function for the provided transition type.&#10;&#10;
+<td>Adds a transition timing function for the provided transition type.
 <h5>Parameters</h5>
 <table>
 <thead>
@@ -165,7 +165,8 @@ be applied this this string for each stage of the transition.
 <td>type</td>
 <td>String</td>
 <td></td>
-<td>The transition type that should be used. This should be one of the&#10;    keys for <code>$rmd-transitions</code></td>
+<td>The transition type that should be used. This should be one of the
+    keys for <code>$rmd-transitions</code></td>
 </tr>
 </tbody>
 </table>
@@ -187,15 +188,18 @@ be applied this this string for each stage of the transition.
 <tbody>
 <tr>
 <td><code>rmd-transitions</code></td>
-<td>A Map of all the available transitions for react-md.&#10;</td>
+<td>A Map of all the available transitions for react-md.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-enter-transition-time</code></td>
-<td>The default enter transition time.&#10;</td>
+<td>The default enter transition time.
+<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-leave-transition-time</code></td>
-<td>The default leave transition time.&#10;</td>
+<td>The default leave transition time.
+<br /><br /></td>
 </tr>
 </tbody>
 </table>
