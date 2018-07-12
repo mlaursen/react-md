@@ -7,6 +7,8 @@ export type ButtonMouseEvent = React.MouseEvent<HTMLButtonElement | HTMLDivEleme
 export type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>;
 export type ButtonTouchEvent = React.TouchEvent<HTMLButtonElement | HTMLDivElement>;
 
+const LEFT_MOUSE = 0;
+
 /**
  * The `Button` component is used to create a clickable area within your application. It can be styled
  * to be flat with the background, outlined, or contained. A contained button will include some elevation
@@ -352,7 +354,9 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       this.props.onMouseDown(e);
     }
 
-    this.press();
+    if (e.button === LEFT_MOUSE) {
+      this.press();
+    }
   };
 
   private handleMouseUp = (e: ButtonMouseEvent) => {
