@@ -13,7 +13,8 @@
     "prebuild": "npm run clean",
     "update-definitions": "rimraf types && npm run build:definitions",
     "watch:definitions": "watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:definitions\"",
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
+    "watch:with-defs": "npm-run-all -p watch watch:definitions",
     "docs": "doc-generator --no-sassdoc --no-proptypes",
     "prepublishOnly": "npm run build && npm run docs"
   },

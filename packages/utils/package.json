@@ -12,8 +12,8 @@
     "update-definitions": "rimraf types && npm run build:definitions",
     "watch:definitions": "watch \"npm run update-definitions\" src --filter ../../tsWatchFilter.js",
     "test": "jest src",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:definitions\"",
-    "watch:no-defs": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
+    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
+    "watch:with-defs": "npm-run-all -p watch watch:definitions",
     "docs": "doc-generator --no-proptypes --no-sassdoc",
     "prepublishOnly": "npm run build && npm run docs"
   },

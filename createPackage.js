@@ -7,14 +7,29 @@ const readline = require('readline');
 
 const VERSION = '2.0.0-alpha-1';
 
+const additionalDependencies = [];
+const additionalDevDependencies = [];
+
 commander
   .version(VERSION)
-  .usage('<name> [options]')
+  .usage('<name> [options] [dependencies...]')
   .option('--no-styles', 'Updates the generated README to not include a section on how to include styles for this package.')
   .option('--no-ts', 'This will exclude the typescript build scripts from the package.json if enabled.')
   .option('--no-proptypes', 'Updates the generated README to not include a section for documenting component prop types.')
   .option('-d, --description [description]', 'Updates both the README and the package.json to include the description string.')
   .option('-p, --private [private]', 'This will make the package private so it will never be published to npm.')
+  .arguments('<name> [dependencies...]')
+  .action((name, dependencies) => {
+    if (dependencies) {
+      Array.prototype.push.apply(additionalDependencies, dependencies);
+    }
+
+    additionalDependencies.forEach((dep) => {
+      if (!dep.startsWith('@')) {
+        additionalDevDependencies.push(`@types/${dep}`);
+      }
+    });
+  })
   .parse(process.argv);
 
 
@@ -296,6 +311,10 @@ if (styles || typescript) {
 
   if (watch.length) {
     scripts.watch = `npm-run-all -p ${watch.reduce((s, script) => `${s ? `${s} ` : ''}\"${script}\"`, '')}`;
+
+    if (typescript) {
+      scripts['watch:with-defs'] = 'npm-run-all -p watch watch:definitions';
+    }
   }
 
   if (typescript) {
@@ -439,5 +458,14 @@ Promise.all(promises)
   .then(() => {
     console.log('Installing base dependencies...');
     execSync('lerna bootstrap');
+
+    if (additionalDependencies.length) {
+      console.log('Installing additional dependencies and types...');
+      execSync(`lerna add ${additionalDependencies.join(' ')} --scope @react-md/${name}`);
+
+      if (additionalDevDependencies.length) {
+        execSync(`lerna add ${additionalDevDependencies.join(' ')} --dev --scope @react-md/${name}`);
+      }
+    }
     console.log(`Done! You can now \`cd\` into "packages/${name}" and start coding.`);
   });
