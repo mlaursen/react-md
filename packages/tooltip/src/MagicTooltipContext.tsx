@@ -14,10 +14,8 @@ const MagicTooltipContext = React.createContext({
   spacing: "1.5rem",
   denseSpacing: "0.875rem",
   visibleId: null,
-  // tslint:disable-next-line no-empty
-  init: () => {},
-  // tslint:disable-next-line no-empty
-  deinit: () => {},
+  init: () => undefined,
+  deinit: () => undefined,
 } as IMagicTooltipContext);
 const { Provider, Consumer } = MagicTooltipContext;
 export { Provider, Consumer };

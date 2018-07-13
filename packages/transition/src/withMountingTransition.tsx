@@ -7,6 +7,8 @@ export declare type TransitionEvent = React.TransitionEvent<HTMLElement | React.
 export interface IMountingTransitionProps {
   /**
    * An optional className to apply.
+   *
+   * @docgen
    */
   className?: string;
 
@@ -14,11 +16,15 @@ export interface IMountingTransitionProps {
    * Boolean if the component should be visible. When this prop changes from `false` to `true`,
    * the enter transition will start. When this prop changes from `false` to `true`, the leave
    * transition will start.
+   *
+   * @docgen
    */
   visible: boolean;
 
   /**
    * An optional function to call when the enter or leave transition ends.
+   *
+   * @docgen
    */
   onTransitionEnd?: (e: TransitionEvent) => void;
 }

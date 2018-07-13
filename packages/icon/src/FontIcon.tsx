@@ -17,30 +17,35 @@ const ICON_SIZE = 24;
 export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * An optional style to apply.
+   *
    * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * An optional className to apply.
+   *
    * @docgen
    */
   className?: string;
 
   /**
    * The font icon class name to use.
+   *
    * @docgen
    */
   iconClassName?: string;
 
   /**
    * Boolean if the font icon should use the dense spec.
+   *
    * @docgen
    */
   dense?: boolean;
 
   /**
    * Any children to render to create the font icon. This is required for material-icons.
+   *
    * @docgen
    */
   children?: string | React.ReactNode;
@@ -49,12 +54,14 @@ export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
    * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
    * to enforce. This is useful when using other font icon libraries that do not have a consistent
    * size.
+   *
    * @docgen
    */
   forceSize?: boolean | number;
 
   /**
    * Boolean if the `forceSize` prop should also force the `font-size` instead of only `width` and `height`.
+   *
    * @docgen
    */
   forceFontSize?: boolean;

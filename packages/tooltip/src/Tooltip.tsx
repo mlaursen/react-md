@@ -15,18 +15,21 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * An id for the tooltip. This is required for accessibility and finding an element to attach
    * event listeners to show and hide the tooltip.
+   *
    * @docgen
    */
   id: string;
 
   /**
    * An optional style to apply to the tooltip.
+   *
    * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * An optional class name to apply to the tooltip.
+   *
    * @docgen
    */
   className?: string;
@@ -37,12 +40,14 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
    *
    * If this is placed within a `<button>` element, make sure that there are no `<div>` since it is invalid html
    * to have a `<div>` as a child of a `<button>`.
+   *
    * @docgen
    */
   children?: React.ReactNode;
 
   /**
    * Boolean if the dense styles for tooltips should be displayed.
+   *
    * @docgen
    */
   dense?: boolean;
@@ -53,18 +58,21 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
    * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
    *
    * Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+   *
    * @docgen
    */
   lineWrap?: boolean;
 
   /**
    * The position of the tooltip to use.
+   *
    * @docgen
    */
   position?: TooltipPosition;
 
   /**
    * An optional function to call when the transition event has finished when animating in or out of visibility.
+   *
    * @docgen
    */
   onTransitionEnd?: (e: TransitionEvent) => void;
@@ -74,6 +82,7 @@ export interface ITooltipPropsWithVisibility extends ITooltipProps {
   /**
    * Boolean if the tooltip is currently visible to the user. For a11y, the tooltip should always be rendered
    * on the page, so this flag will increase the opacity so it is actually visible to the user.
+   *
    * @docgen
    */
   visible: boolean;
