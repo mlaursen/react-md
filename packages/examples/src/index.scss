@@ -15,6 +15,19 @@ $rmd-theme-secondary: $rmd-pink-a-200;
 @include react-md-theme;
 @include react-md-tooltip;
 
+@include rmd-icon-host-material-icons((
+  woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
+  woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
+  truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
+));
+
+@include rmd-typography-host-google-font(Roboto, light regular medium bold, (
+  light: url(./fonts/roboto/Roboto-Light.ttf),
+  regular: url(./fonts/roboto/Roboto-Regular.ttf),
+  medium: url(./fonts/roboto/Roboto-Medium.ttf),
+  bold: url(./fonts/roboto/Roboto-Bold.ttf),
+));
+
 body {
   margin: 0;
   padding: 0;
