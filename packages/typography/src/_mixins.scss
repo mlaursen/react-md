@@ -17,6 +17,7 @@
 }
 
 /// Applies one of the provided material design styles to an element.
+/// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
 @mixin rmd-typography($style) {
   $style-props: map-get($rmd-typography-styles, $style);
 
@@ -38,6 +39,118 @@
       &--#{$suffix} {
         @include rmd-typography($suffix);
       }
+    }
+  }
+}
+
+
+/// Creates the font face declaration for a Google font with a provided font weight. This will
+/// need to be called multiple times if you are including multiple font weights.
+///
+/// This should only be used if you are hosting the Google font locally instead of through the
+/// Google fonts service.
+///
+/// @example scss - Example Usage SCSS
+///   @include rmd-typography-google-font-face(Roboto, regular, null);
+///   @include rmd-typography-google-font-face('Source Code Pro', regular, null);
+///
+/// @example css - Example Usage Generated SCSS
+///   @font-face {
+///     font-family: 'Roboto';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: local('Roboto'),
+///       local('Roboto-Regular'),
+///       url('/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+///   }
+///
+///   @font-face {
+///     font-family: 'Source Code Pro';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: local('Source Code Pro'),
+///       local('SourceCodePro-Regular'),
+///       url('/fonts/source-code-pro/SourceCodePro-Regular.ttf') format('truetype');
+///   }
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {String} font-weight [map-get($rmd-typography-font-weights, regular)] - The font weight to use.
+/// @param {String} font-url-or-prefix [null] - This is either a font url prefix for the folder containing the font on your
+///   server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the
+///   url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+///   '/fonts/' prefix and then a caterpillar-cased string. See the examples above for more details.
+@mixin rmd-typography-google-font-face($font-name: Roboto, $font-weight: map-get($rmd-typography-font-weights, regular), $font-url-or-prefix: null) {
+  $full-font-name: str-replace($font-name, ' ', '') + rmd-typography-google-font-suffix($font-weight);
+
+  $font-url-prefix: '';
+  $font-url: null;
+  @if $font-url-or-prefix == null pr type-of($font-url-or-prefix) == 'string' {
+    $font-url: if($font-url == null, '/fonts/' + to-lower-case(str-replace($font-name, ' ', '-')), $font-url);
+    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
+    $font-url: url($font-url + $full-font-name + '.ttf');
+  } @else {
+    $font-url: $font-url-or-prefix;
+  }
+
+  @font-face {
+    font-family: quote($font-name);
+    font-style: normal;
+    font-weight: $font-weight;
+    src: local(#{quote($font-name)}),
+      local(#{quote($full-font-name)}),
+      #{$font-url} format('truetype');
+  }
+}
+
+/// Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font
+/// on your own servers instead of through the Google fonts service.
+///
+/// If you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files
+/// correctly included and bundled during your build. See the examples for more details.
+///
+/// @example scss - create-react-app Example Usage
+///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
+///     thin: url(./fonts/roboto/Roboto-Thin.ttf),
+///     regular: url(./fonts/roboto/Roboto-Regular.ttf),
+///     medium: url(./fonts/roboto/Roboto-Medium.ttf),
+///     bold: url(./fonts/roboto/Roboto-Bold.ttf),
+///   ));
+///
+///   @include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
+///     thin: url(./fonts/source-code-pro/SourceCodePro-Thin.ttf),
+///     regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),
+///     medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),
+///     bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),
+///   ));
+///
+/// @example scss - Example Usage SCSS
+///   // The next 3 lines are equivalent
+///   @include rmd-typography-host-google-font;
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, null);
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, '/fonts/roboto');
+///   @include rmd-typography-host-google-font('Source Code Pro');
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {List} weights [light regular medium bold] - A list of font weights to use. These should be
+///   one of the `$rmd-typography-font-weights` keys.
+/// @param {String | Map} font-url-prefix-or-url-map [null] - This is either a font url prefix for the folder containing the font on your
+///   server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the
+///   url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+///   '/fonts/' prefix and then a caterpillar-cased string. See the `rmd-typography-google-font-face` mixin for more details.
+/// @see rmd-typography-google-font-face
+/// @link https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-images-fonts-and-files Adding Images, Fonts, and Files
+@mixin rmd-typography-host-google-font($font-name: Roboto, $weights: $rmd-typography-default-font-weight, $font-url-prefix-or-url-map: null) {
+  @each $weight in $weights {
+    @if type-of($font-url-prefix-or-url-map) == 'string' {
+      @include rmd-typography-google-font-face($font-name, $weight, $font-url-or-prefix);
+    } @else {
+      @if not map-has-key($font-url-prefix-or-url-map, $weight) {
+        @error "The provided font-weight: '#{$weight}' does not exist in the url map. Provided keys: '#{$map-keys($font-url-prefix-or-url-map)}'.";
+      }
+
+      @include rmd-typography-google-font-face($font-name, $weight, map-get($font-url-prefix-or-url-map, $weight));
     }
   }
 }

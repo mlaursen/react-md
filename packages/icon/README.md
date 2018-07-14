@@ -23,6 +23,10 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example SCSS Usage](#example-scss-usage-1)
       - [Example SCSS Usage](#example-scss-usage-2)
       - [Example SCSS Usage](#example-scss-usage-3)
+      - [create-react-app Example Usage](#create-react-app-example-usage)
+      - [Example Usage SCSS](#example-usage-scss)
+      - [create-react-app Example Usage](#create-react-app-example-usage-1)
+      - [Example Usage SCSS](#example-usage-scss-1)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -452,6 +456,111 @@ to be enabled to generate any styles.
 
 </td>
 </tr>
+<tr>
+<td><code>rmd-icon-material-icons-font-face(font-url-or-map, old-ie-support)</code></td>
+<td>Creates the font face for material icons. This takes either a font url prefix string or a map of urls for each required
+font file. If you are using create-react-app, you <b>must</b> use the Map version so the fonts can be
+correctly included by the build process.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>font-url-or-map</td>
+<td>String | Map</td>
+<td>'/fonts/material-icons'</td>
+<td>This is either a font url prefix for the folder
+  that is &#34;hosting&#34; the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.</td>
+</tr>
+<tr>
+<td>old-ie-support</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if there should be a fallback for IE6-8 by including a url to
+  the eot font. If this is set to true and using the Map version of <code>$font-url-or-map</code>, you must also include a url
+  to the eot font.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-material-icons-class(include-font-size)</code></td>
+<td>Creats the material-icons css class if hosting material icons locally instead of using the
+google fonts service. By default, this will not include the font-size size you <i>should</i> be using
+the <code>FontIcon</code> component from react-md which adds the correct font-size.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>include-font-size</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if the material icons class name should include
+  the default icon font size.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-host-material-icons(font-url-or-map, include-font-size, old-ie-support)</code></td>
+<td>Creates both the font face and css class for material icons when hosting the fonts localliy instead of using
+the google fonts service.  This takes either a font url prefix string or a map of urls for each required
+font file. If you are using create-react-app, you <b>must</b> use the Map version so the fonts can be
+correctly included by the build process.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>font-url-or-map</td>
+<td>String | Map</td>
+<td>'/fonts/material-icons'</td>
+<td>This is either a font url prefix for the folder
+  that is &#34;hosting&#34; the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.</td>
+</tr>
+<tr>
+<td>include-font-size</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if the material icons class name should include
+  the default icon font size.</td>
+</tr>
+<tr>
+<td>old-ie-support</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if there should be a fallback for IE6-8 by including a url to
+  the eot font. If this is set to true and using the Map version of <code>$font-url-or-map</code>, you must also include a url
+  to the eot font.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -507,6 +616,46 @@ to be enabled to generate any styles.
     @include rmd-icon-svg-dense;
   }
 }
+```
+
+
+##### create-react-app Example Usage
+
+```scss
+// This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+// `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+@include rmd-icon-material-icons-font-face((
+  woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
+  woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
+  truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
+));
+```
+
+##### Example Usage SCSS
+
+```scss
+$local-font-url: '/fonts/material-icons';
+@include rmd-icon-material-icons-font-face($local-font-url);
+```
+
+
+##### create-react-app Example Usage
+
+```scss
+// This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+// `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+@include rmd-icon-material-icons-font-face((
+  woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
+  woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
+  truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
+));
+```
+
+##### Example Usage SCSS
+
+```scss
+$local-font-url: '/fonts/material-icons';
+@include rmd-icon-material-icons-font-face($local-font-url);
 ```
 
 

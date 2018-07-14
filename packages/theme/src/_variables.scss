@@ -139,7 +139,7 @@ $rmd-theme-edge-opt-out: false !default;
   }
 
   @if not map-has-key($rmd-theme-property-values, $property) {
-    @error "Invalid theme property: '#{$property}'. Choose one of #{map-keys($rmd-theme-property-values)}";
+    @error "Invalid theme property specified! '#{$property}' doesn't exist. Choose one of #{map-keys($rmd-theme-property-values)}";
   }
 
   @return map-get($rmd-theme-property-values, $property);

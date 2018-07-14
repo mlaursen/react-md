@@ -19,6 +19,11 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [Mixins](#mixins)
     + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
+      - [Example Usage SCSS](#example-usage-scss-1)
+      - [Example Usage Generated SCSS](#example-usage-generated-scss)
+      - [create-react-app Example Usage](#create-react-app-example-usage)
+      - [Example Usage SCSS](#example-usage-scss-2)
+  * [Functions](#functions)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -268,9 +273,27 @@ Every key that you do not include in the map will no longer be created when incl
 </td>
 </tr>
 <tr>
-<td><code>rmd-typography</code></td>
+<td><code>rmd-typography(style)</code></td>
 <td>Applies one of the provided material design styles to an element.
 <br /><br />
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>style</td>
+<td>String</td>
+<td></td>
+<td>One of the typography styles from <code>$rmd-typography-styles</code>.</td>
+</tr>
+</tbody>
+</table>
 
 </td>
 </tr>
@@ -278,6 +301,93 @@ Every key that you do not include in the map will no longer be created when incl
 <td><code>react-md-typography</code></td>
 <td>Creates all the typography styles from the react-md typography variables.
 <br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-typography-google-font-face(font-name, font-weight, font-url-or-prefix)</code></td>
+<td>Creates the font face declaration for a Google font with a provided font weight. This will
+need to be called multiple times if you are including multiple font weights.
+<br /><br />
+This should only be used if you are hosting the Google font locally instead of through the
+Google fonts service.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>font-name</td>
+<td>String</td>
+<td>Roboto</td>
+<td>The font name to use.</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>String</td>
+<td>map-get($rmd-typography-font-weights, regular)</td>
+<td>The font weight to use.</td>
+</tr>
+<tr>
+<td>font-url-or-prefix</td>
+<td>String</td>
+<td>null</td>
+<td>This is either a font url prefix for the folder containing the font on your
+  server or a url string to the font icon file on your server. If you are using create-react-app, you <b>must</b> use the
+  url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+  &#39;/fonts/&#39; prefix and then a caterpillar-cased string. See the examples above for more details.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-typography-host-google-font(font-name, weights, font-url-prefix-or-url-map)</code></td>
+<td>Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font
+on your own servers instead of through the Google fonts service.
+<br /><br />
+If you are using create-react-app, you must provide the <code>$font-url-prefix-or-url-map</code> as a Map of urls to have the font files
+correctly included and bundled during your build. See the examples for more details.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>font-name</td>
+<td>String</td>
+<td>Roboto</td>
+<td>The font name to use.</td>
+</tr>
+<tr>
+<td>weights</td>
+<td>List</td>
+<td>light regular medium bold</td>
+<td>A list of font weights to use. These should be
+  one of the <code>$rmd-typography-font-weights</code> keys.</td>
+</tr>
+<tr>
+<td>font-url-prefix-or-url-map</td>
+<td>String | Map</td>
+<td>null</td>
+<td>This is either a font url prefix for the folder containing the font on your
+  server or a url string to the font icon file on your server. If you are using create-react-app, you <b>must</b> use the
+  url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+  &#39;/fonts/&#39; prefix and then a caterpillar-cased string. See the <code>rmd-typography-google-font-face</code> mixin for more details.</td>
+</tr>
+</tbody>
+</table>
 
 </td>
 </tr>
@@ -296,6 +406,108 @@ Every key that you do not include in the map will no longer be created when incl
    font-size: 1.3rem;
 }
 ```
+
+
+##### Example Usage SCSS
+
+```scss
+@include rmd-typography-google-font-face(Roboto, regular, null);
+@include rmd-typography-google-font-face('Source Code Pro', regular, null);
+```
+
+##### Example Usage Generated SCSS
+
+```css
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'),
+    local('Roboto-Regular'),
+    url('/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'),
+    local('SourceCodePro-Regular'),
+    url('/fonts/source-code-pro/SourceCodePro-Regular.ttf') format('truetype');
+}
+```
+
+
+##### create-react-app Example Usage
+
+```scss
+// This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+// `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+@include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
+  thin: url(./fonts/roboto/Roboto-Thin.ttf),
+  regular: url(./fonts/roboto/Roboto-Regular.ttf),
+  medium: url(./fonts/roboto/Roboto-Medium.ttf),
+  bold: url(./fonts/roboto/Roboto-Bold.ttf),
+));
+
+@include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
+  thin: url(./fonts/source-code-pro/SourceCodePro-Thin.ttf),
+  regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),
+  medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),
+  bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),
+));
+```
+
+##### Example Usage SCSS
+
+```scss
+// The next 3 lines are equivalent
+@include rmd-typography-host-google-font;
+@include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, null);
+@include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, '/fonts/roboto');
+@include rmd-typography-host-google-font('Source Code Pro');
+```
+
+
+### Functions
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-typography-google-font-suffix(weight)</code></td>
+<td>String - the suffix for the provided font weight.</td>
+<td>Gets the google font suffix for the provided font weight.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>weight</td>
+<td>String</td>
+<td></td>
+<td>The font weight to get a font suffix string for. This should be one of the
+  <code>$rmd-typography-google-font-weight-suffixes</code> keys.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
 
 
 ### Variables
@@ -320,6 +532,17 @@ Every key that you do not include in the map will no longer be created when incl
 <tr>
 <td><code>rmd-typography-font-weights</code></td>
 <td>A Map of all the font weights.</td>
+</tr>
+<tr>
+<td><code>rmd-typography-default-font-weight</code></td>
+<td>A list of the &#34;default&#34; font weights that are normall included within an app.
+This is really only used for hosting fonts on your own server.o
+<br /><br />
+Each value in this should be one of the keys in <code>$rmd-typography-font-weights</code>.</td>
+</tr>
+<tr>
+<td><code>rmd-typography-google-font-weight-suffixes</code></td>
+<td>A Map of font weights to a font file suffix for a google font.</td>
 </tr>
 <tr>
 <td><code>rmd-typography-styles</code></td>

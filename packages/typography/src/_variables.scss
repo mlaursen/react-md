@@ -2,8 +2,6 @@
 /// @group typography
 ////
 
-@import 'functions';
-
 /// The font family to use throughout the entire application.
 /// @type String
 $rmd-typography-font-family: Roboto, sans-serif !default;
@@ -19,18 +17,67 @@ $rmd-typography-base: (
 /// A Map of all the font weights.
 ///
 /// @type Map
+/// @prop {Number} thin [100] - The thin font weight value.
+/// @prop {Number} light [300] - The light font weight value.
+/// @prop {Number} regular [400] - The regular font weight value.
+/// @prop {Number} medium [500] - The medium font weight value.
+/// @prop {Number} bold [700] - The bold font weight value.
+/// @prop {Number} semi-bold [800] - The semi-bold font weight value.
+/// @prop {Number} black [900] - The black font weight value.
 $rmd-typography-font-weights: (
   thin: 100,
   light: 300,
   regular: 400,
   medium: 500,
   bold: 700,
+  semi-bold: 800,
   black: 900,
+) !default;
+
+/// A list of the "default" font weights that are normall included within an app.
+/// This is really only used for hosting fonts on your own server.o
+///
+/// Each value in this should be one of the keys in `$rmd-typography-font-weights`.
+///
+/// @type List
+$rmd-typography-default-font-weight: light regular medium bold !default;
+
+/// A Map of font weights to a font file suffix for a google font.
+///
+/// @type Map
+/// @prop {String} thin ['-Thin'] - The thin font weight suffix.
+/// @prop {String} light ['-Light'] - The light font weight suffix.
+/// @prop {String} regular ['-Regular'] - The regular font weight suffix.
+/// @prop {String} medium ['-Medium'] - The medium font weight suffix.
+/// @prop {String} bold ['-Bold'] - The bold font weight suffix.
+/// @prop {String} semi-bold ['-SemiBold'] - The semi-bold font weight suffix.
+/// @prop {String} black ['-Black'] - The black font weight suffix.
+$rmd-typography-google-font-weight-suffixes: (
+  thin: '-Thin',
+  light: '-Light',
+  regular: '-Regular',
+  medium: '-Medium',
+  bold: '-Bold',
+  semi-bold: '-SemiBold',
+  black: '-Black',
 ) !default;
 
 /// A Map of all the typography styles in react-md
 ///
 /// @type Map
+/// @prop {Map} headline-1 - The styles for a headline-1
+/// @prop {Map} headline-2 - The styles for a headline-2
+/// @prop {Map} headline-3 - The styles for a headline-3
+/// @prop {Map} headline-4 - The styles for a headline-4
+/// @prop {Map} headline-5 - The styles for a headline-5
+/// @prop {Map} headline-6 - The styles for a headline-6
+/// @prop {Map} subtitle-1 - The styles for a subtitle-1
+/// @prop {Map} subtitle-2 - The styles for a subtitle-2
+/// @prop {Map} body-1 - The styles for a body-1
+/// @prop {Map} body-2 - The styles for a body-2
+/// @prop {Map} button - The styles for a button
+/// @prop {Map} caption - The styles for a caption
+/// @prop {Map} overline - The styles for a overline
 $rmd-typography-styles: rmd-typography-set-styles($rmd-typography-base, (
   headline-1: (
     font-size: 6rem, // 96sp
@@ -137,3 +184,71 @@ $rmd-typography-styles: rmd-typography-set-styles($rmd-typography-base, (
     text-transform: uppercase,
   ),
 ));
+
+/// Gets the global variable value for a proided typography style name. This assumes that the global variable
+/// exists already.
+///
+/// @access private
+/// @param {String} style - The typography style name to return a variable for
+/// @return {Map} a map of the style properties from the global typograpy variable.
+@function rmd-typography-get-global-variable($style) {
+  @if $style == 'headline-1' {
+    @return $rmd-typography-styles-headline-1;
+  } @else if $style == 'headline-2' {
+    @return $rmd-typography-styles-headline-2;
+  } @else if $style == 'headline-3' {
+    @return $rmd-typography-styles-headline-3;
+  } @else if $style == 'headline-4' {
+    @return $rmd-typography-styles-headline-4;
+  } @else if $style == 'headline-5' {
+    @return $rmd-typography-styles-headline-5;
+  } @else if $style == 'headline-6' {
+    @return $rmd-typography-styles-headline-6;
+  } @else if $style == 'subtitle-1' {
+    @return $rmd-typography-styles-subtitle-1;
+  } @else if $style == 'subtitle-2' {
+    @return $rmd-typography-styles-subtitle-2;
+  } @else if $style == 'body-1' {
+    @return $rmd-typography-styles-body-1;
+  } @else if $style == 'body-2' {
+    @return $rmd-typography-styles-body-2;
+  } @else if $style == 'caption' {
+    @return $rmd-typography-styles-caption;
+  } @else if $style == 'button' {
+    @return $rmd-typography-styles-button;
+  } @else if $style == 'overline' {
+    @return $rmd-typography-styles-overline;
+  }
+
+  @return ();
+}
+
+/// A utility function to help merge typography styles together with global definition overrides.
+///
+/// @access private
+/// @param {Map} base-styles - The base styles to merge with
+/// @param {Map} additional-styles - Any additional styles to merge with
+/// @return {Map} a Map of the base-styles and additional styles merged together
+@function rmd-typography-set-styles($base-styles, $additional-styles) {
+  @each $style, $style-props in $additional-styles {
+    $style-props: map-merge($base-styles, $style-props);
+
+    @if global-variable-exists(md-typography-styles-#{$style}) {
+      $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
+    }
+
+    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
+  }
+
+  @return $additional-styles;
+}
+
+/// A small utility funciton to get the letter spacing based on tracking and font-size
+///
+/// @access private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @return {Number} the letter spacing value in em
+@function rmd-typography-get-letter-spacing($tracking, $font-size) {
+  @return $tracking / ($font-size * 16) * 1em;
+}
