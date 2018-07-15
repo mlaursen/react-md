@@ -31,3 +31,7 @@ $rmd-icon-use-font-icons: true !default;
 /// @see rmd-icon-use-svg-icons
 /// @type Boolean
 $rmd-icon-use-svg-icons: true !default;
+
+/// The amount of spacing to apply between an icon and text within the `TextIconSpacing` component.
+/// @type Number
+$rmd-icon-spacing-with-text: .5rem !default; // 8dp

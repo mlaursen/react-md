@@ -1,5 +1,11 @@
 # @react-md/icon
 This package is for including icons within react-md. There is included support for both font icons and SVG icons.
+There is also a helper component for applying spacing between icons and text.
+
+Exported components:
+- `FontIcon`
+- `SVGIcon`
+- `TextIconSpacing`
 
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/icon
@@ -13,9 +19,12 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+  * [Simple Icon Usage](#simple-icon-usage)
+  * [Spacing Icons and Text](#spacing-icons-and-text)
 - [Prop Types](#prop-types)
   * [FontIcon](#fonticon)
   * [SVGIcon](#svgicon)
+  * [TextIconSpacing](#texticonspacing)
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
@@ -23,6 +32,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example SCSS Usage](#example-scss-usage-1)
       - [Example SCSS Usage](#example-scss-usage-2)
       - [Example SCSS Usage](#example-scss-usage-3)
+      - [Updating Selectors](#updating-selectors)
       - [create-react-app Example Usage](#create-react-app-example-usage)
       - [Example Usage SCSS](#example-usage-scss)
       - [create-react-app Example Usage](#create-react-app-example-usage-1)
@@ -134,7 +144,7 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
-
+### Simple Icon Usage
 ```tsx
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -151,6 +161,27 @@ const App = () => (
 
 ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 ```
+
+### Spacing Icons and Text
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { SVGIcon, FontIcon, TextIconSpacing } from "@react-md/icon";
+
+const App = () => (
+  <main>
+    <TextIconSpacing icon={<FontIcon>home</FontIcon>}>
+      This text will appear after the icon
+    </TextIconSpacing>
+    <TextIconSpacing icon={<SVGIcon><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></SVGIcon>}>
+      This text will appear before the icon
+    </TextIconSpacing>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### FontIcon
@@ -406,6 +437,55 @@ This prop <b>should not</b> be used with the <code>children</code> prop as only 
 </table>
 
 
+### TextIconSpacing
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The children to render before or after the provided icon.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>icon</td>
+<td><code>string | number | boolean | {} | ReactElement<any> | ReactNodeArray | ReactPortal | ReactElement<...</code></td>
+<td><code>null</code></td>
+<td>
+An optional icon to display with a text button. This is invalid for icon buttons. If this is
+a single element, a new class name will be cloned into the element to get correct spacing so
+if you have a custom icon element, you <b>must</b> also pass that class name down. If you are using
+one of the react-md icon component packages, this is handled automatically.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>iconAfter</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the icon should appear after the text instead of before.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <!-- PROPS_END -->
 
 
@@ -445,6 +525,93 @@ base font icon styles to already be applied.
 <td><code>rmd-icon-svg-dense</code></td>
 <td>Creates the styles for updating an svg icon to use the dense spec. This requires the
 base svg icon styles to already be applied.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-spacing-before-text(spacing)</code></td>
+<td>Creates the styles that should be applied to an icon that is placed before text.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>spacing</td>
+<td>Number</td>
+<td>rmd-icon-spacing-with-text</td>
+<td>The amount of spacing to apply.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-spacing-after-text(spacing)</code></td>
+<td>Creates the styles that should be applied to an icon that is placed after text.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>spacing</td>
+<td>Number</td>
+<td>rmd-icon-spacing-with-text</td>
+<td>The amount of spacing to apply.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-spaced-with-text(before-selector, after-selector, spacing)</code></td>
+<td>A mixin to create the styles to space an icon before or after text with the provided selectors and
+spacing.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>before-selector</td>
+<td>String</td>
+<td>'&--before'</td>
+<td>The selector to use for determining if an icon is placed
+  before or after the text. If this is set to <code>null</code>, no before styles will be created.</td>
+</tr>
+<tr>
+<td>after-selector</td>
+<td>String</td>
+<td>'&--after'</td>
+<td>The selector to use for determining if an icon is placed
+  before or after the text. If this is set to <code>null</code>, no after styles will be created.</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td>Number</td>
+<td>rmd-icon-spacing-with-text</td>
+<td>The amount of spacing to apply.</td>
+</tr>
+</tbody>
+</table>
 
 </td>
 </tr>
@@ -619,6 +786,17 @@ correctly included by the build process.
 ```
 
 
+##### Updating Selectors
+
+```scss
+// create a component so that it uses the :first-child and :last-child css
+// selectors instead of class names that must be applied.
+.my-wrapper {
+  @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');
+}
+```
+
+
 ##### create-react-app Example Usage
 
 ```scss
@@ -693,6 +871,11 @@ disable the style generation for the unused type to save a few bytes.</td>
 <td><code>rmd-icon-use-svg-icons</code></td>
 <td>Boolean if svg icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
 disable the style generation for the unused type to save a few bytes.</td>
+</tr>
+<tr>
+<td><code>rmd-icon-spacing-with-text</code></td>
+<td>The amount of spacing to apply between an icon and text within the <code>TextIconSpacing</code> component.
+<br /><br /></td>
 </tr>
 </tbody>
 </table>

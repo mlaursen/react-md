@@ -75,6 +75,50 @@
   width: $rmd-icon-dense-size;
 }
 
+/// Creates the styles that should be applied to an icon that is placed before text.
+///
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
+  margin-right: $spacing;
+}
+
+
+/// Creates the styles that should be applied to an icon that is placed after text.
+///
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
+  margin-left: $spacing;
+}
+
+/// A mixin to create the styles to space an icon before or after text with the provided selectors and
+/// spacing.
+///
+/// @example scss - Updating Selectors
+///   // create a component so that it uses the :first-child and :last-child css
+///   // selectors instead of class names that must be applied.
+///   .my-wrapper {
+///     @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');
+///   }
+///
+/// @param {String} before-selector ['&--before'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no before styles will be created.
+/// @param {String} after-selector ['&--after'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no after styles will be created.
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spaced-with-text($before-selector: '&--before', $after-selector: '&--after', $spacing: $rmd-icon-spacing-with-text) {
+  @if $before-selector != null {
+    #{$before-selector} {
+      margin-right: $spacing;
+    }
+  }
+
+  @if $after-selector != null {
+    #{$after-selector} {
+      margin-left: $spacing;
+    }
+  }
+}
+
 /// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
 /// to be enabled to generate any styles.
 @mixin react-md-icon {
@@ -108,6 +152,8 @@
         }
       }
     }
+
+    @include rmd-icon-spaced-with-text;
   }
 }
 
