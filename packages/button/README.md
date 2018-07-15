@@ -18,7 +18,6 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
       - [Example Usage SCSS](#example-usage-scss-1)
-      - [Example Usage SCSS](#example-usage-scss-2)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -159,6 +158,26 @@ An optional style to apply.
 </td>
 </tr>
 <tr>
+<td>type</td>
+<td><code>"button" | "reset" | "submit"</code></td>
+<td><code>null</code></td>
+<td>
+The button&#39;s type attribute.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>asDiv</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the button should be rendered as a div instead. This will update the div to be fully
+accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
+to have a <code>&#60;div&#62;</code> as a child of the button, you should enable this prop.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>className</td>
 <td><code>string</code></td>
 <td><code>null</code></td>
@@ -173,15 +192,6 @@ An optional className to apply.
 <td><code>false</code></td>
 <td>
 Boolean if the button is currently disabled.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>type</td>
-<td><code>"button" | "reset" | "submit"</code></td>
-<td><code>null</code></td>
-<td>
-The button&#39;s type attribute.
 <br /><br />
 </td>
 </tr>
@@ -215,7 +225,7 @@ The material design theme type to apply.
 </tr>
 <tr>
 <td>icon</td>
-<td><code>ReactNode</code></td>
+<td><code>string | number | boolean | {} | ReactElement<any> | ReactNodeArray | ReactPortal | ReactElement<...</code></td>
 <td><code>null</code></td>
 <td>
 An optional icon to display with a text button. This is invalid for icon buttons. If this is
@@ -231,81 +241,6 @@ one of the react-md icon component packages, this is handled automatically.
 <td><code>false</code></td>
 <td>
 Boolean if the icon should appear after the text instead of before.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>asDiv</td>
-<td><code>boolean</code></td>
-<td><code>false</code></td>
-<td>
-Boolean if the button should be rendered as a div instead. This will update the div to be fully
-accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
-to have a <code>&#60;div&#62;</code> as a child of the button, you should enable this prop.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>tabIndex</td>
-<td><code>number</code></td>
-<td><code>null</code></td>
-<td>
-An optional tabIndex to apply. When the <code>asDiv</code> prop is enabled, this will default to <code>0</code> if its value is
-<code>undefined</code> and the button is not disabled.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onClick</td>
-<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when the button is clicked.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onKeyDown</td>
-<td><code>((e: KeyboardEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when a keydown event is triggered within the button.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onMouseDown</td>
-<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when the mousedown event is triggered within the button.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onMouseUp</td>
-<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when the mouseup event is triggered within the button.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onTouchStart</td>
-<td><code>((e: TouchEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when the touchstart event is triggered within the button.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>onTouchEnd</td>
-<td><code>((e: TouchEvent<ButtonElement>) => void)</code></td>
-<td><code>null</code></td>
-<td>
-An optional function to call when the touchend event is triggered within the button.
 <br /><br />
 </td>
 </tr>
@@ -344,16 +279,6 @@ either ripples or something else for keyboard users.
 
 </td>
 </tr>
-<tr>
-<td><code>rmd-btn-hover-base</code></td>
-<td>The base styles to add hover effects to buttons. The hover effects are created by modifying
-the <code>::after</code> pseudo-selector so that if you apply the default <code>$rmd-btn-hover-background-color</code>
-or a color with an opacity, it will look good on any button background color.
-<br /><br />
-NOTE: This requires the container element to have `position: relative` to work.
-
-</td>
-</tr>
 </tbody>
 </table>
 
@@ -377,17 +302,6 @@ NOTE: This requires the container element to have `position: relative` to work.
 ```scss
 .my-button {
   @include rmd-btn-base;
-}
-```
-
-
-##### Example Usage SCSS
-
-```scss
-.my-button {
-  @include rmd-btn-hover-base;
-
-  position: relative;
 }
 ```
 
@@ -425,11 +339,6 @@ at 0 and just increase the height of the button instead.</td>
 <tr>
 <td><code>rmd-btn-text-min-width</code></td>
 <td>The min width for text buttons.
-<br /><br /></td>
-</tr>
-<tr>
-<td><code>rmd-btn-text-icon-spacing</code></td>
-<td>The amount of spacing to apply between the icon and text within a text button.
 <br /><br /></td>
 </tr>
 <tr>

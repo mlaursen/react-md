@@ -2,16 +2,46 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
+import { TextIconSpacing, ITextIconSpacingProps, ITextIconSpacingDefaultProps } from "@react-md/icon";
+import { Clickable } from "@react-md/a11y";
 
-// it's really HTMLButtonElement or HTMLDivElement, but when the `asDiv` prop is enabled the div gains
-// the ability to be focused like an HTMLElement
-export type ButtonElement = HTMLButtonElement | HTMLElement;
+export interface IButtonThemeProps {
+  /**
+   * An optional className to apply.
+   *
+   * @docgen
+   */
+  className?: string;
 
-export type ButtonMouseEvent = React.MouseEvent<ButtonElement>;
-export type ButtonKeyboardEvent = React.KeyboardEvent<ButtonElement>;
-export type ButtonTouchEvent = React.TouchEvent<ButtonElement>;
+  /**
+   * Boolean if the button is currently disabled.
+   *
+   * @docgen
+   */
+  disabled?: boolean;
 
-const LEFT_MOUSE = 0;
+  /**
+   * The specific material design button type to use. A text button will display
+   * text while an icon button will only contain an icon.
+   *
+   * @docgen
+   */
+  btnType?: "text" | "icon";
+
+  /**
+   * The material design theme to apply to the button.
+   *
+   * @docgen
+   */
+  theme?: "clear" | "primary" | "secondary" | "default";
+
+  /**
+   * The material design theme type to apply.
+   *
+   * @docgen
+   */
+  themeType?: "flat" | "outline" | "contained";
+}
 
 /**
  * The `Button` component is used to create a clickable area within your application. It can be styled
@@ -28,198 +58,96 @@ const LEFT_MOUSE = 0;
  * a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
  * keyboard events.
  */
-export interface IButtonProps extends React.HTMLAttributes<ButtonElement> {
+export interface IButtonButtonProps
+  extends IButtonThemeProps,
+    ITextIconSpacingProps,
+    React.HTMLAttributes<HTMLButtonElement | HTMLDivElement> {
   /**
    * An optional style to apply.
+   *
    * @docgen
    */
   style?: React.CSSProperties;
 
   /**
-   * An optional className to apply.
-   * @docgen
-   */
-  className?: string;
-
-  /**
-   * Boolean if the button is currently disabled.
-   * @docgen
-   */
-  disabled?: boolean;
-
-  /**
    * The button's type attribute.
+   *
    * @docgen
    */
   type?: "button" | "reset" | "submit";
-
-  /**
-   * The specific material design button type to use. A text button will display
-   * text while an icon button will only contain an icon.
-   * @docgen
-   */
-  btnType?: "text" | "icon";
-
-  /**
-   * The material design theme to apply to the button.
-   * @docgen
-   */
-  theme?: "clear" | "primary" | "secondary" | "default";
-
-  /**
-   * The material design theme type to apply.
-   * @docgen
-   */
-  themeType?: "flat" | "outline" | "contained";
 
   /**
    * Any children to render within the button. This will normally just be text or an icon.
    *
    * Please note that it is considered invalid html to have a `<div>` as a descendant of a `<button>`.
    * You can fix this by enabling the `asDiv` prop.
+   *
    * @docgen
    */
   children?: React.ReactNode;
 
   /**
-   * An optional icon to display with a text button. This is invalid for icon buttons. If this is
-   * a single element, a new class name will be cloned into the element to get correct spacing so
-   * if you have a custom icon element, you **must** also pass that class name down. If you are using
-   * one of the react-md icon component packages, this is handled automatically.
-   * @docgen
-   */
-  icon?: React.ReactElement<any> | React.ReactNode;
-
-  /**
-   * Boolean if the icon should appear after the text instead of before.
-   * @docgen
-   */
-  iconAfter?: boolean;
-
-  /**
    * Boolean if the button should be rendered as a div instead. This will update the div to be fully
    * accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
    * to have a `<div>` as a child of the button, you should enable this prop.
+   *
    * @docgen
    */
   asDiv?: boolean;
 
-  /**
-   * An optional tabIndex to apply. When the `asDiv` prop is enabled, this will default to `0` if its value is
-   * `undefined` and the button is not disabled.
-   * @docgen
-   */
-  tabIndex?: number;
-
-  /**
-   * An optional function to call when the button is clicked.
-   * @docgen
-   */
-  onClick?: (e: ButtonMouseEvent) => void;
-
-  /**
-   * An optional function to call when a keydown event is triggered within the button.
-   * @docgen
-   */
-  onKeyDown?: (e: ButtonKeyboardEvent) => void;
-
-  /**
-   * An optional function to call when the mousedown event is triggered within the button.
-   * @docgen
-   */
-  onMouseDown?: (e: ButtonMouseEvent) => void;
-
-  /**
-   * An optional function to call when the mouseup event is triggered within the button.
-   * @docgen
-   */
-  onMouseUp?: (e: ButtonMouseEvent) => void;
-
-  /**
-   * An optional function to call when the touchstart event is triggered within the button.
-   * @docgen
-   */
-  onTouchStart?: (e: ButtonTouchEvent) => void;
-
-  /**
-   * An optional function to call when the touchend event is triggered within the button.
-   * @docgen
-   */
-  onTouchEnd?: (e: ButtonTouchEvent) => void;
+  // these are really just pass-through-values, so don't need to document them about how they are passed
+      // to the helper components
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onMouseUp?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onTouchStart?: (event: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onTouchEnd?: (event: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void;
 }
 
-export interface IButtonDefaultProps {
+export type IButtonProps = IButtonButtonProps | IButtonButtonProps;
+
+export interface IButtonDefaultProps extends ITextIconSpacingDefaultProps {
   asDiv: boolean;
   disabled: boolean;
-  btnType: string;
   theme: string;
   themeType: string;
-  iconAfter: boolean;
+  btnType: string;
 }
 
 export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;
 
-export interface IButtonState {
-  pressed: boolean;
-}
-
-interface IButtonConditionalProps {
-  role?: "button";
-  type?: string;
-  tabIndex?: number;
-  disabled?: boolean;
-  onKeyDown?: (e: ButtonKeyboardEvent) => void;
-  onMouseDown?: (e: ButtonMouseEvent) => void;
-  onMouseUp?: (e: ButtonMouseEvent) => void;
-  onTouchStart?: (e: ButtonTouchEvent) => void;
-  onTouchEnd?: (e: ButtonTouchEvent) => void;
-}
-
-export default class Button extends React.Component<IButtonProps, IButtonState> {
+export default class Button extends React.Component<IButtonProps, {}> {
   public static propTypes = {
+    style: PropTypes.object,
     className: PropTypes.string,
+    type: PropTypes.oneOf(["button", "reset", "submit"]),
+    btnType: PropTypes.oneOf(["text", "icon"]),
+    theme: PropTypes.oneOf(["clear", "primary", "secondary", "default"]),
+    themeType: PropTypes.oneOf(["flat", "outline", "contained"]),
     children: PropTypes.node,
+    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+    iconAfter: PropTypes.bool,
   };
 
   public static defaultProps: IButtonDefaultProps = {
     asDiv: false,
     disabled: false,
-    btnType: "text",
     theme: "primary",
     themeType: "flat",
+    btnType: "text",
     iconAfter: false,
   };
 
-  constructor(props: IButtonProps) {
-    super(props);
-
-    this.state = { pressed: false };
-  }
-
-  public render() {
-    const { pressed } = this.state;
-    const {
-      className: propClassName,
-      children,
-      btnType,
-      theme,
-      themeType,
-      icon: propIcon,
-      iconAfter,
-      asDiv,
-      tabIndex: propTabIndex,
-      disabled,
-      onClick: propOnClick,
-      onBlur: propOnBlur,
-      onKeyDown,
-      onTouchEnd,
-      onTouchStart,
-      onMouseUp,
-      onMouseDown,
-      type,
-      ...props
-    } = this.props as ButtonWithDefaultProps;
-
+  /**
+   * Creates a button theme based on the button theming props. This is really just used so that
+   * other elements like clickable `<div>`s or `<input type="file">` can look like buttons.
+   *
+   * NOTE: You will still need to manually apply the `<StatesConsumer>` with the correct props
+   */
+  public static theme(props: IButtonThemeProps): string {
+    const { btnType, themeType, theme, disabled, className } = props;
     const text = btnType === "text";
     const icon = btnType === "icon";
     const flat = themeType === "flat";
@@ -229,178 +157,90 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
     const secondary = theme === "secondary";
     const defaultTheme = theme === "default";
 
-    let iconEl = propIcon;
-    if (React.isValidElement(propIcon)) {
-      const i = React.Children.only(propIcon);
-      iconEl = React.cloneElement(propIcon, {
-        // @ts-ignore
-        className: cn(
-          "rmd-btn__icon",
-          {
-            "rmd-btn__icon--before": !iconAfter,
-            "rmd-btn__icon--after": iconAfter,
-          },
-          i.props.className
-        ),
-      });
-    }
-
-    let content = children;
-    if (iconEl) {
-      content = (
-        <React.Fragment>
-          {!iconAfter && iconEl}
-          {children}
-          {iconAfter && iconEl}
-        </React.Fragment>
-      );
-    }
-
-    const additionalProps: IButtonConditionalProps = {};
-    if (asDiv) {
-      // when rendering as a div instead of a button, we need to add additional keyboard events
-      // and a tab index so that it can be interacted by keyboards
-      let tabIndex = propTabIndex;
-      if (disabled) {
-        tabIndex = undefined;
-      } else if (typeof tabIndex !== "number") {
-        tabIndex = 0;
-      }
-
-      additionalProps.role = "button";
-      additionalProps.tabIndex = tabIndex;
-      additionalProps.onKeyDown = disabled ? undefined : this.handleDivKeyDown;
-    } else {
-      // "invalid" html to have disabled on a div
-      additionalProps.disabled = disabled;
-      additionalProps.type = type;
-      additionalProps.tabIndex = propTabIndex;
-      additionalProps.onKeyDown = disabled ? undefined : onKeyDown;
-    }
-
-    if (contained && !disabled) {
-      additionalProps.onMouseDown = this.handleMouseDown;
-      additionalProps.onMouseUp = this.handleMouseUp;
-      additionalProps.onTouchStart = this.handleTouchStart;
-      additionalProps.onTouchEnd = this.handleTouchEnd;
-    } else if (!disabled) {
-      additionalProps.onMouseDown = onMouseDown;
-      additionalProps.onMouseUp = onMouseUp;
-      additionalProps.onTouchStart = onTouchStart;
-      additionalProps.onTouchEnd = onTouchEnd;
-    }
-
-    return (
-      <StatesConsumer
-        disabled={disabled}
-        onBlur={propOnBlur}
-        onClick={propOnClick}
-        className={cn(
-          "rmd-btn",
-          {
-            "rmd-btn--text": text,
-            "rmd-btn--icon": icon,
-            "rmd-btn--hoverable": !disabled,
-            "rmd-btn--disabled": disabled,
-            "rmd-btn--primary": !disabled && primary && contained,
-            "rmd-btn--secondary": !disabled && secondary && contained,
-            "rmd-btn--default": !disabled && defaultTheme && contained,
-            "rmd-btn--text-primary": !disabled && primary && !contained,
-            "rmd-btn--text-secondary": !disabled && secondary && !contained,
-            "rmd-btn--text-default": !disabled && defaultTheme && !contained,
-            "rmd-btn--outline-primary": !disabled && primary && outline,
-            "rmd-btn--outline-secondary": !disabled && secondary && outline,
-            "rmd-btn--outline-default": !disabled && defaultTheme && outline,
-            "rmd-btn--contained": contained,
-            "rmd-btn--contained-pressed": contained && pressed,
-          },
-          propClassName
-        )}
-      >
-        {({ className, ref, onBlur, onClick }) =>
-          React.createElement(
-            asDiv ? "div" : "button",
-            {
-              ...props,
-              ...additionalProps,
-              ref,
-              className,
-              onBlur,
-              onClick,
-            },
-            content
-          )
-        }
-      </StatesConsumer>
+    return cn(
+      "rmd-btn",
+      {
+        "rmd-btn--text": text,
+        "rmd-btn--icon": icon,
+        "rmd-btn--hoverable": !disabled,
+        "rmd-btn--disabled": disabled,
+        "rmd-btn--primary": !disabled && primary && contained,
+        "rmd-btn--secondary": !disabled && secondary && contained,
+        "rmd-btn--default": !disabled && defaultTheme && contained,
+        "rmd-btn--text-primary": !disabled && primary && !contained,
+        "rmd-btn--text-secondary": !disabled && secondary && !contained,
+        "rmd-btn--text-default": !disabled && defaultTheme && !contained,
+        "rmd-btn--outline-primary": !disabled && primary && outline,
+        "rmd-btn--outline-secondary": !disabled && secondary && outline,
+        "rmd-btn--outline-default": !disabled && defaultTheme && outline,
+        "rmd-btn--contained": !disabled && contained,
+      },
+      className
     );
   }
 
-  private press = () => {
-    if (!this.state.pressed) {
-      this.setState({ pressed: true });
-    }
-  };
+  public render() {
+    const {
+      theme,
+      themeType,
+      btnType,
+      icon,
+      iconAfter,
+      children,
+      disabled: baseDisabled,
+      onBlur,
+      onMouseDown,
+      onMouseUp,
+      onTouchStart,
+      onTouchEnd,
+      onKeyDown,
+      onKeyUp,
+      asDiv,
+      ...props
+    } = this.props;
 
-  private unpress = () => {
-    if (this.state.pressed) {
-      this.setState({ pressed: false });
-    }
-  };
+    return (
+      <StatesConsumer
+        className={Button.theme(this.props)}
+        pressedClassName={cn({ "rmd-btn--contained-pressed": themeType === "contained" })}
+        disabled={baseDisabled}
+        onBlur={onBlur}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+      >
+        {({ ref, disabled, ...stateProps }) => {
+          // removed `disabled` since it is "invalid" to have a disabled attribute on a div even if it
+          // can be rendered. Instead we will apply "aria-disabled" when it is disabled from Clickable
 
-  /**
-   * Update the div to listen to space or enter keypresses to trigger a click event
-   * like a normal button.
-   */
-  private handleDivKeyDown = (e: ButtonKeyboardEvent) => {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
+          const content = (
+            <TextIconSpacing icon={icon} iconAfter={iconAfter}>
+              {children}
+            </TextIconSpacing>
+          );
 
-    if (e.key === " " || e.key === "Enter") {
-      if (e.key === " ") {
-        // prevent the page from scrolling
-        e.preventDefault();
-      }
+          if (asDiv) {
+            return (
+              <Clickable disabled={disabled} {...stateProps}>
+                {clickableProps => (
+                  <div {...props} {...stateProps} {...clickableProps} ref={ref}>
+                    {content}
+                  </div>
+                )}
+              </Clickable>
+            );
+          }
 
-      e.currentTarget.click();
-    }
-  };
-
-  /**
-   * "contained" buttons gain a pressed state that raises their elevation while being
-   * clicked.
-   */
-  private handleMouseDown = (e: ButtonMouseEvent) => {
-    if (this.props.onMouseDown) {
-      this.props.onMouseDown(e);
-    }
-
-    if (e.button === LEFT_MOUSE) {
-      this.press();
-    }
-  };
-
-  private handleMouseUp = (e: ButtonMouseEvent) => {
-    if (this.props.onMouseUp) {
-      this.props.onMouseUp(e);
-    }
-
-    this.unpress();
-  };
-
-  private handleTouchStart = (e: ButtonTouchEvent) => {
-    if (this.props.onTouchStart) {
-      this.props.onTouchStart(e);
-    }
-
-    this.press();
-  };
-
-  private handleTouchEnd = (e: ButtonTouchEvent) => {
-    if (this.props.onTouchEnd) {
-      this.props.onTouchEnd(e);
-    }
-
-    this.unpress();
-  };
+          return (
+            <button {...props} {...stateProps} ref={ref} disabled={disabled}>
+              {content}
+            </button>
+          );
+        }}
+      </StatesConsumer>
+    );
+  }
 }

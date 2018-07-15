@@ -27,10 +27,6 @@ $rmd-btn-text-height: 2.25rem !default; // 36dp
 /// @type Number
 $rmd-btn-text-min-width: 4rem !default; // 64dp
 
-/// The amount of spacing to apply between the icon and text within a text button.
-/// @type Number
-$rmd-btn-text-icon-spacing: .5rem !default; // 8dp
-
 /// The text button's icon size. This is than the normal icon size by default since buttons
 /// have additional padding. You can set this to `null` if you want consistant icon sizes.
 /// @type Number

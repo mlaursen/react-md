@@ -134,17 +134,5 @@
     &--outline-default {
       box-shadow: $rmd-btn-box-shadow $rmd-btn-default-color;
     }
-
-    &__icon {
-      color: inherit;
-
-      &--before {
-        margin-right: $rmd-btn-text-icon-spacing;
-      }
-
-      &--after {
-        margin-left: $rmd-btn-text-icon-spacing;
-      }
-    }
   }
 }
