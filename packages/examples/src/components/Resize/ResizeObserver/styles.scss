@@ -1,0 +1,13 @@
+@import '@react-md/transition/dist/transition';
+
+.resize-observers {
+  &__container {
+    transition-duration: 1s;
+    transition-property: max-height, max-width;
+    will-change: max-height, max-width;
+  }
+
+  &__table {
+    padding-bottom: 100%;
+  }
+}

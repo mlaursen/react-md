@@ -19,12 +19,6 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example Usage SCSS](#example-usage-scss)
       - [Example Usage SCSS](#example-usage-scss-1)
       - [Example Usage SCSS](#example-usage-scss-2)
-      - [Example Usage SCSS](#example-usage-scss-3)
-      - [Example Usage SCSS](#example-usage-scss-4)
-      - [Example Usage Generated CSS](#example-usage-generated-css)
-      - [Updating before and afer selectors](#updating-before-and-afer-selectors)
-      - [Updating before and after selectors css Output](#updating-before-and-after-selectors-css-output)
-      - [Example Usage SCSS](#example-usage-scss-5)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -263,7 +257,7 @@ An optional tabIndex to apply. When the <code>asDiv</code> prop is enabled, this
 </tr>
 <tr>
 <td>onClick</td>
-<td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when the button is clicked.
@@ -272,7 +266,7 @@ An optional function to call when the button is clicked.
 </tr>
 <tr>
 <td>onKeyDown</td>
-<td><code>((e: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: KeyboardEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when a keydown event is triggered within the button.
@@ -281,7 +275,7 @@ An optional function to call when a keydown event is triggered within the button
 </tr>
 <tr>
 <td>onMouseDown</td>
-<td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when the mousedown event is triggered within the button.
@@ -290,7 +284,7 @@ An optional function to call when the mousedown event is triggered within the bu
 </tr>
 <tr>
 <td>onMouseUp</td>
-<td><code>((e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: MouseEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when the mouseup event is triggered within the button.
@@ -299,7 +293,7 @@ An optional function to call when the mouseup event is triggered within the butt
 </tr>
 <tr>
 <td>onTouchStart</td>
-<td><code>((e: TouchEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: TouchEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when the touchstart event is triggered within the button.
@@ -308,7 +302,7 @@ An optional function to call when the touchstart event is triggered within the b
 </tr>
 <tr>
 <td>onTouchEnd</td>
-<td><code>((e: TouchEvent<HTMLButtonElement | HTMLDivElement>) => void)</code></td>
+<td><code>((e: TouchEvent<ButtonElement>) => void)</code></td>
 <td><code>null</code></td>
 <td>
 An optional function to call when the touchend event is triggered within the button.
@@ -351,30 +345,12 @@ either ripples or something else for keyboard users.
 </td>
 </tr>
 <tr>
-<td><code>rmd-btn-text</code></td>
-<td>A mixin that will generate only the styles for a text button. This depends on the base styles
-to be applied beforehand
-
-</td>
-</tr>
-<tr>
-<td><code>rmd-btn-icon</code></td>
-<td>Creates the styles only for the icon button spec. This depends on the base button styles to
-be applied beforehand.
-
-</td>
-</tr>
-<tr>
-<td><code>rmd-btn-text-icon</code></td>
-<td>This mixin will create styles to place buttons before or after the text within a text
-button. By default, this will create 2 additional class names for placing the icon before
-and after the text, but can be configured to use any selector.
-
-</td>
-</tr>
-<tr>
-<td><code>react-md-button</code></td>
-<td>Creates all the styles for buttons within react-md.
+<td><code>rmd-btn-hover-base</code></td>
+<td>The base styles to add hover effects to buttons. The hover effects are created by modifying
+the <code>::after</code> pseudo-selector so that if you apply the default <code>$rmd-btn-hover-background-color</code>
+or a color with an opacity, it will look good on any button background color.
+<br /><br />
+NOTE: This requires the container element to have `position: relative` to work.
 
 </td>
 </tr>
@@ -408,85 +384,11 @@ and after the text, but can be configured to use any selector.
 ##### Example Usage SCSS
 
 ```scss
-// all buttons will only be set for the text button spec
 .my-button {
-  @include rmd-btn-base;
-  @include rmd-btn-text;
+  @include rmd-btn-hover-base;
+
+  position: relative;
 }
-```
-
-
-##### Example Usage SCSS
-
-```scss
-.my-icon-button {
-  @include rmd-btn-base;
-  @include rmd-btn-icon;
-}
-```
-
-
-##### Example Usage SCSS
-
-```scss
-.my-text-button {
-  @include rmd-btn-base;
-
-  &__icon {
-    @include rmd-btn-text-icon;
-  }
-}
-```
-
-##### Example Usage Generated CSS
-
-```css
-.my-text-button__icon {
-  color: inherit;
-}
-
-.my-text-button__icon--before {
-  margin-right: .5rem;
-}
-
-.my-text-button__icon--after {
-  margin-left: .5rem;
-}
-```
-
-##### Updating before and afer selectors
-
-```scss
-.my-text-button {
-  @include rmd-btn-base;
-
-  &__icon {
-    @include rmd-btn-text-icon('&:first-child', '&:last-child');
-  }
-}
-```
-
-##### Updating before and after selectors css Output
-
-```css
-.my-text-button__icon {
-  color: inherit;
-}
-
-.my-text-button__icon:first-child {
-  margin-right: .5rem;
-}
-
-.my-text-button__icon:last-child {
-  margin-left: .5rem;
-}
-```
-
-
-##### Example Usage SCSS
-
-```scss
-@include react-md-button;
 ```
 
 

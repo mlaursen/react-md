@@ -1,0 +1,30 @@
+////
+/// @group states
+////
+
+@import '@react-md/transition/dist/variables';
+
+$rmd-states-transition-duration: .15s !default;
+
+$rmd-states-light-opacities: (
+  hover: .08,
+  focus: .24,
+  press: .32,
+  selected: .16,
+  active: .24,
+) !default;
+
+$rmd-states-dark-opacities: (
+  hover: .04,
+  focus: .12,
+  press: .16,
+  selected: .08,
+  active: .12,
+) !default;
+
+$rmd-states-opacities: (
+  dark: $rmd-states-dark-opacities,
+  light: $rmd-states-light-opacities,
+) !default;
+
+$rmd-states-tap-highlight-color: rgba($rmd-black-base, 0) !default;

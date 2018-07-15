@@ -1,0 +1,119 @@
+////
+/// @group states
+////
+
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/variables';
+@import 'functions';
+@import 'variables';
+
+/// Applies the base color for the different states to use. The different
+/// states will apply different opacity values to this value.
+///
+/// @param {Color} color [rmd-black-base] - The background color for the different states.
+/// @param {Boolean} important [false] - Boolean if the background color should be applied
+///   with `!important`.
+@mixin rmd-states-base-color($color: $rmd-black-base, $important: false) {
+  &::before {
+    @include rmd-theme(background-color, $color, $important);
+  }
+}
+
+/// Updates the opacity for a provided state and color.
+///
+/// @param {String} state - The current state, this should be one of the `$rmd-states-light-opacities` and
+///   `$rmd-states-dark-opacities` keys.
+/// @param {Color} color [rmd-black-base] - The color to use for determining whether to use the dark or light
+///   opacity map.
+@mixin rmd-states-opacity($state, $color: $rmd-black-base) {
+  &::before {
+    opacity: rmd-states-opacity($color, $state);
+  }
+}
+
+/// Applies the base states styles.
+@mixin rmd-states-base {
+  -webkit-tap-highlight-color: $rmd-states-tap-highlight-color;
+
+  &::before {
+    border-radius: inherit;
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity $rmd-states-transition-duration linear;
+    z-index: 1;
+  }
+}
+
+@mixin rmd-states-hover($color: $rmd-black-base) {
+  &:hover {
+    @include rmd-states-opacity(hover, $color);
+  }
+}
+
+@mixin rmd-states-focus($color: $rmd-black-base) {
+  @include rmd-states-opacity(focus, $color);
+}
+
+@mixin rmd-states-press($color: $rmd-black-base) {
+  @include rmd-states-opacity(press, $color);
+}
+
+@mixin rmd-states-simple($color: $rmd-black-base) {
+  // using `[disabled]` instead of `:disabled` since many elements are updated
+  // to be like a focusable element but still do not natively respond to the :disabled
+  // selector
+  &:not([disabled]) {
+    @include rmd-states-hover($color);
+
+    &:focus {
+      @include rmd-states-focus($color);
+    }
+
+    &:active {
+      @include rmd-states-press($color);
+    }
+  }
+}
+
+@mixin rmd-states-selected($color: $rmd-black-base) {
+  @include rmd-states-opacity(selected, $color);
+}
+
+@mixin rmd-states-active($color: $rmd-black-base) {
+  @include rmd-states-opacity(active, $color);
+}
+
+@mixin rmd-states-surface($color: $rmd-black-base) {
+  @include rmd-states-base;
+  @include rmd-states-base-color($color);
+
+  &.rmd-states--simple {
+    @include rmd-states-simple;
+  }
+
+  &.rmd-states--hover {
+    @include rmd-states-hover($color);
+  }
+
+  &.rmd-states--focus {
+    @include rmd-states-focus($color);
+  }
+
+  &.rmd-states--press {
+    @include rmd-states-press($color);
+  }
+
+  &.rmd-states--selected {
+    @include rmd-states-selected($color);
+  }
+
+  &.rmd-states--active {
+    @include rmd-states-active($color);
+  }
+}

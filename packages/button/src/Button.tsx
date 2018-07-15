@@ -1,10 +1,15 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
+import { StatesConsumer } from "@react-md/states";
 
-export type ButtonMouseEvent = React.MouseEvent<HTMLButtonElement | HTMLDivElement>;
-export type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>;
-export type ButtonTouchEvent = React.TouchEvent<HTMLButtonElement | HTMLDivElement>;
+// it's really HTMLButtonElement or HTMLDivElement, but when the `asDiv` prop is enabled the div gains
+// the ability to be focused like an HTMLElement
+export type ButtonElement = HTMLButtonElement | HTMLElement;
+
+export type ButtonMouseEvent = React.MouseEvent<ButtonElement>;
+export type ButtonKeyboardEvent = React.KeyboardEvent<ButtonElement>;
+export type ButtonTouchEvent = React.TouchEvent<ButtonElement>;
 
 const LEFT_MOUSE = 0;
 
@@ -23,7 +28,7 @@ const LEFT_MOUSE = 0;
  * a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
  * keyboard events.
  */
-export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement | HTMLDivElement> {
+export interface IButtonProps extends React.HTMLAttributes<ButtonElement> {
   /**
    * An optional style to apply.
    * @docgen
@@ -162,6 +167,7 @@ interface IButtonConditionalProps {
   role?: "button";
   type?: string;
   tabIndex?: number;
+  disabled?: boolean;
   onKeyDown?: (e: ButtonKeyboardEvent) => void;
   onMouseDown?: (e: ButtonMouseEvent) => void;
   onMouseUp?: (e: ButtonMouseEvent) => void;
@@ -193,7 +199,7 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
   public render() {
     const { pressed } = this.state;
     const {
-      className,
+      className: propClassName,
       children,
       btnType,
       theme,
@@ -202,7 +208,9 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       iconAfter,
       asDiv,
       tabIndex: propTabIndex,
-      onClick,
+      disabled,
+      onClick: propOnClick,
+      onBlur: propOnBlur,
       onKeyDown,
       onTouchEnd,
       onTouchStart,
@@ -211,7 +219,6 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       type,
       ...props
     } = this.props as ButtonWithDefaultProps;
-    const { disabled } = props;
 
     const text = btnType === "text";
     const icon = btnType === "icon";
@@ -264,6 +271,8 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       additionalProps.tabIndex = tabIndex;
       additionalProps.onKeyDown = disabled ? undefined : this.handleDivKeyDown;
     } else {
+      // "invalid" html to have disabled on a div
+      additionalProps.disabled = disabled;
       additionalProps.type = type;
       additionalProps.tabIndex = propTabIndex;
       additionalProps.onKeyDown = disabled ? undefined : onKeyDown;
@@ -281,13 +290,12 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
       additionalProps.onTouchEnd = onTouchEnd;
     }
 
-    return React.createElement(
-      asDiv ? "div" : "button",
-      {
-        ...props,
-        ...additionalProps,
-        onClick: disabled ? undefined : onClick,
-        className: cn(
+    return (
+      <StatesConsumer
+        disabled={disabled}
+        onBlur={propOnBlur}
+        onClick={propOnClick}
+        className={cn(
           "rmd-btn",
           {
             "rmd-btn--text": text,
@@ -306,10 +314,24 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
             "rmd-btn--contained": contained,
             "rmd-btn--contained-pressed": contained && pressed,
           },
-          className
-        ),
-      },
-      content
+          propClassName
+        )}
+      >
+        {({ className, ref, onBlur, onClick }) =>
+          React.createElement(
+            asDiv ? "div" : "button",
+            {
+              ...props,
+              ...additionalProps,
+              ref,
+              className,
+              onBlur,
+              onClick,
+            },
+            content
+          )
+        }
+      </StatesConsumer>
     );
   }
 

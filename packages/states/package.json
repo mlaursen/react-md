@@ -1,7 +1,7 @@
 {
-  "name": "@react-md/button",
+  "name": "@react-md/states",
   "version": "2.0.0-alpha-1",
-  "description": "",
+  "description": "A package for managing the different interaction states on elements like hover, focus, and pressed",
   "scripts": {
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
@@ -32,16 +32,15 @@
   "repository": "https://github.com/mlaursen/react-md",
   "license": "MIT",
   "dependencies": {
-    "@react-md/elevation": "^2.0.0-alpha-1",
-    "@react-md/states": "^2.0.0-alpha-1",
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/transition": "^2.0.0-alpha-1",
-    "@react-md/typography": "^2.0.0-alpha-1",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "memoize-one": "^4.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.4",
     "@types/jest": "^23.1.0",
+    "@types/memoize-one": "^3.1.1",
     "@types/prop-types": "15.5.3",
     "@types/react": "^16.3.18",
     "@types/react-dom": "^16.0.6",

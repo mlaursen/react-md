@@ -247,16 +247,16 @@ const SCSS_FILE_TEMPLATE = `////
  * This is the file contents for the src/_${name}.scss
  */
 const SCSS_PACKAGE_FILE_TEMPLATE = `${SCSS_FILE_TEMPLATE}
-@import "functions";
-@import "mixins";
-@import "variables";
+@import 'functions';
+@import 'mixins';
+@import 'variables';
 `;
 
 /**
  * This is the file template that should be used for src/styles.scss. This is the one
  * that will generate all the styles if included.
  */
-const STYLES_FILE_TEMPLATE = `@import "${name}";
+const STYLES_FILE_TEMPLATE = `@import '${name}';
 
 @include react-md-${name};
 `;
@@ -285,7 +285,6 @@ if (styles || typescript) {
 
     watch.push('build:commonjs -- --watch');
     watch.push('build:modules -- --watch');
-    watch.push('watch:definitions');
   }
 
   if (styles) {

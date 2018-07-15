@@ -5,6 +5,7 @@
 @import '@react-md/elevation/dist/elevation';
 @import '@react-md/theme/dist/theme';
 @import '@react-md/typography/dist/typography';
+@import '@react-md/states/dist/mixins';
 @import 'variables';
 
 /// A simple mixin to create an unstyled button.
@@ -33,64 +34,11 @@
 ///   }
 @mixin rmd-btn-base {
   @include rmd-btn-unstyled;
+  @include rmd-states-surface;
 
   align-items: center;
   display: inline-flex;
   position: relative;
-}
-
-/// The base styles to add hover effects to buttons. The hover effects are created by modifying
-/// the `::after` pseudo-selector so that if you apply the default `$rmd-btn-hover-background-color`
-/// or a color with an opacity, it will look good on any button background color.
-///
-/// NOTE: This requires the container element to have `position: relative` to work.
-///
-/// @example scss - Example Usage SCSS
-///   .my-button {
-///     @include rmd-btn-hover-base;
-///
-///     position: relative;
-///   }
-@mixin rmd-btn-hover-base {
-  &::after {
-    @include rmd-transition(standard);
-
-    background-color: transparent;
-    border-radius: inherit;
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: background-color $rmd-btn-background-color-transition-time;
-  }
-}
-
-/// The styles to add the correct hover states to a button. This should really only be applied when the
-/// button is not in a `disabled` state.
-///
-/// @example scss - Example Usage SCSS
-///   .my-button {
-///     @include rmd-btn-hover-states;
-///   }
-///
-///   .my-button:not(:disabled) {
-///     @include rmd-btn-hover-states;
-///   }
-///
-///   // this version is preferred since it makes updating the disabled styles easier
-///   .my-button--hoverable {
-///     @include rmd-btn-hover-states;
-///   }
-@mixin rmd-btn-hover-states {
-  &:hover {
-    cursor: pointer;
-
-    &::after {
-      background-color: $rmd-btn-hover-background-color;
-    }
-  }
 }
 
 @mixin rmd-btn-text {
@@ -117,10 +65,13 @@
 @mixin react-md-button {
   .rmd-btn {
     @include rmd-btn-base;
-    @include rmd-btn-hover-base;
 
     &--hoverable {
-      @include rmd-btn-hover-states;
+      @include rmd-states-hover;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &--text {
@@ -148,10 +99,12 @@
     }
 
     &--text-primary {
+      @include rmd-states-base-color(primary);
       @include rmd-theme(color, primary);
     }
 
     &--text-secondary {
+      @include rmd-states-base-color(secondary);
       @include rmd-theme(color, secondary);
     }
 

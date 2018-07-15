@@ -1,0 +1,33 @@
+////
+/// @group states
+////
+
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/functions';
+@import '@react-md/theme/dist/variables';
+@import 'variables';
+
+/// Gets the states opacity map based on the provided color. This will check the contrast
+/// tone of the themed color, and return the correct opacities for a dark or light color.
+///
+/// @param {Color} color - The color to get an opacity map for.
+@function rmd-states-opacities($color) {
+  $color-value: rmd-theme-prop-value($color);
+
+  @return map-get($rmd-states-opacities, rmd-theme-contrast-tone($color-value));
+}
+
+/// Gets the states opacity for with the provided color and state.
+///
+/// @param {Color} color - The color to get an opacity map for.
+/// @param {String} state - The state that should be retrieved. This should be one of
+///   the keys in the `$rmd-states-opacities` dark or light Maps.
+@function rmd-states-opacity($color, $state) {
+  $opacity-map: rmd-states-opacities($color);
+
+  @if not map-has-key($opacity-map, $state) {
+    @error "Invalid state: '#{$state}'. Choose one of #{$map-keys($opacity-map)}.";
+  }
+
+  @return map-get($opacity-map, $state);
+}

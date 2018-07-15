@@ -1,9 +1,44 @@
 $rmd-btn-box-shadow-width: 2px;
 
 @import '@react-md/button/dist/variables';
+@import '@react-md/states/dist/states';
 
 .temp-btn-focus .rmd-btn {
-  &:focus:not(.rmd-btn--contained) {
-    box-shadow: $rmd-btn-box-shadow $rmd-blue-500;
-  }
+  // @include rmd-states-surface;
+  // @include rmd-states-simple-base;
+  // @include rmd-states-simple;
+
+  // &.rmd-btn--disabled:hover::before {
+  //   opacity: 0;
+  // }
+
+  // &.rmd-btn--text-primary {
+  //   @include rmd-states-base-color($rmd-theme-primary);
+  // }
+
+  // &.rmd-btn--text-secondary {
+  //   @include rmd-states-base-color($rmd-theme-secondary);
+  // }
+
+  // &:not(:disabled):focus::before {
+  //   background-color: transparent;
+  //   box-shadow: inset 0 0 0 2px $rmd-blue-500;
+  //   opacity: 1;
+  // }
+
+  // &:not(:disabled) {
+  //   &:hover {
+  //     @include rmd-states-state-opacity(hover);
+  //   }
+
+  //   &:focus {
+  //     @include rmd-states-state-opacity(focus);
+  //   }
+  // }
 }
+
+// .temp-btn-focus .rmd-btn {
+//   &:focus:not(.rmd-btn--contained) {
+//     box-shadow: $rmd-btn-box-shadow $rmd-blue-500;
+//   }
+// }
