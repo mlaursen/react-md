@@ -60,15 +60,16 @@
   @include rmd-states-opacity(focus, $color);
 }
 
-@mixin rmd-states-press($color: $rmd-black-base) {
+@mixin rmd-states-pressed($color: $rmd-black-base) {
   @include rmd-states-opacity(press, $color);
+
+  &:hover {
+    @include rmd-states-opacity(press, $color);
+  }
 }
 
 @mixin rmd-states-simple($color: $rmd-black-base) {
-  // using `[disabled]` instead of `:disabled` since many elements are updated
-  // to be like a focusable element but still do not natively respond to the :disabled
-  // selector
-  &:not([disabled]) {
+  &:not(:disabled):not([aria-disabled="true"]) {
     @include rmd-states-hover($color);
 
     &:focus {
@@ -76,7 +77,7 @@
     }
 
     &:active {
-      @include rmd-states-press($color);
+      @include rmd-states-pressed($color);
     }
   }
 }
@@ -105,8 +106,8 @@
     @include rmd-states-focus($color);
   }
 
-  &.rmd-states--press {
-    @include rmd-states-press($color);
+  &.rmd-states--pressed {
+    @include rmd-states-pressed($color);
   }
 
   &.rmd-states--selected {
