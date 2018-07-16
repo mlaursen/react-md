@@ -13,11 +13,12 @@ const PROP_DIFF_KEYS: Array<keyof IStatesConsumerProps> = [
   "advancedFocus",
   "pressable",
   "disabled",
-  "onBlur",
   "onMouseUp",
   "onMouseDown",
   "onTouchStart",
   "onTouchEnd",
+  "onKeyDown",
+  "onKeyUp",
 ];
 
 export type StatesConsumerKeyboardEvent = React.KeyboardEvent<any>;
@@ -88,7 +89,16 @@ export interface IStatesConsumerChildrenFunction {
   onKeyUp?: StatesConsumerKeyboardListener;
 }
 
-export interface IStatesConsumerBaseProps {
+export interface IStatesConsumerEvents {
+  onMouseDown?: StatesConsumerMouseListener;
+  onMouseUp?: StatesConsumerMouseListener;
+  onTouchStart?: StatesConsumerTouchListener;
+  onTouchEnd?: StatesConsumerTouchListener;
+  onKeyDown?: StatesConsumerKeyboardListener;
+  onKeyUp?: StatesConsumerKeyboardListener;
+}
+
+export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
   /**
    * An optional class name that should be merged with the current states class name.
    *
@@ -122,43 +132,6 @@ export interface IStatesConsumerBaseProps {
   pressedClassName?: string;
 
   /**
-   * An optional function to be called when the element is blurred.
-   *
-   * @docgen
-   */
-  onBlur?: StatesConsumerFocusListener;
-
-  /**
-   * An optional `mousedown` event handler.
-   *
-   * @docgen
-   */
-  onMouseDown?: StatesConsumerMouseListener;
-
-  /**
-   * An optional `mousedown` event handler.
-   *
-   * @docgen
-   */
-  onMouseUp?: StatesConsumerMouseListener;
-
-  /**
-   * An optional `touchstart` event handler.
-   *
-   * @docgen
-   */
-  onTouchStart?: StatesConsumerTouchListener;
-
-  /**
-   * An optional `touchend` event handler.
-   *
-   * @docgen
-   */
-  onTouchEnd?: StatesConsumerTouchListener;
-  onKeyDown?: StatesConsumerKeyboardListener;
-  onKeyUp?: StatesConsumerKeyboardListener;
-
-  /**
    * A function to render any children with the merged class names and optional blur events. The child element
    * **must** apply the `ref` attribute to the child element as well as the provided class name and `onBlur` to
    * work correctly.
@@ -187,7 +160,6 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     pressedClassName: PropTypes.string,
     pressable: PropTypes.bool,
     disabled: PropTypes.bool,
-    onBlur: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onMouseUp: PropTypes.func,
@@ -231,7 +203,6 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
       advancedFocus,
       disabled,
       pressable,
-      onBlur,
       onMouseDown,
       onMouseUp,
       onTouchStart,
@@ -253,7 +224,6 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
       disabled,
       className,
       ref: this.ref,
-      onBlur: isFocused ? this.handleBlur : onBlur,
       onKeyDown: pressable && isFocused ? this.handleKeyDown : onKeyDown,
       onKeyUp: !disabled && pressable && pressed ? this.handleKeyUp : onKeyUp,
       onMouseDown: pressable || isFocused ? this.handleMouseDown : onMouseDown,
@@ -293,14 +263,6 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     }
   };
 
-  private handleBlur = (event: StatesConsumerFocusEvent) => {
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-
-    this.props.resetFocusTarget(event.currentTarget);
-  };
-
   private handleKeyDown = (event: StatesConsumerKeyboardEvent) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
@@ -317,16 +279,11 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     }
 
     this.unpress();
-  }
+  };
 
   private handleMouseDown = (event: StatesConsumerMouseEvent) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(event);
-    }
-
-    if (this.props.advancedFocus && this.isFocusTarget(this.props)) {
-      // no longer in "keyboard" mode
-      this.props.resetFocusTarget(event.currentTarget);
     }
 
     if (this.props.pressable && event.button === LEFT_MOUSE) {

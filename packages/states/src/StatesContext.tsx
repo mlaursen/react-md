@@ -26,13 +26,6 @@ export interface IStatesContext {
    * called immediately before unmounting the consumer.
    */
   deinitFocusTarget: (el: HTMLElement) => void;
-
-  /**
-   * A callback to "reset" the current focus target back to `null`. This should only be used after an element
-   * is blurred to help capture the page losing focus by the user switching tabs, minimizing, or focusing
-   * another window.
-   */
-  resetFocusTarget: (el: HTMLElement) => void;
 }
 
 const StatesContext = React.createContext<IStatesContext>({
@@ -40,7 +33,6 @@ const StatesContext = React.createContext<IStatesContext>({
   focusTarget: null,
   initFocusTarget: () => undefined,
   deinitFocusTarget: () => undefined,
-  resetFocusTarget: () => undefined,
 });
 
 const { Provider, Consumer } = StatesContext;

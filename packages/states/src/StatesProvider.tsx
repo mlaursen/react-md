@@ -15,14 +15,6 @@ export interface IStatesProviderProps {
   advancedFocus?: boolean;
 
   /**
-   * A list of keys that can "natively" trigger a focus focus event on a focusable element. This _should_
-   * most likely stay as the default of only listening to tab key presses.
-   *
-   * @docgen
-   */
-  keyboardFocusKeys?: string[];
-
-  /**
    * A list of keys that can trigger a "programmatic" focus event on a focusable element. This _should_ most
    * likely stay as default list of keys since it will be updated for any custom keyboard focus events from
    * the W3C spec while new components are created, but it can be updated to include or remove keys as needed.
@@ -47,13 +39,21 @@ export interface IStatesProviderProps {
    * @docgen
    */
   children?: React.ReactNode;
+
+  /**
+   * Boolean if any "printable" key should also be able to trigger a focus event. This should be disabled
+   * to help increase performance so that every key the user presses does not attempt to update the entire
+   * app's focus. Instead, the small section within your app (like listboxes or menus) should create a new
+   * `StatesProvider` with this boolean enabled so only that small section has the advanced logic.
+   */
+  isPrintableKeysFocusable?: boolean;
 }
 
 export interface IStatesProviderDefaultProps {
   advancedFocus: boolean;
-  keyboardFocusKeys: string[];
   keyboardClickTimeout: number;
   programaticFocusKeys: string[];
+  isPrintableKeysFocusable: boolean;
 }
 
 export type StatesProviderWithDefaultProps = IStatesProviderProps & IStatesProviderDefaultProps;
@@ -65,25 +65,25 @@ export interface IStatesProviderState {
 export default class StatesProvider extends React.Component<IStatesProviderProps, IStatesProviderState> {
   public static propTypes = {
     advancedFocus: PropTypes.bool,
-    keyboardFocusKeys: PropTypes.arrayOf(PropTypes.string),
     programaticFocusKeys: PropTypes.arrayOf(PropTypes.string),
     keyboardClickTimeout: PropTypes.number,
+    isPrintableKeysFocusable: PropTypes.bool,
     children: PropTypes.node,
   };
 
   public static defaultProps: IStatesProviderDefaultProps = {
     advancedFocus: true,
-    keyboardFocusKeys: ["Tab"],
-    programaticFocusKeys: ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", " ", "Enter"],
+    programaticFocusKeys: ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", " ", "Enter", "Tab"],
     keyboardClickTimeout: 500,
+    isPrintableKeysFocusable: false,
   };
 
   /**
    * A list of elements that are considered "valid" targets for the custom keyboard focus behavior. Since
-   * the main `keyup` and `keydown` events are attached on the `window` to catch some delayed focus events,
-   * this is used to help filter a focus event to an element that is being watched by this component.
+   * the main `keydown` event is attached on the `window` to catch some delayed focus events, this is used
+   * to help filter a focus event to an element that is being watched by this component.
    */
-  private targets: HTMLElement[];
+  private targets: Set<HTMLElement>;
 
   /**
    * The current timeout between keydown event and a focus event when the keydown key was one of the
@@ -92,42 +92,50 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
   private keyboardClickTimeout?: number;
 
   /**
-   * Tracks weather the window keydown and keyup events have been attached to make sure they aren't
+   * Tracks weather the window keydown event has been attached to make sure they aren't
    * added multiple times.
    */
   private attachedKeyEvents: boolean;
   private attachedFocusEvent: boolean;
+  private attachedBlurEvents: boolean;
 
   constructor(props: IStatesProviderProps) {
     super(props);
 
     this.state = { focusTarget: null };
-    this.targets = [];
+    this.targets = new Set();
     this.attachedKeyEvents = false;
     this.attachedFocusEvent = false;
+    this.attachedBlurEvents = false;
   }
 
   public componentDidMount() {
-    this.updateKeyboardEvents(true);
+    this.updateKeyboardEvents((this.props as StatesProviderWithDefaultProps).advancedFocus);
   }
 
   public shouldComponentUpdate(nextProps: IStatesProviderProps, nextState: IStatesProviderState) {
     return (
-      this.state !== nextState ||
+      this.state.focusTarget !== nextState.focusTarget ||
       this.props.children !== nextProps.children ||
       this.props.advancedFocus !== nextProps.advancedFocus
     );
   }
 
-  public componentDidUpdate(prevProps: IStatesProviderProps) {
+  public componentDidUpdate(prevProps: IStatesProviderProps, prevState: IStatesProviderState) {
     const { advancedFocus } = this.props as StatesProviderWithDefaultProps;
     if (advancedFocus !== prevProps.advancedFocus) {
       this.updateKeyboardEvents(advancedFocus);
 
       if (!advancedFocus) {
         // reset all tracking
-        this.targets = [];
+        this.targets = new Set();
       }
+    }
+
+    const isFocused = this.state.focusTarget !== null;
+    if (isFocused !== (prevState.focusTarget !== null)) {
+      // blur events should only be added while there is a valid focus target.
+      this.updateBlurEvents(isFocused);
     }
   }
 
@@ -135,6 +143,7 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     this.clearKeyboardTimer();
     this.updateKeyboardEvents(false);
     this.updateFocusEvent(false);
+    this.updateBlurEvents(false);
   }
 
   public render() {
@@ -154,7 +163,6 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
           focusTarget,
           initFocusTarget: this.init,
           deinitFocusTarget: this.deinit,
-          resetFocusTarget: this.reset,
         }}
       >
         {children}
@@ -163,37 +171,41 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
   }
 
   private init = (el: HTMLElement | null) => {
-    if (el && !this.isTarget(el)) {
-      this.targets.push(el);
+    if (el) {
+      this.targets.add(el);
     }
   };
 
   private deinit = (el: HTMLElement | null) => {
-    const i = el ? this.targets.indexOf(el) : -1;
-    if (i !== -1) {
-      this.targets.splice(i, 1);
+    if (el) {
+      this.targets.delete(el);
     }
   };
-
-  private isTarget = (target: HTMLElement) => target !== null && this.targets.indexOf(target) !== -1;
 
   private clearKeyboardTimer = () => {
     window.clearTimeout(this.keyboardClickTimeout);
     this.keyboardClickTimeout = undefined;
   };
 
+  /**
+   * "Lazyily" attaches or removes the keyboard event listeners required to trigging tab focus
+   * or programmatic focus. These events shoudl always be attached when the `advancedFocus` prop
+   * is enabled to conditionally add the focus class name to the focus target.
+   */
   private updateKeyboardEvents = (enabled: boolean) => {
     if (!this.attachedKeyEvents && enabled) {
       window.addEventListener("keydown", this.handleKeyDown, true);
-      window.addEventListener("keyup", this.handleKeyUp, true);
       this.attachedKeyEvents = true;
     } else if (this.attachedKeyEvents && !enabled) {
       window.removeEventListener("keydown", this.handleKeyDown, true);
-      window.removeEventListener("keyup", this.handleKeyUp, true);
       this.attachedKeyEvents = false;
     }
   };
 
+  /**
+   * "Lazily" attaches or removes the focus event required to handling programmatic focus. This should
+   * only be enabled when a keydown event key is considered a programmatic focus key.
+   */
   private updateFocusEvent = (enabled: boolean) => {
     if (!this.attachedFocusEvent && enabled) {
       window.addEventListener("focus", this.handleFocus, true);
@@ -202,16 +214,54 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
       window.removeEventListener("focus", this.handleFocus, true);
       this.attachedFocusEvent = false;
     }
-  }
+  };
+
+  /**
+   * "Lazily" attaches or removes the "reset" or blur events required for blurring a focus target.
+   * These events need to be attached to the window instead of the focus target since it doesn't
+   * work as nicely when handling programmatic focus.
+   *
+   * The blur listener is added to handle cases where the entire browser window or tab loses focus by
+   * tabbing out or clicking another window/OS program. The mousedown listener is added to stop the
+   * "keyboard focus mode" when the user clicks the element that has already gained focus.
+   */
+  private updateBlurEvents = (enabled: boolean) => {
+    if (!this.attachedBlurEvents && enabled) {
+      window.addEventListener("blur", this.reset, true);
+      window.addEventListener("mousedown", this.reset, true);
+      this.attachedBlurEvents = true;
+    } else if (this.attachedBlurEvents && !enabled) {
+      window.removeEventListener("blur", this.reset, true);
+      window.removeEventListener("mousedown", this.reset, true);
+      this.attachedBlurEvents = false;
+    }
+  };
+
+  /**
+   * @see https://stackoverflow.com/a/12467610
+   */
+  private isProgrammaticallyFocusable = (event: KeyboardEvent) => {
+    const code = event.which || event.keyCode;
+    return (
+      (code > 47 && code < 58) ||
+      (code > 64 && code < 91) ||
+      (code > 95 && code < 112) ||
+      (code > 185 && code < 192) ||
+      (code > 218 && code < 223)
+    );
+  };
 
   /**
    * This is only used to determine if a manual programatic focus event should also trigger
    * the focus effect. It will normally only happen after one of the focus keys are pressed.
    */
-  private handleKeyDown = (e: KeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardEvent) => {
     this.clearKeyboardTimer();
-    const { programaticFocusKeys } = this.props as StatesProviderWithDefaultProps;
-    if (!this.isTarget(e.target as HTMLElement) || programaticFocusKeys.indexOf(e.key) === -1) {
+    const { programaticFocusKeys, isPrintableKeysFocusable } = this.props as StatesProviderWithDefaultProps;
+    if (
+      programaticFocusKeys.indexOf(event.key) === -1 &&
+      (!isPrintableKeysFocusable || !this.isProgrammaticallyFocusable(event))
+    ) {
       return;
     }
 
@@ -222,22 +272,6 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     }, this.props.keyboardClickTimeout);
   };
 
-  private handleKeyUp = (e: KeyboardEvent) => {
-    const focusTarget = e.target as HTMLElement;
-    if (!this.isTarget(focusTarget)) {
-      if (this.state.focusTarget) {
-        this.setState({ focusTarget: null });
-      }
-
-      return;
-    }
-
-    const { keyboardFocusKeys } = this.props as StatesProviderWithDefaultProps;
-    if (keyboardFocusKeys.indexOf(e.key) !== -1 && this.state.focusTarget !== focusTarget) {
-      this.setState({ focusTarget });
-    }
-  };
-
   private handleFocus = (e: FocusEvent) => {
     if (!this.keyboardClickTimeout) {
       return;
@@ -246,13 +280,24 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     this.clearKeyboardTimer();
     this.updateFocusEvent(false);
     const focusTarget = e.target as HTMLElement;
-    if (this.isTarget(focusTarget) && this.state.focusTarget !== focusTarget) {
+    if (!this.targets.has(focusTarget)) {
+      return;
+    }
+
+    if (this.targets.has(focusTarget) && this.state.focusTarget !== focusTarget) {
       this.setState({ focusTarget });
     }
   };
 
-  private reset = (el: HTMLElement) => {
-    if (this.state.focusTarget === el) {
+  /**
+   * Resets the focus target to null. This should really only be triggered after programmaticly
+   * focusing elements and then clicking somewhere on the page or blurring the page.
+   */
+  private reset = (event: Event) => {
+    this.updateBlurEvents(false);
+    const el = event.target as HTMLElement;
+
+    if (event.type === "mousedown" || this.state.focusTarget === el) {
       this.setState({ focusTarget: null });
     }
   };

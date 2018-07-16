@@ -11,6 +11,8 @@
 /// tone of the themed color, and return the correct opacities for a dark or light color.
 ///
 /// @param {Color} color - The color to get an opacity map for.
+/// @return {Map} Either the `$rmd-states-light-opacities` or `$rmd-states-dark-opacities` based on the
+///   provided color and it's contrast value.
 @function rmd-states-opacities($color) {
   $color-value: rmd-theme-prop-value($color);
 
@@ -22,6 +24,7 @@
 /// @param {Color} color - The color to get an opacity map for.
 /// @param {String} state - The state that should be retrieved. This should be one of
 ///   the keys in the `$rmd-states-opacities` dark or light Maps.
+/// @return {Number} the opacity value to apply for the provided state.
 @function rmd-states-opacity($color, $state) {
   $opacity-map: rmd-states-opacities($color);
 

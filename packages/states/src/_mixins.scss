@@ -50,16 +50,25 @@
   }
 }
 
+/// Applies the hover state opacity based on the provided color.
+///
+/// @param {Color} color [rmd-black-base] - The base hover color to get an opacity for.
 @mixin rmd-states-hover($color: $rmd-black-base) {
   &:hover {
     @include rmd-states-opacity(hover, $color);
   }
 }
 
+/// Applies the focus state opacity based on the provided color.
+///
+/// @param {Color} color [rmd-black-base] - The base focus color to get an opacity for.
 @mixin rmd-states-focus($color: $rmd-black-base) {
   @include rmd-states-opacity(focus, $color);
 }
 
+/// Applies the pressed state opacity based on the provided color.
+///
+/// @param {Color} color [rmd-black-base] - The base pressed color to get an opacity for.
 @mixin rmd-states-pressed($color: $rmd-black-base) {
   @include rmd-states-opacity(press, $color);
 
@@ -68,6 +77,22 @@
   }
 }
 
+/// Applies the selected state opacity based on the provided color.
+///
+/// @param {Color} color [rmd-black-base] - The base selected color to get an opacity for.
+@mixin rmd-states-selected($color: $rmd-black-base) {
+  @include rmd-states-opacity(selected, $color);
+}
+
+/// Applies the active state opacity based on the provided color.
+///
+/// @param {Color} color [rmd-black-base] - The base active color to get an opacity for.
+@mixin rmd-states-active($color: $rmd-black-base) {
+  @include rmd-states-opacity(active, $color);
+}
+
+/// Creates the style for "simple" states that only rely on css selectors.
+/// @param {Color} color [rmd-black-base] - The base color to get the different state opacities for.
 @mixin rmd-states-simple($color: $rmd-black-base) {
   &:not(:disabled):not([aria-disabled="true"]) {
     @include rmd-states-hover($color);
@@ -82,14 +107,11 @@
   }
 }
 
-@mixin rmd-states-selected($color: $rmd-black-base) {
-  @include rmd-states-opacity(selected, $color);
-}
-
-@mixin rmd-states-active($color: $rmd-black-base) {
-  @include rmd-states-opacity(active, $color);
-}
-
+/// The base mixin for creating a "stateable surface". This should be used along with the `StatesProvider` and
+///   `StatesConsumer` components to dynamically add the focus and pressed states as needed.
+//
+/// @param {Color} color [rmd-black-base] - The base color to use for the surface. The diffferent states will have
+///   their opacities updated for light or dark based on this color.
 @mixin rmd-states-surface($color: $rmd-black-base) {
   @include rmd-states-base;
   @include rmd-states-base-color($color);

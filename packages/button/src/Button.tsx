@@ -188,7 +188,6 @@ export default class Button extends React.Component<IButtonProps, {}> {
       iconAfter,
       children,
       disabled: baseDisabled,
-      onBlur,
       onMouseDown,
       onMouseUp,
       onTouchStart,
@@ -204,7 +203,6 @@ export default class Button extends React.Component<IButtonProps, {}> {
         className={Button.theme(this.props)}
         pressedClassName={cn({ "rmd-btn--contained-pressed": themeType === "contained" })}
         disabled={baseDisabled}
-        onBlur={onBlur}
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
         onTouchStart={onTouchStart}
