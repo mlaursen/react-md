@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Clickable should apply the aria-disabled="true" attribute instead of disabled when the disabled prop is enabled 1`] = `
+exports[`KeyboardClickable should apply the aria-disabled="true" attribute instead of disabled when the disabled prop is enabled 1`] = `
 <div
   aria-disabled="true"
   role="button"
@@ -9,7 +9,7 @@ exports[`Clickable should apply the aria-disabled="true" attribute instead of di
 </div>
 `;
 
-exports[`Clickable should correctly update the event listeners and tabIndex to be undefined when disabled 1`] = `
+exports[`KeyboardClickable should correctly update the event listeners and tabIndex to be undefined when disabled 1`] = `
 <div
   onBlur={[MockFunction]}
   onClick={[MockFunction]}
@@ -27,7 +27,7 @@ exports[`Clickable should correctly update the event listeners and tabIndex to b
 </div>
 `;
 
-exports[`Clickable should correctly update the event listeners and tabIndex to be undefined when disabled 2`] = `
+exports[`KeyboardClickable should correctly update the event listeners and tabIndex to be undefined when disabled 2`] = `
 <div
   aria-disabled="true"
   role="button"

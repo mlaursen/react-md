@@ -1,2 +1,2 @@
-export { default as Clickable } from "./Clickable";
-export * from "./Clickable";
+export { default as KeyboardClickable } from "./KeyboardClickable";
+export * from "./KeyboardClickable";

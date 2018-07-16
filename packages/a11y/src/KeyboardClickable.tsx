@@ -1,20 +1,20 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-export type ClickableRole = "button" | "menuitem" | "option";
-export type ClickableFocusEvent = React.FocusEvent<HTMLElement>;
-export type ClickableFocusListener = (event: ClickableFocusEvent) => void;
-export type ClickableKeyboardEvent = React.KeyboardEvent<HTMLElement>;
-export type ClickableKeyboardListener = (event: ClickableKeyboardEvent) => void;
-export type ClickableMouseEvent = React.MouseEvent<HTMLElement>;
-export type ClickableMouseListener = (event: ClickableMouseEvent) => void;
-export type ClickableTouchEvent = React.TouchEvent<HTMLElement>;
-export type ClickableTouchListener = (event: ClickableTouchEvent) => void;
+export type KeyboardClickableRole = "button" | "menuitem" | "option";
+export type KeyboardClickableFocusEvent = React.FocusEvent<HTMLElement>;
+export type KeyboardClickableFocusListener = (event: KeyboardClickableFocusEvent) => void;
+export type KeyboardClickableKeyboardEvent = React.KeyboardEvent<HTMLElement>;
+export type KeyboardClickableKeyboardListener = (event: KeyboardClickableKeyboardEvent) => void;
+export type KeyboardClickableMouseEvent = React.MouseEvent<HTMLElement>;
+export type KeyboardClickableMouseListener = (event: KeyboardClickableMouseEvent) => void;
+export type KeyboardClickableTouchEvent = React.TouchEvent<HTMLElement>;
+export type KeyboardClickableTouchListener = (event: KeyboardClickableTouchEvent) => void;
 
 /**
  * These are the "options" or "config" for the clickable element.
  */
-export interface IClickableChildrenOptions {
+export interface IKeyboardClickableChildrenOptions {
   /**
    * When the `disabled` prop is true, this will be provided as `"true"` so it can be correctly applied to
    * the child element. Otherwise this value will be `undefined`.
@@ -24,7 +24,7 @@ export interface IClickableChildrenOptions {
   /**
    * The current role for the clickable element. This needs to be applied to the child element.
    */
-  role: ClickableRole;
+  role: KeyboardClickableRole;
 
   /**
    * This will either be `0`, the provded `tabIndex` prop value, or `undefined`. This
@@ -40,66 +40,66 @@ export interface IClickableChildrenOptions {
    * listener to correctly click when space or enter is pressed. This **needs** to be applied
    * to the child element to work as expected.
    */
-  onKeyDown?: ClickableKeyboardListener;
+  onKeyDown?: KeyboardClickableKeyboardListener;
 
   /**
-   * An optional `keyup` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `keyup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onKeyUp?: ClickableKeyboardListener;
+  onKeyUp?: KeyboardClickableKeyboardListener;
 
   /**
-   * An optional `focus` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `focus` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onFocus?: ClickableFocusListener;
+  onFocus?: KeyboardClickableFocusListener;
 
   /**
-   * An optional `blur` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `blur` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onBlur?: ClickableFocusListener;
+  onBlur?: KeyboardClickableFocusListener;
 
   /**
-   * An optional `mousedown` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `mousedown` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onMouseDown?: ClickableMouseListener;
+  onMouseDown?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `mouseup` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `mouseup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onMouseUp?: ClickableMouseListener;
+  onMouseUp?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `click` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `click` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onClick?: ClickableMouseListener;
+  onClick?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `touchstart` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `touchstart` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onTouchStart?: ClickableTouchListener;
+  onTouchStart?: KeyboardClickableTouchListener;
 
   /**
-   * An optional `touchend` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `touchend` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    */
-  onTouchEnd?: ClickableTouchListener;
+  onTouchEnd?: KeyboardClickableTouchListener;
 }
 
-export interface IClickableProps {
+export interface IKeyboardClickableProps {
   /**
    * Boolean if the clickable element is disabled. When this is enabled, the keydown event handler and
    * tabIndex will be updated to be `undefined` to prevent focus or clicks.
@@ -122,14 +122,14 @@ export interface IClickableProps {
    *
    * @docgen
    */
-  role?: ClickableRole;
+  role?: KeyboardClickableRole;
 
   /**
    * An optional `keydown` event handler. This will be called when the built-in `keydown` handler is called.
    *
    * @docgen
    */
-  onKeyDown?: ClickableKeyboardListener;
+  onKeyDown?: KeyboardClickableKeyboardListener;
 
   /**
    * A children renderer function that takes in the "new" props and applies them to the correct element that
@@ -137,94 +137,93 @@ export interface IClickableProps {
    *
    * @docgen
    */
-  children: (options: IClickableChildrenOptions) => React.ReactNode;
+  children: (options: IKeyboardClickableChildrenOptions) => React.ReactNode;
 
   // ============================================================
   // Everything below is just for "convenience"
   // ============================================================
 
   /**
-   * An optional `keyup` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `keyup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onKeyUp?: ClickableKeyboardListener;
+  onKeyUp?: KeyboardClickableKeyboardListener;
 
   /**
-   * An optional `blur` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `blur` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onBlur?: ClickableFocusListener;
+  onBlur?: KeyboardClickableFocusListener;
 
   /**
-   * An optional `focus` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `focus` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onFocus?: ClickableFocusListener;
+  onFocus?: KeyboardClickableFocusListener;
 
   /**
-   * An optional `mousedown` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `mousedown` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onMouseDown?: ClickableMouseListener;
+  onMouseDown?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `mouseup` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `mouseup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onMouseUp?: ClickableMouseListener;
+  onMouseUp?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `click` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `click` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onClick?: ClickableMouseListener;
+  onClick?: KeyboardClickableMouseListener;
 
   /**
-   * An optional `touchstart` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `touchstart` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onTouchStart?: ClickableTouchListener;
+  onTouchStart?: KeyboardClickableTouchListener;
 
   /**
-   * An optional `touchend` event listener. Nothing within the `Clickable` component uses this function, but
+   * An optional `touchend` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
    *
    * @docgen
    */
-  onTouchEnd?: ClickableTouchListener;
+  onTouchEnd?: KeyboardClickableTouchListener;
 }
 
-export interface IClickableDefaultProps {
+export interface IKeyboardClickableDefaultProps {
   disabled: boolean;
-  tabIndex: number;
-  role: ClickableRole;
+  role: KeyboardClickableRole;
 }
 
-export type ClickableWithDefaultProps = IClickableProps & IClickableDefaultProps;
+export type KeyboardClickableWithDefaultProps = IKeyboardClickableProps & IKeyboardClickableDefaultProps;
 
-export default class Clickable extends React.Component<IClickableProps, {}> {
+export default class KeyboardClickable extends React.Component<IKeyboardClickableProps, {}> {
   public static propTypes = {
     disabled: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -233,14 +232,13 @@ export default class Clickable extends React.Component<IClickableProps, {}> {
     children: PropTypes.func.isRequired,
   };
 
-  public static defaultProps: IClickableDefaultProps = {
+  public static defaultProps: IKeyboardClickableDefaultProps = {
     disabled: false,
     role: "button",
-    tabIndex: 0,
   };
 
   public render() {
-    const { disabled, children, role } = this.props as ClickableWithDefaultProps;
+    const { disabled, children, role } = this.props as KeyboardClickableWithDefaultProps;
 
     let {
       tabIndex,
@@ -264,6 +262,10 @@ export default class Clickable extends React.Component<IClickableProps, {}> {
       onMouseDown = undefined;
       onTouchStart = undefined;
       onTouchEnd = undefined;
+    } else if (role === "menuitem") {
+      tabIndex = -1;
+    } else if (typeof tabIndex !== "number") {
+      tabIndex = 0;
     }
 
     return children({
@@ -282,7 +284,7 @@ export default class Clickable extends React.Component<IClickableProps, {}> {
     });
   }
 
-  private handleKeyDown = (event: ClickableKeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardClickableKeyboardEvent) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
     }

@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
 import { TextIconSpacing, ITextIconSpacingProps, ITextIconSpacingDefaultProps } from "@react-md/icon";
-import { Clickable } from "@react-md/a11y";
+import { KeyboardClickable } from "@react-md/a11y";
 
 export interface IButtonThemeProps {
   /**
@@ -212,7 +212,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
       >
         {({ ref, disabled, ...stateProps }) => {
           // removed `disabled` since it is "invalid" to have a disabled attribute on a div even if it
-          // can be rendered. Instead we will apply "aria-disabled" when it is disabled from Clickable
+          // can be rendered. Instead we will apply "aria-disabled" when it is disabled from KeyboardClickable
 
           const content = (
             <TextIconSpacing icon={icon} iconAfter={iconAfter}>
@@ -222,13 +222,13 @@ export default class Button extends React.Component<IButtonProps, {}> {
 
           if (asDiv) {
             return (
-              <Clickable disabled={disabled} {...stateProps}>
+              <KeyboardClickable disabled={disabled} {...stateProps}>
                 {clickableProps => (
                   <div {...props} {...stateProps} {...clickableProps} ref={ref}>
                     {content}
                   </div>
                 )}
-              </Clickable>
+              </KeyboardClickable>
             );
           }
 

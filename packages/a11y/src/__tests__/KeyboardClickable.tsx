@@ -2,12 +2,12 @@ import * as React from "react";
 import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 
-import Clickable from "../Clickable";
+import KeyboardClickable from "../KeyboardClickable";
 
-describe("Clickable", () => {
+describe("KeyboardClickable", () => {
   it('should apply the aria-disabled="true" attribute instead of disabled when the disabled prop is enabled', () => {
     const Example: React.SFC<any> = ({ disabled }) => (
-      <Clickable disabled={disabled}>{clickableProps => <div {...clickableProps}>content</div>}</Clickable>
+      <KeyboardClickable disabled={disabled}>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
     );
 
     expect(renderer.create(<Example disabled={true} />).toJSON()).toMatchSnapshot();
@@ -33,9 +33,9 @@ describe("Clickable", () => {
     };
 
     const Example: React.SFC<any> = ({ disabled }) => (
-      <Clickable {...props} disabled={disabled}>
+      <KeyboardClickable {...props} disabled={disabled}>
         {clickableProps => <div {...clickableProps}>content</div>}
-      </Clickable>
+      </KeyboardClickable>
     );
 
     const tree1 = renderer.create(<Example disabled={false} />);
@@ -72,7 +72,7 @@ describe("Clickable", () => {
   it("should correctly call the onKeyDown prop when space or enter is pressed on the element", () => {
     const onKeyDown = jest.fn();
     const Example: React.SFC<any> = () => (
-      <Clickable onKeyDown={onKeyDown}>{clickableProps => <div {...clickableProps}>content</div>}</Clickable>
+      <KeyboardClickable onKeyDown={onKeyDown}>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
     );
 
     const currentTarget = { click: () => undefined };
@@ -89,7 +89,7 @@ describe("Clickable", () => {
 
   it("should call preventDefault when the space key is pressed to stop page scrolling", () => {
     const Example: React.SFC<any> = () => (
-      <Clickable>{clickableProps => <div {...clickableProps}>content</div>}</Clickable>
+      <KeyboardClickable>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
     );
 
     const example = shallow(<Example />).dive();
@@ -105,7 +105,7 @@ describe("Clickable", () => {
 
   it("should call the currentTarget's click function when the space or enter key is pressed", () => {
     const Example: React.SFC<any> = () => (
-      <Clickable>{clickableProps => <div {...clickableProps}>content</div>}</Clickable>
+      <KeyboardClickable>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
     );
 
     const example = shallow(<Example />).dive();
