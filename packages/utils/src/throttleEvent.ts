@@ -3,7 +3,7 @@
  * add more.
  */
 export type ThrottleableEvents = "scroll" | "resize";
-export type ThrottleTarget = Window | HTMLElement;
+export type ThrottleTarget = Window | Document | HTMLElement;
 
 /**
  * This is a "shared" event handler for the provided `eventType`. The event listener
@@ -137,7 +137,7 @@ export default function throttleEvent(
       handler: createThrottledEventHandler(eventType, eventTarget, capture),
     });
 
-    index = throttledEvents.length;
+    index = throttledEvents.length - 1;
   }
 
   return throttledEvents[index].handler;

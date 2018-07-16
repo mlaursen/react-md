@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ResizeObserver } from "@react-md/resize";
+import { ResizeObserver } from "@react-md/listeners";
 
 export interface ISimpleExampleState {
   style: React.CSSProperties;

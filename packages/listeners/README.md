@@ -1,4 +1,4 @@
-# @react-md/resize
+# @react-md/listeners
 This package is for handling resize events either for the entire page or elements within the page. The exported
 two components are the `ResizeListener` and the `ResizeObserver` where the `ResizeListener` is used to create
 throttled window resize events that also fixes some of the [mobile inconsistencies](https://www.quirksmode.org/dom/events/resize_mobile.html) and
@@ -19,11 +19,12 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 - [Prop Types](#prop-types)
   * [ResizeListener](#resizelistener-1)
   * [ResizeObserver](#resizeobserver-1)
+  * [EventListener](#eventlistener)
 <!-- TOC_END -->
 
 ## Installation
 ```sh
-$ npm install --save @react-md/resize
+$ npm install --save @react-md/listeners
 ```
 
 ## Usage
@@ -34,7 +35,7 @@ to determine if your app is running in mobile, tablet, or desktop view.
 #### Using onResize
 ```tsx
 import * as React from "react";
-import { ResizeListener } from "@react-md/resize";
+import { ResizeListener } from "@react-md/listeners";
 
 export interface ILayoutState = {
   mobile: boolean;
@@ -74,7 +75,7 @@ export default class Layout extends React.Component<{}, ILayoutState> {
 #### Using children
 ```tsx
 import * as React from "react";
-import { ResizeListener } from "@react-md/resize";
+import { ResizeListener } from "@react-md/listeners";
 
 export interface ILayoutState = {
   mobile: boolean;
@@ -109,7 +110,7 @@ a div's width change and output those changes into a table.
 #### Using onResize
 ```tsx
 import * as React from "react";
-import { ResizeObserver } from "@react-md/resize";
+import { ResizeObserver } from "@react-md/listeners";
 
 export interface IExampleState {
   style: React.CSSProperties;
@@ -180,7 +181,7 @@ export default class Example extends React.Component<{}, IExampleState> {
 #### Using children
 ```tsx
 import * as React from "react";
-import { ResizeObserver } from "@react-md/resize";
+import { ResizeObserver } from "@react-md/listeners";
 
 export interface IExampleState {
   style: React.CSSProperties;
@@ -280,7 +281,7 @@ Either the <code>onResize</code> or <code>children</code> prop is required, but 
 </tr>
 <tr>
 <td>onResize *</td>
-<td><code>((e: Event) => void) | ((e: Event) => void)</code></td>
+<td><code>((e: Event) => void) | ((event: Event) => void)</code></td>
 <td><code>null</code></td>
 <td>
 The function to call when the throttled resize event has been triggered. Either this or a children
@@ -409,6 +410,26 @@ until it is switched to a valid <code>Element</code> or query selector.
 <br /><br />
 </td>
 </tr>
+</tbody>
+</table>
+
+
+### EventListener
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
 </tbody>
 </table>
 

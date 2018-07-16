@@ -13,7 +13,7 @@ export interface IResizeListenerBaseProps {
    *
    * @docgen
    */
-  onResize?: (e: Event) => void;
+  onResize?: (event: Event) => void;
 
   /**
    * An optional children callback function that will be called after each successful resize event.
@@ -165,12 +165,12 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     }
   };
 
-  private handleResize = (e: Event) => {
+  private handleResize = (event: Event) => {
     const { fixScrolls, fixTouches } = this.props;
     if ((!fixScrolls || this.scrollTimeout === undefined) && (!fixTouches || this.touchMoveTimeout === undefined)) {
       const { onResize, children } = this.props;
       if (onResize) {
-        onResize(e);
+        onResize(event);
       } else if (children) {
         // force re-render the children so any rendering logic can be done
         this.forceUpdate();

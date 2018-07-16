@@ -1,5 +1,5 @@
 {
-  "name": "@react-md/resize",
+  "name": "@react-md/listeners",
   "version": "2.0.0-alpha-1",
   "description": "This package is for handling resize events either for the entire page or elements within the page.",
   "scripts": {
