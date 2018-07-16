@@ -73,7 +73,18 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
 
   public static defaultProps: IStatesProviderDefaultProps = {
     advancedFocus: true,
-    programaticFocusKeys: ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", " ", "Enter", "Tab"],
+    programaticFocusKeys: [
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+      " ",
+      "Enter",
+      "Tab",
+      "Escape",
+    ],
     keyboardClickTimeout: 500,
     isPrintableKeysFocusable: false,
   };
@@ -133,7 +144,7 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     }
 
     const isFocused = this.state.focusTarget !== null;
-    if (isFocused !== (prevState.focusTarget !== null)) {
+    if (this.state.focusTarget !== prevState.focusTarget) {
       // blur events should only be added while there is a valid focus target.
       this.updateBlurEvents(isFocused);
     }
