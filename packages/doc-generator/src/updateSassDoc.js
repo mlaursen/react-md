@@ -88,6 +88,13 @@ ${examples.length ? `\n#### Examples\n\n${examples.join('\n')}` : ''}`;
 function toFunctionTable(functions) {
   return functions.reduce((tableString, fn) => {
     const { name, description, parameters, returns } = fn;
+    if (!returns) {
+      throw new Error(
+        `The \`${name}\` function did not define an \`@return\` decorator. ` +
+        'This is required for "good" SassDoc. Please update it to defined a return declaration.'
+      );
+    }
+
     const nameWithParams = `<code>${name}${parameters.length ? `(${parameters.map(({ name }) => `${name}`).join(', ')})` : ''}</code>`;
     const line = `<tr>
 <td>${nameWithParams}</td>
