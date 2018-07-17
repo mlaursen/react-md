@@ -1,0 +1,19 @@
+/// A simple mixin that allows you to update styles when the [dir="rtl"] is present
+/// for languages that read right to light. This is mostly used to update spacing with
+/// margins or padding and a more "verbose" method of declaring rtl styles.
+///
+/// @example scss - Example Usage SCSS
+///   .my-class {
+///     margin-right: 1rem;
+///
+///     @include rmd-a11y-rtl {
+///       margin-left: 1rem;
+///       margin-right: auto;
+///     }
+///   }
+///
+@mixin rmd-a11y-rtl {
+  [dir="rtl"] & {
+    @content;
+  }
+}
