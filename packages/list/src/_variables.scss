@@ -1,0 +1,100 @@
+////
+/// @group list
+////
+
+@import '@react-md/typography/dist/variables';
+
+/// The amount of padding to place before the first list item and after the last list item in the list.
+///
+/// @type Number
+/// @see rmd-list-dense-vertical-padding
+$rmd-list-vertical-padding: .5rem !default; // 8dp
+
+/// The amount of padding to place to the left and right of all the list items. It is recommended
+/// to keep this value at `0` and instead update the `$rmd-list-item-horizontal-padding` instead to
+/// get better clickable areas and hover effects on each item.
+///
+/// @type Number
+/// @see rmd-list-dense-horizontal-padding
+/// @see rmd-list-item-horizontal-padding
+$rmd-list-horizontal-padding: 0 !default;
+
+/// The line height to apply to all items within the list. The default typography applied to lists uses
+/// the `subtitle-1` typography specs, but it looks better to apply the main text line-height within lists.
+///
+/// @type Number
+$rmd-list-line-height: map-get(map-get($rmd-typography-styles, body-1), line-height) !default;
+
+/// The font size to use for a "dense" list layout.
+/// @type Number
+$rmd-list-dense-font-size: .8125rem !default; // 13dp
+
+/// The amount of padding to place before the first list item and after the last list item in the list.
+///
+/// @type Number
+$rmd-list-dense-vertical-padding: .25rem !default;
+
+/// The amount of padding to place to the left and right of all the list items in a "dense" layout. It
+/// is recommended to keep this value at `0` and instead update the `$rmd-list-item-horizontal-padding`
+/// instead to get better clickable areas and hover effects on each item.
+///
+/// @type Number
+/// @see rmd-list-horizontal-padding
+/// @see rmd-list-item-horizontal-padding
+$rmd-list-dense-horizontal-padding: $rmd-list-horizontal-padding !default;
+
+/// The default height for a list item. To help create more general lists and layouts this height will
+/// be applied as a `min-height` instead of `height` so that it can grow in height based on the content.
+/// When using the `ListItem` component, it will automatically "upgrade" to use `height` when the `secondaryText`
+/// or list item "addons" are provided to help enforce the material design specs.
+///
+/// @type Number
+$rmd-list-item-height: 3rem !default; // 48dp
+
+/// The amount of vertical padding to apply to each list item. This is really only added to help with the
+/// default "growing height" case of items since the list item is aligned using a centered flexbox.
+///
+/// @type Number
+$rmd-list-item-vertical-padding: .5rem !default; // 8dp
+
+/// The amount of horizontal padding to apply to each list item.
+///
+/// @type Number
+$rmd-list-item-horizontal-padding: 1rem !default; // 16dp
+
+/// The height for a "medium" sized list item. This will normally get applied
+/// for any list item that has an icon or avatar.
+/// @type Number
+$rmd-list-item-medium-height: 3.5rem !default; // 56dp
+
+/// The height for a "large" sized list item. This will normally get applied
+/// for any list item that has secondary text with no icon, avatar, or graphic.
+/// @type Number
+$rmd-list-item-large-height: 4rem !default; // 64dp
+
+/// The height for an "extra large" sized list item. This will normally get applied
+/// for any list item that:
+/// - is single line but has a graphic
+/// - has secondary text with an icon, avatar, graphic, or metadata
+///
+/// @type Number
+$rmd-list-item-extra-large-height: 4.5rem !default; // 72dp
+
+/// The height for a list item with three lines of text.
+///
+/// @type Number
+$rmd-list-item-three-line-height: 5.5rem !default; // 88dp
+
+/// This is the amount of spacing from the left side of the list item (excluding padding) up to the left side
+/// of the text when there are additional list item "addons" (excluding large graphics). This is used to update
+/// the spacing between the "addon" and the text to always match this value.
+///
+/// @type Number
+$rmd-list-item-text-keyline: 4.5rem !default; // 72dp
+$rmd-list-item-right-icon-spacing: 1rem !default; // 16pdp
+
+$rmd-list-item-graphic-size: 3.5rem !default;
+$rmd-list-item-graphic-large-size: (100 / 16)rem !default; // 100dp
+
+$rmd-list-item-graphic-spacing: $rmd-list-item-text-keyline - $rmd-list-item-graphic-size !default;
+$rmd-list-item-graphic-large-spacing: 1rem !default;
