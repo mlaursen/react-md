@@ -2,6 +2,7 @@
 /// @group icon
 ////
 
+@import '@react-md/a11y/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/variables';
 @import 'variables';
@@ -80,6 +81,11 @@
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
   margin-right: $spacing;
+
+  @include rmd-a11y-rtl {
+    margin-left: $spacing;
+    margin-right: 0;
+  }
 }
 
 
@@ -88,6 +94,11 @@
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
   margin-left: $spacing;
+
+  @include rmd-a11y-rtl {
+    margin-left: 0;
+    margin-right: $spacing;
+  }
 }
 
 /// A mixin to create the styles to space an icon before or after text with the provided selectors and

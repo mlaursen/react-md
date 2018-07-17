@@ -471,6 +471,9 @@ a single element, a new class name will be cloned into the element to get correc
 if you have a custom icon element, you <b>must</b> also pass that class name down. If you are using
 one of the react-md icon component packages, this is handled automatically.
 <br /><br />
+If this is not a valid react element, the icon will be wrapped in a <code>&#60;span&#62;</code> instead
+with the class names applied.
+<br /><br />
 </td>
 </tr>
 <tr>
