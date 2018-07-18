@@ -7,6 +7,7 @@ import { IStatesContext } from "./StatesContext";
 
 const LEFT_MOUSE = 0;
 const PROP_DIFF_KEYS: Array<keyof IStatesConsumerProps> = [
+  "children",
   "className",
   "focusedClassName",
   "pressedClassName",

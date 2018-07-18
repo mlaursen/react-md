@@ -283,14 +283,15 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     }, this.props.keyboardClickTimeout);
   };
 
-  private handleFocus = (e: FocusEvent) => {
-    if (!this.keyboardClickTimeout) {
+  private handleFocus = (event: FocusEvent) => {
+    const target = event.target as HTMLElement;
+    if (!this.keyboardClickTimeout || (target && target.getAttribute("role") === "listbox")) {
       return;
     }
 
     this.clearKeyboardTimer();
     this.updateFocusEvent(false);
-    const focusTarget = e.target as HTMLElement;
+    const focusTarget = event.target as HTMLElement;
     if (!this.targets.has(focusTarget)) {
       return;
     }
