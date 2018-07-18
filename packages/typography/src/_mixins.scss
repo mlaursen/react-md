@@ -43,6 +43,12 @@
   }
 }
 
+/// A simple mmixin that can be used to update an element to ellipsis text when it is too long.
+@mixin rmd-typography-text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /// Creates the font face declaration for a Google font with a provided font weight. This will
 /// need to be called multiple times if you are including multiple font weights.

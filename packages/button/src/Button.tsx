@@ -2,7 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
-import { TextIconSpacing, ITextIconSpacingProps, ITextIconSpacingDefaultProps } from "@react-md/icon";
+import { TextIconSpacing, ITextIconSpacingProps } from "@react-md/icon";
 import { KeyboardClickable } from "@react-md/a11y";
 
 export interface IButtonThemeProps {
@@ -108,12 +108,13 @@ export interface IButtonButtonProps
 
 export type IButtonProps = IButtonButtonProps | IButtonButtonProps;
 
-export interface IButtonDefaultProps extends ITextIconSpacingDefaultProps {
+export interface IButtonDefaultProps {
   asDiv: boolean;
   disabled: boolean;
   theme: string;
   themeType: string;
   btnType: string;
+  iconAfter: boolean;
 }
 
 export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;

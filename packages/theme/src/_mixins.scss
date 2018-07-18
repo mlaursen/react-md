@@ -16,7 +16,7 @@
 /// @return {Color} the theme color.
 @function rmd-theme($style) {
   @if not map-has-key($rmd-theme-property-values, $style) {
-    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys(rmd-theme-property-values)}";
+    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys($rmd-theme-property-values)}";
   }
 
   @return map-get($rmd-theme-property-values, $style);
@@ -33,7 +33,7 @@
 /// @return {Color} the theme color.
 @function rmd-theme-var($style, $color: null) {
   @if not map-has-key($rmd-theme-property-values, $style) {
-    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys(rmd-theme-property-values)}";
+    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys($rmd-theme-property-values)}";
   }
 
   @if $color == null {
@@ -102,14 +102,6 @@
     @each $style in $property-values {
       --rmd-theme-#{$style}: #{map-get($rmd-theme-property-values, $style)};
     }
-  }
-
-  .rmd-theme--primary {
-    @include rmd-theme(background-color, primary);
-  }
-
-  .rmd-theme--secondary {
-    @include rmd-theme(background-color, primary);
   }
 
   @each $style in $property-values {

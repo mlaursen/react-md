@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-export type KeyboardClickableRole = "button" | "menuitem" | "option";
+export type KeyboardClickableRole = "button" | "treeitem" | "listitem" | "menuitem" | "option";
 export type KeyboardClickableFocusEvent = React.FocusEvent<HTMLElement>;
 export type KeyboardClickableFocusListener = (event: KeyboardClickableFocusEvent) => void;
 export type KeyboardClickableKeyboardEvent = React.KeyboardEvent<HTMLElement>;
@@ -227,7 +227,7 @@ export default class KeyboardClickable extends React.Component<IKeyboardClickabl
   public static propTypes = {
     disabled: PropTypes.bool,
     tabIndex: PropTypes.number,
-    role: PropTypes.oneOf(["button", "menuitem", "option"]),
+    role: PropTypes.oneOf(["button", "treeitem", "listitem", "menuitem", "option"]),
     onKeyDown: PropTypes.func,
     children: PropTypes.func.isRequired,
   };
