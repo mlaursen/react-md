@@ -90,7 +90,7 @@ $ touch src/_globals.scss
 are considered to be import-only files. This is exactly that we want since this should only be used for importing helpers, mixins,
 and variables into our other Sass files.
 
-Now let's update the `src/_globals.scss` file so that we import react-md and define a them:
+Now let's update the `src/_globals.scss` file so that we import react-md and define a theme:
 ```diff
 +@import 'react-md/src/scss/react-md';
 +
