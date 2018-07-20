@@ -15,3 +15,25 @@
 
   transition-timing-function: map-get($rmd-transitions, $type);
 }
+
+@mixin rmd-collapse {
+  .rmd-collapse {
+    transition-property: max-height, padding-bottom, padding-top;
+
+    &--no-overflow {
+      overflow: hidden;
+    }
+
+    &--enter {
+      @include rmd-transition($rmd-collapse-enter-transition-func);
+
+      transition-duration: $rmd-collapse-enter-transition-time;
+    }
+
+    &--leave {
+      @include rmd-transition($rmd-collapse-leave-transition-func);
+
+      transition-duration: $rmd-collapse-leave-transition-time;
+    }
+  }
+}
