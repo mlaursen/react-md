@@ -2,7 +2,7 @@
 /// @group list
 ////
 
-@import '@react-md/a11y/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/states/dist/mixins';
 @import '@react-md/typography/dist/mixins';
@@ -97,7 +97,8 @@
     margin-left: auto;
     padding-left: $rmd-list-item-right-icon-spacing;
 
-    @include rmd-a11y-rtl {
+    // sass-lint:disable-block mixins-before-declarations
+    @include rmd-utils-rtl {
       margin-left: 0;
       margin-right: auto;
       padding-left: 0;
@@ -121,7 +122,8 @@
 
       display: block;
 
-      @include rmd-a11y-rtl {
+      // sass-lint:disable-block mixins-before-declarations
+      @include rmd-utils-rtl {
         margin-left: auto;
       }
     }

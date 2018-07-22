@@ -2,11 +2,13 @@
 /// @group icon
 ////
 
-@import '@react-md/a11y/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/variables';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 
+/// Creates the base styles for icons. This should be combined with the `rmd-icon-font` or
+/// `rmd-icon-svg` mixins to get the full styles.
 @mixin rmd-icon-base {
   user-select: none;
 }
@@ -82,7 +84,8 @@
 @mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
   margin-right: $spacing;
 
-  @include rmd-a11y-rtl {
+  // sass-lint:disable-block mixins-before-declarations
+  @include rmd-utils-rtl {
     margin-left: $spacing;
     margin-right: 0;
   }
@@ -95,7 +98,8 @@
 @mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
   margin-left: $spacing;
 
-  @include rmd-a11y-rtl {
+  // sass-lint:disable-block mixins-before-declarations
+  @include rmd-utils-rtl {
     margin-left: 0;
     margin-right: $spacing;
   }
@@ -134,7 +138,7 @@
 /// to be enabled to generate any styles.
 @mixin react-md-icon {
   @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {
-    @error "Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.";
+    @error 'Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.';
   }
 
   .rmd-icon {
@@ -207,7 +211,7 @@
 
     @each $key in $required-keys {
       @if not map-has-key($font-map, $key) {
-        @error "It is required to include all of '#{$required-keys}' in your font url map, but one or more was missing! Privded keys: '#{$map-keys($font-map)}'.";
+        @error 'It is required to include all of \'#{$required-keys}\' in your font url map, but one or more was missing! Privded keys: #{$map-keys($font-map)}.';
       }
     }
   }
@@ -227,17 +231,17 @@
 
     @if $font-map == null {
       src: local($font-family),
-        local($font-name),
-        url($font-url + '.woff2') format('woff2'),
-        url($font-url + '.woff') format('woff')
-        url($font-url + '.ttf') format('truetype');
+      local($font-name),
+      url($font-url + '.woff2') format('woff2'),
+      url($font-url + '.woff') format('woff')
+      url($font-url + '.ttf') format('truetype');
     } @else {
       $woff2: map-get($font-url-or-map, woff2);
       $woff: map-get($font-url-or-map, woff);
       $truetype: map-get($font-url-or-map, truetype);
 
       $src: local($font-family), local($font-name);
-      $src: "local(#{$font-family}), local(#{$font-name}), #{$woff2} format('woff2'), #{$woff} format('woff'), #{$truetype} format('truetype')";
+      $src: 'local(#{$font-family}), local(#{$font-name}), #{$woff2} format(\'woff2\'), #{$woff} format(\'woff\'), #{$truetype} format(\'truetype\')';
 
       src: #{$src};
     }
@@ -252,6 +256,7 @@
 ///   the default icon font size.
 @mixin rmd-icon-material-icons-class($include-font-size: false) {
   .material-icons {
+    // sass-lint:disable-block property-sort-order,no-vendor-prefixes
     @if $include-font-size {
       font-size: $md-font-icon-size;
     }
@@ -274,7 +279,7 @@
     text-transform: none;
     white-space: nowrap;
     word-wrap: normal;
-	}
+  }
 }
 
 /// Creates both the font face and css class for material icons when hosting the fonts localliy instead of using

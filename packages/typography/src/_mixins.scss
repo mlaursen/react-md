@@ -22,7 +22,7 @@
   $style-props: map-get($rmd-typography-styles, $style);
 
   @if not map-has-key($rmd-typography-styles, $style) {
-    @error "Invalid style specified! '#{$style}' doesn't exist. Choose one of #{$map-keys($rmd-typography-styles)}";
+    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{$map-keys($rmd-typography-styles)}';
   }
 
   @each $key, $value in $style-props {
@@ -102,9 +102,7 @@
     font-family: quote($font-name);
     font-style: normal;
     font-weight: $font-weight;
-    src: local(#{quote($font-name)}),
-      local(#{quote($full-font-name)}),
-      #{$font-url} format('truetype');
+    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}), #{$font-url} format('truetype');
   }
 }
 
@@ -153,7 +151,7 @@
       @include rmd-typography-google-font-face($font-name, $weight, $font-url-or-prefix);
     } @else {
       @if not map-has-key($font-url-prefix-or-url-map, $weight) {
-        @error "The provided font-weight: '#{$weight}' does not exist in the url map. Provided keys: '#{$map-keys($font-url-prefix-or-url-map)}'.";
+        @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{$map-keys($font-url-prefix-or-url-map)}'.';
       }
 
       @include rmd-typography-google-font-face($font-name, $weight, map-get($font-url-prefix-or-url-map, $weight));

@@ -33,6 +33,7 @@
 
 /// Applies the base states styles.
 @mixin rmd-states-base {
+  // sass-lint:disable-block no-vendor-prefixes
   -webkit-tap-highlight-color: $rmd-states-tap-highlight-color;
 
   &::before {
@@ -94,7 +95,8 @@
 /// Creates the style for "simple" states that only rely on css selectors.
 /// @param {Color} color [rmd-black-base] - The base color to get the different state opacities for.
 @mixin rmd-states-simple($color: $rmd-black-base) {
-  &:not(:disabled):not([aria-disabled="true"]) {
+  // sass-lint:disable-block force-pseudo-nesting
+  &:not(:disabled):not([aria-disabled='true']) {
     @include rmd-states-hover($color);
 
     &:focus {

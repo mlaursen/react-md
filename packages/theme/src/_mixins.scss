@@ -16,7 +16,7 @@
 /// @return {Color} the theme color.
 @function rmd-theme($style) {
   @if not map-has-key($rmd-theme-property-values, $style) {
-    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys($rmd-theme-property-values)}";
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-property-values)}';
   }
 
   @return map-get($rmd-theme-property-values, $style);
@@ -33,7 +33,7 @@
 /// @return {Color} the theme color.
 @function rmd-theme-var($style, $color: null) {
   @if not map-has-key($rmd-theme-property-values, $style) {
-    @error "Invalid style: '#{$style}'. Choose one of: #{map-keys($rmd-theme-property-values)}";
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-property-values)}';
   }
 
   @if $color == null {
@@ -67,6 +67,7 @@
 
     @if $edge-opt-out {
       @at-root {
+        // sass-lint:disable-block no-vendor-prefixes
         @supports not (-ms-ime-align: auto) {
           & {
             #{$property}: $var-value;
@@ -100,7 +101,8 @@
 
   :root {
     @each $style in $property-values {
-      --rmd-theme-#{$style}: #{map-get($rmd-theme-property-values, $style)};
+      // the #{--rmd-theme} is required since sass-lint's AST doesn't work with css-variables yet in this scope
+      #{--rmd-theme-#{$style}}: #{map-get($rmd-theme-property-values, $style)};
     }
   }
 

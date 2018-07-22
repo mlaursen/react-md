@@ -10,7 +10,7 @@
 ///     keys for `$rmd-transitions`
 @mixin rmd-transition($type) {
   @if not map-has-key($rmd-transitions, $type) {
-    @error "Invalid transition specified! '#{type}' doesn't exist. Choose one of #{map-keys($rmd-transitions)}";
+    @error 'Invalid transition specified! \'#{type}\' doesn\'t exist. Choose one of #{map-keys($rmd-transitions)}';
   }
 
   transition-timing-function: map-get($rmd-transitions, $type);

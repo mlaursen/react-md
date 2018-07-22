@@ -11,6 +11,7 @@
 /// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 /// @returns {Number}
 @function rmd-theme-luminance($color) {
+  // sass-lint:disable-block no-color-literals
   $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
   $red-multiplier: .2126;
   $green: nth($rmd-theme-linear-channel-values, green($color) + 1);
@@ -45,7 +46,7 @@
   }
 
   $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
-  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, .87));
+  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, .87)); // sass-lint:disable-line no-color-literals
 
   @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
     @return 'light';

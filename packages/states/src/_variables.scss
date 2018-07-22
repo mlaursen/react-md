@@ -4,8 +4,19 @@
 
 @import '@react-md/transition/dist/variables';
 
+/// The transition duration for hover effects
+/// @type Number
 $rmd-states-transition-duration: .15s !default;
 
+/// A Map of all the hover opacities when the container should have
+/// a light colored state.
+///
+/// @type Map
+/// @prop {Number} hover [.08] - The hover opacity
+/// @prop {Number} focus [.24] - The focus opacity
+/// @prop {Number} press [.32] - The pressed opacity
+/// @prop {Number} selected [.16] - The selected opacity
+/// @prop {Number} active [.24] - The activated opacity
 $rmd-states-light-opacities: (
   hover: .08,
   focus: .24,
@@ -14,6 +25,15 @@ $rmd-states-light-opacities: (
   active: .24,
 ) !default;
 
+/// A Map of all the hover opacities when the container should have
+/// a dark colored state.
+///
+/// @type Map
+/// @prop {Number} hover [.04] - The hover opacity
+/// @prop {Number} focus [.12] - The focus opacity
+/// @prop {Number} press [.16] - The pressed opacity
+/// @prop {Number} selected [.08] - The selected opacity
+/// @prop {Number} active [.12] - The activated opacity
 $rmd-states-dark-opacities: (
   hover: .04,
   focus: .12,
@@ -22,9 +42,16 @@ $rmd-states-dark-opacities: (
   active: .12,
 ) !default;
 
+/// A Map of the dark and light state opacities so that they can be quickly looked up programmatically.
+///
+/// @type Map
+/// @prop {Map} dark - The map of opacities when a dark state should be applied.
+/// @prop {Map} light - The map of opacities when a light state should be applied.
 $rmd-states-opacities: (
   dark: $rmd-states-dark-opacities,
   light: $rmd-states-light-opacities,
 ) !default;
 
+/// The highlight color to apply to "fix" the defualt android touch interaction
+/// @type Color
 $rmd-states-tap-highlight-color: rgba($rmd-black-base, 0) !default;

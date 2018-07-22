@@ -2,7 +2,7 @@
 /// @group tooltip
 ////
 
-@import '@react-md/typography/dist/typography';
+@import '@react-md/typography/dist/mixins';
 @import 'variables';
 
 @function inverse-position($position) {
@@ -44,8 +44,8 @@
   opacity: 0;
   padding-left: $rmd-tooltip-lr-padding;
   padding-right: $rmd-tooltip-lr-padding;
-  position: absolute;
   pointer-events: none;
+  position: absolute;
   text-transform: none;
   transition-property: opacity, transform;
   user-select: none;
@@ -149,7 +149,7 @@
 ///   normally just be `$rmd-tooltip-spacing` or `$rmd-tooltip-dense-spacing`.
 @mixin rmd-tooltip-position($position, $spacing) {
   @if index($rmd-tooltip-position-values, $position) == null {
-    @error "Invalid position specified! '#{$position}' doesn't exist. Choose one of #{$rmd-tooltip-position-values}.";
+    @error 'Invalid position specified! \'#{$position}\' doesn\'t exist. Choose one of #{$rmd-tooltip-position-values}.';
   }
 
   // add a negative spacing since the position will be transformed for centering below

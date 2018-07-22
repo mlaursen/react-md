@@ -2,9 +2,7 @@
 /// @group states
 ////
 
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/theme/dist/variables';
+@import '@react-md/theme/dist/theme';
 @import 'variables';
 
 /// Gets the states opacity map based on the provided color. This will check the contrast
@@ -29,7 +27,7 @@
   $opacity-map: rmd-states-opacities($color);
 
   @if not map-has-key($opacity-map, $state) {
-    @error "Invalid state: '#{$state}'. Choose one of #{$map-keys($opacity-map)}.";
+    @error 'Invalid state: \'#{$state}\'. Choose one of #{$map-keys($opacity-map)}.';
   }
 
   @return map-get($opacity-map, $state);

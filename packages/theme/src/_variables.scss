@@ -124,6 +124,8 @@ $rmd-theme-property-values: (
   text-icon-on-dark: rmd-theme-text-color(icon, dark),
 );
 
+/// Boolean if the theme should opt-out of edge support by default with the provided mixins.
+/// @type Boolean
 $rmd-theme-edge-opt-out: false !default;
 
 /// Attempts to get a specific theme color based on the property provided.
@@ -139,7 +141,7 @@ $rmd-theme-edge-opt-out: false !default;
   }
 
   @if not map-has-key($rmd-theme-property-values, $property) {
-    @error "Invalid theme property specified! '#{$property}' doesn't exist. Choose one of #{map-keys($rmd-theme-property-values)}";
+    @error 'Invalid theme property specified! \'#{$property}\' doesn\'t exist. Choose one of #{map-keys($rmd-theme-property-values)}';
   }
 
   @return map-get($rmd-theme-property-values, $property);

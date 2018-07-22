@@ -9,6 +9,7 @@
     "build:remaining": "lerna run build --scope @react-md/a11y --scope @react-md/button --scope @react-md/material-icons --scope @react-md/tooltip --scope react-md",
     "build": "npm run build:base-deps && npm run build:base && npm run build:remaining",
     "format": "prettier --write packages/*/**/*.tsx packages/*/**/*.ts",
+    "lint:styles": "sass-lint -v",
     "start": "cd packages/examples && npm run start",
     "dev": "npm-run-all -p \"watch\" \"start\"",
     "watch": "lerna run watch --ignore doc-generator --ignore examples",
@@ -26,6 +27,7 @@
     "commander": "^2.15.1",
     "lerna": "^2.11.0",
     "npm-run-all": "^4.1.3",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "sass-lint": "^1.12.1"
   }
 }

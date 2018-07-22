@@ -30,7 +30,7 @@
 /// @return {String} the suffix for the provided font weight.
 @function rmd-typography-google-font-suffix($weight) {
   @if not map-has-key($rmd-typography-google-font-weight-suffixes, $weight) {
-    @error "Invalid weight specified! '#{$weight}' doesn't exist. Choose one of #{$map-keys($rmd-typography-google-font-weight-suffixes)}.";
+    @error 'Invalid weight specified! \'#{$weight}\' doesn\'t exist. Choose one of #{$map-keys($rmd-typography-google-font-weight-suffixes)}.';
   }
 
   @return map-get($rmd-typography-google-font-weight-suffixes, $weight);

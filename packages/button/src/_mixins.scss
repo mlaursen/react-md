@@ -2,10 +2,11 @@
 /// @group button
 ////
 
-@import '@react-md/elevation/dist/elevation';
-@import '@react-md/theme/dist/theme';
-@import '@react-md/typography/dist/typography';
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/states/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/variables';
 @import 'variables';
 
 /// A simple mixin to create an unstyled button.
@@ -120,13 +121,13 @@
     }
 
     &--outline-primary {
-      // scss-lint:disable DuplicateProperty
+      // sass-lint:disable-block no-duplicate-properties
       box-shadow: $rmd-btn-box-shadow rmd-theme(primary);
       box-shadow: $rmd-btn-box-shadow rmd-theme-var(primary);
     }
 
     &--outline-secondary {
-      // scss-lint:disable DuplicateProperty
+      // sass-lint:disable-block no-duplicate-properties
       box-shadow: $rmd-btn-box-shadow rmd-theme(secondary);
       box-shadow: $rmd-btn-box-shadow rmd-theme-var(secondary);
     }
