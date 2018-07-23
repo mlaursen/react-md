@@ -43,7 +43,7 @@
   }
 }
 
-/// A simple mmixin that can be used to update an element to ellipsis text when it is too long.
+/// A simple mixin that can be used to update an element to ellipsis text when it is too long.
 @mixin rmd-typography-text-overflow-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

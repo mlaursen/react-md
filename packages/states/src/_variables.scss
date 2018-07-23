@@ -52,6 +52,6 @@ $rmd-states-opacities: (
   light: $rmd-states-light-opacities,
 ) !default;
 
-/// The highlight color to apply to "fix" the defualt android touch interaction
+/// The highlight color to apply to "fix" the default android touch interaction
 /// @type Color
 $rmd-states-tap-highlight-color: rgba($rmd-black-base, 0) !default;

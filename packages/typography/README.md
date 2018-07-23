@@ -305,6 +305,13 @@ Every key that you do not include in the map will no longer be created when incl
 </td>
 </tr>
 <tr>
+<td><code>rmd-typography-text-overflow-ellipsis</code></td>
+<td>A simple mixin that can be used to update an element to ellipsis text when it is too long.
+<br /><br />
+
+</td>
+</tr>
+<tr>
 <td><code>rmd-typography-google-font-face(font-name, font-weight, font-url-or-prefix)</code></td>
 <td>Creates the font face declaration for a Google font with a provided font weight. This will
 need to be called multiple times if you are including multiple font weights.
@@ -483,7 +490,7 @@ correctly included and bundled during your build. See the examples for more deta
 <tr>
 <td><code>rmd-typography-google-font-suffix(weight)</code></td>
 <td>String - the suffix for the provided font weight.</td>
-<td>Gets the google font suffix for the provided font weight.
+<td>Gets the Google font suffix for the provided font weight.
 <h5>Parameters</h5>
 <table>
 <thead>
@@ -535,14 +542,14 @@ correctly included and bundled during your build. See the examples for more deta
 </tr>
 <tr>
 <td><code>rmd-typography-default-font-weight</code></td>
-<td>A list of the &#34;default&#34; font weights that are normall included within an app.
-This is really only used for hosting fonts on your own server.o
+<td>A list of the &#34;default&#34; font weights that are normally included within an app.
+This is really only used for hosting fonts on your own server.
 <br /><br />
 Each value in this should be one of the keys in <code>$rmd-typography-font-weights</code>.</td>
 </tr>
 <tr>
 <td><code>rmd-typography-google-font-weight-suffixes</code></td>
-<td>A Map of font weights to a font file suffix for a google font.</td>
+<td>A Map of font weights to a font file suffix for a Google font.</td>
 </tr>
 <tr>
 <td><code>rmd-typography-styles</code></td>

@@ -35,7 +35,7 @@
 /// Determines if a provided color is considered light or dark.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contast that should be applied. The min
+/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
 /// @returns {String} - The string 'light' if the color is considered light, otherwise 'dark'.
@@ -59,7 +59,7 @@
 /// luminance algorithm to maintain a required contrast ratio for accessibility.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contast that should be applied. The min
+/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
 /// @returns {String} - The string 'dark' if the color is considered light, or 'light' if the

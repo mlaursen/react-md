@@ -50,7 +50,7 @@
 /// @example scss - Example SCSS Usage
 ///   .svg-icon {
 ///     @include rmd-icon-base;
-///     @include rmd-icon-scg;
+///     @include rmd-icon-svg;
 ///   }
 @mixin rmd-icon-svg {
   @include rmd-theme(fill, text-icon-on-background);
@@ -248,8 +248,8 @@
   }
 }
 
-/// Creats the material-icons css class if hosting material icons locally instead of using the
-/// google fonts service. By default, this will not include the font-size size you _should_ be using
+/// Creates the material-icons css class if hosting material icons locally instead of using the
+/// Google fonts service. By default, this will not include the font-size size you _should_ be using
 /// the `FontIcon` component from react-md which adds the correct font-size.
 ///
 /// @param {Boolean} include-font-size [false] - Boolean if the material icons class name should include
@@ -282,8 +282,8 @@
   }
 }
 
-/// Creates both the font face and css class for material icons when hosting the fonts localliy instead of using
-/// the google fonts service.  This takes either a font url prefix string or a map of urls for each required
+/// Creates both the font face and css class for material icons when hosting the fonts locally instead of using
+/// the Google fonts service.  This takes either a font url prefix string or a map of urls for each required
 /// font file. If you are using create-react-app, you **must** use the Map version so the fonts can be
 /// correctly included by the build process.
 ///

@@ -28,7 +28,7 @@ $rmd-btn-text-height: 2.25rem !default; // 36dp
 $rmd-btn-text-min-width: 4rem !default; // 64dp
 
 /// The text button's icon size. This is than the normal icon size by default since buttons
-/// have additional padding. You can set this to `null` if you want consistant icon sizes.
+/// have additional padding. You can set this to `null` if you want consistent icon sizes.
 /// @type Number
 $rmd-btn-text-icon-size: 1.125rem !default; // 18dp
 
@@ -40,7 +40,7 @@ $rmd-btn-icon-border-radius: 50% !default;
 /// @type Number
 $rmd-btn-icon-size: 3rem !default; // 48dp
 
-/// The background color to apply when a button is hovered. this will be applied in the `::after`
+/// The background color to apply when a button is hovered. This will be applied in the `::after`
 /// pseudo element so it is recommended to be either black or white with an opacity applied.
 ///
 /// @type Color

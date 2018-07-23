@@ -18,6 +18,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
   * [Functions](#functions)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -520,7 +521,7 @@ states will apply different opacity values to this value.
 <td>color</td>
 <td>Color</td>
 <td>rmd-black-base</td>
-<td>The base color to use for the surface. The diffferent states will have
+<td>The base color to use for the surface. The different states will have
   their opacities updated for light or dark based on this color.</td>
 </tr>
 </tbody>
@@ -601,6 +602,43 @@ tone of the themed color, and return the correct opacities for a dark or light c
 </table>
 
 </td>
+</tr>
+</tbody>
+</table>
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-states-transition-duration</code></td>
+<td>The transition duration for hover effects
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-states-light-opacities</code></td>
+<td>A Map of all the hover opacities when the container should have
+a light colored state.</td>
+</tr>
+<tr>
+<td><code>rmd-states-dark-opacities</code></td>
+<td>A Map of all the hover opacities when the container should have
+a dark colored state.</td>
+</tr>
+<tr>
+<td><code>rmd-states-opacities</code></td>
+<td>A Map of the dark and light state opacities so that they can be quickly looked up programmatically.</td>
+</tr>
+<tr>
+<td><code>rmd-states-tap-highlight-color</code></td>
+<td>The highlight color to apply to &#34;fix&#34; the default android touch interaction
+<br /><br /></td>
 </tr>
 </tbody>
 </table>

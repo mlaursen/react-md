@@ -91,7 +91,7 @@
 ///   @include react-md-theme;
 ///
 /// @example scss - Alternative SCSS Usage
-///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` varaibles
+///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` variables
 ///   @include react-md-theme($rmd-teal-500, $rmd-pink-a-400);
 ///
 /// @param {Color} primary-color [rmd-theme-primary] - The primary color to use to theme your app.

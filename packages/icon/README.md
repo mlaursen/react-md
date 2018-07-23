@@ -506,6 +506,14 @@ Boolean if the icon should appear after the text instead of before.
 </thead>
 <tbody>
 <tr>
+<td><code>rmd-icon-base</code></td>
+<td>Creates the base styles for icons. This should be combined with the <code>rmd-icon-font</code> or
+<code>rmd-icon-svg</code> mixins to get the full styles.
+<br /><br />
+
+</td>
+</tr>
+<tr>
 <td><code>rmd-icon-font</code></td>
 <td>Creates the base styles for a font icon.
 
@@ -663,8 +671,8 @@ correctly included by the build process.
 </tr>
 <tr>
 <td><code>rmd-icon-material-icons-class(include-font-size)</code></td>
-<td>Creats the material-icons css class if hosting material icons locally instead of using the
-google fonts service. By default, this will not include the font-size size you <i>should</i> be using
+<td>Creates the material-icons css class if hosting material icons locally instead of using the
+Google fonts service. By default, this will not include the font-size size you <i>should</i> be using
 the <code>FontIcon</code> component from react-md which adds the correct font-size.
 <h5>Parameters</h5>
 <table>
@@ -690,8 +698,8 @@ the <code>FontIcon</code> component from react-md which adds the correct font-si
 </tr>
 <tr>
 <td><code>rmd-icon-host-material-icons(font-url-or-map, include-font-size, old-ie-support)</code></td>
-<td>Creates both the font face and css class for material icons when hosting the fonts localliy instead of using
-the google fonts service.  This takes either a font url prefix string or a map of urls for each required
+<td>Creates both the font face and css class for material icons when hosting the fonts locally instead of using
+the Google fonts service.  This takes either a font url prefix string or a map of urls for each required
 font file. If you are using create-react-app, you <b>must</b> use the Map version so the fonts can be
 correctly included by the build process.
 <h5>Parameters</h5>
@@ -768,7 +776,7 @@ correctly included by the build process.
 ```scss
 .svg-icon {
   @include rmd-icon-base;
-  @include rmd-icon-scg;
+  @include rmd-icon-svg;
 }
 ```
 

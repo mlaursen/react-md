@@ -664,7 +664,7 @@ included or with an additional selector depth.
 ##### Example SCSS Usage
 
 ```scss
-.md-tooltio--visible {
+.md-tooltip--visible {
   @include rmd-tooltip-visible;
 }
 ```

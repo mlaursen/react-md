@@ -1,9 +1,9 @@
 # @react-md/theme
-This package is for declaring and using a theme for react-md.
+This package is for declaring and using a theme for react-md. The theme will be generated with css variables but with
+a fallback for older browsers that do not support it yet. Once a theme is defined, it is recommended to use the
+`rmd-theme` mixin to apply dynamic theming throughout your app.
 
 The source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/theme
-
-> NOTE: While react-md is in a pre-release stage, all SCSS variables, mixins, and functions will use a `rmd` prefix instead of the normal `md` prefix. This is so that you can have both the v1 and v2 versions working together. When v2 is finally released, the prefixes will switch back to `md`.
 
 <!-- TOC_START -->
 ## Table of Contents
@@ -96,7 +96,7 @@ If you would like to just import all the utility variables, mixins, and function
 
 ## Usage
 ### Declaring a Theme
-Starting with v2.0.0, react-md will use both scss and css variables to define themes. This allows you to work with IE 11 (if needed) as well as
+Starting with v3.0.0, react-md will use both scss and css variables to define themes. This allows you to work with IE 11 (if needed) as well as
 the nice css variable support in evergreen browsers.
 
 The theme by default is:
@@ -105,7 +105,7 @@ The theme by default is:
 - `$rmd-theme-background: #fff !default;` // the default background color. This is normally applied to the <html> tag
 - `$rmd-theme-surface: #fff !default;` // the background color to use for temporary material such as menus or dialogs.
 
-This can be overriden by setting these variables to new colors that are included in react-md, or a custom color.
+This can be overridden by setting these variables to new colors that are included in react-md, or a custom color.
 
 #### Updating for any color
 If the color does not need to come from react-md, it is a little bit easier since all you need to do is define your new variables before
@@ -260,7 +260,7 @@ $rmd-theme-secondary: $rmd-pink-a-400;
 ##### Alternative SCSS Usage
 
 ```scss
-// if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` varaibles
+// if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` variables
 @include react-md-theme($rmd-teal-500, $rmd-pink-a-400);
 ```
 
@@ -300,7 +300,7 @@ $rmd-theme-secondary: $rmd-pink-a-400;
 <td>min-contrast</td>
 <td>Number</td>
 <td>3.1</td>
-<td>The minimum contast that should be applied. The min
+<td>The minimum contrast that should be applied. The min
     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
     the link for contrasts for more information.</td>
 </tr>
@@ -335,7 +335,7 @@ luminance algorithm to maintain a required contrast ratio for accessibility.
 <td>min-contrast</td>
 <td>Number</td>
 <td>3.1</td>
-<td>The minimum contast that should be applied. The min
+<td>The minimum contrast that should be applied. The min
     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
     the link for contrasts for more information.</td>
 </tr>
@@ -512,6 +512,11 @@ This is normally used along with the <code>rmd-theme-contrast-tone</code> and th
 <td>A Map of all the theme property values that can be used throughout the app. This is mainly created
 so that the specific <code>rmd-theme--NAME</code> classes can be created, but also for the <code>rmd-theme-prop-value</code> function
 to get a specific color within your theme.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-edge-opt-out</code></td>
+<td>Boolean if the theme should opt-out of edge support by default with the provided mixins.
 <br /><br /></td>
 </tr>
 </tbody>
