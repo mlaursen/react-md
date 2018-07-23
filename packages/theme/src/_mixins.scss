@@ -105,11 +105,5 @@
       #{--rmd-theme-#{$style}}: #{map-get($rmd-theme-property-values, $style)};
     }
   }
-
-  @each $style in $property-values {
-    .rmd-theme--#{$style} {
-      $is-bg: $style == 'background' or $style == 'surface';
-      @include rmd-theme(if($is-bg, background-color, color), $style, not($is-bg));
-    }
-  }
 }
+

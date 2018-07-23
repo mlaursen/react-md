@@ -10,10 +10,10 @@
 /// @type Color
 $rmd-theme-primary: $rmd-purple-500 !default;
 
-/// The color to use when text should be displayed on the primary theme color. The default behavior is to test if the primary
-/// color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
-/// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
-/// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+/// The color to use when text should be displayed on the primary theme color. The default behavior is to test the primary color's
+/// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If
+/// this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility
+/// requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
 $rmd-theme-on-primary: if(
   rmd-theme-contrast-tone($rmd-theme-primary) == 'light',
@@ -26,13 +26,57 @@ $rmd-theme-on-primary: if(
 /// @type Color
 $rmd-theme-secondary: $rmd-pink-a-400 !default;
 
-/// The color to use when text should be displayed on the secondary theme color. The default behavior is to test if the secondary
-/// color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
-/// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
-/// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+/// The color to use when text should be displayed on the secondary theme color. The default behavior is to test the secondary color's
+/// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If
+/// this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility
+/// requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 /// @type Color
 $rmd-theme-on-secondary: if(
   rmd-theme-contrast-tone($rmd-theme-secondary) == 'light',
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The warning theme color to use for your app. This isn't used by anything internally within react-md at this time, but it might
+/// be helpful to have this variable defined as more things get developed.
+/// @type Color
+$rmd-theme-warning: $rmd-deep-orange-a-200 !default;
+
+/// The color to use when text should be displayed on the warning theme color. The default behavior is to test the warning color's
+/// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
+/// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+$rmd-theme-on-warning: if(
+  rmd-theme-contrast-tone($rmd-theme-warning) == 'light',
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The error theme color to use for your app.
+/// @type Color
+$rmd-theme-error: $rmd-red-500 !default;
+
+/// The color to use when text should be displayed on the warning theme color. The default behavior is to test the error color's
+/// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
+/// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+$rmd-theme-on-error: if(
+  rmd-theme-contrast-tone($rmd-theme-error) == 'light',
+  $rmd-black-base,
+  $rmd-white-base
+);
+
+/// The success theme color to use for your app. This isn't used by anything internally within react-md at this time, but it might
+/// be helpful to have this variable defined as more things get developed.
+/// @type Color
+$rmd-theme-success: $rmd-green-a-700 !default;
+
+/// The color to use when text should be displayed on the warning theme color. The default behavior is to test the success color's
+/// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
+/// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
+/// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+$rmd-theme-on-success: if(
+  rmd-theme-contrast-tone($rmd-theme-success) == 'light',
   $rmd-black-base,
   $rmd-white-base
 ) !default;
@@ -107,6 +151,12 @@ $rmd-theme-property-values: (
   on-secondary: $rmd-theme-on-secondary,
   surface: $rmd-theme-surface,
   on-surface: $rmd-theme-on-surface,
+  warning: $rmd-theme-warning,
+  on-warning: $rmd-theme-on-warning,
+  error: $rmd-theme-error,
+  on-error: $rmd-theme-on-error,
+  success: $rmd-theme-success,
+  on-success: $rmd-theme-on-success,
   text-primary-on-background: rmd-theme-text-color(primary, $rmd-theme-background),
   text-secondary-on-background: rmd-theme-text-color(secondary, $rmd-theme-background),
   text-hint-on-background: rmd-theme-text-color(hint, $rmd-theme-background),

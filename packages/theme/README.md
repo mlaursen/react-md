@@ -23,6 +23,9 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
       - [Normal SCSS Usage](#normal-scss-usage)
       - [Alternative SCSS Usage](#alternative-scss-usage)
   * [Functions](#functions)
+    + [Examples](#examples-1)
+      - [Example Material Design Color Usage](#example-material-design-color-usage)
+      - [Example Non-Material Design Color Usage](#example-non-material-design-color-usage)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -345,6 +348,61 @@ luminance algorithm to maintain a required contrast ratio for accessibility.
 </td>
 </tr>
 <tr>
+<td><code>rmd-theme-get-swatch(color, swatch, accent, fallback-color, fallback-name)</code></td>
+<td>Color - the new color within the same color family with the provided swatch and optional accent.</td>
+<td>A theme utility function to convert a material design color to the same color but with a different
+swatch. If your app is not using material design colors, this utility function is useless but you
+will need to define fallback colors so compliation does not fail.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>Color</td>
+<td></td>
+<td>The material design color to create a new color for with the provided swatch.</td>
+</tr>
+<tr>
+<td>swatch</td>
+<td>Number</td>
+<td></td>
+<td>The swatch to apply. This should be one of <code>$rmd-theme-primary-suffixes</code> or
+  <code>$rmd-theme-accent-suffixes</code> if the <code>$accent</code> param is enabled.</td>
+</tr>
+<tr>
+<td>accent</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if the swatch is an accent color instead of a primary color.</td>
+</tr>
+<tr>
+<td>fallback-color</td>
+<td>Color</td>
+<td>null</td>
+<td>The color to fallback to if the <code>$color</code> is not a valid
+  material design color. Since this is null by default, the complilation will fail until a valid
+  fallback is provided.</td>
+</tr>
+<tr>
+<td>fallback-name</td>
+<td>String</td>
+<td>null</td>
+<td>The name of a variable or global variable that should be set to
+  automatically fix the compilation error.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
 <td><code>rmd-theme(style)</code></td>
 <td>Color - the theme color.</td>
 <td>A small utility function to get a color from the current theme. This is normally used along with the
@@ -433,6 +491,34 @@ NOTE: This has to be defined in variables so there aren&#39;t recursive imports.
 </tbody>
 </table>
 
+#### Examples
+
+
+##### Example Material Design Color Usage
+
+```scss
+.something {
+  color: rmd-theme-get-swatch($rmd-theme-primary, 200);
+}
+
+.something-2 {
+  color: rmd-theme-get-swatch($rmd-theme-primary, 200, true);
+}
+```
+
+##### Example Non-Material Design Color Usage
+
+```scss
+$my-theme-color: #3498db;
+.something-failed {
+  color: rmd-theme-get-swatch($my-theme-color, 200);
+}
+
+.something-failed--fixed {
+  color: rmd-theme-get-swatch($my-theme-color, 200, false, rgba($my-theme-color, .32));
+}
+```
+
 
 ### Variables
 <table>
@@ -444,7 +530,7 @@ NOTE: This has to be defined in variables so there aren&#39;t recursive imports.
 </thead>
 <tbody>
 <tr>
-<td><code>rmd-color-map</code></td>
+<td><code>rmd-theme-color-map</code></td>
 <td>This is a map of all the material design base colors so that you can programmatically get
 variables with the neat sass-map functions.</td>
 </tr>
@@ -456,10 +542,10 @@ but it can be any color.
 </tr>
 <tr>
 <td><code>rmd-theme-on-primary</code></td>
-<td>The color to use when text should be displayed on the primary theme color. The default behavior is to test if the primary
-color&#39;s contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
-be used. If this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
-accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+<td>The color to use when text should be displayed on the primary theme color. The default behavior is to test the primary color&#39;s
+contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will be used. If
+this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility
+requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 <br /><br /></td>
 </tr>
 <tr>
@@ -470,8 +556,49 @@ suffix (<code>-a-100</code> or <code>-a-200</code> or <code>-a-400</code> or <co
 </tr>
 <tr>
 <td><code>rmd-theme-on-secondary</code></td>
-<td>The color to use when text should be displayed on the secondary theme color. The default behavior is to test if the secondary
-color&#39;s contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+<td>The color to use when text should be displayed on the secondary theme color. The default behavior is to test the secondary color&#39;s
+contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will be used. If
+this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility
+requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-warning</code></td>
+<td>The warning theme color to use for your app. This isn&#39;t used by anything internally within react-md at this time, but it might
+be helpful to have this variable defined as more things get developed.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-on-warning</code></td>
+<td>The color to use when text should be displayed on the warning theme color. The default behavior is to test the warning color&#39;s
+contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+be used. If this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
+accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-error</code></td>
+<td>The error theme color to use for your app.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-on-error</code></td>
+<td>The color to use when text should be displayed on the warning theme color. The default behavior is to test the error color&#39;s
+contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
+be used. If this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
+accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-success</code></td>
+<td>The success theme color to use for your app. This isn&#39;t used by anything internally within react-md at this time, but it might
+be helpful to have this variable defined as more things get developed.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-theme-on-success</code></td>
+<td>The color to use when text should be displayed on the warning theme color. The default behavior is to test the success color&#39;s
+contrast tone. If the color is considered &#39;dark&#39;, <code>$rmd-white-base</code> will be used. Otherwise <code>$rmd-black-base</code> will
 be used. If this isn&#39;t sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
 <br /><br /></td>
