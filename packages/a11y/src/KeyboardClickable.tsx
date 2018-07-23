@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-export type KeyboardClickableRole = "button" | "treeitem" | "listitem" | "menuitem" | "option";
+export type KeyboardClickableRole = "button" | "treeitem" | "listitem" | "menuitem" | "option" | string;
 export type KeyboardClickableFocusEvent = React.FocusEvent<HTMLElement>;
 export type KeyboardClickableFocusListener = (event: KeyboardClickableFocusEvent) => void;
 export type KeyboardClickableKeyboardEvent = React.KeyboardEvent<HTMLElement>;

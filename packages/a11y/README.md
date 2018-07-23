@@ -10,7 +10,6 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [KeyboardClickable](#keyboardclickable)
 - [Prop Types](#prop-types)
   * [KeyboardClickable](#keyboardclickable-1)
-  * [ListRole](#listrole)
 <!-- TOC_END -->
 
 ## Installation
@@ -120,7 +119,7 @@ events, this value should be <code>-1</code>.
 </tr>
 <tr>
 <td>role</td>
-<td><code>"button" | "menuitem" | "option"</code></td>
+<td><code>string</code></td>
 <td><code>button</code></td>
 <td>
 The role that the clickable element should take on. This defaults to a &#34;button&#34; role.
@@ -226,27 +225,5 @@ child element when disabled.
 </tr>
 </tbody>
 </table>
-
-
-### ListRole
-
-
-> Note: Required props will have an asterisk (*) after their name.
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Default Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-
-</tbody>
-</table>
-
-
 <!-- PROPS_END -->
 
