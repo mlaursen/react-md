@@ -775,11 +775,11 @@ $rmd-white-base: #fff;
 ///
 /// @example scss - Example Usage SCSS
 ///   .error-field {
-///     background: map-get($rmd-color-map, rmd-red-50);
+///     background: map-get($rmd-theme-color-map, rmd-red-50);
 ///   }
 ///
 /// @type Map
-$rmd-color-map: (
+$rmd-theme-color-map: (
   rmd-red-50: $rmd-red-50,
   rmd-red-100: $rmd-red-100,
   rmd-red-200: $rmd-red-200,
@@ -1036,4 +1036,42 @@ $rmd-color-map: (
   rmd-blue-grey-900: $rmd-blue-grey-900,
   rmd-black-base: $rmd-black-base,
   rmd-white-base: $rmd-white-base,
+);
+
+/// The "primary" color suffix numbers that are available for use. This is really just created
+/// for the `rmd-theme-get-swatch` mixin.
+/// @type List
+/// @access private
+$rmd-theme-primary-suffixes: 50 100 200 300 400 500 600 700 800 900;
+
+/// The "accent" color suffix numbers that are available for use. This is really just created
+/// for the `rmd-theme-get-swatch` mixin.
+/// @type List
+/// @access private
+$rmd-theme-accent-suffixes: 100 200 400 700;
+
+/// A list of all the available colors within material design. This is really just created for the
+/// `rmd-theme-get-swatch` mixin.
+/// @type List
+/// @access private
+$rmd-theme-colors: (
+  'red'
+  'pink'
+  'purple'
+  'deep-purple'
+  'indigo'
+  'blue'
+  'light-blue'
+  'cyan'
+  'teal'
+  'green'
+  'light-green'
+  'lime'
+  'yellow'
+  'amber'
+  'orange'
+  'deep-orange'
+  'brown'
+  'grey'
+  'blue-grey'
 );
