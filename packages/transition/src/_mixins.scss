@@ -16,9 +16,11 @@
   transition-timing-function: map-get($rmd-transitions, $type);
 }
 
+/// Creates the styles for the Collapse component within react-md
 @mixin rmd-collapse {
   .rmd-collapse {
     transition-property: max-height, padding-bottom, padding-top;
+    will-change: max-height, padding-bottom, padding-top;
 
     &--no-overflow {
       overflow: hidden;

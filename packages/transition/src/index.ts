@@ -1,2 +1,2 @@
-export { default as withMountingTransition } from "./withMountingTransition";
-export * from "./withMountingTransition";
+export { default as Collapse } from "./Collapse";
+export * from "./Collapse";

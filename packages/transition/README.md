@@ -12,10 +12,7 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
     + [Including Styles](#including-styles)
 - [Usage](#usage)
 - [Prop Types](#prop-types)
-  * [withMountingTransition](#withmountingtransition)
-- [SassDoc](#sassdoc)
-  * [Mixins](#mixins)
-  * [Variables](#variables)
+  * [Collapse](#collapse)
 <!-- TOC_END -->
 
 ## Installation
@@ -90,31 +87,8 @@ If you would like to just import all the utility variables, mixins, and function
 ## Usage
 <!-- PROPS_START -->
 ## Prop Types
-### withMountingTransition
-This is like another version of CSSTransitionGroup (v1) that renders null instead
-of a span when empty and only works for one element at a time.
+### Collapse
 
-When the visible prop is false, nothing will be rendered. When the visible prop is switched
-to true, it will start the in transition by:
-- rendering the component as normal (so no additional class names)
-- providing the component with an enter transition class name
-- providing the component with an enter and active transition class name
-- rendering the component as normal once transition has finished (so no additional class names)
-
-Now when the visible prop is switched to false, it will start the leave transition with the same flow as
-above but reversed. Once the transition is done, it will render nothing again.
-
-The class names generated will be:
-- `${transitionName}--enter`
-- `${transitionName}--enter-active`
-- `${transitionName}--leave`
-- `${transitionName}--leave-active`
-
-So to get the animation working correctly, your component being wrapped with this HOC **must** apply the
-provided className prop and apply the onTransitionEnd prop that gets passed down.
-@param transitionName - The transition name to use for the enter and leave transitions. Suffixes will
-be applied this this string for each stage of the transition.
-@return a higher order component creator function.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -128,7 +102,118 @@ be applied this this string for each stage of the transition.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>children *</td>
+<td><code>((props: ICollapseChildrenProps) => ReactNode) | (string & ((props: ICollapseChildrenProps) => Re...</code></td>
+<td><code>null</code></td>
+<td>
+A callback function that will include the props for rendering a child element with the collapse
+transition.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply. This will be merged with the required animation styles of <code>min-height</code>,
+<code>padding-top</code>, and <code>padding-bottom</code>. If the <code>style</code> prop defines any of these values, they will be
+used instead of this component&#39;s computed values.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional class name to also apply to the collapse.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>collapsed *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if currently collapsed. When this prop changes, the collapse transition will begin.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>minHeight</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+An optional min height to set for the collapsing element. If this is set to <code>0</code>,
+the <code>children</code> will be removed from the DOM once the collapsing animation has finished.
+<br /><br />
+Note: the height will include the padding props. So if you want the collapse to be
+<code>50px</code> by default and 20px padding, you would want to set the <code>minHeight</code> to <code>90px</code>.
+So you want to use this formula:
+<br /><br />
+```ts
+   * const desiredHeight = minHeight + minPaddingBottom + minPaddingTop;
+   * ```
 
+</td>
+</tr>
+<tr>
+<td>minPaddingBottom</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+The min padding bottom to apply to the collapse. This will be used with the <code>minHeight</code>
+and <code>minPaddingTop</code> props to set the collapsed size.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>minPaddingTop</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>
+The min padding top to apply to the collapse. This will be used with the <code>minHeight</code>
+and <code>minPaddingBottom</code> props to set the collapsed size.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>enterDuration</td>
+<td><code>number</code></td>
+<td><code>250</code></td>
+<td>
+The duration for the entire enter animation. This should match up with the <code>$rmd-collapse-enter-transition-time</code>
+Sass variable, however, this can be updated so that customizable transition times can be applied based on
+content size. You will just need to also update the style to include the <code>transitionDuration</code> of whatever value
+you want.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>leaveDuration</td>
+<td><code>number</code></td>
+<td><code>200</code></td>
+<td>
+The duration for the entire leave animation. This should match up with the <code>$rmd-collapse-leave-transition-time</code>
+Sass variable, however, this can be updated so that customizable transition times can be applied based on
+content size. You will just need to also update the style to include the <code>transitionDuration</code> of whatever value
+you want.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>isEmptyCollapsed</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the children should be removed from the DOM when collapsed. When this prop is
+<code>undefined</code>, it will remove the collapsed children only when the <code>minHeight</code>, <code>minPaddingBottom</code>,
+and <code>minPaddingTop</code> values are set to <code>0</code>.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -173,6 +258,13 @@ be applied this this string for each stage of the transition.
 
 </td>
 </tr>
+<tr>
+<td><code>rmd-collapse</code></td>
+<td>Creates the styles for the Collapse component within react-md
+<br /><br />
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -200,6 +292,26 @@ be applied this this string for each stage of the transition.
 <td><code>rmd-leave-transition-time</code></td>
 <td>The default leave transition time.
 <br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-collapse-enter-transition-time</code></td>
+<td>The enter transition time for the collapse animation.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-collapse-enter-transition-func</code></td>
+<td>The transition easing function to apply when the collapse&#39;s content is animating
+in. This should be one of the <code>$rmd-transitions</code> keys.</td>
+</tr>
+<tr>
+<td><code>rmd-collapse-leave-transition-time</code></td>
+<td>The leave transition time for the collapse animation.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-collapse-leave-transition-func</code></td>
+<td>The transition easing function to apply when the collapse&#39;s content is animating
+out. This should be one of the <code>$rmd-transitions</code> keys.</td>
 </tr>
 </tbody>
 </table>

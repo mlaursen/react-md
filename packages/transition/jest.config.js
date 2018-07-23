@@ -1,11 +1,16 @@
 module.exports = {
+  globals: {
+    'ts-jest': {
+      tsConfigFile: './tsconfig.test.json',
+    },
+  },
   moduleFileExtensions: [
     'ts',
     'tsx',
     'js',
     'jsx',
   ],
-  setupFiles: ['raf/polyfill', './jest.setup.js'],
+  setupFiles: ['./jest.setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
