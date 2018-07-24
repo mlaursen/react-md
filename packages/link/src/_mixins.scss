@@ -1,0 +1,31 @@
+////
+/// @group link
+////
+
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/transition/dist/variables';
+
+/// Creates the styles for links within react-md. Please note that there are **no disabled styles** unless you
+/// set the href to an empty string. This is intentional. If you want to disable a link, you should remove set
+/// the href to an empty string instead.
+@mixin react-md-link {
+  .rmd-link {
+    @include rmd-theme(color, primary);
+
+    text-decoration: none;
+    transition: color $rmd-link-transition-time;
+
+    &:not([href]) {
+      @include rmd-theme(color, text-disabled-on-background);
+    }
+
+    &:visited {
+      color: $rmd-link-visited-color;
+    }
+
+    &:hover {
+      color: $rmd-link-hover-color;
+      text-decoration: underline;
+    }
+  }
+}
