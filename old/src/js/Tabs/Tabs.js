@@ -451,7 +451,7 @@ export default class Tabs extends PureComponent {
     let children = Children.map(Children.toArray(this.props.children), (tab, index) => {
       const handleOnClick = (tabIndex, id, tabControlsId, tabChildren, event) => {
         if (tab.props.onClick) {
-          tab.props.onClick(tabId, id, tabControlsId, tabChildren, event);
+          tab.props.onClick(tabIndex, id, tabControlsId, tabChildren, event);
         }
 
         this._handleTabChange(tabIndex, id, tabControlsId, tabChildren, event);
