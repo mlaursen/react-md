@@ -6,32 +6,63 @@ export type ListElement = HTMLUListElement | HTMLOListElement;
 
 export interface IListProps extends React.HTMLAttributes<ListElement> {
   /**
+   * The role to apply to the list. This should really be one of:
+   * - list
+   * - tree
+   * - navigation
+   * - menu
+   * - listbox
+   *
+   * but any value will be supported in case I forgot a use-case for lists.
+   *
+   * @docgen
+   */
+  role?: string;
+
+  /**
    * An optional className to apply.
+   *
+   * @docgen
    */
   className?: string;
 
   /**
    * Boolean if the "dense" spec should be applied to the list. this will just reduce
    * the vertical padding a bit by default.
+   *
+   * @docgen
    */
   dense?: boolean;
 
   /**
    * Boolean if the list has a specific order. This will update the list to be
    * rendered as a `<ol>` instead of `<ul>`.
+   *
+   * @docgen
    */
   ordered?: boolean;
 
   /**
    * Boolean if the list should be positioned inline (horizontally) instead of vertically.
+   *
+   * @docgen
    */
   inline?: boolean;
 
   /**
    * The children to render within the list. This should normally be the `ListItem` component, but
    * it can also be links or any other element.
+   *
+   * @docgen
    */
   children?: React.ReactNode;
+
+  /**
+   * An optional forwareded ref. This is really "private" but it is being documented so that it is know
+   * that applying a `ref` to a `List` will return the actual ul or ol element instead of the component
+   * instance.
+   */
+  forwardedRef?: React.Ref<ListElement>;
 }
 
 export interface IListDefaultProps {
@@ -43,12 +74,13 @@ export interface IListDefaultProps {
 
 export type ListWithDefaultProps = IListProps & IListDefaultProps;
 
-const List: React.SFC<IListProps> = props => {
-  const { className, dense, inline, ordered, children, ...remaining } = props as ListWithDefaultProps;
+const List: React.SFC<IListProps> = providedProps => {
+  const { className, dense, inline, ordered, children, forwardedRef, ...props } = providedProps as ListWithDefaultProps;
   return React.createElement(
     ordered ? "ol" : "ul",
     {
-      ...remaining,
+      ...props,
+      ref: forwardedRef,
       className: cn(
         "rmd-list",
         {
@@ -62,6 +94,13 @@ const List: React.SFC<IListProps> = props => {
   );
 };
 
+List.propTypes = {
+  role: PropTypes.string,
+  dense: PropTypes.bool,
+  inline: PropTypes.bool,
+  ordered: PropTypes.bool,
+};
+
 List.defaultProps = {
   role: "list",
   dense: false,
@@ -69,4 +108,4 @@ List.defaultProps = {
   ordered: false,
 } as IListDefaultProps;
 
-export default List;
+export default React.forwardRef<ListElement, IListProps>((props, ref) => <List {...props} forwardedRef={ref} />);
