@@ -1,0 +1,22 @@
+@import 'app-globals';
+
+.navigation {
+  @include rmd-theme(color, text-primary-on-dark);
+  @include rmd-elevation(2);
+
+  background-color: $rmd-blue-grey-800;
+
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 16rem;
+
+  &__link {
+    @include rmd-states-surface($rmd-white-base);
+  }
+
+  .rmd-list {
+    color: inherit;
+  }
+}

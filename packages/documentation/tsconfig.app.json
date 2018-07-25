@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "./dist",
+    "target": "es5",
+    "module": "esnext",
+    "sourceMap": true,
+    "jsx": "react",
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "paths": {
+      "components/*": ["components/*"]
+    }
+  },
+  "include": [
+    "src/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/__tests__/*"
+  ]
+}
