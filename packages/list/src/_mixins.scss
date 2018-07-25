@@ -146,8 +146,19 @@
   }
 }
 
+/// A simple mixin for creating the basic LinkList styles.
+@mixin rmd-list-link {
+  .rmd-list-link {
+    @include rmd-list-item-base;
+
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
 /// Creates all the styles for lists and list items.
 @mixin react-md-list {
   @include rmd-list;
   @include rmd-list-item;
+  @include rmd-list-link;
 }
