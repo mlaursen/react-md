@@ -235,6 +235,63 @@ not provided, the link will basically be disabled.
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>target *</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional target for the link to be opened in. It is recommended to keep this undefined in most cases. If
+this is not <code><i>blank</code>, <code></i>parent</code>, <code>_self</code>, or <code>_top</code>, it should be the frame name that the link should
+be rendered in if using frames.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>rel</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional <code>rel</code> to apply to the link. This should be a combination of 1 to many of:
+- &#34;alternate&#34;
+- &#34;author&#34;
+- &#34;bookmark&#34;
+- &#34;external&#34;
+- &#34;help&#34;
+- &#34;license&#34;
+- &#34;next&#34;
+- &#34;nofollow&#34;
+- &#34;noreferrer&#34;
+- &#34;noopener&#34;
+- &#34;prev&#34;
+- &#34;search&#34;
+- &#34;tag&#34;
+<br /><br />
+This is really just used to override the default behavior of the <code>preventMaliciousTarget</code> prop.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>preventMaliciousTarget</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the link should automatically be updated to apply `rel=noopener noreferrer` when the <code>target</code> prop
+is set to <code>&#34;_blank&#34;</code>. This is recommended to have enabled by default, but can be disabled by setting this prop
+to <code>false</code> or specificying a <code>rel</code> prop yourself. You can read more about the reason for this
+[here](https://mathiasbynens.github.io/rel-noopener/).
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>flexCentered</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the Link should be positioned with a flexbox and align the items centered. This is disabled by default
+but can be useful when rendering icons within the link.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 

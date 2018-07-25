@@ -27,6 +27,55 @@ export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> 
    * @docgen
    */
   href?: string;
+
+  /**
+   * An optional target for the link to be opened in. It is recommended to keep this undefined in most cases. If
+   * this is not `_blank`, `_parent`, `_self`, or `_top`, it should be the frame name that the link should
+   * be rendered in if using frames.
+   *
+   * @docgen
+   */
+  target?: "_blank" | "_parent" | "_self" | "_top" | string;
+
+  /**
+   * An optional `rel` to apply to the link. This should be a combination of 1 to many of:
+   * - "alternate"
+   * - "author"
+   * - "bookmark"
+   * - "external"
+   * - "help"
+   * - "license"
+   * - "next"
+   * - "nofollow"
+   * - "noreferrer"
+   * - "noopener"
+   * - "prev"
+   * - "search"
+   * - "tag"
+   *
+   * This is really just used to override the default behavior of the `preventMaliciousTarget` prop.
+   *
+   * @docgen
+   */
+  rel?: string;
+
+  /**
+   * Boolean if the link should automatically be updated to apply `rel=noopener noreferrer` when the `target` prop
+   * is set to `"_blank"`. This is recommended to have enabled by default, but can be disabled by setting this prop
+   * to `false` or specificying a `rel` prop yourself. You can read more about the reason for this
+   * [here](https://mathiasbynens.github.io/rel-noopener/).
+   *
+   * @docgen
+   */
+  preventMaliciousTarget?: boolean;
+
+  /**
+   * Boolean if the Link should be positioned with a flexbox and align the items centered. This is disabled by default
+   * but can be useful when rendering icons within the link.
+   *
+   * @docgen
+   */
+  flexCentered?: boolean;
 }
 
 export interface ILinkWithComponentProps extends ILinkBaseProps {
@@ -38,24 +87,69 @@ export interface ILinkWithComponentProps extends ILinkBaseProps {
   component: React.ReactType;
 }
 
-export type ILinkProps = ILinkBaseProps | ILinkWithComponentProps;
+export interface ILinkDefaultProps {
+  preventMaliciousTarget: boolean;
+  flexCentered: boolean;
+}
 
-const Link: React.SFC<ILinkProps> = ({ className: propClassName, component, children, ...props }) => {
-  const className = cn("rmd-link", propClassName);
-  if (component) {
-    return React.createElement(component, {
-      ...props,
-      className,
-    }, children);
+export type ILinkProps = ILinkBaseProps | ILinkWithComponentProps;
+export type LinkWithDefaultProps = ILinkProps & ILinkDefaultProps;
+
+const Link: React.SFC<ILinkProps> = providedProps => {
+  const {
+    className: propClassName,
+    component,
+    href: propHref,
+    children,
+    rel: propRel,
+    flexCentered,
+    preventMaliciousTarget,
+    ...props
+  } = providedProps as LinkWithDefaultProps;
+
+  const { target } = props;
+  const href = propHref === "" ? undefined : propHref;
+  const className = cn("rmd-link", {
+    "rmd-link--flex-centered": flexCentered,
+  }, propClassName);
+  let rel = propRel;
+  if (typeof rel !== "string" && target === "_blank") {
+    rel = "noopener noreferrer";
   }
 
-  return <a className={className} {...props}>{children}</a>;
+  if (component) {
+    return React.createElement(
+      component,
+      {
+        ...props,
+        rel,
+        href,
+        className,
+      },
+      children
+    );
+  }
+
+  return (
+    <a className={className} {...props} href={href} rel={rel}>
+      {children}
+    </a>
+  );
 };
 
 Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
   component: PropTypes.func,
+  target: PropTypes.string,
+  rel: PropTypes.string,
+  preventMaliciousTarget: PropTypes.bool,
+  flexCentered: PropTypes.bool,
 };
+
+Link.defaultProps = {
+  preventMaliciousTarget: true,
+  flexCentered: false,
+} as ILinkDefaultProps;
 
 export default Link;
