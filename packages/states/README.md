@@ -94,7 +94,9 @@ If you would like to just import all the utility variables, mixins, and function
 <!-- PROPS_START -->
 ## Prop Types
 ### StatesProvider
-
+The `StatesProvider` component is used to dynamically add focus states to clickable and focusable elements
+within your app. This works directly with the `StatesConsumer` component that will enable/disable
+the listeners as needed.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -152,6 +154,18 @@ event to consider a focus event triggered from keyboard navigation.
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>isPrintableKeysFocusable</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if any &#34;printable&#34; key should also be able to trigger a focus event. This should be disabled
+to help increase performance so that every key the user presses does not attempt to update the entire
+app&#39;s focus. Instead, the small section within your app (like listboxes or menus) should create a new
+<code>StatesProvider</code> with this boolean enabled so only that small section has the advanced logic.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -200,8 +214,26 @@ Boolean if the child element should also gain the press states.
 </td>
 </tr>
 <tr>
+<td>focusedClassName</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply when the child element is focused.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>pressedClassName</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply when the child element is pressed.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>children *</td>
-<td><code>((props: IStatesConsumerChildrenFunction) => ReactNode) | (((props: IStatesConsumerChildrenFuncti...</code></td>
+<td><code>ReactElement<any> | ((props: IStatesConsumerChildProps) => ReactNode) | (ReactElement<any> & stri...</code></td>
 <td><code>null</code></td>
 <td>
 A function to render any children with the merged class names and optional blur events. The child element
@@ -215,7 +247,9 @@ work correctly.
 
 
 ### StatesConsumer
-
+The `StatesConsumer` component is used for applying the dynamic pressed states and hover effects for
+an html element that is clickable or hoverable. This should probably just mostly be used internally
+within react-md, but there might be cases where it is helpful to plug into the states provider manually.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -231,7 +265,7 @@ work correctly.
 <tbody>
 <tr>
 <td>children *</td>
-<td><code>((props: IStatesConsumerChildrenFunction) => ReactNode) | (string & ((props: IStatesConsumerChild...</code></td>
+<td><code>ReactElement<any> | ((props: IStatesConsumerChildProps) => ReactNode) | (string & ReactElement<an...</code></td>
 <td><code>null</code></td>
 <td>
 A function to render any children with the merged class names and optional blur events. The child element
@@ -252,7 +286,7 @@ An optional class name that should be merged with the current states class name.
 <tr>
 <td>disabled</td>
 <td><code>boolean</code></td>
-<td><code>null</code></td>
+<td><code>false</code></td>
 <td>
 Boolean if the element is disabled. This is mostly used so that elements that have been updated
 to gain focus programmatically do not attach the <code>onBlur</code> event incorrectly.
@@ -265,6 +299,24 @@ to gain focus programmatically do not attach the <code>onBlur</code> event incor
 <td><code>true</code></td>
 <td>
 Boolean if the child element should also gain the press states.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>focusedClassName</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply when the child element is focused.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>pressedClassName</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply when the child element is pressed.
 <br /><br />
 </td>
 </tr>

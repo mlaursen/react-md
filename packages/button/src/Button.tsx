@@ -211,7 +211,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
       >
-        {({ ref, disabled, ...stateProps }) => {
+        {({ disabled, ...stateProps }) => {
           // removed `disabled` since it is "invalid" to have a disabled attribute on a div even if it
           // can be rendered. Instead we will apply "aria-disabled" when it is disabled from KeyboardClickable
 
@@ -225,7 +225,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
             return (
               <KeyboardClickable disabled={disabled} {...stateProps}>
                 {clickableProps => (
-                  <div {...props} {...stateProps} {...clickableProps} ref={ref}>
+                  <div {...props} {...stateProps} {...clickableProps}>
                     {content}
                   </div>
                 )}
@@ -234,7 +234,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
           }
 
           return (
-            <button {...props} {...stateProps} ref={ref} disabled={disabled}>
+            <button {...props} {...stateProps} disabled={disabled}>
               {content}
             </button>
           );

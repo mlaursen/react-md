@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import memoizeOne from "memoize-one";
@@ -31,7 +32,7 @@ export type StatesConsumerFocusListener = (event: StatesConsumerFocusEvent) => v
 export type StatesConsumerTouchEvent = React.TouchEvent<any>;
 export type StatesConsumerTouchListener = (event: StatesConsumerTouchEvent) => void;
 
-export interface IStatesConsumerChildrenFunction {
+export interface IStatesConsumerChildProps {
   /**
    * Boolean if the children are currently disabled. This is really just a pass-down-value of the
    * `disabled` prop that was provided to the `StatesConsumer`.
@@ -45,12 +46,6 @@ export interface IStatesConsumerChildrenFunction {
   className: string;
 
   /**
-   * A ref that should be applied to an HTMLElement. This **needs** to be applied to get
-   * correct focus states applied.
-   */
-  ref: (e: HTMLElement | null) => void;
-
-  /**
    * An optional `blur` event handler that will only be provided if the `advancedFocus` prop
    * is enabled and the child element currently has keyboard focus OR the `onBlur` prop was
    * provided to the `StatesConsumer`. If the `advancedFocus` prop was enabled, the built-in
@@ -61,35 +56,50 @@ export interface IStatesConsumerChildrenFunction {
   /**
    * A `mouseup` event handler that is used for handling presses with the mouse. This will only be provided
    * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onMouseUp` prop.
-   * This is required to be applied to the child element if you want correct press states.
+   * This is required to be applied to the child element if you want correct press states to be applied.
    */
   onMouseUp?: StatesConsumerMouseListener;
 
   /**
    * A `mousedown` event handler that is used for handling presses with the mouse. This will only be provided
    * if the `pressable` prop was enabled or the `StatesConsumer` component was provided an `onMouseDown` prop.
-   * This is required to be applied to the child element if you want correct press states.
+   * This is required to be applied to the child element if you want correct press states to be applied.
    */
   onMouseDown?: StatesConsumerMouseListener;
 
   /**
    * A `touchstart` event handler that is used for handling presses with the mouse. This will only be provided
    * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onTouchStart` prop.
-   * This is required to be applied to the child element if you want correct press states.
+   * This is required to be applied to the child element if you want correct press states to be applied.
    */
   onTouchStart?: StatesConsumerTouchListener;
 
   /**
    * A `touchend` event handler that is used for handling presses with the mouse. This will only be provided
    * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onTouchEnd` prop.
-   * This is required to be applied to the child element if you want
-   * correct press states.
+   * This is required to be applied to the child element if you want correct press states to be applied.
    */
   onTouchEnd?: StatesConsumerTouchListener;
+
+  /**
+   * A `keydown` event handler that is used for handling presses with the keyboard. This will only be provided
+   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided with an `onKeyDown`
+   * prop. This is required to be applied to the child element if you want the correct press states to be applied.
+   */
   onKeyDown?: StatesConsumerKeyboardListener;
+
+  /**
+   * A `keyup` event handler that is used for handling presses with the keyboard. This will only be provided
+   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided with an `onKeyUp`
+   * prop. This is required to be applied to the child element if you want the correct press states to be applied.
+   */
   onKeyUp?: StatesConsumerKeyboardListener;
 }
 
+/**
+ * These are really just pass-down-value of events that have their functionality merged with the StatesConsumer
+ * functionality.
+ */
 export interface IStatesConsumerEvents {
   onMouseDown?: StatesConsumerMouseListener;
   onMouseUp?: StatesConsumerMouseListener;
@@ -124,11 +134,15 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
 
   /**
    * An optional className to apply when the child element is focused.
+   *
+   * @docgen
    */
   focusedClassName?: string;
 
   /**
    * An optional className to apply when the child element is pressed.
+   *
+   * @docgen
    */
   pressedClassName?: string;
 
@@ -139,11 +153,12 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
    *
    * @docgen
    */
-  children: ((props: IStatesConsumerChildrenFunction) => React.ReactNode);
+  children: ((props: IStatesConsumerChildProps) => React.ReactNode) | React.ReactElement<any>;
 }
 
 export interface IStatesConsumerDefaultProps {
   pressable: boolean;
+  disabled: boolean;
 }
 
 export type IStatesConsumerProps = IStatesContext & IStatesConsumerBaseProps;
@@ -154,6 +169,11 @@ export interface IStatesConsumerState {
 
 export type StatesConsumerWithDefaultProps = IStatesConsumerProps & IStatesConsumerDefaultProps;
 
+/**
+ * The `StatesConsumer` component is used for applying the dynamic pressed states and hover effects for
+ * an html element that is clickable or hoverable. This should probably just mostly be used internally
+ * within react-md, but there might be cases where it is helpful to plug into the states provider manually.
+ */
 export default class StatesConsumer extends React.Component<IStatesConsumerProps, IStatesConsumerState> {
   public static propTypes = {
     className: PropTypes.string,
@@ -167,11 +187,12 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     onMouseDown: PropTypes.func,
     onTouchStart: PropTypes.func,
     onTouchEnd: PropTypes.func,
-    children: PropTypes.func.isRequired,
+    children: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
   };
 
   public static defaultProps: IStatesConsumerDefaultProps = {
     pressable: true,
+    disabled: false,
   };
 
   private el: HTMLElement | null;
@@ -180,6 +201,29 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
 
     this.state = { pressed: false };
     this.el = null;
+  }
+
+  public componentDidMount() {
+    this.el = ReactDOM.findDOMNode(this) as HTMLElement;
+    if (!this.el && process.env.NODE_ENV === "development") {
+      const { props } = this;
+      // tslint:disable-next-line
+      class StatesConsumerError extends Error {
+        private consumerProps: IStatesConsumerProps;
+        constructor(...args: any[]) {
+          super(...args);
+
+          this.consumerProps = props;
+        }
+      }
+
+      throw new StatesConsumerError(
+        "The `StatesConsumer` component was mounted without finding a valid HTMLElement as its child. " +
+        "This should be fixed before deploying to production. The current props are available on the " +
+        "error instance as `error.consumerProps`."
+      );
+    }
+    this.props.initFocusTarget(this.el);
   }
 
   public shouldComponentUpdate(nextProps: IStatesConsumerProps, nextState: IStatesConsumerState) {
@@ -192,6 +236,13 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     const isCurrentTarget = this.isFocusTarget(this.props);
     const isNextTarget = this.isFocusTarget(nextProps);
     return isCurrentTarget !== isNextTarget;
+  }
+
+  public componentWillUnmount() {
+    if (this.el) {
+      this.props.deinitFocusTarget(this.el);
+      this.el = null;
+    }
   }
 
   public render() {
@@ -221,16 +272,24 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
       [`${pressedClassName}`]: !!pressedClassName && !disabled && pressed,
     });
 
-    return children({
+    const props = {
       disabled,
       className,
-      ref: this.ref,
       onKeyDown: pressable && isFocused ? this.handleKeyDown : onKeyDown,
       onKeyUp: !disabled && pressable && pressed ? this.handleKeyUp : onKeyUp,
       onMouseDown: pressable || isFocused ? this.handleMouseDown : onMouseDown,
       onMouseUp: pressable && pressed ? this.handleMouseUp : onMouseUp,
       onTouchStart: pressable ? this.handleTouchStart : onTouchStart,
       onTouchEnd: pressable && pressed ? this.handleTouchEnd : onTouchEnd,
+    } as IStatesConsumerChildProps;
+    if (typeof children === "function") {
+      return children(props);
+    }
+
+    const child = React.Children.only(children);
+    return React.cloneElement(child, {
+      ...props,
+      className: cn(className, child.props.className),
     });
   }
 
@@ -251,16 +310,6 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
   private unpress = () => {
     if (this.state.pressed) {
       this.setState({ pressed: false });
-    }
-  };
-
-  private ref = (el: HTMLElement | null) => {
-    if (el) {
-      this.props.initFocusTarget(el);
-      this.el = el;
-    } else if (this.el) {
-      this.props.deinitFocusTarget(this.el);
-      this.el = null;
     }
   };
 

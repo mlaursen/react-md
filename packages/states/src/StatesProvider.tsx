@@ -45,6 +45,8 @@ export interface IStatesProviderProps {
    * to help increase performance so that every key the user presses does not attempt to update the entire
    * app's focus. Instead, the small section within your app (like listboxes or menus) should create a new
    * `StatesProvider` with this boolean enabled so only that small section has the advanced logic.
+   *
+   * @docgen
    */
   isPrintableKeysFocusable?: boolean;
 }
@@ -62,6 +64,11 @@ export interface IStatesProviderState {
   focusTarget: HTMLElement | null;
 }
 
+/**
+ * The `StatesProvider` component is used to dynamically add focus states to clickable and focusable elements
+ * within your app. This works directly with the `StatesConsumer` component that will enable/disable
+ * the listeners as needed.
+ */
 export default class StatesProvider extends React.Component<IStatesProviderProps, IStatesProviderState> {
   public static propTypes = {
     advancedFocus: PropTypes.bool,

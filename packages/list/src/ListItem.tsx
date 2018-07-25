@@ -199,12 +199,12 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         className
       )}
     >
-      {({ ref, disabled, ...statesProps }) => {
+      {({ disabled, ...statesProps }) => {
         if (clickable) {
           return (
             <KeyboardClickable disabled={disabled} {...statesProps} role={role}>
               {clickableProps => (
-                <li ref={ref} {...props} {...statesProps} {...clickableProps}>
+                <li {...props} {...statesProps} {...clickableProps}>
                   {children}
                 </li>
               )}
@@ -213,7 +213,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         }
 
         return (
-          <li {...props} ref={ref} {...statesProps}>
+          <li {...props} {...statesProps}>
             {children}
           </li>
         );
