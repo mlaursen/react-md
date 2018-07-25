@@ -32,17 +32,23 @@ export interface ITextIconSpacingProps {
 
   /**
    * The class name to use for an icon that is placed before text.
+   *
+   * @docgen
    */
   beforeClassName?: string;
 
   /**
    * The class name to use for an icon that is placed after text.
+   *
+   * @docgen
    */
   afterClassName?: string;
 
   /**
    * Boolean if the icon should be forced into a `<span>` with the class names applied instead of attempting
    * to clone into the provided icon.
+   *
+   * @docgen
    */
   forceIconWrap?: boolean;
 }

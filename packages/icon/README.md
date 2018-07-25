@@ -485,6 +485,34 @@ Boolean if the icon should appear after the text instead of before.
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>beforeClassName</td>
+<td><code>string</code></td>
+<td><code>rmd-icon--before</code></td>
+<td>
+The class name to use for an icon that is placed before text.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>afterClassName</td>
+<td><code>string</code></td>
+<td><code>rmd-icon--after</code></td>
+<td>
+The class name to use for an icon that is placed after text.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>forceIconWrap</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the icon should be forced into a <code>&#60;span&#62;</code> with the class names applied instead of attempting
+to clone into the provided icon.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
