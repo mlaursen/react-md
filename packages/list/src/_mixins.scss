@@ -51,7 +51,7 @@
   padding: $rmd-list-item-vertical-padding $rmd-list-item-horizontal-padding;
   position: relative;
 
-  &--clickable {
+  &--stateful {
     @include rmd-states-surface;
     @include rmd-states-base-color;
     @include rmd-states-hover;

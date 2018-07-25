@@ -3,40 +3,19 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
 import { KeyboardClickable } from "@react-md/a11y";
-import { TextIconSpacing } from "@react-md/icon";
 
 import ListItemText from "./ListItemText";
+import ListItemLeftIcon from "./ListItemLeftIcon";
+import ListItemRightIcon from "./ListItemRightIcon";
 
-export interface IListItemProps extends React.HTMLAttributes<HTMLLIElement> {
-  /**
-   * Boolean if the list item is disabled. This is only applied if the `clickable` prop
-   * is also enabled.
-   */
-  disabled?: boolean;
-
-  /**
-   * Boolean if the list item is clickable. It will update the the `<li>` element with the
-   * `KeyboardClickable` functionality of a "listitem".
-   */
-  clickable?: boolean;
-
-  /**
-   * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
-   * `secondaryText` within the list item.
-   */
-  textClassName?: string;
-
-  /**
-   * An optional className to apply to the `<span>` that surrounds the `secondaryText` within the
-   * list item.
-   */
-  secondaryTextClassName?: string;
-
+export interface IListItemBaseProps {
   /**
    * An optional icon to display to the left of the children or provided text elements. If this is
    * a valid React element, the spacing class names will be cloned into the element. Otherwise it
    * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
    * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name applied.
+   *
+   * @docgen
    */
   leftIcon?: React.ReactNode;
 
@@ -45,14 +24,65 @@ export interface IListItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * a valid React element, the spacing class names will be cloned into the element. Otherwise it
    * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
    * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name applied.
+   *
+   * @docgen
    */
   rightIcon?: React.ReactNode;
 
   /**
    * Boolean if the left and/or right icons should be "forcefully" wrapped in a `<span>` with the spacing
    * class names applied instead of attempting to clone it into the provided icon element.
+   *
+   * @docgen
    */
   forceIconWrap?: boolean;
+}
+
+export interface IListItemProps extends IListItemBaseProps, React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * The role for the list item. This should really be one of:
+   * - listitem
+   * - treeitem
+   * - option
+   * - none
+   *
+   * but I am allowing any string just in case I forget a use case.
+   *
+   * @docgen
+   */
+  role?: string;
+
+  /**
+   * Boolean if the list item is disabled. This is only applied if the `clickable` prop
+   * is also enabled.
+   *
+   * @docgen
+   */
+  disabled?: boolean;
+
+  /**
+   * Boolean if the list item is clickable. It will update the the `<li>` element with the
+   * `KeyboardClickable` functionality of a "listitem".
+   *
+   * @docgen
+   */
+  clickable?: boolean;
+
+  /**
+   * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
+   * `secondaryText` within the list item.
+   *
+   * @docgen
+   */
+  textClassName?: string;
+
+  /**
+   * An optional className to apply to the `<span>` that surrounds the `secondaryText` within the
+   * list item.
+   *
+   * @docgen
+   */
+  secondaryTextClassName?: string;
 
   /**
    * Boolean if the children should be treated as the `primaryText` prop. This will wrap them in an additional
@@ -62,6 +92,8 @@ export interface IListItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * grow depending on content.
    *
    * NOTE: If the `secondaryText` prop is provided, this will always be considered `true`.
+   *
+   * @docgen
    */
   textChildren?: boolean;
 
@@ -70,12 +102,16 @@ export interface IListItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * easier to use the `children` prop instead, but this allows you to create more complex components with the
    * ListItem since you can provided `children` and have the styles for the `primaryText` still applied. By
    * default, this will only allow one line of text and add ellipsis for any text overflow.
+   *
+   * @docgen
    */
   primaryText?: React.ReactNode;
 
   /**
    * An optional element that should be rendered as the `secondaryText` within the list item. By default, this
    * will only span one line and add ellipsis for overflow.
+   *
+   * @docgen
    */
   secondaryText?: React.ReactNode;
 
@@ -84,12 +120,14 @@ export interface IListItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * to span 2 lines instead of one, but it will not correctly applied the trailing ellipsis overflow due to
    * browser compatibility of `line-clamp`. If you would still like the ellipsis to show, it is recommended to
    * use javascript to add them yourself.
+   *
+   * @docgen
    */
   threeLines?: boolean;
 }
 
 export interface IListItemDefaultProps {
-  role: "listitem";
+  role: string;
   disabled: boolean;
   clickable: boolean;
   textChildren: boolean;
@@ -147,25 +185,16 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
     );
   }
 
-  if (leftIcon) {
-    children = (
-      <TextIconSpacing icon={leftIcon} beforeClassName="rmd-list-item__icon rmd-list-item__icon--before">
-        {children}
-      </TextIconSpacing>
-    );
-  }
-
-  if (rightIcon) {
-    children = (
-      <TextIconSpacing
-        icon={rightIcon}
-        iconAfter={true}
-        afterClassName="rmd-list-item__icon rmd-list-item__icon--after"
-      >
-        {children}
-      </TextIconSpacing>
-    );
-  }
+  children = (
+    <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
+      {children}
+    </ListItemLeftIcon>
+  );
+  children = (
+    <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
+      {children}
+    </ListItemRightIcon>
+  );
 
   if (primaryText && propChildren) {
     children = (
@@ -190,7 +219,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         "rmd-list-item",
         {
           "rmd-list-item--disabled": propDisabled,
-          "rmd-list-item--clickable": !propDisabled && clickable,
+          "rmd-list-item--stateful": !propDisabled && clickable,
           "rmd-list-item--medium": (leftIcon || rightIcon) && !secondaryText,
           "rmd-list-item--large": !(leftIcon || rightIcon) && !!secondaryText,
           "rmd-list-item--extra-large": (leftIcon || rightIcon) && !!secondaryText,
