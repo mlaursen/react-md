@@ -96,7 +96,7 @@ export interface IButtonButtonProps
   asDiv?: boolean;
 
   // these are really just pass-through-values, so don't need to document them about how they are passed
-      // to the helper components
+  // to the helper components
   onBlur?: (event: React.FocusEvent<HTMLButtonElement | HTMLDivElement>) => void;
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
   onMouseUp?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;

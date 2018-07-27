@@ -310,6 +310,27 @@ either ripples or something else for keyboard users.
 
 </td>
 </tr>
+<tr>
+<td><code>rmd-btn-text</code></td>
+<td>Creates the base styles for a text button.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-btn-icon</code></td>
+<td>Creates the base styles for an icon button.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-button</code></td>
+<td>Creates all the styles for buttons within react-md.
+<br /><br />
+
+</td>
+</tr>
 </tbody>
 </table>
 

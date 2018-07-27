@@ -42,6 +42,7 @@
   position: relative;
 }
 
+/// Creates the base styles for a text button.
 @mixin rmd-btn-text {
   @include rmd-typography(button);
 
@@ -63,6 +64,16 @@
   }
 }
 
+/// Creates the base styles for an icon button.
+@mixin rmd-btn-icon($height: $rmd-btn-icon-size, $width: $rmd-btn-icon-size, $border-radius: $rmd-btn-icon-border-radius) {
+  border-radius: $border-radius;
+  height: $height;
+  justify-content: center;
+  padding: 0;
+  width: $width;
+}
+
+/// Creates all the styles for buttons within react-md.
 @mixin react-md-button {
   .rmd-btn {
     @include rmd-btn-base;
@@ -80,11 +91,7 @@
     }
 
     &--icon {
-      border-radius: $rmd-btn-icon-border-radius;
-      height: $rmd-btn-icon-size;
-      justify-content: center;
-      padding: 0;
-      width: $rmd-btn-icon-size;
+      @include rmd-btn-icon;
     }
 
     &--primary {
