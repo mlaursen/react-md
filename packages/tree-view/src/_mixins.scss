@@ -1,0 +1,20 @@
+////
+/// @group tree-view
+////
+
+
+/// Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created
+/// beforehand since these styles just prevent the outline when focused to work with the `@react-md/states`
+/// package.
+@mixin rmd-tree-item {
+  .rmd-tree-item {
+    outline-style: none;
+  }
+}
+
+/// Creates all tree-view specific styles. This really requires the `@react-md/list` styles to be created
+/// beforehand since these styles just prevent the outline when focused to work with the `@react-md/states`
+/// package.
+@mixin react-md-tree-view {
+  @include rmd-tree-item;
+}
