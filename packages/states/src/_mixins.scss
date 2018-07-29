@@ -122,6 +122,14 @@
     @include rmd-states-simple;
   }
 
+  &.rmd-states--selected {
+    @include rmd-states-selected($color);
+  }
+
+  &.rmd-states--active {
+    @include rmd-states-active($color);
+  }
+
   &.rmd-states--hover {
     @include rmd-states-hover($color);
   }
@@ -132,13 +140,5 @@
 
   &.rmd-states--pressed {
     @include rmd-states-pressed($color);
-  }
-
-  &.rmd-states--selected {
-    @include rmd-states-selected($color);
-  }
-
-  &.rmd-states--active {
-    @include rmd-states-active($color);
   }
 }

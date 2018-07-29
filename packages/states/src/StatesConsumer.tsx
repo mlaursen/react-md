@@ -147,6 +147,13 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
   pressedClassName?: string;
 
   /**
+   * Boolean if the child item is currently selected.
+   *
+   * @docgen
+   */
+  selected?: boolean;
+
+  /**
    * A function to render any children with the merged class names and optional blur events. The child element
    * **must** apply the `ref` attribute to the child element as well as the provided class name and `onBlur` to
    * work correctly.
@@ -159,6 +166,7 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
 export interface IStatesConsumerDefaultProps {
   pressable: boolean;
   disabled: boolean;
+  selected: boolean;
 }
 
 export type IStatesConsumerProps = IStatesContext & IStatesConsumerBaseProps;
@@ -181,6 +189,7 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
     pressedClassName: PropTypes.string,
     pressable: PropTypes.bool,
     disabled: PropTypes.bool,
+    selected: PropTypes.bool,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onMouseUp: PropTypes.func,
@@ -192,6 +201,7 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
 
   public static defaultProps: IStatesConsumerDefaultProps = {
     pressable: true,
+    selected: false,
     disabled: false,
   };
 
@@ -253,6 +263,7 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
       pressedClassName,
       children,
       advancedFocus,
+      selected,
       disabled,
       pressable,
       onMouseDown,
@@ -268,6 +279,7 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
       "rmd-states--simple": !advancedFocus,
       "rmd-states--focus": isFocused,
       "rmd-states--pressed": !disabled && pressed,
+      "rmd-states--selected": !disabled && selected,
       [`${focusedClassName}`]: !!focusedClassName && isFocused,
       [`${pressedClassName}`]: !!pressedClassName && !disabled && pressed,
     });

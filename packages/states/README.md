@@ -232,6 +232,15 @@ An optional className to apply when the child element is pressed.
 </td>
 </tr>
 <tr>
+<td>selected</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the child item is currently selected.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>children *</td>
 <td><code>ReactElement<any> | ((props: IStatesConsumerChildProps) => ReactNode) | (ReactElement<any> & stri...</code></td>
 <td><code>null</code></td>
@@ -317,6 +326,15 @@ An optional className to apply when the child element is focused.
 <td><code>null</code></td>
 <td>
 An optional className to apply when the child element is pressed.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>selected</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the child item is currently selected.
 <br /><br />
 </td>
 </tr>
