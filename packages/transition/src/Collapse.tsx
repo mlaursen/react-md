@@ -370,7 +370,11 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     window.clearTimeout(this.transitionTimeout);
     const { leaveDuration, minHeight, minPaddingTop, minPaddingBottom } = this.props as CollapseWithDefaultProps;
 
-    this.setState(this.getSizing(), () => {
+    this.setState(this.getSizing());
+
+    // wait for the sizing to be applied and then finish the rest of transition. without this wait, the animation might
+    // start halfway through
+    window.requestAnimationFrame(() => {
       this.transitionTimeout = window.setTimeout(() => {
         this.transitionTimeout = undefined;
         if (this.props.onCollapsed) {
