@@ -35,3 +35,13 @@ $rmd-icon-use-svg-icons: true !default;
 /// The amount of spacing to apply between an icon and text within the `TextIconSpacing` component.
 /// @type Number
 $rmd-icon-spacing-with-text: .5rem !default; // 8dp
+
+/// The transition time for the icon rotator to fully rotate.
+/// @type Number
+$rmd-icon-rotator-transition-time: .15s !default;
+
+/// The "allowed" rotation degrees for the icon rotator. These are used to automatically generate the
+/// rotation animations for the icon rotator and should contain all values that are used in the
+/// `to` and `from` props.
+/// @type List
+$rmd-icon-rotator-rotation-degrees: 0 90 180 270 360 !default;

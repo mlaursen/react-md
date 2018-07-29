@@ -6,3 +6,6 @@ export * from "./SVGIcon";
 
 export { default as TextIconSpacing } from "./TextIconSpacing";
 export * from "./TextIconSpacing";
+
+export { default as IconRotator } from "./IconRotator";
+export * from "./IconRotator";

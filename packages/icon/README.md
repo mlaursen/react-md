@@ -25,6 +25,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [FontIcon](#fonticon)
   * [SVGIcon](#svgicon)
   * [TextIconSpacing](#texticonspacing)
+  * [IconRotator](#iconrotator)
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
@@ -33,6 +34,8 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example SCSS Usage](#example-scss-usage-2)
       - [Example SCSS Usage](#example-scss-usage-3)
       - [Updating Selectors](#updating-selectors)
+      - [Internal Example](#internal-example)
+      - [Providing a selector](#providing-a-selector)
       - [create-react-app Example Usage](#create-react-app-example-usage)
       - [Example Usage SCSS](#example-usage-scss)
       - [create-react-app Example Usage](#create-react-app-example-usage-1)
@@ -462,6 +465,16 @@ The children to render before or after the provided icon.
 </td>
 </tr>
 <tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply to the surroudning <code>&#60;span&#62;</code> when the <code>forceIconWrap</code> prop is enabled
+or the icon is not a valid React Element.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>icon</td>
 <td><code>string | number | boolean | {} | ReactElement<any> | ReactNodeArray | ReactPortal | ReactElement<...</code></td>
 <td><code>null</code></td>
@@ -510,6 +523,104 @@ The class name to use for an icon that is placed after text.
 <td>
 Boolean if the icon should be forced into a <code>&#60;span&#62;</code> with the class names applied instead of attempting
 to clone into the provided icon.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### IconRotator
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>style</td>
+<td><code>CSSProperties</code></td>
+<td><code>null</code></td>
+<td>
+An optional style to apply to the surrounding span when the <code>forceIconWrap</code> prop is enabled
+or the children is not a single react element.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional className to apply.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>from</td>
+<td><code>number</code></td>
+<td><code>null</code></td>
+<td>
+The starting degree amount that should be used. This should be one of the values in the
+<code>$rmd-icon-rotator-rotation-degrees</code> list or a value specified when using the <code>rmd-icon-rotator-degrees</code>
+mixin so that a valid class name can be applied.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>to</td>
+<td><code>number</code></td>
+<td><code>null</code></td>
+<td>
+The ending degree amount that should be used. This should be one of the values in the
+<code>$rmd-icon-rotator-rotation-degrees</code> list or a value specified when using the <code>rmd-icon-rotator-degrees</code>
+mixin so that a valid class name can be applied.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>animate</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the rotation should be animated instead of static.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>rotated *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the icon is currently rotated.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>forceIconWrap</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the child icon should be &#34;forcefully&#34; wrapped in a <code>&#60;span&#62;</code> element. This should be enabled if
+you have a custom icon that does not pass the <code>className</code> prop down.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>children *</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The icon that should be rotated. If this is a valid React Element, the class names will be cloned into
+that icon, otherwise the icon will be wrapped in a span with the correct class names applied.
 <br /><br />
 </td>
 </tr>
@@ -651,6 +762,44 @@ spacing.
 </tr>
 </tbody>
 </table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-rotator-rotated(degrees, selector)</code></td>
+<td>A simple mixin to create the icon rotator&#39;s rotation values.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>degrees</td>
+<td>Number</td>
+<td></td>
+<td>The amount of degrees to rotate</td>
+</tr>
+<tr>
+<td>selector</td>
+<td>String</td>
+<td>'&'</td>
+<td>the selector to use to create the class.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-icon-rotator</code></td>
+<td>Creates the styles for the <code>IconRotator</code> component. These styles are extremely simple and basically
+apply different rotate transforms based on a class name.
+<br /><br />
 
 </td>
 </tr>
@@ -836,6 +985,26 @@ correctly included by the build process.
 ```
 
 
+##### Internal Example
+
+```scss
+.rmd-icon-rotator {
+  // generates .rmd-icon-rotator--rotated-0
+  @include rmd-icon-rotator-rotated(0);
+
+  // generates .rmd-icon-rotator--rotated-180
+  @include rmd-icon-rotator-rotated(180);
+}
+```
+
+##### Providing a selector
+
+```scss
+// generates .rmd-icon-rotator--rotated-45
+@include rmd-icon-rotator(45, '.rmd-icon-rotator')
+```
+
+
 ##### create-react-app Example Usage
 
 ```scss
@@ -914,6 +1083,18 @@ disable the style generation for the unused type to save a few bytes.</td>
 <tr>
 <td><code>rmd-icon-spacing-with-text</code></td>
 <td>The amount of spacing to apply between an icon and text within the <code>TextIconSpacing</code> component.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-icon-rotator-transition-time</code></td>
+<td>The transition time for the icon rotator to fully rotate.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-icon-rotator-rotation-degrees</code></td>
+<td>The &#34;allowed&#34; rotation degrees for the icon rotator. These are used to automatically generate the
+rotation animations for the icon rotator and should contain all values that are used in the
+<code>to</code> and <code>from</code> props.
 <br /><br /></td>
 </tr>
 </tbody>

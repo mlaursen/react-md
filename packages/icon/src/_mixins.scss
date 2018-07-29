@@ -134,6 +134,43 @@
   }
 }
 
+/// A simple mixin to create the icon rotator's rotation values.
+///
+/// @example scss - Internal Example
+///   .rmd-icon-rotator {
+///     // generates .rmd-icon-rotator--rotated-0
+///     @include rmd-icon-rotator-rotated(0);
+///
+///     // generates .rmd-icon-rotator--rotated-180
+///     @include rmd-icon-rotator-rotated(180);
+///   }
+///
+/// @example scss - Providing a selector
+///   // generates .rmd-icon-rotator--rotated-45
+///   @include rmd-icon-rotator(45, '.rmd-icon-rotator')
+///
+/// @param {Number} degrees - The amount of degrees to rotate
+/// @param {String} selector ['&'] - the selector to use to create the class.
+@mixin rmd-icon-rotator-rotated($degrees, $selector: '&') {
+  #{$selector}--rotated-#{$degrees} {
+    transform: rotate(#{$degrees}deg);
+  }
+}
+
+/// Creates the styles for the `IconRotator` component. These styles are extremely simple and basically
+/// apply different rotate transforms based on a class name.
+@mixin rmd-icon-rotator {
+  .rmd-icon-rotator {
+    &--animate {
+      transition: transform $rmd-icon-rotator-transition-time linear;
+    }
+
+    @each $degree in $rmd-icon-rotator-rotation-degrees {
+      @include rmd-icon-rotator-rotated($degree);
+    }
+  }
+}
+
 /// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
 /// to be enabled to generate any styles.
 @mixin react-md-icon {
@@ -165,11 +202,26 @@
             @include rmd-icon-svg-dense;
           }
         }
+
+        * {
+          // make sit so that paths and other things won't be event targets which makes things easier
+          // to determine if something is an icon or not
+          pointer-events: none;
+        }
       }
     }
 
     @include rmd-icon-spaced-with-text;
   }
+
+  // when wrapped in a span, want to force vertical center alignment to make things look
+  // nicer
+  .rmd-text-icon-spacing {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  @include rmd-icon-rotator;
 }
 
 /// Creates the font face for material icons. This takes either a font url prefix string or a map of urls for each required

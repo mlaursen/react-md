@@ -4,6 +4,14 @@ import cn from "classnames";
 
 export interface ITextIconSpacingProps {
   /**
+   * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop is enabled
+   * or the icon is not a valid React Element.
+   *
+   * @docgen
+   */
+  className?: string;
+
+  /**
    * An optional icon to display with a text button. This is invalid for icon buttons. If this is
    * a single element, a new class name will be cloned into the element to get correct spacing so
    * if you have a custom icon element, you **must** also pass that class name down. If you are using
@@ -82,10 +90,11 @@ export default class TextIconSpacing extends React.Component<ITextIconSpacingPro
       icon: propIcon,
       iconAfter,
       children,
+      className,
       beforeClassName,
       afterClassName,
       forceIconWrap,
-    } = this .props as TextIconSpacingWithDefaultProps;
+    } = this.props as TextIconSpacingWithDefaultProps;
 
     if (!propIcon) {
       return children;
@@ -107,10 +116,10 @@ export default class TextIconSpacing extends React.Component<ITextIconSpacingPro
     } else if (propIcon) {
       iconEl = (
         <span
-          className={cn({
+          className={cn("rmd-text-icon-spacing", {
             [beforeClassName]: !iconAfter,
             [afterClassName]: iconAfter,
-          })}
+          }, className)}
         >
           {propIcon}
         </span>
