@@ -35,7 +35,7 @@ export interface IListItemRightIconDefaultProps {
   forceIconWrap: boolean;
 }
 
-export type ListItemWithDefaultProps = IListItemRightIconProps & IListItemRightIconDefaultProps;
+export type ListItemRightIconWithDefaultProps = IListItemRightIconProps & IListItemRightIconDefaultProps;
 
 const ListItemRightIcon: React.SFC<IListItemRightIconProps> = ({ icon, children, forceIconWrap }) => (
   <TextIconSpacing

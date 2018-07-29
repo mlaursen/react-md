@@ -5,7 +5,7 @@
   },
   "scripts": {
     "build:base-deps": "lerna run --parallel build --scope @react-md/theme --scope @react-md/typography --scope @react-md/transition --scope @react-md/utils --scope @react-md/elevation",
-    "build:base": "lerna run --parallel build --scope @react-md/states --scope @react-md/listeners --scope @react-md/icon --scope @react-md/a11y",
+    "build:base": "lerna run --parallel build --scope @react-md/states --scope @react-md/listeners --scope @react-md/icon --scope @react-md/a11y --scope @react-md/link",
     "build:remaining": "lerna run build --scope @react-md/button --scope @react-md/material-icons --scope @react-md/list --scope @react-md/tree-view --scope @react-md/tooltip --scope react-md",
     "build": "npm run build:base-deps && npm run build:base && npm run build:remaining",
     "format": "prettier --write packages/*/**/*.tsx packages/*/**/*.ts",

@@ -9,3 +9,9 @@ export * from "./ListItemText";
 
 export { default as ListLink } from "./ListLink";
 export * from "./ListLink";
+
+export { default as ListItemLeftIcon } from "./ListItemLeftIcon";
+export * from "./ListItemLeftIcon";
+
+export { default as ListItemRightIcon } from "./ListItemRightIcon";
+export * from "./ListItemRightIcon";

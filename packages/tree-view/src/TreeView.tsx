@@ -4,7 +4,7 @@ import { List, IListProps } from "@react-md/list";
 
 export type TreeViewElement = HTMLUListElement | HTMLOListElement;
 
-import { ITreeItem } from "./TreeItem";
+import { default as TreeItem, ITreeItemProps, ITreeItemData } from "./TreeItem";
 
 export interface ITreeView {
   id: string;
@@ -17,18 +17,17 @@ export interface ITreeView {
   onKeyDown: (event: React.KeyboardEvent<TreeViewElement>) => void;
 }
 
-export interface ITreeViewData {
-  [key: string]: any;
-  itemId: string;
-  children?: ITreeViewData[];
-}
-
-export interface ITreeViewItem extends ITreeItem {
-  item: ITreeViewData;
+export interface ITreeViewItem extends ITreeItemProps {
+  key: string;
+  item: ITreeItemData;
 }
 
 export interface ITreeViewProps extends IListProps {
+  /**
+   * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
+   */
   id: string;
+
   /**
    * An optional id that points to an element that labels this tree. Either this or the `aria-label`
    * prop are required for a11y.
@@ -40,44 +39,84 @@ export interface ITreeViewProps extends IListProps {
    * required for a11y.
    */
   "aria-label"?: string;
-  data: ITreeViewData[];
-  selectedId?: string;
-  defaultSelectedId?: string;
-  expandedIds?: string[];
-  defaultExpandedIds?: string[];
-  treeItemRenderer: (item: ITreeViewItem) => React.ReactNode;
-  treeViewRenderer: (treeView: ITreeView) => React.ReactNode;
 
+  /**
+   * A list of data that should be transformed into a tree view.
+   */
+  data: ITreeItemData[];
+
+  /**
+   * The current tree item id that is selected. This needs to be a valid tree item id so that the user can
+   * tab focus into the entire tree view since the `selectedId` will be the only item within the tree view
+   * has a tabIndex that allows tab focus.
+   */
+  selectedId: string;
+
+  /**
+   * A list of tree item ids that are currently expanded.
+   */
+  expandedIds: string[];
+
+  /**
+   *
+   */
+  treeViewRenderer?: (treeView: ITreeView) => React.ReactNode;
+
+  /**
+   *
+   */
+  treeItemRenderer?: (item: ITreeViewItem) => React.ReactNode;
+
+  /**
+   *
+   */
+  treeItemChildrenRenderer?: (item: ITreeItemData) => React.ReactNode;
+
+  /**
+   * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
+   * should be disabled.
+   */
   disableSiblingExpansion?: boolean;
 
-  onItemSelect?: (itemId: string) => void;
-  onItemExpandedChange?: (itemId: string, expanded: boolean) => void;
-  onSiblingExpansion?: (expandedIds: string[]) => void;
+  /**
+   * The function that should be called when a new tree item is selected. The callback function should
+   * be used to update the `selectedId` prop to the provided `itemId`.
+   */
+  onItemSelect: (itemId: string) => void;
+
+  /**
+   * The function that should be called when a tree item's expansion value changes. The callback function
+   * should be used to update the `expandedIds` prop to include or remove the provided `itemId`.
+   */
+  onItemExpandedChange: (itemId: string, expanded: boolean) => void;
+
+  /**
+   * A function to call when the `disableSiblingExpansion` prop is not enabled and the user presses the `*`
+   * key on a tree item to expand all related sibling nodes.
+   */
+  onSiblingExpansion: (expandedIds: string[]) => void;
 }
 
 export interface ITreeViewDefaultProps {
-  defaultSelectedId: string;
-  defaultExpandedIds: string[];
   disableSiblingExpansion: boolean;
+  treeViewRenderer: (treeView: ITreeView) => React.ReactNode;
+  treeItemRenderer: (item: ITreeViewItem) => React.ReactNode;
+  treeItemChildrenRenderer: (item: ITreeItemData) => React.ReactNode;
 }
 
 export type TreeViewWithDefaultProps = ITreeViewProps & ITreeViewDefaultProps;
 
-export interface ITreeViewState {
-  selectedId: string;
-  expandedIds: string[];
-}
-
-export default class TreeView extends React.Component<ITreeViewProps, ITreeViewState> {
+export default class TreeView extends React.Component<ITreeViewProps, {}> {
   public static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
   };
 
   public static defaultProps: ITreeViewDefaultProps = {
-    defaultSelectedId: "",
-    defaultExpandedIds: [],
     disableSiblingExpansion: false,
+    treeViewRenderer: props => <List {...props} />,
+    treeItemRenderer: props => <TreeItem {...props} />,
+    treeItemChildrenRenderer: ({ children }) => children,
   };
 
   private treeEl: TreeViewElement | null;
@@ -85,11 +124,6 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
   constructor(props: ITreeViewProps) {
     super(props);
 
-    const { defaultExpandedIds, defaultSelectedId, data } = props as TreeViewWithDefaultProps;
-    this.state = {
-      expandedIds: defaultExpandedIds,
-      selectedId: defaultSelectedId || (data.length >= 1 ? data[0].itemId : ""),
-    };
     this.treeEl = null;
     this.treeItems = [];
   }
@@ -110,7 +144,8 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
       className,
       treeViewRenderer,
       data,
-    } = this.props;
+    } = this.props as TreeViewWithDefaultProps;
+
     return treeViewRenderer({
       id,
       style,
@@ -119,13 +154,11 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
       "aria-labelledby": ariaLabelledBy,
       role: "treeview",
       onKeyDown: this.handleKeyDown,
-      children: this.renderChildren(data, 0),
+      children: this.renderChildTreeItems(data, 0),
     });
   }
 
   private handleKeyDown = (event: React.KeyboardEvent<TreeViewElement>) => {
-    console.log("event.key:", event.key);
-    console.log("this.treeItems:", this.treeItems);
     switch (event.key) {
       case "Home":
       case "End":
@@ -145,6 +178,7 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
         break;
       case "*":
         this.openAllRelatedNodes(event.target as HTMLElement);
+        break;
       default:
     }
   };
@@ -155,16 +189,20 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
       return;
     }
 
-    this.handleItemExpandedChange(item.itemId, expanded);
+    const { expandedIds, onItemExpandedChange } = this.props;
+    const i = expandedIds.indexOf(item.itemId);
+    if (expanded ? i !== -1 : i === -1) {
+      onItemExpandedChange(item.itemId, expanded);
+    }
   };
 
   private openAllRelatedNodes = (item: HTMLElement) => {
-    if (!this.treeEl || this.props.disableSiblingExpansion) {
+    const { data, disableSiblingExpansion, onSiblingExpansion, expandedIds } = this.props;
+    if (!this.treeEl || disableSiblingExpansion) {
       return;
     }
 
-    const items = item.parentElement === this.treeEl ? this.props.data : this.findParentItemsFromItem(item);
-    const oldExpandedIds = this.props.expandedIds || this.state.expandedIds;
+    const items = item.parentElement === this.treeEl ? data : this.findParentItemsFromItem(item);
 
     let changed = false;
     const newExpandedIds = items.reduce((list, { itemId }) => {
@@ -173,19 +211,13 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
         changed = true;
       }
       return list;
-    }, oldExpandedIds.slice());
+    }, expandedIds.slice());
 
     if (!changed) {
       return;
     }
 
-    if (this.props.onSiblingExpansion) {
-      this.props.onSiblingExpansion(newExpandedIds);
-    }
-
-    if (!this.props.expandedIds) {
-      this.setState({ expandedIds: newExpandedIds });
-    }
+    onSiblingExpansion(newExpandedIds);
   };
 
   private findItemFromElement = (item: HTMLElement) => {
@@ -217,11 +249,11 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
     let list = this.props.data;
     for (const index of itemIndexStack) {
       temp = list[index];
-      if (!temp.children) {
+      if (!temp.childItems) {
         break;
       }
 
-      list = temp.children;
+      list = temp.childItems;
     }
 
     return list[i];
@@ -256,14 +288,14 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
     let list = this.props.data;
     for (const index of itemIndexStack) {
       temp = list[index];
-      if (!temp.children) {
+      if (!temp.childItems) {
         return [];
       }
 
-      list = temp.children;
+      list = temp.childItems;
     }
 
-    return list.filter(({ children }) => !!children);
+    return list.filter(({ childItems }) => !!childItems);
   };
 
   private focus = (index: number) => {
@@ -290,14 +322,24 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
     this.focus(nextIndex);
   };
 
-  private renderChildren = (data: ITreeViewData[], depth: number): React.ReactNode => {
+  private renderChildTreeItems = (data: ITreeItemData[], depth: number): React.ReactNode => {
+    const {
+      selectedId,
+      expandedIds,
+      onItemSelect,
+      onItemExpandedChange,
+      treeItemRenderer,
+      treeItemChildrenRenderer,
+    } = this.props as TreeViewWithDefaultProps;
     const setSize = data.length;
 
     return data.map((item, index) => {
-      const { itemId, children } = item;
-      const selected = this.isSelected(itemId);
-      return this.props.treeItemRenderer({
-        "aria-expanded": undefined,
+      const { itemId, childItems } = item;
+      const selected = selectedId === itemId;
+      const expanded = expandedIds.indexOf(itemId) !== -1;
+
+      return treeItemRenderer({
+        "aria-expanded": expanded ? "true" : undefined,
         "aria-level": depth,
         "aria-setsize": setSize,
         "aria-posinset": index + 1,
@@ -306,55 +348,27 @@ export default class TreeView extends React.Component<ITreeViewProps, ITreeViewS
         role: "treeitem",
         tabIndex: selected ? 0 : -1,
         selected,
-        expanded: this.isExpanded(itemId),
-        onItemSelect: this.handleItemSelect,
-        onItemExpandedChange: this.handleItemExpandedChange,
-        renderChildren: children ? () => this.renderChildren(children, depth + 1) : undefined,
+        expanded,
+        initItem: this.initItem,
+        deinitItem: this.deinitItem,
+        onItemSelect,
+        onItemExpandedChange,
+        renderChildren: treeItemChildrenRenderer,
+        renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
       });
     });
   };
 
-  private handleItemSelect = (itemId: string) => {
-    if (this.props.onItemSelect) {
-      this.props.onItemSelect(itemId);
-    }
-
-    if (typeof this.props.selectedId === "undefined" && this.state.selectedId !== itemId) {
-      this.setState({ selectedId: itemId });
+  private initItem = (itemId: string, item: HTMLElement) => {
+    if (this.treeItems.indexOf(item) === -1) {
+      this.treeItems.push(item);
     }
   };
 
-  private handleItemExpandedChange = (itemId: string, expanded: boolean) => {
-    if (this.props.onItemExpandedChange) {
-      this.props.onItemExpandedChange(itemId, expanded);
+  private deinitItem = (itemId: string, item: HTMLElement) => {
+    const i = this.treeItems.indexOf(item);
+    if (i !== -1) {
+      this.treeItems.splice(i, 1);
     }
-
-    if (typeof this.props.expandedIds === "undefined") {
-      const expandedIds = this.state.expandedIds.slice();
-      const i = expandedIds.indexOf(itemId);
-      if (expanded && i === -1) {
-        expandedIds.push(itemId);
-      } else if (!expanded && i !== -1) {
-        expandedIds.splice(i, 1);
-      }
-
-      if (expandedIds.length !== this.state.expandedIds.length) {
-        this.setState({ expandedIds });
-      }
-    }
-  };
-
-  private isSelected = (itemId: string) => {
-    let { selectedId } = this.state;
-    if (typeof this.props.selectedId === "string") {
-      selectedId = this.props.selectedId;
-    }
-
-    return itemId === selectedId;
-  };
-
-  private isExpanded = (itemId: string) => {
-    const ids = this.props.expandedIds || this.state.expandedIds;
-    return ids.indexOf(itemId) !== -1;
   };
 }

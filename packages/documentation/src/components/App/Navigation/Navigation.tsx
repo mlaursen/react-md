@@ -2,12 +2,12 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { List, ListLink } from "@react-md/list";
-import { TreeView, ITreeView, ITreeViewData, ITreeViewItem } from "@react-md/tree-view";
+import { TreeView, ITreeView, ITreeItemData, ITreeViewItem } from "@react-md/tree-view";
 
 import "./navigation.scss";
 import NavigationItem from "./NavigationItem";
 
-const routes: ITreeViewData[] = [
+const routes: ITreeItemData[] = [
   {
     itemId: "/",
     name: "Home",
@@ -32,18 +32,42 @@ const routes: ITreeViewData[] = [
   },
 ];
 
-export default class Navigation extends React.Component<{}, {}> {
+export interface INavigationState {
+  expandedIds: string[];
+  selectedId: string;
+}
+
+export default class Navigation extends React.Component<{}, INavigationState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = { expandedIds: [], selectedId: routes[0].itemId };
+  }
+
   public render() {
     return (
       <TreeView
         id="navigation"
         className="navigation"
         data={routes}
-        treeViewRenderer={this.treeViewRenderer}
-        treeItemRenderer={this.treeItemRenderer}
+        expandedIds={this.state.expandedIds}
+        selectedId={this.state.selectedId}
+        onItemSelect={this.handleItemSelect}
+        onItemExpandedChange={this.handleItemExpandedChange}
+        onSiblingExpansion={this.handleSiblingExpansion}
       />
     );
   }
+
+  private handleItemSelect = (itemId: string) => {
+    this.setState({ selectedId: itemId });
+  };
+
+  private handleItemExpandedChange = (itemId: string, expanded: boolean) => {
+  };
+
+  private handleSiblingExpansion = (expandedIds: string[]) => {
+  };
 
   private treeViewRenderer = (props: ITreeView) => <List {...props} />;
 
