@@ -233,7 +233,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
           return (
             <KeyboardClickable disabled={disabled} {...statesProps} role={role}>
               {clickableProps => (
-                <li {...props} {...statesProps} {...clickableProps}>
+                <li {...statesProps} {...clickableProps} {...props}>
                   {children}
                 </li>
               )}
@@ -273,4 +273,5 @@ ListItem.defaultProps = {
   threeLines: false,
   forceIconWrap: false,
 } as IListItemDefaultProps;
+
 export default ListItem;
