@@ -215,6 +215,13 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
 
   public componentDidMount() {
     this.el = ReactDOM.findDOMNode(this) as HTMLElement;
+
+    // I should come back to this, but there _should_ be an easier way to make the states consumer
+    // target a child element instead of the top level. ref callback would probably be best...
+    if (this.el && this.el.getAttribute("role") === "none") {
+      this.el = this.el.firstElementChild as HTMLElement;
+    }
+
     if (!this.el && process.env.NODE_ENV === "development") {
       const { props } = this;
       // tslint:disable-next-line
