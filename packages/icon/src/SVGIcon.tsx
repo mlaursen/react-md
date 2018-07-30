@@ -122,6 +122,13 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   use?: string;
 
   /**
+   * Boolean if the icon should use the dense spec.
+   *
+   * @docgen
+   */
+  dense?: boolean;
+
+  /**
    * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
    *
    * @docgen
@@ -134,6 +141,7 @@ export interface ISVGIconDefaultProps {
   focusable: string;
   xmlns: string;
   viewBox: string;
+  dense: boolean;
 }
 
 export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
@@ -149,6 +157,7 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
     focusable: PropTypes.string,
     size: PropTypes.number,
     viewBox: PropTypes.string,
+    dense: PropTypes.bool,
     xmlns: PropTypes.string,
   };
 
@@ -157,6 +166,7 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
     focusable: "false",
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
+    dense: false,
   };
 
   private getStyle = memoizeOne((style?: React.CSSProperties, size?: number) => {
@@ -211,6 +221,7 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
       desc: propDesc,
       style: propStyle,
       children: propChildren,
+      dense,
       ...props
     } = this.props;
     const { labelledBy, titleId, descId } = this.getIds(use, ariaLabelledBy, propTitle, propDesc);
@@ -235,7 +246,13 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
         {...props}
         style={this.getStyle(style, size)}
         aria-labelledby={ariaLabelledBy || labelledBy}
-        className={cn("rmd-icon rmd-icon--svg", className)}
+        className={cn(
+          "rmd-icon rmd-icon--svg",
+          {
+            "rmd-icon--svg-dense": dense,
+          },
+          className
+        )}
       >
         {title}
         {desc}

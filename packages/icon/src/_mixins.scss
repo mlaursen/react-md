@@ -184,11 +184,11 @@
     @if $rmd-icon-use-font-icons {
       &--font {
         @include rmd-icon-font;
+      }
 
-        @if $rmd-icon-include-dense {
-          &--dense {
-            @include rmd-icon-font-dense;
-          }
+      @if $rmd-icon-include-dense {
+        &--font-dense {
+          @include rmd-icon-font-dense;
         }
       }
     }
@@ -197,16 +197,16 @@
       &--svg {
         @include rmd-icon-svg;
 
-        @if $rmd-icon-include-dense {
-          &--dense {
-            @include rmd-icon-svg-dense;
-          }
-        }
-
         * {
           // make sit so that paths and other things won't be event targets which makes things easier
           // to determine if something is an icon or not
           pointer-events: none;
+        }
+      }
+
+      @if $rmd-icon-include-dense {
+        &--svg-dense {
+          @include rmd-icon-svg-dense;
         }
       }
     }
