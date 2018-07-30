@@ -1,0 +1,28 @@
+////
+/// @group tree-view
+////
+
+@import '@react-md/list/dist/variables';
+
+/// The default max-depth to create for the tree view depths. This is used in the `rmd-tree-view-depths` mixin
+/// to generate offsets in css based on how deep a tree item is. If this value is less than or equal to 1, no
+/// depth styles will be created.
+///
+/// @type Number
+$rmd-tree-view-max-depth: 3 !default;
+
+/// The amount of padding that should be multiplied by the current depth and added to the `rmd-tree-view-item-padding-base`.
+///
+/// @see rmd-tree-view-depths
+/// @see rmd-tree-item-at-depth
+/// @type Number
+$rmd-tree-view-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !default;
+
+/// The base amout of padding to apply to a tree item that has a depth greater than 1. This is set to a value
+/// that assumes you have icons to the left of the items at the base level. If you do not, it would be better to
+/// set this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.
+///
+/// @see rmd-tree-view-depths
+/// @see rmd-tree-item-at-depth
+/// @type Number
+$rmd-tree-view-item-padding-base: $rmd-list-item-text-keyline !default;

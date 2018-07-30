@@ -2,13 +2,51 @@
 /// @group tree-view
 ////
 
+@import '@react-md/utils/dist/mixins';
+
+@mixin rmd-tree-item-at-depth($depth, $selector-prefix: '', $incrementor: $rmd-tree-view-item-padding-incrementor, $base: $rmd-tree-view-item-padding-base) {
+  $selector: '#{$selector-prefix}[aria-level="#{$depth}"].rmd-tree-item__content, #{$selector-prefix}[aria-level="#{$depth}"] > .rmd-tree-item__content';
+  $padding: (($depth - 1) * $incrementor) + $base;
+
+  #{$selector} {
+    padding-left: $padding;
+
+    // sass-lint:disable mixins-before-declarations
+    @include rmd-utils-rtl {
+      padding-left: $rmd-list-item-horizontal-padding;
+      padding-right: $padding;
+    }
+  }
+}
+
+@mixin rmd-tree-view-depths(
+  $selector-prefix: '',
+  $min: 1,
+  $max: $rmd-tree-view-max-depth,
+  $incrementor: $rmd-tree-view-item-padding-incrementor,
+  $base-padding: $rmd-tree-view-item-padding-base
+) {
+  $index: $min;
+  @while $index < $max {
+    @include rmd-tree-item-at-depth($index, $selector-prefix, $incrementor, $base-padding);
+
+    $index: $index + 1;
+  }
+}
 
 /// Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created
 /// beforehand since these styles just prevent the outline when focused to work with the `@react-md/states`
 /// package.
 @mixin rmd-tree-item {
   .rmd-tree-item {
+    // added again just-in-case so that dnd libraries don't do a bad drag image
+    list-style: none;
     outline-style: none;
+
+    &__content--link {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 }
 
@@ -17,4 +55,11 @@
 /// package.
 @mixin react-md-tree-view {
   @include rmd-tree-item;
+
+  .rmd-tree-view [role='group'] {
+    background-color: inherit;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
 }

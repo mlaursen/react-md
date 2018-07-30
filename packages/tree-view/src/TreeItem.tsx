@@ -11,7 +11,6 @@ import TreeGroup from "./TreeGroup";
 
 export interface ITreeItemData {
   [key: string]: any;
-  link?: boolean;
   itemId: string;
   children?: React.ReactNode;
   childItems?: ITreeItemData[];
@@ -31,14 +30,17 @@ export interface ITreeItemProps extends IListItemBaseProps, React.HTMLAttributes
   "aria-posinset": number;
   "aria-setsize": number;
   role: "treeitem";
-  item: ITreeItemData;
+  itemId: string;
+  link?: boolean;
+  linkProps?: { [key: string]: any };
+  linkComponent?: React.ReactType;
   tabIndex?: 0 | -1;
   expanded: boolean;
   selected: boolean;
-  initItem: (itemId: string, item: HTMLElement) => void;
-  deinitItem: (itemId: string, item: HTMLElement) => void;
-  renderChildren: (item: ITreeItemData) => React.ReactNode;
+  updateTreeItems: () => void;
+  children?: React.ReactNode;
   renderChildItems?: () => React.ReactNode;
+  dense?: boolean;
 
   disabled?: boolean;
   expanderTo?: number;
@@ -48,13 +50,16 @@ export interface ITreeItemProps extends IListItemBaseProps, React.HTMLAttributes
 }
 
 export interface ITreeItemDefaultProps {
+  link: boolean;
+  linkComponent: string;
   disabled: boolean;
   expanderTo: number;
   expanderFrom: number;
   expanderIcon: React.ReactElement<any>;
   expanderLeft: boolean;
-  renderChildren: (item: ITreeItemData) => React.ReactNode;
 }
+
+export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
 
 export default class TreeItem extends React.Component<ITreeItemProps, {}> {
   public static propTypes = {
@@ -63,15 +68,16 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
   };
 
   public static defaultProps: ITreeItemDefaultProps = {
+    link: false,
+    linkComponent: "a",
     disabled: false,
     expanderTo: 0,
     expanderFrom: 90,
     expanderIcon: <KeyboardArrowDownSVGIcon />,
     expanderLeft: false,
-    renderChildren: ({ children }) => children,
   };
 
-  private instance: HTMLLIElement | null;
+  private instance: HTMLLIElement | HTMLAnchorElement | null;
   constructor(props: ITreeItemProps) {
     super(props);
 
@@ -81,13 +87,21 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
 
   public render() {
     const {
+      "aria-expanded": ariaExpanded,
+      "aria-level": level,
+      "aria-posinset": posInSet,
+      "aria-setsize": setSize,
+      role,
+      tabIndex,
       className,
       disabled: propDisabled,
-      renderChildren,
+      children,
       renderChildItems,
-      item,
-      initItem,
-      deinitItem,
+      link,
+      linkProps,
+      linkComponent,
+      itemId,
+      updateTreeItems,
       selected,
       expanded,
       leftIcon: propLeftIcon,
@@ -104,13 +118,21 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
       onTouchEnd,
       onKeyDown,
       onKeyUp,
+      dense,
       ...props
-    } = this.props;
-    const { link } = item;
+    } = this.props as TreeItemWithDefaultProps;
+    const isExpanderIconVisible = !!(renderChildItems && expanderIcon);
+    const a11y = {
+      "aria-expanded": ariaExpanded,
+      "aria-posinset": posInSet,
+      "aria-setsize": setSize,
+      "aria-level": level,
+      role,
+      tabIndex,
+    };
 
     let leftIcon = propLeftIcon;
     let rightIcon = propRightIcon;
-    const isExpanderIconVisible = !!(renderChildItems && expanderIcon);
     if (isExpanderIconVisible) {
       const icon = (
         <IconRotator rotated={expanded} from={expanderFrom} to={expanderTo}>
@@ -123,9 +145,6 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
       } else {
         rightIcon = icon;
       }
-    }
-    if (link) {
-      return null;
     }
 
     let group: React.ReactElement<any> | undefined;
@@ -145,15 +164,25 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
         onKeyDown={onKeyDown}
       >
         {statesProps => (
-          <li {...props} ref={this.handleRef} className={cn("rmd-tree-item", className)}>
+          <li
+            {...props}
+            {...(link ? { role: "none" } : a11y)}
+            ref={this.handleRef}
+            className={cn("rmd-tree-item", className)}
+          >
             <TreeItemContent
+              dense={dense}
               {...statesProps}
+              {...linkProps}
+              {...(link ? a11y : undefined)}
+              link={link}
+              linkComponent={linkComponent}
               leftIcon={leftIcon}
               rightIcon={rightIcon}
               forceIconWrap={forceIconWrap || isExpanderIconVisible}
               expanded={expanded}
             >
-              {renderChildren(item)}
+              {children}
             </TreeItemContent>
             {group}
           </li>
@@ -162,19 +191,7 @@ export default class TreeItem extends React.Component<ITreeItemProps, {}> {
     );
   }
 
-  private handleRef = (instance: HTMLLIElement | null) => {
-    const {
-      initItem,
-      deinitItem,
-      item: { itemId },
-    } = this.props;
-
-    if (instance) {
-      initItem(itemId, instance);
-    } else if (this.instance) {
-      deinitItem(itemId, this.instance);
-    }
-
-    this.instance = instance;
+  private handleRef = () => {
+    this.props.updateTreeItems();
   };
 }

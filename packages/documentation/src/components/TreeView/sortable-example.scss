@@ -1,0 +1,13 @@
+@import 'app-globals';
+
+.sortable-tree-view {
+  @include rmd-elevation(4);
+
+  // sass-lint:disable no-vendor-prefixes
+  -webkit-overflow-scrolling: touch;
+  margin: 0 auto;
+  max-height: 600px;
+  max-width: 400px;
+  overflow: auto;
+  width: 100%;
+}

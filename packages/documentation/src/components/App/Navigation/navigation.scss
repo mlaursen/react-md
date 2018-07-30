@@ -1,8 +1,10 @@
 @import 'app-globals';
 
 .navigation {
+  // @include rmd-typography(body-2);
   @include rmd-theme(color, text-primary-on-dark);
   @include rmd-elevation(2);
+  @include rmd-tree-view-depths;
 
   background-color: $rmd-blue-grey-800;
 
@@ -16,7 +18,7 @@
     @include rmd-states-surface($rmd-white-base);
   }
 
-  .rmd-list {
-    color: inherit;
+  .rmd-icon {
+    @include rmd-theme(fill, text-icon-on-dark);
   }
 }

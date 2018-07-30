@@ -12,6 +12,10 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "declaration": false,
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "typeRoots": [
       "node_modules/@types/"
     ]
