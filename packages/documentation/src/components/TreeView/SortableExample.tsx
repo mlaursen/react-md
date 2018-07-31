@@ -17,7 +17,7 @@ import "./sortable-example.scss";
 
 const DragHandle = SortableHandle(() => <DragHandleSVGIcon />);
 const SortableTreeItem = SortableElement(TreeItem);
-const SortableList = SortableContainer(List);
+const SortableList = SortableContainer(props => <List {...props} />);
 
 const defaultData: ITreeItemData[] = Array.from(new Array(49)).map((_, i) => ({
   itemId: `item-${i + 1}`,

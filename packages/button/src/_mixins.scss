@@ -3,6 +3,7 @@
 ////
 
 @import '@react-md/elevation/dist/mixins';
+@import '@react-md/icon/dist/variables';
 @import '@react-md/states/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/theme/dist/mixins';
@@ -54,13 +55,17 @@
   // icons have smaller sizes due to the padding on buttons. This is also not applied
   // below in the rmd-btn__icon since a user of this library _could_ include the icon styles
   // after the button styles which would prevent these styles from working
-  .rmd-icon--font {
-    font-size: $rmd-btn-text-icon-size;
+  @if $rmd-icon-use-font-icons {
+    .rmd-icon--font {
+      font-size: $rmd-btn-text-icon-size;
+    }
   }
 
-  .rmd-icon--svg {
-    height: $rmd-btn-text-icon-size;
-    width: $rmd-btn-text-icon-size;
+  @if $rmd-icon-use-svg-icons {
+    .rmd-icon--svg {
+      height: $rmd-btn-text-icon-size;
+      width: $rmd-btn-text-icon-size;
+    }
   }
 }
 
@@ -84,6 +89,10 @@
       &:hover {
         cursor: pointer;
       }
+    }
+
+    &--disabled {
+      @include rmd-theme(color, text-disabled-on-background);
     }
 
     &--text {
@@ -141,6 +150,22 @@
 
     &--outline-default {
       box-shadow: $rmd-btn-box-shadow $rmd-btn-default-color;
+    }
+
+    &--outline-disabled {
+      box-shadow: $rmd-btn-box-shadow rmd-theme(text-disabled-on-background);
+    }
+
+    @if $rmd-icon-use-font-icons {
+      .rmd-icon--font {
+        color: inherit;
+      }
+    }
+
+    @if $rmd-icon-use-svg-icons {
+      .rmd-icon--svg {
+        fill: currentColor;
+      }
     }
   }
 }

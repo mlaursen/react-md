@@ -16,7 +16,7 @@ const IconButtons: React.SFC<any> = () => (
     <Button id="icon-button-3" className="example-group__example" btnType="icon" theme="secondary">
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-4" className="example-group__example" btnType="icon" themeType="outline">
+    <Button id="icon-button-4" className="example-group__example" btnType="icon" themeType="outline" theme="default">
       <FavoriteSVGIcon />
     </Button>
     <Button id="icon-button-5" className="example-group__example" btnType="icon" themeType="outline" theme="primary">
@@ -25,7 +25,7 @@ const IconButtons: React.SFC<any> = () => (
     <Button id="icon-button-6" className="example-group__example" btnType="icon" themeType="outline" theme="secondary">
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-7" className="example-group__example" btnType="icon" themeType="contained">
+    <Button id="icon-button-7" className="example-group__example" btnType="icon" themeType="contained" theme="default">
       <FavoriteSVGIcon />
     </Button>
     <Button id="icon-button-8" className="example-group__example" btnType="icon" themeType="contained" theme="primary">
