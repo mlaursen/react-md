@@ -100,20 +100,18 @@ export interface ICollapseProps {
   minPaddingTop?: number;
 
   /**
-   * The duration for the entire enter animation. This should match up with the `$rmd-collapse-enter-transition-time`
-   * Sass variable, however, this can be updated so that customizable transition times can be applied based on
-   * content size. You will just need to also update the style to include the `transitionDuration` of whatever value
-   * you want.
+   * The duration for the entire enter animation in milliseconds. This should normally stay as the default value
+   * of `250ms`, but can be updated to be any value if you feel there should be a longer animation time based on
+   * content size.
    *
    * @docgen
    */
   enterDuration?: number;
 
   /**
-   * The duration for the entire leave animation. This should match up with the `$rmd-collapse-leave-transition-time`
-   * Sass variable, however, this can be updated so that customizable transition times can be applied based on
-   * content size. You will just need to also update the style to include the `transitionDuration` of whatever value
-   * you want.
+   * The duration for the entire leave animation in milliseconds. This should normally stay at the default value
+   * of `200ms`, but can be updated to be any value if you feel there should be a longer animation time based on
+   * content size.
    *
    * @docgen
    */
@@ -215,22 +213,29 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
    * When there are no styles to create, `undefined` will be returned instead of a style object.
    */
   private createStyle = memoizeOne(
-    (propStyle?: React.CSSProperties, maxHeight?: number, paddingTop?: number, paddingBottom?: number) => {
+    (
+      transitionDuration: string,
+      propStyle?: React.CSSProperties,
+      maxHeight?: number,
+      paddingTop?: number,
+      paddingBottom?: number
+    ) => {
       const isHeight = typeof maxHeight === "number";
       const isPadTop = typeof paddingTop === "number";
       const isPadBot = typeof paddingBottom === "number";
       if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
-        return undefined;
+        return transitionDuration ? { transitionDuration } : undefined;
       } else if (propStyle) {
         return {
           maxHeight,
           paddingTop,
           paddingBottom,
+          transitionDuration,
           ...propStyle,
         };
       }
 
-      return { maxHeight, paddingTop, paddingBottom };
+      return { maxHeight, paddingTop, paddingBottom, transitionDuration };
     }
   );
 
@@ -271,14 +276,16 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
 
   public render() {
     const { entering, leaving, maxHeight, paddingTop, paddingBottom } = this.state;
-    const { collapsed, className, children } = this.props;
+    const { collapsed, className, children, enterDuration, leaveDuration } = this.props as CollapseWithDefaultProps;
 
     if (collapsed && !entering && !leaving && this.isEmptyCollapsed()) {
       return null;
     }
 
+    const transitionDuration = `${collapsed ? leaveDuration : enterDuration}ms`;
+
     return children({
-      style: this.createStyle(this.props.style, maxHeight, paddingTop, paddingBottom),
+      style: this.createStyle(transitionDuration, this.props.style, maxHeight, paddingTop, paddingBottom),
       className: cn(
         "rmd-collapse",
         {

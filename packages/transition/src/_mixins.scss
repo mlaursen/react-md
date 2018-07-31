@@ -28,14 +28,10 @@
 
     &--enter {
       @include rmd-transition($rmd-collapse-enter-transition-func);
-
-      transition-duration: $rmd-collapse-enter-transition-time;
     }
 
     &--leave {
       @include rmd-transition($rmd-collapse-leave-transition-func);
-
-      transition-duration: $rmd-collapse-leave-transition-time;
     }
   }
 }
