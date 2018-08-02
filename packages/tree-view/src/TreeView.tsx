@@ -411,14 +411,25 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
   private focus = (index: number) => {
     index = Math.max(0, Math.min(this.treeItems.length - 1, index));
 
-    const item = this.treeItems[index];
-    if (item) {
-      item.focus();
+    const element = this.treeItems[index];
+    if (element) {
+      element.focus();
+    }
+
+    const { selectedIds, onItemSelect, data } = this.props;
+    const item = TreeView.findTreeItemFromElement(element, data, this.treeEl);
+    if (!item) {
+      return;
+    }
+
+    const { itemId } = item;
+    if (selectedIds.indexOf(itemId) === -1) {
+      onItemSelect(itemId);
     }
   };
 
-  private focusFrom = (item: HTMLElement, increment: boolean) => {
-    const currentIndex = this.treeItems.indexOf(item);
+  private focusFrom = (element: HTMLElement, increment: boolean) => {
+    const currentIndex = this.treeItems.indexOf(element);
     if (currentIndex === -1) {
       return;
     }

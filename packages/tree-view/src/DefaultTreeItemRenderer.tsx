@@ -104,7 +104,7 @@ export default class DefaultTreeItemRenderer extends React.Component<
 
     return (
       <TreeItem {...props} {...a11y}>
-        <TreeItemContent forceIconWrap={forceIconWrap} leftIcon={leftIcon} rightIcon={rightIcon}>
+        <TreeItemContent forceIconWrap={forceIconWrap} leftIcon={leftIcon} rightIcon={rightIcon} selected={selected}>
           {children}
         </TreeItemContent>
         {group}

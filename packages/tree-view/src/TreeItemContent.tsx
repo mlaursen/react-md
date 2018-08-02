@@ -41,20 +41,9 @@ const TreeItemContent: React.SFC<ITreeItemContentProps> = providedProps => {
     forceIconWrap,
     children,
     medium,
+    selected,
     ...props
   } = providedProps as TreeItemContentWithDefaultProps;
-
-  const className = cn(
-    "rmd-tree-item__content",
-    {
-      "rmd-tree-item__content--link": !!linkComponent,
-    },
-    "rmd-list-item rmd-list-item--stateful",
-    {
-      "rmd-list-item--medium": medium && !!linkComponent,
-    },
-    propClassName
-  );
 
   const content = (
     <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
@@ -64,22 +53,47 @@ const TreeItemContent: React.SFC<ITreeItemContentProps> = providedProps => {
     </ListItemLeftIcon>
   );
 
-  if (!linkComponent) {
-    const divProps = props as ITreeItemContentDivProps;
-    return (
-      <div {...divProps} className={className}>
-        {content}
-      </div>
-    );
-  }
+  return (
+    <StatesConsumer
+      selected={selected}
+      className={cn(
+        "rmd-tree-item__content",
+        {
+          "rmd-tree-item__content--link": !!linkComponent,
+        },
+        "rmd-list-item rmd-list-item--stateful",
+        {
+          "rmd-list-item--medium": medium && !!linkComponent,
+        },
+        propClassName
+      )}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onKeyUp={onKeyUp}
+      onKeyDown={onKeyDown}
+    >
+      {statesProps => {
+        if (!linkComponent) {
+          const divProps = props as ITreeItemContentDivProps;
+          return (
+            <div {...statesProps} {...divProps}>
+              {content}
+            </div>
+          );
+        }
 
-  return React.createElement(
-    linkComponent,
-    {
-      ...props,
-      className,
-    },
-    content
+        return React.createElement(
+          linkComponent,
+          {
+            ...statesProps,
+            ...props,
+          },
+          content
+        );
+      }}
+    </StatesConsumer>
   );
 };
 

@@ -1,6 +1,5 @@
 import * as React from "react";
 import cn from "classnames";
-import { StatesConsumer } from "@react-md/states";
 
 /**
  * The `TreeItem` component is an extremely simple component that just renders an `li` element
@@ -71,19 +70,7 @@ export interface ITreeItemDefaultProps {
 export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
 
 const TreeItem: React.SFC<ITreeItemProps> = providedProps => {
-  const {
-    className,
-    selected,
-    tabIndex: propTabIndex,
-    children,
-    onMouseDown,
-    onMouseUp,
-    onTouchStart,
-    onTouchEnd,
-    onKeyDown,
-    onKeyUp,
-    ...props
-  } = providedProps as TreeItemWithDefaultProps;
+  const { className, selected, tabIndex: propTabIndex, children, ...props } = providedProps as TreeItemWithDefaultProps;
 
   let tabIndex = propTabIndex;
   if (typeof tabIndex !== "number") {
@@ -91,22 +78,9 @@ const TreeItem: React.SFC<ITreeItemProps> = providedProps => {
   }
 
   return (
-    <StatesConsumer
-      selected={selected}
-      className={cn("rmd-tree-item", className)}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      onKeyUp={onKeyUp}
-      onKeyDown={onKeyDown}
-    >
-      {statesProps => (
-        <li {...statesProps} {...props} role="treeitem" tabIndex={tabIndex}>
-          {children}
-        </li>
-      )}
-    </StatesConsumer>
+    <li {...props} role="treeitem" tabIndex={tabIndex} className={cn("rmd-tree-item", className)}>
+      {children}
+    </li>
   );
 };
 
