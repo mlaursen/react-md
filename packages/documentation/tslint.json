@@ -10,7 +10,9 @@
     "ordered-imports": [0],
     "trailing-comma": [0],
     "arrow-parens": [0],
-    "semicolon": [0]
+    "semicolon": [0],
+    "no-console": [0],
+    "no-empty-interface": [0]
   },
   "rulesDirectory": []
 }

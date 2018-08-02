@@ -6,7 +6,7 @@ import cn from "classnames";
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
-export interface IIconRotatorProps {
+export interface IIconRotatorBaseProps {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap` prop is enabled
    * or the children is not a single react element.
@@ -61,7 +61,9 @@ export interface IIconRotatorProps {
    * @docgen
    */
   forceIconWrap?: boolean;
+}
 
+export interface IIconRotatorProps extends IIconRotatorBaseProps {
   /**
    * The icon that should be rotated. If this is a valid React Element, the class names will be cloned into
    * that icon, otherwise the icon will be wrapped in a span with the correct class names applied.

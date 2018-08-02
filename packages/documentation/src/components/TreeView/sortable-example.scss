@@ -2,6 +2,7 @@
 
 .sortable-tree-view {
   @include rmd-elevation(4);
+  @include rmd-tree-view-depths;
 
   // sass-lint:disable no-vendor-prefixes
   -webkit-overflow-scrolling: touch;

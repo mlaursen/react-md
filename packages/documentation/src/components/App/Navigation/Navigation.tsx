@@ -1,21 +1,23 @@
+/* tslint:disable:no-console */
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { HomeSVGIcon, InfoOutlineSVGIcon, BuildSVGIcon } from "@react-md/material-icons";
+import { HomeSVGIcon, InfoOutlineSVGIcon, BuildSVGIcon, WarningSVGIcon } from "@react-md/material-icons";
 import {
   TreeView,
   TreeViewControls,
-  ITreeItemData,
+  TreeViewDataList,
+  FlattenedTree,
   FlattenedTreeView,
   IFlattenedTreeViewData,
 } from "@react-md/tree-view";
 
 import "./navigation.scss";
 
-const routes: ITreeItemData[] = [
+const routes: TreeViewDataList = [
   {
     itemId: "/",
     children: "Home",
-    link: true,
+    linkComponent: Link,
     leftIcon: <HomeSVGIcon />,
   },
   {
@@ -26,7 +28,7 @@ const routes: ITreeItemData[] = [
       {
         itemId: "/discover-more/whats-new",
         children: "What's New",
-        link: true,
+        linkComponent: Link,
       },
       {
         itemId: "/discover-more/upgrade-guides",
@@ -35,12 +37,12 @@ const routes: ITreeItemData[] = [
           {
             itemId: "/discover-more/upgrade-guides/v1.0.0",
             children: "v1.0.0",
-            link: true,
+            linkComponent: Link,
           },
           {
             itemId: "/discover-more/upgrade-guides/v2.0.0",
             children: "v2.0.0",
-            link: true,
+            linkComponent: Link,
           },
         ],
       },
@@ -54,17 +56,17 @@ const routes: ITreeItemData[] = [
       {
         itemId: "/components/button",
         children: "Button",
-        link: true,
+        linkComponent: Link,
       },
       {
         itemId: "/components/link",
         children: "Link",
-        link: true,
+        linkComponent: Link,
       },
       {
         itemId: "/components/tree-view",
         children: "Tree View",
-        link: true,
+        linkComponent: Link,
       },
     ],
   },
@@ -77,7 +79,7 @@ const flattenedRoutes = {
     children: "Home",
     leftIcon: <HomeSVGIcon />,
     to: "/",
-    link: true,
+    linkComponent: Link,
   },
   "discover-more": {
     itemId: "discover-more",
@@ -96,27 +98,27 @@ const flattenedRoutes = {
     parentId: "components",
     children: "Button",
     to: "/components/button",
-    link: true,
+    linkComponent: Link,
   },
   links: {
     itemId: "links",
     parentId: "components",
     children: "Link",
-    link: true,
+    linkComponent: Link,
     to: "/components/link",
   },
   "tree-views": {
     itemId: "tree-views",
     parentId: "components",
     children: "Tree View",
-    link: true,
+    linkComponent: Link,
     to: "/components/tree-view",
   },
   "whats-new": {
     itemId: "whats-new",
     parentId: "discover-more",
     children: "What's New",
-    link: true,
+    linkComponent: Link,
     to: "/discover-more/whats-new",
   },
   "upgrade-guides": {
@@ -128,25 +130,27 @@ const flattenedRoutes = {
     itemId: "upgrade-v2.0.0",
     parentId: "upgrade-guides",
     children: "v2.0.0",
-    link: true,
+    linkComponent: Link,
     to: "/discover-more/upgrade-guides/v2.0.0",
   },
   "upgrade-v1.0.0": {
     itemId: "upgrade-v1.0.0",
     parentId: "upgrade-guides",
     children: "v1.0.0",
-    link: true,
+    linkComponent: Link,
     to: "/discover-more/upgrade-guides/v1.0.0",
   },
-} as IFlattenedTreeViewData;
+} as FlattenedTree;
 
 const Navigation: React.SFC<{}> = () => (
   <FlattenedTreeView data={flattenedRoutes}>
-    {data => (
-      <TreeViewControls id="navigation" className="navigation" data={data} linkComponent={Link}>
-        {props => <TreeView {...props} dense={true} />}
-      </TreeViewControls>
-    )}
+    {data => {
+      return (
+        <TreeViewControls id="navigation" className="navigation" data={data}>
+          {props => <TreeView {...props} dense={true} />}
+        </TreeViewControls>
+      );
+    }}
   </FlattenedTreeView>
 );
 

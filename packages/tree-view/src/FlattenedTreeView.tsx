@@ -1,29 +1,25 @@
 import * as React from "react";
-import { ITreeItemData } from "./TreeItem";
+import { ILazyKey, FlattenedTreeViewData, FlattenedTreeViewDataList } from "./types";
 
-export interface IFlattedTreeViewItemData extends ITreeItemData {
-  parentId: string | null;
+export interface IFlattenedTreeViewData<D = ILazyKey> {
+  [key: string]: FlattenedTreeViewData<D>;
 }
 
-export interface IFlattenedTreeViewData {
-  [key: string]: IFlattedTreeViewItemData;
-}
-
-export interface IFlattenedTreeViewProps {
+export interface IFlattenedTreeViewProps<D = ILazyKey> {
   rootId?: string | null;
-  data: IFlattenedTreeViewData;
-  children: (data: ITreeItemData[]) => React.ReactNode;
-  sort?: (data: ITreeItemData[]) => ITreeItemData[];
+  data: IFlattenedTreeViewData<D>;
+  children: (data: FlattenedTreeViewDataList<D>) => React.ReactNode;
+  sort?: (data: FlattenedTreeViewDataList<D>) => FlattenedTreeViewDataList<D>;
 }
 
 export interface IFlattenedTreeViewDefaultProps {
   rootId: null;
 }
 
-export type FlattedTreeViewWithDefaultProps = IFlattenedTreeViewProps & IFlattenedTreeViewDefaultProps;
+export type FlattedTreeViewWithDefaultProps<D = ILazyKey> = IFlattenedTreeViewProps<D> & IFlattenedTreeViewDefaultProps;
 
-export default class FlattenedTreeView extends React.Component<IFlattenedTreeViewProps, {}> {
-  public shouldComponentUpdate(nextProps: IFlattenedTreeViewProps) {
+export default class FlattenedTreeView<D = ILazyKey> extends React.Component<IFlattenedTreeViewProps<D>, {}> {
+  public shouldComponentUpdate(nextProps: IFlattenedTreeViewProps<D>) {
     return (
       this.props.data !== nextProps.data || this.props.rootId !== nextProps.rootId || this.props.sort !== nextProps.sort
     );
@@ -31,10 +27,11 @@ export default class FlattenedTreeView extends React.Component<IFlattenedTreeVie
 
   public render() {
     const { children, data, rootId } = this.props;
+
     return children(this.buildTree(null, Object.values(data)) || []);
   }
 
-  private buildTree = (parentId: string | null, list: ITreeItemData[]) => {
+  private buildTree = (parentId: string | null, list: FlattenedTreeViewDataList<D>) => {
     const childTreeItems = [];
     let i = list.length;
     while (i > 0) {

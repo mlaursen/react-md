@@ -1,83 +1,90 @@
 import * as React from "react";
 import cn from "classnames";
-import { IconRotator } from "@react-md/icon";
-import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
+import { StatesConsumer } from "@react-md/states";
 import { IListItemBaseProps, ListItemText, ListItemLeftIcon, ListItemRightIcon } from "@react-md/list";
 
+import { ITreeItemDefaultProps } from "./TreeItem";
+
 export interface ITreeItemContentBaseProps extends IListItemBaseProps {
-  link?: boolean;
+  // TODO: Learn how to correctly type this
   linkComponent?: React.ReactType;
-  expanded: boolean;
   medium?: boolean;
 }
 
-export interface ITreeItemContentDivProps extends ITreeItemContentBaseProps, React.HTMLAttributes<HTMLDivElement> {
-}
-
-export interface ITreeItemContentAnchorProps
-  extends ITreeItemContentBaseProps,
-    React.HTMLAttributes<HTMLAnchorElement> {
+export type ITreeItemContentDivProps = ITreeItemContentBaseProps & React.HTMLAttributes<HTMLDivElement>;
+export interface ITreeItemContentLinkProps extends ITreeItemContentBaseProps, React.HTMLAttributes<HTMLAnchorElement> {
   [key: string]: any;
-  link: boolean;
   linkComponent?: React.ReactType;
 }
 
-export type ITreeItemContentProps = ITreeItemContentDivProps | ITreeItemContentAnchorProps;
-
+export type ITreeItemContentProps = ITreeItemContentDivProps | ITreeItemContentLinkProps;
 export interface ITreeItemContentDefaultProps {
-  linkComponent: React.ReactType;
   medium: boolean;
+  linkComponent: React.ReactType;
 }
-
-export type TreeItemContentWithDefaultProps = ITreeItemContentProps & ITreeItemContentDefaultProps;
+export type TreeItemContentWithDefaultProps = ITreeItemContentProps &
+  ITreeItemContentDefaultProps &
+  ITreeItemDefaultProps;
 
 const TreeItemContent: React.SFC<ITreeItemContentProps> = providedProps => {
   const {
-    className,
+    className: propClassName,
     onMouseDown,
     onMouseUp,
     onTouchStart,
     onTouchEnd,
-    onKeyUp,
     onKeyDown,
-    medium,
-    expanded,
+    onKeyUp,
+    linkComponent,
     leftIcon,
     rightIcon,
     forceIconWrap,
     children,
-    link,
-    linkComponent,
+    medium,
     ...props
   } = providedProps as TreeItemContentWithDefaultProps;
+
+  const className = cn(
+    "rmd-tree-item__content",
+    {
+      "rmd-tree-item__content--link": !!linkComponent,
+    },
+    "rmd-list-item rmd-list-item--stateful",
+    {
+      "rmd-list-item--medium": medium && !!linkComponent,
+    },
+    propClassName
+  );
 
   const content = (
     <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
       <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
-        {children}
+        <ListItemText>{children}</ListItemText>
       </ListItemRightIcon>
     </ListItemLeftIcon>
   );
 
+  if (!linkComponent) {
+    const divProps = props as ITreeItemContentDivProps;
+    return (
+      <div {...divProps} className={className}>
+        {content}
+      </div>
+    );
+  }
+
   return React.createElement(
-    link ? linkComponent : "div",
+    linkComponent,
     {
       ...props,
-      className: cn(
-        "rmd-tree-item__content rmd-list-item rmd-list-item--stateful",
-        {
-          "rmd-tree-item__content--link": link,
-        },
-        className
-      ),
+      className,
     },
     content
   );
 };
 
 TreeItemContent.defaultProps = {
-  medium: true,
-  linkComponent: "a",
+  medium: false,
 } as ITreeItemContentDefaultProps;
 
 export default TreeItemContent;

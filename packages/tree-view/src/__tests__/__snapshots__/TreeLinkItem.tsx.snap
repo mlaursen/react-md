@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeLinkItem should render correctly with the provided props 1`] = `
+<li
+  className="rmd-tree-item"
+  role="none"
+>
+  <a
+    aria-level={1}
+    aria-posinset={1}
+    aria-setsize={1}
+    className="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--stateful rmd-states--simple"
+    disabled={false}
+    href="/"
+    role="treeitem"
+    tabIndex={-1}
+  >
+    <span
+      className="rmd-list-item__text"
+    >
+      Hello!
+    </span>
+  </a>
+</li>
+`;
+
+exports[`TreeLinkItem should render correctly with the provided props 2`] = `
+<li
+  className="rmd-tree-item"
+  role="none"
+>
+  <a
+    aria-level={1}
+    aria-posinset={1}
+    aria-setsize={1}
+    className="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--stateful rmd-states--simple rmd-states--selected"
+    disabled={false}
+    href="/"
+    role="treeitem"
+    tabIndex={0}
+  >
+    <span
+      className="rmd-list-item__text"
+    >
+      Hello!
+    </span>
+  </a>
+</li>
+`;

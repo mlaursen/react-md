@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeItemContent should render correctly with the provided props 1`] = `
+<div
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+>
+  <span
+    className="rmd-list-item__text"
+  >
+    Content!
+  </span>
+</div>
+`;
+
+exports[`TreeItemContent should render correctly with the provided props 2`] = `
+<div
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+>
+  <svg
+    className="rmd-icon rmd-icon--svg rmd-list-item__icon rmd-list-item__icon--before"
+    focusable="false"
+    role="img"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+    />
+  </svg>
+  <span
+    className="rmd-list-item__text"
+  >
+    Content with icon
+  </span>
+</div>
+`;
+
+exports[`TreeItemContent should render correctly with the provided props 3`] = `
+<div
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+>
+  <span
+    className="rmd-list-item__text"
+  >
+    Content with icon
+  </span>
+  <svg
+    className="rmd-icon rmd-icon--svg rmd-list-item__icon rmd-list-item__icon--after"
+    focusable="false"
+    role="img"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+    />
+  </svg>
+</div>
+`;

@@ -224,7 +224,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       const isPadTop = typeof paddingTop === "number";
       const isPadBot = typeof paddingBottom === "number";
       if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
-        return transitionDuration ? { transitionDuration } : undefined;
+        return undefined;
       } else if (propStyle) {
         return {
           maxHeight,

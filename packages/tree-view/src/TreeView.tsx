@@ -1,42 +1,43 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
 
-export type TreeViewElement = HTMLUListElement | HTMLOListElement;
+import {
+  ILazyKey,
+  TreeViewElement,
+  TreeViewData,
+  TreeViewDataList,
+  ITreeViewItemInjectedProps,
+  ITreeViewInjectedProps,
+  treeViewRenderer,
+  treeItemRenderer,
+  onItemSelect,
+  onItemExpandedChange,
+  onItemSiblingExpansion,
+} from "./types";
+import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
 
-import { default as TreeItem, ITreeItemProps, ITreeItemData } from "./TreeItem";
-
-export interface ITreeViewLinkAttributeMapper {
-  [key: string]: string;
-}
-
-export interface ITreeView {
-  id: string;
-  style?: React.CSSProperties;
-  className?: string;
-  "aria-labelledby"?: string;
-  "aria-label"?: string;
-  dense?: boolean;
-  inline?: boolean;
-  ordered?: boolean;
-  role: "treeview";
-  children: React.ReactNode;
-  onClick: (event: React.MouseEvent<TreeViewElement>) => void;
-  onKeyDown: (event: React.KeyboardEvent<TreeViewElement>) => void;
-}
-
-export interface ITreeViewItem extends ITreeItemProps {
-  key: string;
-}
-
-export interface ITreeViewBaseProps extends IListProps {
+export interface ITreeViewBaseProps<D, R> {
   /**
    * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
    *
    * @docgen
    */
   id: string;
+
+  /**
+   * An optional style that will get passed down to the `treeViewRenderer`.
+   *
+   * @docgen
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * An optional style that will get merged and passed down to the `treeViewRenderer`.
+   *
+   * @docgen
+   */
+  className?: string;
 
   /**
    * An optional id that points to an element that labels this tree. Either this or the `aria-label`
@@ -59,7 +60,7 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  data: ITreeItemData[];
+  data: Array<TreeViewData<D>>;
 
   /**
    * A function that will render the entire tree view. This should mostly remain the default implementation
@@ -68,7 +69,7 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  treeViewRenderer?: (treeView: ITreeView) => React.ReactNode;
+  treeViewRenderer?: treeViewRenderer<R>;
 
   /**
    * A function that will render a specific tree item. The default implementation _should_ probably be good enough
@@ -76,15 +77,7 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  treeItemRenderer?: (item: ITreeViewItem) => React.ReactNode;
-
-  /**
-   * A function to call that will return the children for a tree item. The default is to just return the `children`
-   * attribute if it exists on the tree item.
-   *
-   * @docgen
-   */
-  treeItemChildrenRenderer?: (item: ITreeItemData) => React.ReactNode;
+  treeItemRenderer?: treeItemRenderer<D>;
 
   /**
    * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
@@ -100,7 +93,7 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  onItemSelect?: (itemId: string) => void;
+  onItemSelect?: onItemSelect;
 
   /**
    * The function that should be called when a tree item's expansion value changes. The callback function
@@ -108,7 +101,7 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  onItemExpandedChange?: (itemId: string, expanded: boolean) => void;
+  onItemExpandedChange?: onItemExpandedChange;
 
   /**
    * A function to call when the `disableSiblingExpansion` prop is not enabled and the user presses the `*`
@@ -116,37 +109,16 @@ export interface ITreeViewBaseProps extends IListProps {
    *
    * @docgen
    */
-  onSiblingExpansion?: (expandedIds: string[]) => void;
-
-  /**
-   * The component to render link tree items as. This should really be the `Link` component from `react-router`
-   * (or a similar link component from a routing library) or `"a"`.
-   *
-   * @docgen
-   */
-  linkComponent?: React.ReactType;
-
-  /**
-   * A function to call to get additional props to apply to a link when a tree item has `link: true`. This
-   * prop is really only required so that you can easily render your links as a third-party library like
-   * `react-router`. There are "sensible" defaults that will automatically extract the `to` and `href` props
-   * if they exist and pass it down.
-   *
-   * @docgen
-   * @see {@link #linkComponent}
-   */
-  getLinkProps?: (item: ITreeViewItem) => { [key: string]: any };
+  onItemSiblingExpansion?: onItemSiblingExpansion;
 }
 
-export interface ITreeViewProps extends ITreeViewBaseProps {
+export interface ITreeViewIdsProps {
   /**
-   * The current tree item id that is selected. This needs to be a valid tree item id so that the user can
-   * tab focus into the entire tree view since the `selectedId` will be the only item within the tree view
-   * has a tabIndex that allows tab focus.
+   * A list of tree item ids that are currently selected.
    *
    * @docgen
    */
-  selectedId: string;
+  selectedIds: string[];
 
   /**
    * A list of tree item ids that are currently expanded.
@@ -154,68 +126,49 @@ export interface ITreeViewProps extends ITreeViewBaseProps {
    * @docgen
    */
   expandedIds: string[];
-  onItemSelect: (itemId: string) => void;
-  onItemExpandedChange: (itemId: string, expanded: boolean) => void;
-  onSiblingExpansion: (expandedIds: string[]) => void;
 }
 
-export interface ITreeViewDefaultProps {
-  linkComponent: React.ReactType;
-  getLinkProps: (item: ITreeItemData) => { [key: string]: any };
+export interface ITreeViewProps<D = ILazyKey, R = ILazyKey>
+  extends ITreeViewBaseProps<D, R>,
+    ITreeViewIdsProps,
+    ILazyKey {
+  onItemSelect: onItemSelect;
+  onItemExpandedChange: onItemExpandedChange;
+}
+
+export type TreeViewPropsWithSiblingExpansion<D = ILazyKey, R = ILazyKey> = ITreeViewProps<D, R> & {
+  onItemSiblingExpansion: onItemSiblingExpansion;
+};
+
+export interface ITreeViewDefaultProps<D = ILazyKey, R = ILazyKey> {
   disableSiblingExpansion: boolean;
-  treeViewRenderer: (treeView: ITreeView) => React.ReactNode;
-  treeItemRenderer: (item: ITreeViewItem) => React.ReactNode;
-  treeItemChildrenRenderer: (item: ITreeItemData) => React.ReactNode;
+  treeViewRenderer: treeViewRenderer<R>;
+  treeItemRenderer: treeItemRenderer<D>;
 }
 
-export type TreeViewWithDefaultProps = ITreeViewProps & ITreeViewDefaultProps;
+export type TreeViewWithDefaultProps<D = ILazyKey, R = ILazyKey> = ITreeViewProps<D, R> & ITreeViewDefaultProps<D, R>;
 
-export interface ITreeViewFoundItems {
-  item: ITreeItemData | null;
-  items: ITreeItemData[];
-  element: HTMLElement;
-}
+export interface ITreeViewState {}
 
-export default class TreeView extends React.Component<ITreeViewProps, {}> {
-  public static propTypes = {
-    style: PropTypes.object,
-    className: PropTypes.string,
-    dense: PropTypes.bool,
-    ordered: PropTypes.bool,
-    inline: PropTypes.bool,
-    id: PropTypes.string.isRequired,
-    "aria-label": PropTypes.string,
-    "aria-labelledby": PropTypes.string,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        itemId: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    selectedId: PropTypes.string.isRequired,
-    expandedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-    linkComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    onItemSelect: PropTypes.func.isRequired,
-    onItemExpandedChange: PropTypes.func.isRequired,
-    onSiblingExpansion: PropTypes.func.isRequired,
-    disableSiblingExpansion: PropTypes.bool,
-    treeViewRenderer: PropTypes.func,
-    treeItemRenderer: PropTypes.func,
-    treeItemChildrenRenderer: PropTypes.func,
-  };
-
-  public static defaultProps: ITreeViewDefaultProps = {
-    linkComponent: "a",
-    getLinkProps: item => ({
-      href: item.href,
-      to: item.to,
-    }),
+export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Component<
+  ITreeViewProps<D, R>,
+  ITreeViewState
+> {
+  public static defaultProps: ITreeViewDefaultProps<ILazyKey, ILazyKey> = {
     disableSiblingExpansion: false,
     treeViewRenderer: props => <List {...props} />,
-    treeItemRenderer: props => <TreeItem {...props} />,
-    treeItemChildrenRenderer: ({ children }) => children,
+    treeItemRenderer: (item, props) => (
+      <DefaultTreeItemRenderer {...props} linkComponent={item.linkComponent} to={item.to} href={item.href}>
+        {item.children}
+      </DefaultTreeItemRenderer>
+    ),
   };
 
-  public static findTreeItemFromElement(element: HTMLElement, data: ITreeItemData[], treeEl: TreeViewElement | null) {
+  public static findTreeItemFromElement<D = ILazyKey>(
+    element: HTMLElement,
+    data: TreeViewDataList<D>,
+    treeEl: TreeViewElement | null
+  ) {
     const itemElement = TreeView.findTreeItemElement(element);
     if (!treeEl || !itemElement) {
       return null;
@@ -225,7 +178,11 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
     return TreeView.findTreeItemDataList(TreeView.buildItemIndexStack(itemElement, treeEl), data)[itemIndex] || null;
   }
 
-  public static findTreeItemsFromElement(element: HTMLElement, data: ITreeItemData[], treeEl: TreeViewElement | null) {
+  public static findTreeItemsFromElement<D = ILazyKey>(
+    element: HTMLElement,
+    data: TreeViewDataList<D>,
+    treeEl: TreeViewElement | null
+  ) {
     const itemElement = TreeView.findTreeItemElement(element);
     if (!treeEl || !itemElement) {
       return [];
@@ -235,7 +192,10 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
   }
 
   private static findTreeItemElement(element: HTMLElement) {
-    if (element.getAttribute("role") !== "treeitem") {
+    const role = element.getAttribute("role");
+    if (role === "group") {
+      return null;
+    } else if (role !== "treeitem") {
       const closest = element.closest('[role="treeitem"]') as HTMLElement;
       if (!closest) {
         return null;
@@ -247,7 +207,7 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
     return element;
   }
 
-  private static findTreeItemDataList(stack: number[], data: ITreeItemData[]) {
+  private static findTreeItemDataList<D = ILazyKey>(stack: number[], data: TreeViewDataList<D>) {
     let temp;
     let list = data;
     for (const index of stack) {
@@ -287,7 +247,7 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
   private treeEl: TreeViewElement | null;
   private treeItems: HTMLElement[];
   private updateFrame?: number;
-  constructor(props: ITreeViewProps) {
+  constructor(props: ITreeViewProps<D, R>) {
     super(props);
 
     this.treeEl = null;
@@ -325,41 +285,30 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
 
   public render() {
     const {
-      id,
-      "aria-labelledby": ariaLabelledBy,
-      "aria-label": ariaLabel,
-      style,
       className,
+      treeItemRenderer,
       treeViewRenderer,
-      inline,
-      dense,
-      ordered,
+      selectedIds,
+      expandedIds,
+      onItemSelect,
+      onItemExpandedChange,
+      onItemSiblingExpansion,
+      disableSiblingExpansion,
       data,
-    } = this.props as TreeViewWithDefaultProps;
+      ...props
+    } = this.props as TreeViewWithDefaultProps<D, R>;
 
+    // TODO: try to fix typing or just be lazy and go to [key: string]: any
+    // @ts-ignore
     return treeViewRenderer({
-      id,
-      style,
-      className: cn("rmd-tree-view", className),
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabelledBy,
-      inline,
-      dense,
-      ordered,
+      ...props,
       role: "treeview",
-      onClick: this.handleClick,
+      className: cn("rmd-tree-view", className),
       onKeyDown: this.handleKeyDown,
+      onClick: this.handleClickFrom,
       children: this.renderChildTreeItems(data, 0),
     });
   }
-
-  private handleClick = (event: React.MouseEvent<TreeViewElement>) => {
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-
-    this.handleClickFrom(event);
-  };
 
   private handleKeyDown = (event: React.KeyboardEvent<TreeViewElement>) => {
     switch (event.key) {
@@ -398,9 +347,9 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
     }
 
     const { itemId } = item;
-    const { selectedId, onItemSelect, expandedIds, onItemExpandedChange } = this.props;
+    const { selectedIds, onItemSelect, expandedIds, onItemExpandedChange } = this.props;
 
-    if (selectedId !== itemId) {
+    if (selectedIds.indexOf(itemId) === -1) {
       onItemSelect(itemId);
     }
 
@@ -432,7 +381,9 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
   };
 
   private openAllRelatedNodes = (element: HTMLElement) => {
-    const { data, disableSiblingExpansion, onSiblingExpansion, expandedIds } = this.props;
+    const { data, disableSiblingExpansion, onItemSiblingExpansion, expandedIds } = this
+      .props as TreeViewPropsWithSiblingExpansion<D, R>;
+
     if (!this.treeEl || disableSiblingExpansion) {
       return;
     }
@@ -454,7 +405,7 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
       return;
     }
 
-    onSiblingExpansion(newExpandedIds);
+    onItemSiblingExpansion(newExpandedIds);
   };
 
   private focus = (index: number) => {
@@ -481,43 +432,23 @@ export default class TreeView extends React.Component<ITreeViewProps, {}> {
     this.focus(nextIndex);
   };
 
-  private renderChildTreeItems = (data: ITreeItemData[], depth: number): React.ReactNode => {
-    const {
-      linkComponent: propLinkComponent,
-      getLinkProps,
-      selectedId,
-      expandedIds,
-      onItemSelect,
-      onItemExpandedChange,
-      treeItemRenderer,
-      treeItemChildrenRenderer,
-    } = this.props as TreeViewWithDefaultProps;
-    const setSize = data.length;
+  private renderChildTreeItems = (data: TreeViewDataList<D>, depth: number): React.ReactNode => {
+    const { selectedIds, expandedIds, treeItemRenderer } = this.props as TreeViewWithDefaultProps<D, R>;
+    const listSize = data.length;
 
-    return data.map((item, index) => {
-      const { itemId, childItems, link, leftIcon, rightIcon } = item;
-      const selected = selectedId === itemId;
+    return data.map((item, i) => {
+      const { itemId, childItems } = item;
+      const selected = selectedIds.indexOf(itemId) !== -1;
       const expanded = expandedIds.indexOf(itemId) !== -1;
-      const linkComponent = item.linkComponent || propLinkComponent;
 
-      return treeItemRenderer({
-        "aria-expanded": expanded ? "true" : undefined,
-        "aria-level": depth,
-        "aria-setsize": setSize,
-        "aria-posinset": index + 1,
+      return treeItemRenderer(item, {
         key: itemId,
-        itemId,
-        link,
-        linkComponent,
-        leftIcon,
-        rightIcon,
-        linkProps: link ? getLinkProps(item) : undefined,
-        role: "treeitem",
-        tabIndex: selected ? 0 : -1,
+        depth,
+        listSize,
+        itemIndex: i,
         selected,
         expanded,
         updateTreeItems: this.updateTreeItems,
-        children: treeItemChildrenRenderer(item),
         renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
       });
     });

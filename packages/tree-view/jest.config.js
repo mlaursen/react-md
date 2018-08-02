@@ -14,4 +14,5 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
   ],
+  testURL: 'http://localhost:8080',
 };

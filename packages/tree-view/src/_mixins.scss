@@ -5,7 +5,7 @@
 @import '@react-md/utils/dist/mixins';
 
 @mixin rmd-tree-item-at-depth($depth, $selector-prefix: '', $incrementor: $rmd-tree-view-item-padding-incrementor, $base: $rmd-tree-view-item-padding-base) {
-  $selector: '#{$selector-prefix}[aria-level="#{$depth}"].rmd-tree-item__content, #{$selector-prefix}[aria-level="#{$depth}"] > .rmd-tree-item__content';
+  $selector: '#{$selector-prefix}[aria-level="#{$depth + 1}"].rmd-tree-item__content, #{$selector-prefix}[aria-level="#{$depth + 1}"] > .rmd-tree-item__content';
   $padding: (($depth - 1) * $incrementor) + $base;
 
   #{$selector} {

@@ -7,26 +7,40 @@ import {
   FlattenedTreeView,
   TreeView,
   TreeViewControls,
+  ITreeViewInjectedProps,
+  ITreeViewItemInjectedProps,
+  TreeViewData,
+  TreeViewDataList,
+  DefaultTreeItemRenderer,
+  IDefaultTreeItemRendererProps,
+  ITreeGroupProps,
+  TreeGroup,
   TreeItem,
-  ITreeView,
-  ITreeViewItem,
-  ITreeItemData,
+  ITreeItemProps,
 } from "@react-md/tree-view";
 
 import "./sortable-example.scss";
 
 const DragHandle = SortableHandle(() => <DragHandleSVGIcon />);
-const SortableTreeItem = SortableElement(TreeItem);
 const SortableList = SortableContainer(props => <List {...props} />);
+const SortableTreeItem = SortableElement<IDefaultTreeItemRendererProps>(DefaultTreeItemRenderer);
 
-const defaultData: ITreeItemData[] = Array.from(new Array(49)).map((_, i) => ({
+const defaultData: TreeViewDataList = Array.from(new Array(49)).map((_, i) => ({
   itemId: `item-${i + 1}`,
   index: i,
   children: `Item ${i + 1}`,
+  childItems:
+    i % 8 === 0 || i % 9 === 0
+      ? Array.from(new Array(4)).map((__, j) => ({
+          itemId: `item-${i + 1}-${j + 1}`,
+          index: j,
+          children: `Item ${i + 1} ${j + 1}`,
+        }))
+      : undefined,
 }));
 
 export interface ISortableExampleState {
-  data: ITreeItemData[];
+  data: TreeViewDataList;
 }
 
 export default class SortableExample extends React.Component<{}, ISortableExampleState> {
@@ -55,18 +69,6 @@ export default class SortableExample extends React.Component<{}, ISortableExampl
     );
   }
 
-  private getIndex = (itemId: string) => {
-    const { data } = this.state;
-    for (let i = 0; i < data.length; i += 1) {
-      const item = data[i];
-      if (item.itemId === itemId) {
-        return i;
-      }
-    }
-
-    return -1;
-  };
-
   private handleSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
     this.setState({ data: arrayMove(this.state.data, oldIndex, newIndex) }, () => {
       if (this.treeView.current) {
@@ -75,10 +77,18 @@ export default class SortableExample extends React.Component<{}, ISortableExampl
     });
   };
 
-  private treeViewRenderer = (props: ITreeView) => (
+  private treeViewRenderer = (props: ITreeViewInjectedProps) => (
     <SortableList {...props} onSortEnd={this.handleSortEnd} transitionDuration={150} useDragHandle={true} />
   );
-  private treeItemRenderer = (props: ITreeViewItem) => (
-    <SortableTreeItem {...props} index={this.getIndex(props.itemId)} leftIcon={<DragHandle />} forceIconWrap={true} />
+
+  private treeItemRenderer = (item: TreeViewData, props: ITreeViewItemInjectedProps) => (
+    <SortableTreeItem
+      {...props}
+      index={props.itemIndex}
+      leftIcon={<DragHandle />}
+      forceIconWrap={true}
+    >
+      {item.children}
+    </SortableTreeItem>
   );
 }
