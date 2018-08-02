@@ -4,7 +4,6 @@
   // @include rmd-typography(body-2);
   @include rmd-theme(color, text-primary-on-dark);
   @include rmd-elevation(2);
-  @include rmd-tree-view-depths;
 
   background-color: $rmd-blue-grey-800;
 

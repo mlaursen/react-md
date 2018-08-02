@@ -157,9 +157,16 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
   public static defaultProps: ITreeViewDefaultProps<ILazyKey, ILazyKey> = {
     disableSiblingExpansion: false,
     treeViewRenderer: props => <List {...props} />,
-    treeItemRenderer: (item, props) => (
-      <DefaultTreeItemRenderer {...props} linkComponent={item.linkComponent} to={item.to} href={item.href}>
-        {item.children}
+    treeItemRenderer: ({ linkComponent, to, href, leftIcon, rightIcon, children }, props) => (
+      <DefaultTreeItemRenderer
+        {...props}
+        linkComponent={linkComponent}
+        to={to}
+        href={href}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+      >
+        {children}
       </DefaultTreeItemRenderer>
     ),
   };
