@@ -56,10 +56,14 @@
 @mixin react-md-tree-view {
   @include rmd-tree-item;
 
-  .rmd-tree-view [role='group'] {
-    background-color: inherit;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
+  .rmd-tree-view {
+    @include rmd-tree-view-depths;
+
+    [role='group'] {
+      background-color: inherit;
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
   }
 }
