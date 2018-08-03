@@ -1,0 +1,10 @@
+////
+/// @group utils
+////
+
+
+/// Boolean if scroll momentum should be added by default for iOS. This _can_ probably
+/// be removed one day when iOS natively supports scroll momentum on anything except
+/// the main document.
+/// @type Boolean
+$rmd-utils-ios-scroll-momentum: true !default;
