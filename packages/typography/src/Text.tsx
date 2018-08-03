@@ -35,6 +35,7 @@ export type TextHtmlTags =
   | "a"
   | "button"
   | "caption"
+  | "blockquote"
   | "body"
   | "html";
 
@@ -92,6 +93,7 @@ export default class Text extends React.Component<ITextProps, {}> {
       "a",
       "button",
       "caption",
+      "blockquote",
       "html",
       "body",
     ]),
