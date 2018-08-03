@@ -35,7 +35,10 @@ export interface IMagicTooltipConsumerState {
   visible: boolean;
 }
 
-export default class MagicTooltipConsumer extends React.Component<IMagicTooltipConsumerProps, IMagicTooltipConsumerState> {
+export default class MagicTooltipConsumer extends React.Component<
+  IMagicTooltipConsumerProps,
+  IMagicTooltipConsumerState
+> {
   public static propTypes = {
     viewportMargin: PropTypes.number,
   };
@@ -92,17 +95,7 @@ export default class MagicTooltipConsumer extends React.Component<IMagicTooltipC
 
   public render() {
     const { visible, animatingIn, animatingOut, style, position } = this.state;
-    const {
-      className,
-      init,
-      deinit,
-      vwMargin,
-      vhMargin,
-      visibleId,
-      spacing,
-      denseSpacing,
-      ...props
-    } = this.props;
+    const { className, init, deinit, vwMargin, vhMargin, visibleId, spacing, denseSpacing, ...props } = this.props;
 
     return (
       <Tooltip
@@ -111,11 +104,15 @@ export default class MagicTooltipConsumer extends React.Component<IMagicTooltipC
         position={position}
         style={style}
         onTransitionEnd={this.handleTransitionEnd}
-        className={cn({
-          "rmd-tooltip--active": visible || animatingOut,
-          "rmd-tooltip--enter": animatingIn,
-          "rmd-tooltip--leave": animatingOut,
-        }, "rmd-tooltip--magic", className)}
+        className={cn(
+          {
+            "rmd-tooltip--active": visible || animatingOut,
+            "rmd-tooltip--enter": animatingIn,
+            "rmd-tooltip--leave": animatingOut,
+          },
+          "rmd-tooltip--magic",
+          className
+        )}
       />
     );
   }
@@ -127,7 +124,7 @@ export default class MagicTooltipConsumer extends React.Component<IMagicTooltipC
     }
 
     return spacing;
-  }
+  };
 
   private updatePosition = () => {
     const container = document.querySelector(`[aria-describedby="${this.props.id}"]`) as HTMLElement | null;
@@ -168,7 +165,7 @@ export default class MagicTooltipConsumer extends React.Component<IMagicTooltipC
       position,
       visible: true,
     });
-  }
+  };
 
   private determineBestPosition = (container: HTMLElement | null, tooltip: HTMLElement | null) => {
     let position = TooltipPosition.BOTTOM;
@@ -177,21 +174,21 @@ export default class MagicTooltipConsumer extends React.Component<IMagicTooltipC
       const vh = window.innerHeight || document.documentElement.clientHeight;
       const vw = window.innerWidth || document.documentElement.clientWidth;
       const { left, top, right } = container.getBoundingClientRect();
-      if (top > vh - (vhMargin > 1 ? vhMargin : (vh * vhMargin))) {
+      if (top > vh - (vhMargin > 1 ? vhMargin : vh * vhMargin)) {
         position = TooltipPosition.TOP;
-      } else if (right > vw - (vwMargin > 1 ? vwMargin : (vw * vwMargin))) {
+      } else if (right > vw - (vwMargin > 1 ? vwMargin : vw * vwMargin)) {
         position = TooltipPosition.LEFT;
-      } else if (left < (vwMargin > 1 ? vwMargin : (vw * vwMargin))) {
+      } else if (left < (vwMargin > 1 ? vwMargin : vw * vwMargin)) {
         position = TooltipPosition.RIGHT;
       }
     }
 
     return position;
-  }
+  };
 
   private handleTransitionEnd = () => {
     if (this.state.animatingIn || this.state.animatingOut) {
       this.setState({ animatingIn: false, animatingOut: false });
     }
-  }
+  };
 }
