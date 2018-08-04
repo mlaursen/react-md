@@ -2,16 +2,42 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 
-export interface IPortalBaseProps {
-  visible: boolean;
-  into?: (() => HTMLElement) | string | HTMLElement;
-  intoId?: string;
+/**
+ * This is the type for how a portal can be rendered into another element.
+ * This can either be a function that returns the HTMLElement, an HTMLElement,
+ * or a `document.querySelector` string.
+ */
+export type PortalInto = (() => HTMLElement) | HTMLElement | string;
 
-  lastChild?: boolean;
+export interface IPortalBaseProps {
+  /**
+   * Boolean if the portal is currently visible.
+   *
+   * @docgen
+   */
+  visible: boolean;
+
+  /**
+   * Either a function that returns an HTMLElement, an HTMLElement, or a `document.querySelector` string
+   * that will return the HTMLElement to render the children into. If both the `into` and `intoId` props
+   * are `undefined`, the `document.body` will be chosen instead.
+   *
+   * @docgen
+   */
+  into?: PortalInto;
+
+  /**
+   * The id of an element that the portal should be rendered into. This element **must** exist on the page
+   * before the `visible` prop is enabled to work. If both the `into` and `intoId` props are `undefined`,
+   * the `document.body` will be chosen instead.
+   *
+   * @docgen
+   */
+  intoId?: string;
 }
 
 export interface IPortalIntoProps extends IPortalBaseProps {
-  into: (() => HTMLElement) | string;
+  into: PortalInto;
 }
 
 export interface IPortalIntoIdProps extends IPortalBaseProps {
@@ -19,9 +45,6 @@ export interface IPortalIntoIdProps extends IPortalBaseProps {
 }
 
 export type IPortalProps = IPortalBaseProps | IPortalIntoProps | IPortalIntoIdProps;
-export interface IPortalDefaultProps {
-  lastChild: boolean;
-}
 
 export interface IPortalState {
   container: HTMLElement | null;
@@ -29,11 +52,9 @@ export interface IPortalState {
 
 export default class Portal extends React.Component<IPortalProps, IPortalState> {
   public static propTypes = {
-    className: PropTypes.string,
-  };
-
-  public static defaultProps: IPortalDefaultProps = {
-    lastChild: false,
+    visible: PropTypes.bool.isRequired,
+    into: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.instanceOf(HTMLElement)]),
+    intoId: PropTypes.string,
   };
 
   public static getDerivedStateFromProps(nextProps: IPortalProps, prevState: IPortalState) {
@@ -42,8 +63,9 @@ export default class Portal extends React.Component<IPortalProps, IPortalState> 
     } else if (prevState.container && !nextProps.visible) {
       return Portal.removePortal();
     }
+
     return null;
-  };
+  }
 
   private static renderPortal = ({ into, intoId }: IPortalProps) => {
     const isDev = process.env.NODE_ENV !== "production";
