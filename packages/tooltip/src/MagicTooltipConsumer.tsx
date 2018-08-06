@@ -103,16 +103,16 @@ export default class MagicTooltipConsumer extends React.Component<
         visible={visible}
         position={position}
         style={style}
-        onTransitionEnd={this.handleTransitionEnd}
         className={cn(
           {
-            "rmd-tooltip--active": visible || animatingOut,
+            "rmd-tooltip--active": visible || animatingIn || animatingOut,
             "rmd-tooltip--enter": animatingIn,
             "rmd-tooltip--leave": animatingOut,
           },
           "rmd-tooltip--magic",
           className
         )}
+        onTransitionEnd={this.handleTransitionEnd}
       />
     );
   }
