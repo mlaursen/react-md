@@ -14,5 +14,6 @@ module.exports = {
     '/node_modules/',
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  testURL: 'http://localhost:8080',
 };
 

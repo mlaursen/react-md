@@ -209,13 +209,13 @@
     &--enter {
       @include rmd-transition(deceleration);
 
-      transition-duration: $rmd-tooltip-enter-transition-time;
+      transition-duration: $rmd-tooltip-enter-duration;
     }
 
     &--leave {
       @include rmd-transition(acceleration);
 
-      transition-duration: $rmd-tooltip-leave-transition-time;
+      transition-duration: $rmd-tooltip-leave-duration;
     }
 
     &--line-wrap {

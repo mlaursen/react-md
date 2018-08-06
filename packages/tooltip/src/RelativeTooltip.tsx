@@ -2,7 +2,14 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 
-import { default as Tooltip, ITooltipProps, TransitionEvent, ITooltipDefaultProps, TooltipPosition } from "./Tooltip";
+import {
+  TooltipPosition,
+  DEFAULT_ENTER_DURATION,
+  DEFAULT_LEAVE_DURATION,
+  DEFAULT_SHOW_DELAY,
+  DEFAULT_POSITION,
+} from "./constants";
+import { default as Tooltip, ITooltipProps, ITooltipDefaultProps } from "./Tooltip";
 
 export interface IRelativeTooltipProps extends ITooltipProps {
   /**
@@ -11,10 +18,30 @@ export interface IRelativeTooltipProps extends ITooltipProps {
    * @docgen
    */
   delay?: number;
+
+  /**
+   * The enter duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
+   * set for `$rmd-tooltip-enter-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
+   * animations easier.
+   *
+   * @docgen
+   */
+  enterDuration?: number;
+
+  /**
+   * The leave duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
+   * set for `$rmd-tooltip-leave-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
+   * animations easier.
+   *
+   * @docgen
+   */
+  leaveDuration?: number;
 }
 
 export interface IRelativeTooltipDefaultProps extends ITooltipDefaultProps {
   delay: number;
+  enterDuration: number;
+  leaveDuration: number;
 }
 
 export type RelativeTooltipWithDefaultProps = IRelativeTooltipProps & IRelativeTooltipDefaultProps;
@@ -38,9 +65,11 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
   };
 
   public static defaultProps: IRelativeTooltipDefaultProps = {
-    delay: 500,
+    delay: DEFAULT_SHOW_DELAY,
+    enterDuration: DEFAULT_ENTER_DURATION,
+    leaveDuration: DEFAULT_LEAVE_DURATION,
     dense: false,
-    position: TooltipPosition.BOTTOM,
+    position: DEFAULT_POSITION,
     lineWrap: false,
   };
 
@@ -53,19 +82,18 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
   /**
    * This is an animation frame that is used for the enter and leave transitions.
    */
-  private frame: number | null;
+  private frame?: number;
 
   /**
    * The current timeout for showing the tooltip if there is a delay.
    */
-  private timeout: number | null;
+  private timeout?: number;
+  private transitionTimeout?: number;
 
   constructor(props: RelativeTooltipWithDefaultProps) {
     super(props);
 
     this.container = null;
-    this.frame = null;
-    this.timeout = null;
     this.state = {
       keyboard: false,
       animatingIn: false,
@@ -84,7 +112,8 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
 
   public render() {
     const { visible, animatingIn, animatingOut } = this.state;
-    const { children, className, ...props } = this.props as RelativeTooltipWithDefaultProps;
+    const { children, className, enterDuration, leaveDuration, delay, ...props } = this
+      .props as RelativeTooltipWithDefaultProps;
 
     return (
       <Tooltip
@@ -98,7 +127,6 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
           className
         )}
         visible={visible}
-        onTransitionEnd={this.handleTransitionEnd}
       >
         {children}
       </Tooltip>
@@ -111,12 +139,17 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
    */
   private init = () => {
     const { id } = this.props;
-    const container: null | HTMLElement = document.querySelector(`[aria-describedby="${id}"]`);
+    const container = document.querySelector(`[aria-describedby="${id}"]`) as HTMLElement;
     if (!container) {
-      throw new Error(
-        'A tooltip\'s container must have the attribute `aria-describedby="TOOLTIP_ID"` for accessibility ' +
-          `but none were found for a tooltip with id: \`${id}\``
-      );
+      if (process.env.NODE_ENV !== "production") {
+        throw new Error(
+          'A tooltip\'s container must have the attribute `aria-describedby="TOOLTIP_ID"` for accessibility ' +
+            `but none were found for a tooltip with id: \`${id}\``
+        );
+      }
+
+      this.container = null;
+      return;
     }
 
     container.addEventListener("mouseenter", this.handleMouseEnter);
@@ -147,12 +180,17 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
   private clear = () => {
     if (this.timeout) {
       window.clearTimeout(this.timeout);
-      this.timeout = null;
+      this.timeout = undefined;
     }
 
     if (this.frame) {
       window.cancelAnimationFrame(this.frame);
-      this.frame = null;
+      this.frame = undefined;
+    }
+
+    if (this.transitionTimeout) {
+      window.clearTimeout(this.transitionTimeout);
+      this.transitionTimeout = undefined;
     }
   };
 
@@ -189,7 +227,7 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     }
 
     this.timeout = window.setTimeout(() => {
-      this.timeout = null;
+      this.timeout = undefined;
       this.animateIn();
     }, Math.max(0, delay));
 
@@ -198,20 +236,33 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
     }
   };
 
-  private hide = (keyboard: boolean) => {
-    const { visible } = this.state;
-    this.clear();
-    if (visible && this.state.keyboard === keyboard) {
-      this.setState({ animatingOut: true, animatingIn: false, keyboard: false, visible: false });
-    }
-  };
-
   private animateIn = () => {
+    const { enterDuration } = this.props as RelativeTooltipWithDefaultProps;
     this.setState({ animatingIn: true });
     this.frame = window.requestAnimationFrame(() => {
-      this.frame = null;
+      this.frame = undefined;
       this.setState({ visible: true });
+
+      this.transitionTimeout = window.setTimeout(() => {
+        this.transitionTimeout = undefined;
+        this.setState({ animatingIn: false });
+      }, Math.max(0, enterDuration));
     });
+  };
+
+  private hide = (keyboard: boolean) => {
+    const { visible } = this.state;
+    const { leaveDuration } = this.props as RelativeTooltipWithDefaultProps;
+    this.clear();
+    if (visible && this.state.keyboard === keyboard) {
+      this.transitionTimeout = window.setTimeout(() => {
+        this.transitionTimeout = undefined;
+        this.setState({ animatingOut: false });
+      }, Math.max(0, leaveDuration));
+      this.setState({ animatingOut: true, animatingIn: false, keyboard: false, visible: false });
+    } else if (this.state.animatingIn) {
+      this.setState({ animatingIn: false });
+    }
   };
 
   private handleMouseEnter = () => {
@@ -241,18 +292,5 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
 
   private handleBlur = () => {
     this.hide(true);
-  };
-
-  private handleTransitionEnd = (e: TransitionEvent) => {
-    if (this.props.onTransitionEnd) {
-      this.props.onTransitionEnd(e);
-    }
-
-    const { animatingIn, animatingOut, visible } = this.state;
-    if (visible && animatingIn) {
-      this.setState({ animatingIn: false });
-    } else if (!visible && animatingOut) {
-      this.setState({ animatingOut: false });
-    }
   };
 }

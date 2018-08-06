@@ -20,11 +20,11 @@ $rmd-tooltip-text-color: if(
 
 /// The enter transition time for the tooltip to enter or to leave.
 /// @type Number
-$rmd-tooltip-enter-transition-time: .15s !default;
+$rmd-tooltip-enter-duration: .15s !default;
 
 /// The leave transition time for the tooltip to enter or to leave.
 /// @type Number
-$rmd-tooltip-leave-transition-time: $rmd-tooltip-enter-transition-time / 2 !default;
+$rmd-tooltip-leave-duration: $rmd-tooltip-enter-duration / 2 !default;
 
 /// The z-index to use for tooltips when they are visible.
 /// @type Number

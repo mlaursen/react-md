@@ -9,8 +9,6 @@ export enum TooltipPosition {
   LEFT = "left",
 }
 
-export type TransitionEvent = React.TransitionEvent<HTMLElement | React.ReactHTMLElement<any>>;
-
 export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * An id for the tooltip. This is required for accessibility and finding an element to attach
@@ -69,13 +67,6 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @docgen
    */
   position?: TooltipPosition;
-
-  /**
-   * An optional function to call when the transition event has finished when animating in or out of visibility.
-   *
-   * @docgen
-   */
-  onTransitionEnd?: (e: TransitionEvent) => void;
 }
 
 export interface ITooltipPropsWithVisibility extends ITooltipProps {
