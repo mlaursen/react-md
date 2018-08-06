@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
+import { PROGRAMMATIC_FOCUS_KEYS, isProgrammaticallyFocusable } from "@react-md/utils";
 
 import { Provider } from "./StatesContext";
 
@@ -21,7 +22,7 @@ export interface IStatesProviderProps {
    *
    * @docgen
    */
-  programaticFocusKeys?: string[];
+  programmaticFocusKeys?: string[];
 
   /**
    * Since there are times where a user might interact with an element that will open or close
@@ -54,7 +55,7 @@ export interface IStatesProviderProps {
 export interface IStatesProviderDefaultProps {
   advancedFocus: boolean;
   keyboardClickTimeout: number;
-  programaticFocusKeys: string[];
+  programmaticFocusKeys: string[];
   isPrintableKeysFocusable: boolean;
 }
 
@@ -72,7 +73,7 @@ export interface IStatesProviderState {
 export default class StatesProvider extends React.Component<IStatesProviderProps, IStatesProviderState> {
   public static propTypes = {
     advancedFocus: PropTypes.bool,
-    programaticFocusKeys: PropTypes.arrayOf(PropTypes.string),
+    programmaticFocusKeys: PropTypes.arrayOf(PropTypes.string),
     keyboardClickTimeout: PropTypes.number,
     isPrintableKeysFocusable: PropTypes.bool,
     children: PropTypes.node,
@@ -80,18 +81,7 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
 
   public static defaultProps: IStatesProviderDefaultProps = {
     advancedFocus: true,
-    programaticFocusKeys: [
-      "ArrowUp",
-      "ArrowDown",
-      "ArrowLeft",
-      "ArrowRight",
-      "Home",
-      "End",
-      " ",
-      "Enter",
-      "Tab",
-      "Escape",
-    ],
+    programmaticFocusKeys: PROGRAMMATIC_FOCUS_KEYS,
     keyboardClickTimeout: 500,
     isPrintableKeysFocusable: false,
   };
@@ -256,29 +246,15 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
   };
 
   /**
-   * @see https://stackoverflow.com/a/12467610
-   */
-  private isProgrammaticallyFocusable = (event: KeyboardEvent) => {
-    const code = event.which || event.keyCode;
-    return (
-      (code > 47 && code < 58) ||
-      (code > 64 && code < 91) ||
-      (code > 95 && code < 112) ||
-      (code > 185 && code < 192) ||
-      (code > 218 && code < 223)
-    );
-  };
-
-  /**
-   * This is only used to determine if a manual programatic focus event should also trigger
+   * This is only used to determine if a manual programmatic focus event should also trigger
    * the focus effect. It will normally only happen after one of the focus keys are pressed.
    */
   private handleKeyDown = (event: KeyboardEvent) => {
     this.clearKeyboardTimer();
-    const { programaticFocusKeys, isPrintableKeysFocusable } = this.props as StatesProviderWithDefaultProps;
+    const { programmaticFocusKeys, isPrintableKeysFocusable } = this.props as StatesProviderWithDefaultProps;
     if (
-      programaticFocusKeys.indexOf(event.key) === -1 &&
-      (!isPrintableKeysFocusable || !this.isProgrammaticallyFocusable(event))
+      programmaticFocusKeys.indexOf(event.key) === -1 &&
+      (!isPrintableKeysFocusable || !isProgrammaticallyFocusable(event))
     ) {
       return;
     }

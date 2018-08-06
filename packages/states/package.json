@@ -34,6 +34,7 @@
   "dependencies": {
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/transition": "^2.0.0-alpha-1",
+    "@react-md/utils": "^2.0.0-alpha-1",
     "classnames": "^2.2.6",
     "memoize-one": "^4.0.0"
   },

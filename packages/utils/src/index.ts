@@ -6,3 +6,6 @@ export * from "./throttleEvent";
 
 export { default as isPassiveEventsSupported } from "./isPassiveEventsSupported";
 export * from "./touches";
+
+export * from "./constants";
+export { default as isProgrammaticallyFocusable } from "./isProgrammaticallyFocusable";
