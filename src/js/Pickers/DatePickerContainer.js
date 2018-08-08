@@ -805,6 +805,8 @@ export default class DatePickerContainer extends PureComponent {
       calendarDate: nextDate,
       calendarTempDate: nextTemp,
     });
+
+    this._changeCalendarMode('calendar');
   };
 
   /**
