@@ -502,6 +502,12 @@ export default class DatePickerContainer extends PureComponent {
      */
     lastChild: PropTypes.bool,
 
+    /**
+     * True if the datepicker should swap to calendar mode automatically after a year is picked
+     * while in `year` mode.
+     */
+    closeYearOnSelect: PropTypes.bool,
+
     previousIconChildren: deprecated(PropTypes.node, 'Use the `previousIcon` prop instead'),
     previousIconClassName: deprecated(PropTypes.string, 'Use the `previousIcon` prop instead'),
     nextIconChildren: deprecated(PropTypes.node, 'use the `nextIcon` prop instead'),
@@ -537,6 +543,7 @@ export default class DatePickerContainer extends PureComponent {
     cancelLabel: 'Cancel',
     cancelPrimary: true,
     closeOnEsc: true,
+    closeYearOnSelect: false,
     disableScrollLocking: false,
     'aria-label': 'Pick a date',
   };
@@ -806,7 +813,9 @@ export default class DatePickerContainer extends PureComponent {
       calendarTempDate: nextTemp,
     });
 
-    this._changeCalendarMode('calendar');
+    if (this.props.closeYearOnSelect) {
+      this._changeCalendarMode('calendar');
+    }
   };
 
   /**
