@@ -69,29 +69,34 @@ export default class CalendarDate extends PureComponent {
 
     const fullyActive = today && !active && !desktopActive;
     return (
-      <button
-        type="button"
-        ref={this._setFocus}
-        onFocus={this._setActive}
-        onBlur={this._setInactive}
-        onMouseOver={this._setActive}
-        onMouseLeave={this._setInactive}
-        className={cn('md-calendar-date md-calendar-date--btn', {
-          'md-calendar-date--btn-active': active || desktopActive,
-          'md-pointer--hover': !disabled,
-        }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className)}
-        onClick={this._handleClick}
-        disabled={disabled}
+      <div
+        role="gridcell"
+        className="md-calendar-date"
+        style={{ display: 'inline-block' }}
       >
-        <span
-          className={cn('md-calendar-date--date', {
-            'md-picker-text--active': active || desktopActive,
-            'md-font-bold': fullyActive,
-          })}
+        <button
+          ref={this._setFocus}
+          onFocus={this._setActive}
+          onBlur={this._setInactive}
+          onMouseOver={this._setActive}
+          onMouseLeave={this._setInactive}
+          className={cn('md-calendar-date--btn', {
+            'md-calendar-date--btn-active': active || desktopActive,
+            'md-pointer--hover': !disabled,
+          }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className)}
+          onClick={this._handleClick}
+          disabled={disabled}
         >
-          {date}
-        </span>
-      </button>
+          <span
+            className={cn('md-calendar-date--date', {
+              'md-picker-text--active': active || desktopActive,
+              'md-font-bold': fullyActive,
+            })}
+          >
+            {date}
+          </span>
+        </button>
+      </div>
     );
   }
 }

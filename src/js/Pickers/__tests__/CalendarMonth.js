@@ -90,7 +90,8 @@ describe('CalendarMonth', () => {
     }
 
     function checkDayNode(node) {
-      expect(node.nodeName).toBe('BUTTON');
+      expect(node.nodeName).toBe('DIV');
+      expect(node.children[0].nodeName).toBe('BUTTON');
     }
 
     const props = {
