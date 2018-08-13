@@ -6,6 +6,7 @@ import AppBar from "components/AppBar";
 import Button from "components/Button";
 import Link from "components/Link";
 import Portal from "components/Portal";
+import Tooltip from "components/Tooltip";
 import TreeView from "components/TreeView";
 
 import "./app.scss";
@@ -20,6 +21,7 @@ const App: React.SFC<{}> = () => (
         <Route path="/components/button" component={Button} />
         <Route path="/components/link" component={Link} />
         <Route path="/components/portal" component={Portal} />
+        <Route path="/components/tooltip" component={Tooltip} />
         <Route path="/components/tree-view" component={TreeView} />
       </main>
     </React.Fragment>

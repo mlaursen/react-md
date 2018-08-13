@@ -2,11 +2,7 @@
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
-.examples-page__overflow-portal {
-  flex-direction: column;
-}
-
-.overflow-portal-example {
+.tooltip-overflow-example {
   @include rmd-theme(background-color, surface);
   @include rmd-elevation(2);
 
@@ -17,26 +13,24 @@
 
   [class^='ReactVirtualized']:focus {
     outline-style: none;
-
-    .overflow-portal-example__cell--active {
-      @include rmd-theme(background-color, text-hint-on-background);
-    }
   }
 
   &__cell {
+    align-items: center;
     border-bottom: 1px solid rmd-theme(text-hint-on-background);
     border-bottom-color: rmd-theme-var(text-hint-on-background);
     border-right: 1px solid rmd-theme(text-hint-on-background);
     border-right-color: rmd-theme-var(text-hint-on-background);
     box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    outline-style: none;
+    transition: background-color .15s ease-in-out;
+    width: 100%;
 
-    > div {
-      align-items: center;
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      position: relative;
-      width: 100%;
+    &:focus {
+      @include rmd-theme(background-color, text-hint-on-background);
     }
   }
 }
