@@ -5,6 +5,10 @@ import { StatesConsumer } from "@react-md/states";
 import { TextIconSpacing, ITextIconSpacingProps } from "@react-md/icon";
 import { KeyboardClickable } from "@react-md/a11y";
 
+export type ButtonType = "text" | "icon";
+export type ButtonTheme = "clear" | "primary" | "secondary" | "default";
+export type ButtonThemeType = "flat" | "outline" | "contained";
+
 export interface IButtonThemeProps {
   /**
    * An optional className to apply.
@@ -26,21 +30,21 @@ export interface IButtonThemeProps {
    *
    * @docgen
    */
-  btnType?: "text" | "icon";
+  btnType?: ButtonType;
 
   /**
    * The material design theme to apply to the button.
    *
    * @docgen
    */
-  theme?: "clear" | "primary" | "secondary" | "default";
+  theme?: ButtonTheme;
 
   /**
    * The material design theme type to apply.
    *
    * @docgen
    */
-  themeType?: "flat" | "outline" | "contained";
+  themeType?: ButtonThemeType;
 }
 
 /**
@@ -111,9 +115,9 @@ export type IButtonProps = IButtonButtonProps | IButtonButtonProps;
 export interface IButtonDefaultProps {
   asDiv: boolean;
   disabled: boolean;
-  theme: string;
-  themeType: string;
-  btnType: string;
+  theme: ButtonTheme;
+  themeType: ButtonThemeType;
+  btnType: ButtonType;
   iconAfter: boolean;
 }
 
