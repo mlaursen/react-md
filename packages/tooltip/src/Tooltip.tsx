@@ -2,14 +2,36 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 
-export enum TooltipPosition {
-  TOP = "top",
-  RIGHT = "right",
-  BOTTOM = "bottom",
-  LEFT = "left",
+import { TooltipPosition } from "./constants";
+
+export interface ITooltipOptions {
+  /**
+   * Boolean if the dense styles for tooltips should be displayed.
+   *
+   * @docgen
+   */
+  dense?: boolean;
+
+  /**
+   * Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
+   * will display weirdly when its container element is small in size. It is advised to only enable
+   * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+   *
+   * Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+   *
+   * @docgen
+   */
+  lineWrap?: boolean;
+
+  /**
+   * The position of the tooltip to use.
+   *
+   * @docgen
+   */
+  position?: TooltipPosition;
 }
 
-export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface ITooltipProps extends ITooltipOptions, React.HTMLAttributes<HTMLSpanElement> {
   /**
    * An id for the tooltip. This is required for accessibility and finding an element to attach
    * event listeners to show and hide the tooltip.
@@ -42,31 +64,6 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @docgen
    */
   children?: React.ReactNode;
-
-  /**
-   * Boolean if the dense styles for tooltips should be displayed.
-   *
-   * @docgen
-   */
-  dense?: boolean;
-
-  /**
-   * Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
-   * will display weirdly when its container element is small in size. It is advised to only enable
-   * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
-   *
-   * Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
-   *
-   * @docgen
-   */
-  lineWrap?: boolean;
-
-  /**
-   * The position of the tooltip to use.
-   *
-   * @docgen
-   */
-  position?: TooltipPosition;
 }
 
 export interface ITooltipPropsWithVisibility extends ITooltipProps {
