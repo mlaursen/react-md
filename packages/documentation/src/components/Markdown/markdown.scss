@@ -1,0 +1,136 @@
+@import '@react-md/utils/dist/mixins';
+@import '@react-md/theme/dist/theme';
+@import '@react-md/typography/dist/typography';
+
+$solarized-base-03: #002b36;
+$solarized-base-02: #073642;
+$solarized-base-01: #586e75;
+$solarized-base-00: #657b83;
+$solarized-base-0: #839496;
+$solarized-base-1: #93a1a1;
+$solarized-base-2: #eee8d5;
+$solarized-base-3: #fdf6e3;
+
+$solarized-yellow: #b58900;
+$solarized-orange: #cb4b16;
+$solarized-red: #d30102;
+$solarized-magenta: #d33682;
+$solarized-violet: #6c71c4;
+$solarized-blue: #268bd2;
+$solarized-cyan: #2aa198;
+$solarized-green: #859900;
+
+.markdown-container {
+  @include rmd-theme(color, text-primary-on-background);
+  @include rmd-typography(body-1);
+
+  pre,
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    hyphens: none;
+    tab-size: 4;
+    word-wrap: break-word;
+  }
+
+  .test {
+    background-color: $solarized-base-03;
+    background-color: $solarized-base-02;
+    background-color: $solarized-base-01;
+    background-color: $solarized-base-00;
+    background-color: $solarized-base-0;
+    background-color: $solarized-base-1;
+    background-color: $solarized-base-2;
+    background-color: $solarized-base-3;
+    background-color: $solarized-yellow;
+    background-color: $solarized-orange;
+    background-color: $solarized-red;
+    background-color: $solarized-magenta;
+    background-color: $solarized-violet;
+    background-color: $solarized-blue;
+    background-color: $solarized-cyan;
+    background-color: $solarized-green;
+
+    color: $solarized-base-03;
+    color: $solarized-base-02;
+    color: $solarized-base-01;
+    color: $solarized-base-00;
+    color: $solarized-base-0;
+    color: $solarized-base-1;
+    color: $solarized-base-2;
+    color: $solarized-base-3;
+    color: $solarized-yellow;
+    color: $solarized-orange;
+    color: $solarized-red;
+    color: $solarized-magenta;
+    color: $solarized-violet;
+    color: $solarized-blue;
+    color: $solarized-cyan;
+    color: $solarized-green;
+  }
+
+  .comment {
+    color: $solarized-base-01;
+  }
+
+  .operator {
+    color: $solarized-base-00;
+  }
+
+  .keyword,
+  .property {
+    color: $solarized-yellow;
+  }
+
+  .string {
+    color: $solarized-cyan;
+  }
+
+  .selector,
+  .function {
+    color: $solarized-blue;
+  }
+
+  .tag > .punctuation {
+    color: $solarized-yellow;
+  }
+
+
+  .attr-value {
+    color: $solarized-cyan;
+
+    .punctuation:first-child {
+      color: $solarized-base-1;
+    }
+  }
+
+  .language-scss {
+    color: $solarized-cyan;
+
+    .keyword {
+      color: $solarized-red;
+    }
+
+    .punctuation {
+      color: $solarized-base-1;
+    }
+
+    .variable {
+      color: $solarized-blue;
+    }
+  }
+
+  pre {
+    @include rmd-utils-scroll;
+    // box-shadow: inset 0 0 1px rgba($rmd-black-base, .12);
+    // @include rmd-theme(color, text-primary-on-dark);
+
+    background-color: $solarized-base-03;
+    color: $solarized-base-1;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  @media (min-device-width: 1200px) and (min-device-height: 800px) {
+    @include rmd-typography(body-2);
+  }
+}

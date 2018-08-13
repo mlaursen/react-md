@@ -10,12 +10,13 @@
   &__block,
   &__example {
     margin: 1rem;
-    width: calc(100% - 1rem);
+    width: calc(100% - 2rem);
   }
 
   &__example {
     @include rmd-elevation(1);
 
+    box-sizing: border-box;
     padding: 1.5rem;
   }
 

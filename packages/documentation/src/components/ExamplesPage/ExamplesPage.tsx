@@ -1,20 +1,23 @@
 import * as React from "react";
 import { Text } from "@react-md/typography";
 
+import Markdown from "components/Markdown";
+
 import "./examples-page.scss";
 import { default as Example, IExampleProps } from "./Example";
 
 export interface IExamplesPageProps {
   title: string;
+  description?: string;
   examples: IExampleProps[];
 }
 
-const ExamplesPage: React.SFC<IExamplesPageProps> = ({
-  title,
-  examples,
-}) => (
+const ExamplesPage: React.SFC<IExamplesPageProps> = ({ title, description, examples }) => (
   <section className="examples-page">
-    <Text type="headline-2" className="examples-page__block">{title}</Text>
+    <Text type="headline-2" className="examples-page__block">
+      {title}
+    </Text>
+    {description && <Markdown markdown={description} />}
     {examples.map((example, key) => <Example key={key} {...example} />)}
   </section>
 );
