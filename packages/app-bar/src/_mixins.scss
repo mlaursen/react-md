@@ -1,0 +1,40 @@
+////
+/// @group app-bar
+////
+
+@import '@react-md/theme/dist/mixins';
+@import 'variables';
+
+@mixin react-md-app-bar {
+  .rmd-app-bar {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    height: $rmd-app-bar-height;
+    width: 100%;
+
+    &--fixed {
+      left: 0;
+      position: fixed;
+      right: 0;
+    }
+
+    &--top {
+      top: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+
+    &__nav {
+      flex-shrink: 0;
+      margin-left: $rmd-app-bar-nav-margin;
+    }
+
+    &--primary {
+      @include rmd-theme(background-color, primary);
+      @include rmd-theme(color, on-primary);
+    }
+  }
+}

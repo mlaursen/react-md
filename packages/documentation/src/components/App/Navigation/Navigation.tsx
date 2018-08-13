@@ -6,6 +6,13 @@ import { TreeView, TreeViewControls, FlattenedTree, FlattenedTreeView } from "@r
 import "./navigation.scss";
 
 const flattenedRoutes = {
+  "app-bars": {
+    itemId: "app-bars",
+    parentId: "components",
+    to: "/components/app-bar",
+    children: "App Bar",
+    linkComponent: Link,
+  },
   home: {
     itemId: "home",
     parentId: null,

@@ -1,0 +1,12 @@
+////
+/// @group app-bar
+////
+
+@import '@react-md/button/dist/variables';
+@import '@react-md/icon/dist/variables';
+
+$rmd-app-bar-height: 3.5rem !default;
+$rmd-app-bar-dense-height: 3rem !default;
+$rmd-app-bar-title-keyline: 4.5rem !default;
+$rmd-app-bar-nav-keyline: 1rem !default;
+$rmd-app-bar-nav-margin: $rmd-app-bar-nav-keyline - (($rmd-btn-icon-size - $rmd-icon-size) / 2);

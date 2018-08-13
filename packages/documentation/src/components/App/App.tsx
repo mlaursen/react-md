@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 import { StatesProvider } from "@react-md/states";
 
+import AppBar from "components/AppBar";
 import Button from "components/Button";
 import Link from "components/Link";
 import Portal from "components/Portal";
@@ -15,6 +16,7 @@ const App: React.SFC<{}> = () => (
     <React.Fragment>
       <Navigation />
       <main className="main">
+        <Route path="/components/app-bar" component={AppBar} />
         <Route path="/components/button" component={Button} />
         <Route path="/components/link" component={Link} />
         <Route path="/components/portal" component={Portal} />
