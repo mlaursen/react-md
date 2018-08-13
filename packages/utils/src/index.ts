@@ -9,3 +9,4 @@ export * from "./touches";
 
 export * from "./constants";
 export { default as isProgrammaticallyFocusable } from "./isProgrammaticallyFocusable";
+export { default as findOverflowContainer } from "./findOverflowContainer";

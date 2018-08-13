@@ -1,4 +1,5 @@
 import * as React from "react";
+import findOverflowContainer from "./findOverflowContainer";
 
 export enum HorizontalPosition {
   /**
@@ -165,6 +166,12 @@ export interface IPositionOptions {
    * - '0.825rem'
    */
   verticalSpacing?: string;
+
+  /**
+   * Boolean if the element has been portaled out of a scroll container. This will update the logic to not check for
+   * parent overflow containers to adjust the positioning.
+   */
+  isPortalFixed?: boolean;
 }
 
 export interface IPositioningStyle {
@@ -193,6 +200,32 @@ function determineBestHorizontalPosition(position: HorizontalPosition, left: num
   return HorizontalPosition.INNER_LEFT;
 }
 
+function getFixedToDimensions(fixedTo: HTMLElement, isPortalFixed: boolean) {
+  const fixedToRect = fixedTo.getBoundingClientRect();
+  const { height: fixedToHeight, width: fixedToWidth } = fixedToRect;
+  let { left: fixedToLeft, top: fixedToTop } = fixedToRect;
+  if (!isPortalFixed) {
+    const overflowContainer = findOverflowContainer(fixedTo);
+    if (overflowContainer && overflowContainer !== fixedTo) {
+      const rect = overflowContainer.getBoundingClientRect();
+      fixedToLeft -= rect.left - overflowContainer.scrollLeft;
+      fixedToTop -= rect.top - overflowContainer.scrollTop;
+    }
+  }
+
+  return {
+    fixedToLeft,
+    fixedToTop,
+    fixedToWidth,
+    fixedToHeight,
+  };
+}
+
+/**
+ * Attempts to create the styles to position a `target` element related to another `fixedTo` element within the page.
+ *
+ * NOTE: This will fail if the fixedTo
+ */
 export default function positionRelativeTo(
   fixedTo: HTMLElement | null,
   target: HTMLElement | null,
@@ -211,6 +244,7 @@ export default function positionRelativeTo(
     verticalSpacing = null,
     vwMargin = 0,
     vhMargin = 0,
+    isPortalFixed = false,
   } = options;
   let { heightOverlapMultiplier } = options;
   if (typeof heightOverlapMultiplier !== "number") {
@@ -219,8 +253,7 @@ export default function positionRelativeTo(
 
   const vh = window.innerHeight || document.documentElement.clientHeight;
   const vw = window.innerWidth || document.documentElement.clientWidth;
-  const fixedToRect = fixedTo.getBoundingClientRect();
-  const { height: fixedToHeight, width: fixedToWidth, left: fixedToLeft, top: fixedToTop } = fixedToRect;
+  const { fixedToLeft, fixedToTop, fixedToHeight, fixedToWidth } = getFixedToDimensions(fixedTo, isPortalFixed);
   const overlapHeight = fixedToHeight * heightOverlapMultiplier;
   const overlapWidth = fixedToWidth * widthOverlapMultiplier;
 
@@ -286,7 +319,7 @@ export default function positionRelativeTo(
   } else if (verticalPosition !== VerticalPosition.BOTTOM && top + targetHeight > vh - vhMargin) {
     // The target element would be out of bounds at the bottom edge, so swap position to be above the element,
     // but it can overlap and restrict the top to be within the vh's defined margin.
-    style.top = Math.max(vhMargin, fixedToRect.top + overlapHeight - targetHeight);
+    style.top = Math.max(vhMargin, fixedToTop + overlapHeight - targetHeight);
     style.transformOrigin = "0 100%";
   }
 
