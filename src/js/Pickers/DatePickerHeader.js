@@ -58,9 +58,14 @@ export default class DatePickerHeader extends PureComponent {
   render() {
     const { year, weekday, date } = this.state;
     const { calendarMode, className } = this.props;
+    const isYearMode = calendarMode === 'year';
     return (
       <header className={cn('md-picker-header', className)}>
-        <PickerControl onClick={this._selectYear} active={calendarMode === 'year'}>
+        <PickerControl
+          onClick={this._selectYear}
+          active={isYearMode}
+          aria-expanded={isYearMode}
+        >
           <h6 className="md-subheading-1">{year}</h6>
         </PickerControl>
         <PickerControl onClick={this._selectCalendar} active={calendarMode === 'calendar'}>

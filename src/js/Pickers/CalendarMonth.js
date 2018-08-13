@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import addDate from '../utils/dates/addDate';
+import chunk from '../utils/chunk';
 import getLastDay from '../utils/dates/getLastDay';
 import stripTime from '../utils/dates/stripTime';
 import toDayOfWeek from '../utils/dates/toDayOfWeek';
@@ -146,16 +147,22 @@ export default class CalendarMonth extends PureComponent {
           />
         );
       } else {
-        date = <div key={key} className="md-calendar-date" />;
+        date = <div key={key} className="md-calendar-date" role="gridcell" />;
       }
 
       days.push(date);
       currentDate = addDate(currentDate, 1, 'D');
     }
 
+    const weeks = chunk(days, 7);
+
     return (
-      <div className={cn('md-calendar-month', className)} {...props}>
-        {days}
+      <div role="grid" className={cn('md-calendar-month', className)} {...props}>
+        {weeks.map((week, i) => (
+          <div key={i} role="row">
+            {week}
+          </div>
+        ))}
       </div>
     );
   }

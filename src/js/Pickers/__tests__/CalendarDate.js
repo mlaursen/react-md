@@ -24,7 +24,8 @@ describe('CalendarDate', () => {
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
     const node = findDOMNode(date);
-    expect(node.classList.contains(props.className)).toBe(true);
+    const button = node.children[0];
+    expect(button.classList.contains(props.className)).toBe(true);
   });
 
   it('calls the onClick prop with the date prop when not disabled', () => {
@@ -38,13 +39,15 @@ describe('CalendarDate', () => {
 
     let date = renderIntoDocument(<CalendarDate {...props} />);
     let dateNode = findDOMNode(date);
-    Simulate.click(dateNode);
+    let button = dateNode.children[0];
+    Simulate.click(button);
     expect(props.onClick.mock.calls.length).toBe(1);
 
     const newProps = Object.assign({}, props, { disabled: true });
     date = renderIntoDocument(<CalendarDate {...newProps} />);
     dateNode = findDOMNode(date);
-    Simulate.click(dateNode);
+    button = dateNode.children[0];
+    Simulate.click(button);
     expect(props.onClick.mock.calls.length).toBe(1);
   });
 
