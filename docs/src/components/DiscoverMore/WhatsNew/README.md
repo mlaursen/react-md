@@ -1,3 +1,10 @@
+## August 2018
+### v1.5.0 Released
+##### Changelog
+This release added a new feature and an accessibility change.
+- Updated the `ListItem` to be able to have a right-aligned action button. ([@Kaishiyoku] - [pull-766])
+- Improved some of the accessibility for the `DatePicker`. ([@leahjlou] - [pull-779])
+
 ## July 2018
 ### v1.4.2 Released
 - Fixed the accessibility for selection controls (and groups) ([@blackcathacker] - [pull-768])

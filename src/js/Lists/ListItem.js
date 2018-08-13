@@ -12,13 +12,13 @@ import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
+import Divider from '../Dividers/Divider';
 import FontIcon from '../FontIcons/FontIcon';
 import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
 import Menu from '../Menus/Menu';
-import Divider from '../Dividers/Divider';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -558,7 +558,6 @@ export default class ListItem extends PureComponent {
       return (
         <div className="md-list-item--flex">
           <Divider vertical className="md-list-item--divider-vertical" />
-
           <div className="md-list-item--children-inline">
             {children}
           </div>
