@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { PortalInto } from "@react-md/portal";
+import { KEYBOARD_MOVEMENT_KEYS } from "@react-md/utils";
 
 import { Provider } from "./MagicTooltipContext";
 import {
@@ -140,7 +141,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     hoverMode: true,
     hoverModeDelay: DEFAULT_HOVER_MODE_DELAY,
     keyboardFocusDelay: DEFAULT_FOCUS_KEYBOARD_DELAY,
-    keyboardMovementKeys: ["Home", "End", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"],
+    keyboardMovementKeys: KEYBOARD_MOVEMENT_KEYS,
   };
 
   private containers: HTMLElement[];

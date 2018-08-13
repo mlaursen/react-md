@@ -1,9 +1,9 @@
 import * as React from "react";
 
+import { IMagicTooltipProps } from "./types";
 import { ITooltipProps } from "./Tooltip";
 import MagicTooltipConsumer from "./MagicTooltipConsumer";
 import { Consumer } from "./MagicTooltipContext";
-import { IMagicTooltipProps } from "./types";
 
 const MagicTooltip: React.SFC<IMagicTooltipProps> = props => (
   <Consumer>
