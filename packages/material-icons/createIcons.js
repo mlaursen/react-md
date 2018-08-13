@@ -4,7 +4,7 @@ const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-const AdmZip = require('adm-zip');
+const unzipper = require('unzipper');
 const download = require('download');
 const commander = require('commander');
 const Bluebird = require('bluebird');
@@ -16,7 +16,7 @@ commander
   .usage('<version> [options]')
   .option('-d, --download-only [downloadOnly]', 'This will only download and unzip the material-design-icons into the temp directory')
   .option('-i, --icons-only [iconsOnly]', 'This will only find and replace all icons within the temp directory for material-design-icons into the svg directory.')
-  .option('-u, --update-only [componentsOnly]', 'This will just update the generated component files only instead of downloading and finding icons from the source.')
+  .option('-u, --update-only [updateOnly]', 'This will just update the generated component files only instead of downloading and finding icons from the source.')
   .option('-c, --clean [clean]', 'This will remove all the temp files created by this script')
   .option('--no-cleanup', 'This will prevent the script from automatically removing all the temp files if no other options are provided')
   .parse(process.argv);
@@ -28,7 +28,8 @@ if (!version) {
 }
 
 const fileName = `material-design-icons-${version}.zip`;
-const downloadUrl = `https://github.com/google/material-design-icons/releases/download/${version}/${fileName}`;
+const downloadUrl = `https://github.com/google/material-design-icons/archive/${version}.zip`;
+// const downloadUrl = `https://github.com/google/material-design-icons/archive/${version}/${fileName}`;
 const src = path.join(process.cwd(), 'src');
 const temp = path.join(process.cwd(), 'temp');
 const svgs = path.join(process.cwd(), 'svgs');
@@ -41,8 +42,8 @@ async function downloadSource() {
   await download(downloadUrl, temp)
 
   console.log(`Unzipping to '${path.join(temp, fileName.replace(/\.zip$/, ''))}'...`);
-  const zip = new AdmZip(path.join(temp, fileName));
-  zip.extractAllTo(temp);
+  fs.createReadStream(path.join(temp, fileName))
+    .pipe(unzipper.Extract({ path: temp }))
   console.log('Done unzipping!');
 }
 
@@ -73,7 +74,7 @@ function findAndCopyIcons() {
         return promises;
       }, []));
 
-      console.log(`Copied ${fileName.length} unique icons into '${svgs}'!`);
+      console.log(`Copied ${fileNames.length} unique icons into '${svgs}'!`);
       resolve();
     });
   });
@@ -166,14 +167,14 @@ async function cleanFiles() {
 }
 
 (async function run() {
-  const { componentsOnly, downloadOnly, iconsOnly, clean, cleanup } = commander;
+  const { updateOnly, downloadOnly, iconsOnly, clean, cleanup } = commander;
   if (clean) {
     await cleanFiles();
   } else if (downloadOnly) {
     await downloadSource();
   } else if (iconsOnly) {
     await findAndCopyIcons();
-  } else if (componentsOnly) {
+  } else if (updateOnly) {
     await createComponentFiles();
   } else {
     await downloadSource();
