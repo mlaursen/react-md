@@ -34,7 +34,11 @@ $rmd-tooltip-z-index: 100 !default;
 ///
 /// @see rmd-tooltip-dense-font-size
 /// @type Number
-$rmd-tooltip-font-size: 1rem !default; // 14px
+$rmd-tooltip-font-size: 1rem !default;
+
+/// The default line-height to use for tooltips.
+/// @type Number
+$rmd-tooltip-line-height: 1.5rem !default;
 
 /// The min height to use for tooltips. This allows the tooltips to grow in height automatically
 /// based on line wrapping. You will need to add additional padding in these cases though.
@@ -64,6 +68,10 @@ $rmd-tooltip-spacing: 1.5rem !default; // 24px
 /// The font size to use for dense tooltips.
 /// @type Number
 $rmd-tooltip-dense-font-size: .625rem !default; // 10px
+
+/// The line-height to use for dense tooltips.
+/// @type Number
+$rmd-tooltip-dense-line-height: 1.25rem !default;
 
 /// The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
 /// based on line wrapping. You will need to add additional padding in these cases though.

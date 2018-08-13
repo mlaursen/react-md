@@ -1,21 +1,14 @@
 import * as React from "react";
 
-export interface IMagicTooltipContext {
-  dense: boolean;
-  spacing: string | number;
-  denseSpacing: string | number;
-  visibleId: string | null;
-  init: (id: string) => void;
-  deinit: (id: string) => void;
-}
+import { InitMagicTooltip, DeinitMagicTooltip, TooltipSpacing, IMagicTooltipContext } from "./types";
 
-const MagicTooltipContext = React.createContext({
+const MagicTooltipContext = React.createContext<IMagicTooltipContext>({
   dense: false,
   spacing: "1.5rem",
   denseSpacing: "0.875rem",
   visibleId: null,
-  init: () => undefined,
-  deinit: () => undefined,
-} as IMagicTooltipContext);
+  initMagicTooltip: () => undefined,
+  deinitMagicTooltip: () => undefined,
+});
 const { Provider, Consumer } = MagicTooltipContext;
 export { Provider, Consumer };

@@ -2,23 +2,41 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
+import { PortalInto, Portal } from "@react-md/portal";
 
-import { default as Tooltip, TooltipPosition, ITooltipProps } from "./Tooltip";
+import { InitMagicTooltip, DeinitMagicTooltip, TooltipSpacing, IMagicTooltipProps } from "./types";
+import {
+  TooltipPosition,
+  DEFAULT_ENTER_DURATION,
+  DEFAULT_LEAVE_DURATION,
+  DEFAULT_SPACING,
+  DEFAULT_DENSE_SPACING,
+  DEFAULT_VH_MARGIN,
+  DEFAULT_VW_MARGIN,
+} from "./constants";
+import Tooltip from "./Tooltip";
 
-export interface IMagicTooltipConsumerProps extends ITooltipProps {
+export interface IMagicTooltipConsumerProps extends IMagicTooltipProps {
+  /**
+   * The current visible id for a tooltip. This should be handled automatically from the parent consumer and
+   * should not be manually provided as a prop.
+   */
   visibleId: string | null;
 
-  vhMargin?: number;
-  vwMargin?: number;
+  /**
+   *
+   */
+  initMagicTooltip: InitMagicTooltip;
 
-  spacing?: string | number;
-  denseSpacing: string | number;
-
-  init: (id: string) => void;
-  deinit: (id: string) => void;
+  /**
+   *
+   */
+  deinitMagicTooltip: DeinitMagicTooltip;
 }
 
 export interface IMagicTooltipConsumerDefaultProps {
+  enterDuration: number;
+  leaveDuration: number;
   vhMargin: number;
   vwMargin: number;
   spacing: string;
@@ -44,10 +62,12 @@ export default class MagicTooltipConsumer extends React.Component<
   };
 
   public static defaultProps: IMagicTooltipConsumerDefaultProps = {
-    vhMargin: 0.32,
-    vwMargin: 8,
-    spacing: "1.5rem",
-    denseSpacing: "0.875rem",
+    enterDuration: DEFAULT_ENTER_DURATION,
+    leaveDuration: DEFAULT_LEAVE_DURATION,
+    vhMargin: DEFAULT_VH_MARGIN,
+    vwMargin: DEFAULT_VW_MARGIN,
+    spacing: DEFAULT_SPACING,
+    denseSpacing: DEFAULT_DENSE_SPACING,
   };
 
   public static getDerivedStateFromProps(nextProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
@@ -55,6 +75,7 @@ export default class MagicTooltipConsumer extends React.Component<
     const visible = id === visibleId;
     if (visible !== prevState.visible && !(visible ? prevState.animatingIn : prevState.animatingOut)) {
       return {
+        visible,
         animatingIn: visible,
         animatingOut: !visible,
       };
@@ -63,6 +84,8 @@ export default class MagicTooltipConsumer extends React.Component<
     return null;
   }
 
+  private animationFrame?: number;
+  private animateTimeout?: number;
   constructor(props: IMagicTooltipConsumerProps) {
     super(props);
 
@@ -76,28 +99,56 @@ export default class MagicTooltipConsumer extends React.Component<
   }
 
   public componentDidMount() {
-    this.props.init(this.props.id);
+    this.props.initMagicTooltip(this.props.id);
   }
 
   public componentDidUpdate(prevProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
-    if (this.state.animatingIn && !prevState.animatingIn) {
-      window.requestAnimationFrame(this.updatePosition);
-    } else if (this.state.animatingOut && !prevState.animatingOut) {
-      window.requestAnimationFrame(() => {
+    const { animatingIn, animatingOut } = this.state;
+    const { enterDuration, leaveDuration } = this.props as MagicTooltipConsumerWithDefaultProps;
+
+    if (animatingIn && !prevState.animatingIn) {
+      this.clear();
+      this.animationFrame = window.requestAnimationFrame(this.updatePosition);
+      this.animateTimeout = window.setTimeout(() => {
+        this.animateTimeout = undefined;
+        this.setState({ animatingIn: false });
+      }, Math.max(0, enterDuration));
+    } else if (animatingOut && !prevState.animatingOut) {
+      this.clear();
+      this.animationFrame = window.requestAnimationFrame(() => {
         this.setState({ visible: false });
       });
+      this.animateTimeout = window.setTimeout(() => {
+        this.animateTimeout = undefined;
+        this.setState({ animatingOut: false });
+      }, Math.max(0, leaveDuration));
     }
   }
 
   public componentWillUnmount() {
-    this.props.deinit(this.props.id);
+    this.clear();
+    this.props.deinitMagicTooltip(this.props.id);
   }
 
   public render() {
     const { visible, animatingIn, animatingOut, style, position } = this.state;
-    const { className, init, deinit, vwMargin, vhMargin, visibleId, spacing, denseSpacing, ...props } = this.props;
+    const {
+      className,
+      initMagicTooltip,
+      deinitMagicTooltip,
+      vwMargin,
+      vhMargin,
+      visibleId,
+      spacing,
+      denseSpacing,
+      portalInto,
+      portalIntoId,
+      enterDuration,
+      leaveDuration,
+      ...props
+    } = this.props;
 
-    return (
+    const tooltip = (
       <Tooltip
         {...props}
         visible={visible}
@@ -112,10 +163,31 @@ export default class MagicTooltipConsumer extends React.Component<
           "rmd-tooltip--magic",
           className
         )}
-        onTransitionEnd={this.handleTransitionEnd}
       />
     );
+
+    if (!portalInto && !portalIntoId) {
+      return tooltip;
+    }
+
+    return (
+      <Portal visible={true} into={portalInto} intoId={portalIntoId}>
+        {tooltip}
+      </Portal>
+    );
   }
+
+  private clear = () => {
+    if (this.animateTimeout) {
+      window.clearTimeout(this.animateTimeout);
+      this.animateTimeout = undefined;
+    }
+
+    if (this.animationFrame) {
+      window.cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = undefined;
+    }
+  };
 
   private getSpacing = () => {
     const { spacing, denseSpacing, dense } = this.props as MagicTooltipConsumerWithDefaultProps;
@@ -127,8 +199,9 @@ export default class MagicTooltipConsumer extends React.Component<
   };
 
   private updatePosition = () => {
-    const container = document.querySelector(`[aria-describedby="${this.props.id}"]`) as HTMLElement | null;
-    const tooltip = document.getElementById(this.props.id) as HTMLElement | null;
+    const { portalInto, portalIntoId, id } = this.props;
+    const container = document.querySelector(`[aria-describedby="${id}"]`) as HTMLElement | null;
+    const tooltip = document.getElementById(id) as HTMLElement | null;
     const position = this.determineBestPosition(container, tooltip);
     const spacing = this.getSpacing();
 
@@ -161,6 +234,7 @@ export default class MagicTooltipConsumer extends React.Component<
         verticalPosition,
         horizontalSpacing,
         verticalSpacing,
+        isPortalFixed: !!(portalIntoId || portalInto),
       }),
       position,
       visible: true,
@@ -184,11 +258,5 @@ export default class MagicTooltipConsumer extends React.Component<
     }
 
     return position;
-  };
-
-  private handleTransitionEnd = () => {
-    if (this.state.animatingIn || this.state.animatingOut) {
-      this.setState({ animatingIn: false, animatingOut: false });
-    }
   };
 }

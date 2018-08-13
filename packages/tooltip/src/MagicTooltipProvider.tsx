@@ -1,7 +1,16 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
+import { PortalInto } from "@react-md/portal";
 
-import { Provider, IMagicTooltipContext } from "./MagicTooltipContext";
+import { Provider } from "./MagicTooltipContext";
+import {
+  DEFAULT_SHOW_DELAY,
+  DEFAULT_SPACING,
+  DEFAULT_DENSE_SPACING,
+  DEFAULT_HOVER_MODE_DELAY,
+  DEFAULT_FOCUS_KEYBOARD_DELAY,
+} from "./constants";
+import { IMagicTooltipContext, TooltipSpacing } from "./types";
 
 export interface IMagicTooltipProviderProps {
   /**
@@ -17,7 +26,7 @@ export interface IMagicTooltipProviderProps {
    *
    * @docgen
    */
-  spacing?: string | number;
+  spacing?: TooltipSpacing;
 
   /**
    * The amount of spacing between the tooltip's container element and the tooltip when `dense`. This should be
@@ -26,7 +35,7 @@ export interface IMagicTooltipProviderProps {
    *
    * @docgen
    */
-  denseSpacing?: string | number;
+  denseSpacing?: TooltipSpacing;
 
   /**
    * The amount of time to wait before showing each tooltip if the `hoverMode` prop is disabled. If the `hoverMode`
@@ -73,6 +82,24 @@ export interface IMagicTooltipProviderProps {
   keyboardMovementKeys?: string[];
 
   /**
+   * If this prop is provided, it will make all `MagicTooltip` children use the portal component and render inside this
+   * element. Each `MagicTooltip` can override this behavior if needed by setting their own prop of `portalInto` of
+   * `null` or their own `portalInto` value.
+   *
+   * @docgen
+   */
+  portalInto?: PortalInto;
+
+  /**
+   * If this prop is provided, it will make all `MagicTooltip` children use the portal component and render inside the
+   * element found with this id. Each `MagicTooltip` can override this behavior if needed by setting their own prop of
+   * `portalIntoId` of `null` or their own `portalIntoId` value.
+   *
+   * @docgen
+   */
+  portalIntoId?: string;
+
+  /**
    * The `MagicTooltipProvider` should _normally_ be one of the top-most components in your react render, so the
    * children for this will be any elements that contain a `MagicTooltip` component.
    *
@@ -107,12 +134,12 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   public static defaultProps: IMagicTooltipProviderDefaultProps = {
     dense: false,
-    spacing: "1.5rem",
-    denseSpacing: "0.875rem",
-    delay: 500,
+    spacing: DEFAULT_SPACING,
+    denseSpacing: DEFAULT_DENSE_SPACING,
+    delay: DEFAULT_SHOW_DELAY,
     hoverMode: true,
-    hoverModeDelay: 1000,
-    keyboardFocusDelay: 300,
+    hoverModeDelay: DEFAULT_HOVER_MODE_DELAY,
+    keyboardFocusDelay: DEFAULT_FOCUS_KEYBOARD_DELAY,
     keyboardMovementKeys: ["Home", "End", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"],
   };
 
@@ -166,15 +193,17 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   public render() {
     const { visibleId } = this.state;
-    const { dense, spacing, denseSpacing } = this.props;
+    const { dense, spacing, denseSpacing, portalInto, portalIntoId } = this.props;
 
     const value = {
       dense,
       spacing,
       denseSpacing,
       visibleId,
-      init: this.init,
-      deinit: this.deinit,
+      initMagicTooltip: this.init,
+      deinitMagicTooltip: this.deinit,
+      portalInto,
+      portalIntoId,
     } as IMagicTooltipContext;
 
     return <Provider value={value}>{this.props.children}</Provider>;
@@ -277,9 +306,13 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   private handleKeyDown = (e: KeyboardEvent) => {
     const { keyboardFocusDelay, keyboardMovementKeys } = this.props as MagicTooltipProviderWithDefaultProps;
-    if (e.key === "Escape" && this.state.visibleId) {
+    if (e.key === "Escape") {
       this.clearHoverModeTimeout();
-      this.setState({ visibleId: null });
+      if (this.state.visibleId) {
+        this.setState({ visibleId: null });
+      }
+
+      return;
     }
 
     if (keyboardMovementKeys.indexOf(e.key) !== -1) {
@@ -291,15 +324,15 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     }
   };
 
-  private handleFocus = (e: FocusEvent) => {
-    const { target } = e;
-    if (!(target instanceof HTMLElement)) {
+  private handleFocus = (event: FocusEvent) => {
+    const target = event.target as HTMLElement;
+    if (this.containers.indexOf(target) === -1) {
       this.clearFocusTimeout();
       return;
     }
 
     const id = target.getAttribute("aria-describedby");
-    if (this.focusTimeout && this.state.visibleId !== id && this.containers.indexOf(target) !== -1) {
+    if (this.focusTimeout && this.state.visibleId !== id) {
       const { delay } = this.props as MagicTooltipProviderWithDefaultProps;
       this.clearShowTimeout();
       this.clearFocusTimeout();
@@ -310,14 +343,13 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     }
   };
 
-  private handleBlur = (e: FocusEvent) => {
-    const { target } = e;
-    if (!(target instanceof HTMLElement)) {
-      this.clearFocusTimeout();
+  private handleBlur = (event: FocusEvent) => {
+    if (this.containers.indexOf(event.target as HTMLElement) === -1) {
       return;
     }
 
-    if (this.containers.indexOf(target) !== -1 && this.state.visibleId) {
+    this.clearFocusTimeout();
+    if (this.state.visibleId) {
       this.setState({ visibleId: null });
     }
   };

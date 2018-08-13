@@ -5,7 +5,7 @@
   "scripts": {
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
-    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types",
+    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types && copyfiles -u 1 \"src/types.d.ts\" types",
     "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\" \"styles\"",
     "clean": "rimraf es lib types dist",
     "prebuild": "npm run clean",
@@ -32,6 +32,7 @@
   "repository": "https://github.com/mlaursen/react-md",
   "license": "MIT",
   "dependencies": {
+    "@react-md/portal": "^2.0.0-alpha-1",
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/transition": "^2.0.0-alpha-1",
     "@react-md/typography": "^2.0.0-alpha-1",

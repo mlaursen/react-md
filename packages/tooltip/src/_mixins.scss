@@ -40,6 +40,7 @@
   color: $rmd-tooltip-text-color;
   display: flex;
   font-size: $rmd-tooltip-font-size;
+  line-height: $rmd-tooltip-line-height;
   min-height: $rmd-tooltip-min-height;
   opacity: 0;
   padding-left: $rmd-tooltip-lr-padding;
@@ -121,6 +122,7 @@
 ///   }
 @mixin rmd-tooltip-dense {
   font-size: $rmd-tooltip-dense-font-size;
+  line-height: $rmd-tooltip-dense-line-height;
   min-height: $rmd-tooltip-dense-min-height;
   padding-left: $rmd-tooltip-dense-lr-padding;
   padding-right: $rmd-tooltip-dense-lr-padding;
