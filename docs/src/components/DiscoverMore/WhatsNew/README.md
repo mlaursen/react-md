@@ -1,3 +1,7 @@
+## July 2018
+### v1.4.2 Released
+- Fixed the accessibility for selection controls (and groups) ([@blackcathacker] - [pull-768])
+
 ## June 2018
 ### v1.4.1 Released
 - Fixed a small bug with dialogs trying to focus elements that are not focusable in IE11. ([@alaney] - [pull-760])
