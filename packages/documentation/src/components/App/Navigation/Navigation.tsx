@@ -47,6 +47,13 @@ const flattenedRoutes = {
     linkComponent: Link,
     to: "/components/link",
   },
+  overlays: {
+    itemId: "overlays",
+    parentId: "components",
+    children: "Overlay",
+    linkComponent: Link,
+    to: "/components/overlay",
+  },
   portals: {
     itemId: "portals",
     parentId: "components",

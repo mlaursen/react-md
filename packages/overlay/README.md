@@ -4,6 +4,19 @@ A very simple package for dynamically creating overlays.
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/overlay
 
 <!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+  * [Styles](#styles)
+- [Usage](#usage)
+- [Prop Types](#prop-types)
+  * [Overlay](#overlay)
+  * [OverlayPortal](#overlayportal)
+- [SassDoc](#sassdoc)
+  * [Mixins](#mixins)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -77,9 +90,333 @@ If you would like to just import all the utility variables, mixins, and function
 
 ## Usage
 <!-- PROPS_START -->
+## Prop Types
+### Overlay
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
+with an opacity transition.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onRequestClose *</td>
+<td><code>() => void</code></td>
+<td><code>null</code></td>
+<td>
+A function that should change the <code>visible</code> prop to <code>false</code>. This is used so that clicking the overlay
+can hide the overlay.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td><code>number | { enter?: number; exit?: number; }</code></td>
+<td><code>150</code></td>
+<td>
+The transition duration for the overlay. This should not be changed unless you manually change the
+<code>$rmd-overlay-transition-duration</code> scss variable.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>mountOnEnter</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+not be rendered in the DOM until the <code>visible</code> prop is <code>true</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>unmountOnExit</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+be removed from the DOM when the <code>visible</code> prop is <code>false</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEnter</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntering</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntered</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExit</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExiting</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExited</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### OverlayPortal
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>portalInto</td>
+<td><code>string | HTMLElement | (() => HTMLElement)</code></td>
+<td><code>null</code></td>
+<td>
+Either a function that returns an HTMLElement, an HTMLElement, or a <code>document.querySelector</code> string
+that will return the HTMLElement to render the children into. If both the <code>into</code> and <code>intoId</code> props
+are <code>undefined</code>, the <code>document.body</code> will be chosen instead.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>portalIntoId</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+The id of an element that the portal should be rendered into. This element <b>must</b> exist on the page
+before the <code>visible</code> prop is enabled to work. If both the <code>into</code> and <code>intoId</code> props are <code>undefined</code>,
+the <code>document.body</code> will be chosen instead.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>visible *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
+with an opacity transition.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onRequestClose *</td>
+<td><code>() => void</code></td>
+<td><code>null</code></td>
+<td>
+A function that should change the <code>visible</code> prop to <code>false</code>. This is used so that clicking the overlay
+can hide the overlay.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td><code>number | { enter?: number; exit?: number; }</code></td>
+<td><code>null</code></td>
+<td>
+The transition duration for the overlay. This should not be changed unless you manually change the
+<code>$rmd-overlay-transition-duration</code> scss variable.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>mountOnEnter</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+not be rendered in the DOM until the <code>visible</code> prop is <code>true</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>unmountOnExit</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+be removed from the DOM when the <code>visible</code> prop is <code>false</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEnter</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntering</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntered</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExit</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExiting</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExited</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <!-- PROPS_END -->
 
 
 <!-- SASSDOC_START -->
+## SassDoc
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>react-md-overlay</code></td>
+<td>Creates the styles for overlays.
+<br /><br />
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-overlay-z-index</code></td>
+<td>The z-index for overlays.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-overlay-transition-duration</code></td>
+<td>The transition duration for overlays entering and leaving.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-overlay-color</code></td>
+<td>The background color for the overlay. It is recommended to make sure that an opacity
+is applied instead of a static color.
+<br /><br /></td>
+</tr>
+</tbody>
+</table>
+
 <!-- SASSDOC_END -->
 

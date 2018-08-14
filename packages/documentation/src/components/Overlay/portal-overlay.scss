@@ -1,0 +1,20 @@
+@import 'app-globals';
+
+.portal-overlay-example {
+  @include rmd-elevation(2);
+
+  height: 200px;
+  margin: 0 auto;
+  overflow: auto;
+  position: relative;
+  width: 200px;
+
+  &__container {
+    height: 1000px;
+    width: 1000px;
+  }
+
+  &__overlay {
+    position: absolute;
+  }
+}

@@ -3,6 +3,10 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
 
+// copied fromtypes. Aren't exported at this time
+export type EnterHandler = (node: HTMLElement, isAppearing: boolean) => void;
+export type ExitHandler = (node: HTMLElement) => void;
+
 export interface IOverlayProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
@@ -45,6 +49,48 @@ export interface IOverlayProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @docgen
    */
   unmountOnExit?: boolean;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onEnter?: EnterHandler;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onEntering?: EnterHandler;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onEntered?: EnterHandler;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onExit?: ExitHandler;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onExiting?: ExitHandler;
+
+  /**
+   * Pass-down prop to the `Transition` component from react-transition-group.
+   *
+   * @docgen
+   */
+  onExited?: ExitHandler;
 }
 
 export interface IOverlayDefaultProps {
@@ -72,6 +118,12 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
     ]),
     mountOnEnter: PropTypes.bool,
     unmountOnExit: PropTypes.bool,
+    onEnter: PropTypes.func,
+    onEntering: PropTypes.func,
+    onEntered: PropTypes.func,
+    onExit: PropTypes.func,
+    onExiting: PropTypes.func,
+    onExited: PropTypes.func,
   };
 
   public static defaultProps: IOverlayDefaultProps = {
@@ -93,8 +145,22 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
 
   public render() {
     const { active } = this.state;
-    const { className, visible, timeout, children, mountOnEnter, unmountOnExit, onRequestClose, ...props } = this
-      .props as OverlayWithDefaultProps;
+    const {
+      className,
+      visible,
+      timeout,
+      children,
+      mountOnEnter,
+      unmountOnExit,
+      onRequestClose,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      ...props
+    } = this.props as OverlayWithDefaultProps;
 
     return (
       <Transition
@@ -103,7 +169,11 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
         mountOnEnter={mountOnEnter}
         unmountOnExit={unmountOnExit}
         onEnter={this.activate}
+        onEntering={onEntering}
+        onEntered={onEntered}
         onExit={this.deactivate}
+        onExiting={onExiting}
+        onExited={onExited}
         appear={true}
       >
         <span
@@ -130,7 +200,11 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
     }
   };
 
-  private activate = () => {
+  private activate = (node: HTMLElement, isEntering: boolean) => {
+    if (this.props.onEnter) {
+      this.props.onEnter(node, isEntering);
+    }
+
     this.clear();
     this.frame = window.requestAnimationFrame(() => {
       this.frame = undefined;
@@ -138,7 +212,11 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
     });
   };
 
-  private deactivate = () => {
+  private deactivate = (node: HTMLElement) => {
+    if (this.props.onExit) {
+      this.props.onExit(node);
+    }
+
     this.clear();
     this.frame = window.requestAnimationFrame(() => {
       this.frame = undefined;
