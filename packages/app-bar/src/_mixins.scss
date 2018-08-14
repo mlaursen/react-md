@@ -3,15 +3,16 @@
 ////
 
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 
 @mixin react-md-app-bar {
   .rmd-app-bar {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
-    flex: 1;
     height: $rmd-app-bar-height;
-    width: 100%;
+    padding: $rmd-app-bar-vertical-padding $rmd-app-bar-horizontal-padding;
 
     &--fixed {
       left: 0;
@@ -27,14 +28,108 @@
       bottom: 0;
     }
 
-    &__nav {
-      flex-shrink: 0;
-      margin-left: $rmd-app-bar-nav-margin;
+    &--child-inherit {
+      .rmd-app-bar__nav,
+      .rmd-app-bar__title,
+      .rmd-app-bar__action {
+        color: inherit;
+      }
     }
 
     &--primary {
       @include rmd-theme(background-color, primary);
       @include rmd-theme(color, on-primary);
+    }
+
+    &--secondary {
+      @include rmd-theme(background-color, secondary);
+      @include rmd-theme(color, on-secondary);
+    }
+
+    &--multiline {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    &--dense {
+      height: $rmd-app-bar-dense-height;
+    }
+
+    &--prominent {
+      height: $rmd-app-bar-prominent-height;
+    }
+
+    &--prominent-dense {
+      height: $rmd-app-bar-prominent-height;
+    }
+
+    &--grow {
+      height: auto;
+      min-height: $rmd-app-bar-height;
+    }
+
+    &--grow-dense {
+      min-height: $rmd-app-bar-dense-height;
+    }
+
+    &__nav {
+      flex-shrink: 0;
+      margin-right: $rmd-app-bar-title-nav-margin;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include rmd-utils-rtl {
+        margin-left: $rmd-app-bar-title-nav-margin;
+        margin-right: 0;
+      }
+    }
+
+    &__title {
+      @include rmd-typography(headline-6);
+
+      line-height: $rmd-btn-icon-size;
+      margin-bottom: 0;
+      margin-top: 0;
+
+      &--offset {
+        margin-left: $rmd-app-bar-title-keyline;
+
+        // sass-lint:disable-block mixins-before-declarations
+        @include rmd-utils-rtl {
+          margin-left: auto;
+          margin-right: $rmd-app-bar-title-keyline;
+        }
+      }
+
+      &--prominent {
+        margin-top: $rmd-app-bar-height;
+      }
+
+      &--prominent-dense {
+        margin-top: $rmd-app-bar-height;
+      }
+    }
+
+    &__action {
+      flex-shrink: 0;
+
+      &--first {
+        margin-left: auto;
+
+        // sass-lint:disable-block mixins-before-declarations
+        @include rmd-utils-rtl {
+          margin-left: 0;
+          margin-right: auto;
+        }
+      }
+
+      &--last {
+        margin-right: $rmd-app-bar-nav-margin;
+
+        // sass-lint:disable-block mixins-before-declarations
+        @include rmd-utils-rtl {
+          margin-left: $rmd-app-bar-nav-margin;
+        }
+      }
     }
   }
 }

@@ -7,6 +7,15 @@
 
 $rmd-app-bar-height: 3.5rem !default;
 $rmd-app-bar-dense-height: 3rem !default;
-$rmd-app-bar-title-keyline: 4.5rem !default;
+$rmd-app-bar-prominent-height: $rmd-app-bar-height * 2 !default;
+$rmd-app-bar-prominent-dense-height: $rmd-app-bar-dense-height * 2 !default;
 $rmd-app-bar-nav-keyline: 1rem !default;
 $rmd-app-bar-nav-margin: $rmd-app-bar-nav-keyline - (($rmd-btn-icon-size - $rmd-icon-size) / 2);
+$rmd-app-bar-title-keyline: 4.5rem !default;
+$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin - $rmd-btn-icon-size;
+
+$rmd-app-bar-vertical-padding: ($rmd-app-bar-height - $rmd-btn-icon-size) / 2 !default;
+$rmd-app-bar-horizontal-padding: .25rem !default;
+
+// $rmd-app-bar-prominent-tb-padding: ($rmd-app-bar-height - $rmd-btn-icon-size) / 2;
+// $rmd-app-bar-prominent-dense-tb-padding: ($rmd-app-bar-dense-height - $rmd-btn-icon-size) / 2;

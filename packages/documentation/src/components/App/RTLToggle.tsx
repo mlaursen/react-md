@@ -22,7 +22,8 @@ export default class RTLToggle extends React.Component<{}, IRTLToggleState> {
     if (dir !== "rtl") {
       body.setAttribute("dir", "rtl");
     } else {
-      body.setAttribute("dir", "");
+      // have to specifically set back to ltr for Safari. Doesn't re-render back to ltr correctly otherwise.
+      body.setAttribute("dir", "ltr");
     }
   };
 }

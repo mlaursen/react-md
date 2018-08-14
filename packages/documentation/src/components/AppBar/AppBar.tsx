@@ -7,6 +7,7 @@ import SimpleAppBars from "./SimpleAppBars";
 const examples = [{
   title: "Simple",
   children: <SimpleAppBars />,
+  exampleGroup: false,
 }];
 
 const AppBar = () => <ExamplesPage title="App Bar" examples={examples} />;
