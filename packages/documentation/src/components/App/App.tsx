@@ -11,11 +11,13 @@ import TreeView from "components/TreeView";
 
 import "./app.scss";
 import Navigation from "./Navigation";
+import RTLToggle from "./RTLToggle";
 
 const App: React.SFC<{}> = () => (
   <StatesProvider>
     <React.Fragment>
       <Navigation />
+      <RTLToggle />
       <main className="main">
         <Route path="/components/app-bar" component={AppBar} />
         <Route path="/components/button" component={Button} />
