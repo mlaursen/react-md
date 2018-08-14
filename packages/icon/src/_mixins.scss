@@ -123,13 +123,13 @@
 @mixin rmd-icon-spaced-with-text($before-selector: '&--before', $after-selector: '&--after', $spacing: $rmd-icon-spacing-with-text) {
   @if $before-selector != null {
     #{$before-selector} {
-      margin-right: $spacing;
+      @include rmd-icon-spacing-before-text($spacing);
     }
   }
 
   @if $after-selector != null {
     #{$after-selector} {
-      margin-left: $spacing;
+      @include rmd-icon-spacing-after-text($spacing);
     }
   }
 }
