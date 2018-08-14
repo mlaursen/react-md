@@ -44,6 +44,7 @@ export interface IMagicTooltipProps extends ITooltipProps {
    *
    */
   vwMargin?: number;
+
   /**
    *
    */
