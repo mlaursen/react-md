@@ -1,0 +1,122 @@
+////
+/// @group sheet
+////
+
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+@import 'variables';
+
+/// Creates the base styles for a sheet.
+@mixin rmd-sheet-base {
+  @include rmd-elevation($rmd-sheet-elevation);
+  @include rmd-theme(background-color, surface);
+  @include rmd-utils-scroll(y);
+
+  position: fixed;
+  z-index: $rmd-sheet-z-index;
+}
+
+/// Creates the base styles for a sheet placed at the top of the viewport. This still
+/// requires the use of the `rmd-sheet-base` mixin.
+/// @see rmd-sheet-base
+@mixin rmd-sheet-top-base {
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/// Creates the base styles for a sheet placed at the bottom of the viewport. This still
+/// requires the use of the `rmd-sheet-base` mixin.
+/// @see rmd-sheet-base
+@mixin rmd-sheet-bottom-base {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin rmd-sheet-transition-base {
+  &--enter-active {
+    @include rmd-transition(deceleration);
+
+    transition-duration: $rmd-sheet-enter-duration;
+  }
+
+  &--exit-active {
+    @include rmd-transition(acceleration);
+
+    transition-duration: $rmd-sheet-leave-duration;
+  }
+}
+
+/// Creates the base styles for a sheet placed at the left of the viewport. This still
+/// requires the use of the `rmd-sheet-base` mixin.
+/// @see rmd-sheet-base
+@mixin rmd-sheet-left-base {
+  bottom: 0;
+  left: 0;
+  top: 0;
+}
+
+/// Creates the base styles for a sheet placed at the right of the viewport. This still
+/// requires the use of the `rmd-sheet-base` mixin.
+/// @see rmd-sheet-base
+@mixin rmd-sheet-right-base {
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+
+/// A small helper function for creating a transition based on the provided position;
+/// @access private
+@mixin rmd-sheet-transition($position) {
+  $distance: if($position == 'top' or $position == 'left', -100%, 100%);
+
+  $horizontal: $position == 'left' or $position == 'right';
+  $translate: if($horizontal, translateX, translateY);
+
+  &.rmd-sheet--enter {
+    transform: #{$translate + '(' + $distance + ')'};
+  }
+
+  &.rmd-sheet--enter-active,
+  &.rmd-sheet--exit {
+    transform: #{$translate + '(0)'};
+  }
+
+  &.rmd-sheet--exit-active {
+    transform: #{$translate + '(' + $distance + ')'};
+  }
+}
+
+
+/// Creates all the styles for sheets.
+@mixin react-md-sheet {
+  .rmd-sheet {
+    @include rmd-sheet-base;
+    @include rmd-sheet-transition-base;
+
+    @if $rmd-sheet-enabled-positions {
+      @each $position in $rmd-sheet-enabled-positions {
+        @if not index($rmd-sheet-positions, $position) {
+          @error 'Invalid position: \'#{$position}\'! Choose one of \'#{$rmd-sheet-positions}\'.';
+        }
+
+        &--#{$position} {
+          @include rmd-sheet-transition($position);
+
+          @if $position == 'top' {
+            @include rmd-sheet-top-base;
+          } @else if $position == 'right' {
+            @include rmd-sheet-right-base;
+          } @else if $position == 'bottom' {
+            @include rmd-sheet-bottom-base;
+          } @else if $position == 'left' {
+            @include rmd-sheet-left-base;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+////
+/// @group sheet
+////
+
+@import '@react-md/overlay/dist/variables';
+
+/// The elevation to use for sheets. This _should_ most likely stay the default, but it needs to
+/// be a number between 0 and 16.
+/// @type Number
+$rmd-sheet-elevation: 16 !default;
+
+/// The z-index for sheets. The value doesn't matter _too_ much but it needs to at least be above the
+/// overlay that is created along with the sheet.
+/// @type Number
+$rmd-sheet-z-index: $rmd-overlay-z-index + 1;
+
+/// The duration for the enter transition.
+/// @type Number
+$rmd-sheet-enter-duration: .2s !default;
+
+/// The duration for the leave transition.
+/// @type Number
+$rmd-sheet-leave-duration: .15s !default;
+
+/// A list of positions that are supported by the sheet component.
+/// @type List
+$rmd-sheet-positions: top right bottom left;
+
+/// The positions that are created by default with the `react-md-sheet` mixin. When generating
+/// styles, this list will be looped through to create the correct position styles.
+/// @type List
+$rmd-sheet-enabled-positions: $rmd-sheet-positions !default;

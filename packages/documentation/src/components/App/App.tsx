@@ -7,6 +7,7 @@ import Button from "components/Button";
 import Link from "components/Link";
 import Overlay from "components/Overlay";
 import Portal from "components/Portal";
+import Sheet from "components/Sheet";
 import Tooltip from "components/Tooltip";
 import TreeView from "components/TreeView";
 
@@ -25,6 +26,7 @@ const App: React.SFC<{}> = () => (
         <Route path="/components/link" component={Link} />
         <Route path="/components/overlay" component={Overlay} />
         <Route path="/components/portal" component={Portal} />
+        <Route path="/components/sheet" component={Sheet} />
         <Route path="/components/tooltip" component={Tooltip} />
         <Route path="/components/tree-view" component={TreeView} />
       </main>

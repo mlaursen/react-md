@@ -26,6 +26,7 @@
     "@react-md/material-icons": "^2.0.0-alpha-1",
     "@react-md/overlay": "^2.0.0-alpha-1",
     "@react-md/portal": "^2.0.0-alpha-1",
+    "@react-md/sheet": "^2.0.0-alpha-1",
     "@react-md/states": "^2.0.0-alpha-1",
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/tooltip": "^2.0.0-alpha-1",
