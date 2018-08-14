@@ -436,6 +436,15 @@ This prop <b>should not</b> be used with the <code>children</code> prop as only 
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the icon should use the dense spec.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -546,6 +555,16 @@ to clone into the provided icon.
 </thead>
 <tbody>
 <tr>
+<td>children *</td>
+<td><code>ReactNode</code></td>
+<td><code>null</code></td>
+<td>
+The icon that should be rotated. If this is a valid React Element, the class names will be cloned into
+that icon, otherwise the icon will be wrapped in a span with the correct class names applied.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>style</td>
 <td><code>CSSProperties</code></td>
 <td><code>null</code></td>
@@ -611,16 +630,6 @@ Boolean if the icon is currently rotated.
 <td>
 Boolean if the child icon should be &#34;forcefully&#34; wrapped in a <code>&#60;span&#62;</code> element. This should be enabled if
 you have a custom icon that does not pass the <code>className</code> prop down.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>children *</td>
-<td><code>ReactNode</code></td>
-<td><code>null</code></td>
-<td>
-The icon that should be rotated. If this is a valid React Element, the class names will be cloned into
-that icon, otherwise the icon will be wrapped in a span with the correct class names applied.
 <br /><br />
 </td>
 </tr>

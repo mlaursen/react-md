@@ -4,6 +4,18 @@ A package for making temporary sheets of material (normally for navigation or de
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/sheet
 
 <!-- TOC_START -->
+## Table of Contents
+- [Installation](#installation)
+    + [Updating Sass to include `node_modules`](#updating-sass-to-include-node_modules)
+    + [webpack](#webpack)
+    + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
+  * [Styles](#styles)
+- [Usage](#usage)
+- [Prop Types](#prop-types)
+  * [Sheet](#sheet)
+- [SassDoc](#sassdoc)
+  * [Mixins](#mixins)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -77,9 +89,277 @@ If you would like to just import all the utility variables, mixins, and function
 
 ## Usage
 <!-- PROPS_START -->
+## Prop Types
+### Sheet
+
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible *</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the sheet is currently visible.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onRequestClose *</td>
+<td><code>() => void</code></td>
+<td><code>null</code></td>
+<td>
+A function used to close the sheet when the overlay is clicked. This is really only required
+when the <code>overlay</code> prop is enabled, but I haven&#39;t figured out a way to typedef that in Typescript
+yet.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>overlay</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Boolean if there should be an overlay displayed with the sheet. This is recommended/required on mobile devices.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>"top" | "right" | "bottom" | "left"</code></td>
+<td><code>bottom</code></td>
+<td>
+The position for the sheet to be rendered.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>classNames</td>
+<td><code>string | CSSTransitionClassNames</code></td>
+<td><code>{
+      enter: "rmd-sheet--enter",
+      enterActive: "rmd-sheet--enter-active",
+      exit: "rmd-sheet--exit",
+      exitActive: "rmd-sheet--exit-active",
+    }</code></td>
+<td>
+The class names to use during the different parts of the animation.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td><code>number | { enter?: number; exit?: number; }</code></td>
+<td><code>{
+      enter: 200,
+      exit: 150,
+    }</code></td>
+<td>
+The transition duration for the overlay. This should not be changed unless you manually change the
+<code>$rmd-overlay-transition-duration</code> scss variable.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>mountOnEnter</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+not be rendered in the DOM until the <code>visible</code> prop is <code>true</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>unmountOnExit</td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group. By default, the overlay will
+be removed from the DOM when the <code>visible</code> prop is <code>false</code> but this can be changed by setting this
+prop to <code>false</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEnter</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntering</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onEntered</td>
+<td><code>EnterHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExit</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExiting</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onExited</td>
+<td><code>ExitHandler</code></td>
+<td><code>null</code></td>
+<td>
+Pass-down prop to the <code>Transition</code> component from react-transition-group.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <!-- PROPS_END -->
 
 
 <!-- SASSDOC_START -->
+## SassDoc
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-sheet-base</code></td>
+<td>Creates the base styles for a sheet.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-sheet-top-base</code></td>
+<td>Creates the base styles for a sheet placed at the top of the viewport. This still
+requires the use of the <code>rmd-sheet-base</code> mixin.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-sheet-bottom-base</code></td>
+<td>Creates the base styles for a sheet placed at the bottom of the viewport. This still
+requires the use of the <code>rmd-sheet-base</code> mixin.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-sheet-left-base</code></td>
+<td>Creates the base styles for a sheet placed at the left of the viewport. This still
+requires the use of the <code>rmd-sheet-base</code> mixin.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-sheet-right-base</code></td>
+<td>Creates the base styles for a sheet placed at the right of the viewport. This still
+requires the use of the <code>rmd-sheet-base</code> mixin.
+<br /><br />
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-sheet</code></td>
+<td>Creates all the styles for sheets.
+<br /><br />
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-sheet-elevation</code></td>
+<td>The elevation to use for sheets. This <i>should</i> most likely stay the default, but it needs to
+be a number between 0 and 16.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-z-index</code></td>
+<td>The z-index for sheets. The value doesn&#39;t matter <i>too</i> much but it needs to at least be above the
+overlay that is created along with the sheet.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-enter-duration</code></td>
+<td>The duration for the enter transition.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-leave-duration</code></td>
+<td>The duration for the leave transition.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-positions</code></td>
+<td>A list of positions that are supported by the sheet component.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-enabled-positions</code></td>
+<td>The positions that are created by default with the <code>react-md-sheet</code> mixin. When generating
+styles, this list will be looped through to create the correct position styles.
+<br /><br /></td>
+</tr>
+</tbody>
+</table>
+
 <!-- SASSDOC_END -->
 

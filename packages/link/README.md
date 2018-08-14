@@ -215,7 +215,7 @@ Any optional class name to apply to the link.
 </tr>
 <tr>
 <td>component *</td>
-<td><code>string | ComponentClass<any> | StatelessComponent<any></code></td>
+<td><code>string | ComponentClass<any, ComponentState> | StatelessComponent<any></code></td>
 <td><code>null</code></td>
 <td>
 An optional component to render as. This should really only be used if you are using a router library

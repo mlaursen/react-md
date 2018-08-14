@@ -184,10 +184,9 @@ and <code>minPaddingBottom</code> props to set the collapsed size.
 <td><code>number</code></td>
 <td><code>250</code></td>
 <td>
-The duration for the entire enter animation. This should match up with the <code>$rmd-collapse-enter-transition-time</code>
-Sass variable, however, this can be updated so that customizable transition times can be applied based on
-content size. You will just need to also update the style to include the <code>transitionDuration</code> of whatever value
-you want.
+The duration for the entire enter animation in milliseconds. This should normally stay as the default value
+of <code>250ms</code>, but can be updated to be any value if you feel there should be a longer animation time based on
+content size.
 <br /><br />
 </td>
 </tr>
@@ -196,10 +195,9 @@ you want.
 <td><code>number</code></td>
 <td><code>200</code></td>
 <td>
-The duration for the entire leave animation. This should match up with the <code>$rmd-collapse-leave-transition-time</code>
-Sass variable, however, this can be updated so that customizable transition times can be applied based on
-content size. You will just need to also update the style to include the <code>transitionDuration</code> of whatever value
-you want.
+The duration for the entire leave animation in milliseconds. This should normally stay at the default value
+of <code>200ms</code>, but can be updated to be any value if you feel there should be a longer animation time based on
+content size.
 <br /><br />
 </td>
 </tr>
@@ -294,19 +292,9 @@ and <code>minPaddingTop</code> values are set to <code>0</code>.
 <br /><br /></td>
 </tr>
 <tr>
-<td><code>rmd-collapse-enter-transition-time</code></td>
-<td>The enter transition time for the collapse animation.
-<br /><br /></td>
-</tr>
-<tr>
 <td><code>rmd-collapse-enter-transition-func</code></td>
 <td>The transition easing function to apply when the collapse&#39;s content is animating
 in. This should be one of the <code>$rmd-transitions</code> keys.</td>
-</tr>
-<tr>
-<td><code>rmd-collapse-leave-transition-time</code></td>
-<td>The leave transition time for the collapse animation.
-<br /><br /></td>
 </tr>
 <tr>
 <td><code>rmd-collapse-leave-transition-func</code></td>

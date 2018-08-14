@@ -171,7 +171,7 @@ name.
 </tr>
 <tr>
 <td>tagName</td>
-<td><code>"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "a" | "button" | "caption" | "bo...</code></td>
+<td><code>"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "a" | "button" | "caption" | "bl...</code></td>
 <td><code>null</code></td>
 <td>
 An optional html tag name to render in. If this is omitted, it will determine the &#34;best&#34; tag

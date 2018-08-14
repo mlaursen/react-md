@@ -133,7 +133,7 @@ class name.
 </td>
 </tr>
 <tr>
-<td>programaticFocusKeys</td>
+<td>programmaticFocusKeys</td>
 <td><code>string[]</code></td>
 <td><code>null</code></td>
 <td>
