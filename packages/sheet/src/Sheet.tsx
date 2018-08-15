@@ -7,6 +7,8 @@ import { Overlay } from "@react-md/overlay";
 import { ICSSTransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
 
 export type SheetPosition = "top" | "right" | "bottom" | "left";
+export type SheetHorizontalSize = "none" | "media" | "small" | "large";
+export type SheetVerticalSize = "none" | "touch" | "recommended";
 
 export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -38,6 +40,28 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
    * @docgen
    */
   position?: SheetPosition;
+
+  /**
+   * The size to use for sheets that have been positioned left or right. The default supported values are:
+   * - none - no limits added to sizing. the size will be based on content or custom styles
+   * - small - used for mobile devices.
+   * - large - used for landscape tablets and desktops.
+   * - media - automatically switches between "small" and "large" based on css media queries. (this is the default)
+   *
+   * @docgen
+   */
+  horizontalSize?: SheetHorizontalSize;
+
+  /**
+   * The size to use for sheets that have been positioned top or bottom. The supported sizes are:
+   * - none - the size is based on content and is limited to the viewport height.
+   * - touch - the size is based on content and is limited to the viewport height with a touchable area to close the
+   * sheet.
+   * - recommended - the material design recommended sizing that forces a max-height of 50vh and min-height of 3.5rem
+   *
+   * @docgen
+   */
+  verticalSize?: SheetVerticalSize;
 }
 
 export interface ISheetDefaultProps {
@@ -47,6 +71,8 @@ export interface ISheetDefaultProps {
   mountOnEnter: boolean;
   unmountOnExit: boolean;
   classNames: CSSTransitionClassNames;
+  horizontalSize: SheetHorizontalSize;
+  verticalSize: SheetVerticalSize;
 }
 
 export type SheetWithDefaultProps = ISheetProps & ISheetDefaultProps;
@@ -67,6 +93,8 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
       exit: "rmd-sheet--exit",
       exitActive: "rmd-sheet--exit-active",
     },
+    horizontalSize: "media",
+    verticalSize: "recommended",
   };
 
   public render() {
@@ -87,8 +115,12 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
       onExit,
       onExiting,
       onExited,
+      horizontalSize,
+      verticalSize,
       ...props
     } = this.props as SheetWithDefaultProps;
+
+    const isHorizontal = position === "left" || position === "right";
 
     return (
       <React.Fragment>
@@ -107,7 +139,21 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
           mountOnEnter={mountOnEnter}
           unmountOnExit={unmountOnExit}
         >
-          <div {...props} className={cn(`rmd-sheet rmd-sheet--${position}`, className)}>
+          <div
+            {...props}
+            className={cn(
+              `rmd-sheet rmd-sheet--${position}`,
+              {
+                "rmd-sheet--small-width": isHorizontal && horizontalSize === "small",
+                "rmd-sheet--large-width": isHorizontal && horizontalSize === "large",
+                "rmd-sheet--media-width": isHorizontal && horizontalSize === "media",
+                "rmd-sheet--viewport-height": !isHorizontal && verticalSize === "none",
+                "rmd-sheet--touchable-height": !isHorizontal && verticalSize === "touch",
+                "rmd-sheet--recommended-height": !isHorizontal && verticalSize === "recommended",
+              },
+              className
+            )}
+          >
             {children}
           </div>
         </CSSTransition>

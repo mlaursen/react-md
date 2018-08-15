@@ -90,12 +90,55 @@
   }
 }
 
+@mixin rmd-sheet-horizontal-small {
+  max-width: $rmd-sheet-small-max-width;
+  width: $rmd-sheet-small-width;
+}
+
+@mixin rmd-sheet-horizontal-large {
+  max-width: $rmd-sheet-large-max-width;
+  width: $rmd-sheet-large-width;
+}
+
+@mixin rmd-sheet-vertical-recommended {
+  min-height: $rmd-sheet-recommended-min-height;
+  max-height: $rmd-sheet-recommended-max-height;
+}
+
 
 /// Creates all the styles for sheets.
 @mixin react-md-sheet {
   .rmd-sheet {
     @include rmd-sheet-base;
     @include rmd-sheet-transition-base;
+
+    &--viewport-height {
+      max-height: $rmd-sheet-max-height;
+    }
+
+    &--touchable-height {
+      max-height: $rmd-sheet-touchable-max-height;
+    }
+
+    &--recommended-height {
+      @include rmd-sheet-vertical-recommended;
+    }
+
+    &--small-width {
+      @include rmd-sheet-horizontal-small;
+    }
+
+    &--large-width {
+      @include rmd-sheet-horizontal-large;
+    }
+
+    &--media-width {
+      @include rmd-sheet-horizontal-small;
+
+      @media (min-width: 768px) {
+        @include rmd-sheet-horizontal-large;
+      }
+    }
 
     @if $rmd-sheet-enabled-positions {
       @each $position in $rmd-sheet-enabled-positions {
