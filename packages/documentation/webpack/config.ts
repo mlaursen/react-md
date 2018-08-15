@@ -53,6 +53,7 @@ module.exports = (env: any, { mode }: IArgv) => {
     devServer: {
       contentBase: publicDir,
       hot: true,
+      host: "0.0.0.0",
       stats: "minimal",
       historyApiFallback: true,
       compress: true,
