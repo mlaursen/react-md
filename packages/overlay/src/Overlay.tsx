@@ -2,12 +2,9 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
+import { ITransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
 
-// copied fromtypes. Aren't exported at this time
-export type EnterHandler = (node: HTMLElement, isAppearing: boolean) => void;
-export type ExitHandler = (node: HTMLElement) => void;
-
-export interface IOverlayProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface IOverlayProps extends ITransitionProps, React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
    * with an opacity transition.
@@ -23,78 +20,10 @@ export interface IOverlayProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @docgen
    */
   onRequestClose: () => void;
-
-  /**
-   * The transition duration for the overlay. This should not be changed unless you manually change the
-   * `$rmd-overlay-transition-duration` scss variable.
-   *
-   * @docgen
-   */
-  timeout?: number | { enter?: number; exit?: number };
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * not be rendered in the DOM until the `visible` prop is `true` but this can be changed by setting this
-   * prop to `false`.
-   *
-   * @docgen
-   */
-  mountOnEnter?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * be removed from the DOM when the `visible` prop is `false` but this can be changed by setting this
-   * prop to `false`.
-   *
-   * @docgen
-   */
-  unmountOnExit?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEnter?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEntering?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEntered?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExit?: ExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExiting?: ExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExited?: ExitHandler;
 }
 
 export interface IOverlayDefaultProps {
-  timeout: number | { enter?: number; leave?: number };
+  timeout: TransitionTimeout;
   mountOnEnter: boolean;
   unmountOnExit: boolean;
 }

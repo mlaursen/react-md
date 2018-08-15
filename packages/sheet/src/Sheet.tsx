@@ -1,17 +1,14 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
+import { CSSTransition } from "react-transition-group";
 
 import { Overlay } from "@react-md/overlay";
-import { CSSTransition } from "react-transition-group";
+import { ICSSTransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
 
 export type SheetPosition = "top" | "right" | "bottom" | "left";
 
-// copied from @types. Aren't exported at this time
-export type EnterHandler = (node: HTMLElement, isAppearing: boolean) => void;
-export type ExitHandler = (node: HTMLElement) => void;
-
-export interface ISheetProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<HTMLDivElement> {
   /**
    * Boolean if the sheet is currently visible.
    *
@@ -41,90 +38,15 @@ export interface ISheetProps extends React.HTMLAttributes<HTMLDivElement> {
    * @docgen
    */
   position?: SheetPosition;
-
-  /**
-   * The class names to use during the different parts of the animation.
-   *
-   * @docgen
-   */
-  classNames?: string | CSSTransition.CSSTransitionClassNames;
-
-  /**
-   * The transition duration for the overlay. This should not be changed unless you manually change the
-   * `$rmd-overlay-transition-duration` scss variable.
-   *
-   * @docgen
-   */
-  timeout?: number | { enter?: number; exit?: number };
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * not be rendered in the DOM until the `visible` prop is `true` but this can be changed by setting this
-   * prop to `false`.
-   *
-   * @docgen
-   */
-  mountOnEnter?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * be removed from the DOM when the `visible` prop is `false` but this can be changed by setting this
-   * prop to `false`.
-   *
-   * @docgen
-   */
-  unmountOnExit?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEnter?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEntering?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onEntered?: EnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExit?: ExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExiting?: ExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
-   */
-  onExited?: ExitHandler;
 }
 
 export interface ISheetDefaultProps {
-  classNames: string | CSSTransition.CSSTransitionClassNames;
-  mountOnEnter: boolean;
-  unmountOnExit: boolean;
   overlay: boolean;
   position: SheetPosition;
-  timeout: number | { enter?: number; exit?: number };
+  timeout: TransitionTimeout;
+  mountOnEnter: boolean;
+  unmountOnExit: boolean;
+  classNames: CSSTransitionClassNames;
 }
 
 export type SheetWithDefaultProps = ISheetProps & ISheetDefaultProps;
