@@ -35,3 +35,7 @@
     }
   }
 }
+
+@mixin react-md-transition {
+  @include rmd-collapse;
+}

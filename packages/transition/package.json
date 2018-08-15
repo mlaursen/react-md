@@ -14,7 +14,7 @@
   "scripts": {
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
-    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types",
+    "build:definitions": "tsc -p tsconfig.modules.json -d --declarationDir ./types && copyfiles -u 1 \"src/types.d.ts\" types",
     "build": "npm-run-all -p \"build:commonjs\" \"build:modules\" \"build:definitions\" \"styles\"",
     "clean": "rimraf es lib types dist",
     "prebuild": "npm run clean",
