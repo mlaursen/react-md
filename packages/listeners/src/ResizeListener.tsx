@@ -58,6 +58,17 @@ export interface IResizeListenerBaseProps {
    * @docgen
    */
   fixScrolls?: boolean;
+
+  /**
+   * Boolean if the `onResize` prop **should not** be called after the component mounts. This functionality is enabled
+   * by default since it makes initial layout changes easier.
+   *
+   * NOTE: This will be a `new Event("resize")` that is dispatched from the `window`. This means that it will not
+   * be a trusted source.
+   *
+   * @docgen
+   */
+  disableMountResizeTrigger?: boolean;
 }
 
 export interface IResizeListenerWithResize extends IResizeListenerBaseProps {
@@ -75,17 +86,31 @@ export interface IResizeListenerDefaultProps {
   fixScrolls: boolean;
   touchDelay: number;
   scrollDelay: number;
+  disableMountResizeTrigger: boolean;
 }
 
 export type ResizeListenerWithDefaultProps = IResizeListenerProps & IResizeListenerDefaultProps;
 
 export default class ResizeListener extends React.Component<IResizeListenerProps, {}> {
   public static propTypes = {
-    onResize: PropTypes.func.isRequired,
+    onResize: PropTypes.func,
     capture: PropTypes.bool,
     touchDelay: PropTypes.number,
     scrollDelay: PropTypes.number,
-    children: PropTypes.node,
+    children: PropTypes.func,
+    disableMountResizeTrigger: PropTypes.bool,
+    _validate: (props: IResizeListenerProps, propName: string, component: string) => {
+      const isResize = typeof props.onResize !== "undefined";
+      const isChildren = typeof props.children !== "undefined";
+      if (isResize || isChildren) {
+        return null;
+      }
+
+      return new Error(
+        `The \`${component}\` component requires either the \`onResize\` or \`children\` props to be defined ` +
+          "as functions but both were `undefined`."
+      );
+    },
   };
 
   public static defaultProps: IResizeListenerDefaultProps = {
@@ -93,6 +118,7 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     fixScrolls: true,
     touchDelay: 800,
     scrollDelay: 800,
+    disableMountResizeTrigger: false,
   };
 
   private scrollTimeout?: number;
@@ -108,12 +134,17 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   }
 
   public componentDidMount() {
+    const { disableMountResizeTrigger, onResize } = this.props;
     this.resizeHandler = throttleEvent("resize", window);
     this.resizeHandler.add(this.handleResize);
     this.scrollHandler = throttleEvent("scroll", window, true);
 
     this.updateScroll();
     this.updateTouch();
+
+    if (onResize && !disableMountResizeTrigger) {
+      window.dispatchEvent(new Event("resize"));
+    }
   }
 
   public componentDidUpdate(prevProps: ResizeListenerWithDefaultProps) {
