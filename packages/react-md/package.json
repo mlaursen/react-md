@@ -32,12 +32,24 @@
   "repository": "https://github.com/mlaursen/react-md",
   "license": "MIT",
   "dependencies": {
+    "@react-md/a11y": "^2.0.0-alpha-1",
+    "@react-md/app-bar": "^2.0.0-alpha-1",
     "@react-md/button": "^2.0.0-alpha-1",
     "@react-md/elevation": "^2.0.0-alpha-1",
     "@react-md/icon": "^2.0.0-alpha-1",
+    "@react-md/link": "^2.0.0-alpha-1",
+    "@react-md/list": "^2.0.0-alpha-1",
+    "@react-md/listeners": "^2.0.0-alpha-1",
+    "@react-md/overlay": "^2.0.0-alpha-1",
+    "@react-md/portal": "^2.0.0-alpha-1",
+    "@react-md/sheet": "^2.0.0-alpha-1",
+    "@react-md/states": "^2.0.0-alpha-1",
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/tooltip": "^2.0.0-alpha-1",
-    "@react-md/typography": "^2.0.0-alpha-1"
+    "@react-md/transition": "^2.0.0-alpha-1",
+    "@react-md/tree-view": "^2.0.0-alpha-1",
+    "@react-md/typography": "^2.0.0-alpha-1",
+    "@react-md/utils": "^2.0.0-alpha-1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.4",

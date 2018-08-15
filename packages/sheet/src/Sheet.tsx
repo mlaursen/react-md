@@ -51,7 +51,7 @@ export interface ISheetDefaultProps {
 
 export type SheetWithDefaultProps = ISheetProps & ISheetDefaultProps;
 
-export default class Sheet extends React.Component<ISheetProps, void> {
+export default class Sheet extends React.Component<ISheetProps, {}> {
   public static defaultProps: ISheetDefaultProps = {
     overlay: true,
     mountOnEnter: true,
