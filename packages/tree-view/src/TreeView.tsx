@@ -150,6 +150,18 @@ export type TreeViewWithDefaultProps<D = ILazyKey, R = ILazyKey> = ITreeViewProp
 
 export interface ITreeViewState {}
 
+/**
+ * The `TreeView` component is used to create an accessible
+ * [tree view widget](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView) by adding the base required
+ * click and keyboard listeners to the tree to open, close, and select tree items. However, the items will
+ * not be opened, closed, or selected unless the provided `onItemSelect`, `onItemExpandedChange`, and
+ * `onItemSiblingExpansion` props do not update the `expandedIds` and `selectedIds` props. There is a
+ * `TreeViewControls` component that can be used to automatically handle this logic for you though.
+ *
+ * To make rendering the tree easy, there are decent defaults for rendering the entire `TreeView` and each
+ * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
+ * complex trees that have drag and drop or other functionality built in.
+ */
 export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Component<
   ITreeViewProps<D, R>,
   ITreeViewState
@@ -171,6 +183,46 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     ),
   };
 
+  /**
+   * Attempts to find the `TreeViewData` based on the provided `element` and `data`. This is generally
+   * used for click or keyboard events to navigate and select different items within the `TreeView`
+   * component internally, but can also be used to add additional custom click and keyboard handlers.
+   *
+   * Example:
+   * ```html
+   * <ul role="treeview" id="tree">
+   *   <li role="treeitem" id="item-1">Item 1</li>
+   *   <li role="treeitem" id="item-2">
+   *     Item 2
+   *     <ul role="group">
+   *      <li role="treeitem" id="item-2-1">Item 2-1</li>
+   *      <li role="treeitem" id="item-2-2">Item 2-2</li>
+   *     </ul>
+   *   </li>
+   *   <li role="treeitem" id="item-3">Item 3</li>
+   * ```
+   *
+   * ```js
+   * const data = [{
+   *   itemId: "item-1",
+   *   children: "Item 1",
+   * }, {
+   *   itemId: "item-2",
+   *   children: "Item 2",
+   *   childItems: [{
+   *     itemId: "item-2-1",
+   *     children: "Item 2-1",
+   *   }, {
+   *    itemId: "item-2-2",
+   *    children: "Item 2-2",
+   *   }],
+   * }];
+   * const item = document.getElementById("item-2-1") as HTMLElement | null;
+   * const tree = document.getElementByid("tree") as HTMLElement | null;
+   * const foundItemData = TreeView.findTreeItemFromElement(item, data, tree);
+   * // foundItemData = { itemId: "item-2-1", children: "Item 2-1" }
+   * ```
+   */
   public static findTreeItemFromElement<D = ILazyKey>(
     element: HTMLElement,
     data: TreeViewDataList<D>,
@@ -185,6 +237,46 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     return TreeView.findTreeItemDataList(TreeView.buildItemIndexStack(itemElement, treeEl), data)[itemIndex] || null;
   }
 
+  /**
+   * Attempts to find the `TreeViewDataList` based on the provided `element` and `data`. This is generally
+   * used for click or keyboard events to navigate and select different items within the `TreeView`
+   * component internally, but can also be used to add additional custom click and keyboard handlers.
+   *
+   * Example:
+   * ```html
+   * <ul role="treeview" id="tree">
+   *   <li role="treeitem" id="item-1">Item 1</li>
+   *   <li role="treeitem" id="item-2">
+   *     Item 2
+   *     <ul role="group">
+   *      <li role="treeitem" id="item-2-1">Item 2-1</li>
+   *      <li role="treeitem" id="item-2-2">Item 2-2</li>
+   *     </ul>
+   *   </li>
+   *   <li role="treeitem" id="item-3">Item 3</li>
+   * ```
+   *
+   * ```js
+   * const data = [{
+   *   itemId: "item-1",
+   *   children: "Item 1",
+   * }, {
+   *   itemId: "item-2",
+   *   children: "Item 2",
+   *   childItems: [{
+   *     itemId: "item-2-1",
+   *     children: "Item 2-1",
+   *   }, {
+   *    itemId: "item-2-2",
+   *    children: "Item 2-2",
+   *   }],
+   * }];
+   * const item = document.getElementById("item-2-1") as HTMLElement | null;
+   * const tree = document.getElementByid("tree") as HTMLElement | null;
+   * const foundItemData = TreeView.findTreeItemFromElement(item, data, tree);
+   * // foundItemData = [{ itemId: "item-2-1", children: "Item 2-1" }, { itemId: "item-2-2", children: "Item 2-2" }]
+   * ```
+   */
   public static findTreeItemsFromElement<D = ILazyKey>(
     element: HTMLElement,
     data: TreeViewDataList<D>,
@@ -214,6 +306,12 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     return element;
   }
 
+  /**
+   * Attempts to find the `TreeItemDataList` based on a stack of item indexes by digging down into the
+   * provided `data` list.
+   *
+   * @see buildItemIndexStack
+   */
   private static findTreeItemDataList<D = ILazyKey>(stack: number[], data: TreeViewDataList<D>) {
     let temp;
     let list = data;
@@ -275,6 +373,11 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     }
   }
 
+  /**
+   * This function will attempt to find all treeitems that currently exist within the treeview.
+   * This is normally run automatically each time a new `TreeItem` is mounted or unmounted from
+   * the DOM, but can also be called manually as needed when a `ref` is attached to the `TreeView`.
+   */
   public updateTreeItems = () => {
     if (this.updateFrame) {
       window.cancelAnimationFrame(this.updateFrame);
@@ -360,10 +463,12 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
       onItemSelect(itemId);
     }
 
+    // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
     if (event.type === "keydown") {
       event = event as React.KeyboardEvent<TreeViewElement>;
       if (event.key === " ") {
+        // prevent page from scrolling
         event.preventDefault();
       }
 
@@ -388,8 +493,12 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
   };
 
   private openAllRelatedNodes = (element: HTMLElement) => {
-    const { data, disableSiblingExpansion, onItemSiblingExpansion, expandedIds } = this
-      .props as TreeViewPropsWithSiblingExpansion<D, R>;
+    const {
+      data,
+      disableSiblingExpansion,
+      onItemSiblingExpansion,
+      expandedIds
+    } = this.props as TreeViewPropsWithSiblingExpansion<D, R>;
 
     if (!this.treeEl || disableSiblingExpansion) {
       return;
@@ -415,6 +524,21 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     onItemSiblingExpansion(newExpandedIds);
   };
 
+  private focusFrom = (element: HTMLElement, increment: boolean) => {
+    const currentIndex = this.treeItems.indexOf(element);
+    if (currentIndex === -1) {
+      return;
+    }
+
+    let nextIndex = currentIndex + (increment ? 1 : -1);
+    if (nextIndex < 0) {
+      nextIndex = this.treeItems.length - 1;
+    } else if (nextIndex >= this.treeItems.length) {
+      nextIndex = 0;
+    }
+    this.focus(nextIndex);
+  };
+
   private focus = (index: number) => {
     index = Math.max(0, Math.min(this.treeItems.length - 1, index));
 
@@ -433,21 +557,6 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     if (selectedIds.indexOf(itemId) === -1) {
       onItemSelect(itemId);
     }
-  };
-
-  private focusFrom = (element: HTMLElement, increment: boolean) => {
-    const currentIndex = this.treeItems.indexOf(element);
-    if (currentIndex === -1) {
-      return;
-    }
-
-    let nextIndex = currentIndex + (increment ? 1 : -1);
-    if (nextIndex < 0) {
-      nextIndex = this.treeItems.length - 1;
-    } else if (nextIndex >= this.treeItems.length) {
-      nextIndex = 0;
-    }
-    this.focus(nextIndex);
   };
 
   private renderChildTreeItems = (data: TreeViewDataList<D>, depth: number): React.ReactNode => {

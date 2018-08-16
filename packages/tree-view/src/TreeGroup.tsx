@@ -1,10 +1,11 @@
 import * as React from "react";
+import cn from "classnames";
 import { Collapse } from "@react-md/transition";
 import { List, IListProps, ListElement } from "@react-md/list";
 
 export interface ITreeGroupProps extends IListProps {
   /**
-   * An optional configurable enter duration. This defaults to the collapse's enter duration
+   * An optional configurable enter duration. This defaults to the `Collapse`'s enter duration
    * of `250ms`.
    *
    * @docgen
@@ -12,7 +13,7 @@ export interface ITreeGroupProps extends IListProps {
   enterDuration?: number;
 
   /**
-   * An optional configurable leave duration. This defaults to the collapse's leave duration
+   * An optional configurable leave duration. This defaults to the `Collapse`'s leave duration
    * of `200ms`.
    *
    * @docgen
@@ -40,6 +41,11 @@ export interface ITreeGroupDefaultProps {
 
 export type TreeGroupWithDefaultProps = ITreeGroupProps & ITreeGroupDefaultProps;
 
+/**
+ * The `TreeGroup` component is used to render a tree item's nested items whenever the `expanded` prop
+ * is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view and will
+ * fully unrender when the `expanded` prop is `false`.
+ */
 const TreeGroup: React.SFC<ITreeGroupProps> = providedProps => {
   const {
     style,
@@ -55,7 +61,7 @@ const TreeGroup: React.SFC<ITreeGroupProps> = providedProps => {
   return (
     <Collapse
       style={style}
-      className={className}
+      className={cn("rmd-tree-group", className)}
       collapsed={!expanded}
       isEmptyCollapsed={isEmptyCollapsed}
       enterDuration={enterDuration}

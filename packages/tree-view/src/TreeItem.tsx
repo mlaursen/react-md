@@ -1,14 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
 
-/**
- * The `TreeItem` component is an extremely simple component that just renders an `li` element
- * with the "base" tree item props and any children provided. This should be used in combination
- * with the `TreeItemContent` and `TreeGroup` components to get a fully functional tree item.
- *
- * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
- * of this one.
- */
 export interface ITreeItemBaseProps {
   /**
    * An optional aria-expanded attribute to apply to the tree item. This should only be provided as the value "true"
@@ -69,6 +61,14 @@ export interface ITreeItemDefaultProps {
 
 export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
 
+/**
+ * The `TreeItem` component is an extremely simple component that just renders an `li` element
+ * with the "base" tree item props and any children provided. This should be used in combination
+ * with the `TreeItemContent` and `TreeGroup` components to get a fully functional tree item.
+ *
+ * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
+ * of this one.
+ */
 const TreeItem: React.SFC<ITreeItemProps> = providedProps => {
   const { className, selected, tabIndex: propTabIndex, children, ...props } = providedProps as TreeItemWithDefaultProps;
 

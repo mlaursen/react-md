@@ -7,7 +7,20 @@ import { ITreeItemDefaultProps } from "./TreeItem";
 
 export interface ITreeItemContentBaseProps extends IListItemBaseProps {
   // TODO: Learn how to correctly type this
+  /**
+   * The component to use that renders a `Link` component. This should normally be something like the `Link`
+   * from `react-router` or `reach-router`, but can also just be the `Link` from `@react-md/link` if you are
+   * not creating a SPA.
+   *
+   * @docgen
+   */
   linkComponent?: React.ReactType;
+
+  /**
+   * Boolean if the `medium` `ListItem` spec should be used for the content.
+   *
+   * @docgen
+   */
   medium?: boolean;
 }
 
@@ -26,6 +39,11 @@ export type TreeItemContentWithDefaultProps = ITreeItemContentProps &
   ITreeItemContentDefaultProps &
   ITreeItemDefaultProps;
 
+/**
+ * The `TreeItemContent` is extremely similar to the `ListItem` component as it uses some of the same props.
+ * It is used to layout the contents within a `TreeItem` so that is it separated from the `TreeGroup` and has
+ * the different focus states and icon alignments.
+ */
 const TreeItemContent: React.SFC<ITreeItemContentProps> = providedProps => {
   const {
     className: propClassName,
