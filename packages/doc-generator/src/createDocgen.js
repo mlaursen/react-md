@@ -3,6 +3,10 @@ const path = require('path');
 const typescriptDocgen = require('react-docgen-typescript');
 
 function parseLine(exports, line) {
+  if (line === 'export * from "./types";') {
+    return exports;
+  }
+
   const exportedName = line.replace(/.+"\.\/(\w+)";$/, 'src/$1.tsx');
   if (exportedName && exports.indexOf(exportedName) === -1) {
     exports.push(exportedName);
