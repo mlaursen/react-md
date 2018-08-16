@@ -2,134 +2,198 @@
 /// @group app-bar
 ////
 
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 @import 'variables';
 
+/// Creates the styles for the `AppBar` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar {
+///     @include rmd-app-bar;
+///   }
+@mixin rmd-app-bar {
+  align-items: center;
+  display: flex;
+  height: $rmd-app-bar-height;
+
+  &--fixed {
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: $rmd-app-bar-z-index;
+  }
+
+  &--fixed-elevation {
+    @include rmd-elevation($rmd-app-bar-fixed-elevation);
+  }
+
+  &--top {
+    top: 0;
+  }
+
+  &--bottom {
+    bottom: 0;
+  }
+
+  &--primary {
+    @include rmd-theme(background-color, primary);
+    @include rmd-theme(color, on-primary);
+  }
+
+  &--secondary {
+    @include rmd-theme(background-color, secondary);
+    @include rmd-theme(color, on-secondary);
+  }
+
+  &--default {
+    background-color: $rmd-app-bar-default-background-color;
+    color: $rmd-app-bar-default-text-color;
+  }
+
+  &--child-inherit {
+    .rmd-app-bar__nav,
+    .rmd-app-bar__title,
+    .rmd-app-bar__action {
+      color: inherit;
+    }
+  }
+
+  &--dense {
+    height: $rmd-app-bar-dense-height;
+  }
+
+  &--prominent {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: $rmd-app-bar-prominent-height;
+  }
+
+  &--prominent-dense {
+    height: $rmd-app-bar-prominent-height;
+  }
+}
+
+/// Creats the styles for the `AppBarNav` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__nav {
+///     @include rmd-app-bar-nav;
+///   }
+@mixin rmd-app-bar-nav {
+  flex-shrink: 0;
+  margin-left: $rmd-app-bar-lr-margin;
+  margin-right: $rmd-app-bar-title-nav-margin;
+
+  @include rmd-utils-rtl {
+    margin-left: $rmd-app-bar-title-nav-margin;
+    margin-right: $rmd-app-bar-lr-margin;
+  }
+}
+
+/// Creates the styles for the `AppBarTitle` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__title {
+///     @include rmd-app-bar-title;
+///   }
+@mixin rmd-app-bar-title {
+  @include rmd-typography(headline-6);
+
+  line-height: $rmd-app-bar-title-line-height;
+  margin-bottom: 0;
+  margin-left: $rmd-app-bar-keyline;
+  margin-top: 0;
+
+  @include rmd-utils-rtl {
+    margin-left: auto;
+    margin-right: $rmd-app-bar-keyline;
+  }
+
+  .rmd-app-bar__nav ~ & {
+    margin-left: 0;
+
+    @include rmd-utils-rtl {
+      margin-right: 0;
+    }
+  }
+
+  &--keyline {
+    margin-left: $rmd-app-bar-title-keyline;
+
+    @include rmd-utils-rtl {
+      margin-left: auto;
+      margin-right: $rmd-app-bar-title-keyline;
+    }
+  }
+}
+
+/// Creates the styles for the `AppBarAction` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__action {
+///     @include rmd-app-bar-action;
+///   }
+@mixin rmd-app-bar-action {
+  flex-shrink: 0;
+
+  &--first {
+    margin-left: auto;
+
+    @include rmd-utils-rtl {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  &--last {
+    margin-left: $rmd-app-bar-lr-margin;
+    margin-right: $rmd-app-bar-nav-margin;
+
+    @include rmd-utils-rtl {
+      margin-left: $rmd-app-bar-nav-margin;
+      margin-right: $rmd-app-bar-lr-margin;
+    }
+  }
+}
+
+/// Creates the styles for the `AppBarRow` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__row {
+///     @include rmd-app-bar-row;
+///   }
+@mixin rmd-app-bar-row {
+  align-items: center;
+  display: flex;
+  height: $rmd-app-bar-height;
+  width: 100%;
+
+  &--dense {
+    height: $rmd-app-bar-dense-height;
+  }
+}
+
+/// Creates all the styles for all the AppBar components.
 @mixin react-md-app-bar {
   .rmd-app-bar {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    height: $rmd-app-bar-height;
-    padding: $rmd-app-bar-vertical-padding $rmd-app-bar-horizontal-padding;
-
-    &--fixed {
-      left: 0;
-      position: fixed;
-      right: 0;
-    }
-
-    &--top {
-      top: 0;
-    }
-
-    &--bottom {
-      bottom: 0;
-    }
-
-    &--child-inherit {
-      .rmd-app-bar__nav,
-      .rmd-app-bar__title,
-      .rmd-app-bar__action {
-        color: inherit;
-      }
-    }
-
-    &--primary {
-      @include rmd-theme(background-color, primary);
-      @include rmd-theme(color, on-primary);
-    }
-
-    &--secondary {
-      @include rmd-theme(background-color, secondary);
-      @include rmd-theme(color, on-secondary);
-    }
-
-    &--multiline {
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    &--dense {
-      height: $rmd-app-bar-dense-height;
-    }
-
-    &--prominent {
-      height: $rmd-app-bar-prominent-height;
-    }
-
-    &--prominent-dense {
-      height: $rmd-app-bar-prominent-height;
-    }
-
-    &--grow {
-      height: auto;
-      min-height: $rmd-app-bar-height;
-    }
-
-    &--grow-dense {
-      min-height: $rmd-app-bar-dense-height;
-    }
+    @include rmd-app-bar;
 
     &__nav {
-      flex-shrink: 0;
-      margin-right: $rmd-app-bar-title-nav-margin;
-
-      // sass-lint:disable-block mixins-before-declarations
-      @include rmd-utils-rtl {
-        margin-left: $rmd-app-bar-title-nav-margin;
-        margin-right: 0;
-      }
+      @include rmd-app-bar-nav;
     }
 
     &__title {
-      @include rmd-typography(headline-6);
-
-      line-height: $rmd-btn-icon-size;
-      margin-bottom: 0;
-      margin-top: 0;
-
-      &--offset {
-        margin-left: $rmd-app-bar-title-keyline;
-
-        // sass-lint:disable-block mixins-before-declarations
-        @include rmd-utils-rtl {
-          margin-left: auto;
-          margin-right: $rmd-app-bar-title-keyline;
-        }
-      }
-
-      &--prominent {
-        margin-top: $rmd-app-bar-height;
-      }
-
-      &--prominent-dense {
-        margin-top: $rmd-app-bar-height;
-      }
+      @include rmd-app-bar-title;
     }
 
     &__action {
-      flex-shrink: 0;
+      @include rmd-app-bar-action;
+    }
 
-      &--first {
-        margin-left: auto;
-
-        // sass-lint:disable-block mixins-before-declarations
-        @include rmd-utils-rtl {
-          margin-left: 0;
-          margin-right: auto;
-        }
-      }
-
-      &--last {
-        margin-right: $rmd-app-bar-nav-margin;
-
-        // sass-lint:disable-block mixins-before-declarations
-        @include rmd-utils-rtl {
-          margin-left: $rmd-app-bar-nav-margin;
-        }
-      }
+    &__row {
+      @include rmd-app-bar-row;
     }
   }
 }

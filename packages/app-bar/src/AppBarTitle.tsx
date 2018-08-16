@@ -3,29 +3,31 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 export interface IAppBarTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  [key: string]: any;
-  dense?: boolean;
-  offset?: boolean;
-  prominent?: boolean;
+  /**
+   * Boolean if the title should be placed at the `$rmd-app-bar-title-keyline`.
+   *
+   * @docgen
+   */
+  keyline?: boolean;
 }
 
 export interface IAppBarTitleDefaultProps {
-  dense: boolean;
-  offset: boolean;
-  prominent: boolean;
+  keyline: boolean;
 }
 
 export type AppBarTitleWithDefaultProps = IAppBarTitleProps & IAppBarTitleDefaultProps;
 
-const AppBarTitle: React.SFC<IAppBarTitleProps> = ({ dense, offset, prominent, className, ...props }) => (
+/**
+ * The `AppBarTitle` component is a simple wrapper around an `<h6>` tag to get styling for a title
+ * within an app bar.
+ */
+const AppBarTitle: React.SFC<IAppBarTitleProps> = ({ keyline, className, ...props }) => (
   <h6
     {...props}
     className={cn(
       "rmd-app-bar__title",
       {
-        "rmd-app-bar__title--offset": offset,
-        "rmd-app-bar__title--prominent": prominent && !dense,
-        "rmd-app-bar__title--prominent-dense": prominent && dense,
+        "rmd-app-bar__title--keyline": keyline,
       },
       className
     )}
@@ -35,13 +37,11 @@ const AppBarTitle: React.SFC<IAppBarTitleProps> = ({ dense, offset, prominent, c
 AppBarTitle.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
-  offset: PropTypes.bool,
+  keyline: PropTypes.bool,
 };
 
 AppBarTitle.defaultProps = {
-  dense: false,
-  offset: false,
-  prominent: false,
+  keyline: false,
 } as IAppBarTitleDefaultProps;
 
 export default AppBarTitle;

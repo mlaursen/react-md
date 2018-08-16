@@ -2,11 +2,21 @@ import * as React from "react";
 
 import ExamplesPage from "components/ExamplesPage";
 
-import SimpleAppBars from "./SimpleAppBars";
+import SingleLineAppBars from "./SingleLineAppBars";
+import ProminentAppBars from "./ProminentAppBars";
+import DenseAppBars from "./DenseAppBars";
 
 const examples = [{
-  title: "Simple",
-  children: <SimpleAppBars />,
+  title: "Single Line App Bars",
+  children: <SingleLineAppBars />,
+  exampleGroup: false,
+}, {
+  title: "Prominent App Bars",
+  children: <ProminentAppBars />,
+  exampleGroup: false,
+}, {
+  title: "Dense App Bars",
+  children: <DenseAppBars />,
   exampleGroup: false,
 }];
 

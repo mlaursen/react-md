@@ -16,6 +16,16 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [AppBarAction](#appbaraction)
   * [AppBarNav](#appbarnav)
   * [AppBarTitle](#appbartitle)
+  * [AppBarRow](#appbarrow)
+- [SassDoc](#sassdoc)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
+      - [Example Usage SCSS](#example-usage-scss)
+      - [Example Usage SCSS](#example-usage-scss-1)
+      - [Example Usage SCSS](#example-usage-scss-2)
+      - [Example Usage SCSS](#example-usage-scss-3)
+      - [Example Usage SCSS](#example-usage-scss-4)
+  * [Variables](#variables)
 <!-- TOC_END -->
 
 ## Installation
@@ -91,7 +101,8 @@ If you would like to just import all the utility variables, mixins, and function
 <!-- PROPS_START -->
 ## Prop Types
 ### AppBar
-
+The `AppBar` component is normally used to create a fixed header element within your page that defines a title,
+optional actions, and an optional navigation button.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -105,13 +116,83 @@ If you would like to just import all the utility variables, mixins, and function
 </tr>
 </thead>
 <tbody>
-
+<tr>
+<td>fixed</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>AppBar</code> should be fixed to the top or bottom of the page.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>fixedPosition</td>
+<td><code>"top" | "bottom"</code></td>
+<td><code>null</code></td>
+<td>
+The position within the page to &#34;fix&#34; the <code>AppBar</code> when the <code>fixed</code> prop is enabled.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>fixedElevation</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the fixed <code>AppBar</code> should gain elevation. This is recommended to stay enabled unless
+you manually apply a border to help separate the <code>AppBar</code> from other content.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>AppBar</code> should use the <code>dense</code> spec. This prop can be used along with the <code>prominent</code> prop
+to create a prominent and dense <code>AppBar</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>prominent</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>AppBar</code> should use the <code>prominent</code> spec. This prop can be used along with the <code>dense</code> prop
+to create a prominent and dense <code>AppBar</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>theme</td>
+<td><code>"clear" | "primary" | "secondary" | "default"</code></td>
+<td><code>null</code></td>
+<td>
+The theme to apply to the <code>AppBar</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>inheritColor</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>AppBarNav</code>, <code>AppBarTitle</code>, and <code>AppBarActions</code> should inherit the color that for the provided
+<code>theme</code>. If this value is <code>undefined</code>, the color will only be inherited when the theme is set to <code>primary</code> or
+<code>secondary</code>. However if this value is a boolean, it will be used instead. So if you set this to <code>false</code> and set
+the <code>theme</code> to <code>&#34;primary&#34;</code>, the defined primary text clor will not be inherited.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
 
 ### AppBarAction
-
+The `AppBarAction` component is a simple wrapper of the `Button` component that just adds some additional
+styles as needed to position itself within the `AppBar` as well as changing the default props so that it
+is `"icon"` by default instead of `"text"` and `"clear"` instead of `"primary"` for the theme.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -130,6 +211,20 @@ If you would like to just import all the utility variables, mixins, and function
 <td><code>boolean</code></td>
 <td><code>null</code></td>
 <td>
+Boolean if this is the first action within the app bar. This is really just used to automatically
+right-align all the actions by applying `margin-left: auto` to this action.
+
+</td>
+</tr>
+<tr>
+<td>last</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if this is the last action within the app bar&#39;s row. This will just apply the <code>$rmd-app-bar-lr-margin</code>
+as <code>margin-right</code>.
+<br /><br />
+NOTE: This should not be used when using an overflow menu.
 <br /><br />
 </td>
 </tr>
@@ -277,7 +372,9 @@ to clone into the provided icon.
 
 
 ### AppBarNav
-
+The `AppBarNav` component is a simple wrapper of the `Button` component used to add some additional
+styles to position itself within the `AppBar` as well as changing the default props so that it
+is `"icon"` by default instead of `"text"` and `"clear"` instead of `"primary"` for the theme.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -435,7 +532,8 @@ to clone into the provided icon.
 
 
 ### AppBarTitle
-
+The `AppBarTitle` component is a simple wrapper around an `<h6>` tag to get styling for a title
+within an app bar.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -449,7 +547,45 @@ to clone into the provided icon.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>keyline</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the title should be placed at the <code>$rmd-app-bar-title-keyline</code>.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
 
+
+### AppBarRow
+The `AppBarRow` is used to help generate a "prominent" AppBar with different rows with correct
+spacing and alignment. It really just helps enforce the vertical alignment of each item within
+a row. This should not be used if you want to have a dynamic `AppBar` height.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dense</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if each row is using the &#34;dense&#34; spec for an app bar.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -458,5 +594,191 @@ to clone into the provided icon.
 
 
 <!-- SASSDOC_START -->
+## SassDoc
+
+### Mixins
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-app-bar</code></td>
+<td>Creates the styles for the <code>AppBar</code> component.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-nav</code></td>
+<td>Creats the styles for the <code>AppBarNav</code> component.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-title</code></td>
+<td>Creates the styles for the <code>AppBarTitle</code> component.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-action</code></td>
+<td>Creates the styles for the <code>AppBarAction</code> component.
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-row</code></td>
+<td>Creates the styles for the <code>AppBarRow</code> component.
+
+</td>
+</tr>
+<tr>
+<td><code>react-md-app-bar</code></td>
+<td>Creates all the styles for all the AppBar components.
+<br /><br />
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Examples
+
+
+##### Example Usage SCSS
+
+```scss
+.rmd-app-bar {
+  @include rmd-app-bar;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.rmd-app-bar__nav {
+  @include rmd-app-bar-nav;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.rmd-app-bar__title {
+  @include rmd-app-bar-title;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.rmd-app-bar__action {
+  @include rmd-app-bar-action;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.rmd-app-bar__row {
+  @include rmd-app-bar-row;
+}
+```
+
+
+### Variables
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rmd-app-bar-z-index</code></td>
+<td>The z-index to use for the fixed app bar. Ideally this value should be less than
+any of the &#34;temporary&#34; materials like overlays, sheets, and menus.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-fixed-elevation</code></td>
+<td>The elevation to use for &#34;fixed&#34; app bars. This should be a number between 0 and 16.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-height</code></td>
+<td>The height for the app bar.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-dense-height</code></td>
+<td>The dense height for the app bar.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-prominent-height</code></td>
+<td>The prominent/extended height for the app bar.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-prominent-dense-height</code></td>
+<td>The prominent/extended height for the app bar when the <code>dense</code> prop is also enabled.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-keyline</code></td>
+<td>The default keyline to use for either the <code>AppBarNav</code> or <code>AppBarTitle</code>. This makes the icon in the <code>AppBarNav</code> or
+the first letter in the <code>AppBarTitle</code> appear at this distance.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-nav-margin</code></td>
+<td>The amount of margin to apply to the <code>AppBarNav</code> based on the <code>$rmd-app-bar-keyline</code> so that the icon will be positioned
+at the keyline (ignoring the button padding).
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-title-line-height</code></td>
+<td>The line-height to apply to the <code>AppBarTitle</code>.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-title-keyline</code></td>
+<td>The keyline for the <code>AppBarTitle</code> to use when used with the <code>AppBarNav</code> or the <code>offset</code> prop is enabled.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-title-nav-margin</code></td>
+<td>The amount of margin to apply to the title when used with the <code>AppBarNav</code> component.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-lr-margin</code></td>
+<td>The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be
+applied if using the <code>AppBarNav</code> component and will be applied to the <code>AppBarAction</code> component that enables the <code>last</code> prop.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-default-background-color</code></td>
+<td>The background-color to use for an <code>AppBar</code> that is using the <code>default</code> theme.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-default-text-color</code></td>
+<td>The color to use for an <code>AppBar</code> that is using the <code>default</code> theme.
+<br /><br /></td>
+</tr>
+</tbody>
+</table>
+
 <!-- SASSDOC_END -->
 

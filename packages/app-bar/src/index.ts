@@ -9,3 +9,6 @@ export * from "./AppBarNav";
 
 export { default as AppBarTitle } from "./AppBarTitle";
 export * from "./AppBarTitle";
+
+export { default as AppBarRow } from "./AppBarRow";
+export * from "./AppBarRow";

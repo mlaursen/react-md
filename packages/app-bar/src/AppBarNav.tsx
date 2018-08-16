@@ -9,14 +9,19 @@ export interface IAppBarNavDefaultProps extends IButtonDefaultProps {}
 
 export type AppBarNavWithDefaultProps = IAppBarNavProps & IAppBarNavDefaultProps;
 
-const AppBarNav: React.SFC<IAppBarNavProps> = ({ className, ...props }) => {
-  return <Button className={cn("rmd-app-bar__nav", className)} {...props} />;
-};
+/**
+ * The `AppBarNav` component is a simple wrapper of the `Button` component used to add some additional
+ * styles to position itself within the `AppBar` as well as changing the default props so that it
+ * is `"icon"` by default instead of `"text"` and `"clear"` instead of `"primary"` for the theme.
+ */
+const AppBarNav: React.SFC<IAppBarNavProps> = ({ className, ...props }) => (
+  <Button className={cn("rmd-app-bar__nav", className)} {...props} />
+);
 
 AppBarNav.defaultProps = {
   asDiv: false,
   disabled: false,
-  theme: "primary",
+  theme: "clear",
   themeType: "flat",
   btnType: "icon",
   iconAfter: false,
