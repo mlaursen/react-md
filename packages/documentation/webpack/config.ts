@@ -85,7 +85,12 @@ module.exports = (env: any, { mode }: IArgv) => {
         {
           oneOf: [
             {
-              test: /\.(png|jpe?g|gif)$/,
+              test: /\.svg$/,
+              include: /NotFound/,
+              use: require.resolve("raw-loader"),
+            },
+            {
+              test: /\.(png|jpe?g|gif|svg)$/,
               use: {
                 loader: require.resolve("url-loader"),
                 options: {
@@ -101,7 +106,7 @@ module.exports = (env: any, { mode }: IArgv) => {
                   loader: require.resolve("babel-loader"),
                   options: {
                     babelrc: false,
-                    plugins: ["react-hot-loader/babel"],
+                    plugins: ["react-hot-loader/babel", "syntax-dynamic-import"],
                   },
                 },
                 {

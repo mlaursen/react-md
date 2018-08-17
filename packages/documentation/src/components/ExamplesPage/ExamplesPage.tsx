@@ -6,10 +6,12 @@ import Markdown from "components/Markdown";
 import "./examples-page.scss";
 import { default as Example, IExampleProps } from "./Example";
 
+export type ExampleList = IExampleProps[];
+
 export interface IExamplesPageProps {
   title: string;
   description?: string;
-  examples: IExampleProps[];
+  examples: ExampleList;
 }
 
 const ExamplesPage: React.SFC<IExamplesPageProps> = ({ title, description, examples }) => (

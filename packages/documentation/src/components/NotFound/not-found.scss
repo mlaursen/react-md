@@ -1,0 +1,64 @@
+@import 'app-globals';
+
+.not-found {
+  background-color: rmd-theme-get-swatch($rmd-theme-primary, 800);
+  height: 0;
+  padding: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  @media (min-width: 767px) {
+    min-height: 90vh;
+
+    &__headline {
+      width: 80%;
+    }
+  }
+
+  &__svg {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  &__svg--circle {
+    &-1 {
+      fill: rmd-theme-get-swatch($rmd-theme-primary, 700);
+    }
+
+    &-2 {
+      fill: rmd-theme-get-swatch($rmd-theme-primary, 600);
+    }
+
+    &-3 {
+      fill: $rmd-theme-primary;
+    }
+  }
+
+  &__svg-oval {
+    fill: $rmd-theme-secondary;
+  }
+
+  &__uhhh,
+  &__oops {
+    color: $rmd-white-base;
+    margin: 0;
+    position: absolute;
+  }
+
+  &__uhhh {
+    left: 20%;
+    top: 10%;
+  }
+
+  &__oops {
+    bottom: 5em;
+    left: 50%;
+    position: absolute;
+    transform: translate3d(-50%, 0, 0);
+  }
+}

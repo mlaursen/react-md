@@ -1,0 +1,37 @@
+@import 'app-globals';
+
+.rmd-layout__nav {
+  @include rmd-elevation(2);
+  @include rmd-utils-scroll(y);
+  @include rmd-theme(background-color, surface);
+
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: $rmd-sheet-large-width;
+  z-index: 10;
+
+  ~ .rmd-layout__app-bar {
+    left: $rmd-sheet-large-width;
+  }
+}
+
+.rmd-layout__nav-header {
+  @include rmd-theme(background-color, surface);
+
+  border-bottom: 1px solid rgba($rmd-black-base, .12);
+}
+
+.rmd-layout__nav-tree {
+  margin-top: $rmd-app-bar-height;
+}
+
+.rmd-layout__title {
+  padding-left: 1rem;
+}
+
+.rmd-layout__main {
+  padding-left: $rmd-sheet-large-width;
+  padding-top: $rmd-app-bar-height;
+}

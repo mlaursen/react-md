@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "target": "es5",
     "jsx": "react",
+    "importHelpers": true,
     "lib": [
       "dom",
       "es6"

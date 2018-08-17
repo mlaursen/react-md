@@ -1,6 +1,5 @@
 const fs = require('fs-extra');
 const path = require('path');
-const commander = require('commander');
 const toc = require('markdown-toc');
 
 const PACKAGES_THAT_REQUIRE_STYLES = [
@@ -17,22 +16,6 @@ const PACKAGES_THAT_REQUIRE_STYLES = [
   '@react-md/tree-view',
   '@react-md/typography',
 ];
-
-const packages = [];
-commander
-  .option("-a, --all [all]")
-  .arguments('[packages...]')
-  .action((specificPackages) => {
-    [].push.apply(packages, specificPackages);
-  })
-  .parse(process.argv);
-
-const { all } = commander;
-
-if (!all && !packages.length) {
-  throw new Error('At least one package is required to create an installation page for.');
-  process.exit(1);
-}
 
 const packagesDir = path.join(process.cwd(), '..');
 
@@ -62,7 +45,7 @@ async function getExportedScssFiles(packageName) {
   return files.filter(file => file.endsWith('.scss'));
 }
 
-Promise.all(packages.map(async (name) => {
+async function createMarkdown(name) {
   const pkg = await getPackage(name);
   if (pkg.private) {
     throw new Error(`The package: \`${name}\` is set to private so an installation page cannot be created.`);
@@ -187,8 +170,7 @@ ${toc(markdown).content}
 
 ${markdown}`;
 
-
-  const contents = `/* tslint:disable max-line-length */
+  return `/* tslint:disable max-line-length */
 import * as React from "react";
 
 import { MarkdownPage } from "components/Markdown";
@@ -199,10 +181,12 @@ const Installation = () => <MarkdownPage markdown={markdown} />;
 
 export default Installation;
 `;
+}
+
+module.exports = async function createInstallationPage(name) {
+  const markdown = await createMarkdown(name);
   const folderName = name.split('-').map(part => part.substring(0, 1).toUpperCase() + part.substring(1)).join('');
-  const packagePath = path.join(packagesDir, 'documentation', 'src', 'components', folderName);
+  const packagePath = path.join(packagesDir, 'documentation', 'src', 'components', "packages", folderName);
   await fs.ensureDir(packagePath);
-  return fs.writeFile(path.join(packagePath, 'Installation.tsx'), contents);
-})).then(() => {
-  console.log('Done');
-});
+  return fs.writeFile(path.join(packagePath, 'Installation.tsx'), markdown);
+}

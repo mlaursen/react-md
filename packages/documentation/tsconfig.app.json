@@ -17,6 +17,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "importHelpers": true,
     "lib": [
       "dom",
       "es2017"
