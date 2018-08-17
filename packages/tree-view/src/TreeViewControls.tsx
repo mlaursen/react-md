@@ -2,12 +2,8 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { ITreeViewBaseProps } from "./TreeView";
 
-import {
-  onItemSelect,
-  onItemExpandedChange,
-  onItemSiblingExpansion,
-  TreeViewDataList,
-} from "./types";
+import { onItemSelect, onItemExpandedChange, onItemSiblingExpansion, TreeViewDataList, ILazyKey } from "./types";
+import { handleSingleItemSelect, handleItemExpandedChange, findAllParentIds } from "./utils";
 
 export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {
   onItemSelect: onItemSelect;
@@ -84,7 +80,7 @@ export default class TreeViewControls<D, R> extends React.Component<
     let selectedIds = defaultSelectedIds;
     let expandedIds = defaultExpandedIds;
     if (!expandedIds.length && selectedIds.length) {
-      expandedIds = this.findMatchingIds(data, selectedIds);
+      expandedIds = findAllParentIds(data, selectedIds);
     }
 
     if (!selectedIds.length && data[0] && data[0].itemId) {
@@ -119,36 +115,16 @@ export default class TreeViewControls<D, R> extends React.Component<
     });
   }
 
-  private findMatchingIds = (items: TreeViewDataList<D>, toMatchIds: string[], parentIds: string[] = []) => {
-    const ids: string[] = [];
-    items.forEach(({ itemId, childItems }) => {
-      if (childItems && childItems.length) {
-        [].push.apply(ids, this.findMatchingIds(childItems, toMatchIds, parentIds.concat([itemId])));
-      }
-
-      if (toMatchIds.indexOf(itemId) !== -1) {
-        [].push.apply(ids, parentIds);
-      }
-    });
-
-    return ids;
-  };
-
   private handleItemSelect = (itemId: string) => {
-    this.setState({ selectedIds: [itemId] });
+    const selectedIds = handleSingleItemSelect(itemId, this.state.selectedIds);
+    if (this.state.selectedIds !== selectedIds) {
+      this.setState({ selectedIds });
+    }
   };
 
   private handleItemExpandedChange = (itemId: string, expanded: boolean) => {
-    const i = this.state.expandedIds.indexOf(itemId);
-    if (i === -1 && expanded) {
-      const expandedIds = this.state.expandedIds.slice();
-      expandedIds.push(itemId);
-
-      this.setState({ expandedIds });
-    } else if (i !== -1 && !expanded) {
-      const expandedIds = this.state.expandedIds.slice();
-      expandedIds.splice(i, 1);
-
+    const expandedIds = handleItemExpandedChange(itemId, expanded, this.state.expandedIds);
+    if (this.state.expandedIds !== expandedIds) {
       this.setState({ expandedIds });
     }
   };

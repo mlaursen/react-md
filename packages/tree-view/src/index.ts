@@ -22,4 +22,6 @@ export * from "./TreeItemContent";
 export { default as DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer";
 export * from "./DefaultTreeItemRenderer";
 
+export * from "./utils";
+
 export * from "./types";
