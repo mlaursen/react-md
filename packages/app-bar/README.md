@@ -14,11 +14,19 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [Simple Usage](#simple-usage)
 - [Prop Types](#prop-types)
   * [AppBar](#appbar)
+  * [AppBarAction](#appbaraction)
+  * [AppBarNav](#appbarnav)
+  * [AppBarTitle](#appbartitle)
+  * [AppBarRow](#appbarrow)
+- [SassDoc](#sassdoc)
+  * [Mixins](#mixins)
+    + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
       - [Example Usage SCSS](#example-usage-scss-1)
       - [Example Usage SCSS](#example-usage-scss-2)
       - [Example Usage SCSS](#example-usage-scss-3)
       - [Example Usage SCSS](#example-usage-scss-4)
+      - [Example Usage SCSS](#example-usage-scss-5)
   * [Variables](#variables)
 <!-- TOC_END -->
 
@@ -124,12 +132,10 @@ and optional actions. Since it is fixed on the page, it normally requires adding
 elements so that they aren't covered by this component. You can use the static class names on the
 `AppBar` to correctly add the padding or margin.
 
-```tsx
- * AppBar.offsetClassName
- * AppBar.offsetProminentClassName
- * AppBar.offsetDenseClassName
- * AppBar.offsetProminentDenseClassName
- * ```
+- `AppBar.offsetClassName`
+- `AppBar.offsetProminentClassName`
+- `AppBar.offsetDenseClassName`
+- `AppBar.offsetProminentDenseClassName`
 
 You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
 

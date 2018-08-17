@@ -83,12 +83,10 @@ export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
  * elements so that they aren't covered by this component. You can use the static class names on the
  * `AppBar` to correctly add the padding or margin.
  *
- * ```tsx
- * AppBar.offsetClassName
- * AppBar.offsetProminentClassName
- * AppBar.offsetDenseClassName
- * AppBar.offsetProminentDenseClassName
- * ```
+ * - `AppBar.offsetClassName`
+ * - `AppBar.offsetProminentClassName`
+ * - `AppBar.offsetDenseClassName`
+ * - `AppBar.offsetProminentDenseClassName`
  *
  * You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
  */
