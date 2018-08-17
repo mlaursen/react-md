@@ -6,6 +6,14 @@
 /// @type String
 $rmd-typography-font-family: Roboto, sans-serif !default;
 
+/// The max length a line of text can be on mobile devices.
+/// @type Number
+$rmd-typography-mobile-max-line-length: 17em !default;
+
+/// The max length a line of text can be on larger screens (mostly desktops or landscape tablets).
+/// @type Number
+$rmd-typography-desktop-max-line-length: 38em !default;
+
 /// The base styles for typography.
 /// @type Map
 $rmd-typography-base: (
