@@ -8,7 +8,7 @@ export { default as ListItemText } from "./ListItemText";
 export * from "./ListItemText";
 
 export { default as ListItemLink } from "./ListItemLink";
-export * from "./ListitemLink";
+export * from "./ListItemLink";
 
 export { default as ListItemLeftIcon } from "./ListItemLeftIcon";
 export * from "./ListItemLeftIcon";
