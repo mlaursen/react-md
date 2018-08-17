@@ -30,6 +30,16 @@
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "material design",
+    "react",
+    "link",
+    "component",
+    "components"
+  ],
   "license": "MIT",
   "dependencies": {
     "@react-md/theme": "^2.0.0-alpha-1",

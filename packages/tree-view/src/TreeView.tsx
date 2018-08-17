@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
 
@@ -148,8 +149,6 @@ export interface ITreeViewDefaultProps<D = ILazyKey, R = ILazyKey> {
 
 export type TreeViewWithDefaultProps<D = ILazyKey, R = ILazyKey> = ITreeViewProps<D, R> & ITreeViewDefaultProps<D, R>;
 
-export interface ITreeViewState {}
-
 /**
  * The `TreeView` component is used to create an accessible
  * [tree view widget](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView) by adding the base required
@@ -162,10 +161,60 @@ export interface ITreeViewState {}
  * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
  * complex trees that have drag and drop or other functionality built in.
  */
-export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Component<
-  ITreeViewProps<D, R>,
-  ITreeViewState
-> {
+export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Component<ITreeViewProps<D, R>> {
+  public static propTypes = {
+    id: PropTypes.string.isRequired,
+    "aria-label": PropTypes.string,
+    "aria-labelledby": PropTypes.string,
+    disableSiblingExpansion: PropTypes.bool,
+    treeViewRenderer: PropTypes.func,
+    treeItemRenderer: PropTypes.func,
+    expandedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onItemSelect: PropTypes.func.isRequired,
+    onItemExpandedChange: PropTypes.func.isRequired,
+    onItemSiblingExpansion: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
+      if (!props.disableSiblingExpansion) {
+        return PropTypes.func.isRequired(props, propName, component, ...args);
+      }
+
+      return null;
+    },
+    _a11yValidator: (props: ITreeViewProps, propName: string, component: string) => {
+      const label = props["aria-label"];
+      const labelledBy = props["aria-labelledby"];
+      if (typeof label !== "string" && typeof labelledBy !== "string") {
+        return new Error(
+          `The \`${component} component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
+            "accessibility but both were `undefined`."
+        );
+      } else if (typeof label === "string" && !label.length) {
+        return new Error(
+          `The \`${component}\` component requires an \`aria-label\` with a length greater than 0, but \`${label}\` ` +
+            "was provided. "
+        );
+      } else if (typeof labelledBy === "string") {
+        if (!labelledBy.length) {
+          return new Error(
+            `The \`${component}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
+              `\`${labelledBy}\` was provided.`
+          );
+        }
+
+        const element = document.getElementById(labelledBy);
+        if (!element) {
+          return new Error(
+            `The \`${component}\` component requires the \`aria-labelledby\` prop to reference an element with the ` +
+              `provided id: \`${labelledBy}\`, but no elements on the page when the \`${component}\` component was ` +
+              "rendered. Please update the `aria-labelledby` value to be an id of a valid element on the page."
+          );
+        }
+      }
+
+      return null;
+    },
+  };
+
   public static defaultProps: ITreeViewDefaultProps<ILazyKey, ILazyKey> = {
     disableSiblingExpansion: false,
     treeViewRenderer: props => <List {...props} />,
@@ -493,12 +542,8 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
   };
 
   private openAllRelatedNodes = (element: HTMLElement) => {
-    const {
-      data,
-      disableSiblingExpansion,
-      onItemSiblingExpansion,
-      expandedIds
-    } = this.props as TreeViewPropsWithSiblingExpansion<D, R>;
+    const { data, disableSiblingExpansion, onItemSiblingExpansion, expandedIds } = this
+      .props as TreeViewPropsWithSiblingExpansion<D, R>;
 
     if (!this.treeEl || disableSiblingExpansion) {
       return;

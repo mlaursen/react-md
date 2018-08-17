@@ -74,6 +74,11 @@ export interface IListDefaultProps {
 
 export type ListWithDefaultProps = IListProps & IListDefaultProps;
 
+/**
+ * The `List` component is an extremely simple wrapper around the `ol` and `ul` elements that will not
+ * render the normal list styles. This should normally be used along with the `Listitem` or `ListItemLink`
+ * components.
+ */
 const List: React.SFC<IListProps> = providedProps => {
   const { className, dense, inline, ordered, children, forwardedRef, ...props } = providedProps as ListWithDefaultProps;
   return React.createElement(

@@ -223,7 +223,7 @@ export interface IKeyboardClickableDefaultProps {
 
 export type KeyboardClickableWithDefaultProps = IKeyboardClickableProps & IKeyboardClickableDefaultProps;
 
-export default class KeyboardClickable extends React.Component<IKeyboardClickableProps, {}> {
+export default class KeyboardClickable extends React.Component<IKeyboardClickableProps> {
   public static propTypes = {
     disabled: PropTypes.bool,
     tabIndex: PropTypes.number,

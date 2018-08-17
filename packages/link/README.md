@@ -190,7 +190,10 @@ ReactDOM.render(
 <!-- PROPS_START -->
 ## Prop Types
 ### Link
-
+The `Link` component is used to render links within your app with a basic styles applied and
+some additional "security" built-in if using the `rel="_blank"`. This can be used with a browser
+routing library like `react-router` or `reach-router` by providing the `Link` as the `linkComponent`
+prop.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -204,15 +207,6 @@ ReactDOM.render(
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>className</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-Any optional class name to apply to the link.
-<br /><br />
-</td>
-</tr>
 <tr>
 <td>component *</td>
 <td><code>string | ComponentClass<any, ComponentState> | StatelessComponent<any></code></td>

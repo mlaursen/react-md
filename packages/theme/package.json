@@ -2,10 +2,6 @@
   "name": "@react-md/theme",
   "version": "2.0.0-alpha-1",
   "description": "A package for working with react-md to use material design colors.",
-  "main": "./dist/styles.css",
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "docs": "doc-generator --no-proptypes",
     "clean": "rimraf dist",
@@ -15,7 +11,20 @@
     "watch": "watch \"npm run styles\" src --filter ../../scssWatchFilter.js",
     "prepublishOnly": "npm run build && npm run docs"
   },
+  "main": "./dist/styles.css",
+  "files": [
+    "dist/*"
+  ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "theme",
+    "colors",
+    "css variables"
+  ],
   "license": "MIT",
   "devDependencies": {
     "copyfiles": "^2.0.0",

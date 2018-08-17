@@ -1,4 +1,5 @@
 # @react-md/list
+This package is used to create lists with the material design specs.
 
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/list
@@ -90,6 +91,44 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+### Simple Example
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { List, ListItem } from "@react-md/list";
+
+const App = () => (
+  <main>
+    <List>
+      <ListItem>Item 1</ListItem>
+      <ListItem>Item 2</ListItem>
+      <ListItem>Item 3</ListItem>
+    </List>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
+### With Icons
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { List, ListItem } from "@react-md/list";
+import { SearchSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
+
+const App = () => (
+  <main>
+    <List>
+      <ListItem leftIcon={<SearchSVGIcon />}>Search</ListItem>
+      <ListItem rightIcon={<InfoOutlineSVGIcon />}>Info</ListItem>
+    </List>
+  </main>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### List

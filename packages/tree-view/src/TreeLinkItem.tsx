@@ -12,6 +12,7 @@ export interface ITreeLinkItemProps extends ITreeItemBaseProps, ITreeItemContent
    * @docgen
    */
   liStyle?: React.CSSProperties;
+
   /**
    * An optional className to apply to the surrounding `<li>` element. You should normally not be applying
    * styles to this element and instead use the default `className` prop.

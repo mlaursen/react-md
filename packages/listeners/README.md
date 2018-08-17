@@ -249,11 +249,11 @@ export default class Example extends React.Component<{}, IExampleState> {
 }
 ```
 
-
 <!-- PROPS_START -->
 ## Prop Types
 ### ResizeListener
-
+The `ResizeListener` is a component used to create "performant" window resize listeners that also
+fixes some of the inconsistencies with how different devices and browsers trigger resize events.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -334,12 +334,29 @@ by page scrolls.
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>disableMountResizeTrigger *</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the <code>onResize</code> prop <b>should not</b> be called after the component mounts. This functionality is enabled
+by default since it makes initial layout changes easier.
+<br /><br />
+NOTE: This will be a `new Event(&#34;resize&#34;)` that is dispatched from the <code>window</code>. This means that it will not
+be a trusted source.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
 
 ### ResizeObserver
-
+This is a React component that works with the
+[resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill).
+You can either use a children callback function that will get called each time the
+target changes sizes, or just use a default `onResize` listener so many elements can
+be updated with custom functionality
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -415,7 +432,10 @@ until it is switched to a valid <code>Element</code> or query selector.
 
 
 ### EventListener
-
+This is a simple component that uses the lifecyle methods within React to attach and remove
+the event type that is provided. Once mounted, the **props should not change**. If you want
+to change events, this component should be unmounted and a new component should be mounted
+instead.
 
 > Note: Required props will have an asterisk (*) after their name.
 

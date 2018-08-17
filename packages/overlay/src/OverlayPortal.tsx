@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import { Portal, PortalInto } from "@react-md/portal";
 
 import { default as Overlay, IOverlayProps } from "./Overlay";
@@ -28,7 +29,16 @@ export interface IOverlayPortalState {
   overlayVisible: boolean;
 }
 
+/**
+ * The `OverlayPortal` is a wrapper of the `Overlay` component to portal the overlay somehwere else within
+ * your app.
+ */
 export default class OverlayPortal extends React.Component<IOverlayPortalProps, IOverlayPortalState> {
+  public static propTypes = {
+    portalInto: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+    portalIntoId: PropTypes.string,
+  };
+
   public static getDerivedStateFromProps(nextProps: IOverlayPortalProps, prevState: IOverlayPortalState) {
     if (nextProps.visible && !prevState.portalVisible) {
       return {
@@ -43,8 +53,7 @@ export default class OverlayPortal extends React.Component<IOverlayPortalProps, 
     }
 
     return null;
-
-  };
+  }
 
   private frame?: number;
   constructor(props: IOverlayPortalProps) {
@@ -58,7 +67,7 @@ export default class OverlayPortal extends React.Component<IOverlayPortalProps, 
       this.frame = window.requestAnimationFrame(() => {
         this.frame = undefined;
         this.setState({ overlayVisible: true });
-      })
+      });
     }
   }
 

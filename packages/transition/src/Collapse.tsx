@@ -174,6 +174,12 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     minHeight: PropTypes.number,
     minPaddingTop: PropTypes.number,
     minPaddingBottom: PropTypes.number,
+    enterDuration: PropTypes.number,
+    leaveDuration: PropTypes.number,
+    isEmptyCollapsed: PropTypes.bool,
+    onExpanded: PropTypes.func,
+    onCollapsed: PropTypes.func,
+    children: PropTypes.func.isRequired,
   };
 
   public static defaultProps: ICollapseDefaultProps = {

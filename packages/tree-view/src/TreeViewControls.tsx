@@ -18,7 +18,6 @@ export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {
 }
 
 export interface ITreeViewControlsProps<D, R> extends ITreeViewBaseProps<D, R> {
-
   /**
    * An optional list of item ids that are selected when the `TreeViewControls` component mounts. If
    * this list is empty, the first item within the provided `data` set will be used instead since

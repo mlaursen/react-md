@@ -30,6 +30,14 @@
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "component",
+    "components",
+    "typography"
+  ],
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.6",

@@ -5,6 +5,10 @@ import cn from "classnames";
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
+/**
+ * The `AppBar` component is normally used to create a fixed header element within your page that defines a title,
+ * optional actions, and an optional navigation button.
+ */
 export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Boolean if the `AppBar` should be fixed to the top or bottom of the page.
@@ -74,63 +78,79 @@ export interface IAppBarDefaultProps {
 export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
 
 /**
- * The `AppBar` component is normally used to create a fixed header element within your page that defines a title,
- * optional actions, and an optional navigation button.
+ * The `AppBar` component is usually used to create a fixed header within your page that has a title, an optional nav,
+ * and optional actions. Since it is fixed on the page, it normally requires adding padding or margin to relative
+ * elements so that they aren't covered by this component. You can use the static class names on the
+ * `AppBar` to correctly add the padding or margin.
+ *
+ * ```tsx
+ * AppBar.offsetClassName
+ * AppBar.offsetProminentClassName
+ * AppBar.offsetDenseClassName
+ * AppBar.offsetProminentDenseClassName
+ * ```
+ *
+ * You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
  */
-const AppBar: React.SFC<IAppBarProps> = providedProps => {
-  const {
-    className,
-    dense,
-    prominent,
-    children,
-    fixed,
-    fixedPosition,
-    fixedElevation,
-    theme,
-    inheritColor,
-    ...props
-  } = providedProps as AppBarWithDefaultProps;
+export default class AppBar extends React.Component<IAppBarProps> {
+  public static offsetClassName = "rmd-app-bar-offset";
+  public static offsetProminentClassName = "rmd-app-bar-offset--prominent";
+  public static offsetDenseClassName = "rmd-app-bar-offset--dense";
+  public static offsetProminentDenseClassName = "rmd-app-bar-offset--prominent-dense";
 
-  const inherit = typeof inheritColor === "boolean" ? inheritColor : theme !== "clear" && theme !== "default";
-  return (
-    <header
-      {...props}
-      className={cn(
-        `rmd-app-bar rmd-app-bar--${theme}`,
-        {
-          "rmd-app-bar--child-inherit": inherit,
-          "rmd-app-bar--dense": dense && !prominent,
-          "rmd-app-bar--prominent": prominent,
-          "rmd-app-bar--prominent-dense": dense && prominent,
-          "rmd-app-bar--fixed": fixed,
-          "rmd-app-bar--fixed-elevation": fixed && fixedElevation,
-          [`rmd-app-bar--${fixedPosition}`]: fixed,
-        },
-        className
-      )}
-    >
-      {children}
-    </header>
-  );
-};
+  public static propTypes = {
+    dense: PropTypes.bool,
+    prominent: PropTypes.bool,
+    fixed: PropTypes.bool,
+    fixedPosition: PropTypes.oneOf(["top", "bottom"]),
+    fixedElevation: PropTypes.bool,
+    inheritColor: PropTypes.bool,
+    theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
+  };
 
-AppBar.propTypes = {
-  dense: PropTypes.bool,
-  prominent: PropTypes.bool,
-  fixed: PropTypes.bool,
-  fixedPosition: PropTypes.oneOf(["top", "bottom"]),
-  fixedElevation: PropTypes.bool,
-  inheritColor: PropTypes.bool,
-  theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
-};
+  public static defaultProps: IAppBarDefaultProps = {
+    fixed: true,
+    fixedPosition: "top",
+    fixedElevation: true,
+    dense: false,
+    prominent: false,
+    theme: "primary",
+  };
 
-AppBar.defaultProps = {
-  fixed: true,
-  fixedPosition: "top",
-  fixedElevation: true,
-  dense: false,
-  prominent: false,
-  theme: "primary",
-} as IAppBarDefaultProps;
+  public render() {
+    const {
+      className,
+      dense,
+      prominent,
+      children,
+      fixed,
+      fixedPosition,
+      fixedElevation,
+      theme,
+      inheritColor,
+      ...props
+    } = this.props as AppBarWithDefaultProps;
 
-export default AppBar;
+    const inherit = typeof inheritColor === "boolean" ? inheritColor : theme !== "clear" && theme !== "default";
+    return (
+      <header
+        {...props}
+        className={cn(
+          `rmd-app-bar rmd-app-bar--${theme}`,
+          {
+            "rmd-app-bar--child-inherit": inherit,
+            "rmd-app-bar--dense": dense && !prominent,
+            "rmd-app-bar--prominent": prominent,
+            "rmd-app-bar--prominent-dense": dense && prominent,
+            "rmd-app-bar--fixed": fixed,
+            "rmd-app-bar--fixed-elevation": fixed && fixedElevation,
+            [`rmd-app-bar--${fixedPosition}`]: fixed,
+          },
+          className
+        )}
+      >
+        {children}
+      </header>
+    );
+  }
+}

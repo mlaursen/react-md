@@ -30,6 +30,14 @@
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "overlay",
+    "component",
+    "components"
+  ],
   "license": "MIT",
   "dependencies": {
     "@react-md/portal": "^2.0.0-alpha-1",

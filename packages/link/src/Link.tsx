@@ -4,13 +4,6 @@ import cn from "classnames";
 
 export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> {
   /**
-   * Any optional class name to apply to the link.
-   *
-   * @docgen
-   */
-  className?: string;
-
-  /**
    * An optional component to render as. This should really only be used if you are using a router library
    * like [react-router](https://github.com/ReactTraining/react-router) or
    * [@reach/router](https://github.com/reach/router). This will call `React.createElement` with this value
@@ -95,6 +88,12 @@ export interface ILinkDefaultProps {
 export type ILinkProps = ILinkBaseProps | ILinkWithComponentProps;
 export type LinkWithDefaultProps = ILinkProps & ILinkDefaultProps;
 
+/**
+ * The `Link` component is used to render links within your app with a basic styles applied and
+ * some additional "security" built-in if using the `rel="_blank"`. This can be used with a browser
+ * routing library like `react-router` or `reach-router` by providing the `Link` as the `linkComponent`
+ * prop.
+ */
 const Link: React.SFC<ILinkProps> = providedProps => {
   const {
     className: propClassName,

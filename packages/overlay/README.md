@@ -11,6 +11,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+  * [Simple Overlay Usage](#simple-overlay-usage)
 - [Prop Types](#prop-types)
   * [Overlay](#overlay)
   * [OverlayPortal](#overlayportal)
@@ -89,10 +90,52 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+### Simple Overlay Usage
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Button } from "@react-md/button";
+import { Overlay } from "@react-md/overlay";
+
+interface IAppState {
+  visible: boolean;
+}
+class App extends React.Component<{}, IAppState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = { visible: false };
+  }
+
+  public render() {
+    const { visible } = this.state;
+
+    return (
+      <main>
+        <Button onClick={this.toggle}>Toggle Overlay</Button>
+        <Overlay visible={visible} onRequestClose={this.hide} />
+      </main>
+    );
+  }
+
+  private toggle = () => {
+    this.setState({ visible: !this.state.visible });
+  };
+
+  private hide = () => {
+    this.setState({ visible: false });
+  };
+}
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### Overlay
-
+The `Overlay` component is a simple component used to render a full page overlay in the page with
+an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
+different area within your app, you should use the `OverlayPortal` component instead.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -160,7 +203,7 @@ prop to <code>false</code>.
 </tr>
 <tr>
 <td>onEnter</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -169,7 +212,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntering</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -178,7 +221,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntered</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -187,7 +230,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExit</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -196,7 +239,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExiting</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -205,7 +248,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExited</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -217,7 +260,8 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 
 
 ### OverlayPortal
-
+The `OverlayPortal` is a wrapper of the `Overlay` component to portal the overlay somehwere else within
+your app.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -307,7 +351,7 @@ prop to <code>false</code>.
 </tr>
 <tr>
 <td>onEnter</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -316,7 +360,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntering</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -325,7 +369,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntered</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -334,7 +378,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExit</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -343,7 +387,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExiting</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -352,7 +396,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExited</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.

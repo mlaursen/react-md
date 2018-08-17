@@ -73,3 +73,22 @@ $rmd-app-bar-default-text-color: if(
   $rmd-black-base,
   $rmd-white-base
 ) !default;
+
+/// A list of "valid" offsets the are supported by the `rmd-app-bar-offsets` mixin.
+/// @see rmd-app-bar-offsets
+/// @type List
+$rmd-app-bar-valid-offsets: base dense prominent prominent-dense;
+
+/// The app bar offsets that should be created by default.
+/// @type List
+$rmd-app-bar-offsets: $rmd-app-bar-valid-offsets !default;
+
+/// The default style to apply the app bar offsets to. This should normally be one of:
+/// - padding-top
+/// - padding-bottom
+/// - margin-top
+/// - margin-bottom
+/// - top
+/// - bottom
+/// @type String
+$rmd-app-bar-offset-style: padding-top !default;

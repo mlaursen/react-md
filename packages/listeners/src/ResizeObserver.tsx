@@ -10,13 +10,6 @@ export interface IResizeObserverResizeOptions {
   readonly scrollWidth: number;
 }
 
-/**
- * This is a React component that works with the
- * [resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill).
- * You can either use a children callback function that will get called each time the
- * target changes sizes, or just use a default `onResize` listener so many elements can
- * be updated with custom functionality
- */
 export interface IResizeObserverBaseProps {
   /**
    * Boolean if the height should be watched for the resize target.
@@ -84,6 +77,13 @@ export interface IResizeObserverDefaultProps {
 export type ResizeObserverWithDefaultProps = IResizeObserverProps & IResizeObserverDefaultProps;
 export type IResizeObserverState = IResizeObserverResizeOptions;
 
+/**
+ * This is a React component that works with the
+ * [resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill).
+ * You can either use a children callback function that will get called each time the
+ * target changes sizes, or just use a default `onResize` listener so many elements can
+ * be updated with custom functionality
+ */
 export default class ResizeObserverComp extends React.Component<IResizeObserverProps, IResizeObserverState> {
   // It was named ResizeObserver since the resize-observer-polyfill updates the global namespace with ResizeObserver
   public static displayName = "ResizeObserver";

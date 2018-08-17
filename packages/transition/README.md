@@ -11,6 +11,7 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
     + [Including Styles](#including-styles)
 - [Usage](#usage)
+  * [Simple Usage](#simple-usage)
 - [Prop Types](#prop-types)
   * [Collapse](#collapse)
 <!-- TOC_END -->
@@ -85,6 +86,48 @@ If you would like to just import all the utility variables, mixins, and function
 ```
 
 ## Usage
+### Simple Usage
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Button } from "@react-md/button";
+import { Collapse } from "@react-md/transition";
+
+interface IAppState {
+  collapsed: boolean;
+}
+class App extends React.Component<{}, IAppState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = { collapsed: true };
+  }
+
+  public render() {
+    const { collapsed } = this.state;
+
+    return (
+      <main>
+        <Button onClick={this.toggle}>Toggle Overlay</Button>
+        <Collapase collapsed={collapsed}>
+          <div>
+            This is some content that will animate in and out of view
+            based on the collapsed prop. This will be removed from the
+            dom when <code>collapsed</code> is set to <code>true</code>.
+          </div>
+        </Collapse>
+      </main>
+    );
+  }
+
+  private toggle = () => {
+    this.setState({ collapsed: !this.state.collapsed });
+  };
+}
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### Collapse

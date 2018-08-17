@@ -6,17 +6,82 @@ import { IListItemBaseProps } from "./ListItem";
 import ListItemLeftIcon from "./ListItemLeftIcon";
 import ListItemRightIcon from "./ListItemRightIcon";
 
-export interface IListLinkBaseProps extends IListItemBaseProps {
+export interface IListItemLinkBaseProps extends IListItemBaseProps {
+  /**
+   * An optional style to apply to the `<a>` element.
+   *
+   * @docgen
+   */
   style?: React.CSSProperties;
+
+  /**
+   * An optional class name to apply to the `<a>` element.
+   *
+   * @docgen
+   */
   className?: string;
+
+  /**
+   * An optional style to apply to the surrounding `<li>` element. It is generally recommended
+   * to not add styles to the `<li>` element but instead use the default `style` prop.
+   *
+   * @docgen
+   */
   liStyle?: React.CSSProperties;
+
+  /**
+   * An optional className to apply to the surrounding `<li>` element. It is generally recommended
+   * to not add styles to the `<li>` element but instead use the default `className` prop.
+   *
+   * @docgen
+   */
   liClassName?: string;
+
+  /**
+   * The `href` to apply to the `<a>` tag. This is only used if you are not using another routing library
+   * with the `component` prop.
+   *
+   * @docgen
+   */
   href?: string;
+
+  /**
+   * Boolean if the link is currently disabled.
+   *
+   * @docgen
+   */
   disabled?: boolean;
+
+  /**
+   * An optional role for the link. This will normally just be a `listitem`, but can also be `treeitem` when used
+   * within the `TreeView`.
+   *
+   * @docgen
+   */
   role?: string;
+
+  /**
+   * An optional role to apply to the surrounding `<li>`. It is generally recommended to leave this as the default
+   * value.
+   *
+   * @docgen
+   */
   liRole?: string;
+
+  /**
+   * An optional component used to render the link. If you are using a routing library like `react-router` or
+   * `reach-router`, this should be the `Link` component.
+   *
+   * @docgen
+   */
   // basically React.ReactType, but only allowing "a" instead of any string
   component?: "a" | React.ComponentType<any> | React.StatelessComponent<any>;
+
+  /**
+   * Any children to render within the link. This should normally be text.
+   *
+   * @docgen
+   */
   children?: React.ReactNode;
 
   onMouseDown?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -27,26 +92,31 @@ export interface IListLinkBaseProps extends IListItemBaseProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLAnchorElement>) => void;
 }
 
-export interface IListLinkWithComponentProps extends IListLinkBaseProps {
+export interface IListItemLinkWithComponentProps extends IListItemLinkBaseProps {
   [key: string]: any;
   component: React.ComponentType<any> | React.StatelessComponent<any>;
 }
 
-export interface IListLinkWithAnchorProps extends IListLinkBaseProps, React.HTMLAttributes<HTMLAnchorElement> {
+export interface IListItemLinkWithAnchorProps extends IListItemLinkBaseProps, React.HTMLAttributes<HTMLAnchorElement> {
   component: "a";
   href: "string";
 }
 
-export interface IListLinkDefaultProps {
+export interface IListItemLinkDefaultProps {
   component: "a";
   forceIconWrap: boolean;
 }
 
-export type ListLinkWithDefaultProps = IListLinkProps & IListLinkDefaultProps;
+export type ListItemLinkWithDefaultProps = IListItemLinkProps & IListItemLinkDefaultProps;
 
-export type IListLinkProps = IListLinkBaseProps | IListLinkWithComponentProps;
+export type IListItemLinkProps = IListItemLinkBaseProps | IListItemLinkWithComponentProps;
 
-const ListLink: React.SFC<IListLinkProps> = baseProps => {
+/**
+ * The `ListItemLink` component is used to render links within lists. This component is really only required
+ * because the accessibility specs change when rendering links within lists by changing what roles are applied.
+ * This should render basically the same as the `ListItem` component.
+ */
+const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
   const {
     className,
     liStyle,
@@ -66,7 +136,7 @@ const ListLink: React.SFC<IListLinkProps> = baseProps => {
     onKeyUp,
     onKeyDown,
     ...props
-  } = baseProps as ListLinkWithDefaultProps;
+  } = baseProps as ListItemLinkWithDefaultProps;
 
   let children = propChildren;
   children = (
@@ -121,7 +191,7 @@ const ListLink: React.SFC<IListLinkProps> = baseProps => {
   );
 };
 
-ListLink.propTypes = {
+ListItemLink.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   linkStyle: PropTypes.object,
@@ -133,9 +203,9 @@ ListLink.propTypes = {
   forceIconWrap: PropTypes.bool,
 };
 
-ListLink.defaultProps = {
+ListItemLink.defaultProps = {
   component: "a",
   forceIconWrap: false,
-} as IListLinkDefaultProps;
+} as IListItemLinkDefaultProps;
 
-export default ListLink;
+export default ListItemLink;

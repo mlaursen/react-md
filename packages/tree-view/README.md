@@ -1,12 +1,6 @@
 # @react-md/tree-view
-
-So to get a working tree view... I need:
-- list of tree items for focus behavior
-- list of unique ids for determining if a node is opened
-- list of unique ids for determining if a node is focused
-- treeview renderer
-- treeitem renderer
-  - takes child tree items as well
+This package is used to implement the [tree view widget](https://www.w3.org/TR/wai-aria-practices/#TreeView) with _decent_
+customization ability.
 
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/tree-view
@@ -15,6 +9,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+  * [Simple Usage of TreeView and TreeViewControls](#simple-usage-of-treeview-and-treeviewcontrols)
 - [Prop Types](#prop-types)
   * [TreeView](#treeview)
   * [TreeViewControls](#treeviewcontrols)
@@ -38,6 +33,46 @@ $ npm install --save @react-md/tree-view
 ```
 
 ## Usage
+### Simple Usage of TreeView and TreeViewControls
+Since the `TreeView` component requires "control" of the `selectedIds` and `expandedIds`, you can use
+the `TreeViewControls` component to add the base functionality for your tree as needed.
+
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { TreeView, TreeViewControls, TreeViewDataList } from "@react-md/transition";
+
+const data: TreeViewDataList = [{
+  itemId: "item-1",
+  children: "Item 1",
+}, {
+  itemId: "item-2",
+  children: "Item 2",
+  childItems: [{
+    itemId: "item-2-1",
+    children: "Item 2-1",
+    childItems: [{
+      itemId: "item-2-1-1",
+      children: "Item 2-1-1",
+    }],
+  }, {
+    itemid: "item-2-2",
+    children: "Item 2-2",
+  }],
+}, {
+  itemId: "item-3",
+  children: "Item 3",
+}];
+
+const App = () => (
+  <TreeViewControls id="example-tree-view" data={data}>
+    {props => <TreeView {...props} />}
+  </TreeViewControls>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### TreeView
@@ -354,7 +389,8 @@ key on a tree item to expand all related sibling nodes.
 
 
 ### FlattenedTreeView
-
+The `FlattenedTreeView` component is a pretty performant component used to rendering a flattened data structure
+into the required nested lists data structure of the `TreeView` component.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -368,7 +404,45 @@ key on a tree item to expand all related sibling nodes.
 </tr>
 </thead>
 <tbody>
-
+<tr>
+<td>children *</td>
+<td><code>((data: FlattenedTreeViewData<D>[]) => ReactNode) | (string & ((data: FlattenedTreeViewData<D>[])...</code></td>
+<td><code>null</code></td>
+<td>
+A children callback function that will be provided a list of <code>FlattenedTreeViewData</code> and
+should eventually be passed into the <code>TreeView</code> component as the <code>data</code> prop.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>rootId</td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td>
+The root id to use for the flattened tree. Every item that has a <code>parentId</code> set
+to this value will be displayed at the top level.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>data *</td>
+<td><code>IFlattenedTreeViewData<D></code></td>
+<td><code>null</code></td>
+<td>
+A flattened tree view data object to convert into a <code>FlattenedTreeViewDataList</code>.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>((data: FlattenedTreeViewData<D>[]) => FlattenedTreeViewData<D>[])</code></td>
+<td><code>null</code></td>
+<td>
+An optional function that will sort the data at each level. It should take in a <code>FlattenedTreeViewDataList</code>
+and return a sorted <code>FlattenedTreeViewDataList</code>.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 

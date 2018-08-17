@@ -91,6 +91,10 @@ export interface IResizeListenerDefaultProps {
 
 export type ResizeListenerWithDefaultProps = IResizeListenerProps & IResizeListenerDefaultProps;
 
+/**
+ * The `ResizeListener` is a component used to create "performant" window resize listeners that also
+ * fixes some of the inconsistencies with how different devices and browsers trigger resize events.
+ */
 export default class ResizeListener extends React.Component<IResizeListenerProps, {}> {
   public static propTypes = {
     onResize: PropTypes.func,

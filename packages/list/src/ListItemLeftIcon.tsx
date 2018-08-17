@@ -38,6 +38,10 @@ export interface IListItemLeftIconDefaultProps {
 
 export type ListItemLeftIconWithDefaultProps = IListItemLeftIconProps & IListItemLeftIconDefaultProps;
 
+/**
+ * The `ListItemLeftIcon` component is a simple wrapper of the `TextIconSpacing` that will apply the "required"
+ * class names for adding spacing between a left icon and text within `ListItem`s.
+ */
 const ListItemLeftIcon: React.SFC<IListItemLeftIconProps> = ({ icon, children, forceIconWrap }) => (
   <TextIconSpacing
     icon={icon}

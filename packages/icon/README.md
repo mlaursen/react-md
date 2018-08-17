@@ -188,7 +188,13 @@ ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 <!-- PROPS_START -->
 ## Prop Types
 ### FontIcon
+The `FontIcon` component is used for rendering a font-icon library's
+icon. The default is to use the `material-icons` library, but others
+can be used as well.
 
+If you are using another font icon library that does not always create icons with
+a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
+and `forceFontSize` props to fix the sizing issues.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -208,24 +214,6 @@ ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 <td><code>null</code></td>
 <td>
 Any children to render to create the font icon. This is required for material-icons.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>style</td>
-<td><code>CSSProperties</code></td>
-<td><code>null</code></td>
-<td>
-An optional style to apply.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>className</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional className to apply.
 <br /><br />
 </td>
 </tr>
@@ -272,7 +260,8 @@ Boolean if the <code>forceSize</code> prop should also force the <code>font-size
 
 
 ### SVGIcon
-
+The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
+as an icon.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -292,24 +281,6 @@ Boolean if the <code>forceSize</code> prop should also force the <code>font-size
 <td><code>null</code></td>
 <td>
 Any <code>&#60;svg&#62;</code> children to render to create your icon. This can not be used with the <code>use</code> prop.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>style</td>
-<td><code>CSSProperties</code></td>
-<td><code>null</code></td>
-<td>
-An optional style to apply to the svg element.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>className</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional className to apply to the svg element.
 <br /><br />
 </td>
 </tr>
@@ -540,7 +511,8 @@ to clone into the provided icon.
 
 
 ### IconRotator
-
+The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
+to another.
 
 > Note: Required props will have an asterisk (*) after their name.
 

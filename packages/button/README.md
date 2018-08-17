@@ -1,4 +1,6 @@
 # @react-md/button
+This package is used to create buttons with the material design spec. There is built-in support to be able
+to render accessible clickable divs that look like buttons, or even apply button styles to any element.
 
 
 This source code of this package can be found at: https://github.com/mlaursen/react-md/tree/next/packages/button
@@ -11,6 +13,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+  * [Simple Usage](#simple-usage)
 - [Prop Types](#prop-types)
   * [Button](#button)
 - [SassDoc](#sassdoc)
@@ -91,8 +94,7 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
-After including the styles, you can create buttons using the provided props:
-
+### Simple Usage
 ```tsx
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -122,7 +124,19 @@ ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
 <!-- PROPS_START -->
 ## Prop Types
 ### Button
+The `Button` component is used to create a clickable area within your application. It can be styled
+to be flat with the background, outlined, or contained. A contained button will include some elevation
+to help increase its visibility within the app. In addition, the button can be themed to either be clear,
+a default grey color, or to use the app's defined primary or secondary color.
 
+Buttons come in the form of text, icon, or text and icon together. It is recommended to use the text
+version when possible since it is less confusing for the user, but icons can be used if they are easy
+to understand and there is limited space.
+
+Another feature of the `Button` is that it can be conditionally rendered as a `<div>` instead of a `<button>`
+if you need to create a more advanced clickable area that has `<div>`s inside (it is considered invalid html to have
+a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
+keyboard events.
 
 > Note: Required props will have an asterisk (*) after their name.
 

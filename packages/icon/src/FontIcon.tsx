@@ -5,30 +5,7 @@ import memoizeOne from "memoize-one";
 
 const ICON_SIZE = 24;
 
-/**
- * The `FontIcon` component is used for rendering a font-icon library's
- * icon. The default is to use the `material-icons` library, but others
- * can be used as well.
- *
- * If you are using another font icon library that does not always create icons with
- * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
- * and `forceFontSize` props to fix the sizing issues.
- */
-export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
-  /**
-   * An optional style to apply.
-   *
-   * @docgen
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * An optional className to apply.
-   *
-   * @docgen
-   */
-  className?: string;
-
+export interface IFontIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * The font icon class name to use.
    *
@@ -77,10 +54,22 @@ export type FontIconWithDefaultProps = IFontIconProps & IFontIconDefaultProps;
 
 export interface IFontIconState {}
 
+/**
+ * The `FontIcon` component is used for rendering a font-icon library's
+ * icon. The default is to use the `material-icons` library, but others
+ * can be used as well.
+ *
+ * If you are using another font icon library that does not always create icons with
+ * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
+ * and `forceFontSize` props to fix the sizing issues.
+ */
 export default class FontIcon extends React.Component<IFontIconProps, IFontIconState> {
   public static propTypes = {
-    className: PropTypes.string,
+    iconClassName: PropTypes.string,
     children: PropTypes.node,
+    dense: PropTypes.bool,
+    forceSize: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    forceFontSize: PropTypes.bool,
   };
 
   public static defaultProps: IFontIconDefaultProps = {

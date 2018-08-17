@@ -47,21 +47,6 @@ export interface IButtonThemeProps {
   themeType?: ButtonThemeType;
 }
 
-/**
- * The `Button` component is used to create a clickable area within your application. It can be styled
- * to be flat with the background, outlined, or contained. A contained button will include some elevation
- * to help increase its visibility within the app. In addition, the button can be themed to either be clear,
- * a default grey color, or to use the app's defined primary or secondary color.
- *
- * Buttons come in the form of text, icon, or text and icon together. It is recommended to use the text
- * version when possible since it is less confusing for the user, but icons can be used if they are easy
- * to understand and there is limited space.
- *
- * Another feature of the `Button` is that it can be conditionally rendered as a `<div>` instead of a `<button>`
- * if you need to create a more advanced clickable area that has `<div>`s inside (it is considered invalid html to have
- * a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
- * keyboard events.
- */
 export interface IButtonButtonProps
   extends IButtonThemeProps,
     ITextIconSpacingProps,
@@ -123,6 +108,21 @@ export interface IButtonDefaultProps {
 
 export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;
 
+/**
+ * The `Button` component is used to create a clickable area within your application. It can be styled
+ * to be flat with the background, outlined, or contained. A contained button will include some elevation
+ * to help increase its visibility within the app. In addition, the button can be themed to either be clear,
+ * a default grey color, or to use the app's defined primary or secondary color.
+ *
+ * Buttons come in the form of text, icon, or text and icon together. It is recommended to use the text
+ * version when possible since it is less confusing for the user, but icons can be used if they are easy
+ * to understand and there is limited space.
+ *
+ * Another feature of the `Button` is that it can be conditionally rendered as a `<div>` instead of a `<button>`
+ * if you need to create a more advanced clickable area that has `<div>`s inside (it is considered invalid html to have
+ * a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
+ * keyboard events.
+ */
 export default class Button extends React.Component<IButtonProps, {}> {
   public static propTypes = {
     style: PropTypes.object,

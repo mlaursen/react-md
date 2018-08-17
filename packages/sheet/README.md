@@ -144,8 +144,34 @@ The position for the sheet to be rendered.
 </td>
 </tr>
 <tr>
+<td>horizontalSize</td>
+<td><code>"none" | "media" | "small" | "large"</code></td>
+<td><code>media</code></td>
+<td>
+The size to use for sheets that have been positioned left or right. The default supported values are:
+- none - no limits added to sizing. the size will be based on content or custom styles
+- small - used for mobile devices.
+- large - used for landscape tablets and desktops.
+- media - automatically switches between &#34;small&#34; and &#34;large&#34; based on css media queries. (this is the default)
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>verticalSize</td>
+<td><code>"none" | "touch" | "recommended"</code></td>
+<td><code>recommended</code></td>
+<td>
+The size to use for sheets that have been positioned top or bottom. The supported sizes are:
+- none - the size is based on content and is limited to the viewport height.
+- touch - the size is based on content and is limited to the viewport height with a touchable area to close the
+sheet.
+- recommended - the material design recommended sizing that forces a max-height of 50vh and min-height of 3.5rem
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>classNames</td>
-<td><code>string | CSSTransitionClassNames</code></td>
+<td><code>string | ICSSTransitionClassNames</code></td>
 <td><code>{
       enter: "rmd-sheet--enter",
       enterActive: "rmd-sheet--enter-active",
@@ -194,7 +220,7 @@ prop to <code>false</code>.
 </tr>
 <tr>
 <td>onEnter</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -203,7 +229,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntering</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -212,7 +238,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onEntered</td>
-<td><code>EnterHandler</code></td>
+<td><code>TransitionEnterHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -221,7 +247,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExit</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -230,7 +256,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExiting</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -239,7 +265,7 @@ Pass-down prop to the <code>Transition</code> component from react-transition-gr
 </tr>
 <tr>
 <td>onExited</td>
-<td><code>ExitHandler</code></td>
+<td><code>TransitionExitHandler</code></td>
 <td><code>null</code></td>
 <td>
 Pass-down prop to the <code>Transition</code> component from react-transition-group.
@@ -357,6 +383,59 @@ overlay that is created along with the sheet.
 <td>The positions that are created by default with the <code>react-md-sheet</code> mixin. When generating
 styles, this list will be looped through to create the correct position styles.
 <br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-small-margin</code></td>
+<td>The amount of horizontal margin to use between the viewport&#39;s edge and the sheet&#39;s edge. This
+is used so that mobile devies have an overlay &#34;touch target&#34; to close the sheet without requiring
+one of the actions to be clicked.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-small-width</code></td>
+<td>The width to apply to &#34;small&#34; sheets. This width <b>should</b> be used for mobile devices along with
+the max-width.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-small-max-width</code></td>
+<td>The max-width to apply to &#34;small&#34; sheets. This max-width <b>should</b> be used for mobile devices along with
+the max-width.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-large-width</code></td>
+<td>The width to apply to &#34;large&#34; sheets. This width <b>should not</b> be used on phones but can be used for tablets or
+desktops.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-large-max-width</code></td>
+<td>The max-width to apply to &#34;large&#34; sheets. This max-width <b>should not</b> be used on phones but can be used for tablets or
+desktops.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-max-height</code></td>
+<td>The max height to set for sheets. It is recommended to leave this as 100% and instead update the
+<code>$rmd-sheet-touchable-max-height</code> instead.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-touchable-max-height</code></td>
+<td>The max height for a sheet that has a &#34;touchable&#34; area that can be used to close the sheet without selecting
+one of the actions.</td>
+</tr>
+<tr>
+<td><code>rmd-sheet-recommended-min-height</code></td>
+<td>The &#34;recommended&#34; min-height from the material design spec for bottom sheets.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-recommended-max-height</code></td>
+<td>The &#34;recommended&#34; max-height from the material design spec for bottom sheets. I personally think it is better
+to either set the max-height to `calc(100% - 3.5rem)` or <code>100%</code> with a close button.
+</td>
 </tr>
 </tbody>
 </table>

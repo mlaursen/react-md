@@ -74,6 +74,8 @@ export default class TextIconSpacing extends React.Component<ITextIconSpacingPro
   public static propTypes = {
     icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
     iconAfter: PropTypes.bool,
+    beforeClassName: PropTypes.string,
+    afterClassName: PropTypes.string,
     forceIconWrap: PropTypes.bool,
     children: PropTypes.node,
   };

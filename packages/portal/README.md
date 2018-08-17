@@ -7,6 +7,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+  * [Simple Example](#simple-example)
 - [Prop Types](#prop-types)
   * [Portal](#portal)
 <!-- TOC_END -->
@@ -17,6 +18,7 @@ $ npm install --save @react-md/portal
 ```
 
 ## Usage
+### Simple Example
 <!-- PROPS_START -->
 ## Prop Types
 ### Portal

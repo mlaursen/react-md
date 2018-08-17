@@ -2,10 +2,6 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 
-/**
- * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
- * to another.
- */
 export interface IIconRotatorBaseProps {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap` prop is enabled
@@ -82,6 +78,10 @@ export interface IIconRotatorDefaultProps {
 
 export type IconRotatorWithDefaultProps = IIconRotatorProps & IIconRotatorDefaultProps;
 
+/**
+ * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
+ * to another.
+ */
 const IconRotator: React.SFC<IIconRotatorProps> = props => {
   const {
     style,
@@ -115,8 +115,6 @@ const IconRotator: React.SFC<IIconRotatorProps> = props => {
 };
 
 IconRotator.propTypes = {
-  style: PropTypes.object,
-  className: PropTypes.string,
   from: PropTypes.number,
   to: PropTypes.number,
   animate: PropTypes.bool,

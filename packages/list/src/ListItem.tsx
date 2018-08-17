@@ -137,6 +137,11 @@ export interface IListItemDefaultProps {
 
 export type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
 
+/**
+ * The `ListItem` component is used to render clickable and keyboard focusable items within
+ * a list. It is also possible to render icons, avatars, and graphics before or after the mian
+ * content.
+ */
 const ListItem: React.SFC<IListItemProps> = providedProps => {
   const {
     className,

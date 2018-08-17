@@ -11,15 +11,9 @@ This source code of this package can be found at: https://github.com/mlaursen/re
     + [create-react-app and node-sass-chokidar](#create-react-app-and-node-sass-chokidar)
   * [Styles](#styles)
 - [Usage](#usage)
+  * [Simple Usage](#simple-usage)
 - [Prop Types](#prop-types)
   * [AppBar](#appbar)
-  * [AppBarAction](#appbaraction)
-  * [AppBarNav](#appbarnav)
-  * [AppBarTitle](#appbartitle)
-  * [AppBarRow](#appbarrow)
-- [SassDoc](#sassdoc)
-  * [Mixins](#mixins)
-    + [Examples](#examples)
       - [Example Usage SCSS](#example-usage-scss)
       - [Example Usage SCSS](#example-usage-scss-1)
       - [Example Usage SCSS](#example-usage-scss-2)
@@ -98,11 +92,46 @@ If you would like to just import all the utility variables, mixins, and function
 
 
 ## Usage
+### Simple Usage
+```tsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { AppBar, AppBarTitle, AppBarNav } from "@react-md/button";
+
+const App = () => (
+  <React.Fragment>
+    <AppBar>
+      <AppBarNav>
+        <HomeSVGIcon />
+      </AppBarNav>
+      <AppBarTitle>Example App!</AppBarTitle>
+    </AppBar>
+    <main className={AppBar.offsetClassName}>
+      This is some content that will have additional padding-top applied
+      that matches the height of the fixed app bar.
+    </main>
+  </React.Fragment>
+);
+
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+```
+
 <!-- PROPS_START -->
 ## Prop Types
 ### AppBar
-The `AppBar` component is normally used to create a fixed header element within your page that defines a title,
-optional actions, and an optional navigation button.
+The `AppBar` component is usually used to create a fixed header within your page that has a title, an optional nav,
+and optional actions. Since it is fixed on the page, it normally requires adding padding or margin to relative
+elements so that they aren't covered by this component. You can use the static class names on the
+`AppBar` to correctly add the padding or margin.
+
+```tsx
+ * AppBar.offsetClassName
+ * AppBar.offsetProminentClassName
+ * AppBar.offsetDenseClassName
+ * AppBar.offsetProminentDenseClassName
+ * ```
+
+You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
 
 > Note: Required props will have an asterisk (*) after their name.
 
@@ -119,7 +148,7 @@ optional actions, and an optional navigation button.
 <tr>
 <td>fixed</td>
 <td><code>boolean</code></td>
-<td><code>null</code></td>
+<td><code>true</code></td>
 <td>
 Boolean if the <code>AppBar</code> should be fixed to the top or bottom of the page.
 <br /><br />
@@ -128,7 +157,7 @@ Boolean if the <code>AppBar</code> should be fixed to the top or bottom of the p
 <tr>
 <td>fixedPosition</td>
 <td><code>"top" | "bottom"</code></td>
-<td><code>null</code></td>
+<td><code>top</code></td>
 <td>
 The position within the page to &#34;fix&#34; the <code>AppBar</code> when the <code>fixed</code> prop is enabled.
 <br /><br />
@@ -137,7 +166,7 @@ The position within the page to &#34;fix&#34; the <code>AppBar</code> when the <
 <tr>
 <td>fixedElevation</td>
 <td><code>boolean</code></td>
-<td><code>null</code></td>
+<td><code>true</code></td>
 <td>
 Boolean if the fixed <code>AppBar</code> should gain elevation. This is recommended to stay enabled unless
 you manually apply a border to help separate the <code>AppBar</code> from other content.
@@ -147,7 +176,7 @@ you manually apply a border to help separate the <code>AppBar</code> from other 
 <tr>
 <td>dense</td>
 <td><code>boolean</code></td>
-<td><code>null</code></td>
+<td><code>false</code></td>
 <td>
 Boolean if the <code>AppBar</code> should use the <code>dense</code> spec. This prop can be used along with the <code>prominent</code> prop
 to create a prominent and dense <code>AppBar</code>.
@@ -157,7 +186,7 @@ to create a prominent and dense <code>AppBar</code>.
 <tr>
 <td>prominent</td>
 <td><code>boolean</code></td>
-<td><code>null</code></td>
+<td><code>false</code></td>
 <td>
 Boolean if the <code>AppBar</code> should use the <code>prominent</code> spec. This prop can be used along with the <code>dense</code> prop
 to create a prominent and dense <code>AppBar</code>.
@@ -167,7 +196,7 @@ to create a prominent and dense <code>AppBar</code>.
 <tr>
 <td>theme</td>
 <td><code>"clear" | "primary" | "secondary" | "default"</code></td>
-<td><code>null</code></td>
+<td><code>primary</code></td>
 <td>
 The theme to apply to the <code>AppBar</code>.
 <br /><br />
@@ -637,6 +666,76 @@ Boolean if each row is using the &#34;dense&#34; spec for an app bar.
 </td>
 </tr>
 <tr>
+<td><code>rmd-app-bar-offset(prominent, dense, style)</code></td>
+<td>A simple mixin for updating an element to be offset by the current app bar&#39;s height if it is one
+of the built-in heights for react-md. This is normally just used for fixed top app bars, but you
+can change the <code>$style</code> param to be <code>padding-bottom</code> for app bars fixed at the bottom of the viewport.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>prominent</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if the styles should reflect a prominent app bar. If both
+    this and the <code>dense</code> params are set to <code>true</code>, the styles will reflect a prominent dense app bar.</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Boolean if the styles should reflect a dense app bar. If both this and
+    the <code>prominent</code> params are set to <code>true</code>, the styles will reflect a prominent dense app bar.</td>
+</tr>
+<tr>
+<td>style</td>
+<td>String</td>
+<td>rmd-app-bar-offset-style</td>
+<td>The style to apply the offset to.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-offsets(style, offsets)</code></td>
+<td>Creates all the offset class names applied with the current style.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>style</td>
+<td>String</td>
+<td>rmd-app-bar-offset-style</td>
+<td>The style to apply the offset to.</td>
+</tr>
+<tr>
+<td>offsets</td>
+<td>String</td>
+<td>rmd-app-bar-offsets</td>
+<td>A list of offsets that should be created.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
 <td><code>react-md-app-bar</code></td>
 <td>Creates all the styles for all the AppBar components.
 <br /><br />
@@ -690,6 +789,31 @@ Boolean if each row is using the &#34;dense&#34; spec for an app bar.
 ```scss
 .rmd-app-bar__row {
   @include rmd-app-bar-row;
+}
+```
+
+
+##### Example Usage SCSS
+
+```scss
+.main {
+  @include rmd-app-bar-offset;
+
+  &--prominent {
+    @include rmd-app-bar-offset(true, $true);
+  }
+
+  &--dense {
+    @include rmd-app-bar-offset(false, true);
+  }
+
+  &--dense-prominent {
+    @include rmd-app-bar-offset(true, true);
+  }
+
+  &--margin {
+    @include rmd-app-bar-offset(false, false, margin-top);
+  }
 }
 ```
 
@@ -775,6 +899,27 @@ applied if using the <code>AppBarNav</code> component and will be applied to the
 <tr>
 <td><code>rmd-app-bar-default-text-color</code></td>
 <td>The color to use for an <code>AppBar</code> that is using the <code>default</code> theme.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-valid-offsets</code></td>
+<td>A list of &#34;valid&#34; offsets the are supported by the <code>rmd-app-bar-offsets</code> mixin.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-offsets</code></td>
+<td>The app bar offsets that should be created by default.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-app-bar-offset-style</code></td>
+<td>The default style to apply the app bar offsets to. This should normally be one of:
+- padding-top
+- padding-bottom
+- margin-top
+- margin-bottom
+- top
+- bottom
 <br /><br /></td>
 </tr>
 </tbody>

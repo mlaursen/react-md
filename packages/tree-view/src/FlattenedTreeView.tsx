@@ -6,9 +6,35 @@ export interface IFlattenedTreeViewData<D = ILazyKey> {
 }
 
 export interface IFlattenedTreeViewProps<D = ILazyKey> {
+  /**
+   * The root id to use for the flattened tree. Every item that has a `parentId` set
+   * to this value will be displayed at the top level.
+   *
+   * @docgen
+   */
   rootId?: string | null;
+
+  /**
+   * A flattened tree view data object to convert into a `FlattenedTreeViewDataList`.
+   *
+   * @docgen
+   */
   data: IFlattenedTreeViewData<D>;
+
+  /**
+   * A children callback function that will be provided a list of `FlattenedTreeViewData` and
+   * should eventually be passed into the `TreeView` component as the `data` prop.
+   *
+   * @docgen
+   */
   children: (data: FlattenedTreeViewDataList<D>) => React.ReactNode;
+
+  /**
+   * An optional function that will sort the data at each level. It should take in a `FlattenedTreeViewDataList`
+   * and return a sorted `FlattenedTreeViewDataList`.
+   *
+   * @docgen
+   */
   sort?: (data: FlattenedTreeViewDataList<D>) => FlattenedTreeViewDataList<D>;
 }
 
@@ -18,6 +44,10 @@ export interface IFlattenedTreeViewDefaultProps {
 
 export type FlattedTreeViewWithDefaultProps<D = ILazyKey> = IFlattenedTreeViewProps<D> & IFlattenedTreeViewDefaultProps;
 
+/**
+ * The `FlattenedTreeView` component is a pretty performant component used to rendering a flattened data structure
+ * into the required nested lists data structure of the `TreeView` component.
+ */
 export default class FlattenedTreeView<D = ILazyKey> extends React.Component<IFlattenedTreeViewProps<D>, {}> {
   public shouldComponentUpdate(nextProps: IFlattenedTreeViewProps<D>) {
     return (

@@ -3,25 +3,7 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import memoizeOne from "memoize-one";
 
-/**
- * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
- * as an icon.
- */
 export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
-  /**
-   * An optional style to apply to the svg element.
-   *
-   * @docgen
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * An optional className to apply to the svg element.
-   *
-   * @docgen
-   */
-  className?: string;
-
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
    * `img` so that it is insured as a graphic.
@@ -144,10 +126,12 @@ export interface ISVGIconDefaultProps {
   dense: boolean;
 }
 
+/**
+ * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
+ * as an icon.
+ */
 export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
   public static propTypes = {
-    style: PropTypes.object,
-    className: PropTypes.string,
     role: PropTypes.oneOf(["img", "presentation"]),
     "aria-labelledby": PropTypes.string,
     title: PropTypes.string,

@@ -2,7 +2,7 @@
   "name": "@react-md/icon",
   "version": "2.0.0-alpha-1",
   "private": true,
-  "description": "",
+  "description": "This package is for including icons within react-md. There is included support for both font icons and SVG icons.  There is also a helper component for applying spacing between icons and text.",
   "scripts": {
     "build:commonjs": "tsc -p tsconfig.commonjs.json",
     "build:modules": "tsc -p tsconfig.modules.json",
@@ -31,6 +31,16 @@
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "icon",
+    "font icon",
+    "svg icon",
+    "component",
+    "components"
+  ],
   "license": "MIT",
   "dependencies": {
     "@react-md/theme": "^2.0.0-alpha-1",

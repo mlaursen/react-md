@@ -34,10 +34,13 @@ export interface IOverlayState {
   active: boolean;
 }
 
+/**
+ * The `Overlay` component is a simple component used to render a full page overlay in the page with
+ * an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
+ * different area within your app, you should use the `OverlayPortal` component instead.
+ */
 export default class Overlay extends React.Component<IOverlayProps, IOverlayState> {
   public static propTypes = {
-    style: PropTypes.object,
-    className: PropTypes.string,
     timeout: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.shape({

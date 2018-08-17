@@ -86,6 +86,7 @@
   margin-left: $rmd-app-bar-lr-margin;
   margin-right: $rmd-app-bar-title-nav-margin;
 
+  // sass-lint:disable-block mixins-before-declarations
   @include rmd-utils-rtl {
     margin-left: $rmd-app-bar-title-nav-margin;
     margin-right: $rmd-app-bar-lr-margin;
@@ -106,6 +107,7 @@
   margin-left: $rmd-app-bar-keyline;
   margin-top: 0;
 
+  // sass-lint:disable-block mixins-before-declarations
   @include rmd-utils-rtl {
     margin-left: auto;
     margin-right: $rmd-app-bar-keyline;
@@ -141,6 +143,7 @@
   &--first {
     margin-left: auto;
 
+    // sass-lint:disable-block mixins-before-declarations
     @include rmd-utils-rtl {
       margin-left: 0;
       margin-right: auto;
@@ -151,6 +154,7 @@
     margin-left: $rmd-app-bar-lr-margin;
     margin-right: $rmd-app-bar-nav-margin;
 
+    // sass-lint:disable-block mixins-before-declarations
     @include rmd-utils-rtl {
       margin-left: $rmd-app-bar-nav-margin;
       margin-right: $rmd-app-bar-lr-margin;
@@ -175,8 +179,74 @@
   }
 }
 
+/// A simple mixin for updating an element to be offset by the current app bar's height if it is one
+/// of the built-in heights for react-md. This is normally just used for fixed top app bars, but you
+/// can change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.
+///
+/// @example scss - Example Usage SCSS
+///   .main {
+///     @include rmd-app-bar-offset;
+///
+///     &--prominent {
+///       @include rmd-app-bar-offset(true, $true);
+///     }
+///
+///     &--dense {
+///       @include rmd-app-bar-offset(false, true);
+///     }
+///
+///     &--dense-prominent {
+///       @include rmd-app-bar-offset(true, true);
+///     }
+///
+///     &--margin {
+///       @include rmd-app-bar-offset(false, false, margin-top);
+///     }
+///   }
+///
+/// @param {Boolean} prominent [false] - Boolean if the styles should reflect a prominent app bar. If both
+///     this and the `dense` params are set to `true`, the styles will reflect a prominent dense app bar.
+/// @param {Boolean} dense [false] - Boolean if the styles should reflect a dense app bar. If both this and
+///     the `prominent` params are set to `true`, the styles will reflect a prominent dense app bar.
+/// @param {String} style [rmd-app-bar-offset-style] - The style to apply the offset to.
+@mixin rmd-app-bar-offset($prominent: false, $dense: false, $style: $rmd-app-bar-offset-style) {
+  $distance: null;
+  @if $prominent {
+    $distance: if($dense, $rmd-app-bar-prominent-dense-height, $rmd-app-bar-prominent-height);
+  } @else {
+    $distance: if($dense, $rmd-app-bar-dense-height, $rmd-app-bar-height);
+  }
+
+  #{$style}: $distance;
+}
+
+/// Creates all the offset class names applied with the current style.
+///
+/// @param {String} style [rmd-app-bar-offset-style] - The style to apply the offset to.
+/// @param {String} offsets [rmd-app-bar-offsets] - A list of offsets that should be created.
+@mixin rmd-app-bar-offsets($style: $rmd-app-bar-offset-style, $offsets: $rmd-app-bar-offsets) {
+  @each $offset in $offsets {
+    @if not index($rmd-app-bar-valid-offsets, $offset) {
+      @error 'Invalid offset: \'#{$offset}\'! Choose one of \'#{$rmd-app-bar-valid-offsets}\'.';
+    }
+
+    $dense: $offset == 'dense' or $offset == 'prominent-dense';
+    $prominent: $offset == 'prominent' or $offset == 'prominent-dense';
+    $selector: '.rmd-app-bar-offset';
+    @if $offset != 'base' {
+      $selector: $selector + '-#{$offset}';
+    }
+
+    #{$selector} {
+      @include rmd-app-bar-offset($prominent, $dense, $style);
+    }
+  }
+}
+
 /// Creates all the styles for all the AppBar components.
 @mixin react-md-app-bar {
+  @include rmd-app-bar-offsets;
+
   .rmd-app-bar {
     @include rmd-app-bar;
 

@@ -2,12 +2,6 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { throttleEvent, IThrottledEventHandler, ThrottleTarget } from "@react-md/utils";
 
-/**
- * This is a simple component that uses the lifecyle methods within React to attach and remove
- * the event type that is provided. Once mounted, the **props should not change**. If you want
- * to change events, this component should be unmounted and a new component should be mounted
- * instead.
- */
 export interface IEventListenerProps {
   /**
    * The event type to create.
@@ -55,6 +49,12 @@ export interface IEventListenerTriggeredDefined extends IEventListenerProps {
 
 export type EventListenerWithRequiredProps = IEventListenerChildrenDefined | IEventListenerTriggeredDefined;
 
+/**
+ * This is a simple component that uses the lifecyle methods within React to attach and remove
+ * the event type that is provided. Once mounted, the **props should not change**. If you want
+ * to change events, this component should be unmounted and a new component should be mounted
+ * instead.
+ */
 export default class EventListener extends React.Component<EventListenerWithRequiredProps, IEventListenerState> {
   public static propTypes = {
     type: PropTypes.oneOf(["click", "scroll"]).isRequired,

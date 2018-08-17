@@ -101,8 +101,8 @@
 }
 
 @mixin rmd-sheet-vertical-recommended {
-  min-height: $rmd-sheet-recommended-min-height;
   max-height: $rmd-sheet-recommended-max-height;
+  min-height: $rmd-sheet-recommended-min-height;
 }
 
 

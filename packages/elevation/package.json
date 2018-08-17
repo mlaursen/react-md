@@ -1,7 +1,7 @@
 {
   "name": "@react-md/elevation",
   "version": "2.0.0-alpha-1",
-  "description": "",
+  "description": "This is a small package for react-md that can create the elevation styles in the material design spec.",
   "scripts": {
     "build": "npm-run-all -p \"styles\"",
     "clean": "rimraf dist",
@@ -16,6 +16,13 @@
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "sass",
+    "styles",
+    "elevation"
+  ],
   "license": "MIT",
   "devDependencies": {
     "copyfiles": "^2.0.0",
