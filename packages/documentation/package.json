@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack/config.ts",
-    "build": "webpack --mode production --config webpack/config.ts"
+    "build": "webpack --mode production --config webpack/config.ts",
+    "cip": "node src/scripts/createInstallationPage.js"
   },
   "repository": {
     "type": "git",
@@ -71,11 +72,14 @@
     "babel-loader": "^7.1.5",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "clean-webpack-plugin": "^0.1.19",
+    "commander": "^2.17.1",
     "css-loader": "^1.0.0",
     "escape-string-regexp": "^1.0.5",
     "file-loader": "^1.1.11",
     "fork-ts-checker-webpack-plugin": "^0.4.3",
+    "fs-extra": "^7.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "markdown-toc": "^1.2.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
