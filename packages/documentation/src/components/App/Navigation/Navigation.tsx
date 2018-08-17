@@ -114,7 +114,7 @@ const Navigation: React.SFC<{}> = () => (
   <FlattenedTreeView data={flattenedRoutes}>
     {data => (
       <TreeViewControls id="navigation" className="navigation" data={data}>
-        {props => <TreeView {...props} dense={true} />}
+        {props => <TreeView {...props} dense={true} aria-label="Main Navigation" />}
       </TreeViewControls>
     )}
   </FlattenedTreeView>

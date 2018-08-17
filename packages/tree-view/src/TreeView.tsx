@@ -185,7 +185,7 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
       const labelledBy = props["aria-labelledby"];
       if (typeof label !== "string" && typeof labelledBy !== "string") {
         return new Error(
-          `The \`${component} component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
+          `The \`${component}\` component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
             "accessibility but both were `undefined`."
         );
       } else if (typeof label === "string" && !label.length) {
@@ -193,22 +193,11 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
           `The \`${component}\` component requires an \`aria-label\` with a length greater than 0, but \`${label}\` ` +
             "was provided. "
         );
-      } else if (typeof labelledBy === "string") {
-        if (!labelledBy.length) {
-          return new Error(
-            `The \`${component}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
-              `\`${labelledBy}\` was provided.`
-          );
-        }
-
-        const element = document.getElementById(labelledBy);
-        if (!element) {
-          return new Error(
-            `The \`${component}\` component requires the \`aria-labelledby\` prop to reference an element with the ` +
-              `provided id: \`${labelledBy}\`, but no elements on the page when the \`${component}\` component was ` +
-              "rendered. Please update the `aria-labelledby` value to be an id of a valid element on the page."
-          );
-        }
+      } else if (typeof labelledBy === "string" && !labelledBy.length) {
+        return new Error(
+          `The \`${component}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
+            `\`${labelledBy}\` was provided.`
+        );
       }
 
       return null;
