@@ -49,7 +49,7 @@ export default class Markdown extends React.Component<IMarkdownProps, IMarkdownS
       return null;
     }
 
-    return <section style={style} className={cn("markdown-container", className)} dangerouslySetInnerHTML={html} />;
+    return <div style={style} className={cn("markdown-container", className)} dangerouslySetInnerHTML={html} />;
   }
 
   private updateInnerHTML = () => {
