@@ -2,7 +2,6 @@ import * as React from "react";
 import * as LoadableInstance from "react-loadable";
 
 // doesn't work with normal imports right now
-// tslint:disable-next-line no-var-requires
 const ReactLoadable = require("react-loadable");
 
 import Loading from "./Loading";

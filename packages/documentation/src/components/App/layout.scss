@@ -24,7 +24,7 @@
 }
 
 .rmd-layout__nav-tree {
-  margin-top: $rmd-app-bar-height;
+  padding-top: $rmd-app-bar-height + $rmd-list-dense-vertical-padding;
 }
 
 .rmd-layout__title {

@@ -54,7 +54,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     return (
       <React.Fragment>
         <nav id="navigation" className="rmd-layout__nav">
-          <AppBar theme="clear" fixed={true} fixedElevation={false} className="rmd-layout__nav-header">
+          <AppBar theme="clear" fixedElevation={false} className="rmd-layout__nav-header">
             <AppBarTitle id="application-name">react-md</AppBarTitle>
           </AppBar>
           <TreeView

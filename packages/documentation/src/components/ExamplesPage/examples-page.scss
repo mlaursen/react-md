@@ -16,7 +16,6 @@
   &__example {
     @include rmd-elevation(1);
 
-    box-sizing: border-box;
     padding: 1.5rem;
   }
 

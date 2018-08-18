@@ -4,7 +4,6 @@ import { Text } from "@react-md/typography";
 
 import "./not-found.scss";
 
-// tslint:disable-next-line no-var-requires
 const svg = require("./404.svg");
 
 const NotFound: React.SFC<Router.RouteComponentProps<void>> = () => (
