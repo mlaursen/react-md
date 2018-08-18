@@ -54,6 +54,22 @@
       }
     }
   }
+
+  .rmd-text-container {
+    @include rmd-text-container($rmd-typography-mobile-max-line-length);
+
+    @media (min-width: 768px) {
+      max-width: $rmd-typography-desktop-max-line-length;
+    }
+  }
+
+  .rmd-mobile-text-container {
+    @include rmd-text-container($rmd-typography-mobile-max-line-length);
+  }
+
+  .rmd-desktop-text-container {
+    @include rmd-text-container($rmd-typography-desktop-max-line-length);
+  }
 }
 
 /// A simple mixin that can be used to update an element to ellipsis text when it is too long.
