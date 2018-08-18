@@ -8,7 +8,7 @@ export type TreeViewElement = HTMLUListElement | HTMLOListElement;
  * It's really just a fallback until I can figure out better typing, but it is also a
  * "reasonable" default.
  */
-export interface ILazyKey {
+export interface IIndexKeyAny {
   [key: string]: any;
 }
 
@@ -19,7 +19,7 @@ export interface ILazyKey {
  * a specific type or interface can be supplied to get better typing. This allows for "easier"
  * data manipulation and rendering if you want to have a single lookup instead of multiple.
  */
-export type TreeViewData<D = ILazyKey> = D & {
+export type TreeViewData<D = IIndexKeyAny> = D & {
   itemId: string;
   childItems?: Array<TreeViewData<D>>;
 };
@@ -27,28 +27,28 @@ export type TreeViewData<D = ILazyKey> = D & {
 /**
  * A simple list version of the TreeViewData.
  */
-export type TreeViewDataList<D = ILazyKey> = Array<TreeViewData<D>>;
+export type TreeViewDataList<D = IIndexKeyAny> = Array<TreeViewData<D>>;
 
 /**
  * This is an expansion of the TreeViewData to work when it is in a "flattened" structure instead of
  * a list. It has the same base requirements as the TreeViewData, but also requires an additional
  * `parentId` to help link nodes together.
  */
-export type FlattenedTreeViewData<D = ILazyKey> = TreeViewData<D> & {
+export type FlattenedTreeViewData<D = IIndexKeyAny> = TreeViewData<D> & {
   parentId: string | null;
 };
 
 /**
  * This is the flattened tree view's data structure.
  */
-export type FlattenedTree<D = ILazyKey> = {
+export type FlattenedTree<D = IIndexKeyAny> = {
   [key: string]: FlattenedTreeViewData<D>
 }
 
 /**
  * A simple list version of the FlattenedTreeViewData.
  */
-export type FlattenedTreeViewDataList<D = ILazyKey> = Array<FlattenedTreeViewData<D>>;
+export type FlattenedTreeViewDataList<D = IIndexKeyAny> = Array<FlattenedTreeViewData<D>>;
 
 /**
  * The function that should render the tree view that is really just a Stateless Functional Component.
@@ -57,16 +57,16 @@ export type FlattenedTreeViewDataList<D = ILazyKey> = Array<FlattenedTreeViewDat
  * to provide a type or interface for the remaining keys. The default is to allow any key passed down
  * just so it isn't super hard to get something rendered.
  */
-export type treeViewRenderer<R = ILazyKey> = (props: ITreeViewInjectedProps & R) => React.ReactNode;
+export type treeViewRenderer<R = IIndexKeyAny> = (props: ITreeViewInjectedProps & R) => React.ReactNode;
 
 /**
  * The function that should render each tree item that appears within the tree view. It will provide
- * the current TreeViewData and the `ITreeViewItemInjectedProps` so that you can render items fairly
+ * the current TreeViewData and the `ITreeViewItemInjectedPropsWithKey` so that you can render items fairly
  * dynamically.
  */
-export type treeItemRenderer<D = ILazyKey> = (
+export type treeItemRenderer<D = IIndexKeyAny> = (
   item: TreeViewData<D>,
-  props: ITreeViewItemInjectedProps
+  props: ITreeViewItemInjectedPropsWithKey
 ) => React.ReactNode;
 
 /**
@@ -88,11 +88,6 @@ export interface ITreeViewInjectedProps extends React.HTMLAttributes<TreeViewEle
  * The "base" injected props for the TreeItem's renderer.
  */
 export interface ITreeViewItemInjectedProps {
-  /**
-   * The key that should be applied to the react element.
-   */
-  key: string;
-
   /**
    * The current depth that the tree item is being rendered at. This will be a number starting from `1`
    * since it should be directly mapped to `"aria-posinset"`.
@@ -133,6 +128,13 @@ export interface ITreeViewItemInjectedProps {
    * within the exported `TreeGroup` component or in a component that has the `role="group"` for accessibility.
    */
   renderChildItems?: () => React.ReactNode;
+}
+
+export interface ITreeViewItemInjectedPropsWithKey extends ITreeViewItemInjectedProps {
+  /**
+   * The key that should be applied to the react element.
+   */
+  key: string;
 }
 
 export type onItemSelect = (itemId: string) => void;

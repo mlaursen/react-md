@@ -2,7 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { ITreeViewBaseProps } from "./TreeView";
 
-import { onItemSelect, onItemExpandedChange, onItemSiblingExpansion, TreeViewDataList, ILazyKey } from "./types";
+import { onItemSelect, onItemExpandedChange, onItemSiblingExpansion, TreeViewDataList, IIndexKeyAny } from "./types";
 import { handleSingleItemSelect, handleItemExpandedChange, findAllParentIds } from "./utils";
 
 export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {

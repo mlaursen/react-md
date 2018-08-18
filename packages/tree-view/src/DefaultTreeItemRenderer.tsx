@@ -25,18 +25,7 @@ interface IA11yProps {
 
 export type IDefaultTreeItemRendererProps = IDefaultTreeItemRendererBaseProps & ITreeViewItemInjectedProps;
 
-export interface IDefaultTreeItemRendererState {}
-
-export default class DefaultTreeItemRenderer extends React.Component<
-  IDefaultTreeItemRendererProps,
-  IDefaultTreeItemRendererState
-> {
-  constructor(props: IDefaultTreeItemRendererProps) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class DefaultTreeItemRenderer extends React.Component<IDefaultTreeItemRendererProps> {
   public componentDidMount() {
     this.props.updateTreeItems();
   }

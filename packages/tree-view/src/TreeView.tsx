@@ -4,7 +4,7 @@ import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
 
 import {
-  ILazyKey,
+  IIndexKeyAny,
   TreeViewElement,
   TreeViewData,
   TreeViewDataList,
@@ -129,25 +129,26 @@ export interface ITreeViewIdsProps {
   expandedIds: string[];
 }
 
-export interface ITreeViewProps<D = ILazyKey, R = ILazyKey>
+export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
   extends ITreeViewBaseProps<D, R>,
     ITreeViewIdsProps,
-    ILazyKey {
+    IIndexKeyAny {
   onItemSelect: onItemSelect;
   onItemExpandedChange: onItemExpandedChange;
 }
 
-export type TreeViewPropsWithSiblingExpansion<D = ILazyKey, R = ILazyKey> = ITreeViewProps<D, R> & {
+export type TreeViewPropsWithSiblingExpansion<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
   onItemSiblingExpansion: onItemSiblingExpansion;
 };
 
-export interface ITreeViewDefaultProps<D = ILazyKey, R = ILazyKey> {
+export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
   disableSiblingExpansion: boolean;
   treeViewRenderer: treeViewRenderer<R>;
   treeItemRenderer: treeItemRenderer<D>;
 }
 
-export type TreeViewWithDefaultProps<D = ILazyKey, R = ILazyKey> = ITreeViewProps<D, R> & ITreeViewDefaultProps<D, R>;
+export type TreeViewWithDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> &
+  ITreeViewDefaultProps<D, R>;
 
 /**
  * The `TreeView` component is used to create an accessible
@@ -161,7 +162,7 @@ export type TreeViewWithDefaultProps<D = ILazyKey, R = ILazyKey> = ITreeViewProp
  * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
  * complex trees that have drag and drop or other functionality built in.
  */
-export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Component<ITreeViewProps<D, R>> {
+export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<ITreeViewProps<D, R>> {
   public static propTypes = {
     id: PropTypes.string.isRequired,
     "aria-label": PropTypes.string,
@@ -204,7 +205,7 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
     },
   };
 
-  public static defaultProps: ITreeViewDefaultProps<ILazyKey, ILazyKey> = {
+  public static defaultProps: ITreeViewDefaultProps<IIndexKeyAny, IIndexKeyAny> = {
     disableSiblingExpansion: false,
     treeViewRenderer: props => <List {...props} />,
     treeItemRenderer: ({ linkComponent, to, href, leftIcon, rightIcon, children }, props) => (
@@ -261,7 +262,7 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
    * // foundItemData = { itemId: "item-2-1", children: "Item 2-1" }
    * ```
    */
-  public static findTreeItemFromElement<D = ILazyKey>(
+  public static findTreeItemFromElement<D = IIndexKeyAny>(
     element: HTMLElement,
     data: TreeViewDataList<D>,
     treeEl: TreeViewElement | null
@@ -315,7 +316,7 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
    * // foundItemData = [{ itemId: "item-2-1", children: "Item 2-1" }, { itemId: "item-2-2", children: "Item 2-2" }]
    * ```
    */
-  public static findTreeItemsFromElement<D = ILazyKey>(
+  public static findTreeItemsFromElement<D = IIndexKeyAny>(
     element: HTMLElement,
     data: TreeViewDataList<D>,
     treeEl: TreeViewElement | null
@@ -350,7 +351,7 @@ export default class TreeView<D = ILazyKey, R = ILazyKey> extends React.Componen
    *
    * @see buildItemIndexStack
    */
-  private static findTreeItemDataList<D = ILazyKey>(stack: number[], data: TreeViewDataList<D>) {
+  private static findTreeItemDataList<D = IIndexKeyAny>(stack: number[], data: TreeViewDataList<D>) {
     let temp;
     let list = data;
     for (const index of stack) {
