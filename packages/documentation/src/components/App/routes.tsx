@@ -2,7 +2,16 @@ import * as React from "react";
 import { kebabCase } from "lodash";
 import { Link } from "react-router-dom";
 import { FlattenedTree, TreeViewDataList, TreeViewData } from "@react-md/tree-view";
-import { HomeSVGIcon, InfoOutlineSVGIcon, BuildSVGIcon, WarningSVGIcon } from "@react-md/material-icons";
+import {
+  HomeSVGIcon,
+  InfoOutlineSVGIcon,
+  BuildSVGIcon,
+  WarningSVGIcon,
+  AccessibilitySVGIcon,
+} from "@react-md/material-icons";
+
+const googleLogo = require("./googleLogo.svg");
+const reactLogo = require("./reactLogo.svg");
 
 function createRoute(path: string, name: string, icon?: React.ReactElement<any>): TreeViewData {
   return {
@@ -31,7 +40,7 @@ function createPackage(name: string, { examples = true, proptypes = true, sassdo
 
   return {
     itemId: basePath,
-    children: name,
+    children: `@react-md/${name}`,
     childItems,
   };
 }
@@ -43,6 +52,41 @@ const routes: TreeViewDataList = [
     children: "Packages",
     leftIcon: <BuildSVGIcon />,
     childItems: [createPackage("a11y"), createPackage("app-bar"), createPackage("button")],
+  },
+  {
+    itemId: "divider",
+  },
+  {
+    itemId: "subheader",
+    children: "References",
+  },
+  {
+    itemId: "react",
+    children: "React",
+    leftIcon: <img className="rmd-avatar" src={reactLogo} alt="" role="presentation" />,
+    href: "https://facebook.github.io/react/",
+    linkComponent: "a",
+  },
+  {
+    itemId: "material-design",
+    children: "Material Design",
+    leftIcon: <img className="rmd-avatar" src={googleLogo} alt="" role="presentation" />,
+    href: "https://www.google.com/design/spec/material-design/introduction.html",
+    linkComponent: "a",
+  },
+  {
+    itemId: "material-icons",
+    children: "Material Icons",
+    leftIcon: <img className="rmd-avatar" src={googleLogo} alt="" role="presentation" />,
+    href: "https://design.google.com/icons/",
+    linkComponent: "a",
+  },
+  {
+    itemId: "constrast-checker",
+    children: "Contrast Checker",
+    leftIcon: <AccessibilitySVGIcon />,
+    href: "http://webaim.org/resources/contrastchecker/",
+    linkComponent: "a",
   },
 ];
 

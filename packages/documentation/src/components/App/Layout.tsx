@@ -4,7 +4,9 @@ import { AppBar, AppBarTitle, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 import {
   TreeView,
-  FlattenedTreeView,
+  DefaultTreeItemRenderer,
+  TreeViewData,
+  ITreeViewItemInjectedProps,
   handleSingleItemSelect,
   handleItemExpandedChange,
   findAllParentIds,
@@ -68,6 +70,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
             onItemSelect={this.handleItemSelect}
             onItemExpandedChange={this.handleItemExpandedChange}
             onItemSiblingExpansion={this.handleItemSiblingExpansion}
+            treeItemRenderer={this.treeItemRenderer}
           />
         </nav>
         <AppBar fixed={true} className="rmd-layout__app-bar">
@@ -98,6 +101,23 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 
   private handleClose = () => {
     console.log("ATTEMPTING_CLOSE");
+  };
+
+  private treeItemRenderer = (
+    { linkComponent, to, href, leftIcon, children, divider, itemId }: TreeViewData,
+    props: ITreeViewItemInjectedProps
+  ) => {
+    if (itemId.startsWith("divider")) {
+      return <li role="divider" key={itemId} className="rmd-divider" />;
+    } else if (itemId.startsWith("subheader")) {
+      return <li key={itemId} className="rmd-subheader">{children}</li>;
+    }
+
+    return (
+      <DefaultTreeItemRenderer {...props} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
+        {children}
+      </DefaultTreeItemRenderer>
+    );
   };
 }
 

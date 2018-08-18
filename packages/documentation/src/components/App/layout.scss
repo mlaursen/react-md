@@ -35,3 +35,29 @@
   padding-left: $rmd-sheet-large-width;
   padding-top: $rmd-app-bar-height;
 }
+
+
+// temp stuffs
+.rmd-subheader {
+  @include rmd-theme(color, text-secondary-on-background);
+
+  align-items: center;
+  display: flex;
+  height: $rmd-list-item-height;
+  padding: $rmd-list-item-vertical-padding $rmd-list-item-horizontal-padding;
+}
+
+.rmd-divider {
+  $rmd-divider-color: rgba($rmd-black-base, .12);
+
+  background-color: $rmd-divider-color;
+  height: .0625rem;
+  margin: .46875rem 0;
+  width: 100%;
+}
+
+.rmd-avatar {
+  border-radius: 50%;
+  height: $rmd-icon-size;
+  width: $rmd-icon-size;
+}
