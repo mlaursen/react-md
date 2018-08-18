@@ -45,7 +45,6 @@
 /// Creates the base list item styles.
 @mixin rmd-list-item-base {
   align-items: center;
-  box-sizing: border-box;
   display: flex;
   min-height: $rmd-list-item-height;
   padding: $rmd-list-item-vertical-padding $rmd-list-item-horizontal-padding;

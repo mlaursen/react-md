@@ -175,7 +175,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         secondaryText={secondaryText}
         secondaryTextClassName={secondaryTextClassName}
       >
-        {textChildren ? children : primaryText}
+        {textChildren && children ? children : primaryText}
       </ListItemText>
     );
   } else if (secondaryText) {
