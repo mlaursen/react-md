@@ -26,7 +26,8 @@
       @include rmd-theme(color, primary);
 
       &:hover {
-        color: $rmd-link-hover-color;
+        @include rmd-theme(color, $rmd-link-hover-color);
+
         text-decoration: underline;
       }
     }
