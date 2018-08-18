@@ -14,6 +14,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [Text Component](#text-component)
 - [Prop Types](#prop-types)
   * [Text](#text)
+  * [TextContainer](#textcontainer)
 - [Updating Styles](#updating-styles)
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
@@ -193,6 +194,46 @@ will be applied.
 </table>
 
 
+### TextContainer
+The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or `<aside>`
+element that applies the text container styles.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td><code>"auto" | "mobile" | "desktop"</code></td>
+<td><code>null</code></td>
+<td>
+The size for the text container. This can usually just be left at the default of <code>&#34;auto&#34;</code> since
+it will automatically transition between <code>&#34;mobile&#34;</code> and <code>&#34;desktop&#34;</code> based on media queries.
+However, you can also manually specify <code>&#34;mobile&#34;</code> or <code>&#34;desktop&#34;</code> if needed.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>tagName</td>
+<td><code>"div" | "section" | "article" | "aside"</code></td>
+<td><code>null</code></td>
+<td>
+The specific tagName to render as.
+<br /><br />
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <!-- PROPS_END -->
 
 ## Updating Styles
@@ -291,6 +332,32 @@ Every key that you do not include in the map will no longer be created when incl
 <td>String</td>
 <td></td>
 <td>One of the typography styles from <code>$rmd-typography-styles</code>.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
+<td><code>rmd-text-container(max-width)</code></td>
+<td>A small util that will create a text container with the provided max width.
+<br /><br />
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>max-width</td>
+<td>Number</td>
+<td>rmd-typography-desktop-max-line-length</td>
+<td>The max width for a line of text.
+  this number should be between 38em-42em on desktop and 17em-18em on mobile devices.</td>
 </tr>
 </tbody>
 </table>
@@ -529,6 +596,16 @@ correctly included and bundled during your build. See the examples for more deta
 <tr>
 <td><code>rmd-typography-font-family</code></td>
 <td>The font family to use throughout the entire application.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-typography-mobile-max-line-length</code></td>
+<td>The max length a line of text can be on mobile devices.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-typography-desktop-max-line-length</code></td>
+<td>The max length a line of text can be on larger screens (mostly desktops or landscape tablets).
 <br /><br /></td>
 </tr>
 <tr>
