@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": "src",
+    "target": "es5",
+    "sourceMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
     "jsx": "react",
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
-      "es6"
-    ]
+      "es2017"
+    ],
+    "paths": {
+      "components/*": ["components/*"]
+    }
   }
 }
