@@ -1,4 +1,5 @@
 import { PortalInto } from "@react-md/portal";
+import { TooltipPosition } from "./constants";
 import { ITooltipProps } from "./Tooltip";
 
 export type InitMagicTooltip = (id: string) => void;
@@ -15,6 +16,7 @@ export interface IMagicTooltipContext {
   portal: boolean;
   portalInto?: PortalInto;
   portalIntoId?: string;
+  position?: TooltipPosition;
 }
 
 export interface IMagicTooltipProps extends ITooltipProps {

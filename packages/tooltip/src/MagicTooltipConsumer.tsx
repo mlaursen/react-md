@@ -145,9 +145,9 @@ export default class MagicTooltipConsumer extends React.Component<
 
     const tooltip = (
       <Tooltip
+        position={position}
         {...props}
         visible={visible}
-        position={position}
         style={style}
         className={cn(
           {
@@ -197,7 +197,7 @@ export default class MagicTooltipConsumer extends React.Component<
     const { portalInto, portalIntoId, id } = this.props;
     const container = document.querySelector(`[aria-describedby="${id}"]`) as HTMLElement | null;
     const tooltip = document.getElementById(id) as HTMLElement | null;
-    const position = this.determineBestPosition(container, tooltip);
+    const position = this.props.position || this.determineBestPosition(container, tooltip);
     const spacing = this.getSpacing();
 
     let horizontalSpacing;

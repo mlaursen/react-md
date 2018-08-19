@@ -5,6 +5,7 @@ import { KEYBOARD_MOVEMENT_KEYS } from "@react-md/utils";
 
 import { Provider } from "./MagicTooltipContext";
 import {
+  TooltipPosition,
   DEFAULT_SHOW_DELAY,
   DEFAULT_SPACING,
   DEFAULT_DENSE_SPACING,
@@ -116,6 +117,16 @@ export interface IMagicTooltipProviderProps {
    * @docgen
    */
   children?: React.ReactNode;
+
+  /**
+   * If this prop is provided, the `MagicTooltip` children will all use this positioning instead of attempting to
+   * calculate the best position within the viewport. This is helpful for when you know a section of your tooltips will
+   * always be rendered "best" to the left (for example a right drawer) since the calculations might make it switch
+   * between `"top"` `"left"` and `"bottom"`.
+   *
+   * @docgen
+   */
+  position?: TooltipPosition;
 }
 
 export interface IMagicTooltipProviderDefaultProps {
@@ -211,7 +222,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   public render() {
     const { visibleId } = this.state;
-    const { dense, spacing, denseSpacing, portal, portalInto, portalIntoId } = this.props;
+    const { dense, spacing, denseSpacing, portal, portalInto, portalIntoId, position } = this.props;
 
     const value = {
       dense,
@@ -223,6 +234,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       portal,
       portalInto,
       portalIntoId,
+      position,
     } as IMagicTooltipContext;
 
     return <Provider value={value}>{this.props.children}</Provider>;
