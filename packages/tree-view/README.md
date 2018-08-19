@@ -40,7 +40,7 @@ the `TreeViewControls` component to add the base functionality for your tree as 
 ```tsx
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { TreeView, TreeViewControls, TreeViewDataList } from "@react-md/transition";
+import { TreeView, TreeViewControls, TreeViewDataList } from "@react-md/tree-view";
 
 const data: TreeViewDataList = [{
   itemId: "item-1",
@@ -571,7 +571,7 @@ It is generally recommended to keep this prop <code>undefined</code> and let the
 <td><code>"true"</code></td>
 <td><code>null</code></td>
 <td>
-Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. 
+Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed.
 An optional aria-expanded attribute to apply to the tree item. This should only be provided as the value &#34;true&#34;
 and only if it is currently expanded. It should be <code>undefined</code> otherwise.
 <br /><br />
@@ -582,7 +582,7 @@ and only if it is currently expanded. It should be <code>undefined</code> otherw
 <td><code>number</code></td>
 <td><code>null</code></td>
 <td>
-Defines the hierarchical level of an element within a structure. 
+Defines the hierarchical level of an element within a structure.
 The current level (depth) for the tree item.
 <br /><br />
 </td>
