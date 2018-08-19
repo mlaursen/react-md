@@ -4,6 +4,8 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import memoizeOne from "memoize-one";
 
+import { isFocusable } from "@react-md/utils";
+
 import { IStatesContext } from "./StatesContext";
 
 const LEFT_MOUSE = 0;
@@ -215,23 +217,34 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
 
   public componentDidMount() {
     this.el = ReactDOM.findDOMNode(this) as HTMLElement;
-    if (!this.el && process.env.NODE_ENV === "development") {
-      const { props } = this;
-      // tslint:disable-next-line
-      class StatesConsumerError extends Error {
-        private consumerProps: IStatesConsumerProps;
-        constructor(...args: any[]) {
-          super(...args);
+    const original = this.el;
+    if (!isFocusable(this.el, true)) {
+      while (this.el && !isFocusable(this.el, true)) {
+        this.el = this.el.parentElement;
+      }
+    }
 
-          this.consumerProps = props;
+    if (!this.el) {
+      if (process.env.NODE_ENV === "development") {
+        const { props } = this;
+        // tslint:disable-next-line
+        class StatesConsumerError extends Error {
+          private consumerProps: IStatesConsumerProps;
+          constructor(...args: any[]) {
+            super(...args);
+
+            this.consumerProps = props;
+          }
         }
+
+        throw new StatesConsumerError(
+          "The `StatesConsumer` component was mounted without finding a valid HTMLElement as its child. " +
+            "This should be fixed before deploying to production. The current props are available on the " +
+            "error instance as `error.consumerProps`."
+        );
       }
 
-      throw new StatesConsumerError(
-        "The `StatesConsumer` component was mounted without finding a valid HTMLElement as its child. " +
-        "This should be fixed before deploying to production. The current props are available on the " +
-        "error instance as `error.consumerProps`."
-      );
+      return;
     }
     this.props.initFocusTarget(this.el);
   }
