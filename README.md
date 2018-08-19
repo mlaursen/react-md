@@ -20,7 +20,7 @@ and attempting to be fully accessible for screen readers and keyboard users foll
 
 
 ## Installation
-Starting with react-md@3, each component is split into scoped packaging so it is easier to pick and choose specific components or styles
+Starting with react-md@2, each component is split into scoped packaging so it is easier to pick and choose specific components or styles
 without requiring every feature to bloat your application. A package can be simply installed with:
 
 ```sh
