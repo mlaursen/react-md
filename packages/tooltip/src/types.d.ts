@@ -12,6 +12,7 @@ export interface IMagicTooltipContext {
   visibleId: string | null;
   initMagicTooltip: InitMagicTooltip;
   deinitMagicTooltip: DeinitMagicTooltip;
+  portal: boolean;
   portalInto?: PortalInto;
   portalIntoId?: string;
 }
@@ -54,6 +55,8 @@ export interface IMagicTooltipProps extends ITooltipProps {
    *
    */
   denseSpacing?: TooltipSpacing;
+
+  portal?: boolean;
 
   /**
    * A manual override for the `MagicTooltip`. This is automatically passed down

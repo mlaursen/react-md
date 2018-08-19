@@ -7,6 +7,7 @@ const MagicTooltipContext = React.createContext<IMagicTooltipContext>({
   dense: false,
   spacing: DEFAULT_SPACING,
   denseSpacing: DEFAULT_DENSE_SPACING,
+  portal: false,
   visibleId: null,
   initMagicTooltip: () => undefined,
   deinitMagicTooltip: () => undefined,

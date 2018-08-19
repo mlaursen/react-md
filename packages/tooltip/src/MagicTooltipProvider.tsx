@@ -83,6 +83,15 @@ export interface IMagicTooltipProviderProps {
   keyboardMovementKeys?: string[];
 
   /**
+   * Boolean if every `MagicTooltip` children use the portal component and render in the `document.body`. Each
+   * `MagicTooltip` can override this behavior if needed by setting their own prop of `portalInto` of `null` or their
+   * own `portalInto` value.
+   *
+   * @docgen
+   */
+  portal?: boolean;
+
+  /**
    * If this prop is provided, it will make all `MagicTooltip` children use the portal component and render inside this
    * element. Each `MagicTooltip` can override this behavior if needed by setting their own prop of `portalInto` of
    * `null` or their own `portalInto` value.
@@ -111,6 +120,7 @@ export interface IMagicTooltipProviderProps {
 
 export interface IMagicTooltipProviderDefaultProps {
   dense: boolean;
+  portal: boolean;
   spacing: string;
   denseSpacing: string;
   delay: number;
@@ -128,13 +138,20 @@ export interface IMagicTooltipProviderState {
 
 export default class MagicTooltipProvider extends React.Component<IMagicTooltipProviderProps, any> {
   public static propTypes = {
+    dense: PropTypes.bool,
     delay: PropTypes.number,
+    portal: PropTypes.bool,
+    portalInto: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.instanceOf(HTMLElement)]),
+    portalIntoId: PropTypes.string,
     hoverMode: PropTypes.bool,
     hoverModeDelay: PropTypes.number,
+    keyboardFocusDelay: PropTypes.number,
+    keyboardMovementKeys: PropTypes.arrayOf(PropTypes.string),
   };
 
   public static defaultProps: IMagicTooltipProviderDefaultProps = {
     dense: false,
+    portal: false,
     spacing: DEFAULT_SPACING,
     denseSpacing: DEFAULT_DENSE_SPACING,
     delay: DEFAULT_SHOW_DELAY,
@@ -194,7 +211,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   public render() {
     const { visibleId } = this.state;
-    const { dense, spacing, denseSpacing, portalInto, portalIntoId } = this.props;
+    const { dense, spacing, denseSpacing, portal, portalInto, portalIntoId } = this.props;
 
     const value = {
       dense,
@@ -203,6 +220,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       visibleId,
       initMagicTooltip: this.init,
       deinitMagicTooltip: this.deinit,
+      portal,
       portalInto,
       portalIntoId,
     } as IMagicTooltipContext;

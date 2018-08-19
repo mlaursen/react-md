@@ -22,25 +22,18 @@ export interface IMagicTooltipConsumerProps extends IMagicTooltipProps {
    * should not be manually provided as a prop.
    */
   visibleId: string | null;
-
-  /**
-   *
-   */
   initMagicTooltip: InitMagicTooltip;
-
-  /**
-   *
-   */
   deinitMagicTooltip: DeinitMagicTooltip;
 }
 
 export interface IMagicTooltipConsumerDefaultProps {
+  portal: boolean;
+  spacing: string;
+  denseSpacing: string;
   enterDuration: number;
   leaveDuration: number;
   vhMargin: number;
   vwMargin: number;
-  spacing: string;
-  denseSpacing: string;
 }
 
 export type MagicTooltipConsumerWithDefaultProps = IMagicTooltipConsumerProps & IMagicTooltipConsumerDefaultProps;
@@ -62,12 +55,13 @@ export default class MagicTooltipConsumer extends React.Component<
   };
 
   public static defaultProps: IMagicTooltipConsumerDefaultProps = {
+    portal: false,
+    spacing: DEFAULT_SPACING,
+    denseSpacing: DEFAULT_DENSE_SPACING,
     enterDuration: DEFAULT_ENTER_DURATION,
     leaveDuration: DEFAULT_LEAVE_DURATION,
     vhMargin: DEFAULT_VH_MARGIN,
     vwMargin: DEFAULT_VW_MARGIN,
-    spacing: DEFAULT_SPACING,
-    denseSpacing: DEFAULT_DENSE_SPACING,
   };
 
   public static getDerivedStateFromProps(nextProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
@@ -141,6 +135,7 @@ export default class MagicTooltipConsumer extends React.Component<
       visibleId,
       spacing,
       denseSpacing,
+      portal,
       portalInto,
       portalIntoId,
       enterDuration,
@@ -166,7 +161,7 @@ export default class MagicTooltipConsumer extends React.Component<
       />
     );
 
-    if (!portalInto && !portalIntoId) {
+    if (!portal && !portalInto && !portalIntoId) {
       return tooltip;
     }
 
