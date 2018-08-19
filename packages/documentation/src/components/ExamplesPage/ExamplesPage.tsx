@@ -16,10 +16,12 @@ export interface IExamplesPageProps {
 
 const ExamplesPage: React.SFC<IExamplesPageProps> = ({ title, description, examples }) => (
   <section className="examples-page">
-    <Text type="headline-2" className="examples-page__block">
-      {title}
-    </Text>
-    {description && <Markdown markdown={description} />}
+    <header className="rmd-text-container">
+      <Text type="headline-2" className="examples-page__title">
+        {title}
+      </Text>
+      {description && <Markdown className="rmd-text-container" markdown={description} />}
+    </header>
     {examples.map((example, key) => <Example key={key} {...example} />)}
   </section>
 );
