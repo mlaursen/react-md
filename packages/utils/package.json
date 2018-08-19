@@ -14,7 +14,6 @@
     "styles": "copyfiles -u 1 \"src/**/*.scss\" dist",
     "watch:styles": "watch \"npm run styles\" src --filter ../../scssWatchFilter.js",
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" \"watch:styles\"",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
     "watch:with-defs": "npm-run-all -p watch watch:definitions",
     "test": "jest src",
     "docs": "doc-generator --no-proptypes --no-sassdoc",
