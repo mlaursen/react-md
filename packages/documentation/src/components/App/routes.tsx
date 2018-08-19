@@ -88,7 +88,7 @@ const routes: TreeViewDataList = [
       createPackage("states"),
       createPackage("theme", { propTypes: false }),
       createPackage("tooltip"),
-      createPackage("transiiton"),
+      createPackage("transition"),
       createPackage("tree-view"),
       createPackage("typography"),
     ],
