@@ -14,6 +14,10 @@ $rmd-typography-mobile-max-line-length: 17em !default;
 /// @type Number
 $rmd-typography-desktop-max-line-length: 40em !default;
 
+/// The amount of padding to use on text containers.
+/// @type Number
+$rmd-typography-text-container-padding: 0 1rem !default;
+
 /// The base styles for typography.
 /// @type Map
 $rmd-typography-base: (
