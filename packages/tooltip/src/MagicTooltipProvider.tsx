@@ -384,6 +384,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
   };
 
   private handleBlur = (event: FocusEvent) => {
+    this.clearShowTimeout();
     if (this.containers.indexOf(event.target as HTMLElement) === -1) {
       return;
     }
