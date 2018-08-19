@@ -91,13 +91,21 @@
 }
 
 @mixin rmd-sheet-horizontal-small {
-  max-width: $rmd-sheet-small-max-width;
   width: $rmd-sheet-small-width;
 }
 
+@mixin rmd-sheet-horizontal-until-small {
+  max-width: $rmd-sheet-small-max-width;
+  width: 100%;
+}
+
 @mixin rmd-sheet-horizontal-large {
-  max-width: $rmd-sheet-large-max-width;
   width: $rmd-sheet-large-width;
+}
+
+@mixin rmd-sheet-horizontal-until-large {
+  max-width: $rmd-sheet-large-max-width;
+  width: 100%;
 }
 
 @mixin rmd-sheet-vertical-recommended {
@@ -128,8 +136,16 @@
       @include rmd-sheet-horizontal-small;
     }
 
+    &--until-small-width {
+      @include rmd-sheet-horizontal-until-small;
+    }
+
     &--large-width {
       @include rmd-sheet-horizontal-large;
+    }
+
+    &--until-large-width {
+      @include rmd-sheet-horizontal-until-large;
     }
 
     &--media-width {

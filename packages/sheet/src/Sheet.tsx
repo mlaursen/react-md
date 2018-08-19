@@ -7,7 +7,7 @@ import { Overlay } from "@react-md/overlay";
 import { ICSSTransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
 
 export type SheetPosition = "top" | "right" | "bottom" | "left";
-export type SheetHorizontalSize = "none" | "media" | "small" | "large";
+export type SheetHorizontalSize = "none" | "media" | "small" | "large" | "until-small" | "until-large" | "until-media";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
 export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<HTMLDivElement> {
@@ -147,6 +147,9 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
                 "rmd-sheet--small-width": isHorizontal && horizontalSize === "small",
                 "rmd-sheet--large-width": isHorizontal && horizontalSize === "large",
                 "rmd-sheet--media-width": isHorizontal && horizontalSize === "media",
+                "rmd-sheet--until-small-width": isHorizontal && horizontalSize === "until-small",
+                "rmd-sheet--until-large-width": isHorizontal && horizontalSize === "until-large",
+                "rmd-sheet--until-media-width": isHorizontal && horizontalSize === "until-media",
                 "rmd-sheet--viewport-height": !isHorizontal && verticalSize === "none",
                 "rmd-sheet--touchable-height": !isHorizontal && verticalSize === "touch",
                 "rmd-sheet--recommended-height": !isHorizontal && verticalSize === "recommended",
