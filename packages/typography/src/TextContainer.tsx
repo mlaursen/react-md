@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 export type TextContainerTagName = "div" | "section" | "article" | "aside";
@@ -60,5 +61,15 @@ const TextContainer: React.SFC<ITextContainerProps> = providedProps => {
     children
   );
 };
+
+TextContainer.propTypes = {
+  tagName: PropTypes.oneOf(["div", "section", "article", "aside"]),
+  size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
+};
+
+TextContainer.defaultProps = {
+  tagName: "div",
+  size: "auto",
+} as ITextContainerDefaultProps;
 
 export default TextContainer;
