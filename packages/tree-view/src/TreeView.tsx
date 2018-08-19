@@ -275,6 +275,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   private updateFrame?: number;
   private searchTimer?: number;
   private lastSearch: string;
+  private tempFocusableItem?: HTMLElement;
   constructor(props: ITreeViewProps<D, R>) {
     super(props);
 
@@ -310,7 +311,20 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     this.updateFrame = window.requestAnimationFrame(() => {
       this.updateFrame = undefined;
       if (this.treeEl) {
-        this.treeItems = [].slice.call(this.treeEl.querySelectorAll('[role="treeitem"]'));
+        this.treeItems = Array.from(this.treeEl.querySelectorAll('[role="treeitem"]'));
+
+        // if the user has selected a node deep within the tree and then closes any parent nodes,
+        // the tree would no longer be able to gain keyboard focus if the user tabs away. If this happens,
+        // temporarily set the tabIndex for the first item to 0 so it will be focusable, but not updating
+        // the selected state.
+        const selected = this.treeItems.filter(({ tabIndex }) => tabIndex === 0);
+        if (!selected.length && this.treeItems.length) {
+          this.tempFocusableItem = this.treeItems[0];
+          this.tempFocusableItem.tabIndex = 0;
+        } else if (selected.length && this.tempFocusableItem) {
+          this.tempFocusableItem.tabIndex = -1;
+          this.tempFocusableItem = undefined;
+        }
       } else {
         this.treeItems = [];
       }
