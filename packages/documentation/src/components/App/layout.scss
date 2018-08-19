@@ -1,16 +1,22 @@
 @import 'app-globals';
 
 .rmd-layout__nav {
-  @include rmd-elevation(2);
-  @include rmd-utils-scroll(y);
   @include rmd-theme(background-color, surface);
 
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: $rmd-sheet-large-width;
-  z-index: 10;
+  height: 100%;
+  max-width: calc(100vw - 3.5rem);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    @include rmd-elevation(2);
+    @include rmd-utils-scroll(y);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: $rmd-sheet-large-width;
+    z-index: 9;
+  }
 
   ~ .rmd-layout__app-bar {
     left: $rmd-sheet-large-width;
@@ -21,6 +27,8 @@
   @include rmd-theme(background-color, surface);
 
   border-bottom: 1px solid rgba($rmd-black-base, .12);
+  max-width: inherit;
+  width: inherit;
 }
 
 .rmd-layout__nav-tree {
@@ -32,8 +40,11 @@
 }
 
 .rmd-layout__main {
-  padding-left: $rmd-sheet-large-width;
   padding-top: $rmd-app-bar-height;
+
+  @media (min-width: 768px) {
+    padding-left: $rmd-sheet-large-width;
+  }
 }
 
 

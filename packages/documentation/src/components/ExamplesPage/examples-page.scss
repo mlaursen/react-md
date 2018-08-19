@@ -7,6 +7,11 @@
   margin: 0 auto;
   padding: 2rem;
 
+  &__title {
+    margin: 0;
+    margin-bottom: .5em;
+  }
+
   &__block,
   &__example {
     margin: 1rem;
