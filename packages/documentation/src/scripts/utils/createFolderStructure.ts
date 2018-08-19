@@ -12,10 +12,18 @@ const documentationFolder = process.cwd();
 const componentsFolder = path.join(documentationFolder, "src", "components");
 
 function toPascalCase(s: string) {
-  return _.upperFirst(s).split("-").map(part => _.upperFirst(part)).join("");
+  return _.upperFirst(s)
+    .split("-")
+    .map(part => _.upperFirst(part))
+    .join("");
 }
 
-export default async function createFolderStructure(name: string, propTypes: boolean, sassdoc: boolean) {
+export default async function createFolderStructure(
+  name: string,
+  propTypes: boolean,
+  sassdoc: boolean,
+  examples: boolean
+) {
   const pascalCasedName = toPascalCase(name);
   const rootFolder = path.join(componentsFolder, "packages", pascalCasedName);
   const examplesFolder = path.join(rootFolder, "Examples");
@@ -34,8 +42,8 @@ export default async function createFolderStructure(name: string, propTypes: boo
   const files = [
     mainIndex,
     mainRoute,
-    examplesIndex,
-    examplesFile,
+    examples && examplesIndex,
+    examples && examplesFile,
     propTypes && propTypesFile,
     sassdoc && sassdocFile,
   ].filter(Boolean);
@@ -47,8 +55,8 @@ ${files.map(f => `- ${f.substring(documentationFolder.length + 1)}`).join("\n")}
   return Promise.all([
     fs.outputFile(mainIndex, createIndexTemplate(pascalCasedName)),
     fs.outputFile(mainRoute, createRouteTemplate(pascalCasedName, propTypes, sassdoc)),
-    fs.outputFile(examplesIndex, createIndexTemplate("Examples")),
-    fs.outputFile(examplesFile, createExamplesTemplate(pascalCasedName)),
+    examples ? fs.outputFile(examplesIndex, createIndexTemplate("Examples")) : Promise.resolve(),
+    examples ? fs.outputFile(examplesFile, createExamplesTemplate(pascalCasedName)) : Promise.resolve(),
     propTypes ? fs.outputFile(propTypesFile, createPropTypesTemplate(pascalCasedName)) : Promise.resolve(),
     sassdoc ? fs.outputFile(sassdocFile, createSassDocTemplate(pascalCasedName)) : Promise.resolve(),
   ]);

@@ -8,9 +8,10 @@ commander
 commander.command("template [packages...]")
   .option("--no-sassdoc", "Updates the template to not include anything related to SassDoc and Scss.")
   .option("--no-proptypes", "Updates the template to not include anything related to component documentation")
-  .action((packages, { sassdoc, proptypes }) => {
+  .option("--no-examples", "Updates the template to not generate the examples folder")
+  .action((packages, { sassdoc, proptypes, examples }) => {
     console.log("Creating templates for the following packages: ", packages);
-    Promise.all(packages.map(name => createFolderStructure(name, proptypes, sassdoc)))
+    Promise.all(packages.map(name => createFolderStructure(name, proptypes, sassdoc, examples)))
       .then(() => {
         console.log("Done!");
       });
