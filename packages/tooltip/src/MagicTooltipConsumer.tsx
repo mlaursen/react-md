@@ -194,7 +194,7 @@ export default class MagicTooltipConsumer extends React.Component<
   };
 
   private updatePosition = () => {
-    const { portalInto, portalIntoId, id } = this.props;
+    const { portal, portalInto, portalIntoId, id } = this.props;
     const container = document.querySelector(`[aria-describedby="${id}"]`) as HTMLElement | null;
     const tooltip = document.getElementById(id) as HTMLElement | null;
     const position = this.props.position || this.determineBestPosition(container, tooltip);
@@ -229,7 +229,7 @@ export default class MagicTooltipConsumer extends React.Component<
         verticalPosition,
         horizontalSpacing,
         verticalSpacing,
-        isPortalFixed: !!(portalIntoId || portalInto),
+        isPortalFixed: portal || !!(portalIntoId || portalInto),
       }),
       position,
       visible: true,
