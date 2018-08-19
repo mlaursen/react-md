@@ -83,7 +83,7 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
     advancedFocus: true,
     programmaticFocusKeys: PROGRAMMATIC_FOCUS_KEYS,
     keyboardClickTimeout: 500,
-    isPrintableKeysFocusable: false,
+    isPrintableKeysFocusable: true,
   };
 
   /**
