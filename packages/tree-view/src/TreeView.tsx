@@ -2,6 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
+import { searchNodes } from "@react-md/utils";
 
 import {
   IIndexKeyAny,
@@ -16,6 +17,9 @@ import {
 } from "./types";
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
 import { findTreeItemFromElement, findTreeItemsFromElement } from "./utils";
+
+const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
+const SHIFT_CODE = 16;
 
 export interface ITreeViewBaseProps<D, R> {
   /**
@@ -110,6 +114,18 @@ export interface ITreeViewBaseProps<D, R> {
   disableSiblingExpansion?: boolean;
 
   /**
+   * The `TreeView` component allows the user to search for items by typing a letter which will attempt to find
+   * the first item that matches that letter. If the user keeps pressing the same letter, the next item that starts
+   * with that letter will be chosen instead. If a different letter is pressed, the search string will include both
+   * letters and the match will now require the tree item to start with both letters.
+   *
+   * This prop is the amount of time in milliseconds that this search logic should be active before the search resets
+   * back to the empty string.
+   * @docgen
+   */
+  searchResetTime?: number;
+
+  /**
    * The function that should be called when a new tree item is selected. The callback function should
    * be used to update the `selectedId` prop to the provided `itemId`.
    *
@@ -167,6 +183,7 @@ export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
   selectOnFocus: boolean;
   selectableChildItemsItem: boolean;
   disableSiblingExpansion: boolean;
+  searchResetTime: number;
   treeViewRenderer: treeViewRenderer<R>;
   treeItemRenderer: treeItemRenderer<D>;
 }
@@ -233,6 +250,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   };
 
   public static defaultProps: ITreeViewDefaultProps<IIndexKeyAny, IIndexKeyAny> = {
+    searchResetTime: 500,
     multiSelect: false,
     selectOnFocus: false,
     selectableChildItemsItem: false,
@@ -255,11 +273,14 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   private treeEl: TreeViewElement | null;
   private treeItems: HTMLElement[];
   private updateFrame?: number;
+  private searchTimer?: number;
+  private lastSearch: string;
   constructor(props: ITreeViewProps<D, R>) {
     super(props);
 
     this.treeEl = null;
     this.treeItems = [];
+    this.lastSearch = "";
   }
 
   public componentDidMount() {
@@ -310,6 +331,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       selectOnFocus,
       selectableChildItemsItem,
       disableSiblingExpansion,
+      searchResetTime,
       data,
       ...props
     } = this.props as TreeViewWithDefaultProps<D, R>;
@@ -325,6 +347,22 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       children: this.renderChildTreeItems(data, 0),
     });
   }
+
+  private clearSearch = () => {
+    if (this.searchTimer) {
+      window.clearTimeout(this.searchTimer);
+      this.searchTimer = undefined;
+    }
+  };
+
+  private startSearchTimer = () => {
+    const { searchResetTime } = this.props as TreeViewWithDefaultProps<D, R>;
+    this.clearSearch();
+    this.searchTimer = window.setTimeout(() => {
+      this.searchTimer = undefined;
+      this.lastSearch = "";
+    }, searchResetTime);
+  };
 
   private handleKeyDown = (event: React.KeyboardEvent<TreeViewElement>) => {
     switch (event.key) {
@@ -352,6 +390,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         this.openAllRelatedNodes(event.target as HTMLElement);
         break;
       default:
+        this.search(event);
     }
   };
 
@@ -460,6 +499,37 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     const { itemId } = item;
     if (selectedIds.indexOf(itemId) === -1) {
       onItemSelect(itemId);
+    }
+  };
+
+  private search = (event: React.KeyboardEvent<TreeViewElement>) => {
+    if (!this.treeEl || !this.treeItems.length || event.altKey || event.metaKey || event.ctrlKey) {
+      return;
+    }
+
+    const code = event.which || event.keyCode;
+    if (code === SHIFT_CODE) {
+      return;
+    }
+
+    const letter = event.key.toUpperCase();
+    if (letter.length !== 1) {
+      return;
+    }
+
+    const i = this.treeItems.indexOf(document.activeElement as HTMLElement);
+    if (i === -1) {
+      return;
+    }
+
+    this.startSearchTimer();
+    if (this.lastSearch !== letter) {
+      this.lastSearch = `${this.lastSearch}${letter}`;
+    }
+
+    const matchIndex = searchNodes(this.lastSearch, this.treeItems, i);
+    if (matchIndex !== -1) {
+      this.focus(matchIndex);
     }
   };
 

@@ -9,10 +9,12 @@ export { default as isPassiveEventsSupported } from "./isPassiveEventsSupported"
 
 export { default as isProgrammaticallyFocusable } from "./isProgrammaticallyFocusable";
 
-export * from "./isFocusable"
+export { default as isFocusable } from "./isFocusable"
 
 export { default as positionRelativeTo } from "./positionRelativeTo";
 export * from "./positionRelativeTo";
 
 export { default as findSizingContainer } from "./findSizingContainer";
 export { default as findOverflowContainer } from "./findOverflowContainer";
+
+export * from "./searchNodes";
