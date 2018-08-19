@@ -177,12 +177,55 @@ for most use cases, but this can be updated if you need additional functionality
 </td>
 </tr>
 <tr>
+<td>multiSelect</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the TreeView can have multiple treeitems selected.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>selectOnFocus</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if focusing using any of the provided keyboard navigation shortcuts should also select the item. This
+should most likely be <code>false</code> at all times.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>selectableChildItemsItem</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the <code>TreeItem</code>s that have child items can also be selected.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>disableSiblingExpansion</td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
 Boolean if the functionality for opening all siblings at the same level when the asterisk (<code>*</code>) key is pressed
 should be disabled.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>searchResetTime</td>
+<td><code>number</code></td>
+<td><code>500</code></td>
+<td>
+The <code>TreeView</code> component allows the user to search for items by typing a letter which will attempt to find
+the first item that matches that letter. If the user keeps pressing the same letter, the next item that starts
+with that letter will be chosen instead. If a different letter is pressed, the search string will include both
+letters and the match will now require the tree item to start with both letters.
+<br /><br />
+This prop is the amount of time in milliseconds that this search logic should be active before the search resets
+back to the empty string.
 <br /><br />
 </td>
 </tr>
@@ -345,12 +388,55 @@ for most use cases, but this can be updated if you need additional functionality
 </td>
 </tr>
 <tr>
+<td>multiSelect</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the TreeView can have multiple treeitems selected.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>selectOnFocus</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if focusing using any of the provided keyboard navigation shortcuts should also select the item. This
+should most likely be <code>false</code> at all times.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>selectableChildItemsItem</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>TreeItem</code>s that have child items can also be selected.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>disableSiblingExpansion</td>
 <td><code>boolean</code></td>
 <td><code>null</code></td>
 <td>
 Boolean if the functionality for opening all siblings at the same level when the asterisk (<code>*</code>) key is pressed
 should be disabled.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>searchResetTime</td>
+<td><code>number</code></td>
+<td><code>null</code></td>
+<td>
+The <code>TreeView</code> component allows the user to search for items by typing a letter which will attempt to find
+the first item that matches that letter. If the user keeps pressing the same letter, the next item that starts
+with that letter will be chosen instead. If a different letter is pressed, the search string will include both
+letters and the match will now require the tree item to start with both letters.
+<br /><br />
+This prop is the amount of time in milliseconds that this search logic should be active before the search resets
+back to the empty string.
 <br /><br />
 </td>
 </tr>

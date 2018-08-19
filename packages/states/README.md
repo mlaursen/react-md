@@ -157,7 +157,7 @@ event to consider a focus event triggered from keyboard navigation.
 <tr>
 <td>isPrintableKeysFocusable</td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
+<td><code>true</code></td>
 <td>
 Boolean if any &#34;printable&#34; key should also be able to trigger a focus event. This should be disabled
 to help increase performance so that every key the user presses does not attempt to update the entire

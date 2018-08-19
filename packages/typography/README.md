@@ -609,6 +609,11 @@ correctly included and bundled during your build. See the examples for more deta
 <br /><br /></td>
 </tr>
 <tr>
+<td><code>rmd-typography-text-container-padding</code></td>
+<td>The amount of padding to use on text containers.
+<br /><br /></td>
+</tr>
+<tr>
 <td><code>rmd-typography-base</code></td>
 <td>The base styles for typography.
 <br /><br /></td>

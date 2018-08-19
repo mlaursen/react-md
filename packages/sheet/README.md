@@ -145,7 +145,7 @@ The position for the sheet to be rendered.
 </tr>
 <tr>
 <td>horizontalSize</td>
-<td><code>"none" | "media" | "small" | "large"</code></td>
+<td><code>"none" | "media" | "small" | "large" | "until-small" | "until-large" | "until-media"</code></td>
 <td><code>media</code></td>
 <td>
 The size to use for sheets that have been positioned left or right. The default supported values are:

@@ -3,7 +3,7 @@ const path = require('path');
 const typescriptDocgen = require('react-docgen-typescript');
 
 function parseLine(exports, line) {
-  if (line === 'export * from "./types";') {
+  if (/^export \* from "\.\/(types|utils)"/.test(line)) {
     return exports;
   }
 

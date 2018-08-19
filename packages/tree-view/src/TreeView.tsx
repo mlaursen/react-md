@@ -121,6 +121,7 @@ export interface ITreeViewBaseProps<D, R> {
    *
    * This prop is the amount of time in milliseconds that this search logic should be active before the search resets
    * back to the empty string.
+   *
    * @docgen
    */
   searchResetTime?: number;
