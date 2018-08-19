@@ -25,7 +25,12 @@ $solarized-green: #859900;
   @include rmd-typography(body-1);
 
   @media (min-device-width: 1200px) and (min-device-height: 800px) {
-    @include rmd-typography(body-2);
+    p,
+    code,
+    pre,
+    ul {
+      @include rmd-typography(body-2);
+    }
   }
 
   pre,
@@ -38,8 +43,6 @@ $solarized-green: #859900;
 
   pre {
     @include rmd-utils-scroll;
-    // box-shadow: inset 0 0 1px rgba($rmd-black-base, .12);
-    // @include rmd-theme(color, text-primary-on-dark);
 
     background-color: $solarized-base-03;
     color: $solarized-base-1;
@@ -83,12 +86,10 @@ $solarized-green: #859900;
   }
 
   .inserted {
-    background-color: rgba($solarized-green, .42);
     color: $solarized-green;
   }
 
   .deleted {
-    background-color: rgba($solarized-red, .4);
     color: $solarized-red;
   }
 
@@ -187,12 +188,4 @@ $solarized-green: #859900;
   //   color: $solarized-cyan;
   //   color: $solarized-green;
   // }
-}
-
-.markdown-page {
-  @include rmd-text-container($rmd-typography-mobile-max-line-length);
-
-  @media (min-device-width: 1200px) and (min-device-height: 800px) {
-    max-width: $rmd-typography-desktop-max-line-length;
-  }
 }

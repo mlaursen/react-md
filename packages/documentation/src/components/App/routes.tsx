@@ -13,13 +13,31 @@ import {
 const googleLogo = require("./googleLogo.svg");
 const reactLogo = require("./reactLogo.svg");
 
-function createRoute(path: string, name: string, icon?: React.ReactElement<any>): TreeViewData {
+function createRoute(
+  path: string,
+  name: string,
+  icon?: React.ReactElement<any>,
+  childItems?: TreeViewDataList
+): TreeViewData {
+  if (!childItems) {
+    return {
+      itemId: path,
+      children: name,
+      to: path,
+      linkComponent: Link,
+      leftIcon: icon,
+    };
+  }
+
   return {
     itemId: path,
     children: name,
-    to: path,
-    linkComponent: Link,
     leftIcon: icon,
+    childItems: childItems.map(({ itemId, to, ...remaining }) => ({
+      itemId: `${path}${itemId}`,
+      to: `${path}${itemId}`,
+      ...remaining,
+    })),
   };
 }
 
@@ -47,6 +65,10 @@ function createPackage(name: string, { examples = true, proptypes = true, sassdo
 
 const routes: TreeViewDataList = [
   createRoute("/", "Home", <HomeSVGIcon />),
+  createRoute("/getting-started", "Getting Started", <InfoOutlineSVGIcon />, [
+    createRoute("/installation", "Installation"),
+    createRoute("/updating-create-react-app", "Updating create-react-app"),
+  ]),
   {
     itemId: "/packages",
     children: "Packages",

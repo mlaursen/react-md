@@ -50,6 +50,8 @@ const postTransforms: MarkdownTransformationList = [
       /(<h2 id="table-of-contents")(>Table of Contents<\/h2>\r?\n<ul)/,
       (_, s1, s2) => `${s1} class="markdown-toc"${s2} class="markdown-toc__list"`
     ),
+  markdown =>
+    markdown.replace(/yarn add/g, '<span class="token function">yarn</span> <span class="token function">add</span>'),
 ];
 
 export function transform(markdown: string, transforms: MarkdownTransformation[], options?: IMarkdownOptions) {

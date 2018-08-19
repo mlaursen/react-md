@@ -10,7 +10,7 @@ export interface IMarkdownPageProps {
 }
 
 const MarkdownPage: React.SFC<IMarkdownPageProps> = ({ className, ...props }) => (
-  <Markdown {...props} className={cn("markdown-page rmd-text-container rmd-text-container--large", className)} />
+  <Markdown {...props} className={cn("markdown-page rmd-text-container", className)} />
 );
 
 export default MarkdownPage;

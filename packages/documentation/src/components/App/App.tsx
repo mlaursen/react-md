@@ -4,6 +4,7 @@ import { StatesProvider } from "@react-md/states";
 import { kebabCase } from "lodash";
 
 import Home from "components/Home";
+import GettingStarted from "components/GettingStarted";
 import NotFound from "components/NotFound";
 import A11y from "components/packages/A11y";
 import AppBar from "components/packages/AppBar";
@@ -18,6 +19,7 @@ const App: React.SFC<{}> = () => (
       <RTLToggle />
       <Switch>
         <Route exact={true} path="/" component={Home} />
+        <Route path="/getting-started" component={GettingStarted} />
         <Route path="/packages/a11y" component={A11y} />
         <Route path="/packages/app-bar" component={AppBar} />
         <Route component={NotFound} />
