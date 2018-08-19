@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { PortalInto } from "@react-md/portal";
-import { KEYBOARD_MOVEMENT_KEYS } from "@react-md/utils";
+import { KEYBOARD_MOVEMENT_KEYS, findSizingContainer } from "@react-md/utils";
 
 import { Provider } from "./MagicTooltipContext";
 import {
@@ -309,15 +309,8 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
     const { delay, hoverMode } = this.props as MagicTooltipProviderWithDefaultProps;
     this.clearShowTimeout();
-    let leaveTarget = target;
-    if (/treeitem|listitem/.test(target.getAttribute("role") || "")) {
-      // should probably add a better way to do stuff like this
-      const text = target.querySelector(".rmd-tree-item__content, .rmd-item-text") as HTMLDivElement;
-      if (text) {
-        leaveTarget = text;
-      }
-    }
 
+    const leaveTarget = findSizingContainer(target) as HTMLElement;
     this.clearLeaveContainer();
     this.leaveContainer = leaveTarget;
     leaveTarget.addEventListener("mouseleave", this.handleMouseLeave);

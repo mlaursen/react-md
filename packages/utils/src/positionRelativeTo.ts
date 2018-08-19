@@ -1,4 +1,5 @@
 import * as React from "react";
+import findSizingContainer from "./findSizingContainer";
 import findOverflowContainer from "./findOverflowContainer";
 
 export enum HorizontalPosition {
@@ -231,6 +232,7 @@ export default function positionRelativeTo(
   target: HTMLElement | null,
   options: IPositionOptions = {}
 ): React.CSSProperties | undefined {
+  fixedTo = findSizingContainer(fixedTo);
   if (!fixedTo) {
     return undefined;
   }
