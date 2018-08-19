@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import { ITreeViewBaseProps } from "./TreeView";
 
 import { onItemSelect, onItemExpandedChange, onItemSiblingExpansion, TreeViewDataList, IIndexKeyAny } from "./types";
-import { handleSingleItemSelect, handleItemExpandedChange, findAllParentIds } from "./utils";
+import { handleItemSelect, handleItemExpandedChange, findAllParentIds } from "./utils";
 
 export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {
   onItemSelect: onItemSelect;
@@ -116,7 +116,7 @@ export default class TreeViewControls<D, R> extends React.Component<
   }
 
   private handleItemSelect = (itemId: string) => {
-    const selectedIds = handleSingleItemSelect(itemId, this.state.selectedIds);
+    const selectedIds = handleItemSelect(itemId, this.state.selectedIds);
     if (this.state.selectedIds !== selectedIds) {
       this.setState({ selectedIds });
     }

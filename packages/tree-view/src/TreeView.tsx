@@ -8,8 +8,6 @@ import {
   TreeViewElement,
   TreeViewData,
   TreeViewDataList,
-  ITreeViewItemInjectedProps,
-  ITreeViewInjectedProps,
   treeViewRenderer,
   treeItemRenderer,
   onItemSelect,
@@ -17,6 +15,7 @@ import {
   onItemSiblingExpansion,
 } from "./types";
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
+import { findTreeItemFromElement, findTreeItemsFromElement } from "./utils";
 
 export interface ITreeViewBaseProps<D, R> {
   /**
@@ -81,6 +80,28 @@ export interface ITreeViewBaseProps<D, R> {
   treeItemRenderer?: treeItemRenderer<D>;
 
   /**
+   * Boolean if the TreeView can have multiple treeitems selected.
+   *
+   * @docgen
+   */
+  multiSelect?: boolean;
+
+  /**
+   * Boolean if focusing using any of the provided keyboard navigation shortcuts should also select the item. This
+   * should most likely be `false` at all times.
+   *
+   * @docgen
+   */
+  selectOnFocus?: boolean;
+
+  /**
+   * Boolean if the `TreeItem`s that have child items can also be selected.
+   *
+   * @docgen
+   */
+  selectableChildItemsItem?: boolean;
+
+  /**
    * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
    * should be disabled.
    *
@@ -142,6 +163,9 @@ export type TreeViewPropsWithSiblingExpansion<D = IIndexKeyAny, R = IIndexKeyAny
 };
 
 export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
+  multiSelect: boolean;
+  selectOnFocus: boolean;
+  selectableChildItemsItem: boolean;
   disableSiblingExpansion: boolean;
   treeViewRenderer: treeViewRenderer<R>;
   treeItemRenderer: treeItemRenderer<D>;
@@ -167,6 +191,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     id: PropTypes.string.isRequired,
     "aria-label": PropTypes.string,
     "aria-labelledby": PropTypes.string,
+    multiSelect: PropTypes.bool,
+    selectOnFocus: PropTypes.bool,
+    selectableChildItemsItem: PropTypes.bool,
     disableSiblingExpansion: PropTypes.bool,
     treeViewRenderer: PropTypes.func,
     treeItemRenderer: PropTypes.func,
@@ -206,6 +233,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   };
 
   public static defaultProps: ITreeViewDefaultProps<IIndexKeyAny, IIndexKeyAny> = {
+    multiSelect: false,
+    selectOnFocus: false,
+    selectableChildItemsItem: false,
     disableSiblingExpansion: false,
     treeViewRenderer: props => <List {...props} />,
     treeItemRenderer: ({ linkComponent, to, href, leftIcon, rightIcon, children }, props) => (
@@ -221,172 +251,6 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       </DefaultTreeItemRenderer>
     ),
   };
-
-  /**
-   * Attempts to find the `TreeViewData` based on the provided `element` and `data`. This is generally
-   * used for click or keyboard events to navigate and select different items within the `TreeView`
-   * component internally, but can also be used to add additional custom click and keyboard handlers.
-   *
-   * Example:
-   * ```html
-   * <ul role="treeview" id="tree">
-   *   <li role="treeitem" id="item-1">Item 1</li>
-   *   <li role="treeitem" id="item-2">
-   *     Item 2
-   *     <ul role="group">
-   *      <li role="treeitem" id="item-2-1">Item 2-1</li>
-   *      <li role="treeitem" id="item-2-2">Item 2-2</li>
-   *     </ul>
-   *   </li>
-   *   <li role="treeitem" id="item-3">Item 3</li>
-   * ```
-   *
-   * ```js
-   * const data = [{
-   *   itemId: "item-1",
-   *   children: "Item 1",
-   * }, {
-   *   itemId: "item-2",
-   *   children: "Item 2",
-   *   childItems: [{
-   *     itemId: "item-2-1",
-   *     children: "Item 2-1",
-   *   }, {
-   *    itemId: "item-2-2",
-   *    children: "Item 2-2",
-   *   }],
-   * }];
-   * const item = document.getElementById("item-2-1") as HTMLElement | null;
-   * const tree = document.getElementByid("tree") as HTMLElement | null;
-   * const foundItemData = TreeView.findTreeItemFromElement(item, data, tree);
-   * // foundItemData = { itemId: "item-2-1", children: "Item 2-1" }
-   * ```
-   */
-  public static findTreeItemFromElement<D = IIndexKeyAny>(
-    element: HTMLElement,
-    data: TreeViewDataList<D>,
-    treeEl: TreeViewElement | null
-  ) {
-    const itemElement = TreeView.findTreeItemElement(element);
-    if (!treeEl || !itemElement) {
-      return null;
-    }
-    const itemIndex = parseInt(itemElement.getAttribute("aria-posinset") || "", 10) - 1;
-
-    return TreeView.findTreeItemDataList(TreeView.buildItemIndexStack(itemElement, treeEl), data)[itemIndex] || null;
-  }
-
-  /**
-   * Attempts to find the `TreeViewDataList` based on the provided `element` and `data`. This is generally
-   * used for click or keyboard events to navigate and select different items within the `TreeView`
-   * component internally, but can also be used to add additional custom click and keyboard handlers.
-   *
-   * Example:
-   * ```html
-   * <ul role="treeview" id="tree">
-   *   <li role="treeitem" id="item-1">Item 1</li>
-   *   <li role="treeitem" id="item-2">
-   *     Item 2
-   *     <ul role="group">
-   *      <li role="treeitem" id="item-2-1">Item 2-1</li>
-   *      <li role="treeitem" id="item-2-2">Item 2-2</li>
-   *     </ul>
-   *   </li>
-   *   <li role="treeitem" id="item-3">Item 3</li>
-   * ```
-   *
-   * ```js
-   * const data = [{
-   *   itemId: "item-1",
-   *   children: "Item 1",
-   * }, {
-   *   itemId: "item-2",
-   *   children: "Item 2",
-   *   childItems: [{
-   *     itemId: "item-2-1",
-   *     children: "Item 2-1",
-   *   }, {
-   *    itemId: "item-2-2",
-   *    children: "Item 2-2",
-   *   }],
-   * }];
-   * const item = document.getElementById("item-2-1") as HTMLElement | null;
-   * const tree = document.getElementByid("tree") as HTMLElement | null;
-   * const foundItemData = TreeView.findTreeItemFromElement(item, data, tree);
-   * // foundItemData = [{ itemId: "item-2-1", children: "Item 2-1" }, { itemId: "item-2-2", children: "Item 2-2" }]
-   * ```
-   */
-  public static findTreeItemsFromElement<D = IIndexKeyAny>(
-    element: HTMLElement,
-    data: TreeViewDataList<D>,
-    treeEl: TreeViewElement | null
-  ) {
-    const itemElement = TreeView.findTreeItemElement(element);
-    if (!treeEl || !itemElement) {
-      return [];
-    }
-
-    return TreeView.findTreeItemDataList(TreeView.buildItemIndexStack(itemElement, treeEl), data);
-  }
-
-  private static findTreeItemElement(element: HTMLElement) {
-    const role = element.getAttribute("role");
-    if (role === "group") {
-      return null;
-    } else if (role !== "treeitem") {
-      const closest = element.closest('[role="treeitem"]') as HTMLElement;
-      if (!closest) {
-        return null;
-      }
-
-      element = closest;
-    }
-
-    return element;
-  }
-
-  /**
-   * Attempts to find the `TreeItemDataList` based on a stack of item indexes by digging down into the
-   * provided `data` list.
-   *
-   * @see buildItemIndexStack
-   */
-  private static findTreeItemDataList<D = IIndexKeyAny>(stack: number[], data: TreeViewDataList<D>) {
-    let temp;
-    let list = data;
-    for (const index of stack) {
-      temp = list[index];
-      if (!temp.childItems) {
-        return [];
-      }
-
-      list = temp.childItems;
-    }
-
-    return list;
-  }
-
-  private static buildItemIndexStack(element: HTMLElement, treeEl: TreeViewElement) {
-    // Since this is only working with the DOM at this point, create a stack of treeitem indexes as they would
-    // appear in `this.props.data` array so that a list of all item ids on the same level as this item can be
-    // generated. Luckily, all this information is provided by the `aria-posinset` which we can just subtract
-    // 1 from so it is the index within the items array.
-    const itemIndexStack = [];
-
-    // don't need to add the current element into the stack since it will automatically be included once the
-    // parent indexes are found
-    let node: HTMLElement | null = element.parentElement;
-    while (node && treeEl.contains(node)) {
-      const position = parseInt(node.getAttribute("aria-posinset") || "", 10);
-      if (node.getAttribute("role") === "treeitem" && position > 0) {
-        itemIndexStack.unshift(position - 1);
-      }
-
-      node = node.parentElement;
-    }
-
-    return itemIndexStack;
-  }
 
   private treeEl: TreeViewElement | null;
   private treeItems: HTMLElement[];
@@ -442,6 +306,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       onItemSelect,
       onItemExpandedChange,
       onItemSiblingExpansion,
+      multiSelect,
+      selectOnFocus,
+      selectableChildItemsItem,
       disableSiblingExpansion,
       data,
       ...props
@@ -490,17 +357,13 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
 
   private handleClickFrom = (event: React.KeyboardEvent<TreeViewElement> | React.MouseEvent<TreeViewElement>) => {
     const element = event.target as HTMLElement;
-    const item = TreeView.findTreeItemFromElement(element, this.props.data, this.treeEl);
+    const item = findTreeItemFromElement(element, this.props.data, this.treeEl);
     if (!item) {
       return;
     }
 
     const { itemId } = item;
-    const { selectedIds, onItemSelect, expandedIds, onItemExpandedChange } = this.props;
-
-    if (selectedIds.indexOf(itemId) === -1) {
-      onItemSelect(itemId);
-    }
+    const { onItemSelect, expandedIds, onItemExpandedChange, selectableChildItemsItem } = this.props;
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
@@ -515,11 +378,14 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     } else if (item.childItems) {
       const i = expandedIds.indexOf(itemId);
       onItemExpandedChange(itemId, i === -1);
+      if (selectableChildItemsItem) {
+        onItemSelect(itemId);
+      }
     }
   };
 
   private toggleFrom = (element: HTMLElement, expanded: boolean) => {
-    const item = TreeView.findTreeItemFromElement(element, this.props.data, this.treeEl);
+    const item = findTreeItemFromElement(element, this.props.data, this.treeEl);
     if (!item || !item.childItems) {
       return;
     }
@@ -539,9 +405,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       return;
     }
 
-    const items = TreeView.findTreeItemsFromElement(element, data, this.treeEl).filter(
-      ({ childItems }) => !!childItems
-    );
+    const items = findTreeItemsFromElement(element, data, this.treeEl).filter(({ childItems }) => !!childItems);
 
     let changed = false;
     const newExpandedIds = items.reduce((list, { itemId }) => {
@@ -571,6 +435,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     } else if (nextIndex >= this.treeItems.length) {
       nextIndex = 0;
     }
+
     this.focus(nextIndex);
   };
 
@@ -582,8 +447,12 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       element.focus();
     }
 
-    const { selectedIds, onItemSelect, data } = this.props;
-    const item = TreeView.findTreeItemFromElement(element, data, this.treeEl);
+    const { selectedIds, onItemSelect, data, selectOnFocus } = this.props;
+    if (!selectOnFocus) {
+      return;
+    }
+
+    const item = findTreeItemFromElement(element, data, this.treeEl);
     if (!item) {
       return;
     }

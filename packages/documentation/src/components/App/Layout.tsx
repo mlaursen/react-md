@@ -9,7 +9,7 @@ import {
   TreeView,
   TreeViewData,
   ITreeViewItemInjectedProps,
-  handleSingleItemSelect,
+  handleItemSelect,
   handleItemExpandedChange,
   findAllParentIds,
 } from "@react-md/tree-view";
@@ -187,7 +187,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
   };
 
   private handleItemSelect = (itemId: string) => {
-    const selectedIds = handleSingleItemSelect(itemId, this.state.selectedIds);
+    const selectedIds = handleItemSelect(itemId, this.state.selectedIds);
     if (selectedIds !== this.state.selectedIds) {
       this.setState({ selectedIds });
     }
