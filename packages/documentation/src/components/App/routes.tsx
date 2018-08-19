@@ -41,14 +41,14 @@ function createRoute(
   };
 }
 
-function createPackage(name: string, { examples = true, proptypes = true, sassdoc = true } = {}): TreeViewData {
+function createPackage(name: string, { examples = true, propTypes = true, sassdoc = true } = {}): TreeViewData {
   const basePath = `/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
     childItems.push(createRoute(`${basePath}/examples`, "Examples"));
   }
 
-  if (proptypes) {
+  if (propTypes) {
     childItems.push(createRoute(`${basePath}/proptypes`, "Prop Types"));
   }
 
@@ -73,7 +73,18 @@ const routes: TreeViewDataList = [
     itemId: "/packages",
     children: "Packages",
     leftIcon: <BuildSVGIcon />,
-    childItems: [createPackage("a11y"), createPackage("app-bar"), createPackage("button")],
+    childItems: [
+      createPackage("a11y"),
+      createPackage("app-bar"),
+      createPackage("button"),
+      createPackage("list"),
+      createPackage("overlay"),
+      createPackage("portal", { sassdoc: false }),
+      createPackage("sheet"),
+      createPackage("theme", { propTypes: false }),
+      createPackage("tooltip"),
+      createPackage("tree-view"),
+    ],
   },
   {
     itemId: "divider",

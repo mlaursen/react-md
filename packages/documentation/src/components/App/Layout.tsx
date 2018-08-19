@@ -99,10 +99,6 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     this.setState({ expandedIds });
   };
 
-  private handleClose = () => {
-    console.log("ATTEMPTING_CLOSE");
-  };
-
   private treeItemRenderer = (
     { linkComponent, to, href, leftIcon, children, divider, itemId }: TreeViewData,
     props: ITreeViewItemInjectedProps
