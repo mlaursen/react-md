@@ -43,7 +43,7 @@ function createRoute(
 
 function createPackage(name: string, { examples = true, proptypes = true, sassdoc = true } = {}): TreeViewData {
   const basePath = `/packages/${name === "a11y" ? name : kebabCase(name)}`;
-  const childItems = [createRoute(`${basePath}/installation`, "Installation")];
+  const childItems = [];
   if (examples) {
     childItems.push(createRoute(`${basePath}/examples`, "Examples"));
   }

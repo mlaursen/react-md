@@ -5,21 +5,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Loadable from "components/Loadable";
 import NotFound from "components/NotFound";
 
-const Installation = Loadable(() => import("./Installation"));
-
 const Examples = Loadable(() => import("./Examples"));
-
-const PropTypes = Loadable(() => import("./PropTypes"));
-
-const SassDoc = Loadable(() => import("./SassDoc"));
+const A11yPropTypes = Loadable(() => import("./A11yPropTypes"));
+const A11ySassDoc = Loadable(() => import("./A11ySassDoc"));
 
 const A11y: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/installation`} />
-    <Route exact={true} path={`${match.path}/installation`} component={Installation} />
     <Route path={`${match.path}/examples`} component={Examples} />
-    <Route path={`${match.path}/proptypes`} component={PropTypes} />
-    <Route path={`${match.path}/sassdoc`} component={SassDoc} />
+    <Route path={`${match.path}/proptypes`} component={A11yPropTypes} />
+    <Route path={`${match.path}/sassdoc`} component={A11ySassDoc} />
     <Route component={NotFound} />
   </Switch>
 );

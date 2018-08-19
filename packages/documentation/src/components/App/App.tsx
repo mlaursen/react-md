@@ -8,6 +8,7 @@ import GettingStarted from "components/GettingStarted";
 import NotFound from "components/NotFound";
 import A11y from "components/packages/A11y";
 import AppBar from "components/packages/AppBar";
+import Button from "components/packages/Button";
 
 import "./app.scss";
 import RTLToggle from "./RTLToggle";
@@ -22,6 +23,7 @@ const App: React.SFC<{}> = () => (
         <Route path="/getting-started" component={GettingStarted} />
         <Route path="/packages/a11y" component={A11y} />
         <Route path="/packages/app-bar" component={AppBar} />
+        <Route path="/packages/button" component={Button} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -7,8 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack/config.ts",
     "build": "webpack --mode production --config webpack/config.ts",
-    "cip": "node src/scripts/createInstallationPage.js",
-    "cpr": "node src/scripts/createPackageRoute.js"
+    "generator": "ts-node src/scripts/generator.ts"
   },
   "repository": {
     "type": "git",
@@ -55,8 +54,10 @@
     "@types/case-sensitive-paths-webpack-plugin": "^2.1.2",
     "@types/classnames": "^2.2.6",
     "@types/clean-webpack-plugin": "^0.1.2",
+    "@types/commander": "^2.12.2",
     "@types/escape-string-regexp": "^1.0.0",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.1",
+    "@types/fs-extra": "^5.0.4",
     "@types/history": "^4.7.0",
     "@types/html-webpack-plugin": "^2.30.4",
     "@types/lodash": "^4.14.116",

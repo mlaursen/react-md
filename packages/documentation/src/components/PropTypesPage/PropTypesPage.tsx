@@ -10,8 +10,8 @@ export default class PropTypesPage extends React.Component<IPropTypesPageProps> 
     const { name } = this.props;
     return (
       <TextContainer>
-        <Text type="headline-1">{`${name} PropTypes`}</Text>
-        <Text type="headline-2">Coming Soon!</Text>
+        <Text type="headline-2">{`${name} PropTypes`}</Text>
+        <Text type="headline-3">Coming Soon!</Text>
       </TextContainer>
     );
   }

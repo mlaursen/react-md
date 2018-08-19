@@ -10,8 +10,8 @@ export default class SassDocPage extends React.Component<ISassDocPageProps> {
     const { name } = this.props;
     return (
       <TextContainer>
-        <Text type="headline-1">{`${name} SassDoc`}</Text>
-        <Text type="headline-2">Coming Soon!</Text>
+        <Text type="headline-2">{`${name} SassDoc`}</Text>
+        <Text type="headline-3">Coming Soon!</Text>
       </TextContainer>
     );
   }
