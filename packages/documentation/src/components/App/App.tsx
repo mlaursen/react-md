@@ -26,6 +26,8 @@ import "./app.scss";
 import RTLToggle from "./RTLToggle";
 import Layout from "./Layout";
 
+console.log("Home:", Home);
+
 const App: React.SFC<{}> = () => (
   <StatesProvider>
     <MagicTooltipProvider>

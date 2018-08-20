@@ -5,6 +5,7 @@ import { ResizeListener } from "@react-md/listeners";
 import { MenuSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import { MagicTooltipProvider, TooltipPosition } from "@react-md/tooltip";
+import * as _ from "lodash";
 import {
   TreeView,
   TreeViewData,
@@ -15,7 +16,7 @@ import {
 } from "@react-md/tree-view";
 
 import "./layout.scss";
-import routes from "./routes";
+import { routes, Route } from "./routes";
 import TreeItem from "./TreeItem";
 
 interface IAppSize {
@@ -205,7 +206,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
   };
 
   private treeItemRenderer = (
-    { linkComponent, to, href, leftIcon, children, divider, itemId }: TreeViewData,
+    { linkComponent, to, href, leftIcon, children, itemId }: Route,
     props: ITreeViewItemInjectedProps
   ) => {
     if (itemId.startsWith("divider")) {

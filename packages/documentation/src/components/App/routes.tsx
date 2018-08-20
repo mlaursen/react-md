@@ -1,5 +1,6 @@
 import * as React from "react";
 import { kebabCase } from "lodash";
+import * as Router from "react-router";
 import { Link } from "react-router-dom";
 import { FlattenedTree, TreeViewDataList, TreeViewData } from "@react-md/tree-view";
 import {
@@ -13,12 +14,18 @@ import {
 const googleLogo = require("./googleLogo.svg");
 const reactLogo = require("./reactLogo.svg");
 
-function createRoute(
-  path: string,
-  name: string,
-  icon?: React.ReactElement<any>,
-  childItems?: TreeViewDataList
-): TreeViewData {
+export interface IRouteWithLink {
+  to?: string;
+  href?: string;
+  linkComponent?: React.ReactType<any>;
+  leftIcon?: React.ReactElement<any>;
+  children?: React.ReactNode;
+}
+
+export type Route = TreeViewData<IRouteWithLink>;
+export type RouteList = TreeViewDataList<IRouteWithLink>;
+
+function createRoute(path: string, name: string, icon?: React.ReactElement<any>, childItems?: RouteList): Route {
   if (!childItems) {
     return {
       itemId: path,
@@ -41,7 +48,7 @@ function createRoute(
   };
 }
 
-function createPackage(name: string, { examples = true, propTypes = true, sassdoc = true } = {}): TreeViewData {
+function createPackage(name: string, { examples = true, propTypes = true, sassdoc = true } = {}): Route {
   const basePath = `/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
@@ -63,7 +70,7 @@ function createPackage(name: string, { examples = true, propTypes = true, sassdo
   };
 }
 
-const routes: TreeViewDataList = [
+export const routes: RouteList = [
   createRoute("/", "Home", <HomeSVGIcon />),
   createRoute("/getting-started", "Getting Started", <InfoOutlineSVGIcon />, [
     createRoute("/installation", "Installation"),
@@ -129,5 +136,19 @@ const routes: TreeViewDataList = [
     linkComponent: "a",
   },
 ];
+
+function reduceValid(list: string[], { to, childItems }: Route) {
+  if (to) {
+    list.push(to);
+  }
+
+  if (childItems) {
+    [].push.apply(list, childItems.reduce(reduceValid, []));
+  }
+
+  return list;
+}
+
+const validRoutes = routes.reduce(reduceValid, []);
 
 export default routes;
