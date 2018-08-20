@@ -1,6 +1,7 @@
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 
-type TextExtractor = (node: HTMLElement) => string;
+export type NodeType = HTMLElement | string;
+export type TextExtractor = (node: NodeType) => string;
 
 /**
  * Attempts to find the first match index for a list of values that starts with the provided query string and
@@ -23,13 +24,19 @@ export function findMatchInRange(query: string, startIndex: number, endIndex: nu
  * without the FontIcon to return the textContent instead. This is because the FontIcon's text content would
  * also be returned from the node's text content.
  */
-function extractTextContent(node: HTMLElement) {
-  const fontIcon = node.querySelector(FONT_ICON_CLASS_NAME);
-  if (fontIcon && fontIcon.textContent) {
-    const cloned = node.cloneNode(true) as HTMLElement;
-    cloned.removeChild(cloned.querySelector(FONT_ICON_CLASS_NAME) as HTMLElement);
+export function extractTextContent(node: NodeType, checkFontIcons: boolean = true) {
+  if (typeof node === "string") {
+    return node;
+  }
 
-    return cloned.textContent || "";
+  if (checkFontIcons) {
+    const fontIcon = node.querySelector(FONT_ICON_CLASS_NAME);
+    if (fontIcon && fontIcon.textContent) {
+      const cloned = node.cloneNode(true) as HTMLElement;
+      cloned.removeChild(cloned.querySelector(FONT_ICON_CLASS_NAME) as HTMLElement);
+
+      return cloned.textContent || "";
+    }
   }
 
   return node.textContent || "";
@@ -39,14 +46,16 @@ function extractTextContent(node: HTMLElement) {
  * Attempts to find the match index for a query string from a list of nodes starting from a given index. This will
  * start by searching from the `startIndex + 1` to the end of the nodes list.  If no matches are found, the nodes
  * will be re-searched from 0 to the startIndex. If there are still no matches, -1 will be returned.
+ *
+ * The `nodes` can either be a list of `HTMLElement` or a list of strings.
  */
 export function searchNodes(
   query: string,
-  nodes: HTMLElement[],
+  nodes: NodeType[],
   startIndex: number,
-  extractor: TextExtractor = extractTextContent
+  extractor: TextExtractor = extractTextContent,
 ) {
-  const values = nodes.map(extractTextContent);
+  const values = nodes.map(extractor);
   let matchIndex = findMatchInRange(query, startIndex + 1, nodes.length, values);
   if (matchIndex === -1) {
     matchIndex = findMatchInRange(query, 0, startIndex, values);

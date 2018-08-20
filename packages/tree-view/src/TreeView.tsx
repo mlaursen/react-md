@@ -2,7 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
-import { searchNodes } from "@react-md/utils";
+import { searchNodes, TextExtractor, extractTextContent as defaultExtractTextContent } from "@react-md/utils";
 
 import {
   IIndexKeyAny,
@@ -127,6 +127,30 @@ export interface ITreeViewBaseProps<D, R> {
   searchResetTime?: number;
 
   /**
+   * A function to extract the searchable text within a treeitem. The default behavior is to just run
+   * `treeItem.textContent` on each tree item. If there is a `FontIcon` component from react-md (or really just an
+   * element with `.rmd-icon--font` on it as a child of the tree item), the treeitem will be cloned without
+   * the `FontIcon` and then run `clonedTreeItem.textContent`. See `disableFontIconTextCheck` for some
+   * more details.
+   *
+   * @docgen
+   */
+  extractTextContent?: TextExtractor;
+
+  /**
+   * Boolean if the `extractTextContent` function should not attempt to check for font icons when searching
+   * the tree for treeitems starting with some text. This is enabled by default to help all users of react-md,
+   * but if you do not use `FontIcon`s or a font icon library that does not render icons based on innerText
+   * (font-awesome for example), you can disable the fonticon check for a slight boost in performance.
+   *
+   * > The performance boost is extremely slight since this function will only be run when new treeitems are
+   * added or removed from the DOM and is only used for keyboard navigation.
+   *
+   * @docgen
+   */
+  disableFontIconTextCheck?: boolean;
+
+  /**
    * The function that should be called when a new tree item is selected. The callback function should
    * be used to update the `selectedId` prop to the provided `itemId`.
    *
@@ -187,6 +211,8 @@ export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
   searchResetTime: number;
   treeViewRenderer: treeViewRenderer<R>;
   treeItemRenderer: treeItemRenderer<D>;
+  extractTextContent: TextExtractor;
+  disableFontIconTextCheck: boolean;
 }
 
 export type TreeViewWithDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> &
@@ -256,6 +282,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     selectOnFocus: false,
     selectableChildItemsItem: false,
     disableSiblingExpansion: false,
+    disableFontIconTextCheck: false,
+    extractTextContent: defaultExtractTextContent,
     treeViewRenderer: props => <List {...props} />,
     treeItemRenderer: ({ linkComponent, to, href, leftIcon, rightIcon, children }, props) => (
       <DefaultTreeItemRenderer
@@ -273,6 +301,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
 
   private treeEl: TreeViewElement | null;
   private treeItems: HTMLElement[];
+  private treeItemStrings: string[];
   private updateFrame?: number;
   private searchTimer?: number;
   private lastSearch: string;
@@ -282,6 +311,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
 
     this.treeEl = null;
     this.treeItems = [];
+    this.treeItemStrings = [];
     this.lastSearch = "";
   }
 
@@ -312,7 +342,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     this.updateFrame = window.requestAnimationFrame(() => {
       this.updateFrame = undefined;
       if (this.treeEl) {
+        const { extractTextContent, disableFontIconTextCheck } = this.props as TreeViewWithDefaultProps<D, R>;
         this.treeItems = Array.from(this.treeEl.querySelectorAll('[role="treeitem"]'));
+        this.treeItemStrings = this.treeItems.map(node => extractTextContent(node, disableFontIconTextCheck));
 
         // if the user has selected a node deep within the tree and then closes any parent nodes,
         // the tree would no longer be able to gain keyboard focus if the user tabs away. If this happens,
@@ -346,6 +378,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       selectOnFocus,
       selectableChildItemsItem,
       disableSiblingExpansion,
+      extractTextContent,
+      disableFontIconTextCheck,
       searchResetTime,
       data,
       ...props
@@ -542,7 +576,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       this.lastSearch = `${this.lastSearch}${letter}`;
     }
 
-    const matchIndex = searchNodes(this.lastSearch, this.treeItems, i);
+    const matchIndex = searchNodes(this.lastSearch, this.treeItemStrings, i, s => s as string);
     if (matchIndex !== -1) {
       this.focus(matchIndex);
     }
