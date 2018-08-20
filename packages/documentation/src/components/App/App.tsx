@@ -25,8 +25,7 @@ import Typography from "components/packages/Typography";
 import "./app.scss";
 import RTLToggle from "./RTLToggle";
 import Layout from "./Layout";
-
-console.log("Home:", Home);
+import { routesConfig } from "./routes";
 
 const App: React.SFC<{}> = () => (
   <StatesProvider>
@@ -34,23 +33,9 @@ const App: React.SFC<{}> = () => (
       <Layout>
         <RTLToggle />
         <Switch>
-          <Route exact={true} path="/" component={Home} />
-          <Route path="/getting-started" component={GettingStarted} />
-          <Route path="/packages/a11y" component={A11y} />
-          <Route path="/packages/app-bar" component={AppBar} />
-          <Route path="/packages/button" component={Button} />
-          <Route path="/packages/elevation" component={Elevation} />
-          <Route path="/packages/icon" component={Icon} />
-          <Route path="/packages/list" component={List} />
-          <Route path="/packages/listeners" component={Listeners} />
-          <Route path="/packages/material-icons" component={MaterialIcons} />
-          <Route path="/packages/overlay" component={Overlay} />
-          <Route path="/packages/portal" component={Portal} />
-          <Route path="/packages/sheet" component={Sheet} />
-          <Route path="/packages/tooltip" component={Tooltip} />
-          <Route path="/packages/transition" component={Transition} />
-          <Route path="/packages/tree-view" component={TreeView} />
-          <Route path="/packages/typography" component={Typography} />
+          {routesConfig.map(({ path, exact, component }) => (
+            <Route key={path} path={path} exact={exact} component={component} />
+          ))}
           <Route component={NotFound} />
         </Switch>
       </Layout>

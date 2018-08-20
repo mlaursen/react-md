@@ -11,27 +11,64 @@ import {
   AccessibilitySVGIcon,
 } from "@react-md/material-icons";
 
+import Home from "components/Home";
+import GettingStarted from "components/GettingStarted";
+import A11y from "components/packages/A11y";
+import AppBar from "components/packages/AppBar";
+import Button from "components/packages/Button";
+import Elevation from "components/packages/Elevation";
+import Icon from "components/packages/Icon";
+import List from "components/packages/List";
+import Listeners from "components/packages/Listeners";
+import MaterialIcons from "components/packages/MaterialIcons";
+import Overlay from "components/packages/Overlay";
+import Portal from "components/packages/Portal";
+import Sheet from "components/packages/Sheet";
+import States from "components/packages/States";
+import Theme from "components/packages/Theme";
+import Tooltip from "components/packages/Tooltip";
+import Transition from "components/packages/Transition";
+import TreeView from "components/packages/TreeView";
+import Typography from "components/packages/Typography";
+
 const googleLogo = require("./googleLogo.svg");
 const reactLogo = require("./reactLogo.svg");
 
 export interface IRouteWithLink {
   to?: string;
   href?: string;
-  linkComponent?: React.ReactType<any>;
+  linkComponent?: React.ReactType;
+  routeComponent?: RouteComponent;
   leftIcon?: React.ReactElement<any>;
   children?: React.ReactNode;
 }
 
 export type Route = TreeViewData<IRouteWithLink>;
 export type RouteList = TreeViewDataList<IRouteWithLink>;
+export type RouteComponent =
+  | React.ComponentClass<Router.RouteComponentProps<void>>
+  | React.StatelessComponent<Router.RouteComponentProps<void>>;
 
-function createRoute(path: string, name: string, icon?: React.ReactElement<any>, childItems?: RouteList): Route {
+export interface IRouteConfig {
+  path: string;
+  component: RouteComponent;
+  exact: boolean;
+}
+
+function createRoute(
+  path: string,
+  name: string,
+  icon?: React.ReactElement<any>,
+  routeComponent?: RouteComponent,
+  childItems?: RouteList
+): Route {
   if (!childItems) {
     return {
       itemId: path,
       children: name,
       to: path,
       linkComponent: Link,
+      routeComponent,
       leftIcon: icon,
     };
   }
@@ -40,6 +77,7 @@ function createRoute(path: string, name: string, icon?: React.ReactElement<any>,
     itemId: path,
     children: name,
     leftIcon: icon,
+    routeComponent,
     childItems: childItems.map(({ itemId, to, ...remaining }) => ({
       itemId: `${path}${itemId}`,
       to: `${path}${itemId}`,
@@ -48,7 +86,11 @@ function createRoute(path: string, name: string, icon?: React.ReactElement<any>,
   };
 }
 
-function createPackage(name: string, { examples = true, propTypes = true, sassdoc = true } = {}): Route {
+function createPackage(
+  name: string,
+  routeComponent: RouteComponent,
+  { examples = true, propTypes = true, sassdoc = true } = {}
+): Route {
   const basePath = `/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
@@ -66,13 +108,14 @@ function createPackage(name: string, { examples = true, propTypes = true, sassdo
   return {
     itemId: basePath,
     children: `@react-md/${name}`,
+    routeComponent,
     childItems,
   };
 }
 
 export const routes: RouteList = [
-  createRoute("/", "Home", <HomeSVGIcon />),
-  createRoute("/getting-started", "Getting Started", <InfoOutlineSVGIcon />, [
+  createRoute("/", "Home", <HomeSVGIcon />, Home),
+  createRoute("/getting-started", "Getting Started", <InfoOutlineSVGIcon />, GettingStarted, [
     createRoute("/installation", "Installation"),
     createRoute("/updating-create-react-app", "Updating create-react-app"),
   ]),
@@ -81,23 +124,23 @@ export const routes: RouteList = [
     children: "Packages",
     leftIcon: <BuildSVGIcon />,
     childItems: [
-      createPackage("a11y"),
-      createPackage("app-bar"),
-      createPackage("button"),
-      createPackage("elevation", { examples: false, propTypes: false }),
-      createPackage("icon"),
-      createPackage("list"),
-      createPackage("listeners", { sassdoc: false }),
-      createPackage("material-icons", { sassdoc: false, propTypes: false }),
-      createPackage("overlay"),
-      createPackage("portal", { sassdoc: false }),
-      createPackage("sheet"),
-      createPackage("states"),
-      createPackage("theme", { propTypes: false }),
-      createPackage("tooltip"),
-      createPackage("transition"),
-      createPackage("tree-view"),
-      createPackage("typography"),
+      createPackage("a11y", A11y),
+      createPackage("app-bar", AppBar),
+      createPackage("button", Button),
+      createPackage("elevation", Elevation, { examples: false, propTypes: false }),
+      createPackage("icon", Icon),
+      createPackage("list", List),
+      createPackage("listeners", Listeners, { sassdoc: false }),
+      createPackage("material-icons", MaterialIcons, { sassdoc: false, propTypes: false }),
+      createPackage("overlay", Overlay),
+      createPackage("portal", Portal, { sassdoc: false }),
+      createPackage("sheet", Sheet),
+      createPackage("states", States),
+      createPackage("theme", Theme, { propTypes: false }),
+      createPackage("tooltip", Tooltip),
+      createPackage("transition", Transition),
+      createPackage("tree-view", TreeView),
+      createPackage("typography", Typography),
     ],
   },
   {
@@ -150,5 +193,19 @@ function reduceValid(list: string[], { to, childItems }: Route) {
 }
 
 const validRoutes = routes.reduce(reduceValid, []);
+
+function reduceConfig(list: IRouteConfig[], { to, childItems, itemId, routeComponent }: Route) {
+  if (routeComponent) {
+    list.push({ path: itemId, component: routeComponent, exact: itemId === "/" });
+  }
+
+  if (childItems) {
+    [].push.apply(list, childItems.reduce(reduceConfig, []));
+  }
+
+  return list;
+}
+
+export const routesConfig = routes.reduce(reduceConfig, []);
 
 export default routes;
