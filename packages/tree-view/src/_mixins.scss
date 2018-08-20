@@ -3,6 +3,7 @@
 ////
 
 @import '@react-md/utils/dist/mixins';
+@import 'variables';
 
 /// Creates styles to add additional padding to tree items based on depth. This will only work
 /// if you correctly apply the `aria-level` attributes to the list items.
