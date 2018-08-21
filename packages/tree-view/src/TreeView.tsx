@@ -13,10 +13,11 @@ import {
   treeItemRenderer,
   onItemSelect,
   onItemExpandedChange,
-  onItemSiblingExpansion,
+  MultipleIdHandler,
 } from "./types";
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
-import { findTreeItemFromElement, findTreeItemsFromElement } from "./utils";
+import findTreeItemFromElement from "./utils/findTreeItemFromElement";
+import findTreeItemsFromElement from "./utils/findTreeItemsFromElement";
 
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 const SHIFT_CODE = 16;
@@ -101,11 +102,11 @@ export interface ITreeViewBaseProps<D, R> {
   selectOnFocus?: boolean;
 
   /**
-   * Boolean if the `TreeItem`s that have child items can also be selected.
+   * Boolean if `TreeItem`s that have nested child items (groups) are also able to be selected.
    *
    * @docgen
    */
-  selectableChildItemsItem?: boolean;
+  isItemWithGroupSelectable?: boolean;
 
   /**
    * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
@@ -174,7 +175,7 @@ export interface ITreeViewBaseProps<D, R> {
    *
    * @docgen
    */
-  onItemSiblingExpansion?: onItemSiblingExpansion;
+  onItemSiblingExpansion?: MultipleIdHandler;
 }
 
 export interface ITreeViewIdsProps {
@@ -202,7 +203,7 @@ export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
 }
 
 export type TreeViewPropsWithSiblingExpansion<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
-  onItemSiblingExpansion: onItemSiblingExpansion;
+  onItemSiblingExpansion: MultipleIdHandler;
 };
 
 export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
@@ -387,7 +388,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       onItemSiblingExpansion,
       multiSelect,
       selectOnFocus,
-      selectableChildItemsItem,
+      isItemWithGroupSelectable,
       disableSiblingExpansion,
       extractTextContent,
       disableFontIconTextCheck,
@@ -479,14 +480,14 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
 
     const { itemId } = item;
-    const { onItemSelect, expandedIds, onItemExpandedChange, selectableChildItemsItem } = this.props;
+    const { onItemSelect, expandedIds, onItemExpandedChange, isItemWithGroupSelectable } = this.props;
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
     if (item.childItems) {
       const i = expandedIds.indexOf(itemId);
       onItemExpandedChange(itemId, i === -1);
-      if (selectableChildItemsItem) {
+      if (isItemWithGroupSelectable) {
         onItemSelect(itemId);
       }
     }

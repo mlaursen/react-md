@@ -2,13 +2,14 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import { ITreeViewBaseProps } from "./TreeView";
 
-import { onItemSelect, onItemExpandedChange, onItemSiblingExpansion, TreeViewDataList, IIndexKeyAny } from "./types";
-import { handleItemSelect, handleItemExpandedChange, findAllParentIds } from "./utils";
+import { onItemSelect, onItemExpandedChange, MultipleIdHandler, TreeViewDataList, IIndexKeyAny } from "./types";
+import { handleItemSelect, handleItemExpandedChange } from "./utils";
+import findAllParentIds from "./utils/findAllParentIds";
 
 export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {
   onItemSelect: onItemSelect;
   onItemExpandedChange: onItemExpandedChange;
-  onItemSiblingExpansion: onItemSiblingExpansion;
+  onItemSiblingExpansion: MultipleIdHandler;
   selectedIds: string[];
   expandedIds: string[];
 }

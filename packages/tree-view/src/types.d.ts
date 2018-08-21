@@ -139,4 +139,4 @@ export interface ITreeViewItemInjectedPropsWithKey extends ITreeViewItemInjected
 
 export type onItemSelect = (itemId: string) => void;
 export type onItemExpandedChange = (itemId: string, expanded: boolean) => void;
-export type onItemSiblingExpansion = (expandedIds: string[]) => void;
+export type MultipleIdHandler = (itemIds: string[]) => void;
