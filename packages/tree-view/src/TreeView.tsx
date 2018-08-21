@@ -408,6 +408,23 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     });
   }
 
+  private handleSpaceKey = (event: TreeKeyboardEvent) => {
+    const { data, multiSelect, onItemSelect } = this.props;
+    event.preventDefault();
+
+    // accroding to the specs, spacebar does nothing in single-select trees
+    if (!multiSelect) {
+      return;
+    }
+
+    const item = findTreeItemFromElement(event.target as HTMLElement, data, this.treeEl);
+    if (!item) {
+      return;
+    }
+
+    onItemSelect(item.itemId);
+  };
+
   private handleKeyDown = (event: TreeKeyboardEvent) => {
     switch (event.key) {
       case "Home":
@@ -427,8 +444,11 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         this.toggleFrom(event.target as HTMLElement, event.key === "ArrowRight");
         break;
       case " ":
+        this.handleSpaceKey(event);
+        break;
       case "Enter":
-        this.handleClickFrom(event);
+        event.stopPropagation();
+        (event.target as HTMLElement).click();
         break;
       case "*":
         this.openAllRelatedNodes(event.target as HTMLElement);
@@ -438,7 +458,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
   };
 
-  private handleClickFrom = (event: TreeKeyboardEvent | React.MouseEvent<TreeViewElement>) => {
+  private handleClickFrom = (event: React.MouseEvent<TreeViewElement>) => {
     const element = event.target as HTMLElement;
     const item = findTreeItemFromElement(element, this.props.data, this.treeEl);
     if (!item) {
@@ -450,15 +470,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
-    if (event.type === "keydown") {
-      event = event as TreeKeyboardEvent;
-      if (event.key === " ") {
-        // prevent page from scrolling
-        event.preventDefault();
-      }
-
-      element.click();
-    } else if (item.childItems) {
+    if (item.childItems) {
       const i = expandedIds.indexOf(itemId);
       onItemExpandedChange(itemId, i === -1);
       if (selectableChildItemsItem) {
