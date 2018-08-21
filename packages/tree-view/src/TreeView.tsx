@@ -332,6 +332,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   }
 
   public componentWillUnmount() {
+    this.clearSearch();
     if (this.updateFrame) {
       window.cancelAnimationFrame(this.updateFrame);
     }
@@ -404,22 +405,6 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       children: this.renderChildTreeItems(data, 0),
     });
   }
-
-  private clearSearch = () => {
-    if (this.searchTimer) {
-      window.clearTimeout(this.searchTimer);
-      this.searchTimer = undefined;
-    }
-  };
-
-  private startSearchTimer = () => {
-    const { searchResetTime } = this.props as TreeViewWithDefaultProps<D, R>;
-    this.clearSearch();
-    this.searchTimer = window.setTimeout(() => {
-      this.searchTimer = undefined;
-      this.lastSearch = "";
-    }, searchResetTime);
-  };
 
   private handleKeyDown = (event: React.KeyboardEvent<TreeViewElement>) => {
     switch (event.key) {
@@ -557,6 +542,22 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     if (selectedIds.indexOf(itemId) === -1) {
       onItemSelect(itemId);
     }
+  };
+
+  private clearSearch = () => {
+    if (this.searchTimer) {
+      window.clearTimeout(this.searchTimer);
+      this.searchTimer = undefined;
+    }
+  };
+
+  private startSearchTimer = () => {
+    const { searchResetTime } = this.props as TreeViewWithDefaultProps<D, R>;
+    this.clearSearch();
+    this.searchTimer = window.setTimeout(() => {
+      this.searchTimer = undefined;
+      this.lastSearch = "";
+    }, searchResetTime);
   };
 
   private search = (event: React.KeyboardEvent<TreeViewElement>) => {
