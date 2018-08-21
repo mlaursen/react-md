@@ -28,7 +28,7 @@ const markdown = `## Table of Contents
 - [Updating Sass Include Paths](#updating-sass-include-paths)
   - [Upating webpack config](#updating-webpack-config)
 - [Including Styles](#including-styles)
-  - [SCSS Naming Paradim](#scss-naming-paradim)
+  - [SCSS Naming Paradigm](#scss-naming-paradigm)
   - [Exported SCSS Files](#exported-scss-files)
   - [Including Styles Example](#including-styles-example)
 
@@ -148,12 +148,12 @@ resolve SCSS files that are found within the \`node_modules\` directory. Without
 to import any SCSS file correctly from react-md.
 
 ## Including Styles
-### SCSS Naming Paradim
+### SCSS Naming Paradigm
 To make these styles easier to plug-and-play with other libraries, every variable, function, and mixin will be prefixed with \`rmd\` or \`react-md\`
 where \`rmd\` is preserved for general variables, functions, and mixins while \`react-md\` is reserved for a package's mixin that will generate
 all the styles required.
 
-If you are unfamiliar with the existing SCSS file naming paradims, here is a quick summary. If a file is prefixed with an underscore (\`_\`), the file
+If you are unfamiliar with the existing SCSS file naming paradigms, here is a quick summary. If a file is prefixed with an underscore (\`_\`), the file
 **should not** generate any styles when imported while a file without an underscore *should*. Even though some files will have underscores and others will
 not, there will be no difference when importing the files in your SCSS file. So lets say that we have the following files:
 - \`styles.scss\`

@@ -161,7 +161,7 @@ to [include react-md styles](#include-react-md-styles) or start reading componen
 
 ### Including react-md styles
 This section requires prior knowledge of [including styles](/getting-started/installation#including-styles) and
-[SCSS naming paradim](/getting-started/installation#scss-naming-paradim) on the main installation page before continuing.
+[SCSS naming paradigm](/getting-started/installation#scss-naming-paradigm) on the main installation page before continuing.
 
 My general reccomendation is to create a \`_globals.scss\` file within your project to be able to quickly import
 any shared variables, functions, and mixins to any SCSS file in your app. For this example, I will keep it simple and
