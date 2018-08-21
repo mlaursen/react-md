@@ -14,6 +14,22 @@ import {
 } from "./constants";
 import { IMagicTooltipContext, TooltipSpacing } from "./types";
 
+interface IEventContainer {
+  /**
+   * This is the "original" tooltip container that contains the aria-describedby attribute and is used
+   * for showing tooltips on focus events.
+   */
+  container: HTMLElement;
+
+  /**
+   * This can either be the "original" container or an item nested within the container component that is
+   * used to more accurately size the mouseenter and mouseleave area. This is useful when using more complex
+   * components that require focusing on a top-level element but only a small section actually gains the
+   * focus state (tree items for example).
+   */
+  sizingContainer: HTMLElement;
+}
+
 export interface IMagicTooltipProviderProps {
   /**
    * Boolean if the tooltip's dense spec should be applied to each `MagicTooltip` that appears as a child.
@@ -172,7 +188,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     keyboardMovementKeys: KEYBOARD_MOVEMENT_KEYS,
   };
 
-  private containers: HTMLElement[];
+  private containers: IEventContainer[];
   private leaveContainer?: HTMLElement;
   private showTimeout?: number;
   private focusTimeout?: number;
@@ -256,9 +272,13 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
   };
 
   private clearContainers = () => {
-    this.containers.forEach(container => {
+    this.containers.forEach(({ container, sizingContainer }) => {
       if (container) {
         container.removeEventListener("mouseenter", this.handleMouseEnter);
+      }
+
+      if (sizingContainer) {
+        sizingContainer.removeEventListener("mouseleave", this.handleMouseLeave);
       }
     });
     this.containers = [];
@@ -280,29 +300,36 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       );
     }
 
-    if (this.containers.indexOf(container) === -1) {
-      container.addEventListener("mouseenter", this.handleMouseEnter);
-      this.containers.push(container);
+    if (this.containers.findIndex(({ container: c }) => c === container) === -1) {
+      const sizingContainer = findSizingContainer(container) as HTMLElement;
+      sizingContainer.addEventListener("mouseenter", this.handleMouseEnter);
+
+      this.containers.push({ container, sizingContainer });
     }
   };
 
   private deinit = (id: string) => {
-    const containers: HTMLElement[] = [];
-    this.containers.forEach(container => {
+    const containers: IEventContainer[] = [];
+    this.containers.forEach(mouseContainer => {
+      const { container, sizingContainer } = mouseContainer;
       if (container.getAttribute("aria-describedby") === id) {
-        container.removeEventListener("mouseenter", this.handleMouseEnter);
-        container.removeEventListener("mouseleave", this.handleMouseLeave);
-      } else {
-        containers.push(container);
+        sizingContainer.removeEventListener("mouseenter", this.handleMouseEnter);
+        sizingContainer.removeEventListener("mouseleave", this.handleMouseLeave);
       }
     });
-
-    this.containers = containers;
   };
 
   private handleMouseEnter = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
-    const id = target.getAttribute("aria-describedby");
+    const { container, sizingContainer } = this.containers.find(
+      mouseContainer => target === mouseContainer.sizingContainer
+    ) || { container: null, sizingContainer: null };
+
+    if (!container || !sizingContainer) {
+      return;
+    }
+
+    const id = container.getAttribute("aria-describedby");
     if (id === this.state.visibleId && this.showTimeout) {
       return;
     }
@@ -310,10 +337,9 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     const { delay, hoverMode } = this.props as MagicTooltipProviderWithDefaultProps;
     this.clearShowTimeout();
 
-    const leaveTarget = findSizingContainer(target) as HTMLElement;
     this.clearLeaveContainer();
-    this.leaveContainer = leaveTarget;
-    leaveTarget.addEventListener("mouseleave", this.handleMouseLeave);
+    this.leaveContainer = sizingContainer;
+    sizingContainer.addEventListener("mouseleave", this.handleMouseLeave);
 
     if (hoverMode && this.hoverModeTimeout) {
       this.setState({ visibleId: id });
@@ -338,7 +364,9 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
       }, Math.max(0, hoverModeDelay));
     }
 
-    this.setState({ visibleId: null });
+    if (this.state.visibleId) {
+      this.setState({ visibleId: null });
+    }
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
@@ -367,7 +395,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   private handleFocus = (event: FocusEvent) => {
     const target = event.target as HTMLElement;
-    if (this.containers.indexOf(target) === -1) {
+    if (this.containers.findIndex(({ container }) => container === target) === -1) {
       this.clearFocusTimeout();
       return;
     }
@@ -385,7 +413,7 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
 
   private handleBlur = (event: FocusEvent) => {
     this.clearShowTimeout();
-    if (this.containers.indexOf(event.target as HTMLElement) === -1) {
+    if (this.containers.findIndex(({ container }) => container === event.target) === -1) {
       return;
     }
 

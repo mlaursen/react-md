@@ -14,6 +14,7 @@ export default function findSizingContainer(el: HTMLElement | null) {
       return content;
     }
   }
+
   const data = el.getAttribute("data-sizing-selector");
   if (data) {
     const content = el.querySelector(data) as HTMLElement;
