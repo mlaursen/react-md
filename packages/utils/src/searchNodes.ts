@@ -1,7 +1,7 @@
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 
 export type NodeType = HTMLElement | string;
-export type TextExtractor = (node: NodeType) => string;
+export type TextExtractor = (node: NodeType, checkFontIcons?: boolean) => string;
 
 /**
  * Attempts to find the first match index for a list of values that starts with the provided query string and
@@ -55,7 +55,7 @@ export function searchNodes(
   startIndex: number,
   extractor: TextExtractor = extractTextContent,
 ) {
-  const values = nodes.map(extractor);
+  const values = nodes.map(node => extractor(node));
   let matchIndex = findMatchInRange(query, startIndex + 1, nodes.length, values);
   if (matchIndex === -1) {
     matchIndex = findMatchInRange(query, 0, startIndex, values);
