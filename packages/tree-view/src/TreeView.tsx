@@ -44,20 +44,20 @@ export interface ITreeViewBaseProps<D, R> {
   className?: string;
 
   /**
-   * An optional id that points to an element that labels this tree. Either this or the `aria-label`
-   * prop are required for a11y.
-   *
-   * @docgen
-   */
-  "aria-labelledby"?: string;
-
-  /**
    * An optional label string that describes this tree. Either this or the `aria-labelledby` prop are
    * required for a11y.
    *
    * @docgen
    */
   "aria-label"?: string;
+
+  /**
+   * An optional id that points to an element that labels this tree. Either this or the `aria-label`
+   * prop are required for a11y.
+   *
+   * @docgen
+   */
+  "aria-labelledby"?: string;
 
   /**
    * A list of data that should be transformed into a tree view.
@@ -235,10 +235,18 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     id: PropTypes.string.isRequired,
     "aria-label": PropTypes.string,
     "aria-labelledby": PropTypes.string,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        itemId: PropTypes.string.isRequired,
+      })
+    ).isRequired,
     multiSelect: PropTypes.bool,
     selectOnFocus: PropTypes.bool,
     selectableChildItemsItem: PropTypes.bool,
     disableSiblingExpansion: PropTypes.bool,
+    searchResetTime: PropTypes.number,
+    extractTextContent: PropTypes.func,
+    disableFontIconTextCheck: PropTypes.bool,
     treeViewRenderer: PropTypes.func,
     treeItemRenderer: PropTypes.func,
     expandedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
