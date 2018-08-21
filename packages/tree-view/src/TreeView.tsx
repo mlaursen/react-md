@@ -21,6 +21,8 @@ import { findTreeItemFromElement, findTreeItemsFromElement } from "./utils";
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 const SHIFT_CODE = 16;
 
+type TreeKeyboardEvent = React.KeyboardEvent<TreeViewElement>;
+
 export interface ITreeViewBaseProps<D, R> {
   /**
    * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
@@ -406,7 +408,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     });
   }
 
-  private handleKeyDown = (event: React.KeyboardEvent<TreeViewElement>) => {
+  private handleKeyDown = (event: TreeKeyboardEvent) => {
     switch (event.key) {
       case "Home":
       case "End":
@@ -436,7 +438,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
   };
 
-  private handleClickFrom = (event: React.KeyboardEvent<TreeViewElement> | React.MouseEvent<TreeViewElement>) => {
+  private handleClickFrom = (event: TreeKeyboardEvent | React.MouseEvent<TreeViewElement>) => {
     const element = event.target as HTMLElement;
     const item = findTreeItemFromElement(element, this.props.data, this.treeEl);
     if (!item) {
@@ -449,7 +451,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
     if (event.type === "keydown") {
-      event = event as React.KeyboardEvent<TreeViewElement>;
+      event = event as TreeKeyboardEvent;
       if (event.key === " ") {
         // prevent page from scrolling
         event.preventDefault();
@@ -560,7 +562,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }, searchResetTime);
   };
 
-  private search = (event: React.KeyboardEvent<TreeViewElement>) => {
+  private search = (event: TreeKeyboardEvent) => {
     if (!this.treeEl || !this.treeItems.length || event.altKey || event.metaKey || event.ctrlKey) {
       return;
     }
