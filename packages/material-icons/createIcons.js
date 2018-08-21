@@ -35,6 +35,9 @@ const temp = path.join(process.cwd(), 'temp');
 const svgs = path.join(process.cwd(), 'svgs');
 const mainIndex = path.join(src, 'index.ts');
 
+
+const EXLCUDE_REGEX = /(signal_wifi_[0-3])|(battery_(charging_)?\d)|((cellular|internet)_[^4]_bar)/;
+
 async function downloadSource() {
   await fs.remove(temp);
   await fs.ensureDir(temp),
@@ -66,7 +69,7 @@ function findAndCopyIcons() {
           .substring('ic_'.length)
           .replace(/_24px/, '');
 
-        if (fileNames.indexOf(fileName) === -1) {
+        if (!EXLCUDE_REGEX.test(fileName) && fileNames.indexOf(fileName) === -1) {
           fileNames.push(fileName);
           promises.push(fs.copy(svgPath, path.join(svgs, fileName)));
         }
@@ -109,7 +112,8 @@ const SVG_ICON_SUFFIX = '</svg>';
 
 async function parseSVGFileAndCreateComponents(svgFilePath, componentName, iconName, svgIconFile, fontIconFile) {
   const svg = await readFile(path.join(process.cwd(), svgFilePath), 'utf8');
-	const contents = svg.substring(SVG_ICON_PREFIX.length, svg.length - SVG_ICON_SUFFIX.length);;
+  const contents = svg.substring(SVG_ICON_PREFIX.length, svg.length - SVG_ICON_SUFFIX.length)
+    .replace(/fill-opacity/g, 'fillOpacity');
 
   await Promise.all([
     fs.outputFile(svgIconFile, createIconFile(componentName, contents, 'SVG')),

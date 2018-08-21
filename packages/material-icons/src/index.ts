@@ -145,32 +145,8 @@ export { default as BackspaceSVGIcon } from "./BackspaceSVGIcon";
 export { default as BackspaceFontIcon } from "./BackspaceFontIcon";
 export { default as BackupSVGIcon } from "./BackupSVGIcon";
 export { default as BackupFontIcon } from "./BackupFontIcon";
-export { default as Battery20SVGIcon } from "./Battery20SVGIcon";
-export { default as Battery20FontIcon } from "./Battery20FontIcon";
-export { default as Battery30SVGIcon } from "./Battery30SVGIcon";
-export { default as Battery30FontIcon } from "./Battery30FontIcon";
-export { default as Battery50SVGIcon } from "./Battery50SVGIcon";
-export { default as Battery50FontIcon } from "./Battery50FontIcon";
-export { default as Battery60SVGIcon } from "./Battery60SVGIcon";
-export { default as Battery60FontIcon } from "./Battery60FontIcon";
-export { default as Battery80SVGIcon } from "./Battery80SVGIcon";
-export { default as Battery80FontIcon } from "./Battery80FontIcon";
-export { default as Battery90SVGIcon } from "./Battery90SVGIcon";
-export { default as Battery90FontIcon } from "./Battery90FontIcon";
 export { default as BatteryAlertSVGIcon } from "./BatteryAlertSVGIcon";
 export { default as BatteryAlertFontIcon } from "./BatteryAlertFontIcon";
-export { default as BatteryCharging20SVGIcon } from "./BatteryCharging20SVGIcon";
-export { default as BatteryCharging20FontIcon } from "./BatteryCharging20FontIcon";
-export { default as BatteryCharging30SVGIcon } from "./BatteryCharging30SVGIcon";
-export { default as BatteryCharging30FontIcon } from "./BatteryCharging30FontIcon";
-export { default as BatteryCharging50SVGIcon } from "./BatteryCharging50SVGIcon";
-export { default as BatteryCharging50FontIcon } from "./BatteryCharging50FontIcon";
-export { default as BatteryCharging60SVGIcon } from "./BatteryCharging60SVGIcon";
-export { default as BatteryCharging60FontIcon } from "./BatteryCharging60FontIcon";
-export { default as BatteryCharging80SVGIcon } from "./BatteryCharging80SVGIcon";
-export { default as BatteryCharging80FontIcon } from "./BatteryCharging80FontIcon";
-export { default as BatteryCharging90SVGIcon } from "./BatteryCharging90SVGIcon";
-export { default as BatteryCharging90FontIcon } from "./BatteryCharging90FontIcon";
 export { default as BatteryChargingFullSVGIcon } from "./BatteryChargingFullSVGIcon";
 export { default as BatteryChargingFullFontIcon } from "./BatteryChargingFullFontIcon";
 export { default as BatteryFullSVGIcon } from "./BatteryFullSVGIcon";
@@ -1537,40 +1513,8 @@ export { default as ShowChartSVGIcon } from "./ShowChartSVGIcon";
 export { default as ShowChartFontIcon } from "./ShowChartFontIcon";
 export { default as ShuffleSVGIcon } from "./ShuffleSVGIcon";
 export { default as ShuffleFontIcon } from "./ShuffleFontIcon";
-export { default as SignalCellular0BarSVGIcon } from "./SignalCellular0BarSVGIcon";
-export { default as SignalCellular0BarFontIcon } from "./SignalCellular0BarFontIcon";
-export { default as SignalCellular1BarSVGIcon } from "./SignalCellular1BarSVGIcon";
-export { default as SignalCellular1BarFontIcon } from "./SignalCellular1BarFontIcon";
-export { default as SignalCellular2BarSVGIcon } from "./SignalCellular2BarSVGIcon";
-export { default as SignalCellular2BarFontIcon } from "./SignalCellular2BarFontIcon";
-export { default as SignalCellular3BarSVGIcon } from "./SignalCellular3BarSVGIcon";
-export { default as SignalCellular3BarFontIcon } from "./SignalCellular3BarFontIcon";
 export { default as SignalCellular4BarSVGIcon } from "./SignalCellular4BarSVGIcon";
 export { default as SignalCellular4BarFontIcon } from "./SignalCellular4BarFontIcon";
-export {
-  default as SignalCellularConnectedNoInternet0BarSVGIcon,
-} from "./SignalCellularConnectedNoInternet0BarSVGIcon";
-export {
-  default as SignalCellularConnectedNoInternet0BarFontIcon,
-} from "./SignalCellularConnectedNoInternet0BarFontIcon";
-export {
-  default as SignalCellularConnectedNoInternet1BarSVGIcon,
-} from "./SignalCellularConnectedNoInternet1BarSVGIcon";
-export {
-  default as SignalCellularConnectedNoInternet1BarFontIcon,
-} from "./SignalCellularConnectedNoInternet1BarFontIcon";
-export {
-  default as SignalCellularConnectedNoInternet2BarSVGIcon,
-} from "./SignalCellularConnectedNoInternet2BarSVGIcon";
-export {
-  default as SignalCellularConnectedNoInternet2BarFontIcon,
-} from "./SignalCellularConnectedNoInternet2BarFontIcon";
-export {
-  default as SignalCellularConnectedNoInternet3BarSVGIcon,
-} from "./SignalCellularConnectedNoInternet3BarSVGIcon";
-export {
-  default as SignalCellularConnectedNoInternet3BarFontIcon,
-} from "./SignalCellularConnectedNoInternet3BarFontIcon";
 export {
   default as SignalCellularConnectedNoInternet4BarSVGIcon,
 } from "./SignalCellularConnectedNoInternet4BarSVGIcon";
@@ -1583,20 +1527,6 @@ export { default as SignalCellularNullSVGIcon } from "./SignalCellularNullSVGIco
 export { default as SignalCellularNullFontIcon } from "./SignalCellularNullFontIcon";
 export { default as SignalCellularOffSVGIcon } from "./SignalCellularOffSVGIcon";
 export { default as SignalCellularOffFontIcon } from "./SignalCellularOffFontIcon";
-export { default as SignalWifi0BarSVGIcon } from "./SignalWifi0BarSVGIcon";
-export { default as SignalWifi0BarFontIcon } from "./SignalWifi0BarFontIcon";
-export { default as SignalWifi1BarLockSVGIcon } from "./SignalWifi1BarLockSVGIcon";
-export { default as SignalWifi1BarLockFontIcon } from "./SignalWifi1BarLockFontIcon";
-export { default as SignalWifi1BarSVGIcon } from "./SignalWifi1BarSVGIcon";
-export { default as SignalWifi1BarFontIcon } from "./SignalWifi1BarFontIcon";
-export { default as SignalWifi2BarLockSVGIcon } from "./SignalWifi2BarLockSVGIcon";
-export { default as SignalWifi2BarLockFontIcon } from "./SignalWifi2BarLockFontIcon";
-export { default as SignalWifi2BarSVGIcon } from "./SignalWifi2BarSVGIcon";
-export { default as SignalWifi2BarFontIcon } from "./SignalWifi2BarFontIcon";
-export { default as SignalWifi3BarLockSVGIcon } from "./SignalWifi3BarLockSVGIcon";
-export { default as SignalWifi3BarLockFontIcon } from "./SignalWifi3BarLockFontIcon";
-export { default as SignalWifi3BarSVGIcon } from "./SignalWifi3BarSVGIcon";
-export { default as SignalWifi3BarFontIcon } from "./SignalWifi3BarFontIcon";
 export { default as SignalWifi4BarLockSVGIcon } from "./SignalWifi4BarLockSVGIcon";
 export { default as SignalWifi4BarLockFontIcon } from "./SignalWifi4BarLockFontIcon";
 export { default as SignalWifi4BarSVGIcon } from "./SignalWifi4BarSVGIcon";
