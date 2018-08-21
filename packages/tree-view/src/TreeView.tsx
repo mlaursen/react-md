@@ -18,6 +18,7 @@ import {
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 import findTreeItemsFromElement from "./utils/findTreeItemsFromElement";
+import findIdsToRootOrEnd from "./utils/findIdsToRootOrEnd";
 
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 const SHIFT_CODE = 16;
@@ -170,12 +171,21 @@ export interface ITreeViewBaseProps<D, R> {
   onItemExpandedChange?: onItemExpandedChange;
 
   /**
-   * A function to call when the `disableSiblingExpansion` prop is not enabled and the user presses the `*`
-   * key on a tree item to expand all related sibling nodes.
+   * This function will only be called when the `disableSiblingExpansion` prop is not enabled and the user
+   * presses the asterisk (*) key on a TreeItem to attempt to expand all sibling treeitems at the same level
+   * and within the same group.
    *
    * @docgen
    */
-  onItemSiblingExpansion?: MultipleIdHandler;
+  onMultipleItemExpansion?: MultipleIdHandler;
+
+  /**
+   * This function will be called when the `multiSelect` prop is enabled and a user has multi-selected items via
+   * the keyboard.
+   *
+   * @docgen
+   */
+  onMultipleItemSelection?: MultipleIdHandler;
 }
 
 export interface ITreeViewIdsProps {
@@ -202,14 +212,15 @@ export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
   onItemExpandedChange: onItemExpandedChange;
 }
 
-export type TreeViewPropsWithSiblingExpansion<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
-  onItemSiblingExpansion: MultipleIdHandler;
+export type TreeViewWithMultiSelectHandlers<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
+  onMultipleItemExpansion: MultipleIdHandler;
+  onMultipleItemSelection: MultipleIdHandler;
 };
 
 export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
   multiSelect: boolean;
   selectOnFocus: boolean;
-  selectableChildItemsItem: boolean;
+  isItemWithGroupSelectable: boolean;
   disableSiblingExpansion: boolean;
   searchResetTime: number;
   treeViewRenderer: treeViewRenderer<R>;
@@ -245,7 +256,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     ).isRequired,
     multiSelect: PropTypes.bool,
     selectOnFocus: PropTypes.bool,
-    selectableChildItemsItem: PropTypes.bool,
+    isItemWithGroupSelectable: PropTypes.bool,
     disableSiblingExpansion: PropTypes.bool,
     searchResetTime: PropTypes.number,
     extractTextContent: PropTypes.func,
@@ -256,12 +267,21 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
     onItemSelect: PropTypes.func.isRequired,
     onItemExpandedChange: PropTypes.func.isRequired,
-    onItemSiblingExpansion: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
+    onMultipleItemExpansion: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
       if (!props.disableSiblingExpansion) {
         return PropTypes.func.isRequired(props, propName, component, ...args);
       }
 
       return null;
+    },
+    onMultipleItemSelection: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
+      let validator = PropTypes.func;
+      if (props.multiSelect) {
+        // @ts-ignore
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, component, ...args);
     },
     _a11yValidator: (props: ITreeViewProps, propName: string, component: string) => {
       const label = props["aria-label"];
@@ -291,7 +311,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     searchResetTime: 500,
     multiSelect: false,
     selectOnFocus: false,
-    selectableChildItemsItem: false,
+    isItemWithGroupSelectable: false,
     disableSiblingExpansion: false,
     disableFontIconTextCheck: false,
     extractTextContent: defaultExtractTextContent,
@@ -334,6 +354,14 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
   }
 
+  public componentDidUpdate(prevProps: ITreeViewProps<D, R>) {
+    const selectedLength = this.props.selectedIds.length;
+    const prevSelectedLength = prevProps.selectedIds.length;
+    if ((selectedLength === 0 && prevSelectedLength > 0) || (prevSelectedLength === 0 && selectedLength > 0)) {
+      this.fixNoFocus();
+    }
+  }
+
   public componentWillUnmount() {
     this.clearSearch();
     if (this.updateFrame) {
@@ -357,19 +385,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         const { extractTextContent, disableFontIconTextCheck } = this.props as TreeViewWithDefaultProps<D, R>;
         this.treeItems = Array.from(this.treeEl.querySelectorAll('[role="treeitem"]'));
         this.treeItemStrings = this.treeItems.map(node => extractTextContent(node, disableFontIconTextCheck));
-
-        // if the user has selected a node deep within the tree and then closes any parent nodes,
-        // the tree would no longer be able to gain keyboard focus if the user tabs away. If this happens,
-        // temporarily set the tabIndex for the first item to 0 so it will be focusable, but not updating
-        // the selected state.
-        const selected = this.treeItems.filter(({ tabIndex }) => tabIndex === 0);
-        if (!selected.length && this.treeItems.length) {
-          this.tempFocusableItem = this.treeItems[0];
-          this.tempFocusableItem.tabIndex = 0;
-        } else if (selected.length && this.tempFocusableItem) {
-          this.tempFocusableItem.tabIndex = -1;
-          this.tempFocusableItem = undefined;
-        }
+        this.fixNoFocus();
       } else {
         this.treeItems = [];
       }
@@ -385,7 +401,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       expandedIds,
       onItemSelect,
       onItemExpandedChange,
-      onItemSiblingExpansion,
+      onMultipleItemExpansion,
+      onMultipleItemSelection,
       multiSelect,
       selectOnFocus,
       isItemWithGroupSelectable,
@@ -409,6 +426,23 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     });
   }
 
+  /**
+   * If the user has selected a node deep within the tree and then closes any parent nodes,
+   * the tree would no longer be able to gain keyboard focus if the user tabs away. If this happens,
+   * temporarily set the tabIndex for the first item to 0 so it will be focusable, but not updating
+   * the selected state.
+   */
+  private fixNoFocus = () => {
+    const selected = this.treeItems.filter(node => node.tabIndex === 0 && node !== this.tempFocusableItem);
+    if (!selected.length && this.treeItems.length) {
+      this.tempFocusableItem = this.treeItems[0];
+      this.tempFocusableItem.tabIndex = 0;
+    } else if (this.tempFocusableItem) {
+      this.tempFocusableItem.tabIndex = -1;
+      this.tempFocusableItem = undefined;
+    }
+  };
+
   private handleSpaceKey = (event: TreeKeyboardEvent) => {
     const { data, multiSelect, onItemSelect } = this.props;
     event.preventDefault();
@@ -429,7 +463,13 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   private handleHomeEndKeys = (event: TreeKeyboardEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    this.focus(event.key === "Home" ? 0 : this.treeItems.length - 1);
+    const isHome = event.key === "Home";
+    if (this.props.multiSelect && event.shiftKey && event.ctrlKey) {
+      this.selectFrom(event.target as HTMLElement, isHome);
+      return;
+    }
+
+    this.focus(isHome ? 0 : this.treeItems.length - 1);
   };
 
   private handleArrowKeys = (event: TreeKeyboardEvent) => {
@@ -438,7 +478,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     event.preventDefault();
     const horizontal = key === "ArrowLeft" || key === "ArrowRight";
     if (horizontal) {
-      this.toggleFrom(element, key === "ArrowRight")
+      this.toggleFrom(element, key === "ArrowRight");
       return;
     }
 
@@ -507,8 +547,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   };
 
   private openAllRelatedNodes = (element: HTMLElement) => {
-    const { data, disableSiblingExpansion, onItemSiblingExpansion, expandedIds } = this
-      .props as TreeViewPropsWithSiblingExpansion<D, R>;
+    const { data, disableSiblingExpansion, onMultipleItemExpansion, expandedIds } = this
+      .props as TreeViewWithMultiSelectHandlers<D, R>;
 
     if (!this.treeEl || disableSiblingExpansion) {
       return;
@@ -529,7 +569,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       return;
     }
 
-    onItemSiblingExpansion(newExpandedIds);
+    onMultipleItemExpansion(newExpandedIds);
   };
 
   private focusFrom = (element: HTMLElement, increment: boolean) => {
@@ -616,6 +656,25 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     const matchIndex = searchNodes(this.lastSearch, this.treeItemStrings, i, s => s as string);
     if (matchIndex !== -1) {
       this.focus(matchIndex);
+    }
+  };
+
+  private selectFrom = (element: HTMLElement, toRoot: boolean) => {
+    if (!this.treeEl) {
+      return;
+    }
+
+    const { data, selectedIds, onMultipleItemSelection } = this.props as TreeViewWithMultiSelectHandlers<D, R>;
+    const nextSelectedIds = findIdsToRootOrEnd({
+      element,
+      data,
+      treeEl: this.treeEl,
+      toRoot,
+      selectedIds,
+    });
+
+    if (nextSelectedIds !== selectedIds) {
+      onMultipleItemSelection(nextSelectedIds);
     }
   };
 

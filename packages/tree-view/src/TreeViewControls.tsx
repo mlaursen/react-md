@@ -9,7 +9,7 @@ import findAllParentIds from "./utils/findAllParentIds";
 export interface ITreeViewControls<D, R> extends ITreeViewBaseProps<D, R> {
   onItemSelect: onItemSelect;
   onItemExpandedChange: onItemExpandedChange;
-  onItemSiblingExpansion: MultipleIdHandler;
+  onMultipleItemExpansion: MultipleIdHandler;
   selectedIds: string[];
   expandedIds: string[];
 }
@@ -101,7 +101,7 @@ export default class TreeViewControls<D, R> extends React.Component<
       defaultExpandedIds,
       onItemSelect,
       onItemExpandedChange,
-      onItemSiblingExpansion,
+      onMultipleItemExpansion,
       children,
       ...props
     } = this.props;
@@ -112,7 +112,7 @@ export default class TreeViewControls<D, R> extends React.Component<
       expandedIds,
       onItemSelect: this.handleItemSelect,
       onItemExpandedChange: this.handleItemExpandedChange,
-      onItemSiblingExpansion: this.handleItemSiblingExpansion,
+      onMultipleItemExpansion: this.handleItemSiblingExpansion,
     });
   }
 

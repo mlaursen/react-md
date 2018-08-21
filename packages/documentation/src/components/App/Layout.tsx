@@ -104,7 +104,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
             selectedIds={selectedIds}
             onItemSelect={this.handleItemSelect}
             onItemExpandedChange={this.handleItemExpandedChange}
-            onItemSiblingExpansion={this.handleItemSiblingExpansion}
+            onMultipleItemExpansion={this.handleMultipleItemExpansion}
             treeItemRenderer={this.treeItemRenderer}
           />
         </MagicTooltipProvider>
@@ -201,7 +201,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     }
   };
 
-  private handleItemSiblingExpansion = (expandedIds: string[]) => {
+  private handleMultipleItemExpansion = (expandedIds: string[]) => {
     this.setState({ expandedIds });
   };
 

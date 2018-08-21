@@ -58,8 +58,9 @@ export default function findIdsToRootOrEnd<D>({
     [].push.apply(ids, sliced.map(({ itemId }) => itemId));
   }
 
-  if (ids.length !== selectedIds.length) {
-    return ids;
+  const nextSelectedIds = ids.filter((itemId, i, idsList) => idsList.indexOf(itemId) === i);
+  if (nextSelectedIds.length !== selectedIds.length) {
+    return nextSelectedIds;
   }
 
   return selectedIds;
