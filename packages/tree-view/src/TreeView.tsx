@@ -425,23 +425,36 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     onItemSelect(item.itemId);
   };
 
+  private handleHomeEndKeys = (event: TreeKeyboardEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    this.focus(event.key === "Home" ? 0 : this.treeItems.length - 1);
+  };
+
+  private handleArrowKeys = (event: TreeKeyboardEvent) => {
+    const { key } = event;
+    const element = event.target as HTMLElement;
+    event.preventDefault();
+    const horizontal = key === "ArrowLeft" || key === "ArrowRight";
+    if (horizontal) {
+      this.toggleFrom(element, key === "ArrowRight")
+      return;
+    }
+
+    this.focusFrom(element, key === "ArrowDown");
+  };
+
   private handleKeyDown = (event: TreeKeyboardEvent) => {
     switch (event.key) {
       case "Home":
       case "End":
-        event.preventDefault();
-        event.stopPropagation();
-        this.focus(event.key === "Home" ? 0 : this.treeItems.length - 1);
+        this.handleHomeEndKeys(event);
         break;
       case "ArrowUp":
       case "ArrowDown":
-        event.preventDefault();
-        this.focusFrom(event.target as HTMLElement, event.key === "ArrowDown");
-        break;
       case "ArrowLeft":
       case "ArrowRight":
-        event.preventDefault();
-        this.toggleFrom(event.target as HTMLElement, event.key === "ArrowRight");
+        this.handleArrowKeys(event);
         break;
       case " ":
         this.handleSpaceKey(event);
