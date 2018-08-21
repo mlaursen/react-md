@@ -220,7 +220,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     }
 
     return (
-      <TreeItem {...props} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
+      <TreeItem {...props} itemId={itemId} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
         {children}
       </TreeItem>
     );

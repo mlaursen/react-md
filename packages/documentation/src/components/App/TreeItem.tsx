@@ -35,15 +35,12 @@ export default class TreeItem extends React.Component<IDefaultTreeItemRendererPr
 
   public render() {
     const { tooltipped } = this.state;
-    const { children, ...props } = this.props;
+    const { children, itemId, ...props } = this.props;
 
     let tooltip;
     let tooltipId;
     if (tooltipped) {
-      let { depth, itemIndex } = props;
-      depth += 1;
-      itemIndex += 1;
-      tooltipId = `navigation-item-${depth}-${itemIndex}-tooltip`;
+      tooltipId = itemId.replace(/\//g, "-");
       tooltip = <MagicTooltip id={tooltipId}>{children}</MagicTooltip>;
     }
 
@@ -71,7 +68,7 @@ export default class TreeItem extends React.Component<IDefaultTreeItemRendererPr
 
     window.requestAnimationFrame(() => {
       const navigation = document.getElementById("navigation") as HTMLElement;
-      const header = navigation && navigation.querySelector("header") as HTMLElement;
+      const header = navigation && (navigation.querySelector("header") as HTMLElement);
       if (navigation && this.item && header) {
         navigation.scrollTop = this.item.offsetTop - header.offsetHeight;
       }
