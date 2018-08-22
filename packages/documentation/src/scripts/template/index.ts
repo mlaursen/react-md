@@ -1,6 +1,8 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import * as _ from "lodash";
+
+import { DOCUMENTATION_FOLDER, DOCUMENTATION_COMPONENTS_FOLDER } from "../constants";
+import { toPascalCase } from "../utils/strings";
 
 import createIndexTemplate from "./createIndexTemplate";
 import createRouteTemplate from "./createRouteTemplate";
@@ -8,24 +10,9 @@ import createExamplesTemplate from "./createExamplesTemplate";
 import createPropTypesTemplate from "./createPropTypesTemplate";
 import createSassDocTemplate from "./createSassDocTemplate";
 
-const documentationFolder = process.cwd();
-const componentsFolder = path.join(documentationFolder, "src", "components");
-
-function toPascalCase(s: string) {
-  return _.upperFirst(s)
-    .split("-")
-    .map(part => _.upperFirst(part))
-    .join("");
-}
-
-export default async function createFolderStructure(
-  name: string,
-  propTypes: boolean,
-  sassdoc: boolean,
-  examples: boolean
-) {
+export default async function template(name: string, propTypes: boolean, sassdoc: boolean, examples: boolean) {
   const pascalCasedName = toPascalCase(name);
-  const rootFolder = path.join(componentsFolder, "packages", pascalCasedName);
+  const rootFolder = path.join(DOCUMENTATION_COMPONENTS_FOLDER, "packages", pascalCasedName);
   const examplesFolder = path.join(rootFolder, "Examples");
   const mainIndex = path.join(rootFolder, "index.ts");
   const mainRoute = path.join(rootFolder, `${pascalCasedName}.tsx`);
@@ -49,7 +36,7 @@ export default async function createFolderStructure(
   ].filter(Boolean);
 
   console.log(`Creating the following files:
-${files.map(f => `- ${f.substring(documentationFolder.length + 1)}`).join("\n")}
+${files.map(f => `- ${f.substring(DOCUMENTATION_FOLDER.length + 1)}`).join("\n")}
 `);
 
   return Promise.all([
