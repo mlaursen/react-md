@@ -576,7 +576,8 @@ states will apply different opacity values to this value.
 </tr>
 <tr>
 <td><code>rmd-states-surface(color)</code></td>
-<td><br /><br />
+<td>The base mixin for creating a &#34;stateable surface&#34;. This should be used along with the <code>StatesProvider</code> and
+<code>StatesConsumer</code> components to dynamically add the focus and pressed states as needed.
 <h5>Parameters</h5>
 <table>
 <thead>

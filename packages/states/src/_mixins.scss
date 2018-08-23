@@ -110,8 +110,8 @@
 }
 
 /// The base mixin for creating a "stateable surface". This should be used along with the `StatesProvider` and
-///   `StatesConsumer` components to dynamically add the focus and pressed states as needed.
-//
+/// `StatesConsumer` components to dynamically add the focus and pressed states as needed.
+///
 /// @param {Color} color [rmd-black-base] - The base color to use for the surface. The different states will have
 ///   their opacities updated for light or dark based on this color.
 @mixin rmd-states-surface($color: $rmd-black-base) {
