@@ -2,7 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 
 import { DOCUMENTATION_FOLDER, DOCUMENTATION_COMPONENTS_FOLDER } from "../constants";
-import { toPascalCase } from "../utils/strings";
+import { toPascalCase } from "../utils";
 
 import createIndexTemplate from "./createIndexTemplate";
 import createRouteTemplate from "./createRouteTemplate";

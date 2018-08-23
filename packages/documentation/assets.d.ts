@@ -2,24 +2,23 @@ declare module "*.svg";
 declare module "*.png";
 
 declare module "sassdoc" {
+  type SassDocType = "function" | "mixin" | "placeholder" | "variable";
   // couldn't figure out how to declare this correctly...
 
   /* tslint:disable:interface-name no-namespace */
   // this can also be a combination of these together with pipes in between
-  type SassTypes =
+  type Type =
     | "Number"
     | "Bool"
     | "Color"
     | "List"
     | "Map"
-    | "Function"
     | "string"
     | "number"
     | "bool"
     | "color"
     | "list"
     | "map"
-    | "function"
     | "string";
 
   type Access<A = string> = "public" | "private" | A;
@@ -44,7 +43,7 @@ declare module "sassdoc" {
   }
   type ExampleList = Example[];
 
-  type Group<G = string> = G[];
+  type Group<G = "undefined" | string> = G[];
 
   type Ignore = string[];
 
@@ -58,7 +57,7 @@ declare module "sassdoc" {
 
   interface Parameter {
     name: string;
-    type: SassTypes;
+    type: Type;
     description: string;
     default?: string;
   }
@@ -66,7 +65,7 @@ declare module "sassdoc" {
 
   interface Property {
     name: string;
-    type: SassTypes;
+    type: Type;
     description: string;
     default?: string;
   }
@@ -74,7 +73,7 @@ declare module "sassdoc" {
 
   interface Require {
     name: string;
-    type: SassTypes;
+    type: SassDocType;
 
     // These appear only when manually using the @require annotation
     url?: string;
@@ -95,7 +94,7 @@ declare module "sassdoc" {
   type UsedBy = UsedByItem[];
 
   interface Return {
-    type: SassTypes;
+    type: Type;
     description: string;
   }
 
@@ -103,6 +102,7 @@ declare module "sassdoc" {
     description?: string;
     context: Context;
   }
+  type SeeList = See[];
 
   interface Since {
     version: string;
@@ -114,8 +114,6 @@ declare module "sassdoc" {
 
   type ToDo = string[];
 
-  type Type = SassTypes;
-
   interface Item {
     access: Access;
     context: Context;
@@ -123,24 +121,16 @@ declare module "sassdoc" {
     description: string;
     file: File;
     group: Group;
-    type: SassTypes;
+    type: Type;
 
     example?: ExampleList;
     parameter?: ParameterList;
     require?: RequireList;
+    return?: Return;
     usedBy?: UsedBy;
-  }
-  interface ItemWithExample extends Item {
-    example: ExampleList;
-  }
-  interface ItemWithRequire extends Item {
-    require: RequireList;
-  }
-  interface ItemWithParameter extends Item {
-    parameter: ParameterList;
-  }
-  interface ItemWithUsedBy extends Item {
-    usedBy: UsedBy;
+    see?: SeeList;
+    throws?: Throw;
+    link?: LinkList;
   }
 
   interface Range {
@@ -150,7 +140,7 @@ declare module "sassdoc" {
 
   interface Context {
     name: string;
-    type: SassTypes;
+    type: SassDocType;
     line: Range;
 
     // only appears at root level
@@ -163,7 +153,7 @@ declare module "sassdoc" {
     value?: string;
   }
   interface ItemContext extends Context {
-    scope: "default" | string;
+    scope: "default" | "";
   }
   interface VariableContext extends Context {
     value: string;
@@ -181,6 +171,19 @@ declare module "sassdoc" {
   interface File {
     name: string;
     path: string;
+  }
+
+  interface VariableSassDoc extends Item {
+    context: VariableContext;
+  }
+
+  interface MixinSassDoc extends Item {
+    context: MixinContext;
+  }
+
+  interface FunctionSassDoc extends Item {
+    context: FunctionContext;
+    return: Return;
   }
 
   export function parse(path: string): Promise<Item[]>;
