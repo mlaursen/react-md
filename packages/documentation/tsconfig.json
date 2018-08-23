@@ -16,7 +16,12 @@
       "es2017"
     ],
     "paths": {
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "types/*": ["../typings/*"]
     }
-  }
+  },
+  "include": [
+    "./typings/**/*",
+    "./src/**/*"
+  ]
 }

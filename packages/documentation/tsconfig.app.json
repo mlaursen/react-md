@@ -10,10 +10,6 @@
     "noImplicitAny": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src/*",
-    "src/**/*"
-  ],
   "exclude": [
     "**/__tests__/*",
     "src/scripts/**/*"

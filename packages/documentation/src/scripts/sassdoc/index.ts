@@ -4,73 +4,21 @@ import * as SassDoc from "sassdoc";
 import * as cpx from "cpx";
 
 import {
+  IVariableSassDoc,
+  IMixinSassDoc,
+  IFunctionSassDoc,
+  ISassDocReference,
+  ISassDocLinkTo,
+  IFlattenedSassDocs,
+} from "types/sassdoc";
+
+import {
   PACKAGES_FOLDER,
   DOCUMENTATION_FOLDER,
   DOCUMENTATION_COMPONENTS_FOLDER,
   TEMP_STYLES_FOLDER,
 } from "../constants";
 import { toPascalCase } from "../utils";
-
-interface ISassDocLinkTo {
-  name: string;
-  description: string;
-  type: SassDoc.SassDocType;
-  group: string;
-}
-
-interface ISassDoc {
-  name: string;
-  type: SassDoc.Type;
-  description: string;
-  file: string;
-  group: string;
-  see: ISassDocLinkTo[];
-  usedBy: ISassDocLinkTo[];
-  links: SassDoc.LinkList;
-
-  code?: string;
-  examples?: SassDoc.ExampleList;
-  parameters?: SassDoc.ParameterList;
-  requires?: SassDoc.RequireList;
-  returns?: SassDoc.Return;
-  throws?: SassDoc.Throw;
-}
-
-interface IVariableSassDoc extends ISassDoc {
-  code: string;
-}
-
-interface IMixinSassDoc extends ISassDoc {
-  code: string;
-  examples: SassDoc.ExampleList;
-  parameters: SassDoc.ParameterList;
-  throws: SassDoc.Throw;
-}
-
-interface IFunctionSassDoc extends ISassDoc {
-  code: string;
-  examples: SassDoc.ExampleList;
-  parameters: SassDoc.ParameterList;
-  returns: SassDoc.Return;
-  throws: SassDoc.Throw;
-}
-
-export interface IFlattenedSassDoc {
-  variables: IVariableSassDoc[];
-  mixins: IMixinSassDoc[];
-  functions: IFunctionSassDoc[];
-}
-
-export interface IFlattenedSassDocs {
-  [key: string]: IFlattenedSassDoc;
-}
-
-interface ISassDocReference {
-  name: string;
-  type: SassDoc.SassDocType;
-  group: string;
-  private: boolean;
-}
 
 async function moveStyles() {
   await fs.remove(TEMP_STYLES_FOLDER);
