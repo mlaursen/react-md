@@ -32,7 +32,9 @@
 }
 
 .rmd-layout__nav-tree {
-  padding-top: $rmd-app-bar-height + $rmd-list-dense-vertical-padding;
+  @include rmd-utils-scroll(y);
+  // margin-top: $rmd-app-bar-height + $rmd-list-dense-vertical-padding;
+  max-height: calc(100% - #{$rmd-app-bar-height + $rmd-list-dense-vertical-padding});
 }
 
 .rmd-layout__title {

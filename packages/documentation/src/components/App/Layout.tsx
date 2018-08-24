@@ -90,7 +90,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 
     let navigation = (
       <nav id="navigation" className="rmd-layout__nav">
-        <AppBar theme="clear" fixedElevation={false} className="rmd-layout__nav-header">
+        <AppBar theme="clear" fixed={false} className="rmd-layout__nav-header">
           <AppBarTitle id="application-name">react-md</AppBarTitle>
         </AppBar>
         <MagicTooltipProvider position={TooltipPosition.RIGHT} portal={true}>
@@ -122,7 +122,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     return (
       <React.Fragment>
         {navigation}
-        <AppBar fixed={true} className="rmd-layout__app-bar">
+        <AppBar id="main-header" fixed={true} className="rmd-layout__app-bar">
           {isPhone && (
             <AppBarNav onClick={this.showTreeView}>
               <MenuSVGIcon />
