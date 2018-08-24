@@ -1,19 +1,9 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react",
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "moduleResolution": "node",
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "declaration": false,
-    "typeRoots": [
-      "node_modules/@types/"
-    ]
+    "declaration": true,
+    "declarationDir": "./types",
+    "outDir": "./es"
   },
   "exclude": [
     "**/__tests__/*"
