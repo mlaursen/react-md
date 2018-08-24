@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": false
+  },
+  "exclude": [
+    "**/__tests__/*"
+  ]
+}
