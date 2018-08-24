@@ -304,8 +304,8 @@ if (styles || typescript) {
   }
 
   if (styles) {
-    scripts.styles = 'copyfiles -u 1 \"src/**/*.scss\" dist';
-    scripts['watch:styles'] = 'watch \"npm run styles\" src --filter ../../scssWatchFilter.js';
+    scripts.styles = 'cpx \"src/**/*.scss\" dist';
+    scripts['watch:styles'] = 'npm run styles -- --watch';
   }
 
   if (watch.length) {
@@ -362,7 +362,7 @@ if (typescript) {
 }
 
 if (styles) {
-  devDependencies.copyfiles = '^2.0.0';
+  devDependencies.cpx = '^1.5.0';
   devDependencies.watch = '^1.0.2';
 }
 
