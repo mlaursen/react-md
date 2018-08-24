@@ -9,7 +9,7 @@ module.exports = {
     'jsx',
   ],
   transform: {
-    '^.+\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
   testPathIgnorePatterns: [
     '/node_modules/',
