@@ -1,0 +1,41 @@
+@import 'app-globals';
+
+.material-icons {
+  &__list {
+    justify-content: space-between;
+  }
+
+  &__example {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 1rem;
+    width: 6rem;
+
+    .rmd-icon--font {
+      font-size: 3rem;
+    }
+
+    .rmd-icon--svg {
+      height: 3rem;
+      width: 3rem;
+    }
+
+    &--last {
+      margin-right: auto;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include rmd-utils-rtl {
+        margin-left: auto;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__label {
+    margin-top: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
