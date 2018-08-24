@@ -1,5 +1,11 @@
 module.exports = {
+  globals: {
+    'ts-jest': {
+      tsConfigFile: './tsconfig.test.json',
+    },
+  },
   setupFiles: ['./jest.setup.js'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   testRegex: '(/__tests__/.*|(.|/)(test|spec)).(jsx?|tsx?)$',
   moduleFileExtensions: [
     'ts',
@@ -8,11 +14,9 @@ module.exports = {
     'jsx',
   ],
   transform: {
-    '^.+\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
   testPathIgnorePatterns: [
     '/node_modules/',
   ],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
 };
-
