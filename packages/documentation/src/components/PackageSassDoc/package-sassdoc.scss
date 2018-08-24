@@ -1,0 +1,44 @@
+@import 'app-globals';
+
+$margin: 2.5rem;
+$gutter: 1rem;
+
+.package-sassdoc {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  padding: $margin - ($gutter / 2);
+
+  &__block {
+    margin: $margin;
+    width: 100%;
+  }
+}
+
+.sassdoc {
+  margin-top: 0;
+
+  &:focus {
+    outline-style: none;
+  }
+
+  &__title {
+    margin: 1em 0;
+
+    // every SassDocType title
+    &:nth-child(1) {
+      margin-top: .125em;
+    }
+  }
+
+  &__name {
+    display: block;
+  }
+
+  &__type {
+    @include rmd-theme(color, primary);
+
+    margin-bottom: 5rem;
+  }
+}
