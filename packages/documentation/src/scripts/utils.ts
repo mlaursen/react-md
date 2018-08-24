@@ -6,3 +6,7 @@ export function toPascalCase(s: string) {
     .map(part => _.upperFirst(part))
     .join("");
 }
+
+export function toPrettyName(fromPascalCase: string) {
+  return fromPascalCase.split(/(?=[A-Z])/).join(" ");
+}
