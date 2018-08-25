@@ -111,6 +111,8 @@ const Tooltip: React.SFC<ITooltipPropsWithVisibility> = ({
   </span>
 );
 
+// says it's missing attributes for some reason
+// @ts-ignore
 Tooltip.propTypes = {
   id: PropTypes.string.isRequired,
   style: PropTypes.object,

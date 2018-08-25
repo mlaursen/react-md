@@ -1,24 +1,9 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react",
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "declaration": false,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
-    "typeRoots": [
-      "node_modules/@types/"
-    ]
+    "declaration": true,
+    "declarationDir": "./types",
+    "outDir": "./es"
   },
   "exclude": [
     "**/__tests__/*"
