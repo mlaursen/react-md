@@ -114,6 +114,8 @@ const IconRotator: React.SFC<IIconRotatorProps> = props => {
   return <span style={style} className={className}>{children}</span>;
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 IconRotator.propTypes = {
   from: PropTypes.number,
   to: PropTypes.number,

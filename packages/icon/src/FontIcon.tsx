@@ -52,8 +52,6 @@ export interface IFontIconDefaultProps {
 }
 export type FontIconWithDefaultProps = IFontIconProps & IFontIconDefaultProps;
 
-export interface IFontIconState {}
-
 /**
  * The `FontIcon` component is used for rendering a font-icon library's
  * icon. The default is to use the `material-icons` library, but others
@@ -63,7 +61,7 @@ export interface IFontIconState {}
  * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
  * and `forceFontSize` props to fix the sizing issues.
  */
-export default class FontIcon extends React.Component<IFontIconProps, IFontIconState> {
+export default class FontIcon extends React.Component<IFontIconProps> {
   public static propTypes = {
     iconClassName: PropTypes.string,
     children: PropTypes.node,
