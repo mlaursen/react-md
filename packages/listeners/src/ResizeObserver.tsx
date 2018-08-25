@@ -90,31 +90,44 @@ export default class ResizeObserverComp extends React.Component<IResizeObserverP
   public static propTypes = {
     watchHeight: PropTypes.bool,
     watchWidth: PropTypes.bool,
-    target: (props: IResizeObserverProps, propName: "target", component: string, ...args: any[]) => {
+    target: (
+      props: IResizeObserverProps,
+      propName: "target",
+      componentName: string,
+      location: string,
+      propFullName: string
+    ) => {
       let error = PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.instanceOf(Element)])(
         props,
         propName,
-        component,
-        ...args
+        componentName,
+        location,
+        propFullName
       );
 
       if (!error && typeof props[propName] === "undefined") {
         error = new Error(
-          `The target prop is required to be defined the \`${component}\`, but it's value is undefined.`
+          `The target prop is required to be defined the \`${componentName}\`, but it's value is undefined.`
         );
       }
       return error;
     },
     onResize: PropTypes.func,
-    children: (props: IResizeObserverProps, propName: "children", component: string, ...args: any[]) => {
+    children: (
+      props: IResizeObserverProps,
+      propName: "children",
+      componentName: string,
+      location: string,
+      propFullName: string
+    ) => {
       if (typeof props.onResize === "undefined" && typeof props.children === "undefined") {
         return new Error(
-          `The ${component} requires either the \`onResize\` callback prop to be defined or a child callback ` +
-            `function but neither were provided. Update the ${component} to provide either prop.`
+          `The ${componentName} requires either the \`onResize\` callback prop to be defined or a child callback ` +
+            `function but neither were provided. Update the ${componentName} to provide either prop.`
         );
       }
 
-      return PropTypes.func(props, propName, component, ...args);
+      return PropTypes.func(props, propName, componentName, location, propFullName);
     },
   };
 

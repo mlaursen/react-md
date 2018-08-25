@@ -60,11 +60,17 @@ export default class EventListener extends React.Component<EventListenerWithRequ
     type: PropTypes.oneOf(["click", "scroll"]).isRequired,
     target: PropTypes.oneOfType([PropTypes.instanceOf(Element), PropTypes.instanceOf(Document)]),
     onTriggered: PropTypes.func,
-    children: (props: IEventListenerProps, propName: "children", component: "EventListener", ...args: any[]) => {
-      let error = PropTypes.func(props, propName, component, ...args);
+    children: (
+      props: IEventListenerProps,
+      propName: "children",
+      componentName: string,
+      location: string,
+      propFullName: string
+    ) => {
+      let error = PropTypes.func(props, propName, componentName, location, propFullName);
       if (!error && typeof props[propName] === "undefined" && typeof props.onTriggered === "undefined") {
         error = new Error(
-          `The \`${component}\` component requires either the \`onTriggered\` or \`children\` callback ` +
+          `The \`${componentName}\` component requires either the \`onTriggered\` or \`children\` callback ` +
             "callback functions to be defined to work, but both were undefined."
         );
       }
