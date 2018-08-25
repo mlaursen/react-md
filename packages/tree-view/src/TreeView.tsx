@@ -104,11 +104,12 @@ export interface ITreeViewBaseProps<D, R> {
   selectOnFocus?: boolean;
 
   /**
-   * Boolean if `TreeItem`s that have nested child items (groups) are also able to be selected.
+   * Boolean if `TreeItem`s that have nested child items (groups) can no longer be selected. This is enabled by
+   * default to make selection visibility easier on the user.
    *
    * @docgen
    */
-  isItemWithGroupSelectable?: boolean;
+  disableGroupSelection?: boolean;
 
   /**
    * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
@@ -221,7 +222,7 @@ export type TreeViewWithMultiSelectHandlers<D = IIndexKeyAny, R = IIndexKeyAny> 
 export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
   multiSelect: boolean;
   selectOnFocus: boolean;
-  isItemWithGroupSelectable: boolean;
+  disableGroupSelection: boolean;
   disableSiblingExpansion: boolean;
   searchResetTime: number;
   treeViewRenderer: treeViewRenderer<R>;
@@ -257,7 +258,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     ).isRequired,
     multiSelect: PropTypes.bool,
     selectOnFocus: PropTypes.bool,
-    isItemWithGroupSelectable: PropTypes.bool,
+    disableGroupSelection: PropTypes.bool,
     disableSiblingExpansion: PropTypes.bool,
     searchResetTime: PropTypes.number,
     extractTextContent: PropTypes.func,
@@ -320,7 +321,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     searchResetTime: 500,
     multiSelect: false,
     selectOnFocus: false,
-    isItemWithGroupSelectable: false,
+    disableGroupSelection: false,
     disableSiblingExpansion: false,
     disableFontIconTextCheck: false,
     extractTextContent: defaultExtractTextContent,
@@ -414,7 +415,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       onMultipleItemSelection,
       multiSelect,
       selectOnFocus,
-      isItemWithGroupSelectable,
+      disableGroupSelection,
       disableSiblingExpansion,
       extractTextContent,
       disableFontIconTextCheck,
@@ -529,16 +530,18 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
 
     const { itemId } = item;
-    const { onItemSelect, expandedIds, onItemExpandedChange, isItemWithGroupSelectable } = this.props;
+    const { onItemSelect, expandedIds, onItemExpandedChange, disableGroupSelection } = this.props;
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
     if (item.childItems) {
       const i = expandedIds.indexOf(itemId);
       onItemExpandedChange(itemId, i === -1);
-      if (isItemWithGroupSelectable) {
+      if (!disableGroupSelection) {
         onItemSelect(itemId);
       }
+    } else {
+      onItemSelect(itemId);
     }
   };
 

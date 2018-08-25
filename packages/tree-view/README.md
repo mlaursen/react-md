@@ -127,22 +127,22 @@ An optional style that will get merged and passed down to the <code>treeViewRend
 </td>
 </tr>
 <tr>
-<td>aria-labelledby</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional id that points to an element that labels this tree. Either this or the <code>aria-label</code>
-prop are required for a11y.
-<br /><br />
-</td>
-</tr>
-<tr>
 <td>aria-label</td>
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
 An optional label string that describes this tree. Either this or the <code>aria-labelledby</code> prop are
 required for a11y.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>aria-labelledby</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional id that points to an element that labels this tree. Either this or the <code>aria-label</code>
+prop are required for a11y.
 <br /><br />
 </td>
 </tr>
@@ -196,11 +196,12 @@ should most likely be <code>false</code> at all times.
 </td>
 </tr>
 <tr>
-<td>selectableChildItemsItem</td>
+<td>disableGroupSelection</td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>
-Boolean if the <code>TreeItem</code>s that have child items can also be selected.
+Boolean if <code>TreeItem</code>s that have nested child items (groups) can no longer be selected. This is enabled by
+default to make selection visibility easier on the user.
 <br /><br />
 </td>
 </tr>
@@ -230,12 +231,51 @@ back to the empty string.
 </td>
 </tr>
 <tr>
-<td>onItemSiblingExpansion</td>
-<td><code>onItemSiblingExpansion</code></td>
+<td>extractTextContent</td>
+<td><code>TextExtractor</code></td>
 <td><code>null</code></td>
 <td>
-A function to call when the <code>disableSiblingExpansion</code> prop is not enabled and the user presses the <code>*</code>
-key on a tree item to expand all related sibling nodes.
+A function to extract the searchable text within a treeitem. The default behavior is to just run
+<code>treeItem.textContent</code> on each tree item. If there is a <code>FontIcon</code> component from react-md (or really just an
+element with <code>.rmd-icon--font</code> on it as a child of the tree item), the treeitem will be cloned without
+the <code>FontIcon</code> and then run <code>clonedTreeItem.textContent</code>. See <code>disableFontIconTextCheck</code> for some
+more details.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>disableFontIconTextCheck</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the <code>extractTextContent</code> function should not attempt to check for font icons when searching
+the tree for treeitems starting with some text. This is enabled by default to help all users of react-md,
+but if you do not use <code>FontIcon</code>s or a font icon library that does not render icons based on innerText
+(font-awesome for example), you can disable the fonticon check for a slight boost in performance.
+<br /><br />
+&#62; The performance boost is extremely slight since this function will only be run when new treeitems are
+added or removed from the DOM and is only used for keyboard navigation.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onMultipleItemExpansion</td>
+<td><code>MultipleIdHandler</code></td>
+<td><code>null</code></td>
+<td>
+This function will only be called when the <code>disableSiblingExpansion</code> prop is not enabled and the user
+presses the asterisk (*) key on a TreeItem to attempt to expand all sibling treeitems at the same level
+and within the same group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onMultipleItemSelection</td>
+<td><code>MultipleIdHandler</code></td>
+<td><code>null</code></td>
+<td>
+This function will be called when the <code>multiSelect</code> prop is enabled and a user has multi-selected items via
+the keyboard.
 <br /><br />
 </td>
 </tr>
@@ -338,22 +378,22 @@ An optional style that will get merged and passed down to the <code>treeViewRend
 </td>
 </tr>
 <tr>
-<td>aria-labelledby</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional id that points to an element that labels this tree. Either this or the <code>aria-label</code>
-prop are required for a11y.
-<br /><br />
-</td>
-</tr>
-<tr>
 <td>aria-label</td>
 <td><code>string</code></td>
 <td><code>null</code></td>
 <td>
 An optional label string that describes this tree. Either this or the <code>aria-labelledby</code> prop are
 required for a11y.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>aria-labelledby</td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>
+An optional id that points to an element that labels this tree. Either this or the <code>aria-label</code>
+prop are required for a11y.
 <br /><br />
 </td>
 </tr>
@@ -407,11 +447,12 @@ should most likely be <code>false</code> at all times.
 </td>
 </tr>
 <tr>
-<td>selectableChildItemsItem</td>
+<td>disableGroupSelection</td>
 <td><code>boolean</code></td>
 <td><code>null</code></td>
 <td>
-Boolean if the <code>TreeItem</code>s that have child items can also be selected.
+Boolean if <code>TreeItem</code>s that have nested child items (groups) can no longer be selected. This is enabled by
+default to make selection visibility easier on the user.
 <br /><br />
 </td>
 </tr>
@@ -441,6 +482,34 @@ back to the empty string.
 </td>
 </tr>
 <tr>
+<td>extractTextContent</td>
+<td><code>TextExtractor</code></td>
+<td><code>null</code></td>
+<td>
+A function to extract the searchable text within a treeitem. The default behavior is to just run
+<code>treeItem.textContent</code> on each tree item. If there is a <code>FontIcon</code> component from react-md (or really just an
+element with <code>.rmd-icon--font</code> on it as a child of the tree item), the treeitem will be cloned without
+the <code>FontIcon</code> and then run <code>clonedTreeItem.textContent</code>. See <code>disableFontIconTextCheck</code> for some
+more details.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>disableFontIconTextCheck</td>
+<td><code>boolean</code></td>
+<td><code>null</code></td>
+<td>
+Boolean if the <code>extractTextContent</code> function should not attempt to check for font icons when searching
+the tree for treeitems starting with some text. This is enabled by default to help all users of react-md,
+but if you do not use <code>FontIcon</code>s or a font icon library that does not render icons based on innerText
+(font-awesome for example), you can disable the fonticon check for a slight boost in performance.
+<br /><br />
+&#62; The performance boost is extremely slight since this function will only be run when new treeitems are
+added or removed from the DOM and is only used for keyboard navigation.
+<br /><br />
+</td>
+</tr>
+<tr>
 <td>onItemSelect</td>
 <td><code>onItemSelect</code></td>
 <td><code>null</code></td>
@@ -461,12 +530,23 @@ should be used to update the <code>expandedIds</code> prop to include or remove 
 </td>
 </tr>
 <tr>
-<td>onItemSiblingExpansion</td>
-<td><code>onItemSiblingExpansion</code></td>
+<td>onMultipleItemExpansion</td>
+<td><code>MultipleIdHandler</code></td>
 <td><code>null</code></td>
 <td>
-A function to call when the <code>disableSiblingExpansion</code> prop is not enabled and the user presses the <code>*</code>
-key on a tree item to expand all related sibling nodes.
+This function will only be called when the <code>disableSiblingExpansion</code> prop is not enabled and the user
+presses the asterisk (*) key on a TreeItem to attempt to expand all sibling treeitems at the same level
+and within the same group.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>onMultipleItemSelection</td>
+<td><code>MultipleIdHandler</code></td>
+<td><code>null</code></td>
+<td>
+This function will be called when the <code>multiSelect</code> prop is enabled and a user has multi-selected items via
+the keyboard.
 <br /><br />
 </td>
 </tr>
@@ -855,7 +935,7 @@ the different focus states and icon alignments.
 <tbody>
 <tr>
 <td>linkComponent *</td>
-<td><code>string | ComponentClass<any, ComponentState> | StatelessComponent<any></code></td>
+<td><code>string | ComponentClass<any, any> | StatelessComponent<any></code></td>
 <td><code>null</code></td>
 <td>
 The component to use that renders a <code>Link</code> component. This should normally be something like the <code>Link</code>
