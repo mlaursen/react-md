@@ -113,21 +113,16 @@ export default class ResizeObserverComp extends React.Component<IResizeObserverP
       return error;
     },
     onResize: PropTypes.func,
-    children: (
-      props: IResizeObserverProps,
-      propName: "children",
-      componentName: string,
-      location: string,
-      propFullName: string
-    ) => {
-      if (typeof props.onResize === "undefined" && typeof props.children === "undefined") {
+    children: PropTypes.func,
+    _validator: (props: IResizeObserverProps, propName: string, componentName: string) => {
+      if (typeof props.children === "undefined" && typeof props.onResize === "undefined") {
         return new Error(
-          `The ${componentName} requires either the \`onResize\` callback prop to be defined or a child callback ` +
-            `function but neither were provided. Update the ${componentName} to provide either prop.`
+          `The \`${componentName}\` component requires either a children callback function or the \`onResize\` ` +
+            "props to be provided, but they were both `undefined`."
         );
       }
 
-      return PropTypes.func(props, propName, componentName, location, propFullName);
+      return null;
     },
   };
 

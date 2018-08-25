@@ -60,22 +60,18 @@ export default class EventListener extends React.Component<EventListenerWithRequ
     type: PropTypes.oneOf(["click", "scroll"]).isRequired,
     target: PropTypes.oneOfType([PropTypes.instanceOf(Element), PropTypes.instanceOf(Document)]),
     onTriggered: PropTypes.func,
-    children: (
-      props: IEventListenerProps,
-      propName: "children",
-      componentName: string,
-      location: string,
-      propFullName: string
-    ) => {
-      let error = PropTypes.func(props, propName, componentName, location, propFullName);
-      if (!error && typeof props[propName] === "undefined" && typeof props.onTriggered === "undefined") {
-        error = new Error(
-          `The \`${componentName}\` component requires either the \`onTriggered\` or \`children\` callback ` +
-            "callback functions to be defined to work, but both were undefined."
+    children: PropTypes.func,
+    capture: PropTypes.bool,
+    _validator: (props: IEventListenerProps, propName: string, componentName: string) => {
+      if (typeof props.children === "undefined" && typeof props.onTriggered === "undefined") {
+        return new Error(
+          `The \`${componentName}\` component requires either a children callback function or the \`onTriggered\` ` +
+            "props to be provided, but they were both `undefined`."
         );
       }
+
+      return null;
     },
-    capture: PropTypes.bool,
   };
 
   private scrollHandler: IThrottledEventHandler | null;

@@ -268,33 +268,29 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
     onItemSelect: PropTypes.func.isRequired,
     onItemExpandedChange: PropTypes.func.isRequired,
-    onMultipleItemExpansion: (
-      props: ITreeViewProps,
-      propName: string,
-      componentName: string,
-      location: string,
-      propFullName: string
-    ) => {
-      if (!props.disableSiblingExpansion) {
-        return PropTypes.func.isRequired(props, propName, componentName, location, propFullName);
+    onMultipleItemExpansion: PropTypes.func,
+    onMultipleItemSelection: PropTypes.func,
+    _multipleExpansionValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
+      if (!props.disableSiblingExpansion && typeof props.onMultipleItemExpansion !== "function") {
+        const value = props.onMultipleItemExpansion as any;
+        return new Error(
+          `The \`onMultipleItemExpansion\` prop is required for the \`${componentName}\` component when the ` +
+            `\`disableSiblingExpansion\` prop has not been enabled but \`${!value ? "" : value}\` was provided instead.`
+        );
       }
 
       return null;
     },
-    onMultipleItemSelection: (
-      props: ITreeViewProps,
-      propName: string,
-      componentName: string,
-      location: string,
-      propFullName: string
-    ) => {
-      let validator = PropTypes.func;
-      if (props.multiSelect) {
-        // @ts-ignore
-        validator = validator.isRequired;
+    _multipleSelectionValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
+      if (props.multiSelect && !props.onMultipleItemSelection) {
+        const value = props.onMultipleItemSelection as any;
+        return new Error(
+          `The \`onMultipleItemSelection\` prop is required for the \`${componentName}\` component when the ` +
+            `\`multiSelect\` prop has not been enabled but \`${!value ? "" : value}\` was provided instead.`
+        );
       }
 
-      return validator(props, propName, componentName, location, propFullName);
+      return null;
     },
     _a11yValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
       const label = props["aria-label"];
