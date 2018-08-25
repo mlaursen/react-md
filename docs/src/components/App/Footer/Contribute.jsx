@@ -7,13 +7,13 @@ const Contribute = () => (
   <Cell component="section" size={8}>
     <h4 className="md-title">Contributing</h4>
     <p className="md-body-2">
-      Please read the contributing guidelines
+      Please read the 
       &nbsp;
       <Link to="/discover-more/contributing" className="link">
-        here
+        contributing guidelines
       </Link>
       &nbsp;
-      for some more details or on the github link below.
+      for some more details or go to the GitHub link below.
     </p>
     <Button flat secondary href={GITHUB_URL} iconClassName="fa fa-github">
       Github
