@@ -1,3 +1,4 @@
+/* tslint:disable:no-shadowed-variable */
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
@@ -267,38 +268,50 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
     onItemSelect: PropTypes.func.isRequired,
     onItemExpandedChange: PropTypes.func.isRequired,
-    onMultipleItemExpansion: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
+    onMultipleItemExpansion: (
+      props: ITreeViewProps,
+      propName: string,
+      componentName: string,
+      location: string,
+      propFullName: string
+    ) => {
       if (!props.disableSiblingExpansion) {
-        return PropTypes.func.isRequired(props, propName, component, ...args);
+        return PropTypes.func.isRequired(props, propName, componentName, location, propFullName);
       }
 
       return null;
     },
-    onMultipleItemSelection: (props: ITreeViewProps, propName: string, component: string, ...args: any[]) => {
+    onMultipleItemSelection: (
+      props: ITreeViewProps,
+      propName: string,
+      componentName: string,
+      location: string,
+      propFullName: string
+    ) => {
       let validator = PropTypes.func;
       if (props.multiSelect) {
         // @ts-ignore
         validator = validator.isRequired;
       }
 
-      return validator(props, propName, component, ...args);
+      return validator(props, propName, componentName, location, propFullName);
     },
-    _a11yValidator: (props: ITreeViewProps, propName: string, component: string) => {
+    _a11yValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
       const label = props["aria-label"];
       const labelledBy = props["aria-labelledby"];
       if (typeof label !== "string" && typeof labelledBy !== "string") {
         return new Error(
-          `The \`${component}\` component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
+          `The \`${componentName}\` component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
             "accessibility but both were `undefined`."
         );
       } else if (typeof label === "string" && !label.length) {
         return new Error(
-          `The \`${component}\` component requires an \`aria-label\` with a length greater than 0, but \`${label}\` ` +
-            "was provided. "
+          `The \`${componentName}\` component requires an \`aria-label\` with a length greater than 0, but ` +
+            `\`${label}\` was provided. `
         );
       } else if (typeof labelledBy === "string" && !labelledBy.length) {
         return new Error(
-          `The \`${component}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
+          `The \`${componentName}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
             `\`${labelledBy}\` was provided.`
         );
       }

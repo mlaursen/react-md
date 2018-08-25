@@ -1,3 +1,4 @@
+/* tslint:disable:no-shadowed-variable */
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { ITreeViewBaseProps } from "./TreeView";
