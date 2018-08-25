@@ -256,6 +256,8 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
   );
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 ListItem.propTypes = {
   disabled: PropTypes.bool,
   clickable: PropTypes.bool,

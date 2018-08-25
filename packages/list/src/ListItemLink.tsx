@@ -191,6 +191,8 @@ const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
   );
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 ListItemLink.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,

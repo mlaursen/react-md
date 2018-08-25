@@ -1,1 +1,3 @@
-/Users/mlaursen/code/react-md/tslint.json
+{
+  "extends": "../../tslint.json"
+}

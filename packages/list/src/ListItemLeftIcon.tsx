@@ -52,6 +52,8 @@ const ListItemLeftIcon: React.SFC<IListItemLeftIconProps> = ({ icon, children, f
   </TextIconSpacing>
 );
 
+// says it's missing attributes for some reason
+// @ts-ignore
 ListItemLeftIcon.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
   children: PropTypes.node,

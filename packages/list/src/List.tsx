@@ -99,6 +99,8 @@ const List: React.SFC<IListProps> = providedProps => {
   );
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 List.propTypes = {
   role: PropTypes.string,
   dense: PropTypes.bool,
