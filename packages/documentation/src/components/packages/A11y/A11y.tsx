@@ -11,7 +11,7 @@ const A11ySassDoc = Loadable(() => import("./A11ySassDoc"));
 
 const A11y: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
-    <Redirect exact={true} from={match.path} to={`${match.path}/installation`} />
+    <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={A11yPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={A11ySassDoc} />

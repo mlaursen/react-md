@@ -1,11 +1,12 @@
 import * as React from "react";
 import cn from "classnames";
+import { withRouter, RouteComponentProps } from "react-router";
 
 import { markdownToHTML } from "utils/markdown";
 
 import "./markdown.scss";
 
-export interface IMarkdownProps {
+export interface IMarkdownProps extends RouteComponentProps<any> {
   style?: React.CSSProperties;
   className?: string;
   markdown: string;
@@ -20,19 +21,20 @@ export interface IMarkdownState {
   prevMarkdown: string;
 }
 
-export default class Markdown extends React.Component<IMarkdownProps, IMarkdownState> {
+class Markdown extends React.Component<IMarkdownProps, IMarkdownState> {
   public static getDerivedStateFromProps(nextProps: IMarkdownProps, prevState: IMarkdownState) {
     const { markdown } = nextProps;
     if (prevState.prevMarkdown !== markdown) {
       return {
         html: { __html: markdownToHTML(nextProps.markdown) },
         prevMarkdown: markdown,
-      }
+      };
     }
 
     return null;
-  };
+  }
 
+  private container: React.RefObject<HTMLDivElement>;
   constructor(props: IMarkdownProps) {
     super(props);
 
@@ -40,6 +42,18 @@ export default class Markdown extends React.Component<IMarkdownProps, IMarkdownS
       html: { __html: markdownToHTML(props.markdown) },
       prevMarkdown: props.markdown,
     };
+
+    this.container = React.createRef();
+  }
+
+  public componentDidMount() {
+    this.updateLinks();
+  }
+
+  public componentDidUpdate(prevProps: IMarkdownProps, prevState: IMarkdownState) {
+    if (this.state.html !== prevState.html) {
+      this.updateLinks();
+    }
   }
 
   public render() {
@@ -49,18 +63,33 @@ export default class Markdown extends React.Component<IMarkdownProps, IMarkdownS
       return null;
     }
 
-    return <div style={style} className={cn("markdown-container", className)} dangerouslySetInnerHTML={html} />;
+    return (
+      <div
+        ref={this.container}
+        style={style}
+        className={cn("markdown-container", className)}
+        dangerouslySetInnerHTML={html}
+      />
+    );
   }
 
-  private updateInnerHTML = () => {
-    const { markdown } = this.props;
-    if (!markdown) {
+  private updateLinks = () => {
+    const { history } = this.props;
+    if (!this.container.current) {
       return;
     }
 
-    const html = markdownToHTML(markdown);
-    if (this.state.html.__html !== html) {
-      this.setState({ html: { __html: html } });
+    const links = Array.from(this.container.current.querySelectorAll(".rmd-link") as NodeListOf<HTMLAnchorElement>);
+    for (const link of links) {
+      if (/^https?:\/\/(localhost|react-md)/.test(link.href)) {
+        // update internal links to use browser history instead of native behavior
+        link.onclick = function handleClick(event: MouseEvent) {
+          event.preventDefault();
+          history.push(link.href.replace(window.location.origin, ""));
+        };
+      }
     }
   };
 }
+
+export default withRouter(Markdown);

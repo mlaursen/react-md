@@ -10,7 +10,7 @@ const ListenersPropTypes = Loadable(() => import("./ListenersPropTypes"));
 
 const Listeners: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
-    <Redirect exact={true} from={match.path} to={`${match.path}/installation`} />
+    <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={ListenersPropTypes} />
     <Route component={NotFound} />

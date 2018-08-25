@@ -10,7 +10,7 @@ const ElevationSassDoc = Loadable(() => import("./ElevationSassDoc"));
 
 const Elevation: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
-    <Redirect exact={true} from={match.path} to={`${match.path}/installation`} />
+    <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/sassdoc`} component={ElevationSassDoc} />
     <Route component={NotFound} />

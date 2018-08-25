@@ -11,7 +11,7 @@ const MaterialIconsSassDoc = Loadable(() => import("./MaterialIconsSassDoc"));
 
 const MaterialIcons: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
-    <Redirect exact={true} from={match.path} to={`${match.path}/installation`} />
+    <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={MaterialIconsPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={MaterialIconsSassDoc} />
