@@ -41,7 +41,7 @@ export type FlattenedTreeViewData<D = IIndexKeyAny> = TreeViewData<D> & {
 /**
  * This is the flattened tree view's data structure.
  */
-export type FlattenedTree<D = IIndexKeyAny> = {
+export interface IFlattenedTree<D = IIndexKeyAny> {
   [key: string]: FlattenedTreeViewData<D>
 }
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { kebabCase } from "lodash";
 import * as Router from "react-router";
 import { Link } from "react-router-dom";
-import { FlattenedTree, TreeViewDataList, TreeViewData } from "@react-md/tree-view";
+import { IFlattenedTree, TreeViewDataList, TreeViewData } from "@react-md/tree-view";
 import {
   HomeSVGIcon,
   InfoOutlineSVGIcon,
