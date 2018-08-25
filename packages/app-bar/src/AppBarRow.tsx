@@ -37,6 +37,8 @@ const AppBarRow: React.SFC<IAppBarRowProps> = ({ dense, className, children, ...
   </div>
 );
 
+// says it's missing attributes for some reason
+// @ts-ignore
 AppBarRow.propTypes = {
   dense: PropTypes.bool,
 };

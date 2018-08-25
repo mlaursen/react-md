@@ -2,6 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { Button, IButtonProps, IButtonDefaultProps } from "@react-md/button";
+
 export interface IAppBarActionProps extends IButtonProps {
   /**
    * Boolean if this is the first action within the app bar. This is really just used to automatically
@@ -50,9 +51,11 @@ const AppBarAction: React.SFC<IAppBarActionProps> = ({ className, first, last, .
   );
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 AppBarAction.propTypes = {
   first: PropTypes.bool,
-  last: PropTypes.bool
+  last: PropTypes.bool,
 };
 
 AppBarAction.defaultProps = {

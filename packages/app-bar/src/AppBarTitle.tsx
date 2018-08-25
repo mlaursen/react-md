@@ -34,6 +34,8 @@ const AppBarTitle: React.SFC<IAppBarTitleProps> = ({ keyline, className, ...prop
   />
 );
 
+// says it's missing attributes for some reason
+// @ts-ignore
 AppBarTitle.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
