@@ -108,25 +108,21 @@ const Link: React.SFC<ILinkProps> = providedProps => {
 
   const { target } = props;
   const href = propHref === "" ? undefined : propHref;
-  const className = cn("rmd-link", {
-    "rmd-link--flex-centered": flexCentered,
-  }, propClassName);
+  const className = cn(
+    "rmd-link",
+    {
+      "rmd-link--flex-centered": flexCentered,
+    },
+    propClassName
+  );
+
   let rel = propRel;
   if (typeof rel !== "string" && target === "_blank") {
     rel = "noopener noreferrer";
   }
 
   if (component) {
-    return React.createElement(
-      component,
-      {
-        ...props,
-        rel,
-        href,
-        className,
-      },
-      children
-    );
+    return React.createElement(component, { ...props, rel, href, className }, children);
   }
 
   return (
@@ -136,6 +132,8 @@ const Link: React.SFC<ILinkProps> = providedProps => {
   );
 };
 
+// says it's missing attributes for some reason
+// @ts-ignore
 Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
