@@ -44,20 +44,20 @@ export interface IResizeListenerBaseProps {
   scrollDelay?: number;
 
   /**
-   * Boolean if the resize listener should also be updated so that it is not triggered incorrectly
-   * by iOS devices when the user scrolls the page.
+   * Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
+   * scrolls which causes the fixed toolbar to move out of the viewport.
    *
    * @docgen
    */
-  fixTouches?: boolean;
+  disableTouchFixes?: boolean;
 
   /**
-   * Boolean if the resize listener should also be updated so that it does not trigger incorrectly
-   * by page scrolls.
+   * Boolean if the resize listener should no longer ignore resize events that can occur when the user scrolls the page.
+   * This normally goes hand-in-hand with the `disableTouchFixes` prop.
    *
    * @docgen
    */
-  fixScrolls?: boolean;
+  disableScrollFixes?: boolean;
 
   /**
    * Boolean if the `onResize` prop **should not** be called after the component mounts. This functionality is enabled
@@ -82,10 +82,10 @@ export interface IResizeListenerWithChildren extends IResizeListenerBaseProps {
 export type IResizeListenerProps = IResizeListenerWithResize | IResizeListenerWithChildren;
 
 export interface IResizeListenerDefaultProps {
-  fixTouches: boolean;
-  fixScrolls: boolean;
   touchDelay: number;
   scrollDelay: number;
+  disableTouchFixes: boolean;
+  disableScrollFixes: boolean;
   disableMountResizeTrigger: boolean;
 }
 
@@ -98,12 +98,13 @@ export type ResizeListenerWithDefaultProps = IResizeListenerProps & IResizeListe
 export default class ResizeListener extends React.Component<IResizeListenerProps, {}> {
   public static propTypes = {
     onResize: PropTypes.func,
-    capture: PropTypes.bool,
     touchDelay: PropTypes.number,
     scrollDelay: PropTypes.number,
     children: PropTypes.func,
+    disableTouchFixes: PropTypes.bool,
+    disableScrollFixes: PropTypes.bool,
     disableMountResizeTrigger: PropTypes.bool,
-    _validate: (props: IResizeListenerProps, propName: string, component: string) => {
+    _validate: (props: IResizeListenerProps, propName: string, componentName: string) => {
       const isResize = typeof props.onResize !== "undefined";
       const isChildren = typeof props.children !== "undefined";
       if (isResize || isChildren) {
@@ -111,17 +112,17 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
       }
 
       return new Error(
-        `The \`${component}\` component requires either the \`onResize\` or \`children\` props to be defined ` +
+        `The \`${componentName}\` component requires either the \`onResize\` or \`children\` props to be defined ` +
           "as functions but both were `undefined`."
       );
     },
   };
 
   public static defaultProps: IResizeListenerDefaultProps = {
-    fixTouches: true,
-    fixScrolls: true,
     touchDelay: 800,
     scrollDelay: 800,
+    disableTouchFixes: false,
+    disableScrollFixes: false,
     disableMountResizeTrigger: false,
   };
 
@@ -152,11 +153,11 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   }
 
   public componentDidUpdate(prevProps: ResizeListenerWithDefaultProps) {
-    if (this.props.fixScrolls !== prevProps.fixScrolls) {
+    if (this.props.disableScrollFixes !== prevProps.disableScrollFixes) {
       this.updateScroll();
     }
 
-    if (this.props.fixTouches !== prevProps.fixTouches) {
+    if (this.props.disableTouchFixes !== prevProps.disableTouchFixes) {
       this.updateTouch();
     }
   }
@@ -180,20 +181,20 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     return children ? children() : null;
   }
 
-  private updateScroll = (enabled: boolean = (this.props as ResizeListenerWithDefaultProps).fixScrolls) => {
+  private updateScroll = () => {
     if (!this.scrollHandler) {
       return;
     }
 
-    if (enabled) {
+    if (!this.props.disableScrollFixes) {
       this.scrollHandler.add(this.handleScroll);
     } else {
       this.scrollHandler.remove(this.handleScroll);
     }
   };
 
-  private updateTouch = (enabled: boolean = (this.props as ResizeListenerWithDefaultProps).fixTouches) => {
-    if (enabled) {
+  private updateTouch = () => {
+    if (!this.props.disableTouchFixes) {
       addTouchEvent(window, "move", this.handleTouchMove);
     } else {
       removeTouchEvent(window, "move", this.handleTouchMove);
@@ -201,8 +202,8 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   };
 
   private handleResize = (event: Event) => {
-    const { fixScrolls, fixTouches } = this.props;
-    if ((!fixScrolls || this.scrollTimeout === undefined) && (!fixTouches || this.touchMoveTimeout === undefined)) {
+    const { disableScrollFixes, disableTouchFixes } = this.props;
+    if ((disableScrollFixes || !this.scrollTimeout) && (disableTouchFixes || !this.touchMoveTimeout)) {
       const { onResize, children } = this.props;
       if (onResize) {
         onResize(event);
