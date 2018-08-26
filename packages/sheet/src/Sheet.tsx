@@ -62,9 +62,18 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
    * @docgen
    */
   verticalSize?: SheetVerticalSize;
+
+  /**
+   * Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with other content on the
+   * page instead of directly over everything. This is really just used to lower the box shadow.
+   *
+   * @docgen
+   */
+  inline?: boolean;
 }
 
 export interface ISheetDefaultProps {
+  inline: boolean;
   overlay: boolean;
   position: SheetPosition;
   timeout: TransitionTimeout;
@@ -79,6 +88,7 @@ export type SheetWithDefaultProps = ISheetProps & ISheetDefaultProps;
 
 export default class Sheet extends React.Component<ISheetProps, {}> {
   public static defaultProps: ISheetDefaultProps = {
+    inline: false,
     overlay: true,
     mountOnEnter: true,
     unmountOnExit: true,
@@ -99,6 +109,7 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
 
   public render() {
     const {
+      inline,
       overlay,
       visible,
       timeout,
@@ -144,6 +155,7 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
             className={cn(
               `rmd-sheet rmd-sheet--${position}`,
               {
+                "rmd-sheet--fixed": !inline,
                 "rmd-sheet--small-width": isHorizontal && horizontalSize === "small",
                 "rmd-sheet--large-width": isHorizontal && horizontalSize === "large",
                 "rmd-sheet--media-width": isHorizontal && horizontalSize === "media",

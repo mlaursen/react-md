@@ -4,10 +4,15 @@
 
 @import '@react-md/overlay/dist/variables';
 
-/// The elevation to use for sheets. This _should_ most likely stay the default, but it needs to
+/// The elevation to use for sheets that are displayed "inline" with other content. This _should__ most likely
+/// stay the default, but it needs to be a number between 0 and 16.
+/// @type Number
+$rmd-sheet-elevation: 2 !default;
+
+/// The elevation to use for fixed sheets. This _should_ most likely stay the default, but it needs to
 /// be a number between 0 and 16.
 /// @type Number
-$rmd-sheet-elevation: 16 !default;
+$rmd-sheet-fixed-elevation: 16 !default;
 
 /// The z-index for sheets. The value doesn't matter _too_ much but it needs to at least be above the
 /// overlay that is created along with the sheet.

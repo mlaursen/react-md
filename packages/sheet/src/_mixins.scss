@@ -120,6 +120,10 @@
     @include rmd-sheet-base;
     @include rmd-sheet-transition-base;
 
+    &--fixed {
+      @include rmd-elevation($rmd-sheet-fixed-elevation);
+    }
+
     &--viewport-height {
       max-height: $rmd-sheet-max-height;
     }
