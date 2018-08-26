@@ -25,20 +25,20 @@ export function setTouchEvent(
    */
   callback: (e: TouchEvent) => void,
   /**
-   * Any additional options to provide to the passive event.
-   */
-  options?: { [key: string]: any },
-  /**
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false
+  capture: boolean = false,
+  /**
+   * Any additional options to provide to the passive event.
+   */
+  options?: { [key: string]: any },
 ) {
   // @ts-ignore
   el[`${add ? "add" : "remove"}EventListener`](
     `touch${eventType}`,
     callback,
-    isPassiveEventsSupported ? { passive: true, ...options } : capture
+    isPassiveEventsSupported ? { passive: true, capture, ...options } : capture
   );
 }
 
@@ -59,16 +59,16 @@ export function addTouchEvent(
    */
   callback: (e: TouchEvent) => void,
   /**
-   * Any additional options to provide to the passive event.
-   */
-  options?: { [key: string]: any },
-  /**
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false
+  capture: boolean = false,
+  /**
+   * Any additional options to provide to the passive event.
+   */
+  options?: { [key: string]: any },
 ) {
-  setTouchEvent(true, el, eventType, callback, options, capture);
+  setTouchEvent(true, el, eventType, callback, capture, options);
 }
 
 /**
@@ -88,14 +88,14 @@ export function removeTouchEvent(
    */
   callback: (e: TouchEvent) => void,
   /**
-   * Any additional options to provide to the passive event.
-   */
-  options?: { [key: string]: any },
-  /**
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false
+  capture: boolean = false,
+  /**
+   * Any additional options to provide to the passive event.
+   */
+  options?: { [key: string]: any },
 ) {
-  setTouchEvent(false, el, eventType, callback, options, capture);
+  setTouchEvent(false, el, eventType, callback, capture, options);
 }

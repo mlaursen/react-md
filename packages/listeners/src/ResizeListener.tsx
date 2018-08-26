@@ -2,6 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 
 import { throttleEvent, IThrottledEventHandler, addTouchEvent, removeTouchEvent } from "@react-md/utils";
+import { startListening, stopListening, isTouchKeyboardResize } from "./touchKeyboardFix";
 
 export interface IResizeListenerBaseProps {
   /**
@@ -35,15 +36,6 @@ export interface IResizeListenerBaseProps {
   touchDelay?: number;
 
   /**
-   * This is the duration between a scroll event and a resize event that will consider the
-   * resize event valid. Some mobile browsers will incorrectly trigger a resize event when
-   * the page scrolls because the fixed toolbars move within the viewport.
-   *
-   * @docgen
-   */
-  scrollDelay?: number;
-
-  /**
    * Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
    * scrolls which causes the fixed toolbar to move out of the viewport.
    *
@@ -52,12 +44,12 @@ export interface IResizeListenerBaseProps {
   disableTouchFixes?: boolean;
 
   /**
-   * Boolean if the resize listener should no longer ignore resize events that can occur when the user scrolls the page.
-   * This normally goes hand-in-hand with the `disableTouchFixes` prop.
+   * Boolean if the resiez listener should no longer ignore resize events that can occur after a soft keyboard
+   * appears on mobile devices (currently all Android devices).
    *
    * @docgen
    */
-  disableScrollFixes?: boolean;
+  disableTouchKeyboardFixes?: boolean;
 
   /**
    * Boolean if the `onResize` prop **should not** be called after the component mounts. This functionality is enabled
@@ -83,9 +75,8 @@ export type IResizeListenerProps = IResizeListenerWithResize | IResizeListenerWi
 
 export interface IResizeListenerDefaultProps {
   touchDelay: number;
-  scrollDelay: number;
   disableTouchFixes: boolean;
-  disableScrollFixes: boolean;
+  disableTouchKeyboardFixes: boolean;
   disableMountResizeTrigger: boolean;
 }
 
@@ -99,10 +90,9 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   public static propTypes = {
     onResize: PropTypes.func,
     touchDelay: PropTypes.number,
-    scrollDelay: PropTypes.number,
     children: PropTypes.func,
     disableTouchFixes: PropTypes.bool,
-    disableScrollFixes: PropTypes.bool,
+    disableTouchKeyboardFixes: PropTypes.bool,
     disableMountResizeTrigger: PropTypes.bool,
     _validate: (props: IResizeListenerProps, propName: string, componentName: string) => {
       const isResize = typeof props.onResize !== "undefined";
@@ -119,33 +109,35 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   };
 
   public static defaultProps: IResizeListenerDefaultProps = {
-    touchDelay: 800,
-    scrollDelay: 800,
+    touchDelay: 300,
     disableTouchFixes: false,
-    disableScrollFixes: false,
+    disableTouchKeyboardFixes: false,
     disableMountResizeTrigger: false,
   };
 
-  private scrollTimeout?: number;
+  /**
+   * A timeout that is created each time the user scrolls the page by touching. If this timeout
+   * is present when a resize event has been triggered, the `children` callback function or the
+   * `onResize` prop will not be called because it was not a "real" resize event.
+   */
   private touchMoveTimeout?: number;
   private resizeHandler: IThrottledEventHandler | null;
-  private scrollHandler: IThrottledEventHandler | null;
 
   constructor(props: IResizeListenerProps) {
     super(props);
 
     this.resizeHandler = null;
-    this.scrollHandler = null;
   }
 
   public componentDidMount() {
-    const { disableMountResizeTrigger, onResize } = this.props;
+    const { disableTouchKeyboardFixes, disableMountResizeTrigger, onResize } = this.props;
     this.resizeHandler = throttleEvent("resize", window);
     this.resizeHandler.add(this.handleResize);
-    this.scrollHandler = throttleEvent("scroll", window, true);
-
-    this.updateScroll();
     this.updateTouch();
+
+    if (!disableTouchKeyboardFixes) {
+      startListening();
+    }
 
     if (onResize && !disableMountResizeTrigger) {
       window.dispatchEvent(new Event("resize"));
@@ -153,17 +145,17 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
   }
 
   public componentDidUpdate(prevProps: ResizeListenerWithDefaultProps) {
-    if (this.props.disableScrollFixes !== prevProps.disableScrollFixes) {
-      this.updateScroll();
-    }
-
     if (this.props.disableTouchFixes !== prevProps.disableTouchFixes) {
       this.updateTouch();
+    }
+
+    const { disableTouchKeyboardFixes } = this.props;
+    if (disableTouchKeyboardFixes !== prevProps.disableTouchKeyboardFixes) {
+      this.updateListening(!disableTouchKeyboardFixes);
     }
   }
 
   public componentWillUnmount() {
-    window.clearTimeout(this.scrollTimeout);
     window.clearTimeout(this.touchMoveTimeout);
     removeTouchEvent(window, "move", this.handleTouchMove);
 
@@ -171,8 +163,8 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
       this.resizeHandler.remove(this.handleResize);
     }
 
-    if (this.scrollHandler) {
-      this.scrollHandler.remove(this.handleScroll);
+    if (!this.props.disableTouchKeyboardFixes) {
+      stopListening();
     }
   }
 
@@ -181,15 +173,21 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     return children ? children() : null;
   }
 
-  private updateScroll = () => {
-    if (!this.scrollHandler) {
-      return;
-    }
-
-    if (!this.props.disableScrollFixes) {
-      this.scrollHandler.add(this.handleScroll);
-    } else {
-      this.scrollHandler.remove(this.handleScroll);
+  /**
+   * This is the main throttled resize listener that will "fix" resize events so that they are
+   * only called by a "real" resize event. If there are any timeouts for touches or focusing an
+   * text field, the resize handlers will not be called.
+   */
+  private handleResize = (event: Event) => {
+    const { disableTouchFixes, disableTouchKeyboardFixes } = this.props;
+    if ((disableTouchFixes || !this.touchMoveTimeout) && (disableTouchKeyboardFixes || !isTouchKeyboardResize())) {
+      const { onResize, children } = this.props;
+      if (onResize) {
+        onResize(event);
+      } else if (children) {
+        // force re-render the children so any rendering logic can be done
+        this.forceUpdate();
+      }
     }
   };
 
@@ -201,30 +199,18 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     }
   };
 
-  private handleResize = (event: Event) => {
-    const { disableScrollFixes, disableTouchFixes } = this.props;
-    if ((disableScrollFixes || !this.scrollTimeout) && (disableTouchFixes || !this.touchMoveTimeout)) {
-      const { onResize, children } = this.props;
-      if (onResize) {
-        onResize(event);
-      } else if (children) {
-        // force re-render the children so any rendering logic can be done
-        this.forceUpdate();
-      }
-    }
-  };
-
-  private handleScroll = () => {
-    window.clearTimeout(this.scrollTimeout);
-    this.scrollTimeout = setTimeout(() => {
-      this.scrollTimeout = undefined;
-    }, this.props.scrollDelay);
-  };
-
   private handleTouchMove = () => {
     window.clearTimeout(this.touchMoveTimeout);
     this.touchMoveTimeout = setTimeout(() => {
       this.touchMoveTimeout = undefined;
     }, this.props.touchDelay);
+  };
+
+  private updateListening = (enabled: boolean) => {
+    if (enabled) {
+      startListening();
+    } else {
+      stopListening();
+    }
   };
 }

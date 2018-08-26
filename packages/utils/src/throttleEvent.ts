@@ -46,24 +46,24 @@ function createThrottledEventHandler(
 ): IThrottledEventHandler {
   let running = false;
   const callbacks: EventListener[] = [];
-  const runCallbacks = (e: Event) => () => {
+  const runCallbacks = (event: Event) => () => {
     for (const callback of callbacks) {
-      callback(e);
+      callback(event);
     }
 
     running = false;
   };
 
-  const handler = (e: Event) => {
+  const handler = (event: Event) => {
     if (running) {
       return;
     }
 
     running = true;
     if (window.requestAnimationFrame) {
-      window.requestAnimationFrame(runCallbacks(e));
+      window.requestAnimationFrame(runCallbacks(event));
     } else {
-      window.setTimeout(runCallbacks(e), 66);
+      window.setTimeout(runCallbacks(event), 66);
     }
   };
 
