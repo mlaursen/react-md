@@ -20,6 +20,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
   * [ResizeListener](#resizelistener-1)
   * [ResizeObserver](#resizeobserver-1)
   * [EventListener](#eventlistener)
+  * [AppSizeListener](#appsizelistener)
 <!-- TOC_END -->
 
 ## Installation
@@ -295,7 +296,7 @@ Either the <code>onResize</code> or <code>children</code> prop is required, but 
 <tr>
 <td>touchDelay *</td>
 <td><code>number</code></td>
-<td><code>800</code></td>
+<td><code>300</code></td>
 <td>
 This is the duration between a touchmove event and a resize event that will consider the
 resize event valid. Some mobile browsers will incorrectly trigger a resize event when the user
@@ -304,33 +305,22 @@ touches the page and scrolls because fixed toolbars move within the viewport.
 </td>
 </tr>
 <tr>
-<td>scrollDelay *</td>
-<td><code>number</code></td>
-<td><code>800</code></td>
+<td>disableTouchFixes *</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
 <td>
-This is the duration between a scroll event and a resize event that will consider the
-resize event valid. Some mobile browsers will incorrectly trigger a resize event when
-the page scrolls because the fixed toolbars move within the viewport.
+Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
+scrolls which causes the fixed toolbar to move out of the viewport.
 <br /><br />
 </td>
 </tr>
 <tr>
-<td>fixTouches *</td>
+<td>disableTouchKeyboardFixes *</td>
 <td><code>boolean</code></td>
-<td><code>true</code></td>
+<td><code>false</code></td>
 <td>
-Boolean if the resize listener should also be updated so that it is not triggered incorrectly
-by iOS devices when the user scrolls the page.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>fixScrolls *</td>
-<td><code>boolean</code></td>
-<td><code>true</code></td>
-<td>
-Boolean if the resize listener should also be updated so that it does not trigger incorrectly
-by page scrolls.
+Boolean if the resiez listener should no longer ignore resize events that can occur after a soft keyboard
+appears on mobile devices (currently all Android devices).
 <br /><br />
 </td>
 </tr>
@@ -450,6 +440,72 @@ instead.
 </thead>
 <tbody>
 
+</tbody>
+</table>
+
+
+### AppSizeListener
+The `AppSizeListener` component is used for listening to resize events on the page and then determining
+what the "next" app size is. This comes with some reasonable defaults for determining phones, tablets,
+and desktop based on min width. To help a bit more with some more complex layouts, there are also values
+for portrait and landscape versions of the above.
+
+> Note: Required props will have an asterisk (*) after their name.
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>touchDelay *</td>
+<td><code>number</code></td>
+<td><code>300</code></td>
+<td>
+This is the duration between a touchmove event and a resize event that will consider the
+resize event valid. Some mobile browsers will incorrectly trigger a resize event when the user
+touches the page and scrolls because fixed toolbars move within the viewport.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>disableTouchFixes *</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
+scrolls which causes the fixed toolbar to move out of the viewport.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>disableTouchKeyboardFixes *</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the resiez listener should no longer ignore resize events that can occur after a soft keyboard
+appears on mobile devices (currently all Android devices).
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>disableMountResizeTrigger *</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the <code>onResize</code> prop <b>should not</b> be called after the component mounts. This functionality is enabled
+by default since it makes initial layout changes easier.
+<br /><br />
+NOTE: This will be a `new Event(&#34;resize&#34;)` that is dispatched from the <code>window</code>. This means that it will not
+be a trusted source.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
