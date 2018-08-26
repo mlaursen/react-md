@@ -6,3 +6,6 @@ export * from "./ResizeObserver";
 
 export { default as EventListener } from "./EventListener";
 export * from "./EventListener";
+
+export { default as AppSizeListener } from "./AppSizeListener";
+export * from "./AppSizeListener";

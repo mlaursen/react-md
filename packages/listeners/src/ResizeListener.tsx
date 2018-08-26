@@ -4,28 +4,7 @@ import * as PropTypes from "prop-types";
 import { throttleEvent, IThrottledEventHandler, addTouchEvent, removeTouchEvent } from "@react-md/utils";
 import { startListening, stopListening, isTouchKeyboardResize } from "./touchKeyboardFix";
 
-export interface IResizeListenerBaseProps {
-  /**
-   * The function to call when the throttled resize event has been triggered. Either this or a children
-   * callback function is required to work, but this is the "preferred" way of handling resizes since you
-   * might need to do additional checks before re-rendering children.
-   *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
-   */
-  onResize?: (event: Event) => void;
-
-  /**
-   * An optional children callback function that will be called after each successful resize event.
-   * This method isn't quite as preferred as using the `onResize` prop, but it can be done.
-   *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
-   */
-  children?: () => React.ReactNode;
-
+export interface IResizeListenerConfigProps {
   /**
    * This is the duration between a touchmove event and a resize event that will consider the
    * resize event valid. Some mobile browsers will incorrectly trigger a resize event when the user
@@ -61,6 +40,29 @@ export interface IResizeListenerBaseProps {
    * @docgen
    */
   disableMountResizeTrigger?: boolean;
+}
+
+export interface IResizeListenerBaseProps extends IResizeListenerConfigProps {
+  /**
+   * The function to call when the throttled resize event has been triggered. Either this or a children
+   * callback function is required to work, but this is the "preferred" way of handling resizes since you
+   * might need to do additional checks before re-rendering children.
+   *
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   *
+   * @docgen
+   */
+  onResize?: (event: Event) => void;
+
+  /**
+   * An optional children callback function that will be called after each successful resize event.
+   * This method isn't quite as preferred as using the `onResize` prop, but it can be done.
+   *
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   *
+   * @docgen
+   */
+  children?: () => React.ReactNode;
 }
 
 export interface IResizeListenerWithResize extends IResizeListenerBaseProps {

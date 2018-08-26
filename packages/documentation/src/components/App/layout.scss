@@ -44,9 +44,13 @@
 .rmd-layout__main {
   padding-top: $rmd-app-bar-height;
 
-  @media (min-width: 768px) {
+  &--offset {
     padding-left: $rmd-sheet-large-width;
   }
+
+  // @media (min-width: 768px) {
+  //   padding-left: $rmd-sheet-large-width;
+  // }
 }
 
 
