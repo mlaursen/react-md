@@ -50,6 +50,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   helpText?: string;
   helpOnFocus?: boolean;
   error?: boolean;
+  showUnfilteredData?: boolean;
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {

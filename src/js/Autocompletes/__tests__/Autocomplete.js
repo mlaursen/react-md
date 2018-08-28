@@ -160,6 +160,36 @@ describe('Autocomplete', () => {
     expect(autocomplete.state('focus')).toBe(false);
   });
 
+  it('should set the visible state to true on focus with a value', () => {
+    const data = ['Hello'];
+    const autocomplete = mount(<Autocomplete id="test" data={data} defaultValue="he" />);
+    const field = autocomplete.find('input');
+    expect(field.length).toBe(1);
+
+    field.simulate('focus');
+    expect(autocomplete.state('visible')).toBe(true);
+  });
+
+  it('should set the visible state to false on focus without value', () => {
+    const data = ['Hello'];
+    const autocomplete = mount(<Autocomplete id="test" data={data} defaultValue="" />);
+    const field = autocomplete.find('input');
+    expect(field.length).toBe(1);
+
+    field.simulate('focus');
+    expect(autocomplete.state('visible')).toBe(false);
+  });
+
+  it('should set the visible state to true on focus without value if the showUnfilteredData flag is set to true', () => {
+    const data = ['Hello'];
+    const autocomplete = mount(<Autocomplete id="test" data={data} defaultValue="" showUnfilteredData />);
+    const field = autocomplete.find('input');
+    expect(field.length).toBe(1);
+
+    field.simulate('focus');
+    expect(autocomplete.state('visible')).toBe(true);
+  });
+
   it('should call the onKeyDown prop when the onKeyDown event is fired on the text field', () => {
     const onKeyDown = jest.fn();
     const autocomplete = mount(<Autocomplete id="test" data={[]} onKeyDown={onKeyDown} />);
