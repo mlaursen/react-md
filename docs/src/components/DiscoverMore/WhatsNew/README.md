@@ -1,4 +1,8 @@
 ## August 2018
+### v1.5.1 Released
+##### Changelog
+- Fixed `Dialog` Typescript definitions for `height` and `width` to support strings. ([@kirananto] - [pull-789])
+
 ### v1.5.0 Released
 ##### Changelog
 This release added a new feature and an accessibility change.

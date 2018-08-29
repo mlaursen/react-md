@@ -7,7 +7,7 @@ const Contribute = () => (
   <Cell component="section" size={8}>
     <h4 className="md-title">Contributing</h4>
     <p className="md-body-2">
-      Please read the 
+      Please read the
       &nbsp;
       <Link to="/discover-more/contributing" className="link">
         contributing guidelines
