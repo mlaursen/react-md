@@ -18,7 +18,7 @@ and [host-google-font](/customization/typography?tab=1#mixin-host-google-font) f
 
 ### Examples
 Please see the [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) for example project setups using
-[create-react-app](https://github.com/facebookincubator/create-react-app), [next.js](https://github.com/zeit/next.js/), webpack,
+[create-react-app](https://github.com/facebook/create-react-app), [next.js](https://github.com/zeit/next.js/), webpack,
 and others.
 
 ### UMD
