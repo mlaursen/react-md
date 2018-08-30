@@ -12,6 +12,7 @@ export interface IDefaultTreeItemRendererBaseProps extends IListItemBaseProps {
   [key: string]: any;
   href?: string;
   expanderLeft?: boolean;
+  expanderIcon?: React.ReactElement<any>;
   linkComponent?: React.ReactType;
 }
 
@@ -48,6 +49,7 @@ export default class DefaultTreeItemRenderer extends React.Component<IDefaultTre
       forceIconWrap: propForceIconWrap,
       leftIcon: propLeftIcon,
       rightIcon: propRightIcon,
+      expanderIcon,
       ...props
     } = this.props;
     const linkComponent = propLinkComponent || (typeof props.href === "string" && "a") || undefined;
@@ -57,7 +59,7 @@ export default class DefaultTreeItemRenderer extends React.Component<IDefaultTre
     let leftIcon = propLeftIcon;
     let rightIcon = propRightIcon;
     if (renderChildItems) {
-      const icon = <TreeItemExpanderIcon rotated={expanded} />;
+      const icon = <TreeItemExpanderIcon rotated={expanded}>{expanderIcon}</TreeItemExpanderIcon>;
       if (expanderLeft) {
         leftIcon = icon;
       } else {

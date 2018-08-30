@@ -3,6 +3,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
+import { FontIcon } from "@react-md/icon";
 import { searchNodes, TextExtractor, extractTextContent as defaultExtractTextContent } from "@react-md/utils";
 
 import {
@@ -10,6 +11,11 @@ import {
   TreeViewElement,
   TreeViewData,
   TreeViewDataList,
+  ITreeViewProps,
+  ITreeViewDefaultProps,
+  ITreeViewInjectedProps,
+  TreeViewWithDefaultProps,
+  TreeViewWithMultiSelectHandlers,
   treeViewRenderer,
   treeItemRenderer,
   onItemSelect,
@@ -25,214 +31,6 @@ const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 const SHIFT_CODE = 16;
 
 type TreeKeyboardEvent = React.KeyboardEvent<TreeViewElement>;
-
-export interface ITreeViewBaseProps<D, R> {
-  /**
-   * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
-   *
-   * @docgen
-   */
-  id: string;
-
-  /**
-   * An optional style that will get passed down to the `treeViewRenderer`.
-   *
-   * @docgen
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * An optional style that will get merged and passed down to the `treeViewRenderer`.
-   *
-   * @docgen
-   */
-  className?: string;
-
-  /**
-   * An optional label string that describes this tree. Either this or the `aria-labelledby` prop are
-   * required for a11y.
-   *
-   * @docgen
-   */
-  "aria-label"?: string;
-
-  /**
-   * An optional id that points to an element that labels this tree. Either this or the `aria-label`
-   * prop are required for a11y.
-   *
-   * @docgen
-   */
-  "aria-labelledby"?: string;
-
-  /**
-   * A list of data that should be transformed into a tree view.
-   *
-   * @docgen
-   */
-  data: Array<TreeViewData<D>>;
-
-  /**
-   * A function that will render the entire tree view. This should mostly remain the default implementation
-   * of passing down to the `List` component, but it can be changed to something else if you need more flexibility
-   * or functionality.
-   *
-   * @docgen
-   */
-  treeViewRenderer?: treeViewRenderer<R>;
-
-  /**
-   * A function that will render a specific tree item. The default implementation _should_ probably be good enough
-   * for most use cases, but this can be updated if you need additional functionality.
-   *
-   * @docgen
-   */
-  treeItemRenderer?: treeItemRenderer<D>;
-
-  /**
-   * Boolean if the TreeView can have multiple treeitems selected.
-   *
-   * @docgen
-   */
-  multiSelect?: boolean;
-
-  /**
-   * Boolean if focusing using any of the provided keyboard navigation shortcuts should also select the item. This
-   * should most likely be `false` at all times.
-   *
-   * @docgen
-   */
-  selectOnFocus?: boolean;
-
-  /**
-   * Boolean if `TreeItem`s that have nested child items (groups) can no longer be selected. This is enabled by
-   * default to make selection visibility easier on the user.
-   *
-   * @docgen
-   */
-  disableGroupSelection?: boolean;
-
-  /**
-   * Boolean if the functionality for opening all siblings at the same level when the asterisk (`*`) key is pressed
-   * should be disabled.
-   *
-   * @docgen
-   */
-  disableSiblingExpansion?: boolean;
-
-  /**
-   * The `TreeView` component allows the user to search for items by typing a letter which will attempt to find
-   * the first item that matches that letter. If the user keeps pressing the same letter, the next item that starts
-   * with that letter will be chosen instead. If a different letter is pressed, the search string will include both
-   * letters and the match will now require the tree item to start with both letters.
-   *
-   * This prop is the amount of time in milliseconds that this search logic should be active before the search resets
-   * back to the empty string.
-   *
-   * @docgen
-   */
-  searchResetTime?: number;
-
-  /**
-   * A function to extract the searchable text within a treeitem. The default behavior is to just run
-   * `treeItem.textContent` on each tree item. If there is a `FontIcon` component from react-md (or really just an
-   * element with `.rmd-icon--font` on it as a child of the tree item), the treeitem will be cloned without
-   * the `FontIcon` and then run `clonedTreeItem.textContent`. See `disableFontIconTextCheck` for some
-   * more details.
-   *
-   * @docgen
-   */
-  extractTextContent?: TextExtractor;
-
-  /**
-   * Boolean if the `extractTextContent` function should not attempt to check for font icons when searching
-   * the tree for treeitems starting with some text. This is enabled by default to help all users of react-md,
-   * but if you do not use `FontIcon`s or a font icon library that does not render icons based on innerText
-   * (font-awesome for example), you can disable the fonticon check for a slight boost in performance.
-   *
-   * > The performance boost is extremely slight since this function will only be run when new treeitems are
-   * added or removed from the DOM and is only used for keyboard navigation.
-   *
-   * @docgen
-   */
-  disableFontIconTextCheck?: boolean;
-
-  /**
-   * The function that should be called when a new tree item is selected. The callback function should
-   * be used to update the `selectedId` prop to the provided `itemId`.
-   *
-   * @docgen
-   */
-  onItemSelect?: onItemSelect;
-
-  /**
-   * The function that should be called when a tree item's expansion value changes. The callback function
-   * should be used to update the `expandedIds` prop to include or remove the provided `itemId`.
-   *
-   * @docgen
-   */
-  onItemExpandedChange?: onItemExpandedChange;
-
-  /**
-   * This function will only be called when the `disableSiblingExpansion` prop is not enabled and the user
-   * presses the asterisk (*) key on a TreeItem to attempt to expand all sibling treeitems at the same level
-   * and within the same group.
-   *
-   * @docgen
-   */
-  onMultipleItemExpansion?: MultipleIdHandler;
-
-  /**
-   * This function will be called when the `multiSelect` prop is enabled and a user has multi-selected items via
-   * the keyboard.
-   *
-   * @docgen
-   */
-  onMultipleItemSelection?: MultipleIdHandler;
-}
-
-export interface ITreeViewIdsProps {
-  /**
-   * A list of tree item ids that are currently selected.
-   *
-   * @docgen
-   */
-  selectedIds: string[];
-
-  /**
-   * A list of tree item ids that are currently expanded.
-   *
-   * @docgen
-   */
-  expandedIds: string[];
-}
-
-export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
-  extends ITreeViewBaseProps<D, R>,
-    ITreeViewIdsProps,
-    IIndexKeyAny {
-  onItemSelect: onItemSelect;
-  onItemExpandedChange: onItemExpandedChange;
-}
-
-export type TreeViewWithMultiSelectHandlers<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
-  onMultipleItemExpansion: MultipleIdHandler;
-  onMultipleItemSelection: MultipleIdHandler;
-};
-
-export interface ITreeViewDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> {
-  multiSelect: boolean;
-  selectOnFocus: boolean;
-  disableGroupSelection: boolean;
-  disableSiblingExpansion: boolean;
-  searchResetTime: number;
-  treeViewRenderer: treeViewRenderer<R>;
-  treeItemRenderer: treeItemRenderer<D>;
-  extractTextContent: TextExtractor;
-  disableFontIconTextCheck: boolean;
-}
-
-export type TreeViewWithDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> &
-  ITreeViewDefaultProps<D, R>;
 
 /**
  * The `TreeView` component is used to create an accessible
@@ -325,10 +123,12 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     disableSiblingExpansion: false,
     disableFontIconTextCheck: false,
     extractTextContent: defaultExtractTextContent,
+    expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
     treeViewRenderer: props => <List {...props} />,
-    treeItemRenderer: ({ linkComponent, to, href, leftIcon, rightIcon, children }, props) => (
+    treeItemRenderer: (props, { linkComponent, to, href, leftIcon, rightIcon, children }, { expanderIcon }) => (
       <DefaultTreeItemRenderer
         {...props}
+        expanderIcon={expanderIcon}
         linkComponent={linkComponent}
         to={to}
         href={href}
@@ -421,11 +221,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       disableFontIconTextCheck,
       searchResetTime,
       data,
+      expanderIcon,
       ...props
     } = this.props as TreeViewWithDefaultProps<D, R>;
 
-    // TODO: try to fix typing or just be lazy and go to [key: string]: any
-    // @ts-ignore
     return treeViewRenderer({
       ...props,
       role: "treeview",
@@ -699,7 +498,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       const selected = selectedIds.indexOf(itemId) !== -1;
       const expanded = expandedIds.indexOf(itemId) !== -1;
 
-      return treeItemRenderer(item, {
+      return treeItemRenderer({
         key: itemId,
         depth,
         listSize,
@@ -708,7 +507,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         expanded,
         updateTreeItems: this.updateTreeItems,
         renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
-      });
+      }, item, this.props);
     });
   };
 }

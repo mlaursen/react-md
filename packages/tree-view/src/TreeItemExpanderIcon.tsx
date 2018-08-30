@@ -1,6 +1,5 @@
 import * as React from "react";
-import { IconRotator, IIconRotatorBaseProps } from "@react-md/icon";
-import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
+import { FontIcon, IconRotator, IIconRotatorBaseProps } from "@react-md/icon";
 
 export interface ITreeItemExpanderIconProps extends IIconRotatorBaseProps {
   children?: React.ReactElement<any>;
@@ -27,7 +26,7 @@ TreeItemExpanderIcon.defaultProps = {
   rotated: false,
   to: 0,
   from: 90,
-  children: <KeyboardArrowDownSVGIcon />,
+  children: <FontIcon>keyboard_arrow_down</FontIcon>
 } as ITreeItemExpanderIconDefaultProps;
 
 export default TreeItemExpanderIcon;

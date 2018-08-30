@@ -1,9 +1,15 @@
 /* tslint:disable:no-shadowed-variable */
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { ITreeViewBaseProps } from "./TreeView";
 
-import { onItemSelect, onItemExpandedChange, MultipleIdHandler, TreeViewDataList, IIndexKeyAny } from "./types";
+import {
+  ITreeViewBaseProps,
+  IIndexKeyAny,
+  TreeViewDataList,
+  MultipleIdHandler,
+  onItemSelect,
+  onItemExpandedChange,
+} from "./types";
 import { handleItemSelect, handleItemExpandedChange } from "./utils";
 import findAllParentIds from "./utils/findAllParentIds";
 

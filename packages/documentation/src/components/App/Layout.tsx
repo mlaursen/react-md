@@ -146,8 +146,8 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
   };
 
   private treeItemRenderer = (
-    { linkComponent, to, href, leftIcon, children, itemId }: Route,
-    props: ITreeViewItemInjectedProps
+    itemProps: ITreeViewItemInjectedProps,
+    { linkComponent, to, href, leftIcon, children, itemId }: Route
   ) => {
     if (itemId.startsWith("divider")) {
       return <li role="divider" key={itemId} className="rmd-divider" />;
@@ -160,7 +160,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     }
 
     return (
-      <TreeItem {...props} itemId={itemId} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
+      <TreeItem {...itemProps} itemId={itemId} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
         {children}
       </TreeItem>
     );
