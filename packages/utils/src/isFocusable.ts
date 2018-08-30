@@ -6,7 +6,7 @@ const FOCUSABLE_ROLES = ["button", "menuitem", "option"];
  * Checks if the provided element is focusable.
  */
 export default function isFocusable(el: HTMLElement | null, allowDisabled: boolean = false) {
-  if (!el) {
+  if (!el || typeof el.getAttribute !== "function") {
     return false;
   }
 
