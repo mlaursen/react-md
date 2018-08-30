@@ -4,7 +4,7 @@ exports[`TreeGroup should render correctly with the provided props 1`] = `null`;
 
 exports[`TreeGroup should render correctly with the provided props 2`] = `
 <ul
-  className="rmd-list rmd-collapse"
+  className="rmd-list rmd-collapse rmd-tree-group"
   role="group"
 >
   <li>

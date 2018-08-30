@@ -10,12 +10,16 @@ export default function findAllParentIds<D>(
   parentIds: string[] = []
 ): string[] {
   const ids: string[] = [];
+  if (!toMatchIds.length) {
+    return ids;
+  }
+
   data.forEach(({ itemId, childItems }) => {
     if (childItems && childItems.length) {
       [].push.apply(ids, findAllParentIds(childItems, toMatchIds, parentIds.concat([itemId])));
     }
 
-    if (toMatchIds.indexOf(itemId) !== -1) {
+    if (toMatchIds.includes(itemId)) {
       [].push.apply(ids, parentIds);
     }
   });

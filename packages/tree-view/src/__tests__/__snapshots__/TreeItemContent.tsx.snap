@@ -2,7 +2,10 @@
 
 exports[`TreeItemContent should render correctly with the provided props 1`] = `
 <div
-  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful rmd-states--simple"
+  disabled={false}
+  onMouseDown={[Function]}
+  onTouchStart={[Function]}
 >
   <span
     className="rmd-list-item__text"
@@ -14,7 +17,10 @@ exports[`TreeItemContent should render correctly with the provided props 1`] = `
 
 exports[`TreeItemContent should render correctly with the provided props 2`] = `
 <div
-  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful rmd-states--simple"
+  disabled={false}
+  onMouseDown={[Function]}
+  onTouchStart={[Function]}
 >
   <svg
     className="rmd-icon rmd-icon--svg rmd-list-item__icon rmd-list-item__icon--before"
@@ -37,7 +43,10 @@ exports[`TreeItemContent should render correctly with the provided props 2`] = `
 
 exports[`TreeItemContent should render correctly with the provided props 3`] = `
 <div
-  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful"
+  className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful rmd-states--simple"
+  disabled={false}
+  onMouseDown={[Function]}
+  onTouchStart={[Function]}
 >
   <span
     className="rmd-list-item__text"

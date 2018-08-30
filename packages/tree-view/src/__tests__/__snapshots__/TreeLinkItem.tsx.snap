@@ -5,13 +5,15 @@ exports[`TreeLinkItem should render correctly with the provided props 1`] = `
   className="rmd-tree-item"
   role="none"
 >
-  <a
+  <div
     aria-level={1}
     aria-posinset={1}
     aria-setsize={1}
-    className="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--stateful rmd-states--simple"
+    className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful rmd-states--simple"
     disabled={false}
     href="/"
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
     role="treeitem"
     tabIndex={-1}
   >
@@ -20,7 +22,7 @@ exports[`TreeLinkItem should render correctly with the provided props 1`] = `
     >
       Hello!
     </span>
-  </a>
+  </div>
 </li>
 `;
 
@@ -29,13 +31,15 @@ exports[`TreeLinkItem should render correctly with the provided props 2`] = `
   className="rmd-tree-item"
   role="none"
 >
-  <a
+  <div
     aria-level={1}
     aria-posinset={1}
     aria-setsize={1}
-    className="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-list-item--stateful rmd-states--simple rmd-states--selected"
+    className="rmd-tree-item__content rmd-list-item rmd-list-item--stateful rmd-states--simple rmd-states--selected"
     disabled={false}
     href="/"
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
     role="treeitem"
     tabIndex={0}
   >
@@ -44,6 +48,6 @@ exports[`TreeLinkItem should render correctly with the provided props 2`] = `
     >
       Hello!
     </span>
-  </a>
+  </div>
 </li>
 `;

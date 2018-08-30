@@ -5,10 +5,7 @@ exports[`TreeItem should render correctly with the provided props 1`] = `
   aria-level={1}
   aria-posinset={1}
   aria-setsize={1}
-  className="rmd-tree-item rmd-states--simple"
-  disabled={false}
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
+  className="rmd-tree-item"
   role="treeitem"
   tabIndex={-1}
 >
