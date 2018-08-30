@@ -119,15 +119,20 @@ export default class TreeViewControls<D, R> extends React.Component<
       expandedIds,
       onItemSelect: this.handleItemSelect,
       onItemExpandedChange: this.handleItemExpandedChange,
-      onMultipleItemExpansion: this.handleItemSiblingExpansion,
+      onMultipleItemExpansion: this.handleMultipleItemExpansion,
+      onMultipleItemSelection: this.handleMultipleItemSelection,
     });
   }
 
   private handleItemSelect = (itemId: string) => {
-    const selectedIds = handleItemSelect(itemId, this.state.selectedIds);
+    const selectedIds = handleItemSelect(itemId, this.state.selectedIds, this.props.multiSelect);
     if (this.state.selectedIds !== selectedIds) {
       this.setState({ selectedIds });
     }
+  };
+
+  private handleMultipleItemSelection = (selectedIds: string[]) => {
+    this.setState({ selectedIds })
   };
 
   private handleItemExpandedChange = (itemId: string, expanded: boolean) => {
@@ -137,7 +142,7 @@ export default class TreeViewControls<D, R> extends React.Component<
     }
   };
 
-  private handleItemSiblingExpansion = (expandedIds: string[]) => {
+  private handleMultipleItemExpansion = (expandedIds: string[]) => {
     this.setState({ expandedIds });
   };
 }

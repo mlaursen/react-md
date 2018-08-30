@@ -25,6 +25,7 @@ import {
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 import findTreeItemsFromElement from "./utils/findTreeItemsFromElement";
+import findAllIds from "./utils/findAllIds";
 import findIdsToRootOrEnd from "./utils/findIdsToRootOrEnd";
 
 const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
@@ -85,7 +86,7 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         const value = props.onMultipleItemSelection as any;
         return new Error(
           `The \`onMultipleItemSelection\` prop is required for the \`${componentName}\` component when the ` +
-            `\`multiSelect\` prop has not been enabled but \`${!value ? "" : value}\` was provided instead.`
+            `\`multiSelect\` prop has not been enabled but \`${value}\` was provided instead.`
         );
       }
 
@@ -269,6 +270,11 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     onItemSelect(item.itemId);
   };
 
+  private handleEnterKey = (event: TreeKeyboardEvent) => {
+    event.stopPropagation();
+    (event.target as HTMLElement).click();
+  };
+
   private handleHomeEndKeys = (event: TreeKeyboardEvent) => {
     event.preventDefault();
     event.stopPropagation();
@@ -294,6 +300,18 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     this.focusFrom(element, key === "ArrowDown");
   };
 
+  private handleLetterA = (event: TreeKeyboardEvent) => {
+    if (!this.props.multiSelect || !event.ctrlKey) {
+      this.search(event);
+      return;
+    }
+
+    const { selectedIds, data, onMultipleItemSelection } = this.props as TreeViewWithMultiSelectHandlers;
+    const allIds = findAllIds(data);
+    const nextSelectedIds = allIds.length === selectedIds.length ? [] : allIds;
+    onMultipleItemSelection(nextSelectedIds);
+  };
+
   private handleKeyDown = (event: TreeKeyboardEvent) => {
     switch (event.key) {
       case "Home":
@@ -310,8 +328,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
         this.handleSpaceKey(event);
         break;
       case "Enter":
-        event.stopPropagation();
-        (event.target as HTMLElement).click();
+        this.handleEnterKey(event);
+        break;
+      case "a":
+        this.handleLetterA(event);
         break;
       case "*":
         this.openAllRelatedNodes(event.target as HTMLElement);
@@ -329,17 +349,18 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
 
     const { itemId } = item;
-    const { onItemSelect, expandedIds, onItemExpandedChange, disableGroupSelection } = this.props;
+    const { onItemSelect, selectedIds, expandedIds, onItemExpandedChange, disableGroupSelection } = this.props;
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
     if (item.childItems) {
       const i = expandedIds.indexOf(itemId);
       onItemExpandedChange(itemId, i === -1);
-      if (!disableGroupSelection) {
-        onItemSelect(itemId);
-      }
-    } else {
+    }
+
+    // the event will not be trusted if it happens after the enter keypress. When that happens, we only
+    // want the `onItemSelect` to be called when it is not already selected as Enter will only select -- not toggle
+    if ((!disableGroupSelection || !item.childItems) && (event.isTrusted || !selectedIds.includes(itemId))) {
       onItemSelect(itemId);
     }
   };
@@ -498,16 +519,20 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       const selected = selectedIds.indexOf(itemId) !== -1;
       const expanded = expandedIds.indexOf(itemId) !== -1;
 
-      return treeItemRenderer({
-        key: itemId,
-        depth,
-        listSize,
-        itemIndex: i,
-        selected,
-        expanded,
-        updateTreeItems: this.updateTreeItems,
-        renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
-      }, item, this.props);
+      return treeItemRenderer(
+        {
+          key: itemId,
+          depth,
+          listSize,
+          itemIndex: i,
+          selected,
+          expanded,
+          updateTreeItems: this.updateTreeItems,
+          renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
+        },
+        item,
+        this.props
+      );
     });
   };
 }

@@ -1,4 +1,8 @@
+import { IListProps } from "@react-md/list";
 import { TextExtractor } from "@react-md/utils";
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 /**
  * The valid HTML Element for the tree view. Only really used for event listeners.
  */
@@ -239,7 +243,8 @@ export interface ITreeViewIdsProps {
 }
 
 export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
-  extends ITreeViewBaseProps<D, R>,
+  extends Omit<IListProps, "id">,
+    ITreeViewBaseProps<D, R>,
     ITreeViewIdsProps {
   onItemSelect: onItemSelect;
   onItemExpandedChange: onItemExpandedChange;
@@ -273,7 +278,7 @@ export type TreeViewWithDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> = ITree
  * to provide a type or interface for the remaining keys. The default is to allow any key passed down
  * just so it isn't super hard to get something rendered.
  */
-export type treeViewRenderer<R = IIndexKeyAny> = (props: ITreeViewInjectedProps) => React.ReactNode;
+export type treeViewRenderer<R = IIndexKeyAny> = (props: ITreeViewInjectedProps & IListProps) => React.ReactNode;
 
 /**
  * The function that should render each tree item that appears within the tree view. It will provide

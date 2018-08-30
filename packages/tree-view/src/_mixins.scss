@@ -109,6 +109,8 @@
 @mixin react-md-tree-view {
   .rmd-tree-view {
     @include rmd-tree-view-depths;
+
+    width: 100%;
   }
 
   .rmd-tree-item {
