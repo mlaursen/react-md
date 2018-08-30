@@ -20,6 +20,7 @@ The source code of this package can be found at: https://github.com/mlaursen/rea
 - [SassDoc](#sassdoc)
   * [Mixins](#mixins)
     + [Examples](#examples)
+      - [Example Usage SCSS](#example-usage-scss)
       - [Normal SCSS Usage](#normal-scss-usage)
       - [Alternative SCSS Usage](#alternative-scss-usage)
   * [Functions](#functions)
@@ -214,6 +215,38 @@ $rmd-theme-surface: $md-grey-800;
 </td>
 </tr>
 <tr>
+<td><code>rmd-theme-set-var(theme-style, value)</code></td>
+<td>This is an extremely simple mixin that will allow you to quickly set or update the value of a theme css variable
+with the new provided value.
+<h5>Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</thead>
+<tbody>
+<tr>
+<td>theme-style</td>
+<td>String</td>
+<td></td>
+<td>The react-md theme style to update. This should be one of the keys of
+    <code>$rmd-theme-property-values</code> map.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>Color</td>
+<td></td>
+<td>The updated color value to apply.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<tr>
 <td><code>react-md-theme(primary-color, secondary-color)</code></td>
 <td>Creates all the styles for a theme in react-md. This will start by creating CSS Variables
 for each theme variable and then create class names for each variable.
@@ -248,6 +281,20 @@ for each theme variable and then create class names for each variable.
 </table>
 
 #### Examples
+
+
+##### Example Usage SCSS
+
+```scss
+$rmd-theme-primary: $rmd-theme-blue-500;
+$rmd-theme-secondary: $rmd-theme-pink-a-200;
+
+.some-class-with-different-themes {
+  // no idea if these colors go together...
+  @include rmd-theme-set-var(primary, $rmd-theme-orange-500);
+  @include rmd-theme-set-var(seconary, $rmd-theme-brown-a-700);
+}
+```
 
 
 ##### Normal SCSS Usage
