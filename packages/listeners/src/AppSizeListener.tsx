@@ -39,6 +39,7 @@ export interface IAppSizeListenerBaseProps extends IResizeListenerConfigProps {
   desktopMinWidth?: number;
   onResize?: (appSize: IAppSize) => void;
   children?: (appSize: IAppSize) => React.ReactNode;
+  disableResizeOnMount?: boolean;
 }
 
 export interface IAppSizeListenerWithOnResizeProps extends IAppSizeListenerBaseProps {
@@ -53,6 +54,7 @@ export type IAppSizeListenerProps = IAppSizeListenerWithOnResizeProps | IAppSize
 
 export interface IDefaultAppSizeRequired {
   defaultSize: AppSize | keyof AppSize;
+  disableResizeOnMount: boolean;
 }
 
 export interface IAppSizeMediaProps extends IDefaultAppSizeRequired {
@@ -82,6 +84,7 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
     tabletMinWidth: 768,
     desktopMinWidth: 1025,
     touchDelay: 300,
+    disableResizeOnMount: false,
     disableTouchFixes: false,
     disableTouchKeyboardFixes: false,
     disableMountResizeTrigger: false,
@@ -175,10 +178,12 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
     };
   }
 
+  private calledOnce: boolean;
   constructor(props: IAppSizeListenerProps) {
     super(props);
 
     this.state = AppSizeListener.createStateFromQueries(props as AppSizeListenerWithDefaultProps);
+    this.calledOnce = false;
   }
 
   public shouldComponentUpdate(nextProps: IAppSizeListenerProps, nextState: IAppSizeListenerState) {
@@ -191,7 +196,7 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
 
     const listener = <ResizeListener key="listener" {...props} onResize={this.handleResize} />;
     if (typeof children !== "function") {
-      return null;
+      return listener;
     }
 
     return (
@@ -203,15 +208,20 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
   }
 
   private handleResize = () => {
-    const nextState = AppSizeListener.createStateFromQueries(this
-      .props as AppSizeListenerWithDefaultProps) as IAppSizeListenerState;
+    const props = this.props as AppSizeListenerWithDefaultProps;
+    const { onResize, disableResizeOnMount } = props;
+    const nextState = AppSizeListener.createStateFromQueries(props) as IAppSizeListenerState;
 
-    if (Object.keys(nextState).some(key => (this.state as IAppSizeListenerState)[key] !== nextState[key])) {
+    if (!this.calledOnce && !disableResizeOnMount && onResize) {
+      onResize(nextState);
+    } else if (Object.keys(nextState).some(key => (this.state as IAppSizeListenerState)[key] !== nextState[key])) {
       if (this.props.onResize) {
         this.props.onResize(nextState);
       }
 
       this.setState(nextState);
     }
+
+    this.calledOnce = true;
   };
 }
