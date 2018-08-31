@@ -20,9 +20,11 @@ const ExamplesPage: React.SFC<IExamplesPageProps> = ({ title, description, examp
       <Text type="headline-2" className="examples-page__title">
         {title}
       </Text>
-      {description && <Markdown className="rmd-text-container" markdown={description} />}
     </header>
-    {examples.map((example, key) => <Example key={key} {...example} />)}
+    {description && <Markdown markdown={description} className="rmd-text-container" />}
+    {examples.map((example, key) => (
+      <Example key={key} {...example} />
+    ))}
   </section>
 );
 
