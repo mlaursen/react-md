@@ -36,6 +36,7 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/utils": "^2.0.0-alpha-1",
+    "prop-types": "^15.6.2",
     "resize-observer-polyfill": "^1.5.0"
   },
   "devDependencies": {

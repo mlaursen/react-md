@@ -65,6 +65,7 @@ module.exports = function createPackage(config) {
     }
 
     if (typescript) {
+      dependencies.push('prop-types');
       devDependencies.push('jest', 'ts-jest', 'tslint', 'typescript');
     }
 

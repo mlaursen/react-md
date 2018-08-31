@@ -43,6 +43,7 @@
     "@react-md/theme": "^2.0.0-alpha-1",
     "@react-md/transition": "^2.0.0-alpha-1",
     "classnames": "^2.2.6",
+    "prop-types": "^15.6.2",
     "react-transition-group": "^2.4.0"
   },
   "devDependencies": {
