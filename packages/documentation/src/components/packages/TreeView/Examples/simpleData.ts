@@ -1,5 +1,4 @@
-import * as React from "react";
-import { TreeViewDataList, TreeView, TreeViewControls } from "@react-md/tree-view";
+import { TreeViewDataList } from "@react-md/tree-view";
 
 const data: TreeViewDataList = [
   {
@@ -27,6 +26,28 @@ const data: TreeViewDataList = [
       {
         itemId: "item-3-1",
         children: "Item 3-1",
+        childItems: [
+          {
+            itemId: "item-3-1-1",
+            children: "Item 3-1-1",
+          },
+          {
+            itemId: "item-3-1-2",
+            children: "Item 3-1-2",
+          },
+          {
+            itemId: "item-3-1-3",
+            children: "Item 3-1-3",
+          },
+          {
+            itemId: "item-3-1-4",
+            children: "Item 3-1-4",
+          },
+          {
+            itemId: "item-3-1-5",
+            children: "Item 3-1-5",
+          },
+        ]
       },
       {
         itemId: "item-3-2",
@@ -40,10 +61,4 @@ const data: TreeViewDataList = [
   },
 ];
 
-const SimpleExample: React.SFC<{}> = () => (
-  <TreeViewControls id="navigation-example" aria-label="Simple Example" data={data}>
-    {props => <TreeView {...props} style={{ width: "100%" }} />}
-  </TreeViewControls>
-);
-
-export default SimpleExample;
+export default data;
