@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring, react/forbid-foreign-prop-types */
 const fs = require('fs-extra');
 const path = require('path');
 const execSync = require('child_process').execSync;
@@ -26,6 +27,7 @@ module.exports = function createPackage(config) {
     typescript,
     propTypes,
     customTypes,
+    additionalDependencies,
   } = config;
   const root = path.join(process.cwd(), 'packages', name);
   const src = path.join(root, 'src');
@@ -58,8 +60,9 @@ module.exports = function createPackage(config) {
     ...Object.keys(filesToCreate).map(fileName => createFile(fileName, filesToCreate[fileName])),
     ...Object.keys(filesToCopy).map(fileName => fs.copy(filesToCopy[fileName], fileName)),
   ]).then(() => {
+    const scope = `--scope @react-md/${name}`;
     const dependencies = [];
-    const devDependencies = ['cpx', 'doc-generator', 'rimraf'];
+    const devDependencies = ['cpx', 'rimraf'];
     if (styles) {
       devDependencies.push('sass-lint');
     }
@@ -79,12 +82,22 @@ module.exports = function createPackage(config) {
     if (dependencies.length) {
       console.log('Installing dependencies...');
       console.log(` - ${dependencies.join('\n - ')}`);
-      execSync(`lerna exec --scope @react-md/${name} -- npm i -S ${dependencies.join(' ')}`);
+      execSync(`lerna exec ${scope} -- npm i -S ${dependencies.join(' ')}`);
     }
 
     console.log('Installing devDependencies...');
     console.log(` - ${devDependencies.join('\n - ')}`);
-    execSync(`lerna exec --scope @react-md/${name} -- npm i -D ${devDependencies.join(' ')}`);
+    execSync(`lerna exec ${scope} -- npm i -D ${devDependencies.join(' ')}`);
+
+    console.log('Installing doc-generator...');
+    execSync(`lerna add doc-generator --dev ${scope}`);
+
+    if (additionalDependencies && additionalDependencies.length) {
+      console.log(`Installing additional dependencies:\n${additionalDependencies.map(dep => ` - ${dep}`).join('\n')}`);
+      additionalDependencies.forEach((dep) => {
+        execSync(`lerna add ${dep} ${scope}`);
+      });
+    }
 
     console.log('Running bootstrap for safe measures...');
     execSync('lerna bootstrap');

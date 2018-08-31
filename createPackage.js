@@ -7,7 +7,7 @@ const VERSION = '2.0.0-alpha-1';
 
 commander
   .version(VERSION)
-  .usage('<name> [options] [dependencies...]')
+  .usage('<name> [options] [additionalDependencies...]')
   .option('--no-styles', 'Updates the package structure to not include anything related to styles')
   .option('--no-sassdoc', 'Updates the generated README to not include a section for sassdoc.')
   .option('--no-typescript', 'This will exclude the typescript build scripts from the package.json if enabled.')
@@ -16,7 +16,7 @@ commander
   .option('-d, --description [description]', 'Updates both the README and the package.json to include the description string.')
   .option('-p, --private [isPrivate]', 'This will make the package private so it will never be published to npm.')
   .arguments('<name> [dependencies...]')
-  .action((name, dependencies, program) => {
+  .action((name, additionalDependencies, program) => {
     const description = typeof program.description === 'string' ? program.description : '';
     const {
       isPrivate,
@@ -56,7 +56,7 @@ commander
       typescript,
       propTypes: typescript && propTypes,
       customTypes: typescript && customTypes,
-      dependencies,
+      additionalDependencies,
     });
   })
   .parse(process.argv);
