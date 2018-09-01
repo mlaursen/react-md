@@ -8,6 +8,7 @@ import { KeyboardClickable } from "@react-md/a11y";
 export type ButtonType = "text" | "icon";
 export type ButtonTheme = "clear" | "primary" | "secondary" | "default";
 export type ButtonThemeType = "flat" | "outline" | "contained";
+export type ButtonElement = HTMLButtonElement | HTMLDivElement;
 
 export interface IButtonThemeProps {
   /**
@@ -50,7 +51,7 @@ export interface IButtonThemeProps {
 export interface IButtonButtonProps
   extends IButtonThemeProps,
     ITextIconSpacingProps,
-    React.HTMLAttributes<HTMLButtonElement | HTMLDivElement> {
+    React.HTMLAttributes<ButtonElement> {
   /**
    * An optional style to apply.
    *
@@ -86,13 +87,13 @@ export interface IButtonButtonProps
 
   // these are really just pass-through-values, so don't need to document them about how they are passed
   // to the helper components
-  onBlur?: (event: React.FocusEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onMouseUp?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onTouchStart?: (event: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onTouchEnd?: (event: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void;
-  onKeyUp?: (event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  onBlur?: (event: React.FocusEvent<ButtonElement>) => void;
+  onMouseDown?: (event: React.MouseEvent<ButtonElement>) => void;
+  onMouseUp?: (event: React.MouseEvent<ButtonElement>) => void;
+  onTouchStart?: (event: React.TouchEvent<ButtonElement>) => void;
+  onTouchEnd?: (event: React.TouchEvent<ButtonElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<ButtonElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<ButtonElement>) => void;
 }
 
 export type IButtonProps = IButtonButtonProps | IButtonButtonProps;
