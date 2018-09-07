@@ -352,11 +352,19 @@ export default class SelectionControl extends PureComponent {
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = this.props.label && <span id={`${id}-label`}>{this.props.label}</span>;
+    const labelId = this.props.label && `${id}-label`;
+    const label = this.props.label && <span id={labelId}>{this.props.label}</span>;
 
     let control;
     if (isSwitch) {
-      control = <SwitchTrack disabled={disabled} checked={checked} />;
+      control = (
+        <SwitchTrack
+          disabled={disabled}
+          checked={checked}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy || labelId}
+        />
+      );
     } else {
       control = (
         <AccessibleFakeInkedButton
@@ -370,7 +378,7 @@ export default class SelectionControl extends PureComponent {
           }))}
           aria-checked={checked}
           aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy || `${id}-label`}
+          aria-labelledby={ariaLabelledBy || labelId}
           aria-describedby={ariaDescribedBy}
           tabIndex={tabIndex}
           disabled={disabled}
@@ -380,7 +388,6 @@ export default class SelectionControl extends PureComponent {
         </AccessibleFakeInkedButton>
       );
     }
-
 
     return (
       <div
