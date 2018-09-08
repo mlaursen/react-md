@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group";
 import { Overlay } from "@react-md/overlay";
 import { ICSSTransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
 
-export type SheetPosition = "top" | "right" | "bottom" | "left";
+export type SheetPosition = "calculated" | "top" | "right" | "bottom" | "left";
 export type SheetHorizontalSize = "none" | "media" | "small" | "large" | "until-small" | "until-large" | "until-media";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
@@ -153,7 +153,7 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
           <div
             {...props}
             className={cn(
-              `rmd-sheet rmd-sheet--${position}`,
+              "rmd-sheet",
               {
                 "rmd-sheet--fixed": !inline,
                 "rmd-sheet--small-width": isHorizontal && horizontalSize === "small",
@@ -165,6 +165,7 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
                 "rmd-sheet--viewport-height": !isHorizontal && verticalSize === "none",
                 "rmd-sheet--touchable-height": !isHorizontal && verticalSize === "touch",
                 "rmd-sheet--recommended-height": !isHorizontal && verticalSize === "recommended",
+                [`rmd-sheet--${position}`]: position !== "calculated",
               },
               className
             )}
