@@ -328,7 +328,10 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       const cloned = this.target.cloneNode(false) as HTMLElement;
       cloned.style.paddingTop = "";
       cloned.style.paddingBottom = "";
-      document.body.appendChild(cloned);
+      cloned.style.visibility = "hidden";
+
+      const container = this.target.parentElement || document.body;
+      container.appendChild(cloned);
       const style = window.getComputedStyle(cloned);
       if (style.paddingTop) {
         paddingTop = parseFloat(style.paddingTop);
@@ -337,7 +340,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       if (style.paddingBottom) {
         paddingBottom = parseFloat(style.paddingBottom);
       }
-      document.body.removeChild(cloned);
+      container.removeChild(cloned);
     }
 
     return { maxHeight, paddingTop, paddingBottom };
