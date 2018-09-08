@@ -81,7 +81,7 @@ export interface ICollapseProps {
    *
    * @docgen
    */
-  minHeight?: number;
+  minHeight?: number | string;
 
   /**
    * The min padding bottom to apply to the collapse. This will be used with the `minHeight`
@@ -89,7 +89,7 @@ export interface ICollapseProps {
    *
    * @docgen
    */
-  minPaddingBottom?: number;
+  minPaddingBottom?: number | string;
 
   /**
    * The min padding top to apply to the collapse. This will be used with the `minHeight`
@@ -97,7 +97,7 @@ export interface ICollapseProps {
    *
    * @docgen
    */
-  minPaddingTop?: number;
+  minPaddingTop?: number | string;
 
   /**
    * The duration for the entire enter animation in milliseconds. This should normally stay as the default value
@@ -161,9 +161,9 @@ export interface ICollapseState {
   prevCollapsed: boolean;
   entering: boolean;
   leaving: boolean;
-  maxHeight?: number;
-  paddingTop?: number;
-  paddingBottom?: number;
+  maxHeight?: number | string;
+  paddingTop?: number | string;
+  paddingBottom?: number | string;
 }
 
 export default class Collapse extends React.Component<ICollapseProps, ICollapseState> {
@@ -171,9 +171,9 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     style: PropTypes.object,
     className: PropTypes.string,
     collapsed: PropTypes.bool.isRequired,
-    minHeight: PropTypes.number,
-    minPaddingTop: PropTypes.number,
-    minPaddingBottom: PropTypes.number,
+    minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    minPaddingTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    minPaddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     enterDuration: PropTypes.number,
     leaveDuration: PropTypes.number,
     isEmptyCollapsed: PropTypes.bool,
@@ -222,13 +222,13 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     (
       transitionDuration: string,
       propStyle?: React.CSSProperties,
-      maxHeight?: number,
-      paddingTop?: number,
-      paddingBottom?: number
+      maxHeight?: number | string,
+      paddingTop?: number | string,
+      paddingBottom?: number | string
     ) => {
-      const isHeight = typeof maxHeight === "number";
-      const isPadTop = typeof paddingTop === "number";
-      const isPadBot = typeof paddingBottom === "number";
+      const isHeight = typeof maxHeight !== "undefined";
+      const isPadTop = typeof paddingTop !== "undefined";
+      const isPadBot = typeof paddingBottom !== "undefined";
       if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
         return undefined;
       } else if (propStyle) {
