@@ -2,9 +2,16 @@ import { Middleware } from "redux";
 import { LOCATION_CHANGE } from "connected-react-router";
 import smoothScroll from "utils/smoothScroll";
 
+let initialPageScroll = true;
+
 function scroll() {
+  if (initialPageScroll) {
+    initialPageScroll = false;
+    return;
+  }
+
   const { hash } = window.location;
-  if (!hash) {
+  if (!hash && !initialPageScroll) {
     return window.scrollTo(0, 0);
   }
 
