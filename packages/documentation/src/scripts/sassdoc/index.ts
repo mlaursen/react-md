@@ -104,9 +104,24 @@ function formatVariable(item: SassDoc.VariableSassDoc, references: ISassDocRefer
   };
 }
 
+function toCodeParam({ name, default: defaultValue }) {
+  return `${name}${defaultValue ? `: ${defaultValue}` : ""}`;
+}
+
+function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc.ParameterList): string {
+  const { type, code } = context;
+
+  let params = "";
+  if (parameters.length) {
+    params = `(${parameters.map(toCodeParam).join(", ")})`;
+  }
+
+  return `@${type} ${context.name}${params} {${code}}`;
+}
+
 function formatWithParams(item: SassDoc.FunctionSassDoc | SassDoc.MixinSassDoc, references: ISassDocReference[]) {
   const {
-    context: { code },
+    context,
     throws = [] as SassDoc.Throw,
     example: examples = [] as SassDoc.ExampleList,
     parameter: parameters = [] as SassDoc.ParameterList,
@@ -114,7 +129,7 @@ function formatWithParams(item: SassDoc.FunctionSassDoc | SassDoc.MixinSassDoc, 
 
   return {
     ...formatBase(item, references),
-    code,
+    code: createFunctionOrMixinCode(context, parameters),
     throws,
     examples,
     parameters,

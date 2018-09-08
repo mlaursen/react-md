@@ -1,19 +1,7 @@
 @import 'app-globals';
 
-$margin: 2.5rem;
-$gutter: 1rem;
-
 .package-sassdoc {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 auto;
-  padding: $margin - ($gutter / 2);
-
-  &__block {
-    margin: $margin;
-    width: 100%;
-  }
+  padding: 5.5rem;
 }
 
 .sassdoc {
@@ -40,5 +28,41 @@ $gutter: 1rem;
     @include rmd-theme(color, primary);
 
     margin-bottom: 5rem;
+  }
+
+  &__source {
+    @include rmd-elevation(4);
+
+    &[role='button'] {
+      cursor: pointer;
+      outline-style: none;
+      position: relative;
+    }
+
+    &::after {
+      @include rmd-elevation(6);
+
+      $underlay-color: rgba($rmd-white-base, .04);
+
+      background-color: $underlay-color;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity $rmd-leave-transition-time linear;
+      z-index: -1;
+    }
+
+    &.rmd-states--focus::after {
+      opacity: 1;
+    }
+  }
+
+  &__source-code {
+    margin: 0;
+    padding: 1rem 0;
   }
 }
