@@ -32,7 +32,10 @@ const TSCONFIG_COMMONJS_TEMPLATE = `{
   "extends": "../../tsconfig.commonjs.json",
   "compilerOptions": {
     "outDir": "./lib"
-  }
+  },
+  "exclude": [
+    "types/*"
+  ]
 }
 `;
 
@@ -44,6 +47,7 @@ const TSCONFIG_TEMPLATE = `{
     "outDir": "./es"
   },
   "exclude": [
+    "types/*",
     "**/__tests__/*"
   ]
 }

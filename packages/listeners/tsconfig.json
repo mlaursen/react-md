@@ -6,6 +6,7 @@
     "outDir": "./es"
   },
   "exclude": [
+    "types/*",
     "**/__tests__/*"
   ]
 }

@@ -2,5 +2,8 @@
   "extends": "../../tsconfig.commonjs.json",
   "compilerOptions": {
     "outDir": "./lib"
-  }
+  },
+  "exclude": [
+    "types/*"
+  ]
 }
