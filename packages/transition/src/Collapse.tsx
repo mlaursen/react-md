@@ -389,8 +389,9 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     this.setState(this.getSizing());
 
     // wait for the sizing to be applied and then finish the rest of transition. without this wait, the animation might
-    // start halfway through
-    window.requestAnimationFrame(() => {
+    // start halfway through. All browsers except for Firefox have fluid leave animations with
+    // window.requestAnimationFrame so a timeout has to be used instead.
+    this.transitionTimeout = window.setTimeout(() => {
       this.transitionTimeout = window.setTimeout(() => {
         this.transitionTimeout = undefined;
         if (this.props.onCollapsed) {
@@ -401,6 +402,6 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       }, leaveDuration);
 
       this.setState({ maxHeight: minHeight, paddingTop: minPaddingTop, paddingBottom: minPaddingBottom });
-    });
+    }, 25);
   };
 }
