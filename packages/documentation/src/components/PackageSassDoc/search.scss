@@ -58,9 +58,9 @@ $btn-margin: 1rem;
 
 .sassdoc__search {
   @include rmd-typography(headline-4);
+  @include rmd-utils-hide-focus-outline;
 
   border: 0;
-  outline-style: none;
   padding: $rmd-list-item-vertical-padding $rmd-list-item-horizontal-padding;
   width: 100%;
 

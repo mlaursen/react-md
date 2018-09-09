@@ -54,8 +54,7 @@
     @include rmd-states-surface;
     @include rmd-states-base-color;
     @include rmd-states-hover;
-
-    outline-style: none;
+    @include rmd-utils-hide-focus-outline;
 
     &:hover {
       cursor: pointer;

@@ -44,7 +44,10 @@ $rmd-btn-icon-size: 3rem !default; // 48dp
 /// pseudo element so it is recommended to be either black or white with an opacity applied.
 ///
 /// @type Color
-$rmd-btn-hover-background-color: rgba(if(rmd-theme-contrast-tone($rmd-theme-background) == 'light', $rmd-white-base, $rmd-black-base), .2) !default;
+$rmd-btn-hover-background-color: rgba(
+  if(rmd-theme-contrast-tone($rmd-theme-background) == 'light', $rmd-white-base, $rmd-black-base),
+  .2
+) !default;
 
 /// The transition duration for the hover background color to be applied.
 /// @type Number

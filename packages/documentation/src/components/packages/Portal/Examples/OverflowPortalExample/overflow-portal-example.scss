@@ -16,7 +16,7 @@
   width: 100%;
 
   [class^='ReactVirtualized']:focus {
-    outline-style: none;
+    @include rmd-utils-hide-focus-outline;
 
     .overflow-portal-example__cell--active {
       @include rmd-theme(background-color, text-hint-on-background);

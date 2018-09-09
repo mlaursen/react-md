@@ -76,9 +76,10 @@
 ///     @include rmd-tree-item;
 ///   }
 @mixin rmd-tree-item {
+  @include rmd-utils-hide-focus-outline;
+
   // added again just-in-case so that dnd libraries don't do a bad drag image
   list-style: none;
-  outline-style: none;
 
   &__content--link {
     color: inherit;

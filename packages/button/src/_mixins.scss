@@ -8,6 +8,7 @@
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/theme/dist/variables';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 
 /// A simple mixin to create an unstyled button.
@@ -23,9 +24,10 @@
 ///     display: inline-flex;
 ///   }
 @mixin rmd-btn-unstyled {
+  @include rmd-utils-hide-focus-outline;
+
   background-color: transparent;
   border-width: 0;
-  outline-style: none;
 }
 
 /// The base styles for a button.

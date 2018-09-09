@@ -45,3 +45,20 @@
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/// A helper mixin that will hide the outline style when a user focuses any element / on the page. All this really does
+/// is create an `outline-style: none` when the element is focused.
+///
+/// @param {Boolean} fix-moz-focus [true] - Boolean if the Firefox focus inner styles should also
+///     be removed.
+@mixin rmd-utils-hide-focus-outline($fix-moz-focus: true) {
+  &:focus {
+    outline-style: none;
+  }
+
+  @if $fix-moz-focus {
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}

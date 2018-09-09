@@ -5,11 +5,9 @@
 }
 
 .sassdoc {
-  margin-top: 0;
+  @include rmd-utils-hide-focus-outline;
 
-  &:focus {
-    outline-style: none;
-  }
+  margin-top: 0;
 
   &__title {
     margin: 1em 0;
@@ -34,26 +32,27 @@
     @include rmd-elevation(4);
 
     &[role='button'] {
+      @include rmd-utils-hide-focus-outline;
+
       cursor: pointer;
-      outline-style: none;
       position: relative;
     }
 
     &::after {
-      @include rmd-elevation(6);
+      @include rmd-elevation(8);
 
-      $underlay-color: rgba($rmd-white-base, .04);
+      $underlay-color: rgba($rmd-white-base, .08);
 
       background-color: $underlay-color;
       bottom: 0;
       content: '';
       left: 0;
       opacity: 0;
+      pointer-events: none;
       position: absolute;
       right: 0;
       top: 0;
       transition: opacity $rmd-leave-transition-time linear;
-      z-index: -1;
     }
 
     &.rmd-states--focus::after {
