@@ -96,12 +96,6 @@ export interface IPositionOptions {
   verticalPosition?: VerticalPosition;
 
   /**
-   * This should be the element that you want to position or a `document.querySelector` string to attempt to
-   * get the target element. This _should_ be provided each time to get better positioning logic.
-   */
-  target?: HTMLElement | string | null;
-
-  /**
    * This should be a number between 0 and 1 (inclusive). This will allow the target element
    * to overlap the `fixedTo` by a percentage of the `fixedTo`'s height.
    */
