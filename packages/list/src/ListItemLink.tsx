@@ -2,11 +2,13 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
-import { IListItemBaseProps } from "./ListItem";
+
+import { IListItemBaseProps, IListItemBaseTextProps } from "./ListItem";
+import ListItemText from "./ListItemText";
 import ListItemLeftIcon from "./ListItemLeftIcon";
 import ListItemRightIcon from "./ListItemRightIcon";
 
-export interface IListItemLinkBaseProps extends IListItemBaseProps {
+export interface IListItemLinkBaseProps extends IListItemBaseProps, IListItemBaseTextProps {
   /**
    * An optional style to apply to the `<a>` element.
    *
@@ -84,6 +86,13 @@ export interface IListItemLinkBaseProps extends IListItemBaseProps {
    */
   children?: React.ReactNode;
 
+  /**
+   * Boolean if the list item is currently selected to show a selected state.
+   *
+   * @docgen
+   */
+  selected?: boolean;
+
   onMouseDown?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   onMouseUp?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   onTouchStart?: (event: React.TouchEvent<HTMLAnchorElement>) => void;
@@ -119,15 +128,21 @@ export type IListItemLinkProps = IListItemLinkBaseProps | IListItemLinkWithCompo
 const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
   const {
     className,
+    textClassName,
+    secondaryTextClassName,
     liStyle,
     liClassName,
     liRole,
     leftIcon,
     rightIcon,
+    primaryText,
+    secondaryText,
+    textChildren,
     children: propChildren,
     forceIconWrap,
     component: Link,
     href,
+    selected,
     disabled: propDisabled,
     onMouseDown,
     onMouseUp,
@@ -139,6 +154,27 @@ const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
   } = baseProps as ListItemLinkWithDefaultProps;
 
   let children = propChildren;
+  if (primaryText || textChildren) {
+    children = (
+      <ListItemText
+        className={textClassName}
+        secondaryText={secondaryText}
+        secondaryTextClassName={secondaryTextClassName}
+      >
+        {textChildren && children ? children : primaryText}
+      </ListItemText>
+    );
+  } else if (secondaryText) {
+    children = children = (
+      <ListItemText
+        className={textClassName}
+        secondaryText={secondaryText}
+        secondaryTextClassName={secondaryTextClassName}
+      >
+        {children}
+      </ListItemText>
+    );
+  }
   children = (
     <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
       {children}
@@ -167,6 +203,7 @@ const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
         onKeyDown={onKeyDown}
         disabled={disabled}
         pressable={!disabled}
+        selected={selected}
         className={cn(
           "rmd-list-link",
           {

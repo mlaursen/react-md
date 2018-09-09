@@ -79,40 +79,41 @@ export type ListWithDefaultProps = IListProps & IListDefaultProps;
  * render the normal list styles. This should normally be used along with the `Listitem` or `ListItemLink`
  * components.
  */
-const List: React.SFC<IListProps> = providedProps => {
-  const { className, dense, inline, ordered, children, forwardedRef, ...props } = providedProps as ListWithDefaultProps;
-  return React.createElement(
-    ordered ? "ol" : "ul",
-    {
-      ...props,
-      ref: forwardedRef,
-      className: cn(
-        "rmd-list",
-        {
-          "rmd-list--dense": dense,
-          "rmd-list--inline": inline,
-        },
-        className
-      ),
-    },
-    children
-  );
-};
+class List extends React.Component<IListProps> {
+  public static propTypes = {
+    role: PropTypes.string,
+    dense: PropTypes.bool,
+    inline: PropTypes.bool,
+    ordered: PropTypes.bool,
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-List.propTypes = {
-  role: PropTypes.string,
-  dense: PropTypes.bool,
-  inline: PropTypes.bool,
-  ordered: PropTypes.bool,
-};
+  public static defaultProps: IListDefaultProps = {
+    role: "list",
+    dense: false,
+    inline: false,
+    ordered: false,
+  };
 
-List.defaultProps = {
-  role: "list",
-  dense: false,
-  inline: false,
-  ordered: false,
-} as IListDefaultProps;
+  public render() {
+    const { className, dense, inline, ordered, children, forwardedRef, ...props } = this.props as ListWithDefaultProps;
+
+    return React.createElement(
+      ordered ? "ol" : "ul",
+      {
+        ...props,
+        ref: forwardedRef,
+        className: cn(
+          "rmd-list",
+          {
+            "rmd-list--dense": dense,
+            "rmd-list--inline": inline,
+          },
+          className
+        ),
+      },
+      children
+    );
+  }
+}
 
 export default React.forwardRef<ListElement, IListProps>((props, ref) => <List {...props} forwardedRef={ref} />);

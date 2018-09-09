@@ -8,6 +8,8 @@ import ListItemText from "./ListItemText";
 import ListItemLeftIcon from "./ListItemLeftIcon";
 import ListItemRightIcon from "./ListItemRightIcon";
 
+export type ListItemHeight = "auto" | "medium" | "large" | "extra-large" | "content";
+
 export interface IListItemBaseProps {
   /**
    * An optional icon to display to the left of the children or provided text elements. If this is
@@ -38,36 +40,7 @@ export interface IListItemBaseProps {
   forceIconWrap?: boolean;
 }
 
-export interface IListItemProps extends IListItemBaseProps, React.HTMLAttributes<HTMLLIElement> {
-  /**
-   * The role for the list item. This should really be one of:
-   * - listitem
-   * - treeitem
-   * - option
-   * - none
-   *
-   * but I am allowing any string just in case I forget a use case.
-   *
-   * @docgen
-   */
-  role?: string;
-
-  /**
-   * Boolean if the list item is disabled. This is only applied if the `clickable` prop
-   * is also enabled.
-   *
-   * @docgen
-   */
-  disabled?: boolean;
-
-  /**
-   * Boolean if the list item is clickable. It will update the the `<li>` element with the
-   * `KeyboardClickable` functionality of a "listitem".
-   *
-   * @docgen
-   */
-  clickable?: boolean;
-
+export interface IListItemBaseTextProps {
   /**
    * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
    * `secondaryText` within the list item.
@@ -114,6 +87,47 @@ export interface IListItemProps extends IListItemBaseProps, React.HTMLAttributes
    * @docgen
    */
   secondaryText?: React.ReactNode;
+}
+
+export interface IListItemProps
+  extends IListItemBaseProps,
+    IListItemBaseTextProps,
+    React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * The role for the list item. This should really be one of:
+   * - listitem
+   * - treeitem
+   * - option
+   * - none
+   *
+   * but I am allowing any string just in case I forget a use case.
+   *
+   * @docgen
+   */
+  role?: string;
+
+  /**
+   * Boolean if the list item is disabled. This is only applied if the `clickable` prop
+   * is also enabled.
+   *
+   * @docgen
+   */
+  disabled?: boolean;
+
+  /**
+   * Boolean if the list item is clickable. It will update the the `<li>` element with the
+   * `KeyboardClickable` functionality of a "listitem".
+   *
+   * @docgen
+   */
+  clickable?: boolean;
+
+  /**
+   * Boolean if the list item is currently selected to show a selected state.
+   *
+   * @docgen
+   */
+  selected?: boolean;
 
   /**
    * Boolean if the list item should be considered "three-lines" in height. This will update the `secondaryText`
@@ -124,6 +138,16 @@ export interface IListItemProps extends IListItemBaseProps, React.HTMLAttributes
    * @docgen
    */
   threeLines?: boolean;
+
+  /**
+   * The height to apply to the list item. When it is set to `"auto"`, it will use:
+   * - `"medium"` if a `leftIcon` or `rightIcon` is applied with no secondary text
+   * - `"large"` if no `leftIcon` or `rightIcon` is applied but has secondary text
+   * - `"extra-large"` if there is both a `leftIcon` or `rightIcon` with secondary text
+   *
+   * @docgen
+   */
+  height?: ListItemHeight;
 }
 
 export interface IListItemDefaultProps {
@@ -133,6 +157,7 @@ export interface IListItemDefaultProps {
   textChildren: boolean;
   threeLines: false;
   forceIconWrap: boolean;
+  height: ListItemHeight;
 }
 
 export type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
@@ -157,6 +182,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
     children: propChildren,
     disabled: propDisabled,
     clickable,
+    selected,
     role,
     onMouseDown,
     onMouseUp,
@@ -164,6 +190,7 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
     onTouchEnd,
     onKeyUp,
     onKeyDown,
+    height,
     ...props
   } = providedProps as ListItemWithDefaultProps;
 
@@ -210,9 +237,14 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
     );
   }
 
+  const isHeightAuto = height === "auto";
+  const isHeightMedium = height === "medium";
+  const isHeightLarge = height === "large";
+  const isHeightExtraLarge = height === "extra-large";
   return (
     <StatesConsumer
       disabled={propDisabled}
+      selected={selected}
       pressable={clickable}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
@@ -225,9 +257,10 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         {
           "rmd-list-item--disabled": propDisabled,
           "rmd-list-item--stateful": !propDisabled && clickable,
-          "rmd-list-item--medium": (leftIcon || rightIcon) && !secondaryText,
-          "rmd-list-item--large": !(leftIcon || rightIcon) && !!secondaryText,
-          "rmd-list-item--extra-large": (leftIcon || rightIcon) && !!secondaryText,
+          "rmd-list-item--medium": isHeightMedium || (isHeightAuto && (leftIcon || rightIcon) && !secondaryText),
+          "rmd-list-item--large": isHeightLarge || (isHeightAuto && !(leftIcon || rightIcon) && !!secondaryText),
+          "rmd-list-item--extra-large":
+            isHeightExtraLarge || (isHeightAuto && (leftIcon || rightIcon) && !!secondaryText),
           "rmd-list-item--three-lines": !!secondaryText && threeLines,
         },
         className
@@ -279,6 +312,7 @@ ListItem.defaultProps = {
   textChildren: true,
   threeLines: false,
   forceIconWrap: false,
+  height: "auto",
 } as IListItemDefaultProps;
 
 export default ListItem;
