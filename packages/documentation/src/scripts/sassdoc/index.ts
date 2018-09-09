@@ -105,7 +105,7 @@ function formatVariable(item: SassDoc.VariableSassDoc, references: ISassDocRefer
 }
 
 function toCodeParam({ name, default: defaultValue }) {
-  return `${name}${defaultValue ? `: ${defaultValue}` : ""}`;
+  return `$${name}${defaultValue ? `: ${defaultValue}` : ""}`;
 }
 
 function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc.ParameterList): string {
