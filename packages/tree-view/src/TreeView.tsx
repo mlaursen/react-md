@@ -313,6 +313,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   };
 
   private handleKeyDown = (event: TreeKeyboardEvent) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event);
+    }
+
     switch (event.key) {
       case "Home":
       case "End":
