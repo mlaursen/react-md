@@ -17,6 +17,8 @@ export default function isFocusable(el: HTMLElement | null, allowDisabled: boole
 
   if (FOCUSABLE_ELEMENTS.indexOf(el.tagName) !== -1) {
     return true;
+  } else if (el.tagName === "A" && (el as HTMLAnchorElement).href) {
+    return true;
   }
 
   return el.getAttribute("tabindex") !== null || FOCUSABLE_ROLES.indexOf(el.getAttribute("role") || "") !== -1;
