@@ -216,6 +216,10 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
   }
 
   public componentDidMount() {
+    if (!this.props.pressable) {
+      return;
+    }
+
     this.el = ReactDOM.findDOMNode(this) as HTMLElement;
     const original = this.el;
     if (!isFocusable(this.el, true)) {
