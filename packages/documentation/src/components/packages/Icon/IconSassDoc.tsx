@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import SassDocPage from "components/SassDocPage";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-// const props = {};
+const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
 
-const IconSassDoc = () => <SassDocPage name="Icon" />;
+const IconSassDoc = () => <PackageSassDoc name="Icon" sassdoc={sassdoc} />;
 
 export default IconSassDoc;

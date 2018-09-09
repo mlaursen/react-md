@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { IFlattenedSassDoc } from "types/sassdoc";
 import PackageSassDoc from "components/PackageSassDoc";
 

@@ -1,11 +1,12 @@
 export default function createSassDocTemplate(name: string) {
   return `import * as React from "react";
 
-import SassDocPage from "components/SassDocPage";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-// const props = {};
+const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
 
-const ${name}SassDoc = () => <SassDocPage name="${name}" />;
+const ${name}SassDoc = () => <PackageSassDoc name="${name}" sassdoc={sassdoc} />;
 
 export default ${name}SassDoc;
 `;

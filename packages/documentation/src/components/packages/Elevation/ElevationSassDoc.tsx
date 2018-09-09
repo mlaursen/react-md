@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import SassDocPage from "components/SassDocPage";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-// const props = {};
+const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
 
-const ElevationSassDoc = () => <SassDocPage name="Elevation" />;
+const ElevationSassDoc = () => <PackageSassDoc name="Elevation" sassdoc={sassdoc} />;
 
 export default ElevationSassDoc;

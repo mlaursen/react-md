@@ -46,6 +46,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
 
   public componentDidUpdate(prevProps: ISearchProps, prevState: ISearchState) {
     if (this.state.selected !== prevState.selected) {
+      const padding = 8;
       window.requestAnimationFrame(() => {
         const container = document.getElementById("sassdoc-search-results-container") as HTMLDivElement;
         if (!container) {
@@ -61,7 +62,9 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         const selectedTop = selected.offsetTop;
         const selectedBottom = selectedTop + selected.offsetHeight;
         if (position < selectedBottom) {
-          container.scrollTop = selectedBottom - container.offsetHeight + 16;
+          container.scrollTop = selectedBottom - container.offsetHeight + padding;
+        } else if (container.scrollTop > selectedTop) {
+          container.scrollTop = selectedTop - padding;
         }
       });
     }
@@ -92,7 +95,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
           <List id="sassdoc-search-results" role="listbox" ordered={true} onClick={this.handleListboxClick}>
             {results.map(({ name, type }, i) => (
               <ListItemLink
-                key={name}
+                key={`${name}-${type}`}
                 selected={i === selected}
                 component={Link}
                 to={`#${type.toLowerCase()}-${name}`}

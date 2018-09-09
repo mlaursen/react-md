@@ -1,9 +1,9 @@
 import * as React from "react";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-import SassDocPage from "components/SassDocPage";
+const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
 
-// const props = {};
-
-const ButtonSassDoc = () => <SassDocPage name="Button" />;
+const ButtonSassDoc = () => <PackageSassDoc name="Button" sassdoc={sassdoc} />;
 
 export default ButtonSassDoc;

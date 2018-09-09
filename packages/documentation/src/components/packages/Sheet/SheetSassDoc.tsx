@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import SassDocPage from "components/SassDocPage";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-// const props = {};
+const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
 
-const SheetSassDoc = () => <SassDocPage name="Sheet" />;
+const SheetSassDoc = () => <PackageSassDoc name="Sheet" sassdoc={sassdoc} />;
 
 export default SheetSassDoc;
