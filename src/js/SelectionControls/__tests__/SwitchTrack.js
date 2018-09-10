@@ -1,9 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import {
-  renderIntoDocument,
-} from 'react-dom/test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 import SwitchTrack from '../SwitchTrack';
 
@@ -12,6 +10,7 @@ describe('SwitchTrack', () => {
     const props = {
       style: { background: 'black' },
       className: 'test',
+      'aria-label': 'Light Switch',
       onClick: jest.fn(),
     };
 
@@ -23,7 +22,12 @@ describe('SwitchTrack', () => {
   });
 
   it('adds the correct stateful classnames', () => {
-    const props = { disabled: false, checked: false, onClick: jest.fn() };
+    const props = {
+      disabled: false,
+      checked: false,
+      'aria-label': 'Light Switch',
+      onClick: jest.fn(),
+    };
     let track = renderIntoDocument(<SwitchTrack {...props} />);
     let className = findDOMNode(track).className;
 

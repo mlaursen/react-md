@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
 const DISABLED_INTERACTIONS = ['mouse'];
@@ -19,6 +20,8 @@ export default class SwitchThumb extends PureComponent {
     checked: PropTypes.bool,
     onClick: PropTypes.func,
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
+    'aria-label': oneRequiredForA11y(PropTypes.string, 'aria-labelledby'),
+    'aria-labelledby': PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   render() {
@@ -26,6 +29,8 @@ export default class SwitchThumb extends PureComponent {
     return (
       <AccessibleFakeInkedButton
         {...props}
+        role="checkbox"
+        aria-checked={checked}
         disabled={disabled}
         disabledInteractions={disabledInteractions || DISABLED_INTERACTIONS}
         inkContainerClassName="md-ink-container--2x"
