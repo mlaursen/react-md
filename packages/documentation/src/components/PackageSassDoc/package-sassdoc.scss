@@ -1,7 +1,9 @@
 @import 'app-globals';
 
+$sassdoc-border-radius: .125rem;
+
 .package-sassdoc {
-  padding: 5.5rem;
+  padding: 0 5.5rem;
 }
 
 .sassdoc {
@@ -9,27 +11,79 @@
 
   margin-top: 0;
 
+  &:not(:last-of-type) {
+    margin-bottom: 8rem;
+  }
+
   &__title {
     margin: 1em 0;
+    position: relative;
 
-    // every SassDocType title
-    &:nth-child(1) {
-      margin-top: .125em;
+    &--section {
+      background-color: $rmd-grey-200;
+      border-bottom: 4px solid $rmd-grey-400;
+      margin: 0 -5.5rem;
+      padding: 1em 5.5rem;
     }
   }
 
   &__name {
+    @include rmd-theme(color, primary);
+
+    &:not(:first-of-type) {
+      margin-top: 2em;
+    }
+  }
+
+  &__throw {
+    @include rmd-elevation(4);
+    @include rmd-theme(background-color, error);
+    @include rmd-theme(color, text-primary-on-light);
+    @include code-styles;
+
+    border-radius: $sassdoc-border-radius;
     display: block;
+    font-style: italic;
+    font-weight: map-get($rmd-typography-font-weights, medium);
+    margin-top: -1rem;
+    padding: .5rem;
   }
 
   &__type {
-    @include rmd-theme(color, primary);
+    left: 0;
+    position: absolute;
+    top: 100%;
+  }
 
-    margin-bottom: 5rem;
+  &__parameters-table {
+    th {
+      text-align: left;
+    }
+
+    td {
+      padding-right: 1.5rem;
+    }
+
+    pre,
+    code {
+      @include code-styles;
+    }
+  }
+
+  &__list {
+    @include rmd-typography(body-2);
+  }
+
+  &__example pre {
+    @include rmd-elevation(4);
+
+    border-radius: $sassdoc-border-radius;
   }
 
   &__source {
     @include rmd-elevation(4);
+
+    border-radius: $sassdoc-border-radius;
 
     &[role='button'] {
       @include rmd-utils-hide-focus-outline;
@@ -44,6 +98,7 @@
       $underlay-color: rgba($rmd-white-base, .08);
 
       background-color: $underlay-color;
+      border-radius: inherit;
       bottom: 0;
       content: '';
       left: 0;
@@ -61,7 +116,29 @@
   }
 
   &__source-code {
+    border-radius: inherit;
     margin: 0;
     padding: 1rem 0;
+  }
+
+  &__quick-link {
+    height: 2rem;
+    left: -2.5rem;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate3d(0, 0, 1, 90deg);
+    transition: opacity .15s linear;
+    width: 2rem;
+
+    .rmd-icon {
+      height: inherit;
+      width: inherit;
+    }
+
+    .sassdoc__title:hover &,
+    &:focus {
+      opacity: 1;
+    }
   }
 }

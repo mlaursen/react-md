@@ -29,7 +29,7 @@ export interface ISassDoc {
   code?: string;
   examples?: IExample[];
   parameters?: IParameter[];
-  requires?: IRequire[];
+  requires?: ISassDocLinkTo[];
   returns?: IReturn;
   throws?: Throw;
 }

@@ -2,8 +2,21 @@ import * as React from "react";
 import cn from "classnames";
 import { Text, ITextProps } from "@react-md/typography";
 
-const SassDocTitle: React.SFC<ITextProps> = ({ children, className, ...props }) => (
-  <Text {...props} className={cn("sassdoc__title", className)}>
+export interface ISassDocTitleProps extends ITextProps {
+  section?: boolean;
+}
+
+const SassDocTitle: React.SFC<ISassDocTitleProps> = ({ children, className, section, ...props }) => (
+  <Text
+    {...props}
+    className={cn(
+      "sassdoc__title",
+      {
+        "sassdoc__title--section": section,
+      },
+      className
+    )}
+  >
     {children}
   </Text>
 );

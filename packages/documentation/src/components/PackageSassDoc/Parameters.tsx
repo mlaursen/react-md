@@ -17,7 +17,7 @@ const Parameters: React.SFC<IParametersProps> = ({ parameters }) => {
   return (
     <React.Fragment>
       <SassDocTitle>Parameters</SassDocTitle>
-      <table>
+      <table className="sassdoc__parameters-table">
         <thead>
           <tr>
             <th role="tableheader">Name</th>
@@ -29,12 +29,12 @@ const Parameters: React.SFC<IParametersProps> = ({ parameters }) => {
         <tbody>
           {parameters.map(({ name, description, type, default: defaultValue }) => (
             <tr key={name}>
-              <td><pre>${name}</pre></td>
+              <td><code>${name}</code></td>
               <td>
                 <Markdown markdown={description} />
               </td>
-              <td><pre>{type}</pre></td>
-              <td><pre>{defaultValue}</pre></td>
+              <td><code>{type}</code></td>
+              <td><code>{defaultValue && `${defaultValue.replace(/^rmd/, "$rmd")}`}</code></td>
             </tr>
           ))}
         </tbody>

@@ -1,9 +1,15 @@
 import * as React from "react";
 
-import SassDocPage from "components/SassDocPage";
+import { IFlattenedSassDoc } from "types/sassdoc";
+import PackageSassDoc from "components/PackageSassDoc";
 
-// const props = {};
+// const sassdoc = require("./sassdoc.json") as IFlattenedSassDoc;
+const sassdoc: IFlattenedSassDoc = {
+  mixins: [],
+  functions: [],
+  variables: [],
+};
 
-const MenuSassDoc = () => <SassDocPage name="Menu" />;
+const MenuSassDoc = () => <PackageSassDoc name="Menu" sassdoc={sassdoc} />;
 
 export default MenuSassDoc;

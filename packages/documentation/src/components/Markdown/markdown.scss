@@ -15,10 +15,7 @@
 
   pre,
   code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    hyphens: none;
-    tab-size: 4;
-    word-wrap: break-word;
+    @include code-styles;
   }
 
   pre {

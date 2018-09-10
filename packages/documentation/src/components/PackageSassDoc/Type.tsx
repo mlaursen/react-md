@@ -1,10 +1,8 @@
 import * as React from "react";
 import { Text } from "@react-md/typography";
 
-import SassDocTitle from "./SassDocTitle";
-
 export interface ITypeProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Type: React.SFC<ITypeProps> = ({ children }) => {
@@ -13,12 +11,9 @@ const Type: React.SFC<ITypeProps> = ({ children }) => {
   }
 
   return (
-    <React.Fragment>
-      <SassDocTitle>Type</SassDocTitle>
-      <SassDocTitle type="subtitle-1" className="sassdoc__type">
-        {children}
-      </SassDocTitle>
-    </React.Fragment>
+    <Text type="subtitle-1" tagName="span" className="sassdoc__type">
+      {children}
+    </Text>
   );
 };
 

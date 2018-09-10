@@ -36,3 +36,10 @@ $solarized-violet: #6c71c4;
 $solarized-blue: #268bd2;
 $solarized-cyan: #2aa198;
 $solarized-green: #859900;
+
+@mixin code-styles {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  hyphens: none;
+  tab-size: 4;
+  word-wrap: break-word;
+}

@@ -63,17 +63,28 @@ function createLinkTo(item: SassDoc.See | SassDoc.Require, references: ISassDocR
   };
 }
 
+function uniqueAndTrueish(linkTo: ISassDocLinkTo, i: number, list: ISassDocLinkTo[]) {
+  if (!linkTo) {
+    return false;
+  }
+
+  const j = list.findIndex(item => item && item.name === linkTo.name);
+  return i === j;
+}
+
 function formatBase(item: SassDoc.Item, references: ISassDocReference[]) {
   const {
     context: { name, value, scope },
     description = "",
     file: { path: pathName },
-    type,
     link: links = [] as SassDoc.LinkList,
   } = item;
-  const see = (item.see || ([] as SassDoc.SeeList)).map(i => createLinkTo(i, references)).filter(Boolean);
-  const usedBy = (item.usedBy || ([] as SassDoc.UsedBy)).map(i => createLinkTo(i, references)).filter(Boolean);
-  const requires = (item.require || ([] as SassDoc.RequireList)).map(i => createLinkTo(i, references)).filter(Boolean);
+  const type = item.type || item.context.type;
+  const see = (item.see || ([] as SassDoc.SeeList)).map(i => createLinkTo(i, references)).filter(uniqueAndTrueish);
+  const usedBy = (item.usedBy || ([] as SassDoc.UsedBy)).map(i => createLinkTo(i, references)).filter(uniqueAndTrueish);
+  const requires = (item.require || ([] as SassDoc.RequireList))
+    .map(i => createLinkTo(i, references))
+    .filter(uniqueAndTrueish);
 
   return {
     name,
@@ -104,8 +115,8 @@ function formatVariable(item: SassDoc.VariableSassDoc, references: ISassDocRefer
   };
 }
 
-function toCodeParam({ name, default: defaultValue }) {
-  return `$${name}${defaultValue ? `: ${defaultValue}` : ""}`;
+function toCodeParam({ name, default: defaultValue, ...others }) {
+  return `$${name}${defaultValue ? `: ${defaultValue.replace(/^rmd/, "$rmd")}` : ""}`;
 }
 
 function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc.ParameterList): string {
@@ -122,7 +133,7 @@ function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc
 function formatWithParams(item: SassDoc.FunctionSassDoc | SassDoc.MixinSassDoc, references: ISassDocReference[]) {
   const {
     context,
-    throws = [] as SassDoc.Throw,
+    throw: throws = [] as SassDoc.Throw,
     example: examples = [] as SassDoc.ExampleList,
     parameter: parameters = [] as SassDoc.ParameterList,
   } = item;
