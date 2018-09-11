@@ -219,6 +219,17 @@ export default class FileUpload extends PureComponent {
      * ```
      */
     onChange: PropTypes.func,
+
+    /**
+     * This prop tells mobile browsers that the input would prefer the user to get the image/video from
+     * the camera instead of using the file browser. This will be completely ignored by desktop browsers.
+     *
+     * Providing `'user'` will select the front facing camera while `'environment'` will select the rear facing
+     * camera.
+     *
+     * @see https://developers.google.com/web/fundamentals/media/capturing-images/
+     */
+    capture: PropTypes.oneOf(['user', 'environment']),
     value: deprecated(
       PropTypes.string,
       'There should\'t be a reason to set the value manually. Check out {@link #allowDuplicates} instead'

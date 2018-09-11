@@ -20,6 +20,7 @@ export interface FileInputProps extends Props {
   disabled?: boolean;
   swapTheming?: boolean;
   allowDuplicates?: boolean;
+  capture?: "user" | "environment";
 
   /**
    * @deprecated
