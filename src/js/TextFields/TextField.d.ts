@@ -5,6 +5,7 @@ export type TextFieldTypes = 'text' | 'password' | 'number' | 'email' | 'search'
 export type TextFieldLineDirections = 'left' | 'center' | 'right';
 
 export interface SharedTextFieldProps {
+  name: number | string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
   block?: boolean;
