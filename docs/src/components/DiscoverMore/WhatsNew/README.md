@@ -1,3 +1,11 @@
+## September 2018
+### v1.6.0 Released
+##### Changelog
+- Updated the `Autocomplete` to allow showing results when the data is considered unfiltered. ([@Xuecnahc] - [pull-790])
+- Added better accessibility for the `Switch` component. ([@ecuageo] - [pull-794])
+- Fixed the `TextField` Typescript definitions to correctly allow the `name` prop. ([@roderik] - [pull-795])
+- Added the `capture` prop to `FileInput` and `FileUpload`. [issues-793]
+
 ## August 2018
 ### v1.5.1 Released
 ##### Changelog
