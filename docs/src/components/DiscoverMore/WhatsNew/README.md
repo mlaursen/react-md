@@ -1,4 +1,8 @@
 ## September 2018
+### v1.6.1 Released
+##### Changelog
+- Fixed the `DatePicker` dates not having `type="button"`. ([@jakerichan] - [pull-796])
+
 ### v1.6.0 Released
 ##### Changelog
 - Updated the `Autocomplete` to allow showing results when the data is considered unfiltered. ([@Xuecnahc] - [pull-790])
