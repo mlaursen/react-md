@@ -75,6 +75,7 @@ export default class CalendarDate extends PureComponent {
         style={{ display: 'inline-block' }}
       >
         <button
+          type="button"
           ref={this._setFocus}
           onFocus={this._setActive}
           onBlur={this._setInactive}
