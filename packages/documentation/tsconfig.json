@@ -23,5 +23,8 @@
   "include": [
     "./typings/**/*",
     "./src/**/*"
+  ],
+  "exclude": [
+    "./src/scripts/sassdoc/throw.js"
   ]
 }
