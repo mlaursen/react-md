@@ -12,7 +12,6 @@ exports[`Link should render correctly when there is no component prop 1`] = `
 exports[`Link should render correctly when there is no component prop 2`] = `
 <a
   className="rmd-link"
-  href=""
 >
   Disabled Link
 </a>
@@ -38,6 +37,7 @@ exports[`Link should should render correctly when using @reach/router's Link com
 
 exports[`Link should should render correctly when using @reach/router's Link component 2`] = `
 <a
+  aria-current="page"
   href="/"
   onClick={[Function]}
 >
