@@ -40,7 +40,7 @@ export default class TreeItem extends React.Component<IDefaultTreeItemRendererPr
     let tooltip;
     let tooltipId;
     if (tooltipped) {
-      tooltipId = itemId.replace(/\//g, "-");
+      tooltipId = itemId.substring(1).replace(/\//g, "-");
       tooltip = <MagicTooltip id={tooltipId}>{children}</MagicTooltip>;
     }
 
