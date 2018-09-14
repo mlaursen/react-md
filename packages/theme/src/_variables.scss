@@ -145,6 +145,7 @@ $rmd-theme-text-colors: (
 /// so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme-prop-value` function
 /// to get a specific color within your theme.
 $rmd-theme-property-values: (
+  background: $rmd-theme-background,
   primary: $rmd-theme-primary,
   on-primary: $rmd-theme-on-primary,
   secondary: $rmd-theme-secondary,
