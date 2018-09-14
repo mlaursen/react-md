@@ -6,12 +6,14 @@ import * as MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import * as OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import * as UglifyJSPlugin from "uglifyjs-webpack-plugin";
 import * as CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
-import * as ForkTSCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as ManifestPlugin from "webpack-manifest-plugin";
 import TSConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
 import WatchMissingNodeModulesPlugin from "./WatchMissingNodeModulesPlugin";
 import InterpolateHtmlPlugin from "./InterpolateHtmlPlugin";
+
+const ForkTSCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 interface IArgv {
   mode: "development" | "production";
@@ -40,8 +42,8 @@ module.exports = (env: any, { mode }: IArgv) => {
   const min = isDev ? "" : ".min";
   const hash = ".[hash:8]";
   const chunkhash = isDev ? "" : ".[chunkhash:8]";
-  const publicUrl = "";
-  const publicPath = "/";
+  const publicUrl = isDev ? "" : "https://mlaursen.github.io/react-md";
+  const publicPath = isDev ? "/" : "/react-md/";
   const dist = isDev ? publicDir : path.join(root, "dist");
 
   return {
@@ -203,6 +205,7 @@ module.exports = (env: any, { mode }: IArgv) => {
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV || mode),
+          PUBLIC_URL: JSON.stringify(publicPath.replace("/", "")),
         },
       }),
       new webpack.NamedModulesPlugin(),
@@ -213,6 +216,11 @@ module.exports = (env: any, { mode }: IArgv) => {
         tsconfig,
         tslint,
       }),
+      !isDev && new CopyPlugin([
+        "public/robots.txt",
+        "public/favicon.ico",
+        "public/404.html"
+      ]),
     ].filter(Boolean),
     optimization: {
       splitChunks: {
@@ -220,7 +228,7 @@ module.exports = (env: any, { mode }: IArgv) => {
         cacheGroups: {
           styles: {
             name: "styles",
-            test: /\.css$/,
+            test: /\.s?css$/,
             chunks: "all",
             enforce: true,
           },

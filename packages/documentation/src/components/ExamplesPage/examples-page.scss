@@ -19,6 +19,8 @@
   }
 
   &__example {
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, on-surface);
     @include rmd-elevation(1);
 
     padding: 1.5rem;

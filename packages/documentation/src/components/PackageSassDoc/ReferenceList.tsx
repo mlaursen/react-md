@@ -23,7 +23,12 @@ const ReferenceList: React.SFC<IReferenceListProps> = ({ children, list, include
         {list.map(({ name, type, description, group }, key) => (
           <li key={key}>
             {`${type} - `}
-            <Link to={`/packages/${group}/sassdoc#${type.toLowerCase()}-${name}`} component={RouterLink}>{name}</Link>
+            <Link
+              to={`${process.env.PUBLIC_URL}/packages/${group}/sassdoc#${type.toLowerCase()}-${name}`}
+              component={RouterLink}
+            >
+              {name}
+            </Link>
             {includeDescription && description && ` - ${description}`}
           </li>
         ))}
@@ -34,6 +39,6 @@ const ReferenceList: React.SFC<IReferenceListProps> = ({ children, list, include
 
 ReferenceList.defaultProps = {
   includeDescription: false,
-}
+};
 
 export default ReferenceList;

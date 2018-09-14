@@ -15,7 +15,7 @@ type ChildItems = TreeViewDataList<{ children: string }>;
 const packages: IPackageLink[] = [];
 for (const route of routes) {
   const { itemId, childItems } = route;
-  if (itemId === "/packages") {
+  if (itemId === `${process.env.PUBLIC_URL}/packages`) {
     [].push.apply(packages, (childItems as ChildItems).map(({ children, itemId: path }) => ({ name: children, path })));
     break;
   }
@@ -23,6 +23,7 @@ for (const route of routes) {
 
 const markdown = `## Table of Contents
 - [Installing Packages](#installing-packages)
+  - [All react-md packages](#all-react-md-packages)
   - [Installing with npm](#installing-with-npm)
   - [Using UMD Bundles](#using-umd-bundles)
 - [Updating Sass Include Paths](#updating-sass-include-paths)
@@ -49,6 +50,7 @@ UMD bundle will include every component and styles within react-md.
 > NOTE: \`@react-md/material-icons\` will be the only package that is **not** included in the UMD bundle since
 it includes 500+ icons and components.
 
+### All react-md packages
 For convenience, here is a list of all packages within react-md and links to their documentation:
 ${packages.map(({ name, path }) => `- [${name}](${path})`).join("\n")}
 

@@ -18,10 +18,29 @@ body {
   margin: 0;
 }
 
+html {
+  @include rmd-theme(background-color, background);
+  @include rmd-theme(color, text-primary-on-background);
+}
+
 *,
 ::before,
 ::after {
   box-sizing: border-box;
+}
+
+.dark-theme {
+  @include rmd-theme-set-var(background, #303030);
+  @include rmd-theme-set-var(surface, $rmd-grey-800);
+  @include rmd-theme-set-var(on-surface, $rmd-white-base);
+  @include rmd-theme-set-var(text-primary-on-background, map-get(map-get($rmd-theme-text-colors, light), primary))
+  @include rmd-theme-set-var(text-secondary-on-background, map-get(map-get($rmd-theme-text-colors, light), secondary))
+  @include rmd-theme-set-var(text-hint-on-background, map-get(map-get($rmd-theme-text-colors, light), hint))
+  @include rmd-theme-set-var(text-disabled-on-background, map-get(map-get($rmd-theme-text-colors, light), disabled))
+  @include rmd-theme-set-var(text-icon-on-background, map-get(map-get($rmd-theme-text-colors, light), icon))
+  @include rmd-theme-set-var(primary, $rmd-blue-grey-900);
+  @include rmd-theme-set-var(on-primary, $rmd-white-base);
+  @include rmd-theme-set-var(secondary, $rmd-pink-a-700);
 }
 
 // html,

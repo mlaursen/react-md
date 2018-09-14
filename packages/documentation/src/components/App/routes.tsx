@@ -91,7 +91,7 @@ function createPackage(
   routeComponent: RouteComponent,
   { examples = true, propTypes = true, sassdoc = true } = {}
 ): Route {
-  const basePath = `/packages/${name === "a11y" ? name : kebabCase(name)}`;
+  const basePath = `${process.env.PUBLIC_URL}/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
     childItems.push(createRoute(`${basePath}/examples`, "Examples"));
@@ -114,17 +114,17 @@ function createPackage(
 }
 
 export const routes: RouteList = [
-  createRoute("/", "Home", <HomeSVGIcon />, Home),
-  createRoute("/getting-started", "Getting Started", <InfoOutlineSVGIcon />, GettingStarted, [
+  createRoute(`${process.env.PUBLIC_URL}/`, "Home", <HomeSVGIcon />, Home),
+  createRoute(`${process.env.PUBLIC_URL}/getting-started`, "Getting Started", <InfoOutlineSVGIcon />, GettingStarted, [
     createRoute("/installation", "Installation"),
     createRoute("/updating-create-react-app", "Updating create-react-app"),
   ]),
   {
-    itemId: "/packages",
+    itemId: `${process.env.PUBLIC_URL}/packages`,
     children: "Packages",
     leftIcon: <BuildSVGIcon />,
     childItems: [
-      createPackage("a11y", A11y),
+      createPackage("a11y", A11y, { sassdoc: false }),
       createPackage("app-bar", AppBar),
       createPackage("button", Button),
       createPackage("elevation", Elevation, { examples: false, propTypes: false }),
@@ -196,7 +196,7 @@ const validRoutes = routes.reduce(reduceValid, []);
 
 function reduceConfig(list: IRouteConfig[], { to, childItems, itemId, routeComponent }: Route) {
   if (routeComponent) {
-    list.push({ path: itemId, component: routeComponent, exact: itemId === "/" });
+    list.push({ path: itemId, component: routeComponent, exact: itemId === `${process.env.PUBLIC_URL}/` });
   }
 
   if (childItems) {
