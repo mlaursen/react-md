@@ -186,7 +186,7 @@ Boolean if currently collapsed. When this prop changes, the collapse transition 
 </tr>
 <tr>
 <td>minHeight</td>
-<td><code>number</code></td>
+<td><code>string | number</code></td>
 <td><code>0</code></td>
 <td>
 An optional min height to set for the collapsing element. If this is set to <code>0</code>,
@@ -204,7 +204,7 @@ So you want to use this formula:
 </tr>
 <tr>
 <td>minPaddingBottom</td>
-<td><code>number</code></td>
+<td><code>string | number</code></td>
 <td><code>0</code></td>
 <td>
 The min padding bottom to apply to the collapse. This will be used with the <code>minHeight</code>
@@ -214,7 +214,7 @@ and <code>minPaddingTop</code> props to set the collapsed size.
 </tr>
 <tr>
 <td>minPaddingTop</td>
-<td><code>number</code></td>
+<td><code>string | number</code></td>
 <td><code>0</code></td>
 <td>
 The min padding top to apply to the collapse. This will be used with the <code>minHeight</code>
@@ -319,6 +319,32 @@ and <code>minPaddingTop</code> values are set to <code>0</code>.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>rmd-transition-sharp</code></td>
+<td>The transition timing to use for &#34;sharp&#34; transitions. Not really sure what a &#34;sharp&#34; transition
+is at the time of writing this though.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-transition-standard</code></td>
+<td>The transition timing function to use for standard/normal transitions. This is normally applied
+to moving elements within the page.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-transition-acceleration</code></td>
+<td>The transition timing function to use for transitions that should start the animation slowly
+and build up momentum at the end of the transition. This is normally used for exit/leave
+transitions.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-transition-deceleration</code></td>
+<td>The transition timing function to use for transitions that should start the animation quickly
+and slow down momentum at the end of the transition. This is normally used for enter/appear
+transitions.
+<br /><br /></td>
+</tr>
 <tr>
 <td><code>rmd-transitions</code></td>
 <td>A Map of all the available transitions for react-md.

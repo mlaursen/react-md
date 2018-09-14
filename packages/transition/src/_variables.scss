@@ -2,13 +2,35 @@
 /// @group transition
 ////
 
+/// The transition timing to use for "sharp" transitions. Not really sure what a "sharp" transition
+/// is at the time of writing this though.
+/// @type String
+$rmd-transition-sharp: cubic-bezier(.4, 0, .6, 1) !default;
+
+/// The transition timing function to use for standard/normal transitions. This is normally applied
+/// to moving elements within the page.
+/// @type String
+$rmd-transition-standard: cubic-bezier(.4, 0, .2, 1) !default;
+
+/// The transition timing function to use for transitions that should start the animation slowly
+/// and build up momentum at the end of the transition. This is normally used for exit/leave
+/// transitions.
+/// @type String
+$rmd-transition-acceleration: cubic-bezier(.4, 0, 1, 1) !default;
+
+/// The transition timing function to use for transitions that should start the animation quickly
+/// and slow down momentum at the end of the transition. This is normally used for enter/appear
+/// transitions.
+/// @type String
+$rmd-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
+
 /// A Map of all the available transitions for react-md.
 /// @type Map
 $rmd-transitions: (
-  sharp: cubic-bezier(.4, 0, .6, 1),
-  standard: cubic-bezier(.4, 0, .2, 1),
-  acceleration: cubic-bezier(.4, 0, 1, 1),
-  deceleration: cubic-bezier(0, 0, .2, 1),
+  sharp: $rmd-transition-sharp,
+  standard: $rmd-transition-standard,
+  acceleration: $rmd-transition-acceleration,
+  deceleration: $rmd-transition-deceleration,
 ) !default;
 
 /// The default enter transition time.
