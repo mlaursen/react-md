@@ -20,16 +20,10 @@ export default class TreeItem extends React.Component<IDefaultTreeItemRendererPr
     this.item = ReactDOM.findDOMNode(this) as HTMLElement;
     this.scrollIntoView();
 
-    const tooltipped = this.checkTooltip(this.props);
-    if (this.state.tooltipped !== tooltipped) {
-      this.setState({ tooltipped });
-    }
-  }
-
-  public componentDidUpdate(prevProps: IDefaultTreeItemRendererProps, prevState: ITreeItemState) {
-    const tooltipped = this.checkTooltip(this.props);
-    if (this.state.tooltipped !== tooltipped) {
-      this.setState({ tooltipped });
+    if (document.readyState !== "complete") {
+      document.addEventListener("load", this.updateTooltip);
+    } else {
+      this.updateTooltip();
     }
   }
 
@@ -59,6 +53,13 @@ export default class TreeItem extends React.Component<IDefaultTreeItemRendererPr
 
     const node = this.item.querySelector(".rmd-list-item__text") as HTMLElement;
     return !!node && node.scrollWidth > node.offsetWidth;
+  };
+
+  private updateTooltip = () => {
+    const tooltipped = this.checkTooltip(this.props);
+    if (this.state.tooltipped !== tooltipped) {
+      this.setState({ tooltipped });
+    }
   };
 
   private scrollIntoView = () => {

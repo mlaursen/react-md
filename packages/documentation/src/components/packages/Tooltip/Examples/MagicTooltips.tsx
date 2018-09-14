@@ -18,7 +18,7 @@ export default class MagicTooltips extends React.Component<IMagicTooltipsProps, 
 
     this.state = {
       dense: false,
-      delay: 300,
+      delay: 1000,
       hoverMode: true,
       hoverModeDelay: 1000,
       keyboardFocusDelay: 300,
