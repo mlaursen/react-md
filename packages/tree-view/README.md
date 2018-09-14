@@ -25,6 +25,7 @@ This source code of this package can be found at: https://github.com/mlaursen/re
       - [Example Usage SCSS](#example-usage-scss)
       - [Example Usage SCSS](#example-usage-scss-1)
   * [Variables](#variables)
+- [FlattenedTreeView Performance](#flattenedtreeview-performance)
 <!-- TOC_END -->
 
 ## Installation
@@ -109,44 +110,6 @@ The id for the tree view. This is required as it will be passes as a prop to the
 </td>
 </tr>
 <tr>
-<td>style</td>
-<td><code>CSSProperties</code></td>
-<td><code>null</code></td>
-<td>
-An optional style that will get passed down to the <code>treeViewRenderer</code>.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>className</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional style that will get merged and passed down to the <code>treeViewRenderer</code>.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>aria-label</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional label string that describes this tree. Either this or the <code>aria-labelledby</code> prop are
-required for a11y.
-<br /><br />
-</td>
-</tr>
-<tr>
-<td>aria-labelledby</td>
-<td><code>string</code></td>
-<td><code>null</code></td>
-<td>
-An optional id that points to an element that labels this tree. Either this or the <code>aria-label</code>
-prop are required for a11y.
-<br /><br />
-</td>
-</tr>
-<tr>
 <td>data *</td>
 <td><code>TreeViewData<D>[]</code></td>
 <td><code>null</code></td>
@@ -168,7 +131,7 @@ or functionality.
 </tr>
 <tr>
 <td>treeItemRenderer</td>
-<td><code>treeItemRenderer<D></code></td>
+<td><code>treeItemRenderer<D, R></code></td>
 <td><code>null</code></td>
 <td>
 A function that will render a specific tree item. The default implementation <i>should</i> probably be good enough
@@ -276,6 +239,15 @@ and within the same group.
 <td>
 This function will be called when the <code>multiSelect</code> prop is enabled and a user has multi-selected items via
 the keyboard.
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>expanderIcon</td>
+<td><code>ReactElement<any></code></td>
+<td><code>null</code></td>
+<td>
+An optional expander icon that should be used for tree items that have nested items.
 <br /><br />
 </td>
 </tr>
@@ -419,7 +391,7 @@ or functionality.
 </tr>
 <tr>
 <td>treeItemRenderer</td>
-<td><code>treeItemRenderer<D></code></td>
+<td><code>treeItemRenderer<D, R></code></td>
 <td><code>null</code></td>
 <td>
 A function that will render a specific tree item. The default implementation <i>should</i> probably be good enough
@@ -550,6 +522,15 @@ the keyboard.
 <br /><br />
 </td>
 </tr>
+<tr>
+<td>expanderIcon</td>
+<td><code>ReactElement<any></code></td>
+<td><code>null</code></td>
+<td>
+An optional expander icon that should be used for tree items that have nested items.
+<br /><br />
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -601,7 +582,7 @@ A flattened tree view data object to convert into a <code>FlattenedTreeViewDataL
 </tr>
 <tr>
 <td>sort</td>
-<td><code>((data: FlattenedTreeViewData<D>[]) => FlattenedTreeViewData<D>[])</code></td>
+<td><code>FlattenedTreeViewSort<D></code></td>
 <td><code>null</code></td>
 <td>
 An optional function that will sort the data at each level. It should take in a <code>FlattenedTreeViewDataList</code>
@@ -1232,3 +1213,103 @@ set this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`
 </table>
 
 <!-- SASSDOC_END -->
+
+## FlattenedTreeView Performance
+That flattened tree view should be fairly performant and there is a [speed test script](./speedTest.ts) that can be
+run by cloning the repo, installing dependencies, and running:
+
+```sh
+$ npm run test-performance
+```
+
+Here are some example outputs to show the performance:
+
+```
+Generating a random tree with at least 10 root nodes each with 3 levels of children that can contain 0-20 children
+Created a tree with 231 nodes
+Running the perf test 20 times
+
+buildTree: 1.782ms
+buildTree: 2.788ms
+buildTree: 2.420ms
+buildTree: 0.353ms
+buildTree: 0.346ms
+buildTree: 0.344ms
+buildTree: 0.342ms
+buildTree: 0.342ms
+buildTree: 0.342ms
+buildTree: 0.342ms
+buildTree: 0.341ms
+buildTree: 0.342ms
+buildTree: 0.347ms
+buildTree: 0.342ms
+buildTree: 0.340ms
+buildTree: 0.343ms
+buildTree: 0.343ms
+buildTree: 0.336ms
+buildTree: 0.316ms
+buildTree: 0.315ms
+
+Total time: 12.621ms
+Average time: 0.631ms
+```
+
+```
+Generating a random tree with at least 300 root nodes each with 5 levels of children that can contain 0-20 children
+Created a tree with 12159 nodes
+Running the perf test 20 times
+
+buildTree: 796.843ms
+buildTree: 809.247ms
+buildTree: 851.878ms
+buildTree: 759.514ms
+buildTree: 756.471ms
+buildTree: 750.923ms
+buildTree: 753.226ms
+buildTree: 756.392ms
+buildTree: 789.701ms
+buildTree: 818.211ms
+buildTree: 805.566ms
+buildTree: 775.156ms
+buildTree: 772.509ms
+buildTree: 771.974ms
+buildTree: 770.553ms
+buildTree: 773.940ms
+buildTree: 773.591ms
+buildTree: 775.204ms
+buildTree: 775.622ms
+buildTree: 769.261ms
+
+Total time: 15605.320ms
+Average time: 780.266ms
+```
+
+```
+Generating a random tree with at least 300 root nodes each with 10 levels of children that can contain 1-20 children
+Created a tree with 26802 nodes
+Running the perf test 20 times
+
+buildTree: 3105.643ms
+buildTree: 3052.698ms
+buildTree: 3013.867ms
+buildTree: 3171.965ms
+buildTree: 3153.478ms
+buildTree: 3154.927ms
+buildTree: 3181.319ms
+buildTree: 3149.842ms
+buildTree: 3174.711ms
+buildTree: 3152.430ms
+buildTree: 3189.909ms
+buildTree: 3195.214ms
+buildTree: 3130.669ms
+buildTree: 3161.076ms
+buildTree: 3188.581ms
+buildTree: 3200.963ms
+buildTree: 3140.306ms
+buildTree: 3154.413ms
+buildTree: 3147.852ms
+buildTree: 3172.819ms
+
+Total time: 62992.219ms
+Average time: 3149.611ms
+```

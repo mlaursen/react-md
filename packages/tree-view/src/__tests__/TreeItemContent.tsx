@@ -1,8 +1,14 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
-import { HomeSVGIcon } from "@react-md/material-icons";
+import * as renderer from "react-test-renderer";
+import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
 import TreeItemContent from "../TreeItemContent";
+
+const HomeSVGIcon: React.SFC<ISVGIconProps> = props => (
+  <SVGIcon {...props}>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SVGIcon>
+);
 
 // TODO: write more tests when enzyme supports new React context api
 describe("TreeItemContent", () => {

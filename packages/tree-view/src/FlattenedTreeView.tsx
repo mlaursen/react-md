@@ -1,5 +1,6 @@
 import * as React from "react";
-import { IIndexKeyAny, FlattenedTreeViewData, FlattenedTreeViewDataList } from "./types";
+import { IIndexKeyAny, FlattenedTreeViewData, FlattenedTreeViewDataList, FlattenedTreeViewSort } from "./types";
+import buildTree from "./utils/buildTree";
 
 export interface IFlattenedTreeViewData<D = IIndexKeyAny> {
   [key: string]: FlattenedTreeViewData<D>;
@@ -35,7 +36,7 @@ export interface IFlattenedTreeViewProps<D = IIndexKeyAny> {
    *
    * @docgen
    */
-  sort?: (data: FlattenedTreeViewDataList<D>) => FlattenedTreeViewDataList<D>;
+  sort?: FlattenedTreeViewSort<D>;
 }
 
 export interface IFlattenedTreeViewDefaultProps {
@@ -59,32 +60,6 @@ export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component
   public render() {
     const { children, data, rootId } = this.props;
 
-    return children(this.buildTree(null, Object.values(data)) || []);
+    return children(buildTree(null, Object.values(data)) || []);
   }
-
-  private buildTree = (parentId: string | null, list: FlattenedTreeViewDataList<D>) => {
-    const childTreeItems = [];
-    let i = list.length;
-    while (i > 0) {
-      i -= 1;
-      if (list[i] && list[i].parentId === parentId) {
-        const [item] = list.splice(i, 1);
-        childTreeItems.unshift(item);
-      }
-    }
-
-    if (!childTreeItems.length) {
-      return undefined;
-    }
-
-    childTreeItems.forEach(treeItem => {
-      treeItem.childItems = this.buildTree(treeItem.itemId, list);
-    });
-
-    if (this.props.sort) {
-      return this.props.sort(childTreeItems);
-    }
-
-    return childTreeItems;
-  };
 }

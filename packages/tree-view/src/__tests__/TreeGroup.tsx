@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import TreeGroup from "../TreeGroup";
 
@@ -13,7 +13,7 @@ describe("TreeGroup", () => {
             <li>Something!</li>
           </TreeGroup>
         )
-        .toJSON(`null`)
+        .toJSON()
     ).toMatchSnapshot();
     expect(
       renderer
@@ -22,7 +22,7 @@ describe("TreeGroup", () => {
             <li>Something!</li>
           </TreeGroup>
         )
-        .toJSON(`null`)
+        .toJSON()
     ).toMatchSnapshot();
   });
 });

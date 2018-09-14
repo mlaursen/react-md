@@ -55,6 +55,8 @@ export interface IFlattenedTree<D = IIndexKeyAny> {
  */
 export type FlattenedTreeViewDataList<D = IIndexKeyAny> = Array<FlattenedTreeViewData<D>>;
 
+export type FlattenedTreeViewSort<D> = (data: FlattenedTreeViewDataList<D>) => FlattenedTreeViewDataList<D>;
+
 export interface ITreeViewBaseProps<D, R> {
   /**
    * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
