@@ -1,5 +1,7 @@
 import { Middleware } from "redux";
 import { LOCATION_CHANGE } from "connected-react-router";
+
+import { FORCE_SMOOTH_SCROLL } from "state/actionTypes";
 import smoothScroll from "utils/smoothScroll";
 
 let initialPageScroll = true;
@@ -30,7 +32,7 @@ function scroll() {
 
 export const scrollingMiddleware: Middleware = (store) => (next) => (action) => {
   const { type, payload } = action;
-  if (type === LOCATION_CHANGE) {
+  if (type === LOCATION_CHANGE || type === FORCE_SMOOTH_SCROLL) {
     window.requestAnimationFrame(scroll);
   }
 
