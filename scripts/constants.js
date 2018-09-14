@@ -34,6 +34,7 @@ const TSCONFIG_COMMONJS_TEMPLATE = `{
     "outDir": "./lib"
   },
   "exclude": [
+    "**/__tests__/*",
     "types/*"
   ]
 }
@@ -47,8 +48,8 @@ const TSCONFIG_TEMPLATE = `{
     "outDir": "./es"
   },
   "exclude": [
-    "types/*",
-    "**/__tests__/*"
+    "**/__tests__/*",
+    "types/*"
   ]
 }
 `;

@@ -4,6 +4,7 @@
     "outDir": "./lib"
   },
   "exclude": [
+    "**/__tests__/*",
     "types/*"
   ]
 }

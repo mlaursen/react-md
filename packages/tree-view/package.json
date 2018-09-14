@@ -13,7 +13,7 @@
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" watch:styles",
     "types": "cpx \"src/types.d.ts\" types",
     "test": "jest src",
-    "test-performance": "ts-node --project ./tsconfig.commonjs.json ./speedTest.ts ",
+    "test-performance": "ts-node --project ./tsconfig.speed.json ./speedTest.ts ",
     "docs": "doc-generator",
     "lint": "npm-run-all -p lint:styles lint:ts",
     "lint:styles": "sass-lint -c ../../.sass-lint.yml -v",

@@ -6,7 +6,8 @@
     "outDir": "./es"
   },
   "exclude": [
+    "**/__tests__/*",
     "types/*",
-    "**/__tests__/*"
+    "./speedTest.ts"
   ]
 }

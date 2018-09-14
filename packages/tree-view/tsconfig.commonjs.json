@@ -4,6 +4,8 @@
     "outDir": "./lib"
   },
   "exclude": [
+    "./speedTest.ts",
+    "**/__tests__/*",
     "types/*"
   ]
 }

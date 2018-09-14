@@ -1,3 +1,6 @@
 {
-  "extends": "../../tsconfig.test.json"
+  "extends": "../../tsconfig.test.json",
+  "excludes": [
+    "./speedTest.ts"
+  ]
 }
