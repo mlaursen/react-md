@@ -136,7 +136,7 @@ Boolean if there should be an overlay displayed with the sheet. This is recommen
 </tr>
 <tr>
 <td>position</td>
-<td><code>"top" | "right" | "bottom" | "left"</code></td>
+<td><code>"calculated" | "top" | "right" | "bottom" | "left"</code></td>
 <td><code>bottom</code></td>
 <td>
 The position for the sheet to be rendered.
@@ -166,6 +166,16 @@ The size to use for sheets that have been positioned top or bottom. The supporte
 - touch - the size is based on content and is limited to the viewport height with a touchable area to close the
 sheet.
 - recommended - the material design recommended sizing that forces a max-height of 50vh and min-height of 3.5rem
+<br /><br />
+</td>
+</tr>
+<tr>
+<td>inline</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>
+Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with other content on the
+page instead of directly over everything. This is really just used to lower the box shadow.
 <br /><br />
 </td>
 </tr>
@@ -353,7 +363,13 @@ requires the use of the <code>rmd-sheet-base</code> mixin.
 <tbody>
 <tr>
 <td><code>rmd-sheet-elevation</code></td>
-<td>The elevation to use for sheets. This <i>should</i> most likely stay the default, but it needs to
+<td>The elevation to use for sheets that are displayed &#34;inline&#34; with other content. This <i>should</i>_ most likely
+stay the default, but it needs to be a number between 0 and 16.
+<br /><br /></td>
+</tr>
+<tr>
+<td><code>rmd-sheet-fixed-elevation</code></td>
+<td>The elevation to use for fixed sheets. This <i>should</i> most likely stay the default, but it needs to
 be a number between 0 and 16.
 <br /><br /></td>
 </tr>
