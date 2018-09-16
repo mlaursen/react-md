@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --mode development --config webpack/config.ts",
     "prebuild": "rm -rf dist",
     "build": "webpack --mode production --config webpack/config.ts",
-    "predeploy": "npm run build && cp 404.html dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "generator": "ts-node src/scripts/generator.ts",
     "sassdoc": "cpx src/scripts/sassdoc/throw.js node_modules/sassdoc/annotation/annotations/throw.js && npm run generator -- sassdoc"
