@@ -1,12 +1,12 @@
 import * as React from "react";
+import * as SassDoc from "sassdoc";
 
 import Markdown from "components/Markdown";
-import { IParameter } from "types/sassdoc";
 
 import SassDocTitle from "./SassDocTitle";
 
 export interface IParametersProps {
-  parameters?: IParameter[];
+  parameters?: SassDoc.IParameter[];
 }
 
 const Parameters: React.SFC<IParametersProps> = ({ parameters }) => {

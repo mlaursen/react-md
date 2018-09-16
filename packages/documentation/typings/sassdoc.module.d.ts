@@ -1,8 +1,8 @@
 declare module "sassdoc" {
-  type SassDocType = "function" | "mixin" | "placeholder" | "variable";
+  export type SassDocType = "function" | "mixin" | "placeholder" | "variable";
 
   // this can also be a combination of these together with pipes in between
-  type Type =
+  export type Type =
     | "Number"
     | "Bool"
     | "Color"
@@ -17,53 +17,53 @@ declare module "sassdoc" {
     | "string"
     | string;
 
-  type Access = "public" | "private";
+  export type Access = "public" | "private";
 
-  type Alias = string;
-  interface IAliased {
+  export type Alias = string;
+  export interface IAliased {
     [key: string]: Alias[];
   }
 
-  type Author = string[];
+  export type Author = string[];
 
-  type Content = string;
+  export type Content = string;
 
-  type Deprecated = string;
+  export type Deprecated = string;
 
   // http://sassdoc.com/annotations/#example
-  type ExampleTypes = "css" | "scss" | "markup" | "javascript";
-  interface IExample {
+  export type ExampleTypes = "css" | "scss" | "markup" | "javascript";
+  export interface IExample {
     type: ExampleTypes;
     description?: string;
     code: string;
   }
 
-  type Group = Array<"undefined" | string>;
+  export type Group = Array<"undefined" | string>;
 
-  type Ignore = string[];
+  export type Ignore = string[];
 
-  interface ILink {
+  export interface ILink {
     url: string;
     caption: string;
   }
 
-  type Output = string;
+  export type Output = string;
 
-  interface IParameter {
+  export interface IParameter {
     name: string;
     type: Type;
     description: string;
     default?: string;
   }
 
-  interface IProperty {
+  export interface IProperty {
     name: string;
     type: Type;
     description: string;
     default?: string;
   }
 
-  interface IRequire {
+  export interface IRequire {
     name: string;
     type: SassDocType;
 
@@ -72,37 +72,37 @@ declare module "sassdoc" {
     description?: string;
     item?: Item;
   }
-  interface IRequireByAnnotation extends IRequire {
+  export interface IRequireByAnnotation extends IRequire {
     description: string;
     item: Item;
     url?: string;
   }
-  interface IUsedByItem {
+  export interface IUsedByItem {
     context: IContext;
     description: string;
   }
-  type UsedBy = IUsedByItem[];
+  export type UsedBy = IUsedByItem[];
 
-  interface IReturn {
+  export interface IReturn {
     type: Type;
     description: string;
   }
 
-  interface ISee {
+  export interface ISee {
     description?: string;
     context: IContext;
   }
 
-  interface ISince {
+  export interface ISince {
     version: string;
     description: string;
   }
 
-  type Throw = string[];
+  export type Throw = string[];
 
-  type ToDo = string[];
+  export type ToDo = string[];
 
-  interface Item {
+  export interface Item {
     access: Access;
     context: IContext;
     commentRange: IRange;
@@ -117,17 +117,17 @@ declare module "sassdoc" {
     return?: IReturn;
     usedBy?: UsedBy;
     see?: ISee[];
-    throws?: Throw;
+    throw?: Throw;
     link?: ILink[];
   }
 
-  interface IRange {
+  export interface IRange {
     start: number;
     end: number;
   }
 
-  type Scope = "default" | "private";
-  interface IContext {
+  export type Scope = "default" | "private";
+  export interface IContext {
     name: string;
     type: SassDocType;
     line: IRange;
@@ -141,36 +141,36 @@ declare module "sassdoc" {
     // only appears for variables
     value?: string;
   }
-  interface ItemContext extends IContext {
+  export interface ItemContext extends IContext {
     scope: Scope;
   }
-  interface IVariableContext extends IContext {
+  export interface IVariableContext extends IContext {
     value: string;
   }
-  interface IMixinContext extends IContext {
+  export interface IMixinContext extends IContext {
     code: string;
   }
-  interface IFunctionContext extends IContext {
+  export interface IFunctionContext extends IContext {
     code: string;
   }
-  interface IPlaceholderContext extends IContext {
+  export interface IPlaceholderContext extends IContext {
     code: string;
   }
 
-  interface IFile {
+  export interface IFile {
     name: string;
     path: string;
   }
 
-  interface IVariableSassDoc extends Item {
+  export interface IVariableSassDoc extends Item {
     context: IVariableContext;
   }
 
-  interface IMixinSassDoc extends Item {
+  export interface IMixinSassDoc extends Item {
     context: IMixinContext;
   }
 
-  interface IFunctionSassDoc extends Item {
+  export interface IFunctionSassDoc extends Item {
     context: IFunctionContext;
     return: IReturn;
   }

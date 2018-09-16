@@ -38,9 +38,14 @@ html {
   @include rmd-theme-set-var(text-hint-on-background, map-get(map-get($rmd-theme-text-colors, light), hint))
   @include rmd-theme-set-var(text-disabled-on-background, map-get(map-get($rmd-theme-text-colors, light), disabled))
   @include rmd-theme-set-var(text-icon-on-background, map-get(map-get($rmd-theme-text-colors, light), icon))
-  @include rmd-theme-set-var(primary, $rmd-blue-grey-900);
-  @include rmd-theme-set-var(on-primary, $rmd-white-base);
-  @include rmd-theme-set-var(secondary, $rmd-pink-a-700);
+
+  .markdown-container p code {
+    background-color: lighten($rmd-black-base, 8%);
+  }
+
+  .sassdoc__title--section {
+    @include rmd-theme(background-color, surface);
+  }
 }
 
 // html,

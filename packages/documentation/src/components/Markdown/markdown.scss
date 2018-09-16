@@ -27,6 +27,14 @@
     padding: 1rem;
   }
 
+  p code {
+    background-color: $rmd-grey-200;
+    border-radius: .25rem;
+    font-size: .9em;
+    padding: .1em .4em;
+    white-space: pre;
+  }
+
   .comment {
     color: $solarized-base-01;
   }

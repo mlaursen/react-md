@@ -4,6 +4,7 @@ import * as SassDoc from "sassdoc";
 import * as cpx from "cpx";
 
 import {
+  IVariableLookup,
   IVariableSassDoc,
   IMixinSassDoc,
   IFunctionSassDoc,
@@ -35,15 +36,15 @@ async function moveStyles() {
   });
 }
 
-function createLinkTo(item: SassDoc.See | SassDoc.Require, references: ISassDocReference[]): ISassDocLinkTo | null {
+function createLinkTo(item: SassDoc.ISee | SassDoc.IRequire, references: ISassDocReference[]): ISassDocLinkTo | null {
   const { description = "" } = item;
   let name = "";
   let type: SassDoc.SassDocType;
   if ("context" in item) {
-    item = item as SassDoc.See;
+    item = item as SassDoc.ISee;
     ({ name, type } = item.context);
   } else {
-    item = item as SassDoc.Require;
+    item = item as SassDoc.IRequire;
     ({ name, type } = item);
   }
 
@@ -77,12 +78,12 @@ function formatBase(item: SassDoc.Item, references: ISassDocReference[]) {
     context: { name, value, scope },
     description = "",
     file: { path: pathName },
-    link: links = [] as SassDoc.LinkList,
+    link: links = [] as SassDoc.ILink[],
   } = item;
   const type = item.type || item.context.type;
-  const see = (item.see || ([] as SassDoc.SeeList)).map(i => createLinkTo(i, references)).filter(uniqueAndTrueish);
+  const see = (item.see || ([] as SassDoc.ISee[])).map(i => createLinkTo(i, references)).filter(uniqueAndTrueish);
   const usedBy = (item.usedBy || ([] as SassDoc.UsedBy)).map(i => createLinkTo(i, references)).filter(uniqueAndTrueish);
-  const requires = (item.require || ([] as SassDoc.RequireList))
+  const requires = (item.require || ([] as SassDoc.IRequire[]))
     .map(i => createLinkTo(i, references))
     .filter(uniqueAndTrueish);
 
@@ -99,27 +100,40 @@ function formatBase(item: SassDoc.Item, references: ISassDocReference[]) {
   };
 }
 
-function formatVariable(item: SassDoc.VariableSassDoc, references: ISassDocReference[]): IVariableSassDoc {
+function formatVariable(
+  item: SassDoc.IVariableSassDoc,
+  references: ISassDocReference[],
+  lookup: Map<string, IVariableLookup>,
+  unresolvedVariables: SassDoc.IVariableSassDoc[]
+): IVariableSassDoc {
   const {
     context: { name, value, scope },
     description,
     file: { path: pathName },
     type,
-    link: links = [] as SassDoc.LinkList,
+    link: links = [] as SassDoc.ILink[],
   } = item;
+
+  const resolvedValue = /\$?rmd/.test(value) ? "" : value;
+  if (resolvedValue) {
+    lookup.set(name, { name, type, value, resolved: true });
+  } else {
+    unresolvedVariables.push(item);
+  }
 
   const code = `$${name}: ${value}${scope === "default" ? " !default" : ""};`;
   return {
     ...formatBase(item, references),
     code,
+    value: resolvedValue,
   };
 }
 
-function toCodeParam({ name, default: defaultValue, ...others }) {
+function toCodeParam({ name, default: defaultValue = "", ...others }) {
   return `$${name}${defaultValue ? `: ${defaultValue.replace(/^rmd/, "$rmd")}` : ""}`;
 }
 
-function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc.ParameterList): string {
+function createFunctionOrMixinCode(context: SassDoc.IContext, parameters: SassDoc.IParameter[]): string {
   const { type, code } = context;
 
   let params = "";
@@ -130,12 +144,12 @@ function createFunctionOrMixinCode(context: SassDoc.Context, parameters: SassDoc
   return `@${type} ${context.name}${params} {${code}}`;
 }
 
-function formatWithParams(item: SassDoc.FunctionSassDoc | SassDoc.MixinSassDoc, references: ISassDocReference[]) {
+function formatWithParams(item: SassDoc.IFunctionSassDoc | SassDoc.IMixinSassDoc, references: ISassDocReference[]) {
   const {
     context,
     throw: throws = [] as SassDoc.Throw,
-    example: examples = [] as SassDoc.ExampleList,
-    parameter: parameters = [] as SassDoc.ParameterList,
+    example: examples = [] as SassDoc.IExample[],
+    parameter: parameters = [] as SassDoc.IParameter[],
   } = item;
 
   return {
@@ -147,7 +161,7 @@ function formatWithParams(item: SassDoc.FunctionSassDoc | SassDoc.MixinSassDoc, 
   };
 }
 
-function formatFunction(item: SassDoc.FunctionSassDoc, references: ISassDocReference[]): IFunctionSassDoc {
+function formatFunction(item: SassDoc.IFunctionSassDoc, references: ISassDocReference[]): IFunctionSassDoc {
   const { return: returns } = item;
 
   return {
@@ -156,7 +170,7 @@ function formatFunction(item: SassDoc.FunctionSassDoc, references: ISassDocRefer
   };
 }
 
-function formatMixin(item: SassDoc.MixinSassDoc, references: ISassDocReference[]): IMixinSassDoc {
+function formatMixin(item: SassDoc.IMixinSassDoc, references: ISassDocReference[]): IMixinSassDoc {
   return formatWithParams(item, references);
 }
 
@@ -171,6 +185,8 @@ export default async function sassdoc(clean: boolean) {
     private: access === "private",
   }));
 
+  const lookup = new Map<string, IVariableLookup>();
+  const unresolvedVariables: SassDoc.IVariableSassDoc[] = [];
   const sassdocs = parsed.reduce<IFlattenedSassDocs>(
     // tslint:disable-next-line:no-shadowed-variable
     (sassdocs, item) => {
@@ -191,13 +207,15 @@ export default async function sassdoc(clean: boolean) {
       const { type } = item.context;
       switch (type) {
         case "function":
-          group.functions.push(formatFunction(item as SassDoc.FunctionSassDoc, references));
+          group.functions.push(formatFunction(item as SassDoc.IFunctionSassDoc, references));
           break;
         case "variable":
-          group.variables.push(formatVariable(item as SassDoc.VariableSassDoc, references));
+          group.variables.push(
+            formatVariable(item as SassDoc.IVariableSassDoc, references, lookup, unresolvedVariables)
+          );
           break;
         case "mixin":
-          group.mixins.push(formatMixin(item as SassDoc.MixinSassDoc, references));
+          group.mixins.push(formatMixin(item as SassDoc.IMixinSassDoc, references));
           break;
         default:
           console.error(`An invalid type: \`${type}\` was provided. Please fix for item: `, item);
@@ -208,9 +226,46 @@ export default async function sassdoc(clean: boolean) {
     {}
   );
 
+  let i = unresolvedVariables.length;
+  while (i > 0) {
+    i -= 1;
+    const {
+      context: { name, value },
+      type,
+    } = unresolvedVariables[i];
+    if (!value.match(/if|(rmd(-\w+)+\()/)) {
+      const variables = value.match(/\$(rmd(-\w+)+)/g);
+      let resolvedValue = "";
+      if (type === "Color" && variables) {
+        resolvedValue = variables.reduce((updated, codeVariable) => {
+          const variable = codeVariable.substring(1);
+          if (lookup.has(variable)) {
+            return updated.replace(codeVariable, lookup.get(variable).value);
+          }
+
+          return updated;
+        }, value);
+
+        lookup.set(name, { name, value: resolvedValue, type, resolved: /\$?rmd/.test(resolvedValue) });
+        unresolvedVariables.splice(i, 1);
+      } else {
+        lookup.set(name, { name, value, type, resolved: false });
+      }
+    }
+  }
+
   if (clean) {
     await fs.remove(TEMP_STYLES_FOLDER);
   }
+
+  const lookupTablePath = path.join(DOCUMENTATION_FOLDER, "src", "constants", "sassdocVariables.json");
+  await fs.writeJson(
+    lookupTablePath,
+    Array.from(lookup).reduce((l, [key, value]) => {
+      l[key] = value;
+      return l;
+    }, {})
+  );
 
   const files = await Promise.all(
     Object.keys(sassdocs).map(group => {
@@ -222,6 +277,7 @@ export default async function sassdoc(clean: boolean) {
         .then(() => sassdocPath.substring(sassdocPath.indexOf("src")));
     })
   );
+  files.push(lookupTablePath.substring(lookupTablePath.indexOf("src")));
   files.sort();
   console.log(`Created the following sassdoc files:
 - ${files.join("\n- ")}

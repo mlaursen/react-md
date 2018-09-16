@@ -1,6 +1,8 @@
 import * as React from "react";
+import { SassDocType } from "sassdoc";
+
 import { Text } from "@react-md/typography";
-import { IVariableSassDoc, IMixinSassDoc, IFunctionSassDoc, SassDocType } from "types/sassdoc";
+import { IVariableSassDoc, IMixinSassDoc, IFunctionSassDoc } from "types/sassdoc";
 
 import SassDocTitle from "./SassDocTitle";
 

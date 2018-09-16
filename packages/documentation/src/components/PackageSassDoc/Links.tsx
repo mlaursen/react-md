@@ -1,7 +1,6 @@
 import * as React from "react";
+import { ILink } from "sassdoc";
 import { Link } from "@react-md/link";
-
-import { ILink } from "types/sassdoc";
 
 import SassDocTitle from "./SassDocTitle";
 

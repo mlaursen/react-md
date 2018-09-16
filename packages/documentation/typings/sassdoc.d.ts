@@ -1,56 +1,56 @@
 import * as SassDoc from "sassdoc";
 
-export type IExample = SassDoc.IExample;
-export type IParameter = SassDoc.IParameter;
-export type IRequire = SassDoc.IRequire;
-export type ILink = SassDoc.ILink;
-export type IReturn = SassDoc.IReturn;
-export type Throw = SassDoc.Throw;
-export type SassDocType = SassDoc.SassDocType;
-export type Type = SassDoc.Type;
-
 export interface ISassDocLinkTo {
   name: string;
   description: string;
-  type: SassDocType;
+  type: SassDoc.SassDocType;
   group: string;
 }
 
 export interface ISassDoc {
   name: string;
-  type: Type;
+  type: SassDoc.Type;
   description: string;
   file: string;
   group: string;
   see: ISassDocLinkTo[];
   usedBy: ISassDocLinkTo[];
-  links: ILink[];
+  links: SassDoc.ILink[];
 
   code?: string;
-  examples?: IExample[];
-  parameters?: IParameter[];
+  value?: string;
+  examples?: SassDoc.IExample[];
+  parameters?: SassDoc.IParameter[];
   requires?: ISassDocLinkTo[];
-  returns?: IReturn;
-  throws?: Throw;
+  returns?: SassDoc.IReturn;
+  throws?: SassDoc.Throw;
+}
+
+export interface IVariableLookup {
+  name: string;
+  type: SassDoc.Type;
+  value: string;
+  resolved: boolean;
 }
 
 export interface IVariableSassDoc extends ISassDoc {
   code: string;
+  value: string;
 }
 
 export interface IMixinSassDoc extends ISassDoc {
   code: string;
-  examples: IExample[];
-  parameters: IParameter[];
-  throws: Throw;
+  examples: SassDoc.IExample[];
+  parameters: SassDoc.IParameter[];
+  throws: SassDoc.Throw;
 }
 
 export interface IFunctionSassDoc extends ISassDoc {
   code: string;
-  examples: IExample[];
-  parameters: IParameter[];
-  returns: IReturn;
-  throws: Throw;
+  examples: SassDoc.IExample[];
+  parameters: SassDoc.IParameter[];
+  returns: SassDoc.IReturn;
+  throws: SassDoc.Throw;
 }
 
 export interface IFlattenedSassDoc {
@@ -65,7 +65,7 @@ export interface IFlattenedSassDocs {
 
 export interface ISassDocReference {
   name: string;
-  type: SassDocType;
+  type: SassDoc.SassDocType;
   group: string;
   private: boolean;
 }

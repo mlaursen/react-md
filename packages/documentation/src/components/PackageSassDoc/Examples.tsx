@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IExample } from "types/sassdoc";
+import { IExample } from "sassdoc";
 
 import Markdown from "components/Markdown";
 import SassDocTitle from "./SassDocTitle";

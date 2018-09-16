@@ -2,12 +2,14 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@react-md/link";
 import { LinkSVGIcon } from "@react-md/material-icons";
+import { SassDocType } from "sassdoc";
 
-import { ISassDoc, SassDocType } from "types/sassdoc";
+import { ISassDoc } from "types/sassdoc";
 import SassDocTitle from "./SassDocTitle";
 import ExpandableSource from "./ExpandableSource";
 import Description from "./Description";
 import Type from "./Type";
+import ColorPreview from "./ColorPreview";
 import Parameters from "./Parameters";
 import ReferenceList from "./ReferenceList";
 import Links from "./Links";
@@ -35,10 +37,11 @@ ${code}
     <React.Fragment>
       <SassDocTitle id={id} type="headline-3" className="sassdoc__name">
         {name}
-        <Type>{sassdocType}</Type>
         <Link to={`#${id}`} component={RouterLink} className="sassdoc__quick-link">
           <LinkSVGIcon title={`Quick Link to ${name}`} />
         </Link>
+        <Type>{sassdocType}</Type>
+        <ColorPreview name={name} type={sassdocType} value={sassdoc.value} />
       </SassDocTitle>
       <ExpandableSource linkId={id} code={code} />
       <Description>{description}</Description>
