@@ -65,8 +65,8 @@ describe('addDay', () => {
     expect(addDay(date2, 1)).toEqual(expected4);
   });
 
-  it('should be able to add fractional dates even though it is never used', () => {
-    expect(addDay(JAN_1_2018, 1.5)).toEqual(new Date(2018, 0, 2, 12));
-    expect(addDay(JAN_1_2018, 0.5)).toEqual(new Date(2018, 0, 1, 12));
+  it('should consider fractional dates as integer', () => {
+    expect(addDay(JAN_1_2018, 1.5)).toEqual(new Date(2018, 0, 2, 0));
+    expect(addDay(JAN_1_2018, 0.5)).toEqual(new Date(2018, 0, 1, 0));
   });
 });
