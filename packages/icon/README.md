@@ -440,7 +440,8 @@ Boolean if the icon should use the dense spec.
 <td><code>ReactNode</code></td>
 <td><code>null</code></td>
 <td>
-The children to render before or after the provided icon.
+The children to render before or after the provided icon. This is defaulted to <code>null</code> so that providing
+a <code>null</code> icon will correctly render without React crashing.
 <br /><br />
 </td>
 </tr>

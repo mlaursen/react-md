@@ -32,7 +32,8 @@ export interface ITextIconSpacingProps {
   iconAfter?: boolean;
 
   /**
-   * The children to render before or after the provided icon.
+   * The children to render before or after the provided icon. This is defaulted to `null` so that providing
+   * a `null` icon will correctly render without React crashing.
    *
    * @docgen
    */
@@ -62,6 +63,7 @@ export interface ITextIconSpacingProps {
 }
 
 export interface ITextIconSpacingDefaultProps {
+  children: React.ReactNode;
   iconAfter: boolean;
   beforeClassName: string;
   afterClassName: string;
@@ -81,6 +83,7 @@ export default class TextIconSpacing extends React.Component<ITextIconSpacingPro
   };
 
   public static defaultProps: ITextIconSpacingDefaultProps = {
+    children: null,
     iconAfter: false,
     forceIconWrap: false,
     beforeClassName: "rmd-icon--before",
