@@ -20,6 +20,8 @@ export default class CalendarDate extends PureComponent {
     onClick: PropTypes.func.isRequired,
     active: PropTypes.bool,
     today: PropTypes.bool,
+    calendarDateClassNameProvider: PropTypes.func,
+    renderDate: PropTypes.func,
   };
 
   constructor(props) {
@@ -65,9 +67,14 @@ export default class CalendarDate extends PureComponent {
 
   render() {
     const { date, desktopActive } = this.state;
-    const { disabled, active, today, className } = this.props;
+    const { disabled, active, today, className, calendarDateClassNameProvider, renderDate } = this.props;
 
     const fullyActive = today && !active && !desktopActive;
+
+    const generatedClassName = calendarDateClassNameProvider
+      ? calendarDateClassNameProvider(this.props.date, date)
+      : null;
+
     return (
       <div
         role="gridcell"
@@ -84,7 +91,7 @@ export default class CalendarDate extends PureComponent {
           className={cn('md-calendar-date--btn', {
             'md-calendar-date--btn-active': active || desktopActive,
             'md-pointer--hover': !disabled,
-          }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className)}
+          }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className, generatedClassName)}
           onClick={this._handleClick}
           disabled={disabled}
         >
@@ -94,7 +101,7 @@ export default class CalendarDate extends PureComponent {
               'md-font-bold': fullyActive,
             })}
           >
-            {date}
+            {renderDate ? renderDate(this.props.date, date) : date}
           </span>
         </button>
       </div>
