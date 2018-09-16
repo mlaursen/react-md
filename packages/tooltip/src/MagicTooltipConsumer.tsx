@@ -41,9 +41,10 @@ export type MagicTooltipConsumerWithDefaultProps = IMagicTooltipConsumerProps & 
 export interface IMagicTooltipConsumerState {
   style?: React.CSSProperties;
   position: TooltipPosition;
-  animatingIn: boolean;
-  animatingOut: boolean;
   visible: boolean;
+  lastVisible: boolean;
+  enter: boolean;
+  leave: boolean;
 }
 
 export default class MagicTooltipConsumer extends React.Component<
@@ -67,11 +68,11 @@ export default class MagicTooltipConsumer extends React.Component<
   public static getDerivedStateFromProps(nextProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
     const { id, visibleId } = nextProps;
     const visible = id === visibleId;
-    if (visible !== prevState.visible && !(visible ? prevState.animatingIn : prevState.animatingOut)) {
+    if (visible !== prevState.lastVisible) {
       return {
-        visible,
-        animatingIn: visible,
-        animatingOut: !visible,
+        lastVisible: visible,
+        enter: visible,
+        leave: !visible,
       };
     }
 
@@ -87,8 +88,9 @@ export default class MagicTooltipConsumer extends React.Component<
       style: undefined,
       position: TooltipPosition.BOTTOM,
       visible: false,
-      animatingIn: false,
-      animatingOut: false,
+      enter: false,
+      leave: false,
+      lastVisible: false,
     };
   }
 
@@ -97,25 +99,33 @@ export default class MagicTooltipConsumer extends React.Component<
   }
 
   public componentDidUpdate(prevProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
-    const { animatingIn, animatingOut } = this.state;
-    const { enterDuration, leaveDuration } = this.props as MagicTooltipConsumerWithDefaultProps;
+    const { enter, leave, style, position } = this.state;
+    if (enter !== prevState.enter || leave !== prevState.leave) {
+      this.clear();
+    }
 
-    if (animatingIn && !prevState.animatingIn) {
-      this.clear();
-      this.animationFrame = window.requestAnimationFrame(this.updatePosition);
+    if (enter && enter !== prevState.enter) {
+      this.updatePosition();
+    } else if (enter && (style !== prevState.style || position !== prevState.position)) {
+      const { enterDuration } = this.props as MagicTooltipConsumerWithDefaultProps;
+      this.setState({ visible: true });
       this.animateTimeout = window.setTimeout(() => {
         this.animateTimeout = undefined;
-        this.setState({ animatingIn: false });
+        this.setState({ enter: false });
       }, Math.max(0, enterDuration));
-    } else if (animatingOut && !prevState.animatingOut) {
-      this.clear();
+    }
+
+    if (leave && leave !== prevState.leave) {
+      const { leaveDuration } = this.props as MagicTooltipConsumerWithDefaultProps;
       this.animationFrame = window.requestAnimationFrame(() => {
+        this.animationFrame = undefined;
         this.setState({ visible: false });
+        this.animateTimeout = window.setTimeout(() => {
+          this.animateTimeout = undefined;
+
+          this.setState({ leave: false });
+        }, Math.max(0, leaveDuration))
       });
-      this.animateTimeout = window.setTimeout(() => {
-        this.animateTimeout = undefined;
-        this.setState({ animatingOut: false });
-      }, Math.max(0, leaveDuration));
     }
   }
 
@@ -125,7 +135,7 @@ export default class MagicTooltipConsumer extends React.Component<
   }
 
   public render() {
-    const { visible, animatingIn, animatingOut, style, position } = this.state;
+    const { style, position, visible, enter, leave } = this.state;
     const {
       className,
       initMagicTooltip,
@@ -151,9 +161,9 @@ export default class MagicTooltipConsumer extends React.Component<
         style={style}
         className={cn(
           {
-            "rmd-tooltip--active": visible || animatingIn || animatingOut,
-            "rmd-tooltip--enter": animatingIn,
-            "rmd-tooltip--leave": animatingOut,
+            "rmd-tooltip--active": visible || leave,
+            "rmd-tooltip--enter": enter,
+            "rmd-tooltip--leave": leave,
           },
           "rmd-tooltip--magic",
           className
@@ -232,7 +242,6 @@ export default class MagicTooltipConsumer extends React.Component<
         isPortalFixed: portal || !!(portalIntoId || portalInto),
       }),
       position,
-      visible: true,
     });
   };
 

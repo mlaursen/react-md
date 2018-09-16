@@ -256,7 +256,7 @@
         transform: translateX($rmd-tooltip-transition-distance);
       }
 
-      &.rmd-tooltip--active {
+      &.rmd-tooltip--visible {
         transform: none;
       }
     }
