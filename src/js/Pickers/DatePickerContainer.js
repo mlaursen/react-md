@@ -479,6 +479,21 @@ export default class DatePickerContainer extends PureComponent {
     renderDate: PropTypes.func,
 
     /**
+     * An optional callback triggered on prev month click, onPreviousMonth(firstDayInMonth:Date).
+     */
+    onPreviousMonth: PropTypes.func,
+
+    /**
+     * An optional callback triggered on prev month click, onPreviousMonth(firstDayInMonth:Date).
+     */
+    onNextMonth: PropTypes.func,
+
+    /**
+     * An optional callback triggered on year selection, onYearSelected(firstDayInYear:Date).
+     */
+    onYearSelected: PropTypes.func,
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     calendarTitleClassName: PropTypes.string,
@@ -765,11 +780,19 @@ export default class DatePickerContainer extends PureComponent {
   _previousMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, -1, 'M');
     this.setState({ calendarDate });
+
+    if (this.props.onPreviousMonth) {
+      this.props.onPreviousMonth(calendarDate);
+    }
   };
 
   _nextMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, 1, 'M');
     this.setState({ calendarDate });
+
+    if (this.props.onNextMonth) {
+      this.props.onNextMonth(calendarDate);
+    }
   };
 
   _setCalendarTempDate = (calendarTempDate) => {
@@ -817,6 +840,10 @@ export default class DatePickerContainer extends PureComponent {
     if (maxDate && nextTemp > maxDate) {
       nextDate = new Date(maxDate);
       nextTemp = new Date(maxDate);
+    }
+
+    if (this.props.onYearSelected) {
+      this.props.onYearSelected(nextDate);
     }
 
     this.setState({
