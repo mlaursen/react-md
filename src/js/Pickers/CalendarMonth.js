@@ -67,12 +67,12 @@ export default class CalendarMonth extends PureComponent {
     /**
      * An optional function to provide class for each date in calendar.
      */
-    calendarDateClassNameProvider: PropTypes.func,
+    getDateClassName: PropTypes.func,
 
       /**
      * An optional function to render each date component.
      */
-    renderDate: PropTypes.func,
+    dateRenderer: PropTypes.func,
 
     /**
      * True if dates from adjacent months should be shown.
@@ -108,8 +108,8 @@ export default class CalendarMonth extends PureComponent {
       firstDayOfWeek,
       disableWeekEnds,
       dateClassName,
-      calendarDateClassNameProvider,
-      renderDate,
+      getDateClassName,
+      dateRenderer,
       showAllDays,
       outerDateClassName,
       disableOuterDates,
@@ -150,8 +150,8 @@ export default class CalendarMonth extends PureComponent {
             key={key}
             className={cn(dateClassName, { [outerDateClassName]: !currentMonth && outerDateClassName })}
             today={time === todayTime}
-            calendarDateClassNameProvider={calendarDateClassNameProvider}
-            renderDate={renderDate}
+            getDateClassName={getDateClassName}
+            dateRenderer={dateRenderer}
             active={time === activeDateTime}
             disabled={disabled}
             onClick={onCalendarDateClick}

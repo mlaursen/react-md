@@ -47,12 +47,12 @@ export default class DatePickerCalendar extends PureComponent {
     /**
      * An optional function to provide class for each date in calendar.
      */
-    calendarDateClassNameProvider: PropTypes.func,
+    getDateClassName: PropTypes.func,
 
     /**
      * An optional function to render each date component.
      */
-    renderDate: PropTypes.func,
+    dateRenderer: PropTypes.func,
 
     /**
      * An optional className to apply to a date from an adjacent month.
@@ -103,8 +103,8 @@ export default class DatePickerCalendar extends PureComponent {
       showAllDays,
       disableOuterDates,
       dateClassName,
-      calendarDateClassNameProvider,
-      renderDate,
+      getDateClassName,
+      dateRenderer,
       outerDateClassName,
       titleClassName,
       titleFormat,
@@ -144,8 +144,8 @@ export default class DatePickerCalendar extends PureComponent {
           showAllDays={showAllDays}
           disableOuterDates={disableOuterDates}
           dateClassName={dateClassName}
-          calendarDateClassNameProvider={calendarDateClassNameProvider}
-          renderDate={renderDate}
+          getDateClassName={getDateClassName}
+          dateRenderer={dateRenderer}
           outerDateClassName={outerDateClassName}
         />
       </section>

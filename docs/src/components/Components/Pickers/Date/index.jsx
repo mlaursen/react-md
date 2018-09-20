@@ -6,6 +6,8 @@ import OrientationExamples from './OrientationExamples';
 import OrientationExamplesRaw from '!!raw-loader!./OrientationExamples.jsx';
 import InlineExample from './InlineExample';
 import InlineExampleRaw from '!!raw-loader!./InlineExample.jsx';
+import CustomDateRenderingExample from './CustomDateRenderingExample';
+import CustomDateRenderingExampleRaw from '!!raw-loader!./CustomDateRenderingExample.jsx';
 import AdditionalDisplaySettings from './AdditionalDisplaySettings';
 import AdditionalDisplaySettingsRaw from '!!raw-loader!./AdditionalDisplaySettings.jsx';
 import Formatting from './Formatting';
@@ -38,6 +40,13 @@ providing the \`inline\` prop to the picker.
   `,
   code: InlineExampleRaw,
   children: <InlineExample />,
+}, {
+  title: 'Custom Date Rendering Example',
+  description: `
+DatePicker can be used as static month calendar with custom date rendering.
+  `,
+  code: CustomDateRenderingExampleRaw,
+  children: <CustomDateRenderingExample />,
 }, {
   title: 'Additional Display Settings',
   description: `

@@ -468,28 +468,47 @@ export default class DatePickerContainer extends PureComponent {
     calendarOuterDateClassName: PropTypes.string,
 
     /**
-     * An optional function to provide class for each date in calendar,
-     * calendarDateClassNameProvider(date:Date, day:number) => string.
+     * An optional function to provide class for each date in calendar.
+     *
+     * ```js
+     * getDateClassName(date:Date, day:number): string;
+     * ```
      */
-    calendarDateClassNameProvider: PropTypes.func,
+    getDateClassName: PropTypes.func,
 
     /**
-     * An optional function to render each date component, renderDate(date:Date, day:number) => node.
+     * An optional function to render each date component.
+     *
+     * ```js
+     * dateRenderer(date:Date, day:number): React.Component;
+     * ```
      */
-    renderDate: PropTypes.func,
+    dateRenderer: PropTypes.func,
 
     /**
-     * An optional callback triggered on prev month click, onPreviousMonth(firstDayInMonth:Date).
+     * An optional callback triggered on previous month click.
+     *
+     * ```js
+     * onPreviousMonth(firstDayInMonth:Date);
+     * ```
      */
     onPreviousMonth: PropTypes.func,
 
     /**
-     * An optional callback triggered on prev month click, onPreviousMonth(firstDayInMonth:Date).
+     * An optional callback triggered on next month click.
+     *
+     * ```js
+     * onNextMonth(firstDayInMonth:Date);
+     * ```
      */
     onNextMonth: PropTypes.func,
 
     /**
-     * An optional callback triggered on year selection, onYearSelected(firstDayInYear:Date).
+     * An optional callback triggered on year selection.
+     *
+     * ```js
+     * onYearSelected(firstDayInYear:Date);
+     * ```
      */
     onYearSelected: PropTypes.func,
 
@@ -961,8 +980,8 @@ export default class DatePickerContainer extends PureComponent {
       readOnly,
       onVisibilityChange,
       defaultCalendarDate,
-      calendarDateClassNameProvider,
-      renderDate,
+      getDateClassName,
+      dateRenderer,
 
       // deprecated
       initialCalendarDate,
@@ -999,8 +1018,8 @@ export default class DatePickerContainer extends PureComponent {
         onNextClick={this._nextMonth}
         onCalendarDateClick={this._setCalendarTempDate}
         onCalendarYearClick={this._setCalendarTempYear}
-        calendarDateClassNameProvider={calendarDateClassNameProvider}
-        renderDate={renderDate}
+        getDateClassName={getDateClassName}
+        dateRenderer={dateRenderer}
       />
     );
 
