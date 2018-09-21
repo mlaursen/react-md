@@ -1,0 +1,33 @@
+@import '~globals';
+
+@include react-md-pickers-force-orientation;
+
+.inline-fixed-date-picker {
+
+  .md-picker--inline {
+    left: 0;
+    margin: auto;
+    position: relative;
+    z-index: inherit;
+  }
+
+  .hidden-footer {
+    display: none;
+  }
+
+  .monday {
+    background-color: $md-light-blue-50;
+    border-radius: 50%;
+    height: 36px !important;
+    margin-bottom: 3px !important;
+    width: $md-date-picker-portrait-ball-size;
+  }
+
+  .day-with-events {
+    background-color: $md-teal-a-200;
+    border-radius: 50%;
+    height: 36px !important;
+    margin-bottom: 3px !important;
+    width: $md-date-picker-portrait-ball-size;
+  }
+}
