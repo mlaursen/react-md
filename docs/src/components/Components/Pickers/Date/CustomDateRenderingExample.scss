@@ -5,9 +5,9 @@
 .inline-fixed-date-picker {
 
   .md-picker--inline {
-    position: relative;
-    margin: auto;
     left: 0;
+    margin: auto;
+    position: relative;
     z-index: inherit;
   }
 
@@ -17,17 +17,17 @@
 
   .monday {
     background-color: $md-light-blue-50;
-    margin-bottom: 3px !important;
-    height: 36px !important;
-    width: $md-date-picker-portrait-ball-size;
     border-radius: 50%;
+    height: 36px !important;
+    margin-bottom: 3px !important;
+    width: $md-date-picker-portrait-ball-size;
   }
 
   .day-with-events {
     background-color: $md-teal-a-200;
-    margin-bottom: 3px !important;
-    height: 36px !important;
-    width: $md-date-picker-portrait-ball-size;
     border-radius: 50%;
+    height: 36px !important;
+    margin-bottom: 3px !important;
+    width: $md-date-picker-portrait-ball-size;
   }
 }
