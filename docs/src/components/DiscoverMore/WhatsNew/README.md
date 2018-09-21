@@ -1,7 +1,10 @@
 ## September 2018
+### v1.7.0 Released
+- Updated the `DatePicker` for more flexibility at rendering dates. ([@madc0der] - [pull-800])
+
 ### v1.6.2 Released
 - Updated the `InkContainer` to not break in Preact. [issues-788]
-- Updated the `TableRow` children PropType validation to be a bit more accurate. [commit-5e8d216]
+- Updated the `TableRow` children PropType validation to be a bit more accurate. [commit-6d5f8c2]
 
 ### v1.6.1 Released
 ##### Changelog
