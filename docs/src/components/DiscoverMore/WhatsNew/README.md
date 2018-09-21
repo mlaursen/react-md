@@ -1,4 +1,8 @@
 ## September 2018
+### v1.6.2 Released
+- Updated the `InkContainer` to not break in Preact. [issues-788]
+- Updated the `TableRow` children PropType validation to be a bit more accurate. [commit-5e8d216]
+
 ### v1.6.1 Released
 ##### Changelog
 - Fixed the `DatePicker` dates not having `type="button"`. ([@jakerichan] - [pull-796])
