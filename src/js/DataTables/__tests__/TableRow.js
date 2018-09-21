@@ -231,4 +231,40 @@ describe('TableRow', () => {
       expect(table.state.selectedRows).toEqual([false, true]);
     });
   });
+
+  describe('rendering', () => {
+    global.captureConsole();
+
+    it(
+      'should not throw a PropType validation warning when the children prop is a ' +
+        'combination of a const element and a list of elements',
+      () => {
+        // eslint-disable-next-line react/prop-types
+        const Example = ({ children }) => (
+          <DataTable baseId="test">
+            <TableBody>{children}</TableBody>
+          </DataTable>
+        );
+
+        const list1 = [];
+        const list2 = [{ key: '1', children: 'Hello' }];
+
+        mount((
+          <Example>
+            <TableRow>
+              <TableColumn>Hi</TableColumn>
+              {list1.map((props) => <TableColumn {...props} />)}
+            </TableRow>
+          </Example>
+        ));
+        mount((
+          <Example>
+            <TableRow>
+              <TableColumn>Hi</TableColumn>
+              {list2.map((props) => <TableColumn {...props} />)}
+            </TableRow>
+          </Example>
+        ));
+      });
+  });
 });
