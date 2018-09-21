@@ -62,6 +62,10 @@ export default class InkContainer extends PureComponent {
       clearTimeout(this._removeTimeout);
     }
 
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+
     if (this._container) {
       this._initOrRemoveEvents({ disabledInteractions: ['keyboard', 'mouse', 'touch'] });
       this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
@@ -179,12 +183,17 @@ export default class InkContainer extends PureComponent {
    */
   _setContainers = (group) => {
     if (group !== null) {
-      this._inkContainer = findDOMNode(group);
-      this._container = this._inkContainer.parentElement;
+      // temp workaround for preact
+      // https://github.com/mlaursen/react-md/issues/788#issuecomment-419248903
+      this.timeout = setTimeout(() => {
+        this.timeout = undefined;
+        this._inkContainer = findDOMNode(group);
+        this._container = this._inkContainer.parentElement;
 
-      if (this._container) {
-        this._initOrRemoveEvents(this.props);
-      }
+        if (this._container) {
+          this._initOrRemoveEvents(this.props);
+        }
+      });
     }
   };
 
