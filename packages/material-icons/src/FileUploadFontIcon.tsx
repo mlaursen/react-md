@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FileUploadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>file_upload</FontIcon>;
+const FileUploadFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>file_upload</FontIcon>
+);
 
 export default FileUploadFontIcon;

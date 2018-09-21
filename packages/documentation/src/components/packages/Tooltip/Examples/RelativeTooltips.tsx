@@ -12,9 +12,9 @@ interface IButtonWithTooltipProps extends IButtonProps, ITooltipOptions {
 
 const LongTooltip: React.SFC<{}> = () => (
   <span>
-    This is going to be a long tooltip that will eventually line-wrap. To get this to work, you should also apply a
-    manual <code>width</code> to the tooltip, otherwise it will start line-wrapping based on the width of its container
-    element.
+    This is going to be a long tooltip that will eventually line-wrap. To get this to work, you
+    should also apply a manual <code>width</code> to the tooltip, otherwise it will start
+    line-wrapping based on the width of its container element.
   </span>
 );
 
@@ -33,7 +33,13 @@ const ButtonWithTooltip: React.SFC<IButtonWithTooltipProps> = ({
   return (
     <Button id={id} aria-describedby={tooltipId} {...props}>
       {children}
-      <RelativeTooltip id={tooltipId} dense={dense} lineWrap={lineWrap} position={position} style={tooltipStyle}>
+      <RelativeTooltip
+        id={tooltipId}
+        dense={dense}
+        lineWrap={lineWrap}
+        position={position}
+        style={tooltipStyle}
+      >
         {tooltip}
       </RelativeTooltip>
     </Button>

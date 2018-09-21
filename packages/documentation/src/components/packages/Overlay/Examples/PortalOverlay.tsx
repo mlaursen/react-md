@@ -12,7 +12,10 @@ export interface ISimpleOverlayState {
   withPortal: boolean;
 }
 
-export default class SimpleOverlay extends React.Component<ISimpleOverlayProps, ISimpleOverlayState> {
+export default class SimpleOverlay extends React.Component<
+  ISimpleOverlayProps,
+  ISimpleOverlayState
+> {
   constructor(props: ISimpleOverlayProps) {
     super(props);
 
@@ -22,10 +25,20 @@ export default class SimpleOverlay extends React.Component<ISimpleOverlayProps, 
   public render() {
     const { visible, withPortal } = this.state;
 
-    let overlay = <Overlay visible={visible} onRequestClose={this.hide} className="portal-overlay-example__overlay" />;
+    let overlay = (
+      <Overlay
+        visible={visible}
+        onRequestClose={this.hide}
+        className="portal-overlay-example__overlay"
+      />
+    );
     if (withPortal) {
       overlay = (
-        <OverlayPortal visible={visible} onRequestClose={this.hide} className="portal-overlay-example__overlay" />
+        <OverlayPortal
+          visible={visible}
+          onRequestClose={this.hide}
+          className="portal-overlay-example__overlay"
+        />
       );
     }
 

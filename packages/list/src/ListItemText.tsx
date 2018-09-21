@@ -17,7 +17,11 @@ const ListItemText: React.SFC<IListItemTextProps> = ({
 }) => {
   let content;
   if (secondaryText) {
-    content = <span className={cn("rmd-list-item__secondary-text", secondaryTextClassName)}>{secondaryText}</span>;
+    content = (
+      <span className={cn("rmd-list-item__secondary-text", secondaryTextClassName)}>
+        {secondaryText}
+      </span>
+    );
   }
 
   return (

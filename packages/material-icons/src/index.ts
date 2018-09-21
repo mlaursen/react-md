@@ -52,7 +52,9 @@ export { default as AirlineSeatFlatAngledFontIcon } from "./AirlineSeatFlatAngle
 export { default as AirlineSeatFlatSVGIcon } from "./AirlineSeatFlatSVGIcon";
 export { default as AirlineSeatFlatFontIcon } from "./AirlineSeatFlatFontIcon";
 export { default as AirlineSeatIndividualSuiteSVGIcon } from "./AirlineSeatIndividualSuiteSVGIcon";
-export { default as AirlineSeatIndividualSuiteFontIcon } from "./AirlineSeatIndividualSuiteFontIcon";
+export {
+  default as AirlineSeatIndividualSuiteFontIcon,
+} from "./AirlineSeatIndividualSuiteFontIcon";
 export { default as AirlineSeatLegroomExtraSVGIcon } from "./AirlineSeatLegroomExtraSVGIcon";
 export { default as AirlineSeatLegroomExtraFontIcon } from "./AirlineSeatLegroomExtraFontIcon";
 export { default as AirlineSeatLegroomNormalSVGIcon } from "./AirlineSeatLegroomNormalSVGIcon";

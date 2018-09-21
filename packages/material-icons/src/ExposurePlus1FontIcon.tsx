@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ExposurePlus1FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>exposure_plus_1</FontIcon>;
+const ExposurePlus1FontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>exposure_plus_1</FontIcon>
+);
 
 export default ExposurePlus1FontIcon;

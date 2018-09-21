@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CallReceivedFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>call_received</FontIcon>;
+const CallReceivedFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>call_received</FontIcon>
+);
 
 export default CallReceivedFontIcon;

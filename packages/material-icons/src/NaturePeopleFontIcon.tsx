@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NaturePeopleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>nature_people</FontIcon>;
+const NaturePeopleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>nature_people</FontIcon>
+);
 
 export default NaturePeopleFontIcon;

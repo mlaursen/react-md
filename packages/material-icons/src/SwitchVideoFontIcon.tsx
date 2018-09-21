@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SwitchVideoFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>switch_video</FontIcon>;
+const SwitchVideoFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>switch_video</FontIcon>
+);
 
 export default SwitchVideoFontIcon;

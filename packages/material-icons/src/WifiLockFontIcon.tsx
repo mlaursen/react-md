@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WifiLockFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>wifi_lock</FontIcon>;
+const WifiLockFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>wifi_lock</FontIcon>
+);
 
 export default WifiLockFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatAlignRightFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>format_align_right</FontIcon>;
+const FormatAlignRightFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>format_align_right</FontIcon>
+);
 
 export default FormatAlignRightFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ShowChartFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>show_chart</FontIcon>;
+const ShowChartFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>show_chart</FontIcon>
+);
 
 export default ShowChartFontIcon;

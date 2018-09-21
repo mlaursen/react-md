@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VideoLabelFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>video_label</FontIcon>;
+const VideoLabelFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>video_label</FontIcon>
+);
 
 export default VideoLabelFontIcon;

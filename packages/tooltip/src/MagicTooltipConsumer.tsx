@@ -36,7 +36,8 @@ export interface IMagicTooltipConsumerDefaultProps {
   vwMargin: number;
 }
 
-export type MagicTooltipConsumerWithDefaultProps = IMagicTooltipConsumerProps & IMagicTooltipConsumerDefaultProps;
+export type MagicTooltipConsumerWithDefaultProps = IMagicTooltipConsumerProps &
+  IMagicTooltipConsumerDefaultProps;
 
 export interface IMagicTooltipConsumerState {
   style?: React.CSSProperties;
@@ -65,7 +66,10 @@ export default class MagicTooltipConsumer extends React.Component<
     vwMargin: DEFAULT_VW_MARGIN,
   };
 
-  public static getDerivedStateFromProps(nextProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
+  public static getDerivedStateFromProps(
+    nextProps: IMagicTooltipConsumerProps,
+    prevState: IMagicTooltipConsumerState
+  ) {
     const { id, visibleId } = nextProps;
     const visible = id === visibleId;
     if (visible !== prevState.lastVisible) {
@@ -98,7 +102,10 @@ export default class MagicTooltipConsumer extends React.Component<
     this.props.initMagicTooltip(this.props.id);
   }
 
-  public componentDidUpdate(prevProps: IMagicTooltipConsumerProps, prevState: IMagicTooltipConsumerState) {
+  public componentDidUpdate(
+    prevProps: IMagicTooltipConsumerProps,
+    prevState: IMagicTooltipConsumerState
+  ) {
     const { enter, leave, style, position } = this.state;
     if (enter !== prevState.enter || leave !== prevState.leave) {
       this.clear();
@@ -124,7 +131,7 @@ export default class MagicTooltipConsumer extends React.Component<
           this.animateTimeout = undefined;
 
           this.setState({ leave: false });
-        }, Math.max(0, leaveDuration))
+        }, Math.max(0, leaveDuration));
       });
     }
   }

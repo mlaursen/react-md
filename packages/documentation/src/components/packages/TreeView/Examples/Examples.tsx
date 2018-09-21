@@ -77,6 +77,8 @@ Finally, the user can quickly select all items (even the non-expanded child item
 presses \`CTRL+A\` while all the items were selected, all items will be deselected instead.
 `;
 
-const Examples = () => <ExamplesPage title="TreeView" examples={examples} description={description} />;
+const Examples = () => (
+  <ExamplesPage title="TreeView" examples={examples} description={description} />
+);
 
 export default Examples;

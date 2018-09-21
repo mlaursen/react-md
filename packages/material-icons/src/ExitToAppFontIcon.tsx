@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ExitToAppFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>exit_to_app</FontIcon>;
+const ExitToAppFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>exit_to_app</FontIcon>
+);
 
 export default ExitToAppFontIcon;

@@ -1,6 +1,11 @@
 import * as React from "react";
 
-import { InitMagicTooltip, DeinitMagicTooltip, TooltipSpacing, IMagicTooltipContext } from "./types";
+import {
+  InitMagicTooltip,
+  DeinitMagicTooltip,
+  TooltipSpacing,
+  IMagicTooltipContext,
+} from "./types";
 import { DEFAULT_SPACING, DEFAULT_DENSE_SPACING } from "./constants";
 
 const MagicTooltipContext = React.createContext<IMagicTooltipContext>({

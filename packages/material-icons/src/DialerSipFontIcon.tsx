@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DialerSipFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>dialer_sip</FontIcon>;
+const DialerSipFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>dialer_sip</FontIcon>
+);
 
 export default DialerSipFontIcon;

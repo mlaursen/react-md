@@ -23,7 +23,11 @@ function handleMultiItemSelect(itemId: string, selectedIds: string[]) {
  * A new `expandedIds` list will only be returned if the ids have changed, otherwise the
  * original `expandedIds` list will be returned.
  */
-export default function handleItemSelect(itemId: string, selectedIds: string[], multiSelect: boolean = false) {
+export default function handleItemSelect(
+  itemId: string,
+  selectedIds: string[],
+  multiSelect: boolean = false
+) {
   if (multiSelect) {
     return handleMultiItemSelect(itemId, selectedIds);
   }

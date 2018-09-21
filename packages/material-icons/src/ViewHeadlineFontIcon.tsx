@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewHeadlineFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_headline</FontIcon>;
+const ViewHeadlineFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_headline</FontIcon>
+);
 
 export default ViewHeadlineFontIcon;

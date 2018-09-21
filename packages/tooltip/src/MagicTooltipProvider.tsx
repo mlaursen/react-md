@@ -157,7 +157,8 @@ export interface IMagicTooltipProviderDefaultProps {
   keyboardMovementKeys: string[];
 }
 
-export type MagicTooltipProviderWithDefaultProps = IMagicTooltipProviderProps & IMagicTooltipProviderDefaultProps;
+export type MagicTooltipProviderWithDefaultProps = IMagicTooltipProviderProps &
+  IMagicTooltipProviderDefaultProps;
 
 export interface IMagicTooltipProviderState {
   visibleId: null | string;
@@ -168,7 +169,11 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     dense: PropTypes.bool,
     delay: PropTypes.number,
     portal: PropTypes.bool,
-    portalInto: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.instanceOf(HTMLElement)]),
+    portalInto: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+      PropTypes.instanceOf(HTMLElement),
+    ]),
     portalIntoId: PropTypes.string,
     hoverMode: PropTypes.bool,
     hoverModeDelay: PropTypes.number,
@@ -203,7 +208,10 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
     };
   }
 
-  public shouldComponentUpdate(nextProps: MagicTooltipProviderWithDefaultProps, nextState: IMagicTooltipProviderState) {
+  public shouldComponentUpdate(
+    nextProps: MagicTooltipProviderWithDefaultProps,
+    nextState: IMagicTooltipProviderState
+  ) {
     return (
       this.state.visibleId !== nextState.visibleId ||
       this.props.children !== nextProps.children ||
@@ -370,7 +378,8 @@ export default class MagicTooltipProvider extends React.Component<IMagicTooltipP
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    const { keyboardFocusDelay, keyboardMovementKeys } = this.props as MagicTooltipProviderWithDefaultProps;
+    const { keyboardFocusDelay, keyboardMovementKeys } = this
+      .props as MagicTooltipProviderWithDefaultProps;
     if (event.key === "Escape") {
       this.clearHoverModeTimeout();
       if (this.state.visibleId) {

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LinearScaleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>linear_scale</FontIcon>;
+const LinearScaleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>linear_scale</FontIcon>
+);
 
 export default LinearScaleFontIcon;

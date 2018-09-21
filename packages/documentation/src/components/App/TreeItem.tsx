@@ -1,13 +1,20 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { DefaultTreeItemRenderer, TreeViewData, IDefaultTreeItemRendererProps } from "@react-md/tree-view";
+import {
+  DefaultTreeItemRenderer,
+  TreeViewData,
+  IDefaultTreeItemRendererProps,
+} from "@react-md/tree-view";
 import { MagicTooltip } from "@react-md/tooltip";
 
 export interface ITreeItemState {
   tooltipped: boolean;
 }
 
-export default class TreeItem extends React.Component<IDefaultTreeItemRendererProps, ITreeItemState> {
+export default class TreeItem extends React.Component<
+  IDefaultTreeItemRendererProps,
+  ITreeItemState
+> {
   private item: HTMLElement | null;
   constructor(props: IDefaultTreeItemRendererProps) {
     super(props);

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AssignmentFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>assignment</FontIcon>;
+const AssignmentFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>assignment</FontIcon>
+);
 
 export default AssignmentFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WbIncandescentFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>wb_incandescent</FontIcon>;
+const WbIncandescentFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>wb_incandescent</FontIcon>
+);
 
 export default WbIncandescentFontIcon;

@@ -47,7 +47,9 @@ export interface IEventListenerTriggeredDefined extends IEventListenerProps {
   onTriggered: (event: Event) => void;
 }
 
-export type EventListenerWithRequiredProps = IEventListenerChildrenDefined | IEventListenerTriggeredDefined;
+export type EventListenerWithRequiredProps =
+  | IEventListenerChildrenDefined
+  | IEventListenerTriggeredDefined;
 
 /**
  * This is a simple component that uses the lifecyle methods within React to attach and remove
@@ -55,7 +57,10 @@ export type EventListenerWithRequiredProps = IEventListenerChildrenDefined | IEv
  * to change events, this component should be unmounted and a new component should be mounted
  * instead.
  */
-export default class EventListener extends React.Component<EventListenerWithRequiredProps, IEventListenerState> {
+export default class EventListener extends React.Component<
+  EventListenerWithRequiredProps,
+  IEventListenerState
+> {
   public static propTypes = {
     type: PropTypes.oneOf(["click", "scroll"]).isRequired,
     target: PropTypes.oneOfType([PropTypes.instanceOf(Element), PropTypes.instanceOf(Document)]),

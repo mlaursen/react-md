@@ -8,12 +8,7 @@ export const KEYBOARD_MOVEMENT_KEYS = [
   "Tab",
 ];
 
-export const PROGRAMMATIC_FOCUS_KEYS = [
-  ...KEYBOARD_MOVEMENT_KEYS,
-  " ",
-  "Enter",
-  "Escape",
-];
+export const PROGRAMMATIC_FOCUS_KEYS = [...KEYBOARD_MOVEMENT_KEYS, " ", "Enter", "Escape"];
 
 export const FOCUSABLE_ELEMENTS = ["BUTTON", "TEXTAREA", "SELECT"];
 

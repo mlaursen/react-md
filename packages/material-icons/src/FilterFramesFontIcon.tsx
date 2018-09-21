@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FilterFramesFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>filter_frames</FontIcon>;
+const FilterFramesFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>filter_frames</FontIcon>
+);
 
 export default FilterFramesFontIcon;

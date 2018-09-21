@@ -40,14 +40,25 @@ describe("Collapse", () => {
 
     it("should use the value of the isEmptyCollapsed prop over the values of minHeight, minPaddingTop, minPaddingBottom if it is defined", () => {
       const collapse = shallow(
-        <Collapse collapsed={true} isEmptyCollapsed={true} minHeight={1} minPaddingTop={1} minPaddingBottom={1}>
+        <Collapse
+          collapsed={true}
+          isEmptyCollapsed={true}
+          minHeight={1}
+          minPaddingTop={1}
+          minPaddingBottom={1}
+        >
           {() => <div />}
         </Collapse>
       );
 
       expect(collapse.type()).toBe(null);
 
-      collapse.setProps({ minHeight: 0, minPaddingTop: 0, minPaddingBottom: 0, isEmptyCollapsed: false });
+      collapse.setProps({
+        minHeight: 0,
+        minPaddingTop: 0,
+        minPaddingBottom: 0,
+        isEmptyCollapsed: false,
+      });
       expect(collapse.type()).not.toBe(null);
     });
   });

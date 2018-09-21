@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocationOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>location_off</FontIcon>;
+const LocationOffFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>location_off</FontIcon>
+);
 
 export default LocationOffFontIcon;

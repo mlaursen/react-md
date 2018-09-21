@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RateReviewFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>rate_review</FontIcon>;
+const RateReviewFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>rate_review</FontIcon>
+);
 
 export default RateReviewFontIcon;

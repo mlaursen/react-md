@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PlayForWorkFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>play_for_work</FontIcon>;
+const PlayForWorkFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>play_for_work</FontIcon>
+);
 
 export default PlayForWorkFontIcon;

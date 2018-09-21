@@ -12,7 +12,10 @@ export interface IMagicTooltipsState {
   keyboardFocusDelay: number;
 }
 
-export default class MagicTooltips extends React.Component<IMagicTooltipsProps, IMagicTooltipsState> {
+export default class MagicTooltips extends React.Component<
+  IMagicTooltipsProps,
+  IMagicTooltipsState
+> {
   constructor(props: IMagicTooltipsProps) {
     super(props);
 
@@ -30,14 +33,23 @@ export default class MagicTooltips extends React.Component<IMagicTooltipsProps, 
       <React.Fragment>
         <div id="magic-tooltip-example-portal" />
         <MagicTooltipProvider {...this.state}>
-          <div style={{ maxHeight: 400, maxWidth: 400, width: "100%", margin: "1rem auto" }}>
+          <div
+            style={{
+              maxHeight: 400,
+              maxWidth: 400,
+              width: "100%",
+              margin: "1rem auto",
+            }}
+          >
             <Button
               id="magic-tooltip-button-1"
               aria-describedby="magic-tooltip-button-1-tooltip"
               className="example-group__example"
             >
               Button
-              <MagicTooltip id="magic-tooltip-button-1-tooltip">This is a magic tooltip!</MagicTooltip>
+              <MagicTooltip id="magic-tooltip-button-1-tooltip">
+                This is a magic tooltip!
+              </MagicTooltip>
             </Button>
           </div>
         </MagicTooltipProvider>

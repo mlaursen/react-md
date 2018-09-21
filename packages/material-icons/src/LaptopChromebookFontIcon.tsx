@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LaptopChromebookFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>laptop_chromebook</FontIcon>;
+const LaptopChromebookFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>laptop_chromebook</FontIcon>
+);
 
 export default LaptopChromebookFontIcon;

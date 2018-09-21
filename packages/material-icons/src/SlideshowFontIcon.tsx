@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SlideshowFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>slideshow</FontIcon>;
+const SlideshowFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>slideshow</FontIcon>
+);
 
 export default SlideshowFontIcon;

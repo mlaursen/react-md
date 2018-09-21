@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewQuiltFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_quilt</FontIcon>;
+const ViewQuiltFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_quilt</FontIcon>
+);
 
 export default ViewQuiltFontIcon;

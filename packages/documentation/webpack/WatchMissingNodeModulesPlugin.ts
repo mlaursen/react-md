@@ -20,7 +20,11 @@ export default class WatchMissingNodeModulesPlugin {
     compiler.hooks.emit.tap("WatchMissingNodeModulesPlugin", (compilation: ICompilation) => {
       // if any of the missing depenencies are from node_modules, update webpack to watch node_modules
       // until they appear.
-      if (Array.from(compilation.missingDependencies).some(file => file.includes(this.nodeModulesPath))) {
+      if (
+        Array.from(compilation.missingDependencies).some(file =>
+          file.includes(this.nodeModulesPath)
+        )
+      ) {
         compilation.contextDependencies.add(this.nodeModulesPath);
       }
     });

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PermMediaFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>perm_media</FontIcon>;
+const PermMediaFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>perm_media</FontIcon>
+);
 
 export default PermMediaFontIcon;

@@ -55,7 +55,9 @@ export interface IFlattenedTree<D = IIndexKeyAny> {
  */
 export type FlattenedTreeViewDataList<D = IIndexKeyAny> = Array<FlattenedTreeViewData<D>>;
 
-export type FlattenedTreeViewSort<D> = (data: FlattenedTreeViewDataList<D>) => FlattenedTreeViewDataList<D>;
+export type FlattenedTreeViewSort<D> = (
+  data: FlattenedTreeViewDataList<D>
+) => FlattenedTreeViewDataList<D>;
 
 export interface ITreeViewBaseProps<D, R> {
   /**
@@ -252,7 +254,10 @@ export interface ITreeViewProps<D = IIndexKeyAny, R = IIndexKeyAny>
   onItemExpandedChange: onItemExpandedChange;
 }
 
-export type TreeViewWithMultiSelectHandlers<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<D, R> & {
+export type TreeViewWithMultiSelectHandlers<D = IIndexKeyAny, R = IIndexKeyAny> = ITreeViewProps<
+  D,
+  R
+> & {
   onMultipleItemExpansion: MultipleIdHandler;
   onMultipleItemSelection: MultipleIdHandler;
 };
@@ -280,7 +285,9 @@ export type TreeViewWithDefaultProps<D = IIndexKeyAny, R = IIndexKeyAny> = ITree
  * to provide a type or interface for the remaining keys. The default is to allow any key passed down
  * just so it isn't super hard to get something rendered.
  */
-export type treeViewRenderer<R = IIndexKeyAny> = (props: ITreeViewInjectedProps & IListProps) => React.ReactNode;
+export type treeViewRenderer<R = IIndexKeyAny> = (
+  props: ITreeViewInjectedProps & IListProps
+) => React.ReactNode;
 
 /**
  * The function that should render each tree item that appears within the tree view. It will provide

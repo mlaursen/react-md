@@ -208,7 +208,9 @@ export default class Button extends React.Component<IButtonProps, {}> {
     return (
       <StatesConsumer
         className={Button.theme(this.props)}
-        pressedClassName={cn({ "rmd-btn--contained-pressed": themeType === "contained" })}
+        pressedClassName={cn({
+          "rmd-btn--contained-pressed": themeType === "contained",
+        })}
         disabled={baseDisabled}
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}

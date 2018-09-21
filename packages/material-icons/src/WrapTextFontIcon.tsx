@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WrapTextFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>wrap_text</FontIcon>;
+const WrapTextFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>wrap_text</FontIcon>
+);
 
 export default WrapTextFontIcon;

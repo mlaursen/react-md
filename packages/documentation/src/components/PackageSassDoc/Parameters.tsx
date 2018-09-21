@@ -29,12 +29,18 @@ const Parameters: React.SFC<IParametersProps> = ({ parameters }) => {
         <tbody>
           {parameters.map(({ name, description, type, default: defaultValue }) => (
             <tr key={name}>
-              <td><code>${name}</code></td>
+              <td>
+                <code>${name}</code>
+              </td>
               <td>
                 <Markdown markdown={description} />
               </td>
-              <td><code>{type}</code></td>
-              <td><code>{defaultValue && `${defaultValue.replace(/^rmd/, "$rmd")}`}</code></td>
+              <td>
+                <code>{type}</code>
+              </td>
+              <td>
+                <code>{defaultValue && `${defaultValue.replace(/^rmd/, "$rmd")}`}</code>
+              </td>
             </tr>
           ))}
         </tbody>

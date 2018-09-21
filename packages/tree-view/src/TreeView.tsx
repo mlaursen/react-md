@@ -4,7 +4,11 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { List, IListProps } from "@react-md/list";
 import { FontIcon } from "@react-md/icon";
-import { searchNodes, TextExtractor, extractTextContent as defaultExtractTextContent } from "@react-md/utils";
+import {
+  searchNodes,
+  TextExtractor,
+  extractTextContent as defaultExtractTextContent,
+} from "@react-md/utils";
 
 import {
   IIndexKeyAny,
@@ -45,7 +49,9 @@ type TreeKeyboardEvent = React.KeyboardEvent<TreeViewElement>;
  * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
  * complex trees that have drag and drop or other functionality built in.
  */
-export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<ITreeViewProps<D, R>> {
+export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<
+  ITreeViewProps<D, R>
+> {
   public static propTypes = {
     id: PropTypes.string.isRequired,
     "aria-label": PropTypes.string,
@@ -70,18 +76,28 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     onItemExpandedChange: PropTypes.func.isRequired,
     onMultipleItemExpansion: PropTypes.func,
     onMultipleItemSelection: PropTypes.func,
-    _multipleExpansionValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
+    _multipleExpansionValidator: (
+      props: ITreeViewProps,
+      propName: string,
+      componentName: string
+    ) => {
       if (!props.disableSiblingExpansion && typeof props.onMultipleItemExpansion !== "function") {
         const value = props.onMultipleItemExpansion as any;
         return new Error(
           `The \`onMultipleItemExpansion\` prop is required for the \`${componentName}\` component when the ` +
-            `\`disableSiblingExpansion\` prop has not been enabled but \`${!value ? "" : value}\` was provided instead.`
+            `\`disableSiblingExpansion\` prop has not been enabled but \`${
+              !value ? "" : value
+            }\` was provided instead.`
         );
       }
 
       return null;
     },
-    _multipleSelectionValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
+    _multipleSelectionValidator: (
+      props: ITreeViewProps,
+      propName: string,
+      componentName: string
+    ) => {
       if (props.multiSelect && !props.onMultipleItemSelection) {
         const value = props.onMultipleItemSelection as any;
         return new Error(
@@ -126,7 +142,11 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     extractTextContent: defaultExtractTextContent,
     expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
     treeViewRenderer: props => <List {...props} />,
-    treeItemRenderer: (props, { linkComponent, to, href, leftIcon, rightIcon, children }, { expanderIcon }) => (
+    treeItemRenderer: (
+      props,
+      { linkComponent, to, href, leftIcon, rightIcon, children },
+      { expanderIcon }
+    ) => (
       <DefaultTreeItemRenderer
         {...props}
         expanderIcon={expanderIcon}
@@ -168,7 +188,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   public componentDidUpdate(prevProps: ITreeViewProps<D, R>) {
     const selectedLength = this.props.selectedIds.length;
     const prevSelectedLength = prevProps.selectedIds.length;
-    if ((selectedLength === 0 && prevSelectedLength > 0) || (prevSelectedLength === 0 && selectedLength > 0)) {
+    if (
+      (selectedLength === 0 && prevSelectedLength > 0) ||
+      (prevSelectedLength === 0 && selectedLength > 0)
+    ) {
       this.fixNoFocus();
     }
   }
@@ -193,9 +216,12 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     this.updateFrame = window.requestAnimationFrame(() => {
       this.updateFrame = undefined;
       if (this.treeEl) {
-        const { extractTextContent, disableFontIconTextCheck } = this.props as TreeViewWithDefaultProps<D, R>;
+        const { extractTextContent, disableFontIconTextCheck } = this
+          .props as TreeViewWithDefaultProps<D, R>;
         this.treeItems = Array.from(this.treeEl.querySelectorAll('[role="treeitem"]'));
-        this.treeItemStrings = this.treeItems.map(node => extractTextContent(node, disableFontIconTextCheck));
+        this.treeItemStrings = this.treeItems.map(node =>
+          extractTextContent(node, disableFontIconTextCheck)
+        );
         this.fixNoFocus();
       } else {
         this.treeItems = [];
@@ -243,7 +269,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
    * the selected state.
    */
   private fixNoFocus = () => {
-    const selected = this.treeItems.filter(node => node.tabIndex === 0 && node !== this.tempFocusableItem);
+    const selected = this.treeItems.filter(
+      node => node.tabIndex === 0 && node !== this.tempFocusableItem
+    );
     if (!selected.length && this.treeItems.length) {
       this.tempFocusableItem = this.treeItems[0];
       this.tempFocusableItem.tabIndex = 0;
@@ -306,7 +334,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       return;
     }
 
-    const { selectedIds, data, onMultipleItemSelection } = this.props as TreeViewWithMultiSelectHandlers;
+    const { selectedIds, data, onMultipleItemSelection } = this
+      .props as TreeViewWithMultiSelectHandlers;
     const allIds = findAllIds(data);
     const nextSelectedIds = allIds.length === selectedIds.length ? [] : allIds;
     onMultipleItemSelection(nextSelectedIds);
@@ -353,7 +382,13 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     }
 
     const { itemId } = item;
-    const { onItemSelect, selectedIds, expandedIds, onItemExpandedChange, disableGroupSelection } = this.props;
+    const {
+      onItemSelect,
+      selectedIds,
+      expandedIds,
+      onItemExpandedChange,
+      disableGroupSelection,
+    } = this.props;
 
     // make sure parent groups aren't opened or closed as well.
     event.stopPropagation();
@@ -364,7 +399,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
 
     // the event will not be trusted if it happens after the enter keypress. When that happens, we only
     // want the `onItemSelect` to be called when it is not already selected as Enter will only select -- not toggle
-    if ((!disableGroupSelection || !item.childItems) && (event.isTrusted || !selectedIds.includes(itemId))) {
+    if (
+      (!disableGroupSelection || !item.childItems) &&
+      (event.isTrusted || !selectedIds.includes(itemId))
+    ) {
       onItemSelect(itemId);
     }
   };
@@ -390,7 +428,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       return;
     }
 
-    const items = findTreeItemsFromElement(element, data, this.treeEl).filter(({ childItems }) => !!childItems);
+    const items = findTreeItemsFromElement(element, data, this.treeEl).filter(
+      ({ childItems }) => !!childItems
+    );
 
     let changed = false;
     const newExpandedIds = items.reduce((list, { itemId }) => {
@@ -500,7 +540,8 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       return;
     }
 
-    const { data, selectedIds, onMultipleItemSelection } = this.props as TreeViewWithMultiSelectHandlers<D, R>;
+    const { data, selectedIds, onMultipleItemSelection } = this
+      .props as TreeViewWithMultiSelectHandlers<D, R>;
     const nextSelectedIds = findIdsToRootOrEnd({
       element,
       data,
@@ -515,7 +556,10 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
   };
 
   private renderChildTreeItems = (data: TreeViewDataList<D>, depth: number): React.ReactNode => {
-    const { selectedIds, expandedIds, treeItemRenderer } = this.props as TreeViewWithDefaultProps<D, R>;
+    const { selectedIds, expandedIds, treeItemRenderer } = this.props as TreeViewWithDefaultProps<
+      D,
+      R
+    >;
     const listSize = data.length;
 
     return data.map((item, i) => {
@@ -532,7 +576,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
           selected,
           expanded,
           updateTreeItems: this.updateTreeItems,
-          renderChildItems: childItems ? () => this.renderChildTreeItems(childItems, depth + 1) : undefined,
+          renderChildItems: childItems
+            ? () => this.renderChildTreeItems(childItems, depth + 1)
+            : undefined,
         },
         item,
         this.props

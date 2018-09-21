@@ -32,7 +32,7 @@ export function setTouchEvent(
   /**
    * Any additional options to provide to the passive event.
    */
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   // @ts-ignore
   el[`${add ? "add" : "remove"}EventListener`](
@@ -66,7 +66,7 @@ export function addTouchEvent(
   /**
    * Any additional options to provide to the passive event.
    */
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   setTouchEvent(true, el, eventType, callback, capture, options);
 }
@@ -95,7 +95,7 @@ export function removeTouchEvent(
   /**
    * Any additional options to provide to the passive event.
    */
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   setTouchEvent(false, el, eventType, callback, capture, options);
 }

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CloudDownloadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>cloud_download</FontIcon>;
+const CloudDownloadFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>cloud_download</FontIcon>
+);
 
 export default CloudDownloadFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StrikethroughSFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>strikethrough_s</FontIcon>;
+const StrikethroughSFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>strikethrough_s</FontIcon>
+);
 
 export default StrikethroughSFontIcon;

@@ -21,7 +21,10 @@ export interface IExpandableSourceState {
   oneLineCode: string;
 }
 
-export default class ExpandableSource extends React.Component<IExpandableSourceProps, IExpandableSourceState> {
+export default class ExpandableSource extends React.Component<
+  IExpandableSourceProps,
+  IExpandableSourceState
+> {
   private sourceEl: React.RefObject<HTMLDivElement>;
   constructor(props: IExpandableSourceProps) {
     super(props);
@@ -82,7 +85,11 @@ export default class ExpandableSource extends React.Component<IExpandableSourceP
     }
 
     if (/@(mixin|function)/.test(code)) {
-      return code.substring(0, code.indexOf("{") + 1) + " \u2026 " + code.substring(code.lastIndexOf("}"));
+      return (
+        code.substring(0, code.indexOf("{") + 1) +
+        " \u2026 " +
+        code.substring(code.lastIndexOf("}"))
+      );
     }
 
     return `\`\`\`scss

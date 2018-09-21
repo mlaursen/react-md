@@ -8,7 +8,10 @@ export interface ISimpleOverlayState {
   visible: boolean;
 }
 
-export default class SimpleOverlay extends React.Component<ISimpleOverlayProps, ISimpleOverlayState> {
+export default class SimpleOverlay extends React.Component<
+  ISimpleOverlayProps,
+  ISimpleOverlayState
+> {
   constructor(props: ISimpleOverlayProps) {
     super(props);
 

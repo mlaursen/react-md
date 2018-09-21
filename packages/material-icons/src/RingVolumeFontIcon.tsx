@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RingVolumeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>ring_volume</FontIcon>;
+const RingVolumeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>ring_volume</FontIcon>
+);
 
 export default RingVolumeFontIcon;

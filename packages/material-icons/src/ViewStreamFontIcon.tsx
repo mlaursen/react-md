@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewStreamFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_stream</FontIcon>;
+const ViewStreamFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_stream</FontIcon>
+);
 
 export default ViewStreamFontIcon;

@@ -79,7 +79,9 @@ class Markdown extends React.Component<IMarkdownProps, IMarkdownState> {
       return;
     }
 
-    const links = Array.from(this.container.current.querySelectorAll(".rmd-link") as NodeListOf<HTMLAnchorElement>);
+    const links = Array.from(this.container.current.querySelectorAll(".rmd-link") as NodeListOf<
+      HTMLAnchorElement
+    >);
     for (const link of links) {
       if (/^https?:\/\/(localhost|react-md|mlaursen\.github\.io\/react-md\/)/.test(link.href)) {
         // update internal links to use browser history instead of native behavior

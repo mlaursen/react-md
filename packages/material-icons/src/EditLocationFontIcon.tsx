@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const EditLocationFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>edit_location</FontIcon>;
+const EditLocationFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>edit_location</FontIcon>
+);
 
 export default EditLocationFontIcon;

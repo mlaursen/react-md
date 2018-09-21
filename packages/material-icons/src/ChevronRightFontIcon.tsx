@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChevronRightFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>chevron_right</FontIcon>;
+const ChevronRightFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>chevron_right</FontIcon>
+);
 
 export default ChevronRightFontIcon;

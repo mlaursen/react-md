@@ -16,7 +16,9 @@ describe("buildTree", () => {
       },
     };
 
-    expect(buildTree(null, Object.values(data))).toEqual([{ itemId: "item-1", children: "Content", parentId: null }]);
+    expect(buildTree(null, Object.values(data))).toEqual([
+      { itemId: "item-1", children: "Content", parentId: null },
+    ]);
   });
 
   it("should be able to create a tree with multiple items on the root level", () => {

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AvTimerFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>av_timer</FontIcon>;
+const AvTimerFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>av_timer</FontIcon>
+);
 
 export default AvTimerFontIcon;

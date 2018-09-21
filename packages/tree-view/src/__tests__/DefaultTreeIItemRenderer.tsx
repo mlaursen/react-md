@@ -16,7 +16,9 @@ const BASE_PROPS = {
 describe("DefaultTreeItemRenderer", () => {
   it("should render correctly with the provided props", () => {
     expect(
-      renderer.create(<DefaultTreeItemRenderer {...BASE_PROPS}>Content!</DefaultTreeItemRenderer>).toJSON()
+      renderer
+        .create(<DefaultTreeItemRenderer {...BASE_PROPS}>Content!</DefaultTreeItemRenderer>)
+        .toJSON()
     ).toMatchSnapshot();
 
     expect(
@@ -53,7 +55,9 @@ describe("DefaultTreeItemRenderer", () => {
   it("should render correctly as a link with the provided props", () => {
     const props = { ...BASE_PROPS, href: "/" };
     expect(
-      renderer.create(<DefaultTreeItemRenderer {...props}>Content!</DefaultTreeItemRenderer>).toJSON()
+      renderer
+        .create(<DefaultTreeItemRenderer {...props}>Content!</DefaultTreeItemRenderer>)
+        .toJSON()
     ).toMatchSnapshot();
 
     expect(

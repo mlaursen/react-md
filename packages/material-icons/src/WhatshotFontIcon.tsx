@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WhatshotFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>whatshot</FontIcon>;
+const WhatshotFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>whatshot</FontIcon>
+);
 
 export default WhatshotFontIcon;

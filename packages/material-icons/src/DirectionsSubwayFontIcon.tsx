@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DirectionsSubwayFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>directions_subway</FontIcon>;
+const DirectionsSubwayFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>directions_subway</FontIcon>
+);
 
 export default DirectionsSubwayFontIcon;

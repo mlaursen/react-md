@@ -4,7 +4,12 @@ import { Transition } from "react-transition-group";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppBar, AppBarTitle, AppBarNav, AppBarAction } from "@react-md/app-bar";
 import { AppSizeListener, ResizeListener, IAppSize } from "@react-md/listeners";
-import { HomeSVGIcon, MenuSVGIcon, KeyboardArrowLeftSVGIcon, SearchSVGIcon } from "@react-md/material-icons";
+import {
+  HomeSVGIcon,
+  MenuSVGIcon,
+  KeyboardArrowLeftSVGIcon,
+  SearchSVGIcon,
+} from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import { MagicTooltipProvider, TooltipPosition } from "@react-md/tooltip";
 import { List, ListItem } from "@react-md/list";
@@ -249,7 +254,14 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     }
 
     return (
-      <TreeItem {...itemProps} itemId={itemId} linkComponent={linkComponent} to={to} href={href} leftIcon={leftIcon}>
+      <TreeItem
+        {...itemProps}
+        itemId={itemId}
+        linkComponent={linkComponent}
+        to={to}
+        href={href}
+        leftIcon={leftIcon}
+      >
         {children}
       </TreeItem>
     );

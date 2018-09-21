@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DesktopMacFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>desktop_mac</FontIcon>;
+const DesktopMacFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>desktop_mac</FontIcon>
+);
 
 export default DesktopMacFontIcon;

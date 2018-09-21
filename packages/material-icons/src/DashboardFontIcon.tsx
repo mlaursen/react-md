@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DashboardFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>dashboard</FontIcon>;
+const DashboardFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>dashboard</FontIcon>
+);
 
 export default DashboardFontIcon;

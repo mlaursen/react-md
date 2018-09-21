@@ -184,7 +184,10 @@ export type StatesConsumerWithDefaultProps = IStatesConsumerProps & IStatesConsu
  * an html element that is clickable or hoverable. This should probably just mostly be used internally
  * within react-md, but there might be cases where it is helpful to plug into the states provider manually.
  */
-export default class StatesConsumer extends React.Component<IStatesConsumerProps, IStatesConsumerState> {
+export default class StatesConsumer extends React.Component<
+  IStatesConsumerProps,
+  IStatesConsumerState
+> {
   public static propTypes = {
     className: PropTypes.string,
     focusedClassName: PropTypes.string,
@@ -254,7 +257,10 @@ export default class StatesConsumer extends React.Component<IStatesConsumerProps
   }
 
   public shouldComponentUpdate(nextProps: IStatesConsumerProps, nextState: IStatesConsumerState) {
-    if (PROP_DIFF_KEYS.some(key => this.props[key] !== nextProps[key]) || this.state.pressed !== nextState.pressed) {
+    if (
+      PROP_DIFF_KEYS.some(key => this.props[key] !== nextProps[key]) ||
+      this.state.pressed !== nextState.pressed
+    ) {
       return true;
     } else if (!this.el || !this.props.advancedFocus) {
       return false;

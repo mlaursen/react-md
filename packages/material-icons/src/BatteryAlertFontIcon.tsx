@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BatteryAlertFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>battery_alert</FontIcon>;
+const BatteryAlertFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>battery_alert</FontIcon>
+);
 
 export default BatteryAlertFontIcon;

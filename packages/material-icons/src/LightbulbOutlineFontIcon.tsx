@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LightbulbOutlineFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>lightbulb_outline</FontIcon>;
+const LightbulbOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>lightbulb_outline</FontIcon>
+);
 
 export default LightbulbOutlineFontIcon;

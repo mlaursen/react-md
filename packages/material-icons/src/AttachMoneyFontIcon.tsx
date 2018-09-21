@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AttachMoneyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>attach_money</FontIcon>;
+const AttachMoneyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>attach_money</FontIcon>
+);
 
 export default AttachMoneyFontIcon;

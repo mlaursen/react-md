@@ -6,7 +6,12 @@ export interface ISassDocTitleProps extends ITextProps {
   section?: boolean;
 }
 
-const SassDocTitle: React.SFC<ISassDocTitleProps> = ({ children, className, section, ...props }) => (
+const SassDocTitle: React.SFC<ISassDocTitleProps> = ({
+  children,
+  className,
+  section,
+  ...props
+}) => (
   <Text
     {...props}
     className={cn(

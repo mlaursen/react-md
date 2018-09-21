@@ -129,7 +129,8 @@ export default class AppBar extends React.Component<IAppBarProps> {
       ...props
     } = this.props as AppBarWithDefaultProps;
 
-    const inherit = typeof inheritColor === "boolean" ? inheritColor : theme !== "clear" && theme !== "default";
+    const inherit =
+      typeof inheritColor === "boolean" ? inheritColor : theme !== "clear" && theme !== "default";
     return (
       <header
         {...props}

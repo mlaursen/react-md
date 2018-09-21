@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PortableWifiOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>portable_wifi_off</FontIcon>;
+const PortableWifiOffFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>portable_wifi_off</FontIcon>
+);
 
 export default PortableWifiOffFontIcon;

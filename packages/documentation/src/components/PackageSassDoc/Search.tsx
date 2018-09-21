@@ -36,19 +36,42 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
     const { functions, mixins, variables } = props.sassdoc;
     this.list = variables
       .map(({ name, description }) => ({ name, description, type: "Variable" }))
-      .concat(functions.map(({ name, description }) => ({ name, description, type: "Function" })))
-      .concat(mixins.map(({ name, description }) => ({ name, description, type: "Mixin" })));
+      .concat(
+        functions.map(({ name, description }) => ({
+          name,
+          description,
+          type: "Function",
+        }))
+      )
+      .concat(
+        mixins.map(({ name, description }) => ({
+          name,
+          description,
+          type: "Mixin",
+        }))
+      );
     this.fuse = new Fuse(this.list, {
-      keys: [{ name: "name", weight: 0.8 }, { name: "type", weight: 0.1 }, { name: "description", weight: 0.1 }],
+      keys: [
+        { name: "name", weight: 0.8 },
+        { name: "type", weight: 0.1 },
+        { name: "description", weight: 0.1 },
+      ],
     });
-    this.state = { searching: false, searchValue: "", results: this.list, selected: 0 };
+    this.state = {
+      searching: false,
+      searchValue: "",
+      results: this.list,
+      selected: 0,
+    };
   }
 
   public componentDidUpdate(prevProps: ISearchProps, prevState: ISearchState) {
     if (this.state.selected !== prevState.selected) {
       const padding = 8;
       window.requestAnimationFrame(() => {
-        const container = document.getElementById("sassdoc-search-results-container") as HTMLDivElement;
+        const container = document.getElementById(
+          "sassdoc-search-results-container"
+        ) as HTMLDivElement;
         if (!container) {
           return;
         }
@@ -92,7 +115,12 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
           onRequestClose={this.close}
           overlay={false}
         >
-          <List id="sassdoc-search-results" role="listbox" ordered={true} onClick={this.handleListboxClick}>
+          <List
+            id="sassdoc-search-results"
+            role="listbox"
+            ordered={true}
+            onClick={this.handleListboxClick}
+          >
             {results.map(({ name, type }, i) => (
               <ListItemLink
                 key={`${name}-${type}`}
@@ -142,7 +170,11 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
 
   private search = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
-    this.setState({ results: value ? this.fuse.search(value) : this.list, selected: 0, searchValue: value });
+    this.setState({
+      results: value ? this.fuse.search(value) : this.list,
+      selected: 0,
+      searchValue: value,
+    });
   };
 
   private handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -164,7 +196,10 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
 
   private updateSelected = (increment: boolean) => {
     this.setState({
-      selected: Math.max(0, Math.min(this.state.selected + (increment ? 1 : -1), this.state.results.length - 1)),
+      selected: Math.max(
+        0,
+        Math.min(this.state.selected + (increment ? 1 : -1), this.state.results.length - 1)
+      ),
     });
   };
 
@@ -175,7 +210,9 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
   };
 
   private navigate = () => {
-    const selected = document.querySelector("#sassdoc-search-results .rmd-states--selected") as HTMLLIElement;
+    const selected = document.querySelector(
+      "#sassdoc-search-results .rmd-states--selected"
+    ) as HTMLLIElement;
     if (!selected) {
       return;
     }

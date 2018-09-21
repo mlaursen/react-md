@@ -115,10 +115,16 @@ function createPackage(
 
 export const routes: RouteList = [
   createRoute(`${process.env.PUBLIC_URL}/`, "Home", <HomeSVGIcon />, Home),
-  createRoute(`${process.env.PUBLIC_URL}/getting-started`, "Getting Started", <InfoOutlineSVGIcon />, GettingStarted, [
-    createRoute("/installation", "Installation"),
-    createRoute("/updating-create-react-app", "Updating create-react-app"),
-  ]),
+  createRoute(
+    `${process.env.PUBLIC_URL}/getting-started`,
+    "Getting Started",
+    <InfoOutlineSVGIcon />,
+    GettingStarted,
+    [
+      createRoute("/installation", "Installation"),
+      createRoute("/updating-create-react-app", "Updating create-react-app"),
+    ]
+  ),
   {
     itemId: `${process.env.PUBLIC_URL}/packages`,
     children: "Packages",
@@ -127,11 +133,17 @@ export const routes: RouteList = [
       createPackage("a11y", A11y, { sassdoc: false }),
       createPackage("app-bar", AppBar),
       createPackage("button", Button),
-      createPackage("elevation", Elevation, { examples: false, propTypes: false }),
+      createPackage("elevation", Elevation, {
+        examples: false,
+        propTypes: false,
+      }),
       createPackage("icon", Icon),
       createPackage("list", List),
       createPackage("listeners", Listeners, { sassdoc: false }),
-      createPackage("material-icons", MaterialIcons, { sassdoc: false, propTypes: false }),
+      createPackage("material-icons", MaterialIcons, {
+        sassdoc: false,
+        propTypes: false,
+      }),
       createPackage("overlay", Overlay),
       createPackage("portal", Portal, { sassdoc: false }),
       createPackage("sheet", Sheet),
@@ -196,7 +208,11 @@ const validRoutes = routes.reduce(reduceValid, []);
 
 function reduceConfig(list: IRouteConfig[], { to, childItems, itemId, routeComponent }: Route) {
   if (routeComponent) {
-    list.push({ path: itemId, component: routeComponent, exact: itemId === `${process.env.PUBLIC_URL}/` });
+    list.push({
+      path: itemId,
+      component: routeComponent,
+      exact: itemId === `${process.env.PUBLIC_URL}/`,
+    });
   }
 
   if (childItems) {

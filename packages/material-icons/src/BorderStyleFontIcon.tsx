@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BorderStyleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>border_style</FontIcon>;
+const BorderStyleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>border_style</FontIcon>
+);
 
 export default BorderStyleFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SmokeFreeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>smoke_free</FontIcon>;
+const SmokeFreeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>smoke_free</FontIcon>
+);
 
 export default SmokeFreeFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RecordVoiceOverFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>record_voice_over</FontIcon>;
+const RecordVoiceOverFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>record_voice_over</FontIcon>
+);
 
 export default RecordVoiceOverFontIcon;

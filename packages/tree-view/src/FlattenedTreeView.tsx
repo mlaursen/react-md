@@ -1,5 +1,10 @@
 import * as React from "react";
-import { IIndexKeyAny, FlattenedTreeViewData, FlattenedTreeViewDataList, FlattenedTreeViewSort } from "./types";
+import {
+  IIndexKeyAny,
+  FlattenedTreeViewData,
+  FlattenedTreeViewDataList,
+  FlattenedTreeViewSort,
+} from "./types";
 import buildTree from "./utils/buildTree";
 
 export interface IFlattenedTreeViewData<D = IIndexKeyAny> {
@@ -50,10 +55,15 @@ export type FlattedTreeViewWithDefaultProps<D = IIndexKeyAny> = IFlattenedTreeVi
  * The `FlattenedTreeView` component is a pretty performant component used to rendering a flattened data structure
  * into the required nested lists data structure of the `TreeView` component.
  */
-export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component<IFlattenedTreeViewProps<D>, {}> {
+export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component<
+  IFlattenedTreeViewProps<D>,
+  {}
+> {
   public shouldComponentUpdate(nextProps: IFlattenedTreeViewProps<D>) {
     return (
-      this.props.data !== nextProps.data || this.props.rootId !== nextProps.rootId || this.props.sort !== nextProps.sort
+      this.props.data !== nextProps.data ||
+      this.props.rootId !== nextProps.rootId ||
+      this.props.sort !== nextProps.sort
     );
   }
 

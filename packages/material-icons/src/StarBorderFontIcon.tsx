@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StarBorderFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>star_border</FontIcon>;
+const StarBorderFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>star_border</FontIcon>
+);
 
 export default StarBorderFontIcon;

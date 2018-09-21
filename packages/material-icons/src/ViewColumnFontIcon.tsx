@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewColumnFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_column</FontIcon>;
+const ViewColumnFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_column</FontIcon>
+);
 
 export default ViewColumnFontIcon;

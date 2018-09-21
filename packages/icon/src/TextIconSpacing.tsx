@@ -121,10 +121,14 @@ export default class TextIconSpacing extends React.Component<ITextIconSpacingPro
     } else if (propIcon) {
       iconEl = (
         <span
-          className={cn("rmd-text-icon-spacing", {
-            [beforeClassName]: !iconAfter,
-            [afterClassName]: iconAfter,
-          }, className)}
+          className={cn(
+            "rmd-text-icon-spacing",
+            {
+              [beforeClassName]: !iconAfter,
+              [afterClassName]: iconAfter,
+            },
+            className
+          )}
         >
           {propIcon}
         </span>

@@ -30,7 +30,7 @@ function scroll() {
   smoothScroll(el.offsetTop - headerHeight);
 }
 
-export const scrollingMiddleware: Middleware = (store) => (next) => (action) => {
+export const scrollingMiddleware: Middleware = store => next => action => {
   const { type, payload } = action;
   if (type === LOCATION_CHANGE || type === FORCE_SMOOTH_SCROLL) {
     window.requestAnimationFrame(scroll);

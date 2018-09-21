@@ -23,6 +23,8 @@ export default class ColorPreview extends React.Component<IColorPreviewProps> {
       return null;
     }
 
-    return <span className="sassdoc__color-preview" tabIndex={0} style={{ backgroundColor: value }} />;
+    return (
+      <span className="sassdoc__color-preview" tabIndex={0} style={{ backgroundColor: value }} />
+    );
   }
 }

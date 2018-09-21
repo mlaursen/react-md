@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PriorityHighFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>priority_high</FontIcon>;
+const PriorityHighFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>priority_high</FontIcon>
+);
 
 export default PriorityHighFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SyncDisabledFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>sync_disabled</FontIcon>;
+const SyncDisabledFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>sync_disabled</FontIcon>
+);
 
 export default SyncDisabledFontIcon;

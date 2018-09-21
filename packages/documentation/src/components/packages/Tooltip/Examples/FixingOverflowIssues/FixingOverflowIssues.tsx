@@ -26,7 +26,10 @@ export default class FixingOverflowIssues extends React.Component<
     this.state = { portal: false, scrollToRow: 0, scrollToColumn: 0 };
   }
 
-  public componentDidUpdate(prevProps: IFixingOverflowIssuesProps, prevState: IFixingOverflowIssuesState) {
+  public componentDidUpdate(
+    prevProps: IFixingOverflowIssuesProps,
+    prevState: IFixingOverflowIssuesState
+  ) {
     const { scrollToRow, scrollToColumn } = this.state;
     if (scrollToRow !== prevState.scrollToRow || scrollToColumn !== prevState.scrollToColumn) {
       this.focus(scrollToRow, scrollToColumn);
@@ -38,7 +41,11 @@ export default class FixingOverflowIssues extends React.Component<
     return (
       <React.Fragment>
         <MagicTooltipProvider portalIntoId={portal ? "tooltip-overflow-portal" : undefined}>
-          <div className="tooltip-overflow-example" onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
+          <div
+            className="tooltip-overflow-example"
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
+          >
             <AutoSizer disableHeight>
               {({ width }) => (
                 <Grid

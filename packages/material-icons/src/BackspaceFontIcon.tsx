@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BackspaceFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>backspace</FontIcon>;
+const BackspaceFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>backspace</FontIcon>
+);
 
 export default BackspaceFontIcon;

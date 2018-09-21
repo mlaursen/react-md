@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatQuoteFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>format_quote</FontIcon>;
+const FormatQuoteFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>format_quote</FontIcon>
+);
 
 export default FormatQuoteFontIcon;

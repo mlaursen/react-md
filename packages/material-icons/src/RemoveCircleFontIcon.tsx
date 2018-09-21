@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RemoveCircleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>remove_circle</FontIcon>;
+const RemoveCircleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>remove_circle</FontIcon>
+);
 
 export default RemoveCircleFontIcon;

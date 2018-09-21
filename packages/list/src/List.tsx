@@ -95,7 +95,8 @@ class List extends React.Component<IListProps> {
   };
 
   public render() {
-    const { className, dense, inline, ordered, children, forwardedRef, ...props } = this.props as ListWithDefaultProps;
+    const { className, dense, inline, ordered, children, forwardedRef, ...props } = this
+      .props as ListWithDefaultProps;
 
     return React.createElement(
       ordered ? "ol" : "ul",
@@ -116,4 +117,6 @@ class List extends React.Component<IListProps> {
   }
 }
 
-export default React.forwardRef<ListElement, IListProps>((props, ref) => <List {...props} forwardedRef={ref} />);
+export default React.forwardRef<ListElement, IListProps>((props, ref) => (
+  <List {...props} forwardedRef={ref} />
+));

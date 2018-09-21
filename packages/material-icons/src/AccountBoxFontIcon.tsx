@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AccountBoxFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>account_box</FontIcon>;
+const AccountBoxFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>account_box</FontIcon>
+);
 
 export default AccountBoxFontIcon;

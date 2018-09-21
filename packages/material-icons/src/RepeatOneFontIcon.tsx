@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RepeatOneFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>repeat_one</FontIcon>;
+const RepeatOneFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>repeat_one</FontIcon>
+);
 
 export default RepeatOneFontIcon;

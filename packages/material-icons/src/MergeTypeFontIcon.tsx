@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MergeTypeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>merge_type</FontIcon>;
+const MergeTypeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>merge_type</FontIcon>
+);
 
 export default MergeTypeFontIcon;

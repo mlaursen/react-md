@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PowerSettingsNewFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>power_settings_new</FontIcon>;
+const PowerSettingsNewFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>power_settings_new</FontIcon>
+);
 
 export default PowerSettingsNewFontIcon;

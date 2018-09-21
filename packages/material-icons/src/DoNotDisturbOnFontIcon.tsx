@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DoNotDisturbOnFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>do_not_disturb_on</FontIcon>;
+const DoNotDisturbOnFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>do_not_disturb_on</FontIcon>
+);
 
 export default DoNotDisturbOnFontIcon;

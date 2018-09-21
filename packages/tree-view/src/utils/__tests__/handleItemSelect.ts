@@ -8,7 +8,7 @@ const ITEM_ID_2 = "item-id-2";
 describe("handleItemSelect", () => {
   describe("single selection", () => {
     it("should return a list of only the provided itemId", () => {
-      expect(handleItemSelect(ITEM_ID_1, EMPTY_IDS)).toEqual([ITEM_ID_1])
+      expect(handleItemSelect(ITEM_ID_1, EMPTY_IDS)).toEqual([ITEM_ID_1]);
       expect(handleItemSelect(ITEM_ID_1, [ITEM_ID_2])).toEqual([ITEM_ID_1]);
       expect(handleItemSelect(ITEM_ID_1, [ITEM_ID_1, ITEM_ID_2])).toEqual([ITEM_ID_1]);
     });

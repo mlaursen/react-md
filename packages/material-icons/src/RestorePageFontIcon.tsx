@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RestorePageFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>restore_page</FontIcon>;
+const RestorePageFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>restore_page</FontIcon>
+);
 
 export default RestorePageFontIcon;

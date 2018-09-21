@@ -6,7 +6,10 @@ export interface IResizeListenerUsingOnResizeState {
   width: number;
 }
 
-export default class ResizeListenerUsingOnResize extends React.Component<{}, IResizeListenerUsingOnResizeState> {
+export default class ResizeListenerUsingOnResize extends React.Component<
+  {},
+  IResizeListenerUsingOnResizeState
+> {
   constructor(props: {}) {
     super(props);
 

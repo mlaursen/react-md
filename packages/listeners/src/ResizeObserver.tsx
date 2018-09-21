@@ -84,7 +84,10 @@ export type IResizeObserverState = IResizeObserverResizeOptions;
  * target changes sizes, or just use a default `onResize` listener so many elements can
  * be updated with custom functionality
  */
-export default class ResizeObserverComp extends React.Component<IResizeObserverProps, IResizeObserverState> {
+export default class ResizeObserverComp extends React.Component<
+  IResizeObserverProps,
+  IResizeObserverState
+> {
   // It was named ResizeObserver since the resize-observer-polyfill updates the global namespace with ResizeObserver
   public static displayName = "ResizeObserver";
   public static propTypes = {
@@ -97,13 +100,11 @@ export default class ResizeObserverComp extends React.Component<IResizeObserverP
       location: string,
       propFullName: string
     ) => {
-      let error = PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.instanceOf(Element)])(
-        props,
-        propName,
-        componentName,
-        location,
-        propFullName
-      );
+      let error = PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+        PropTypes.instanceOf(Element),
+      ])(props, propName, componentName, location, propFullName);
 
       if (!error && typeof props[propName] === "undefined") {
         error = new Error(
@@ -156,7 +157,10 @@ export default class ResizeObserverComp extends React.Component<IResizeObserverP
     }
   }
 
-  public shouldComponentUpdate(nextProps: ResizeObserverWithDefaultProps, nextState: IResizeObserverState) {
+  public shouldComponentUpdate(
+    nextProps: ResizeObserverWithDefaultProps,
+    nextState: IResizeObserverState
+  ) {
     const { target } = this.props;
     if (target !== nextProps.target) {
       return true;

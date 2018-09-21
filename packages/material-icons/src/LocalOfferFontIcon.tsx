@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocalOfferFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>local_offer</FontIcon>;
+const LocalOfferFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>local_offer</FontIcon>
+);
 
 export default LocalOfferFontIcon;

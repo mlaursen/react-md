@@ -12,7 +12,8 @@ export function expectSnapshot(children: React.ReactElement<any>): void {
 }
 
 const HELLO_WORLD = "Hello, world!";
-const LONG_TEXT = "This is another string that is just some text. I'm not sure how helpful this is though.";
+const LONG_TEXT =
+  "This is another string that is just some text. I'm not sure how helpful this is though.";
 
 describe("Text", () => {
   describe("rendering return value", () => {
@@ -615,6 +616,8 @@ describe("Text", () => {
   });
 
   it("should provide the className if the children is a callback function", () => {
-    expectSnapshot(<Text>{({ className }) => <div className={className}>{HELLO_WORLD}</div>}</Text>);
+    expectSnapshot(
+      <Text>{({ className }) => <div className={className}>{HELLO_WORLD}</div>}</Text>
+    );
   });
 });

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const UnfoldMoreFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>unfold_more</FontIcon>;
+const UnfoldMoreFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>unfold_more</FontIcon>
+);
 
 export default UnfoldMoreFontIcon;

@@ -26,7 +26,13 @@ const Example: React.SFC<IExampleProps> = ({
       {title}
     </Text>
     {description && <Markdown markdown={description} />}
-    <div className={cn("examples-page__example-content", { "example-group": exampleGroup }, contentClassName)}>
+    <div
+      className={cn(
+        "examples-page__example-content",
+        { "example-group": exampleGroup },
+        contentClassName
+      )}
+    >
       {children}
     </div>
   </section>

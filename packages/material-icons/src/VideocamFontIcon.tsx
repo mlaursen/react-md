@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VideocamFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>videocam</FontIcon>;
+const VideocamFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>videocam</FontIcon>
+);
 
 export default VideocamFontIcon;

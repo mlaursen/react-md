@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ScreenShareFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>screen_share</FontIcon>;
+const ScreenShareFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>screen_share</FontIcon>
+);
 
 export default ScreenShareFontIcon;

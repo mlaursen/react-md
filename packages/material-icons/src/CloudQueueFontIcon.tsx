@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CloudQueueFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>cloud_queue</FontIcon>;
+const CloudQueueFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>cloud_queue</FontIcon>
+);
 
 export default CloudQueueFontIcon;

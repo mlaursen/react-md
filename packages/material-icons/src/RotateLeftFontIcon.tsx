@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RotateLeftFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>rotate_left</FontIcon>;
+const RotateLeftFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>rotate_left</FontIcon>
+);
 
 export default RotateLeftFontIcon;

@@ -65,7 +65,9 @@ describe("RelativeTooltip", () => {
   describe("entering", () => {
     it("should do the enter animation correctly from the component show function", () => {
       jest.spyOn(window, "getComputedStyle").mockImplementation(() => ({ position: "relative" }));
-      jest.spyOn(window, "requestAnimationFrame").mockImplementation(cb => window.setTimeout(cb, 0));
+      jest
+        .spyOn(window, "requestAnimationFrame")
+        .mockImplementation(cb => window.setTimeout(cb, 0));
 
       const tooltip = mount(<RelativeTooltip id={id}>Tooltip</RelativeTooltip>);
       expect(tooltip.state("visible")).toBe(false);

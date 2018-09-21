@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ErrorOutlineFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>error_outline</FontIcon>;
+const ErrorOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>error_outline</FontIcon>
+);
 
 export default ErrorOutlineFontIcon;

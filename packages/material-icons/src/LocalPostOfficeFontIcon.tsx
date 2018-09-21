@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocalPostOfficeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>local_post_office</FontIcon>;
+const LocalPostOfficeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>local_post_office</FontIcon>
+);
 
 export default LocalPostOfficeFontIcon;

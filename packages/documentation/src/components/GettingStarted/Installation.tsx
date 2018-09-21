@@ -16,7 +16,13 @@ const packages: IPackageLink[] = [];
 for (const route of routes) {
   const { itemId, childItems } = route;
   if (itemId === `${process.env.PUBLIC_URL}/packages`) {
-    [].push.apply(packages, (childItems as ChildItems).map(({ children, itemId: path }) => ({ name: children, path })));
+    [].push.apply(
+      packages,
+      (childItems as ChildItems).map(({ children, itemId: path }) => ({
+        name: children,
+        path,
+      }))
+    );
     break;
   }
 }

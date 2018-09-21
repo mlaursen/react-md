@@ -7,7 +7,9 @@ import KeyboardClickable from "../KeyboardClickable";
 describe("KeyboardClickable", () => {
   it('should apply the aria-disabled="true" attribute instead of disabled when the disabled prop is enabled', () => {
     const Example: React.SFC<any> = ({ disabled }) => (
-      <KeyboardClickable disabled={disabled}>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
+      <KeyboardClickable disabled={disabled}>
+        {clickableProps => <div {...clickableProps}>content</div>}
+      </KeyboardClickable>
     );
 
     expect(renderer.create(<Example disabled={true} />).toJSON()).toMatchSnapshot();
@@ -72,7 +74,9 @@ describe("KeyboardClickable", () => {
   it("should correctly call the onKeyDown prop when space or enter is pressed on the element", () => {
     const onKeyDown = jest.fn();
     const Example: React.SFC<any> = () => (
-      <KeyboardClickable onKeyDown={onKeyDown}>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
+      <KeyboardClickable onKeyDown={onKeyDown}>
+        {clickableProps => <div {...clickableProps}>content</div>}
+      </KeyboardClickable>
     );
 
     const currentTarget = { click: () => undefined };
@@ -83,20 +87,30 @@ describe("KeyboardClickable", () => {
     expect(onKeyDown).toBeCalled();
 
     onKeyDown.mockClear();
-    example.simulate("keyDown", { key: "Enter", preventDefault, currentTarget });
+    example.simulate("keyDown", {
+      key: "Enter",
+      preventDefault,
+      currentTarget,
+    });
     expect(onKeyDown).toBeCalled();
   });
 
   it("should call preventDefault when the space key is pressed to stop page scrolling", () => {
     const Example: React.SFC<any> = () => (
-      <KeyboardClickable>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
+      <KeyboardClickable>
+        {clickableProps => <div {...clickableProps}>content</div>}
+      </KeyboardClickable>
     );
 
     const example = shallow(<Example />).dive();
     const currentTarget = { click: () => undefined };
     const preventDefault = jest.fn();
 
-    example.simulate("keyDown", { key: "Enter", preventDefault, currentTarget });
+    example.simulate("keyDown", {
+      key: "Enter",
+      preventDefault,
+      currentTarget,
+    });
     expect(preventDefault).not.toBeCalled();
 
     example.simulate("keyDown", { key: " ", preventDefault, currentTarget });
@@ -105,7 +119,9 @@ describe("KeyboardClickable", () => {
 
   it("should call the currentTarget's click function when the space or enter key is pressed", () => {
     const Example: React.SFC<any> = () => (
-      <KeyboardClickable>{clickableProps => <div {...clickableProps}>content</div>}</KeyboardClickable>
+      <KeyboardClickable>
+        {clickableProps => <div {...clickableProps}>content</div>}
+      </KeyboardClickable>
     );
 
     const example = shallow(<Example />).dive();
@@ -113,7 +129,11 @@ describe("KeyboardClickable", () => {
     const currentTarget = { click };
     const preventDefault = () => undefined;
 
-    example.simulate("keyDown", { key: "Enter", preventDefault, currentTarget });
+    example.simulate("keyDown", {
+      key: "Enter",
+      preventDefault,
+      currentTarget,
+    });
     expect(click).toBeCalled();
 
     click.mockClear();

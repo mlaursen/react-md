@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LineWeightFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>line_weight</FontIcon>;
+const LineWeightFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>line_weight</FontIcon>
+);
 
 export default LineWeightFontIcon;

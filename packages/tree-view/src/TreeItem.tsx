@@ -70,7 +70,13 @@ export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
  * of this one.
  */
 const TreeItem: React.SFC<ITreeItemProps> = providedProps => {
-  const { className, selected, tabIndex: propTabIndex, children, ...props } = providedProps as TreeItemWithDefaultProps;
+  const {
+    className,
+    selected,
+    tabIndex: propTabIndex,
+    children,
+    ...props
+  } = providedProps as TreeItemWithDefaultProps;
 
   let tabIndex = propTabIndex;
   if (typeof tabIndex !== "number") {

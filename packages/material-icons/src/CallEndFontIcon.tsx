@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CallEndFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>call_end</FontIcon>;
+const CallEndFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>call_end</FontIcon>
+);
 
 export default CallEndFontIcon;

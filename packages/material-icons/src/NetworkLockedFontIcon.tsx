@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NetworkLockedFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>network_locked</FontIcon>;
+const NetworkLockedFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>network_locked</FontIcon>
+);
 
 export default NetworkLockedFontIcon;

@@ -257,8 +257,10 @@ const ListItem: React.SFC<IListItemProps> = providedProps => {
         {
           "rmd-list-item--disabled": propDisabled,
           "rmd-list-item--stateful": !propDisabled && clickable,
-          "rmd-list-item--medium": isHeightMedium || (isHeightAuto && (leftIcon || rightIcon) && !secondaryText),
-          "rmd-list-item--large": isHeightLarge || (isHeightAuto && !(leftIcon || rightIcon) && !!secondaryText),
+          "rmd-list-item--medium":
+            isHeightMedium || (isHeightAuto && (leftIcon || rightIcon) && !secondaryText),
+          "rmd-list-item--large":
+            isHeightLarge || (isHeightAuto && !(leftIcon || rightIcon) && !!secondaryText),
           "rmd-list-item--extra-large":
             isHeightExtraLarge || (isHeightAuto && (leftIcon || rightIcon) && !!secondaryText),
           "rmd-list-item--three-lines": !!secondaryText && threeLines,

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TimerOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>timer_off</FontIcon>;
+const TimerOffFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>timer_off</FontIcon>
+);
 
 export default TimerOffFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChangeHistoryFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>change_history</FontIcon>;
+const ChangeHistoryFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>change_history</FontIcon>
+);
 
 export default ChangeHistoryFontIcon;

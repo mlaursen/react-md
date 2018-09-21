@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GTranslateFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>g_translate</FontIcon>;
+const GTranslateFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>g_translate</FontIcon>
+);
 
 export default GTranslateFontIcon;

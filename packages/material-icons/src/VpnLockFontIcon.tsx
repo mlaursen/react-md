@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VpnLockFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>vpn_lock</FontIcon>;
+const VpnLockFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>vpn_lock</FontIcon>
+);
 
 export default VpnLockFontIcon;

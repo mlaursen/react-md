@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CardTravelFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>card_travel</FontIcon>;
+const CardTravelFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>card_travel</FontIcon>
+);
 
 export default CardTravelFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BubbleChartFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>bubble_chart</FontIcon>;
+const BubbleChartFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>bubble_chart</FontIcon>
+);
 
 export default BubbleChartFontIcon;

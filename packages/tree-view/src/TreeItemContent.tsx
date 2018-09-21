@@ -1,7 +1,12 @@
 import * as React from "react";
 import cn from "classnames";
 import { StatesConsumer } from "@react-md/states";
-import { IListItemBaseProps, ListItemText, ListItemLeftIcon, ListItemRightIcon } from "@react-md/list";
+import {
+  IListItemBaseProps,
+  ListItemText,
+  ListItemLeftIcon,
+  ListItemRightIcon,
+} from "@react-md/list";
 
 import { ITreeItemDefaultProps } from "./TreeItem";
 
@@ -24,8 +29,11 @@ export interface ITreeItemContentBaseProps extends IListItemBaseProps {
   medium?: boolean;
 }
 
-export type ITreeItemContentDivProps = ITreeItemContentBaseProps & React.HTMLAttributes<HTMLDivElement>;
-export interface ITreeItemContentLinkProps extends ITreeItemContentBaseProps, React.HTMLAttributes<HTMLAnchorElement> {
+export type ITreeItemContentDivProps = ITreeItemContentBaseProps &
+  React.HTMLAttributes<HTMLDivElement>;
+export interface ITreeItemContentLinkProps
+  extends ITreeItemContentBaseProps,
+    React.HTMLAttributes<HTMLAnchorElement> {
   [key: string]: any;
   linkComponent?: React.ReactType;
 }

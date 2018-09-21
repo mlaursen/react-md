@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const KeyboardFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>keyboard</FontIcon>;
+const KeyboardFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>keyboard</FontIcon>
+);
 
 export default KeyboardFontIcon;

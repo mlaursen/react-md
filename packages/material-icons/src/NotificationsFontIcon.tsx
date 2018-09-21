@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NotificationsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>notifications</FontIcon>;
+const NotificationsFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>notifications</FontIcon>
+);
 
 export default NotificationsFontIcon;

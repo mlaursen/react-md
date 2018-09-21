@@ -12,7 +12,9 @@ const BASE_PROPS = {
 
 describe("TreeLinkItem", () => {
   it("should render correctly with the provided props", () => {
-    expect(renderer.create(<TreeLinkItem {...BASE_PROPS}>Hello!</TreeLinkItem>).toJSON()).toMatchSnapshot();
+    expect(
+      renderer.create(<TreeLinkItem {...BASE_PROPS}>Hello!</TreeLinkItem>).toJSON()
+    ).toMatchSnapshot();
     expect(
       renderer
         .create(

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BluetoothFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>bluetooth</FontIcon>;
+const BluetoothFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>bluetooth</FontIcon>
+);
 
 export default BluetoothFontIcon;

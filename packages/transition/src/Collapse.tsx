@@ -282,7 +282,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
 
   public render() {
     const { entering, leaving, maxHeight, paddingTop, paddingBottom } = this.state;
-    const { collapsed, className, children, enterDuration, leaveDuration } = this.props as CollapseWithDefaultProps;
+    const { collapsed, className, children, enterDuration, leaveDuration } = this
+      .props as CollapseWithDefaultProps;
 
     if (collapsed && !entering && !leaving && this.isEmptyCollapsed()) {
       return null;
@@ -291,7 +292,13 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     const transitionDuration = `${collapsed ? leaveDuration : enterDuration}ms`;
 
     return children({
-      style: this.createStyle(transitionDuration, this.props.style, maxHeight, paddingTop, paddingBottom),
+      style: this.createStyle(
+        transitionDuration,
+        this.props.style,
+        maxHeight,
+        paddingTop,
+        paddingBottom
+      ),
       className: cn(
         "rmd-collapse",
         {
@@ -305,7 +312,9 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     });
   }
 
-  private isEmptyCollapsed = ({ isEmptyCollapsed, minHeight, minPaddingTop, minPaddingBottom } = this.props) => {
+  private isEmptyCollapsed = (
+    { isEmptyCollapsed, minHeight, minPaddingTop, minPaddingBottom } = this.props
+  ) => {
     if (typeof isEmptyCollapsed === "boolean") {
       return isEmptyCollapsed;
     }
@@ -360,7 +369,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
    */
   private transitionIn = () => {
     window.clearTimeout(this.transitionTimeout);
-    const { enterDuration, minHeight, minPaddingTop, minPaddingBottom } = this.props as CollapseWithDefaultProps;
+    const { enterDuration, minHeight, minPaddingTop, minPaddingBottom } = this
+      .props as CollapseWithDefaultProps;
 
     this.transitionTimeout = window.setTimeout(() => {
       this.transitionTimeout = undefined;
@@ -384,7 +394,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
    */
   private transitionOut = () => {
     window.clearTimeout(this.transitionTimeout);
-    const { leaveDuration, minHeight, minPaddingTop, minPaddingBottom } = this.props as CollapseWithDefaultProps;
+    const { leaveDuration, minHeight, minPaddingTop, minPaddingBottom } = this
+      .props as CollapseWithDefaultProps;
 
     this.setState(this.getSizing());
 
@@ -398,10 +409,19 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
           this.props.onCollapsed();
         }
 
-        this.setState({ leaving: false, maxHeight: undefined, paddingTop: undefined, paddingBottom: undefined });
+        this.setState({
+          leaving: false,
+          maxHeight: undefined,
+          paddingTop: undefined,
+          paddingBottom: undefined,
+        });
       }, leaveDuration);
 
-      this.setState({ maxHeight: minHeight, paddingTop: minPaddingTop, paddingBottom: minPaddingBottom });
+      this.setState({
+        maxHeight: minHeight,
+        paddingTop: minPaddingTop,
+        paddingBottom: minPaddingBottom,
+      });
     }, 25);
   };
 }

@@ -12,6 +12,8 @@ const BASE_PROPS = {
 // TODO: Write more tests once enzyme supports the new react context API.
 describe("TreeItem", () => {
   it("should render correctly with the provided props", () => {
-    expect(renderer.create(<TreeItem {...BASE_PROPS}>content</TreeItem>).toJSON()).toMatchSnapshot();
+    expect(
+      renderer.create(<TreeItem {...BASE_PROPS}>content</TreeItem>).toJSON()
+    ).toMatchSnapshot();
   });
 });

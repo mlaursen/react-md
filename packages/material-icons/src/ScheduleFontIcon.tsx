@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ScheduleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>schedule</FontIcon>;
+const ScheduleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>schedule</FontIcon>
+);
 
 export default ScheduleFontIcon;

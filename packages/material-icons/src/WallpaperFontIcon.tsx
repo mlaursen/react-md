@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WallpaperFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>wallpaper</FontIcon>;
+const WallpaperFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>wallpaper</FontIcon>
+);
 
 export default WallpaperFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewAgendaFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_agenda</FontIcon>;
+const ViewAgendaFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_agenda</FontIcon>
+);
 
 export default ViewAgendaFontIcon;

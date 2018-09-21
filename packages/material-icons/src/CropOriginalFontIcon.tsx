@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CropOriginalFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>crop_original</FontIcon>;
+const CropOriginalFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>crop_original</FontIcon>
+);
 
 export default CropOriginalFontIcon;

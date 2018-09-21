@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RecentActorsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>recent_actors</FontIcon>;
+const RecentActorsFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>recent_actors</FontIcon>
+);
 
 export default RecentActorsFontIcon;

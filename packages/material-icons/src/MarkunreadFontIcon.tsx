@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MarkunreadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>markunread</FontIcon>;
+const MarkunreadFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>markunread</FontIcon>
+);
 
 export default MarkunreadFontIcon;

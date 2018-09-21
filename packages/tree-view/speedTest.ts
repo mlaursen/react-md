@@ -11,7 +11,8 @@ const MIN_ADDITIONAL_CHILDREN_AT_EACH_DEPTH = 0;
 const flattenedTree: IFlattenedTree = {};
 
 const randomInt = () =>
-  Math.floor(Math.random() * MAX_ADDITIONAL_CHILDREN_AT_EACH_DEPTH) + MIN_ADDITIONAL_CHILDREN_AT_EACH_DEPTH;
+  Math.floor(Math.random() * MAX_ADDITIONAL_CHILDREN_AT_EACH_DEPTH) +
+  MIN_ADDITIONAL_CHILDREN_AT_EACH_DEPTH;
 
 function createChildItems(depth: number, parentId: string, additional: number = 0) {
   const itemId = `${parentId}-${depth}`;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DeviceHubFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>device_hub</FontIcon>;
+const DeviceHubFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>device_hub</FontIcon>
+);
 
 export default DeviceHubFontIcon;

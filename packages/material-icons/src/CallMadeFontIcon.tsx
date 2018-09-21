@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CallMadeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>call_made</FontIcon>;
+const CallMadeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>call_made</FontIcon>
+);
 
 export default CallMadeFontIcon;

@@ -1,7 +1,13 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-export type KeyboardClickableRole = "button" | "treeitem" | "listitem" | "menuitem" | "option" | string;
+export type KeyboardClickableRole =
+  | "button"
+  | "treeitem"
+  | "listitem"
+  | "menuitem"
+  | "option"
+  | string;
 export type KeyboardClickableFocusEvent = React.FocusEvent<HTMLElement>;
 export type KeyboardClickableFocusListener = (event: KeyboardClickableFocusEvent) => void;
 export type KeyboardClickableKeyboardEvent = React.KeyboardEvent<HTMLElement>;
@@ -221,7 +227,8 @@ export interface IKeyboardClickableDefaultProps {
   role: KeyboardClickableRole;
 }
 
-export type KeyboardClickableWithDefaultProps = IKeyboardClickableProps & IKeyboardClickableDefaultProps;
+export type KeyboardClickableWithDefaultProps = IKeyboardClickableProps &
+  IKeyboardClickableDefaultProps;
 
 export default class KeyboardClickable extends React.Component<IKeyboardClickableProps> {
   public static propTypes = {

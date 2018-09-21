@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AssignmentLateFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>assignment_late</FontIcon>;
+const AssignmentLateFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>assignment_late</FontIcon>
+);
 
 export default AssignmentLateFontIcon;

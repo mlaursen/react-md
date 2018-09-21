@@ -33,13 +33,19 @@ export interface IOverlayPortalState {
  * The `OverlayPortal` is a wrapper of the `Overlay` component to portal the overlay somehwere else within
  * your app.
  */
-export default class OverlayPortal extends React.Component<IOverlayPortalProps, IOverlayPortalState> {
+export default class OverlayPortal extends React.Component<
+  IOverlayPortalProps,
+  IOverlayPortalState
+> {
   public static propTypes = {
     portalInto: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
     portalIntoId: PropTypes.string,
   };
 
-  public static getDerivedStateFromProps(nextProps: IOverlayPortalProps, prevState: IOverlayPortalState) {
+  public static getDerivedStateFromProps(
+    nextProps: IOverlayPortalProps,
+    prevState: IOverlayPortalState
+  ) {
     if (nextProps.visible && !prevState.portalVisible) {
       return {
         portalVisible: true,
@@ -59,7 +65,10 @@ export default class OverlayPortal extends React.Component<IOverlayPortalProps, 
   constructor(props: IOverlayPortalProps) {
     super(props);
 
-    this.state = { portalVisible: props.visible, overlayVisible: props.visible };
+    this.state = {
+      portalVisible: props.visible,
+      overlayVisible: props.visible,
+    };
   }
 
   public componentDidUpdate(prevProps: IOverlayPortalProps, prevState: IOverlayPortalState) {

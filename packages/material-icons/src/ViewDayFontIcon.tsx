@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewDayFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_day</FontIcon>;
+const ViewDayFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_day</FontIcon>
+);
 
 export default ViewDayFontIcon;

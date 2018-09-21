@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MoreHorizFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>more_horiz</FontIcon>;
+const MoreHorizFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>more_horiz</FontIcon>
+);
 
 export default MoreHorizFontIcon;

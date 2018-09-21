@@ -1,5 +1,5 @@
-export type SassDocType = "function" | "mixin" | "selector" | "variable";
-export type SassDocExampleType = "css" | "scss" | "markup" | "javascript";
+export type SassDocType = 'function' | 'mixin' | 'selector' | 'variable';
+export type SassDocExampleType = 'css' | 'scss' | 'markup' | 'javascript';
 
 export interface ISassDocLink {
   url: string;
@@ -70,8 +70,8 @@ export interface ISassDocSince {
 }
 
 export type SassDocAuthor = string;
-export type SassDocAccess = "public" | "private";
-export type SassDocGroup = "undefined" | string;
+export type SassDocAccess = 'public' | 'private';
+export type SassDocGroup = 'undefined' | string;
 
 export interface ISassDocBase {
   access: SassDocAccess[];

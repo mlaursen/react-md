@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PanoramaVerticalFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>panorama_vertical</FontIcon>;
+const PanoramaVerticalFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>panorama_vertical</FontIcon>
+);
 
 export default PanoramaVerticalFontIcon;

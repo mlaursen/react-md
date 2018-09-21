@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BeenhereFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>beenhere</FontIcon>;
+const BeenhereFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>beenhere</FontIcon>
+);
 
 export default BeenhereFontIcon;

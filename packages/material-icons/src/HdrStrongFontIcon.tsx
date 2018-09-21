@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HdrStrongFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>hdr_strong</FontIcon>;
+const HdrStrongFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>hdr_strong</FontIcon>
+);
 
 export default HdrStrongFontIcon;

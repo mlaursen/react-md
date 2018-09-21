@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewComfyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_comfy</FontIcon>;
+const ViewComfyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_comfy</FontIcon>
+);
 
 export default ViewComfyFontIcon;

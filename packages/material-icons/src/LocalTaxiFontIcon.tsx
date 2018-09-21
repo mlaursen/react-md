@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocalTaxiFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>local_taxi</FontIcon>;
+const LocalTaxiFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>local_taxi</FontIcon>
+);
 
 export default LocalTaxiFontIcon;

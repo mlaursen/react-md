@@ -9,10 +9,20 @@ const FlatButtons: React.SFC<any> = () => (
     <Button id="flat-button-1" className="example-group__example">
       Hello, World!
     </Button>
-    <Button id="flat-button-2" className="example-group__example" theme="primary" icon={<ChatBubbleOutlineSVGIcon />}>
+    <Button
+      id="flat-button-2"
+      className="example-group__example"
+      theme="primary"
+      icon={<ChatBubbleOutlineSVGIcon />}
+    >
       Chat
     </Button>
-    <Button id="flat-button-3" theme="secondary" icon={<ChatBubbleOutlineFontIcon />} iconAfter={true}>
+    <Button
+      id="flat-button-3"
+      theme="secondary"
+      icon={<ChatBubbleOutlineFontIcon />}
+      iconAfter={true}
+    >
       Chat
     </Button>
     <Text type="headline-6">Disabled Examples</Text>
@@ -38,7 +48,12 @@ const FlatButtons: React.SFC<any> = () => (
     <Button id="flat-button-8" className="example-group__example">
       Hello, World!
     </Button>
-    <Button id="flat-button-9" className="example-group__example" theme="primary" icon={<ChatBubbleOutlineSVGIcon />}>
+    <Button
+      id="flat-button-9"
+      className="example-group__example"
+      theme="primary"
+      icon={<ChatBubbleOutlineSVGIcon />}
+    >
       Chat
     </Button>
     <Button
@@ -54,10 +69,22 @@ const FlatButtons: React.SFC<any> = () => (
     <Button id="flat-button-11" className="example-group__example" disabled={true} asDiv={true}>
       Disabled Button
     </Button>
-    <Button id="flat-button-12" className="example-group__example" disabled={true} asDiv={true} theme="primary">
+    <Button
+      id="flat-button-12"
+      className="example-group__example"
+      disabled={true}
+      asDiv={true}
+      theme="primary"
+    >
       Disabled Button
     </Button>
-    <Button id="flat-button-13" className="example-group__example" disabled={true} asDiv={true} theme="secondary">
+    <Button
+      id="flat-button-13"
+      className="example-group__example"
+      disabled={true}
+      asDiv={true}
+      theme="secondary"
+    >
       Disabled Button
     </Button>
     <Button

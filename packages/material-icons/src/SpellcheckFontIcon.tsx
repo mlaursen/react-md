@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SpellcheckFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>spellcheck</FontIcon>;
+const SpellcheckFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>spellcheck</FontIcon>
+);
 
 export default SpellcheckFontIcon;

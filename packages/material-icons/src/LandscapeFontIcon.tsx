@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LandscapeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>landscape</FontIcon>;
+const LandscapeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>landscape</FontIcon>
+);
 
 export default LandscapeFontIcon;

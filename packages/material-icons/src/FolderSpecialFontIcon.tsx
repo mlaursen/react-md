@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FolderSpecialFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>folder_special</FontIcon>;
+const FolderSpecialFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>folder_special</FontIcon>
+);
 
 export default FolderSpecialFontIcon;

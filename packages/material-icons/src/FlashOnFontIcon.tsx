@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FlashOnFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>flash_on</FontIcon>;
+const FlashOnFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>flash_on</FontIcon>
+);
 
 export default FlashOnFontIcon;

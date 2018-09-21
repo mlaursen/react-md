@@ -16,19 +16,49 @@ const IconButtons: React.SFC<any> = () => (
     <Button id="icon-button-3" className="example-group__example" btnType="icon" theme="secondary">
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-4" className="example-group__example" btnType="icon" themeType="outline" theme="default">
+    <Button
+      id="icon-button-4"
+      className="example-group__example"
+      btnType="icon"
+      themeType="outline"
+      theme="default"
+    >
       <FavoriteSVGIcon />
     </Button>
-    <Button id="icon-button-5" className="example-group__example" btnType="icon" themeType="outline" theme="primary">
+    <Button
+      id="icon-button-5"
+      className="example-group__example"
+      btnType="icon"
+      themeType="outline"
+      theme="primary"
+    >
       <AspectRatioFontIcon />
     </Button>
-    <Button id="icon-button-6" className="example-group__example" btnType="icon" themeType="outline" theme="secondary">
+    <Button
+      id="icon-button-6"
+      className="example-group__example"
+      btnType="icon"
+      themeType="outline"
+      theme="secondary"
+    >
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-7" className="example-group__example" btnType="icon" themeType="contained" theme="default">
+    <Button
+      id="icon-button-7"
+      className="example-group__example"
+      btnType="icon"
+      themeType="contained"
+      theme="default"
+    >
       <FavoriteSVGIcon />
     </Button>
-    <Button id="icon-button-8" className="example-group__example" btnType="icon" themeType="contained" theme="primary">
+    <Button
+      id="icon-button-8"
+      className="example-group__example"
+      btnType="icon"
+      themeType="contained"
+      theme="primary"
+    >
       <AspectRatioFontIcon />
     </Button>
     <Button
@@ -44,13 +74,31 @@ const IconButtons: React.SFC<any> = () => (
     <Button id="icon-button-10" className="example-group__example" btnType="icon" disabled={true}>
       <FavoriteSVGIcon />
     </Button>
-    <Button id="icon-button-11" className="example-group__example" btnType="icon" disabled={true} theme="primary">
+    <Button
+      id="icon-button-11"
+      className="example-group__example"
+      btnType="icon"
+      disabled={true}
+      theme="primary"
+    >
       <AspectRatioFontIcon />
     </Button>
-    <Button id="icon-button-12" className="example-group__example" btnType="icon" disabled={true} theme="secondary">
+    <Button
+      id="icon-button-12"
+      className="example-group__example"
+      btnType="icon"
+      disabled={true}
+      theme="secondary"
+    >
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-13" className="example-group__example" btnType="icon" disabled={true} themeType="outline">
+    <Button
+      id="icon-button-13"
+      className="example-group__example"
+      btnType="icon"
+      disabled={true}
+      themeType="outline"
+    >
       <FavoriteSVGIcon />
     </Button>
     <Button
@@ -73,7 +121,13 @@ const IconButtons: React.SFC<any> = () => (
     >
       <FontIcon iconClassName="fa fa-star-o" />
     </Button>
-    <Button id="icon-button-16" className="example-group__example" btnType="icon" disabled={true} themeType="contained">
+    <Button
+      id="icon-button-16"
+      className="example-group__example"
+      btnType="icon"
+      disabled={true}
+      themeType="contained"
+    >
       <FavoriteSVGIcon />
     </Button>
     <Button
@@ -100,11 +154,23 @@ const IconButtons: React.SFC<any> = () => (
     <Button id="icon-button-19" className="example-group__example" btnType="icon" asDiv={true}>
       <FavoriteSVGIcon />
     </Button>
-    <Button id="icon-button-20" className="example-group__example" btnType="icon" asDiv={true} theme="primary">
+    <Button
+      id="icon-button-20"
+      className="example-group__example"
+      btnType="icon"
+      asDiv={true}
+      theme="primary"
+    >
       <AspectRatioFontIcon />
     </Button>
     <Text type="headline-6">Rendering as disabled Divs Examples</Text>
-    <Button id="icon-button-21" className="example-group__example" btnType="icon" asDiv={true} disabled={true}>
+    <Button
+      id="icon-button-21"
+      className="example-group__example"
+      btnType="icon"
+      asDiv={true}
+      disabled={true}
+    >
       <FavoriteSVGIcon />
     </Button>
     <Button

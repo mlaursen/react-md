@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ModeEditFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>mode_edit</FontIcon>;
+const ModeEditFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>mode_edit</FontIcon>
+);
 
 export default ModeEditFontIcon;

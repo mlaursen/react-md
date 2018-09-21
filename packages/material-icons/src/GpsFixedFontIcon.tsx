@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GpsFixedFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>gps_fixed</FontIcon>;
+const GpsFixedFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>gps_fixed</FontIcon>
+);
 
 export default GpsFixedFontIcon;

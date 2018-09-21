@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SentimentNeutralFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>sentiment_neutral</FontIcon>;
+const SentimentNeutralFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>sentiment_neutral</FontIcon>
+);
 
 export default SentimentNeutralFontIcon;

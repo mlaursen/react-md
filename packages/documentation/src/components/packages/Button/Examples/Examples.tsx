@@ -31,6 +31,8 @@ with the material design spec. There is also built-in support for rendering clic
 divs as buttons as well as applying button styles to any component.
 `;
 
-const Examples = () => <ExamplesPage title="Button" examples={examples} description={description} />;
+const Examples = () => (
+  <ExamplesPage title="Button" examples={examples} description={description} />
+);
 
 export default Examples;

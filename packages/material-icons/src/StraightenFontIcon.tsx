@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StraightenFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>straighten</FontIcon>;
+const StraightenFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>straighten</FontIcon>
+);
 
 export default StraightenFontIcon;

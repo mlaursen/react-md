@@ -106,7 +106,9 @@ export interface IListItemLinkWithComponentProps extends IListItemLinkBaseProps 
   component: React.ComponentType<any> | React.StatelessComponent<any>;
 }
 
-export interface IListItemLinkWithAnchorProps extends IListItemLinkBaseProps, React.HTMLAttributes<HTMLAnchorElement> {
+export interface IListItemLinkWithAnchorProps
+  extends IListItemLinkBaseProps,
+    React.HTMLAttributes<HTMLAnchorElement> {
   component: "a";
   href: "string";
 }

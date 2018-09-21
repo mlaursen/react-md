@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AccessTimeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>access_time</FontIcon>;
+const AccessTimeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>access_time</FontIcon>
+);
 
 export default AccessTimeFontIcon;

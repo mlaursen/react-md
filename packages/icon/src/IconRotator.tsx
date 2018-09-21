@@ -111,7 +111,11 @@ const IconRotator: React.SFC<IIconRotatorProps> = props => {
     });
   }
 
-  return <span style={style} className={className}>{children}</span>;
+  return (
+    <span style={style} className={className}>
+      {children}
+    </span>
+  );
 };
 
 // says it's missing attributes for some reason
@@ -122,10 +126,7 @@ IconRotator.propTypes = {
   animate: PropTypes.bool,
   rotated: PropTypes.bool.isRequired,
   forceIconWrap: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
 };
 
 IconRotator.defaultProps = {

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DriveEtaFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>drive_eta</FontIcon>;
+const DriveEtaFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>drive_eta</FontIcon>
+);
 
 export default DriveEtaFontIcon;

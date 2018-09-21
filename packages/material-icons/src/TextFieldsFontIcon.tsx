@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TextFieldsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>text_fields</FontIcon>;
+const TextFieldsFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>text_fields</FontIcon>
+);
 
 export default TextFieldsFontIcon;

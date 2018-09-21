@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LockOutlineFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>lock_outline</FontIcon>;
+const LockOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>lock_outline</FontIcon>
+);
 
 export default LockOutlineFontIcon;

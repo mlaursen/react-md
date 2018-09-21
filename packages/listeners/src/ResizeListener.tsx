@@ -1,7 +1,12 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-import { throttleEvent, IThrottledEventHandler, addTouchEvent, removeTouchEvent } from "@react-md/utils";
+import {
+  throttleEvent,
+  IThrottledEventHandler,
+  addTouchEvent,
+  removeTouchEvent,
+} from "@react-md/utils";
 import { startListening, stopListening, isTouchKeyboardResize } from "./touchKeyboardFix";
 
 export interface IResizeListenerConfigProps {
@@ -182,7 +187,10 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
    */
   private handleResize = (event: Event) => {
     const { disableTouchFixes, disableTouchKeyboardFixes } = this.props;
-    if ((disableTouchFixes || !this.touchMoveTimeout) && (disableTouchKeyboardFixes || !isTouchKeyboardResize())) {
+    if (
+      (disableTouchFixes || !this.touchMoveTimeout) &&
+      (disableTouchKeyboardFixes || !isTouchKeyboardResize())
+    ) {
       const { onResize, children } = this.props;
       if (onResize) {
         onResize(event);

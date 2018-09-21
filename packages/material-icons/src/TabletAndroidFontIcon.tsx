@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TabletAndroidFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>tablet_android</FontIcon>;
+const TabletAndroidFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>tablet_android</FontIcon>
+);
 
 export default TabletAndroidFontIcon;

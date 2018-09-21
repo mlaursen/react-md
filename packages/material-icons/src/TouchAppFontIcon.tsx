@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TouchAppFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>touch_app</FontIcon>;
+const TouchAppFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>touch_app</FontIcon>
+);
 
 export default TouchAppFontIcon;

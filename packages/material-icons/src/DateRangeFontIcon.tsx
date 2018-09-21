@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DateRangeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>date_range</FontIcon>;
+const DateRangeFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>date_range</FontIcon>
+);
 
 export default DateRangeFontIcon;

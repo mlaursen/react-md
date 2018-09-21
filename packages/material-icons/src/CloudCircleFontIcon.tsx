@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CloudCircleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>cloud_circle</FontIcon>;
+const CloudCircleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>cloud_circle</FontIcon>
+);
 
 export default CloudCircleFontIcon;

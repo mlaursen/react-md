@@ -26,4 +26,7 @@ class Loading extends React.Component<ILoadingProps> {
 
 const forceSmoothScroll = () => ({ type: FORCE_SMOOTH_SCROLL });
 
-export default connect(null, { forceSmoothScroll })(Loading);
+export default connect(
+  null,
+  { forceSmoothScroll }
+)(Loading);

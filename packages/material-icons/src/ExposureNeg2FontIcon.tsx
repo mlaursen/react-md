@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ExposureNeg2FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>exposure_neg_2</FontIcon>;
+const ExposureNeg2FontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>exposure_neg_2</FontIcon>
+);
 
 export default ExposureNeg2FontIcon;

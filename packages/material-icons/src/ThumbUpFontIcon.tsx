@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ThumbUpFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>thumb_up</FontIcon>;
+const ThumbUpFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>thumb_up</FontIcon>
+);
 
 export default ThumbUpFontIcon;

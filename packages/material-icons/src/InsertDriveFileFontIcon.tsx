@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const InsertDriveFileFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>insert_drive_file</FontIcon>;
+const InsertDriveFileFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>insert_drive_file</FontIcon>
+);
 
 export default InsertDriveFileFontIcon;

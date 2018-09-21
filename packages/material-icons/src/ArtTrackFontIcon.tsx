@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArtTrackFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>art_track</FontIcon>;
+const ArtTrackFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>art_track</FontIcon>
+);
 
 export default ArtTrackFontIcon;

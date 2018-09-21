@@ -47,7 +47,7 @@ const data: TreeViewDataList = [
             itemId: "item-3-1-5",
             children: "Item 3-1-5",
           },
-        ]
+        ],
       },
       {
         itemId: "item-3-2",

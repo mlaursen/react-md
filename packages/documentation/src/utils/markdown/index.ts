@@ -51,13 +51,24 @@ const postTransforms: MarkdownTransformationList = [
       (_, s1, s2) => `${s1} class="markdown-toc"${s2} class="markdown-toc__list"`
     ),
   markdown =>
-    markdown.replace(/yarn add/g, '<span class="token function">yarn</span> <span class="token function">add</span>'),
+    markdown.replace(
+      /yarn add/g,
+      '<span class="token function">yarn</span> <span class="token function">add</span>'
+    ),
 ];
 
-export function transform(markdown: string, transforms: MarkdownTransformation[], options?: IMarkdownOptions) {
+export function transform(
+  markdown: string,
+  transforms: MarkdownTransformation[],
+  options?: IMarkdownOptions
+) {
   return transforms.reduce((s, t) => t(s, options), markdown);
 }
 
 export function markdownToHTML(markdown: string, options?: IMarkdownOptions) {
-  return transform(marked.parse(transform(markdown, preTransforms, options)), postTransforms, options);
+  return transform(
+    marked.parse(transform(markdown, preTransforms, options)),
+    postTransforms,
+    options
+  );
 }

@@ -36,7 +36,8 @@ export interface IListItemLeftIconDefaultProps {
   forceIconWrap: boolean;
 }
 
-export type ListItemLeftIconWithDefaultProps = IListItemLeftIconProps & IListItemLeftIconDefaultProps;
+export type ListItemLeftIconWithDefaultProps = IListItemLeftIconProps &
+  IListItemLeftIconDefaultProps;
 
 /**
  * The `ListItemLeftIcon` component is a simple wrapper of the `TextIconSpacing` that will apply the "required"

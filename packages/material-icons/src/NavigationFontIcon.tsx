@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NavigationFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>navigation</FontIcon>;
+const NavigationFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>navigation</FontIcon>
+);
 
 export default NavigationFontIcon;

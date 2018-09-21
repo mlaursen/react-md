@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CastConnectedFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>cast_connected</FontIcon>;
+const CastConnectedFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>cast_connected</FontIcon>
+);
 
 export default CastConnectedFontIcon;

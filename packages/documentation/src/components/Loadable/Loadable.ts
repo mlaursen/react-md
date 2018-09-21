@@ -6,12 +6,14 @@ const ReactLoadable = require("react-loadable");
 
 import Loading from "./Loading";
 
-type Loader<Props> = () => Promise<React.ComponentType<Props> | { default: React.ComponentType<Props> }>;
+type Loader<Props> = () => Promise<
+  React.ComponentType<Props> | { default: React.ComponentType<Props> }
+>;
 
 export default function Loadable<Props = { [key: string]: any }>(loader: Loader<Props>) {
   return ReactLoadable({
     loader,
     loading: Loading,
-    delay: 300
+    delay: 300,
   });
 }

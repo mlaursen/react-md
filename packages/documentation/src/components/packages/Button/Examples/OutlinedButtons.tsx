@@ -29,7 +29,12 @@ const OutlinedButtons: React.SFC<any> = () => (
       Chat
     </Button>
     <Text type="headline-6">Disabled Examples</Text>
-    <Button id="outline-button-4" className="example-group__example" themeType="outline" disabled={true}>
+    <Button
+      id="outline-button-4"
+      className="example-group__example"
+      themeType="outline"
+      disabled={true}
+    >
       Disabled Button
     </Button>
     <Button
@@ -84,7 +89,13 @@ const OutlinedButtons: React.SFC<any> = () => (
       Chat
     </Button>
     <Text type="headline-6">Rendering as disabled Divs Examples</Text>
-    <Button id="outline-button-11" className="example-group__example" themeType="outline" disabled={true} asDiv={true}>
+    <Button
+      id="outline-button-11"
+      className="example-group__example"
+      themeType="outline"
+      disabled={true}
+      asDiv={true}
+    >
       Disabled Button
     </Button>
     <Button

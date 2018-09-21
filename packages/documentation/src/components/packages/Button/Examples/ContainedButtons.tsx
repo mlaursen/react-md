@@ -29,7 +29,12 @@ const ContainedButtons: React.SFC<any> = () => (
       Chat
     </Button>
     <Text type="headline-6">Disabled Examples</Text>
-    <Button id="contained-button-4" className="example-group__example" themeType="contained" disabled={true}>
+    <Button
+      id="contained-button-4"
+      className="example-group__example"
+      themeType="contained"
+      disabled={true}
+    >
       Disabled Button
     </Button>
     <Button

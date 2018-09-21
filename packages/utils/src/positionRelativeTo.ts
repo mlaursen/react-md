@@ -183,7 +183,12 @@ export interface IPositioningStyle {
   right?: number;
 }
 
-function determineBestHorizontalPosition(position: HorizontalPosition, left: number, vw: number, threshold: number) {
+function determineBestHorizontalPosition(
+  position: HorizontalPosition,
+  left: number,
+  vw: number,
+  threshold: number
+) {
   if (position !== HorizontalPosition.AUTO) {
     // if the position waas actually set to something other than auto, trust that they already have verified it
     // can fit in the viewport.
@@ -249,7 +254,10 @@ export default function positionRelativeTo(
 
   const vh = window.innerHeight || document.documentElement.clientHeight;
   const vw = window.innerWidth || document.documentElement.clientWidth;
-  const { fixedToLeft, fixedToTop, fixedToHeight, fixedToWidth } = getFixedToDimensions(fixedTo, isPortalFixed);
+  const { fixedToLeft, fixedToTop, fixedToHeight, fixedToWidth } = getFixedToDimensions(
+    fixedTo,
+    isPortalFixed
+  );
   const overlapHeight = fixedToHeight * heightOverlapMultiplier;
   const overlapWidth = fixedToWidth * widthOverlapMultiplier;
 
@@ -281,7 +289,12 @@ export default function positionRelativeTo(
     style.left = vwMargin;
     style.right = vwMargin;
   } else {
-    bestPosition = determineBestHorizontalPosition(horizontalPosition, fixedToLeft, vw, viewportThreshold);
+    bestPosition = determineBestHorizontalPosition(
+      horizontalPosition,
+      fixedToLeft,
+      vw,
+      viewportThreshold
+    );
     switch (bestPosition) {
       case HorizontalPosition.LEFT:
         style.left = fixedToLeft - targetWidth + overlapWidth;
@@ -321,7 +334,8 @@ export default function positionRelativeTo(
 
   if (horizontalSpacing && !isTooWide) {
     const sign =
-      horizontalPosition === HorizontalPosition.LEFT || horizontalPosition === HorizontalPosition.INNER_LEFT
+      horizontalPosition === HorizontalPosition.LEFT ||
+      horizontalPosition === HorizontalPosition.INNER_LEFT
         ? "-"
         : "+";
     style.left = `calc(${style.left}px ${sign} ${horizontalSpacing})`;

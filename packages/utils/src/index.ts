@@ -9,7 +9,7 @@ export { default as isPassiveEventsSupported } from "./isPassiveEventsSupported"
 
 export { default as isProgrammaticallyFocusable } from "./isProgrammaticallyFocusable";
 
-export { default as isFocusable } from "./isFocusable"
+export { default as isFocusable } from "./isFocusable";
 
 export { default as positionRelativeTo } from "./positionRelativeTo";
 export * from "./positionRelativeTo";

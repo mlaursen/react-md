@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PieChartFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>pie_chart</FontIcon>;
+const PieChartFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>pie_chart</FontIcon>
+);
 
 export default PieChartFontIcon;

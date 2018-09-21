@@ -21,5 +21,8 @@ export default function isFocusable(el: HTMLElement | null, allowDisabled: boole
     return true;
   }
 
-  return el.getAttribute("tabindex") !== null || FOCUSABLE_ROLES.indexOf(el.getAttribute("role") || "") !== -1;
+  return (
+    el.getAttribute("tabindex") !== null ||
+    FOCUSABLE_ROLES.indexOf(el.getAttribute("role") || "") !== -1
+  );
 }

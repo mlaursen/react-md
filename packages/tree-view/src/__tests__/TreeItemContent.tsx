@@ -15,10 +15,14 @@ describe("TreeItemContent", () => {
   it("should render correctly with the provided props", () => {
     expect(renderer.create(<TreeItemContent>Content!</TreeItemContent>).toJSON()).toMatchSnapshot();
     expect(
-      renderer.create(<TreeItemContent leftIcon={<HomeSVGIcon />}>Content with icon</TreeItemContent>).toJSON()
+      renderer
+        .create(<TreeItemContent leftIcon={<HomeSVGIcon />}>Content with icon</TreeItemContent>)
+        .toJSON()
     ).toMatchSnapshot();
     expect(
-      renderer.create(<TreeItemContent rightIcon={<HomeSVGIcon />}>Content with icon</TreeItemContent>).toJSON()
+      renderer
+        .create(<TreeItemContent rightIcon={<HomeSVGIcon />}>Content with icon</TreeItemContent>)
+        .toJSON()
     ).toMatchSnapshot();
   });
 });

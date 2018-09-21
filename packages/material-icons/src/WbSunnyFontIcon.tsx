@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WbSunnyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>wb_sunny</FontIcon>;
+const WbSunnyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>wb_sunny</FontIcon>
+);
 
 export default WbSunnyFontIcon;

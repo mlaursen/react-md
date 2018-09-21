@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HeadsetMicFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>headset_mic</FontIcon>;
+const HeadsetMicFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>headset_mic</FontIcon>
+);
 
 export default HeadsetMicFontIcon;

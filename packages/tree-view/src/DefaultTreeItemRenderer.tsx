@@ -24,9 +24,12 @@ interface IA11yProps {
   tabIndex: 0 | -1;
 }
 
-export type IDefaultTreeItemRendererProps = IDefaultTreeItemRendererBaseProps & ITreeViewItemInjectedProps;
+export type IDefaultTreeItemRendererProps = IDefaultTreeItemRendererBaseProps &
+  ITreeViewItemInjectedProps;
 
-export default class DefaultTreeItemRenderer extends React.Component<IDefaultTreeItemRendererProps> {
+export default class DefaultTreeItemRenderer extends React.Component<
+  IDefaultTreeItemRendererProps
+> {
   public componentDidMount() {
     this.props.updateTreeItems();
   }
@@ -95,7 +98,12 @@ export default class DefaultTreeItemRenderer extends React.Component<IDefaultTre
 
     return (
       <TreeItem {...props} {...a11y}>
-        <TreeItemContent forceIconWrap={forceIconWrap} leftIcon={leftIcon} rightIcon={rightIcon} selected={selected}>
+        <TreeItemContent
+          forceIconWrap={forceIconWrap}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          selected={selected}
+        >
           {children}
         </TreeItemContent>
         {group}

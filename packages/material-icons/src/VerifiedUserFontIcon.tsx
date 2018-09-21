@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VerifiedUserFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>verified_user</FontIcon>;
+const VerifiedUserFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>verified_user</FontIcon>
+);
 
 export default VerifiedUserFontIcon;

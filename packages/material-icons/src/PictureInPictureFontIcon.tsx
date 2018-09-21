@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PictureInPictureFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>picture_in_picture</FontIcon>;
+const PictureInPictureFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>picture_in_picture</FontIcon>
+);
 
 export default PictureInPictureFontIcon;

@@ -53,7 +53,11 @@ export interface IPortalState {
 export default class Portal extends React.Component<IPortalProps, IPortalState> {
   public static propTypes = {
     visible: PropTypes.bool.isRequired,
-    into: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.instanceOf(HTMLElement)]),
+    into: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+      PropTypes.instanceOf(HTMLElement),
+    ]),
     intoId: PropTypes.string,
   };
 

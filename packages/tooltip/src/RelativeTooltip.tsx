@@ -53,7 +53,10 @@ export interface IRelativeTooltipState {
   visible: boolean;
 }
 
-export default class RelativeTooltip extends React.Component<IRelativeTooltipProps, IRelativeTooltipState> {
+export default class RelativeTooltip extends React.Component<
+  IRelativeTooltipProps,
+  IRelativeTooltipState
+> {
   public static propTypes = {
     id: PropTypes.string.isRequired,
     style: PropTypes.object,
@@ -259,7 +262,12 @@ export default class RelativeTooltip extends React.Component<IRelativeTooltipPro
         this.transitionTimeout = undefined;
         this.setState({ animatingOut: false });
       }, Math.max(0, leaveDuration));
-      this.setState({ animatingOut: true, animatingIn: false, keyboard: false, visible: false });
+      this.setState({
+        animatingOut: true,
+        animatingIn: false,
+        keyboard: false,
+        visible: false,
+      });
     } else if (this.state.animatingIn) {
       this.setState({ animatingIn: false });
     }

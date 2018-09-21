@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PhonelinkOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>phonelink_off</FontIcon>;
+const PhonelinkOffFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>phonelink_off</FontIcon>
+);
 
 export default PhonelinkOffFontIcon;

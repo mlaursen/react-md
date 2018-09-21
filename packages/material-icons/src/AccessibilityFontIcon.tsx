@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AccessibilityFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>accessibility</FontIcon>;
+const AccessibilityFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>accessibility</FontIcon>
+);
 
 export default AccessibilityFontIcon;

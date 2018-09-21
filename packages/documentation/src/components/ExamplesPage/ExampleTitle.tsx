@@ -5,6 +5,8 @@ export interface IExampleTitleProps {
   children: React.ReactNode;
 }
 
-const ExampleTitle: React.SFC<IExampleTitleProps> = ({ children }) => <Text type="headline-6">{children}</Text>;
+const ExampleTitle: React.SFC<IExampleTitleProps> = ({ children }) => (
+  <Text type="headline-6">{children}</Text>
+);
 
 export default ExampleTitle;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RestaurantMenuFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>restaurant_menu</FontIcon>;
+const RestaurantMenuFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>restaurant_menu</FontIcon>
+);
 
 export default RestaurantMenuFontIcon;

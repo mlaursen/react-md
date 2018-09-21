@@ -36,13 +36,18 @@ export interface IListItemRightIconDefaultProps {
   forceIconWrap: boolean;
 }
 
-export type ListItemRightIconWithDefaultProps = IListItemRightIconProps & IListItemRightIconDefaultProps;
+export type ListItemRightIconWithDefaultProps = IListItemRightIconProps &
+  IListItemRightIconDefaultProps;
 
 /**
  * The `ListItemRightIcon` component is a simple wrapper of the `TextIconSpacing` that will apply the "required"
  * class names for adding spacing between text and a right icon within `ListItem`s.
  */
-const ListItemRightIcon: React.SFC<IListItemRightIconProps> = ({ icon, children, forceIconWrap }) => (
+const ListItemRightIcon: React.SFC<IListItemRightIconProps> = ({
+  icon,
+  children,
+  forceIconWrap,
+}) => (
   <TextIconSpacing
     icon={icon}
     iconAfter={true}

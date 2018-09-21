@@ -105,7 +105,8 @@ export default class AppSize extends React.Component<IAppSizeProps, IAppSize> {
   private handleResize = (event: Event) => {
     const { tabletMinWidth, desktopMinWidth } = this.props as AppSizeWithDefaultProps;
     const phoneMedia = `screen and (max-width: ${tabletMinWidth - 1}px)`;
-    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth - 1}px)`;
+    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth -
+      1}px)`;
     const desktopMedia = `screen and (min-device-width: ${desktopMinWidth}px)`;
 
     const matchesTablet = window.matchMedia(tabletMedia).matches;

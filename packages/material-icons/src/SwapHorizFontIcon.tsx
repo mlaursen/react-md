@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SwapHorizFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>swap_horiz</FontIcon>;
+const SwapHorizFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>swap_horiz</FontIcon>
+);
 
 export default SwapHorizFontIcon;

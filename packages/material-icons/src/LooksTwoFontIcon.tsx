@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LooksTwoFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>looks_two</FontIcon>;
+const LooksTwoFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>looks_two</FontIcon>
+);
 
 export default LooksTwoFontIcon;

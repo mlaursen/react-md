@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ContentCopyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>content_copy</FontIcon>;
+const ContentCopyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>content_copy</FontIcon>
+);
 
 export default ContentCopyFontIcon;

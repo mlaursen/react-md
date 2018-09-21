@@ -70,7 +70,10 @@ export interface IStatesProviderState {
  * within your app. This works directly with the `StatesConsumer` component that will enable/disable
  * the listeners as needed.
  */
-export default class StatesProvider extends React.Component<IStatesProviderProps, IStatesProviderState> {
+export default class StatesProvider extends React.Component<
+  IStatesProviderProps,
+  IStatesProviderState
+> {
   public static propTypes = {
     advancedFocus: PropTypes.bool,
     programmaticFocusKeys: PropTypes.arrayOf(PropTypes.string),
@@ -284,7 +287,8 @@ export default class StatesProvider extends React.Component<IStatesProviderProps
    */
   private handleKeyDown = (event: KeyboardEvent) => {
     this.clearKeyboardTimer();
-    const { programmaticFocusKeys, isPrintableKeysFocusable } = this.props as StatesProviderWithDefaultProps;
+    const { programmaticFocusKeys, isPrintableKeysFocusable } = this
+      .props as StatesProviderWithDefaultProps;
     if (
       programmaticFocusKeys.indexOf(event.key) === -1 &&
       (!isPrintableKeysFocusable || !isProgrammaticallyFocusable(event))

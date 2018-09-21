@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MultilineChartFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>multiline_chart</FontIcon>;
+const MultilineChartFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>multiline_chart</FontIcon>
+);
 
 export default MultilineChartFontIcon;

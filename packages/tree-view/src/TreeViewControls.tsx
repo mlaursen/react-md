@@ -55,7 +55,8 @@ export interface ITreeViewControlsDefaultProps {
   defaultExpandedIds: string[];
 }
 
-export type TreeViewControlsWithDefaultProps<D, R> = ITreeViewControlsProps<D, R> & ITreeViewControlsDefaultProps;
+export type TreeViewControlsWithDefaultProps<D, R> = ITreeViewControlsProps<D, R> &
+  ITreeViewControlsDefaultProps;
 
 export interface ITreeViewControlsState {
   selectedIds: string[];
@@ -83,7 +84,11 @@ export default class TreeViewControls<D, R> extends React.Component<
 
   constructor(props: ITreeViewControlsProps<D, R>) {
     super(props);
-    const { data, defaultExpandedIds, defaultSelectedIds } = props as TreeViewControlsWithDefaultProps<D, R>;
+    const {
+      data,
+      defaultExpandedIds,
+      defaultSelectedIds,
+    } = props as TreeViewControlsWithDefaultProps<D, R>;
 
     let selectedIds = defaultSelectedIds;
     let expandedIds = defaultExpandedIds;
@@ -132,7 +137,7 @@ export default class TreeViewControls<D, R> extends React.Component<
   };
 
   private handleMultipleItemSelection = (selectedIds: string[]) => {
-    this.setState({ selectedIds })
+    this.setState({ selectedIds });
   };
 
   private handleItemExpandedChange = (itemId: string, expanded: boolean) => {

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatBoldFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>format_bold</FontIcon>;
+const FormatBoldFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>format_bold</FontIcon>
+);
 
 export default FormatBoldFontIcon;

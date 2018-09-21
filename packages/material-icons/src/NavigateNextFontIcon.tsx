@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NavigateNextFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>navigate_next</FontIcon>;
+const NavigateNextFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>navigate_next</FontIcon>
+);
 
 export default NavigateNextFontIcon;

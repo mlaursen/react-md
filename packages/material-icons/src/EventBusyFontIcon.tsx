@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const EventBusyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>event_busy</FontIcon>;
+const EventBusyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>event_busy</FontIcon>
+);
 
 export default EventBusyFontIcon;

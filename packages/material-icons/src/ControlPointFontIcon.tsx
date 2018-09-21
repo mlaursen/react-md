@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ControlPointFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>control_point</FontIcon>;
+const ControlPointFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>control_point</FontIcon>
+);
 
 export default ControlPointFontIcon;

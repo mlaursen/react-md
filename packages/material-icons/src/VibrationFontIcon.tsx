@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VibrationFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>vibration</FontIcon>;
+const VibrationFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>vibration</FontIcon>
+);
 
 export default VibrationFontIcon;

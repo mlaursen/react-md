@@ -13,7 +13,12 @@ const CellTooltip: React.SFC<ICellTooltipProps> = ({ id, style, portal, visible 
   if (portal) {
     return (
       <Portal intoId="overflow-portal-example-tooltip-container" visible={visible}>
-        <Tooltip id={id} style={style} visible={visible} className="rmd-tooltip--magic rmd-tooltip--active">
+        <Tooltip
+          id={id}
+          style={style}
+          visible={visible}
+          className="rmd-tooltip--magic rmd-tooltip--active"
+        >
           Tooltip!
         </Tooltip>
       </Portal>

@@ -24,7 +24,9 @@ const ReferenceList: React.SFC<IReferenceListProps> = ({ children, list, include
           <li key={key}>
             {`${type} - `}
             <Link
-              to={`${process.env.PUBLIC_URL}/packages/${group}/sassdoc#${type.toLowerCase()}-${name}`}
+              to={`${
+                process.env.PUBLIC_URL
+              }/packages/${group}/sassdoc#${type.toLowerCase()}-${name}`}
               component={RouterLink}
             >
               {name}

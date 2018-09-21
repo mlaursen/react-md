@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewCompactFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_compact</FontIcon>;
+const ViewCompactFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_compact</FontIcon>
+);
 
 export default ViewCompactFontIcon;

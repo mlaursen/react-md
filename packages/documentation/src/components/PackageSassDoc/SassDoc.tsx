@@ -21,7 +21,9 @@ const SassDoc: React.SFC<ISassDocProps> = ({ name, list }) => {
   const sectionType = name.toLowerCase().substring(0, name.length - 1) as SassDocType;
   return (
     <div id={`sassdoc-${sectionType}`} className="package-sassdoc__block sassdoc" tabIndex={-1}>
-      <SassDocTitle type="headline-2" section={true}>{name}</SassDocTitle>
+      <SassDocTitle type="headline-2" section={true}>
+        {name}
+      </SassDocTitle>
       {list.map(sassdoc => (
         <Section key={sassdoc.name} sassdoc={sassdoc} type={sectionType} />
       ))}

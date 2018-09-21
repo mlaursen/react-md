@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PinDropFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>pin_drop</FontIcon>;
+const PinDropFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>pin_drop</FontIcon>
+);
 
 export default PinDropFontIcon;

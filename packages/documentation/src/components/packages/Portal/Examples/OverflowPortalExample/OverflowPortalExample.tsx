@@ -34,22 +34,26 @@ export default class OverflowPortalExample extends React.Component<
     return (
       <React.Fragment>
         <Text type="body-2">
-          This example will show a very basic example of how you can use portals to fix overflow rendering issues. If
-          you set any of the overflow values (<code>overflow</code>, <code>overflow-x</code>, <code>overflow-y</code>)
-          to any value other than <code>visible</code>, elements that are positioned absolute or fixed will no longer be
-          visible. This can be seen below with the default usage of the <code>RelativeTooltip</code> component. The
-          tooltips will display correctly until you attempt to view a tooltip in the last 60px of the scroll area. It
-          can be visible if you manually scroll a bit, but that isn't great UX.
+          This example will show a very basic example of how you can use portals to fix overflow
+          rendering issues. If you set any of the overflow values (<code>overflow</code>,{" "}
+          <code>overflow-x</code>, <code>overflow-y</code>) to any value other than{" "}
+          <code>visible</code>, elements that are positioned absolute or fixed will no longer be
+          visible. This can be seen below with the default usage of the <code>RelativeTooltip</code>{" "}
+          component. The tooltips will display correctly until you attempt to view a tooltip in the
+          last 60px of the scroll area. It can be visible if you manually scroll a bit, but that
+          isn't great UX.
         </Text>
         <Text type="body-2">
-          To get around this issue, you can use portals to render these "temporary" elements outside of the scroll area
-          and apply some positioning logic to render the "temporary" element near the desired element. If you enable the
-          portal view by clicking the toggle button below, the portals will be enabled with some extremely simple
-          positioning logic. This is actually how the <code>MagicTooltip</code> component works behind the scenes but
-          with a bit more positioning logic and animations added.
+          To get around this issue, you can use portals to render these "temporary" elements outside
+          of the scroll area and apply some positioning logic to render the "temporary" element near
+          the desired element. If you enable the portal view by clicking the toggle button below,
+          the portals will be enabled with some extremely simple positioning logic. This is actually
+          how the <code>MagicTooltip</code> component works behind the scenes but with a bit more
+          positioning logic and animations added.
         </Text>
         <Text type="caption" tagName="blockquote">
-          NOTE: The example below only has mouse interactions enabled to keep things simple with react-virtualized.
+          NOTE: The example below only has mouse interactions enabled to keep things simple with
+          react-virtualized.
         </Text>
         <div className="overflow-portal-example">
           <ArrowKeyStepper
@@ -91,7 +95,11 @@ export default class OverflowPortalExample extends React.Component<
           </ArrowKeyStepper>
         </div>
         <span id="overflow-portal-example-tooltip-container" />
-        <Button id="toggle-overflow-tooltip-portals" onClick={this.togglePortals} themeType="outline">
+        <Button
+          id="toggle-overflow-tooltip-portals"
+          onClick={this.togglePortals}
+          themeType="outline"
+        >
           Toggle Tooltip Portals
         </Button>
       </React.Fragment>

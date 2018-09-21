@@ -74,7 +74,8 @@ module.exports = (env: any, { mode }: IArgv) => {
       path: dist,
       publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
-      devtoolModuleFilenameTemplate: info => path.relative(src, info.absoluteResourcePath).replace(/\\/g, "/"),
+      devtoolModuleFilenameTemplate: info =>
+        path.relative(src, info.absoluteResourcePath).replace(/\\/g, "/"),
     },
     module: {
       rules: [
@@ -216,11 +217,7 @@ module.exports = (env: any, { mode }: IArgv) => {
         tsconfig,
         tslint,
       }),
-      !isDev && new CopyPlugin([
-        "public/robots.txt",
-        "public/favicon.ico",
-        "public/404.html"
-      ]),
+      !isDev && new CopyPlugin(["public/robots.txt", "public/favicon.ico", "public/404.html"]),
     ].filter(Boolean),
     optimization: {
       splitChunks: {

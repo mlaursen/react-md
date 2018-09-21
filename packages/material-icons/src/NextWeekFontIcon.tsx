@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NextWeekFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>next_week</FontIcon>;
+const NextWeekFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>next_week</FontIcon>
+);
 
 export default NextWeekFontIcon;

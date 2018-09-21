@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PersonalVideoFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>personal_video</FontIcon>;
+const PersonalVideoFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>personal_video</FontIcon>
+);
 
 export default PersonalVideoFontIcon;

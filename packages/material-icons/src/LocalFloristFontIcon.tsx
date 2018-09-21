@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocalFloristFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>local_florist</FontIcon>;
+const LocalFloristFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>local_florist</FontIcon>
+);
 
 export default LocalFloristFontIcon;

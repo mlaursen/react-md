@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RemoveFromQueueFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>remove_from_queue</FontIcon>;
+const RemoveFromQueueFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>remove_from_queue</FontIcon>
+);
 
 export default RemoveFromQueueFontIcon;

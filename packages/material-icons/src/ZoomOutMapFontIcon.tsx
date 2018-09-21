@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ZoomOutMapFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>zoom_out_map</FontIcon>;
+const ZoomOutMapFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>zoom_out_map</FontIcon>
+);
 
 export default ZoomOutMapFontIcon;

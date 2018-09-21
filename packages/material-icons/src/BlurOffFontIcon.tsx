@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BlurOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>blur_off</FontIcon>;
+const BlurOffFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>blur_off</FontIcon>
+);
 
 export default BlurOffFontIcon;

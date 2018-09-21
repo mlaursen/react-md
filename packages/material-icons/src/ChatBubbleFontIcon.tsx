@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChatBubbleFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>chat_bubble</FontIcon>;
+const ChatBubbleFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>chat_bubble</FontIcon>
+);
 
 export default ChatBubbleFontIcon;

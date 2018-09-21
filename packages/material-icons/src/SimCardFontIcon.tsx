@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SimCardFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>sim_card</FontIcon>;
+const SimCardFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>sim_card</FontIcon>
+);
 
 export default SimCardFontIcon;

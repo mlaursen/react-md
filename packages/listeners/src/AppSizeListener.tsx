@@ -1,6 +1,10 @@
 import * as React from "react";
 
-import { default as ResizeListener, IResizeListenerConfigProps, IResizeListenerDefaultProps } from "./ResizeListener";
+import {
+  default as ResizeListener,
+  IResizeListenerConfigProps,
+  IResizeListenerDefaultProps,
+} from "./ResizeListener";
 
 /**
  * An enum of the available "app sizes" for react-md. The app sizes fall into two categories:
@@ -50,7 +54,9 @@ export interface IAppSizeListenerWithChildrenProps extends IAppSizeListenerBaseP
   children: (appSize: IAppSize) => React.ReactNode;
 }
 
-export type IAppSizeListenerProps = IAppSizeListenerWithOnResizeProps | IAppSizeListenerWithChildrenProps;
+export type IAppSizeListenerProps =
+  | IAppSizeListenerWithOnResizeProps
+  | IAppSizeListenerWithChildrenProps;
 
 export interface IDefaultAppSizeRequired {
   defaultSize: AppSize | keyof AppSize;
@@ -62,7 +68,9 @@ export interface IAppSizeMediaProps extends IDefaultAppSizeRequired {
   desktopMinWidth: number;
 }
 
-export interface IAppSizeListenerDefaultProps extends IResizeListenerDefaultProps, IAppSizeMediaProps {}
+export interface IAppSizeListenerDefaultProps
+  extends IResizeListenerDefaultProps,
+    IAppSizeMediaProps {}
 
 export type AppSizeListenerWithDefaultProps = IAppSizeListenerProps & IAppSizeListenerDefaultProps;
 
@@ -116,7 +124,9 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
    * }
    * ```
    */
-  public static createDefaultState(props: IDefaultAppSizeRequired = AppSizeListener.defaultProps): IAppSize {
+  public static createDefaultState(
+    props: IDefaultAppSizeRequired = AppSizeListener.defaultProps
+  ): IAppSize {
     const { defaultSize } = props;
     const isPortraitPhone = defaultSize === AppSize.PORTRAIT_PHONE;
     const isLandscapePhone = defaultSize === AppSize.LANDSCAPE_PHONE;
@@ -142,7 +152,9 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
    * This helper function attempt to run media queries to determine the next state. If the `window` is
    * not defined, `AppSizeListener.createDefaultState` will be used as a fallback instead.
    */
-  public static createStateFromQueries(props: IAppSizeMediaProps = AppSizeListener.defaultProps): IAppSize {
+  public static createStateFromQueries(
+    props: IAppSizeMediaProps = AppSizeListener.defaultProps
+  ): IAppSize {
     if (typeof window === "undefined") {
       return AppSizeListener.createDefaultState(props);
     }
@@ -150,7 +162,8 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
     const { tabletMinWidth, desktopMinWidth } = props as AppSizeListenerWithDefaultProps;
 
     const phoneMedia = `screen and (max-width: ${tabletMinWidth - 1}px)`;
-    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth - 1}px)`;
+    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth -
+      1}px)`;
     const desktopMedia = `screen and (min-width: ${desktopMinWidth}px)`;
 
     const matchesTablet = window.matchMedia(tabletMedia).matches;
@@ -214,7 +227,11 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
 
     if (!this.calledOnce && !disableResizeOnMount && onResize) {
       onResize(nextState);
-    } else if (Object.keys(nextState).some(key => (this.state as IAppSizeListenerState)[key] !== nextState[key])) {
+    } else if (
+      Object.keys(nextState).some(
+        key => (this.state as IAppSizeListenerState)[key] !== nextState[key]
+      )
+    ) {
       if (this.props.onResize) {
         this.props.onResize(nextState);
       }

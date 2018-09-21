@@ -4,13 +4,18 @@ import { LanguageSVGIcon } from "@react-md/material-icons";
 
 import "./rtl-toggle.scss";
 
-export interface IRTLToggleState {
-}
+export interface IRTLToggleState {}
 
 export default class RTLToggle extends React.Component<{}, IRTLToggleState> {
   public render() {
     return (
-      <Button btnType="icon" theme="secondary" themeType="contained" className="rtl-toggle" onClick={this.toggleRTL}>
+      <Button
+        btnType="icon"
+        theme="secondary"
+        themeType="contained"
+        className="rtl-toggle"
+        onClick={this.toggleRTL}
+      >
         <LanguageSVGIcon />
       </Button>
     );

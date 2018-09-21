@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PlayCircleFilledFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>play_circle_filled</FontIcon>;
+const PlayCircleFilledFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>play_circle_filled</FontIcon>
+);
 
 export default PlayCircleFilledFontIcon;

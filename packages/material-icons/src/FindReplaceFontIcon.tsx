@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FindReplaceFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>find_replace</FontIcon>;
+const FindReplaceFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>find_replace</FontIcon>
+);
 
 export default FindReplaceFontIcon;

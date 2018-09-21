@@ -36,7 +36,7 @@ different tooltip the user attempts to view. The "hover mode" feature will remov
 once a tooltip has become visible until the user no longer is hovering over a tooltip area for \`1s\`.
     `,
     children: null,
-  }
+  },
 ];
 
 const Examples = () => <ExamplesPage title="Tooltip" examples={examples} />;

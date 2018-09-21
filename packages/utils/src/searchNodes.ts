@@ -7,7 +7,12 @@ export type TextExtractor = (node: NodeType, checkFontIcons?: boolean) => string
  * Attempts to find the first match index for a list of values that starts with the provided query string and
  * is within the start and end indexes. If no matches are found, -1 will be returned instead.
  */
-export function findMatchInRange(query: string, startIndex: number, endIndex: number, values: string[]) {
+export function findMatchInRange(
+  query: string,
+  startIndex: number,
+  endIndex: number,
+  values: string[]
+) {
   for (let i = startIndex; i < endIndex; i += 1) {
     const content = values[i];
     if (content.toUpperCase().indexOf(query) === 0) {
@@ -53,7 +58,7 @@ export function searchNodes(
   query: string,
   nodes: NodeType[],
   startIndex: number,
-  extractor: TextExtractor = extractTextContent,
+  extractor: TextExtractor = extractTextContent
 ) {
   const values = nodes.map(node => extractor(node));
   let matchIndex = findMatchInRange(query, startIndex + 1, nodes.length, values);

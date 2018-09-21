@@ -9,7 +9,7 @@ export default class InterpolateHtmlPlugin {
   }
 
   public apply(compiler: webpack.Compiler) {
-    compiler.hooks.compilation.tap("InterpolateHtmlPlugin", (compilation) => {
+    compiler.hooks.compilation.tap("InterpolateHtmlPlugin", compilation => {
       const hooks = compilation.hooks as HtmlWebpackPlugin.Hooks;
 
       hooks.htmlWebpackPluginBeforeHtmlProcessing.tap("InterpolateHtmlPlugin", data => {
@@ -20,7 +20,6 @@ export default class InterpolateHtmlPlugin {
 
         return data;
       });
-    })
-
+    });
   }
 }

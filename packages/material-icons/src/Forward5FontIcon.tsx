@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const Forward5FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>forward_5</FontIcon>;
+const Forward5FontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>forward_5</FontIcon>
+);
 
 export default Forward5FontIcon;

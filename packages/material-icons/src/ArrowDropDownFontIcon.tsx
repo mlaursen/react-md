@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArrowDropDownFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>arrow_drop_down</FontIcon>;
+const ArrowDropDownFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>arrow_drop_down</FontIcon>
+);
 
 export default ArrowDropDownFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GradientFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>gradient</FontIcon>;
+const GradientFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>gradient</FontIcon>
+);
 
 export default GradientFontIcon;

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewArrayFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>view_array</FontIcon>;
+const ViewArrayFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>view_array</FontIcon>
+);
 
 export default ViewArrayFontIcon;

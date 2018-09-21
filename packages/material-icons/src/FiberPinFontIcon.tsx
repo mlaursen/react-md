@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FiberPinFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>fiber_pin</FontIcon>;
+const FiberPinFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>fiber_pin</FontIcon>
+);
 
 export default FiberPinFontIcon;

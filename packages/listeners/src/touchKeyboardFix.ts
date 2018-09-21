@@ -39,7 +39,11 @@ let rotated: boolean = false;
 let timeout: number | undefined;
 
 function isKeyboardInput(element: Element | null) {
-  return !!element && element.tagName === "INPUT" && !/checkbox|radio|hidden/.test((element as HTMLInputElement).type);
+  return (
+    !!element &&
+    element.tagName === "INPUT" &&
+    !/checkbox|radio|hidden/.test((element as HTMLInputElement).type)
+  );
 }
 
 function handleTouchStart(event: TouchEvent) {

@@ -25,7 +25,18 @@ export type SectionType = "variable" | "function" | "mixin";
 
 const Section: React.SFC<ISectionProps> = ({ sassdoc, type }) => {
   let { code = "" } = sassdoc;
-  const { type: sassdocType, name, description, parameters, requires, usedBy, links, see, throws, examples } = sassdoc;
+  const {
+    type: sassdocType,
+    name,
+    description,
+    parameters,
+    requires,
+    usedBy,
+    links,
+    see,
+    throws,
+    examples,
+  } = sassdoc;
   if (code) {
     code = `\`\`\`scss
 ${code}

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SubtitlesFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>subtitles</FontIcon>;
+const SubtitlesFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>subtitles</FontIcon>
+);
 
 export default SubtitlesFontIcon;

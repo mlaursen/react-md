@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChildFriendlyFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>child_friendly</FontIcon>;
+const ChildFriendlyFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>child_friendly</FontIcon>
+);
 
 export default ChildFriendlyFontIcon;

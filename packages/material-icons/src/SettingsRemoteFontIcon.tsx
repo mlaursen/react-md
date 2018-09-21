@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsRemoteFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>settings_remote</FontIcon>;
+const SettingsRemoteFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>settings_remote</FontIcon>
+);
 
 export default SettingsRemoteFontIcon;

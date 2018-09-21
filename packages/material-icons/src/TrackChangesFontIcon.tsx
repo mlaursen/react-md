@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TrackChangesFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>track_changes</FontIcon>;
+const TrackChangesFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>track_changes</FontIcon>
+);
 
 export default TrackChangesFontIcon;

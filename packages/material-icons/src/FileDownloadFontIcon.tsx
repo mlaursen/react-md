@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FileDownloadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>file_download</FontIcon>;
+const FileDownloadFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>file_download</FontIcon>
+);
 
 export default FileDownloadFontIcon;

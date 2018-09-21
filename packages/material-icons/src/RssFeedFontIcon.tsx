@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RssFeedFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>rss_feed</FontIcon>;
+const RssFeedFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>rss_feed</FontIcon>
+);
 
 export default RssFeedFontIcon;

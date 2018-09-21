@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const KeyboardHideFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>keyboard_hide</FontIcon>;
+const KeyboardHideFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>keyboard_hide</FontIcon>
+);
 
 export default KeyboardHideFontIcon;

@@ -4,10 +4,21 @@ import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 
 import { Overlay } from "@react-md/overlay";
-import { ICSSTransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
+import {
+  ICSSTransitionProps,
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "@react-md/transition";
 
 export type SheetPosition = "calculated" | "top" | "right" | "bottom" | "left";
-export type SheetHorizontalSize = "none" | "media" | "small" | "large" | "until-small" | "until-large" | "until-media";
+export type SheetHorizontalSize =
+  | "none"
+  | "media"
+  | "small"
+  | "large"
+  | "until-small"
+  | "until-large"
+  | "until-media";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
 export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<HTMLDivElement> {

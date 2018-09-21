@@ -12,7 +12,8 @@ export interface ITreeItemExpanderIconDefaultProps {
   children: React.ReactElement<any>;
 }
 
-export type TreeItemExpanderWithDefaultProps = ITreeItemExpanderIconProps & ITreeItemExpanderIconDefaultProps;
+export type TreeItemExpanderWithDefaultProps = ITreeItemExpanderIconProps &
+  ITreeItemExpanderIconDefaultProps;
 
 /**
  * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to be used within a `TreeView`.
@@ -26,7 +27,7 @@ TreeItemExpanderIcon.defaultProps = {
   rotated: false,
   to: 0,
   from: 90,
-  children: <FontIcon>keyboard_arrow_down</FontIcon>
+  children: <FontIcon>keyboard_arrow_down</FontIcon>,
 } as ITreeItemExpanderIconDefaultProps;
 
 export default TreeItemExpanderIcon;

@@ -39,6 +39,8 @@ describe("Link", () => {
 
     expect(renderer.create(<ReachLink to="#">Content</ReachLink>).toJSON()).toMatchSnapshot();
     expect(renderer.create(<ReachLink to="">Disabled Link</ReachLink>).toJSON()).toMatchSnapshot();
-    expect(renderer.create(<ReachLink to="/direct-url">Direct url</ReachLink>).toJSON()).toMatchSnapshot();
+    expect(
+      renderer.create(<ReachLink to="/direct-url">Direct url</ReachLink>).toJSON()
+    ).toMatchSnapshot();
   });
 });

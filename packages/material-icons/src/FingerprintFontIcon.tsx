@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FingerprintFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>fingerprint</FontIcon>;
+const FingerprintFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>fingerprint</FontIcon>
+);
 
 export default FingerprintFontIcon;

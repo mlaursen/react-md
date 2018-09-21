@@ -1,6 +1,11 @@
 import * as React from "react";
 import { AppBar, AppBarNav, AppBarAction, AppBarTitle, AppBarRow } from "@react-md/app-bar";
-import { MenuSVGIcon, FavoriteSVGIcon, SearchSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
+import {
+  MenuSVGIcon,
+  FavoriteSVGIcon,
+  SearchSVGIcon,
+  MoreVertSVGIcon,
+} from "@react-md/material-icons";
 
 const ProminentAppBars = () => (
   <React.Fragment>

@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PregnantWomanFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>pregnant_woman</FontIcon>;
+const PregnantWomanFontIcon: React.SFC<IFontIconProps> = props => (
+  <FontIcon {...props}>pregnant_woman</FontIcon>
+);
 
 export default PregnantWomanFontIcon;
