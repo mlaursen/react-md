@@ -1,4 +1,7 @@
 ## September 2018
+### v1.7.1 Released
+- Reverted the `InkContainer` workaround for Preact since there were additional unwanted side-effects. [issues-801]
+
 ### v1.7.0 Released
 - Updated the `DatePicker` for more flexibility at rendering dates. ([@madc0der] - [pull-800])
 
