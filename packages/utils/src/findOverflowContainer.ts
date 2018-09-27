@@ -12,9 +12,9 @@
 export default function findOverflowContainer(el: HTMLElement | null, firstMatch: boolean = false) {
   let closest = el;
   let node = el;
-  while (node && node.offsetParent) {
+  while (node) {
     const { overflow, position } = window.getComputedStyle(node);
-    if (overflow !== "visible" && position !== "static") {
+    if (overflow && overflow !== "visible" && position && position !== "static") {
       closest = node;
 
       if (firstMatch) {

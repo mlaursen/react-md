@@ -12,7 +12,7 @@ export const PROGRAMMATIC_FOCUS_KEYS = [...KEYBOARD_MOVEMENT_KEYS, " ", "Enter",
 
 export const FOCUSABLE_ELEMENTS = ["BUTTON", "TEXTAREA", "SELECT"];
 
-const BASE_FOCUSABLE_ELEMENTS = 'a[href],input:not([disabled]):not([type="hidden"])';
+const BASE_FOCUSABLE_ELEMENTS = 'a[href],area[href],input:not([disabled]):not([type="hidden"])';
 const BASE_FOCUSABLE_QUERY = FOCUSABLE_ELEMENTS.reduce(
   (queryString, element) => `${queryString},${element}:not([disabled])`,
   BASE_FOCUSABLE_ELEMENTS

@@ -6,6 +6,9 @@ export type TextExtractor = (node: NodeType, checkFontIcons?: boolean) => string
 /**
  * Attempts to find the first match index for a list of values that starts with the provided query string and
  * is within the start and end indexes. If no matches are found, -1 will be returned instead.
+ *
+ * Since this is normally coming from a keydown event, the query *must* be a string of all capital letters to
+ * work as each value will be converted to uppercase before checking.
  */
 export function findMatchInRange(
   query: string,
@@ -58,12 +61,13 @@ export function searchNodes(
   query: string,
   nodes: NodeType[],
   startIndex: number,
-  extractor: TextExtractor = extractTextContent
+  extractor: TextExtractor = extractTextContent,
+  includeStartIndex: boolean = false
 ) {
   const values = nodes.map(node => extractor(node));
-  let matchIndex = findMatchInRange(query, startIndex + 1, nodes.length, values);
+  let matchIndex = findMatchInRange(query, startIndex + 1, values.length, values);
   if (matchIndex === -1) {
-    matchIndex = findMatchInRange(query, 0, startIndex, values);
+    matchIndex = findMatchInRange(query, 0, startIndex + (includeStartIndex ? 1 : 0), values);
   }
 
   return matchIndex;

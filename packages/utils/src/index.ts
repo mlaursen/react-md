@@ -15,6 +15,8 @@ export { default as positionRelativeTo } from "./positionRelativeTo";
 export * from "./positionRelativeTo";
 
 export { default as findSizingContainer } from "./findSizingContainer";
+export * from "./findSizingContainer";
+
 export { default as findOverflowContainer } from "./findOverflowContainer";
 
 export * from "./searchNodes";

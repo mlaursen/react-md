@@ -1,9 +1,24 @@
 import { FOCUSABLE_ELEMENTS } from "./constants";
 
-const FOCUSABLE_ROLES = ["button", "menuitem", "option"];
-
 /**
- * Checks if the provided element is focusable.
+ * Checks if the provided element is focusable by checking the different attributes and roles on
+ * the element. The general rules for focusable elements are (items with an asterisk have additional
+ * notes below):
+ * - the element must exist
+ * - the element must not be disabled*
+ * - the element is one of button, textarea, or select
+ * - the element is an achor or area tag with an href*
+ * - the element is an input and not `type="hidden"`
+ * - the element has a tabindex applied.
+ *
+ * Disabled elements can return `true` if the `allowDisabled` parameter is enabled. This is really only
+ * useful for checking if an element _can_ be considered focusable instead of is currently able to be
+ * focused.
+ *
+ * @param {HTMLElement | null} el - The element to check
+ * @param {boolean=false} allowDiabled - Boolean if disabled elements will return `true` instead of `false`.
+ * @return {boolean} true if the element is currently focusable OR true if the element is focusable once it
+ *  is no longer in a disabled state.
  */
 export default function isFocusable(el: HTMLElement | null, allowDisabled: boolean = false) {
   if (!el || typeof el.getAttribute !== "function") {
@@ -15,14 +30,15 @@ export default function isFocusable(el: HTMLElement | null, allowDisabled: boole
     return false;
   }
 
-  if (FOCUSABLE_ELEMENTS.indexOf(el.tagName) !== -1) {
+  const { tagName } = el;
+  if (FOCUSABLE_ELEMENTS.includes(tagName)) {
     return true;
-  } else if (el.tagName === "A" && (el as HTMLAnchorElement).href) {
-    return true;
+  } else if (/^A(REA)?$/.test(tagName)) {
+    const href = !!(el as HTMLAnchorElement).href;
+    return href || allowDisabled;
+  } else if (tagName === "INPUT") {
+    return (el as HTMLInputElement).type !== "hidden";
   }
 
-  return (
-    el.getAttribute("tabindex") !== null ||
-    FOCUSABLE_ROLES.indexOf(el.getAttribute("role") || "") !== -1
-  );
+  return el.getAttribute("tabindex") !== null;
 }
