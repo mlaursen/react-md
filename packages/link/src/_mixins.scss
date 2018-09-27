@@ -11,7 +11,7 @@
 /// the href to an empty string instead.
 @mixin react-md-link {
   .rmd-link {
-    @include rmd-theme(color, text-disabled-on-background);
+    @include rmd-theme(color, primary);
     @include rmd-typography(body-2);
 
     text-decoration: none;
@@ -22,18 +22,20 @@
       display: inline-flex;
     }
 
-    &:link {
-      @include rmd-theme(color, primary);
+    &:link:hover {
+      @include rmd-theme(color, $rmd-link-hover-color);
 
-      &:hover {
-        @include rmd-theme(color, $rmd-link-hover-color);
-
-        text-decoration: underline;
-      }
+      text-decoration: underline;
     }
 
     &:visited {
       @include rmd-theme(color, $rmd-link-visited-color);
+    }
+
+    &:not(:link) {
+      @include rmd-theme(color, text-disabled-on-background);
+
+      text-decoration: none;
     }
   }
 }
