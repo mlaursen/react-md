@@ -18,6 +18,7 @@ import AppBar from "components/packages/AppBar";
 import Button from "components/packages/Button";
 import Elevation from "components/packages/Elevation";
 import Icon from "components/packages/Icon";
+import LinkRoute from "components/packages/Link";
 import List from "components/packages/List";
 import Listeners from "components/packages/Listeners";
 import MaterialIcons from "components/packages/MaterialIcons";
@@ -138,6 +139,7 @@ export const routes: RouteList = [
         propTypes: false,
       }),
       createPackage("icon", Icon),
+      createPackage("link", LinkRoute),
       createPackage("list", List),
       createPackage("listeners", Listeners, { sassdoc: false }),
       createPackage("material-icons", MaterialIcons, {
