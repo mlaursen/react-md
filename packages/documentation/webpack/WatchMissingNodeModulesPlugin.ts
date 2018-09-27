@@ -3,7 +3,7 @@
 import * as path from "path";
 import * as webpack from "webpack";
 
-interface ICompilation extends webpack.compilation.Compilation {
+interface ICompilation {
   missingDependencies: Set<string>;
   contextDependencies: {
     add: (path: string) => void;
@@ -17,16 +17,21 @@ export default class WatchMissingNodeModulesPlugin {
   }
 
   public apply(compiler: webpack.Compiler) {
-    compiler.hooks.emit.tap("WatchMissingNodeModulesPlugin", (compilation: ICompilation) => {
-      // if any of the missing depenencies are from node_modules, update webpack to watch node_modules
-      // until they appear.
-      if (
-        Array.from(compilation.missingDependencies).some(file =>
-          file.includes(this.nodeModulesPath)
-        )
-      ) {
-        compilation.contextDependencies.add(this.nodeModulesPath);
+    compiler.hooks.emit.tap(
+      "WatchMissingNodeModulesPlugin",
+      (compilation: webpack.compilation.Compilation) => {
+        // if any of the missing depenencies are from node_modules, update webpack to watch node_modules
+        // until they appear.
+        if (
+          Array.from(compilation.missingDependencies).some(file =>
+            file.includes(this.nodeModulesPath)
+          )
+        ) {
+          (compilation as webpack.compilation.Compilation & ICompilation).contextDependencies.add(
+            this.nodeModulesPath
+          );
+        }
       }
-    });
+    );
   }
 }
