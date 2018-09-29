@@ -157,7 +157,13 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
                       >
                         react-md
                       </AppBarTitle>
-                      <AppBarAction first={true}>
+                      <AppBarAction
+                        first={true}
+                        className={cn("rmd-layout__action", {
+                          "rmd-layout__action--offset":
+                            (visible && persistent) || (!persistent && !temporary),
+                        })}
+                      >
                         <SearchSVGIcon />
                       </AppBarAction>
                     </AppBar>

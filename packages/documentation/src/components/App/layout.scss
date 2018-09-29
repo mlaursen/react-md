@@ -36,10 +36,14 @@
 
     transition: left .15s;
   }
+}
 
-  // &--offset {
-  //   left: $rmd-sheet-large-width;
-  // }
+.rmd-layout__action {
+  @include rmd-utils-rtl {
+    &--offset {
+      transform: translateX($rmd-sheet-large-width);
+    }
+  }
 }
 
 .rmd-layout__title {
@@ -50,10 +54,18 @@
 
   &--offset {
     transform: translateX(#{$rmd-sheet-large-width - $rmd-app-bar-title-keyline + $rmd-app-bar-keyline});
+
+    @include rmd-utils-rtl {
+      transform: none;
+    }
   }
 
   &--offset-2 {
     transform: translateX($rmd-sheet-large-width);
+
+    @include rmd-utils-rtl {
+      transform: none;
+    }
   }
 }
 
