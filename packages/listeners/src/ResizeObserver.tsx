@@ -93,26 +93,11 @@ export default class ResizeObserverComp extends React.Component<
   public static propTypes = {
     watchHeight: PropTypes.bool,
     watchWidth: PropTypes.bool,
-    target: (
-      props: IResizeObserverProps,
-      propName: "target",
-      componentName: string,
-      location: string,
-      propFullName: string
-    ) => {
-      let error = PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object,
-        PropTypes.instanceOf(Element),
-      ])(props, propName, componentName, location, propFullName);
-
-      if (!error && typeof props[propName] === "undefined") {
-        error = new Error(
-          `The target prop is required to be defined the \`${componentName}\`, but it's value is undefined.`
-        );
-      }
-      return error;
-    },
+    target: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.instanceOf(Element),
+    ]),
     onResize: PropTypes.func,
     children: PropTypes.func,
     _validator: (props: IResizeObserverProps, propName: string, componentName: string) => {
