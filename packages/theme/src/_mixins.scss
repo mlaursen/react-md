@@ -84,13 +84,13 @@
 /// with the new provided value.
 ///
 /// @example scss - Example Usage SCSS
-///   $rmd-theme-primary: $rmd-theme-blue-500;
-///   $rmd-theme-secondary: $rmd-theme-pink-a-200;
+///   $rmd-theme-primary: $rmd-blue-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
 ///
 ///   .some-class-with-different-themes {
 ///     // no idea if these colors go together...
-///     @include rmd-theme-set-var(primary, $rmd-theme-orange-500);
-///     @include rmd-theme-set-var(seconary, $rmd-theme-brown-a-700);
+///     @include rmd-theme-set-var(primary, $rmd-orange-500);
+///     @include rmd-theme-set-var(secondary, $rmd-brown-700);
 ///   }
 ///
 /// @param {String} theme-style - The react-md theme style to update. This should be one of the keys of

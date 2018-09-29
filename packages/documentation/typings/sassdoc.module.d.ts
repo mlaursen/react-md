@@ -31,7 +31,7 @@ declare module "sassdoc" {
   export type Deprecated = string;
 
   // http://sassdoc.com/annotations/#example
-  export type ExampleTypes = "css" | "scss" | "markup" | "javascript";
+  export type ExampleTypes = "css" | "scss" | "markup" | "javascript" | "html";
   export interface IExample {
     type: ExampleTypes;
     description?: string;

@@ -25,7 +25,7 @@
   $style-props: map-get($rmd-typography-styles, $style);
 
   @if not map-has-key($rmd-typography-styles, $style) {
-    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{$map-keys($rmd-typography-styles)}';
+    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
   }
 
   @each $key, $value in $style-props {
@@ -142,14 +142,14 @@
 ///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
 ///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
 ///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
-///     thin: url(./fonts/roboto/Roboto-Thin.ttf),
+///     light: url(./fonts/roboto/Roboto-Light.ttf),
 ///     regular: url(./fonts/roboto/Roboto-Regular.ttf),
 ///     medium: url(./fonts/roboto/Roboto-Medium.ttf),
 ///     bold: url(./fonts/roboto/Roboto-Bold.ttf),
 ///   ));
 ///
 ///   @include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
-///     thin: url(./fonts/source-code-pro/SourceCodePro-Thin.ttf),
+///     light: url(./fonts/source-code-pro/SourceCodePro-Light.ttf),
 ///     regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),
 ///     medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),
 ///     bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),
@@ -163,7 +163,7 @@
 ///   @include rmd-typography-host-google-font('Source Code Pro');
 ///
 /// @param {String} font-name [Roboto] - The font name to use.
-/// @param {List} weights [light regular medium bold] - A list of font weights to use. These should be
+/// @param {List} weights [$rmd-typography-default-font-weights] - A list of font weights to use. These should be
 ///   one of the `$rmd-typography-font-weights` keys.
 /// @param {String | Map} font-url-prefix-or-url-map [null] - This is either a font url prefix for the folder containing the font on your
 ///   server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the
@@ -171,13 +171,13 @@
 ///   '/fonts/' prefix and then a caterpillar-cased string. See the `rmd-typography-google-font-face` mixin for more details.
 /// @see rmd-typography-google-font-face
 /// @link https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-images-fonts-and-files Adding Images, Fonts, and Files
-@mixin rmd-typography-host-google-font($font-name: Roboto, $weights: $rmd-typography-default-font-weight, $font-url-prefix-or-url-map: null) {
+@mixin rmd-typography-host-google-font($font-name: Roboto, $weights: $rmd-typography-default-font-weights, $font-url-prefix-or-url-map: null) {
   @each $weight in $weights {
-    @if type-of($font-url-prefix-or-url-map) == 'string' {
-      @include rmd-typography-google-font-face($font-name, $weight, $font-url-or-prefix);
+    @if type-of($font-url-prefix-or-url-map) == 'string' or $font-url-prefix-or-url-map == null {
+      @include rmd-typography-google-font-face($font-name, $weight, $font-url-prefix-or-url-map);
     } @else {
       @if not map-has-key($font-url-prefix-or-url-map, $weight) {
-        @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{$map-keys($font-url-prefix-or-url-map)}'.';
+        @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{map-keys($font-url-prefix-or-url-map)}'.';
       }
 
       @include rmd-typography-google-font-face($font-name, $weight, map-get($font-url-prefix-or-url-map, $weight));

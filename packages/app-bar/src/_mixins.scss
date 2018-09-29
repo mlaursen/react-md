@@ -7,17 +7,57 @@
 @import '@react-md/utils/dist/mixins';
 @import 'variables';
 
-/// Creates the styles for the `AppBar` component.
+
+/// Creates the base styles for the `AppBar` component.
 ///
-/// @example scss - Example Usage SCSS
-///   .rmd-app-bar {
-///     @include rmd-app-bar;
+/// @example scss - Simple Example
+///   .app-bar {
+///     @include rmd-app-bar-base;
 ///   }
-@mixin rmd-app-bar {
+///
+/// @example html - Simple Example
+///   <div class="app-bar">
+///     An app bar with the base styles.
+///   </div>
+@mixin rmd-app-bar-base {
   align-items: center;
   display: flex;
-  height: $rmd-app-bar-height;
+}
 
+/// Creates the styles for the `AppBar` component when it is fixed to the top or bottom
+/// of the page. This will create four classes:
+/// - `&--fixed`
+/// - `&--fixed-elevation`
+/// - `&--top`
+/// - `&--bottom`
+///
+/// To get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class
+/// as well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should
+/// gain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the
+/// different use cases.
+///
+/// @example scss - Simple Example
+///   .app-bar {
+///     @include rmd-app-bar-fixed;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--fixed app-bar--top">
+///     An app-bar fixed to the top of the page.
+///   </div>
+///
+///   <div class="app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom">
+///     An app-bar fixed to the bottom of the page with elevation
+///   </div>
+///
+/// @example scss - Custom Elevation Example
+///   .app-bar {
+///     @include rmd-app-bar-fixed(8);
+///   }
+///
+/// @param {Number} elevation [$rmd-app-bar-fixed-elevation] - The elevation to use for a fixed app bar. This should
+///   be a number between 0 and 24 since it uses the `rmd-elevation` mixin.
+@mixin rmd-app-bar-fixed($elevation: $rmd-app-bar-fixed-elevation) {
   &--fixed {
     left: 0;
     position: fixed;
@@ -26,7 +66,7 @@
   }
 
   &--fixed-elevation {
-    @include rmd-elevation($rmd-app-bar-fixed-elevation);
+    @include rmd-elevation($elevation);
   }
 
   &--top {
@@ -36,7 +76,95 @@
   &--bottom {
     bottom: 0;
   }
+}
 
+/// Creates the styles for the different app bar sizes.
+///
+/// @example scss - Simple Example
+///   .app-bar {
+///     @include rmd-app-bar-sizes;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar">
+///     A default sized app bar.
+///   </div>
+///
+///   <div class="app-bar app-bar--dense">
+///     A dense sized app bar.
+///   </div>
+///
+///   <div class="app-bar app-bar--prominent">
+///     A prominent sized app bar.
+///   </div>
+///
+///   <!-- NOTE: To get correct prominent and dense styles, you will need to apply both the `--prominent` and `--prominent-dense` suffixes. -->
+///   <div class="app-bar app-bar--prominent app-bar--prominent-dense">
+///     A prominent and sized app bar.
+///   </div>
+///
+/// @param {Number} height [$rmd-app-bar-height] - The default height to use for an AppBar.
+/// @param {Number} dense-height [$rmd-app-bar-dense-height] - The height to use for a dense AppBar.
+/// @param {Number} prominent-height [$rmd-app-bar-prominent-height] - The height to use for a prominent AppBar.
+/// @param {Number} prominent-dense-height [$rmd-app-bar-prominent-dense-height] - The height to use for a prominent and dense AppBar.
+@mixin rmd-app-bar-sizes(
+  $height: $rmd-app-bar-height,
+  $dense-height: $rmd-app-bar-dense-height,
+  $prominent-height: $rmd-app-bar-prominent-height,
+  $prominent-dense-height: $rmd-app-bar-prominent-dense-height
+) {
+  height: $height;
+
+  &--dense {
+    height: $dense-height;
+  }
+
+  &--prominent {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: $prominent-height;
+  }
+
+  &--prominent-dense {
+    height: $prominent-dense-height;
+  }
+}
+
+/// Creates the styles for different app bar themes. This will create 4 classes:
+/// - `--primary`
+/// - `--secondary`
+/// - `--default`
+/// - `--child-inherit`
+///
+/// The primary and secondary suffixes will use the theme variables for generating the correct theme background color and
+/// text color on top of the theme color. The default suffix is used to create a third theme type with any colors that are
+/// provided. Finally, the `--child-inherit` suffix will allow child `AppBarNav`, `AppBarTitle`, and `AppBarAction` components
+/// to inherit text color instead of using the default color.
+///
+/// @example scss - Simple Example
+///   $rmd-theme-primary: $rmd-blue-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///
+///   .app-bar {
+///     @include rmd-app-bar-themes;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--primary">
+///     An app bar with the primary theme color as the background color.
+///   </div>
+///
+///   <div class="app-bar app-bar--secondary">
+///     An app bar with the secondary theme color as the background color.
+///   </div>
+///
+///   <div class="app-bar app-bar--default">
+///     An app bar with the default theme applied.
+///   </div>
+///
+/// @param {Color} default-background-color [$rmd-app-bar-default-background-color] - The background color to use for the "default" theme.
+/// @param {Color} default-text-color [$rmd-app-bar-default-text-color] - The text color to use for the "default" theme.
+@mixin rmd-app-bar-themes($default-background-color: $rmd-app-bar-default-background-color, $default-text-color: $rmd-app-bar-default-text-color) {
   &--primary {
     @include rmd-theme(background-color, primary);
     @include rmd-theme(color, on-primary);
@@ -48,8 +176,8 @@
   }
 
   &--default {
-    background-color: $rmd-app-bar-default-background-color;
-    color: $rmd-app-bar-default-text-color;
+    background-color: $default-background-color;
+    color: $default-text-color;
   }
 
   &--child-inherit {
@@ -59,28 +187,23 @@
       color: inherit;
     }
   }
-
-  &--dense {
-    height: $rmd-app-bar-dense-height;
-  }
-
-  &--prominent {
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: $rmd-app-bar-prominent-height;
-  }
-
-  &--prominent-dense {
-    height: $rmd-app-bar-prominent-height;
-  }
 }
-
-/// Creats the styles for the `AppBarNav` component.
+/// Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied
+/// as well.
 ///
-/// @example scss - Example Usage SCSS
-///   .rmd-app-bar__nav {
+/// @example scss - Simple Example
+///   .app-bar__nav {
+///     // add the next two lines if not applying the base .rmd-btn classes
+///     // @include rmd-btn-base;
+///     // @include rmd-btn-text;
 ///     @include rmd-app-bar-nav;
 ///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--primary">
+///     <button type="button" className="app-bar__nav">Nav Button</button>
+///   </div>
+///
 @mixin rmd-app-bar-nav {
   flex-shrink: 0;
   margin-left: $rmd-app-bar-lr-margin;
@@ -145,7 +268,7 @@
 
     // sass-lint:disable-block mixins-before-declarations
     @include rmd-utils-rtl {
-      margin-left: 0;
+      margin-left: $rmd-app-bar-lr-margin;
       margin-right: auto;
     }
   }
@@ -188,7 +311,7 @@
 ///     @include rmd-app-bar-offset;
 ///
 ///     &--prominent {
-///       @include rmd-app-bar-offset(true, $true);
+///       @include rmd-app-bar-offset(true, true);
 ///     }
 ///
 ///     &--dense {
@@ -248,7 +371,10 @@
   @include rmd-app-bar-offsets;
 
   .rmd-app-bar {
-    @include rmd-app-bar;
+    @include rmd-app-bar-base;
+    @include rmd-app-bar-sizes;
+    @include rmd-app-bar-fixed;
+    @include rmd-app-bar-themes;
 
     &__nav {
       @include rmd-app-bar-nav;

@@ -7,6 +7,11 @@ export interface ISassDocLinkTo {
   group: string;
 }
 
+export interface ISassDocExample extends SassDoc.IExample {
+  compiledCode?: string;
+  htmlExample?: string;
+}
+
 export interface ISassDoc {
   name: string;
   type: SassDoc.Type;
@@ -19,7 +24,7 @@ export interface ISassDoc {
 
   code?: string;
   value?: string;
-  examples?: SassDoc.IExample[];
+  examples?: ISassDocExample[];
   parameters?: SassDoc.IParameter[];
   requires?: ISassDocLinkTo[];
   returns?: SassDoc.IReturn;
@@ -40,14 +45,14 @@ export interface IVariableSassDoc extends ISassDoc {
 
 export interface IMixinSassDoc extends ISassDoc {
   code: string;
-  examples: SassDoc.IExample[];
+  examples: ISassDocExample[];
   parameters: SassDoc.IParameter[];
   throws: SassDoc.Throw;
 }
 
 export interface IFunctionSassDoc extends ISassDoc {
   code: string;
-  examples: SassDoc.IExample[];
+  examples: ISassDocExample[];
   parameters: SassDoc.IParameter[];
   returns: SassDoc.IReturn;
   throws: SassDoc.Throw;

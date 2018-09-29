@@ -147,7 +147,7 @@
 ///
 /// @example scss - Providing a selector
 ///   // generates .rmd-icon-rotator--rotated-45
-///   @include rmd-icon-rotator(45, '.rmd-icon-rotator')
+///   @include rmd-icon-rotator-rotated(45, '.rmd-icon-rotator')
 ///
 /// @param {Number} degrees - The amount of degrees to rotate
 /// @param {String} selector ['&'] - the selector to use to create the class.

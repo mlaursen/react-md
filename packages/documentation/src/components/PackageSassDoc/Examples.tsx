@@ -1,14 +1,16 @@
 import * as React from "react";
-import { IExample } from "sassdoc";
 
+import { ISassDocExample } from "types/sassdoc";
 import Markdown from "components/Markdown";
 import SassDocTitle from "./SassDocTitle";
+import Example from "./Example";
 
 export interface IExamplesProps {
-  examples?: IExample[];
+  sassdocId: string;
+  examples?: ISassDocExample[];
 }
 
-const Examples: React.SFC<IExamplesProps> = ({ examples }) => {
+const Examples: React.SFC<IExamplesProps> = ({ sassdocId, examples }) => {
   if (!examples || !examples.length) {
     return null;
   }
@@ -16,12 +18,8 @@ const Examples: React.SFC<IExamplesProps> = ({ examples }) => {
   return (
     <React.Fragment>
       <SassDocTitle>Examples</SassDocTitle>
-      {examples.map(({ code, description, type }, key) => (
-        <Markdown
-          key={key}
-          className="sassdoc__example"
-          markdown={`##### ${description}\n\n\`\`\`${type}\n${code}\`\`\``}
-        />
+      {examples.map((example, key) => (
+        <Example key={key} example={example} sassdocId={sassdocId} />
       ))}
     </React.Fragment>
   );

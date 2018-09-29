@@ -2,6 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as SassDoc from "sassdoc";
 import * as cpx from "cpx";
+import * as sass from "node-sass";
 
 import {
   IVariableLookup,
@@ -11,6 +12,7 @@ import {
   ISassDocReference,
   ISassDocLinkTo,
   IFlattenedSassDocs,
+  ISassDocExample,
 } from "types/sassdoc";
 
 import {
@@ -30,10 +32,43 @@ async function moveStyles() {
       if (error) {
         reject(error);
       } else {
-        resolve();
+        fs.remove(path.join(TEMP_STYLES_FOLDER, "documentation"))
+          .then(() => resolve())
+          .catch(reject);
       }
     });
   });
+}
+
+function getPackages(): Promise<string[]> {
+  return new Promise((resolve, reject) => {
+    fs.readdir(TEMP_STYLES_FOLDER, (err, folders) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(folders.map(folder => folder.substring(folder.lastIndexOf("/"))));
+      }
+    });
+  });
+}
+
+async function renameSrcToDist(packages: string[]) {
+  return Promise.all(
+    packages.map(packageName => {
+      const root = path.join(TEMP_STYLES_FOLDER, packageName);
+      const src = path.join(root, "src");
+      const dist = path.join(root, "dist");
+
+      return fs.move(src, dist);
+    })
+  );
+}
+
+async function moveStylesForParsing(packages: string[]) {
+  const tempFolderPath = path.join(DOCUMENTATION_FOLDER, "@react-md");
+  await renameSrcToDist(packages);
+  await fs.move(TEMP_STYLES_FOLDER, tempFolderPath);
+  await fs.move(tempFolderPath, path.join(TEMP_STYLES_FOLDER, "@react-md"));
 }
 
 function createLinkTo(
@@ -154,16 +189,95 @@ function createFunctionOrMixinCode(
   return `@${type} ${context.name}${params} {${code}}`;
 }
 
+function removeUncompilableCode(code: string) {
+  const startString = "// START_NO_COMPILE";
+  const endString = "// END_NO_COMPILE";
+  let startIndex = code.indexOf(startString);
+  let endIndex = code.indexOf(endString);
+  while (startIndex !== -1 && endIndex !== -1) {
+    const whitespace = code.match(/\s*\/\/ START_NO_COMPILE/);
+    const whitespaceCount = whitespace ? whitespace[0].indexOf("/") : 0;
+    code = `${code.substring(0, startIndex - whitespaceCount)}${code.substring(
+      endIndex + endString.length + 1
+    )}`;
+    startIndex = code.indexOf(startString);
+    endIndex = code.indexOf(endString);
+  }
+
+  return code;
+}
+
+function removeUncompilableCodeComments(code: string) {
+  return code.replace(/\s*\/\/ (START|END)_NO_COMPILE\r?\n/g, "\n");
+}
+
+function compileExampleCode(example: SassDoc.IExample, packages: string[]) {
+  if (example.type !== "scss") {
+    return null;
+  }
+
+  const { code } = example;
+  const data = `
+${packages.map(name => `@import '@react-md/${name}/dist/${name}';`).join("\n")}
+
+${removeUncompilableCode(code)}
+  `;
+
+  return sass
+    .renderSync({
+      data,
+      includePaths: [TEMP_STYLES_FOLDER],
+      outputStyle: "expanded",
+    })
+    .css.toString();
+}
+
 function formatWithParams(
   item: SassDoc.IFunctionSassDoc | SassDoc.IMixinSassDoc,
-  references: ISassDocReference[]
+  references: ISassDocReference[],
+  packages: string[]
 ) {
   const {
     context,
     throw: throws = [] as SassDoc.Throw,
-    example: examples = [] as SassDoc.IExample[],
     parameter: parameters = [] as SassDoc.IParameter[],
   } = item;
+
+  const { example: exampleList = [] as SassDoc.IExample[] } = item;
+  const examples: ISassDocExample[] = [];
+  let i = 0;
+  while (i < exampleList.length) {
+    const currentExample = exampleList[i];
+    const nextExample = exampleList[i + 1];
+
+    try {
+      const example: ISassDocExample = {
+        ...currentExample,
+        code: removeUncompilableCode(currentExample.code),
+        compiledCode: compileExampleCode(currentExample, packages),
+      };
+
+      if (
+        nextExample &&
+        nextExample.type === "html" &&
+        nextExample.description === currentExample.description
+      ) {
+        i += 1;
+        example.htmlExample = nextExample.code;
+      }
+
+      examples.push(example);
+
+      i += 1;
+    } catch (e) {
+      console.error(
+        `There was a problem compiling the \`${context.name}'s\` examples. ` +
+          `Unable to compile example ${i + 1}.\n${currentExample.code}\n\n`
+      );
+
+      throw e;
+    }
+  }
 
   return {
     ...formatBase(item, references),
@@ -176,23 +290,30 @@ function formatWithParams(
 
 function formatFunction(
   item: SassDoc.IFunctionSassDoc,
-  references: ISassDocReference[]
+  references: ISassDocReference[],
+  packages: string[]
 ): IFunctionSassDoc {
   const { return: returns } = item;
 
   return {
-    ...formatWithParams(item, references),
+    ...formatWithParams(item, references, packages),
     returns,
   };
 }
 
-function formatMixin(item: SassDoc.IMixinSassDoc, references: ISassDocReference[]): IMixinSassDoc {
-  return formatWithParams(item, references);
+function formatMixin(
+  item: SassDoc.IMixinSassDoc,
+  references: ISassDocReference[],
+  packages: string[]
+): IMixinSassDoc {
+  return formatWithParams(item, references, packages);
 }
 
 export default async function sassdoc(clean: boolean) {
   await moveStyles();
   const parsed = await SassDoc.parse(TEMP_STYLES_FOLDER);
+  const packages = await getPackages();
+  await moveStylesForParsing(packages);
 
   const references: ISassDocReference[] = parsed.map(
     ({ access, context: { name, type }, group }) => ({
@@ -225,7 +346,9 @@ export default async function sassdoc(clean: boolean) {
       const { type } = item.context;
       switch (type) {
         case "function":
-          group.functions.push(formatFunction(item as SassDoc.IFunctionSassDoc, references));
+          group.functions.push(
+            formatFunction(item as SassDoc.IFunctionSassDoc, references, packages)
+          );
           break;
         case "variable":
           group.variables.push(
@@ -238,7 +361,7 @@ export default async function sassdoc(clean: boolean) {
           );
           break;
         case "mixin":
-          group.mixins.push(formatMixin(item as SassDoc.IMixinSassDoc, references));
+          group.mixins.push(formatMixin(item as SassDoc.IMixinSassDoc, references, packages));
           break;
         default:
           console.error(`An invalid type: \`${type}\` was provided. Please fix for item: `, item);

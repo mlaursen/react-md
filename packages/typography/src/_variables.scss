@@ -52,7 +52,7 @@ $rmd-typography-font-weights: (
 /// Each value in this should be one of the keys in `$rmd-typography-font-weights`.
 ///
 /// @type List
-$rmd-typography-default-font-weight: light regular medium bold !default;
+$rmd-typography-default-font-weights: light regular medium bold !default;
 
 /// A Map of font weights to a font file suffix for a Google font.
 ///

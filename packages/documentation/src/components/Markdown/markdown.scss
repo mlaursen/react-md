@@ -94,6 +94,13 @@
     }
   }
 
+  .language-html {
+    .attr-name,
+    .punctuation {
+      color: $solarized-base-00;
+    }
+  }
+
   $index: 1;
   @while $index < 6 {
     h#{$index} {

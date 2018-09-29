@@ -119,6 +119,10 @@ $sassdoc-color-preview-size: 3rem;
     @include rmd-typography(body-2);
   }
 
+  &__example-title {
+    margin: 0;
+  }
+
   &__example pre {
     @include rmd-elevation(4);
 

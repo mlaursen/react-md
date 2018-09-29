@@ -58,7 +58,7 @@ ${code}
       <Description>{description}</Description>
       <Parameters parameters={parameters} />
       <Throws throws={throws} />
-      <Examples examples={examples} />
+      <Examples sassdocId={id} examples={examples} />
       <ReferenceList list={see}>Other References</ReferenceList>
       <Links links={links} />
       <ReferenceList list={requires}>Requires</ReferenceList>

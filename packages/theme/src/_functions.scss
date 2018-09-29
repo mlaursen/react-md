@@ -84,9 +84,11 @@
 ///
 /// @example scss - Example Non-Material Design Color Usage
 ///   $my-theme-color: #3498db;
+///   // START_NO_COMPILE
 ///   .something-failed {
 ///     color: rmd-theme-get-swatch($my-theme-color, 200);
 ///   }
+///   // END_NO_COMPILE
 ///
 ///   .something-failed--fixed {
 ///     color: rmd-theme-get-swatch($my-theme-color, 200, false, rgba($my-theme-color, .32));
