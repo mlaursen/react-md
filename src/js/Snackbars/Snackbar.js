@@ -141,6 +141,7 @@ export default class Snackbar extends PureComponent {
       text = <p className="md-snackbar--toast md-snackbar--action">{text}</p>;
 
       let btnProps = {
+        autoFocus: true,
         flat: true,
         onClick: this._handleClick,
         children: action,
