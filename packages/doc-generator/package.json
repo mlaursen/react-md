@@ -6,7 +6,7 @@
   "dependencies": {
     "ent": "^2.2.0",
     "markdown-toc": "^1.2.0",
-    "react-docgen-typescript": "^1.6.3",
+    "react-docgen-typescript": "^1.10.0",
     "sassdoc": "^2.5.0",
     "typescript": "^2.9.2"
   }
