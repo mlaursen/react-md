@@ -199,6 +199,7 @@ export default class ListItem extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -211,6 +212,7 @@ export default class ListItem extends PureComponent {
     itemComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**

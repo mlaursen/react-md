@@ -64,6 +64,7 @@ export default class BottomNavigation extends PureComponent {
         component: PropTypes.oneOfType([
           PropTypes.func,
           PropTypes.string,
+          PropTypes.object,
         ]),
       })).isRequired(props, propName, component, ...args);
     },
@@ -119,6 +120,7 @@ export default class BottomNavigation extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**

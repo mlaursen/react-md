@@ -143,6 +143,7 @@ export default class DialogContainer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -151,6 +152,7 @@ export default class DialogContainer extends PureComponent {
     contentComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
