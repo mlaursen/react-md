@@ -95,6 +95,7 @@ export default class Drawer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.element,
+      PropTypes.object,
     ]),
 
     /**
