@@ -1,4 +1,8 @@
 ## October 2018
+### v1.8.0 Released
+##### Changelog
+- Updated the `DialogContainer` component so that the dialog can be closed with the escape key when the `modal` prop is enabled. [issues-803]
+
 ### v1.7.2 Released
 ##### Changelog
 - Updated all `component` prop-types to not trigger a warning when the component was created with `React.forwardRef`. ([@luisrudge] - [pull-809])
