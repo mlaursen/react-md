@@ -5,6 +5,7 @@ import { ITooltipProps } from "./Tooltip";
 export type InitMagicTooltip = (id: string) => void;
 export type DeinitMagicTooltip = (id: string) => void;
 export type TooltipSpacing = string | number;
+export type TooltipPositionType = "top" | "right" | "bottom" | "left";
 
 export interface IMagicTooltipContext {
   dense: boolean;
@@ -16,7 +17,7 @@ export interface IMagicTooltipContext {
   portal: boolean;
   portalInto?: PortalInto;
   portalIntoId?: string;
-  position?: TooltipPosition;
+  position?: TooltipPosition | TooltipPositionType;
 }
 
 export interface IMagicTooltipProps extends ITooltipProps {

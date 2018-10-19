@@ -4,7 +4,13 @@ import cn from "classnames";
 import { positionRelativeTo, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 import { PortalInto, Portal } from "@react-md/portal";
 
-import { InitMagicTooltip, DeinitMagicTooltip, TooltipSpacing, IMagicTooltipProps } from "./types";
+import {
+  InitMagicTooltip,
+  DeinitMagicTooltip,
+  TooltipSpacing,
+  IMagicTooltipProps,
+  TooltipPositionType,
+} from "./types";
 import {
   TooltipPosition,
   DEFAULT_ENTER_DURATION,
@@ -41,7 +47,7 @@ export type MagicTooltipConsumerWithDefaultProps = IMagicTooltipConsumerProps &
 
 export interface IMagicTooltipConsumerState {
   style?: React.CSSProperties;
-  position: TooltipPosition;
+  position: TooltipPosition | TooltipPositionType;
   visible: boolean;
   lastVisible: boolean;
   enter: boolean;
@@ -256,8 +262,10 @@ export default class MagicTooltipConsumer extends React.Component<
     let position = TooltipPosition.BOTTOM;
     if (container && tooltip) {
       const { vhMargin, vwMargin } = this.props as MagicTooltipConsumerWithDefaultProps;
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const vw = window.innerWidth || document.documentElement.clientWidth;
+
+      const de = document.documentElement || { clientHeight: 0, clientWidth: 0 };
+      const vh = window.innerHeight || de.clientHeight;
+      const vw = window.innerWidth || de.clientWidth;
       const { left, top, right } = container.getBoundingClientRect();
       if (top > vh - (vhMargin > 1 ? vhMargin : vh * vhMargin)) {
         position = TooltipPosition.TOP;

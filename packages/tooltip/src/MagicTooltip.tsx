@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { TooltipPosition } from "./constants";
 import { IMagicTooltipProps } from "./types";
 import { ITooltipProps } from "./Tooltip";
 import MagicTooltipConsumer from "./MagicTooltipConsumer";

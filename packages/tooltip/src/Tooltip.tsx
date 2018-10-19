@@ -3,6 +3,7 @@ import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 import { TooltipPosition } from "./constants";
+import { TooltipPositionType } from "./types.d";
 
 export interface ITooltipOptions {
   /**
@@ -28,7 +29,7 @@ export interface ITooltipOptions {
    *
    * @docgen
    */
-  position?: TooltipPosition;
+  position?: TooltipPosition | TooltipPositionType;
 }
 
 export interface ITooltipProps extends ITooltipOptions, React.HTMLAttributes<HTMLSpanElement> {
@@ -84,49 +85,42 @@ export interface ITooltipDefaultProps {
 
 export type TooltipWithDefaultProps = ITooltipPropsWithVisibility & ITooltipDefaultProps;
 
-const Tooltip: React.SFC<ITooltipPropsWithVisibility> = ({
-  className,
-  dense,
-  lineWrap,
-  position,
-  visible,
-  children,
-  ...props
-}) => (
-  <span
-    {...props}
-    role="tooltip"
-    className={cn(
-      "rmd-tooltip",
-      {
-        "rmd-tooltip--visible": visible,
-        "rmd-tooltip--dense": dense,
-        "rmd-tooltip--line-wrap": lineWrap,
-      },
-      `rmd-tooltip--${position}`,
-      className
-    )}
-  >
-    {children}
-  </span>
-);
+export default class Tooltip extends React.Component<ITooltipPropsWithVisibility> {
+  public static propTypes = {
+    id: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    dense: PropTypes.bool,
+    visible: PropTypes.bool.isRequired,
+    position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-Tooltip.propTypes = {
-  id: PropTypes.string.isRequired,
-  style: PropTypes.object,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  dense: PropTypes.bool,
-  visible: PropTypes.bool.isRequired,
-  position: PropTypes.oneOf(["left", "top", "right", "bottom"]),
-};
+  public static defaultProps = {
+    dense: false,
+    position: TooltipPosition.BOTTOM,
+    lineWrap: false,
+  } as ITooltipDefaultProps;
 
-Tooltip.defaultProps = {
-  dense: false,
-  position: TooltipPosition.BOTTOM,
-  lineWrap: false,
-} as ITooltipDefaultProps;
-
-export default Tooltip;
+  public render() {
+    const { className, dense, lineWrap, position, visible, children, ...props } = this.props;
+    return (
+      <span
+        {...props}
+        role="tooltip"
+        className={cn(
+          "rmd-tooltip",
+          {
+            "rmd-tooltip--visible": visible,
+            "rmd-tooltip--dense": dense,
+            "rmd-tooltip--line-wrap": lineWrap,
+          },
+          `rmd-tooltip--${position}`,
+          className
+        )}
+      >
+        {children}
+      </span>
+    );
+  }
+}
