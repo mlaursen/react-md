@@ -18,6 +18,7 @@ export default class BottomNav extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]),
     active: PropTypes.bool,
     fixed: PropTypes.bool,

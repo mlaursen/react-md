@@ -24,6 +24,7 @@ export default class FocusContainer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**

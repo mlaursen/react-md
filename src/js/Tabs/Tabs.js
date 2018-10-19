@@ -78,6 +78,7 @@ export default class Tabs extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**

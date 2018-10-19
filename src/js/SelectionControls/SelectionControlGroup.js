@@ -128,6 +128,7 @@ export default class SelectionControlGroup extends PureComponent {
     controlComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -136,6 +137,7 @@ export default class SelectionControlGroup extends PureComponent {
     labelComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**

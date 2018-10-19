@@ -15,6 +15,7 @@ export class PureMarkdown extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,

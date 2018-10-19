@@ -1,3 +1,7 @@
+## October 2018
+### v1.7.2 Released
+- Updated all `component` prop-types to not trigger a warning when the component was created with `React.forwardRef`. ([@luisrudge] - [pull-809])
+
 ## September 2018
 ### v1.7.1 Released
 - Reverted the `InkContainer` workaround for Preact since there were additional unwanted side-effects. [issues-801]

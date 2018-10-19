@@ -127,6 +127,7 @@ export default class Toolbar extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
