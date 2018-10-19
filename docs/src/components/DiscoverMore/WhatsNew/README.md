@@ -1,12 +1,15 @@
 ## October 2018
 ### v1.7.2 Released
+##### Changelog
 - Updated all `component` prop-types to not trigger a warning when the component was created with `React.forwardRef`. ([@luisrudge] - [pull-809])
 
 ## September 2018
 ### v1.7.1 Released
+##### Changelog
 - Reverted the `InkContainer` workaround for Preact since there were additional unwanted side-effects. [issues-801]
 
 ### v1.7.0 Released
+##### Changelog
 - Updated the `DatePicker` for more flexibility at rendering dates. ([@madc0der] - [pull-800])
 
 ### v1.6.2 Released
