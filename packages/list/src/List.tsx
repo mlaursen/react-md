@@ -18,6 +18,7 @@ export interface IListProps extends React.HTMLAttributes<ListElement> {
    * @docgen
    */
   role?: string;
+  style?: React.CSSProperties;
 
   /**
    * An optional className to apply.

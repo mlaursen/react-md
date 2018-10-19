@@ -38,6 +38,8 @@ export default function isFocusable(el: HTMLElement | null, allowDisabled: boole
     return href || allowDisabled;
   } else if (tagName === "INPUT") {
     return (el as HTMLInputElement).type !== "hidden";
+  } else if (allowDisabled && el.getAttribute("aria-disabled") === "true") {
+    return true;
   }
 
   return el.getAttribute("tabindex") !== null;

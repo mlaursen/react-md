@@ -10,7 +10,12 @@
     "noImplicitAny": true,
     "esModuleInterop": true
   },
+  "include": [
+    "./typings/**/*",
+    "./src/**/*"
+  ],
   "exclude": [
+    "./src/scripts/sassdoc/throw.js",
     "**/__tests__/*",
     "src/scripts/**/*"
   ]

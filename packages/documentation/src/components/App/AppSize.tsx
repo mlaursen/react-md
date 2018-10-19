@@ -133,6 +133,7 @@ export default class AppSize extends React.Component<IAppSizeProps, IAppSize> {
       isDesktopTablet,
     };
 
+    // @ts-ignore
     if (Object.keys(nextState).some(key => this.state[key] !== nextState[key])) {
       if (this.props.onLayoutChange) {
         this.props.onLayoutChange(nextState);

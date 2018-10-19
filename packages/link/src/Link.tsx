@@ -94,7 +94,7 @@ export type LinkWithDefaultProps = ILinkProps & ILinkDefaultProps;
  * routing library like `react-router` or `reach-router` by providing the `Link` as the `linkComponent`
  * prop.
  */
-export default class Link extends React.Component<ILinkBaseProps> {
+export default class Link extends React.Component<ILinkProps> {
   public static propTypes = {
     className: PropTypes.string,
     href: PropTypes.string,
