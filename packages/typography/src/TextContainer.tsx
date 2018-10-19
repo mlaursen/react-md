@@ -34,44 +34,37 @@ export type TextContainerWithDefaultProps = ITextContainerProps & ITextContainer
  * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or `<aside>`
  * element that applies the text container styles.
  */
-const TextContainer: React.SFC<ITextContainerProps> = providedProps => {
-  const {
-    size,
-    tagName,
-    className: propClassName,
-    children,
-    ...props
-  } = providedProps as TextContainerWithDefaultProps;
+export default class TextContainer extends React.Component<ITextContainerProps> {
+  public static propTypes = {
+    tagName: PropTypes.oneOf(["div", "section", "article", "aside"]),
+    size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
+  };
 
-  const className = cn(
-    {
-      "rmd-text-container": size === "auto",
-      "rmd-mobile-text-container": size === "mobile",
-      "rmd-desktop-text-container": size === "desktop",
-    },
-    propClassName
-  );
+  public static defaultProps = {
+    tagName: "div",
+    size: "auto",
+  } as ITextContainerDefaultProps;
 
-  return React.createElement(
-    tagName,
-    {
-      ...props,
-      className,
-    },
-    children
-  );
-};
+  public render() {
+    const { size, tagName, className: propClassName, children, ...props } = this
+      .props as TextContainerWithDefaultProps;
 
-// says it's missing attributes for some reason
-// @ts-ignore
-TextContainer.propTypes = {
-  tagName: PropTypes.oneOf(["div", "section", "article", "aside"]),
-  size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
-};
+    const className = cn(
+      {
+        "rmd-text-container": size === "auto",
+        "rmd-mobile-text-container": size === "mobile",
+        "rmd-desktop-text-container": size === "desktop",
+      },
+      propClassName
+    );
 
-TextContainer.defaultProps = {
-  tagName: "div",
-  size: "auto",
-} as ITextContainerDefaultProps;
-
-export default TextContainer;
+    return React.createElement(
+      tagName,
+      {
+        ...props,
+        className,
+      },
+      children
+    );
+  }
+}

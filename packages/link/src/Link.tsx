@@ -94,59 +94,57 @@ export type LinkWithDefaultProps = ILinkProps & ILinkDefaultProps;
  * routing library like `react-router` or `reach-router` by providing the `Link` as the `linkComponent`
  * prop.
  */
-const Link: React.SFC<ILinkProps> = providedProps => {
-  const {
-    className: propClassName,
-    component,
-    href: propHref,
-    children,
-    rel: propRel,
-    flexCentered,
-    preventMaliciousTarget,
-    ...props
-  } = providedProps as LinkWithDefaultProps;
+export default class Link extends React.Component<ILinkBaseProps> {
+  public static propTypes = {
+    className: PropTypes.string,
+    href: PropTypes.string,
+    component: PropTypes.func,
+    target: PropTypes.string,
+    rel: PropTypes.string,
+    preventMaliciousTarget: PropTypes.bool,
+    flexCentered: PropTypes.bool,
+  };
 
-  const { target } = props;
-  const href = propHref === "" ? undefined : propHref;
-  const className = cn(
-    "rmd-link",
-    {
-      "rmd-link--flex-centered": flexCentered,
-    },
-    propClassName
-  );
+  public static defaultProps = {
+    preventMaliciousTarget: true,
+    flexCentered: false,
+  } as ILinkDefaultProps;
 
-  let rel = propRel;
-  if (typeof rel !== "string" && target === "_blank") {
-    rel = "noopener noreferrer";
+  public render() {
+    const {
+      className: propClassName,
+      component,
+      href: propHref,
+      children,
+      rel: propRel,
+      flexCentered,
+      preventMaliciousTarget,
+      ...props
+    } = this.props as LinkWithDefaultProps;
+
+    const { target } = props;
+    const href = propHref === "" ? undefined : propHref;
+    const className = cn(
+      "rmd-link",
+      {
+        "rmd-link--flex-centered": flexCentered,
+      },
+      propClassName
+    );
+
+    let rel = propRel;
+    if (typeof rel !== "string" && target === "_blank") {
+      rel = "noopener noreferrer";
+    }
+
+    if (component) {
+      return React.createElement(component, { ...props, rel, href, className }, children);
+    }
+
+    return (
+      <a className={className} {...props} href={href} rel={rel}>
+        {children}
+      </a>
+    );
   }
-
-  if (component) {
-    return React.createElement(component, { ...props, rel, href, className }, children);
-  }
-
-  return (
-    <a className={className} {...props} href={href} rel={rel}>
-      {children}
-    </a>
-  );
-};
-
-// says it's missing attributes for some reason
-// @ts-ignore
-Link.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string,
-  component: PropTypes.func,
-  target: PropTypes.string,
-  rel: PropTypes.string,
-  preventMaliciousTarget: PropTypes.bool,
-  flexCentered: PropTypes.bool,
-};
-
-Link.defaultProps = {
-  preventMaliciousTarget: true,
-  flexCentered: false,
-} as ILinkDefaultProps;
-
-export default Link;
+}

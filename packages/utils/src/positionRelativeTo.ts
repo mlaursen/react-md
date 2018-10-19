@@ -252,8 +252,9 @@ export default function positionRelativeTo(
     heightOverlapMultiplier = options.verticalPosition === VerticalPosition.OVERLAP ? 1 : 0;
   }
 
-  const vh = window.innerHeight || document.documentElement.clientHeight;
-  const vw = window.innerWidth || document.documentElement.clientWidth;
+  const de = document.documentElement || { clientHeight: 0, clientWidth: 0 };
+  const vh = window.innerHeight || de.clientHeight;
+  const vw = window.innerWidth || de.clientWidth;
   const { fixedToLeft, fixedToTop, fixedToHeight, fixedToWidth } = getFixedToDimensions(
     fixedTo,
     isPortalFixed

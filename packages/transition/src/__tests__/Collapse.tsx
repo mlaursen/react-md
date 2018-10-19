@@ -69,10 +69,9 @@ describe("Collapse", () => {
     beforeEach(() => {
       jest.useFakeTimers();
 
-      // @ts-ignore
       window.getComputedStyle = () => ({
-        paddingTop: 12,
-        paddingBottom: 12,
+        paddingTop: "12px",
+        paddingBottom: "12px",
       });
 
       // fake that the scrollHeight is 100px
@@ -132,23 +131,25 @@ describe("Collapse", () => {
       expect(window.setTimeout).toHaveBeenCalledTimes(0);
 
       collapse.setProps({ collapsed: true });
-      // can't really test this part since it is "staggered" this.setState
-      // expect(collapse.state("leaving")).toBe(true);
-      // expect(collapse.state("maxHeight")).toBe(100);
-      // expect(collapse.state("paddingTop")).toBe(12);
-      // expect(collapse.state("paddingBottom")).toBe(12);
+      expect(collapse.state("leaving")).toBe(true);
+      expect(collapse.state("maxHeight")).toBe(100);
+      expect(collapse.state("paddingTop")).toBe(12);
+      expect(collapse.state("paddingBottom")).toBe(12);
+      expect(window.setTimeout).toHaveBeenCalledTimes(1);
+
+      jest.runOnlyPendingTimers();
       expect(collapse.state("leaving")).toBe(true);
       expect(collapse.state("maxHeight")).toBe(0);
       expect(collapse.state("paddingTop")).toBe(0);
       expect(collapse.state("paddingBottom")).toBe(0);
-      expect(window.setTimeout).toHaveBeenCalledTimes(1);
+      expect(window.setTimeout).toHaveBeenCalledTimes(2);
 
       jest.runOnlyPendingTimers();
       expect(collapse.state("leaving")).toBe(false);
       expect(collapse.state("maxHeight")).toBeUndefined();
       expect(collapse.state("paddingTop")).toBeUndefined();
       expect(collapse.state("paddingBottom")).toBeUndefined();
-      expect(window.setTimeout).toHaveBeenCalledTimes(1);
+      expect(window.setTimeout).toHaveBeenCalledTimes(2);
     });
 
     it("should be able to switch transitions if one transition hasn't finished yet", () => {
@@ -182,11 +183,14 @@ describe("Collapse", () => {
       collapse.setProps({ collapsed: true });
       expect(window.clearTimeout).toHaveBeenCalledTimes(2);
       expect(window.setTimeout).toHaveBeenCalledTimes(2);
-      // can't really test this part since it is "staggered" this.setState
-      // expect(collapse.state("leaving")).toBe(true);
-      // expect(collapse.state("maxHeight")).toBe(100);
-      // expect(collapse.state("paddingTop")).toBe(12);
-      // expect(collapse.state("paddingBottom")).toBe(12);
+      expect(collapse.state("leaving")).toBe(true);
+      expect(collapse.state("maxHeight")).toBe(100);
+      expect(collapse.state("paddingTop")).toBe(12);
+      expect(collapse.state("paddingBottom")).toBe(12);
+
+      jest.runOnlyPendingTimers();
+      expect(window.clearTimeout).toHaveBeenCalledTimes(2);
+      expect(window.setTimeout).toHaveBeenCalledTimes(3);
       expect(collapse.state("entering")).toBe(false);
       expect(collapse.state("leaving")).toBe(true);
       expect(collapse.state("maxHeight")).toBe(0);
@@ -199,7 +203,7 @@ describe("Collapse", () => {
       expect(collapse.state("maxHeight")).toBeUndefined();
       expect(collapse.state("paddingTop")).toBeUndefined();
       expect(collapse.state("paddingBottom")).toBeUndefined();
-      expect(window.setTimeout).toHaveBeenCalledTimes(2);
+      expect(window.setTimeout).toHaveBeenCalledTimes(3);
     });
   });
 });

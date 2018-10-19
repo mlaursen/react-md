@@ -3,9 +3,7 @@ import * as PropTypes from "prop-types";
 import memoizeOne from "memoize-one";
 import cn from "classnames";
 
-export interface ITextChildrenFunction {
-  className: string;
-}
+export type TextChildrenFunction = (props: { className: string }) => React.ReactNode;
 
 export type TextTypes =
   | "headline-1"
@@ -73,7 +71,7 @@ export interface ITextProps
    *
    * @docgen
    */
-  children?: React.ReactNode | ((props: ITextChildrenFunction) => React.ReactNode | null);
+  children?: React.ReactNode | TextChildrenFunction;
 }
 
 export default class Text extends React.Component<ITextProps, {}> {
@@ -198,7 +196,7 @@ export default class Text extends React.Component<ITextProps, {}> {
     );
 
     if (typeof children === "function") {
-      return children({ className });
+      return (children as TextChildrenFunction)({ className });
     }
 
     if (!component) {

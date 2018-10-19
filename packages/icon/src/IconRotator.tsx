@@ -82,58 +82,56 @@ export type IconRotatorWithDefaultProps = IIconRotatorProps & IIconRotatorDefaul
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
-const IconRotator: React.SFC<IIconRotatorProps> = props => {
-  const {
-    style,
-    className: propClassName,
-    from,
-    to,
-    animate,
-    rotated,
-    children,
-    forceIconWrap,
-  } = props as IconRotatorWithDefaultProps;
+export default class IconRotator extends React.Component<IIconRotatorProps> {
+  public static propTypes = {
+    from: PropTypes.number,
+    to: PropTypes.number,
+    animate: PropTypes.bool,
+    rotated: PropTypes.bool.isRequired,
+    forceIconWrap: PropTypes.bool,
+    children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
+  };
 
-  const className = cn(
-    "rmd-icon-rotator",
-    {
-      "rmd-icon-rotator--animate": animate,
-      [`rmd-icon-rotator--rotated-${from}`]: !rotated,
-      [`rmd-icon-rotator--rotated-${to}`]: rotated,
-    },
-    propClassName
-  );
+  public static defaultProps = {
+    from: 0,
+    to: 180,
+    animate: true,
+    forceIconWrap: false,
+  } as IIconRotatorDefaultProps;
 
-  if (!forceIconWrap && React.isValidElement(children)) {
-    const child = React.Children.only(children);
-    return React.cloneElement(child, {
-      className: cn(className, child.props.className),
-    });
+  public render() {
+    const {
+      style,
+      className: propClassName,
+      from,
+      to,
+      animate,
+      rotated,
+      children,
+      forceIconWrap,
+    } = this.props as IconRotatorWithDefaultProps;
+
+    const className = cn(
+      "rmd-icon-rotator",
+      {
+        "rmd-icon-rotator--animate": animate,
+        [`rmd-icon-rotator--rotated-${from}`]: !rotated,
+        [`rmd-icon-rotator--rotated-${to}`]: rotated,
+      },
+      propClassName
+    );
+
+    if (!forceIconWrap && React.isValidElement(children)) {
+      const child = React.Children.only(children);
+      return React.cloneElement(child, {
+        className: cn(className, child.props.className),
+      });
+    }
+
+    return (
+      <span style={style} className={className}>
+        {children}
+      </span>
+    );
   }
-
-  return (
-    <span style={style} className={className}>
-      {children}
-    </span>
-  );
-};
-
-// says it's missing attributes for some reason
-// @ts-ignore
-IconRotator.propTypes = {
-  from: PropTypes.number,
-  to: PropTypes.number,
-  animate: PropTypes.bool,
-  rotated: PropTypes.bool.isRequired,
-  forceIconWrap: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
-};
-
-IconRotator.defaultProps = {
-  from: 0,
-  to: 180,
-  animate: true,
-  forceIconWrap: false,
-} as IIconRotatorDefaultProps;
-
-export default IconRotator;
+}

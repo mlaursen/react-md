@@ -35,38 +35,38 @@ export type AppBarActionWithDefaultProps = IAppBarActionProps & IAppBarActionDef
  * styles as needed to position itself within the `AppBar` as well as changing the default props so that it
  * is `"icon"` by default instead of `"text"` and `"clear"` instead of `"primary"` for the theme.
  */
-const AppBarAction: React.SFC<IAppBarActionProps> = ({ className, first, last, ...props }) => {
-  return (
-    <Button
-      className={cn(
-        "rmd-app-bar__action",
-        {
-          "rmd-app-bar__action--first": first,
-          "rmd-app-bar__action--last": last,
-        },
-        className
-      )}
-      {...props}
-    />
-  );
-};
+export default class AppBarAction extends React.Component<IAppBarActionProps> {
+  public static propTypes = {
+    first: PropTypes.bool,
+    last: PropTypes.bool,
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-AppBarAction.propTypes = {
-  first: PropTypes.bool,
-  last: PropTypes.bool,
-};
+  public static defaultProps = {
+    asDiv: false,
+    disabled: false,
+    theme: "clear",
+    themeType: "flat",
+    btnType: "icon",
+    iconAfter: false,
+    first: false,
+    last: false,
+  } as IAppBarActionDefaultProps;
 
-AppBarAction.defaultProps = {
-  asDiv: false,
-  disabled: false,
-  theme: "clear",
-  themeType: "flat",
-  btnType: "icon",
-  iconAfter: false,
-  first: false,
-  last: false,
-} as IAppBarActionDefaultProps;
+  public render() {
+    const { className, first, last, ...props } = this.props;
 
-export default AppBarAction;
+    return (
+      <Button
+        className={cn(
+          "rmd-app-bar__action",
+          {
+            "rmd-app-bar__action--first": first,
+            "rmd-app-bar__action--last": last,
+          },
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+}

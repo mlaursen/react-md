@@ -127,126 +127,124 @@ export type IListItemLinkProps = IListItemLinkBaseProps | IListItemLinkWithCompo
  * because the accessibility specs change when rendering links within lists by changing what roles are applied.
  * This should render basically the same as the `ListItem` component.
  */
-const ListItemLink: React.SFC<IListItemLinkProps> = baseProps => {
-  const {
-    className,
-    textClassName,
-    secondaryTextClassName,
-    liStyle,
-    liClassName,
-    liRole,
-    leftIcon,
-    rightIcon,
-    primaryText,
-    secondaryText,
-    textChildren,
-    children: propChildren,
-    forceIconWrap,
-    component: Link,
-    href,
-    selected,
-    disabled: propDisabled,
-    onMouseDown,
-    onMouseUp,
-    onTouchStart,
-    onTouchEnd,
-    onKeyUp,
-    onKeyDown,
-    ...props
-  } = baseProps as ListItemLinkWithDefaultProps;
+export default class ListItemLink extends React.Component<IListItemLinkProps> {
+  public static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
+    linkStyle: PropTypes.object,
+    linkClassName: PropTypes.string,
+    role: PropTypes.string,
+    linkRole: PropTypes.string,
+    leftIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+    rightIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+    forceIconWrap: PropTypes.bool,
+  };
 
-  let children = propChildren;
-  if (primaryText || textChildren) {
+  public static defaultProps = {
+    component: "a",
+    forceIconWrap: false,
+  } as IListItemLinkDefaultProps;
+
+  public render() {
+    const {
+      className,
+      textClassName,
+      secondaryTextClassName,
+      liStyle,
+      liClassName,
+      liRole,
+      leftIcon,
+      rightIcon,
+      primaryText,
+      secondaryText,
+      textChildren,
+      children: propChildren,
+      forceIconWrap,
+      component: Link,
+      href,
+      selected,
+      disabled: propDisabled,
+      onMouseDown,
+      onMouseUp,
+      onTouchStart,
+      onTouchEnd,
+      onKeyUp,
+      onKeyDown,
+      ...props
+    } = this.props as ListItemLinkWithDefaultProps;
+
+    let children = propChildren;
+    if (primaryText || textChildren) {
+      children = (
+        <ListItemText
+          className={textClassName}
+          secondaryText={secondaryText}
+          secondaryTextClassName={secondaryTextClassName}
+        >
+          {textChildren && children ? children : primaryText}
+        </ListItemText>
+      );
+    } else if (secondaryText) {
+      children = children = (
+        <ListItemText
+          className={textClassName}
+          secondaryText={secondaryText}
+          secondaryTextClassName={secondaryTextClassName}
+        >
+          {children}
+        </ListItemText>
+      );
+    }
     children = (
-      <ListItemText
-        className={textClassName}
-        secondaryText={secondaryText}
-        secondaryTextClassName={secondaryTextClassName}
-      >
-        {textChildren && children ? children : primaryText}
-      </ListItemText>
-    );
-  } else if (secondaryText) {
-    children = children = (
-      <ListItemText
-        className={textClassName}
-        secondaryText={secondaryText}
-        secondaryTextClassName={secondaryTextClassName}
-      >
+      <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
         {children}
-      </ListItemText>
+      </ListItemLeftIcon>
+    );
+
+    children = (
+      <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
+        {children}
+      </ListItemRightIcon>
+    );
+
+    let disabled = propDisabled;
+    if (typeof disabled !== "boolean") {
+      disabled = typeof href === "string" && !href;
+    }
+
+    return (
+      <li role={liRole} style={liStyle} className={cn("rmd-list-link-item", liClassName)}>
+        <StatesConsumer
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
+          disabled={disabled}
+          pressable={!disabled}
+          selected={selected}
+          className={cn(
+            "rmd-list-link",
+            {
+              "rmd-list-item--medium": !!(leftIcon || rightIcon),
+              "rmd-list-item--stateful": !disabled,
+            },
+            className
+          )}
+        >
+          {({ disabled: stateDisabled, ...statesProps }) =>
+            React.createElement(
+              Link,
+              {
+                ...props,
+                ...statesProps,
+              },
+              children
+            )
+          }
+        </StatesConsumer>
+      </li>
     );
   }
-  children = (
-    <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
-      {children}
-    </ListItemLeftIcon>
-  );
-
-  children = (
-    <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
-      {children}
-    </ListItemRightIcon>
-  );
-
-  let disabled = propDisabled;
-  if (typeof disabled !== "boolean") {
-    disabled = typeof href === "string" && !href;
-  }
-
-  return (
-    <li role={liRole} style={liStyle} className={cn("rmd-list-link-item", liClassName)}>
-      <StatesConsumer
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-        onKeyUp={onKeyUp}
-        onKeyDown={onKeyDown}
-        disabled={disabled}
-        pressable={!disabled}
-        selected={selected}
-        className={cn(
-          "rmd-list-link",
-          {
-            "rmd-list-item--medium": !!(leftIcon || rightIcon),
-            "rmd-list-item--stateful": !disabled,
-          },
-          className
-        )}
-      >
-        {({ disabled: stateDisabled, ...statesProps }) =>
-          React.createElement(
-            Link,
-            {
-              ...props,
-              ...statesProps,
-            },
-            children
-          )
-        }
-      </StatesConsumer>
-    </li>
-  );
-};
-
-// says it's missing attributes for some reason
-// @ts-ignore
-ListItemLink.propTypes = {
-  style: PropTypes.object,
-  className: PropTypes.string,
-  linkStyle: PropTypes.object,
-  linkClassName: PropTypes.string,
-  role: PropTypes.string,
-  linkRole: PropTypes.string,
-  leftIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  rightIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  forceIconWrap: PropTypes.bool,
-};
-
-ListItemLink.defaultProps = {
-  component: "a",
-  forceIconWrap: false,
-} as IListItemLinkDefaultProps;
-
-export default ListItemLink;
+}

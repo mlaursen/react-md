@@ -43,31 +43,29 @@ export type ListItemRightIconWithDefaultProps = IListItemRightIconProps &
  * The `ListItemRightIcon` component is a simple wrapper of the `TextIconSpacing` that will apply the "required"
  * class names for adding spacing between text and a right icon within `ListItem`s.
  */
-const ListItemRightIcon: React.SFC<IListItemRightIconProps> = ({
-  icon,
-  children,
-  forceIconWrap,
-}) => (
-  <TextIconSpacing
-    icon={icon}
-    iconAfter={true}
-    afterClassName="rmd-list-item__icon rmd-list-item__icon--after"
-    forceIconWrap={forceIconWrap}
-  >
-    {children}
-  </TextIconSpacing>
-);
+export default class ListItemRightIcon extends React.Component<IListItemRightIconProps> {
+  public static propTypes = {
+    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+    children: PropTypes.node,
+    forceIconWrap: PropTypes.bool,
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-ListItemRightIcon.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  children: PropTypes.node,
-  forceIconWrap: PropTypes.bool,
-};
+  public static defaultProps = {
+    forceIconWrap: false,
+  } as IListItemRightIconDefaultProps;
 
-ListItemRightIcon.defaultProps = {
-  forceIconWrap: false,
-} as IListItemRightIconDefaultProps;
+  public render() {
+    const { icon, children, forceIconWrap } = this.props;
 
-export default ListItemRightIcon;
+    return (
+      <TextIconSpacing
+        icon={icon}
+        iconAfter={true}
+        afterClassName="rmd-list-item__icon rmd-list-item__icon--after"
+        forceIconWrap={forceIconWrap}
+      >
+        {children}
+      </TextIconSpacing>
+    );
+  }
+}

@@ -167,154 +167,152 @@ export type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
  * a list. It is also possible to render icons, avatars, and graphics before or after the mian
  * content.
  */
-const ListItem: React.SFC<IListItemProps> = providedProps => {
-  const {
-    className,
-    textClassName,
-    secondaryTextClassName,
-    textChildren,
-    primaryText,
-    secondaryText,
-    threeLines,
-    leftIcon,
-    rightIcon,
-    forceIconWrap,
-    children: propChildren,
-    disabled: propDisabled,
-    clickable,
-    selected,
-    role,
-    onMouseDown,
-    onMouseUp,
-    onTouchStart,
-    onTouchEnd,
-    onKeyUp,
-    onKeyDown,
-    height,
-    ...props
-  } = providedProps as ListItemWithDefaultProps;
+export default class ListItem extends React.Component<IListItemProps> {
+  public static propTypes = {
+    disabled: PropTypes.bool,
+    clickable: PropTypes.bool,
+    textClassName: PropTypes.string,
+    secondaryTextClassName: PropTypes.string,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    forceIconWrap: PropTypes.bool,
+    textChildren: PropTypes.bool,
+    primaryText: PropTypes.node,
+    secondaryText: PropTypes.node,
+    threeLines: PropTypes.bool,
+  };
 
-  let children = propChildren;
-  if (primaryText || textChildren) {
+  public static defaultProps = {
+    role: "listitem",
+    disabled: false,
+    clickable: true,
+    textChildren: true,
+    threeLines: false,
+    forceIconWrap: false,
+    height: "auto",
+  } as IListItemDefaultProps;
+
+  public render() {
+    const {
+      className,
+      textClassName,
+      secondaryTextClassName,
+      textChildren,
+      primaryText,
+      secondaryText,
+      threeLines,
+      leftIcon,
+      rightIcon,
+      forceIconWrap,
+      children: propChildren,
+      disabled: propDisabled,
+      clickable,
+      selected,
+      role,
+      onMouseDown,
+      onMouseUp,
+      onTouchStart,
+      onTouchEnd,
+      onKeyUp,
+      onKeyDown,
+      height,
+      ...props
+    } = this.props as ListItemWithDefaultProps;
+
+    let children = propChildren;
+    if (primaryText || textChildren) {
+      children = (
+        <ListItemText
+          className={textClassName}
+          secondaryText={secondaryText}
+          secondaryTextClassName={secondaryTextClassName}
+        >
+          {textChildren && children ? children : primaryText}
+        </ListItemText>
+      );
+    } else if (secondaryText) {
+      children = children = (
+        <ListItemText
+          className={textClassName}
+          secondaryText={secondaryText}
+          secondaryTextClassName={secondaryTextClassName}
+        >
+          {children}
+        </ListItemText>
+      );
+    }
+
     children = (
-      <ListItemText
-        className={textClassName}
-        secondaryText={secondaryText}
-        secondaryTextClassName={secondaryTextClassName}
-      >
-        {textChildren && children ? children : primaryText}
-      </ListItemText>
-    );
-  } else if (secondaryText) {
-    children = children = (
-      <ListItemText
-        className={textClassName}
-        secondaryText={secondaryText}
-        secondaryTextClassName={secondaryTextClassName}
-      >
+      <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
         {children}
-      </ListItemText>
+      </ListItemLeftIcon>
     );
-  }
-
-  children = (
-    <ListItemLeftIcon icon={leftIcon} forceIconWrap={forceIconWrap}>
-      {children}
-    </ListItemLeftIcon>
-  );
-  children = (
-    <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
-      {children}
-    </ListItemRightIcon>
-  );
-
-  if (primaryText && propChildren) {
     children = (
-      <React.Fragment>
+      <ListItemRightIcon icon={rightIcon} forceIconWrap={forceIconWrap}>
         {children}
-        {propChildren}
-      </React.Fragment>
+      </ListItemRightIcon>
     );
-  }
 
-  const isHeightAuto = height === "auto";
-  const isHeightMedium = height === "medium";
-  const isHeightLarge = height === "large";
-  const isHeightExtraLarge = height === "extra-large";
-  return (
-    <StatesConsumer
-      disabled={propDisabled}
-      selected={selected}
-      pressable={clickable}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      onKeyUp={onKeyUp}
-      onKeyDown={onKeyDown}
-      className={cn(
-        "rmd-list-item",
-        {
-          "rmd-list-item--disabled": propDisabled,
-          "rmd-list-item--stateful": !propDisabled && clickable,
-          "rmd-list-item--medium":
-            isHeightMedium || (isHeightAuto && (leftIcon || rightIcon) && !secondaryText),
-          "rmd-list-item--large":
-            isHeightLarge || (isHeightAuto && !(leftIcon || rightIcon) && !!secondaryText),
-          "rmd-list-item--extra-large":
-            isHeightExtraLarge || (isHeightAuto && (leftIcon || rightIcon) && !!secondaryText),
-          "rmd-list-item--three-lines": !!secondaryText && threeLines,
-        },
-        className
-      )}
-    >
-      {({ disabled, ...statesProps }) => {
-        if (clickable) {
+    if (primaryText && propChildren) {
+      children = (
+        <React.Fragment>
+          {children}
+          {propChildren}
+        </React.Fragment>
+      );
+    }
+
+    const isHeightAuto = height === "auto";
+    const isHeightMedium = height === "medium";
+    const isHeightLarge = height === "large";
+    const isHeightExtraLarge = height === "extra-large";
+    return (
+      <StatesConsumer
+        disabled={propDisabled}
+        selected={selected}
+        pressable={clickable}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onKeyUp={onKeyUp}
+        onKeyDown={onKeyDown}
+        className={cn(
+          "rmd-list-item",
+          {
+            "rmd-list-item--disabled": propDisabled,
+            "rmd-list-item--stateful": !propDisabled && clickable,
+            "rmd-list-item--medium":
+              isHeightMedium || (isHeightAuto && (leftIcon || rightIcon) && !secondaryText),
+            "rmd-list-item--large":
+              isHeightLarge || (isHeightAuto && !(leftIcon || rightIcon) && !!secondaryText),
+            "rmd-list-item--extra-large":
+              isHeightExtraLarge || (isHeightAuto && (leftIcon || rightIcon) && !!secondaryText),
+            "rmd-list-item--three-lines": !!secondaryText && threeLines,
+          },
+          className
+        )}
+      >
+        {({ disabled, ...statesProps }) => {
+          if (clickable) {
+            return (
+              <KeyboardClickable disabled={disabled} {...statesProps} role={role}>
+                {clickableProps => (
+                  <li {...statesProps} {...clickableProps} {...props}>
+                    {children}
+                  </li>
+                )}
+              </KeyboardClickable>
+            );
+          }
+
           return (
-            <KeyboardClickable disabled={disabled} {...statesProps} role={role}>
-              {clickableProps => (
-                <li {...statesProps} {...clickableProps} {...props}>
-                  {children}
-                </li>
-              )}
-            </KeyboardClickable>
+            <li {...props} {...statesProps}>
+              {children}
+            </li>
           );
-        }
-
-        return (
-          <li {...props} {...statesProps}>
-            {children}
-          </li>
-        );
-      }}
-    </StatesConsumer>
-  );
-};
-
-// says it's missing attributes for some reason
-// @ts-ignore
-ListItem.propTypes = {
-  disabled: PropTypes.bool,
-  clickable: PropTypes.bool,
-  textClassName: PropTypes.string,
-  secondaryTextClassName: PropTypes.string,
-  leftIcon: PropTypes.node,
-  rightIcon: PropTypes.node,
-  forceIconWrap: PropTypes.bool,
-  textChildren: PropTypes.bool,
-  primaryText: PropTypes.node,
-  secondaryText: PropTypes.node,
-  threeLines: PropTypes.bool,
-};
-
-ListItem.defaultProps = {
-  role: "listitem",
-  disabled: false,
-  clickable: true,
-  textChildren: true,
-  threeLines: false,
-  forceIconWrap: false,
-  height: "auto",
-} as IListItemDefaultProps;
-
-export default ListItem;
+        }}
+      </StatesConsumer>
+    );
+  }
+}

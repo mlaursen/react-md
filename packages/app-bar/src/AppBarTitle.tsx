@@ -21,29 +21,30 @@ export type AppBarTitleWithDefaultProps = IAppBarTitleProps & IAppBarTitleDefaul
  * The `AppBarTitle` component is a simple wrapper around an `<h6>` tag to get styling for a title
  * within an app bar.
  */
-const AppBarTitle: React.SFC<IAppBarTitleProps> = ({ keyline, className, ...props }) => (
-  <h6
-    {...props}
-    className={cn(
-      "rmd-app-bar__title",
-      {
-        "rmd-app-bar__title--keyline": keyline,
-      },
-      className
-    )}
-  />
-);
+export default class AppBarTitle extends React.Component<IAppBarTitleProps> {
+  public static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
+    keyline: PropTypes.bool,
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-AppBarTitle.propTypes = {
-  style: PropTypes.object,
-  className: PropTypes.string,
-  keyline: PropTypes.bool,
-};
+  public static defaultProps = {
+    keyline: false,
+  } as IAppBarTitleDefaultProps;
 
-AppBarTitle.defaultProps = {
-  keyline: false,
-} as IAppBarTitleDefaultProps;
-
-export default AppBarTitle;
+  public render() {
+    const { keyline, className, ...props } = this.props;
+    return (
+      <h6
+        {...props}
+        className={cn(
+          "rmd-app-bar__title",
+          {
+            "rmd-app-bar__title--keyline": keyline,
+          },
+          className
+        )}
+      />
+    );
+  }
+}

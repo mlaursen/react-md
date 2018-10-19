@@ -22,29 +22,30 @@ export type AppBarRowWithDefaultProps = IAppBarRowProps & IAppBarRowDefaultProps
  * spacing and alignment. It really just helps enforce the vertical alignment of each item within
  * a row. This should not be used if you want to have a dynamic `AppBar` height.
  */
-const AppBarRow: React.SFC<IAppBarRowProps> = ({ dense, className, children, ...props }) => (
-  <div
-    className={cn(
-      "rmd-app-bar__row",
-      {
-        "rmd-app-bar__row--dense": dense,
-      },
-      className
-    )}
-    {...props}
-  >
-    {children}
-  </div>
-);
+export default class AppBarRow extends React.Component<IAppBarRowProps> {
+  public static propTypes = {
+    dense: PropTypes.bool,
+  };
 
-// says it's missing attributes for some reason
-// @ts-ignore
-AppBarRow.propTypes = {
-  dense: PropTypes.bool,
-};
+  public static defaultProps = {
+    dense: false,
+  } as IAppBarRowDefaultProps;
 
-AppBarRow.defaultProps = {
-  dense: false,
-} as IAppBarRowDefaultProps;
-
-export default AppBarRow;
+  public render() {
+    const { dense, className, children, ...props } = this.props;
+    return (
+      <div
+        className={cn(
+          "rmd-app-bar__row",
+          {
+            "rmd-app-bar__row--dense": dense,
+          },
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+}

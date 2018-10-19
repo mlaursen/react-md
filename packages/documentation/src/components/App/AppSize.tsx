@@ -133,8 +133,6 @@ export default class AppSize extends React.Component<IAppSizeProps, IAppSize> {
       isDesktopTablet,
     };
 
-    // I don't know how to get TS to accept this without doing an index key
-    // @ts-ignore
     if (Object.keys(nextState).some(key => this.state[key] !== nextState[key])) {
       if (this.props.onLayoutChange) {
         this.props.onLayoutChange(nextState);
