@@ -1,4 +1,7 @@
 ## October 2018
+### Documentation Change
+- Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app-v2).
+
 ### v1.8.0 Released
 ##### Changelog
 - Updated the `DialogContainer` component so that the dialog can be closed with the escape key when the `modal` prop is enabled. [issues-803]
