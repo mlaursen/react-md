@@ -16,6 +16,7 @@ export default class Interactive extends PureComponent {
     action: '',
     autohide: true,
     autohideTimeout: Snackbar.defaultProps.autohideTimeout,
+    target: null,
   };
 
   handleSubmit = (e) => {
@@ -40,6 +41,7 @@ export default class Interactive extends PureComponent {
   dismiss = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts });
+    this.submitButton.focus();
   };
 
   updateText = (text) => {
@@ -116,6 +118,7 @@ export default class Interactive extends PureComponent {
             disabled={!text || !autohideTimeout}
             type="submit"
             className="md-btn--dialog md-cell--right"
+            ref={(c) => { this.submitButton = c; }}
           >
             Toast
           </Button>
