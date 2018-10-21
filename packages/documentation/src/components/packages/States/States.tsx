@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const StatesPropTypes = Loadable(() => import("./StatesPropTypes"));
 const StatesSassDoc = Loadable(() => import("./StatesSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const States: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const States: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={StatesPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={StatesSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

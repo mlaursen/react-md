@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const IconPropTypes = Loadable(() => import("./IconPropTypes"));
 const IconSassDoc = Loadable(() => import("./IconSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Icon: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Icon: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={IconPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={IconSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

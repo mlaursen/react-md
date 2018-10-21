@@ -2,6 +2,7 @@ import * as commander from "commander";
 
 import template from "./template";
 import sassdoc from "./sassdoc";
+import changelog from "./changelog";
 
 commander.usage("<command> [options] [packages...]");
 
@@ -49,6 +50,19 @@ commander
     const { clean } = command as ISassDocOptions;
     console.log("Creating SassDoc...");
     sassdoc(clean).then(() => {
+      console.log("Done!");
+    });
+  });
+
+commander
+  .command("changelog [options]")
+  .option(
+    "--no-clean",
+    "Updates the command so that the temp folder of changelogs will not be removed after being run"
+  )
+  .action((_, command) => {
+    const { clean } = command as ISassDocOptions;
+    changelog(clean).then(() => {
       console.log("Done!");
     });
   });

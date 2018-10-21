@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const ButtonPropTypes = Loadable(() => import("./ButtonPropTypes"));
 const ButtonSassDoc = Loadable(() => import("./ButtonSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Button: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Button: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={ButtonPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={ButtonSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

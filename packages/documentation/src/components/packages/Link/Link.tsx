@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const LinkPropTypes = Loadable(() => import("./LinkPropTypes"));
 const LinkSassDoc = Loadable(() => import("./LinkSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Link: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Link: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={LinkPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={LinkSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

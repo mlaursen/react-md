@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const OverlayPropTypes = Loadable(() => import("./OverlayPropTypes"));
 const OverlaySassDoc = Loadable(() => import("./OverlaySassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Overlay: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Overlay: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={OverlayPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={OverlaySassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

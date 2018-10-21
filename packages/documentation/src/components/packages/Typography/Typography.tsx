@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const TypographyPropTypes = Loadable(() => import("./TypographyPropTypes"));
 const TypographySassDoc = Loadable(() => import("./TypographySassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Typography: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Typography: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={TypographyPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={TypographySassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

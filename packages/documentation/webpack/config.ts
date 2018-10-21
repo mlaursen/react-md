@@ -88,6 +88,11 @@ module.exports = (env: any, { mode }: IArgv) => {
         {
           oneOf: [
             {
+              test: /\.md$/,
+              use: require.resolve("raw-loader"),
+              exclude: /node_modules/,
+            },
+            {
               test: /\.svg$/,
               include: /NotFound/,
               use: require.resolve("raw-loader"),

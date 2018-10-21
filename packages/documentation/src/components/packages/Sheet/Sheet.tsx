@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const SheetPropTypes = Loadable(() => import("./SheetPropTypes"));
 const SheetSassDoc = Loadable(() => import("./SheetSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const Sheet: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const Sheet: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={SheetPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={SheetSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

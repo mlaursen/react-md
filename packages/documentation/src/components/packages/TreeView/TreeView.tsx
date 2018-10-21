@@ -8,6 +8,7 @@ import NotFound from "components/NotFound";
 const Examples = Loadable(() => import("./Examples"));
 const TreeViewPropTypes = Loadable(() => import("./TreeViewPropTypes"));
 const TreeViewSassDoc = Loadable(() => import("./TreeViewSassDoc"));
+const Changelog = Loadable(() => import("./Changelog"));
 
 const TreeView: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
@@ -15,6 +16,7 @@ const TreeView: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
     <Route path={`${match.path}/examples`} component={Examples} />
     <Route path={`${match.path}/proptypes`} component={TreeViewPropTypes} />
     <Route path={`${match.path}/sassdoc`} component={TreeViewSassDoc} />
+    <Route path={`${match.path}/changelog`} component={Changelog} />
     <Route component={NotFound} />
   </Switch>
 );

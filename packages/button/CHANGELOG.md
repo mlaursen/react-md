@@ -3,14 +3,44 @@ The `Button` component was re-written from the ground up in typescript as well a
 material design specs for theming. This means that no additional props are required to render a button with
 basic styles.
 
+Quick example:
+```diff
+-<Button flat primary>Flat Button</Button>
++<Button>Flat Button</Button>
+```
+
+```diff
+-<Button raised secondary>Raised Button</Button>
++<Button theme="secondary" themeType="contained">Raised Button</Button>
+```
+
+```diff
+-<Button icon><FontIcon>home</FontIcon></Button>
++<Button theme="clear" btnType="icon"><FontIcon>home</FontIcon></Button>
+```
+
+```diff
+-<Button floating primary><FontIcon>add</FontIcon></Button>
++<Button theme="primary" btnType="icon" themeType="contained"><FontIcon>add</FontIcon></Button>
+```
+
 ### Breaking Changes
 Buttons no longer have any of the `primary`, `secondary`, `flat`, `raised`, `floating`, or `icon` props; instead
 the new styling props are `btnType`, `theme`, and `themeType`. In addition, buttons will now have a default state
 of being rendered as text buttons so additional props are not required to get a styled button rendered.
 
-Buttons no longer support rendering as links using the `href` prop. Instead, you should include
+Buttons no longer support rendering as links using the `href` prop. Instead, you should install
 [@react-md/link](https://github.com/mlaursen/react-md/tree/next/packages/link) and use the new `Button.theme` function
 to apply buttons styles to a link.
+
+```tsx
+import * as React from "react";
+import { Buttom } from "@react-md/button";
+import { Link, ILinkProps } from "@react-md/link";
+
+const LinkButton: React.SFC<ILinkProps> = props => <Link {...props} className={Button.theme(props)} />;
+export default LinkButton;
+```
 
 Buttons no longer use media queries to dynamically update the size for dense layouts. If you want to update your app to
 be automatically "dense" on desktop, you should either use the `dense` prop on the component

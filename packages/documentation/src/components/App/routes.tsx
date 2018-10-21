@@ -56,6 +56,11 @@ export interface IRouteConfig {
   exact: boolean;
 }
 
+export interface IAdditionalRoute {
+  route: string;
+  label: string;
+}
+
 function createRoute(
   path: string,
   name: string,
@@ -87,11 +92,19 @@ function createRoute(
   };
 }
 
+interface ICreatePackageConfig {
+  examples?: boolean;
+  propTypes?: boolean;
+  sassdoc?: boolean;
+  changelog?: boolean;
+}
+
 function createPackage(
   name: string,
   routeComponent: RouteComponent,
-  { examples = true, propTypes = true, sassdoc = true } = {}
+  config: ICreatePackageConfig = {}
 ): Route {
+  const { examples = true, propTypes = true, sassdoc = true, changelog = true } = config;
   const basePath = `${process.env.PUBLIC_URL}/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
@@ -104,6 +117,10 @@ function createPackage(
 
   if (sassdoc) {
     childItems.push(createRoute(`${basePath}/sassdoc`, "SassDoc"));
+  }
+
+  if (changelog) {
+    childItems.push(createRoute(`${basePath}/changelog`, "Changelog"));
   }
 
   return {
