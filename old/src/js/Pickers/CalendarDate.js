@@ -20,6 +20,8 @@ export default class CalendarDate extends PureComponent {
     onClick: PropTypes.func.isRequired,
     active: PropTypes.bool,
     today: PropTypes.bool,
+    getDateClassName: PropTypes.func,
+    dateRenderer: PropTypes.func,
   };
 
   constructor(props) {
@@ -65,33 +67,44 @@ export default class CalendarDate extends PureComponent {
 
   render() {
     const { date, desktopActive } = this.state;
-    const { disabled, active, today, className } = this.props;
+    const { disabled, active, today, className, getDateClassName, dateRenderer } = this.props;
 
     const fullyActive = today && !active && !desktopActive;
+
+    const generatedClassName = getDateClassName
+      ? getDateClassName(this.props.date, date)
+      : null;
+
     return (
-      <button
-        type="button"
-        ref={this._setFocus}
-        onFocus={this._setActive}
-        onBlur={this._setInactive}
-        onMouseOver={this._setActive}
-        onMouseLeave={this._setInactive}
-        className={cn('md-calendar-date md-calendar-date--btn', {
-          'md-calendar-date--btn-active': active || desktopActive,
-          'md-pointer--hover': !disabled,
-        }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className)}
-        onClick={this._handleClick}
-        disabled={disabled}
+      <div
+        role="gridcell"
+        className="md-calendar-date"
+        style={{ display: 'inline-block' }}
       >
-        <span
-          className={cn('md-calendar-date--date', {
-            'md-picker-text--active': active || desktopActive,
-            'md-font-bold': fullyActive,
-          })}
+        <button
+          type="button"
+          ref={this._setFocus}
+          onFocus={this._setActive}
+          onBlur={this._setInactive}
+          onMouseOver={this._setActive}
+          onMouseLeave={this._setInactive}
+          className={cn('md-calendar-date--btn', {
+            'md-calendar-date--btn-active': active || desktopActive,
+            'md-pointer--hover': !disabled,
+          }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className, generatedClassName)}
+          onClick={this._handleClick}
+          disabled={disabled}
         >
-          {date}
-        </span>
-      </button>
+          <span
+            className={cn('md-calendar-date--date', {
+              'md-picker-text--active': active || desktopActive,
+              'md-font-bold': fullyActive,
+            })}
+          >
+            {dateRenderer ? dateRenderer(this.props.date, date) : date}
+          </span>
+        </button>
+      </div>
     );
   }
 }

@@ -14,6 +14,7 @@ export default class MiniListItem extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]),
     active: PropTypes.bool,
     activeClassName: PropTypes.string,
@@ -28,6 +29,7 @@ export default class MiniListItem extends PureComponent {
     itemComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
   };
 

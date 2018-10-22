@@ -49,6 +49,7 @@ export default class Cell extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]),
 
     /**

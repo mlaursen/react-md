@@ -323,7 +323,7 @@ your filetype and you&#39;re set!</p>
 <p>Now how do you handle production builds? How can I make sure that my latest changes will actually
 show up on the client since the browser caches data? How do I add CSS/Sass/less? How do I hot reload?
 How do I hot reload styles?</p>
-<p>Well, now that some more time has passed, <a href=\\"https://github.com/facebookincubator/create-react-app\\" class=\\"link\\">create-react-app</a> <em>is</em>
+<p>Well, now that some more time has passed, <a href=\\"https://github.com/facebook/create-react-app\\" class=\\"link\\">create-react-app</a> <em>is</em>
 probably the way to go for most of these things since it has gotten a lot better since the first few releases. There
 is still no native Sass/SCSS support, so you need to create additional tasks to watch with <code>node-sass</code> so it gets added to
 your app. This is <em>ok</em>, but you lose the benefits of having webpack do resolutions for you.</p>

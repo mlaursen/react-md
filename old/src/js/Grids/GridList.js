@@ -73,6 +73,7 @@ export default class GridList extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]),
 
     /**

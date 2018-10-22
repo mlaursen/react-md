@@ -112,6 +112,7 @@ export default class Dialog extends PureComponent {
     contentComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**

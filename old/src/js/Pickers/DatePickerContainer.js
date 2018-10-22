@@ -468,6 +468,51 @@ export default class DatePickerContainer extends PureComponent {
     calendarOuterDateClassName: PropTypes.string,
 
     /**
+     * An optional function to provide class for each date in calendar.
+     *
+     * ```js
+     * getDateClassName(date:Date, day:number): string;
+     * ```
+     */
+    getDateClassName: PropTypes.func,
+
+    /**
+     * An optional function to render each date component.
+     *
+     * ```js
+     * dateRenderer(date:Date, day:number): React.Component;
+     * ```
+     */
+    dateRenderer: PropTypes.func,
+
+    /**
+     * An optional callback triggered on previous month click.
+     *
+     * ```js
+     * onPreviousMonth(firstDayInMonth:Date);
+     * ```
+     */
+    onPreviousMonth: PropTypes.func,
+
+    /**
+     * An optional callback triggered on next month click.
+     *
+     * ```js
+     * onNextMonth(firstDayInMonth:Date);
+     * ```
+     */
+    onNextMonth: PropTypes.func,
+
+    /**
+     * An optional callback triggered on year selection.
+     *
+     * ```js
+     * onYearSelected(firstDayInYear:Date);
+     * ```
+     */
+    onYearSelected: PropTypes.func,
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     calendarTitleClassName: PropTypes.string,
@@ -501,6 +546,12 @@ export default class DatePickerContainer extends PureComponent {
      * of the first.
      */
     lastChild: PropTypes.bool,
+
+    /**
+     * True if the datepicker should swap to calendar mode automatically after a year is picked
+     * while in `year` mode.
+     */
+    closeYearOnSelect: PropTypes.bool,
 
     previousIconChildren: deprecated(PropTypes.node, 'Use the `previousIcon` prop instead'),
     previousIconClassName: deprecated(PropTypes.string, 'Use the `previousIcon` prop instead'),
@@ -537,6 +588,7 @@ export default class DatePickerContainer extends PureComponent {
     cancelLabel: 'Cancel',
     cancelPrimary: true,
     closeOnEsc: true,
+    closeYearOnSelect: false,
     disableScrollLocking: false,
     'aria-label': 'Pick a date',
   };
@@ -747,11 +799,19 @@ export default class DatePickerContainer extends PureComponent {
   _previousMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, -1, 'M');
     this.setState({ calendarDate });
+
+    if (this.props.onPreviousMonth) {
+      this.props.onPreviousMonth(calendarDate);
+    }
   };
 
   _nextMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, 1, 'M');
     this.setState({ calendarDate });
+
+    if (this.props.onNextMonth) {
+      this.props.onNextMonth(calendarDate);
+    }
   };
 
   _setCalendarTempDate = (calendarTempDate) => {
@@ -801,10 +861,18 @@ export default class DatePickerContainer extends PureComponent {
       nextTemp = new Date(maxDate);
     }
 
+    if (this.props.onYearSelected) {
+      this.props.onYearSelected(nextDate);
+    }
+
     this.setState({
       calendarDate: nextDate,
       calendarTempDate: nextTemp,
     });
+
+    if (this.props.closeYearOnSelect) {
+      this._changeCalendarMode('calendar');
+    }
   };
 
   /**
@@ -912,6 +980,8 @@ export default class DatePickerContainer extends PureComponent {
       readOnly,
       onVisibilityChange,
       defaultCalendarDate,
+      getDateClassName,
+      dateRenderer,
 
       // deprecated
       initialCalendarDate,
@@ -948,6 +1018,8 @@ export default class DatePickerContainer extends PureComponent {
         onNextClick={this._nextMonth}
         onCalendarDateClick={this._setCalendarTempDate}
         onCalendarYearClick={this._setCalendarTempYear}
+        getDateClassName={getDateClassName}
+        dateRenderer={dateRenderer}
       />
     );
 

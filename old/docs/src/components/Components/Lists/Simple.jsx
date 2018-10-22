@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   Subheader,
+  Button,
 } from 'react-md';
 
 const InfoIcon = () => <FontIcon>info</FontIcon>;
@@ -77,6 +78,23 @@ const Simple = () => (
         secondaryText="Sandra Adams - Do you have Paris recommendations? Have you ever been?"
         threeLines
       />
+    </List>
+    <List className="md-cell md-paper md-paper--1">
+      <ListItem primaryText="Additional information" />
+      <ListItem primaryText="Website" renderChildrenOutside>
+        <Button icon primary>public</Button>
+      </ListItem>
+      <ListItem primaryText="Mail" renderChildrenOutside>
+        <Button icon>mail</Button>
+      </ListItem>
+      <ListItem
+        leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />}
+        primaryText="Work"
+        secondaryText="Jan 28, 2014"
+        renderChildrenOutside
+      >
+        <Button icon>share</Button>
+      </ListItem>
     </List>
   </div>
 );

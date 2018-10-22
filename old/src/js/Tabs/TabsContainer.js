@@ -116,6 +116,7 @@ export default class TabsContainer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -124,6 +125,7 @@ export default class TabsContainer extends PureComponent {
     panelComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]),
 
     /**
@@ -182,6 +184,7 @@ export default class TabsContainer extends PureComponent {
     headerComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]),
 
     /**

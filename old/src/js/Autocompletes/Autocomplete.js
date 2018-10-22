@@ -487,6 +487,12 @@ export default class Autocomplete extends PureComponent {
      * @see {@link TextFields#toolbar}
      */
     toolbar: PropTypes.bool,
+
+    /**
+     * Boolean if the list of data should be shown on focus when no filter value has been
+     * provided.
+     */
+    showUnfilteredData: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -502,6 +508,7 @@ export default class Autocomplete extends PureComponent {
     autoComplete: 'off',
     repositionOnScroll: true,
     repositionOnResize: true,
+    showUnfilteredData: false,
     inlineSuggestionPadding: 6,
   };
 
@@ -513,12 +520,13 @@ export default class Autocomplete extends PureComponent {
       data,
       dataLabel,
       filter,
+      showUnfilteredData,
     } = props;
 
     let matches = [];
     if (defaultValue && filter) {
       matches = filter(data, defaultValue, dataLabel);
-    } else if (!filter) {
+    } else if (!filter || showUnfilteredData) {
       matches = data;
     }
 
@@ -582,7 +590,15 @@ export default class Autocomplete extends PureComponent {
   };
 
   _handleChange = (value, event) => {
-    const { onChange, filter, findInlineSuggestion, data, dataLabel, inline } = this.props;
+    const {
+      onChange,
+      filter,
+      findInlineSuggestion,
+      data,
+      dataLabel,
+      inline,
+      showUnfilteredData,
+    } = this.props;
 
     if (onChange) {
       onChange(value, event);
@@ -594,7 +610,9 @@ export default class Autocomplete extends PureComponent {
     }
 
     let { visible } = this.state;
-    let matches = value || !filter ? this.state.matches : [];
+    const hasValidValue = value || showUnfilteredData;
+
+    let matches = hasValidValue || !filter ? data : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
@@ -620,9 +638,11 @@ export default class Autocomplete extends PureComponent {
       return;
     }
 
+    const hasValidValue = !!value || this.props.showUnfilteredData;
+
     this.setState({
       matchIndex: -1,
-      visible: !this.state.manualFocus && !!value && !!this.state.matches.length,
+      visible: !this.state.manualFocus && hasValidValue && !!this.state.matches.length,
       manualFocus: false,
       focus: true,
     });
@@ -984,6 +1004,7 @@ export default class Autocomplete extends PureComponent {
       onKeyDown,
       onMouseDown,
       onChange,
+      showUnfilteredData,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

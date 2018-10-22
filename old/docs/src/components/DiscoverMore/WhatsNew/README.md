@@ -1,3 +1,54 @@
+## October 2018
+### Documentation Change
+- Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app-v2).
+
+### v1.8.0 Released
+##### Changelog
+- Updated the `DialogContainer` component so that the dialog can be closed with the escape key when the `modal` prop is enabled. [issues-803]
+
+### v1.7.2 Released
+##### Changelog
+- Updated all `component` prop-types to not trigger a warning when the component was created with `React.forwardRef`. ([@luisrudge] - [pull-809])
+
+## September 2018
+### v1.7.1 Released
+##### Changelog
+- Reverted the `InkContainer` workaround for Preact since there were additional unwanted side-effects. [issues-801]
+
+### v1.7.0 Released
+##### Changelog
+- Updated the `DatePicker` for more flexibility at rendering dates. ([@madc0der] - [pull-800])
+
+### v1.6.2 Released
+- Updated the `InkContainer` to not break in Preact. [issues-788]
+- Updated the `TableRow` children PropType validation to be a bit more accurate. [commit-6d5f8c2]
+
+### v1.6.1 Released
+##### Changelog
+- Fixed the `DatePicker` dates not having `type="button"`. ([@jakerichan] - [pull-796])
+
+### v1.6.0 Released
+##### Changelog
+- Updated the `Autocomplete` to allow showing results when the data is considered unfiltered. ([@Xuecnahc] - [pull-790])
+- Added better accessibility for the `Switch` component. ([@ecuageo] - [pull-794])
+- Fixed the `TextField` Typescript definitions to correctly allow the `name` prop. ([@roderik] - [pull-795])
+- Added the `capture` prop to `FileInput` and `FileUpload`. [issues-793]
+
+## August 2018
+### v1.5.1 Released
+##### Changelog
+- Fixed `Dialog` Typescript definitions for `height` and `width` to support strings. ([@kirananto] - [pull-789])
+
+### v1.5.0 Released
+##### Changelog
+This release added a new feature and an accessibility change.
+- Updated the `ListItem` to be able to have a right-aligned action button. ([@Kaishiyoku] - [pull-766])
+- Improved some of the accessibility for the `DatePicker`. ([@leahjlou] - [pull-779])
+
+## July 2018
+### v1.4.2 Released
+- Fixed the accessibility for selection controls (and groups) ([@blackcathacker] - [pull-768])
+
 ## June 2018
 ### v1.4.1 Released
 - Fixed a small bug with dialogs trying to focus elements that are not focusable in IE11. ([@alaney] - [pull-760])

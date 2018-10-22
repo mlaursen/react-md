@@ -56,6 +56,7 @@ export default class CardMedia extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     deprecated: componentDeprecated(

@@ -18,6 +18,11 @@ export interface DatePickerProps extends BasePickerProps {
   yearPickerClassName?: string;
   calendarDateClassName?: string;
   calendarOuterDateClassName?: string;
+  getDateClassName?: (date: Date, day: number) => string;
+  dateRenderer?: (date: Date, day: number) => React.ReactElement<any>;
+  onPreviousMonth?: (firstDayInMonth: Date) => void;
+  onNextMonth?: (firstDayInMonth: Date) => void;
+  onYearSelected?: (firstDayInYear: Date) => void;
   calendarTitleClassName?: string;
   calendarTitleFormat?: CalendarTitleFormat;
   calendarWeekdayClassName?: string;

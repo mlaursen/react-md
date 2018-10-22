@@ -609,6 +609,7 @@ export default class NavigationDrawer extends PureComponent {
     contentComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**

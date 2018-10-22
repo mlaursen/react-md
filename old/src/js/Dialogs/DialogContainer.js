@@ -143,6 +143,7 @@ export default class DialogContainer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -151,6 +152,7 @@ export default class DialogContainer extends PureComponent {
     contentComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -197,6 +199,9 @@ export default class DialogContainer extends PureComponent {
     /**
      * Boolean if the dialog should behave like a modal. This means that the dialog can only
      * be closed by clicking on an action instead of also clicking on the overlay.
+     *
+     * NOTE: Unless the `closeOnEsc` prop is disabled as well, the user can still press the escape
+     * key to close this modal.
      */
     modal: PropTypes.bool,
 
@@ -261,7 +266,6 @@ export default class DialogContainer extends PureComponent {
 
     /**
      * Boolean if the dialog should be closable by pressing the escape key.
-     * This will always be considered `false` of the `modal` props is `true`.
      */
     closeOnEsc: PropTypes.bool,
 
@@ -432,22 +436,19 @@ export default class DialogContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { visible, closeOnEsc, modal } = this.props;
-    const escapable = !modal && closeOnEsc;
-    const prevEscapable = !prevProps.modal && prevProps.closeOnEsc;
+    const { visible, closeOnEsc } = this.props;
 
     // Only going to support visible here since it was not implemented before.
-    if (visible === prevProps.visible && escapable === prevEscapable) {
+    if (visible === prevProps.visible && closeOnEsc === prevProps.closeOnEsc) {
       return;
     }
 
     let add = false;
     let remove = false;
-
-    if (escapable !== prevEscapable) {
-      add = visible && escapable;
-      remove = !visible || (prevEscapable && !escapable);
-    } else if (escapable) {
+    if (closeOnEsc !== prevProps.closeOnEsc) {
+      add = visible && closeOnEsc;
+      remove = !visible || (prevProps.closeOnEsc && !closeOnEsc);
+    } else if (closeOnEsc) {
       add = visible;
       remove = !visible;
     }
@@ -464,7 +465,7 @@ export default class DialogContainer extends PureComponent {
       toggleScroll(false);
     }
 
-    if (this.props.visible && (this.props.closeOnEsc && !this.props.modal)) {
+    if (this.props.visible && this.props.closeOnEsc) {
       window.removeEventListener('keydown', this._handleEscClose);
     }
 
