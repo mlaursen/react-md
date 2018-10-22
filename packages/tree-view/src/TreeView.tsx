@@ -17,7 +17,6 @@ import {
   TreeViewDataList,
   ITreeViewProps,
   ITreeViewDefaultProps,
-  ITreeViewInjectedProps,
   TreeViewWithDefaultProps,
   TreeViewWithMultiSelectHandlers,
   treeViewRenderer,

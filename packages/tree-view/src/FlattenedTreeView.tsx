@@ -48,7 +48,7 @@ export interface IFlattenedTreeViewDefaultProps {
   rootId: null;
 }
 
-export type FlattedTreeViewWithDefaultProps<D = IIndexKeyAny> = IFlattenedTreeViewProps<D> &
+export type FlattenedTreeViewWithDefaultProps<D = IIndexKeyAny> = IFlattenedTreeViewProps<D> &
   IFlattenedTreeViewDefaultProps;
 
 /**
@@ -56,9 +56,12 @@ export type FlattedTreeViewWithDefaultProps<D = IIndexKeyAny> = IFlattenedTreeVi
  * into the required nested lists data structure of the `TreeView` component.
  */
 export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component<
-  IFlattenedTreeViewProps<D>,
-  {}
+  IFlattenedTreeViewProps<D>
 > {
+  public static defaultProps: IFlattenedTreeViewDefaultProps = {
+    rootId: null,
+  };
+
   public shouldComponentUpdate(nextProps: IFlattenedTreeViewProps<D>) {
     return (
       this.props.data !== nextProps.data ||
@@ -68,8 +71,8 @@ export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component
   }
 
   public render() {
-    const { children, data, rootId } = this.props;
+    const { children, data, rootId, sort } = this.props as FlattenedTreeViewWithDefaultProps<D>;
 
-    return children(buildTree(null, Object.values(data)) || []);
+    return children(buildTree(rootId, Object.values(data), sort) || []);
   }
 }
