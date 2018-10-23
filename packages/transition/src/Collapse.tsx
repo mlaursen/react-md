@@ -48,22 +48,16 @@ export interface ICollapseProps {
    * An optional style to apply. This will be merged with the required animation styles of `min-height`,
    * `padding-top`, and `padding-bottom`. If the `style` prop defines any of these values, they will be
    * used instead of this component's computed values.
-   *
-   * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * An optional class name to also apply to the collapse.
-   *
-   * @docgen
    */
   className?: string;
 
   /**
    * Boolean if currently collapsed. When this prop changes, the collapse transition will begin.
-   *
-   * @docgen
    */
   collapsed: boolean;
 
@@ -78,24 +72,18 @@ export interface ICollapseProps {
    * ```ts
    * const desiredHeight = minHeight + minPaddingBottom + minPaddingTop;
    * ```
-   *
-   * @docgen
    */
   minHeight?: number | string;
 
   /**
    * The min padding bottom to apply to the collapse. This will be used with the `minHeight`
    * and `minPaddingTop` props to set the collapsed size.
-   *
-   * @docgen
    */
   minPaddingBottom?: number | string;
 
   /**
    * The min padding top to apply to the collapse. This will be used with the `minHeight`
    * and `minPaddingBottom` props to set the collapsed size.
-   *
-   * @docgen
    */
   minPaddingTop?: number | string;
 
@@ -103,8 +91,6 @@ export interface ICollapseProps {
    * The duration for the entire enter animation in milliseconds. This should normally stay as the default value
    * of `250ms`, but can be updated to be any value if you feel there should be a longer animation time based on
    * content size.
-   *
-   * @docgen
    */
   enterDuration?: number;
 
@@ -112,8 +98,6 @@ export interface ICollapseProps {
    * The duration for the entire leave animation in milliseconds. This should normally stay at the default value
    * of `200ms`, but can be updated to be any value if you feel there should be a longer animation time based on
    * content size.
-   *
-   * @docgen
    */
   leaveDuration?: number;
 
@@ -121,16 +105,12 @@ export interface ICollapseProps {
    * Boolean if the children should be removed from the DOM when collapsed. When this prop is
    * `undefined`, it will remove the collapsed children only when the `minHeight`, `minPaddingBottom`,
    * and `minPaddingTop` values are set to `0`.
-   *
-   * @docgen
    */
   isEmptyCollapsed?: boolean;
 
   /**
    * A callback function that will include the props for rendering a child element with the collapse
    * transition.
-   *
-   * @docgen
    */
   children: (props: ICollapseChildrenProps) => React.ReactNode;
 

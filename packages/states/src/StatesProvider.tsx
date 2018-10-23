@@ -10,8 +10,6 @@ export interface IStatesProviderProps {
    * way of making it so that elements only gain the focus state after using the keyboard. If this
    * is disabled, all elements will fallback to using the `:focus` selector instead of a conditional
    * class name.
-   *
-   * @docgen
    */
   advancedFocus?: boolean;
 
@@ -19,8 +17,6 @@ export interface IStatesProviderProps {
    * A list of keys that can trigger a "programmatic" focus event on a focusable element. This _should_ most
    * likely stay as default list of keys since it will be updated for any custom keyboard focus events from
    * the W3C spec while new components are created, but it can be updated to include or remove keys as needed.
-   *
-   * @docgen
    */
   programmaticFocusKeys?: string[];
 
@@ -28,16 +24,12 @@ export interface IStatesProviderProps {
    * Since there are times where a user might interact with an element that will open or close
    * some temporary material, this prop is used to wait `x`ms between a keydown event and a focus
    * event to consider a focus event triggered from keyboard navigation.
-   *
-   * @docgen
    */
   keyboardClickTimeout?: number;
 
   /**
    * The children that should gain the state styles anywhere within the application. This is really
    * required so that the `StatesConsumer` can gain the appropriate context.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 
@@ -46,8 +38,6 @@ export interface IStatesProviderProps {
    * to help increase performance so that every key the user presses does not attempt to update the entire
    * app's focus. Instead, the small section within your app (like listboxes or menus) should create a new
    * `StatesProvider` with this boolean enabled so only that small section has the advanced logic.
-   *
-   * @docgen
    */
   isPrintableKeysFocusable?: boolean;
 }

@@ -14,47 +14,35 @@ export interface IListProps extends React.HTMLAttributes<ListElement> {
    * - listbox
    *
    * but any value will be supported in case I forgot a use-case for lists.
-   *
-   * @docgen
    */
   role?: string;
   style?: React.CSSProperties;
 
   /**
    * An optional className to apply.
-   *
-   * @docgen
    */
   className?: string;
 
   /**
    * Boolean if the "dense" spec should be applied to the list. this will just reduce
    * the vertical padding a bit by default.
-   *
-   * @docgen
    */
   dense?: boolean;
 
   /**
    * Boolean if the list has a specific order. This will update the list to be
    * rendered as a `<ol>` instead of `<ul>`.
-   *
-   * @docgen
    */
   ordered?: boolean;
 
   /**
    * Boolean if the list should be positioned inline (horizontally) instead of vertically.
-   *
-   * @docgen
    */
   inline?: boolean;
 
   /**
    * The children to render within the list. This should normally be the `ListItem` component, but
    * it can also be links or any other element.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 

@@ -8,16 +8,12 @@ export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> 
    * like [react-router](https://github.com/ReactTraining/react-router) or
    * [@reach/router](https://github.com/reach/router). This will call `React.createElement` with this value
    * and provide all props and class name.
-   *
-   * @docgen
    */
   component?: React.ReactType;
 
   /**
    * An optional href to apply to the link. If this value is set to the empty string and the `component` prop is
    * not provided, the link will basically be disabled.
-   *
-   * @docgen
    */
   href?: string;
 
@@ -25,8 +21,6 @@ export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> 
    * An optional target for the link to be opened in. It is recommended to keep this undefined in most cases. If
    * this is not `_blank`, `_parent`, `_self`, or `_top`, it should be the frame name that the link should
    * be rendered in if using frames.
-   *
-   * @docgen
    */
   target?: "_blank" | "_parent" | "_self" | "_top" | string;
 
@@ -47,8 +41,6 @@ export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> 
    * - "tag"
    *
    * This is really just used to override the default behavior of the `preventMaliciousTarget` prop.
-   *
-   * @docgen
    */
   rel?: string;
 
@@ -57,16 +49,12 @@ export interface ILinkBaseProps extends React.HTMLAttributes<HTMLAnchorElement> 
    * is set to `"_blank"`. This is recommended to have enabled by default, but can be disabled by setting this prop
    * to `false` or specificying a `rel` prop yourself. You can read more about the reason for this
    * [here](https://mathiasbynens.github.io/rel-noopener/).
-   *
-   * @docgen
    */
   preventMaliciousTarget?: boolean;
 
   /**
    * Boolean if the Link should be positioned with a flexbox and align the items centered. This is disabled by default
    * but can be useful when rendering icons within the link.
-   *
-   * @docgen
    */
   flexCentered?: boolean;
 }

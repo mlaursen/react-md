@@ -6,15 +6,11 @@ export interface IIconRotatorBaseProps {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap` prop is enabled
    * or the children is not a single react element.
-   *
-   * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * An optional className to apply.
-   *
-   * @docgen
    */
   className?: string;
 
@@ -22,8 +18,6 @@ export interface IIconRotatorBaseProps {
    * The starting degree amount that should be used. This should be one of the values in the
    * `$rmd-icon-rotator-rotation-degrees` list or a value specified when using the `rmd-icon-rotator-degrees`
    * mixin so that a valid class name can be applied.
-   *
-   * @docgen
    */
   from?: number;
 
@@ -31,30 +25,22 @@ export interface IIconRotatorBaseProps {
    * The ending degree amount that should be used. This should be one of the values in the
    * `$rmd-icon-rotator-rotation-degrees` list or a value specified when using the `rmd-icon-rotator-degrees`
    * mixin so that a valid class name can be applied.
-   *
-   * @docgen
    */
   to?: number;
 
   /**
    * Boolean if the rotation should be animated instead of static.
-   *
-   * @docgen
    */
   animate?: boolean;
 
   /**
    * Boolean if the icon is currently rotated.
-   *
-   * @docgen
    */
   rotated: boolean;
 
   /**
    * Boolean if the child icon should be "forcefully" wrapped in a `<span>` element. This should be enabled if
    * you have a custom icon that does not pass the `className` prop down.
-   *
-   * @docgen
    */
   forceIconWrap?: boolean;
 }
@@ -63,8 +49,6 @@ export interface IIconRotatorProps extends IIconRotatorBaseProps {
   /**
    * The icon that should be rotated. If this is a valid React Element, the class names will be cloned into
    * that icon, otherwise the icon will be wrapped in a span with the correct class names applied.
-   *
-   * @docgen
    */
   children: React.ReactElement<any> | React.ReactNode;
 }

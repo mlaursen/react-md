@@ -14,8 +14,6 @@ import { default as Tooltip, ITooltipProps, ITooltipDefaultProps } from "./Toolt
 export interface IRelativeTooltipProps extends ITooltipProps {
   /**
    * An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
-   *
-   * @docgen
    */
   delay?: number;
 
@@ -23,8 +21,6 @@ export interface IRelativeTooltipProps extends ITooltipProps {
    * The enter duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
    * set for `$rmd-tooltip-enter-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
    * animations easier.
-   *
-   * @docgen
    */
   enterDuration?: number;
 
@@ -32,8 +28,6 @@ export interface IRelativeTooltipProps extends ITooltipProps {
    * The leave duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
    * set for `$rmd-tooltip-leave-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
    * animations easier.
-   *
-   * @docgen
    */
   leaveDuration?: number;
 }

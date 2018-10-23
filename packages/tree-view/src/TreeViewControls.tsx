@@ -26,8 +26,6 @@ export interface ITreeViewControlsProps<D, R> extends ITreeViewBaseProps<D, R> {
    * An optional list of item ids that are selected when the `TreeViewControls` component mounts. If
    * this list is empty, the first item within the provided `data` set will be used instead since
    * the tree will not be keyboard focusable without a selected element.
-   *
-   * @docgen
    */
   defaultSelectedIds?: string[];
 
@@ -36,16 +34,12 @@ export interface ITreeViewControlsProps<D, R> extends ITreeViewBaseProps<D, R> {
    * this list is empty and there are items in the `defaultSelectedIds` list, the component will
    * traverse the `data` set and find all parent ids for each id in the `defaultSelectedIds` list so
    * that the selected items will be visible by default.
-   *
-   * @docgen
    */
   defaultExpandedIds?: string[];
 
   /**
    * A callback function that will provide all the required item listeners and item id lists to the
    * `TreeView` component as well as any other prop that was passed to the `TreeViewControls` component.
-   *
-   * @docgen
    */
   children: (controls: ITreeViewControls<D, R>) => React.ReactNode;
 }

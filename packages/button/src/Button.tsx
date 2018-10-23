@@ -13,37 +13,27 @@ export type ButtonElement = HTMLButtonElement | HTMLDivElement;
 export interface IButtonThemeProps {
   /**
    * An optional className to apply.
-   *
-   * @docgen
    */
   className?: string;
 
   /**
    * Boolean if the button is currently disabled.
-   *
-   * @docgen
    */
   disabled?: boolean;
 
   /**
    * The specific material design button type to use. A text button will display
    * text while an icon button will only contain an icon.
-   *
-   * @docgen
    */
   btnType?: ButtonType;
 
   /**
    * The material design theme to apply to the button.
-   *
-   * @docgen
    */
   theme?: ButtonTheme;
 
   /**
    * The material design theme type to apply.
-   *
-   * @docgen
    */
   themeType?: ButtonThemeType;
 }
@@ -54,15 +44,11 @@ export interface IButtonButtonProps
     React.HTMLAttributes<ButtonElement> {
   /**
    * An optional style to apply.
-   *
-   * @docgen
    */
   style?: React.CSSProperties;
 
   /**
    * The button's type attribute.
-   *
-   * @docgen
    */
   type?: "button" | "reset" | "submit";
 
@@ -71,8 +57,6 @@ export interface IButtonButtonProps
    *
    * Please note that it is considered invalid html to have a `<div>` as a descendant of a `<button>`.
    * You can fix this by enabling the `asDiv` prop.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 
@@ -80,8 +64,6 @@ export interface IButtonButtonProps
    * Boolean if the button should be rendered as a div instead. This will update the div to be fully
    * accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
    * to have a `<div>` as a child of the button, you should enable this prop.
-   *
-   * @docgen
    */
   asDiv?: boolean;
 

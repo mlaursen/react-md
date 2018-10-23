@@ -24,8 +24,6 @@ export type SheetVerticalSize = "none" | "touch" | "recommended";
 export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<HTMLDivElement> {
   /**
    * Boolean if the sheet is currently visible.
-   *
-   * @docgen
    */
   visible: boolean;
 
@@ -33,22 +31,16 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
    * A function used to close the sheet when the overlay is clicked. This is really only required
    * when the `overlay` prop is enabled, but I haven't figured out a way to typedef that in Typescript
    * yet.
-   *
-   * @docgen
    */
   onRequestClose: () => void;
 
   /**
    * Boolean if there should be an overlay displayed with the sheet. This is recommended/required on mobile devices.
-   *
-   * @docgen
    */
   overlay?: boolean;
 
   /**
    * The position for the sheet to be rendered.
-   *
-   * @docgen
    */
   position?: SheetPosition;
 
@@ -58,8 +50,6 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
    * - small - used for mobile devices.
    * - large - used for landscape tablets and desktops.
    * - media - automatically switches between "small" and "large" based on css media queries. (this is the default)
-   *
-   * @docgen
    */
   horizontalSize?: SheetHorizontalSize;
 
@@ -69,16 +59,12 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
    * - touch - the size is based on content and is limited to the viewport height with a touchable area to close the
    * sheet.
    * - recommended - the material design recommended sizing that forces a max-height of 50vh and min-height of 3.5rem
-   *
-   * @docgen
    */
   verticalSize?: SheetVerticalSize;
 
   /**
    * Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with other content on the
    * page instead of directly over everything. This is really just used to lower the box shadow.
-   *
-   * @docgen
    */
   inline?: boolean;
 }

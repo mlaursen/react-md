@@ -7,8 +7,6 @@ export interface IAppBarActionProps extends IButtonProps {
   /**
    * Boolean if this is the first action within the app bar. This is really just used to automatically
    * right-align all the actions by applying `margin-left: auto` to this action.
-   *
-   * @docgen
    */
   first?: boolean;
 
@@ -17,8 +15,6 @@ export interface IAppBarActionProps extends IButtonProps {
    * as `margin-right`.
    *
    * NOTE: This should not be used when using an overflow menu.
-   *
-   * @docgen
    */
   last?: boolean;
 }

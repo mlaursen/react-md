@@ -15,31 +15,23 @@ export interface IFlattenedTreeViewProps<D = IIndexKeyAny> {
   /**
    * The root id to use for the flattened tree. Every item that has a `parentId` set
    * to this value will be displayed at the top level.
-   *
-   * @docgen
    */
   rootId?: string | null;
 
   /**
    * A flattened tree view data object to convert into a `FlattenedTreeViewDataList`.
-   *
-   * @docgen
    */
   data: IFlattenedTreeViewData<D>;
 
   /**
    * A children callback function that will be provided a list of `FlattenedTreeViewData` and
    * should eventually be passed into the `TreeView` component as the `data` prop.
-   *
-   * @docgen
    */
   children: (data: FlattenedTreeViewDataList<D>) => React.ReactNode;
 
   /**
    * An optional function that will sort the data at each level. It should take in a `FlattenedTreeViewDataList`
    * and return a sorted `FlattenedTreeViewDataList`.
-   *
-   * @docgen
    */
   sort?: FlattenedTreeViewSort<D>;
 }

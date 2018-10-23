@@ -5,30 +5,22 @@ export interface ITreeItemBaseProps {
   /**
    * An optional aria-expanded attribute to apply to the tree item. This should only be provided as the value "true"
    * and only if it is currently expanded. It should be `undefined` otherwise.
-   *
-   * @docgen
    */
   "aria-expanded"?: "true";
 
   /**
    * The current level (depth) for the tree item.
-   *
-   * @docgen
    */
   "aria-level": number;
 
   /**
    * The tree item's current position within the parent treeview or a sub-group. This should be a number starting
    * from `1`.
-   *
-   * @docgen
    */
   "aria-posinset": number;
 
   /**
    * The size of the treeview or sub-group that the tree item is in. This should be a number starting from `1`.
-   *
-   * @docgen
    */
   "aria-setsize": number;
 
@@ -38,8 +30,6 @@ export interface ITreeItemBaseProps {
    *
    * It is generally recommended to keep this prop `undefined` and let the `selected` prop handle setting the correct
    * `tabIndex` instead. However, you can manually override the built-in behavior by setting this to valid number.
-   *
-   * @docgen
    */
   tabIndex?: 0 | -1;
 
@@ -47,8 +37,6 @@ export interface ITreeItemBaseProps {
    * Boolean if the tree item is current selected. This will update the styles to be have the selected state as well
    * as changing the `tabIndex` from `-1` to `0` so it is focusable. If the `tabIndex` prop is defined, that value
    * will **always** be used instead.
-   *
-   * @docgen
    */
   selected?: boolean;
 }

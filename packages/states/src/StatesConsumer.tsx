@@ -114,44 +114,32 @@ export interface IStatesConsumerEvents {
 export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
   /**
    * An optional class name that should be merged with the current states class name.
-   *
-   * @docgen
    */
   className?: string;
 
   /**
    * Boolean if the element is disabled. This is mostly used so that elements that have been updated
    * to gain focus programmatically do not attach the `onBlur` event incorrectly.
-   *
-   * @docgen
    */
   disabled?: boolean;
 
   /**
    * Boolean if the child element should also gain the press states.
-   *
-   * @docgen
    */
   pressable?: boolean;
 
   /**
    * An optional className to apply when the child element is focused.
-   *
-   * @docgen
    */
   focusedClassName?: string;
 
   /**
    * An optional className to apply when the child element is pressed.
-   *
-   * @docgen
    */
   pressedClassName?: string;
 
   /**
    * Boolean if the child item is currently selected.
-   *
-   * @docgen
    */
   selected?: boolean;
 
@@ -159,8 +147,6 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
    * A function to render any children with the merged class names and optional blur events. The child element
    * **must** apply the `ref` attribute to the child element as well as the provided class name and `onBlur` to
    * work correctly.
-   *
-   * @docgen
    */
   children: ((props: IStatesConsumerChildProps) => React.ReactNode) | React.ReactElement<any>;
 }

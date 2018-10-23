@@ -109,8 +109,6 @@ export interface IKeyboardClickableProps {
   /**
    * Boolean if the clickable element is disabled. When this is enabled, the keydown event handler and
    * tabIndex will be updated to be `undefined` to prevent focus or clicks.
-   *
-   * @docgen
    */
   disabled?: boolean;
 
@@ -118,30 +116,22 @@ export interface IKeyboardClickableProps {
    * The tab index for the clickable element. This needs to be a number greater than or equal to `0` if
    * the element should be focusable by the `Tab` key. If this element is only focusable by "programmatic"
    * events, this value should be `-1`.
-   *
-   * @docgen
    */
   tabIndex?: number;
 
   /**
    * The role that the clickable element should take on. This defaults to a "button" role.
-   *
-   * @docgen
    */
   role?: KeyboardClickableRole;
 
   /**
    * An optional `keydown` event handler. This will be called when the built-in `keydown` handler is called.
-   *
-   * @docgen
    */
   onKeyDown?: KeyboardClickableKeyboardListener;
 
   /**
    * A children renderer function that takes in the "new" props and applies them to the correct element that
    * should gain the clickable events and role.
-   *
-   * @docgen
    */
   children: (options: IKeyboardClickableChildrenOptions) => React.ReactNode;
 
@@ -153,8 +143,6 @@ export interface IKeyboardClickableProps {
    * An optional `keyup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onKeyUp?: KeyboardClickableKeyboardListener;
 
@@ -162,8 +150,6 @@ export interface IKeyboardClickableProps {
    * An optional `blur` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onBlur?: KeyboardClickableFocusListener;
 
@@ -171,8 +157,6 @@ export interface IKeyboardClickableProps {
    * An optional `focus` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onFocus?: KeyboardClickableFocusListener;
 
@@ -180,8 +164,6 @@ export interface IKeyboardClickableProps {
    * An optional `mousedown` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onMouseDown?: KeyboardClickableMouseListener;
 
@@ -189,8 +171,6 @@ export interface IKeyboardClickableProps {
    * An optional `mouseup` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onMouseUp?: KeyboardClickableMouseListener;
 
@@ -198,8 +178,6 @@ export interface IKeyboardClickableProps {
    * An optional `click` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onClick?: KeyboardClickableMouseListener;
 
@@ -207,8 +185,6 @@ export interface IKeyboardClickableProps {
    * An optional `touchstart` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onTouchStart?: KeyboardClickableTouchListener;
 
@@ -216,8 +192,6 @@ export interface IKeyboardClickableProps {
    * An optional `touchend` event listener. Nothing within the `KeyboardClickable` component uses this function, but
    * it can be provided so that when `disabled`, this will be `undefined` so it is not applied to the
    * child element when disabled.
-   *
-   * @docgen
    */
   onTouchEnd?: KeyboardClickableTouchListener;
 }

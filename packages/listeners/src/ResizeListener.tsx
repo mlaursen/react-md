@@ -14,24 +14,18 @@ export interface IResizeListenerConfigProps {
    * This is the duration between a touchmove event and a resize event that will consider the
    * resize event valid. Some mobile browsers will incorrectly trigger a resize event when the user
    * touches the page and scrolls because fixed toolbars move within the viewport.
-   *
-   * @docgen
    */
   touchDelay?: number;
 
   /**
    * Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
    * scrolls which causes the fixed toolbar to move out of the viewport.
-   *
-   * @docgen
    */
   disableTouchFixes?: boolean;
 
   /**
    * Boolean if the resiez listener should no longer ignore resize events that can occur after a soft keyboard
    * appears on mobile devices (currently all Android devices).
-   *
-   * @docgen
    */
   disableTouchKeyboardFixes?: boolean;
 
@@ -41,8 +35,6 @@ export interface IResizeListenerConfigProps {
    *
    * NOTE: This will be a `new Event("resize")` that is dispatched from the `window`. This means that it will not
    * be a trusted source.
-   *
-   * @docgen
    */
   disableMountResizeTrigger?: boolean;
 }
@@ -54,8 +46,6 @@ export interface IResizeListenerBaseProps extends IResizeListenerConfigProps {
    * might need to do additional checks before re-rendering children.
    *
    * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
    */
   onResize?: (event: Event) => void;
 
@@ -64,8 +54,6 @@ export interface IResizeListenerBaseProps extends IResizeListenerConfigProps {
    * This method isn't quite as preferred as using the `onResize` prop, but it can be done.
    *
    * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
    */
   children?: () => React.ReactNode;
 }

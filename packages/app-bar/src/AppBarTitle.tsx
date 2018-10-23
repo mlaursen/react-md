@@ -5,8 +5,6 @@ import cn from "classnames";
 export interface IAppBarTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /**
    * Boolean if the title should be placed at the `$rmd-app-bar-title-keyline`.
-   *
-   * @docgen
    */
   keyline?: boolean;
 }

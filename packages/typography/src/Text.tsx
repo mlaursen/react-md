@@ -52,24 +52,18 @@ export interface ITextProps
   /**
    * An optional html tag name to render in. If this is omitted, it will determine the "best" tag
    * based on the provided `type`.
-   *
-   * @docgen
    */
   tagName?: TextHtmlTags;
 
   /**
    * An optional text type to render as. If both this and the tagName are omitted, only the base typography styles
    * will be applied.
-   *
-   * @docgen
    */
   type?: TextTypes;
 
   /**
    * This can either be any renderable element or a children callback function that gets provided the current class
    * name.
-   *
-   * @docgen
    */
   children?: React.ReactNode | TextChildrenFunction;
 }

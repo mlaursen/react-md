@@ -11,23 +11,17 @@ export interface IListItemRightIconProps {
    *
    * If this is not a valid react element, the icon will be wrapped in a `<span>` instead
    * with the class names applied.
-   *
-   * @docgen
    */
   icon?: React.ReactElement<Element> | React.ReactNode;
 
   /**
    * The children to render before or after the provided icon.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 
   /**
    * Boolean if the icon should be forced into a `<span>` with the class names applied instead of attempting
    * to clone into the provided icon.
-   *
-   * @docgen
    */
   forceIconWrap?: boolean;
 }

@@ -5,8 +5,6 @@ import cn from "classnames";
 export interface IAppBarRowProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Boolean if each row is using the "dense" spec for an app bar.
-   *
-   * @docgen
    */
   dense?: boolean;
 }

@@ -12,46 +12,34 @@ export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Boolean if the `AppBar` should be fixed to the top or bottom of the page.
-   *
-   * @docgen
    */
   fixed?: boolean;
 
   /**
    * The position within the page to "fix" the `AppBar` when the `fixed` prop is enabled.
-   *
-   * @docgen
    */
   fixedPosition?: AppBarPosition;
 
   /**
    * Boolean if the fixed `AppBar` should gain elevation. This is recommended to stay enabled unless
    * you manually apply a border to help separate the `AppBar` from other content.
-   *
-   * @docgen
    */
   fixedElevation?: boolean;
 
   /**
    * Boolean if the `AppBar` should use the `dense` spec. This prop can be used along with the `prominent` prop
    * to create a prominent and dense `AppBar`.
-   *
-   * @docgen
    */
   dense?: boolean;
 
   /**
    * Boolean if the `AppBar` should use the `prominent` spec. This prop can be used along with the `dense` prop
    * to create a prominent and dense `AppBar`.
-   *
-   * @docgen
    */
   prominent?: boolean;
 
   /**
    * The theme to apply to the `AppBar`.
-   *
-   * @docgen
    */
   theme?: AppBarTheme;
 
@@ -60,8 +48,6 @@ export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * `theme`. If this value is `undefined`, the color will only be inherited when the theme is set to `primary` or
    * `secondary`. However if this value is a boolean, it will be used instead. So if you set this to `false` and set
    * the `theme` to `"primary"`, the defined primary text clor will not be inherited.
-   *
-   * @docgen
    */
   inheritColor?: boolean;
 }

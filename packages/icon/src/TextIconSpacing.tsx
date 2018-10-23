@@ -6,8 +6,6 @@ export interface ITextIconSpacingProps {
   /**
    * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop is enabled
    * or the icon is not a valid React Element.
-   *
-   * @docgen
    */
   className?: string;
 
@@ -19,45 +17,33 @@ export interface ITextIconSpacingProps {
    *
    * If this is not a valid react element, the icon will be wrapped in a `<span>` instead
    * with the class names applied.
-   *
-   * @docgen
    */
   icon?: React.ReactElement<Element> | React.ReactNode;
 
   /**
    * Boolean if the icon should appear after the text instead of before.
-   *
-   * @docgen
    */
   iconAfter?: boolean;
 
   /**
    * The children to render before or after the provided icon. This is defaulted to `null` so that providing
    * a `null` icon will correctly render without React crashing.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 
   /**
    * The class name to use for an icon that is placed before text.
-   *
-   * @docgen
    */
   beforeClassName?: string;
 
   /**
    * The class name to use for an icon that is placed after text.
-   *
-   * @docgen
    */
   afterClassName?: string;
 
   /**
    * Boolean if the icon should be forced into a `<span>` with the class names applied instead of attempting
    * to clone into the provided icon.
-   *
-   * @docgen
    */
   forceIconWrap?: boolean;
 }

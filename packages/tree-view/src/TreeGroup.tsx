@@ -7,30 +7,22 @@ export interface ITreeGroupProps extends IListProps {
   /**
    * An optional configurable enter duration. This defaults to the `Collapse`'s enter duration
    * of `250ms`.
-   *
-   * @docgen
    */
   enterDuration?: number;
 
   /**
    * An optional configurable leave duration. This defaults to the `Collapse`'s leave duration
    * of `200ms`.
-   *
-   * @docgen
    */
   leaveDuration?: number;
 
   /**
    * Boolean if the group should be removed from the DOM when the group is not expanded.
-   *
-   * @docgen
    */
   isEmptyCollapsed?: boolean;
 
   /**
    * Boolean if the group is currently expanded.
-   *
-   * @docgen
    */
   expanded: boolean;
 }

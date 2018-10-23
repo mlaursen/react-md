@@ -7,8 +7,6 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
    * `img` so that it is insured as a graphic.
-   *
-   * @docgen
    */
   role?: "img" | "presentation";
 
@@ -22,7 +20,6 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    *
    * @see {@link #title}
    * @see {@link #desc}
-   * @docgen
    */
   "aria-labelledby"?: string;
 
@@ -31,7 +28,6 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
-   * @docgen
    */
   title?: string;
 
@@ -40,15 +36,12 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
-   * @docgen
    */
   desc?: string;
 
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default since IE11
    * and Edge actually default this to true and keyboard's will tab focus all SVGs.
-   *
-   * @docgen
    */
   focusable?: string;
 
@@ -57,8 +50,6 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    * `height` and `width` simultaneously. This will be provided as inline styles
    * since the `height` and `width` are normally controlled by CSS, and CSS has
    * higher precedence than the `height`/`width` attributes.
-   *
-   * @docgen
    */
   size?: number;
 
@@ -77,16 +68,12 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    * For example, if the SVG element is 250 (width) by 200 (height) and you provide
    * `viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corner
    * (0, 0) to the bottom right (25, 20) and each unit will be worth `10px`.
-   *
-   * @docgen
    */
   viewBox?: string;
 
   /**
    * An optional xmlns string to provide. The `use` prop will not work without this prop
    * defined.
-   *
-   * @docgen
    */
   xmlns?: string;
 
@@ -98,22 +85,16 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
    * This prop **should not** be used with the `children` prop as only one will be rendered.
    *
    * > NOTE: IE **does not support** external SVGs. Please see the demo for more details.
-   *
-   * @docgen
    */
   use?: string;
 
   /**
    * Boolean if the icon should use the dense spec.
-   *
-   * @docgen
    */
   dense?: boolean;
 
   /**
    * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
-   *
-   * @docgen
    */
   children?: React.ReactNode;
 }

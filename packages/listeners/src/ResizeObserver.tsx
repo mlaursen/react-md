@@ -13,15 +13,11 @@ export interface IResizeObserverResizeOptions {
 export interface IResizeObserverBaseProps {
   /**
    * Boolean if the height should be watched for the resize target.
-   *
-   * @docgen
    */
   watchHeight?: boolean;
 
   /**
    * Boolean if the width should be watched for the resize target.
-   *
-   * @docgen
    */
   watchWidth?: boolean;
 
@@ -29,8 +25,6 @@ export interface IResizeObserverBaseProps {
    * The target for the resize observer. This can either a `document.querySelector` string,
    * an `Element`, or `null`. If the target is `null`, the resize observer will not be started
    * until it is switched to a valid `Element` or query selector.
-   *
-   * @docgen
    */
   target: string | Element | null;
 
@@ -43,8 +37,6 @@ export interface IResizeObserverBaseProps {
    * be `null` and `0` before a correct `target` is initialized.
    *
    * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
    */
   onResize?: (options: IResizeObserverResizeOptions) => void;
 
@@ -53,8 +45,6 @@ export interface IResizeObserverBaseProps {
    * once the sizing of the element changes, so this might block child updates.
    *
    * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
-   *
-   * @docgen
    */
   children?: (options: IResizeObserverResizeOptions) => React.ReactNode;
 }

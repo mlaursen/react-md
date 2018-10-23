@@ -10,15 +10,11 @@ export interface ITextContainerProps extends React.HTMLAttributes<HTMLDivElement
    * The size for the text container. This can usually just be left at the default of `"auto"` since
    * it will automatically transition between `"mobile"` and `"desktop"` based on media queries.
    * However, you can also manually specify `"mobile"` or `"desktop"` if needed.
-   *
-   * @docgen
    */
   size?: TextContainerSize;
 
   /**
    * The specific tagName to render as.
-   *
-   * @docgen
    */
   tagName?: TextContainerTagName;
 }

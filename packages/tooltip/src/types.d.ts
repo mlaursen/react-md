@@ -25,8 +25,6 @@ export interface IMagicTooltipProps extends ITooltipProps {
    * The enter duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
    * set for `$rmd-tooltip-enter-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
    * animations easier.
-   *
-   * @docgen
    */
   enterDuration?: number;
 
@@ -34,8 +32,6 @@ export interface IMagicTooltipProps extends ITooltipProps {
    * The leave duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
    * set for `$rmd-tooltip-leave-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
    * animations easier.
-   *
-   * @docgen
    */
   leaveDuration?: number;
 

@@ -16,15 +16,11 @@ export interface ITreeItemContentBaseProps extends IListItemBaseProps {
    * The component to use that renders a `Link` component. This should normally be something like the `Link`
    * from `react-router` or `reach-router`, but can also just be the `Link` from `@react-md/link` if you are
    * not creating a SPA.
-   *
-   * @docgen
    */
   linkComponent?: React.ReactType;
 
   /**
    * Boolean if the `medium` `ListItem` spec should be used for the content.
-   *
-   * @docgen
    */
   medium?: boolean;
 }

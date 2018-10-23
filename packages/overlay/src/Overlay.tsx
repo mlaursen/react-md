@@ -8,16 +8,12 @@ export interface IOverlayProps extends ITransitionProps, React.HTMLAttributes<HT
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
    * with an opacity transition.
-   *
-   * @docgen
    */
   visible: boolean;
 
   /**
    * A function that should change the `visible` prop to `false`. This is used so that clicking the overlay
    * can hide the overlay.
-   *
-   * @docgen
    */
   onRequestClose: () => void;
 }

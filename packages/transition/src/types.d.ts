@@ -23,8 +23,6 @@ export interface ITransitionProps {
   /**
    * The transition duration for the overlay. This should not be changed unless you manually change the
    * `$rmd-overlay-transition-duration` scss variable.
-   *
-   * @docgen
    */
   timeout?: TransitionTimeout;
 
@@ -32,8 +30,6 @@ export interface ITransitionProps {
    * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
    * not be rendered in the DOM until the `visible` prop is `true` but this can be changed by setting this
    * prop to `false`.
-   *
-   * @docgen
    */
   mountOnEnter?: boolean;
 
@@ -41,50 +37,36 @@ export interface ITransitionProps {
    * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
    * be removed from the DOM when the `visible` prop is `false` but this can be changed by setting this
    * prop to `false`.
-   *
-   * @docgen
    */
   unmountOnExit?: boolean;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onEnter?: TransitionEnterHandler;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onEntering?: TransitionEnterHandler;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onEntered?: TransitionEnterHandler;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onExit?: TransitionExitHandler;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onExiting?: TransitionExitHandler;
 
   /**
    * Pass-down prop to the `Transition` component from react-transition-group.
-   *
-   * @docgen
    */
   onExited?: TransitionExitHandler;
 }
@@ -92,8 +74,6 @@ export interface ITransitionProps {
 export interface ICSSTransitionProps extends ITransitionProps {
   /**
    * The class names to use during the different parts of the animation.
-   *
-   * @docgen
    */
   classNames?: CSSTransitionClassNames;
 }
