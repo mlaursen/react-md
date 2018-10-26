@@ -1,7 +1,8 @@
 import * as React from "react";
 import { create, ReactTestRendererJSON } from "react-test-renderer";
+import { mount } from "enzyme";
 
-import Text from "../Text";
+import Text, { ITextProps, DefaultTextComponentProps } from "../Text";
 
 export function createSnapshot(children: React.ReactElement<any>): ReactTestRendererJSON | null {
   return create(children).toJSON();
@@ -15,603 +16,87 @@ const HELLO_WORLD = "Hello, world!";
 const LONG_TEXT =
   "This is another string that is just some text. I'm not sure how helpful this is though.";
 
+interface ICustomProps {
+  enabled: boolean;
+  className?: string;
+}
+
+const Custom: React.SFC<ICustomProps> = ({ enabled, ...props }) => (
+  <div {...props} className={`${props.className} ${enabled}`} />
+);
+interface IClassProps {
+  something?: any;
+  className?: string;
+  children: React.ReactNode;
+}
+
+class Class extends React.Component<IClassProps> {
+  public render() {
+    const { className, children } = this.props;
+    return <code className={className}>{children}</code>;
+  }
+}
+
 describe("Text", () => {
   describe("rendering return value", () => {
-    it("should render a text string when there are no additional props provided", () => {
-      expectSnapshot(<Text>{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text>{LONG_TEXT}</Text>);
+    it("should render as a <p> with the body-1 styles by default", () => {
+      const text = create(<Text>{HELLO_WORLD}</Text>);
+
+      expect(() => text.root.findByType("p")).not.toThrow();
+      expect(text.toJSON()).toMatchSnapshot();
     });
 
-    it("should render as the provided tagName prop", () => {
-      expectSnapshot(<Text tagName="h1">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="h2">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="h3">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="h4">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="h5">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="h6">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="p">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="span">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="div">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="button">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text tagName="caption">{HELLO_WORLD}</Text>);
+    it("should render as the provided component prop when it's simple strings", () => {
+      ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span", "div", "button", "caption"].forEach(
+        component => {
+          const test = create(<Text component={component}>{HELLO_WORLD}</Text>);
+          expect(() => test.root.findByType(component)).not.toThrow();
+          expect(test.toJSON()).toMatchSnapshot();
+        }
+      );
     });
 
-    it("should render as the correct tag based on the type prop", () => {
-      expectSnapshot(<Text type="headline-1">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="headline-2">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="headline-3">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="headline-4">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="headline-5">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="headline-6">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="subtitle-1">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="subtitle-2">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="body-1">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="body-2">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="caption">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="button">{HELLO_WORLD}</Text>);
-      expectSnapshot(<Text type="overline">{HELLO_WORLD}</Text>);
+    it("should be able to render as an SFC", () => {
+      const text = create(
+        <Text<ICustomProps & DefaultTextComponentProps>
+          component={Custom}
+          type="headline-3"
+          enabled={false}
+        >
+          {HELLO_WORLD}
+        </Text>
+      );
+
+      expect(text.toJSON()).toMatchSnapshot();
     });
 
-    it("should render as the provided tagName even if the type prop is set", () => {
-      expectSnapshot(
-        <Text tagName="h1" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h1" type="overline">
+    it("should be able to render as a class Component", () => {
+      const text = create(
+        <Text<IClassProps & DefaultTextComponentProps> component={Class} type="headline-3">
           {HELLO_WORLD}
         </Text>
       );
 
-      expectSnapshot(
-        <Text tagName="h2" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h2" type="overline">
+      expect(text.toJSON()).toMatchSnapshot();
+    });
+
+    it("should be able to render a forwardedRef component or SFC", () => {
+      interface ICustomDivProps<T = any> extends ICustomProps {
+        forwardedRef: React.Ref<T>;
+      }
+
+      const CustomDiv: React.SFC<ICustomDivProps> = () => <div />;
+      const CustomRef = React.forwardRef<HTMLDivElement, ICustomProps>((props, ref) => (
+        <CustomDiv forwardedRef={ref} {...props} />
+      ));
+
+      const text = create(
+        <Text<ICustomProps> component={CustomRef} type="headline-3" enabled={false}>
           {HELLO_WORLD}
         </Text>
       );
 
-      expectSnapshot(
-        <Text tagName="h3" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h3" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="h4" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h4" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="h5" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h5" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="h6" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="h6" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="p" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="p" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="caption" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="caption" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="span" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="span" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
-
-      expectSnapshot(
-        <Text tagName="div" type="headline-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="headline-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="headline-3">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="headline-4">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="headline-5">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="headline-6">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="subtitle-1">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="subtitle-2">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="caption">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="button">
-          {HELLO_WORLD}
-        </Text>
-      );
-      expectSnapshot(
-        <Text tagName="div" type="overline">
-          {HELLO_WORLD}
-        </Text>
-      );
+      expect(text.toJSON()).toMatchSnapshot();
     });
   });
 

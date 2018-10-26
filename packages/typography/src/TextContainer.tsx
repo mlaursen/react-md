@@ -2,10 +2,35 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 
-export type TextContainerTagName = "div" | "section" | "article" | "aside";
+/**
+ * A union of the available text container sizes. One of these values must be chosen
+ * to help set the max width for text.
+ */
 export type TextContainerSize = "auto" | "mobile" | "desktop";
 
-export interface ITextContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+/**
+ * The default additional props that can be provided to the `TextContainer`. By default, it is just
+ * all the div element attributes.
+ */
+export type DefaultTextContainerProps = React.HTMLAttributes<HTMLDivElement>;
+
+/**
+ * A type describing the text container's children render function. It provides an object containing
+ * the correct (and merged) className and exects a renderable element to be returned.
+ */
+export type TextContainerRenderFunction = (props: { className: string }) => React.ReactNode;
+
+/**
+ * The base props for rendering the text component.
+ *
+ * @typeparam P - Any additional props that are available based on the component prop.
+ */
+export interface ITextContainerProps<P = any> {
+  /**
+   * An optional className to merge with typography text container styles.
+   */
+  className?: string;
+
   /**
    * The size for the text container. This can usually just be left at the default of `"auto"` since
    * it will automatically transition between `"mobile"` and `"desktop"` based on media queries.
@@ -14,35 +39,52 @@ export interface ITextContainerProps extends React.HTMLAttributes<HTMLDivElement
   size?: TextContainerSize;
 
   /**
-   * The specific tagName to render as.
+   * The component to render as. By default this will just be a div, but anything can be provided.
    */
-  tagName?: TextContainerTagName;
+  component?: React.ReactType<P>;
+
+  /**
+   * Either a child render function or a react node. If this is not the child render function, a
+   * different wrapper component can be provided using the `component` prop.
+   */
+  children?: React.ReactNode | TextContainerRenderFunction;
 }
 
+/**
+ * The default defined props for the text container component.
+ */
 export interface ITextContainerDefaultProps {
   size: TextContainerSize;
-  tagName: TextContainerTagName;
+  component: React.ReactType;
 }
 
-export type TextContainerWithDefaultProps = ITextContainerProps & ITextContainerDefaultProps;
+/**
+ * @private
+ */
+export type TextContainerWithDefaultProps = ITextContainerProps<DefaultTextContainerProps> &
+  ITextContainerDefaultProps;
 
 /**
  * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or `<aside>`
  * element that applies the text container styles.
  */
-export default class TextContainer extends React.Component<ITextContainerProps> {
+export default class TextContainer<
+  P extends {} = DefaultTextContainerProps
+> extends React.Component<ITextContainerProps> {
   public static propTypes = {
-    tagName: PropTypes.oneOf(["div", "section", "article", "aside"]),
     size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
+    className: PropTypes.string,
+    component: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
+    children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   };
 
   public static defaultProps = {
-    tagName: "div",
     size: "auto",
+    component: "div",
   } as ITextContainerDefaultProps;
 
   public render() {
-    const { size, tagName, className: propClassName, children, ...props } = this
+    const { size, className: propClassName, component, children, ...props } = this
       .props as TextContainerWithDefaultProps;
 
     const className = cn(
@@ -53,14 +95,15 @@ export default class TextContainer extends React.Component<ITextContainerProps> 
       },
       propClassName
     );
+    if (typeof children === "function") {
+      return (children as TextContainerRenderFunction)({ className });
+    }
 
-    return React.createElement(
-      tagName,
-      {
-        ...props,
-        className,
-      },
-      children
+    const Component = component as React.ReactType<P>;
+    return (
+      <Component {...props} className={className}>
+        {children}
+      </Component>
     );
   }
 }

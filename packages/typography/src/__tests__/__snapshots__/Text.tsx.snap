@@ -1,1076 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Text rendering return value should render a text string when there are no additional props provided 1`] = `"Hello, world!"`;
+exports[`Text rendering return value should be able to render a forwardedRef component or SFC 1`] = `<div />`;
 
-exports[`Text rendering return value should render a text string when there are no additional props provided 2`] = `"This is another string that is just some text. I'm not sure how helpful this is though."`;
+exports[`Text rendering return value should be able to render as a class Component 1`] = `
+<code
+  className="rmd-typography rmd-typography--headline-3"
+>
+  Hello, world!
+</code>
+`;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 1`] = `
+exports[`Text rendering return value should be able to render as an SFC 1`] = `
+<div
+  className="rmd-typography rmd-typography--headline-3 false"
+>
+  Hello, world!
+</div>
+`;
+
+exports[`Text rendering return value should render as a <p> with the body-1 styles by default 1`] = `
+<p
+  className="rmd-typography rmd-typography--body-1"
+>
+  Hello, world!
+</p>
+`;
+
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 1`] = `
 <h1
-  className="rmd-typography--headline-1"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h1>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 2`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 2`] = `
 <h2
-  className="rmd-typography--headline-2"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h2>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 3`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 3`] = `
 <h3
-  className="rmd-typography--headline-3"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h3>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 4`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 4`] = `
 <h4
-  className="rmd-typography--headline-4"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h4>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 5`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 5`] = `
 <h5
-  className="rmd-typography--headline-5"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h5>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 6`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 6`] = `
 <h6
-  className="rmd-typography--headline-6"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </h6>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 7`] = `
-<h6
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the correct tag based on the type prop 8`] = `
-<h6
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the correct tag based on the type prop 9`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 7`] = `
 <p
-  className="rmd-typography--body-1"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </p>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 10`] = `
-<p
-  className="rmd-typography--body-2"
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 8`] = `
+<span
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
-</p>
+</span>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 11`] = `
-<caption
-  className="rmd-typography--caption"
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 9`] = `
+<div
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
-</caption>
+</div>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 12`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 10`] = `
 <button
-  className="rmd-typography--button"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </button>
 `;
 
-exports[`Text rendering return value should render as the correct tag based on the type prop 13`] = `
-<span
-  className="rmd-typography--overline"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 1`] = `
-<h1
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 2`] = `
-<h1
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 3`] = `
-<h1
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 4`] = `
-<h1
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 5`] = `
-<h1
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 6`] = `
-<h1
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 7`] = `
-<h1
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 8`] = `
-<h1
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 9`] = `
-<h1
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 10`] = `
-<h1
-  className="rmd-typography--button"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 11`] = `
-<h1
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 12`] = `
-<h2
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 13`] = `
-<h2
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 14`] = `
-<h2
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 15`] = `
-<h2
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 16`] = `
-<h2
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 17`] = `
-<h2
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 18`] = `
-<h2
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 19`] = `
-<h2
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 20`] = `
-<h2
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 21`] = `
-<h2
-  className="rmd-typography--button"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 22`] = `
-<h2
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 23`] = `
-<h3
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 24`] = `
-<h3
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 25`] = `
-<h3
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 26`] = `
-<h3
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 27`] = `
-<h3
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 28`] = `
-<h3
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 29`] = `
-<h3
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 30`] = `
-<h3
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 31`] = `
-<h3
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 32`] = `
-<h3
-  className="rmd-typography--button"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 33`] = `
-<h3
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 34`] = `
-<h4
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 35`] = `
-<h4
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 36`] = `
-<h4
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 37`] = `
-<h4
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 38`] = `
-<h4
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 39`] = `
-<h4
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 40`] = `
-<h4
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 41`] = `
-<h4
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 42`] = `
-<h4
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 43`] = `
-<h4
-  className="rmd-typography--button"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 44`] = `
-<h4
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 45`] = `
-<h5
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 46`] = `
-<h5
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 47`] = `
-<h5
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 48`] = `
-<h5
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 49`] = `
-<h5
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 50`] = `
-<h5
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 51`] = `
-<h5
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 52`] = `
-<h5
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 53`] = `
-<h5
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 54`] = `
-<h5
-  className="rmd-typography--button"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 55`] = `
-<h5
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 56`] = `
-<h6
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 57`] = `
-<h6
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 58`] = `
-<h6
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 59`] = `
-<h6
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 60`] = `
-<h6
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 61`] = `
-<h6
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 62`] = `
-<h6
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 63`] = `
-<h6
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 64`] = `
-<h6
-  className="rmd-typography--caption"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 65`] = `
-<h6
-  className="rmd-typography--button"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 66`] = `
-<h6
-  className="rmd-typography--overline"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 67`] = `
-<p
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 68`] = `
-<p
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 69`] = `
-<p
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 70`] = `
-<p
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 71`] = `
-<p
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 72`] = `
-<p
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 73`] = `
-<p
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 74`] = `
-<p
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 75`] = `
-<p
-  className="rmd-typography--caption"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 76`] = `
-<p
-  className="rmd-typography--button"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 77`] = `
-<p
-  className="rmd-typography--overline"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 78`] = `
+exports[`Text rendering return value should render as the provided component prop when it's simple strings 11`] = `
 <caption
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 79`] = `
-<caption
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 80`] = `
-<caption
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 81`] = `
-<caption
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 82`] = `
-<caption
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 83`] = `
-<caption
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 84`] = `
-<caption
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 85`] = `
-<caption
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 86`] = `
-<caption
-  className="rmd-typography--caption"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 87`] = `
-<caption
-  className="rmd-typography--button"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 88`] = `
-<caption
-  className="rmd-typography--overline"
->
-  Hello, world!
-</caption>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 89`] = `
-<span
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 90`] = `
-<span
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 91`] = `
-<span
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 92`] = `
-<span
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 93`] = `
-<span
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 94`] = `
-<span
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 95`] = `
-<span
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 96`] = `
-<span
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 97`] = `
-<span
-  className="rmd-typography--caption"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 98`] = `
-<span
-  className="rmd-typography--button"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 99`] = `
-<span
-  className="rmd-typography--overline"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 100`] = `
-<div
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 101`] = `
-<div
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 102`] = `
-<div
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 103`] = `
-<div
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 104`] = `
-<div
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 105`] = `
-<div
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 106`] = `
-<div
-  className="rmd-typography--subtitle-1"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 107`] = `
-<div
-  className="rmd-typography--subtitle-2"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 108`] = `
-<div
-  className="rmd-typography--caption"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 109`] = `
-<div
-  className="rmd-typography--button"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName even if the type prop is set 110`] = `
-<div
-  className="rmd-typography--overline"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 1`] = `
-<h1
-  className="rmd-typography--headline-1"
->
-  Hello, world!
-</h1>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 2`] = `
-<h2
-  className="rmd-typography--headline-2"
->
-  Hello, world!
-</h2>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 3`] = `
-<h3
-  className="rmd-typography--headline-3"
->
-  Hello, world!
-</h3>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 4`] = `
-<h4
-  className="rmd-typography--headline-4"
->
-  Hello, world!
-</h4>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 5`] = `
-<h5
-  className="rmd-typography--headline-5"
->
-  Hello, world!
-</h5>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 6`] = `
-<h6
-  className="rmd-typography--headline-6"
->
-  Hello, world!
-</h6>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 7`] = `
-<p
-  className="rmd-typography--body-1"
->
-  Hello, world!
-</p>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 8`] = `
-<span
-  className="rmd-typography--span"
->
-  Hello, world!
-</span>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 9`] = `
-<div
-  className="rmd-typography--span"
->
-  Hello, world!
-</div>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 10`] = `
-<button
-  className="rmd-typography--button"
->
-  Hello, world!
-</button>
-`;
-
-exports[`Text rendering return value should render as the provided tagName prop 11`] = `
-<caption
-  className="rmd-typography--caption"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </caption>
@@ -1078,7 +116,7 @@ exports[`Text rendering return value should render as the provided tagName prop 
 
 exports[`Text should provide the className if the children is a callback function 1`] = `
 <div
-  className="rmd-typography"
+  className="rmd-typography rmd-typography--body-1"
 >
   Hello, world!
 </div>

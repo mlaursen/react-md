@@ -1,10 +1,12 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import memoizeOne from "memoize-one";
 import cn from "classnames";
 
-export type TextChildrenFunction = (props: { className: string }) => React.ReactNode;
-
+/**
+ * A union of all the material design provided typography styles. When used with the Text
+ * component, this will generate the correct typography className to apply and determine
+ * what component to be rendered as if none was provided.
+ */
 export type TextTypes =
   | "headline-1"
   | "headline-2"
@@ -20,75 +22,118 @@ export type TextTypes =
   | "overline"
   | "button";
 
-export type TextHtmlTags =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "p"
-  | "span"
-  | "div"
-  | "a"
-  | "button"
-  | "caption"
-  | "blockquote"
-  | "body"
-  | "html";
+/**
+ * The default additional props that can be applied to the Text component. This mostly just
+ * covers all the elements that can be rendered "natively".
+ */
+export type DefaultTextComponentProps = React.HTMLAttributes<
+  | HTMLHeadingElement
+  | HTMLParagraphElement
+  | HTMLSpanElement
+  | HTMLDivElement
+  | HTMLButtonElement
+  | HTMLTableCaptionElement
+  | HTMLAnchorElement
+  | HTMLBodyElement
+  | HTMLHtmlElement
+>;
 
-export interface ITextProps
-  extends React.HTMLAttributes<
-      | HTMLHeadingElement
-      | HTMLParagraphElement
-      | HTMLSpanElement
-      | HTMLDivElement
-      | HTMLButtonElement
-      | HTMLTableCaptionElement
-      | HTMLAnchorElement
-      | HTMLBodyElement
-      | HTMLHtmlElement
-    > {
+/**
+ * A type describing the text component's children render function. It provides an object containing
+ * the correct (and merged) className and exects a renderable element to be returned.
+ */
+export type TextRenderFunction = (props: { className: string }) => React.ReactNode;
+
+/**
+ * The base props for rendering the text component.
+ *
+ * @typeparam P - Any additional props that are available based on the component prop.
+ */
+export interface ITextProps<P = any> {
   /**
-   * An optional html tag name to render in. If this is omitted, it will determine the "best" tag
-   * based on the provided `type`.
+   * An optional className to merge into typography styles.
    */
-  tagName?: TextHtmlTags;
+  className?: string;
 
   /**
-   * An optional text type to render as. If both this and the tagName are omitted, only the base typography styles
-   * will be applied.
+   * The component to render as when the children are not a render function. If this prop is omitted,
+   * the component will be determined by the `type` prop where:
+   * - `"headline-1" -> <h1>`
+   * - `"headline-2" -> <h2>`
+   * - `"headline-3" -> <h3>`
+   * - `"headline-4" -> <h4>`
+   * - `"headline-5" -> <h5>`
+   * - `"headline-6" -> <h6>`
+   * - `"subtitle-1" -> <h5>`
+   * - `"subtitle-2" -> <h6>`
+   * - `"body-1"     -> <p>`
+   * - `"body-2"     -> <p>`
+   * - `"caption"    -> <caption>`
+   * - `"overline"   -> <span>`
+   * - `"button"     -> <button>`
+   *
+   */
+  component?: React.ReactType<P> | null;
+
+  /**
+   * One of the material design typography text styles. This is used to generate a className
+   * that can be applied to any element and have the correct typography.
    */
   type?: TextTypes;
 
   /**
-   * This can either be any renderable element or a children callback function that gets provided the current class
-   * name.
+   * Either a child render function or a react node. If this is not the child render function, a
+   * different wrapper component can be provided using the `component` prop.
    */
-  children?: React.ReactNode | TextChildrenFunction;
+  children?: React.ReactNode | TextRenderFunction;
 }
 
-export default class Text extends React.Component<ITextProps, {}> {
+/**
+ * The default defined props for the text component.
+ */
+export interface ITextDefaultProps {
+  type: TextTypes;
+  component: React.ReactType | null;
+}
+
+/**
+ * @private
+ */
+export type TextWithDefaultProps<P> = ITextProps<P> & ITextDefaultProps;
+
+/**
+ * The `Text` component is used to render text with te material design typography styles applied. By
+ * default, everything will be rendered in a `<p>` tag with the normal paragraphy styles.
+ *
+ * When the `type` prop is changed to another typography style, this component will determine the "best"
+ * element to render the text in *unless* the `component` prop is provided. The default mapping is:
+ * - `"headline-1" -> <h1>`
+ * - `"headline-2" -> <h2>`
+ * - `"headline-3" -> <h3>`
+ * - `"headline-4" -> <h4>`
+ * - `"headline-5" -> <h5>`
+ * - `"headline-6" -> <h6>`
+ * - `"subtitle-1" -> <h5>`
+ * - `"subtitle-2" -> <h6>`
+ * - `"body-1"     -> <p>`
+ * - `"body-2"     -> <p>`
+ * - `"caption"    -> <caption>`
+ * - `"overline"   -> <span>`
+ * - `"button"     -> <button>`
+ * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided `component`
+ * will be used instead.
+ *
+ * @typeparam P - Any additional props that are valid when using the `component` prop or the built-in
+ *    "auto-component" logic. By default, this will just allow any HTMLElement props for each the default
+ *    elements in the "auto-component" logic.
+ */
+export default class Text<P extends {} = DefaultTextComponentProps> extends React.Component<
+  ITextProps<P> & P
+> {
   public static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    tagName: PropTypes.oneOf([
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-      "p",
-      "span",
-      "div",
-      "a",
-      "button",
-      "caption",
-      "blockquote",
-      "html",
-      "body",
-    ]),
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
     type: PropTypes.oneOf([
       "headline-1",
       "headline-2",
@@ -107,66 +152,56 @@ export default class Text extends React.Component<ITextProps, {}> {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   };
 
+  public static defaultProps: ITextDefaultProps = {
+    type: "body-1",
+    component: null,
+  };
+
+  public render() {
+    const { className: propClassName, component, type, children, ...props } = this
+      .props as TextWithDefaultProps<DefaultTextComponentProps>;
+
+    const className = cn(`rmd-typography rmd-typography--${type}`, propClassName);
+    if (typeof children === "function") {
+      return (children as TextRenderFunction)({ className });
+    }
+
+    const Component = this.getComponent(component, type);
+    return (
+      <Component {...props} className={className}>
+        {children}
+      </Component>
+    );
+  }
+
   /**
    * A utility function to get the html tag the Text component should render as. This component will
-   * attempt to render as the provided `tagName` or some auto-logic for determinine what html tag
+   * attempt to render as the provided `component` or some auto-logic for determinine what html tag
    * should be used for styling. All fallbacks will be to place the children in a span element.
-   *
-   * When the component should be rendered as text, null will be returned. Otherwise
-   * the string html tag name will be returned.
    */
-  private getComponent = memoizeOne((tagName?: TextHtmlTags, type?: TextTypes) => {
-    if (tagName) {
-      return tagName;
-    } else if (type) {
-      switch (type) {
-        case "headline-1":
-          return "h1";
-        case "headline-2":
-          return "h2";
-        case "headline-3":
-          return "h3";
-        case "headline-4":
-          return "h4";
-        case "headline-5":
-          return "h5";
-        case "headline-6":
-        case "subtitle-1":
-        case "subtitle-2":
-          return "h6";
-        case "body-1":
-        case "body-2":
-          return "p";
-        case "caption":
-          return "caption";
-        case "button":
-          return "button";
-        default:
-          return "span";
-      }
-    }
-  });
-
-  private determineType = memoizeOne((component?: TextHtmlTags, type?: TextTypes) => {
-    if (type || !component) {
-      return type;
+  private getComponent = (component: React.ReactType<P> | null, type: TextTypes) => {
+    if (component) {
+      return component;
     }
 
-    switch (component) {
-      case "h1":
-        return "headline-1";
-      case "h2":
-        return "headline-2";
-      case "h3":
-        return "headline-3";
-      case "h4":
-        return "headline-4";
-      case "h5":
-        return "headline-5";
-      case "h6":
-        return "headline-6";
-      case "p":
-        return "body-1";
+    switch (type) {
+      case "headline-1":
+        return "h1";
+      case "headline-2":
+        return "h2";
+      case "headline-3":
+        return "h3";
+      case "headline-4":
+        return "h4";
+      case "headline-5":
+        return "h5";
+      case "headline-6":
+      case "subtitle-1":
+      case "subtitle-2":
+        return "h6";
+      case "body-1":
+      case "body-2":
+        return "p";
       case "caption":
         return "caption";
       case "button":
@@ -174,29 +209,5 @@ export default class Text extends React.Component<ITextProps, {}> {
       default:
         return "span";
     }
-  });
-
-  public render() {
-    const { className: propClassName, children, tagName, type: propType, ...props } = this.props;
-
-    const component = this.getComponent(tagName, propType);
-    const type = this.determineType(component, propType);
-    const className = cn(
-      {
-        "rmd-typography": !type,
-        [`rmd-typography--${type}`]: !!type,
-      },
-      propClassName
-    );
-
-    if (typeof children === "function") {
-      return (children as TextChildrenFunction)({ className });
-    }
-
-    if (!component) {
-      return children;
-    }
-
-    return React.createElement(component, { ...props, className }, children);
-  }
+  };
 }
