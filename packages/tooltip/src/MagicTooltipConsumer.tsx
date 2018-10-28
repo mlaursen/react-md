@@ -106,6 +106,7 @@ export default class MagicTooltipConsumer extends React.Component<
 
   public componentDidMount() {
     this.props.initMagicTooltip(this.props.id);
+    this.updatePosition();
   }
 
   public componentDidUpdate(
@@ -259,14 +260,18 @@ export default class MagicTooltipConsumer extends React.Component<
   };
 
   private determineBestPosition = (container: HTMLElement | null, tooltip: HTMLElement | null) => {
-    let position = TooltipPosition.BOTTOM;
+    let { position } = this.state;
     if (container && tooltip) {
       const { vhMargin, vwMargin } = this.props as MagicTooltipConsumerWithDefaultProps;
+      const horizontalOffset = vwMargin >= 1 ? tooltip.offsetWidth / 2 : 0;
 
       const de = document.documentElement || { clientHeight: 0, clientWidth: 0 };
       const vh = window.innerHeight || de.clientHeight;
       const vw = window.innerWidth || de.clientWidth;
-      const { left, top, right } = container.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
+      const { top } = rect;
+      const left = rect.left - horizontalOffset;
+      const right = rect.right + horizontalOffset;
       if (top > vh - (vhMargin > 1 ? vhMargin : vh * vhMargin)) {
         position = TooltipPosition.TOP;
       } else if (right > vw - (vwMargin > 1 ? vwMargin : vw * vwMargin)) {
