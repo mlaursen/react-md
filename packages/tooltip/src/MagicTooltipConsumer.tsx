@@ -169,8 +169,8 @@ export default class MagicTooltipConsumer extends React.Component<
 
     const tooltip = (
       <Tooltip
-        position={position}
         {...props}
+        position={position}
         visible={visible}
         style={style}
         className={cn(
