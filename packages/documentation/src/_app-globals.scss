@@ -43,3 +43,46 @@ $solarized-green: #859900;
   tab-size: 4;
   word-wrap: break-word;
 }
+
+// v1 values
+// $dark-theme-background-color: #303030;
+// $dark-theme-surface-color: #424242;
+$dark-theme-background-color: #1c2020;
+$dark-theme-surface-color: #303030;
+$dark-theme-primary-color: $rmd-blue-grey-900;
+$dark-theme-on-primary-color: if(rmd-theme-contrast-tone($dark-theme-primary-color) == 'light', $rmd-white-base, $rmd-black-base);
+$dark-theme-secondary-color: $rmd-deep-orange-900;
+$dark-theme-on-secondary-color: if(rmd-theme-contrast-tone($dark-theme-secondary-color) == 'light', $rmd-white-base, $rmd-black-base);
+$dark-theme-on-surface-color: rmd-theme-prop-value(text-secondary-on-dark);
+$dark-theme-primary-text-color: rmd-theme-prop-value(text-primary-on-dark);
+$dark-theme-secondary-text-color: rmd-theme-prop-value(text-secondary-on-dark);
+$dark-theme-disabled-text-color: rmd-theme-prop-value(text-disabled-on-dark);
+$dark-theme-hint-text-color: rmd-theme-prop-value(text-hint-on-dark);
+$dark-theme-icon-color: rmd-theme-prop-value(text-icon-on-dark);
+
+@mixin dark-theme {
+  @at-root {
+    .dark-theme {
+      @content;
+    }
+  }
+}
+
+@mixin create-dark-theme {
+  @include dark-theme {
+    @include rmd-theme-set-var(background, $dark-theme-background-color);
+    @include rmd-theme-set-var(surface, $dark-theme-surface-color);
+    @include rmd-theme-set-var(on-surface, $dark-theme-on-surface-color);
+    @include rmd-theme-set-var(primary, $dark-theme-primary-color);
+    @include rmd-theme-set-var(on-primary, $dark-theme-on-primary-color);
+    @include rmd-theme-set-var(secondary, $dark-theme-secondary-color);
+    @include rmd-theme-set-var(on-secondary, $dark-theme-on-secondary-color);
+    @include rmd-theme-set-var(text-primary-on-background, $dark-theme-primary-text-color);
+    @include rmd-theme-set-var(text-secondary-on-background, $dark-theme-secondary-text-color);
+    @include rmd-theme-set-var(text-disabled-on-background, $dark-theme-disabled-text-color);
+    @include rmd-theme-set-var(text-hint-on-background, $dark-theme-hint-text-color);
+    @include rmd-theme-set-var(text-icon-on-background, $dark-theme-icon-color);
+
+    @include rmd-link-set-var(color, $rmd-theme-primary);
+  }
+}

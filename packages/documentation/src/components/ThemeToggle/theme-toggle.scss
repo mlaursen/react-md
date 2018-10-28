@@ -1,0 +1,10 @@
+@import 'app-globals';
+
+@include create-dark-theme;
+
+.theme-toggle {
+  &--on:not(:hover),
+  &--off:hover {
+    color: $rmd-yellow-500;
+  }
+}

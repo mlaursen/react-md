@@ -23,6 +23,7 @@ import {
   findAllParentIds,
 } from "@react-md/tree-view";
 
+import ThemeToggle from "components/ThemeToggle";
 import "./layout.scss";
 import { routes, Route } from "./routes";
 import TreeItem from "./TreeItem";
@@ -157,8 +158,8 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
                       >
                         react-md
                       </AppBarTitle>
+                      <ThemeToggle />
                       <AppBarAction
-                        first={true}
                         className={cn("rmd-layout__action", {
                           "rmd-layout__action--offset":
                             (visible && persistent) || (!persistent && !temporary),
