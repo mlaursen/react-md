@@ -5,16 +5,28 @@
 @import '@react-md/theme/dist/variables';
 @import '@react-md/theme/dist/functions';
 
-/// The color to use for links that have been visited. This will default to using the primary theme color but
-/// with an swatch of 200 instead of 500. If you are using a non-material design color, this value **must** be
-/// updated with your own implementation as compilation will fail.
-/// @type Color
-$rmd-link-visited-color: rmd-theme-get-swatch($rmd-theme-primary, 700, false, null, rmd-link-visited-color) !default;
-
-/// The color to use for links that are being hovered.
-/// @type Color
-$rmd-link-hover-color: text-primary-on-background !default;
-
 /// The transition time for links to change color.
 /// @type Number
 $rmd-link-transition-time: .15s !default;
+
+/// The default color to use for links.
+/// @type Color
+$rmd-link-color: rmd-theme-var(primary) !default;
+
+/// The color to use for links that have been visited.
+/// @type Color
+$rmd-link-visited-color: darken($rmd-theme-primary, 10%) !default;
+// $rmd-link-visited-color: rmd-theme-get-swatch($rmd-theme-primary, 700, false, null, rmd-link-visited-color) !default;
+
+/// The color to use for links that are being hovered.
+/// @type Color
+$rmd-link-hover-color: lighten($rmd-theme-primary, 10%) !default;
+
+/// A Map of all the link theme variables. Each key in this map will be used to generate the link's theme CSS Variables
+/// by prefixing each key with `--rmd-`.
+/// @type Map
+$rmd-link-theme: (
+  color: $rmd-link-color,
+  hover-color: $rmd-link-hover-color,
+  visited-color: $rmd-link-visited-color,
+) !default;
