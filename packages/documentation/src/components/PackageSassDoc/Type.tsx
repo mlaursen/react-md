@@ -11,7 +11,7 @@ const Type: React.SFC<ITypeProps> = ({ children }) => {
   }
 
   return (
-    <Text type="subtitle-1" tagName="span" className="sassdoc__type">
+    <Text type="subtitle-1" component="span" className="sassdoc__type">
       {children}
     </Text>
   );

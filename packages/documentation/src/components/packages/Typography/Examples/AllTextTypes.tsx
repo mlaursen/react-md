@@ -30,13 +30,13 @@ const AllTextTypes = () => (
       bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ipsum massa,
       tristique tincidunt finibus vitae, aliquam vitae est.
     </Text>
-    <Text type="caption" tagName="h5">
+    <Text type="caption" component="h5">
       Caption text
     </Text>
-    <Text type="overline" tagName="h5">
+    <Text type="overline" component="h5">
       Overline text
     </Text>
-    <Text type="button" tagName="h5">
+    <Text type="button" component="h5">
       Button text
     </Text>
   </React.Fragment>

@@ -67,10 +67,13 @@ export type TextContainerWithDefaultProps = ITextContainerProps<DefaultTextConta
 /**
  * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or `<aside>`
  * element that applies the text container styles.
+ *
+ * @typeparam P - Any additional props that can be provided to the `TextContainer` component. By default, this will
+ * just be the HTMLAttributes of an HTML Element.
  */
 export default class TextContainer<
   P extends {} = DefaultTextContainerProps
-> extends React.Component<ITextContainerProps> {
+> extends React.Component<ITextContainerProps<P> & P> {
   public static propTypes = {
     size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
     className: PropTypes.string,

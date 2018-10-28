@@ -26,7 +26,7 @@ export type TextTypes =
  * The default additional props that can be applied to the Text component. This mostly just
  * covers all the elements that can be rendered "natively".
  */
-export type DefaultTextComponentProps = React.HTMLAttributes<
+export type DefaultTextProps = React.HTMLAttributes<
   | HTMLHeadingElement
   | HTMLParagraphElement
   | HTMLSpanElement
@@ -40,7 +40,7 @@ export type DefaultTextComponentProps = React.HTMLAttributes<
 
 /**
  * A type describing the text component's children render function. It provides an object containing
- * the correct (and merged) className and exects a renderable element to be returned.
+ * the correct (and merged) className and expects a renderable element to be returned.
  */
 export type TextRenderFunction = (props: { className: string }) => React.ReactNode;
 
@@ -49,7 +49,7 @@ export type TextRenderFunction = (props: { className: string }) => React.ReactNo
  *
  * @typeparam P - Any additional props that are available based on the component prop.
  */
-export interface ITextProps<P = any> {
+export interface ITextProps<P = DefaultTextProps> {
   /**
    * An optional className to merge into typography styles.
    */
@@ -99,11 +99,11 @@ export interface ITextDefaultProps {
 /**
  * @private
  */
-export type TextWithDefaultProps<P> = ITextProps<P> & ITextDefaultProps;
+export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDefaultProps;
 
 /**
- * The `Text` component is used to render text with te material design typography styles applied. By
- * default, everything will be rendered in a `<p>` tag with the normal paragraphy styles.
+ * The `Text` component is used to render text with the material design typography styles applied. By
+ * default, everything will be rendered in a `<p>` tag with the normal paragraph styles.
  *
  * When the `type` prop is changed to another typography style, this component will determine the "best"
  * element to render the text in *unless* the `component` prop is provided. The default mapping is:
@@ -124,10 +124,10 @@ export type TextWithDefaultProps<P> = ITextProps<P> & ITextDefaultProps;
  * will be used instead.
  *
  * @typeparam P - Any additional props that are valid when using the `component` prop or the built-in
- *    "auto-component" logic. By default, this will just allow any HTMLElement props for each the default
- *    elements in the "auto-component" logic.
+ * "auto-component" logic. By default, this will just allow any HTMLElement props for each the default
+ * elements in the "auto-component" logic.
  */
-export default class Text<P extends {} = DefaultTextComponentProps> extends React.Component<
+export default class Text<P extends {} = DefaultTextProps> extends React.Component<
   ITextProps<P> & P
 > {
   public static propTypes = {
@@ -159,7 +159,7 @@ export default class Text<P extends {} = DefaultTextComponentProps> extends Reac
 
   public render() {
     const { className: propClassName, component, type, children, ...props } = this
-      .props as TextWithDefaultProps<DefaultTextComponentProps>;
+      .props as TextWithDefaultProps<DefaultTextProps>;
 
     const className = cn(`rmd-typography rmd-typography--${type}`, propClassName);
     if (typeof children === "function") {
@@ -176,7 +176,7 @@ export default class Text<P extends {} = DefaultTextComponentProps> extends Reac
 
   /**
    * A utility function to get the html tag the Text component should render as. This component will
-   * attempt to render as the provided `component` or some auto-logic for determinine what html tag
+   * attempt to render as the provided `component` or some auto-logic for determine what html tag
    * should be used for styling. All fallbacks will be to place the children in a span element.
    */
   private getComponent = (component: React.ReactType<P> | null, type: TextTypes) => {

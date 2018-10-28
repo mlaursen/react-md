@@ -51,7 +51,7 @@ export default class OverflowPortalExample extends React.Component<
           how the <code>MagicTooltip</code> component works behind the scenes but with a bit more
           positioning logic and animations added.
         </Text>
-        <Text type="caption" tagName="blockquote">
+        <Text type="caption" component="blockquote">
           NOTE: The example below only has mouse interactions enabled to keep things simple with
           react-virtualized.
         </Text>

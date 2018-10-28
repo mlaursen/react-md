@@ -1,12 +1,12 @@
 import * as React from "react";
 import cn from "classnames";
-import { Text, ITextProps } from "@react-md/typography";
+import { Text, ITextProps, DefaultTextProps } from "@react-md/typography";
 
 export interface ISassDocTitleProps extends ITextProps {
   section?: boolean;
 }
 
-const SassDocTitle: React.SFC<ISassDocTitleProps> = ({
+const SassDocTitle: React.SFC<ISassDocTitleProps & DefaultTextProps> = ({
   children,
   className,
   section,

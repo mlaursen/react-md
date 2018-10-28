@@ -47,7 +47,7 @@ export default class Cell extends React.Component<ICellProps, ICellState> {
         onMouseEnter={this.showTooltip}
         onMouseLeave={this.hideTooltip}
       >
-        <Text type="body-2" aria-describedby={tooltipId} tagName="div">
+        <Text type="body-2" aria-describedby={tooltipId} component="div">
           {`Cell ${rowIndex}-${columnIndex}`}
           <CellTooltip style={tooltipStyle} id={tooltipId} portal={portal} visible={visible} />
         </Text>

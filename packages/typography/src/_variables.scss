@@ -245,7 +245,7 @@ $rmd-typography-styles: rmd-typography-set-styles($rmd-typography-base, (
   @each $style, $style-props in $additional-styles {
     $style-props: map-merge($base-styles, $style-props);
 
-    @if global-variable-exists(md-typography-styles-#{$style}) {
+    @if global-variable-exists(rmd-typography-styles-#{$style}) {
       $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
     }
 

@@ -21,7 +21,7 @@ const Cell: React.SFC<GridCellProps> = ({ style, columnIndex, rowIndex }) => {
       className="tooltip-overflow-example__cell"
       tabIndex={-1}
     >
-      <Text type="body-2" aria-describedby={tooltipId} tagName="div">
+      <Text type="body-2" aria-describedby={tooltipId} component="div">
         {children}
       </Text>
       <MagicTooltip id={tooltipId} key={tooltipId}>{`Tooltip for ${children}`}</MagicTooltip>
