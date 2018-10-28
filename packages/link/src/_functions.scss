@@ -1,0 +1,49 @@
+////
+/// @group link
+////
+
+@import 'variables';
+
+/// This function is used to quickly get one of the link's theme values. This is really
+/// just for the `rmd-link-theme` mixin to provide some validation that a correct style
+/// key is used, but might be useful in other cases
+///
+/// @example scss - Simple Usage
+///   .custom-link {
+///     color: rmd-link-theme(color);
+///
+///     &:not(:link) {
+///       color: rmd-link-theme(disabled);
+///     }
+///   }
+///
+/// @param {String} style - One of the `$rmd-link-theme` map keys to get a value for.
+@function rmd-link-theme($style) {
+  @if not map-has-key($rmd-link-theme, $style) {
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-link-theme)}';
+  }
+
+  @return map-get($rmd-link-theme, $style);
+}
+
+/// This function is used to get one of the link's theme variables as a CSS Variable
+/// to be applied as a `color` attribute. By default, the CSS Variable will have a fallback
+/// of the current `$rmd-link-theme`
+///
+/// This function is used to create a CSS Variable declaration with an optional fallback value
+/// if the CSS Variable has not been declared somehow.
+///
+/// @param {String} style - One of the `$rmd-link-theme` map keys to set a value for.
+/// @param {Color} color [null] - An optional fallback color to apply. This is set to `null` by
+/// default and not used since the link's theme variables should always exist.
+@function rmd-link-theme-var($style, $color: null) {
+  @if not map-has-key($rmd-link-theme, $style) {
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-link-theme)}';
+  }
+
+  @if $color == null {
+    @return var(--rmd-link-#{$style});
+  }
+
+  @return var(--rmd-link-#{$style}, $color);
+}
