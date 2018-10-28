@@ -131,3 +131,22 @@
   height: $rmd-icon-size;
   width: $rmd-icon-size;
 }
+
+// update the navigation tree to be "super dense"
+#navigation-tree {
+  $base-padding: $rmd-icon-dense-size + $rmd-icon-spacing-with-text + $rmd-list-item-horizontal-padding * 2;
+  @include rmd-tree-view-depths($max: 4, $base-padding: $base-padding, $incrementor: 1.5rem);
+
+  .rmd-icon--svg {
+    height: $rmd-icon-dense-size;
+    width: $rmd-icon-dense-size;
+  }
+
+  .rmd-list-item__icon--before {
+    margin-right: $rmd-icon-spacing-with-text;
+  }
+
+  .rmd-tree-item__content {
+    min-height: auto;
+  }
+}

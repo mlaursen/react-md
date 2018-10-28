@@ -16,6 +16,7 @@ export default class TreeItem extends React.Component<
   ITreeItemState
 > {
   private item: HTMLElement | null;
+  private timeout?: number;
   constructor(props: IDefaultTreeItemRendererProps) {
     super(props);
 
@@ -26,12 +27,15 @@ export default class TreeItem extends React.Component<
   public componentDidMount() {
     this.item = ReactDOM.findDOMNode(this) as HTMLElement;
     this.scrollIntoView();
+    this.updateTooltip();
+  }
 
-    if (document.readyState !== "complete") {
-      document.addEventListener("load", this.updateTooltip);
-    } else {
-      this.updateTooltip();
-    }
+  public componentDidUpdate() {
+    this.updateTooltip();
+  }
+
+  public componentWillUnmount() {
+    window.clearTimeout(this.timeout);
   }
 
   public render() {
@@ -54,16 +58,24 @@ export default class TreeItem extends React.Component<
   }
 
   private checkTooltip = ({ depth, itemIndex }: IDefaultTreeItemRendererProps) => {
-    if (!this.item) {
-      return false;
-    }
+    window.clearTimeout(this.timeout);
 
-    const node = this.item.querySelector(".rmd-list-item__text") as HTMLElement;
-    return !!node && node.scrollWidth > node.offsetWidth;
+    return new Promise<boolean>(resolve => {
+      this.timeout = window.setTimeout(() => {
+        this.timeout = undefined;
+        if (!this.item) {
+          resolve(false);
+          return;
+        }
+
+        const node = this.item.querySelector(".rmd-list-item__text") as HTMLElement;
+        resolve(!!node && node.scrollWidth > node.offsetWidth);
+      }, 300);
+    });
   };
 
-  private updateTooltip = () => {
-    const tooltipped = this.checkTooltip(this.props);
+  private updateTooltip = async () => {
+    const tooltipped = await this.checkTooltip(this.props);
     if (this.state.tooltipped !== tooltipped) {
       this.setState({ tooltipped });
     }
