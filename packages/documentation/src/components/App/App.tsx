@@ -23,7 +23,6 @@ import TreeView from "components/packages/TreeView";
 import Typography from "components/packages/Typography";
 
 import "./app.scss";
-import RTLToggle from "./RTLToggle";
 import Layout from "./Layout";
 import { routesConfig } from "./routes";
 
@@ -31,7 +30,6 @@ const App: React.SFC<{}> = () => (
   <StatesProvider>
     <MagicTooltipProvider>
       <Layout>
-        <RTLToggle />
         <Switch>
           {routesConfig.map(({ path, exact, component }) => (
             <Route key={path} path={path} exact={exact} component={component} />

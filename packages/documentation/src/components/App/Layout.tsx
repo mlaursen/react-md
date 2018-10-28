@@ -24,6 +24,8 @@ import {
 } from "@react-md/tree-view";
 
 import ThemeToggle from "components/ThemeToggle";
+import RTLToggle from "components/RTLToggle";
+
 import "./layout.scss";
 import { routes, Route } from "./routes";
 import TreeItem from "./TreeItem";
@@ -84,7 +86,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
     const { children } = this.props;
 
     return (
-      <AppSizeListener onResize={this.handleResize}>
+      <AppSizeListener>
         {({ isPhone, isTablet, isPortraitTablet, isLandscapeTablet, isDesktop }) => {
           const temporary = isPhone || isPortraitTablet;
           const persistent = isLandscapeTablet;
@@ -159,6 +161,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
                         react-md
                       </AppBarTitle>
                       <ThemeToggle />
+                      <RTLToggle />
                       <AppBarAction
                         className={cn("rmd-layout__action", {
                           "rmd-layout__action--offset":
