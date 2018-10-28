@@ -107,14 +107,12 @@
 
     &--primary {
       @include rmd-theme(background-color, primary);
-
-      color: map-get($rmd-theme-property-values, on-primary);
+      @include rmd-theme(color, on-primary);
     }
 
     &--secondary {
       @include rmd-theme(background-color, secondary);
-
-      color: map-get($rmd-theme-property-values, on-secondary);
+      @include rmd-theme(color, on-secondary);
     }
 
     &--text-primary {
