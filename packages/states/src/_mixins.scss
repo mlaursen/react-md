@@ -11,11 +11,9 @@
 /// states will apply different opacity values to this value.
 ///
 /// @param {Color} color [rmd-black-base] - The background color for the different states.
-/// @param {Boolean} important [false] - Boolean if the background color should be applied
-///   with `!important`.
-@mixin rmd-states-base-color($color: $rmd-black-base, $important: false) {
+@mixin rmd-states-base-color($color: $rmd-black-base) {
   &::before {
-    @include rmd-theme(background-color, $color, $important);
+    @include rmd-theme(background-color, $color);
   }
 }
 

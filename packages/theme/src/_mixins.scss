@@ -37,7 +37,7 @@
   }
 
   @if $color == null {
-    $color: rmd-theme($style);
+    @return var(--rmd-theme-#{$style});
   }
 
   @return var(--rmd-theme-#{$style}, $color);
@@ -49,34 +49,26 @@
 ///     color values can be used.
 /// @param {String} style - The type of theme style to use. This should be one of the `$rmd-theme-property-values` or a literal
 ///     color value.
-/// @param {Boolean} important [false] - Boolean if the !important flag should also be applied. It is generally recommended
-///     to not use this flag.
-/// @param {Boolean} edge-opt-out [$rmd-theme-edge-opt-out] - Boolean whether to feature-detect around Edge to avoid emitting
-///     CSS variables for it. This is really only intended for use cases where interactions with pseudo-element styles cause
-///     problems due to Edge bugs.
-@mixin rmd-theme($property, $style, $important: false, $edge-opt-out: $rmd-theme-edge-opt-out) {
-  $suffix: if($important, ' !important', '');
+/// @param {Boolean} no-css-variables-fallback [rmd-theme-no-css-variables-fallback] - Boolean if the theme should also be applied
+///     without the use of `var(--rmd-theme-NAME)`.
+/// @param {Boolean} no-defined-css-variables-fallback [rmd-theme-no-defined-css-variables-fallback] - Boolean if the theme should also
+///     be created with a fallback value if the rmd-theme variable has not been defined somehow.
+@mixin rmd-theme(
+  $property,
+  $style,
+  $no-css-variables-fallback: $rmd-theme-no-css-variables-fallback,
+  $no-defined-css-variables-fallback: $rmd-theme-no-defined-css-variables-fallback
+) {
   @if type-of($style) == 'color' or $style == 'currentColor' {
-    #{$property}: #{$style + $suffix};
+    #{$property}: $style;
   } @else {
-    $color-value: rmd-theme($style);
-    $var-value: rmd-theme-var($style, $color-value);
-
-    // Apply the base property and color-value for browsers that do not support css-variables.
-    #{$property}: #{$color-value + $suffix};
-
-    @if $edge-opt-out {
-      @at-root {
-        // sass-lint:disable-block no-vendor-prefixes
-        @supports not (-ms-ime-align: auto) {
-          & {
-            #{$property}: $var-value;
-          }
-        }
-      }
-    } @else {
-      #{$property}: $var-value;
+    @if $no-css-variables-fallback {
+      // Apply the base property and color-value for browsers that do not support css-variables.
+      #{$property}: rmd-theme($style);
     }
+
+    $fallback: if($rmd-theme-no-defined-css-variables-fallback, rmd-theme($style), null);
+    #{$property}: rmd-theme-var($style, $fallback);
   }
 }
 
