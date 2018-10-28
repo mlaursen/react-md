@@ -1,7 +1,12 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { PortalInto } from "@react-md/portal";
-import { KEYBOARD_MOVEMENT_KEYS, findSizingContainer } from "@react-md/utils";
+import {
+  KEYBOARD_MOVEMENT_KEYS,
+  findSizingContainer,
+  addTouchEvent,
+  removeTouchEvent,
+} from "@react-md/utils";
 
 import { Provider } from "./MagicTooltipContext";
 import {
@@ -174,11 +179,13 @@ export default class MagicTooltipProvider extends React.Component<
   private showTimeout?: number;
   private focusTimeout?: number;
   private hoverModeTimeout?: number;
+  private touched: boolean;
 
   constructor(props: IMagicTooltipProviderProps) {
     super(props);
 
     this.containers = [];
+    this.touched = false;
     this.state = { visibleId: null };
   }
 
@@ -199,6 +206,7 @@ export default class MagicTooltipProvider extends React.Component<
     window.addEventListener("blur", this.handleBlur, true);
     window.addEventListener("focus", this.handleFocus, true);
     window.addEventListener("keydown", this.handleKeyDown, true);
+    addTouchEvent(window, "start", this.handleTouchStart, true);
   }
 
   public componentWillUnmount() {
@@ -208,6 +216,8 @@ export default class MagicTooltipProvider extends React.Component<
     window.removeEventListener("blur", this.handleBlur, true);
     window.removeEventListener("focus", this.handleFocus, true);
     window.removeEventListener("keydown", this.handleKeyDown, true);
+    removeTouchEvent(window, "start", this.handleTouchStart, true);
+    removeTouchEvent(window, "end", this.handleTouchEnd, true);
     this.clearContainers();
   }
 
@@ -291,6 +301,11 @@ export default class MagicTooltipProvider extends React.Component<
     (target && this.containers.find(({ sizingContainer }) => sizingContainer === target)) || null;
 
   private handleMouseEnter = (event: MouseEvent) => {
+    if (this.touched) {
+      // touches still trigger the :hover effects, so need to ignore these cases.
+      return;
+    }
+
     const target =
       event.target &&
       ((event.target as HTMLElement).closest("[aria-describedby]") as HTMLElement | null);
@@ -394,5 +409,17 @@ export default class MagicTooltipProvider extends React.Component<
       this.clearFocusTimeout();
       this.setState({ visibleId: null });
     }
+  };
+
+  private handleTouchStart = (event: TouchEvent) => {
+    this.touched = true;
+    addTouchEvent(window, "end", this.handleTouchEnd, true);
+  };
+
+  private handleTouchEnd = (event: TouchEvent) => {
+    removeTouchEvent(window, "end", this.handleTouchEnd, true);
+    window.requestAnimationFrame(() => {
+      this.touched = false;
+    });
   };
 }
