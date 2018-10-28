@@ -54,6 +54,11 @@
 /// requires the use of the `rmd-sheet-base` mixin.
 /// @see rmd-sheet-base
 @mixin rmd-sheet-left-base {
+  @include rmd-utils-rtl {
+    left: auto;
+    right: 0;
+  }
+
   bottom: 0;
   left: 0;
   top: 0;
@@ -63,6 +68,11 @@
 /// requires the use of the `rmd-sheet-base` mixin.
 /// @see rmd-sheet-base
 @mixin rmd-sheet-right-base {
+  @include rmd-utils-rtl {
+    left: 0;
+    right: auto;
+  }
+
   bottom: 0;
   right: 0;
   top: 0;
