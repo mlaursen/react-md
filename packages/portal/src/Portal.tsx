@@ -9,7 +9,7 @@ import * as PropTypes from "prop-types";
  */
 export type PortalInto = (() => HTMLElement) | HTMLElement | string;
 
-export interface IPortalBaseProps {
+export interface IPortalProps {
   /**
    * Boolean if the portal is currently visible.
    */
@@ -28,17 +28,12 @@ export interface IPortalBaseProps {
    * the `document.body` will be chosen instead.
    */
   intoId?: string;
-}
 
-export interface IPortalIntoProps extends IPortalBaseProps {
-  into: PortalInto;
+  /**
+   * The children to render within the portal.
+   */
+  children?: React.ReactNode;
 }
-
-export interface IPortalIntoIdProps extends IPortalBaseProps {
-  intoId: string;
-}
-
-export type IPortalProps = IPortalBaseProps | IPortalIntoProps | IPortalIntoIdProps;
 
 export interface IPortalState {
   container: HTMLElement | null;
