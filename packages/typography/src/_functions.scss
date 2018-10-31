@@ -30,9 +30,34 @@
 /// @return {String} the suffix for the provided font weight.
 @function rmd-typography-google-font-suffix($weight) {
   @if not map-has-key($rmd-typography-google-font-weight-suffixes, $weight) {
-    @error 'Invalid weight specified! \'#{$weight}\' doesn\'t exist. Choose one of #{$map-keys($rmd-typography-google-font-weight-suffixes)}.';
+    @error 'Invalid weight specified! \'#{$weight}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-google-font-weight-suffixes)}.';
   }
 
   @return map-get($rmd-typography-google-font-weight-suffixes, $weight);
 }
 
+
+/// Gets the current typography style from the `$rmd-typography-styles` variable.
+///
+/// @example scss - Simple Examples
+///
+/// .test {
+///   font-size: rmd-typography-value(headline-1, font-size);
+///   line-height: rmd-typography-value(headline-4, line-height);
+/// }
+///
+/// @param {String} style - One of the keys for the `$rmd-typography-styles` map.
+/// @param {String} property - One of the property values to extract.
+/// @return {String} the typography style value.
+@function rmd-typography-value($style, $property) {
+  @if not map-has-key($rmd-typography-styles, $style) {
+    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
+  }
+
+  $style-props: map-get($rmd-typography-styles, $style);
+  @if not map-has-key($style-props, $property) {
+    @error 'Invalid property specified! \'#{$property}\' doesn\'t exist. Choose one of #{map-keys($style-props)}';
+  }
+
+  @return map-get($style-props, $property);
+}

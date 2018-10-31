@@ -5,6 +5,35 @@
 @import 'variables';
 @import 'functions';
 
+/// Applies each property value from the `$rmd-typography-styles` map that matches the style name.
+///
+/// @example scss - Simple Examples
+///   .body-1-font-size {
+///     // when no properties are provided, it will default to font-size
+///     @include rmd-typography-value(body-1);
+///   }
+///
+///   .headline-4-letter-spacing {
+///     @include rmd-typography-value(headline-4, letter-spacing);
+///   }
+///
+///   .caption-styles {
+///     @include rmd-typography-value(caption, font-size, letter-spacing, line-height);
+///   }
+///
+/// @param {String} style - The typography style to get value(s) for. This should be one of the keys from the `$rmd-typography-styles` map.
+/// @param {String...} properties [font-size] - A list of properties to get and create. When no properties are provided, it will default
+///    to using `font-size`.
+@mixin rmd-typography-value($style, $properties...) {
+  @if length($properties) == 0 {
+    $properties: append($properties, font-size);
+  }
+
+  @each $property in $properties {
+    #{$property}: rmd-typography-value($style, $property);
+  }
+}
+
 /// Applies the base typography styles to an element.
 ///
 /// @example scss - Example Usage SCSS
@@ -22,26 +51,73 @@
 /// Applies one of the provided material design styles to an element.
 /// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
 @mixin rmd-typography($style) {
-  $style-props: map-get($rmd-typography-styles, $style);
-
   @if not map-has-key($rmd-typography-styles, $style) {
     @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
   }
+
+  $style-props: map-get($rmd-typography-styles, $style);
 
   @each $key, $value in $style-props {
     #{$key}: $value;
   }
 }
 
-/// A small util that will create a text container with the provided max width.
-/// @param {Number} max-width [rmd-typography-desktop-max-line-length] - The max width for a line of text.
-///   this number should be between 38em-42em on desktop and 17em-18em on mobile devices.
-@mixin rmd-text-container($max-width: $rmd-typography-desktop-max-line-length, $padding: $rmd-typography-text-container-padding) {
+/// This will generate the styles to apply to an element that will set the max width for legibility. By default,
+/// this will create styles that change based on the provided `$mobile-breakpoint` and apply different max
+/// widths on a media query. This feature can be disabled by setting the `$mobile-breakpoint` or the `$desktop-max-width`
+/// parameters to `null`.
+///
+/// Unlike everything else in react-md, the text container relies on having the `box-sizing` set to `content-box` so that
+/// the text contents can be centered correctly with a max width and padding. When this is set to `border-box`, you will
+/// lose the padding real estate in your text container which is something that might not be desired. Keeping this as
+/// `content-box` will allow padding to be applied without shrinking the max line length.
+///
+/// @example scss - Creating a "blog"
+///   .blog {
+///     @include rmd-text-container;
+///   }
+///
+///   .title {
+///     @include rmd-typography(headline-2);
+///   }
+///
+///   .paragraph {
+///     @include rmd-typography(headline-4);
+///
+///     @media (max-width: 800px) {
+///       @include rmd-typography(headline-5);
+///     }
+///   }
+///
+/// @example html - Creating a "blog"
+///    <main class="blog">
+///      <h1 class="title">Blog Title</h1>
+///      <p class="paragraph">Lorem ipsum...</p>
+///      <p class="paragraph">Lorem ipsum...</p>
+///    </main>
+///
+///
+/// @param {Number} mobile-max-width [rmd-typography-mobile-max-line-length] - The max width for a line of text on
+///   mobile devices. This number is recommended to be between 17em and 18em.
+/// @param {Number} desktop-max-width [rmd-typography-desktop-max-line-length] - The max width for a line of text on
+///   desktop screens. This number is recommended to be between 38em and 42em.
+/// @param {Number} mobile-breakpoint [rmd-typography-text-container-breakpoint] - The breakpoint for switching between
+///   a mobile device and a desktop screen. This is used to automatically change the max line-width for better legibility.
+@mixin rmd-text-container(
+  $mobile-max-width: $rmd-typography-mobile-max-line-length,
+  $desktop-max-width: $rmd-typography-desktop-max-line-length,
+  $mobile-breakpoint: $rmd-typography-text-container-breakpoint
+) {
+  box-sizing: content-box;
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: $max-width;
-  padding: $padding;
+  max-width: $desktop-max-width;
   width: 100%;
+
+  @media (max-width: #{$mobile-breakpoint}) {
+    max-width: $mobile-max-width;
+  }
 }
 
 /// Creates all the typography styles from the react-md typography variables.
@@ -58,14 +134,14 @@
 
   .rmd-text-container {
     @include rmd-text-container;
-  }
 
-  .rmd-mobile-text-container {
-    @include rmd-text-container($rmd-typography-mobile-max-line-length);
-  }
+    &--mobile {
+      max-width: $rmd-typography-mobile-max-line-length;
+    }
 
-  .rmd-desktop-text-container {
-    @include rmd-text-container($rmd-typography-desktop-max-line-length);
+    &--desktop {
+      max-width: $rmd-typography-desktop-max-line-length;
+    }
   }
 }
 

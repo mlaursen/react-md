@@ -25,7 +25,7 @@ export type TextContainerRenderFunction = (props: { className: string }) => Reac
  *
  * @typeparam P - Any additional props that are available based on the component prop.
  */
-export interface ITextContainerProps<P = any> {
+export interface ITextContainerProps<P = DefaultTextContainerProps> {
   /**
    * An optional className to merge with typography text container styles.
    */
@@ -91,10 +91,10 @@ export default class TextContainer<
       .props as TextContainerWithDefaultProps;
 
     const className = cn(
+      "rmd-text-container",
       {
-        "rmd-text-container": size === "auto",
-        "rmd-mobile-text-container": size === "mobile",
-        "rmd-desktop-text-container": size === "desktop",
+        "rmd-text-container--mobile": size === "mobile",
+        "rmd-text-container--desktop": size === "desktop",
       },
       propClassName
     );
