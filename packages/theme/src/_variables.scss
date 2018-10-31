@@ -8,14 +8,19 @@
 /// Boolean if the main theme mixin should also apply the styles without the `var(--rmd-theme-NAME)` for browsers that don't
 /// support CSS Variables yet. This is disabled by default since it is mostly just IE11 at this point and `create-react-app`
 /// already is using a postcss plugin to do this automatically.
-/// @type {Boolean}
+/// @type Boolean
 $rmd-theme-no-css-variables-fallback: false !default;
 
 /// Boolean if the main theme mixin should also add a fallback value if the css variable has not be set somehow. This is disabled
 /// by default since it is mostly just IE11 at this point and `create-react-app` already is using a postcss plugin to do this
 /// automatically.
-/// @type {Boolean}
+/// @type Boolean
 $rmd-theme-no-defined-css-variables-fallback: false !default;
+
+/// Boolean if the light and dark theme text colors should be created using `rgba` instead of `lighten` for the light theme colors.
+/// It is generally recommended to keep this `false` since it is more in line with how the dark theme colors are created.
+/// @type Boolean
+$rmd-theme-define-colors-with-rgba: false !default;
 
 /// The primary theme color to use for your app. This is normally one of the material design colors with a `-500` suffix,
 /// but it can be any color.
@@ -110,48 +115,200 @@ $rmd-theme-surface: #fff !default;
 /// @type Color
 $rmd-theme-on-surface: if(rmd-theme-contrast-tone($rmd-theme-surface) == 'dark', $rmd-black-base, $rmd-white-base);
 
-/// A Map of all the text colors for the app. This will be Map of 'light' and 'dark' that has the following keys:
-/// - primary
-/// - secondary
-/// - hint
-/// - disabled
-/// - icon
-///
-/// This is normally used along with the `rmd-theme-contrast-tone` and the `map-get` Sass functions
-///
-/// @example scss - Example SCSS Usage
-///   .example {
-///     // gets the disabled text color based on the theme's background color.
-///     color: map-get(map-get($rmd-theme-text-colors, rmd-theme-contrast-tone($rmd-theme-background)), disabled);
-///   }
-///
+// sass-lint:disable no-color-literals
+
+/// The default light theme's primary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.
+/// @type Color
+$rmd-theme-light-primary-text-color: if(
+  $rmd-theme-define-colors-with-rgba,
+  rgba($rmd-black-base, .87),
+  lighten($rmd-black-base, 13%)
+) !default;
+
+/// The default light theme's secondary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.
+/// @type Color
+$rmd-theme-light-secondary-text-color: if(
+  $rmd-theme-define-colors-with-rgba,
+  rgba($rmd-black-base, .54),
+  lighten($rmd-black-base, 46%)
+) !default;
+
+/// The default light theme's hint text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.
+/// @type Color
+$rmd-theme-light-hint-text-color: if(
+  $rmd-theme-define-colors-with-rgba,
+  rgba($rmd-black-base, .34),
+  lighten($rmd-black-base, 66%)
+) !default;
+
+/// The default light theme's disabled text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.
+/// @type Color
+$rmd-theme-light-disabled-text-color: if(
+  $rmd-theme-define-colors-with-rgba,
+  rgba($rmd-black-base, .38),
+  lighten($rmd-black-base, 62%)
+) !default;
+
+/// The default light theme's icon text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.
+/// @type Color
+$rmd-theme-light-icon-color: if(
+  $rmd-theme-define-colors-with-rgba,
+  rgba($rmd-black-base, .54),
+  lighten($rmd-black-base, 46%)
+) !default;
+
+/// The default dark theme's primary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.
+/// @type Color
+$rmd-theme-dark-primary-text-color: darken($rmd-white-base, 15%) !default;
+
+/// The default dark theme's secondary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.
+/// @type Color
+$rmd-theme-dark-secondary-text-color: darken($rmd-white-base, 30%) !default;
+
+/// The default dark theme's hint text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.
+/// @type Color
+$rmd-theme-dark-hint-text-color: darken($rmd-white-base, 50%) !default;
+
+/// The default dark theme's disabled text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.
+/// @type Color
+$rmd-theme-dark-disabled-text-color: darken($rmd-white-base, 50%) !default;
+
+/// The default dark theme's icon text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.
+/// @type Color
+$rmd-theme-dark-icon-color: darken($rmd-white-base, 30%) !default;
+
+// sass-lint:enable no-color-literals
+
+/// A Map of all the light theme text colors for quick loopups.
 /// @type Map
-$rmd-theme-text-colors: (
-  dark: (
-    primary: rgba($rmd-black-base, .87),
-    secondary: rgba($rmd-black-base, .54),
-    hint: rgba($rmd-black-base, .34),
-    disabled: rgba($rmd-black-base, .38),
-    icon: rgba($rmd-black-base, .54),
-  ),
-  light: (
-    primary: $rmd-white-base,
-    secondary: darken($rmd-white-base, 30%),
-    hint: darken($rmd-white-base, 50%),
-    disabled: darken($rmd-white-base, 50%),
-    icon: darken($rmd-white-base, 30%),
-  ),
+$rmd-theme-light-text-colors: (
+  primary: $rmd-theme-light-primary-text-color,
+  secondary: $rmd-theme-light-secondary-text-color,
+  hint: $rmd-theme-light-hint-text-color,
+  disabled: $rmd-theme-light-disabled-text-color,
+  icon: $rmd-theme-light-icon-color,
 );
 
-/// A simple utility function only within the variables file for getting a text color based on contrasts.
+/// A Map of all the light theme text colors for quick loopups.
+/// @type Map
+$rmd-theme-dark-text-colors: (
+  primary: $rmd-theme-dark-primary-text-color,
+  secondary: $rmd-theme-dark-secondary-text-color,
+  hint: $rmd-theme-dark-hint-text-color,
+  disabled: $rmd-theme-dark-disabled-text-color,
+  icon: $rmd-theme-dark-icon-color,
+);
+
+/// This function is used to auto-generate "reasonable" defaults for the text colors based on a the
+/// background it is on. This will basically check if the provided color is considered light or dark,
+/// and choose a value from either the dark theme text colors or the light theme text colors so that
+/// it is still legible.
 ///
-/// @access private
-/// @returns {Color}
+/// NOTE: This is not perfect since it only handles the min-contrast ration of 3:1 by default so you still
+/// might need to define your own overrides.
+///
+/// @example scss - Current Default Values
+///   $variables: primary secondary hint disabled icon;
+///   $themes: background light dark;
+///
+///   @each $theme in $themes {
+///     @each $variable in $variables {
+///       .#{$theme}-#{$variable} {
+///         // create the corresponding color. When it's the `background`, we'll check the current defined background theme
+///         // color so that it "works out of the box" (for most cases).
+///         color: rmd-theme-text-color($variable, if($theme == background, $rmd-theme-background, $theme));
+///       }
+///     }
+///   }
+///
+/// @param {String} style - This should be one of the keys for the text colors map.
+/// @param {Color|String} color - This is either a color that will be checked for a contrast tone or one of
+///    'light' | 'dark'.
+/// @returns {Color} The color from either the light or dark theme text colors maps.
 @function rmd-theme-text-color($style, $color) {
   $contrast-tone: rmd-theme-contrast-tone($color);
 
-  @return map-get(map-get($rmd-theme-text-colors, $contrast-tone), $style);
+  @if $contrast-tone == 'light' {
+    @return map-get($rmd-theme-dark-text-colors, $style);
+  } @else {
+    @return map-get($rmd-theme-light-text-colors, $style);
+  }
 }
+
+/// The primary text color to use on the background "surface". This is not related to the `$rmd-theme-primary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-primary-text-on-background-color: rmd-theme-text-color(primary, $rmd-theme-background) !default;
+
+/// The secondary text color to use on the background "surface". This is not related to the `$rmd-theme-secondary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-secondary-text-on-background-color: rmd-theme-text-color(secondary, $rmd-theme-background) !default;
+
+/// The hint text color to use on the background "surface".
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-hint-text-on-background-color: rmd-theme-text-color(hint, $rmd-theme-background) !default;
+
+/// The disabled text color to use on the background "surface".
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-disabled-text-on-background-color: rmd-theme-text-color(disabled, $rmd-theme-background) !default;
+
+/// The icon color to use on the background "surface".
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-icon-on-background-color: rmd-theme-text-color(icon, $rmd-theme-background) !default;
+
+/// The primary text color to use on the light colored surface. This is not related to the `$rmd-theme-primary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-primary-text-on-light-color: rmd-theme-text-color(primary, light) !default;
+
+/// The secondary text color to use on the light colored surface. This is not related to the `$rmd-theme-secondary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-secondary-text-on-light-color: rmd-theme-text-color(secondary, light) !default;
+
+/// The hint text color to use on the light colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-hint-text-on-light-color: rmd-theme-text-color(hint, light) !default;
+
+/// The disabled text color to use on the light colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-disabled-text-on-light-color: rmd-theme-text-color(disabled, light) !default;
+
+/// The icon color to use on the light colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-icon-on-light-color: rmd-theme-text-color(icon, light) !default;
+
+/// The primary text color to use on the dark colored surface. This is not related to the `$rmd-theme-primary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-primary-text-on-dark-color: rmd-theme-text-color(primary, dark) !default;
+
+/// The secondary text color to use on the dark colored surface. This is not related to the `$rmd-theme-secondary` variable.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-secondary-text-on-dark-color: rmd-theme-text-color(secondary, dark) !default;
+
+/// The hint text color to use on the dark colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-hint-text-on-dark-color: rmd-theme-text-color(hint, dark) !default;
+
+/// The disabled text color to use on the dark colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-disabled-text-on-dark-color: rmd-theme-text-color(disabled, dark) !default;
+
+/// The icon color to use on the dark colored surface.
+/// @type Color
+/// @see rmd-theme-text-color
+$rmd-theme-icon-on-dark-color: rmd-theme-text-color(icon, dark) !default;
 
 /// A Map of all the theme property values that can be used throughout the app. This is mainly created
 /// so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme-prop-value` function
@@ -170,26 +327,22 @@ $rmd-theme-property-values: (
   on-error: $rmd-theme-on-error,
   success: $rmd-theme-success,
   on-success: $rmd-theme-on-success,
-  text-primary-on-background: rmd-theme-text-color(primary, $rmd-theme-background),
-  text-secondary-on-background: rmd-theme-text-color(secondary, $rmd-theme-background),
-  text-hint-on-background: rmd-theme-text-color(hint, $rmd-theme-background),
-  text-disabled-on-background: rmd-theme-text-color(disabled, $rmd-theme-background),
-  text-icon-on-background: rmd-theme-text-color(icon, $rmd-theme-background),
-  text-primary-on-light: rmd-theme-text-color(primary, light),
-  text-secondary-on-light: rmd-theme-text-color(secondary, light),
-  text-hint-on-light: rmd-theme-text-color(hint, light),
-  text-disabled-on-light: rmd-theme-text-color(disabled, light),
-  text-icon-on-light: rmd-theme-text-color(icon, light),
-  text-primary-on-dark: rmd-theme-text-color(primary, dark),
-  text-secondary-on-dark: rmd-theme-text-color(secondary, dark),
-  text-hint-on-dark: rmd-theme-text-color(hint, dark),
-  text-disabled-on-dark: rmd-theme-text-color(disabled, dark),
-  text-icon-on-dark: rmd-theme-text-color(icon, dark),
+  text-primary-on-background: $rmd-theme-primary-text-on-background-color,
+  text-secondary-on-background: $rmd-theme-secondary-text-on-background-color,
+  text-hint-on-background: $rmd-theme-hint-text-on-background-color,
+  text-disabled-on-background: $rmd-theme-disabled-text-on-background-color,
+  text-icon-on-background: $rmd-theme-icon-on-background-color,
+  text-primary-on-light: $rmd-theme-primary-text-on-light-color,
+  text-secondary-on-light: $rmd-theme-secondary-text-on-light-color,
+  text-hint-on-light: $rmd-theme-hint-text-on-light-color,
+  text-disabled-on-light: $rmd-theme-disabled-text-on-light-color,
+  text-icon-on-light: $rmd-theme-icon-on-light-color,
+  text-primary-on-dark: $rmd-theme-primary-text-on-dark-color,
+  text-secondary-on-dark: $rmd-theme-secondary-text-on-dark-color,
+  text-hint-on-dark: $rmd-theme-hint-text-on-dark-color,
+  text-disabled-on-dark: $rmd-theme-disabled-text-on-dark-color,
+  text-icon-on-dark: $rmd-theme-icon-on-dark-color,
 );
-
-/// Boolean if the theme should opt-out of edge support by default with the provided mixins.
-/// @type Boolean
-$rmd-theme-edge-opt-out: false !default;
 
 /// Attempts to get a specific theme color based on the property provided.
 ///

@@ -95,7 +95,7 @@
   }
 
   // the #{--rmd-theme} is required since sass-lint's AST doesn't work with css-variables yet in this scope
-  #{--rmd-theme-#{$theme-style}}: $value;
+  #{--rmd-theme-#{$theme-style}}: #{$value};
 }
 
 /// Creates all the styles for a theme in react-md. This will start by creating CSS Variables
