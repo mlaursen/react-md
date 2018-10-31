@@ -20,3 +20,7 @@ export * from "./findSizingContainer";
 export { default as findOverflowContainer } from "./findOverflowContainer";
 
 export * from "./searchNodes";
+
+export { default as getViewportSize } from "./getViewportSize";
+export { default as getViewportBounds } from "./getViewportBounds";
+export { default as unitToNumber } from "./unitToNumber";

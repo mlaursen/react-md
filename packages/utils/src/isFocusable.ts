@@ -15,10 +15,10 @@ import { FOCUSABLE_ELEMENTS } from "./constants";
  * useful for checking if an element _can_ be considered focusable instead of is currently able to be
  * focused.
  *
- * @param {HTMLElement | null} el - The element to check
- * @param {boolean=false} allowDiabled - Boolean if disabled elements will return `true` instead of `false`.
- * @return {boolean} true if the element is currently focusable OR true if the element is focusable once it
- *  is no longer in a disabled state.
+ * @param el - The element to check
+ * @param allowDiabled - Boolean if disabled elements will return `true` instead of `false`.
+ * @return true if the element is currently focusable OR true if the element is focusable once it
+ * is no longer in a disabled state.
  */
 export default function isFocusable(el: HTMLElement | null, allowDisabled: boolean = false) {
   if (!el || typeof el.getAttribute !== "function") {

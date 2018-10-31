@@ -73,15 +73,12 @@ export function addTouchEvent(
 
 /**
  * A simple wrapper for the `setTouchEvent` to just always remove events.
+ *
+ * @param el - The element to add the touch event to.
+ * @param eventType - One of the touch types to modify.
  */
 export function removeTouchEvent(
-  /**
-   * The element to add the touch event to.
-   */
   el: Window | HTMLElement,
-  /**
-   * One of the touch types to modify.
-   */
   eventType: TouchTypes,
   /**
    * The touch event callback function to use.

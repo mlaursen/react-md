@@ -26,10 +26,10 @@ export class SizingContainerSelectorError extends Error {
  *
  * NOTE: The `data-sizing-selector` will be run from the current element instead of the `document`.
  *
- * @param {HTMLElement | null} el - The element to find a sizing containet for.
- * @return {HTMLElement | null} the sizing container relative to the provided element, or `null` if none
+ * @param el - The element to find a sizing containet for.
+ * @return the sizing container relative to the provided element, or `null` if none
  *  could be found.
- * @throws {SizingContainerSelectorError} This error will be thrown if using the `data-query-selector` and the query
+ * @throws This error will be thrown if using the `data-query-selector` and the query
  *  selector does not return an element on the page.
  */
 export default function findSizingContainer(el: HTMLElement | null) {
