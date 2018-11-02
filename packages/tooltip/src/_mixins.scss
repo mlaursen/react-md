@@ -3,140 +3,37 @@
 ////
 
 @import '@react-md/typography/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import 'functions';
 @import 'variables';
 
-@function inverse-position($position) {
-  @if $position == 'left' {
-    @return 'right';
-  } @else if $position == 'right' {
-    @return 'left';
-  } @else if $position == 'bottom' {
-    @return 'top';
-  }
 
-  @return 'bottom';
+@mixin rmd-tooltip-theme($style) {
+  #{$style}: rmd-tooltip-theme($style);
 }
 
-/// Creates the base tooltip styles only.
-///
-/// @example scss - Example SCSS Usage
-///   .rmd-tooltip {
-///     @include rmd-tooltip-base;
-///   }
-///
-/// @example scss - Example Custom Tooltip
-///   .tooltip {
-///     @include rmd-tooltip-base;
-///
-///     padding-bottom: .825rem;
-///     padding-top: .825rem;
-///   }
 @mixin rmd-tooltip-base {
   @include rmd-typography-base;
+  @include rmd-typography-value(body-1, letter-spacing);
+  @include rmd-tooltip-theme(background-color);
+  @include rmd-tooltip-theme(color);
 
   align-items: center;
-  background-color: $rmd-tooltip-background-color;
   border-radius: $rmd-tooltip-border-radius;
-  color: $rmd-tooltip-text-color;
   display: flex;
   font-size: $rmd-tooltip-font-size;
   line-height: $rmd-tooltip-line-height;
   min-height: $rmd-tooltip-min-height;
   opacity: 0;
-  padding-left: $rmd-tooltip-lr-padding;
-  padding-right: $rmd-tooltip-lr-padding;
+  padding-left: $rmd-tooltip-horizontal-padding;
+  padding-right: $rmd-tooltip-horizontal-padding;
   pointer-events: none;
   position: absolute;
   text-transform: none;
   transition-property: opacity, transform;
   user-select: none;
-  visibility: hidden;
   white-space: nowrap;
-  z-index: -1;
-}
-
-/// Creates the active tooltip styles only. The active styles will increase the z-index and
-/// change the visibility from `hidden` to `visible`. This class should be applied during the
-/// entire enter and leave transition.
-///
-/// @example scss - Example SCSS Usage
-///   .rmd-tooltip--active {
-///     @include rmd-tooltip-active;
-///   }
-@mixin rmd-tooltip-active {
-  visibility: visible;
   z-index: $rmd-tooltip-z-index;
-}
-
-/// Creates the visible tooltip styles only. This should only be applied when the tooltip is visible
-/// as it will cause the enter and leave transition by being applied or removed.
-///
-/// @example scss - Example SCSS Usage
-///   .md-tooltip--visible {
-///     @include rmd-tooltip-visible;
-///   }
-///
-/// @example scss - Example Custom Tooltip
-///   .tooltip-container:focus,
-///   .tooltip-container:hover {
-///     .tooltip {
-///       @include rmd-tooltip-active;
-///     }
-///   }
-@mixin rmd-tooltip-visible {
-  opacity: 1;
-}
-
-/// Creates the dense tooltip style overrides. Since the base tooltip styles define
-/// these values as well, this should be included **after** the base styles have been
-/// included or with an additional selector depth.
-///
-/// @example scss - Example SCSS Usage
-///   .rmd-tooltip--dense {
-///     @include rmd-tooltip-dense;
-///   }
-///
-/// @example scss - Overriding Default Styles
-///   .rmd-tooltip {
-///     @include rmd-tooltip-base;
-///     @include rmd-tooltip-dense;
-///   }
-///
-///   // or
-///   .rmd-tooltip {
-///     @include rmd-tooltip-base;
-///
-///       &--dense {
-///         @include rmd-tooltip-dense;
-///       }
-///   }
-///
-/// @example scss - Overriding Default Styles v2
-///   .rmd-tooltip--dense.rmd-tooltip--dense {
-///      @include rmd-tooltip-dense;
-///   }
-///
-///   // somewhere later in your stylesheet
-///   .rmd-tooltip {
-///     @include rmd-tooltip-base;
-///   }
-@mixin rmd-tooltip-dense {
-  font-size: $rmd-tooltip-dense-font-size;
-  line-height: $rmd-tooltip-dense-line-height;
-  min-height: $rmd-tooltip-dense-min-height;
-  padding-left: $rmd-tooltip-dense-lr-padding;
-  padding-right: $rmd-tooltip-dense-lr-padding;
-
-  @each $position in $rmd-tooltip-position-values {
-    &.md-tooltip--#{$position} {
-      #{inverse-position($position)}: calc(100% + #{$rmd-tooltip-dense-spacing});
-    }
-  }
-
-  &.md-tooltip--line-wrap {
-    padding-bottom: $rmd-tooltip-dense-line-wrap-tb-padding;
-    padding-top: $rmd-tooltip-dense-line-wrap-tb-padding;
-  }
 }
 
 /// Creates the styles for one of the four tooltip positions.
@@ -150,16 +47,18 @@
 /// @param {Number} spacing - The amount of spacing to use between the tooltip and the container element. This should
 ///   normally just be `$rmd-tooltip-spacing` or `$rmd-tooltip-dense-spacing`.
 @mixin rmd-tooltip-position($position, $spacing) {
-  @if index($rmd-tooltip-position-values, $position) == null {
-    @error 'Invalid position specified! \'#{$position}\' doesn\'t exist. Choose one of #{$rmd-tooltip-position-values}.';
+  @if not index($rmd-tooltip-position-values, $position) {
+    @error 'Invalid position specified! \'#{$position}\' doesn\'t exist. Choose one of #{$valid-positions}.';
   }
 
   // add a negative spacing since the position will be transformed for centering below
-  #{inverse-position($position)}: calc(100% + #{$spacing});
+  $inversed-position: rmd-tooltip-inverse-position($position);
+  $inversed-property: rmd-tooltip-position-to-property($inversed-position);
+  #{$inversed-property}: calc(100% + #{$spacing});
 
   $horizontal: $position == 'left' or $position == 'right';
   $distance: if(
-    $position == 'left' or $position == 'top',
+    $position == 'left' or $position == 'above',
     -$rmd-tooltip-transition-distance,
     $rmd-tooltip-transition-distance
   );
@@ -180,32 +79,48 @@
 }
 
 /// Creates the base styles to allow line-wrapping tooltips.
-///
-/// @example scss - Example SCSS Usage
-///   .rmd-tooltip--line-wrap {
-///     @include rmd-tooltip-line-wrap;
-///   }
 @mixin rmd-tooltip-line-wrap {
-  padding-bottom: $rmd-tooltip-line-wrap-tb-padding;
-  padding-top: $rmd-tooltip-line-wrap-tb-padding;
+  padding-bottom: $rmd-tooltip-line-wrap-vertical-padding;
+  padding-top: $rmd-tooltip-line-wrap-vertical-padding;
   white-space: normal;
-  width: 100%;
 }
 
-/// Creates all the base styles to get tooltips working with the `Tooltip` component.
-///
-/// @example scss - Example SCSS Usage
-///   @include react-md-tooltip;
+/// Creates the dense tooltip style overrides.
+@mixin rmd-tooltip-dense {
+  font-size: $rmd-tooltip-dense-font-size;
+  min-height: $rmd-tooltip-dense-min-height;
+  padding-left: $rmd-tooltip-dense-horizontal-padding;
+  padding-right: $rmd-tooltip-dense-horizontal-padding;
+
+
+  @each $position in $rmd-tooltip-position-values {
+    &.rmd-tooltip--#{$position} {
+      $inversed-position: rmd-tooltip-inverse-position($position);
+      $inversed-property: rmd-tooltip-position-to-property($inversed-position);
+      #{$inversed-property}: calc(100% + #{$rmd-tooltip-dense-spacing});
+    }
+  }
+
+  &-line-wrap {
+    padding-bottom: $rmd-tooltip-dense-line-wrap-vertical-padding;
+    padding-top: $rmd-tooltip-dense-line-wrap-vertical-padding;
+  }
+}
+
 @mixin react-md-tooltip {
   .rmd-tooltip {
     @include rmd-tooltip-base;
 
-    &--active {
-      @include rmd-tooltip-active;
+    &--line-wrap {
+      @include rmd-tooltip-line-wrap;
+    }
+
+    &--dense {
+      @include rmd-tooltip-dense;
     }
 
     &--visible {
-      @include rmd-tooltip-visible;
+      opacity: 1;
     }
 
     &--enter {
@@ -214,37 +129,44 @@
       transition-duration: $rmd-tooltip-enter-duration;
     }
 
-    &--leave {
+    &--exit {
       @include rmd-transition(acceleration);
 
-      transition-duration: $rmd-tooltip-leave-duration;
+      transition-duration: $rmd-tooltip-exit-duration;
     }
 
-    &--line-wrap {
-      @include rmd-tooltip-line-wrap;
+    &--exit-active {
+      opacity: 0;
     }
 
-    @each $position in $rmd-tooltip-position-values {
-      &--#{$position} {
-        @include rmd-tooltip-position($position, $rmd-tooltip-spacing);
-      }
+    &--left {
+      @include rmd-tooltip-position(left, $rmd-tooltip-spacing);
     }
 
-    &--dense {
-      @include rmd-tooltip-dense;
+    &--above {
+      @include rmd-tooltip-position(above, $rmd-tooltip-spacing);
     }
 
-    &--magic {
+    &--right {
+      @include rmd-tooltip-position(right, $rmd-tooltip-spacing);
+    }
+
+    &--below {
+      @include rmd-tooltip-position(below, $rmd-tooltip-spacing);
+    }
+
+    &--portal {
+      // reset everything since it is now handled by inline styles
       bottom: auto;
       left: auto;
       right: auto;
       top: auto;
 
-      &.rmd-tooltip--top {
+      &.rmd-tooltip--above {
         transform: translateY(-$rmd-tooltip-transition-distance);
       }
 
-      &.rmd-tooltip--bottom {
+      &.rmd-tooltip--below {
         transform: translateY($rmd-tooltip-transition-distance);
       }
 
