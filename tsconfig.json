@@ -1,5 +1,23 @@
 {
   "extends": "./tsconfig.base.json",
+  "include": [
+    "packages/app-bar/src/**/*",
+    "packages/button/src/**/*",
+    "packages/icon/src/**/*",
+    "packages/link/src/**/*",
+    "packages/list/src/**/*",
+    "packages/listeners/src/**/*",
+    "packages/overlay/src/**/*",
+    "packages/portal/src/**/*",
+    "packages/sheet/src/**/*",
+    "packages/states/src/**/*",
+    "packages/theme/src/**/*",
+    "packages/transition/src/**/*",
+    "packages/tooltip/src/**/*",
+    "packages/tree-view/src/**/*",
+    "packages/typography/src/**/*",
+    "packages/utils/src/**/*"
+  ],
   "exclude": [
     "**/__tests__/*"
   ]

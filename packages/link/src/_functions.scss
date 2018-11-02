@@ -12,12 +12,13 @@
 ///   .custom-link {
 ///     color: rmd-link-theme(color);
 ///
-///     &:not(:link) {
-///       color: rmd-link-theme(disabled);
+///     &:hover {
+///       color: rmd-link-theme(hover-color);
 ///     }
 ///   }
 ///
 /// @param {String} style - One of the `$rmd-link-theme` map keys to get a value for.
+/// @return {Color} one of the link's theme colors.
 @function rmd-link-theme($style) {
   @if not map-has-key($rmd-link-theme, $style) {
     @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-link-theme)}';
@@ -34,16 +35,16 @@
 /// if the CSS Variable has not been declared somehow.
 ///
 /// @param {String} style - One of the `$rmd-link-theme` map keys to set a value for.
-/// @param {Color} color [null] - An optional fallback color to apply. This is set to `null` by
+/// @param {Color} fallback-color [null] - An optional fallback color to apply. This is set to `null` by
 /// default and not used since the link's theme variables should always exist.
-@function rmd-link-theme-var($style, $color: null) {
+@function rmd-link-theme-var($style, $fallback-color: null) {
   @if not map-has-key($rmd-link-theme, $style) {
     @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-link-theme)}';
   }
 
-  @if $color == null {
+  @if $fallback-color == null {
     @return var(--rmd-link-#{$style});
   }
 
-  @return var(--rmd-link-#{$style}, $color);
+  @return var(--rmd-link-#{$style}, $fallback-color);
 }

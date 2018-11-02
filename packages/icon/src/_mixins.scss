@@ -263,7 +263,7 @@
 
     @each $key in $required-keys {
       @if not map-has-key($font-map, $key) {
-        @error 'It is required to include all of \'#{$required-keys}\' in your font url map, but one or more was missing! Privded keys: #{$map-keys($font-map)}.';
+        @error 'It is required to include all of \'#{$required-keys}\' in your font url map, but one or more was missing! Privded keys: #{map-keys($font-map)}.';
       }
     }
   }

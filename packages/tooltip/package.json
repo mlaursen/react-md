@@ -49,7 +49,8 @@
     "@react-md/typography": "^2.0.0-alpha-1",
     "@react-md/utils": "^2.0.0-alpha-1",
     "classnames": "^2.2.6",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react-transition-group": "^2.5.0"
   },
   "devDependencies": {
     "cpx": "^1.5.0",
@@ -60,6 +61,7 @@
     "sass-lint": "^1.12.1",
     "ts-jest": "^22.4.6",
     "tslint": "^5.11.0",
+    "typedoc": "^0.13.0",
     "typescript": "^3.1.3"
   }
 }

@@ -27,7 +27,7 @@
   $opacity-map: rmd-states-opacities($color);
 
   @if not map-has-key($opacity-map, $state) {
-    @error 'Invalid state: \'#{$state}\'. Choose one of #{$map-keys($opacity-map)}.';
+    @error 'Invalid state: \'#{$state}\'. Choose one of #{map-keys($opacity-map)}.';
   }
 
   @return map-get($opacity-map, $state);

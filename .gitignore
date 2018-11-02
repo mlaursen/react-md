@@ -9,6 +9,7 @@ node_modules
 /packages/*/dist
 /packages/*/types
 
+!/packages/generator/src/typedoc/lib
 /packages/examples/**/*.css
 
 # misc

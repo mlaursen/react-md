@@ -23,7 +23,7 @@ $rmd-list-horizontal-padding: 0 !default;
 /// the `subtitle-1` typography specs, but it looks better to apply the main text line-height within lists.
 ///
 /// @type Number
-$rmd-list-line-height: map-get(map-get($rmd-typography-styles, body-1), line-height) !default;
+$rmd-list-line-height: rmd-typography-value(body-1, line-height) !default;
 
 /// The font size to use for a "dense" list layout.
 /// @type Number

@@ -38,7 +38,6 @@
   }
 
   .rmd-link {
-    @include rmd-typography(body-2);
     @include rmd-link-theme(color);
 
     text-decoration: none;
