@@ -97,6 +97,7 @@ interface ICreatePackageConfig {
   propTypes?: boolean;
   sassdoc?: boolean;
   changelog?: boolean;
+  exports?: boolean;
 }
 
 function createPackage(
@@ -104,7 +105,13 @@ function createPackage(
   routeComponent: RouteComponent,
   config: ICreatePackageConfig = {}
 ): Route {
-  const { examples = true, propTypes = true, sassdoc = true, changelog = true } = config;
+  const {
+    examples = true,
+    propTypes = true,
+    sassdoc = true,
+    changelog = true,
+    exports = false,
+  } = config;
   const basePath = `${process.env.PUBLIC_URL}/packages/${name === "a11y" ? name : kebabCase(name)}`;
   const childItems = [];
   if (examples) {
@@ -113,6 +120,16 @@ function createPackage(
 
   if (propTypes) {
     childItems.push(createRoute(`${basePath}/proptypes`, "Prop Types"));
+  }
+
+  if (exports) {
+    childItems.push(
+      createRoute(`${basePath}/exports`, "Exports", undefined, undefined, [
+        createRoute(`/text`, "Text"),
+        createRoute(`/text-container`, "Text Container"),
+        createRoute(`/typescript-definitions`, "Typescript Definitions"),
+      ])
+    );
   }
 
   if (sassdoc) {
@@ -125,7 +142,7 @@ function createPackage(
 
   return {
     itemId: basePath,
-    children: `@react-md/${name}`,
+    children: name,
     routeComponent,
     childItems,
   };
@@ -171,7 +188,7 @@ export const routes: RouteList = [
       createPackage("tooltip", Tooltip),
       createPackage("transition", Transition),
       createPackage("tree-view", TreeView),
-      createPackage("typography", Typography),
+      createPackage("typography", Typography, { exports: true }),
     ],
   },
   {

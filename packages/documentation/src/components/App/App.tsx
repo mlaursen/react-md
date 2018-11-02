@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { StatesProvider } from "@react-md/states";
-import { MagicTooltipProvider } from "@react-md/tooltip";
 
 import Home from "components/Home";
 import GettingStarted from "components/GettingStarted";
@@ -28,16 +27,14 @@ import { routesConfig } from "./routes";
 
 const App: React.SFC<{}> = () => (
   <StatesProvider>
-    <MagicTooltipProvider>
-      <Layout>
-        <Switch>
-          {routesConfig.map(({ path, exact, component }) => (
-            <Route key={path} path={path} exact={exact} component={component} />
-          ))}
-          <Route component={NotFound} />
-        </Switch>
-      </Layout>
-    </MagicTooltipProvider>
+    <Layout>
+      <Switch>
+        {routesConfig.map(({ path, exact, component }) => (
+          <Route key={path} path={path} exact={exact} component={component} />
+        ))}
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   </StatesProvider>
 );
 

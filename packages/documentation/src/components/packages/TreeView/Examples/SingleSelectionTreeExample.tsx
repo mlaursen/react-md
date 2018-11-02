@@ -1,10 +1,10 @@
 import * as React from "react";
 import { TreeView, TreeViewControls } from "@react-md/tree-view";
 
-import simpleData from "./simpleData";
+import simpleData, { ISimpleData } from "./simpleData";
 
 const SingleSelectionTreeExample = () => (
-  <TreeViewControls
+  <TreeViewControls<ISimpleData>
     id="single-selection-tree-example"
     aria-label="Single Selection Tree Example"
     data={simpleData}

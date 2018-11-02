@@ -3,6 +3,7 @@ import * as path from "path";
 import * as SassDoc from "sassdoc";
 import * as cpx from "cpx";
 import * as sass from "node-sass";
+import * as prettier from "prettier";
 
 import {
   IVariableLookup,
@@ -145,8 +146,7 @@ function formatBase(item: SassDoc.Item, references: ISassDocReference[]) {
 function formatVariable(
   item: SassDoc.IVariableSassDoc,
   references: ISassDocReference[],
-  lookup: Map<string, IVariableLookup>,
-  unresolvedVariables: SassDoc.IVariableSassDoc[]
+  lookup: Map<string, IVariableLookup>
 ): IVariableSassDoc {
   const {
     context: { name, value, scope },
@@ -156,18 +156,16 @@ function formatVariable(
     link: links = [] as SassDoc.ILink[],
   } = item;
 
-  const resolvedValue = /\$?rmd/.test(value) ? "" : value;
-  if (resolvedValue) {
-    lookup.set(name, { name, type, value, resolved: true });
-  } else {
-    unresolvedVariables.push(item);
-  }
+  const isDefault = scope === "default";
+  const resolvedValue = /\$?rmd|if/.test(value) ? "" : value;
+  lookup.set(name, { name, type, value, resolvedValue, isDefault });
 
-  const code = `$${name}: ${value}${scope === "default" ? " !default" : ""};`;
+  const code = `$${name}: ${value}${isDefault ? " !default" : ""};`;
   return {
     ...formatBase(item, references),
     code,
     value: resolvedValue,
+    resolvedValue,
   };
 }
 
@@ -211,12 +209,7 @@ function removeUncompilableCodeComments(code: string) {
   return code.replace(/\s*\/\/ (START|END)_NO_COMPILE\r?\n/g, "\n");
 }
 
-function compileExampleCode(example: SassDoc.IExample, packages: string[]) {
-  if (example.type !== "scss") {
-    return null;
-  }
-
-  const { code } = example;
+function compile(code: string, packages: string[]) {
   const data = `
 ${packages.map(name => `@import '@react-md/${name}/dist/${name}';`).join("\n")}
 
@@ -230,6 +223,27 @@ ${removeUncompilableCode(code)}
       outputStyle: "expanded",
     })
     .css.toString();
+}
+
+function hackVariableValue(variable: IVariableLookup, packages: string[]): string {
+  if (variable.resolvedValue) {
+    return variable.resolvedValue;
+  }
+
+  const prefix = `$${variable.name}: `;
+  try {
+    compile(`@error '${prefix}#{${variable.value}}'`, packages);
+  } catch (error) {
+    return error.message.substring(prefix.length);
+  }
+}
+
+function compileExampleCode(example: SassDoc.IExample, packages: string[]) {
+  if (example.type !== "scss") {
+    return null;
+  }
+
+  return compile(example.code, packages);
 }
 
 function formatWithParams(
@@ -309,6 +323,32 @@ function formatMixin(
   return formatWithParams(item, references, packages);
 }
 
+function insertAt(value: string, index: number, s: string) {
+  return `${s.substring(0, index)}${value}${s.substring(index)}`;
+}
+
+function updateSassDocVariable(sassdocs: IFlattenedSassDocs, variable: IVariableLookup) {
+  for (const doc of Object.values(sassdocs)) {
+    const oldVariable = doc.variables.find(v => v.name === variable.name);
+    if (oldVariable) {
+      const { name, resolvedValue, isDefault } = variable;
+      const code = `$${name}: ${resolvedValue}${isDefault ? " !default" : ""};`;
+      oldVariable.resolvedValue = prettier
+        .format(code, {
+          printWidth: 80,
+          trailingComma: "es5",
+          tabWidth: 2,
+          bracketSpacing: true,
+          singleQuote: true,
+          parser: "scss",
+        })
+        .replace(/([^0-9])0\./g, "$1.")
+        .replace(/;\r?\n$/, ";");
+      return;
+    }
+  }
+}
+
 export default async function sassdoc(clean: boolean) {
   await moveStyles();
   const parsed = await SassDoc.parse(TEMP_STYLES_FOLDER);
@@ -325,7 +365,7 @@ export default async function sassdoc(clean: boolean) {
   );
 
   const lookup = new Map<string, IVariableLookup>();
-  const unresolvedVariables: SassDoc.IVariableSassDoc[] = [];
+  // const unresolvedVariables: SassDoc.IVariableSassDoc[] = [];
   const sassdocs = parsed.reduce<IFlattenedSassDocs>(
     // tslint:disable-next-line:no-shadowed-variable
     (sassdocs, item) => {
@@ -352,12 +392,7 @@ export default async function sassdoc(clean: boolean) {
           break;
         case "variable":
           group.variables.push(
-            formatVariable(
-              item as SassDoc.IVariableSassDoc,
-              references,
-              lookup,
-              unresolvedVariables
-            )
+            formatVariable(item as SassDoc.IVariableSassDoc, references, lookup)
           );
           break;
         case "mixin":
@@ -372,38 +407,19 @@ export default async function sassdoc(clean: boolean) {
     {}
   );
 
-  let i = unresolvedVariables.length;
-  while (i > 0) {
-    i -= 1;
-    const {
-      context: { name, value },
-      type,
-    } = unresolvedVariables[i];
-    if (!value.match(/if|(rmd(-\w+)+\()/)) {
-      const variables = value.match(/\$(rmd(-\w+)+)/g);
-      let resolvedValue = "";
-      if (type === "Color" && variables) {
-        resolvedValue = variables.reduce((updated, codeVariable) => {
-          const variable = codeVariable.substring(1);
-          if (lookup.has(variable)) {
-            return updated.replace(codeVariable, lookup.get(variable).value);
-          }
-
-          return updated;
-        }, value);
-
-        lookup.set(name, {
-          name,
-          value: resolvedValue,
-          type,
-          resolved: /\$?rmd/.test(resolvedValue),
-        });
-        unresolvedVariables.splice(i, 1);
-      } else {
-        lookup.set(name, { name, value, type, resolved: false });
-      }
-    }
+  interface IVariableLookupJSON {
+    [key: string]: IVariableLookup;
   }
+  const variables: IVariableLookupJSON = {};
+  Array.from(lookup).forEach(([name, variable]) => {
+    const resolvedVariable: IVariableLookup = {
+      ...variable,
+      resolvedValue: hackVariableValue(variable, packages),
+    };
+
+    variables[name] = resolvedVariable;
+    updateSassDocVariable(sassdocs, resolvedVariable);
+  });
 
   if (clean) {
     await fs.remove(TEMP_STYLES_FOLDER);
@@ -415,13 +431,7 @@ export default async function sassdoc(clean: boolean) {
     "constants",
     "sassdocVariables.json"
   );
-  await fs.writeJson(
-    lookupTablePath,
-    Array.from(lookup).reduce((l, [key, value]) => {
-      l[key] = value;
-      return l;
-    }, {})
-  );
+  await fs.writeJson(lookupTablePath, variables, { spaces: 2 });
 
   const files = await Promise.all(
     Object.keys(sassdocs).map(group => {
@@ -433,7 +443,7 @@ export default async function sassdoc(clean: boolean) {
       const sassdocPath = path.join(packagePath, "sassdoc.json");
       return fs
         .ensureDir(packagePath)
-        .then(() => fs.writeJson(sassdocPath, sassdocs[group]))
+        .then(() => fs.writeJson(sassdocPath, sassdocs[group], { spaces: 2 }))
         .then(() => sassdocPath.substring(sassdocPath.indexOf("src")));
     })
   );

@@ -1,7 +1,19 @@
 @import '@react-md/theme/dist/color-palette';
 
+$break-word: (
+  word-break: break-word,
+);
+
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-pink-a-200;
+$rmd-theme-dark-primary-text-color: darken($rmd-white-base, 5%);
+$rmd-typography-styles-headline-2: $break-word;
+$rmd-typography-styles-headline-3: $break-word;
+$rmd-typography-styles-headline-4: $break-word;
+$rmd-typography-styles-headline-5: $break-word;
+$rmd-typography-styles-headline-6: $break-word;
+$rmd-typography-styles-subtitle-1: $break-word;
+$rmd-typography-styles-subtitle-2: $break-word;
 
 @import '@react-md/app-bar/dist/app-bar';
 @import '@react-md/button/dist/button';
@@ -42,6 +54,14 @@ $solarized-green: #859900;
   hyphens: none;
   tab-size: 4;
   word-wrap: break-word;
+}
+
+@mixin inline-code-styles {
+  background-color: var(--markdown-code-bg);
+  border-radius: .25rem;
+  font-size: .9em;
+  padding: .1em .4em;
+  white-space: pre-wrap;
 }
 
 // v1 values

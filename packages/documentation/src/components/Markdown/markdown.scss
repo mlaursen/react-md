@@ -1,5 +1,14 @@
 @import 'app-globals';
 
+
+:root {
+  --markdown-code-bg: #{$rmd-grey-200};
+}
+
+@include dark-theme {
+  --markdown-code-bg: #{darken($dark-theme-background-color, 10%)};
+}
+
 .markdown-container {
   @include rmd-theme(color, text-primary-on-background);
   @include rmd-typography(body-1);
@@ -28,11 +37,7 @@
   }
 
   p code {
-    background-color: $rmd-grey-200;
-    border-radius: .25rem;
-    font-size: .9em;
-    padding: .1em .4em;
-    white-space: pre;
+    @include inline-code-styles;
   }
 
   .comment {
@@ -140,6 +145,10 @@
       margin: 0;
       padding-bottom: 2em;
 
+      p {
+        margin: 0;
+      }
+
       a,
       li {
         @include rmd-typography(headline-6);
@@ -182,8 +191,4 @@
   //   color: $solarized-cyan;
   //   color: $solarized-green;
   // }
-}
-
-.markdown-page {
-  padding: 0 2em;
 }

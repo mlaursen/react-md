@@ -1,1 +1,110 @@
-{"functions":[],"mixins":[{"name":"react-md-overlay","type":"mixin","description":"Creates the styles for overlays.\n","file":"overlay/src/_mixins.scss","group":"overlay","links":[],"see":[],"usedBy":[],"requires":[{"name":"rmd-transition","type":"mixin","description":"","group":"transition"},{"name":"rmd-overlay-color","type":"variable","description":"","group":"overlay"},{"name":"rmd-overlay-transition-duration","type":"variable","description":"","group":"overlay"},{"name":"rmd-overlay-z-index","type":"variable","description":"","group":"overlay"}],"code":"@mixin react-md-overlay {\n  .rmd-overlay {\n    @include rmd-transition(standard);\n\n    background-color: $rmd-overlay-color;\n    bottom: 0;\n    cursor: pointer;\n    left: 0;\n    opacity: 0;\n    pointer-events: none;\n    position: fixed;\n    right: 0;\n    top: 0;\n    transition: opacity $rmd-overlay-transition-duration;\n    z-index: $rmd-overlay-z-index;\n\n    &--active {\n      opacity: 1;\n      pointer-events: auto;\n    }\n  }\n}","throws":[],"examples":[],"parameters":[]}],"variables":[{"name":"rmd-overlay-z-index","type":"Number","description":"The z-index for overlays.\n","file":"overlay/src/_variables.scss","group":"overlay","links":[],"see":[],"usedBy":[{"name":"react-md-overlay","type":"mixin","description":"Creates the styles for overlays.\n","group":"overlay"}],"requires":[],"code":"$rmd-overlay-z-index: 16 !default;","value":"16"},{"name":"rmd-overlay-transition-duration","type":"Number","description":"The transition duration for overlays entering and leaving.\n","file":"overlay/src/_variables.scss","group":"overlay","links":[],"see":[],"usedBy":[{"name":"react-md-overlay","type":"mixin","description":"Creates the styles for overlays.\n","group":"overlay"}],"requires":[],"code":"$rmd-overlay-transition-duration: .15s !default;","value":".15s"},{"name":"rmd-overlay-color","type":"Color","description":"The background color for the overlay. It is recommended to make sure that an opacity\nis applied instead of a static color.\n","file":"overlay/src/_variables.scss","group":"overlay","links":[],"see":[],"usedBy":[{"name":"react-md-overlay","type":"mixin","description":"Creates the styles for overlays.\n","group":"overlay"}],"requires":[],"code":"$rmd-overlay-color: rgba($rmd-black-base, .4) !default;","value":""}]}
+{
+  "functions": [],
+  "mixins": [
+    {
+      "name": "react-md-overlay",
+      "type": "mixin",
+      "description": "Creates the styles for overlays.\n",
+      "file": "overlay/src/_mixins.scss",
+      "group": "overlay",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [
+        {
+          "name": "rmd-transition",
+          "type": "mixin",
+          "description": "",
+          "group": "transition"
+        },
+        {
+          "name": "rmd-overlay-color",
+          "type": "variable",
+          "description": "",
+          "group": "overlay"
+        },
+        {
+          "name": "rmd-overlay-transition-duration",
+          "type": "variable",
+          "description": "",
+          "group": "overlay"
+        },
+        {
+          "name": "rmd-overlay-z-index",
+          "type": "variable",
+          "description": "",
+          "group": "overlay"
+        }
+      ],
+      "code": "@mixin react-md-overlay {\n  .rmd-overlay {\n    @include rmd-transition(standard);\n\n    background-color: $rmd-overlay-color;\n    bottom: 0;\n    cursor: pointer;\n    left: 0;\n    opacity: 0;\n    pointer-events: none;\n    position: fixed;\n    right: 0;\n    top: 0;\n    transition: opacity $rmd-overlay-transition-duration;\n    z-index: $rmd-overlay-z-index;\n\n    &--active {\n      opacity: 1;\n      pointer-events: auto;\n    }\n  }\n}",
+      "throws": [],
+      "examples": [],
+      "parameters": []
+    }
+  ],
+  "variables": [
+    {
+      "name": "rmd-overlay-z-index",
+      "type": "Number",
+      "description": "The z-index for overlays.\n",
+      "file": "overlay/src/_variables.scss",
+      "group": "overlay",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-overlay",
+          "type": "mixin",
+          "description": "Creates the styles for overlays.\n",
+          "group": "overlay"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-overlay-z-index: 16 !default;",
+      "value": "16",
+      "resolvedValue": "$rmd-overlay-z-index: 16 !default;"
+    },
+    {
+      "name": "rmd-overlay-transition-duration",
+      "type": "Number",
+      "description": "The transition duration for overlays entering and leaving.\n",
+      "file": "overlay/src/_variables.scss",
+      "group": "overlay",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-overlay",
+          "type": "mixin",
+          "description": "Creates the styles for overlays.\n",
+          "group": "overlay"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-overlay-transition-duration: .15s !default;",
+      "value": ".15s",
+      "resolvedValue": "$rmd-overlay-transition-duration: .15s !default;"
+    },
+    {
+      "name": "rmd-overlay-color",
+      "type": "Color",
+      "description": "The background color for the overlay. It is recommended to make sure that an opacity\nis applied instead of a static color.\n",
+      "file": "overlay/src/_variables.scss",
+      "group": "overlay",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-overlay",
+          "type": "mixin",
+          "description": "Creates the styles for overlays.\n",
+          "group": "overlay"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-overlay-color: rgba($rmd-black-base, .4) !default;",
+      "value": "",
+      "resolvedValue": "$rmd-overlay-color: rgba(0, 0, 0, .4) !default;"
+    }
+  ]
+}

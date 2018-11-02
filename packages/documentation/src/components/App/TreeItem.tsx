@@ -5,7 +5,7 @@ import {
   TreeViewData,
   IDefaultTreeItemRendererProps,
 } from "@react-md/tree-view";
-import { MagicTooltip } from "@react-md/tooltip";
+import { Tooltip } from "@react-md/tooltip";
 
 export interface ITreeItemState {
   tooltipped: boolean;
@@ -46,7 +46,11 @@ export default class TreeItem extends React.Component<
     let tooltipId;
     if (tooltipped) {
       tooltipId = itemId.substring(1).replace(/\//g, "-");
-      tooltip = <MagicTooltip id={tooltipId}>{children}</MagicTooltip>;
+      tooltip = (
+        <Tooltip id={tooltipId} portal>
+          {children}
+        </Tooltip>
+      );
     }
 
     return (

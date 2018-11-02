@@ -1,0 +1,66 @@
+@import 'app-globals';
+
+.elevated {
+  padding: 1rem;
+
+  // @media (min-width: 1600px) {
+  //   @include rmd-typography-value(subtitle-1, font-size, letter-spacing, line-height);
+
+  //   p,
+  //   ul,
+  //   code {
+  //     font-size: inherit;
+  //     line-height: inherit;
+  //   }
+  // }
+}
+
+.scroll-wrapper {
+  @include rmd-utils-scroll;
+  margin-bottom: 50rem;
+}
+
+.prop-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+
+  &__row {
+    border-bottom: 1px solid rmd-theme-var(text-hint-on-background);
+  }
+
+  tbody .prop-table__row:last-of-type {
+    border-bottom: 0;
+  }
+
+  &__cell {
+    border: 0;
+    padding: 1rem 1.5rem;
+    padding-left: 0;
+    text-align: left;
+    vertical-align: top;
+
+    &--header {
+      @include rmd-typography(headline-5);
+      white-space: nowrap;
+    }
+
+    p:first-of-type {
+      margin-top: 0;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__code {
+    @include code-styles;
+    @include inline-code-styles;
+  }
+
+  &__description {
+    min-width: 30rem;
+  }
+}

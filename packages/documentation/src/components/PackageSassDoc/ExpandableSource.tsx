@@ -12,12 +12,15 @@ interface IInnerHTML {
 
 export interface IExpandableSourceProps {
   code: string;
+  compiledCode: string;
+  expandable: boolean;
   linkId: string;
 }
 
 export interface IExpandableSourceState {
   html: IInnerHTML;
   collapsed: boolean;
+  showCompiled: boolean;
   oneLineCode: string;
 }
 
@@ -29,58 +32,73 @@ export default class ExpandableSource extends React.Component<
   constructor(props: IExpandableSourceProps) {
     super(props);
 
-    const oneLineCode = this.toOneLineCode(props.code);
+    const oneLineCode = this.toOneLineCode(props.code, props.expandable);
     this.state = {
       html: this.createHtml(oneLineCode),
-      collapsed: true,
+      collapsed: props.expandable,
       oneLineCode,
+      showCompiled: false,
     };
     this.sourceEl = React.createRef();
   }
 
   public render() {
-    const { collapsed, html, oneLineCode } = this.state;
-    const { code } = this.props;
+    const { collapsed, html, oneLineCode, showCompiled } = this.state;
+    const { code, compiledCode, linkId } = this.props;
     const expandable = oneLineCode !== code;
 
     return (
       <StatesConsumer disabled={!expandable} onKeyDown={this.handleKeyDown}>
         {({ disabled, className, ...statesProps }) => {
           return (
-            <div
-              {...statesProps}
-              ref={this.sourceEl}
-              className={cn("sassdoc__source markdown-container", className)}
-              aria-expanded={expandable ? !collapsed : undefined}
-              tabIndex={expandable ? 0 : undefined}
-              role={expandable ? "button" : undefined}
-              onClick={expandable ? this.handleClick : undefined}
-            >
-              <Collapse
-                collapsed={collapsed}
-                minHeight="3.5rem"
-                minPaddingTop="1rem"
-                minPaddingBottom="1rem"
-                onCollapsed={this.handleCollapseEnd}
-              >
-                {({ style, className: collapseClassName, refCallback }) => (
-                  <pre
-                    ref={refCallback}
-                    style={style}
-                    className={cn("sassdoc__source-code", collapseClassName)}
-                    dangerouslySetInnerHTML={html}
-                  />
+            <React.Fragment>
+              {!expandable &&
+                code !== compiledCode && (
+                  <label htmlFor={`${linkId}-show-compiled`}>
+                    Show compiled default value?
+                    <input
+                      id={`${linkId}-show-compiled`}
+                      type="checkbox"
+                      onChange={this.handleShowCompiledChange}
+                      checked={showCompiled}
+                    />
+                  </label>
                 )}
-              </Collapse>
-            </div>
+              <div
+                {...statesProps}
+                ref={this.sourceEl}
+                className={cn("sassdoc__source markdown-container", className)}
+                aria-expanded={expandable ? !collapsed : undefined}
+                tabIndex={expandable ? 0 : undefined}
+                role={expandable ? "button" : undefined}
+                onClick={expandable ? this.handleClick : undefined}
+              >
+                <Collapse
+                  collapsed={collapsed}
+                  minHeight="3.5rem"
+                  minPaddingTop="1rem"
+                  minPaddingBottom="1rem"
+                  onCollapsed={this.handleCollapseEnd}
+                >
+                  {({ style, className: collapseClassName, refCallback }) => (
+                    <pre
+                      ref={refCallback}
+                      style={style}
+                      className={cn("sassdoc__source-code", collapseClassName)}
+                      dangerouslySetInnerHTML={html}
+                    />
+                  )}
+                </Collapse>
+              </div>
+            </React.Fragment>
           );
         }}
       </StatesConsumer>
     );
   }
 
-  private toOneLineCode(code: string) {
-    if (!/\r?\n/.test(code)) {
+  private toOneLineCode(code: string, expandable: boolean) {
+    if (!expandable || !/\r?\n/.test(code)) {
       return code;
     }
 
@@ -106,6 +124,12 @@ ${code
       __html: markdownToHTML(code).replace(/<\/?pre>/g, ""),
     };
   }
+
+  private handleShowCompiledChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const showCompiled = event.target.checked;
+    const { code, compiledCode } = this.props;
+    this.setState({ showCompiled, html: this.createHtml(showCompiled ? compiledCode : code) });
+  };
 
   private handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (this.state.collapsed) {

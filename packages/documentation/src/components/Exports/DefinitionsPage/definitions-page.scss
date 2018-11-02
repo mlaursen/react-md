@@ -1,0 +1,28 @@
+@import 'app-globals';
+
+.definitions-page {
+  padding: 0 5.5rem 2rem;
+
+  &__type-parameters {
+    @include code-styles;
+
+    font-size: .8em;
+
+    &::before,
+    &::after {
+      font-size: 1.2em;
+    }
+
+    &::before {
+      content: '<';
+    }
+
+    &::after {
+      content: '>';
+    }
+  }
+
+  &__type-parameter-link {
+    font: inherit;
+  }
+}

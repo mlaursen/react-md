@@ -11,7 +11,6 @@ import {
   SearchSVGIcon,
 } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import { MagicTooltipProvider, TooltipPosition } from "@react-md/tooltip";
 import { List, ListItem } from "@react-md/list";
 import * as _ from "lodash";
 import {
@@ -111,21 +110,19 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
                         </AppBarAction>
                       )}
                     </AppBar>
-                    <MagicTooltipProvider position={TooltipPosition.RIGHT} portal={true}>
-                      <TreeView
-                        id="navigation-tree"
-                        aria-label="Main Navigation"
-                        className="rmd-layout__nav-tree"
-                        dense={isDesktop}
-                        data={routes}
-                        expandedIds={expandedIds}
-                        selectedIds={selectedIds}
-                        onItemSelect={this.handleItemSelect}
-                        onItemExpandedChange={this.handleItemExpandedChange}
-                        onMultipleItemExpansion={this.handleMultipleItemExpansion}
-                        treeItemRenderer={this.treeItemRenderer}
-                      />
-                    </MagicTooltipProvider>
+                    <TreeView
+                      id="navigation-tree"
+                      aria-label="Main Navigation"
+                      className="rmd-layout__nav-tree"
+                      dense={isDesktop}
+                      data={routes}
+                      expandedIds={expandedIds}
+                      selectedIds={selectedIds}
+                      onItemSelect={this.handleItemSelect}
+                      onItemExpandedChange={this.handleItemExpandedChange}
+                      onMultipleItemExpansion={this.handleMultipleItemExpansion}
+                      treeItemRenderer={this.treeItemRenderer}
+                    />
                   </nav>
                 );
 
@@ -194,10 +191,6 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
       </AppSizeListener>
     );
   }
-
-  private handleResize = (size: IAppSize) => {
-    // console.log("size:", size);
-  };
 
   private handleEnter = (node: HTMLElement, isEntering: boolean) => {
     window.requestAnimationFrame(() => {

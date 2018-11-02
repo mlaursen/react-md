@@ -1,0 +1,29 @@
+@import 'app-globals';
+
+.anchor-target {
+  position: relative;
+}
+
+.anchor {
+  @include rmd-theme(color, text-secondary-on-background);
+
+  font-size: 80%;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity .15s linear;
+
+  &--before {
+    left: -.75em;
+  }
+
+  &--after {
+    margin-left: $rmd-icon-spacing-with-text;
+  }
+
+  .anchor-target:hover &,
+  &:focus {
+    opacity: 1;
+  }
+}

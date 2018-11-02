@@ -32,6 +32,7 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
+  headerIds: true,
 });
 
 export interface IMarkdownOptions {

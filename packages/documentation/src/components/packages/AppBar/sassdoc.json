@@ -1,1 +1,919 @@
-{"functions":[],"mixins":[{"name":"rmd-app-bar-base","type":"mixin","description":"Creates the base styles for the `AppBar` component.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[],"code":"@mixin rmd-app-bar-base {\n  align-items: center;\n  display: flex;\n}","throws":[],"examples":[{"type":"scss","code":".app-bar {\n  @include rmd-app-bar-base;\n}","description":"Simple Example","compiledCode":".app-bar {\n  align-items: center;\n  display: flex;\n}\n","htmlExample":"<div class=\"app-bar\">\n  An app bar with the base styles.\n</div>"}],"parameters":[]},{"name":"rmd-app-bar-fixed","type":"mixin","description":"Creates the styles for the `AppBar` component when it is fixed to the top or bottom\nof the page. This will create four classes:\n- `&--fixed`\n- `&--fixed-elevation`\n- `&--top`\n- `&--bottom`\n\nTo get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class\nas well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should\ngain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the\ndifferent use cases.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-elevation","type":"mixin","description":"","group":"elevation"},{"name":"rmd-app-bar-z-index","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-fixed($elevation: $rmd-app-bar-fixed-elevation) {\n  &--fixed {\n    left: 0;\n    position: fixed;\n    right: 0;\n    z-index: $rmd-app-bar-z-index;\n  }\n\n  &--fixed-elevation {\n    @include rmd-elevation($elevation);\n  }\n\n  &--top {\n    top: 0;\n  }\n\n  &--bottom {\n    bottom: 0;\n  }\n}","throws":[],"examples":[{"type":"scss","code":".app-bar {\n  @include rmd-app-bar-fixed;\n}","description":"Simple Example","compiledCode":".app-bar--fixed {\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n","htmlExample":"<div class=\"app-bar app-bar--fixed app-bar--top\">\n  An app-bar fixed to the top of the page.\n</div>\n\n<div class=\"app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom\">\n  An app-bar fixed to the bottom of the page with elevation\n</div>"},{"type":"scss","code":".app-bar {\n  @include rmd-app-bar-fixed(8);\n}","description":"Custom Elevation Example","compiledCode":".app-bar--fixed {\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n"}],"parameters":[{"type":"Number","name":"elevation","default":"$rmd-app-bar-fixed-elevation","description":"The elevation to use for a fixed app bar. This should\n  be a number between 0 and 24 since it uses the `rmd-elevation` mixin."}]},{"name":"rmd-app-bar-sizes","type":"mixin","description":"Creates the styles for the different app bar sizes.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[],"code":"@mixin rmd-app-bar-sizes($height: $rmd-app-bar-height, $dense-height: $rmd-app-bar-dense-height, $prominent-height: $rmd-app-bar-prominent-height, $prominent-dense-height: $rmd-app-bar-prominent-dense-height) {\n  height: $height;\n\n  &--dense {\n    height: $dense-height;\n  }\n\n  &--prominent {\n    align-items: flex-start;\n    flex-wrap: wrap;\n    height: $prominent-height;\n  }\n\n  &--prominent-dense {\n    height: $prominent-dense-height;\n  }\n}","throws":[],"examples":[{"type":"scss","code":".app-bar {\n  @include rmd-app-bar-sizes;\n}","description":"Simple Example","compiledCode":".app-bar {\n  height: 3.5rem;\n}\n\n.app-bar--dense {\n  height: 3rem;\n}\n\n.app-bar--prominent {\n  align-items: flex-start;\n  flex-wrap: wrap;\n  height: 7rem;\n}\n\n.app-bar--prominent-dense {\n  height: 6rem;\n}\n","htmlExample":"<div class=\"app-bar\">\n  A default sized app bar.\n</div>\n\n<div class=\"app-bar app-bar--dense\">\n  A dense sized app bar.\n</div>\n\n<div class=\"app-bar app-bar--prominent\">\n  A prominent sized app bar.\n</div>\n\n<!-- NOTE: To get correct prominent and dense styles, you will need to apply both the `--prominent` and `--prominent-dense` suffixes. -->\n<div class=\"app-bar app-bar--prominent app-bar--prominent-dense\">\n  A prominent and sized app bar.\n</div>"}],"parameters":[{"type":"Number","name":"height","default":"$rmd-app-bar-height","description":"The default height to use for an AppBar."},{"type":"Number","name":"dense-height","default":"$rmd-app-bar-dense-height","description":"The height to use for a dense AppBar."},{"type":"Number","name":"prominent-height","default":"$rmd-app-bar-prominent-height","description":"The height to use for a prominent AppBar."},{"type":"Number","name":"prominent-dense-height","default":"$rmd-app-bar-prominent-dense-height","description":"The height to use for a prominent and dense AppBar."}]},{"name":"rmd-app-bar-themes","type":"mixin","description":"Creates the styles for different app bar themes. This will create 4 classes:\n- `--primary`\n- `--secondary`\n- `--default`\n- `--child-inherit`\n\nThe primary and secondary suffixes will use the theme variables for generating the correct theme background color and\ntext color on top of the theme color. The default suffix is used to create a third theme type with any colors that are\nprovided. Finally, the `--child-inherit` suffix will allow child `AppBarNav`, `AppBarTitle`, and `AppBarAction` components\nto inherit text color instead of using the default color.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-theme","type":"mixin","description":"","group":"theme"}],"code":"@mixin rmd-app-bar-themes($default-background-color: $rmd-app-bar-default-background-color, $default-text-color: $rmd-app-bar-default-text-color) {\n  &--primary {\n    @include rmd-theme(background-color, primary);\n    @include rmd-theme(color, on-primary);\n  }\n\n  &--secondary {\n    @include rmd-theme(background-color, secondary);\n    @include rmd-theme(color, on-secondary);\n  }\n\n  &--default {\n    background-color: $default-background-color;\n    color: $default-text-color;\n  }\n\n  &--child-inherit {\n    .rmd-app-bar__nav,\n    .rmd-app-bar__title,\n    .rmd-app-bar__action {\n      color: inherit;\n    }\n  }\n}","throws":[],"examples":[{"type":"scss","code":"$rmd-theme-primary: $rmd-blue-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n\n.app-bar {\n  @include rmd-app-bar-themes;\n}","description":"Simple Example","compiledCode":".app-bar--primary {\n  background-color: #9c27b0;\n  background-color: var(--rmd-theme-primary, #9c27b0);\n  color: #fff;\n  color: var(--rmd-theme-on-primary, #fff);\n}\n\n.app-bar--secondary {\n  background-color: #f50057;\n  background-color: var(--rmd-theme-secondary, #f50057);\n  color: #fff;\n  color: var(--rmd-theme-on-secondary, #fff);\n}\n\n.app-bar--default {\n  background-color: #f5f5f5;\n  color: #000;\n}\n\n.app-bar--child-inherit .rmd-app-bar__nav,\n.app-bar--child-inherit .rmd-app-bar__title,\n.app-bar--child-inherit .rmd-app-bar__action {\n  color: inherit;\n}\n","htmlExample":"<div class=\"app-bar app-bar--primary\">\n  An app bar with the primary theme color as the background color.\n</div>\n\n<div class=\"app-bar app-bar--secondary\">\n  An app bar with the secondary theme color as the background color.\n</div>\n\n<div class=\"app-bar app-bar--default\">\n  An app bar with the default theme applied.\n</div>"}],"parameters":[{"type":"Color","name":"default-background-color","default":"$rmd-app-bar-default-background-color","description":"The background color to use for the \"default\" theme."},{"type":"Color","name":"default-text-color","default":"$rmd-app-bar-default-text-color","description":"The text color to use for the \"default\" theme."}]},{"name":"rmd-app-bar-nav","type":"mixin","description":"Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-app-bar-lr-margin","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-title-nav-margin","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-nav {\n  flex-shrink: 0;\n  margin-left: $rmd-app-bar-lr-margin;\n  margin-right: $rmd-app-bar-title-nav-margin;\n\n  // sass-lint:disable-block mixins-before-declarations\n  @include rmd-utils-rtl {\n    margin-left: $rmd-app-bar-title-nav-margin;\n    margin-right: $rmd-app-bar-lr-margin;\n  }\n}","throws":[],"examples":[{"type":"scss","code":".app-bar__nav {\n  // add the next two lines if not applying the base .rmd-btn classes\n  // @include rmd-btn-base;\n  // @include rmd-btn-text;\n  @include rmd-app-bar-nav;\n}","description":"Simple Example","compiledCode":".app-bar__nav {\n  flex-shrink: 0;\n  margin-left: 0.25rem;\n  margin-right: 1.25rem;\n}\n\n[dir='rtl'] .app-bar__nav {\n  margin-left: 1.25rem;\n  margin-right: 0.25rem;\n}\n","htmlExample":"<div class=\"app-bar app-bar--primary\">\n  <button type=\"button\" className=\"app-bar__nav\">Nav Button</button>\n</div>"}],"parameters":[]},{"name":"rmd-app-bar-title","type":"mixin","description":"Creates the styles for the `AppBarTitle` component.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-typography","type":"mixin","description":"","group":"typography"},{"name":"rmd-app-bar-title-line-height","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-keyline","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-title-keyline","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-title {\n  @include rmd-typography(headline-6);\n\n  line-height: $rmd-app-bar-title-line-height;\n  margin-bottom: 0;\n  margin-left: $rmd-app-bar-keyline;\n  margin-top: 0;\n\n  // sass-lint:disable-block mixins-before-declarations\n  @include rmd-utils-rtl {\n    margin-left: auto;\n    margin-right: $rmd-app-bar-keyline;\n  }\n\n  .rmd-app-bar__nav ~ & {\n    margin-left: 0;\n\n    @include rmd-utils-rtl {\n      margin-right: 0;\n    }\n  }\n\n  &--keyline {\n    margin-left: $rmd-app-bar-title-keyline;\n\n    @include rmd-utils-rtl {\n      margin-left: auto;\n      margin-right: $rmd-app-bar-title-keyline;\n    }\n  }\n}","throws":[],"examples":[{"type":"scss","code":".rmd-app-bar__title {\n  @include rmd-app-bar-title;\n}","description":"Example Usage SCSS","compiledCode":".rmd-app-bar__title {\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 1.25rem;\n  line-height: 2rem;\n  font-weight: 500;\n  letter-spacing: 0.0125em;\n  text-decoration: inherit;\n  text-transform: inherit;\n  line-height: 1.15;\n  margin-bottom: 0;\n  margin-left: 1rem;\n  margin-top: 0;\n}\n\n[dir='rtl'] .rmd-app-bar__title {\n  margin-left: auto;\n  margin-right: 1rem;\n}\n\n.rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n}\n\n[dir='rtl'] .rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-right: 0;\n}\n\n.rmd-app-bar__title--keyline {\n  margin-left: 4.5rem;\n}\n\n[dir='rtl'] .rmd-app-bar__title--keyline {\n  margin-left: auto;\n  margin-right: 4.5rem;\n}\n"}],"parameters":[]},{"name":"rmd-app-bar-action","type":"mixin","description":"Creates the styles for the `AppBarAction` component.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-app-bar-lr-margin","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-nav-margin","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-action {\n  flex-shrink: 0;\n\n  &--first {\n    margin-left: auto;\n\n    // sass-lint:disable-block mixins-before-declarations\n    @include rmd-utils-rtl {\n      margin-left: $rmd-app-bar-lr-margin;\n      margin-right: auto;\n    }\n  }\n\n  &--last {\n    margin-left: $rmd-app-bar-lr-margin;\n    margin-right: $rmd-app-bar-nav-margin;\n\n    // sass-lint:disable-block mixins-before-declarations\n    @include rmd-utils-rtl {\n      margin-left: $rmd-app-bar-nav-margin;\n      margin-right: $rmd-app-bar-lr-margin;\n    }\n  }\n}","throws":[],"examples":[{"type":"scss","code":".rmd-app-bar__action {\n  @include rmd-app-bar-action;\n}","description":"Example Usage SCSS","compiledCode":".rmd-app-bar__action {\n  flex-shrink: 0;\n}\n\n.rmd-app-bar__action--first {\n  margin-left: auto;\n}\n\n[dir='rtl'] .rmd-app-bar__action--first {\n  margin-left: 0.25rem;\n  margin-right: auto;\n}\n\n.rmd-app-bar__action--last {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n\n[dir='rtl'] .rmd-app-bar__action--last {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n"}],"parameters":[]},{"name":"rmd-app-bar-row","type":"mixin","description":"Creates the styles for the `AppBarRow` component.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-app-bar-height","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-dense-height","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-row {\n  align-items: center;\n  display: flex;\n  height: $rmd-app-bar-height;\n  width: 100%;\n\n  &--dense {\n    height: $rmd-app-bar-dense-height;\n  }\n}","throws":[],"examples":[{"type":"scss","code":".rmd-app-bar__row {\n  @include rmd-app-bar-row;\n}","description":"Example Usage SCSS","compiledCode":".rmd-app-bar__row {\n  align-items: center;\n  display: flex;\n  height: 3.5rem;\n  width: 100%;\n}\n\n.rmd-app-bar__row--dense {\n  height: 3rem;\n}\n"}],"parameters":[]},{"name":"rmd-app-bar-offset","type":"mixin","description":"A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-offsets","type":"mixin","description":"Creates all the offset class names applied with the current style.\n\n","group":"app-bar"}],"requires":[{"name":"rmd-app-bar-prominent-dense-height","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-prominent-height","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-dense-height","type":"variable","description":"","group":"app-bar"},{"name":"rmd-app-bar-height","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-offset($prominent: false, $dense: false, $style: $rmd-app-bar-offset-style) {\n  $distance: null;\n  @if $prominent {\n    $distance: if($dense, $rmd-app-bar-prominent-dense-height, $rmd-app-bar-prominent-height);\n  } @else {\n    $distance: if($dense, $rmd-app-bar-dense-height, $rmd-app-bar-height);\n  }\n\n  #{$style}: $distance;\n}","throws":[],"examples":[{"type":"scss","code":".main {\n  @include rmd-app-bar-offset;\n\n  &--prominent {\n    @include rmd-app-bar-offset(true, true);\n  }\n\n  &--dense {\n    @include rmd-app-bar-offset(false, true);\n  }\n\n  &--dense-prominent {\n    @include rmd-app-bar-offset(true, true);\n  }\n\n  &--margin {\n    @include rmd-app-bar-offset(false, false, margin-top);\n  }\n}","description":"Example Usage SCSS","compiledCode":".main {\n  padding-top: 3.5rem;\n}\n\n.main--prominent {\n  padding-top: 6rem;\n}\n\n.main--dense {\n  padding-top: 3rem;\n}\n\n.main--dense-prominent {\n  padding-top: 6rem;\n}\n\n.main--margin {\n  margin-top: 3.5rem;\n}\n"}],"parameters":[{"type":"Boolean","name":"prominent","default":"false","description":"Boolean if the styles should reflect a prominent app bar. If both\n    this and the `dense` params are set to `true`, the styles will reflect a prominent dense app bar."},{"type":"Boolean","name":"dense","default":"false","description":"Boolean if the styles should reflect a dense app bar. If both this and\n    the `prominent` params are set to `true`, the styles will reflect a prominent dense app bar."},{"type":"String","name":"style","default":"rmd-app-bar-offset-style","description":"The style to apply the offset to."}]},{"name":"rmd-app-bar-offsets","type":"mixin","description":"Creates all the offset class names applied with the current style.\n\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","group":"app-bar"}],"requires":[{"name":"rmd-app-bar-offset","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-valid-offsets","type":"variable","description":"","group":"app-bar"}],"code":"@mixin rmd-app-bar-offsets($style: $rmd-app-bar-offset-style, $offsets: $rmd-app-bar-offsets) {\n  @each $offset in $offsets {\n    @if not index($rmd-app-bar-valid-offsets, $offset) {\n      @error 'Invalid offset: \\'#{$offset}\\'! Choose one of \\'#{$rmd-app-bar-valid-offsets}\\'.';\n    }\n\n    $dense: $offset == 'dense' or $offset == 'prominent-dense';\n    $prominent: $offset == 'prominent' or $offset == 'prominent-dense';\n    $selector: '.rmd-app-bar-offset';\n    @if $offset != 'base' {\n      $selector: $selector + '-#{$offset}';\n    }\n\n    #{$selector} {\n      @include rmd-app-bar-offset($prominent, $dense, $style);\n    }\n  }\n}","throws":["Invalid offset: \\"],"examples":[],"parameters":[{"type":"String","name":"style","default":"rmd-app-bar-offset-style","description":"The style to apply the offset to."},{"type":"String","name":"offsets","default":"rmd-app-bar-offsets","description":"A list of offsets that should be created."}]},{"name":"react-md-app-bar","type":"mixin","description":"Creates all the styles for all the AppBar components.\n","file":"app-bar/src/_mixins.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[{"name":"rmd-app-bar-offsets","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-base","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-sizes","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-fixed","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-themes","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-nav","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-title","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-action","type":"mixin","description":"","group":"app-bar"},{"name":"rmd-app-bar-row","type":"mixin","description":"","group":"app-bar"}],"code":"@mixin react-md-app-bar {\n  @include rmd-app-bar-offsets;\n\n  .rmd-app-bar {\n    @include rmd-app-bar-base;\n    @include rmd-app-bar-sizes;\n    @include rmd-app-bar-fixed;\n    @include rmd-app-bar-themes;\n\n    &__nav {\n      @include rmd-app-bar-nav;\n    }\n\n    &__title {\n      @include rmd-app-bar-title;\n    }\n\n    &__action {\n      @include rmd-app-bar-action;\n    }\n\n    &__row {\n      @include rmd-app-bar-row;\n    }\n  }\n}","throws":[],"examples":[],"parameters":[]}],"variables":[{"name":"rmd-app-bar-z-index","type":"Number","description":"The z-index to use for the fixed app bar. Ideally this value should be less than\nany of the \"temporary\" materials like overlays, sheets, and menus.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-fixed","type":"mixin","description":"Creates the styles for the `AppBar` component when it is fixed to the top or bottom\nof the page. This will create four classes:\n- `&--fixed`\n- `&--fixed-elevation`\n- `&--top`\n- `&--bottom`\n\nTo get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class\nas well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should\ngain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the\ndifferent use cases.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-z-index: 10 !default;","value":"10"},{"name":"rmd-app-bar-fixed-elevation","type":"Number","description":"The elevation to use for \"fixed\" app bars. This should be a number between 0 and 16.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[],"code":"$rmd-app-bar-fixed-elevation: 2 !default;","value":"2"},{"name":"rmd-app-bar-height","type":"Number","description":"The height for the app bar.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-row","type":"mixin","description":"Creates the styles for the `AppBarRow` component.\n\n","group":"app-bar"},{"name":"rmd-app-bar-offset","type":"mixin","description":"A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-height: 3.5rem !default;","value":"3.5rem"},{"name":"rmd-app-bar-dense-height","type":"Number","description":"The dense height for the app bar.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-row","type":"mixin","description":"Creates the styles for the `AppBarRow` component.\n\n","group":"app-bar"},{"name":"rmd-app-bar-offset","type":"mixin","description":"A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-dense-height: 3rem !default;","value":"3rem"},{"name":"rmd-app-bar-prominent-height","type":"Number","description":"The prominent/extended height for the app bar.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-offset","type":"mixin","description":"A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-prominent-height: $rmd-app-bar-height * 2 !default;","value":""},{"name":"rmd-app-bar-prominent-dense-height","type":"Number","description":"The prominent/extended height for the app bar when the `dense` prop is also enabled.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-offset","type":"mixin","description":"A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-prominent-dense-height: $rmd-app-bar-dense-height * 2 !default;","value":""},{"name":"rmd-app-bar-keyline","type":"Number","description":"The default keyline to use for either the `AppBarNav` or `AppBarTitle`. This makes the icon in the `AppBarNav` or\nthe first letter in the `AppBarTitle` appear at this distance.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-title","type":"mixin","description":"Creates the styles for the `AppBarTitle` component.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-keyline: 1rem !default;","value":"1rem"},{"name":"rmd-app-bar-nav-margin","type":"Number","description":"The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned\nat the keyline (ignoring the button padding).\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-action","type":"mixin","description":"Creates the styles for the `AppBarAction` component.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-nav-margin: $rmd-app-bar-keyline - (($rmd-btn-icon-size - $rmd-icon-size) / 2);","value":""},{"name":"rmd-app-bar-title-line-height","type":"Number","description":"The line-height to apply to the `AppBarTitle`.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-title","type":"mixin","description":"Creates the styles for the `AppBarTitle` component.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-title-line-height: 1.15 !default;","value":"1.15"},{"name":"rmd-app-bar-title-keyline","type":"Number","description":"The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or the `offset` prop is enabled.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-title","type":"mixin","description":"Creates the styles for the `AppBarTitle` component.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-title-keyline: 4.5rem !default;","value":"4.5rem"},{"name":"rmd-app-bar-title-nav-margin","type":"Number","description":"The amount of margin to apply to the title when used with the `AppBarNav` component.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-nav","type":"mixin","description":"Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin - $rmd-btn-icon-size;","value":""},{"name":"rmd-app-bar-lr-margin","type":"Number","description":"The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be\napplied if using the `AppBarNav` component and will be applied to the `AppBarAction` component that enables the `last` prop.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[{"name":"rmd-app-bar-nav","type":"mixin","description":"Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n","group":"app-bar"},{"name":"rmd-app-bar-action","type":"mixin","description":"Creates the styles for the `AppBarAction` component.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-lr-margin: .25rem !default;","value":".25rem"},{"name":"rmd-app-bar-default-background-color","type":"Color","description":"The background-color to use for an `AppBar` that is using the `default` theme.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[],"code":"$rmd-app-bar-default-background-color: if(\n  rmd-theme-contrast-tone($rmd-theme-background) == 'dark',\n  $rmd-grey-100,\n  $rmd-grey-900\n) !default;","value":""},{"name":"rmd-app-bar-default-text-color","type":"Color","description":"The color to use for an `AppBar` that is using the `default` theme.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[],"code":"$rmd-app-bar-default-text-color: if(\n  rmd-theme-contrast-tone($rmd-app-bar-default-background-color) == 'dark',\n  $rmd-black-base,\n  $rmd-white-base\n) !default;","value":""},{"name":"rmd-app-bar-valid-offsets","type":"List","description":"A list of \"valid\" offsets the are supported by the `rmd-app-bar-offsets` mixin.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[{"name":"rmd-app-bar-offsets","type":"mixin","description":"Creates all the offset class names applied with the current style.\n\n","group":"app-bar"}],"usedBy":[{"name":"rmd-app-bar-offsets","type":"mixin","description":"Creates all the offset class names applied with the current style.\n\n","group":"app-bar"}],"requires":[],"code":"$rmd-app-bar-valid-offsets: base dense prominent prominent-dense;","value":"base dense prominent prominent-dense"},{"name":"rmd-app-bar-offsets","type":"List","description":"The app bar offsets that should be created by default.\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[],"code":"$rmd-app-bar-offsets: $rmd-app-bar-valid-offsets !default;","value":""},{"name":"rmd-app-bar-offset-style","type":"String","description":"The default style to apply the app bar offsets to. This should normally be one of:\n- padding-top\n- padding-bottom\n- margin-top\n- margin-bottom\n- top\n- bottom\n","file":"app-bar/src/_variables.scss","group":"app-bar","links":[],"see":[],"usedBy":[],"requires":[],"code":"$rmd-app-bar-offset-style: padding-top !default;","value":"padding-top"}]}
+{
+  "functions": [],
+  "mixins": [
+    {
+      "name": "rmd-app-bar-base",
+      "type": "mixin",
+      "description": "Creates the base styles for the `AppBar` component.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "@mixin rmd-app-bar-base {\n  align-items: center;\n  display: flex;\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".app-bar {\n  @include rmd-app-bar-base;\n}",
+          "description": "Simple Example",
+          "compiledCode": ".app-bar {\n  align-items: center;\n  display: flex;\n}\n",
+          "htmlExample": "<div class=\"app-bar\">\n  An app bar with the base styles.\n</div>"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "rmd-app-bar-fixed",
+      "type": "mixin",
+      "description": "Creates the styles for the `AppBar` component when it is fixed to the top or bottom\nof the page. This will create four classes:\n- `&--fixed`\n- `&--fixed-elevation`\n- `&--top`\n- `&--bottom`\n\nTo get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class\nas well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should\ngain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the\ndifferent use cases.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-elevation",
+          "type": "mixin",
+          "description": "",
+          "group": "elevation"
+        },
+        {
+          "name": "rmd-app-bar-z-index",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-fixed($elevation: $rmd-app-bar-fixed-elevation) {\n  &--fixed {\n    left: 0;\n    position: fixed;\n    right: 0;\n    z-index: $rmd-app-bar-z-index;\n  }\n\n  &--fixed-elevation {\n    @include rmd-elevation($elevation);\n  }\n\n  &--top {\n    top: 0;\n  }\n\n  &--bottom {\n    bottom: 0;\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".app-bar {\n  @include rmd-app-bar-fixed;\n}",
+          "description": "Simple Example",
+          "compiledCode": ".app-bar--fixed {\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n",
+          "htmlExample": "<div class=\"app-bar app-bar--fixed app-bar--top\">\n  An app-bar fixed to the top of the page.\n</div>\n\n<div class=\"app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom\">\n  An app-bar fixed to the bottom of the page with elevation\n</div>"
+        },
+        {
+          "type": "scss",
+          "code": ".app-bar {\n  @include rmd-app-bar-fixed(8);\n}",
+          "description": "Custom Elevation Example",
+          "compiledCode": ".app-bar--fixed {\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n"
+        }
+      ],
+      "parameters": [
+        {
+          "type": "Number",
+          "name": "elevation",
+          "default": "$rmd-app-bar-fixed-elevation",
+          "description": "The elevation to use for a fixed app bar. This should\n  be a number between 0 and 24 since it uses the `rmd-elevation` mixin."
+        }
+      ]
+    },
+    {
+      "name": "rmd-app-bar-sizes",
+      "type": "mixin",
+      "description": "Creates the styles for the different app bar sizes.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "@mixin rmd-app-bar-sizes($height: $rmd-app-bar-height, $dense-height: $rmd-app-bar-dense-height, $prominent-height: $rmd-app-bar-prominent-height, $prominent-dense-height: $rmd-app-bar-prominent-dense-height) {\n  height: $height;\n\n  &--dense {\n    height: $dense-height;\n  }\n\n  &--prominent {\n    align-items: flex-start;\n    flex-wrap: wrap;\n    height: $prominent-height;\n  }\n\n  &--prominent-dense {\n    height: $prominent-dense-height;\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".app-bar {\n  @include rmd-app-bar-sizes;\n}",
+          "description": "Simple Example",
+          "compiledCode": ".app-bar {\n  height: 3.5rem;\n}\n\n.app-bar--dense {\n  height: 3rem;\n}\n\n.app-bar--prominent {\n  align-items: flex-start;\n  flex-wrap: wrap;\n  height: 7rem;\n}\n\n.app-bar--prominent-dense {\n  height: 6rem;\n}\n",
+          "htmlExample": "<div class=\"app-bar\">\n  A default sized app bar.\n</div>\n\n<div class=\"app-bar app-bar--dense\">\n  A dense sized app bar.\n</div>\n\n<div class=\"app-bar app-bar--prominent\">\n  A prominent sized app bar.\n</div>\n\n<!-- NOTE: To get correct prominent and dense styles, you will need to apply both the `--prominent` and `--prominent-dense` suffixes. -->\n<div class=\"app-bar app-bar--prominent app-bar--prominent-dense\">\n  A prominent and sized app bar.\n</div>"
+        }
+      ],
+      "parameters": [
+        {
+          "type": "Number",
+          "name": "height",
+          "default": "$rmd-app-bar-height",
+          "description": "The default height to use for an AppBar."
+        },
+        {
+          "type": "Number",
+          "name": "dense-height",
+          "default": "$rmd-app-bar-dense-height",
+          "description": "The height to use for a dense AppBar."
+        },
+        {
+          "type": "Number",
+          "name": "prominent-height",
+          "default": "$rmd-app-bar-prominent-height",
+          "description": "The height to use for a prominent AppBar."
+        },
+        {
+          "type": "Number",
+          "name": "prominent-dense-height",
+          "default": "$rmd-app-bar-prominent-dense-height",
+          "description": "The height to use for a prominent and dense AppBar."
+        }
+      ]
+    },
+    {
+      "name": "rmd-app-bar-themes",
+      "type": "mixin",
+      "description": "Creates the styles for different app bar themes. This will create 4 classes:\n- `--primary`\n- `--secondary`\n- `--default`\n- `--child-inherit`\n\nThe primary and secondary suffixes will use the theme variables for generating the correct theme background color and\ntext color on top of the theme color. The default suffix is used to create a third theme type with any colors that are\nprovided. Finally, the `--child-inherit` suffix will allow child `AppBarNav`, `AppBarTitle`, and `AppBarAction` components\nto inherit text color instead of using the default color.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-theme",
+          "type": "mixin",
+          "description": "",
+          "group": "theme"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-themes($default-background-color: $rmd-app-bar-default-background-color, $default-text-color: $rmd-app-bar-default-text-color) {\n  &--primary {\n    @include rmd-theme(background-color, primary);\n    @include rmd-theme(color, on-primary);\n  }\n\n  &--secondary {\n    @include rmd-theme(background-color, secondary);\n    @include rmd-theme(color, on-secondary);\n  }\n\n  &--default {\n    background-color: $default-background-color;\n    color: $default-text-color;\n  }\n\n  &--child-inherit {\n    .rmd-app-bar__nav,\n    .rmd-app-bar__title,\n    .rmd-app-bar__action {\n      color: inherit;\n    }\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": "$rmd-theme-primary: $rmd-blue-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n\n.app-bar {\n  @include rmd-app-bar-themes;\n}",
+          "description": "Simple Example",
+          "compiledCode": ".app-bar--primary {\n  background-color: var(--rmd-theme-primary);\n  color: var(--rmd-theme-on-primary);\n}\n\n.app-bar--secondary {\n  background-color: var(--rmd-theme-secondary);\n  color: var(--rmd-theme-on-secondary);\n}\n\n.app-bar--default {\n  background-color: #f5f5f5;\n  color: #000;\n}\n\n.app-bar--child-inherit .rmd-app-bar__nav,\n.app-bar--child-inherit .rmd-app-bar__title,\n.app-bar--child-inherit .rmd-app-bar__action {\n  color: inherit;\n}\n",
+          "htmlExample": "<div class=\"app-bar app-bar--primary\">\n  An app bar with the primary theme color as the background color.\n</div>\n\n<div class=\"app-bar app-bar--secondary\">\n  An app bar with the secondary theme color as the background color.\n</div>\n\n<div class=\"app-bar app-bar--default\">\n  An app bar with the default theme applied.\n</div>"
+        }
+      ],
+      "parameters": [
+        {
+          "type": "Color",
+          "name": "default-background-color",
+          "default": "$rmd-app-bar-default-background-color",
+          "description": "The background color to use for the \"default\" theme."
+        },
+        {
+          "type": "Color",
+          "name": "default-text-color",
+          "default": "$rmd-app-bar-default-text-color",
+          "description": "The text color to use for the \"default\" theme."
+        }
+      ]
+    },
+    {
+      "name": "rmd-app-bar-nav",
+      "type": "mixin",
+      "description": "Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-app-bar-lr-margin",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-title-nav-margin",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-nav {\n  flex-shrink: 0;\n  margin-left: $rmd-app-bar-lr-margin;\n  margin-right: $rmd-app-bar-title-nav-margin;\n\n  // sass-lint:disable-block mixins-before-declarations\n  @include rmd-utils-rtl {\n    margin-left: $rmd-app-bar-title-nav-margin;\n    margin-right: $rmd-app-bar-lr-margin;\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".app-bar__nav {\n  // add the next two lines if not applying the base .rmd-btn classes\n  // @include rmd-btn-base;\n  // @include rmd-btn-text;\n  @include rmd-app-bar-nav;\n}",
+          "description": "Simple Example",
+          "compiledCode": ".app-bar__nav {\n  flex-shrink: 0;\n  margin-left: 0.25rem;\n  margin-right: 1.25rem;\n}\n\n[dir='rtl'] .app-bar__nav {\n  margin-left: 1.25rem;\n  margin-right: 0.25rem;\n}\n",
+          "htmlExample": "<div class=\"app-bar app-bar--primary\">\n  <button type=\"button\" className=\"app-bar__nav\">Nav Button</button>\n</div>"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "rmd-app-bar-title",
+      "type": "mixin",
+      "description": "Creates the styles for the `AppBarTitle` component.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-typography",
+          "type": "mixin",
+          "description": "",
+          "group": "typography"
+        },
+        {
+          "name": "rmd-app-bar-title-line-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-keyline",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-title-keyline",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-title {\n  @include rmd-typography(headline-6);\n\n  line-height: $rmd-app-bar-title-line-height;\n  margin-bottom: 0;\n  margin-left: $rmd-app-bar-keyline;\n  margin-top: 0;\n\n  // sass-lint:disable-block mixins-before-declarations\n  @include rmd-utils-rtl {\n    margin-left: auto;\n    margin-right: $rmd-app-bar-keyline;\n  }\n\n  .rmd-app-bar__nav ~ & {\n    margin-left: 0;\n\n    @include rmd-utils-rtl {\n      margin-right: 0;\n    }\n  }\n\n  &--keyline {\n    margin-left: $rmd-app-bar-title-keyline;\n\n    @include rmd-utils-rtl {\n      margin-left: auto;\n      margin-right: $rmd-app-bar-title-keyline;\n    }\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".rmd-app-bar__title {\n  @include rmd-app-bar-title;\n}",
+          "description": "Example Usage SCSS",
+          "compiledCode": ".rmd-app-bar__title {\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 1.25rem;\n  line-height: 2rem;\n  font-weight: 500;\n  letter-spacing: 0.0125em;\n  text-decoration: inherit;\n  text-transform: inherit;\n  line-height: 1.15;\n  margin-bottom: 0;\n  margin-left: 1rem;\n  margin-top: 0;\n}\n\n[dir='rtl'] .rmd-app-bar__title {\n  margin-left: auto;\n  margin-right: 1rem;\n}\n\n.rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n}\n\n[dir='rtl'] .rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-right: 0;\n}\n\n.rmd-app-bar__title--keyline {\n  margin-left: 4.5rem;\n}\n\n[dir='rtl'] .rmd-app-bar__title--keyline {\n  margin-left: auto;\n  margin-right: 4.5rem;\n}\n"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "rmd-app-bar-action",
+      "type": "mixin",
+      "description": "Creates the styles for the `AppBarAction` component.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-app-bar-lr-margin",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-nav-margin",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-action {\n  flex-shrink: 0;\n\n  &--first {\n    margin-left: auto;\n\n    // sass-lint:disable-block mixins-before-declarations\n    @include rmd-utils-rtl {\n      margin-left: $rmd-app-bar-lr-margin;\n      margin-right: auto;\n    }\n  }\n\n  &--last {\n    margin-left: $rmd-app-bar-lr-margin;\n    margin-right: $rmd-app-bar-nav-margin;\n\n    // sass-lint:disable-block mixins-before-declarations\n    @include rmd-utils-rtl {\n      margin-left: $rmd-app-bar-nav-margin;\n      margin-right: $rmd-app-bar-lr-margin;\n    }\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".rmd-app-bar__action {\n  @include rmd-app-bar-action;\n}",
+          "description": "Example Usage SCSS",
+          "compiledCode": ".rmd-app-bar__action {\n  flex-shrink: 0;\n}\n\n.rmd-app-bar__action--first {\n  margin-left: auto;\n}\n\n[dir='rtl'] .rmd-app-bar__action--first {\n  margin-left: 0.25rem;\n  margin-right: auto;\n}\n\n.rmd-app-bar__action--last {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n\n[dir='rtl'] .rmd-app-bar__action--last {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "rmd-app-bar-row",
+      "type": "mixin",
+      "description": "Creates the styles for the `AppBarRow` component.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-app-bar-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-dense-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-row {\n  align-items: center;\n  display: flex;\n  height: $rmd-app-bar-height;\n  width: 100%;\n\n  &--dense {\n    height: $rmd-app-bar-dense-height;\n  }\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".rmd-app-bar__row {\n  @include rmd-app-bar-row;\n}",
+          "description": "Example Usage SCSS",
+          "compiledCode": ".rmd-app-bar__row {\n  align-items: center;\n  display: flex;\n  height: 3.5rem;\n  width: 100%;\n}\n\n.rmd-app-bar__row--dense {\n  height: 3rem;\n}\n"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "rmd-app-bar-offset",
+      "type": "mixin",
+      "description": "A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-offsets",
+          "type": "mixin",
+          "description": "Creates all the offset class names applied with the current style.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-app-bar-prominent-dense-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-prominent-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-dense-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-height",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-offset($prominent: false, $dense: false, $style: $rmd-app-bar-offset-style) {\n  $distance: null;\n  @if $prominent {\n    $distance: if($dense, $rmd-app-bar-prominent-dense-height, $rmd-app-bar-prominent-height);\n  } @else {\n    $distance: if($dense, $rmd-app-bar-dense-height, $rmd-app-bar-height);\n  }\n\n  #{$style}: $distance;\n}",
+      "throws": [],
+      "examples": [
+        {
+          "type": "scss",
+          "code": ".main {\n  @include rmd-app-bar-offset;\n\n  &--prominent {\n    @include rmd-app-bar-offset(true, true);\n  }\n\n  &--dense {\n    @include rmd-app-bar-offset(false, true);\n  }\n\n  &--dense-prominent {\n    @include rmd-app-bar-offset(true, true);\n  }\n\n  &--margin {\n    @include rmd-app-bar-offset(false, false, margin-top);\n  }\n}",
+          "description": "Example Usage SCSS",
+          "compiledCode": ".main {\n  padding-top: 3.5rem;\n}\n\n.main--prominent {\n  padding-top: 6rem;\n}\n\n.main--dense {\n  padding-top: 3rem;\n}\n\n.main--dense-prominent {\n  padding-top: 6rem;\n}\n\n.main--margin {\n  margin-top: 3.5rem;\n}\n"
+        }
+      ],
+      "parameters": [
+        {
+          "type": "Boolean",
+          "name": "prominent",
+          "default": "false",
+          "description": "Boolean if the styles should reflect a prominent app bar. If both\n    this and the `dense` params are set to `true`, the styles will reflect a prominent dense app bar."
+        },
+        {
+          "type": "Boolean",
+          "name": "dense",
+          "default": "false",
+          "description": "Boolean if the styles should reflect a dense app bar. If both this and\n    the `prominent` params are set to `true`, the styles will reflect a prominent dense app bar."
+        },
+        {
+          "type": "String",
+          "name": "style",
+          "default": "rmd-app-bar-offset-style",
+          "description": "The style to apply the offset to."
+        }
+      ]
+    },
+    {
+      "name": "rmd-app-bar-offsets",
+      "type": "mixin",
+      "description": "Creates all the offset class names applied with the current style.\n\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "react-md-app-bar",
+          "type": "mixin",
+          "description": "Creates all the styles for all the AppBar components.\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [
+        {
+          "name": "rmd-app-bar-offset",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-valid-offsets",
+          "type": "variable",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin rmd-app-bar-offsets($style: $rmd-app-bar-offset-style, $offsets: $rmd-app-bar-offsets) {\n  @each $offset in $offsets {\n    @if not index($rmd-app-bar-valid-offsets, $offset) {\n      @error 'Invalid offset: \\'#{$offset}\\'! Choose one of \\'#{$rmd-app-bar-valid-offsets}\\'.';\n    }\n\n    $dense: $offset == 'dense' or $offset == 'prominent-dense';\n    $prominent: $offset == 'prominent' or $offset == 'prominent-dense';\n    $selector: '.rmd-app-bar-offset';\n    @if $offset != 'base' {\n      $selector: $selector + '-#{$offset}';\n    }\n\n    #{$selector} {\n      @include rmd-app-bar-offset($prominent, $dense, $style);\n    }\n  }\n}",
+      "throws": [
+        "Invalid offset: \\"
+      ],
+      "examples": [],
+      "parameters": [
+        {
+          "type": "String",
+          "name": "style",
+          "default": "rmd-app-bar-offset-style",
+          "description": "The style to apply the offset to."
+        },
+        {
+          "type": "String",
+          "name": "offsets",
+          "default": "rmd-app-bar-offsets",
+          "description": "A list of offsets that should be created."
+        }
+      ]
+    },
+    {
+      "name": "react-md-app-bar",
+      "type": "mixin",
+      "description": "Creates all the styles for all the AppBar components.\n",
+      "file": "app-bar/src/_mixins.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [
+        {
+          "name": "rmd-app-bar-offsets",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-base",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-sizes",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-fixed",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-themes",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-nav",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-title",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-action",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-row",
+          "type": "mixin",
+          "description": "",
+          "group": "app-bar"
+        }
+      ],
+      "code": "@mixin react-md-app-bar {\n  @include rmd-app-bar-offsets;\n\n  .rmd-app-bar {\n    @include rmd-app-bar-base;\n    @include rmd-app-bar-sizes;\n    @include rmd-app-bar-fixed;\n    @include rmd-app-bar-themes;\n\n    &__nav {\n      @include rmd-app-bar-nav;\n    }\n\n    &__title {\n      @include rmd-app-bar-title;\n    }\n\n    &__action {\n      @include rmd-app-bar-action;\n    }\n\n    &__row {\n      @include rmd-app-bar-row;\n    }\n  }\n}",
+      "throws": [],
+      "examples": [],
+      "parameters": []
+    }
+  ],
+  "variables": [
+    {
+      "name": "rmd-app-bar-z-index",
+      "type": "Number",
+      "description": "The z-index to use for the fixed app bar. Ideally this value should be less than\nany of the \"temporary\" materials like overlays, sheets, and menus.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-fixed",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBar` component when it is fixed to the top or bottom\nof the page. This will create four classes:\n- `&--fixed`\n- `&--fixed-elevation`\n- `&--top`\n- `&--bottom`\n\nTo get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class\nas well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should\ngain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the\ndifferent use cases.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-z-index: 10 !default;",
+      "value": "10",
+      "resolvedValue": "$rmd-app-bar-z-index: 10 !default;"
+    },
+    {
+      "name": "rmd-app-bar-fixed-elevation",
+      "type": "Number",
+      "description": "The elevation to use for \"fixed\" app bars. This should be a number between 0 and 16.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [],
+      "code": "$rmd-app-bar-fixed-elevation: 2 !default;",
+      "value": "2",
+      "resolvedValue": "$rmd-app-bar-fixed-elevation: 2 !default;"
+    },
+    {
+      "name": "rmd-app-bar-height",
+      "type": "Number",
+      "description": "The height for the app bar.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-row",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarRow` component.\n\n",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-offset",
+          "type": "mixin",
+          "description": "A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-height: 3.5rem !default;",
+      "value": "3.5rem",
+      "resolvedValue": "$rmd-app-bar-height: 3.5rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-dense-height",
+      "type": "Number",
+      "description": "The dense height for the app bar.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-row",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarRow` component.\n\n",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-offset",
+          "type": "mixin",
+          "description": "A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-dense-height: 3rem !default;",
+      "value": "3rem",
+      "resolvedValue": "$rmd-app-bar-dense-height: 3rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-prominent-height",
+      "type": "Number",
+      "description": "The prominent/extended height for the app bar.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-offset",
+          "type": "mixin",
+          "description": "A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-prominent-height: $rmd-app-bar-height * 2 !default;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-prominent-height: 7rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-prominent-dense-height",
+      "type": "Number",
+      "description": "The prominent/extended height for the app bar when the `dense` prop is also enabled.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-offset",
+          "type": "mixin",
+          "description": "A simple mixin for updating an element to be offset by the current app bar's height if it is one\nof the built-in heights for react-md. This is normally just used for fixed top app bars, but you\ncan change the `$style` param to be `padding-bottom` for app bars fixed at the bottom of the viewport.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-prominent-dense-height: $rmd-app-bar-dense-height * 2 !default;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-prominent-dense-height: 6rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-keyline",
+      "type": "Number",
+      "description": "The default keyline to use for either the `AppBarNav` or `AppBarTitle`. This makes the icon in the `AppBarNav` or\nthe first letter in the `AppBarTitle` appear at this distance.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-title",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarTitle` component.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-keyline: 1rem !default;",
+      "value": "1rem",
+      "resolvedValue": "$rmd-app-bar-keyline: 1rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-nav-margin",
+      "type": "Number",
+      "description": "The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned\nat the keyline (ignoring the button padding).\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-action",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarAction` component.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-nav-margin: $rmd-app-bar-keyline - (($rmd-btn-icon-size - $rmd-icon-size) / 2);",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-nav-margin: .25rem;"
+    },
+    {
+      "name": "rmd-app-bar-title-line-height",
+      "type": "Number",
+      "description": "The line-height to apply to the `AppBarTitle`.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-title",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarTitle` component.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-title-line-height: 1.15 !default;",
+      "value": "1.15",
+      "resolvedValue": "$rmd-app-bar-title-line-height: 1.15 !default;"
+    },
+    {
+      "name": "rmd-app-bar-title-keyline",
+      "type": "Number",
+      "description": "The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or the `offset` prop is enabled.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-title",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarTitle` component.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-title-keyline: 4.5rem !default;",
+      "value": "4.5rem",
+      "resolvedValue": "$rmd-app-bar-title-keyline: 4.5rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-title-nav-margin",
+      "type": "Number",
+      "description": "The amount of margin to apply to the title when used with the `AppBarNav` component.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-nav",
+          "type": "mixin",
+          "description": "Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin - $rmd-btn-icon-size;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-title-nav-margin: 1.25rem;"
+    },
+    {
+      "name": "rmd-app-bar-lr-margin",
+      "type": "Number",
+      "description": "The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be\napplied if using the `AppBarNav` component and will be applied to the `AppBarAction` component that enables the `last` prop.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-nav",
+          "type": "mixin",
+          "description": "Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied\nas well.\n\n",
+          "group": "app-bar"
+        },
+        {
+          "name": "rmd-app-bar-action",
+          "type": "mixin",
+          "description": "Creates the styles for the `AppBarAction` component.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-lr-margin: .25rem !default;",
+      "value": ".25rem",
+      "resolvedValue": "$rmd-app-bar-lr-margin: .25rem !default;"
+    },
+    {
+      "name": "rmd-app-bar-default-background-color",
+      "type": "Color",
+      "description": "The background-color to use for an `AppBar` that is using the `default` theme.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [],
+      "code": "$rmd-app-bar-default-background-color: if(\n  rmd-theme-contrast-tone($rmd-theme-background) == 'dark',\n  $rmd-grey-100,\n  $rmd-grey-900\n) !default;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-default-background-color: #f5f5f5 !default;"
+    },
+    {
+      "name": "rmd-app-bar-default-text-color",
+      "type": "Color",
+      "description": "The color to use for an `AppBar` that is using the `default` theme.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [],
+      "code": "$rmd-app-bar-default-text-color: if(\n  rmd-theme-contrast-tone($rmd-app-bar-default-background-color) == 'dark',\n  $rmd-black-base,\n  $rmd-white-base\n) !default;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-default-text-color: #000 !default;"
+    },
+    {
+      "name": "rmd-app-bar-valid-offsets",
+      "type": "List",
+      "description": "A list of \"valid\" offsets the are supported by the `rmd-app-bar-offsets` mixin.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [
+        {
+          "name": "rmd-app-bar-offsets",
+          "type": "mixin",
+          "description": "Creates all the offset class names applied with the current style.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "usedBy": [
+        {
+          "name": "rmd-app-bar-offsets",
+          "type": "mixin",
+          "description": "Creates all the offset class names applied with the current style.\n\n",
+          "group": "app-bar"
+        }
+      ],
+      "requires": [],
+      "code": "$rmd-app-bar-valid-offsets: base dense prominent prominent-dense;",
+      "value": "base dense prominent prominent-dense",
+      "resolvedValue": "$rmd-app-bar-valid-offsets: base dense prominent prominent-dense;"
+    },
+    {
+      "name": "rmd-app-bar-offsets",
+      "type": "List",
+      "description": "The app bar offsets that should be created by default.\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [],
+      "code": "$rmd-app-bar-offsets: $rmd-app-bar-valid-offsets !default;",
+      "value": "",
+      "resolvedValue": "$rmd-app-bar-offsets: base dense prominent prominent-dense !default;"
+    },
+    {
+      "name": "rmd-app-bar-offset-style",
+      "type": "String",
+      "description": "The default style to apply the app bar offsets to. This should normally be one of:\n- padding-top\n- padding-bottom\n- margin-top\n- margin-bottom\n- top\n- bottom\n",
+      "file": "app-bar/src/_variables.scss",
+      "group": "app-bar",
+      "links": [],
+      "see": [],
+      "usedBy": [],
+      "requires": [],
+      "code": "$rmd-app-bar-offset-style: padding-top !default;",
+      "value": "padding-top",
+      "resolvedValue": "$rmd-app-bar-offset-style: padding-top !default;"
+    }
+  ]
+}

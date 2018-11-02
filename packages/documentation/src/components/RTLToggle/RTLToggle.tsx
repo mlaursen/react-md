@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AppBarAction } from "@react-md/app-bar";
-import { MagicTooltip } from "@react-md/tooltip";
+import { Tooltip } from "@react-md/tooltip";
 import { FormatAlignLeftSVGIcon, FormatAlignRightSVGIcon } from "@react-md/material-icons";
 
 export interface IRTLToggleState {
@@ -37,7 +37,7 @@ export default class RTLToggle extends React.Component<any, IRTLToggleState> {
         aria-describedby="rtl-toggle-tooltip"
       >
         {rtl ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
-        <MagicTooltip id="rtl-toggle-tooltip">Toggle left-to-right/right-to-left</MagicTooltip>
+        <Tooltip id="rtl-toggle-tooltip">Toggle left-to-right/right-to-left</Tooltip>
       </AppBarAction>
     );
   }

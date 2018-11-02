@@ -2,6 +2,7 @@ import * as React from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
+import { Tooltip } from "@react-md/tooltip";
 
 import LightbulbSVGIcon from "components/LightbulbSVGIcon";
 
@@ -49,16 +50,20 @@ export default class ThemeToggle extends React.Component<any, IThemeToggleState>
     return (
       <AppBarAction
         id="dark-theme-toggle"
+        aria-describedby="dark-theme-toggle-tooltip"
         first={true}
         onClick={this.toggleMode}
-        onMouseEnter={this.handleMouseEnter}
+        onMouseOver={this.handleMouseOver}
         onMouseLeave={this.handleMouseLeave}
         className={cn("theme-toggle", {
           "theme-toggle--on": lightTheme,
           "theme-toggle--off": !lightTheme,
         })}
       >
-        {lightTheme || hover ? <LightbulbSVGIcon /> : <LightbulbOutlineSVGIcon />}
+        {lightTheme !== hover ? <LightbulbSVGIcon /> : <LightbulbOutlineSVGIcon />}
+        <Tooltip id="dark-theme-toggle-tooltip">
+          Toggle light/dark theme
+        </Tooltip>
       </AppBarAction>
     );
   }
@@ -69,12 +74,16 @@ export default class ThemeToggle extends React.Component<any, IThemeToggleState>
     }));
   };
 
-  private handleMouseEnter = () => {
-    this.setState({ hover: true });
+  private handleMouseOver = () => {
+    if (!this.state.hover) {
+      this.setState({ hover: true });
+    }
   };
 
   private handleMouseLeave = () => {
-    this.setState({ hover: false });
+    if (this.state.hover) {
+      this.setState({ hover: false });
+    }
   };
 
   private setTheme = (forceRemove: boolean = false) => {

@@ -1,6 +1,12 @@
-import { TreeViewDataList } from "@react-md/tree-view";
+import { TreeViewDataList, TreeViewData } from "@react-md/tree-view";
 
-const data: TreeViewDataList = [
+export interface ISimpleData {
+  children: string;
+}
+
+export type SimpleTreeViewData = TreeViewData<ISimpleData>;
+
+const data: TreeViewDataList<ISimpleData> = [
   {
     itemId: "item-1",
     children: "Item 1",

@@ -2,7 +2,7 @@ import * as React from "react";
 import cn from "classnames";
 import { ExampleTitle } from "components/ExamplesPage";
 import { IFontIconProps } from "@react-md/icon";
-import { MagicTooltip } from "@react-md/tooltip";
+import { Tooltip } from "@react-md/tooltip";
 import * as MaterialIcons from "@react-md/material-icons";
 
 interface IIcon {
@@ -42,7 +42,7 @@ const AllIcons = () => (
         >
           {React.createElement(icon)}
           <div className="material-icons__label">{name}</div>
-          <MagicTooltip id={tooltipId}>{name}</MagicTooltip>
+          <Tooltip id={tooltipId}>{name}</Tooltip>
         </div>
       );
     })}
@@ -60,7 +60,7 @@ const AllIcons = () => (
         >
           {React.createElement(icon)}
           <div className="material-icons__label">{name}</div>
-          <MagicTooltip id={tooltipId}>{name}</MagicTooltip>
+          <Tooltip id={tooltipId}>{name}</Tooltip>
         </div>
       );
     })}

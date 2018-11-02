@@ -23,8 +23,17 @@ export interface ISectionProps {
 
 export type SectionType = "variable" | "function" | "mixin";
 
+function withScssCode(code: string): string {
+  if (!code) {
+    return code;
+  }
+
+  return `\`\`\`scss
+${code}
+\`\`\``;
+}
+
 const Section: React.SFC<ISectionProps> = ({ sassdoc, type }) => {
-  let { code = "" } = sassdoc;
   const {
     type: sassdocType,
     name,
@@ -36,13 +45,10 @@ const Section: React.SFC<ISectionProps> = ({ sassdoc, type }) => {
     see,
     throws,
     examples,
+    resolvedValue,
   } = sassdoc;
-  if (code) {
-    code = `\`\`\`scss
-${code}
-\`\`\``;
-  }
-
+  const code = withScssCode(sassdoc.code || "");
+  const compiledCode = withScssCode(resolvedValue || "");
   const id = `${type}-${name}`;
   return (
     <React.Fragment>
@@ -54,7 +60,12 @@ ${code}
         <Type>{sassdocType}</Type>
         <ColorPreview name={name} type={sassdocType} value={sassdoc.value} />
       </SassDocTitle>
-      <ExpandableSource linkId={id} code={code} />
+      <ExpandableSource
+        linkId={id}
+        code={code}
+        compiledCode={compiledCode}
+        expandable={type !== "variable"}
+      />
       <Description>{description}</Description>
       <Parameters parameters={parameters} />
       <Throws throws={throws} />

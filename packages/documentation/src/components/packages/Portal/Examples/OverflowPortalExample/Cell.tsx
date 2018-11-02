@@ -64,7 +64,7 @@ export default class Cell extends React.Component<ICellProps, ICellState> {
     const tooltip = document.getElementById(container.getAttribute("aria-describedby") as string);
     this.setState({
       tooltipStyle: positionRelativeTo(container, tooltip, {
-        verticalPosition: VerticalPosition.BOTTOM,
+        verticalPosition: "below",
         verticalSpacing: "1.5rem",
         isPortalFixed: this.props.portal,
       }),
