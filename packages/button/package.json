@@ -1,64 +1,44 @@
 {
-  "name": "@react-md/button",
-  "version": "2.0.0-alpha-1",
-  "description": "This package is used to create buttons with the material design spec. There is built-in support to be able to render accessible clickable divs that look like buttons, or even apply button styles to any element.",
-  "scripts": {
-    "build:commonjs": "tsc -p tsconfig.commonjs.json",
-    "build:modules": "tsc -p tsconfig.json",
-    "build": "npm-run-all -p build:commonjs build:modules styles",
-    "clean": "rimraf es lib types dist",
-    "prebuild": "npm run clean",
-    "styles": "cpx \"src/**/*.scss\" dist",
-    "watch:styles": "npm run styles -- --watch",
-    "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\" watch:styles",
-    "test": "jest src",
-    "lint": "npm-run-all -p lint:styles lint:ts",
-    "lint:styles": "sass-lint -c ../../.sass-lint.yml -v",
-    "lint:ts": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm run build"
-  },
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
-  "types": "./types/index.d.ts",
-  "files": [
-    "es/*",
-    "lib/*",
-    "types/*",
-    "dist/*"
-  ],
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "repository": "https://github.com/mlaursen/react-md",
-  "keywords": [
-    "accessibility",
-    "a11y",
-    "react-md",
-    "material design",
-    "react",
-    "button",
-    "component",
-    "components"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "@react-md/a11y": "^2.0.0-alpha-1",
-    "@react-md/elevation": "^2.0.0-alpha-1",
-    "@react-md/icon": "^2.0.0-alpha-1",
-    "@react-md/states": "^2.0.0-alpha-1",
-    "@react-md/theme": "^2.0.0-alpha-1",
-    "@react-md/transition": "^2.0.0-alpha-1",
-    "@react-md/typography": "^2.0.0-alpha-1",
-    "@react-md/utils": "^2.0.0-alpha-1",
-    "classnames": "^2.2.6",
-    "prop-types": "^15.6.2"
-  },
-  "devDependencies": {
-    "cpx": "^1.5.0",
-    "jest": "^23.6.0",
-    "npm-run-all": "^4.1.3",
-    "rimraf": "^2.6.2",
-    "sass-lint": "^1.12.1",
-    "ts-jest": "^23.10.4",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.6"
-  }
+	"name": "@react-md/button",
+	"version": "2.0.0-alpha-1",
+	"description": "This package is used to create buttons with the material design spec. There is built-in support to be able to render accessible clickable divs that look like buttons, or even apply button styles to any element.",
+	"main": "./lib/index.js",
+	"module": "./es/index.js",
+	"types": "./types/index.d.ts",
+	"files": [
+		"es/*",
+		"lib/*",
+		"types/*",
+		"dist/*"
+	],
+	"author": "Mikkel Laursen <mlaursen03@gmail.com>",
+	"repository": "https://github.com/mlaursen/react-md",
+	"keywords": [
+		"accessibility",
+		"a11y",
+		"react-md",
+		"material design",
+		"react",
+		"button",
+		"component",
+		"components"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"@react-md/a11y": "^2.0.0-alpha-1",
+		"@react-md/icon": "^2.0.0-alpha-1",
+		"@react-md/states": "^2.0.0-alpha-1",
+		"classnames": "^2.2.6",
+		"prop-types": "^15.6.2"
+	},
+	"devDependencies": {
+		"cpx": "^1.5.0",
+		"jest": "^23.6.0",
+		"npm-run-all": "^4.1.3",
+		"rimraf": "^2.6.2",
+		"sass-lint": "^1.12.1",
+		"ts-jest": "^23.10.4",
+		"tslint": "^5.11.0",
+		"typescript": "^3.1.6"
+	}
 }

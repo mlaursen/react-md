@@ -35,5 +35,6 @@ export default async function getDocumentablePackages() {
   const packages = await filterAsync(allPackages, isPackagePublicTypescript);
   console.log(`Found ${packages.length} documentable packages.`);
 
-  return packages.filter(name => name === "typography");
+  return packages;
+  // return packages.filter(name => name === "typography");
 }

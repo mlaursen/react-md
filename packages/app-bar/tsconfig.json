@@ -3,7 +3,8 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./types",
-    "outDir": "./es"
+    "outDir": "./es",
+    "composite": true
   },
   "exclude": [
     "types/*",

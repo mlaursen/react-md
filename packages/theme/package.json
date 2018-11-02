@@ -1,34 +1,25 @@
 {
-  "name": "@react-md/theme",
-  "version": "2.0.0-alpha-1",
-  "description": "A package for working with react-md to use material design colors.",
-  "scripts": {
-    "clean": "rimraf dist",
-    "prebuild": "npm run clean",
-    "build": "npm run styles",
-    "styles": "cpx \"src/**/*.scss\" dist",
-    "watch": "npm run styles -- --watch",
-    "lint": "sass-lint -c ../../.sass-lint.yml -v",
-    "prepublishOnly": "npm run build"
-  },
-  "main": "./dist/styles.css",
-  "files": [
-    "dist/*"
-  ],
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "repository": "https://github.com/mlaursen/react-md",
-  "keywords": [
-    "react-md",
-    "material design",
-    "react",
-    "theme",
-    "colors",
-    "css variables"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "cpx": "^1.5.0",
-    "rimraf": "^2.6.2",
-    "sass-lint": "^1.12.1"
-  }
+	"name": "@react-md/theme",
+	"version": "2.0.0-alpha-1",
+	"description": "A package for working with react-md to use material design colors.",
+	"main": "./dist/styles.css",
+	"files": [
+		"dist/*"
+	],
+	"author": "Mikkel Laursen <mlaursen03@gmail.com>",
+	"repository": "https://github.com/mlaursen/react-md",
+	"keywords": [
+		"react-md",
+		"material design",
+		"react",
+		"theme",
+		"colors",
+		"css variables"
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"cpx": "^1.5.0",
+		"rimraf": "^2.6.2",
+		"sass-lint": "^1.12.1"
+	}
 }

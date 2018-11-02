@@ -28,7 +28,7 @@ export interface ISearchState {
 }
 
 export default class Search extends React.Component<ISearchProps, ISearchState> {
-  private fuse: Fuse;
+  private fuse: Fuse<ISassDocSearchable>;
   private list: ISassDocSearchable[];
   constructor(props: ISearchProps) {
     super(props);

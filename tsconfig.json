@@ -1,24 +1,22 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": [
-    "packages/app-bar/src/**/*",
-    "packages/button/src/**/*",
-    "packages/icon/src/**/*",
-    "packages/link/src/**/*",
-    "packages/list/src/**/*",
-    "packages/listeners/src/**/*",
-    "packages/overlay/src/**/*",
-    "packages/portal/src/**/*",
-    "packages/sheet/src/**/*",
-    "packages/states/src/**/*",
-    "packages/theme/src/**/*",
-    "packages/transition/src/**/*",
-    "packages/tooltip/src/**/*",
-    "packages/tree-view/src/**/*",
-    "packages/typography/src/**/*",
-    "packages/utils/src/**/*"
-  ],
-  "exclude": [
-    "**/__tests__/*"
+  "references": [
+    { "path": "packages/a11y" },
+    { "path": "packages/app-bar" },
+    { "path": "packages/button" },
+    { "path": "packages/icon" },
+    { "path": "packages/link" },
+    { "path": "packages/list" },
+    { "path": "packages/listeners" },
+    { "path": "packages/material-icons" },
+    { "path": "packages/overlay" },
+    { "path": "packages/portal" },
+    { "path": "packages/sheet" },
+    { "path": "packages/states" },
+    { "path": "packages/tooltip" },
+    { "path": "packages/transition" },
+    { "path": "packages/tree-view" },
+    { "path": "packages/typography" },
+    { "path": "packages/utils" }
   ]
 }
