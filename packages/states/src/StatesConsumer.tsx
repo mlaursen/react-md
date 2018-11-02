@@ -197,9 +197,11 @@ export default class StatesConsumer extends React.Component<
   };
 
   private el: HTMLElement | null;
+  private touched: boolean;
   constructor(props: IStatesConsumerProps) {
     super(props);
 
+    this.touched = false;
     this.state = { pressed: false };
     this.el = null;
   }
@@ -335,6 +337,7 @@ export default class StatesConsumer extends React.Component<
   };
 
   private handleKeyDown = (event: StatesConsumerKeyboardEvent) => {
+    this.touched = false;
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
     }
@@ -357,9 +360,10 @@ export default class StatesConsumer extends React.Component<
       this.props.onMouseDown(event);
     }
 
-    if (this.props.pressable && event.button === LEFT_MOUSE) {
+    if (!this.touched && this.props.pressable && event.button === LEFT_MOUSE) {
       this.press();
     }
+    this.touched = false;
   };
 
   private handleMouseUp = (event: StatesConsumerMouseEvent) => {
@@ -371,6 +375,7 @@ export default class StatesConsumer extends React.Component<
   };
 
   private handleTouchStart = (event: StatesConsumerTouchEvent) => {
+    this.touched = true;
     if (this.props.onTouchStart) {
       this.props.onTouchStart(event);
     }

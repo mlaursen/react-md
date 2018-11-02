@@ -5,50 +5,81 @@ import { StatesConsumer } from "@react-md/states";
 import { TextIconSpacing, ITextIconSpacingProps } from "@react-md/icon";
 import { KeyboardClickable } from "@react-md/a11y";
 
+/**
+ * One of the valid button types that can be used
+ */
 export type ButtonType = "text" | "icon";
+
+/**
+ * One of the valid material design default button themes that can be used. This will
+ * update the general look and feel by updating the colors within the button while the
+ * `ButtonThemeType` will update the borders or box shadow.
+ */
 export type ButtonTheme = "clear" | "primary" | "secondary" | "default";
+
+/**
+ * One of the valid material design "themed" button types that can be used. This will
+ * update the general look and feel by adding borders or box shadow to the button while
+ * the `ButtonTheme` will update the colors.
+ */
 export type ButtonThemeType = "flat" | "outline" | "contained";
+
+/**
+ * General util type since the `Button` component can be rendered as a <button> or a <div>.
+ */
 export type ButtonElement = HTMLButtonElement | HTMLDivElement;
 
+/**
+ * This is an interface of all the button's customizable theme props. This is mainly used if you
+ * want to add a button theme to another component and have it configurable via props.
+ */
 export interface IButtonThemeProps {
   /**
-   * An optional className to apply.
+   * An optional className to also apply to the button for additional theming and styling. This
+   * will be merged with the `Button.theme` class name styles.
    */
   className?: string;
 
   /**
-   * Boolean if the button is currently disabled.
+   * Enabling this prop will apply the disabled styles to a `Button`. When this is also applied
+   * to the button component, the button will be updated so that it can no longer be interacted
+   * with.
    */
   disabled?: boolean;
 
   /**
-   * The specific material design button type to use. A text button will display
-   * text while an icon button will only contain an icon.
+   * This is the specific material design button type to use. This can either be set to "text" or
+   * "icon". When this is set to "text", the styles applied will make buttons with just text or text
+   * with icons render nicely. When this is set to "icon", the styles applied will make icon only buttons
+   * render nicely.
    */
   btnType?: ButtonType;
 
   /**
-   * The material design theme to apply to the button.
+   * The material design theme to apply to the button. The theme prop will update the look and feel of
+   * the button by applying different background and/or foreground colors.
    */
   theme?: ButtonTheme;
 
   /**
-   * The material design theme type to apply.
+   * The material design theme type to apply. The themeTYpe prop will update the look and feel of the
+   * button by applying different border or box shadow.
    */
   themeType?: ButtonThemeType;
 }
 
-export interface IButtonButtonProps
+/**
+ * This interface includes all the props that the `Button` component accepts so the main
+ * usecase might be creating a functionality wrapper for the `Button` component, but passes
+ * all props down as normal.
+ */
+export interface IButtonProps
   extends IButtonThemeProps,
     ITextIconSpacingProps,
     React.HTMLAttributes<ButtonElement> {
   /**
-   * An optional style to apply.
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * The button's type attribute.
+   * The button's type attribute. This is set to "button" by default so that forms are not accidentally submitted
+   * when this prop is omitted since buttons without a type attribute work as submit by default.
    */
   type?: "button" | "reset" | "submit";
 
@@ -66,20 +97,12 @@ export interface IButtonButtonProps
    * to have a `<div>` as a child of the button, you should enable this prop.
    */
   asDiv?: boolean;
-
-  // these are really just pass-through-values, so don't need to document them about how they are passed
-  // to the helper components
-  onBlur?: (event: React.FocusEvent<ButtonElement>) => void;
-  onMouseDown?: (event: React.MouseEvent<ButtonElement>) => void;
-  onMouseUp?: (event: React.MouseEvent<ButtonElement>) => void;
-  onTouchStart?: (event: React.TouchEvent<ButtonElement>) => void;
-  onTouchEnd?: (event: React.TouchEvent<ButtonElement>) => void;
-  onKeyDown?: (event: React.KeyboardEvent<ButtonElement>) => void;
-  onKeyUp?: (event: React.KeyboardEvent<ButtonElement>) => void;
 }
 
-export type IButtonProps = IButtonButtonProps | IButtonButtonProps;
-
+/**
+ * All the declared default props for the `Button` component. This probably won't be used in many
+ * places.
+ */
 export interface IButtonDefaultProps {
   asDiv: boolean;
   disabled: boolean;
@@ -133,6 +156,9 @@ export default class Button extends React.Component<IButtonProps, {}> {
    * other elements like clickable `<div>`s or `<input type="file">` can look like buttons.
    *
    * NOTE: You will still need to manually apply the `<StatesConsumer>` with the correct props
+   *
+   * @param props An object containing the themeable button props to generate a button theme className.
+   * @return a string of class names to create an element with a button theme.
    */
   public static theme(props: IButtonThemeProps): string {
     const { btnType, themeType, theme, disabled, className } = props;

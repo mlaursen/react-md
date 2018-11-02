@@ -47,6 +47,11 @@ type TreeKeyboardEvent = React.KeyboardEvent<TreeViewElement>;
  * To make rendering the tree easy, there are decent defaults for rendering the entire `TreeView` and each
  * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
  * complex trees that have drag and drop or other functionality built in.
+ *
+ * @typeparam D - An optional data interface to apply to more strongly type the tree view items. This defaults
+ *    to using a `[key: string]: any` interface by default.
+ * @typeparam R - An optional renderer interface to apply so that the main treeViewRenderer prop is strongly typed.
+ *    This defaults to using a `[key: string]: any` interface by default.
  */
 export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<
   ITreeViewProps<D, R>

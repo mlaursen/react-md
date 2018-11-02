@@ -23,6 +23,7 @@ export interface ISassDoc {
   links: SassDoc.ILink[];
 
   code?: string;
+  resolvedValue?: string;
   value?: string;
   examples?: ISassDocExample[];
   parameters?: SassDoc.IParameter[];
@@ -35,12 +36,14 @@ export interface IVariableLookup {
   name: string;
   type: SassDoc.Type;
   value: string;
-  resolved: boolean;
+  resolvedValue: string;
+  isDefault: boolean;
 }
 
 export interface IVariableSassDoc extends ISassDoc {
   code: string;
   value: string;
+  resolvedValue: string;
 }
 
 export interface IMixinSassDoc extends ISassDoc {

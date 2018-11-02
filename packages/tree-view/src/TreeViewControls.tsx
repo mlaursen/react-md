@@ -61,7 +61,7 @@ export interface ITreeViewControlsState {
  * The `TreeViewControls` component is used as a simple higher order component to add the basic selection and
  * expansion event handlers and state to the `TreeView` component.
  */
-export default class TreeViewControls<D, R> extends React.Component<
+export default class TreeViewControls<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<
   ITreeViewControlsProps<D, R>,
   ITreeViewControlsState
 > {

@@ -6,8 +6,22 @@ export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
 /**
- * The `AppBar` component is normally used to create a fixed header element within your page that defines a title,
- * optional actions, and an optional navigation button.
+ * The props that are used by the AppBar component. You can import these props to help create a wrapper
+ * component with additional functionality.
+ *
+ * Example:
+ *
+ * ```tsx
+ * import * as React from "react";
+ * import { IAppBarProps, AppBar } from "@react-md/app-bar"
+ *
+ * const MyCustomAppBar: React.SFC<IAppBarProps> = ({ className, children, ...props }) => (
+ *  <AppBar {...props} className={cn("my-custom-app-bar", className)}>
+ *    <img src="/company-logo" alt="Company logo" />
+ *    {children}
+ *  </AppBar>
+ * )
+ * ```
  */
 export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -52,6 +66,9 @@ export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   inheritColor?: boolean;
 }
 
+/**
+ * The default props for the AppBar.
+ */
 export interface IAppBarDefaultProps {
   fixed: boolean;
   fixedPosition: AppBarPosition;
@@ -61,6 +78,9 @@ export interface IAppBarDefaultProps {
   theme: AppBarTheme;
 }
 
+/**
+ * A simple type that is used to help type-enforce the props of an AppBar after the default props have been applied.
+ */
 export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
 
 /**
@@ -68,7 +88,6 @@ export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
  * and optional actions. Since it is fixed on the page, it normally requires adding padding or margin to relative
  * elements so that they aren't covered by this component. You can use the static class names on the
  * `AppBar` to correctly add the padding or margin.
- *
  * - `AppBar.offsetClassName`
  * - `AppBar.offsetProminentClassName`
  * - `AppBar.offsetDenseClassName`
@@ -77,10 +96,57 @@ export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
  * You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
  */
 export default class AppBar extends React.Component<IAppBarProps> {
-  public static offsetClassName = "rmd-app-bar-offset";
-  public static offsetProminentClassName = "rmd-app-bar-offset--prominent";
-  public static offsetDenseClassName = "rmd-app-bar-offset--dense";
-  public static offsetProminentDenseClassName = "rmd-app-bar-offset--prominent-dense";
+  /**
+   * The `className` to apply to an element that should be offset for a normal height AppBar.
+   *
+   * Example:
+   * ```tsx
+   * <AppBar fixed={true} />
+   * <div className={AppBar.offsetClassName}>
+   *  This div now has padding-top applied equal the AppBar's height.
+   * </div>
+   * ```
+   */
+  public static readonly offsetClassName: string = "rmd-app-bar-offset";
+
+  /**
+   * The `className` to apply to an element that should be offset for a prominent height AppBar.
+   *
+   * Example:
+   * ```tsx
+   * <AppBar fixed={true} />
+   * <div className={AppBar.offsetProminentClassName}>
+   *  This div now has padding-top applied equal the AppBar's prominent height.
+   * </div>
+   * ```
+   */
+  public static readonly offsetProminentClassName: string = "rmd-app-bar-offset--prominent";
+
+  /**
+   * The `className` to apply to an element that should be offset for a dense height AppBar.
+   *
+   * Example:
+   * ```tsx
+   * <AppBar fixed={true} />
+   * <div className={AppBar.offsetDenseClassName}>
+   *  This div now has padding-top applied equal the AppBar's dense height.
+   * </div>
+   * ```
+   */
+  public static readonly offsetDenseClassName: string = "rmd-app-bar-offset--dense";
+
+  /**
+   * The `className` to apply to an element that should be offset for a prominent dense height AppBar.
+   *
+   * Example:
+   * ```tsx
+   * <AppBar fixed={true} />
+   * <div className={AppBar.offsetProminentDenseClassName}>
+   *  This div now has padding-top applied equal the AppBar's prominent dense height.
+   * </div>
+   * ```
+   */
+  public static readonly offsetProminentDenseClassName: string = "rmd-app-bar-offset--prominent-dense";
 
   public static propTypes = {
     dense: PropTypes.bool,
