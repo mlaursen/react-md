@@ -4,6 +4,16 @@
 	"description": "The documentation server for react-md.",
 	"homepage": "https://react-md.mlaursen.com",
 	"private": true,
+	"scripts": {
+    "start": "webpack-dev-server --mode development --config webpack/config.ts",
+    "prebuild": "rm -rf dist",
+    "build": "webpack --mode production --config webpack/config.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "generator": "ts-node src/scripts/generator.ts",
+    "sassdoc": "cpx src/scripts/sassdoc/throw.js node_modules/sassdoc/annotation/annotations/throw.js && npm run generator -- sassdoc",
+    "typedoc": "npm run generator -- typedoc"
+  },
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/mlaursen/react-md.git"
