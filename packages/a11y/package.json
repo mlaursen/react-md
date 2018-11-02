@@ -10,9 +10,8 @@
     "prebuild": "npm run clean",
     "watch": "npm-run-all -p \"build:commonjs -- --watch\" \"build:modules -- --watch\"",
     "test": "jest src",
-    "docs": "doc-generator --no-sassdoc",
     "lint": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm run build && npm run docs"
+    "prepublishOnly": "npm run build"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -39,13 +38,11 @@
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
-    "doc-generator": "^2.0.0-alpha-1",
     "jest": "^23.6.0",
     "npm-run-all": "^4.1.3",
     "rimraf": "^2.6.2",
-    "ts-jest": "^22.4.6",
+    "ts-jest": "^23.10.4",
     "tslint": "^5.11.0",
-    "typedoc": "^0.13.0",
-    "typescript": "^3.1.3"
+    "typescript": "^3.1.6"
   }
 }

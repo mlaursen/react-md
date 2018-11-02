@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
-import memoizeOne from "memoize-one";
 
 import { isFocusable } from "@react-md/utils";
 

@@ -3,14 +3,13 @@
   "version": "2.0.0-alpha-1",
   "description": "This is a small package for react-md that can create the elevation styles in the material design spec.",
   "scripts": {
-    "docs": "doc-generator --no-proptypes",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "npm run styles",
     "styles": "cpx \"src/**/*.scss\" dist",
     "watch": "npm run styles -- --watch",
     "lint": "sass-lint -c ../../.sass-lint.yml -v",
-    "prepublishOnly": "npm run build && npm run docs"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist/*"
@@ -30,7 +29,6 @@
   },
   "devDependencies": {
     "cpx": "^1.5.0",
-    "doc-generator": "^2.0.0-alpha-1",
     "rimraf": "^2.6.2",
     "sass-lint": "^1.12.1"
   }

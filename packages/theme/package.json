@@ -3,14 +3,13 @@
   "version": "2.0.0-alpha-1",
   "description": "A package for working with react-md to use material design colors.",
   "scripts": {
-    "docs": "doc-generator --no-proptypes",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "npm run styles",
     "styles": "cpx \"src/**/*.scss\" dist",
     "watch": "npm run styles -- --watch",
     "lint": "sass-lint -c ../../.sass-lint.yml -v",
-    "prepublishOnly": "npm run build && npm run docs"
+    "prepublishOnly": "npm run build"
   },
   "main": "./dist/styles.css",
   "files": [
@@ -29,9 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "cpx": "^1.5.0",
-    "doc-generator": "^2.0.0-alpha-1",
     "rimraf": "^2.6.2",
-    "sass-lint": "^1.12.1",
-    "typedoc": "^0.13.0"
+    "sass-lint": "^1.12.1"
   }
 }

@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
-import memoizeOne from "memoize-one";
 
 // I could have done this with the react-transition-group instead, but I couldn't figure out how
 // to get the transition to work as smoothly as this.
@@ -192,39 +191,6 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     return null;
   }
 
-  /**
-   * Creates the style for the child element by merging the prop styles into the dynamically generated
-   * maxHeight, paddingTop, and paddingBottom styles.
-   *
-   * When there are no styles to create, `undefined` will be returned instead of a style object.
-   */
-  private createStyle = memoizeOne(
-    (
-      transitionDuration: string,
-      propStyle?: React.CSSProperties,
-      maxHeight?: number | string,
-      paddingTop?: number | string,
-      paddingBottom?: number | string
-    ) => {
-      const isHeight = typeof maxHeight !== "undefined";
-      const isPadTop = typeof paddingTop !== "undefined";
-      const isPadBot = typeof paddingBottom !== "undefined";
-      if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
-        return undefined;
-      } else if (propStyle) {
-        return {
-          maxHeight,
-          paddingTop,
-          paddingBottom,
-          transitionDuration,
-          ...propStyle,
-        };
-      }
-
-      return { maxHeight, paddingTop, paddingBottom, transitionDuration };
-    }
-  );
-
   private target: HTMLElement | null;
   private transitionTimeout?: number;
   constructor(props: ICollapseProps) {
@@ -403,5 +369,36 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
         paddingBottom: minPaddingBottom,
       });
     }, 25);
+  };
+
+  /**
+   * Creates the style for the child element by merging the prop styles into the dynamically generated
+   * maxHeight, paddingTop, and paddingBottom styles.
+   *
+   * When there are no styles to create, `undefined` will be returned instead of a style object.
+   */
+  private createStyle = (
+    transitionDuration: string,
+    propStyle?: React.CSSProperties,
+    maxHeight?: number | string,
+    paddingTop?: number | string,
+    paddingBottom?: number | string
+  ) => {
+    const isHeight = typeof maxHeight !== "undefined";
+    const isPadTop = typeof paddingTop !== "undefined";
+    const isPadBot = typeof paddingBottom !== "undefined";
+    if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
+      return undefined;
+    } else if (propStyle) {
+      return {
+        maxHeight,
+        paddingTop,
+        paddingBottom,
+        transitionDuration,
+        ...propStyle,
+      };
+    }
+
+    return { maxHeight, paddingTop, paddingBottom, transitionDuration };
   };
 }

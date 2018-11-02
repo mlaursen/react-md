@@ -35,7 +35,6 @@ export default class Anchor extends React.Component<IAnchorProps> {
 
     return (
       <Link
-        id={id}
         to={`#${id}`}
         title={title}
         className={cn("anchor", { "anchor--before": !after, "anchor--after": after }, className)}

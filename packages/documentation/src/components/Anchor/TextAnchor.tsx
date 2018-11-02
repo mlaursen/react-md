@@ -21,7 +21,7 @@ const TextAnchor: React.SFC<ITextAnchorProps> = ({
   const id = kebabCase(propId);
 
   return (
-    <Text {...props} className={cn(Anchor.anchorTargetClassName, className)}>
+    <Text id={id} {...props} className={cn(Anchor.anchorTargetClassName, className)}>
       {children}
       <Anchor id={id} title={title} className={linkClassName} after={after} />
     </Text>

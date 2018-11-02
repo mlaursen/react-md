@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
-import memoizeOne from "memoize-one";
 
 export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   /**
@@ -134,47 +133,6 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
     dense: false,
   };
 
-  private getStyle = memoizeOne((style?: React.CSSProperties, size?: number) => {
-    if (style && size) {
-      return { height: size, width: size, ...style };
-    } else if (style) {
-      return style;
-    } else if (size) {
-      return { height: size, width: size };
-    }
-
-    return undefined;
-  });
-
-  /**
-   * A small helper function that will automatically generate specific ids within the icon
-   * to add additional accessibility.
-   */
-  private getIds = memoizeOne((use?: string, labels?: string, title?: string, desc?: string) => {
-    let titleId;
-    let descId;
-    let labelledBy;
-    if (title || desc) {
-      if (use) {
-        const baseId = use.replace(/.*#/, "");
-        titleId = `${baseId}-title`;
-        descId = `${baseId}-desc`;
-
-        if (title) {
-          labelledBy = `${baseId}-title`;
-        }
-
-        if (desc) {
-          labelledBy = `${labelledBy ? `${labelledBy} ` : ""}${descId}`;
-        }
-      } else if (labels) {
-        [titleId, descId] = labels.split(" ");
-      }
-    }
-
-    return { titleId, descId, labelledBy };
-  });
-
   public render() {
     const {
       style,
@@ -225,4 +183,45 @@ export default class SVGIcon extends React.Component<ISVGIconProps, {}> {
       </svg>
     );
   }
+
+  private getStyle = (style?: React.CSSProperties, size?: number) => {
+    if (style && size) {
+      return { height: size, width: size, ...style };
+    } else if (style) {
+      return style;
+    } else if (size) {
+      return { height: size, width: size };
+    }
+
+    return undefined;
+  };
+
+  /**
+   * A small helper function that will automatically generate specific ids within the icon
+   * to add additional accessibility.
+   */
+  private getIds = (use?: string, labels?: string, title?: string, desc?: string) => {
+    let titleId;
+    let descId;
+    let labelledBy;
+    if (title || desc) {
+      if (use) {
+        const baseId = use.replace(/.*#/, "");
+        titleId = `${baseId}-title`;
+        descId = `${baseId}-desc`;
+
+        if (title) {
+          labelledBy = `${baseId}-title`;
+        }
+
+        if (desc) {
+          labelledBy = `${labelledBy ? `${labelledBy} ` : ""}${descId}`;
+        }
+      } else if (labels) {
+        [titleId, descId] = labels.split(" ");
+      }
+    }
+
+    return { titleId, descId, labelledBy };
+  };
 }

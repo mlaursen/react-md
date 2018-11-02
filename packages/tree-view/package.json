@@ -14,11 +14,10 @@
     "types": "cpx \"src/types.d.ts\" types",
     "test": "jest src",
     "test-performance": "ts-node --project ./tsconfig.speed.json ./speedTest.ts ",
-    "docs": "doc-generator",
     "lint": "npm-run-all -p lint:styles lint:ts",
     "lint:styles": "sass-lint -c ../../.sass-lint.yml -v",
     "lint:ts": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm run build && npm run docs"
+    "prepublishOnly": "npm run build"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -56,16 +55,14 @@
   },
   "devDependencies": {
     "cpx": "^1.5.0",
-    "doc-generator": "^2.0.0-alpha-1",
     "jest": "^23.6.0",
     "npm-run-all": "^4.1.3",
     "performance-now": "^2.1.0",
     "rimraf": "^2.6.2",
     "sass-lint": "^1.12.1",
-    "ts-jest": "^22.4.6",
+    "ts-jest": "^23.10.4",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "typedoc": "^0.13.0",
-    "typescript": "^3.1.3"
+    "typescript": "^3.1.6"
   }
 }

@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
-import memoizeOne from "memoize-one";
 
 const ICON_SIZE = 24;
 
@@ -67,29 +66,6 @@ export default class FontIcon extends React.Component<IFontIconProps> {
     forceFontSize: false,
   };
 
-  private getStyle = memoizeOne(
-    (style?: React.CSSProperties, forceSize?: boolean | number, forceFontSize?: boolean) => {
-      let nextStyle = style;
-      if (typeof forceSize === "boolean" && forceSize) {
-        nextStyle = {
-          fontSize: forceFontSize ? ICON_SIZE : undefined,
-          height: ICON_SIZE,
-          width: ICON_SIZE,
-          ...style,
-        };
-      } else if (typeof forceSize === "number") {
-        nextStyle = {
-          fontSize: forceFontSize ? forceSize : undefined,
-          height: forceSize,
-          width: forceSize,
-          ...style,
-        };
-      }
-
-      return nextStyle;
-    }
-  );
-
   public render() {
     const {
       style,
@@ -119,4 +95,29 @@ export default class FontIcon extends React.Component<IFontIconProps> {
       </i>
     );
   }
+
+  private getStyle = (
+    style?: React.CSSProperties,
+    forceSize?: boolean | number,
+    forceFontSize?: boolean
+  ) => {
+    let nextStyle = style;
+    if (typeof forceSize === "boolean" && forceSize) {
+      nextStyle = {
+        fontSize: forceFontSize ? ICON_SIZE : undefined,
+        height: ICON_SIZE,
+        width: ICON_SIZE,
+        ...style,
+      };
+    } else if (typeof forceSize === "number") {
+      nextStyle = {
+        fontSize: forceFontSize ? forceSize : undefined,
+        height: forceSize,
+        width: forceSize,
+        ...style,
+      };
+    }
+
+    return nextStyle;
+  };
 }
