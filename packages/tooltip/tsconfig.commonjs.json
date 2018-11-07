@@ -1,10 +1,14 @@
 {
   "extends": "../../tsconfig.commonjs.json",
   "compilerOptions": {
+    "rootDir": "src",
+    "declaration": false,
     "outDir": "./lib"
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
-    "**/__tests__/*",
-    "types/*"
+    "**/__tests__/*"
   ]
 }

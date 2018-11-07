@@ -1,7 +1,7 @@
 const JEST_CONFIG_TEMPLATE = `module.exports = {
   globals: {
     'ts-jest': {
-      tsConfigFile: './tsconfig.test.json',
+      tsConfig: './tsconfig.test.json',
     },
   },
   setupFiles: ['./jest.setup.js'],

@@ -72,7 +72,7 @@ describe("Collapse", () => {
       window.getComputedStyle = () => ({
         paddingTop: "12px",
         paddingBottom: "12px",
-      });
+      } as CSSStyleDeclaration);
 
       // fake that the scrollHeight is 100px
       Object.defineProperty(Element.prototype, "scrollHeight", {

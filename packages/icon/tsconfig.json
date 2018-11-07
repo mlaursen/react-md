@@ -3,11 +3,18 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./types",
+    "rootDir": "src",
     "outDir": "./es",
     "composite": true
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
-    "types/*",
     "**/__tests__/*"
+  ],
+  "references": [
+    { "path": "../typography" },
+    { "path": "../utils" }
   ]
 }

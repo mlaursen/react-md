@@ -1,6 +1,9 @@
 {
   "extends": "../../tsconfig.test.json",
-  "exclude": [
-    "./speedTest.ts"
+  "compilerOptions": {
+    "rootDir": "src"
+  },
+  "include": [
+    "src"
   ]
 }

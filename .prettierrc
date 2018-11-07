@@ -1,2 +1,11 @@
 printWidth: 100
 trailingComma: es5
+overrides:
+  - files: "*.js"
+    options:
+      singleQuote: true
+      requirePragma: true
+  - files: "*.scss"
+    options:
+      singleQuote: true
+      requirePragma: true

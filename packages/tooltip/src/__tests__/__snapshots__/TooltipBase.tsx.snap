@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tooltip /> should render correctly 1`] = `null`;
+
+exports[`<Tooltip /> should render correctly 2`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--below rmd-tooltip--enter rmd-tooltip--visible"
+  id="tooltip-1"
+  role="tooltip"
+>
+  This is some content
+</span>
+`;
+
+exports[`<Tooltip /> should render correctly 3`] = `
+<span
+  class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--below"
+  id="tooltip-1"
+  role="tooltip"
+>
+  This is some content
+</span>
+`;

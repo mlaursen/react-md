@@ -13,7 +13,7 @@ describe("Link", () => {
   });
 
   it("should should render correctly when using react-router's Link component", () => {
-    const create = ({ children, ...props }) =>
+    const create = ({ children, ...props }: { children: React.ReactNode; [key: string]: any }) =>
       renderer.create(
         <StaticRouter context={{}}>
           <Link {...props} component={RRLink}>
@@ -28,7 +28,7 @@ describe("Link", () => {
   });
 
   it("should should render correctly when using @reach/router's Link component", () => {
-    const create = ({ children, ...props }) =>
+    const create = ({ children, ...props }: { children: React.ReactNode; [key: string]: any }) =>
       renderer.create(
         <StaticRouter context={{}}>
           <Link {...props} component={RRLink}>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { create, ReactTestRendererJSON } from "react-test-renderer";
 import { mount } from "enzyme";
 
-import Text, { ITextProps, DefaultTextComponentProps } from "../Text";
+import Text, { ITextProps, DefaultTextProps } from "../Text";
 
 export function createSnapshot(children: React.ReactElement<any>): ReactTestRendererJSON | null {
   return create(children).toJSON();
@@ -58,11 +58,7 @@ describe("Text", () => {
 
     it("should be able to render as an SFC", () => {
       const text = create(
-        <Text<ICustomProps & DefaultTextComponentProps>
-          component={Custom}
-          type="headline-3"
-          enabled={false}
-        >
+        <Text<ICustomProps & DefaultTextProps> component={Custom} type="headline-3" enabled={false}>
           {HELLO_WORLD}
         </Text>
       );
@@ -72,7 +68,7 @@ describe("Text", () => {
 
     it("should be able to render as a class Component", () => {
       const text = create(
-        <Text<IClassProps & DefaultTextComponentProps> component={Class} type="headline-3">
+        <Text<IClassProps & DefaultTextProps> component={Class} type="headline-3">
           {HELLO_WORLD}
         </Text>
       );
@@ -81,8 +77,8 @@ describe("Text", () => {
     });
 
     it("should be able to render a forwardedRef component or SFC", () => {
-      interface ICustomDivProps<T = any> extends ICustomProps {
-        forwardedRef: React.Ref<T>;
+      interface ICustomDivProps extends ICustomProps {
+        forwardedRef?: React.Ref<HTMLDivElement>;
       }
 
       const CustomDiv: React.SFC<ICustomDivProps> = () => <div />;

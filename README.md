@@ -205,6 +205,6 @@ This will install all the packages and run the initial builds for all modules so
 
 ```sh
 $ npm install
-$ lerna bootstrap
-$ npm run build
+$ npm run bootstrap  # just runs lerna bootstrap --hoist
+$ npm run build      # builds all packages in correct order
 ```
