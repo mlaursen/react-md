@@ -23,14 +23,6 @@ const CHAINED_TOAST_DELAY = 50;
 export default class SnackbarContainer extends PureComponent {
   static propTypes = {
     /**
-     * When a toast has an action, it will automatically be focused when this prop is enabled.
-     * This will require your action onClick handler to correctly focus an element on the page
-     * once the toast is hidden. If this prop is disabled, it is recommended to add custom focus
-     * logic so that keyboard users can interact with the snackbar.
-     */
-    autoFocusAction: PropTypes.bool,
-
-    /**
      * An id for the Snackbar once a toast has been added and is visible. This is a recommended
      * prop for accessibility concerns. If it is omitted, the id will become `'snackbar-alert'`
      * when there is no action on the toast, or `'snackbar-alert-dialog'` when there is an action
@@ -108,6 +100,14 @@ export default class SnackbarContainer extends PureComponent {
     autohideTimeout: PropTypes.number.isRequired,
 
     /**
+     * When a toast has an action, it will automatically be focused when this prop is enabled.
+     * This will require your action onClick handler to correctly focus an element on the page
+     * once the toast is hidden. If this prop is disabled, it is recommended to add custom focus
+     * logic so that keyboard users can interact with the snackbar.
+     */
+    autoFocusAction: PropTypes.bool,
+
+    /**
      * The transition name to use for the snackbar appearing and disappearing.
      */
     transitionName: PropTypes.string.isRequired,
@@ -173,7 +173,7 @@ export default class SnackbarContainer extends PureComponent {
   };
 
   static defaultProps = {
-    autoFocusAction: true,
+    autoFocusAction: false,
     autohide: true,
     toasts: [],
     autohideTimeout: 3000,

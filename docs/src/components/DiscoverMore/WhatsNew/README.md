@@ -1,3 +1,11 @@
+## November 2018
+### v1.9.0 Released
+##### Changelog
+- Updated the `Snackbar` to be able to auto focus the `Snackbar` action. ([@kldavis4] - [pull-810])
+
+> Note: this is disabled by default so that upgrading does not add new functionality and focus behavior. Please enable the [autoFocusAction](/components/snackbars?tab=1#snackbar-proptypes-auto-focus-action)
+prop once you have upgraded to enable this new feature.
+
 ## October 2018
 ### Documentation Change
 - Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app-v2).
@@ -56,7 +64,7 @@ This release added a new feature and an accessibility change.
 ### v1.4.0 Released
 ##### Changelog
 - Updated dialogs so that the blurry text rendering can be fixed by enabling a new Scss variable: `$md-dialog-use-flex-positioning`.
-You can read more about it [here](/components/dialogs?tab=2#variable-md-dialog-use-flex-positioning). [issues-337], [issues-599], and [issues-696]. 
+You can read more about it [here](/components/dialogs?tab=2#variable-md-dialog-use-flex-positioning). [issues-337], [issues-599], and [issues-696].
 - Updated password text fields so that setting the `passwordIcon` prop to `null` will remove the password toggle button. [issues-738]
 
 ### v1.3.5 Released
@@ -421,7 +429,7 @@ the [issue for more details](#issues-243).
 In addition, the styles for plain data tables have been simplified which might cause some display issues. [commit-2cc40cd]
 
 #### Menus
-If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following: 
+If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following:
 `.md-text-field-container,button,*[role="button"],*[role="listbox"]` otherwise there will be an error.
 
 ## August 2017
@@ -594,7 +602,7 @@ The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. 
 
 ### v1.0.9 Released
 
-This was really another patch for drawers. 
+This was really another patch for drawers.
 
 ##### Changelog
 - Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [issues-291]

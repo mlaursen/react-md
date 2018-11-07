@@ -19,6 +19,14 @@ export default class Interactive extends PureComponent {
     target: null,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.submitButton && !this.state.toasts.length && prevState.toasts.length) {
+      // Since there is currently no focus management built into the Snackbar, you will manually
+      // need to re-focus the previous element once the toast is dismissed
+      this.submitButton.focus();
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { text, action } = this.state;
@@ -41,7 +49,6 @@ export default class Interactive extends PureComponent {
   dismiss = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts });
-    this.submitButton.focus();
   };
 
   updateText = (text) => {
@@ -136,6 +143,7 @@ export default class Interactive extends PureComponent {
           toasts={toasts}
           autohide={autohide}
           autohideTimeout={autohideTimeout || Snackbar.defaultProps.autohideTimeout}
+          autoFocusAction
           onDismiss={this.dismiss}
         />
       </form>
