@@ -131,11 +131,13 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
     const container = document.querySelector(`[aria-describedby="${id}"]`);
     if (!container) {
       if (process.env.NODE_ENV !== "production") {
-        // tslint:disable-next-line
+        /* tslint:disable no-console */
         console.error(
           `Unable to render a tooltip with the provided id: \`${id}\` A tooltip can only be rendered ` +
             `if there is an element on the page with the \`aria-describedby="${id}" attribute, but none were found.`
         );
+        console.error(new Error().stack);
+        /* tslint:enable no-console */
       }
       this.container = null;
       return;
@@ -249,13 +251,14 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
         // tooltip portal support
         const { position } = window.getComputedStyle(this.container);
         if (tooltip && this.container.contains(tooltip) && position !== "relative") {
-          // tslint:disable-next-line:no-console
+          /* tslint:disable no-console */
           console.error(
             "A tooltip's container must have `position: relative` as a style for a tooltip to appear but " +
               `its position is: \`${position}\`. An inline style has been applied, but your container must ` +
-              "be updated before going into production as this functionality will be removed. Tooltip Container: ",
-            this.container
+              "be updated before going into production as this functionality will be removed"
           );
+          console.error(new Error().stack);
+          /* tslint:enable no-console */
 
           this.container.style.position = "relative";
         }

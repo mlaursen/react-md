@@ -1,16 +1,22 @@
 import { CSSTransitionClassNames, TransitionTimeout, ITransitionProps } from "@react-md/transition";
 
+/**
+ * This type is used for verifying that one of the correct tooltip positions are used.
+ */
 export type TooltipPosition = "above" | "below" | "left" | "right";
-export interface ITooltipTransitionDuration {
-  enter?: number;
-  exit?: number;
-}
 
-type BaseTooltipTransitionProps = Pick<
+/**
+ * A simple type that is used to get the base Transition props from the react-transition-group
+ * that are related to the tooltip's animation.
+ */
+export type BaseTooltipTransitionProps = Pick<
   ITransitionProps,
   "onEnter" | "onEntering" | "onEntered" | "onExit" | "onExiting" | "onExited"
 >;
 
+/**
+ * The base props for the `TooltipBase` component. This can be extended when creating custom tooltip implementations.
+ */
 export interface IBaseTooltipProps
   extends BaseTooltipTransitionProps,
     React.HTMLAttributes<HTMLSpanElement> {

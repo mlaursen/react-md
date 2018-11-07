@@ -6,9 +6,13 @@ import { CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition
 
 import { IBaseTooltipProps, TooltipPosition } from "./types.d";
 
+/**
+ * All the props that can be applied to the `TooltipBase` component.
+ */
 export interface ITooltipBaseProps extends IBaseTooltipProps {
   /**
-   * The position of the tooltip to use.
+   * This is the position that the tooltip should appear related to its container elemement as well as
+   * updating the animation direction.
    */
   position?: TooltipPosition;
 
@@ -23,6 +27,9 @@ export interface ITooltipBaseProps extends IBaseTooltipProps {
   forwardedRef?: React.Ref<HTMLSpanElement>;
 }
 
+/**
+ * An interface containing all the props that have a default value.
+ */
 export interface ITooltipBaseDefaultProps {
   dense: boolean;
   position: TooltipPosition;
@@ -34,6 +41,13 @@ export interface ITooltipBaseDefaultProps {
 
 export type TooltipBaseWithDefaultProps = ITooltipBaseProps & ITooltipBaseDefaultProps;
 
+/**
+ * This is the base tooltip component that can only be used to render a tooltip with an animation when the
+ * visibility changes. If this component is used, you will need to manually add all the event listeners
+ * and triggers to change the `visible` prop.
+ *
+ * @forwardRef
+ */
 class TooltipBase extends React.Component<ITooltipBaseProps> {
   public static propTypes = {
     id: PropTypes.string.isRequired,
@@ -41,7 +55,36 @@ class TooltipBase extends React.Component<ITooltipBaseProps> {
     className: PropTypes.string,
     children: PropTypes.node.isRequired,
     dense: PropTypes.bool,
+    lineWrap: PropTypes.bool,
+    classNames: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        appear: PropTypes.string,
+        appearActive: PropTypes.string,
+        enter: PropTypes.string,
+        enterActive: PropTypes.string,
+        enterDone: PropTypes.string,
+        exit: PropTypes.string,
+        exitActive: PropTypes.string,
+        exitDone: PropTypes.string,
+      }),
+    ]),
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        enter: PropTypes.number,
+        exit: PropTypes.number,
+      }),
+    ]),
+    onEnter: PropTypes.func,
+    onEntering: PropTypes.func,
+    onEntered: PropTypes.func,
+    onExit: PropTypes.func,
+    onExiting: PropTypes.func,
+    onExited: PropTypes.func,
+    lazyMount: PropTypes.bool,
     position: PropTypes.oneOf(["above", "below", "left", "right"]),
+    visible: PropTypes.bool.isRequired,
   };
 
   public static defaultProps: ITooltipBaseDefaultProps = {
