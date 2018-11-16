@@ -95,7 +95,7 @@ export interface ITextProps<P = DefaultTextProps> {
   /**
    * @private
    */
-  forwardedRef?: React.Ref<HTMLSpanElement>;
+  forwardedRef?: React.Ref<DefaultTextElement>;
 }
 
 /**
@@ -139,6 +139,9 @@ export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDe
  * elements in the "auto-component" logic.
  */
 class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P> & P> {
+  // The line above is pretty ugly and should be fixed/changed at some point. It was an attempt
+  // at getting correct typing when using the `component` prop, but it is all worthless now since
+  // I'm not sure how to add type generics for a forwarded ref.
   public static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
@@ -221,6 +224,7 @@ class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P
   };
 }
 
-export default React.forwardRef<DefaultTextElement, ITextProps>((props, ref) => (
-  <Text {...props} forwardedRef={ref} />
-));
+export default React.forwardRef<
+  DefaultTextElement,
+  ITextProps<DefaultTextProps> & DefaultTextProps
+>((props, ref) => <Text {...props} forwardedRef={ref} />);
