@@ -1,7 +1,7 @@
 import * as React from "react";
 import cn from "classnames";
 import { Collapse } from "@react-md/transition";
-import { List, IListProps, ListElement } from "@react-md/list";
+import { List, IListProps } from "@react-md/list";
 
 export interface ITreeGroupProps extends IListProps {
   /**
@@ -34,9 +34,9 @@ export interface ITreeGroupDefaultProps {
 export type TreeGroupWithDefaultProps = ITreeGroupProps & ITreeGroupDefaultProps;
 
 /**
- * The `TreeGroup` component is used to render a tree item's nested items whenever the `expanded` prop
- * is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view and will
- * fully unrender when the `expanded` prop is `false`.
+ * The `TreeGroup` component is used to render a tree item's nested items whenever the `expanded`
+ * prop is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view
+ * and will fully unrender when the `expanded` prop is `false`.
  */
 const TreeGroup: React.SFC<ITreeGroupProps> = providedProps => {
   const {

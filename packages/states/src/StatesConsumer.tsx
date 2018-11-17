@@ -55,51 +55,57 @@ export interface IStatesConsumerChildProps {
   onBlur?: StatesConsumerFocusListener;
 
   /**
-   * A `mouseup` event handler that is used for handling presses with the mouse. This will only be provided
-   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onMouseUp` prop.
-   * This is required to be applied to the child element if you want correct press states to be applied.
+   * A `mouseup` event handler that is used for handling presses with the mouse. This will only
+   * be provided if the `pressable` prop was enabled or if the `StatesConsumer` component was
+   * provided an `onMouseUp` prop. This is required to be applied to the child element if you
+   * want correct press states to be applied.
    */
   onMouseUp?: StatesConsumerMouseListener;
 
   /**
-   * A `mousedown` event handler that is used for handling presses with the mouse. This will only be provided
-   * if the `pressable` prop was enabled or the `StatesConsumer` component was provided an `onMouseDown` prop.
-   * This is required to be applied to the child element if you want correct press states to be applied.
+   * A `mousedown` event handler that is used for handling presses with the mouse. This will
+   * only be provided if the `pressable` prop was enabled or the `StatesConsumer` component was
+   * provided an `onMouseDown` prop. This is required to be applied to the child element if you
+   * want correct press states to be applied.
    */
   onMouseDown?: StatesConsumerMouseListener;
 
   /**
-   * A `touchstart` event handler that is used for handling presses with the mouse. This will only be provided
-   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onTouchStart` prop.
-   * This is required to be applied to the child element if you want correct press states to be applied.
+   * A `touchstart` event handler that is used for handling presses with the mouse. This will
+   * only be provided if the `pressable` prop was enabled or if the `StatesConsumer` component
+   * was provided an `onTouchStart` prop. This is required to be applied to the child element
+   * if you want correct press states to be applied.
    */
   onTouchStart?: StatesConsumerTouchListener;
 
   /**
-   * A `touchend` event handler that is used for handling presses with the mouse. This will only be provided
-   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided an `onTouchEnd` prop.
-   * This is required to be applied to the child element if you want correct press states to be applied.
+   * A `touchend` event handler that is used for handling presses with the mouse. This will
+   * only be provided if the `pressable` prop was enabled or if the `StatesConsumer` component
+   * was provided an `onTouchEnd` prop. This is required to be applied to the child element if
+   * you want correct press states to be applied.
    */
   onTouchEnd?: StatesConsumerTouchListener;
 
   /**
-   * A `keydown` event handler that is used for handling presses with the keyboard. This will only be provided
-   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided with an `onKeyDown`
-   * prop. This is required to be applied to the child element if you want the correct press states to be applied.
+   * A `keydown` event handler that is used for handling presses with the keyboard. This will
+   * only be provided if the `pressable` prop was enabled or if the `StatesConsumer` component
+   * was provided with an `onKeyDown` prop. This is required to be applied to the child element
+   * if you want the correct press states to be applied.
    */
   onKeyDown?: StatesConsumerKeyboardListener;
 
   /**
-   * A `keyup` event handler that is used for handling presses with the keyboard. This will only be provided
-   * if the `pressable` prop was enabled or if the `StatesConsumer` component was provided with an `onKeyUp`
-   * prop. This is required to be applied to the child element if you want the correct press states to be applied.
+   * A `keyup` event handler that is used for handling presses with the keyboard. This will only
+   * be provided if the `pressable` prop was enabled or if the `StatesConsumer` component was
+   * rovided with an `onKeyUp` prop. This is required to be applied to the child element if you
+   * want the correct press states to be applied.
    */
   onKeyUp?: StatesConsumerKeyboardListener;
 }
 
 /**
- * These are really just pass-down-value of events that have their functionality merged with the StatesConsumer
- * functionality.
+ * These are really just pass-down-value of events that have their functionality merged with
+ * the StatesConsumer functionality.
  */
 export interface IStatesConsumerEvents {
   onMouseDown?: StatesConsumerMouseListener;
@@ -143,9 +149,9 @@ export interface IStatesConsumerBaseProps extends IStatesConsumerEvents {
   selected?: boolean;
 
   /**
-   * A function to render any children with the merged class names and optional blur events. The child element
-   * **must** apply the `ref` attribute to the child element as well as the provided class name and `onBlur` to
-   * work correctly.
+   * A function to render any children with the merged class names and optional blur
+   * events. The child element **must** apply the `ref` attribute to the child element
+   * as well as the provided class name and `onBlur` to work correctly.
    */
   children: ((props: IStatesConsumerChildProps) => React.ReactNode) | React.ReactElement<any>;
 }
@@ -165,9 +171,10 @@ export interface IStatesConsumerState {
 export type StatesConsumerWithDefaultProps = IStatesConsumerProps & IStatesConsumerDefaultProps;
 
 /**
- * The `StatesConsumer` component is used for applying the dynamic pressed states and hover effects for
- * an html element that is clickable or hoverable. This should probably just mostly be used internally
- * within react-md, but there might be cases where it is helpful to plug into the states provider manually.
+ * The `StatesConsumer` component is used for applying the dynamic pressed states and hover
+ * effects for an html element that is clickable or hoverable. This should probably just mostly
+ * be used internally within react-md, but there might be cases where it is helpful to plug
+ * into the states provider manually.
  */
 export default class StatesConsumer extends React.Component<
   IStatesConsumerProps,
@@ -211,7 +218,6 @@ export default class StatesConsumer extends React.Component<
     }
 
     this.el = ReactDOM.findDOMNode(this) as HTMLElement;
-    const original = this.el;
     if (!isFocusable(this.el, true)) {
       while (this.el && !isFocusable(this.el, true)) {
         this.el = this.el.parentElement;
@@ -220,22 +226,15 @@ export default class StatesConsumer extends React.Component<
 
     if (!this.el) {
       if (process.env.NODE_ENV === "development") {
-        const { props } = this;
-        // tslint:disable-next-line
-        class StatesConsumerError extends Error {
-          private consumerProps: IStatesConsumerProps;
-          constructor(...args: any[]) {
-            super(...args);
-
-            this.consumerProps = props;
-          }
-        }
-
-        throw new StatesConsumerError(
-          "The `StatesConsumer` component was mounted without finding a valid HTMLElement as its child. " +
-            "This should be fixed before deploying to production. The current props are available on the " +
-            "error instance as `error.consumerProps`."
+        /* tslint:disable:no-console */
+        console.error(
+          "The `StatesConsumer` component was mounted without finding a valid " +
+            "HTMLElement as one of its children. This should be fixed before " +
+            "deploying to production as your element will have no focus, hover, " +
+            "or pressed styles applied."
         );
+        console.error(new Error().stack);
+        /* tslint:enable:no-console */
       }
 
       return;

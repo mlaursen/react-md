@@ -1,3 +1,4 @@
+/* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
 export { default as Rotation3DSVGIcon } from "./Rotation3DSVGIcon";
 export { default as Rotation3DFontIcon } from "./Rotation3DFontIcon";

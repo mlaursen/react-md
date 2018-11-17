@@ -32,8 +32,8 @@ export interface IListItemLinkBaseProps extends IListItemBaseProps, IListItemBas
   liClassName?: string;
 
   /**
-   * The `href` to apply to the `<a>` tag. This is only used if you are not using another routing library
-   * with the `component` prop.
+   * The `href` to apply to the `<a>` tag. This is only used if you are not using another routing
+   * library with the `component` prop.
    */
   href?: string;
 
@@ -43,20 +43,20 @@ export interface IListItemLinkBaseProps extends IListItemBaseProps, IListItemBas
   disabled?: boolean;
 
   /**
-   * An optional role for the link. This will normally just be a `listitem`, but can also be `treeitem` when used
-   * within the `TreeView`.
+   * An optional role for the link. This will normally just be a `listitem`, but can also be
+   * `treeitem` when used within the `TreeView`.
    */
   role?: string;
 
   /**
-   * An optional role to apply to the surrounding `<li>`. It is generally recommended to leave this as the default
-   * value.
+   * An optional role to apply to the surrounding `<li>`. It is generally recommended to leave
+   * this as the default value.
    */
   liRole?: string;
 
   /**
-   * An optional component used to render the link. If you are using a routing library like `react-router` or
-   * `reach-router`, this should be the `Link` component.
+   * An optional component used to render the link. If you are using a routing library like
+   * `react-router` or `reach-router`, this should be the `Link` component.
    */
   // basically React.ReactType, but only allowing "a" instead of any string
   component?: "a" | React.ComponentType<any> | React.StatelessComponent<any>;
@@ -101,9 +101,10 @@ export type ListItemLinkWithDefaultProps = IListItemLinkProps & IListItemLinkDef
 export type IListItemLinkProps = IListItemLinkBaseProps | IListItemLinkWithComponentProps;
 
 /**
- * The `ListItemLink` component is used to render links within lists. This component is really only required
- * because the accessibility specs change when rendering links within lists by changing what roles are applied.
- * This should render basically the same as the `ListItem` component.
+ * The `ListItemLink` component is used to render links within lists. This component is really
+ * only required because the accessibility specs change when rendering links within lists by
+ * changing what roles are applied. This should render basically the same as the `ListItem`
+ * component.
  */
 export default class ListItemLink extends React.Component<IListItemLinkProps> {
   public static propTypes = {

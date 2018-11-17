@@ -6,8 +6,8 @@ export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
 /**
- * The props that are used by the AppBar component. You can import these props to help create a wrapper
- * component with additional functionality.
+ * The props that are used by the AppBar component. You can import these props to help
+ * create a wrapper component with additional functionality.
  *
  * Example:
  *
@@ -41,14 +41,14 @@ export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   fixedElevation?: boolean;
 
   /**
-   * Boolean if the `AppBar` should use the `dense` spec. This prop can be used along with the `prominent` prop
-   * to create a prominent and dense `AppBar`.
+   * Boolean if the `AppBar` should use the `dense` spec. This prop can be used along with the
+   * `prominent` prop to create a prominent and dense `AppBar`.
    */
   dense?: boolean;
 
   /**
-   * Boolean if the `AppBar` should use the `prominent` spec. This prop can be used along with the `dense` prop
-   * to create a prominent and dense `AppBar`.
+   * Boolean if the `AppBar` should use the `prominent` spec. This prop can be used along with
+   * the `dense` prop to create a prominent and dense `AppBar`.
    */
   prominent?: boolean;
 
@@ -58,10 +58,11 @@ export interface IAppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: AppBarTheme;
 
   /**
-   * Boolean if the `AppBarNav`, `AppBarTitle`, and `AppBarActions` should inherit the color that for the provided
-   * `theme`. If this value is `undefined`, the color will only be inherited when the theme is set to `primary` or
-   * `secondary`. However if this value is a boolean, it will be used instead. So if you set this to `false` and set
-   * the `theme` to `"primary"`, the defined primary text clor will not be inherited.
+   * Boolean if the `AppBarNav`, `AppBarTitle`, and `AppBarActions` should inherit the color that
+   * for the provided `theme`. If this value is `undefined`, the color will only be inherited when
+   * the theme is set to `primary` or `secondary`. However if this value is a boolean, it will be
+   * used instead. So if you set this to `false` and set the `theme` to `"primary"`, the defined
+   * primary text clor will not be inherited.
    */
   inheritColor?: boolean;
 }
@@ -79,21 +80,24 @@ export interface IAppBarDefaultProps {
 }
 
 /**
- * A simple type that is used to help type-enforce the props of an AppBar after the default props have been applied.
+ * A simple type that is used to help type-enforce the props of an AppBar after the default props
+ * have been applied.
  */
 export type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
 
 /**
- * The `AppBar` component is usually used to create a fixed header within your page that has a title, an optional nav,
- * and optional actions. Since it is fixed on the page, it normally requires adding padding or margin to relative
- * elements so that they aren't covered by this component. You can use the static class names on the
- * `AppBar` to correctly add the padding or margin.
+ * The `AppBar` component is usually used to create a fixed header within your page that has a
+ * title, an optional nav, and optional actions. Since it is fixed on the page, it normally
+ * requires adding padding or margin to relative elements so that they aren't covered by this
+ * component. You can use the static class names on the `AppBar` to correctly add the padding
+ * or margin.
  * - `AppBar.offsetClassName`
  * - `AppBar.offsetProminentClassName`
  * - `AppBar.offsetDenseClassName`
  * - `AppBar.offsetProminentDenseClassName`
  *
- * You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to one element.
+ * You can also use the provided `rmd-app-bar-offset` mixin to manually apply the offset to
+ * one element.
  */
 export default class AppBar extends React.Component<IAppBarProps> {
   /**
@@ -136,7 +140,8 @@ export default class AppBar extends React.Component<IAppBarProps> {
   public static readonly offsetDenseClassName: string = "rmd-app-bar-offset--dense";
 
   /**
-   * The `className` to apply to an element that should be offset for a prominent dense height AppBar.
+   * The `className` to apply to an element that should be offset for a prominent dense
+   * height AppBar.
    *
    * Example:
    * ```tsx
@@ -146,7 +151,8 @@ export default class AppBar extends React.Component<IAppBarProps> {
    * </div>
    * ```
    */
-  public static readonly offsetProminentDenseClassName: string = "rmd-app-bar-offset--prominent-dense";
+  public static readonly offsetProminentDenseClassName: string =
+    "rmd-app-bar-offset--prominent-dense";
 
   public static propTypes = {
     dense: PropTypes.bool,

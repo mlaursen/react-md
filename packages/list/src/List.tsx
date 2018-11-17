@@ -47,9 +47,9 @@ export interface IListProps extends React.HTMLAttributes<ListElement> {
   children?: React.ReactNode;
 
   /**
-   * An optional forwareded ref. This is really "private" but it is being documented so that it is know
-   * that applying a `ref` to a `List` will return the actual ul or ol element instead of the component
-   * instance.
+   * An optional forwareded ref. This is really "private" but it is being documented so that it is
+   * know that applying a `ref` to a `List` will return the actual ul or ol element instead of the
+   * component instance.
    */
   forwardedRef?: React.Ref<ListElement>;
 }
@@ -64,9 +64,9 @@ export interface IListDefaultProps {
 export type ListWithDefaultProps = IListProps & IListDefaultProps;
 
 /**
- * The `List` component is an extremely simple wrapper around the `ol` and `ul` elements that will not
- * render the normal list styles. This should normally be used along with the `Listitem` or `ListItemLink`
- * components.
+ * The `List` component is an extremely simple wrapper around the `ol` and `ul` elements that will
+ * not render the normal list styles. This should normally be used along with the `Listitem` or
+ * `ListItemLink` components.
  */
 class List extends React.Component<IListProps> {
   public static propTypes = {

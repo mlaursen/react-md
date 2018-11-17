@@ -16,7 +16,8 @@ export type TreeItemExpanderWithDefaultProps = ITreeItemExpanderIconProps &
   ITreeItemExpanderIconDefaultProps;
 
 /**
- * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to be used within a `TreeView`.
+ * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to be used within
+ * a `TreeView`.
  */
 const TreeItemExpanderIcon: React.SFC<ITreeItemExpanderIconProps> = providedProps => {
   const props = providedProps as ITreeItemExpanderIconDefaultProps;

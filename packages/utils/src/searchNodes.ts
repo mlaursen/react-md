@@ -4,11 +4,12 @@ export type NodeType = HTMLElement | string;
 export type TextExtractor = (node: NodeType, checkFontIcons?: boolean) => string;
 
 /**
- * Attempts to find the first match index for a list of values that starts with the provided query string and
- * is within the start and end indexes. If no matches are found, -1 will be returned instead.
+ * Attempts to find the first match index for a list of values that starts with the provided
+ * query string and is within the start and end indexes. If no matches are found, -1 will be
+ * returned instead.
  *
- * Since this is normally coming from a keydown event, the query *must* be a string of all capital letters to
- * work as each value will be converted to uppercase before checking.
+ * Since this is normally coming from a keydown event, the query *must* be a string of all
+ * capital letters to work as each value will be converted to uppercase before checking.
  */
 export function findMatchInRange(
   query: string,
@@ -27,10 +28,10 @@ export function findMatchInRange(
 }
 
 /**
- * The default function used to extract the text from nodes. This will just return the textContent by default
- * unless the node has a react-md FontIcon as a child. If there is a FontIcon child, the node will be cloned
- * without the FontIcon to return the textContent instead. This is because the FontIcon's text content would
- * also be returned from the node's text content.
+ * The default function used to extract the text from nodes. This will just return the textContent
+ * by default unless the node has a react-md FontIcon as a child. If there is a FontIcon child,
+ * the node will be cloned without the FontIcon to return the textContent instead. This is because
+ * the FontIcon's text content would also be returned from the node's text content.
  */
 export function extractTextContent(node: NodeType, checkFontIcons: boolean = true) {
   if (typeof node === "string") {
@@ -51,9 +52,10 @@ export function extractTextContent(node: NodeType, checkFontIcons: boolean = tru
 }
 
 /**
- * Attempts to find the match index for a query string from a list of nodes starting from a given index. This will
- * start by searching from the `startIndex + 1` to the end of the nodes list.  If no matches are found, the nodes
- * will be re-searched from 0 to the startIndex. If there are still no matches, -1 will be returned.
+ * Attempts to find the match index for a query string from a list of nodes starting from a given
+ * index. This will start by searching from the `startIndex + 1` to the end of the nodes list.
+ * If no matches are found, the nodes will be re-searched from 0 to the startIndex. If there are
+ * still no matches, -1 will be returned.
  *
  * The `nodes` can either be a list of `HTMLElement` or a list of strings.
  */

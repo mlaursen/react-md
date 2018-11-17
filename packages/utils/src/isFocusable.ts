@@ -11,9 +11,9 @@ import { FOCUSABLE_ELEMENTS } from "./constants";
  * - the element is an input and not `type="hidden"`
  * - the element has a tabindex applied.
  *
- * Disabled elements can return `true` if the `allowDisabled` parameter is enabled. This is really only
- * useful for checking if an element _can_ be considered focusable instead of is currently able to be
- * focused.
+ * Disabled elements can return `true` if the `allowDisabled` parameter is enabled. This is really
+ * only useful for checking if an element _can_ be considered focusable instead of is currently able
+ * to be focused.
  *
  * @param el - The element to check
  * @param allowDiabled - Boolean if disabled elements will return `true` instead of `false`.

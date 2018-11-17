@@ -1,8 +1,8 @@
 import { TreeViewDataList } from "../types";
 
 /**
- * A utility function that will find all parent ids for the provided `toMatchIds`. This is generally used
- * to automatically expand parent lements if a child node has been expanded.
+ * A utility function that will find all parent ids for the provided `toMatchIds`. This is generally
+ * used to automatically expand parent lements if a child node has been expanded.
  */
 export default function findAllParentIds<D>(
   data: TreeViewDataList<D>,

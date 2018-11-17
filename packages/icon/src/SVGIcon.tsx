@@ -4,18 +4,20 @@ import cn from "classnames";
 
 export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   /**
-   * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
-   * `img` so that it is insured as a graphic.
+   * The role to apply to the SVG. When using icons, it is generally recommended to leave it as
+   * the default `img` so that it is insured as a graphic.
    */
   role?: "img" | "presentation";
 
   /**
-   * An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the `title`
-   * and `desc` props as this is used to create ids for those two props. This is super beneficial to screen readers.
+   * An optional list of ids to use to label the SVG icon with. This is helpful to add when you
+   * use the `title` and `desc` props as this is used to create ids for those two props. This is
+   * super beneficial to screen readers.
    *
-   * When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If
-   * this is omitted and the `use` prop is defined, it will take everything after the `#` sign and append `-title` and
-   * `-desc` as a fallback. Check out the examples for more information about this.
+   * When this is defined, it is a space-delimited string of ids to provide to the title and desc
+   * (in order). If this is omitted and the `use` prop is defined, it will take everything after
+   * the `#` sign and append `-title` and `-desc` as a fallback. Check out the examples for more
+   * information about this.
    *
    * @see {@link #title}
    * @see {@link #desc}
@@ -23,24 +25,25 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGElement> {
   "aria-labelledby"?: string;
 
   /**
-   * An optional title to give to your SVG icon. This is generally recommended for accessibility when not using
-   * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
+   * An optional title to give to your SVG icon. This is generally recommended for accessibility
+   * when not using the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
    */
   title?: string;
 
   /**
-   * An optional description to give to your SVG icon. This is generally recommended for accessibility when not using
-   * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
+   * An optional description to give to your SVG icon. This is generally recommended for
+   * accessibility when not using the `use` prop, or your spritemap does not contain `<title>`
+   * and `<desc>.
    *
    * @see {@link #aria-labelledby}
    */
   desc?: string;
 
   /**
-   * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default since IE11
-   * and Edge actually default this to true and keyboard's will tab focus all SVGs.
+   * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default
+   * since IE11 and Edge actually default this to true and keyboard's will tab focus all SVGs.
    */
   focusable?: string;
 

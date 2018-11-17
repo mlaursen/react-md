@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { PROGRAMMATIC_FOCUS_KEYS, isProgrammaticallyFocusable, isFocusable } from "@react-md/utils";
+import { PROGRAMMATIC_FOCUS_KEYS, isProgrammaticallyFocusable } from "@react-md/utils";
 
 import { Provider } from "./StatesContext";
 
@@ -14,9 +14,10 @@ export interface IStatesProviderProps {
   advancedFocus?: boolean;
 
   /**
-   * A list of keys that can trigger a "programmatic" focus event on a focusable element. This _should_ most
-   * likely stay as default list of keys since it will be updated for any custom keyboard focus events from
-   * the W3C spec while new components are created, but it can be updated to include or remove keys as needed.
+   * A list of keys that can trigger a "programmatic" focus event on a focusable element. This
+   * _should_ most likely stay as default list of keys since it will be updated for any custom
+   * keyboard focus events from the W3C spec while new components are created, but it can be updated
+   * to include or remove keys as needed.
    */
   programmaticFocusKeys?: string[];
 
@@ -34,10 +35,11 @@ export interface IStatesProviderProps {
   children?: React.ReactNode;
 
   /**
-   * Boolean if any "printable" key should also be able to trigger a focus event. This should be disabled
-   * to help increase performance so that every key the user presses does not attempt to update the entire
-   * app's focus. Instead, the small section within your app (like listboxes or menus) should create a new
-   * `StatesProvider` with this boolean enabled so only that small section has the advanced logic.
+   * Boolean if any "printable" key should also be able to trigger a focus event. This should be
+   * disabled to help increase performance so that every key the user presses does not attempt to
+   * update the entire app's focus. Instead, the small section within your app (like listboxes or
+   * menus) should create a new `StatesProvider` with this boolean enabled so only that small
+   * section has the advanced logic.
    */
   isPrintableKeysFocusable?: boolean;
 }
@@ -56,9 +58,9 @@ export interface IStatesProviderState {
 }
 
 /**
- * The `StatesProvider` component is used to dynamically add focus states to clickable and focusable elements
- * within your app. This works directly with the `StatesConsumer` component that will enable/disable
- * the listeners as needed.
+ * The `StatesProvider` component is used to dynamically add focus states to clickable and focusable
+ * elements within your app. This works directly with the `StatesConsumer` component that will
+ * enable/disable the listeners as needed.
  */
 export default class StatesProvider extends React.Component<
   IStatesProviderProps,
@@ -80,9 +82,10 @@ export default class StatesProvider extends React.Component<
   };
 
   /**
-   * A list of elements that are considered "valid" targets for the custom keyboard focus behavior. Since
-   * the main `keydown` event is attached on the `window` to catch some delayed focus events, this is used
-   * to help filter a focus event to an element that is being watched by this component.
+   * A list of elements that are considered "valid" targets for the custom keyboard
+   * focus behavior. Since the main `keydown` event is attached on the `window` to catch
+   * some delayed focus events, this is used to help filter a focus event to an element
+   * that is being watched by this component.
    */
   private targets: Set<HTMLElement>;
 
@@ -156,8 +159,8 @@ export default class StatesProvider extends React.Component<
     const { focusTarget } = this.state;
     const { children, advancedFocus } = this.props as StatesProviderWithDefaultProps;
 
-    // don't need to enable the provider if there is no advanced focus. can just use the default context
-    // instead
+    // don't need to enable the provider if there is no advanced focus. can just use
+    // the default context instead
     if (!advancedFocus) {
       return children;
     }
@@ -211,10 +214,11 @@ export default class StatesProvider extends React.Component<
   };
 
   /**
-   * "Lazily" attaches or removes the focus event required to handling programmatic focus. This should
-   * only be enabled when a keydown event key is considered a programmatic focus key. When the tab key
-   * is pressed, an additional blur event is added to capture the user tabbing away from the page so that
-   * the focus event can be shown correctly again when the user focuses the main content again.
+   * "Lazily" attaches or removes the focus event required to handling programmatic focus. This
+   * should only be enabled when a keydown event key is considered a programmatic focus key. When
+   * the tab key is pressed, an additional blur event is added to capture the user tabbing away
+   * from the page so that the focus event can be shown correctly again when the user focuses the
+   * main content again.
    */
   private updateFocusEvent = (enabled: boolean, isTab?: boolean) => {
     if (!this.attachedFocusEvent && enabled) {
@@ -236,9 +240,9 @@ export default class StatesProvider extends React.Component<
    * These events need to be attached to the window instead of the focus target since it doesn't
    * work as nicely when handling programmatic focus.
    *
-   * The blur listener is added to handle cases where the entire browser window or tab loses focus by
-   * tabbing out or clicking another window/OS program. The mousedown listener is added to stop the
-   * "keyboard focus mode" when the user clicks the element that has already gained focus.
+   * The blur listener is added to handle cases where the entire browser window or tab loses focus
+   * by tabbing out or clicking another window/OS program. The mousedown listener is added to stop
+   * the "keyboard focus mode" when the user clicks the element that has already gained focus.
    */
   private updateBlurEvents = (enabled: boolean) => {
     if (!this.attachedBlurEvents && enabled) {
@@ -256,24 +260,29 @@ export default class StatesProvider extends React.Component<
    * This is only used to determine if a manual programmatic focus event should also trigger
    * the focus effect. It will normally only happen after one of the focus keys are pressed.
    *
-   * The way this flow works is by first attaching the main `keydown` event from `updateKeyboardEvents` that will
-   * start listening to each key that is pressed. If the key is not a key that can trigger a focus event (see
-   * `isProgrammaticallyFocusable`), the flow ends here.
+   * The way this flow works is by first attaching the main `keydown` event from
+   * `updateKeyboardEvents` that will start listening to each key that is pressed. If the key
+   * is not a key that can trigger a focus event (see `isProgrammaticallyFocusable`), the flow
+   * ends here.
    *
-   * When the key can trigger a focus event (normally tab, but also other keys like Home, End, or any letter when
-   * working within more complex widgets), a `focus` (and `blur` if the key was specifically a Tab) event will be
-   * attached to the `window`. These event listeners will only be attached for the `keyboardClickTimeout` duration
-   * OR the focus/blur events were triggered.
+   * When the key can trigger a focus event (normally tab, but also other keys like Home, End,
+   * or any letter when working within more complex widgets), a `focus` (and `blur` if the key
+   * was specifically a Tab) event will be attached to the `window`. These event listeners will
+   * only be attached for the `keyboardClickTimeout` duration OR the focus/blur events were
+   * triggered.
    *
-   * If the focus event was triggered, the `focus`/`blur` events will be removed and will trigger the focus effect
-   * if the focus target is one of the elements being tracked by this `StatesProvider`.
+   * If the focus event was triggered, the `focus`/`blur` events will be removed and will trigger
+   * the focus effect if the focus target is one of the elements being tracked by this
+   * `StatesProvider`.
    *
-   * If the blur event was triggered instead of the focus event and the blur target was the entire `window`, a window
-   * focus event will be attached to help show the next focus when the user re-focuses the window. This flow only
-   * happens when the user presses the Tab key on the last focusable element on the page OR presses shift+Tab on the
-   * first element in the page since the focus will move to the address bar, tabs, browser controls, etc. If the
-   * user re-focuses the screen via keyboard events, the focus state will be applied. If the user clicked (or touched
-   * by switching dev tools around for some reason), only the normal click/touch state will be applied.
+   * If the blur event was triggered instead of the focus event and the blur target was the
+   * entire `window`, a window focus event will be attached to help show the next focus when the
+   * user re-focuses the window. This flow only happens when the user presses the Tab key on the
+   * last focusable element on the page OR presses shift+Tab on the first element in the page since
+   * the focus will move to the address bar, tabs, browser controls, etc. If the user re-focuses
+   * the screen via keyboard events, the focus state will be applied. If the user clicked (or
+   * touched by switching dev tools around for some reason), only the normal click/touch state
+   * will be applied.
    */
   private handleKeyDown = (event: KeyboardEvent) => {
     this.clearKeyboardTimer();
@@ -321,7 +330,7 @@ export default class StatesProvider extends React.Component<
     }
   };
 
-  private handleWindowFocus = (event: FocusEvent) => {
+  private handleWindowFocus = () => {
     window.removeEventListener("focus", this.handleWindowFocus);
     this.attachedWindowFocusEvent = false;
     const focusTarget = document.activeElement as HTMLElement;

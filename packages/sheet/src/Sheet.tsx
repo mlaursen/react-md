@@ -29,13 +29,13 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
 
   /**
    * A function used to close the sheet when the overlay is clicked. This is really only required
-   * when the `overlay` prop is enabled, but I haven't figured out a way to typedef that in Typescript
-   * yet.
+   * when the `overlay` prop is enabled.
    */
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
 
   /**
-   * Boolean if there should be an overlay displayed with the sheet. This is recommended/required on mobile devices.
+   * Boolean if there should be an overlay displayed with the sheet. This is recommended/required
+   * on mobile devices.
    */
   overlay?: boolean;
 
@@ -45,26 +45,30 @@ export interface ISheetProps extends ICSSTransitionProps, React.HTMLAttributes<H
   position?: SheetPosition;
 
   /**
-   * The size to use for sheets that have been positioned left or right. The default supported values are:
+   * The size to use for sheets that have been positioned left or right. The default supported
+   * values are:
    * - none - no limits added to sizing. the size will be based on content or custom styles
    * - small - used for mobile devices.
    * - large - used for landscape tablets and desktops.
-   * - media - automatically switches between "small" and "large" based on css media queries. (this is the default)
+   * - media - automatically switches between "small" and "large" based on css media queries.
+   *     (this is the default)
    */
   horizontalSize?: SheetHorizontalSize;
 
   /**
    * The size to use for sheets that have been positioned top or bottom. The supported sizes are:
    * - none - the size is based on content and is limited to the viewport height.
-   * - touch - the size is based on content and is limited to the viewport height with a touchable area to close the
-   * sheet.
-   * - recommended - the material design recommended sizing that forces a max-height of 50vh and min-height of 3.5rem
+   * - touch - the size is based on content and is limited to the viewport height with a touchable
+   *     area to close the sheet.
+   * - recommended - the material design recommended sizing that forces a max-height of 50vh and
+   *     min-height of 3.5rem
    */
   verticalSize?: SheetVerticalSize;
 
   /**
-   * Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with other content on the
-   * page instead of directly over everything. This is really just used to lower the box shadow.
+   * Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with
+   * other content on the page instead of directly over everything. This is really just used to
+   * lower the box shadow.
    */
   inline?: boolean;
 }
@@ -83,7 +87,61 @@ export interface ISheetDefaultProps {
 
 export type SheetWithDefaultProps = ISheetProps & ISheetDefaultProps;
 
-export default class Sheet extends React.Component<ISheetProps, {}> {
+export default class Sheet extends React.Component<ISheetProps> {
+  public static propTypes = {
+    visible: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func,
+    inline: PropTypes.bool,
+    overlay: PropTypes.bool,
+    mountOnEnter: PropTypes.bool,
+    unmountOnExit: PropTypes.bool,
+    position: PropTypes.oneOf(["calculated", "above", "right", "bottom", "left"]),
+    timeout: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        enter: PropTypes.number,
+        exit: PropTypes.number,
+      }),
+    ]),
+    classNames: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        enter: PropTypes.string,
+        enterActive: PropTypes.string,
+        enterDone: PropTypes.string,
+        exit: PropTypes.string,
+        exitActive: PropTypes.string,
+        exitDone: PropTypes.string,
+      }),
+    ]),
+    horizontalSize: PropTypes.oneOf([
+      "none",
+      "media",
+      "small",
+      "large",
+      "until-small",
+      "until-large",
+      "until-media",
+    ]),
+    verticalSize: PropTypes.oneOf(["none", "touch", "recommended"]),
+    onEnter: PropTypes.func,
+    onEntering: PropTypes.func,
+    onEntered: PropTypes.func,
+    onExit: PropTypes.func,
+    onExiting: PropTypes.func,
+    onExited: PropTypes.func,
+    _validator: (props: ISheetProps, _propName: string, component: string) => {
+      if (props.overlay && !props.onRequestClose) {
+        return new Error(
+          `The \`${component}\` component requires the \`onRequestClose\` prop to be ` +
+            "defined when the `overlay` prop is enabled, but none were provided."
+        );
+      }
+
+      return null;
+    },
+  };
+
   public static defaultProps: ISheetDefaultProps = {
     inline: false,
     overlay: true,
@@ -110,7 +168,7 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
       overlay,
       visible,
       timeout,
-      onRequestClose,
+      onRequestClose: propOnRequestClose,
       position,
       className,
       classNames,
@@ -129,10 +187,15 @@ export default class Sheet extends React.Component<ISheetProps, {}> {
     } = this.props as SheetWithDefaultProps;
 
     const isHorizontal = position === "left" || position === "right";
+    let overlayEl: React.ReactNode = null;
+    if (overlay) {
+      const onRequestClose = propOnRequestClose as (() => void);
+      overlayEl = <Overlay visible={visible} onRequestClose={onRequestClose} />;
+    }
 
     return (
       <React.Fragment>
-        {overlay && <Overlay visible={visible} onRequestClose={onRequestClose} />}
+        {overlayEl}
         <CSSTransition
           appear={true}
           in={visible}

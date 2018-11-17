@@ -6,7 +6,6 @@ import {
   UnionType,
   ReflectionType,
 } from "typedoc/dist/lib/models/types";
-import * as Typedoc from "typedoc";
 
 import getDocumentablePackages from "./getDocumentablePackages";
 import { PACKAGES_FOLDER } from "../constants";
@@ -24,64 +23,104 @@ const OPTIONS = {
   tsConfig: path.join(PACKAGES_FOLDER, "..", "tsconfig.json"),
 };
 
+// tslint:disable-next-line:prefer-array-literal
 function debug(list: Array<DeclarationReflection | Reflection>, logName: string = "list") {
   console.log(`${logName}: `, list.map(({ name }) => name));
 }
 
 const TYPES_DIR = path.join(PACKAGES_FOLDER, "..", "node_modules", "@types", "react");
 
+function getComponentProps(
+  component: DeclarationReflection,
+  propInterfaces: DeclarationReflection[]
+) {
+  const propInterface = propInterfaces.find(prop => prop.name === `I${component.name}Props`);
+  if (!propInterface) {
+    throw new Error(
+      `Unable to find the prop interface for ${name}. There needs to be a ` +
+        '"I${component.name}Props" interface for documentation'
+    );
+  }
+
+  const defaultProps = component.getChildByName("defaultProps") as DeclarationReflection | null;
+  console.log(propInterface.toObject());
+  console.log(propInterface.toString());
+  console.log(propInterface.toStringHierarchy());
+
+  const props: DocumentedProps = {
+    name: propInterface.name,
+    description: "",
+    generics: [],
+    declared: [],
+    inherited: [],
+  };
+
+  return props;
+  // const formattedProps: DocumentedProps = {
+  //   name: componentProps.name,
+  //   description: parseAndFormatComment(componentProps.comment),
+  //   generics: [],
+  //   declared: [],
+  //   inherited: [],
+  // };
+}
+
 export default async function typedoc(config: ITypeDocConfig) {
   const packages = await getDocumentablePackages();
-  // const packages = (await getDocumentablePackages()).filter(name => /typography/.test(name));
   const srcPaths = packages.map(name => path.join(PACKAGES_FOLDER, name, "src"));
   // srcPaths.push(path.join(TYPES_DIR, "index.d.ts"));
 
   const application = new Application(OPTIONS);
   const srcFiles = application.expandInputFiles(srcPaths).filter(name => !/test/.test(name));
-  console.log("Converting...", srcPaths);
+  console.log(`Converting...\n${srcPaths.map(p => `- ${p}`).join("\n")}`);
   const project = application.convert(srcFiles);
   console.log("Done!");
 
-  const exports = project.getChildrenByKind(ReflectionKind.ExternalModule);
-  const interfaces = project.getReflectionsByKind(ReflectionKind.Interface);
+  // const exports = project.getChildrenByKind(ReflectionKind.ExternalModule);
+  const interfaces = project.getReflectionsByKind(
+    ReflectionKind.Interface
+  ) as DeclarationReflection[];
   const props = interfaces.filter(({ name }) => /^I.*(?!Default)Props/.test(name));
+
   const classComponents = project.getReflectionsByKind(ReflectionKind.Class);
   const functionalComponents = project
     .getReflectionsByKind(ReflectionKind.Function)
     .filter(({ name }) => /^[A-Z]/.test(name));
   const components = classComponents
     .concat(functionalComponents)
-    .filter(({ name }) => name === "Text");
-  components.forEach(component => {
-    const componentProps = props.find(
-      ({ name }) => name === `I${component.name}Props`
-    ) as DeclarationReflection;
-    const baseDefaultProps = component.getChildByName("defaultProps") as DeclarationReflection;
-    if (!componentProps) {
-      throw new Error(`Unable to find props for ${component.name}`);
-    }
-    let defaultValues = [];
-    if (baseDefaultProps) {
-      defaultValues = baseDefaultProps.children.map(p => p.toString());
-      console.log("defaultValues:", defaultValues);
-    }
-    // console.log("defaultProps:", defaultProps);
+    .filter(({ name }) => name === "Text") as DeclarationReflection[];
 
-    const formattedProps: DocumentedProps = {
-      name: componentProps.name,
-      description: parseAndFormatComment(componentProps.comment),
-      generics: [],
-      declared: [],
-      inherited: [],
-    };
-    const documented: DocumentedComponent = {
-      name: component.name,
-      description: parseAndFormatComment(component.comment),
-      source: getSource(component),
-      props: formattedProps,
-      generics: [],
-    };
-    console.log("documented:\n", JSON.stringify(documented, null, 2));
+  components.forEach(component => {
+    getComponentProps(component, props);
+    // const componentProps = props.find(
+    //   ({ name }) => name === `I${component.name}Props`
+    // ) as DeclarationReflection;
+    // const baseDefaultProps = component.getChildByName("defaultProps") as DeclarationReflection;
+    // if (!componentProps) {
+    //   throw new Error(`Unable to find props for ${component.name}`);
+    // }
+    // let defaultValues = [];
+    // if (baseDefaultProps) {
+    //   defaultValues = baseDefaultProps.children.map(p => p.toString());
+    //   console.log("defaultValues:", defaultValues);
+    // }
+    // // console.log("defaultProps:", defaultProps);
+
+    // const formattedProps: DocumentedProps = {
+    //   name: componentProps.name,
+    //   description: parseAndFormatComment(componentProps.comment),
+    //   generics: [],
+    //   declared: [],
+    //   inherited: [],
+    // };
+    // const documented: DocumentedComponent = {
+    //   name: component.name,
+    //   description: parseAndFormatComment(component.comment),
+    //   source: getSource(component),
+    //   props: formattedProps,
+    //   generics: [],
+    // };
+    // console.log("documented:\n", JSON.stringify(documented, null, 2));
   });
 
   // const Text = components.find(({ name }) => name === "Text");

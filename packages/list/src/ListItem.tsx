@@ -15,7 +15,8 @@ export interface IListItemBaseProps {
    * An optional icon to display to the left of the children or provided text elements. If this is
    * a valid React element, the spacing class names will be cloned into the element. Otherwise it
    * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
-   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name applied.
+   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name
+   * applied.
    */
   leftIcon?: React.ReactNode;
 
@@ -23,13 +24,14 @@ export interface IListItemBaseProps {
    * An optional icon to display to the right of the children or provided text elements. If this is
    * a valid React element, the spacing class names will be cloned into the element. Otherwise it
    * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
-   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name applied.
+   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name
+   * applied.
    */
   rightIcon?: React.ReactNode;
 
   /**
-   * Boolean if the left and/or right icons should be "forcefully" wrapped in a `<span>` with the spacing
-   * class names applied instead of attempting to clone it into the provided icon element.
+   * Boolean if the left and/or right icons should be "forcefully" wrapped in a `<span>` with the
+   * spacing class names applied instead of attempting to clone it into the provided icon element.
    */
   forceIconWrap?: boolean;
 }
@@ -48,27 +50,28 @@ export interface IListItemBaseTextProps {
   secondaryTextClassName?: string;
 
   /**
-   * Boolean if the children should be treated as the `primaryText` prop. This will wrap them in an additional
-   * class so that they have ellipsis for text overflow.
+   * Boolean if the children should be treated as the `primaryText` prop. This will wrap them in
+   * an additional class so that they have ellipsis for text overflow.
    *
-   * If you want to have more "fredom" within the ListItem, you can disable this prop so that the height will
-   * grow depending on content.
+   * If you want to have more "fredom" within the ListItem, you can disable this prop so that the
+   * height will grow depending on content.
    *
    * NOTE: If the `secondaryText` prop is provided, this will always be considered `true`.
    */
   textChildren?: boolean;
 
   /**
-   * An optional element that should be rendered as the `primaryText` within the list item. It is most likely
-   * easier to use the `children` prop instead, but this allows you to create more complex components with the
-   * ListItem since you can provided `children` and have the styles for the `primaryText` still applied. By
-   * default, this will only allow one line of text and add ellipsis for any text overflow.
+   * An optional element that should be rendered as the `primaryText` within the list item. It is
+   * most likely easier to use the `children` prop instead, but this allows you to create more\
+   * complexcomponents with the ListItem since you can provided `children` and have the styles for
+   * the `primaryText` still applied. By default, this will only allow one line of text and add
+   * ellipsis for any text overflow.
    */
   primaryText?: React.ReactNode;
 
   /**
-   * An optional element that should be rendered as the `secondaryText` within the list item. By default, this
-   * will only span one line and add ellipsis for overflow.
+   * An optional element that should be rendered as the `secondaryText` within the list item. By
+   * default, this will only span one line and add ellipsis for overflow.
    */
   secondaryText?: React.ReactNode;
 }
@@ -106,10 +109,11 @@ export interface IListItemProps
   selected?: boolean;
 
   /**
-   * Boolean if the list item should be considered "three-lines" in height. This will update the `secondaryText`
-   * to span 2 lines instead of one, but it will not correctly applied the trailing ellipsis overflow due to
-   * browser compatibility of `line-clamp`. If you would still like the ellipsis to show, it is recommended to
-   * use javascript to add them yourself.
+   * Boolean if the list item should be considered "three-lines" in height. This will update
+   * the `secondaryText` to span 2 lines instead of one, but it will not correctly applied
+   * the trailing ellipsis overflow due to browser compatibility of `line-clamp`. If you
+   * would still like the ellipsis to show, it is recommended to use javascript to add
+   * them yourself.
    */
   threeLines?: boolean;
 

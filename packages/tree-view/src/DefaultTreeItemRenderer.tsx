@@ -2,7 +2,7 @@ import * as React from "react";
 import { IListItemBaseProps } from "@react-md/list";
 
 import { ITreeViewItemInjectedProps } from "./types";
-import { default as TreeItem, ITreeItemBaseProps } from "./TreeItem";
+import TreeItem from "./TreeItem";
 import TreeLinkItem from "./TreeLinkItem";
 import TreeItemContent from "./TreeItemContent";
 import TreeItemExpanderIcon from "./TreeItemExpanderIcon";

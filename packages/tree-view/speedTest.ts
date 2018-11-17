@@ -1,5 +1,5 @@
 import now from "performance-now";
-import { IFlattenedTree, FlattenedTreeViewData } from "./src/types";
+import { IFlattenedTree } from "./src/types";
 import buildTree from "./src/utils/buildTree";
 
 const TEST_AMOUNT = 20;
@@ -22,7 +22,7 @@ function createChildItems(depth: number, parentId: string, additional: number = 
     children: itemId,
   };
 
-  for (let i = 1; i <= additional; i++) {
+  for (let i = 1; i <= additional; i += 1) {
     const itemId2 = `${parentId}-${i}`;
     flattenedTree[itemId2] = {
       itemId: itemId2,
@@ -37,10 +37,11 @@ function createChildItems(depth: number, parentId: string, additional: number = 
 }
 
 console.log(
-  `Generating a random tree with at least ${ROOT_LEVEL_NODES} root nodes each with ${MAX_DEPTH} levels of children ` +
-    `that can contain ${MIN_ADDITIONAL_CHILDREN_AT_EACH_DEPTH}-${MAX_ADDITIONAL_CHILDREN_AT_EACH_DEPTH} children`
+  `Generating a random tree with at least ${ROOT_LEVEL_NODES} root nodes each with ${MAX_DEPTH} ` +
+    "levels of children that can contain " +
+    `${MIN_ADDITIONAL_CHILDREN_AT_EACH_DEPTH}-${MAX_ADDITIONAL_CHILDREN_AT_EACH_DEPTH} children`
 );
-for (let i = 0; i < ROOT_LEVEL_NODES; i++) {
+for (let i = 0; i < ROOT_LEVEL_NODES; i += 1) {
   const itemId = `item-${i}`;
   flattenedTree[itemId] = {
     itemId,
@@ -55,7 +56,7 @@ console.log("Running the perf test %d times\n", TEST_AMOUNT);
 
 let totalTime = 0;
 let startTime = 0;
-for (let i = 0; i < TEST_AMOUNT; i++) {
+for (let i = 0; i < TEST_AMOUNT; i += 1) {
   console.time("buildTree");
   startTime = now();
 

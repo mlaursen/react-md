@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { throttleEvent, IThrottledEventHandler, ThrottleTarget } from "@react-md/utils";
+import { throttleEvent, IThrottledEventHandler } from "@react-md/utils";
 
 export interface IEventListenerProps {
   /**
@@ -13,7 +13,8 @@ export interface IEventListenerProps {
    * and `document` are `undefined` and causes errors.
    *
    * The default behavior is that if this value is defined, it will be used. Otherwise if it is a
-   * `click` event, the `window` will be used, otherwise the `document` will be used for scroll events.
+   * `click` event, the `window` will be used, otherwise the `document` will be used for scroll
+   * events.
    */
   target?: Window | Document | HTMLElement;
 
@@ -29,8 +30,8 @@ export interface IEventListenerProps {
   children?: (event: Event | null) => React.ReactNode;
 
   /**
-   * An optional callback function that will include the event. Either the `onTriggered` or `children`
-   * prop is required.
+   * An optional callback function that will include the event. Either the `onTriggered` or
+   * `children` prop is required.
    */
   onTriggered?: (event: Event) => void;
 }
@@ -67,11 +68,11 @@ export default class EventListener extends React.Component<
     onTriggered: PropTypes.func,
     children: PropTypes.func,
     capture: PropTypes.bool,
-    _validator: (props: IEventListenerProps, propName: string, componentName: string) => {
+    _validator: (props: IEventListenerProps, _propName: string, componentName: string) => {
       if (typeof props.children === "undefined" && typeof props.onTriggered === "undefined") {
         return new Error(
-          `The \`${componentName}\` component requires either a children callback function or the \`onTriggered\` ` +
-            "props to be provided, but they were both `undefined`."
+          `The \`${componentName}\` component requires either a children callback function or ` +
+            "the `onTriggered` props to be provided, but they were both `undefined`."
         );
       }
 

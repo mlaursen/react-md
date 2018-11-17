@@ -28,7 +28,8 @@ export interface IFontIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   forceSize?: boolean | number;
 
   /**
-   * Boolean if the `forceSize` prop should also force the `font-size` instead of only `width` and `height`.
+   * Boolean if the `forceSize` prop should also force the `font-size` instead of only `width` and
+   * `height`.
    */
   forceFontSize?: boolean;
 }

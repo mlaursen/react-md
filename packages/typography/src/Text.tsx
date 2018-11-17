@@ -23,8 +23,8 @@ export type TextTypes =
   | "button";
 
 /**
- * A list of the default supported elements that the `Text` component can be rendered as. This is mostly used
- * for adding the correct HTMLAttributes and enabling the forward ref.
+ * A list of the default supported elements that the `Text` component can be rendered as. This
+ * is mostly used for adding the correct HTMLAttributes and enabling the forward ref.
  */
 export type DefaultTextElement =
   | HTMLHeadingElement
@@ -61,8 +61,8 @@ export interface ITextProps<P = DefaultTextProps> {
   className?: string;
 
   /**
-   * The component to render as when the children are not a render function. If this prop is omitted,
-   * the component will be determined by the `type` prop where:
+   * The component to render as when the children are not a render function. If this prop
+   * is omitted, the component will be determined by the `type` prop where:
    * - `"headline-1" -> <h1>`
    * - `"headline-2" -> <h2>`
    * - `"headline-3" -> <h3>`
@@ -112,11 +112,12 @@ export interface ITextDefaultProps {
 export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDefaultProps;
 
 /**
- * The `Text` component is used to render text with the material design typography styles applied. By
- * default, everything will be rendered in a `<p>` tag with the normal paragraph styles.
+ * The `Text` component is used to render text with the material design typography styles applied.
+ * By default, everything will be rendered in a `<p>` tag with the normal paragraph styles.
  *
- * When the `type` prop is changed to another typography style, this component will determine the "best"
- * element to render the text in *unless* the `component` prop is provided. The default mapping is:
+ * When the `type` prop is changed to another typography style, this component will determine the
+ * "best" element to render the text in *unless* the `component` prop is provided. The default
+ * mapping is:
  * - `"headline-1" -> <h1>`
  * - `"headline-2" -> <h2>`
  * - `"headline-3" -> <h3>`
@@ -130,13 +131,13 @@ export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDe
  * - `"caption"    -> <caption>`
  * - `"overline"   -> <span>`
  * - `"button"     -> <button>`
- * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided `component`
- * will be used instead.
+ * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
+ * `component` will be used instead.
  *
  * @forwardRef
- * @typeparam P - Any additional props that are valid when using the `component` prop or the built-in
- * "auto-component" logic. By default, this will just allow any HTMLElement props for each the default
- * elements in the "auto-component" logic.
+ * @typeparam P - Any additional props that are valid when using the `component` prop or the built
+ * in "auto-component" logic. By default, this will just allow any HTMLElement props for each the
+ * default elements in the "auto-component" logic.
  */
 class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P> & P> {
   // The line above is pretty ugly and should be fixed/changed at some point. It was an attempt

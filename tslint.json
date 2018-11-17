@@ -1,16 +1,18 @@
 {
-  "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
-  "jsRules": {},
+  "extends": "tslint-config-airbnb",
   "rules": {
-    "object-literal-sort-keys": [0],
-    "object-literal-key-quotes": [0],
-    "ordered-imports": [0],
-    "trailing-comma": [0],
-    "arrow-parens": [0],
-    "semicolon": [0]
-  },
-  "rulesDirectory": []
+    "quotemark": false,
+    "trailing-comma": false,
+    "arrow-parens": false,
+    "ter-arrow-parens": false,
+    "ter-func-call-spacing": false,
+    "variable-name": false,
+    "import-name": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "align": false,
+    "no-parameter-reassignment": false,
+    "object-shorthand-properties-first": false,
+    "no-else-after-return": false,
+    "prefer-array-literal": false
+  }
 }

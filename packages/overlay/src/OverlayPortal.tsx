@@ -6,16 +6,17 @@ import { default as Overlay, IOverlayProps } from "./Overlay";
 
 export interface IOverlayPortalProps extends IOverlayProps {
   /**
-   * Either a function that returns an HTMLElement, an HTMLElement, or a `document.querySelector` string
-   * that will return the HTMLElement to render the children into. If both the `into` and `intoId` props
-   * are `undefined`, the `document.body` will be chosen instead.
+   * Either a function that returns an HTMLElement, an HTMLElement, or a
+   * `document.querySelector` string that will return the HTMLElement to render the children
+   * into. If both the `into` and `intoId` props are `undefined`, the `document.body` will
+   * be chosen instead.
    */
   portalInto?: PortalInto;
 
   /**
-   * The id of an element that the portal should be rendered into. This element **must** exist on the page
-   * before the `visible` prop is enabled to work. If both the `into` and `intoId` props are `undefined`,
-   * the `document.body` will be chosen instead.
+   * The id of an element that the portal should be rendered into. This element **must** exist
+   * on the page before the `visible` prop is enabled to work. If both the `into` and `intoId`
+   * props are `undefined`, the `document.body` will be chosen instead.
    */
   portalIntoId?: string;
 }
@@ -26,8 +27,8 @@ export interface IOverlayPortalState {
 }
 
 /**
- * The `OverlayPortal` is a wrapper of the `Overlay` component to portal the overlay somehwere else within
- * your app.
+ * The `OverlayPortal` is a wrapper of the `Overlay` component to portal the overlay somehwere else
+ * within your app.
  */
 export default class OverlayPortal extends React.Component<
   IOverlayPortalProps,
@@ -67,7 +68,7 @@ export default class OverlayPortal extends React.Component<
     };
   }
 
-  public componentDidUpdate(prevProps: IOverlayPortalProps, prevState: IOverlayPortalState) {
+  public componentDidUpdate(_prevProps: IOverlayPortalProps, prevState: IOverlayPortalState) {
     if (this.state.portalVisible && !prevState.portalVisible) {
       this.frame = window.requestAnimationFrame(() => {
         this.frame = undefined;

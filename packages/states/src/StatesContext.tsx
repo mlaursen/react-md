@@ -22,8 +22,8 @@ export interface IStatesContext {
   initFocusTarget: (el: HTMLElement) => void;
 
   /**
-   * A callback to remove a specific element from the list of "valid" focusable targets. This should get
-   * called immediately before unmounting the consumer.
+   * A callback to remove a specific element from the list of "valid" focusable targets. This should
+   * get called immediately before unmounting the consumer.
    */
   deinitFocusTarget: (el: HTMLElement) => void;
 }

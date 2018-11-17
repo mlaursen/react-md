@@ -65,11 +65,11 @@ export type TextContainerWithDefaultProps = ITextContainerProps<DefaultTextConta
   ITextContainerDefaultProps;
 
 /**
- * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or `<aside>`
- * element that applies the text container styles.
+ * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or
+ * `<aside>` element that applies the text container styles.
  *
- * @typeparam P - Any additional props that can be provided to the `TextContainer` component. By default, this will
- * just be the HTMLAttributes of an HTML Element.
+ * @typeparam P - Any additional props that can be provided to the `TextContainer` component. By
+ * default, this will just be the HTMLAttributes of an HTML Element.
  */
 export default class TextContainer<
   P extends {} = DefaultTextContainerProps

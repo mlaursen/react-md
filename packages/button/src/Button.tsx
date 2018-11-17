@@ -50,20 +50,20 @@ export interface IButtonThemeProps {
   /**
    * This is the specific material design button type to use. This can either be set to "text" or
    * "icon". When this is set to "text", the styles applied will make buttons with just text or text
-   * with icons render nicely. When this is set to "icon", the styles applied will make icon only buttons
-   * render nicely.
+   * with icons render nicely. When this is set to "icon", the styles applied will make icon only
+   * buttons render nicely.
    */
   btnType?: ButtonType;
 
   /**
-   * The material design theme to apply to the button. The theme prop will update the look and feel of
-   * the button by applying different background and/or foreground colors.
+   * The material design theme to apply to the button. The theme prop will update the look and feel
+   * of the button by applying different background and/or foreground colors.
    */
   theme?: ButtonTheme;
 
   /**
-   * The material design theme type to apply. The themeTYpe prop will update the look and feel of the
-   * button by applying different border or box shadow.
+   * The material design theme type to apply. The themeTYpe prop will update the look and feel of
+   * the button by applying different border or box shadow.
    */
   themeType?: ButtonThemeType;
 }
@@ -78,23 +78,24 @@ export interface IButtonProps
     ITextIconSpacingProps,
     React.HTMLAttributes<ButtonElement> {
   /**
-   * The button's type attribute. This is set to "button" by default so that forms are not accidentally submitted
-   * when this prop is omitted since buttons without a type attribute work as submit by default.
+   * The button's type attribute. This is set to "button" by default so that forms are not
+   * accidentally submitted when this prop is omitted since buttons without a type attribute work
+   * as submit by default.
    */
   type?: "button" | "reset" | "submit";
 
   /**
    * Any children to render within the button. This will normally just be text or an icon.
    *
-   * Please note that it is considered invalid html to have a `<div>` as a descendant of a `<button>`.
-   * You can fix this by enabling the `asDiv` prop.
+   * Please note that it is considered invalid html to have a `<div>` as a descendant of a
+   * `<button>`. You can fix this by enabling the `asDiv` prop.
    */
   children?: React.ReactNode;
 
   /**
    * Boolean if the button should be rendered as a div instead. This will update the div to be fully
-   * accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you want
-   * to have a `<div>` as a child of the button, you should enable this prop.
+   * accessible with the [button role](https://www.w3.org/TR/wai-aria-practices/#button). If you
+   * want to have a `<div>` as a child of the button, you should enable this prop.
    */
   asDiv?: boolean;
 }
@@ -115,19 +116,20 @@ export interface IButtonDefaultProps {
 export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;
 
 /**
- * The `Button` component is used to create a clickable area within your application. It can be styled
- * to be flat with the background, outlined, or contained. A contained button will include some elevation
- * to help increase its visibility within the app. In addition, the button can be themed to either be clear,
- * a default grey color, or to use the app's defined primary or secondary color.
+ * The `Button` component is used to create a clickable area within your application. It can be
+ * styled to be flat with the background, outlined, or contained. A contained button will include
+ * some elevation to help increase its visibility within the app. In addition, the button can be
+ * themed to either be clear, a default grey color, or to use the app's defined primary or
+ * secondary color.
  *
- * Buttons come in the form of text, icon, or text and icon together. It is recommended to use the text
- * version when possible since it is less confusing for the user, but icons can be used if they are easy
- * to understand and there is limited space.
+ * Buttons come in the form of text, icon, or text and icon together. It is recommended to use the
+ * text version when possible since it is less confusing for the user, but icons can be used if they
+ * are easy to understand and there is limited space.
  *
- * Another feature of the `Button` is that it can be conditionally rendered as a `<div>` instead of a `<button>`
- * if you need to create a more advanced clickable area that has `<div>`s inside (it is considered invalid html to have
- * a `<div>` within a `<button>`). This will make the div fully accessible to keyboard users and add the correct
- * keyboard events.
+ * Another feature of the `Button` is that it can be conditionally rendered as a `<div>` instead of
+ * a `<button>` if you need to create a more advanced clickable area that has `<div>`s inside (it is
+ * considered invalid html to have a `<div>` within a `<button>`). This will make the div fully
+ * accessible to keyboard users and add the correct keyboard events.
  */
 export default class Button extends React.Component<IButtonProps, {}> {
   public static propTypes = {
@@ -157,14 +159,15 @@ export default class Button extends React.Component<IButtonProps, {}> {
    *
    * NOTE: You will still need to manually apply the `<StatesConsumer>` with the correct props
    *
-   * @param props An object containing the themeable button props to generate a button theme className.
+   * @param props An object containing the themeable button props to generate a button theme
+   * className.
    * @return a string of class names to create an element with a button theme.
    */
   public static theme(props: IButtonThemeProps): string {
     const { btnType, themeType, theme, disabled, className } = props;
     const text = btnType === "text";
     const icon = btnType === "icon";
-    const flat = themeType === "flat";
+    // const flat = themeType === "flat";
     const outline = themeType === "outline";
     const contained = themeType === "contained";
     const primary = theme === "primary";
@@ -228,8 +231,9 @@ export default class Button extends React.Component<IButtonProps, {}> {
         onKeyUp={onKeyUp}
       >
         {({ disabled, ...stateProps }) => {
-          // removed `disabled` since it is "invalid" to have a disabled attribute on a div even if it
-          // can be rendered. Instead we will apply "aria-disabled" when it is disabled from KeyboardClickable
+          // removed `disabled` since it is "invalid" to have a disabled attribute
+          // on a div even if it can be rendered. Instead we will apply "aria-disabled"
+          // when it is disabled from KeyboardClickable
 
           const content = (
             <TextIconSpacing icon={icon} iconAfter={iconAfter}>

@@ -9,31 +9,31 @@ export interface IListItemTextProps {
   secondaryText?: React.ReactNode;
 }
 
-/**
- *
- * @sfc IListItemTextProps
- */
-const ListItemText: React.SFC<IListItemTextProps> = ({
-  className,
-  secondaryTextClassName,
-  children,
-  secondaryText,
-}) => {
-  let content;
-  if (secondaryText) {
-    content = (
-      <span className={cn("rmd-list-item__secondary-text", secondaryTextClassName)}>
-        {secondaryText}
+export default class ListItemText extends React.Component<IListItemTextProps> {
+  public static propTypes = {
+    className: PropTypes.string,
+    secondaryTextClassName: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    secondaryText: PropTypes.node,
+  };
+
+  public render() {
+    const { className, secondaryTextClassName, children, secondaryText } = this.props;
+
+    let content;
+    if (secondaryText) {
+      content = (
+        <span className={cn("rmd-list-item__secondary-text", secondaryTextClassName)}>
+          {secondaryText}
+        </span>
+      );
+    }
+
+    return (
+      <span className={cn("rmd-list-item__text", className)}>
+        {children}
+        {content}
       </span>
     );
   }
-
-  return (
-    <span className={cn("rmd-list-item__text", className)}>
-      {children}
-      {content}
-    </span>
-  );
-};
-
-export default ListItemText;
+}

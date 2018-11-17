@@ -2,18 +2,18 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
-import { ITransitionProps, CSSTransitionClassNames, TransitionTimeout } from "@react-md/transition";
+import { ITransitionProps, TransitionTimeout } from "@react-md/transition";
 
 export interface IOverlayProps extends ITransitionProps, React.HTMLAttributes<HTMLSpanElement> {
   /**
-   * Boolean if the overlay is currently visible. When this prop changes, the overlay will enter/exit
-   * with an opacity transition.
+   * Boolean if the overlay is currently visible. When this prop changes, the overlay will
+   * enter/exit with an opacity transition.
    */
   visible: boolean;
 
   /**
-   * A function that should change the `visible` prop to `false`. This is used so that clicking the overlay
-   * can hide the overlay.
+   * A function that should change the `visible` prop to `false`. This is used so that clicking
+   * the overlay can hide the overlay.
    */
   onRequestClose: () => void;
 }

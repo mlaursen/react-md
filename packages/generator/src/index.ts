@@ -6,19 +6,19 @@ import prettyMS from "pretty-ms";
 import typedoc from "./typedoc";
 import { ITypeDocConfig } from "./types.d";
 
-function run(promise: Promise<any>, commandName: string): Promise<void> {
+async function run(promise: Promise<any>, commandName: string) {
   console.log(`Starting ${commandName}...`);
   const startTime = now();
-  return promise.then(() => {
-    console.log("Completed in %s", prettyMS(now() - startTime));
-  });
+  await promise;
+  console.log("Completed in %s", prettyMS(now() - startTime));
 }
 
 commander
   .command("typedoc [options]")
   .option(
     "--no-clean",
-    "Updates the command so that the temp folders for typedoc generation are not removed once completed"
+    "Updates the command so that the temp folders for typedoc generation are not " +
+      "removed once completed"
   )
   .option(
     "--no-combine",

@@ -30,8 +30,8 @@ export interface IFlattenedTreeViewProps<D = IIndexKeyAny> {
   children: (data: FlattenedTreeViewDataList<D>) => React.ReactNode;
 
   /**
-   * An optional function that will sort the data at each level. It should take in a `FlattenedTreeViewDataList`
-   * and return a sorted `FlattenedTreeViewDataList`.
+   * An optional function that will sort the data at each level. It should take in a
+   * `FlattenedTreeViewDataList` and return a sorted `FlattenedTreeViewDataList`.
    */
   sort?: FlattenedTreeViewSort<D>;
 }
@@ -44,8 +44,9 @@ export type FlattenedTreeViewWithDefaultProps<D = IIndexKeyAny> = IFlattenedTree
   IFlattenedTreeViewDefaultProps;
 
 /**
- * The `FlattenedTreeView` component is a pretty performant component used to rendering a flattened data structure
- * into the required nested lists data structure of the `TreeView` component.
+ * The `FlattenedTreeView` component is a pretty performant component used to rendering a
+ * flattened data structure into the required nested lists data structure of the `TreeView`
+ * component.
  */
 export default class FlattenedTreeView<D = IIndexKeyAny> extends React.Component<
   IFlattenedTreeViewProps<D>

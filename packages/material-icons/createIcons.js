@@ -93,7 +93,7 @@ function toPascalCase(fileName) {
 }
 
 function createIconFile(componentName, children, iconType) {
-  return `/* tslint:disable:max-line-length */
+  return `/* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
 import * as React from "react";
 

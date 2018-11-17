@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 import { findMatchInRange, extractTextContent, searchNodes } from "../searchNodes";
 
 describe("findMatchInRange", () => {
@@ -47,14 +48,10 @@ describe("extractTextContent", () => {
     button.textContent = "Button";
     button.appendChild(icon);
 
-    it(
-      "should get the text content without any react-md font icons in the children when the checkFontIcons " +
-        "param is omitted or true",
-      () => {
-        expect(extractTextContent(button)).toBe("Button");
-        expect(extractTextContent(button, true)).toBe("Button");
-      }
-    );
+    it("should get the text content without any react-md font icons in the children when the checkFontIcons param is omitted or true", () => {
+      expect(extractTextContent(button)).toBe("Button");
+      expect(extractTextContent(button, true)).toBe("Button");
+    });
 
     it(
       "should return the text content including any react-md font icons when the checkFontIcons " +
@@ -84,17 +81,13 @@ describe("searchNodes", () => {
 
   const ICON_NODES = [item1, item2, item3];
 
-  it(
-    "should return -1 if the startIndex is the same as the matchIndex unless the " +
-      "includeStartIndex param is enabled",
-    () => {
-      expect(searchNodes("A", NODES, 0)).toBe(-1);
-      expect(searchNodes("A", NODES, 0, extractTextContent, true)).toBe(0);
+  it("should return -1 if the startIndex is the same as the matchIndex unless the includeStartIndex param is enabled", () => {
+    expect(searchNodes("A", NODES, 0)).toBe(-1);
+    expect(searchNodes("A", NODES, 0, extractTextContent, true)).toBe(0);
 
-      expect(searchNodes("B", NODES, 1)).toBe(-1);
-      expect(searchNodes("B", NODES, 1, extractTextContent, true)).toBe(1);
-    }
-  );
+    expect(searchNodes("B", NODES, 1)).toBe(-1);
+    expect(searchNodes("B", NODES, 1, extractTextContent, true)).toBe(1);
+  });
 
   it("should correctly search text and elements", () => {
     expect(searchNodes("A", NODES, 2)).toBe(0);

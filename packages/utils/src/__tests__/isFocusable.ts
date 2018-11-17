@@ -222,8 +222,8 @@ describe("isFocusable", () => {
     }
   );
 
-  // this use-case is for the StatesConsumer initializing elements that should have focus states, but start out disabled
-  // on first render
+  // this use-case is for the StatesConsumer initializing elements that should have focus states,
+  // but start out disabled on first render
   it(
     "should return true for the native HTMLElements that support focus and are disabled " +
       "when allowDisabled is true",

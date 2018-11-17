@@ -6,8 +6,8 @@ export interface IListItemRightIconProps {
   /**
    * An optional icon to display with a text button. This is invalid for icon buttons. If this is
    * a single element, a new class name will be cloned into the element to get correct spacing so
-   * if you have a custom icon element, you **must** also pass that class name down. If you are using
-   * one of the react-md icon component packages, this is handled automatically.
+   * if you have a custom icon element, you **must** also pass that class name down. If you are
+   * using one of the react-md icon component packages, this is handled automatically.
    *
    * If this is not a valid react element, the icon will be wrapped in a `<span>` instead
    * with the class names applied.
@@ -20,8 +20,8 @@ export interface IListItemRightIconProps {
   children?: React.ReactNode;
 
   /**
-   * Boolean if the icon should be forced into a `<span>` with the class names applied instead of attempting
-   * to clone into the provided icon.
+   * Boolean if the icon should be forced into a `<span>` with the class names applied instead
+   * of attempting to clone into the provided icon.
    */
   forceIconWrap?: boolean;
 }
@@ -34,8 +34,8 @@ export type ListItemRightIconWithDefaultProps = IListItemRightIconProps &
   IListItemRightIconDefaultProps;
 
 /**
- * The `ListItemRightIcon` component is a simple wrapper of the `TextIconSpacing` that will apply the "required"
- * class names for adding spacing between text and a right icon within `ListItem`s.
+ * The `ListItemRightIcon` component is a simple wrapper of the `TextIconSpacing` that will apply
+ * the "required" class names for adding spacing between text and a right icon within `ListItem`s.
  */
 export default class ListItemRightIcon extends React.Component<IListItemRightIconProps> {
   public static propTypes = {

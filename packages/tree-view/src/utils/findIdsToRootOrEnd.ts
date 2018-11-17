@@ -24,7 +24,7 @@ export default function findIdsToRootOrEnd<D>({
 
   const ids: string[] = selectedIds.slice();
   const indexStack = buildItemIndexStack(itemElement, treeEl, true);
-  const dataStack: Array<TreeViewDataList<D>> = [];
+  const dataStack: TreeViewDataList<D>[] = [];
   const lastIndex = indexStack[indexStack.length - 1];
 
   let item: TreeViewData<D> | null = null;
@@ -43,10 +43,9 @@ export default function findIdsToRootOrEnd<D>({
     return selectedIds;
   }
 
-  for (let i = 0; i < dataStack.length; i++) {
+  for (let i = 0; i < dataStack.length; i += 1) {
     const index = indexStack[i];
     const dataList = dataStack[i];
-    const current = dataList[index];
     let start = 0;
     let end = index + 1;
     if (!toRoot) {

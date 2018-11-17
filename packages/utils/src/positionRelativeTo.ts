@@ -15,14 +15,16 @@ export type VerticalPosition = "above" | "below" | "center" | "overlap" | "auto"
 
 export interface IPositionOptions {
   /**
-   * An optional horizontal position to use. This defaults to automagically determining the "best" location based on
-   * the `fixedTo` element's position within the viewport and the `target` element's size.
+   * An optional horizontal position to use. This defaults to automagically determining the
+   * "best" location based on the `fixedTo` element's position within the viewport and the
+   * `target` element's size.
    */
   horizontalPosition?: HorizontalPosition;
 
   /**
-   * An optional vertical position to use. This defaults to automagically determining the "best" location based on
-   * the `fixedTo` element's position within the viewport and the `target` element's size.
+   * An optional vertical position to use. This defaults to automagically determining the
+   * "best" location based on the `fixedTo` element's position within the viewport and the
+   * `target` element's size.
    */
   verticalPosition?: VerticalPosition;
 
@@ -37,17 +39,18 @@ export interface IPositionOptions {
    * to overlap the `fixedTo` by a percentage of the `fixedTo`'s width.
    */
   widthOverlapMultiplier?: number;
+  /* tslint:disable:max-line-length */
 
   /**
-   * This prop is to help position the target element within the viewport based on the relative element. When this
-   * value is less than `1`, it will be used as a viewport multiplier. If it is greater than `1`, it will be `x` number
-   * of pixels from the edge of the viewport.
+   * This prop is to help position the target element within the viewport based on the relative
+   * element. When this value is less than `1`, it will be used as a viewport multiplier. If it
+   * is greater than `1`, it will be `x` number of pixels from the edge of the viewport.
    *
    * Multiplier Example:
    * ```js
    * const viewportThreshold = 0.03;
    * const isOutOfBoundsLeft = fixedTo.left < (viewportWidth * viewportThreshold);
-   * const isOutOfBoundsBottom = fixedTo.top < (viewportHeight = (viewportHeight * viewportThreshold));
+   * const isOutOfBoundsBottom = fixedTo.top < (viewportHeight - (viewportHeight * viewportThreshold));
    * ```
    *
    * Pixel Example:
@@ -58,23 +61,24 @@ export interface IPositionOptions {
    * ```
    */
   viewportThreshold?: number;
+  /* tslint:enable:max-line-length */
 
   /**
-   * The amount of horizontal margin to use when positioning the target element within the viewport. This will
-   * be applied to both the left and right of the page.
+   * The amount of horizontal margin to use when positioning the target element within the viewport.
+   * This will be applied to both the left and right of the page.
    */
   vwMargin?: number;
 
   /**
-   * The amount of vertical margin to use when positioning the target element within the viewport. This will
-   * be applied to both the top and bottom of the page.
+   * The amount of vertical margin to use when positioning the target element within the viewport.
+   * This will be applied to both the top and bottom of the page.
    */
   vhMargin?: number;
 
   /**
-   * The amount of spacing to put between the `fixedTo` element and the `target` element. This should be a string of a
-   * number of pixels or a number in rem. This will update the styles to do a
-   * `calc(${CALCULATED_POSITION}px - ${spacing})`.
+   * The amount of spacing to put between the `fixedTo` element and the `target` element. This
+   * should be a string of a number of pixels or a number in rem. This will update the styles
+   * to do a `calc(${CALCULATED_POSITION}px - ${spacing})`.
    *
    * Examples:
    * - '20px'
@@ -83,9 +87,9 @@ export interface IPositionOptions {
   horizontalSpacing?: string;
 
   /**
-   * The amount of spacing to put between the `fixedTo` element and the `target` element. This should be a string of a
-   * number of pixels or a number in rem. This will update the styles to do a
-   * `calc(${CALCULATED_POSITION}px - ${spacing})`.
+   * The amount of spacing to put between the `fixedTo` element and the `target` element. This
+   * should be a string of a number of pixels or a number in rem. This will update the styles
+   * to do a `calc(${CALCULATED_POSITION}px - ${spacing})`.
    *
    * Examples:
    * - '20px'
@@ -94,8 +98,8 @@ export interface IPositionOptions {
   verticalSpacing?: string;
 
   /**
-   * Boolean if the element has been portaled out of a scroll container. This will update the logic to not check for
-   * parent overflow containers to adjust the positioning.
+   * Boolean if the element has been portaled out of a scroll container. This will update the
+   * logic to not check for parent overflow containers to adjust the positioning.
    */
   isPortalFixed?: boolean;
 }
@@ -121,8 +125,8 @@ function determineBestHorizontalPosition(
   threshold: number
 ) {
   if (position !== "auto") {
-    // if the position waas actually set to something other than auto, trust that they already have verified it
-    // can fit in the viewport.
+    // if the position waas actually set to something other than auto, trust that they already
+    // have verified it can fit in the viewport.
     return position;
   } else if (left < (threshold > 1 ? threshold : vw * threshold)) {
     return "inner right";
@@ -153,7 +157,8 @@ function getFixedToDimensions(fixedTo: HTMLElement, isPortalFixed: boolean) {
 }
 
 /**
- * Attempts to create the styles to position a `target` element related to another `fixedTo` element within the page.
+ * Attempts to create the styles to position a `target` element related to another `fixedTo`
+ * element within the page.
  *
  * @param fixedTo - An HTML Element that is used to "fix" the target element to.
  * @param target - The target element to fix within the viewport related to the `fixedTo` element.
@@ -199,7 +204,8 @@ export default function positionRelativeTo(
   const left = Math.max(vwMargin, fixedToLeft + overlapWidth);
 
   // first pass at generating the styles. this makes it a bit "smoother" if animating a new element
-  // into the DOM since you can get a close position for the first render and get it correct in the second.
+  // into the DOM since you can get a close position for the first render and get it correct in the
+  // second.
   const style: IPositioningStyle = {
     top,
     left,
@@ -246,8 +252,8 @@ export default function positionRelativeTo(
   }
 
   if (targetHeight > vh - vhMargin * 2) {
-    // The target element's height is larger than the viewport with margin, so just make it span the etnire
-    // viewport height with the defined margin.
+    // The target element's height is larger than the viewport with margin, so just make it span
+    // the etnire viewport height with the defined margin.
     isTooTall = true;
     style.top = vhMargin;
     style.bottom = vhMargin;
@@ -260,18 +266,14 @@ export default function positionRelativeTo(
   } else if (verticalPosition === "above") {
     style.top = fixedToTop - targetHeight;
   } else if (verticalPosition !== "below" && top + targetHeight > vh - vhMargin) {
-    // The target element would be out of bounds at the bottom edge, so swap position to be above the element,
-    // but it can overlap and restrict the top to be within the vh's defined margin.
+    // The target element would be out of bounds at the bottom edge, so swap position to be above
+    // the element, but it can overlap and restrict the top to be within the vh's defined margin.
     style.top = Math.max(vhMargin, fixedToTop + overlapHeight - targetHeight);
     style.transformOrigin = "0 100%";
   }
 
   if (horizontalSpacing && !isTooWide) {
-    const sign =
-      horizontalPosition === "left" ||
-      horizontalPosition === "inner left"
-        ? "-"
-        : "+";
+    const sign = horizontalPosition === "left" || horizontalPosition === "inner left" ? "-" : "+";
     style.left = `calc(${style.left}px ${sign} ${horizontalSpacing})`;
   }
 

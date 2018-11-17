@@ -33,10 +33,11 @@ export interface IResizeObserverBaseProps {
    * include the new dimensions of the target element as well as the target element itself.
    *
    * NOTE: It is possible for this to be called with a `null` element and all dimensions set to `0`,
-   * so make sure to check for "valid" values before updating elements with these sizes. It _should_ only
-   * be `null` and `0` before a correct `target` is initialized.
+   * so make sure to check for "valid" values before updating elements with these sizes. It _should_
+   * only be `null` and `0` before a correct `target` is initialized.
    *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the
+   * same time.
    */
   onResize?: (options: IResizeObserverResizeOptions) => void;
 
@@ -44,7 +45,8 @@ export interface IResizeObserverBaseProps {
    * An optional render function to call when the target element resizes. This will only be called
    * once the sizing of the element changes, so this might block child updates.
    *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the
+   * same time.
    */
   children?: (options: IResizeObserverResizeOptions) => React.ReactNode;
 }
@@ -78,7 +80,8 @@ export default class ResizeObserverComp extends React.Component<
   IResizeObserverProps,
   IResizeObserverState
 > {
-  // It was named ResizeObserver since the resize-observer-polyfill updates the global namespace with ResizeObserver
+  // It was named ResizeObserver since the resize-observer-polyfill updates the global namespace
+  // with ResizeObserver
   public static displayName = "ResizeObserver";
   public static propTypes = {
     watchHeight: PropTypes.bool,
@@ -90,11 +93,11 @@ export default class ResizeObserverComp extends React.Component<
     ]),
     onResize: PropTypes.func,
     children: PropTypes.func,
-    _validator: (props: IResizeObserverProps, propName: string, componentName: string) => {
+    _validator: (props: IResizeObserverProps, _propName: string, componentName: string) => {
       if (typeof props.children === "undefined" && typeof props.onResize === "undefined") {
         return new Error(
-          `The \`${componentName}\` component requires either a children callback function or the \`onResize\` ` +
-            "props to be provided, but they were both `undefined`."
+          `The \`${componentName}\` component requires either a children callback function or ` +
+            "the `onResize` props to be provided, but they were both `undefined`."
         );
       }
 

@@ -80,10 +80,10 @@ export interface IAppSizeListenerState extends IAppSize {
 }
 
 /**
- * The `AppSizeListener` component is used for listening to resize events on the page and then determining
- * what the "next" app size is. This comes with some reasonable defaults for determining phones, tablets,
- * and desktop based on min width. To help a bit more with some more complex layouts, there are also values
- * for portrait and landscape versions of the above.
+ * The `AppSizeListener` component is used for listening to resize events on the page and then
+ * determining what the "next" app size is. This comes with some reasonable defaults for determining
+ * phones, tablets, and desktop based on min width. To help a bit more with some more complex
+ * layouts, there are also values for portrait and landscape versions of the above.
  */
 export default class AppSizeListener extends React.Component<IAppSizeListenerProps, IAppSize> {
   public static AppSize = AppSize;
@@ -99,9 +99,9 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
   };
 
   /**
-   * A simple util that will be able to create your initial state based on a default size. This is mostly used
-   * internally within the component, but it is exported in case it is helpful to generate a default redux
-   * state.
+   * A simple util that will be able to create your initial state based on a default size.
+   * This is mostly used internally within the component, but it is exported in case it is
+   * helpful to generate a default redux state.
    *
    * Example:
    * ```ts
@@ -149,8 +149,9 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
   }
 
   /**
-   * This helper function attempt to run media queries to determine the next state. If the `window` is
-   * not defined, `AppSizeListener.createDefaultState` will be used as a fallback instead.
+   * This helper function attempt to run media queries to determine the next state. If the
+   * `window` is not defined, `AppSizeListener.createDefaultState` will be used as a
+   * afallback instead.
    */
   public static createStateFromQueries(
     props: IAppSizeMediaProps = AppSizeListener.defaultProps
@@ -162,8 +163,8 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
     const { tabletMinWidth, desktopMinWidth } = props as AppSizeListenerWithDefaultProps;
 
     const phoneMedia = `screen and (max-width: ${tabletMinWidth - 1}px)`;
-    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth -
-      1}px)`;
+    // tslint:disable-next-line:max-line-length
+    const tabletMedia = `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopMinWidth - 1}px)`; // prettier-ignore
     const desktopMedia = `screen and (min-width: ${desktopMinWidth}px)`;
 
     const matchesTablet = window.matchMedia(tabletMedia).matches;
@@ -199,7 +200,7 @@ export default class AppSizeListener extends React.Component<IAppSizeListenerPro
     this.calledOnce = false;
   }
 
-  public shouldComponentUpdate(nextProps: IAppSizeListenerProps, nextState: IAppSizeListenerState) {
+  public shouldComponentUpdate(nextProps: IAppSizeListenerProps) {
     return !!nextProps.children;
   }
 

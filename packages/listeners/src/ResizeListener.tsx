@@ -18,34 +18,35 @@ export interface IResizeListenerConfigProps {
   touchDelay?: number;
 
   /**
-   * Boolean if the resize listener should no longer ignore resize events that can occur on iOS devices when the user
-   * scrolls which causes the fixed toolbar to move out of the viewport.
+   * Boolean if the resize listener should no longer ignore resize events that can occur on iOS
+   * devices when the user scrolls which causes the fixed toolbar to move out of the viewport.
    */
   disableTouchFixes?: boolean;
 
   /**
-   * Boolean if the resiez listener should no longer ignore resize events that can occur after a soft keyboard
-   * appears on mobile devices (currently all Android devices).
+   * Boolean if the resiez listener should no longer ignore resize events that can occur after
+   * a soft keyboard appears on mobile devices (currently all Android devices).
    */
   disableTouchKeyboardFixes?: boolean;
 
   /**
-   * Boolean if the `onResize` prop **should not** be called after the component mounts. This functionality is enabled
-   * by default since it makes initial layout changes easier.
+   * Boolean if the `onResize` prop **should not** be called after the component mounts. This
+   * functionality is enabled by default since it makes initial layout changes easier.
    *
-   * NOTE: This will be a `new Event("resize")` that is dispatched from the `window`. This means that it will not
-   * be a trusted source.
+   * NOTE: This will be a `new Event("resize")` that is dispatched from the `window`. This means
+   * that it will not be a trusted source.
    */
   disableMountResizeTrigger?: boolean;
 }
 
 export interface IResizeListenerBaseProps extends IResizeListenerConfigProps {
   /**
-   * The function to call when the throttled resize event has been triggered. Either this or a children
-   * callback function is required to work, but this is the "preferred" way of handling resizes since you
-   * might need to do additional checks before re-rendering children.
+   * The function to call when the throttled resize event has been triggered. Either this or
+   * a children callback function is required to work, but this is the "preferred" way of handling
+   * resizes since you might need to do additional checks before re-rendering children.
    *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the
+   * same time.
    */
   onResize?: (event: Event) => void;
 
@@ -53,7 +54,8 @@ export interface IResizeListenerBaseProps extends IResizeListenerConfigProps {
    * An optional children callback function that will be called after each successful resize event.
    * This method isn't quite as preferred as using the `onResize` prop, but it can be done.
    *
-   * Either the `onResize` or `children` prop is required, but both should **not** be used at the same time.
+   * Either the `onResize` or `children` prop is required, but both should **not** be used at the
+   * same time.
    */
   children?: () => React.ReactNode;
 }
@@ -89,7 +91,7 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
     disableTouchFixes: PropTypes.bool,
     disableTouchKeyboardFixes: PropTypes.bool,
     disableMountResizeTrigger: PropTypes.bool,
-    _validate: (props: IResizeListenerProps, propName: string, componentName: string) => {
+    _validate: (props: IResizeListenerProps, _propName: string, componentName: string) => {
       const isResize = typeof props.onResize !== "undefined";
       const isChildren = typeof props.children !== "undefined";
       if (isResize || isChildren) {
@@ -97,8 +99,8 @@ export default class ResizeListener extends React.Component<IResizeListenerProps
       }
 
       return new Error(
-        `The \`${componentName}\` component requires either the \`onResize\` or \`children\` props to be defined ` +
-          "as functions but both were `undefined`."
+        `The \`${componentName}\` component requires either the \`onResize\` or \`children\` ` +
+          "props to be defined as functions but both were `undefined`."
       );
     },
   };

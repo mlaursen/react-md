@@ -2,7 +2,8 @@
  * Attempts to find a sizing container based on the provided HTMLElement. By default, the sizing
  * element will just be the provided element unless:
  * - the item has a known role within react-md that can target known classes
- * - the item has a `data-sizing-selector` attribute that is a valid query selector for the nested item.
+ * - the item has a `data-sizing-selector` attribute that is a valid query selector for the nested
+ * item.
  *
  * NOTE: The `data-sizing-selector` will be run from the current element instead of the `document`.
  *
@@ -29,10 +30,7 @@ export default function findSizingContainer(el: HTMLElement | null) {
       return content;
     } else if (process.env.NODE_ENV === "development") {
       /* tslint:disable no-console */
-      console.error(
-        "Unable to find a child element for sizing using the `data-query-selector`. Look at this error's " +
-          "`element` and `query` for more debug information."
-      );
+      console.error("Unable to find a child element for sizing using the `data-query-selector`");
       console.error(new Error().stack);
     }
   }

@@ -20,7 +20,8 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export interface ITooltipProps extends IBaseTooltipProps {
   /**
-   * An optional delay before showing the tooltip when the user focuses or moves the mouse into the tooltip's container.
+   * An optional delay before showing the tooltip when the user focuses or moves the mouse
+   * into the tooltip's container.
    */
   delay?: number;
 
@@ -98,8 +99,8 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
   }
 
   /**
-   * The tooltip's container element. This should be a focusable element so that keyboard users will be able
-   * to view the tooltip when focusing the element.
+   * The tooltip's container element. This should be a focusable element so that keyboard users
+   * will be able to view the tooltip when focusing the element.
    */
   private container: HTMLElement | null;
 
@@ -109,8 +110,8 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
   private timeout?: number;
 
   /**
-   * Boolean if the mouseenter event was triggered previously by a touch event. Enabling this will skip the
-   * mouseenter logic since the tooltip was shown instead of the touch context menu.
+   * Boolean if the mouseenter event was triggered previously by a touch event. Enabling this will
+   * skip the mouseenter logic since the tooltip was shown instead of the touch context menu.
    */
   private touched: boolean;
 
@@ -133,8 +134,9 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
       if (process.env.NODE_ENV !== "production") {
         /* tslint:disable no-console */
         console.error(
-          `Unable to render a tooltip with the provided id: \`${id}\` A tooltip can only be rendered ` +
-            `if there is an element on the page with the \`aria-describedby="${id}" attribute, but none were found.`
+          `Unable to render a tooltip with the provided id: \`${id}\` A tooltip can only ` +
+            `be rendered if there is an element on the page with the \`aria-describedby="${id}"\`` +
+            "attribute, but none were found."
         );
         console.error(new Error().stack);
         /* tslint:enable no-console */
@@ -216,7 +218,7 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
   };
 
   private handleEnter = (node: HTMLSpanElement, isAppearing: boolean) => {
-    const { onEnter, portal, portalInto, portalIntoId } = this.props as TooltipWithDefaultProps;
+    const { onEnter } = this.props;
     if (onEnter) {
       onEnter(node, isAppearing);
     }
@@ -246,16 +248,17 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
       if (this.container && process.env.NODE_ENV !== "production") {
         const tooltip = document.getElementById(this.props.id);
 
-        // when in dev mode, make sure that the container element has a relative position so that the tooltip
-        // will appear "fixed" to the container element. This will have to be updated when I implement
-        // tooltip portal support
+        // when in dev mode, make sure that the container element has a relative position
+        // so that the tooltip will appear "fixed" to the container element. This will have]
+        // to be updated when I implement tooltip portal support
         const { position } = window.getComputedStyle(this.container);
         if (tooltip && this.container.contains(tooltip) && position !== "relative") {
           /* tslint:disable no-console */
           console.error(
-            "A tooltip's container must have `position: relative` as a style for a tooltip to appear but " +
-              `its position is: \`${position}\`. An inline style has been applied, but your container must ` +
-              "be updated before going into production as this functionality will be removed"
+            "A tooltip's container must have `position: relative` as a style for a tooltip to " +
+              `appear but its position is: \`${position}\`. An inline style has been applied, ` +
+              "but your container must be updated before going into production as this " +
+              "functionality will be removed"
           );
           console.error(new Error().stack);
           /* tslint:enable no-console */
@@ -309,7 +312,7 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
     }
   };
 
-  private handleTouchStart = (event: TouchEvent) => {
+  private handleTouchStart = () => {
     if (!this.container) {
       return;
     }
@@ -320,7 +323,7 @@ export default class Tooltip extends React.Component<ITooltipProps, ITooltipStat
     this.container.addEventListener("touchmove", this.cancelTouch);
   };
 
-  private cancelTouch = (event: TouchEvent) => {
+  private cancelTouch = () => {
     this.touched = false;
     if (!this.container) {
       return;

@@ -5,14 +5,14 @@ import { Button, IButtonProps, IButtonDefaultProps } from "@react-md/button";
 
 export interface IAppBarActionProps extends IButtonProps {
   /**
-   * Boolean if this is the first action within the app bar. This is really just used to automatically
-   * right-align all the actions by applying `margin-left: auto` to this action.
+   * Boolean if this is the first action within the app bar. This is really just used to
+   * automatically right-align all the actions by applying `margin-left: auto` to this action.
    */
   first?: boolean;
 
   /**
-   * Boolean if this is the last action within the app bar's row. This will just apply the `$rmd-app-bar-lr-margin`
-   * as `margin-right`.
+   * Boolean if this is the last action within the app bar's row. This will just apply the
+   * `$rmd-app-bar-lr-margin` as `margin-right`.
    *
    * NOTE: This should not be used when using an overflow menu.
    */
@@ -27,9 +27,10 @@ export interface IAppBarActionDefaultProps extends IButtonDefaultProps {
 export type AppBarActionWithDefaultProps = IAppBarActionProps & IAppBarActionDefaultProps;
 
 /**
- * The `AppBarAction` component is a simple wrapper of the `Button` component that just adds some additional
- * styles as needed to position itself within the `AppBar` as well as changing the default props so that it
- * is `"icon"` by default instead of `"text"` and `"clear"` instead of `"primary"` for the theme.
+ * The `AppBarAction` component is a simple wrapper of the `Button` component that just adds
+ * some additional styles as needed to position itself within the `AppBar` as well as changing
+ * the default props so that it is `"icon"` by default instead of `"text"` and `"clear"` instead
+ * of `"primary"` for the theme.
  */
 export default class AppBarAction extends React.Component<IAppBarActionProps> {
   public static propTypes = {

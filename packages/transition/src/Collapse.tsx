@@ -7,22 +7,23 @@ import cn from "classnames";
 
 export interface ICollapseChildrenProps {
   /**
-   * A conditional style that should be applied to the child element. This will be provided if one or more
-   * of the `minHeight`, `minPaddingBottom`, or `minPaddingTop` props are greater than 0 OR the `isEmptyCollapsed`
-   * prop is set to `false` OR there are prop styles defined.
+   * A conditional style that should be applied to the child element. This will be provided if one
+   * or more of the `minHeight`, `minPaddingBottom`, or `minPaddingTop` props are greater than 0 OR
+   * the `isEmptyCollapsed` prop is set to `false` OR there are prop styles defined.
    */
   style?: React.CSSProperties;
 
   /**
-   * The class name to apply that will allow for the child element to transition between collapsed states.
+   * The class name to apply that will allow for the child element to transition between collapsed
+   * states.
    */
   className: string;
 
   /**
-   * A ref callback that **must** be applied to the child element. The value provided to this has to be an html
-   * element so that the dynamic max-height style can be calculated. This will work if you apply it to any JSX
-   * Element, but if you apply it to a React component, it will fail. To get it working with a React Component
-   * instance, you can do something like this instead:
+   * A ref callback that **must** be applied to the child element. The value provided to this has
+   * to be an html element so that the dynamic max-height style can be calculated. This will work if
+   * you apply it to any JSX Element, but if you apply it to a React component, it will fail. To get
+   * it working with a React Component instance, you can do something like this instead:
    *
    * ```jsx
    * render() {
@@ -44,9 +45,9 @@ export interface ICollapseChildrenProps {
 
 export interface ICollapseProps {
   /**
-   * An optional style to apply. This will be merged with the required animation styles of `min-height`,
-   * `padding-top`, and `padding-bottom`. If the `style` prop defines any of these values, they will be
-   * used instead of this component's computed values.
+   * An optional style to apply. This will be merged with the required animation styles of
+   * `min-height`, `padding-top`, and `padding-bottom`. If the `style` prop defines any of these
+   * values, they will be used instead of this component's computed values.
    */
   style?: React.CSSProperties;
 
@@ -87,23 +88,23 @@ export interface ICollapseProps {
   minPaddingTop?: number | string;
 
   /**
-   * The duration for the entire enter animation in milliseconds. This should normally stay as the default value
-   * of `250ms`, but can be updated to be any value if you feel there should be a longer animation time based on
-   * content size.
+   * The duration for the entire enter animation in milliseconds. This should normally stay as
+   * the default value of `250ms`, but can be updated to be any value if you feel there should
+   * be a longer animation time based on content size.
    */
   enterDuration?: number;
 
   /**
-   * The duration for the entire leave animation in milliseconds. This should normally stay at the default value
-   * of `200ms`, but can be updated to be any value if you feel there should be a longer animation time based on
-   * content size.
+   * The duration for the entire leave animation in milliseconds. This should normally stay at
+   * the default value of `200ms`, but can be updated to be any value if you feel there should be
+   * a longer animation time based on content size.
    */
   leaveDuration?: number;
 
   /**
    * Boolean if the children should be removed from the DOM when collapsed. When this prop is
-   * `undefined`, it will remove the collapsed children only when the `minHeight`, `minPaddingBottom`,
-   * and `minPaddingTop` values are set to `0`.
+   * `undefined`, it will remove the collapsed children only when the `minHeight`,
+   * `minPaddingBottom`, and `minPaddingTop` values are set to `0`.
    */
   isEmptyCollapsed?: boolean;
 
@@ -114,14 +115,14 @@ export interface ICollapseProps {
   children: (props: ICollapseChildrenProps) => React.ReactNode;
 
   /**
-   * An optional function to call when the "expanding" animation has finished when the `collapsed` prop is changed
-   * from `true` to `false`.
+   * An optional function to call when the "expanding" animation has finished when the `collapsed`
+   * prop is changed from `true` to `false`.
    */
   onExpanded?: () => void;
 
   /**
-   * An optional function to call when the "collapsing" animation has finished when the `collapsed` prop is changed
-   * from `false` to `true`.
+   * An optional function to call when the "collapsing" animation has finished when the `collapsed`
+   * prop is changed from `false` to `true`.
    */
   onCollapsed?: () => void;
 }
@@ -172,8 +173,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   public static getDerivedStateFromProps(nextProps: ICollapseProps, prevState: ICollapseState) {
     const { collapsed, minHeight, minPaddingTop, minPaddingBottom } = nextProps;
     if (collapsed !== prevState.prevCollapsed) {
-      // when collapsing, need to immediately start the "leaving" transition so that the children don't
-      // unmount before the animation starts.
+      // when collapsing, need to immediately start the "leaving" transition so that the
+      // children don't unmount before the animation starts.
       if (collapsed) {
         return { prevCollapsed: collapsed, entering: false, leaving: true };
       }
@@ -208,7 +209,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     this.target = null;
   }
 
-  public componentDidUpdate(prevProps: ICollapseProps, prevState: ICollapseState) {
+  public componentDidUpdate(prevProps: ICollapseProps) {
     const { collapsed } = this.props;
     const { entering, leaving } = this.state;
     if (collapsed === prevProps.collapsed) {
@@ -279,7 +280,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     if (this.target) {
       maxHeight = this.target.scrollHeight;
 
-      // clone the element (not deep) just to figure out it's padding without the inline styles applied
+      // clone the element (not deep) just to figure out it's padding without the inline
+      // styles applied
       const cloned = this.target.cloneNode(false) as HTMLElement;
       cloned.style.paddingTop = "";
       cloned.style.paddingBottom = "";
@@ -302,21 +304,21 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   };
 
   /**
-   * Handles the expansion animation. This relies on the `getDerivedStateFromProps` returning `entering: true`
-   * to work as expected.
+   * Handles the expansion animation. This relies on the `getDerivedStateFromProps` returning
+   * `entering: true` to work as expected.
    *
    * The basic flow for "expanding" is:
    * - mount children (if they were not rendered before)
-   * - apply no-overflow class, enter class, and styles for setting the max-height, padding-top, and padding-bottom
-   *     to 0 so they can be animated
-   * - apply the calculated max-height, padding-top, and padding bottom to start animation. also create a timeout for
-   *     the animation duration
-   * - remove "calculated" styles, no-overflow, and enter class names to get ready for the leave transition.
+   * - apply no-overflow class, enter class, and styles for setting the max-height, padding-top,
+   *     and padding-bottom to 0 so they can be animated
+   * - apply the calculated max-height, padding-top, and padding bottom to start animation. also
+   *     create a timeout for the animation duration
+   * - remove "calculated" styles, no-overflow, and enter class names to get ready for the leave
+   *     transition.
    */
   private transitionIn = () => {
     window.clearTimeout(this.transitionTimeout);
-    const { enterDuration, minHeight, minPaddingTop, minPaddingBottom } = this
-      .props as CollapseWithDefaultProps;
+    const { enterDuration } = this.props as CollapseWithDefaultProps;
 
     this.transitionTimeout = window.setTimeout(() => {
       this.transitionTimeout = undefined;
@@ -335,8 +337,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   };
 
   /**
-   * Handles the collapsing animation. This relies on the `getDerivedStateFromProps` returning `leaving: true` to work
-   * as expected.
+   * Handles the collapsing animation. This relies on the `getDerivedStateFromProps` returning
+   * `leaving: true` to work as expected.
    */
   private transitionOut = () => {
     window.clearTimeout(this.transitionTimeout);
@@ -345,9 +347,9 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
 
     this.setState(this.getSizing());
 
-    // wait for the sizing to be applied and then finish the rest of transition. without this wait, the animation might
-    // start halfway through. All browsers except for Firefox have fluid leave animations with
-    // window.requestAnimationFrame so a timeout has to be used instead.
+    // wait for the sizing to be applied and then finish the rest of transition. without this
+    // wait, the animation might start halfway through. All browsers except for Firefox have
+    // fluid leave animations with window.requestAnimationFrame so a timeout has to be used instead.
     this.transitionTimeout = window.setTimeout(() => {
       this.transitionTimeout = window.setTimeout(() => {
         this.transitionTimeout = undefined;
@@ -372,8 +374,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   };
 
   /**
-   * Creates the style for the child element by merging the prop styles into the dynamically generated
-   * maxHeight, paddingTop, and paddingBottom styles.
+   * Creates the style for the child element by merging the prop styles into the dynamically
+   * generated maxHeight, paddingTop, and paddingBottom styles.
    *
    * When there are no styles to create, `undefined` will be returned instead of a style object.
    */
@@ -389,7 +391,9 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     const isPadBot = typeof paddingBottom !== "undefined";
     if (!propStyle && !isHeight && !isPadTop && !isPadBot) {
       return undefined;
-    } else if (propStyle) {
+    }
+
+    if (propStyle) {
       return {
         maxHeight,
         paddingTop,

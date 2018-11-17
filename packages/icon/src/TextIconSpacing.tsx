@@ -4,16 +4,16 @@ import cn from "classnames";
 
 export interface ITextIconSpacingProps {
   /**
-   * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop is enabled
-   * or the icon is not a valid React Element.
+   * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop
+   * is enabled or the icon is not a valid React Element.
    */
   className?: string;
 
   /**
    * An optional icon to display with a text button. This is invalid for icon buttons. If this is
    * a single element, a new class name will be cloned into the element to get correct spacing so
-   * if you have a custom icon element, you **must** also pass that class name down. If you are using
-   * one of the react-md icon component packages, this is handled automatically.
+   * if you have a custom icon element, you **must** also pass that class name down. If you are
+   * using one of the react-md icon component packages, this is handled automatically.
    *
    * If this is not a valid react element, the icon will be wrapped in a `<span>` instead
    * with the class names applied.
@@ -26,8 +26,8 @@ export interface ITextIconSpacingProps {
   iconAfter?: boolean;
 
   /**
-   * The children to render before or after the provided icon. This is defaulted to `null` so that providing
-   * a `null` icon will correctly render without React crashing.
+   * The children to render before or after the provided icon. This is defaulted to `null` so that
+   * providing a `null` icon will correctly render without React crashing.
    */
   children?: React.ReactNode;
 
@@ -42,8 +42,8 @@ export interface ITextIconSpacingProps {
   afterClassName?: string;
 
   /**
-   * Boolean if the icon should be forced into a `<span>` with the class names applied instead of attempting
-   * to clone into the provided icon.
+   * Boolean if the icon should be forced into a `<span>` with the class names applied instead of
+   * attempting to clone into the provided icon.
    */
   forceIconWrap?: boolean;
 }

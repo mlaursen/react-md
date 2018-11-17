@@ -1,29 +1,18 @@
-/* tslint:disable:no-shadowed-variable */
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import cn from "classnames";
-import { List, IListProps } from "@react-md/list";
+import { List } from "@react-md/list";
 import { FontIcon } from "@react-md/icon";
-import {
-  searchNodes,
-  TextExtractor,
-  extractTextContent as defaultExtractTextContent,
-} from "@react-md/utils";
+import { searchNodes, extractTextContent as defaultExtractTextContent } from "@react-md/utils";
 
 import {
   IIndexKeyAny,
   TreeViewElement,
-  TreeViewData,
   TreeViewDataList,
   ITreeViewProps,
   ITreeViewDefaultProps,
   TreeViewWithDefaultProps,
   TreeViewWithMultiSelectHandlers,
-  treeViewRenderer,
-  treeItemRenderer,
-  onItemSelect,
-  onItemExpandedChange,
-  MultipleIdHandler,
 } from "./types";
 import DefaultTreeItemRenderer from "./DefaultTreeItemRenderer";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
@@ -31,27 +20,27 @@ import findTreeItemsFromElement from "./utils/findTreeItemsFromElement";
 import findAllIds from "./utils/findAllIds";
 import findIdsToRootOrEnd from "./utils/findIdsToRootOrEnd";
 
-const FONT_ICON_CLASS_NAME = ".rmd-icon--font";
 const SHIFT_CODE = 16;
 
 type TreeKeyboardEvent = React.KeyboardEvent<TreeViewElement>;
 
 /**
  * The `TreeView` component is used to create an accessible
- * [tree view widget](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView) by adding the base required
- * click and keyboard listeners to the tree to open, close, and select tree items. However, the items will
- * not be opened, closed, or selected unless the provided `onItemSelect`, `onItemExpandedChange`, and
- * `onItemSiblingExpansion` props do not update the `expandedIds` and `selectedIds` props. There is a
- * `TreeViewControls` component that can be used to automatically handle this logic for you though.
+ * [tree view widget](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView) by adding the base
+ * required click and keyboard listeners to the tree to open, close, and select tree items. However,
+ * the items will not be opened, closed, or selected unless the provided `onItemSelect`,
+ * `onItemExpandedChange`, and `onItemSiblingExpansion` props do not update the `expandedIds` and
+ * `selectedIds` props. There is a `TreeViewControls` component that can be used to automatically
+ * handle this logic for you though.
  *
- * To make rendering the tree easy, there are decent defaults for rendering the entire `TreeView` and each
- * `TreeItem` that should work out of the box for simple tree views. However, this can be updated for more
- * complex trees that have drag and drop or other functionality built in.
+ * To make rendering the tree easy, there are decent defaults for rendering the entire `TreeView`
+ * and each `TreeItem` that should work out of the box for simple tree views. However, this can be
+ * updated for more complex trees that have drag and drop or other functionality built in.
  *
- * @typeparam D - An optional data interface to apply to more strongly type the tree view items. This defaults
- *    to using a `[key: string]: any` interface by default.
- * @typeparam R - An optional renderer interface to apply so that the main treeViewRenderer prop is strongly typed.
- *    This defaults to using a `[key: string]: any` interface by default.
+ * @typeparam D - An optional data interface to apply to more strongly type the tree view items.
+ * This defaults to using a `[key: string]: any` interface by default.
+ * @typeparam R - An optional renderer interface to apply so that the main treeViewRenderer prop
+ * is strongly typed. This defaults to using a `[key: string]: any` interface by default.
  */
 export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<
   ITreeViewProps<D, R>
@@ -82,16 +71,15 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     onMultipleItemSelection: PropTypes.func,
     _multipleExpansionValidator: (
       props: ITreeViewProps,
-      propName: string,
+      _propName: string,
       componentName: string
     ) => {
       if (!props.disableSiblingExpansion && typeof props.onMultipleItemExpansion !== "function") {
         const value = props.onMultipleItemExpansion as any;
         return new Error(
-          `The \`onMultipleItemExpansion\` prop is required for the \`${componentName}\` component when the ` +
-            `\`disableSiblingExpansion\` prop has not been enabled but \`${
-              !value ? "" : value
-            }\` was provided instead.`
+          `The \`onMultipleItemExpansion\` prop is required for the \`${componentName}\` ` +
+            "component when the `disableSiblingExpansion` prop has not been enabled but " +
+            `\`${!value ? "" : value}\` was provided instead.`
         );
       }
 
@@ -99,36 +87,39 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
     },
     _multipleSelectionValidator: (
       props: ITreeViewProps,
-      propName: string,
+      _propName: string,
       componentName: string
     ) => {
       if (props.multiSelect && !props.onMultipleItemSelection) {
         const value = props.onMultipleItemSelection as any;
         return new Error(
-          `The \`onMultipleItemSelection\` prop is required for the \`${componentName}\` component when the ` +
-            `\`multiSelect\` prop has not been enabled but \`${value}\` was provided instead.`
+          `The \`onMultipleItemSelection\` prop is required for the \`${componentName}\` ` +
+            `component when the \`multiSelect\` prop has not been enabled but \`${value}\` was ` +
+            "provided instead."
         );
       }
 
       return null;
     },
-    _a11yValidator: (props: ITreeViewProps, propName: string, componentName: string) => {
+    _a11yValidator: (props: ITreeViewProps, _propName: string, componentName: string) => {
       const label = props["aria-label"];
       const labelledBy = props["aria-labelledby"];
       if (typeof label !== "string" && typeof labelledBy !== "string") {
         return new Error(
-          `The \`${componentName}\` component requires either the \`aria-label\` or \`aria-labelledby\` props for ` +
-            "accessibility but both were `undefined`."
+          `The \`${componentName}\` component requires either the \`aria-label\` or ` +
+            "`aria-labelledby` props for accessibility but both were `undefined`."
         );
-      } else if (typeof label === "string" && !label.length) {
+      }
+      if (typeof label === "string" && !label.length) {
         return new Error(
-          `The \`${componentName}\` component requires an \`aria-label\` with a length greater than 0, but ` +
-            `\`${label}\` was provided. `
+          `The \`${componentName}\` component requires an \`aria-label\` with a length greater ` +
+            "than 0, but `${label}` was provided. "
         );
-      } else if (typeof labelledBy === "string" && !labelledBy.length) {
+      }
+      if (typeof labelledBy === "string" && !labelledBy.length) {
         return new Error(
-          `The \`${componentName}\` component requires an \`aria-labelledby\` with a length greater than 0, but ` +
-            `\`${labelledBy}\` was provided.`
+          `The \`${componentName}\` component requires an \`aria-labelledby\` with a length ` +
+            "greater than 0, but `${labelledBy}` was provided."
         );
       }
 
@@ -401,8 +392,9 @@ export default class TreeView<D = IIndexKeyAny, R = IIndexKeyAny> extends React.
       onItemExpandedChange(itemId, i === -1);
     }
 
-    // the event will not be trusted if it happens after the enter keypress. When that happens, we only
-    // want the `onItemSelect` to be called when it is not already selected as Enter will only select -- not toggle
+    // the event will not be trusted if it happens after the enter keypress. When
+    // that happens, we only want the `onItemSelect` to be called when it is not already
+    // selected as Enter will only select -- not toggle
     if (
       (!disableGroupSelection || !item.childItems) &&
       (event.isTrusted || !selectedIds.includes(itemId))

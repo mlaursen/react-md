@@ -5,7 +5,6 @@ import * as PropTypes from "prop-types";
 import {
   ITreeViewBaseProps,
   IIndexKeyAny,
-  TreeViewDataList,
   MultipleIdHandler,
   onItemSelect,
   onItemExpandedChange,
@@ -39,7 +38,8 @@ export interface ITreeViewControlsProps<D, R> extends ITreeViewBaseProps<D, R> {
 
   /**
    * A callback function that will provide all the required item listeners and item id lists to the
-   * `TreeView` component as well as any other prop that was passed to the `TreeViewControls` component.
+   * `TreeView` component as well as any other prop that was passed to the `TreeViewControls`
+   * component.
    */
   children: (controls: ITreeViewControls<D, R>) => React.ReactNode;
 }
@@ -58,8 +58,8 @@ export interface ITreeViewControlsState {
 }
 
 /**
- * The `TreeViewControls` component is used as a simple higher order component to add the basic selection and
- * expansion event handlers and state to the `TreeView` component.
+ * The `TreeViewControls` component is used as a simple higher order component to add the basic
+ * selection and expansion event handlers and state to the `TreeView` component.
  */
 export default class TreeViewControls<D = IIndexKeyAny, R = IIndexKeyAny> extends React.Component<
   ITreeViewControlsProps<D, R>,

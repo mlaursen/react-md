@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 import * as React from "react";
 import { shallow, mount } from "enzyme";
 import * as renderer from "react-test-renderer";

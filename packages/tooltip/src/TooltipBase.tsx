@@ -11,7 +11,7 @@ import { IBaseTooltipProps, TooltipPosition } from "./types.d";
  */
 export interface ITooltipBaseProps extends IBaseTooltipProps {
   /**
-   * This is the position that the tooltip should appear related to its container elemement as well as
+   * This is the position that the tooltip should appear related to its container element as well as
    * updating the animation direction.
    */
   position?: TooltipPosition;
@@ -42,9 +42,9 @@ export interface ITooltipBaseDefaultProps {
 export type TooltipBaseWithDefaultProps = ITooltipBaseProps & ITooltipBaseDefaultProps;
 
 /**
- * This is the base tooltip component that can only be used to render a tooltip with an animation when the
- * visibility changes. If this component is used, you will need to manually add all the event listeners
- * and triggers to change the `visible` prop.
+ * This is the base tooltip component that can only be used to render a tooltip with an animation
+ * when the visibility changes. If this component is used, you will need to manually add all the
+ * event listeners and triggers to change the `visible` prop.
  *
  * @forwardRef
  */
@@ -164,5 +164,5 @@ class TooltipBase extends React.Component<ITooltipBaseProps> {
 }
 
 export default React.forwardRef<HTMLSpanElement, ITooltipBaseProps>((props, ref) => (
-  <TooltipBase {...props} />
+  <TooltipBase {...props} forwardedRef={ref} />
 ));
