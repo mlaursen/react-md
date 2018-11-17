@@ -1,28 +1,40 @@
-/**
- * This is an exported type alias from a file. So normally something like
- * ButtonWithDefaultProps or custom unions.
- */
-interface ITypeDocExportedType {
-  /**
-   * The name of the type. This is also used for lookups.
-   */
+/* tslint:disable interface-over-type-literal */
+export type DocumentedType = {
   name: string;
-  comment: string;
+  description: string;
   value: string;
-}
+};
 
-interface ITypeDocExportedTypeDB {
-  [typeName: string]: ITypeDocExportedType;
-}
-interface ITypeDocPackage {
-  exportedTypes: ITypeDocExportedTypeDB;
-}
+export type DocumentedPropType = string | { name: string };
+export type DocumentedProp = {
+  name: string;
+  type: DocumentedPropType;
+  defaultValue: string;
+  description: string;
+};
 
-interface ITypeDocPackageDB {
-  [packageName: string]: ITypeDocPackage;
-}
+export type DocumentedGeneric = {
+  name: string;
+  description: string;
+};
 
-interface ITypeDocDB {
-  packages: ITypeDocPackageDB;
-  // externals: ITypeDocPackageDB;
-}
+export type DocumentedProps = {
+  name: string;
+  description: string;
+  generics: DocumentedGeneric[];
+  declared: DocumentedProp[];
+  inherited: DocumentedProp[];
+};
+
+export type DocumentedSource = {
+  line: number;
+  path: string;
+};
+
+export type DocumentedComponent = {
+  name: string;
+  description: string;
+  source: DocumentedSource;
+  props: DocumentedProps;
+  generics: DocumentedGeneric[];
+};

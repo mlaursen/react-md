@@ -9,6 +9,10 @@ export interface IListItemTextProps {
   secondaryText?: React.ReactNode;
 }
 
+/**
+ *
+ * @sfc IListItemTextProps
+ */
 const ListItemText: React.SFC<IListItemTextProps> = ({
   className,
   secondaryTextClassName,

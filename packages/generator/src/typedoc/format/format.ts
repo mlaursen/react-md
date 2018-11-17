@@ -1,4 +1,5 @@
 import prettier from "prettier";
+import { SourceReference } from "typedoc/dist/lib/models/sources/file";
 import { ITypeDeclaration } from "./typedoc.d";
 
 import {
@@ -24,6 +25,7 @@ import {
   ITypeReflectionDeclaration,
   ITypeFunctionDeclaration,
 } from "./typedoc.d";
+import { Reflection } from "typedoc";
 
 function formatTypeUnion(union: ITypeUnion, excludeUndefined: boolean = true): string {
   return union.types
@@ -244,4 +246,17 @@ export function parseAndFormatComment(comment: DeclarationComment): string {
   prefix = prefix.replace(/(\w)\r?\n(\w)?/g, "$1 $2");
 
   return `${prefix}${codeBlock}${suffix}`;
+}
+
+export function getSource(reflection: Reflection) {
+  const [source] = reflection.sources;
+  if (!source) {
+    throw new Error(`Unable to get a source for reflection: ${reflection.name}`);
+  }
+
+  const path = (source.file && source.file.fullFileName) || source.fileName;
+  return {
+    line: source.line,
+    path: path.substring(path.indexOf("react-md")),
+  };
 }
