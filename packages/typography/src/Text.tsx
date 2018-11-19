@@ -23,10 +23,10 @@ export type TextTypes =
   | "button";
 
 /**
- * A list of the default supported elements that the `Text` component can be rendered as. This
+ * A union of the default supported elements that the `Text` component can be rendered as. This
  * is mostly used for adding the correct HTMLAttributes and enabling the forward ref.
  */
-export type DefaultTextElement =
+export type TextElement =
   | HTMLHeadingElement
   | HTMLParagraphElement
   | HTMLSpanElement
@@ -38,12 +38,6 @@ export type DefaultTextElement =
   | HTMLHtmlElement;
 
 /**
- * The default additional props that can be applied to the Text component. This mostly just
- * covers all the elements that can be rendered "natively".
- */
-export type DefaultTextProps = React.HTMLAttributes<DefaultTextElement>;
-
-/**
  * A type describing the text component's children render function. It provides an object containing
  * the correct (and merged) className and expects a renderable element to be returned.
  */
@@ -51,10 +45,8 @@ export type TextRenderFunction = (props: { className: string }) => React.ReactNo
 
 /**
  * The base props for rendering the text component.
- *
- * @typeparam P - Any additional props that are available based on the component prop.
  */
-export interface ITextProps<P = DefaultTextProps> {
+export interface ITextProps extends React.HTMLAttributes<TextElement> {
   /**
    * An optional className to merge into typography styles.
    */
@@ -78,7 +70,7 @@ export interface ITextProps<P = DefaultTextProps> {
    * - `"button"     -> <button>`
    *
    */
-  component?: React.ReactType<P> | null;
+  component?: React.ReactType | null;
 
   /**
    * One of the material design typography text styles. This is used to generate a className
@@ -95,7 +87,7 @@ export interface ITextProps<P = DefaultTextProps> {
   /**
    * @private
    */
-  forwardedRef?: React.Ref<DefaultTextElement>;
+  forwardedRef?: React.Ref<TextElement>;
 }
 
 /**
@@ -109,7 +101,7 @@ export interface ITextDefaultProps {
 /**
  * @private
  */
-export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDefaultProps;
+export type TextWithDefaultProps = ITextProps & ITextDefaultProps;
 
 /**
  * The `Text` component is used to render text with the material design typography styles applied.
@@ -139,10 +131,7 @@ export type TextWithDefaultProps<P = DefaultTextProps> = ITextProps<P> & ITextDe
  * in "auto-component" logic. By default, this will just allow any HTMLElement props for each the
  * default elements in the "auto-component" logic.
  */
-class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P> & P> {
-  // The line above is pretty ugly and should be fixed/changed at some point. It was an attempt
-  // at getting correct typing when using the `component` prop, but it is all worthless now since
-  // I'm not sure how to add type generics for a forwarded ref.
+class Text extends React.Component<ITextProps> {
   public static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
@@ -172,7 +161,7 @@ class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P
 
   public render() {
     const { className: propClassName, component, type, children, forwardedRef, ...props } = this
-      .props as TextWithDefaultProps<DefaultTextProps>;
+      .props as TextWithDefaultProps;
 
     const className = cn(`rmd-typography rmd-typography--${type}`, propClassName);
     if (typeof children === "function") {
@@ -192,7 +181,7 @@ class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P
    * attempt to render as the provided `component` or some auto-logic for determine what html tag
    * should be used for styling. All fallbacks will be to place the children in a span element.
    */
-  private getComponent = (component: React.ReactType<P> | null, type: TextTypes) => {
+  private getComponent = (component: React.ReactType | null, type: TextTypes) => {
     if (component) {
       return component;
     }
@@ -225,7 +214,6 @@ class Text<P extends {} = DefaultTextProps> extends React.Component<ITextProps<P
   };
 }
 
-export default React.forwardRef<
-  DefaultTextElement,
-  ITextProps<DefaultTextProps> & DefaultTextProps
->((props, ref) => <Text {...props} forwardedRef={ref} />);
+export default React.forwardRef<TextElement, ITextProps>((props, ref) => (
+  <Text {...props} forwardedRef={ref} />
+));
