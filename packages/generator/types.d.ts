@@ -18,12 +18,16 @@ export type DocumentedGeneric = {
   description: string;
 };
 
+export type InheritedProps = {
+  [key: string]: string[];
+};
+
 export type DocumentedProps = {
   name: string;
   description: string;
   generics: DocumentedGeneric[];
   declared: DocumentedProp[];
-  inherited: DocumentedProp[];
+  inherited: InheritedProps;
 };
 
 export type DocumentedSource = {
