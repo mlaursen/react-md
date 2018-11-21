@@ -4,7 +4,6 @@ import now from "performance-now";
 import prettyMS from "pretty-ms";
 
 import typedoc from "./typedoc";
-import { ITypeDocConfig } from "./types.d";
 
 async function run(promise: Promise<any>, commandName: string) {
   console.log(`Starting ${commandName}...`);
@@ -21,13 +20,23 @@ commander
       "removed once completed"
   )
   .option(
-    "--no-combine",
-    "Updates the command so that all the typedocs are not recompiled and combined"
+    "-a",
+    "Updates the command so that all packages have typedoc generated instead of a single one."
   )
   .option(
-    "--strict",
-    "Updates the command to throw errors and crash when undocumented code is found"
+    "-p [name]",
+    "Updates the command to only include the provided package instead using the current working " +
+      "directory or all packages"
   )
-  .action((_, config: ITypeDocConfig) => run(typedoc(config), "typedoc"));
+  .action((_, program: any) => {
+    const clean: boolean = program.clean;
+    const all: boolean = program.A === true;
+    let packageName: string = "";
+    if (typeof program.P === "string") {
+      packageName = program.P;
+    }
+
+    run(typedoc({ clean, all, packageName }), "typedoc");
+  });
 
 commander.parse(process.argv);

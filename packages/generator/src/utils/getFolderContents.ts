@@ -1,5 +1,4 @@
-import * as fs from "fs-extra";
-import * as cpx from "cpx";
+import fs from "fs-extra";
 
 export function getFolderContents(
   folderPath: string,
@@ -14,10 +13,4 @@ export function getFolderContents(
       }
     });
   });
-}
-
-export type AsyncFilterFunction<T> = (item: T, index?: number, list?: T[]) => Promise<boolean>;
-
-export function filterAsync<T>(list: T[], filterFn: AsyncFilterFunction<T>): Promise<T[]> {
-  return Promise.all(list.map(filterFn)).then(booleans => list.filter((_, i) => booleans[i]));
 }

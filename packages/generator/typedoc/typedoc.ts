@@ -165,13 +165,4 @@ export default async function typedoc(config: ITypeDocConfig) {
   );
 
   console.log("Done!\n");
-
-  console.log("Creating base attributes documentation...");
-  const additionalPaths: string[] = [];
-  additionalPaths.push(path.join(TYPES_DIR, "index.d.ts"));
-  const project2 = compileProject(additionalPaths);
-  const attrs = project2.findReflectionByName("HTMLAttributes");
-  const attrs2 = project2.findReflectionByName("React.HTMLAttributes");
-  console.log("attrs:", attrs.toObject());
-  // console.log("attrs2:", attrs2);
 }

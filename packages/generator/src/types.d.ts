@@ -1,63 +1,52 @@
-import * as TypeDoc from "typedoc";
-
 export interface ICleanableCommand {
   clean: boolean;
 }
 
-export interface ITypeDocConfig extends ICleanableCommand {
-  combine: boolean;
-  strict?: boolean;
+export interface ITypedocConfig extends ICleanableCommand {
+  all: boolean;
+  packageName: string;
 }
 
-export interface IDeclarationGeneric {
+export type DocumentedType = {
   name: string;
-  comment: string;
-}
+  description: string;
+  value: string;
+};
 
-// export interface IDeclarationReflection extends TypeDoc.DeclarationReflection {
-//   // it is typeParameters from declaration files, but typeParameter in json output
-//   typeParameter?: TypeDoc.TypeParameterReflection[];
-// }
+export type DocumentedPropType = string | { name: string };
+export type DocumentedProp = {
+  name: string;
+  type: DocumentedPropType;
+  defaultValue: string;
+  description: string;
+};
 
-// /////////////////////////////////////////////
-// // custom stuff for documentation
-// export interface ICommentable {
-//   text?: string;
-//   shortText?: string;
-// }
-// export type Comment = string | ICommentable;
+export type DocumentedGeneric = {
+  name: string;
+  description: string;
+};
 
-// export interface IStringUnionType {
-//   type: "stringLiteral";
-//   value: string;
-// }
+export type InheritedProps = {
+  [key: string]: string[];
+};
 
-// export type UnionTypeList = IStringUnionType[];
+export type DocumentedProps = {
+  name: string;
+  description: string;
+  generics: DocumentedGeneric[];
+  declared: DocumentedProp[];
+  inherited: InheritedProps;
+};
 
-// export interface IUnionType {
-//   type: "union";
-//   types: UnionTypeList;
-// }
+export type DocumentedSource = {
+  line: number;
+  path: string;
+};
 
-// export interface ITypeReference {
-//   type: "reference";
-//   name: string;
-
-//   id?: number;
-//   typeArguments?: { type: "typeParameter"; name: string; comment?: ICommentable };
-// }
-// export type IntersectionTypeList = ITypeReference[];
-
-// export interface IIntersectionType {
-//   type: "intersection";
-//   types: IntersectionTypeList;
-// }
-
-// export interface ITypeDefinition {
-//   name: string;
-//   comment?: ICommentable;
-//   type: IUnionType;
-
-//   // for generics
-//   typeParameter?: TypeDoc.TypeParameterReflection[];
-// }
+export type DocumentedComponent = {
+  name: string;
+  description: string;
+  source: DocumentedSource;
+  props: DocumentedProps;
+  generics: DocumentedGeneric[];
+};
