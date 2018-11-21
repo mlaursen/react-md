@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LayersFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>layers</FontIcon>;
+const LayersFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>layers</FontIcon>;
 
 export default LayersFontIcon;

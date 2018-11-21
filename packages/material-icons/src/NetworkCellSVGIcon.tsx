@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const NetworkCellSVGIcon: React.SFC<ISVGIconProps> = props => (
+const NetworkCellSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path fillOpacity=".3" d="M2 22h20V2z" />
     <path d="M17 7L2 22h15z" />

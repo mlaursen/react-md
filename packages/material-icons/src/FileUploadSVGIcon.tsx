@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const FileUploadSVGIcon: React.SFC<ISVGIconProps> = props => (
+const FileUploadSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
   </SVGIcon>

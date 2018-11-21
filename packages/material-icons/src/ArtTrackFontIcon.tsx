@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArtTrackFontIcon: React.SFC<IFontIconProps> = props => (
+const ArtTrackFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>art_track</FontIcon>
 );
 

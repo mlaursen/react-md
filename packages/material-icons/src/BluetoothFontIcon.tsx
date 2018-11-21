@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BluetoothFontIcon: React.SFC<IFontIconProps> = props => (
+const BluetoothFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>bluetooth</FontIcon>
 );
 

@@ -10,7 +10,7 @@ import { Button, IButtonProps, IButtonDefaultProps } from "@react-md/button";
  *
  * @sfc IButtonProps
  */
-const AppBarNav: React.SFC<IButtonProps> = ({ className, ...props }) => (
+const AppBarNav: React.FunctionComponent<IButtonProps> = ({ className, ...props }) => (
   <Button className={cn("rmd-app-bar__nav", className)} {...props} />
 );
 

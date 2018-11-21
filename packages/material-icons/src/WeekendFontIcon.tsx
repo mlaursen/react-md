@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WeekendFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>weekend</FontIcon>;
+const WeekendFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>weekend</FontIcon>;
 
 export default WeekendFontIcon;

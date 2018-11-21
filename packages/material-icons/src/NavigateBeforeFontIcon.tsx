@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NavigateBeforeFontIcon: React.SFC<IFontIconProps> = props => (
+const NavigateBeforeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>navigate_before</FontIcon>
 );
 

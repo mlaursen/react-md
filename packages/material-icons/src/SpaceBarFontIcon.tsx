@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SpaceBarFontIcon: React.SFC<IFontIconProps> = props => (
+const SpaceBarFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>space_bar</FontIcon>
 );
 

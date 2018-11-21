@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BeachAccessFontIcon: React.SFC<IFontIconProps> = props => (
+const BeachAccessFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>beach_access</FontIcon>
 );
 

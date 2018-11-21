@@ -13,7 +13,7 @@ export interface IExampleProps {
   contentClassName?: string;
 }
 
-const Example: React.SFC<IExampleProps> = ({
+const Example: React.FunctionComponent<IExampleProps> = ({
   title,
   children,
   className,

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WatchLaterFontIcon: React.SFC<IFontIconProps> = props => (
+const WatchLaterFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>watch_later</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WbCloudyFontIcon: React.SFC<IFontIconProps> = props => (
+const WbCloudyFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>wb_cloudy</FontIcon>
 );
 

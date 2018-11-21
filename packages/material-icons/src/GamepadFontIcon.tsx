@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GamepadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>gamepad</FontIcon>;
+const GamepadFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>gamepad</FontIcon>;
 
 export default GamepadFontIcon;

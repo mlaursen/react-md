@@ -38,7 +38,7 @@ export type TreeGroupWithDefaultProps = ITreeGroupProps & ITreeGroupDefaultProps
  * prop is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view
  * and will fully unrender when the `expanded` prop is `false`.
  */
-const TreeGroup: React.SFC<ITreeGroupProps> = providedProps => {
+const TreeGroup: React.FunctionComponent<ITreeGroupProps> = providedProps => {
   const {
     style,
     className,

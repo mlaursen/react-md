@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsInputHdmiFontIcon: React.SFC<IFontIconProps> = props => (
+const SettingsInputHdmiFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>settings_input_hdmi</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsEthernetFontIcon: React.SFC<IFontIconProps> = props => (
+const SettingsEthernetFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>settings_ethernet</FontIcon>
 );
 

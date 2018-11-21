@@ -48,7 +48,7 @@ export type TreeItemContentWithDefaultProps = ITreeItemContentProps &
  * same props. It is used to layout the contents within a `TreeItem` so that is it separated from
  * the `TreeGroup` and has the different focus states and icon alignments.
  */
-const TreeItemContent: React.SFC<ITreeItemContentProps> = providedProps => {
+const TreeItemContent: React.FunctionComponent<ITreeItemContentProps> = providedProps => {
   const {
     className: propClassName,
     onMouseDown,

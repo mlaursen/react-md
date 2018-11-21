@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsCellFontIcon: React.SFC<IFontIconProps> = props => (
+const SettingsCellFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>settings_cell</FontIcon>
 );
 

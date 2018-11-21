@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PlayCircleOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const PlayCircleOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>play_circle_outline</FontIcon>
 );
 

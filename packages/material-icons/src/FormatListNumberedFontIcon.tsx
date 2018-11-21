@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatListNumberedFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatListNumberedFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_list_numbered</FontIcon>
 );
 

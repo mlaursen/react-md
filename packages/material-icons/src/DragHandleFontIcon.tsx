@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DragHandleFontIcon: React.SFC<IFontIconProps> = props => (
+const DragHandleFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>drag_handle</FontIcon>
 );
 

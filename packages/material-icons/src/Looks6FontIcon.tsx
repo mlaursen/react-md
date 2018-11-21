@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const Looks6FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>looks_6</FontIcon>;
+const Looks6FontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>looks_6</FontIcon>;
 
 export default Looks6FontIcon;

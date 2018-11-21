@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FlashOffFontIcon: React.SFC<IFontIconProps> = props => (
+const FlashOffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>flash_off</FontIcon>
 );
 

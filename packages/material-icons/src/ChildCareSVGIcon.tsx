@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const ChildCareSVGIcon: React.SFC<ISVGIconProps> = props => (
+const ChildCareSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <circle cx="14.5" cy="10.5" r="1.25" />
     <circle cx="9.5" cy="10.5" r="1.25" />

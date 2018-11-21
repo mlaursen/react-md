@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const OndemandVideoFontIcon: React.SFC<IFontIconProps> = props => (
+const OndemandVideoFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>ondemand_video</FontIcon>
 );
 

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TabFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>tab</FontIcon>;
+const TabFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>tab</FontIcon>;
 
 export default TabFontIcon;

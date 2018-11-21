@@ -10,7 +10,7 @@ export interface IExamplesProps {
   examples?: ISassDocExample[];
 }
 
-const Examples: React.SFC<IExamplesProps> = ({ sassdocId, examples }) => {
+const Examples: React.FunctionComponent<IExamplesProps> = ({ sassdocId, examples }) => {
   if (!examples || !examples.length) {
     return null;
   }

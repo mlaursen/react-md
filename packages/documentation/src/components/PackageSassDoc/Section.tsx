@@ -33,7 +33,7 @@ ${code}
 \`\`\``;
 }
 
-const Section: React.SFC<ISectionProps> = ({ sassdoc, type }) => {
+const Section: React.FunctionComponent<ISectionProps> = ({ sassdoc, type }) => {
   const {
     type: sassdocType,
     name,

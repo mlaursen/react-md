@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ConfirmationNumberFontIcon: React.SFC<IFontIconProps> = props => (
+const ConfirmationNumberFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>confirmation_number</FontIcon>
 );
 

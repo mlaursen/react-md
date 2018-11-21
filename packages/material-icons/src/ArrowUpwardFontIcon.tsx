@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArrowUpwardFontIcon: React.SFC<IFontIconProps> = props => (
+const ArrowUpwardFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>arrow_upward</FontIcon>
 );
 

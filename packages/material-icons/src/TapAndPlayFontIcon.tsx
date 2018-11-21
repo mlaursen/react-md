@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TapAndPlayFontIcon: React.SFC<IFontIconProps> = props => (
+const TapAndPlayFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>tap_and_play</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatUnderlinedFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatUnderlinedFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_underlined</FontIcon>
 );
 

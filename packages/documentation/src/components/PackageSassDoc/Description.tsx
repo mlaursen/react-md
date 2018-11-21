@@ -8,7 +8,7 @@ export interface IDescriptionProps {
   children: string;
 }
 
-const Description: React.SFC<IDescriptionProps> = ({ children }) => {
+const Description: React.FunctionComponent<IDescriptionProps> = ({ children }) => {
   if (!children) {
     return null;
   }

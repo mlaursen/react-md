@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PermScanWifiFontIcon: React.SFC<IFontIconProps> = props => (
+const PermScanWifiFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>perm_scan_wifi</FontIcon>
 );
 

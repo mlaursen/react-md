@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LineStyleFontIcon: React.SFC<IFontIconProps> = props => (
+const LineStyleFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>line_style</FontIcon>
 );
 

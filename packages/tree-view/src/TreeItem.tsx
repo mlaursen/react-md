@@ -60,7 +60,7 @@ export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
  * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
  * of this one.
  */
-const TreeItem: React.SFC<ITreeItemProps> = providedProps => {
+const TreeItem: React.FunctionComponent<ITreeItemProps> = providedProps => {
   const {
     className,
     selected,

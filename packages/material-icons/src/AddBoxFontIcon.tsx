@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AddBoxFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>add_box</FontIcon>;
+const AddBoxFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>add_box</FontIcon>;
 
 export default AddBoxFontIcon;

@@ -8,7 +8,7 @@ const Changelog = Loadable(() => import("./Changelog"));
 
 const Examples = Loadable(() => import("./Examples"));
 const A11yPropTypes = Loadable(() => import("./A11yPropTypes"));
-const A11y: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const A11y: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

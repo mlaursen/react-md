@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const InsertChartFontIcon: React.SFC<IFontIconProps> = props => (
+const InsertChartFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>insert_chart</FontIcon>
 );
 

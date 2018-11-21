@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BorderTopFontIcon: React.SFC<IFontIconProps> = props => (
+const BorderTopFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>border_top</FontIcon>
 );
 

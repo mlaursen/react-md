@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SelectAllFontIcon: React.SFC<IFontIconProps> = props => (
+const SelectAllFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>select_all</FontIcon>
 );
 

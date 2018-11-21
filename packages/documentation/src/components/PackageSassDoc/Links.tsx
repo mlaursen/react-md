@@ -8,7 +8,7 @@ export interface ILinksProps {
   links: ILink[];
 }
 
-const Links: React.SFC<ILinksProps> = ({ links }) => {
+const Links: React.FunctionComponent<ILinksProps> = ({ links }) => {
   if (!links.length) {
     return null;
   }

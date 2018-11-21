@@ -34,7 +34,7 @@ ${links}
   `;
 }
 
-const TableOfContents: React.SFC<ITableOfContentsProps> = ({ interfaces, types }) => {
+const TableOfContents: React.FunctionComponent<ITableOfContentsProps> = ({ interfaces, types }) => {
   const markdown = `## Table of Contents
 ${[createLinks(interfaces, "Interfaces"), createLinks(types, "Types")].filter(Boolean).join("\n")}`;
 

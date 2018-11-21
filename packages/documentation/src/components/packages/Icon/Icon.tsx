@@ -10,7 +10,7 @@ const IconPropTypes = Loadable(() => import("./IconPropTypes"));
 const IconSassDoc = Loadable(() => import("./IconSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Icon: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Icon: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

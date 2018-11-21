@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChatBubbleOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const ChatBubbleOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>chat_bubble_outline</FontIcon>
 );
 

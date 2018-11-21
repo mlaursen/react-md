@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FastForwardFontIcon: React.SFC<IFontIconProps> = props => (
+const FastForwardFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>fast_forward</FontIcon>
 );
 

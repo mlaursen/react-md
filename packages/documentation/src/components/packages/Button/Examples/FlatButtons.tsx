@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { ChatBubbleOutlineFontIcon, ChatBubbleOutlineSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
-const FlatButtons: React.SFC<any> = () => (
+const FlatButtons: React.FunctionComponent<any> = () => (
   <React.Fragment>
     <Text type="headline-6">Theme Examples</Text>
     <Button id="flat-button-1" className="example-group__example">

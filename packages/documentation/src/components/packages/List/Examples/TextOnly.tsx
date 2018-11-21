@@ -1,7 +1,7 @@
 import * as React from "react";
 import { List, ListItem } from "@react-md/list";
 
-const TextOnly: React.SFC<{}> = () => (
+const TextOnly: React.FunctionComponent<{}> = () => (
   <List>
     <ListItem>Item 1</ListItem>
     <ListItem>Item 2</ListItem>

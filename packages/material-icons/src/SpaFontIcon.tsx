@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SpaFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>spa</FontIcon>;
+const SpaFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>spa</FontIcon>;
 
 export default SpaFontIcon;

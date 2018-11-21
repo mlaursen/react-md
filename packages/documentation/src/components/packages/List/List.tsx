@@ -10,7 +10,7 @@ const ListPropTypes = Loadable(() => import("./ListPropTypes"));
 const ListSassDoc = Loadable(() => import("./ListSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const List: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const List: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

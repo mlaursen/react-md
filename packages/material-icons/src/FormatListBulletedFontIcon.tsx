@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatListBulletedFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatListBulletedFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_list_bulleted</FontIcon>
 );
 

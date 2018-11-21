@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PlaylistAddCheckFontIcon: React.SFC<IFontIconProps> = props => (
+const PlaylistAddCheckFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>playlist_add_check</FontIcon>
 );
 

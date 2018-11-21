@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GroupAddFontIcon: React.SFC<IFontIconProps> = props => (
+const GroupAddFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>group_add</FontIcon>
 );
 

@@ -83,7 +83,7 @@ const NavigationItemWrapper = styled.li`
   margin-left: 1.5rem;
 `;
 
-const NavigationItem: React.SFC<{ children: React.ReactNode; to: string }> = ({ children, to }) => (
+const NavigationItem: React.FunctionComponent<{ children: React.ReactNode; to: string }> = ({ children, to }) => (
   <NavigationItemWrapper>
     <Link component={RouterLink} to={to}>
       {children}
@@ -91,7 +91,7 @@ const NavigationItem: React.SFC<{ children: React.ReactNode; to: string }> = ({ 
   </NavigationItemWrapper>
 );
 
-const InterfaceItem: React.SFC<{ children: React.ReactNode }> = ({ children }) => (
+const InterfaceItem: React.FunctionComponent<{ children: React.ReactNode }> = ({ children }) => (
   <li>
     <Text type="subtitle-1" component="span">
       {children}

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BrightnessLowFontIcon: React.SFC<IFontIconProps> = props => (
+const BrightnessLowFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>brightness_low</FontIcon>
 );
 

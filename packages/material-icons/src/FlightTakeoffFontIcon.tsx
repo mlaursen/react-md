@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FlightTakeoffFontIcon: React.SFC<IFontIconProps> = props => (
+const FlightTakeoffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>flight_takeoff</FontIcon>
 );
 

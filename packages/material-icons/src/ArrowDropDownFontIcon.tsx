@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArrowDropDownFontIcon: React.SFC<IFontIconProps> = props => (
+const ArrowDropDownFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>arrow_drop_down</FontIcon>
 );
 

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PoolFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>pool</FontIcon>;
+const PoolFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>pool</FontIcon>;
 
 export default PoolFontIcon;

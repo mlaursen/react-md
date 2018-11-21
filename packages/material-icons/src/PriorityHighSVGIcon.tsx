@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const PriorityHighSVGIcon: React.SFC<ISVGIconProps> = props => (
+const PriorityHighSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <circle cx="12" cy="19" r="2" />
     <path d="M10 3h4v12h-4z" />

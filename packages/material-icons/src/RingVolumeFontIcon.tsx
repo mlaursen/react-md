@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RingVolumeFontIcon: React.SFC<IFontIconProps> = props => (
+const RingVolumeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>ring_volume</FontIcon>
 );
 

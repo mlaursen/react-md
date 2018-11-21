@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const QueueFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>queue</FontIcon>;
+const QueueFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>queue</FontIcon>;
 
 export default QueueFontIcon;

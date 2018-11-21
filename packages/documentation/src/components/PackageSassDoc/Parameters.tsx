@@ -9,7 +9,7 @@ export interface IParametersProps {
   parameters?: SassDoc.IParameter[];
 }
 
-const Parameters: React.SFC<IParametersProps> = ({ parameters }) => {
+const Parameters: React.FunctionComponent<IParametersProps> = ({ parameters }) => {
   if (!parameters || !parameters.length) {
     return null;
   }

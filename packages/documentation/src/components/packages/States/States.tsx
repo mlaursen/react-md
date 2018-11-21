@@ -10,7 +10,7 @@ const StatesPropTypes = Loadable(() => import("./StatesPropTypes"));
 const StatesSassDoc = Loadable(() => import("./StatesSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const States: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const States: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

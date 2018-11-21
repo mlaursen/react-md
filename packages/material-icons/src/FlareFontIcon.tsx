@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FlareFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>flare</FontIcon>;
+const FlareFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>flare</FontIcon>;
 
 export default FlareFontIcon;

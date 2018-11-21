@@ -10,7 +10,7 @@ const TooltipPropTypes = Loadable(() => import("./TooltipPropTypes"));
 const TooltipSassDoc = Loadable(() => import("./TooltipSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Tooltip: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Tooltip: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

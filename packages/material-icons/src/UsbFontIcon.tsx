@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const UsbFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>usb</FontIcon>;
+const UsbFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>usb</FontIcon>;
 
 export default UsbFontIcon;

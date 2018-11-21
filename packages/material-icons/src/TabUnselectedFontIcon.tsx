@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TabUnselectedFontIcon: React.SFC<IFontIconProps> = props => (
+const TabUnselectedFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>tab_unselected</FontIcon>
 );
 

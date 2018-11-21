@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const FlashOnSVGIcon: React.SFC<ISVGIconProps> = props => (
+const FlashOnSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M7 2v11h3v9l7-12h-4l4-8z" />
   </SVGIcon>

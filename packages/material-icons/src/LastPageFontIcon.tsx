@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LastPageFontIcon: React.SFC<IFontIconProps> = props => (
+const LastPageFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>last_page</FontIcon>
 );
 

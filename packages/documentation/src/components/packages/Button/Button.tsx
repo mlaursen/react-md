@@ -10,7 +10,7 @@ const ButtonPropTypes = Loadable(() => import("./ButtonPropTypes"));
 const ButtonSassDoc = Loadable(() => import("./ButtonSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Button: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Button: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

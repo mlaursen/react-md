@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatTextdirectionRToLFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatTextdirectionRToLFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_textdirection_r_to_l</FontIcon>
 );
 

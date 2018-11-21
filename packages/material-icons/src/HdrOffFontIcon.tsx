@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HdrOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>hdr_off</FontIcon>;
+const HdrOffFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>hdr_off</FontIcon>;
 
 export default HdrOffFontIcon;

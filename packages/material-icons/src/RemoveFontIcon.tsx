@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RemoveFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>remove</FontIcon>;
+const RemoveFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>remove</FontIcon>;
 
 export default RemoveFontIcon;

@@ -6,7 +6,7 @@ import "./not-found.scss";
 
 const svg = require("./404.svg");
 
-const NotFound: React.SFC<Router.RouteComponentProps<void>> = () => (
+const NotFound: React.FunctionComponent<Router.RouteComponentProps<void>> = () => (
   <div className="not-found">
     <div dangerouslySetInnerHTML={{ __html: svg }} />
     <Text type="headline-2" component="h4" className="not-found__uhhh">

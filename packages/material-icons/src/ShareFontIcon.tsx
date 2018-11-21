@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ShareFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>share</FontIcon>;
+const ShareFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>share</FontIcon>;
 
 export default ShareFontIcon;

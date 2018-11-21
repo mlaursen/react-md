@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const FiberManualRecordSVGIcon: React.SFC<ISVGIconProps> = props => (
+const FiberManualRecordSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <circle fill="#010101" cx="12" cy="12" r="8" />
   </SVGIcon>

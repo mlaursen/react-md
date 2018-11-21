@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ScreenLockPortraitFontIcon: React.SFC<IFontIconProps> = props => (
+const ScreenLockPortraitFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>screen_lock_portrait</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const QueryBuilderFontIcon: React.SFC<IFontIconProps> = props => (
+const QueryBuilderFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>query_builder</FontIcon>
 );
 

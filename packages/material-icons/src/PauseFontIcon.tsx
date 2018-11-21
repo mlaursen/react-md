@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PauseFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>pause</FontIcon>;
+const PauseFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>pause</FontIcon>;
 
 export default PauseFontIcon;

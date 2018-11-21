@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HotTubFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>hot_tub</FontIcon>;
+const HotTubFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>hot_tub</FontIcon>;
 
 export default HotTubFontIcon;

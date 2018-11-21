@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const InvertColorsFontIcon: React.SFC<IFontIconProps> = props => (
+const InvertColorsFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>invert_colors</FontIcon>
 );
 

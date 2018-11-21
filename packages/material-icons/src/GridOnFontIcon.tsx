@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GridOnFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>grid_on</FontIcon>;
+const GridOnFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>grid_on</FontIcon>;
 
 export default GridOnFontIcon;

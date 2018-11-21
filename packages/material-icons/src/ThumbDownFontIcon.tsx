@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ThumbDownFontIcon: React.SFC<IFontIconProps> = props => (
+const ThumbDownFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>thumb_down</FontIcon>
 );
 

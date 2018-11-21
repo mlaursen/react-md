@@ -3,7 +3,7 @@ import * as React from "react";
 import { Consumer } from "./StatesContext";
 import { default as StatesConsumer, IStatesConsumerBaseProps } from "./StatesConsumer";
 
-const StatesConsumerWrapper: React.SFC<IStatesConsumerBaseProps> = props => (
+const StatesConsumerWrapper: React.FunctionComponent<IStatesConsumerBaseProps> = props => (
   <Consumer>{context => <StatesConsumer {...context} {...props} />}</Consumer>
 );
 

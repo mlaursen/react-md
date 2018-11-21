@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RouterFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>router</FontIcon>;
+const RouterFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>router</FontIcon>;
 
 export default RouterFontIcon;

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FilterBAndWFontIcon: React.SFC<IFontIconProps> = props => (
+const FilterBAndWFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>filter_b_and_w</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MoveToInboxFontIcon: React.SFC<IFontIconProps> = props => (
+const MoveToInboxFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>move_to_inbox</FontIcon>
 );
 

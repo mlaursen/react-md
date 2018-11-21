@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DnsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>dns</FontIcon>;
+const DnsFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>dns</FontIcon>;
 
 export default DnsFontIcon;

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const TrendingFlatSVGIcon: React.SFC<ISVGIconProps> = props => (
+const TrendingFlatSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M22 12l-4-4v3H3v2h15v3z" />
   </SVGIcon>

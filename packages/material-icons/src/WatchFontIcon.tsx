@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WatchFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>watch</FontIcon>;
+const WatchFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>watch</FontIcon>;
 
 export default WatchFontIcon;

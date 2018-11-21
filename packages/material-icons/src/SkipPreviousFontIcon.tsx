@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SkipPreviousFontIcon: React.SFC<IFontIconProps> = props => (
+const SkipPreviousFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>skip_previous</FontIcon>
 );
 

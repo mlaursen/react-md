@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LightbulbOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const LightbulbOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>lightbulb_outline</FontIcon>
 );
 

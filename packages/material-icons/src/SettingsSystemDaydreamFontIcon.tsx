@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsSystemDaydreamFontIcon: React.SFC<IFontIconProps> = props => (
+const SettingsSystemDaydreamFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>settings_system_daydream</FontIcon>
 );
 

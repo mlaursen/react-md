@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LockOpenFontIcon: React.SFC<IFontIconProps> = props => (
+const LockOpenFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>lock_open</FontIcon>
 );
 

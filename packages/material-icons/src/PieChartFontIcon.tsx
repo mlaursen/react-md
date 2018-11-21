@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PieChartFontIcon: React.SFC<IFontIconProps> = props => (
+const PieChartFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>pie_chart</FontIcon>
 );
 

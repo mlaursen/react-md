@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AttachFileFontIcon: React.SFC<IFontIconProps> = props => (
+const AttachFileFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>attach_file</FontIcon>
 );
 

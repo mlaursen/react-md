@@ -8,7 +8,7 @@ export interface IBannerSourceProps {
   sourceLine: number;
 }
 
-const BannerSource: React.SFC<IBannerSourceProps> = ({ source, sourceLine }) => {
+const BannerSource: React.FunctionComponent<IBannerSourceProps> = ({ source, sourceLine }) => {
   const fullSource = `${SOURCE_PREFIX}${source}#L${sourceLine}`;
   let content: React.ReactNode = fullSource;
   if (window.matchMedia("max-width: 600px").matches) {

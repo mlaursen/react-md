@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ChromeReaderModeFontIcon: React.SFC<IFontIconProps> = props => (
+const ChromeReaderModeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>chrome_reader_mode</FontIcon>
 );
 

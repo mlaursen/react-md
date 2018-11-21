@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AspectRatioFontIcon: React.SFC<IFontIconProps> = props => (
+const AspectRatioFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>aspect_ratio</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ColorizeFontIcon: React.SFC<IFontIconProps> = props => (
+const ColorizeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>colorize</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatIndentDecreaseFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatIndentDecreaseFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_indent_decrease</FontIcon>
 );
 

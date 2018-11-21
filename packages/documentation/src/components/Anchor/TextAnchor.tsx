@@ -9,7 +9,7 @@ export type ITextAnchorProps = ITextProps & IAnchorProps & {
   linkClassName?: string;
 }
 
-const TextAnchor: React.SFC<ITextAnchorProps> = ({
+const TextAnchor: React.FunctionComponent<ITextAnchorProps> = ({
   id: propId,
   title,
   className,

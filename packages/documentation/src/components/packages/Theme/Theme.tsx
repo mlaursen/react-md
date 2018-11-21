@@ -9,7 +9,7 @@ const Examples = Loadable(() => import("./Examples"));
 const ThemeSassDoc = Loadable(() => import("./ThemeSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Theme: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Theme: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

@@ -8,7 +8,7 @@ export interface IThrowsProps {
   throws?: Throw;
 }
 
-const Throws: React.SFC<IThrowsProps> = ({ throws }) => {
+const Throws: React.FunctionComponent<IThrowsProps> = ({ throws }) => {
   if (!throws || !throws.length) {
     return null;
   }

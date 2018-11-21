@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MonochromePhotosFontIcon: React.SFC<IFontIconProps> = props => (
+const MonochromePhotosFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>monochrome_photos</FontIcon>
 );
 

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ZoomInFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>zoom_in</FontIcon>;
+const ZoomInFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>zoom_in</FontIcon>;
 
 export default ZoomInFontIcon;

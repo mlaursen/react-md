@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GavelFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>gavel</FontIcon>;
+const GavelFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>gavel</FontIcon>;
 
 export default GavelFontIcon;

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CheckCircleFontIcon: React.SFC<IFontIconProps> = props => (
+const CheckCircleFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>check_circle</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FullscreenExitFontIcon: React.SFC<IFontIconProps> = props => (
+const FullscreenExitFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>fullscreen_exit</FontIcon>
 );
 

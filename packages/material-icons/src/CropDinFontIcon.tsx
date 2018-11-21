@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CropDinFontIcon: React.SFC<IFontIconProps> = props => (
+const CropDinFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>crop_din</FontIcon>
 );
 

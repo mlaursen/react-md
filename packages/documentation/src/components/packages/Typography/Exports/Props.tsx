@@ -15,7 +15,7 @@ export interface IPropsProps {
   component: IDocumentedComponent;
 }
 
-const Props: React.SFC<IPropsProps> = ({ file, component }) => {
+const Props: React.FunctionComponent<IPropsProps> = ({ file, component }) => {
   const componentReferences = uniq(
     flatten(component.typeParameters.map(({ typeReferences }) => typeReferences))
   );

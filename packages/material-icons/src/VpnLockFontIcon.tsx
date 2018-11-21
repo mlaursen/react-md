@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VpnLockFontIcon: React.SFC<IFontIconProps> = props => (
+const VpnLockFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>vpn_lock</FontIcon>
 );
 

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PaletteFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>palette</FontIcon>;
+const PaletteFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>palette</FontIcon>;
 
 export default PaletteFontIcon;

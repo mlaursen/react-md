@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { ChatBubbleOutlineFontIcon, ChatBubbleOutlineSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
-const ContainedButtons: React.SFC<any> = () => (
+const ContainedButtons: React.FunctionComponent<any> = () => (
   <React.Fragment>
     <Text type="headline-6">Theme Examples</Text>
     <Button id="contained-button-1" className="example-group__example" themeType="contained">

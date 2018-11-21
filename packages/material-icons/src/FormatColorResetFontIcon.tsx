@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatColorResetFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatColorResetFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_color_reset</FontIcon>
 );
 

@@ -9,7 +9,7 @@ import {
 } from "components/Exports/types.d";
 import { Markdown } from "components/Markdown";
 
-type TablePart = React.SFC<{ className?: string; children: React.ReactNode }>;
+type TablePart = React.FunctionComponent<{ className?: string; children: React.ReactNode }>;
 
 const Header: TablePart = ({ children }) => (
   <th className="prop-table__cell prop-table__cell--header">{children}</th>

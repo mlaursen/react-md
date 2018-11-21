@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewCarouselFontIcon: React.SFC<IFontIconProps> = props => (
+const ViewCarouselFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>view_carousel</FontIcon>
 );
 

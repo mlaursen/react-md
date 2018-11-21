@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const BubbleChartSVGIcon: React.SFC<ISVGIconProps> = props => (
+const BubbleChartSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <circle cx="7.2" cy="14.4" r="3.2" />
     <circle cx="14.8" cy="18" r="2" />

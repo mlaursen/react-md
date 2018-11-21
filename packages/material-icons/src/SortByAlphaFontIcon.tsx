@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SortByAlphaFontIcon: React.SFC<IFontIconProps> = props => (
+const SortByAlphaFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>sort_by_alpha</FontIcon>
 );
 

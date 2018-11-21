@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BurstModeFontIcon: React.SFC<IFontIconProps> = props => (
+const BurstModeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>burst_mode</FontIcon>
 );
 

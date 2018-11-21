@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GradeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>grade</FontIcon>;
+const GradeFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>grade</FontIcon>;
 
 export default GradeFontIcon;

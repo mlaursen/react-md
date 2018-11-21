@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const SpaceBarSVGIcon: React.SFC<ISVGIconProps> = props => (
+const SpaceBarSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M18 9v4H6V9H4v6h16V9z" />
   </SVGIcon>

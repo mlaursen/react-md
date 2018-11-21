@@ -4,7 +4,7 @@ import { FontIcon } from "@react-md/icon";
 import { FavoriteSVGIcon, AspectRatioFontIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
-const IconButtons: React.SFC<any> = () => (
+const IconButtons: React.FunctionComponent<any> = () => (
   <React.Fragment>
     <Text type="headline-6">Theme Examples</Text>
     <Button id="icon-button-1" className="example-group__example" btnType="icon">

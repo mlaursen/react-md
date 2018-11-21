@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LayersClearFontIcon: React.SFC<IFontIconProps> = props => (
+const LayersClearFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>layers_clear</FontIcon>
 );
 

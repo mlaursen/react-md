@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const ViewStreamSVGIcon: React.SFC<ISVGIconProps> = props => (
+const ViewStreamSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M4 18h17v-6H4v6zM4 5v6h17V5H4z" />
   </SVGIcon>

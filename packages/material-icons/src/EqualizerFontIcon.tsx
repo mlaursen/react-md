@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const EqualizerFontIcon: React.SFC<IFontIconProps> = props => (
+const EqualizerFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>equalizer</FontIcon>
 );
 

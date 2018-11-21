@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CenterFocusWeakFontIcon: React.SFC<IFontIconProps> = props => (
+const CenterFocusWeakFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>center_focus_weak</FontIcon>
 );
 

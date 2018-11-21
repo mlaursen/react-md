@@ -99,7 +99,7 @@ import * as React from "react";
 
 import { ${iconType}Icon, I${iconType}IconProps } from "@react-md/icon";
 
-const ${componentName}${iconType}Icon: React.SFC<I${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
+const ${componentName}${iconType}Icon: React.FunctionComponent<I${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
 
 export default ${componentName}${iconType}Icon;
 

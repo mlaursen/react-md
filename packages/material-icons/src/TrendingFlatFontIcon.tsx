@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TrendingFlatFontIcon: React.SFC<IFontIconProps> = props => (
+const TrendingFlatFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>trending_flat</FontIcon>
 );
 

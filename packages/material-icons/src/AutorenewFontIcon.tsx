@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AutorenewFontIcon: React.SFC<IFontIconProps> = props => (
+const AutorenewFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>autorenew</FontIcon>
 );
 

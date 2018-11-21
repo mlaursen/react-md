@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const DragHandleSVGIcon: React.SFC<ISVGIconProps> = props => (
+const DragHandleSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M20 9H4v2h16V9zM4 15h16v-2H4v2z" />
   </SVGIcon>

@@ -5,7 +5,7 @@ export interface ITypeProps {
   children?: React.ReactNode;
 }
 
-const Type: React.SFC<ITypeProps> = ({ children }) => {
+const Type: React.FunctionComponent<ITypeProps> = ({ children }) => {
   if (!children) {
     return null;
   }

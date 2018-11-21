@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SettingsOverscanFontIcon: React.SFC<IFontIconProps> = props => (
+const SettingsOverscanFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>settings_overscan</FontIcon>
 );
 

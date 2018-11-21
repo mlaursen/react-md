@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SdCardFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>sd_card</FontIcon>;
+const SdCardFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>sd_card</FontIcon>;
 
 export default SdCardFontIcon;

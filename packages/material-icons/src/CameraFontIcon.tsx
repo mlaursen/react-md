@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CameraFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>camera</FontIcon>;
+const CameraFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>camera</FontIcon>;
 
 export default CameraFontIcon;

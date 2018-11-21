@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TodayFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>today</FontIcon>;
+const TodayFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>today</FontIcon>;
 
 export default TodayFontIcon;

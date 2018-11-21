@@ -11,7 +11,7 @@ export interface IReferenceListProps {
   list?: ISassDocLinkTo[];
 }
 
-const ReferenceList: React.SFC<IReferenceListProps> = ({ children, list, includeDescription }) => {
+const ReferenceList: React.FunctionComponent<IReferenceListProps> = ({ children, list, includeDescription }) => {
   if (!list || !list.length) {
     return null;
   }

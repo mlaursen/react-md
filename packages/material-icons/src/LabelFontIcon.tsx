@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LabelFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>label</FontIcon>;
+const LabelFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>label</FontIcon>;
 
 export default LabelFontIcon;

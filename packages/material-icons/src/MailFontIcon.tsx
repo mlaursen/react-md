@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MailFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>mail</FontIcon>;
+const MailFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>mail</FontIcon>;
 
 export default MailFontIcon;

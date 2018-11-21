@@ -9,7 +9,7 @@ export interface ICellTooltipProps {
   id: string;
 }
 
-const CellTooltip: React.SFC<ICellTooltipProps> = ({ id, style, portal, visible }) => {
+const CellTooltip: React.FunctionComponent<ICellTooltipProps> = ({ id, style, portal, visible }) => {
   if (portal) {
     return (
       <Portal intoId="overflow-portal-example-tooltip-container" visible={visible}>

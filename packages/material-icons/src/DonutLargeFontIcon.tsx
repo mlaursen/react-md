@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DonutLargeFontIcon: React.SFC<IFontIconProps> = props => (
+const DonutLargeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>donut_large</FontIcon>
 );
 

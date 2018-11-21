@@ -4,7 +4,7 @@ import { Text } from "@react-md/typography";
 import { Link } from "@react-md/link";
 import { FontIcon, SVGIcon, TextIconSpacing } from "@react-md/icon";
 
-const TwitterIcon: React.SFC<{ className?: string }> = ({ className }) => (
+const TwitterIcon: React.FunctionComponent<{ className?: string }> = ({ className }) => (
   <SVGIcon
     style={{ fill: "#1DA1F2" }}
     viewBox="0 0 400 400"
@@ -15,7 +15,7 @@ const TwitterIcon: React.SFC<{ className?: string }> = ({ className }) => (
   </SVGIcon>
 );
 
-const SimpleLinks: React.SFC<{}> = () => (
+const SimpleLinks: React.FunctionComponent<{}> = () => (
   <React.Fragment>
     <Text type="headline-6">Direct links</Text>
     <Link className="example-group__example" href="https://google.com">

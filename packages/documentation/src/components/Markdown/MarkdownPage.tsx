@@ -9,7 +9,7 @@ export interface IMarkdownPageProps {
   markdown: string;
 }
 
-const MarkdownPage: React.SFC<IMarkdownPageProps> = ({ className, ...props }) => (
+const MarkdownPage: React.FunctionComponent<IMarkdownPageProps> = ({ className, ...props }) => (
   <Markdown {...props} className={cn("markdown-page rmd-text-container", className)} />
 );
 

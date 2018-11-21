@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RvHookupFontIcon: React.SFC<IFontIconProps> = props => (
+const RvHookupFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>rv_hookup</FontIcon>
 );
 

@@ -13,7 +13,7 @@ interface IBannerWithSource extends IBannerProps {
   sourceLine: number;
 }
 
-const Banner: React.SFC<IBannerProps> = ({ children, className, source, sourceLine, ...props }) => (
+const Banner: React.FunctionComponent<IBannerProps> = ({ children, className, source, sourceLine, ...props }) => (
   <Text {...props} className="documentation-page__banner">
     {children}
     {source && sourceLine && <BannerSource source={source} sourceLine={sourceLine} />}

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HighQualityFontIcon: React.SFC<IFontIconProps> = props => (
+const HighQualityFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>high_quality</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SwapVerticalCircleFontIcon: React.SFC<IFontIconProps> = props => (
+const SwapVerticalCircleFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>swap_vertical_circle</FontIcon>
 );
 

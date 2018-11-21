@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ClosedCaptionFontIcon: React.SFC<IFontIconProps> = props => (
+const ClosedCaptionFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>closed_caption</FontIcon>
 );
 

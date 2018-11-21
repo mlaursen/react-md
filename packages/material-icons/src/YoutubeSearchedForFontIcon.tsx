@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const YoutubeSearchedForFontIcon: React.SFC<IFontIconProps> = props => (
+const YoutubeSearchedForFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>youtube_searched_for</FontIcon>
 );
 

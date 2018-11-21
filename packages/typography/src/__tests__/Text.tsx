@@ -21,7 +21,7 @@ interface ICustomProps {
   className?: string;
 }
 
-const Custom: React.SFC<ICustomProps> = ({ enabled, ...props }) => (
+const Custom: React.FunctionComponent<ICustomProps> = ({ enabled, ...props }) => (
   <div {...props} className={`${props.className} ${enabled}`} />
 );
 interface IClassProps {
@@ -81,7 +81,7 @@ describe("Text", () => {
         forwardedRef?: React.Ref<HTMLDivElement>;
       }
 
-      const CustomDiv: React.SFC<ICustomDivProps> = () => <div />;
+      const CustomDiv: React.FunctionComponent<ICustomDivProps> = () => <div />;
       const CustomRef = React.forwardRef<HTMLDivElement, ICustomProps>((props, ref) => (
         <CustomDiv forwardedRef={ref} {...props} />
       ));

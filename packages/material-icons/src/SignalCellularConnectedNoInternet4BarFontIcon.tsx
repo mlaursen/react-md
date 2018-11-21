@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SignalCellularConnectedNoInternet4BarFontIcon: React.SFC<IFontIconProps> = props => (
+const SignalCellularConnectedNoInternet4BarFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>signal_cellular_connected_no_internet_4_bar</FontIcon>
 );
 

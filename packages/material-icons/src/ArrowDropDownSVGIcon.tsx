@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const ArrowDropDownSVGIcon: React.SFC<ISVGIconProps> = props => (
+const ArrowDropDownSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M7 10l5 5 5-5z" />
   </SVGIcon>

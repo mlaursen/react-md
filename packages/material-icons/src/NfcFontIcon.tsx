@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NfcFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>nfc</FontIcon>;
+const NfcFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>nfc</FontIcon>;
 
 export default NfcFontIcon;

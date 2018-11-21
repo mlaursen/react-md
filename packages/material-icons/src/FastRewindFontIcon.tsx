@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FastRewindFontIcon: React.SFC<IFontIconProps> = props => (
+const FastRewindFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>fast_rewind</FontIcon>
 );
 

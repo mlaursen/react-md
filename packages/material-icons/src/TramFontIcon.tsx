@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TramFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>tram</FontIcon>;
+const TramFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>tram</FontIcon>;
 
 export default TramFontIcon;

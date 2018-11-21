@@ -8,7 +8,7 @@ export interface IDocumentationPageProps {
   children?: React.ReactNode;
 }
 
-const DocumentationPage: React.SFC<IDocumentationPageProps> = ({ className, children }) => (
+const DocumentationPage: React.FunctionComponent<IDocumentationPageProps> = ({ className, children }) => (
   <div className={cn("documentation-page", className)}>{children}</div>
 );
 

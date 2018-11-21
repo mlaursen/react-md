@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DehazeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>dehaze</FontIcon>;
+const DehazeFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>dehaze</FontIcon>;
 
 export default DehazeFontIcon;

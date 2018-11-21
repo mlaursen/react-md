@@ -25,7 +25,7 @@ import "./app.scss";
 import Layout from "./Layout";
 import { routesConfig } from "./routes";
 
-const App: React.SFC<{}> = () => (
+const App: React.FunctionComponent<{}> = () => (
   <StatesProvider>
     <Layout>
       <Switch>

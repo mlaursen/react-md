@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ArchiveFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>archive</FontIcon>;
+const ArchiveFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>archive</FontIcon>;
 
 export default ArchiveFontIcon;

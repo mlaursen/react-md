@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const OfflinePinFontIcon: React.SFC<IFontIconProps> = props => (
+const OfflinePinFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>offline_pin</FontIcon>
 );
 

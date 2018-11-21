@@ -14,7 +14,7 @@ export interface IExamplesPageProps {
   examples: ExampleList;
 }
 
-const ExamplesPage: React.SFC<IExamplesPageProps> = ({ title, description, examples }) => (
+const ExamplesPage: React.FunctionComponent<IExamplesPageProps> = ({ title, description, examples }) => (
   <section className="examples-page">
     <header className="rmd-text-container">
       <Text type="headline-2" className="examples-page__title">

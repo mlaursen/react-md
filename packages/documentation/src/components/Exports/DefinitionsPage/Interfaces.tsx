@@ -11,7 +11,7 @@ export interface IInterfacesProps {
   interfaces: InterfaceOrDefaultProps[];
 }
 
-const TypeParameters: React.SFC<{ typeParameters: ITypeParameter[] }> = ({ typeParameters }) => {
+const TypeParameters: React.FunctionComponent<{ typeParameters: ITypeParameter[] }> = ({ typeParameters }) => {
   if (!typeParameters.length) {
     return null;
   }
@@ -70,7 +70,7 @@ const TypeParameters: React.SFC<{ typeParameters: ITypeParameter[] }> = ({ typeP
   return <code className="definitions-page__type-parameters">{parts}</code>;
 };
 
-const NameWithTypeParameters: React.SFC<{ intf: InterfaceOrDefaultProps }> = ({
+const NameWithTypeParameters: React.FunctionComponent<{ intf: InterfaceOrDefaultProps }> = ({
   intf: { name, typeParameters, typeReferences },
 }) => {
   return (

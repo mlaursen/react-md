@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FiberSmartRecordFontIcon: React.SFC<IFontIconProps> = props => (
+const FiberSmartRecordFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>fiber_smart_record</FontIcon>
 );
 

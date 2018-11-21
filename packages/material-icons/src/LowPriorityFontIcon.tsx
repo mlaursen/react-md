@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LowPriorityFontIcon: React.SFC<IFontIconProps> = props => (
+const LowPriorityFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>low_priority</FontIcon>
 );
 

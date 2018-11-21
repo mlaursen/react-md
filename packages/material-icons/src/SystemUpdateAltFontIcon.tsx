@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SystemUpdateAltFontIcon: React.SFC<IFontIconProps> = props => (
+const SystemUpdateAltFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>system_update_alt</FontIcon>
 );
 

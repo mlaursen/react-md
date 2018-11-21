@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DesktopWindowsFontIcon: React.SFC<IFontIconProps> = props => (
+const DesktopWindowsFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>desktop_windows</FontIcon>
 );
 

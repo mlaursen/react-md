@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatAlignCenterFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatAlignCenterFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_align_center</FontIcon>
 );
 

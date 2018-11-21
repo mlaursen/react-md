@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CropRotateFontIcon: React.SFC<IFontIconProps> = props => (
+const CropRotateFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>crop_rotate</FontIcon>
 );
 

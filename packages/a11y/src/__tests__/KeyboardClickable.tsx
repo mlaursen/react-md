@@ -7,7 +7,7 @@ import KeyboardClickable from "../KeyboardClickable";
 
 describe("KeyboardClickable", () => {
   it('should apply the aria-disabled="true" attribute instead of disabled when the disabled prop is enabled', () => {
-    const Example: React.SFC<any> = ({ disabled }) => (
+    const Example: React.FunctionComponent<any> = ({ disabled }) => (
       <KeyboardClickable disabled={disabled}>
         {clickableProps => <div {...clickableProps}>content</div>}
       </KeyboardClickable>
@@ -35,7 +35,7 @@ describe("KeyboardClickable", () => {
       onTouchEnd: jest.fn(),
     };
 
-    const Example: React.SFC<any> = ({ disabled }) => (
+    const Example: React.FunctionComponent<any> = ({ disabled }) => (
       <KeyboardClickable {...props} disabled={disabled}>
         {clickableProps => <div {...clickableProps}>content</div>}
       </KeyboardClickable>
@@ -74,7 +74,7 @@ describe("KeyboardClickable", () => {
 
   it("should correctly call the onKeyDown prop when space or enter is pressed on the element", () => {
     const onKeyDown = jest.fn();
-    const Example: React.SFC<any> = () => (
+    const Example: React.FunctionComponent<any> = () => (
       <KeyboardClickable onKeyDown={onKeyDown}>
         {clickableProps => <div {...clickableProps}>content</div>}
       </KeyboardClickable>
@@ -97,7 +97,7 @@ describe("KeyboardClickable", () => {
   });
 
   it("should call preventDefault when the space key is pressed to stop page scrolling", () => {
-    const Example: React.SFC<any> = () => (
+    const Example: React.FunctionComponent<any> = () => (
       <KeyboardClickable>
         {clickableProps => <div {...clickableProps}>content</div>}
       </KeyboardClickable>
@@ -119,7 +119,7 @@ describe("KeyboardClickable", () => {
   });
 
   it("should call the currentTarget's click function when the space or enter key is pressed", () => {
-    const Example: React.SFC<any> = () => (
+    const Example: React.FunctionComponent<any> = () => (
       <KeyboardClickable>
         {clickableProps => <div {...clickableProps}>content</div>}
       </KeyboardClickable>

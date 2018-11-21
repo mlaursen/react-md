@@ -43,7 +43,7 @@ export type TreeLinkItemProps = ITreeLinkItemProps & React.HTMLAttributes<HTMLAn
  * The only reason for this component is that the accessibility specs change when rendering links,
  * so this component automatically fixes them for you.
  */
-const TreeLinkItem: React.SFC<TreeLinkItemProps> = ({
+const TreeLinkItem: React.FunctionComponent<TreeLinkItemProps> = ({
   liStyle,
   liClassName,
   className,

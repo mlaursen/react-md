@@ -9,7 +9,7 @@ const Examples = Loadable(() => import("./Examples"));
 const PortalPropTypes = Loadable(() => import("./PortalPropTypes"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Portal: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Portal: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

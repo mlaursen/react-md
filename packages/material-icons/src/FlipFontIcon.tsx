@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FlipFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>flip</FontIcon>;
+const FlipFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>flip</FontIcon>;
 
 export default FlipFontIcon;

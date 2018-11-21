@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ClearAllFontIcon: React.SFC<IFontIconProps> = props => (
+const ClearAllFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>clear_all</FontIcon>
 );
 

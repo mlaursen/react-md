@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LeakRemoveFontIcon: React.SFC<IFontIconProps> = props => (
+const LeakRemoveFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>leak_remove</FontIcon>
 );
 

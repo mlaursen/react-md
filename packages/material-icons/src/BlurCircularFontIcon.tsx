@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BlurCircularFontIcon: React.SFC<IFontIconProps> = props => (
+const BlurCircularFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>blur_circular</FontIcon>
 );
 

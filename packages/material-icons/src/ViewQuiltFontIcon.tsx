@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewQuiltFontIcon: React.SFC<IFontIconProps> = props => (
+const ViewQuiltFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>view_quilt</FontIcon>
 );
 

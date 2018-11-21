@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const PlayArrowSVGIcon: React.SFC<ISVGIconProps> = props => (
+const PlayArrowSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M8 5v14l11-7z" />
   </SVGIcon>

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CompareFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>compare</FontIcon>;
+const CompareFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>compare</FontIcon>;
 
 export default CompareFontIcon;

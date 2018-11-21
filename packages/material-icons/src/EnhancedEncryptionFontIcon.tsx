@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const EnhancedEncryptionFontIcon: React.SFC<IFontIconProps> = props => (
+const EnhancedEncryptionFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>enhanced_encryption</FontIcon>
 );
 

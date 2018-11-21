@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SubdirectoryArrowRightFontIcon: React.SFC<IFontIconProps> = props => (
+const SubdirectoryArrowRightFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>subdirectory_arrow_right</FontIcon>
 );
 

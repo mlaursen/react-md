@@ -11,7 +11,7 @@ const TypographySassDoc = Loadable(() => import("./TypographySassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 const Exports = Loadable(() => import("./Exports"));
 
-const Typography: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Typography: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

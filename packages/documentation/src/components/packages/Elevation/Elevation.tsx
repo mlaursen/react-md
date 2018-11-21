@@ -9,7 +9,7 @@ const Examples = Loadable(() => import("./Examples"));
 const ElevationSassDoc = Loadable(() => import("./ElevationSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Elevation: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Elevation: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

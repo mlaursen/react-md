@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VoiceChatFontIcon: React.SFC<IFontIconProps> = props => (
+const VoiceChatFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>voice_chat</FontIcon>
 );
 

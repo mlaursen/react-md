@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PhotoSizeSelectActualFontIcon: React.SFC<IFontIconProps> = props => (
+const PhotoSizeSelectActualFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>photo_size_select_actual</FontIcon>
 );
 

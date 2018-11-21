@@ -35,7 +35,7 @@ export interface IConditionalPortalProps {
  * This is a very simple component that is used in other places within react-md to conditionally
  * render the children within a portal or not based on general portal config props.
  */
-const ConditionalPortal: React.SFC<IConditionalPortalProps> = ({
+const ConditionalPortal: React.FunctionComponent<IConditionalPortalProps> = ({
   portal,
   portalInto,
   portalIntoId,

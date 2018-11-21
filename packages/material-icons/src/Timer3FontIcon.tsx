@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const Timer3FontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>timer_3</FontIcon>;
+const Timer3FontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>timer_3</FontIcon>;
 
 export default Timer3FontIcon;

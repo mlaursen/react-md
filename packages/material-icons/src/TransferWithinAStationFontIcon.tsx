@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TransferWithinAStationFontIcon: React.SFC<IFontIconProps> = props => (
+const TransferWithinAStationFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>transfer_within_a_station</FontIcon>
 );
 

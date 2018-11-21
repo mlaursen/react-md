@@ -10,7 +10,7 @@ const SheetPropTypes = Loadable(() => import("./SheetPropTypes"));
 const SheetSassDoc = Loadable(() => import("./SheetSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Sheet: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Sheet: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

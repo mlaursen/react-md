@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const RadioFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>radio</FontIcon>;
+const RadioFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>radio</FontIcon>;
 
 export default RadioFontIcon;

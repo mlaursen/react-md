@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SyncProblemFontIcon: React.SFC<IFontIconProps> = props => (
+const SyncProblemFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>sync_problem</FontIcon>
 );
 

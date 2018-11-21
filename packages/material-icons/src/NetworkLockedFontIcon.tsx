@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NetworkLockedFontIcon: React.SFC<IFontIconProps> = props => (
+const NetworkLockedFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>network_locked</FontIcon>
 );
 

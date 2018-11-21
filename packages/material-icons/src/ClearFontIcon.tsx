@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ClearFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>clear</FontIcon>;
+const ClearFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>clear</FontIcon>;
 
 export default ClearFontIcon;

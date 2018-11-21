@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NearMeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>near_me</FontIcon>;
+const NearMeFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>near_me</FontIcon>;
 
 export default NearMeFontIcon;

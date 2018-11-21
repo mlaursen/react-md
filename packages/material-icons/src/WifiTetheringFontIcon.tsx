@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const WifiTetheringFontIcon: React.SFC<IFontIconProps> = props => (
+const WifiTetheringFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>wifi_tethering</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const WebAssetSVGIcon: React.SFC<ISVGIconProps> = props => (
+const WebAssetSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path
       fill="#010101"

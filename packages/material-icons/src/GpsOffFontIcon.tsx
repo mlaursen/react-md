@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GpsOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>gps_off</FontIcon>;
+const GpsOffFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>gps_off</FontIcon>;
 
 export default GpsOffFontIcon;

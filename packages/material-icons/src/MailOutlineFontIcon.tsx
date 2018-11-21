@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MailOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const MailOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>mail_outline</FontIcon>
 );
 

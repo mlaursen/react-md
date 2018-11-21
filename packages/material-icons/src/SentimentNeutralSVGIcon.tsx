@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const SentimentNeutralSVGIcon: React.SFC<ISVGIconProps> = props => (
+const SentimentNeutralSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M9 14h6v1.5H9z" />
     <circle cx="15.5" cy="9.5" r="1.5" />

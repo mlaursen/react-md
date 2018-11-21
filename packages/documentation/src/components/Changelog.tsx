@@ -5,7 +5,7 @@ export interface IChangelogProps {
   changelog: string;
 }
 
-const Changelog: React.SFC<IChangelogProps> = ({ changelog }) => {
+const Changelog: React.FunctionComponent<IChangelogProps> = ({ changelog }) => {
   let markdown = "# Changelog";
   if (changelog.split(/\r?\n/).length <= 3) {
     markdown = `${markdown}

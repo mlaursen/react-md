@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BatteryUnknownFontIcon: React.SFC<IFontIconProps> = props => (
+const BatteryUnknownFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>battery_unknown</FontIcon>
 );
 

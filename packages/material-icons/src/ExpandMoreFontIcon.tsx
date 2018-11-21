@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ExpandMoreFontIcon: React.SFC<IFontIconProps> = props => (
+const ExpandMoreFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>expand_more</FontIcon>
 );
 

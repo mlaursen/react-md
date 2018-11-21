@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PersonOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const PersonOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>person_outline</FontIcon>
 );
 

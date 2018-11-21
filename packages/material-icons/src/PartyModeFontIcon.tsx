@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PartyModeFontIcon: React.SFC<IFontIconProps> = props => (
+const PartyModeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>party_mode</FontIcon>
 );
 

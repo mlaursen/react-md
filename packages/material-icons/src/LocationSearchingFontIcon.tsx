@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LocationSearchingFontIcon: React.SFC<IFontIconProps> = props => (
+const LocationSearchingFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>location_searching</FontIcon>
 );
 

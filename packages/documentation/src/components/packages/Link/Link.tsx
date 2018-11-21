@@ -10,7 +10,7 @@ const LinkPropTypes = Loadable(() => import("./LinkPropTypes"));
 const LinkSassDoc = Loadable(() => import("./LinkSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Link: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Link: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

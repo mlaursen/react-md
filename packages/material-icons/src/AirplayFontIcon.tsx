@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AirplayFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>airplay</FontIcon>;
+const AirplayFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>airplay</FontIcon>;
 
 export default AirplayFontIcon;

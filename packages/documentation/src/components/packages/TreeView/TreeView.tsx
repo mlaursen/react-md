@@ -10,7 +10,7 @@ const TreeViewPropTypes = Loadable(() => import("./TreeViewPropTypes"));
 const TreeViewSassDoc = Loadable(() => import("./TreeViewSassDoc"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const TreeView: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const TreeView: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

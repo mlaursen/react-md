@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CameraRollFontIcon: React.SFC<IFontIconProps> = props => (
+const CameraRollFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>camera_roll</FontIcon>
 );
 

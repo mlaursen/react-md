@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const OpacityFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>opacity</FontIcon>;
+const OpacityFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>opacity</FontIcon>;
 
 export default OpacityFontIcon;

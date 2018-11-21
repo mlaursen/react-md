@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GraphicEqFontIcon: React.SFC<IFontIconProps> = props => (
+const GraphicEqFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>graphic_eq</FontIcon>
 );
 

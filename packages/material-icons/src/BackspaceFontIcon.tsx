@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const BackspaceFontIcon: React.SFC<IFontIconProps> = props => (
+const BackspaceFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>backspace</FontIcon>
 );
 

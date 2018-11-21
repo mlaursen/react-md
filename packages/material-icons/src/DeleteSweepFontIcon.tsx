@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DeleteSweepFontIcon: React.SFC<IFontIconProps> = props => (
+const DeleteSweepFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>delete_sweep</FontIcon>
 );
 

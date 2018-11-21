@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CallSplitFontIcon: React.SFC<IFontIconProps> = props => (
+const CallSplitFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>call_split</FontIcon>
 );
 

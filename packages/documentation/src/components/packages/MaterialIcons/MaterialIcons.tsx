@@ -9,7 +9,7 @@ const Examples = Loadable(() => import("./Examples"));
 const MaterialIconsPropTypes = Loadable(() => import("./MaterialIconsPropTypes"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const MaterialIcons: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const MaterialIcons: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />

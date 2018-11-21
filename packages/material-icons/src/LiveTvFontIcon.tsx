@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const LiveTvFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>live_tv</FontIcon>;
+const LiveTvFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>live_tv</FontIcon>;
 
 export default LiveTvFontIcon;

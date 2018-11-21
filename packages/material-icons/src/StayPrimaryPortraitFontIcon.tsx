@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StayPrimaryPortraitFontIcon: React.SFC<IFontIconProps> = props => (
+const StayPrimaryPortraitFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>stay_primary_portrait</FontIcon>
 );
 

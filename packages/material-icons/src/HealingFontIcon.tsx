@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HealingFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>healing</FontIcon>;
+const HealingFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>healing</FontIcon>;
 
 export default HealingFontIcon;

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const GrainFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>grain</FontIcon>;
+const GrainFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>grain</FontIcon>;
 
 export default GrainFontIcon;

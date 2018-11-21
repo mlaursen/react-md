@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PanToolFontIcon: React.SFC<IFontIconProps> = props => (
+const PanToolFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>pan_tool</FontIcon>
 );
 

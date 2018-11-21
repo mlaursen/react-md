@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VolumeOffFontIcon: React.SFC<IFontIconProps> = props => (
+const VolumeOffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>volume_off</FontIcon>
 );
 

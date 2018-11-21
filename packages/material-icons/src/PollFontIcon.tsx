@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PollFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>poll</FontIcon>;
+const PollFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>poll</FontIcon>;
 
 export default PollFontIcon;

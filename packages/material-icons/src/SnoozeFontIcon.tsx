@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const SnoozeFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>snooze</FontIcon>;
+const SnoozeFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>snooze</FontIcon>;
 
 export default SnoozeFontIcon;

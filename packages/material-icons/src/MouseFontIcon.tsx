@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MouseFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>mouse</FontIcon>;
+const MouseFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>mouse</FontIcon>;
 
 export default MouseFontIcon;

@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MicOffFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>mic_off</FontIcon>;
+const MicOffFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>mic_off</FontIcon>;
 
 export default MicOffFontIcon;

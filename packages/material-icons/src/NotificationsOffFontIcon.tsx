@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const NotificationsOffFontIcon: React.SFC<IFontIconProps> = props => (
+const NotificationsOffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>notifications_off</FontIcon>
 );
 

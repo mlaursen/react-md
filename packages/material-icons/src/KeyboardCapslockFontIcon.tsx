@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const KeyboardCapslockFontIcon: React.SFC<IFontIconProps> = props => (
+const KeyboardCapslockFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>keyboard_capslock</FontIcon>
 );
 

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ViewAgendaFontIcon: React.SFC<IFontIconProps> = props => (
+const ViewAgendaFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>view_agenda</FontIcon>
 );
 

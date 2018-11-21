@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const ErrorFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>error</FontIcon>;
+const ErrorFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>error</FontIcon>;
 
 export default ErrorFontIcon;

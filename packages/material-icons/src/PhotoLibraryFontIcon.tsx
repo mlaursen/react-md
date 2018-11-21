@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const PhotoLibraryFontIcon: React.SFC<IFontIconProps> = props => (
+const PhotoLibraryFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>photo_library</FontIcon>
 );
 

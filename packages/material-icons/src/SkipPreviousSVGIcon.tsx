@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { SVGIcon, ISVGIconProps } from "@react-md/icon";
 
-const SkipPreviousSVGIcon: React.SFC<ISVGIconProps> = props => (
+const SkipPreviousSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
   </SVGIcon>

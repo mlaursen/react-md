@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const FormatStrikethroughFontIcon: React.SFC<IFontIconProps> = props => (
+const FormatStrikethroughFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>format_strikethrough</FontIcon>
 );
 

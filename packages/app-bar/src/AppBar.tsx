@@ -15,7 +15,7 @@ export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
  * import * as React from "react";
  * import { IAppBarProps, AppBar } from "@react-md/app-bar"
  *
- * const MyCustomAppBar: React.SFC<IAppBarProps> = ({ className, children, ...props }) => (
+ * const MyCustomAppBar: React.FunctionComponent<IAppBarProps> = ({ className, children, ...props }) => (
  *  <AppBar {...props} className={cn("my-custom-app-bar", className)}>
  *    <img src="/company-logo" alt="Company logo" />
  *    {children}

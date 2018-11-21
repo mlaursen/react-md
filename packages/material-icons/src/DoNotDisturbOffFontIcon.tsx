@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DoNotDisturbOffFontIcon: React.SFC<IFontIconProps> = props => (
+const DoNotDisturbOffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>do_not_disturb_off</FontIcon>
 );
 

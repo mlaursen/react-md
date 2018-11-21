@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const MenuFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>menu</FontIcon>;
+const MenuFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>menu</FontIcon>;
 
 export default MenuFontIcon;

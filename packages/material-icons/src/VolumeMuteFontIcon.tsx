@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const VolumeMuteFontIcon: React.SFC<IFontIconProps> = props => (
+const VolumeMuteFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>volume_mute</FontIcon>
 );
 

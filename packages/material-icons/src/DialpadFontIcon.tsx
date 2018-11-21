@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const DialpadFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>dialpad</FontIcon>;
+const DialpadFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>dialpad</FontIcon>;
 
 export default DialpadFontIcon;

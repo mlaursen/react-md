@@ -8,7 +8,7 @@ import Text from "./Text";
 
 const TypescriptDefinitions = Loadable(() => import("components/Exports/DerivedDefinitionsPage"));
 
-const Exports: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Exports: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/text`} />
     <Route path={`${match.path}/typescript-definitions`} component={TypescriptDefinitions} />

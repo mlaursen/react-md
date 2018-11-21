@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StarsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>stars</FontIcon>;
+const StarsFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>stars</FontIcon>;
 
 export default StarsFontIcon;

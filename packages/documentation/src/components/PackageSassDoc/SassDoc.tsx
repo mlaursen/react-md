@@ -13,7 +13,7 @@ export interface ISassDocProps {
   name: "Variables" | "Functions" | "Mixins";
 }
 
-const SassDoc: React.SFC<ISassDocProps> = ({ name, list }) => {
+const SassDoc: React.FunctionComponent<ISassDocProps> = ({ name, list }) => {
   if (!list.length) {
     return null;
   }

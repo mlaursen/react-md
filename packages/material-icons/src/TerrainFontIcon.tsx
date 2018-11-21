@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const TerrainFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>terrain</FontIcon>;
+const TerrainFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>terrain</FontIcon>;
 
 export default TerrainFontIcon;

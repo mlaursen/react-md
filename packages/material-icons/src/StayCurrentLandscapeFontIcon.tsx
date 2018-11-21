@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const StayCurrentLandscapeFontIcon: React.SFC<IFontIconProps> = props => (
+const StayCurrentLandscapeFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>stay_current_landscape</FontIcon>
 );
 

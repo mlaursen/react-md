@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const CloudOffFontIcon: React.SFC<IFontIconProps> = props => (
+const CloudOffFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>cloud_off</FontIcon>
 );
 

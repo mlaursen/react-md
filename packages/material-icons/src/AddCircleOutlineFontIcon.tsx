@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const AddCircleOutlineFontIcon: React.SFC<IFontIconProps> = props => (
+const AddCircleOutlineFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>add_circle_outline</FontIcon>
 );
 

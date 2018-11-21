@@ -4,6 +4,6 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HttpsFontIcon: React.SFC<IFontIconProps> = props => <FontIcon {...props}>https</FontIcon>;
+const HttpsFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>https</FontIcon>;
 
 export default HttpsFontIcon;

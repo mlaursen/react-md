@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HdrWeakFontIcon: React.SFC<IFontIconProps> = props => (
+const HdrWeakFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>hdr_weak</FontIcon>
 );
 

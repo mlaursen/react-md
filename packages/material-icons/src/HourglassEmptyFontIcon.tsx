@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FontIcon, IFontIconProps } from "@react-md/icon";
 
-const HourglassEmptyFontIcon: React.SFC<IFontIconProps> = props => (
+const HourglassEmptyFontIcon: React.FunctionComponent<IFontIconProps> = props => (
   <FontIcon {...props}>hourglass_empty</FontIcon>
 );
 

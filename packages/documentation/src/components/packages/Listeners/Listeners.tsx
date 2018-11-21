@@ -9,7 +9,7 @@ const Examples = Loadable(() => import("./Examples"));
 const ListenersPropTypes = Loadable(() => import("./ListenersPropTypes"));
 const Changelog = Loadable(() => import("./Changelog"));
 
-const Listeners: React.SFC<Router.RouteComponentProps<void>> = ({ match }) => (
+const Listeners: React.FunctionComponent<Router.RouteComponentProps<void>> = ({ match }) => (
   <Switch>
     <Redirect exact={true} from={match.path} to={`${match.path}/examples`} />
     <Route path={`${match.path}/examples`} component={Examples} />
