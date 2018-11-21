@@ -5,7 +5,7 @@ import { kebabCase } from "lodash";
 
 import { IAnchorProps, default as Anchor } from "./Anchor";
 
-export interface ITextAnchorProps extends ITextProps, IAnchorProps {
+export type ITextAnchorProps = ITextProps & IAnchorProps & {
   linkClassName?: string;
 }
 
