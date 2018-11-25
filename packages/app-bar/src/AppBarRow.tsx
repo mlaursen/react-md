@@ -25,9 +25,9 @@ export default class AppBarRow extends React.Component<IAppBarRowProps> {
     dense: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IAppBarRowDefaultProps = {
     dense: false,
-  } as IAppBarRowDefaultProps;
+  };
 
   public render() {
     const { dense, className, children, ...props } = this.props;

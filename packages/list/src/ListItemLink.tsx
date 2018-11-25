@@ -119,10 +119,10 @@ export default class ListItemLink extends React.Component<IListItemLinkProps> {
     forceIconWrap: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IListItemLinkDefaultProps = {
     component: "a",
     forceIconWrap: false,
-  } as IListItemLinkDefaultProps;
+  };
 
   public render() {
     const {

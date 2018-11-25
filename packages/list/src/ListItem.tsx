@@ -158,7 +158,7 @@ export default class ListItem extends React.Component<IListItemProps> {
     threeLines: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IListItemDefaultProps = {
     role: "listitem",
     disabled: false,
     clickable: true,
@@ -166,7 +166,7 @@ export default class ListItem extends React.Component<IListItemProps> {
     threeLines: false,
     forceIconWrap: false,
     height: "auto",
-  } as IListItemDefaultProps;
+  };
 
   public render() {
     const {

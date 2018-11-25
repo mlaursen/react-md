@@ -38,7 +38,7 @@ export default class AppBarAction extends React.Component<IAppBarActionProps> {
     last: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IAppBarActionDefaultProps = {
     asDiv: false,
     disabled: false,
     theme: "clear",
@@ -47,7 +47,7 @@ export default class AppBarAction extends React.Component<IAppBarActionProps> {
     iconAfter: false,
     first: false,
     last: false,
-  } as IAppBarActionDefaultProps;
+  };
 
   public render() {
     const { className, first, last, ...props } = this.props;

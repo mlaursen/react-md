@@ -26,9 +26,9 @@ export default class AppBarTitle extends React.Component<IAppBarTitleProps> {
     keyline: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IAppBarTitleDefaultProps = {
     keyline: false,
-  } as IAppBarTitleDefaultProps;
+  };
 
   public render() {
     const { keyline, className, ...props } = this.props;

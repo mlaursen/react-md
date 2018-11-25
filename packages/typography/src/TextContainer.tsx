@@ -81,10 +81,10 @@ export default class TextContainer<
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   };
 
-  public static defaultProps = {
+  public static defaultProps: ITextContainerDefaultProps = {
     size: "auto",
     component: "div",
-  } as ITextContainerDefaultProps;
+  };
 
   public render() {
     const { size, className: propClassName, component, children, ...props } = this

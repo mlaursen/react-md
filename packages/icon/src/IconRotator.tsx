@@ -77,12 +77,12 @@ export default class IconRotator extends React.Component<IIconRotatorProps> {
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IIconRotatorDefaultProps = {
     from: 0,
     to: 180,
     animate: true,
     forceIconWrap: false,
-  } as IIconRotatorDefaultProps;
+  };
 
   public render() {
     const {

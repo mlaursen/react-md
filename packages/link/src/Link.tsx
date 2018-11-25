@@ -93,10 +93,10 @@ export default class Link extends React.Component<ILinkProps> {
     flexCentered: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: ILinkDefaultProps = {
     preventMaliciousTarget: true,
     flexCentered: false,
-  } as ILinkDefaultProps;
+  };
 
   public render() {
     const {

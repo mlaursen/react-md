@@ -44,9 +44,9 @@ export default class ListItemLeftIcon extends React.Component<IListItemLeftIconP
     forceIconWrap: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: IListItemLeftIconDefaultProps = {
     forceIconWrap: false,
-  } as IListItemLeftIconDefaultProps;
+  };
 
   public render() {
     const { icon, children, forceIconWrap } = this.props;
