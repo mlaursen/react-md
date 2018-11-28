@@ -357,6 +357,11 @@ export default class DialogContainer extends PureComponent {
      */
     stackedActions: PropTypes.bool,
 
+    /**
+     * Boolean if the active element should be focused after closing the dialog.
+     */
+    activeElementFocus: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -376,6 +381,7 @@ export default class DialogContainer extends PureComponent {
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
     defaultVisibleTransitionable: false,
+    activeElementFocus: true
   };
 
   static contextTypes = {
@@ -518,7 +524,7 @@ export default class DialogContainer extends PureComponent {
   _handleDialogMounting = (dialog) => {
     const { disableScrollLocking } = this.props;
     if (dialog === null) {
-      if (this._activeElement && this._activeElement.focus) {
+      if (this._activeElement && this._activeElement.focus && this.props.activeElementFocus) {
         this._activeElement.focus();
       }
 
