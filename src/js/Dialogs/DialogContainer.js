@@ -381,7 +381,7 @@ export default class DialogContainer extends PureComponent {
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
     defaultVisibleTransitionable: false,
-    activeElementFocus: true
+    activeElementFocus: true,
   };
 
   static contextTypes = {
