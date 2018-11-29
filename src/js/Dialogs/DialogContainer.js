@@ -358,7 +358,9 @@ export default class DialogContainer extends PureComponent {
     stackedActions: PropTypes.bool,
 
     /**
-     * Boolean if the active element should be focused after closing the dialog.
+     * Boolean if the active element should be focused after closing the dialog. It is generally recommended to
+     * keep this enabled so that keyboard users do not lose their place within the application after a dialog is
+     * closed. When this is set to false, you should implement your own focus logic.
      */
     activeElementFocus: PropTypes.bool,
 
@@ -576,6 +578,7 @@ export default class DialogContainer extends PureComponent {
       onHide,
       disableScrollLocking,
       defaultVisibleTransitionable,
+      activeElementFocus,
 
       // deprecated
       close,
