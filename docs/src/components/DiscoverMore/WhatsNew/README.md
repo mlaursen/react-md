@@ -1,4 +1,8 @@
 ## November 2018
+### v1.9.1 Released
+##### Changelog
+- Updated the `DialogContainer` component to conditionally focus the previous element in the DOM once the dialog is closed. ([@lawnboyy] - [pull-813])
+
 ### v1.9.0 Released
 ##### Changelog
 - Updated the `Snackbar` to be able to auto focus the `Snackbar` action. ([@kldavis4] - [pull-810])
