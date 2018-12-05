@@ -79,6 +79,7 @@ export default class TooltipContainer extends PureComponent {
       target.removeEventListener('mouseover', this._showTooltip);
       target.removeEventListener('mouseleave', this._hideTooltip);
       target.removeEventListener('keyup', this._handleKeyUp);
+      target.removeEventListener('focusout', this._hideTooltip);
       target.removeEventListener('blur', this._hideTooltip);
     }
   };
@@ -101,6 +102,7 @@ export default class TooltipContainer extends PureComponent {
       target.addEventListener('mouseover', this._showTooltip);
       target.addEventListener('mouseleave', this._hideTooltip);
       target.addEventListener('keyup', this._handleKeyUp);
+      target.addEventListener('focusout', this._hideTooltip);
       target.addEventListener('blur', this._hideTooltip);
     }
   };
