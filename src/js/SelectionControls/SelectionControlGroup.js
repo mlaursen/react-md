@@ -128,6 +128,7 @@ export default class SelectionControlGroup extends PureComponent {
     controlComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -136,6 +137,7 @@ export default class SelectionControlGroup extends PureComponent {
     labelComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -331,16 +333,15 @@ export default class SelectionControlGroup extends PureComponent {
     let value = e.target.value;
     if (this.props.type === 'checkbox') {
       const { checked } = e.target;
-
-      const values = getField(this.props, this.state, 'value').split(',');
-      const index = values.indexOf(value);
-      if (checked) {
-        values.push(value);
+      const currentValue = getField(this.props, this.state, 'value');
+      const existsIndex = currentValue.indexOf(value);
+      if (existsIndex === -1 && checked) {
+        value = `${currentValue ? `${currentValue},` : ''}${value}`;
+      } else if (existsIndex > -1 && !checked) {
+        value = currentValue.replace(new RegExp(`${value},?`), '');
       } else {
-        values.splice(index, 1);
+        value = currentValue;
       }
-
-      value = values.join(',');
     }
 
     if (this.props.onChange) {
@@ -430,6 +431,7 @@ export default class SelectionControlGroup extends PureComponent {
         uncheckedRadioIcon,
         checkedCheckboxIcon,
         uncheckedCheckboxIcon,
+        'aria-describedby': `${id}-group-label`,
         ...control,
         style,
         className: cn(controlClassName, control.className),
@@ -440,7 +442,7 @@ export default class SelectionControlGroup extends PureComponent {
 
     let ariaLabel;
     if (label) {
-      ariaLabel = <LabelComponent className={labelClassName}>{label}</LabelComponent>;
+      ariaLabel = <LabelComponent className={labelClassName} id={`${id}-group-label`}>{label}</LabelComponent>;
     }
 
     return (

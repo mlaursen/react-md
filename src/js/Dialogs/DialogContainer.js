@@ -143,6 +143,7 @@ export default class DialogContainer extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -151,6 +152,7 @@ export default class DialogContainer extends PureComponent {
     contentComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
+      PropTypes.object,
     ]).isRequired,
 
     /**
@@ -197,6 +199,9 @@ export default class DialogContainer extends PureComponent {
     /**
      * Boolean if the dialog should behave like a modal. This means that the dialog can only
      * be closed by clicking on an action instead of also clicking on the overlay.
+     *
+     * NOTE: Unless the `closeOnEsc` prop is disabled as well, the user can still press the escape
+     * key to close this modal.
      */
     modal: PropTypes.bool,
 
@@ -261,7 +266,6 @@ export default class DialogContainer extends PureComponent {
 
     /**
      * Boolean if the dialog should be closable by pressing the escape key.
-     * This will always be considered `false` of the `modal` props is `true`.
      */
     closeOnEsc: PropTypes.bool,
 
@@ -353,6 +357,13 @@ export default class DialogContainer extends PureComponent {
      */
     stackedActions: PropTypes.bool,
 
+    /**
+     * Boolean if the active element should be focused after closing the dialog. It is generally recommended to
+     * keep this enabled so that keyboard users do not lose their place within the application after a dialog is
+     * closed. When this is set to false, you should implement your own focus logic.
+     */
+    activeElementFocus: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -372,6 +383,7 @@ export default class DialogContainer extends PureComponent {
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
     defaultVisibleTransitionable: false,
+    activeElementFocus: true,
   };
 
   static contextTypes = {
@@ -432,22 +444,19 @@ export default class DialogContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { visible, closeOnEsc, modal } = this.props;
-    const escapable = !modal && closeOnEsc;
-    const prevEscapable = !prevProps.modal && prevProps.closeOnEsc;
+    const { visible, closeOnEsc } = this.props;
 
     // Only going to support visible here since it was not implemented before.
-    if (visible === prevProps.visible && escapable === prevEscapable) {
+    if (visible === prevProps.visible && closeOnEsc === prevProps.closeOnEsc) {
       return;
     }
 
     let add = false;
     let remove = false;
-
-    if (escapable !== prevEscapable) {
-      add = visible && escapable;
-      remove = !visible || (prevEscapable && !escapable);
-    } else if (escapable) {
+    if (closeOnEsc !== prevProps.closeOnEsc) {
+      add = visible && closeOnEsc;
+      remove = !visible || (prevProps.closeOnEsc && !closeOnEsc);
+    } else if (closeOnEsc) {
       add = visible;
       remove = !visible;
     }
@@ -464,7 +473,7 @@ export default class DialogContainer extends PureComponent {
       toggleScroll(false);
     }
 
-    if (this.props.visible && (this.props.closeOnEsc && !this.props.modal)) {
+    if (this.props.visible && this.props.closeOnEsc) {
       window.removeEventListener('keydown', this._handleEscClose);
     }
 
@@ -517,7 +526,7 @@ export default class DialogContainer extends PureComponent {
   _handleDialogMounting = (dialog) => {
     const { disableScrollLocking } = this.props;
     if (dialog === null) {
-      if (this._activeElement) {
+      if (this._activeElement && this._activeElement.focus && this.props.activeElementFocus) {
         this._activeElement.focus();
       }
 
@@ -569,6 +578,7 @@ export default class DialogContainer extends PureComponent {
       onHide,
       disableScrollLocking,
       defaultVisibleTransitionable,
+      activeElementFocus,
 
       // deprecated
       close,

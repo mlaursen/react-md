@@ -79,6 +79,9 @@ describe('SelectField', () => {
 
       expect(field._getItemPart({ label: 0, value: 'a' }, 'label', 'value', false)).toBe('a');
       expect(field._getItemPart({ label: 0, value: 'a' }, 'label', 'value', true)).toBe(0);
+
+      expect(field._getItemPart({ label: 1.5, value: 'a' }, 'label', 'value', false)).toBe('a');
+      expect(field._getItemPart({ label: 1.5, value: 'a' }, 'label', 'value', true)).toBe(1.5);
     });
   });
 
@@ -103,6 +106,8 @@ describe('SelectField', () => {
       expect(field._getActiveItemLabel({ label: 'No Way', value: 0 }, '', 'label', 'value')).toBe('');
       expect(field._getActiveItemLabel({ label: 'No Way', value: '0' }, '', 'label', 'value')).toBe('');
       expect(field._getActiveItemLabel({ label: 'No Way', value: '' }, '', 'label', 'value')).toBe('No Way');
+      expect(field._getActiveItemLabel({ label: 'No Way', value: 3.5 }, '', 'label', 'value')).toBe('');
+      expect(field._getActiveItemLabel({ label: 'No Way', value: 3.5 }, '3.5', 'label', 'value')).toBe('No Way');
     });
   });
 

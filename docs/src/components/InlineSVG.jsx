@@ -10,6 +10,7 @@ InlineSVG.propTypes = {
   component: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
+    PropTypes.object,
   ]).isRequired,
   src: PropTypes.string.isRequired,
 };

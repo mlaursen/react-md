@@ -26,8 +26,8 @@ export interface DialogProps extends Props {
   fullPage?: boolean;
   title?: React.ReactNode;
   autosizeContent?: boolean;
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   stackedActions?: boolean;
 }
 

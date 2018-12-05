@@ -394,6 +394,14 @@ describe('TextField', () => {
     expect(getStyle()).toBe(null);
   });
 
+  it('should not render the password button if the password icon is set to null', () => {
+    const field = mount(<TextField id="test-field" type="password" />);
+    expect(field.find(PasswordButton).length).toBe(1);
+
+    field.setProps({ passwordIcon: null });
+    expect(field.find(PasswordButton).length).toBe(0);
+  });
+
   describe('resizing', () => {
     beforeEach(() => {
       getTextWidth.mockClear();

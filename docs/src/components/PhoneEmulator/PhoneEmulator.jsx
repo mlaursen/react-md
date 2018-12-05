@@ -117,6 +117,7 @@ PhoneEmulator.propTypes = {
   contentComponent: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
+    PropTypes.object,
   ]).isRequired,
   transitionContent: PropTypes.bool,
   contentId: PropTypes.string,

@@ -7,6 +7,7 @@ import isInvalidAnimate from './isInvalidAnimate';
 
 export default class Snackbar extends PureComponent {
   static propTypes = {
+    autoFocusAction: PropTypes.bool,
     id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
@@ -119,6 +120,7 @@ export default class Snackbar extends PureComponent {
 
   render() {
     const {
+      autoFocusAction,
       className,
       toast,
       multiline,
@@ -141,6 +143,7 @@ export default class Snackbar extends PureComponent {
       text = <p className="md-snackbar--toast md-snackbar--action">{text}</p>;
 
       let btnProps = {
+        autoFocus: autoFocusAction,
         flat: true,
         onClick: this._handleClick,
         children: action,

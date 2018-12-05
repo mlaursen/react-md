@@ -80,14 +80,14 @@ Please see the list of [examples](examples/) for how you can get a project start
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md@1.3.0/dist/react-md.deep_purple-pink.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.9.1/dist/react-md.deep_purple-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md@1.3.0/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.9.1/dist/react-md.min.js"></script>
     <script>
     var MyAwesomeComponent = React.createClass({
       render: function()  {
@@ -128,6 +128,7 @@ Otherwise this _should_ work on most systems with node >= 6.
 ```bash
 mlaursen @ ~/code/react-md
 $ yarn
+$ yarn build   # build the es and lib folders for docs scripts
 $ cd docs
 mlaursen @ ~/code/react-md/docs
 $ yarn

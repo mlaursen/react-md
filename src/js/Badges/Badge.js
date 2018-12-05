@@ -62,6 +62,7 @@ export default class Badge extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
 
     /**

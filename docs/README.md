@@ -357,7 +357,7 @@ Now how do you handle production builds? How can I make sure that my latest chan
 show up on the client since the browser caches data? How do I add CSS/Sass/less? How do I hot reload?
 How do I hot reload styles?
 
-Well, now that some more time has passed, [create-react-app](https://github.com/facebookincubator/create-react-app) _is_
+Well, now that some more time has passed, [create-react-app](https://github.com/facebook/create-react-app) _is_
 probably the way to go for most of these things since it has gotten a lot better since the first few releases. There
 is still no native Sass/SCSS support, so you need to create additional tasks to watch with `node-sass` so it gets added to
 your app. This is _ok_, but you lose the benefits of having webpack do resolutions for you.

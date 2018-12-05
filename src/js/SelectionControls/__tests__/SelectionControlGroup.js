@@ -365,22 +365,20 @@ describe('SelectionControlGroup', () => {
 
   it('calls the onChange prop with the comma-delimited list of checked values when the type is checkbox', () => {
     const onChange = jest.fn();
-    const props = Object.assign({}, PROPS_2, { onChange });
-    let group = renderIntoDocument(<SelectionControlGroup {...props} />);
-    group._handleChange({ target: { checked: false } });
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toBe('');
+    const group = mount(<SelectionControlGroup {...PROPS_2} onChange={onChange} />);
+    const event = { target: { checked: true, value: 'eyyy' } };
+    group.instance()._handleChange(event);
+    expect(onChange).toBeCalledWith('eyyy', event);
+    expect(group.state('value')).toBe('eyyy');
 
-    props.value = 'eyy';
-    group = renderIntoDocument(<SelectionControlGroup {...props} />);
-    // uncheck it
-    group._handleChange({ target: { checked: false, value: 'eyy' } });
-    expect(onChange.mock.calls.length).toBe(2);
-    expect(onChange.mock.calls[1][0]).toBe('');
+    const event2 = { target: { checked: true, value: 'something' } };
+    group.instance()._handleChange(event2);
+    expect(onChange).toBeCalledWith('eyyy,something', event2);
+    expect(group.state('value')).toBe('eyyy,something');
 
-    // check something
-    group._handleChange({ target: { checked: true, value: 'something' } });
-    expect(onChange.mock.calls.length).toBe(3);
-    expect(onChange.mock.calls[2][0]).toBe('eyy,something');
+    const event3 = { target: { checked: false, value: 'eyyy' } };
+    group.instance()._handleChange(event3);
+    expect(onChange).toBeCalledWith('something', event3);
+    expect(group.state('value')).toBe('something');
   });
 });

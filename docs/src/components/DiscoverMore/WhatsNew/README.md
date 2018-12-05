@@ -1,3 +1,99 @@
+## November 2018
+### v1.9.1 Released
+##### Changelog
+- Updated the `DialogContainer` component to conditionally focus the previous element in the DOM once the dialog is closed. ([@lawnboyy] - [pull-813])
+
+### v1.9.0 Released
+##### Changelog
+- Updated the `Snackbar` to be able to auto focus the `Snackbar` action. ([@kldavis4] - [pull-810])
+
+> Note: this is disabled by default so that upgrading does not add new functionality and focus behavior. Please enable the [autoFocusAction](/components/snackbars?tab=1#snackbar-proptypes-auto-focus-action)
+prop once you have upgraded to enable this new feature.
+
+## October 2018
+### Documentation Change
+- Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app-v2).
+
+### v1.8.0 Released
+##### Changelog
+- Updated the `DialogContainer` component so that the dialog can be closed with the escape key when the `modal` prop is enabled. [issues-803]
+
+### v1.7.2 Released
+##### Changelog
+- Updated all `component` prop-types to not trigger a warning when the component was created with `React.forwardRef`. ([@luisrudge] - [pull-809])
+
+## September 2018
+### v1.7.1 Released
+##### Changelog
+- Reverted the `InkContainer` workaround for Preact since there were additional unwanted side-effects. [issues-801]
+
+### v1.7.0 Released
+##### Changelog
+- Updated the `DatePicker` for more flexibility at rendering dates. ([@madc0der] - [pull-800])
+
+### v1.6.2 Released
+- Updated the `InkContainer` to not break in Preact. [issues-788]
+- Updated the `TableRow` children PropType validation to be a bit more accurate. [commit-6d5f8c2]
+
+### v1.6.1 Released
+##### Changelog
+- Fixed the `DatePicker` dates not having `type="button"`. ([@jakerichan] - [pull-796])
+
+### v1.6.0 Released
+##### Changelog
+- Updated the `Autocomplete` to allow showing results when the data is considered unfiltered. ([@Xuecnahc] - [pull-790])
+- Added better accessibility for the `Switch` component. ([@ecuageo] - [pull-794])
+- Fixed the `TextField` Typescript definitions to correctly allow the `name` prop. ([@roderik] - [pull-795])
+- Added the `capture` prop to `FileInput` and `FileUpload`. [issues-793]
+
+## August 2018
+### v1.5.1 Released
+##### Changelog
+- Fixed `Dialog` Typescript definitions for `height` and `width` to support strings. ([@kirananto] - [pull-789])
+
+### v1.5.0 Released
+##### Changelog
+This release added a new feature and an accessibility change.
+- Updated the `ListItem` to be able to have a right-aligned action button. ([@Kaishiyoku] - [pull-766])
+- Improved some of the accessibility for the `DatePicker`. ([@leahjlou] - [pull-779])
+
+## July 2018
+### v1.4.2 Released
+- Fixed the accessibility for selection controls (and groups) ([@blackcathacker] - [pull-768])
+
+## June 2018
+### v1.4.1 Released
+- Fixed a small bug with dialogs trying to focus elements that are not focusable in IE11. ([@alaney] - [pull-760])
+
+### v1.4.0 Released
+##### Changelog
+- Updated dialogs so that the blurry text rendering can be fixed by enabling a new Scss variable: `$md-dialog-use-flex-positioning`.
+You can read more about it [here](/components/dialogs?tab=2#variable-md-dialog-use-flex-positioning). [issues-337], [issues-599], and [issues-696].
+- Updated password text fields so that setting the `passwordIcon` prop to `null` will remove the password toggle button. [issues-738]
+
+### v1.3.5 Released
+##### Changelog
+- Specified `types` directory for changes in Typescript 2.9. ([@noseglid] - [pull-753])
+- Fixed `SelectField` to correctly allow float values instead of integers only. ([@henry-young] - [issues-751])
+
+## May 2018
+### v1.3.4 Released
+##### Changelog
+- Fixed a small bug in the `FocusContainer` that would consider a hidden input focusable which caused the `FocusContainer` to stop working. [issues-749]
+- Fixed the `SelectionControlGroup` to no longer append a checkbox group's value with a comma. [issues-716]
+
+### v1.3.3 Released
+##### Changelog
+- Correctly exported the `TableFooter` component for commonjs and modules. [issues-747]
+
+### v1.3.2 Released
+##### Changelog
+- Fixed the `required` attribute not being applied to `TextField`s. [issues-741]
+
+### v1.3.1 Released
+##### Changelog
+- Fixed the `ListItemControl` typescript definition. ([@ripldev] - [pull-735])
+
 ## April 2018
 ### v1.3.0 Released
 Unfortunately I had to cut the scope of this release from what was originally targeted due to burn out and other things. I am going
@@ -337,7 +433,7 @@ the [issue for more details](#issues-243).
 In addition, the styles for plain data tables have been simplified which might cause some display issues. [commit-2cc40cd]
 
 #### Menus
-If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following: 
+If you created a custom version of a `Menu`, you need to make sure that one of the children is one of the following:
 `.md-text-field-container,button,*[role="button"],*[role="listbox"]` otherwise there will be an error.
 
 ## August 2017
@@ -510,7 +606,7 @@ The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. 
 
 ### v1.0.9 Released
 
-This was really another patch for drawers. 
+This was really another patch for drawers.
 
 ##### Changelog
 - Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [issues-291]

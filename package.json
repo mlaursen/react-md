@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "1.3.0",
+  "version": "1.9.1",
   "description": "React material design components",
   "main": "./lib",
   "module": "./es",
@@ -13,6 +13,7 @@
     "index.d.ts",
     "LICENSE"
   ],
+  "types": "./index.d.ts",
   "scripts": {
     "lint:fix": "eslint -c .eslintrc --fix src",
     "lint:styles": "scss-lint src/scss",

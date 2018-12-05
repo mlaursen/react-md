@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import addDate from '../utils/dates/addDate';
+import chunk from '../utils/chunk';
 import getLastDay from '../utils/dates/getLastDay';
 import stripTime from '../utils/dates/stripTime';
 import toDayOfWeek from '../utils/dates/toDayOfWeek';
@@ -64,6 +65,16 @@ export default class CalendarMonth extends PureComponent {
     dateClassName: PropTypes.string,
 
     /**
+     * An optional function to provide class for each date in calendar.
+     */
+    getDateClassName: PropTypes.func,
+
+      /**
+     * An optional function to render each date component.
+     */
+    dateRenderer: PropTypes.func,
+
+    /**
      * True if dates from adjacent months should be shown.
      */
     showAllDays: PropTypes.bool,
@@ -97,6 +108,8 @@ export default class CalendarMonth extends PureComponent {
       firstDayOfWeek,
       disableWeekEnds,
       dateClassName,
+      getDateClassName,
+      dateRenderer,
       showAllDays,
       outerDateClassName,
       disableOuterDates,
@@ -137,6 +150,8 @@ export default class CalendarMonth extends PureComponent {
             key={key}
             className={cn(dateClassName, { [outerDateClassName]: !currentMonth && outerDateClassName })}
             today={time === todayTime}
+            getDateClassName={getDateClassName}
+            dateRenderer={dateRenderer}
             active={time === activeDateTime}
             disabled={disabled}
             onClick={onCalendarDateClick}
@@ -146,16 +161,22 @@ export default class CalendarMonth extends PureComponent {
           />
         );
       } else {
-        date = <div key={key} className="md-calendar-date" />;
+        date = <div key={key} className="md-calendar-date" role="gridcell" />;
       }
 
       days.push(date);
       currentDate = addDate(currentDate, 1, 'D');
     }
 
+    const weeks = chunk(days, 7);
+
     return (
-      <div className={cn('md-calendar-month', className)} {...props}>
-        {days}
+      <div role="grid" className={cn('md-calendar-month', className)} {...props}>
+        {weeks.map((week, i) => (
+          <div key={i} role="row">
+            {week}
+          </div>
+        ))}
       </div>
     );
   }

@@ -12,13 +12,13 @@ import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
 const noop = () => {};
 describe('SwitchThumb', () => {
   it('renders an AccessibleFakeInkedButton', () => {
-    const thumb = renderIntoDocument(<SwitchThumb onClick={noop} />);
+    const thumb = renderIntoDocument(<SwitchThumb onClick={noop} aria-label="Light Switch" />);
     const btns = scryRenderedComponentsWithType(thumb, AccessibleFakeInkedButton);
     expect(btns.length).toBe(1);
   });
 
   it('renders an AccessibleFakeInkedButton with the correct classNames', () => {
-    const props = { disabled: false, checked: false, onClick: noop };
+    const props = { disabled: false, checked: false, onClick: noop, 'aria-label': 'Light Switch' };
     let thumb = renderIntoDocument(<SwitchThumb {...props} />);
     let btn = findRenderedComponentWithType(thumb, AccessibleFakeInkedButton);
     expect(btn.props.className).toContain('md-switch-thumb');

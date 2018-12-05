@@ -5,6 +5,7 @@ import { InjectedInkProps } from '../Inks';
 export interface BaseListItemProps {
   tileStyle?: React.CSSProperties;
   tileClassName?: string;
+  primaryText?: React.ReactNode;
   secondaryText?: React.ReactNode;
   leftIcon?: React.ReactNode;
   leftAvatar?: React.ReactNode;
@@ -50,7 +51,11 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   activeBoxStyle?: React.CSSProperties;
   activeBoxClassName?: string;
   animateNestedItems?: boolean;
+  renderChildrenOutside?: boolean;
   itemRef?: (ref: React.ReactHTMLElement<any> | null) => null;
+  actionButtonIcon?: string,
+  actionButtonOnClick?: (event: React.MouseEvent<HTMLElement>) => void,
+  actionButtonPrimary?: boolean,
 
   /**
    * @deprecated

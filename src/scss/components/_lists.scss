@@ -294,7 +294,7 @@ $md-list-addon-line-height: $md-line-height !default;
       flex-shrink: 0;
     }
 
-    .md-divider {
+    .md-divider:not(.md-list-item--divider-vertical) {
       margin-bottom: $md-list-divider-margin;
       margin-top: $md-list-divider-margin;
     }
@@ -322,8 +322,32 @@ $md-list-addon-line-height: $md-line-height !default;
     }
   }
 
-  .md-list-item--inset {
-    padding-left: $md-list-left-padding;
+  .md-list-item {
+    &--inset {
+      padding-left: $md-list-left-padding;
+    }
+
+    &--flex {
+      display: flex;
+    }
+
+    &--button-grow {
+      flex-grow: 1;
+    }
+
+    &--divider-vertical {
+      flex-shrink: 0;
+      height: calc(100% - 4px);
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-top: 2px;
+      width: 2px;
+    }
+
+    &--children-inline {
+      align-self: center;
+      padding-right: 2px;
+    }
   }
 
   .md-tile-content {

@@ -16,7 +16,16 @@ export default class Interactive extends PureComponent {
     action: '',
     autohide: true,
     autohideTimeout: Snackbar.defaultProps.autohideTimeout,
+    target: null,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.submitButton && !this.state.toasts.length && prevState.toasts.length) {
+      // Since there is currently no focus management built into the Snackbar, you will manually
+      // need to re-focus the previous element once the toast is dismissed
+      this.submitButton.focus();
+    }
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -116,6 +125,7 @@ export default class Interactive extends PureComponent {
             disabled={!text || !autohideTimeout}
             type="submit"
             className="md-btn--dialog md-cell--right"
+            ref={(c) => { this.submitButton = c; }}
           >
             Toast
           </Button>
@@ -133,6 +143,7 @@ export default class Interactive extends PureComponent {
           toasts={toasts}
           autohide={autohide}
           autohideTimeout={autohideTimeout || Snackbar.defaultProps.autohideTimeout}
+          autoFocusAction
           onDismiss={this.dismiss}
         />
       </form>

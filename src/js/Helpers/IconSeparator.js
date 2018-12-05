@@ -50,6 +50,7 @@ export default class IconSeparator extends PureComponent {
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
+      PropTypes.object,
     ]).isRequired,
   };
 

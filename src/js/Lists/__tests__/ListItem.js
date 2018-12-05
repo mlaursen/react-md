@@ -12,6 +12,7 @@ import {
 import ListItem from '../ListItem';
 import FontIcon from '../../FontIcons';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
+import Divider from '../../Dividers/Divider';
 
 describe('ListItem', () => {
   const StarIcon = () => <FontIcon>star</FontIcon>;
@@ -235,5 +236,16 @@ describe('ListItem', () => {
   it('should render correctly with a snapshot tester', () => {
     const tree = renderer.create(<ListItem primaryText="Test" />).toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('should use the "renderChildrenOutside" property', () => {
+    const props = {
+      primaryText: 'Test renderChildrenOutside prop',
+      renderChildrenOutside: true,
+    };
+    const listItem = mount(<ListItem {...props} />);
+    const divider = listItem.find(Divider);
+
+    expect(divider).toMatchSnapshot();
   });
 });

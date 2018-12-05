@@ -707,7 +707,6 @@ export default class TextField extends PureComponent {
       disabled,
       leftIconStateful,
       rightIconStateful,
-      passwordIcon,
       lineDirection,
       paddedBlock,
       onDoubleClick,
@@ -722,6 +721,7 @@ export default class TextField extends PureComponent {
       ink,
       inlineIndicator,
       toolbar,
+      passwordIcon: propPasswordIcon,
 
       // deprecated
       icon,
@@ -777,14 +777,15 @@ export default class TextField extends PureComponent {
     }
 
     leftIcon = this._cloneIcon(icon || leftIcon, active, error, disabled, leftIconStateful, block, 'left');
-    if (type === 'password' && !disabled) {
+    const passwordIcon = getDeprecatedIcon(passwordIconClassName, passwordIconChildren, propPasswordIcon);
+    if (passwordIcon !== null && type === 'password' && !disabled) {
       rightIcon = (
         <PasswordButton
           key="password-btn"
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
-          icon={getDeprecatedIcon(passwordIconClassName, passwordIconChildren, passwordIcon)}
+          icon={passwordIcon}
           block={block}
           floating={!!label}
         />
@@ -836,6 +837,7 @@ export default class TextField extends PureComponent {
     const field = (
       <InputField
         {...props}
+        required={required}
         key="field"
         ref={this._setField}
         id={id}
