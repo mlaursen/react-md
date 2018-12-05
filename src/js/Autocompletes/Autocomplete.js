@@ -330,11 +330,17 @@ export default class Autocomplete extends PureComponent {
      */
     onMenuClose: PropTypes.func,
 
+    /* eslint-disable max-len */
     /**
      * This prop is used for disabling the browser's default autocomplete suggestions
-     * of previously typed values in the text field. By default, this is disabled.
+     * of previously typed values in the text field. By default, this is set to `'off'`
+     * which most browsers will ignore when in forms. See the MDN Link on disabling
+     * autocomplete for some workarounds or fixes.
+     *
+     * @see [Disabling autocomplete](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#Disabling_autocompletion)
      */
-    autoComplete: PropTypes.oneOf(['on', 'off']),
+    autoComplete: PropTypes.string,
+    /* eslint-enable max-len */
 
     /**
      * Boolean if the `input` should be focused again after a suggestion was clicked.
