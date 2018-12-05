@@ -41,6 +41,24 @@ global.SVGElement = Element;
 
 This should allow your tests to work as expected and not crash.
 
+### window.matchMedia
+When running tests using the \`Drawer\`/\`NavigationDrawer\` component, you might run into an error:
+
+> TypeError: window.matchMedia is not a function
+
+This can be fixed by mocking the \`window.matchMedia\` function in your test setup scripts. A simple mock would be:
+
+\`\`\`js
+if (typeof window.matchMedia !== 'function') {
+  window.matchMedia = jest.fn(query => ({
+    matches: query.includes('(min-width: 1025px)'),
+  }));
+}
+\`\`\`
+
+Some more information can be found in [#783](https://github.com/mlaursen/react-md/issues/783#issuecomment-415919067).
+
+
 ## Snapshot Testing
 Some of my components use \`findDOMNode\` behind the scenes to be able to do calculations for positioning and other
 things, but this doesn't work with [react-test-renderer](https://github.com/facebook/react/issues/7371#issuecomment-260946945).
