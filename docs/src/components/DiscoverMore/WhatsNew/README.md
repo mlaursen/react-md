@@ -1,3 +1,13 @@
+## December 2018
+### v1.9.2 Released
+##### Changelog
+- Updated the `autoComplete` prop type to be `PropTypes.string` for the `Autocomplete` component. [issues-703]
+- Updated the `Tabs` component to be able to fix the selected tab indicator's height to match the value defined in SCSS. [issues-764]
+- Fixed `Tooltip`s not disappearing when the user blurs a tooltip target. ([@ryanmurakami] - [pull-814])
+
+### Documentation Change
+- Updated the testing page to have information about missing [window.matchMedia](/discover-more/testing#window-matchmedia).
+
 ## November 2018
 ### v1.9.1 Released
 ##### Changelog
