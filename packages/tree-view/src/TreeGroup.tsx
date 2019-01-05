@@ -37,6 +37,8 @@ export type TreeGroupWithDefaultProps = ITreeGroupProps & ITreeGroupDefaultProps
  * The `TreeGroup` component is used to render a tree item's nested items whenever the `expanded`
  * prop is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view
  * and will fully unrender when the `expanded` prop is `false`.
+ *
+ * @props ITreeGroupProps
  */
 const TreeGroup: React.FunctionComponent<ITreeGroupProps> = providedProps => {
   const {

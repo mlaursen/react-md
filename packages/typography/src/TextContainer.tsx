@@ -25,7 +25,7 @@ export type TextContainerRenderFunction = (props: { className: string }) => Reac
  *
  * @typeparam P - Any additional props that are available based on the component prop.
  */
-export interface ITextContainerProps<P = DefaultTextContainerProps> {
+export interface ITextContainerProps {
   /**
    * An optional className to merge with typography text container styles.
    */
@@ -41,7 +41,7 @@ export interface ITextContainerProps<P = DefaultTextContainerProps> {
   /**
    * The component to render as. By default this will just be a div, but anything can be provided.
    */
-  component?: React.ReactType<P>;
+  component?: React.ReactType;
 
   /**
    * Either a child render function or a react node. If this is not the child render function, a
@@ -61,8 +61,7 @@ export interface ITextContainerDefaultProps {
 /**
  * @private
  */
-export type TextContainerWithDefaultProps = ITextContainerProps<DefaultTextContainerProps> &
-  ITextContainerDefaultProps;
+export type TextContainerWithDefaultProps = ITextContainerProps & ITextContainerDefaultProps;
 
 /**
  * The `TextContainer` component is a simple wrapper around a `<div>`, `<section>`, `<article>`, or
@@ -71,9 +70,7 @@ export type TextContainerWithDefaultProps = ITextContainerProps<DefaultTextConta
  * @typeparam P - Any additional props that can be provided to the `TextContainer` component. By
  * default, this will just be the HTMLAttributes of an HTML Element.
  */
-export default class TextContainer<
-  P extends {} = DefaultTextContainerProps
-> extends React.Component<ITextContainerProps<P> & P> {
+export default class TextContainer extends React.Component<ITextContainerProps> {
   public static propTypes = {
     size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
     className: PropTypes.string,
@@ -102,7 +99,7 @@ export default class TextContainer<
       return (children as TextContainerRenderFunction)({ className });
     }
 
-    const Component = component as React.ReactType<P>;
+    const Component = component as React.ReactType;
     return (
       <Component {...props} className={className}>
         {children}

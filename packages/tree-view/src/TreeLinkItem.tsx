@@ -42,6 +42,8 @@ export type TreeLinkItemProps = ITreeLinkItemProps & React.HTMLAttributes<HTMLAn
  * The `TreeLinkItem` component should be used whenever you want to render a `TreeItem` as a link.
  * The only reason for this component is that the accessibility specs change when rendering links,
  * so this component automatically fixes them for you.
+ *
+ * @props TreeLinkItemProps
  */
 const TreeLinkItem: React.FunctionComponent<TreeLinkItemProps> = ({
   liStyle,

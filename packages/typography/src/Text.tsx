@@ -92,6 +92,7 @@ export interface ITextProps extends React.HTMLAttributes<TextElement> {
 
 /**
  * The default defined props for the text component.
+ * @private
  */
 export interface ITextDefaultProps {
   type: TextTypes;
@@ -125,11 +126,6 @@ export type TextWithDefaultProps = ITextProps & ITextDefaultProps;
  * - `"button"     -> <button>`
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
  * `component` will be used instead.
- *
- * @forwardRef
- * @typeparam P - Any additional props that are valid when using the `component` prop or the built
- * in "auto-component" logic. By default, this will just allow any HTMLElement props for each the
- * default elements in the "auto-component" logic.
  */
 class Text extends React.Component<ITextProps> {
   public static propTypes = {

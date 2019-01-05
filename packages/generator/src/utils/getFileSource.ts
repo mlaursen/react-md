@@ -10,6 +10,6 @@ export function getFileSource(reflection: Reflection) {
   const path = (source.file && source.file.fullFileName) || source.fileName;
   return {
     line: source.line,
-    path: path.substring(path.indexOf("react-md")),
+    path: path.replace(/.+react-md\//, ""),
   };
 }

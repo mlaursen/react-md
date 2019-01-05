@@ -9,3 +9,6 @@ export * from "./EventListener";
 
 export { default as AppSizeListener } from "./AppSizeListener";
 export * from "./AppSizeListener";
+
+export { default as KeyboardListener } from "./KeyboardListener";
+export * from "./KeyboardListener";

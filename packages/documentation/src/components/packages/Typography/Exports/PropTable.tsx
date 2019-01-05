@@ -92,6 +92,7 @@ function getPrettyType(
       if (/\r?\n/.test(value)) {
         returnValue.multiline = true;
       }
+
       returnValue.children = returnValue.children.replace(ref, value);
       return returnValue;
     },
@@ -158,20 +159,27 @@ export default class PropTable extends React.Component<IPropTableProps, IPropTab
             {attributes.map(attribute => {
               const { name, required, defaultValue, description } = attribute;
               const type = getPrettyType(attribute, file);
+              let code = (
+                <code
+                  className={cn("prop-table__code", {
+                    "prop-table__code--inline": !type.multiline,
+                  })}
+                >
+                  {type.children}
+                </code>
+              );
+              if (type.multiline) {
+                code = <pre className="prop-table__pre">{code}</pre>;
+              }
+
               return (
                 <Row key={name}>
                   <Cell>{`${name}${required ? ` *` : ""}`}</Cell>
+                  <Cell>{code}</Cell>
                   <Cell>
-                    <code
-                      className={cn("prop-table__code", {
-                        "prop-table__code--multiline": type.multiline,
-                      })}
-                    >
-                      {type.children}
+                    <code className="prop-table__code prop-table__code--inline">
+                      {defaultValue || "undefined"}
                     </code>
-                  </Cell>
-                  <Cell>
-                    {defaultValue && <code className="prop-table__code">{defaultValue}</code>}
                   </Cell>
                   <Cell className="prop-table__description">
                     <Markdown markdown={description} />

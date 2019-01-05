@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { StatesProvider } from "@react-md/states";
+import { KeyboardListener, IKeyboardListenerContext } from "@react-md/listeners";
 
 import Home from "components/Home";
 import GettingStarted from "components/GettingStarted";
@@ -25,17 +26,23 @@ import "./app.scss";
 import Layout from "./Layout";
 import { routesConfig } from "./routes";
 
-const App: React.FunctionComponent<{}> = () => (
-  <StatesProvider>
-    <Layout>
-      <Switch>
-        {routesConfig.map(({ path, exact, component }) => (
-          <Route key={path} path={path} exact={exact} component={component} />
-        ))}
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
-  </StatesProvider>
+function handleChange(context: IKeyboardListenerContext) {
+  console.log("context:", context);
+}
+
+const App = () => (
+  <KeyboardListener onChange={handleChange}>
+    <StatesProvider>
+      <Layout>
+        <Switch>
+          {routesConfig.map(({ path, exact, component }) => (
+            <Route key={path} path={path} exact={exact} component={component} />
+          ))}
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+    </StatesProvider>
+  </KeyboardListener>
 );
 
 export default App;

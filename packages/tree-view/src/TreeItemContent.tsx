@@ -47,6 +47,8 @@ export type TreeItemContentWithDefaultProps = ITreeItemContentProps &
  * The `TreeItemContent` is extremely similar to the `ListItem` component as it uses some of the
  * same props. It is used to layout the contents within a `TreeItem` so that is it separated from
  * the `TreeGroup` and has the different focus states and icon alignments.
+ *
+ * @props ITreeItemContentProps
  */
 const TreeItemContent: React.FunctionComponent<ITreeItemContentProps> = providedProps => {
   const {

@@ -44,7 +44,13 @@ export interface ITreeItemBaseProps {
   selected?: boolean;
 }
 
-export type ITreeItemProps = React.HTMLAttributes<HTMLLIElement> & ITreeItemBaseProps;
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+export interface ITreeItemProps
+  extends ITreeItemBaseProps,
+    Omit<
+      React.HTMLAttributes<HTMLLIElement>,
+      "tabIndex" | "aria-expanded" | "aria-level" | "aria-posinset" | "aria-setsize"
+    > {}
 
 export interface ITreeItemDefaultProps {
   selected: boolean;
@@ -59,6 +65,8 @@ export type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
  *
  * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
  * of this one.
+ *
+ * @props ITreeItemProps
  */
 const TreeItem: React.FunctionComponent<ITreeItemProps> = providedProps => {
   const {

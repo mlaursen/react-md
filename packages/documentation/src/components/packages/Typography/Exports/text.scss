@@ -55,9 +55,24 @@
     }
   }
 
+  &__pre {
+    @include code-styles;
+
+    background-color: var(--markdown-code-bg);
+    margin: 0 auto;
+    padding: .25em;
+
+    code {
+      font: inherit;
+    }
+  }
+
   &__code {
     @include code-styles;
-    @include inline-code-styles;
+
+    &--inline {
+      @include inline-code-styles;
+    }
   }
 
   &__description {

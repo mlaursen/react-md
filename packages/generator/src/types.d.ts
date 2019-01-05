@@ -3,9 +3,13 @@ export interface ICleanableCommand {
 }
 
 export interface ITypedocConfig extends ICleanableCommand {
-  all: boolean;
   packageName: string;
 }
+
+export type DocumentedSource = {
+  line: number;
+  path: string;
+};
 
 export type DocumentedType = {
   name: string;
@@ -30,23 +34,11 @@ export type InheritedProps = {
   [key: string]: string[];
 };
 
-export type DocumentedProps = {
-  name: string;
-  description: string;
-  generics: DocumentedGeneric[];
-  declared: DocumentedProp[];
-  inherited: InheritedProps;
-};
-
-export type DocumentedSource = {
-  line: number;
-  path: string;
-};
-
 export type DocumentedComponent = {
   name: string;
   description: string;
   source: DocumentedSource;
-  props: DocumentedProps;
+  props: DocumentedProp[];
+  inherited: InheritedProps;
   generics: DocumentedGeneric[];
 };

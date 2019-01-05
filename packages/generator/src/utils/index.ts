@@ -6,3 +6,6 @@ export * from "./typeFormat";
 export * from "./getFolderContents";
 export * from "./getDocumentablePackages";
 export * from "./createTypedocProject";
+export * from "./createDocumentation";
+export * from "./getPackageDependencies";
+export * from "./reflections";
