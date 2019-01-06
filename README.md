@@ -64,14 +64,9 @@ is recommended to install it globally to make development easier or just use
 ```sh
 $ git clone https://github.com/mlaursen/react-md
 $ cd react-md
-$ npm install
-$ npm run bootstrap
-$ npm run build
+$ yarn
+$ yarn build
 ```
-
-> `npm run bootstrap` is the same as `lerna bootstrap --hoist`
-
-> `npm run build` is the same as `lerna run build`
 
 ### Project structure
 
@@ -102,12 +97,12 @@ Tests can be run either with `lerna` or changing into a specific package
 directory and running the test command:
 
 ```sh
-$ lerna run test
+$ yarn test
 ```
 
 ```sh
 $ cd packages/typography
-$ npm run test
+$ yarn test
 ```
 
 Tests are being run with [jest](https://jestjs.io/), so you can add the

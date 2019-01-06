@@ -12,7 +12,8 @@
     "compile": "tsc -p tsconfig.json",
     "build": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
-    "watch": "npm-run-all -p \"compile -- -w\" watcher"
+    "watch": "npm-run-all -p \"compile -- -w\" watcher",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "commander": "^2.19.0",

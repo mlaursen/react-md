@@ -8,6 +8,7 @@ node_modules
 /packages/*/lib
 /packages/*/dist
 /packages/*/types
+/packages/dev-utils/bin
 
 # Testing
 coverage

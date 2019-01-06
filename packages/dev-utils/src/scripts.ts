@@ -1,4 +1,5 @@
 import fs from "fs-extra";
+import path from "path";
 import { camelCase, upperFirst } from "lodash";
 
 import {
@@ -87,21 +88,23 @@ const ROLLUP_TSCONFIG = {
 
 async function umd() {
   const packageName = await getPackageName();
+  const rollupConfigPath = path.join(process.cwd(), rollupConfig);
+  const tsConfigRollupPath = path.join(process.cwd(), tsConfigRollup);
 
   const umdName = `ReactMD${upperFirst(camelCase(packageName))}`;
 
   const config = createRollupConfig(packageName, umdName);
-  await fs.writeFile(rollupConfig, config, "utf8");
-  await fs.writeJson(tsConfigRollup, ROLLUP_TSCONFIG, { spaces: 2 });
+  await fs.writeFile(rollupConfigPath, config, "utf8");
+  await fs.writeJson(tsConfigRollupPath, ROLLUP_TSCONFIG, { spaces: 2 });
 
-  await rollup(false);
-  await rollup(true);
+  rollup(false);
+  rollup(true);
 
-  await fs.remove(rollupConfig);
-  await fs.remove(tsConfigRollup);
+  await fs.remove(rollupConfigPath);
+  await fs.remove(tsConfigRollupPath);
 }
 
-async function rollup(production: boolean) {
+function rollup(production: boolean) {
   const env = production ? "production" : "development";
   console.log(`Creating the ${env} UMD bundle...`);
   exec("npx rollup -c", {

@@ -6,12 +6,11 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
+    "build": "lerna run build --ignore dev-utils",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
     "test": "lerna exec --ignore dev-utils --no-bail -- npm run test",
-    "travisci": "npm-run-all lint \"test -- -- --coverage\"",
     "clean": "lerna clean"
   },
   "repository": {
@@ -74,5 +73,8 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

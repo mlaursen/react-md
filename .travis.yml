@@ -5,6 +5,5 @@ cache:
   yarn: true
 install:
   - yarn
-  - yarn bootstrap
 script:
-  - npm run travisci
+  - yarn travisci
