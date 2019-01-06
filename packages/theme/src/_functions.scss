@@ -2,71 +2,8 @@
 /// @group theme
 ////
 
-@import 'constants';
 @import 'color-palette';
-
-/// Calculate the luminance for a color.
-///
-/// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-/// @returns {Number}
-@function rmd-theme-luminance($color) {
-  $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
-  $red-multiplier: 0.2126;
-  $green: nth($rmd-theme-linear-channel-values, green($color) + 1);
-  $green-multiplier: 0.07152;
-  $blue: nth($rmd-theme-linear-channel-values, blue($color) + 1);
-  $blue-multiplier: 0.0722;
-
-  @return ($red * $red-multiplier) + ($green * $green-multiplier) +
-    ($blue * $blue-multiplier);
-}
-
-/// Gets the contrast between two colors.
-/// @returns {Number}
-@function rmd-theme-contrast($back, $front) {
-  $back-luminance: rmd-theme-luminance($back) + 0.05;
-  $front-luminance: rmd-theme-luminance($front) + 0.05;
-
-  @return max($back-luminance, $front-luminance) /
-    min($back-luminance, $front-luminance);
-}
-
-/// Determines if a provided color is considered light or dark.
-///
-/// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
-///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
-///     the link for contrasts for more information.
-/// @returns {String} - The string 'light' if the color is considered light, otherwise 'dark'.
-/// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-tone($color, $min-contrast: 3.1) {
-  @if $color == 'dark' or $color == 'light' {
-    @return $color;
-  }
-
-  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
-  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));
-
-  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
-    @return 'light';
-  } @else {
-    @return 'dark';
-  }
-}
-
-/// Determines if the provided color should have a light or dark contrast using the
-/// luminance algorithm to maintain a required contrast ratio for accessibility.
-///
-/// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
-///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
-///     the link for contrasts for more information.
-/// @returns {String} - The string 'dark' if the color is considered light, or 'light' if the
-///     color is considered dark.
-/// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-contrast-tone($color, $min-contrast: 3.1) {
-  @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');
-}
+@import 'variables';
 
 /// A theme utility function to convert a material design color to the same color but with a different
 /// swatch. If your app is not using material design colors, this utility function is useless but you
@@ -170,4 +107,42 @@
   $color-name: '#{$current-color-name}#{if($accent, '-a', '')}-#{$swatch}';
 
   @return map-get($rmd-theme-color-map, $color-name);
+}
+
+/// A small utility function to get a color from the current theme. This is normally used along with the
+/// `rmd-theme-var` function so that both css variables and a fallback can be applied.
+///
+/// You are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.
+///
+/// @see rmd-theme-var
+/// @see rmd-theme-values
+/// @see rmd-theme
+/// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
+/// @return {Color} the theme color.
+@function rmd-theme($style) {
+  @if not map-has-key($rmd-theme-values, $style) {
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-values)}';
+  }
+
+  @return map-get($rmd-theme-values, $style);
+}
+
+/// A small utility function to get a color from the current theme as a css variable. This is normally used along with the
+/// `rmd-theme` function so that both css variables and a fallback can be applied.
+///
+/// You are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.
+///
+/// @see rmd-theme
+/// @see rmd-theme-values
+/// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
+/// @return {Color} the theme color.
+@function rmd-theme-var($style, $color: null) {
+  @if not map-has-key($rmd-theme-values, $style) {
+    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-values)}';
+  }
+
+  @return var(
+    --rmd-theme-#{$style},
+    if($color == null, rmd-theme($style), $color)
+  );
 }

@@ -3,7 +3,6 @@
   "version": "2.0.0-alpha.0",
   "description": "The base package for including a theme for react-md. This is required by most other packages.",
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "dev-utils build",
     "clean": "dev-utils clean",
     "test": "dev-utils test",
