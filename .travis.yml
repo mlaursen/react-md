@@ -3,6 +3,7 @@ node_js:
   - "10"
 install:
   - npm install -g lerna
+  - npm install
   - lerna bootstrap
 script:
   - npm run travisci
