@@ -5,7 +5,7 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
