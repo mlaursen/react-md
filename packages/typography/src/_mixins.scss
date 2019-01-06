@@ -1,0 +1,298 @@
+////
+/// @group typography
+////
+
+@import 'variables';
+@import 'functions';
+
+/// Applies each property value from the `$rmd-typography-styles` map that matches the style name.
+///
+/// @example scss - Simple Examples
+///   .body-1-font-size {
+///     // when no properties are provided, it will default to font-size
+///     @include rmd-typography-value(body-1);
+///   }
+///
+///   .headline-4-letter-spacing {
+///     @include rmd-typography-value(headline-4, letter-spacing);
+///   }
+///
+///   .caption-styles {
+///     @include rmd-typography-value(caption, font-size, letter-spacing, line-height);
+///   }
+///
+/// @param {String} style - The typography style to get value(s) for. This should be one of the keys from the `$rmd-typography-styles` map.
+/// @param {String...} properties [font-size] - A list of properties to get and create. When no properties are provided, it will default
+///    to using `font-size`.
+@mixin rmd-typography-value($style, $properties...) {
+  @if length($properties) == 0 {
+    $properties: append($properties, font-size);
+  }
+
+  @each $property in $properties {
+    #{$property}: rmd-typography-value($style, $property);
+  }
+}
+
+/// Applies the base typography styles to an element.
+///
+/// @example scss - Example Usage SCSS
+///   .custom-class-name {
+///     @include rmd-typography-base;
+///
+///     font-size: 1.3rem;
+///  }
+@mixin rmd-typography-base {
+  @each $key, $value in $rmd-typography-base {
+    #{$key}: $value;
+  }
+}
+
+/// Applies one of the provided material design styles to an element.
+/// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
+@mixin rmd-typography($style) {
+  @if not map-has-key($rmd-typography-styles, $style) {
+    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
+  }
+
+  $style-props: map-get($rmd-typography-styles, $style);
+
+  @each $key, $value in $style-props {
+    #{$key}: $value;
+  }
+}
+
+/// Creates the base styles required for the text container. These styles are used
+/// to be able to center the text in a container once the `max-width` value has
+/// also been applied.
+@mixin rmd-text-container-base {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/// This will generate the styles to apply to an element that will set the max width for legibility. By default,
+/// this will create styles that change based on the provided `$mobile-breakpoint` and apply different max
+/// widths on a media query. This feature can be disabled by setting the `$mobile-breakpoint` or the `$desktop-max-width`
+/// parameters to `null`.
+///
+/// Unlike everything else in react-md, the text container relies on having the `box-sizing` set to `content-box` so that
+/// the text contents can be centered correctly with a max width and padding. When this is set to `border-box`, you will
+/// lose the padding real estate in your text container which is something that might not be desired. Keeping this as
+/// `content-box` will allow padding to be applied without shrinking the max line length.
+///
+/// @example scss - Creating a "blog"
+///   .blog {
+///     @include rmd-text-container-base;
+///     @include rmd-text-container-auto;
+///   }
+///
+///   .title {
+///     @include rmd-typography(headline-2);
+///   }
+///
+///   .paragraph {
+///     @include rmd-typography(headline-4);
+///
+///     @media (max-width: 800px) {
+///       @include rmd-typography(headline-5);
+///     }
+///   }
+///
+/// @example html - Creating a "blog"
+///    <main class="blog">
+///      <h1 class="title">Blog Title</h1>
+///      <p class="paragraph">Lorem ipsum...</p>
+///      <p class="paragraph">Lorem ipsum...</p>
+///    </main>
+///
+///
+/// @param {Number} mobile-max-width [rmd-typography-mobile-max-line-length] - The max width for a line of text on
+///   mobile devices. This number is recommended to be between 17em and 18em.
+/// @param {Number} desktop-max-width [rmd-typography-desktop-max-line-length] - The max width for a line of text on
+///   desktop screens. This number is recommended to be between 38em and 42em.
+/// @param {Number} mobile-breakpoint [rmd-typography-text-container-breakpoint] - The breakpoint for switching between
+///   a mobile device and a desktop screen. This is used to automatically change the max line-width for better legibility.
+@mixin rmd-text-container-auto(
+  $mobile-max-width: $rmd-typography-mobile-max-line-length,
+  $desktop-max-width: $rmd-typography-desktop-max-line-length,
+  $mobile-breakpoint: $rmd-typography-text-container-breakpoint
+) {
+  max-width: $desktop-max-width;
+
+  @media (max-width: #{$mobile-breakpoint}) {
+    max-width: $mobile-max-width;
+  }
+}
+
+/// Creates all the typography styles from the react-md typography variables.
+@mixin react-md-typography {
+  .rmd-typography {
+    @include rmd-typography-base;
+
+    @each $suffix in map-keys($rmd-typography-styles) {
+      &--#{$suffix} {
+        @include rmd-typography($suffix);
+      }
+    }
+  }
+
+  .rmd-text-container {
+    @include rmd-text-container-base;
+
+    &--auto {
+      @include rmd-text-container-auto;
+    }
+
+    &--mobile {
+      max-width: $rmd-typography-mobile-max-line-length;
+    }
+
+    &--desktop {
+      max-width: $rmd-typography-desktop-max-line-length;
+    }
+  }
+}
+
+/// A simple mixin that can be used to update an element to ellipsis text when it is too long.
+@mixin rmd-typography-text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Creates the font face declaration for a Google font with a provided font weight. This will
+/// need to be called multiple times if you are including multiple font weights.
+///
+/// This should only be used if you are hosting the Google font locally instead of through the
+/// Google fonts service.
+///
+/// @example scss - Example Usage SCSS
+///   @include rmd-typography-google-font-face(Roboto, regular, null);
+///   @include rmd-typography-google-font-face('Source Code Pro', regular, null);
+///
+/// @example css - Example Usage Generated SCSS
+///   @font-face {
+///     font-family: 'Roboto';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: local('Roboto'),
+///       local('Roboto-Regular'),
+///       url('/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+///   }
+///
+///   @font-face {
+///     font-family: 'Source Code Pro';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: local('Source Code Pro'),
+///       local('SourceCodePro-Regular'),
+///       url('/fonts/source-code-pro/SourceCodePro-Regular.ttf') format('truetype');
+///   }
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {String} font-weight [map-get($rmd-typography-font-weights, regular)] - The font weight to use.
+/// @param {String} font-url-or-prefix [null] - This is either a font url prefix for the folder containing the font on your
+///   server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the
+///   url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+///   '/fonts/' prefix and then a caterpillar-cased string. See the examples above for more details.
+@mixin rmd-typography-google-font-face(
+  $font-name: Roboto,
+  $font-weight: map-get($rmd-typography-font-weights, regular),
+  $font-url-or-prefix: null
+) {
+  $full-font-name: str-replace($font-name, ' ', '') +
+    rmd-typography-google-font-suffix($font-weight);
+
+  $font-url-prefix: '';
+  $font-url: null;
+  @if $font-url-or-prefix == null pr type-of($font-url-or-prefix) == 'string' {
+    $font-url: if(
+      $font-url == null,
+      '/fonts/' + to-lower-case(str-replace($font-name, ' ', '-')),
+      $font-url
+    );
+    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
+    $font-url: url($font-url+$full-font-name+'.ttf');
+  } @else {
+    $font-url: $font-url-or-prefix;
+  }
+
+  @font-face {
+    font-family: quote($font-name);
+    font-style: normal;
+    font-weight: $font-weight;
+    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),
+      #{$font-url} format('truetype');
+  }
+}
+
+/// Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font
+/// on your own servers instead of through the Google fonts service.
+///
+/// If you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files
+/// correctly included and bundled during your build. See the examples for more details.
+///
+/// @example scss - create-react-app Example Usage
+///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
+///     light: url(./fonts/roboto/Roboto-Light.ttf),
+///     regular: url(./fonts/roboto/Roboto-Regular.ttf),
+///     medium: url(./fonts/roboto/Roboto-Medium.ttf),
+///     bold: url(./fonts/roboto/Roboto-Bold.ttf),
+///   ));
+///
+///   @include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
+///     light: url(./fonts/source-code-pro/SourceCodePro-Light.ttf),
+///     regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),
+///     medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),
+///     bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),
+///   ));
+///
+/// @example scss - Example Usage SCSS
+///   // The next 3 lines are equivalent
+///   @include rmd-typography-host-google-font;
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, null);
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, '/fonts/roboto');
+///   @include rmd-typography-host-google-font('Source Code Pro');
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {List} weights [$rmd-typography-default-font-weights] - A list of font weights to use. These should be
+///   one of the `$rmd-typography-font-weights` keys.
+/// @param {String | Map} font-url-prefix-or-url-map [null] - This is either a font url prefix for the folder containing the font on your
+///   server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the
+///   url string approach for it to be correctly included in the build process. If this value is null, it will default to have
+///   '/fonts/' prefix and then a caterpillar-cased string. See the `rmd-typography-google-font-face` mixin for more details.
+/// @see rmd-typography-google-font-face
+/// @link https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-images-fonts-and-files Adding Images, Fonts, and Files
+@mixin rmd-typography-host-google-font(
+  $font-name: Roboto,
+  $weights: $rmd-typography-default-font-weights,
+  $font-url-prefix-or-url-map: null
+) {
+  @each $weight in $weights {
+    @if type-of($font-url-prefix-or-url-map) ==
+      'string' or
+      $font-url-prefix-or-url-map ==
+      null
+    {
+      @include rmd-typography-google-font-face(
+        $font-name,
+        $weight,
+        $font-url-prefix-or-url-map
+      );
+    } @else {
+      @if not map-has-key($font-url-prefix-or-url-map, $weight) {
+        @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{map-keys($font-url-prefix-or-url-map)}'.';
+      }
+
+      @include rmd-typography-google-font-face(
+        $font-name,
+        $weight,
+        map-get($font-url-prefix-or-url-map, $weight)
+      );
+    }
+  }
+}

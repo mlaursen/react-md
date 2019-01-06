@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextContainer should be able to render as a class component 1`] = `
+<section
+  class="rmd-text-container rmd-text-container--auto custom"
+>
+  Hello, world!
+</section>
+`;
+
+exports[`TextContainer should be able to render as a functional component 1`] = `
+<section
+  class="rmd-text-container rmd-text-container--auto custom"
+>
+  Hello, world!
+</section>
+`;
+
+exports[`TextContainer should be able to use a children render function 1`] = `
+<span
+  className="rmd-text-container rmd-text-container--auto span"
+>
+  Content
+</span>
+`;
