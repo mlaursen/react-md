@@ -1,0 +1,68 @@
+////
+/// @group utils
+////
+
+@import 'variables';
+
+/// A simple mixin that allows you to update styles when the [dir="rtl"] is present
+/// for languages that read right to light. This is mostly used to update spacing with
+/// margins or padding and a more "verbose" method of declaring rtl styles.
+///
+/// @example scss - Example Usage SCSS
+///   .my-class {
+///     margin-right: 1rem;
+///
+///     @include rmd-utils-rtl {
+///       margin-left: 1rem;
+///       margin-right: auto;
+///     }
+///   }
+///
+@mixin rmd-utils-rtl {
+  [dir='rtl'] & {
+    @content;
+  }
+}
+
+/// An extremely simple util that is used to add scrolling to an element with a "patch" for adding scroll
+/// momentum to iOS.
+///
+/// @param {String} position [null] - This should either be "x", "y", or null. This will just change the style
+///     between overflow, overflow-x, and overflow-y.
+/// @param {String} type [auto] - The scroll type to apply. It is recommended to use the default of `auto` in
+///     most cases, but it can be set to something else.
+/// @param {Boolean} enable-momentum [$rmd-utils-ios-scroll-momentum] - Boolean if iOS scroll momentum should be "patched".
+@mixin rmd-utils-scroll(
+  $position: null,
+  $type: auto,
+  $enable-momentum: $rmd-utils-ios-scroll-momentum
+) {
+  $style: overflow;
+  @if $position == 'x' or $position == 'y' {
+    $style: #{$style}-#{$position};
+  }
+
+  #{$style}: $type;
+
+  @if $enable-momentum {
+    // sass-lint:disable no-vendor-prefixes
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/// A helper mixin that will hide the outline style when a user focuses any element / on the page. All this really does
+/// is create an `outline-style: none` when the element is focused.
+///
+/// @param {Boolean} fix-moz-focus [true] - Boolean if the Firefox focus inner styles should also
+///     be removed.
+@mixin rmd-utils-hide-focus-outline($fix-moz-focus: true) {
+  &:focus {
+    outline-style: none;
+  }
+
+  @if $fix-moz-focus {
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}
