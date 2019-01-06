@@ -2,18 +2,17 @@ import fs from "fs-extra";
 import path from "path";
 import { promisify } from "util";
 import nodeGlob from "glob";
-import nodeSass from "node-sass";
 import postcss from "postcss";
 import postcssPresetEnv from "postcss-preset-env";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import uglifycss from "uglifycss";
 
-import { dist, src, nodeModules } from "./paths";
+import compileScss from "./compileScss";
+import { dist } from "./paths";
 import { copyFiles, getPackageName, list } from "./utils";
 import { getPackageVariables, hackVariableValue } from "./sassdoc";
 
 const glob = promisify(nodeGlob);
-const render = promisify(nodeSass.render);
 
 export default async function styles() {
   const scssFiles = await glob("src/**/*.scss");
@@ -51,33 +50,55 @@ async function compile(production: boolean) {
     console.log();
   }
 
-  const compiledScss = await render({
-    file: srcFile,
-    outFile,
-    sourceMap: !production,
-    includePaths: [src, nodeModules],
-    outputStyle: "expanded",
-  });
+  try {
+    const compiledScss = compileScss({
+      file: srcFile,
+      outFile,
+      sourceMap: !production,
+      outputStyle: "expanded",
+    });
 
-  const postcssResult = await postcss([
-    postcssPresetEnv({ stage: 3, autoprefixer: { flexbox: "no-2009" } }),
-    postcssFlexbugsFixes(),
-  ]).process(compiledScss.css, {
-    from: srcFile,
-    to: outFile,
-    map: !production && { inline: false },
-  });
+    const postcssResult = await postcss([
+      postcssPresetEnv({ stage: 3, autoprefixer: { flexbox: "no-2009" } }),
+      postcssFlexbugsFixes(),
+    ]).process(compiledScss.css, {
+      from: srcFile,
+      to: outFile,
+      map: !production && { inline: false },
+    });
 
-  if (postcssResult.map) {
-    await fs.writeFile(sourceMapFile, postcssResult.map.toString());
+    if (postcssResult.map) {
+      await fs.writeFile(sourceMapFile, postcssResult.map.toString());
+    }
+
+    let { css } = postcssResult;
+    if (production) {
+      css = uglifycss.processString(css);
+    }
+
+    checkForInvalidCSS(css);
+    await fs.writeFile(outFile, css);
+  } catch (e) {
+    console.log("e.message:", e.message);
+    throw e;
+  }
+}
+
+function checkForInvalidCSS(css: string) {
+  const matches = css.match(/rmd(-[a-z]+)+\(/);
+  if (!matches) {
+    return;
   }
 
-  let { css } = postcssResult;
-  if (production) {
-    css = uglifycss.processString(css);
-  }
-
-  await fs.writeFile(outFile, css);
+  console.error(
+    "There is invalid compiled css in this bundle. Please check the scss files"
+  );
+  console.error("to try to fix these issues.");
+  console.error(list(matches));
+  console.error();
+  const error = new Error();
+  console.error(error.stack);
+  throw error;
 }
 
 async function createScssVariables() {

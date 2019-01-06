@@ -1,7 +1,7 @@
 import { parse } from "sassdoc";
-import nodeSass from "node-sass";
 
-import { src, nodeModules } from "./paths";
+import compileScss from "./compileScss";
+import { src } from "./paths";
 
 export default async function sassdoc() {}
 
@@ -23,13 +23,10 @@ export function hackVariableValue(scssVariable: any, packageName: string) {
 @error '${prefix}#{${value}}';
 `;
 
-    nodeSass
-      .renderSync({
-        data,
-        includePaths: [src, nodeModules],
-        outputStyle: "expanded",
-      })
-      .css.toString();
+    compileScss({
+      data,
+      outputStyle: "expanded",
+    }).css.toString();
   } catch (error) {
     return {
       name,

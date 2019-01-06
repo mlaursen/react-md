@@ -9,7 +9,7 @@ var utils_1 = require("./utils");
 var runAll = path_1.default.join("..", "..", paths_1.nodeModules, "npm-run-all", "bin", "npm-run-all", "index.js");
 function prepublish() {
     try {
-        utils_1.exec(runAll + " clean \"test -- --coverage\" build");
+        utils_1.exec(runAll + " clean build");
     }
     catch (e) {
         console.log(e.message);

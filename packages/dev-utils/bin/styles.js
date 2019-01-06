@@ -42,16 +42,15 @@ var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
 var util_1 = require("util");
 var glob_1 = __importDefault(require("glob"));
-var node_sass_1 = __importDefault(require("node-sass"));
 var postcss_1 = __importDefault(require("postcss"));
 var postcss_preset_env_1 = __importDefault(require("postcss-preset-env"));
 var postcss_flexbugs_fixes_1 = __importDefault(require("postcss-flexbugs-fixes"));
 var uglifycss_1 = __importDefault(require("uglifycss"));
+var compileScss_1 = __importDefault(require("./compileScss"));
 var paths_1 = require("./paths");
 var utils_1 = require("./utils");
 var sassdoc_1 = require("./sassdoc");
 var glob = util_1.promisify(glob_1.default);
-var render = util_1.promisify(node_sass_1.default.render);
 function styles() {
     return __awaiter(this, void 0, void 0, function () {
         var scssFiles, found;
@@ -90,7 +89,7 @@ function styles() {
 exports.default = styles;
 function compile(production) {
     return __awaiter(this, void 0, void 0, function () {
-        var packageName, srcFile, fileName, outFile, sourceMapFile, compiledScss, postcssResult, css;
+        var packageName, srcFile, fileName, outFile, sourceMapFile, compiledScss, postcssResult, css, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, utils_1.getPackageName()];
@@ -105,15 +104,15 @@ function compile(production) {
                         console.log(utils_1.list([outFile, !production && sourceMapFile]));
                         console.log();
                     }
-                    return [4 /*yield*/, render({
-                            file: srcFile,
-                            outFile: outFile,
-                            sourceMap: !production,
-                            includePaths: [paths_1.src, paths_1.nodeModules],
-                            outputStyle: "expanded",
-                        })];
+                    _a.label = 2;
                 case 2:
-                    compiledScss = _a.sent();
+                    _a.trys.push([2, 7, , 8]);
+                    compiledScss = compileScss_1.default({
+                        file: srcFile,
+                        outFile: outFile,
+                        sourceMap: !production,
+                        outputStyle: "expanded",
+                    });
                     return [4 /*yield*/, postcss_1.default([
                             postcss_preset_env_1.default({ stage: 3, autoprefixer: { flexbox: "no-2009" } }),
                             postcss_flexbugs_fixes_1.default(),
@@ -134,13 +133,32 @@ function compile(production) {
                     if (production) {
                         css = uglifycss_1.default.processString(css);
                     }
+                    checkForInvalidCSS(css);
                     return [4 /*yield*/, fs_extra_1.default.writeFile(outFile, css)];
                 case 6:
                     _a.sent();
-                    return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 7:
+                    e_1 = _a.sent();
+                    console.log("e.message:", e_1.message);
+                    throw e_1;
+                case 8: return [2 /*return*/];
             }
         });
     });
+}
+function checkForInvalidCSS(css) {
+    var matches = css.match(/rmd(-[a-z]+)+\(/);
+    if (!matches) {
+        return;
+    }
+    console.error("There is invalid compiled css in this bundle. Please check the scss files");
+    console.error("to try to fix these issues.");
+    console.error(utils_1.list(matches));
+    console.error();
+    var error = new Error();
+    console.error(error.stack);
+    throw error;
 }
 function createScssVariables() {
     return __awaiter(this, void 0, void 0, function () {

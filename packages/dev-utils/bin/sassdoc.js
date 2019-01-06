@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sassdoc_1 = require("sassdoc");
-var node_sass_1 = __importDefault(require("node-sass"));
+var compileScss_1 = __importDefault(require("./compileScss"));
 var paths_1 = require("./paths");
 function sassdoc() {
     return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
@@ -75,13 +75,10 @@ function hackVariableValue(scssVariable, packageName) {
     var prefix = "$" + name + ": ";
     try {
         var data = "@import 'src/" + packageName + "';\n@error '" + prefix + "#{" + value + "}';\n";
-        node_sass_1.default
-            .renderSync({
+        compileScss_1.default({
             data: data,
-            includePaths: [paths_1.src, paths_1.nodeModules],
             outputStyle: "expanded",
-        })
-            .css.toString();
+        }).css.toString();
     }
     catch (error) {
         return {
