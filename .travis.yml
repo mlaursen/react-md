@@ -4,6 +4,8 @@ node_js:
 cache:
   yarn: true
 install:
+  - yarn global add lerna
   - yarn
 script:
-  - yarn travisci
+  - yarn lint
+  - lerna exec --ignore dev-utils --no-bail -- yarn test --coverage --runInBand
