@@ -1,0 +1,32 @@
+{
+  "name": "@react-md/theme",
+  "version": "2.0.0-alpha.0",
+  "description": "The base package for including a theme for react-md. This is required by most other packages.",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "dev-utils build",
+    "clean": "dev-utils clean",
+    "test": "dev-utils test",
+    "prepublishOnly": "dev-utils prepublish"
+  },
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "theme",
+    "colors",
+    "css variables"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "dev-utils": "^2.0.0-alpha.0"
+  }
+}
