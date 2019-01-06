@@ -87,10 +87,12 @@ const TextContainer: React.FunctionComponent<
   );
 };
 
-TextContainer.defaultProps = {
+const defaultProps: ITextContainerDefaultProps = {
   size: "auto",
   component: "div",
-} as ITextContainerDefaultProps;
+};
+
+TextContainer.defaultProps = defaultProps;
 
 export default React.forwardRef<
   HTMLDivElement | React.ReactType,

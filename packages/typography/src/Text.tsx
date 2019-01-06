@@ -170,10 +170,12 @@ const Text: React.FunctionComponent<
   );
 };
 
-Text.defaultProps = {
+const defaultProps: ITextDefaultProps = {
   type: "body-1",
   component: null,
-} as ITextDefaultProps;
+};
+
+Text.defaultProps = defaultProps;
 
 export default React.forwardRef<TextElement, ITextProps>((props, ref) => (
   <Text forwardedRef={ref} {...props} />
