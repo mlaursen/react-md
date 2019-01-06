@@ -1,22 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
-  "references": [
-    { "path": "packages/a11y" },
-    { "path": "packages/app-bar" },
-    { "path": "packages/button" },
-    { "path": "packages/icon" },
-    { "path": "packages/link" },
-    { "path": "packages/list" },
-    { "path": "packages/listeners" },
-    { "path": "packages/material-icons" },
-    { "path": "packages/overlay" },
-    { "path": "packages/portal" },
-    { "path": "packages/sheet" },
-    { "path": "packages/states" },
-    { "path": "packages/tooltip" },
-    { "path": "packages/transition" },
-    { "path": "packages/tree-view" },
-    { "path": "packages/typography" },
-    { "path": "packages/utils" }
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": [
+    "packages/typography/src"
   ]
 }

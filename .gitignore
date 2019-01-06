@@ -8,16 +8,7 @@ node_modules
 /packages/*/lib
 /packages/*/dist
 /packages/*/types
-
-!/packages/generator/src/typedoc/lib
-/packages/examples/**/*.css
-
-# misc
-/packages/examples/build
-/packages/examples/.env.local
-/packages/examples/.env.development.local
-/packages/examples/.env.test.local
-/packages/examples/.env.production.local
+/packages/dev-utils/bin
 
 # Testing
 coverage
