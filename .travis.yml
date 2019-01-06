@@ -4,6 +4,6 @@ node_js:
 install:
   - npm install -g lerna
   - npm install
-  - lerna bootstrap
+  - npm run bootstrap
 script:
   - npm run travisci
