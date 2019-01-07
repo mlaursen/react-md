@@ -29,7 +29,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.7"
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
     "dev-utils": "^2.0.0-alpha.0"

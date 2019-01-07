@@ -35,7 +35,7 @@
     "@react-md/theme": "^2.0.0-alpha.0",
     "@react-md/typography": "^2.0.0-alpha.0",
     "@react-md/utils": "^2.0.0-alpha.0",
-    "classnames": "^2.2.7"
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
     "dev-utils": "^2.0.0-alpha.0"
