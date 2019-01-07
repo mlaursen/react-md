@@ -10,9 +10,6 @@ rules:
   border-zero:
     - 1
     - convention: zero
-  brace-style:
-    - 1
-    - allow-single-line: true
   class-name-format:
     - 1
     - convention: hyphenatedlowercase

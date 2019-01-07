@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 1`] = `
+<i
+  class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+>
+  home
+</i>
+`;
+
+exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 2`] = `
+<svg
+  class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate"
+  focusable="false"
+  role="presentation"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="0i3odksf"
+  />
+</svg>
+`;
+
+exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 3`] = `
+<i
+  class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+>
+  home
+</i>
+`;
+
+exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 4`] = `
+<svg
+  class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+  focusable="false"
+  role="presentation"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="0i3odksf"
+  />
+</svg>
+`;
+
+exports[`IconRotator should default to cloning the icon rotator classNames into the child element 1`] = `
+<i
+  class="rmd-icon-rotator rmd-icon-rotator--animate custom-icon"
+/>
+`;
+
+exports[`IconRotator should default to cloning the icon rotator classNames into the child element 2`] = `
+<i
+  class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated custom-icon"
+/>
+`;
+
+exports[`IconRotator should wrap the children with a span instead of cloning in the className when the forceIconWrap prop is enabled 1`] = `
+<span
+  className="rmd-icon-rotator rmd-icon-rotator--animate"
+>
+  <i
+    className="undefined custom-icon"
+  />
+</span>
+`;
+
+exports[`IconRotator should wrap the children with a span instead of cloning in the className when the forceIconWrap prop is enabled 2`] = `
+<span
+  className="rmd-icon-rotator rmd-icon-rotator--animate"
+>
+  <i
+    className="rmd-icon rmd-icon--font material-icons"
+  >
+    home
+  </i>
+</span>
+`;
+
+exports[`IconRotator should wrap the children with a span instead of cloning in the className when the forceIconWrap prop is enabled 3`] = `
+<span
+  className="rmd-icon-rotator rmd-icon-rotator--animate"
+>
+  <svg
+    className="rmd-icon rmd-icon--svg"
+    focusable="false"
+    role="presentation"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="0i3odksf"
+    />
+  </svg>
+</span>
+`;

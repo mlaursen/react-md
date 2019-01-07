@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextIconSpacing should be able to render without any children or icon even though it's worthless 1`] = `null`;
+
+exports[`TextIconSpacing should return the children if no icon prop is provided 1`] = `<span />`;
+
+exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 1`] = `
+<span
+  class="rmd-text-icon-spacing rmd-icon--before"
+>
+  Some text
+</span>
+`;
+
+exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 2`] = `
+<span
+  class="rmd-text-icon-spacing rmd-icon--before"
+>
+  <i />
+</span>
+`;

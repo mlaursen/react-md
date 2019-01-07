@@ -1,0 +1,398 @@
+////
+/// @group icon
+////
+
+@import '@react-md/typography/dist/variables';
+@import '@react-md/utils/dist/mixins';
+@import 'variables';
+@import 'functions';
+
+/// Creates the styles for one of the icon's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-icon-theme-values` value to.
+/// @param {String} style - One of the keys of `rmd-icon-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-icon-theme-values` map when `null`.
+@mixin rmd-icon-theme($property, $style, $fallback: null) {
+  #{$property}: rmd-icon-theme-var($style, $fallback);
+}
+
+/// Updates one of the icon's theme variables with the new value for the section
+/// of your app.
+///
+/// @example scss - Example SCSS USage
+///   .bigger-icon-section {
+///     @include rmd-icon-set-theme-var(size, 4rem);
+///   }
+///
+///
+/// @example scss - Updating the base icon size with a media query
+///   @media (min-width: 75rem)  {
+///     @include rmd-icon-set-theme-var(size, rmd-icon-theme(dense-size));
+///   }
+///
+/// @param {String} style - The icon theme style type to update. This should be one
+///   of the `$rmd-icon-theme-values` keys.
+/// @param {String|Number|Color} - The new value to use.
+@mixin rmd-icon-set-theme-var($style, $value) {
+  @if not map-has-key($rmd-icon-theme-values, $style) {
+    @error 'Invalid icon theme style: \'#{$style}\'. Choose one of #{map-keys($rmd-icon-theme-values)}.';
+  }
+
+  #{--rmd-icon-#{$style}}: $value;
+}
+
+/// Creates the base styles for icons. This should be combined with the `rmd-icon-font` or
+/// `rmd-icon-svg` mixins to get the full styles.
+@mixin rmd-icon-base {
+  user-select: none;
+}
+
+/// Creates the base styles for a font icon.
+///
+/// @example scss - Example SCSS Usage
+///   .font-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-font;
+///   }
+@mixin rmd-icon-font {
+  @include rmd-icon-theme(color, color);
+  @include rmd-icon-theme(font-size, size);
+
+  text-align: center;
+}
+
+/// Creates the styles for updating a font icon to use the dense spec. This requires the
+/// base font icon styles to already be applied.
+///
+/// @example scss - Example SCSS Usage
+///   .font-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-font;
+///   }
+///
+///   @media (min-width: 1200px) {
+///     .font-icon {
+///       @include rmd-icon-font-dense;
+///     }
+///   }
+@mixin rmd-icon-font-dense {
+  @include rmd-icon-theme(font-size, dense-size);
+}
+
+/// Creates the base styles for an svg icon.
+///
+/// @example scss - Example SCSS Usage
+///   .svg-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-svg;
+///   }
+@mixin rmd-icon-svg {
+  @include rmd-icon-theme(fill, color);
+  @include rmd-icon-theme(height, size);
+  @include rmd-icon-theme(width, size);
+}
+
+/// Creates the styles for updating an svg icon to use the dense spec. This requires the
+/// base svg icon styles to already be applied.
+///
+/// @example scss - Example SCSS Usage
+///   .svg-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-svg;
+///   }
+///
+///   @media (min-width: 1200px) {
+///     .svg-icon {
+///       @include rmd-icon-svg-dense;
+///     }
+///   }
+@mixin rmd-icon-svg-dense {
+  @include rmd-icon-theme(height, dense-size);
+  @include rmd-icon-theme(width, dense-size);
+}
+
+/// Creates the styles that should be applied to an icon that is placed before text.
+///
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
+  @include rmd-icon-theme(margin-right, text-spacing, $spacing);
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include rmd-utils-rtl {
+    @include rmd-icon-theme(margin-left, text-spacing, $spacing);
+    margin-right: 0;
+  }
+}
+
+/// Creates the styles that should be applied to an icon that is placed after text.
+///
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
+  @include rmd-icon-theme(margin-left, text-spacing, $spacing);
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include rmd-utils-rtl {
+    @include rmd-icon-theme(margin-right, text-spacing, $spacing);
+    margin-left: 0;
+  }
+}
+
+/// A mixin to create the styles to space an icon before or after text with the provided selectors and
+/// spacing.
+///
+/// @example scss - Updating Selectors
+///   // create a component so that it uses the :first-child and :last-child css
+///   // selectors instead of class names that must be applied.
+///   .my-wrapper {
+///     @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');
+///   }
+///
+/// @param {String} before-selector ['&--before'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no before styles will be created.
+/// @param {String} after-selector ['&--after'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no after styles will be created.
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spaced-with-text(
+  $before-selector: '&--before',
+  $after-selector: '&--after',
+  $spacing: $rmd-icon-spacing-with-text
+) {
+  @if $before-selector != null {
+    #{$before-selector} {
+      @include rmd-icon-spacing-before-text($spacing);
+    }
+  }
+
+  @if $after-selector != null {
+    #{$after-selector} {
+      @include rmd-icon-spacing-after-text($spacing);
+    }
+  }
+}
+
+/// Creates the styles for the `IconRotator` component. These styles are extremely simple and basically
+/// apply different rotate transforms based on a class name.
+@mixin rmd-icon-rotator {
+  .rmd-icon-rotator {
+    @include rmd-icon-theme(transform, rotate-from);
+
+    &--animate {
+      transition: transform $rmd-icon-rotator-transition-time linear;
+    }
+
+    &--rotated {
+      @include rmd-icon-theme(transform, rotate-to);
+    }
+  }
+}
+
+/// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
+/// to be enabled to generate any styles.
+@mixin react-md-icon {
+  @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {
+    @error 'Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.';
+  }
+
+  :root {
+    @each $style, $value in $rmd-icon-theme-values {
+      @include rmd-icon-set-theme-var($style, $value);
+    }
+  }
+
+  .rmd-icon {
+    @include rmd-icon-base;
+
+    @if $rmd-icon-use-font-icons {
+      &--font {
+        @include rmd-icon-font;
+      }
+
+      @if $rmd-icon-include-dense {
+        &--font-dense {
+          @include rmd-icon-font-dense;
+        }
+      }
+    }
+
+    @if $rmd-icon-use-svg-icons {
+      &--svg {
+        @include rmd-icon-svg;
+
+        * {
+          // make sit so that paths and other things won't be event targets which makes things easier
+          // to determine if something is an icon or not
+          pointer-events: none;
+        }
+      }
+
+      @if $rmd-icon-include-dense {
+        &--svg-dense {
+          @include rmd-icon-svg-dense;
+        }
+      }
+    }
+
+    @include rmd-icon-spaced-with-text;
+  }
+
+  // when wrapped in a span, want to force vertical center alignment to make things look
+  // nicer
+  .rmd-text-icon-spacing {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  @include rmd-icon-rotator;
+}
+
+/// Creates the font face for material icons. This takes either a font url prefix string or a map of urls for each required
+/// font file. If you are using create-react-app, you **must** use the Map version so the fonts can be
+/// correctly included by the build process.
+///
+/// @example scss - create-react-app Example Usage
+///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   @include rmd-icon-material-icons-font-face((
+///     woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
+///     woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
+///     truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
+///   ));
+///
+/// @example scss - Example Usage SCSS
+///   $local-font-url: '/fonts/material-icons';
+///   @include rmd-icon-material-icons-font-face($local-font-url);
+///
+/// @param {String | Map} font-url-or-map ['/fonts/material-icons'] - This is either a font url prefix for the folder
+///   that is "hosting" the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.
+/// @param {Boolean} old-ie-support [false] - Boolean if there should be a fallback for IE6-8 by including a url to
+///   the eot font. If this is set to true and using the Map version of `$font-url-or-map`, you must also include a url
+///   to the eot font.
+@mixin rmd-icon-material-icons-font-face(
+  $font-url-or-map: '/fonts/material-icons',
+  $old-ie-support: false
+) {
+  $font-family: 'Material Icons';
+  $font-name: 'MaterialIcons-Regular';
+
+  $font-url: '';
+  $font-map: null;
+  @if type-of($font-url-or-map) == 'string' {
+    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url) +
+      $font-name;
+  } @else {
+    $font-map: $font-url-or-map;
+    $required-keys: woff2 woff truetype;
+    @if $old-ie-support {
+      $required-keys: #{$required-keys} eot;
+    }
+
+    @each $key in $required-keys {
+      @if not map-has-key($font-map, $key) {
+        @error 'It is required to include all of \'#{$required-keys}\' in your font url map, but one or more was missing! Privded keys: #{map-keys($font-map)}.';
+      }
+    }
+  }
+
+  @font-face {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: map-get($rmd-typography-font-weights, normal);
+
+    @if $old-ie-support {
+      @if $font-map == null {
+        src: url($font-url+'.eot');
+      } @else {
+        src: #{map-get($font-map, eot)};
+      }
+    }
+
+    @if $font-map == null {
+      src: local($font-family), local($font-name),
+        url($font-url+'.woff2') format('woff2'),
+        url($font-url+'.woff')
+          format('woff')
+          url($font-url+'.ttf')
+          format('truetype');
+    } @else {
+      $woff2: map-get($font-url-or-map, woff2);
+      $woff: map-get($font-url-or-map, woff);
+      $truetype: map-get($font-url-or-map, truetype);
+
+      $src: local($font-family), local($font-name);
+      $src: "local(#{$font-family}), local(#{$font-name}), #{$woff2} format('woff2'), #{$woff} format('woff'), #{$truetype} format('truetype')";
+
+      src: #{$src};
+    }
+  }
+}
+
+/// Creates the material-icons css class if hosting material icons locally instead of using the
+/// Google fonts service. By default, this will not include the font-size size you _should_ be using
+/// the `FontIcon` component from react-md which adds the correct font-size.
+///
+/// @param {Boolean} include-font-size [false] - Boolean if the material icons class name should include
+///   the default icon font size.
+@mixin rmd-icon-material-icons-class($include-font-size: false) {
+  .material-icons {
+    // sass-lint:disable-block property-sort-order,no-vendor-prefixes
+    @if $include-font-size {
+      @include rmd-icon-theme(font-size, size);
+    }
+
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Material Icons';
+    // Support for IE.
+    font-feature-settings: 'liga';
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+}
+
+/// Creates both the font face and css class for material icons when hosting the fonts locally instead of using
+/// the Google fonts service.  This takes either a font url prefix string or a map of urls for each required
+/// font file. If you are using create-react-app, you **must** use the Map version so the fonts can be
+/// correctly included by the build process.
+///
+/// @example scss - create-react-app Example Usage
+///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
+///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   @include rmd-icon-material-icons-font-face((
+///     woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
+///     woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
+///     truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
+///   ));
+///
+/// @example scss - Example Usage SCSS
+///   $local-font-url: '/fonts/material-icons';
+///   @include rmd-icon-material-icons-font-face($local-font-url);
+///
+/// @param {String | Map} font-url-or-map ['/fonts/material-icons'] - This is either a font url prefix for the folder
+///   that is "hosting" the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.
+/// @param {Boolean} include-font-size [false] - Boolean if the material icons class name should include
+///   the default icon font size.
+/// @param {Boolean} old-ie-support [false] - Boolean if there should be a fallback for IE6-8 by including a url to
+///   the eot font. If this is set to true and using the Map version of `$font-url-or-map`, you must also include a url
+///   to the eot font.
+@mixin rmd-icon-host-material-icons(
+  $font-url-or-map: '/fonts/material-icons',
+  $include-font-size: false,
+  $old-ie-support: false
+) {
+  @include rmd-icon-material-icons-font-face($font-url-or-map, $old-ie-support);
+  @include rmd-icon-material-icons-class($include-font-size);
+}
