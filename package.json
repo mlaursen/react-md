@@ -10,7 +10,7 @@
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
-    "test": "lerna exec --ignore dev-utils --no-bail -- npm run test",
+    "test": "lerna exec --ignore dev-utils --no-bail -- yarn test",
     "clean": "lerna clean"
   },
   "repository": {

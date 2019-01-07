@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 export interface ITextIconSpacingProps {
@@ -59,82 +58,77 @@ export interface ITextIconSpacingDefaultProps {
 export type TextIconSpacingWithDefaultProps = ITextIconSpacingProps &
   ITextIconSpacingDefaultProps;
 
-export default class TextIconSpacing extends React.Component<
-  ITextIconSpacingProps,
-  {}
-> {
-  public static propTypes = {
-    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-    iconAfter: PropTypes.bool,
-    beforeClassName: PropTypes.string,
-    afterClassName: PropTypes.string,
-    forceIconWrap: PropTypes.bool,
-    children: PropTypes.node,
-  };
+export type TextIconSpacingComponent = Pick<
+  React.FunctionComponent<ITextIconSpacingProps>,
+  "propTypes" | "contextTypes" | "defaultProps" | "displayName"
+> & { (props: ITextIconSpacingProps): React.ReactNode };
 
-  public static defaultProps: ITextIconSpacingDefaultProps = {
-    children: null,
-    iconAfter: false,
-    forceIconWrap: false,
-    beforeClassName: "rmd-icon--before",
-    afterClassName: "rmd-icon--after",
-  };
+const TextIconSpacing: TextIconSpacingComponent = props => {
+  const {
+    icon: propIcon,
+    iconAfter,
+    children,
+    className,
+    beforeClassName,
+    afterClassName,
+    forceIconWrap,
+  } = props as TextIconSpacingWithDefaultProps;
 
-  public render() {
-    const {
-      icon: propIcon,
-      iconAfter,
-      children,
-      className,
-      beforeClassName,
-      afterClassName,
-      forceIconWrap,
-    } = this.props as TextIconSpacingWithDefaultProps;
+  if (!propIcon) {
+    return children;
+  }
 
-    if (!propIcon) {
-      return children;
-    }
-
-    let iconEl = propIcon;
-    let content = children;
-    if (!forceIconWrap && React.isValidElement(propIcon)) {
-      const icon = React.Children.only(propIcon);
-      iconEl = React.cloneElement(icon, {
-        className: cn(
+  let iconEl = propIcon;
+  let content = children;
+  if (!forceIconWrap && React.isValidElement(propIcon)) {
+    const icon = React.Children.only(propIcon);
+    iconEl = React.cloneElement(icon, {
+      className: cn(
+        {
+          [beforeClassName]: !iconAfter,
+          [afterClassName]: iconAfter,
+        },
+        icon.props.className
+      ),
+    });
+  } else if (propIcon) {
+    iconEl = (
+      <span
+        className={cn(
+          "rmd-text-icon-spacing",
           {
             [beforeClassName]: !iconAfter,
             [afterClassName]: iconAfter,
           },
-          icon.props.className
-        ),
-      });
-    } else if (propIcon) {
-      iconEl = (
-        <span
-          className={cn(
-            "rmd-text-icon-spacing",
-            {
-              [beforeClassName]: !iconAfter,
-              [afterClassName]: iconAfter,
-            },
-            className
-          )}
-        >
-          {propIcon}
-        </span>
-      );
-    }
-
-    if (iconEl) {
-      content = (
-        <React.Fragment>
-          {!iconAfter && iconEl}
-          {children}
-          {iconAfter && iconEl}
-        </React.Fragment>
-      );
-    }
-
-    return content;
+          className
+        )}
+      >
+        {propIcon}
+      </span>
+    );
   }
-}
+
+  if (iconEl) {
+    content = (
+      <React.Fragment>
+        {!iconAfter && iconEl}
+        {children}
+        {iconAfter && iconEl}
+      </React.Fragment>
+    );
+  }
+
+  return content;
+};
+
+const defaultProps: ITextIconSpacingDefaultProps = {
+  children: null,
+  iconAfter: false,
+  forceIconWrap: false,
+  beforeClassName: "rmd-icon--before",
+  afterClassName: "rmd-icon--after",
+};
+
+TextIconSpacing.defaultProps = defaultProps;
+
+export default TextIconSpacing;

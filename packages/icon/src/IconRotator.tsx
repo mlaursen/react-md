@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 export interface IIconRotatorBaseProps
@@ -89,7 +88,7 @@ const IconRotator: React.FunctionComponent<
   }
 
   return (
-    <span style={style} className={className} ref={forwardedRef}>
+    <span style={style} className={className} ref={forwardedRef} {...props}>
       {children}
     </span>
   );

@@ -9,3 +9,5 @@ export { default as isFocusable } from "./isFocusable";
 export {
   default as isProgrammaticallyFocusable,
 } from "./isProgrammaticallyFocusable";
+
+export * from "./types.d";
