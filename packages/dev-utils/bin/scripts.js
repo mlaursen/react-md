@@ -142,7 +142,7 @@ var ROLLUP_TSCONFIG = {
 };
 function umd() {
     return __awaiter(this, void 0, void 0, function () {
-        var packageName, rollupConfigPath, tsConfigRollupPath, umdName, config;
+        var packageName, rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath, umdName, config;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, utils_1.getPackageName()];
@@ -150,6 +150,7 @@ function umd() {
                     packageName = _a.sent();
                     rollupConfigPath = path_1.default.join(process.cwd(), paths_1.rollupConfig);
                     tsConfigRollupPath = path_1.default.join(process.cwd(), paths_1.tsConfigRollup);
+                    tempRollupIndexPath = path_1.default.join(process.cwd(), paths_1.src, paths_1.tempRollupIndex);
                     umdName = "ReactMD" + lodash_1.upperFirst(lodash_1.camelCase(packageName));
                     config = createRollupConfig(packageName, umdName);
                     return [4 /*yield*/, fs_extra_1.default.writeFile(rollupConfigPath, config, "utf8")];
@@ -158,16 +159,40 @@ function umd() {
                     return [4 /*yield*/, fs_extra_1.default.writeJson(tsConfigRollupPath, ROLLUP_TSCONFIG, { spaces: 2 })];
                 case 3:
                     _a.sent();
-                    rollup(false);
-                    rollup(true);
-                    return [4 /*yield*/, fs_extra_1.default.remove(rollupConfigPath)];
+                    return [4 /*yield*/, createTempRollupFile(tempRollupIndexPath)];
                 case 4:
                     _a.sent();
-                    return [4 /*yield*/, fs_extra_1.default.remove(tsConfigRollupPath)];
+                    rollup(false);
+                    rollup(true);
+                    return [4 /*yield*/, Promise.all([rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath].map(function (filePath) {
+                            return fs_extra_1.default.remove(filePath);
+                        }))];
                 case 5:
                     _a.sent();
                     return [2 /*return*/];
             }
+        });
+    });
+}
+/**
+ * Need to create a temp rollup index file for building because it'll crash
+ * if the package exports any type definition files. This will either just
+ * copy the main index file to the temp file name or replace all lines that
+ * have the `export * from "./SOMETHING\.d";` and then copy it over.
+ */
+function createTempRollupFile(tempRollupIndexPath) {
+    return __awaiter(this, void 0, void 0, function () {
+        var indexPath, contents, updated;
+        return __generator(this, function (_a) {
+            indexPath = path_1.default.join(paths_1.src, "index.ts");
+            contents = fs_extra_1.default.readFileSync(indexPath, "utf8");
+            if (!/\.d"/.test(contents)) {
+                return [2 /*return*/, fs_extra_1.default.copy(indexPath, tempRollupIndexPath)];
+            }
+            updated = contents.replace(/export .+\.d";/g, "");
+            console.log(updated);
+            fs_extra_1.default.writeFileSync(tempRollupIndexPath, updated);
+            return [2 /*return*/];
         });
     });
 }
@@ -182,5 +207,5 @@ function rollup(production) {
     console.log();
 }
 function createRollupConfig(packageName, umdName) {
-    return "const typescript = require('rollup-plugin-typescript');\nconst resolve = require('rollup-plugin-node-resolve');\nconst commonjs = require('rollup-plugin-commonjs');\nconst replace = require('rollup-plugin-replace');\nconst { uglify } = require('rollup-plugin-uglify');\n\nconst isProduction = process.env.NODE_ENV === 'production';\n\nmodule.exports = {\n  input: '" + paths_1.src + "/index.ts',\n  output: {\n    file: `" + paths_1.dist + "/" + packageName + "${isProduction ? '.min' : ''}.js`,\n    name: '" + umdName + "',\n    format: 'umd',\n    globals: {\n      'react': 'React',\n      'react-dom': 'ReactDOM',\n    },\n    sourcemap: !isProduction,\n  },\n  external: ['react', 'react-dom'],\n  plugins: [\n    typescript({\n      tsconfig: '" + paths_1.tsConfigRollup + "',\n    }),\n    resolve(),\n    commonjs(),\n    replace({\n      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),\n    }),\n    isProduction && uglify(),\n  ].filter(Boolean)\n};\n";
+    return "const typescript = require('rollup-plugin-typescript');\nconst resolve = require('rollup-plugin-node-resolve');\nconst commonjs = require('rollup-plugin-commonjs');\nconst replace = require('rollup-plugin-replace');\nconst { uglify } = require('rollup-plugin-uglify');\n\nconst isProduction = process.env.NODE_ENV === 'production';\n\nmodule.exports = {\n  input: '" + paths_1.src + "/" + paths_1.tempRollupIndex + "',\n  output: {\n    file: `" + paths_1.dist + "/" + packageName + "${isProduction ? '.min' : ''}.js`,\n    name: '" + umdName + "',\n    format: 'umd',\n    globals: {\n      'react': 'React',\n      'react-dom': 'ReactDOM',\n    },\n    sourcemap: !isProduction,\n  },\n  external: ['react', 'react-dom'],\n  plugins: [\n    typescript({\n      tsconfig: '" + paths_1.tsConfigRollup + "',\n    }),\n    resolve(),\n    commonjs(),\n    replace({\n      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),\n    }),\n    isProduction && uglify(),\n  ].filter(Boolean)\n};\n";
 }

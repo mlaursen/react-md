@@ -12,6 +12,7 @@ import {
   tsConfigRollup,
   tsConfigCommonJS,
   tsConfigESModule,
+  tempRollupIndex,
 } from "./paths";
 import {
   glob,
@@ -90,6 +91,7 @@ async function umd() {
   const packageName = await getPackageName();
   const rollupConfigPath = path.join(process.cwd(), rollupConfig);
   const tsConfigRollupPath = path.join(process.cwd(), tsConfigRollup);
+  const tempRollupIndexPath = path.join(process.cwd(), src, tempRollupIndex);
 
   const umdName = `ReactMD${upperFirst(camelCase(packageName))}`;
 
@@ -97,11 +99,34 @@ async function umd() {
   await fs.writeFile(rollupConfigPath, config, "utf8");
   await fs.writeJson(tsConfigRollupPath, ROLLUP_TSCONFIG, { spaces: 2 });
 
+  await createTempRollupFile(tempRollupIndexPath);
   rollup(false);
   rollup(true);
 
-  await fs.remove(rollupConfigPath);
-  await fs.remove(tsConfigRollupPath);
+  await Promise.all(
+    [rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath].map(filePath =>
+      fs.remove(filePath)
+    )
+  );
+}
+
+/**
+ * Need to create a temp rollup index file for building because it'll crash
+ * if the package exports any type definition files. This will either just
+ * copy the main index file to the temp file name or replace all lines that
+ * have the `export * from "./SOMETHING\.d";` and then copy it over.
+ */
+async function createTempRollupFile(tempRollupIndexPath: string) {
+  const indexPath = path.join(src, "index.ts");
+  const contents = fs.readFileSync(indexPath, "utf8");
+
+  if (!/\.d"/.test(contents)) {
+    return fs.copy(indexPath, tempRollupIndexPath);
+  }
+
+  const updated = contents.replace(/export .+\.d";/g, "");
+  console.log(updated);
+  fs.writeFileSync(tempRollupIndexPath, updated);
 }
 
 function rollup(production: boolean) {
@@ -125,7 +150,7 @@ const { uglify } = require('rollup-plugin-uglify');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  input: '${src}/index.ts',
+  input: '${src}/${tempRollupIndex}',
   output: {
     file: \`${dist}/${packageName}\${isProduction ? '.min' : ''}.js\`,
     name: '${umdName}',

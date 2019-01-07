@@ -10,5 +10,6 @@ exports.packageJson = "package.json";
 exports.tsConfigCommonJS = "tsconfig.commonjs.json";
 exports.tsConfigESModule = "tsconfig.esmodule.json";
 exports.tsConfigRollup = "tsconfig.rollup.json";
+exports.tempRollupIndex = "rollupIndex.ts";
 exports.rollupConfig = "rollup.config.js";
 exports.jestConfig = "jest.config.js";
