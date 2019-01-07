@@ -1,5 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
+import { IWithForwardedRef } from "@react-md/utils";
 
 export interface IIconRotatorBaseProps
   extends React.HTMLAttributes<HTMLSpanElement> {
@@ -37,7 +38,7 @@ export interface IIconRotatorProps extends IIconRotatorBaseProps {
    * cloned into that icon, otherwise the icon will be wrapped in a span with the correct class
    * names applied.
    */
-  children: React.ReactElement<any> | React.ReactNode;
+  children: React.ReactNode;
 }
 
 export interface IIconRotatorDefaultProps {
@@ -45,20 +46,16 @@ export interface IIconRotatorDefaultProps {
   forceIconWrap: boolean;
 }
 
-export type IconRotatorWithForwardedRef = {
-  forwardedRef?: React.Ref<HTMLSpanElement>;
-};
-
 export type IconRotatorWithDefaultProps = IIconRotatorProps &
   IIconRotatorDefaultProps &
-  IconRotatorWithForwardedRef;
+  IWithForwardedRef<HTMLSpanElement>;
 
 /**
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
 const IconRotator: React.FunctionComponent<
-  IIconRotatorProps & IconRotatorWithForwardedRef
+  IIconRotatorProps & IWithForwardedRef<HTMLSpanElement>
 > = providedProps => {
   const {
     style,
@@ -88,7 +85,7 @@ const IconRotator: React.FunctionComponent<
   }
 
   return (
-    <span style={style} className={className} ref={forwardedRef} {...props}>
+    <span {...props} style={style} className={className} ref={forwardedRef}>
       {children}
     </span>
   );

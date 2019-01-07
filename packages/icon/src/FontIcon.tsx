@@ -1,5 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
+import { IWithForwardedRef } from "@react-md/utils";
 
 const ICON_SIZE = 24;
 
@@ -40,13 +41,9 @@ export interface IFontIconDefaultProps {
   forceFontSize: boolean;
 }
 
-export type FontIconWithForwardedRef = {
-  forwardedRef?: React.Ref<HTMLElement>;
-};
-
 export type FontIconWithDefaultProps = IFontIconProps &
   IFontIconDefaultProps &
-  FontIconWithForwardedRef;
+  IWithForwardedRef;
 
 /**
  * A utility function that will merge the different inline styles together for the `FontIcon` if
@@ -87,7 +84,7 @@ function createStyles(
  * and `forceFontSize` props to fix the sizing issues.
  */
 const FontIcon: React.FunctionComponent<
-  IFontIconProps & FontIconWithForwardedRef
+  IFontIconProps & IWithForwardedRef
 > = providedProps => {
   const {
     style,
@@ -130,5 +127,5 @@ const defaultProps: IFontIconDefaultProps = {
 FontIcon.defaultProps = defaultProps;
 
 export default React.forwardRef<HTMLElement, IFontIconProps>((props, ref) => (
-  <FontIcon forwardedRef={ref} {...props} />
+  <FontIcon {...props} forwardedRef={ref} />
 ));

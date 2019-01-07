@@ -80,25 +80,28 @@ describe("TextIconSpacing", () => {
   });
 
   it("should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled", () => {
+    // have to wrap the tests in divs since enzyme doesn't know how to render React.Fragment or arrays atm
     const instance1 = mount(
-      <TextIconSpacing icon="Some text">
-        <div />
-      </TextIconSpacing>
-    );
-    const instance2 = mount(
-      <TextIconSpacing icon={<i />} forceIconWrap>
-        <div />
-      </TextIconSpacing>
+      <div>
+        <TextIconSpacing icon="Some text">
+          <div />
+        </TextIconSpacing>
+      </div>
     );
 
     expect(instance1.render()).toMatchSnapshot();
-    expect(instance2.render()).toMatchSnapshot();
-
-    expect(instance1.find("span").length).toBe(1);
     expect(instance1.find("span").hasClass("rmd-text-icon-spacing")).toBe(true);
     expect(instance1.find("span").hasClass("rmd-icon--before")).toBe(true);
 
-    expect(instance2.find("span").length).toBe(1);
+    const instance2 = mount(
+      <div>
+        <TextIconSpacing icon={<i />} forceIconWrap>
+          <div />
+        </TextIconSpacing>
+      </div>
+    );
+
+    expect(instance2.render()).toMatchSnapshot();
     expect(instance2.find("span").hasClass("rmd-text-icon-spacing")).toBe(true);
     expect(instance2.find("span").hasClass("rmd-icon--before")).toBe(true);
   });

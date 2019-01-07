@@ -7,10 +7,10 @@ import SVGIcon from "../SVGIcon";
 const homePath = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
 
 describe("SVGIcon", () => {
-  it("should default to setting the role to presentation to not spam screen readers", () => {
+  it("should default to setting the role to img to not spam screen readers", () => {
     const icon = mount(<SVGIcon />);
 
-    expect(icon.find("svg").props().role).toBe("presentation");
+    expect(icon.find("svg").props().role).toBe("img");
   });
 
   it("should default to setting focusable false for IE bugs of custom focus", () => {

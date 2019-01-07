@@ -58,12 +58,9 @@ export interface ITextIconSpacingDefaultProps {
 export type TextIconSpacingWithDefaultProps = ITextIconSpacingProps &
   ITextIconSpacingDefaultProps;
 
-export type TextIconSpacingComponent = Pick<
-  React.FunctionComponent<ITextIconSpacingProps>,
-  "propTypes" | "contextTypes" | "defaultProps" | "displayName"
-> & { (props: ITextIconSpacingProps): React.ReactNode };
-
-const TextIconSpacing: TextIconSpacingComponent = props => {
+const TextIconSpacing: React.FunctionComponent<
+  ITextIconSpacingProps
+> = props => {
   const {
     icon: propIcon,
     iconAfter,
@@ -75,7 +72,7 @@ const TextIconSpacing: TextIconSpacingComponent = props => {
   } = props as TextIconSpacingWithDefaultProps;
 
   if (!propIcon) {
-    return children;
+    return children as React.ReactElement<any>;
   }
 
   let iconEl = propIcon;
@@ -118,7 +115,7 @@ const TextIconSpacing: TextIconSpacingComponent = props => {
     );
   }
 
-  return content;
+  return content as React.ReactElement<any>;
 };
 
 const defaultProps: ITextIconSpacingDefaultProps = {

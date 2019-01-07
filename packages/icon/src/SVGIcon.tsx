@@ -1,5 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
+import { IWithForwardedRef } from "@react-md/utils";
 
 export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
   /**
@@ -108,10 +109,6 @@ export interface ISVGIconDefaultProps {
   dense: boolean;
 }
 
-export type SVGWithForwardedRef = {
-  forwardedRef?: React.Ref<SVGSVGElement>;
-};
-
 function createStyle(style?: React.CSSProperties, size?: number) {
   if (style && size) {
     return { height: size, width: size, ...style };
@@ -161,7 +158,9 @@ function getA11yIds(
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
  */
-const SVGIcon: React.FunctionComponent<ISVGIconProps & SVGWithForwardedRef> = ({
+const SVGIcon: React.FunctionComponent<
+  ISVGIconProps & IWithForwardedRef<SVGSVGElement>
+> = ({
   style,
   className,
   use,
@@ -219,7 +218,7 @@ const SVGIcon: React.FunctionComponent<ISVGIconProps & SVGWithForwardedRef> = ({
 };
 
 const defaultProps: ISVGIconDefaultProps = {
-  role: "presentation",
+  role: "img",
   focusable: "false",
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
