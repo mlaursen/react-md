@@ -38,7 +38,7 @@ export default async function styles() {
 async function compile(production: boolean) {
   const packageName = await getPackageName();
   const srcFile = path.join("src", "styles.scss");
-  const fileName = `${packageName}${production ? ".min" : ""}.css`;
+  const fileName = `precompiled-${packageName}${production ? ".min" : ""}.css`;
   const outFile = path.join("dist", fileName);
   const sourceMapFile = `${outFile}.map`;
 

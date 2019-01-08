@@ -5,14 +5,15 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "prebuild": "lerna run build --scope dev-utils",
+    "setup": "npm-run-all dev-utils build",
+    "dev-utils": "lerna run build --scope dev-utils",
     "build": "lerna run build --ignore dev-utils",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
     "test": "lerna exec --ignore dev-utils -- yarn test",
-    "clean": "lerna clean",
+    "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
+    "clean": "lerna run clean --ignore dev-utils",
     "watch": "node watcher.js"
   },
   "repository": {

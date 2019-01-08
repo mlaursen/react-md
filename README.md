@@ -65,7 +65,7 @@ is recommended to install it globally to make development easier or just use
 $ git clone https://github.com/mlaursen/react-md
 $ cd react-md
 $ yarn
-$ yarn build
+$ yarn setup
 $ yarn watch
 ```
 
