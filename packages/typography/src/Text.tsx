@@ -1,5 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
+import { IWithForwardedRef } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with the Text
@@ -118,10 +119,9 @@ export interface ITextDefaultProps {
   component: React.ReactType | null;
 }
 
-export type TextWithForwardedRef = { forwardedRef?: React.Ref<TextElement> };
 export type TextWithDefaultProps = ITextProps &
   ITextDefaultProps &
-  TextWithForwardedRef;
+  IWithForwardedRef<TextElement>;
 
 /**
  * The `Text` component is used to render text with the material design typography styles applied.
@@ -147,7 +147,7 @@ export type TextWithDefaultProps = ITextProps &
  * `component` will be used instead.
  */
 const Text: React.FunctionComponent<
-  ITextProps & TextWithForwardedRef
+  ITextProps & IWithForwardedRef<TextElement>
 > = providedProps => {
   const {
     className: propClassName,
@@ -178,5 +178,5 @@ const defaultProps: ITextDefaultProps = {
 Text.defaultProps = defaultProps;
 
 export default React.forwardRef<TextElement, ITextProps>((props, ref) => (
-  <Text forwardedRef={ref} {...props} />
+  <Text {...props} forwardedRef={ref} />
 ));

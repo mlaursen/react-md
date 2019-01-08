@@ -18,7 +18,7 @@ export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Any children to render to create the font icon. This is required for material-icons.
    */
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
 
   /**
    * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size

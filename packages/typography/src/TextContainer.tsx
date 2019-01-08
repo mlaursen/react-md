@@ -1,5 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
+import { IWithForwardedRef } from "@react-md/utils";
 
 /**
  * A union of the available text container sizes. One of these values must be chosen
@@ -44,10 +45,6 @@ export interface ITextContainerProps
   children?: React.ReactNode | TextContainerRenderFunction;
 }
 
-export type TextContainerWithForwardedRef = {
-  forwardedRef?: React.Ref<HTMLDivElement | React.ReactType>;
-};
-
 /**
  * The default defined props for the text container component.
  */
@@ -58,10 +55,10 @@ export interface ITextContainerDefaultProps {
 
 export type TextContainerWithDefaultProps = ITextContainerProps &
   ITextContainerDefaultProps &
-  TextContainerWithForwardedRef;
+  IWithForwardedRef<HTMLDivElement | React.ReactType>;
 
 const TextContainer: React.FunctionComponent<
-  ITextContainerProps & TextContainerWithForwardedRef
+  ITextContainerProps & IWithForwardedRef<HTMLDivElement | React.ReactType>
 > = providedProps => {
   const {
     className: propClassName,
@@ -97,4 +94,4 @@ TextContainer.defaultProps = defaultProps;
 export default React.forwardRef<
   HTMLDivElement | React.ReactType,
   ITextContainerProps
->((props, ref) => <TextContainer forwardedRef={ref} {...props} />);
+>((props, ref) => <TextContainer {...props} forwardedRef={ref} />);
