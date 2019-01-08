@@ -2,6 +2,7 @@
 /// @group typography
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'variables';
 
 /// Gets the Google font suffix for the provided font weight.
@@ -10,11 +11,11 @@
 ///   `$rmd-typography-google-font-weight-suffixes` keys.
 /// @return {String} the suffix for the provided font weight.
 @function rmd-typography-google-font-suffix($weight) {
-  @if not map-has-key($rmd-typography-google-font-weight-suffixes, $weight) {
-    @error 'Invalid weight specified! \'#{$weight}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-google-font-weight-suffixes)}.';
-  }
-
-  @return map-get($rmd-typography-google-font-weight-suffixes, $weight);
+  @return rmd-utils-validate(
+    $rmd-typography-google-font-weight-suffixes,
+    $weight,
+    'Google font weight suffix'
+  );
 }
 
 /// Gets the current typography style from the `$rmd-typography-styles` variable.
@@ -30,14 +31,7 @@
 /// @param {String} property - One of the property values to extract.
 /// @return {String} the typography style value.
 @function rmd-typography-value($style, $property) {
-  @if not map-has-key($rmd-typography-styles, $style) {
-    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
-  }
+  $style-props: rmd-utils-validate($rmd-typography-styles, $style, 'typography style');
 
-  $style-props: map-get($rmd-typography-styles, $style);
-  @if not map-has-key($style-props, $property) {
-    @error 'Invalid property specified! \'#{$property}\' doesn\'t exist. Choose one of #{map-keys($style-props)}';
-  }
-
-  @return map-get($style-props, $property);
+  @return rmd-utils-validate($style-props, $property);
 }

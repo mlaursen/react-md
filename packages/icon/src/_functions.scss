@@ -2,6 +2,7 @@
 /// @group icon
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'variables';
 
 /// This function is used to quickly get one of the icon's theme values. This is really
@@ -11,11 +12,7 @@
 /// @param {String} style - One of the `$rmd-icon-theme-values` map keys to get a value for.
 /// @return {Color|Number|String} one of the icon's theme values.
 @function rmd-icon-theme($style) {
-  @if not map-has-key($rmd-icon-theme-values, $style) {
-    @error 'Invalid style: \'#{$style}\'. Choose one of #{map-keys($rmd-icon-theme-values)}.';
-  }
-
-  @return map-get($rmd-icon-theme-values, $style);
+  @return rmd-utils-validate($rmd-icon-theme-values, $style, 'icon theme css variable');
 }
 
 /// This function is used to get one of the icon's theme variables as a CSS Variable
@@ -29,10 +26,7 @@
 /// @param {Color|String|Number} fallback [null] - An optional fallback color to apply. This is set to `null` by
 /// default and not used since the link's theme variables should always exist.
 @function rmd-icon-theme-var($style, $fallback: null) {
-  @if not map-has-key($rmd-icon-theme-values, $style) {
-    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-icon-theme-values)}';
-  }
-
+  $validated: rmd-utils-validate($rmd-icon-theme-values, $style, 'icon theme css variable');
   @if $fallback == null {
     @return var(--rmd-icon-#{$style}, rmd-icon-theme($style));
   }

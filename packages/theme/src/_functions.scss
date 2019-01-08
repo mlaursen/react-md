@@ -2,6 +2,7 @@
 /// @group theme
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'color-palette';
 @import 'variables';
 
@@ -64,11 +65,11 @@
     @return $fallback-color;
   }
 
-  $suffixes: if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes);
-
-  @if not index($suffixes, $swatch) {
-    @error 'Invalid swatch: \'#{$swatch}\'. Choose one of #{$suffixes}.';
-  }
+  $suffixes: rmd-utils-validate(
+    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),
+    $swatch,
+    'material design color swatch'
+  );
 
   $current-color-name: nth(map-keys($rmd-theme-color-map), $current-color-index);
   $accent-index: str-index($current-color-name, '-a-');
@@ -109,11 +110,7 @@
 /// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
 @function rmd-theme($style) {
-  @if not map-has-key($rmd-theme-values, $style) {
-    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-values)}';
-  }
-
-  @return map-get($rmd-theme-values, $style);
+  @return rmd-utils-validate($rmd-theme-values, $style, 'theme css variable');
 }
 
 /// A small utility function to get a color from the current theme as a css variable. This is normally used along with the
@@ -126,9 +123,7 @@
 /// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
 @function rmd-theme-var($style, $color: null) {
-  @if not map-has-key($rmd-theme-values, $style) {
-    @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-values)}';
-  }
+  $validated: rmd-utils-validate($rmd-theme-values, $style, 'theme css variable');
 
   @return var(--rmd-theme-#{$style}, if($color == null, rmd-theme($style), $color));
 }

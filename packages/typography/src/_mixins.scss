@@ -52,11 +52,7 @@
 /// Applies one of the provided material design styles to an element.
 /// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
 @mixin rmd-typography($style) {
-  @if not map-has-key($rmd-typography-styles, $style) {
-    @error 'Invalid style specified! \'#{$style}\' doesn\'t exist. Choose one of #{map-keys($rmd-typography-styles)}';
-  }
-
-  $style-props: map-get($rmd-typography-styles, $style);
+  $style-props: rmd-utils-validate($rmd-typography-styles, $style, 'typography styles');
 
   @each $key, $value in $style-props {
     #{$key}: $value;
@@ -277,14 +273,10 @@
     @if type-of($font-url-prefix-or-url-map) == 'string' or $font-url-prefix-or-url-map == null {
       @include rmd-typography-google-font-face($font-name, $weight, $font-url-prefix-or-url-map);
     } @else {
-      @if not map-has-key($font-url-prefix-or-url-map, $weight) {
-        @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{map-keys($font-url-prefix-or-url-map)}'.';
-      }
-
       @include rmd-typography-google-font-face(
         $font-name,
         $weight,
-        map-get($font-url-prefix-or-url-map, $weight)
+        rmd-utils-validate($font-url-prefix-or-url-map, $weight, 'Google font weight')
       );
     }
   }

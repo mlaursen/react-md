@@ -2,6 +2,7 @@
 /// @group theme
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'variables';
 @import 'functions';
 
@@ -47,10 +48,7 @@
 ///     `$rmd-theme-values` map.
 /// @param {Color} value - The updated color value to apply.
 @mixin rmd-theme-set-var($theme-style, $value) {
-  $values: map-keys($rmd-theme-values);
-  @if not index($values, $theme-style) {
-    @error 'Invalid theme-style: \'#{$theme-style}\`. Choose one of #{$values}.';
-  }
+  $validated: rmd-utils-validate($rmd-theme-values, $theme-style, 'theme css variable');
 
   // the #{--rmd-theme} is required since sass-lint's AST doesn't work with css-variables yet in this scope
   #{--rmd-theme-#{$theme-style}}: #{$value};
