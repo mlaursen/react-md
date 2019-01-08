@@ -1,12 +1,10 @@
 import path from "path";
 
-import { nodeModules } from "./paths";
+import { rootNodeModules } from "./paths";
 import { exec } from "./utils";
 
 const runAll = path.join(
-  "..",
-  "..",
-  nodeModules,
+  rootNodeModules,
   "npm-run-all",
   "bin",
   "npm-run-all",

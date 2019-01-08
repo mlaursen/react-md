@@ -1,9 +1,13 @@
+import path from "path";
+
 export const src = "src";
 export const es = "es";
 export const lib = "lib";
 export const types = "types";
 export const dist = "dist";
 export const nodeModules = "node_modules";
+export const projectRoot = path.join(process.cwd(), "..", "..");
+export const rootNodeModules = path.join(projectRoot, nodeModules);
 
 export const packageJson = "package.json";
 export const tsConfigCommonJS = "tsconfig.commonjs.json";

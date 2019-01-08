@@ -13,6 +13,7 @@ import {
   tsConfigCommonJS,
   tsConfigESModule,
   tempRollupIndex,
+  rootNodeModules,
 } from "./paths";
 import {
   glob,
@@ -45,17 +46,18 @@ export default async function scripts() {
 }
 
 async function tsc(commonjs: boolean) {
-  const tempTsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
+  // I am lazy for updating and maintaining each package, so just overwrite the
+  // tsconfig with the "real" config each time
+  const tsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
   await fs.writeJson(
-    tempTsConfig,
+    tsConfig,
     createTsConfig(commonjs ? "commonjs" : "module")
   );
 
   console.log(
     `Compiling typescript files for ${commonjs ? "Common jS" : "ES Modules"}...`
   );
-  exec(`npx tsc -p ${tempTsConfig}`);
-  await fs.remove(tempTsConfig);
+  exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
   const generated = await glob(`${commonjs ? lib : es}/**/*`);
   console.log("Created:");
   console.log(list(generated));
@@ -125,14 +127,13 @@ async function createTempRollupFile(tempRollupIndexPath: string) {
   }
 
   const updated = contents.replace(/export .+\.d";/g, "");
-  console.log(updated);
   fs.writeFileSync(tempRollupIndexPath, updated);
 }
 
 function rollup(production: boolean) {
   const env = production ? "production" : "development";
   console.log(`Creating the ${env} UMD bundle...`);
-  exec("npx rollup -c", {
+  exec(`${rootNodeModules}/rollup/bin/rollup -c`, {
     env: {
       NODE_ENV: env,
     },
