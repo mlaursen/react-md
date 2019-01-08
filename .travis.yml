@@ -1,11 +1,19 @@
+branches:
+  except:
+    next
+
 language: node_js
+
 node_js:
   - "10"
+
 cache:
   yarn: true
+
 install:
   - yarn global add lerna
   - yarn
+
 script:
   - yarn lint
   - lerna exec --ignore dev-utils --no-bail -- yarn test --coverage --runInBand
