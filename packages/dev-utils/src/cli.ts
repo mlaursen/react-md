@@ -24,7 +24,7 @@ commander
   )
   .option(
     "--scripts-only",
-    "Only compiles the typescript files to ESModules, CommonJS, and UMD."
+    "Only compiles the typescript files to ES Modules, CommonJS, and UMD."
   )
   .action((_, program: IBuildConfig) => {
     build(program);
