@@ -273,16 +273,10 @@ $rmd-typography-styles: rmd-typography-set-styles(
     $style-props: map-merge($base-styles, $style-props);
 
     @if global-variable-exists(rmd-typography-styles-#{$style}) {
-      $style-props: map-merge(
-        $style-props,
-        rmd-typography-get-global-variable(#{$style})
-      );
+      $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
     }
 
-    $additional-styles: map-merge(
-      $additional-styles,
-      (#{$style}: $style-props)
-    );
+    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
   }
 
   @return $additional-styles;

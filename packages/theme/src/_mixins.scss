@@ -72,10 +72,7 @@
 ///
 /// @param {Color} primary-color [rmd-theme-primary] - The primary color to use to theme your app.
 /// @param {Color} secondary-color [rmd-theme-secondary] - The secondary color to use to theme your app.
-@mixin react-md-theme(
-  $primary-color: $rmd-theme-primary,
-  $secondary-color: $rmd-theme-secondary
-) {
+@mixin react-md-theme($primary-color: $rmd-theme-primary, $secondary-color: $rmd-theme-secondary) {
   $values: map-keys($rmd-theme-values);
 
   :root {

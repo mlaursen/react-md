@@ -280,8 +280,7 @@
   $font-url: '';
   $font-map: null;
   @if type-of($font-url-or-map) == 'string' {
-    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url) +
-      $font-name;
+    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url) + $font-name;
   } @else {
     $font-map: $font-url-or-map;
     $required-keys: woff2 woff truetype;
@@ -310,12 +309,8 @@
     }
 
     @if $font-map == null {
-      src: local($font-family), local($font-name),
-        url($font-url+'.woff2') format('woff2'),
-        url($font-url+'.woff')
-          format('woff')
-          url($font-url+'.ttf')
-          format('truetype');
+      src: local($font-family), local($font-name), url($font-url+'.woff2') format('woff2'),
+        url($font-url+'.woff') format('woff') url($font-url+'.ttf') format('truetype');
     } @else {
       $woff2: map-get($font-url-or-map, woff2);
       $woff: map-get($font-url-or-map, woff);

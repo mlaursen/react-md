@@ -7,6 +7,7 @@ overrides:
   - files: "*.scss"
     options:
       singleQuote: true
+      printWidth: 100
   - files: "*.md"
     options:
       proseWrap: always

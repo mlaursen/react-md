@@ -273,16 +273,8 @@
   $font-url-prefix-or-url-map: null
 ) {
   @each $weight in $weights {
-    @if type-of($font-url-prefix-or-url-map) ==
-      'string' or
-      $font-url-prefix-or-url-map ==
-      null
-    {
-      @include rmd-typography-google-font-face(
-        $font-name,
-        $weight,
-        $font-url-prefix-or-url-map
-      );
+    @if type-of($font-url-prefix-or-url-map) == 'string' or $font-url-prefix-or-url-map == null {
+      @include rmd-typography-google-font-face($font-name, $weight, $font-url-prefix-or-url-map);
     } @else {
       @if not map-has-key($font-url-prefix-or-url-map, $weight) {
         @error 'The provided font-weight: \'#{$weight}\' doesn\'t exist in the url map. Provided keys: '#{map-keys($font-url-prefix-or-url-map)}'.';

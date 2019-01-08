@@ -51,11 +51,7 @@
 
   @if not $current-color-index or $current-color-index < 1 {
     @if $fallback-color == null {
-      $fallback: if(
-        $fallback-name,
-        "the '$#{$fallback-name}' variable",
-        'a fallback color'
-      );
+      $fallback: if($fallback-name, "the '$#{$fallback-name}' variable", 'a fallback color');
 
       $error-msg: "Invalid material design color: '#{$color}'. If this was intentional because your app does " +
         'not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: ' +
@@ -68,20 +64,13 @@
     @return $fallback-color;
   }
 
-  $suffixes: if(
-    $accent,
-    $rmd-theme-accent-suffixes,
-    $rmd-theme-primary-suffixes
-  );
+  $suffixes: if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes);
 
   @if not index($suffixes, $swatch) {
     @error 'Invalid swatch: \'#{$swatch}\'. Choose one of #{$suffixes}.';
   }
 
-  $current-color-name: nth(
-    map-keys($rmd-theme-color-map),
-    $current-color-index
-  );
+  $current-color-name: nth(map-keys($rmd-theme-color-map), $current-color-index);
   $accent-index: str-index($current-color-name, '-a-');
   @if $accent-index {
     $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);
@@ -141,8 +130,5 @@
     @error 'Invalid style: \'#{$style}\'. Choose one of: #{map-keys($rmd-theme-values)}';
   }
 
-  @return var(
-    --rmd-theme-#{$style},
-    if($color == null, rmd-theme($style), $color)
-  );
+  @return var(--rmd-theme-#{$style}, if($color == null, rmd-theme($style), $color));
 }
