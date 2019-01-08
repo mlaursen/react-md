@@ -66,6 +66,7 @@ $ git clone https://github.com/mlaursen/react-md
 $ cd react-md
 $ yarn
 $ yarn build
+$ yarn watch
 ```
 
 ### Project structure

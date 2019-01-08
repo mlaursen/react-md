@@ -6,12 +6,14 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "prebuild": "lerna run build --scope dev-utils",
     "build": "lerna run build --ignore dev-utils",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
-    "test": "lerna exec --ignore dev-utils --no-bail -- yarn test",
-    "clean": "lerna clean"
+    "test": "lerna exec --ignore dev-utils -- yarn test",
+    "clean": "lerna clean",
+    "watch": "node watcher.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
+    "@types/chokidar": "^1.7.5",
     "@types/classnames": "^2.2.7",
     "@types/enzyme": "^3.1.15",
     "@types/filesize": "^3.6.0",
@@ -41,6 +44,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.0.3",
     "@types/react-transition-group": "^2.0.15",
+    "chokidar": "^2.0.4",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.3.5",
