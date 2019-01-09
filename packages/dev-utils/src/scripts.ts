@@ -154,7 +154,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   input: '${src}/${tempRollupIndex}',
   output: {
-    file: \`${dist}/${packageName}\${isProduction ? '.min' : ''}.js\`,
+    file: \`${dist}/${packageName}\${isProduction ? '.production.min' : '.development'}.js\`,
     name: '${umdName}',
     format: 'umd',
     globals: {

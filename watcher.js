@@ -3,6 +3,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const { spawn } = require('child_process');
 
+const IGNORED = /(\_\_tests\_\_|dev-utils)/;
 let startLoggingScss = false;
 let startLoggingDefs = false;
 
@@ -41,7 +42,7 @@ function startTsWatcher(filePath) {
 }
 
 chokidar
-  .watch('packages/*/src/**/*.scss')
+  .watch('packages/*/src/**/*.scss', { ignored: IGNORED })
   .on('add', copyScssFile)
   .on('change', copyScssFile)
   .on('ready', () => {
@@ -51,7 +52,7 @@ chokidar
 
 chokidar
   .watch('packages/*/src/**/*.d.ts', {
-    ignored: /(\_\_tests\_\_|dev-utils)/,
+    ignored: IGNORED,
   })
   .on('add', copyDefinitionFile)
   .on('change', copyDefinitionFile)
@@ -62,7 +63,7 @@ chokidar
 
 chokidar
   .watch(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
-    ignored: /(\_\_tests\_\_|dev-utils|\.d\.ts)/,
+    ignored: new RegExp(IGNORED.source + '|.d.ts'),
   })
   .on('change', startTsWatcher)
   .on('ready', () => {
