@@ -3,6 +3,7 @@ import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
 const ICON_SIZE = 24;
+const DENSE_ICON_SIZE = 20;
 
 export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -50,16 +51,18 @@ export type FontIconWithDefaultProps = IFontIconProps &
  * any of the resizing props are enabled.
  */
 function createStyles(
-  style?: React.CSSProperties,
-  forceSize?: boolean | number,
-  forceFontSize?: boolean
+  style: React.CSSProperties | undefined,
+  forceSize: boolean | number,
+  forceFontSize: boolean,
+  dense: boolean
 ) {
   let nextStyle = style;
   if (typeof forceSize === "boolean" && forceSize) {
+    const size = dense ? DENSE_ICON_SIZE : ICON_SIZE;
     nextStyle = {
-      fontSize: forceFontSize ? ICON_SIZE : undefined,
-      height: ICON_SIZE,
-      width: ICON_SIZE,
+      fontSize: forceFontSize ? size : undefined,
+      height: size,
+      width: size,
       ...style,
     };
   } else if (typeof forceSize === "number") {
@@ -102,7 +105,7 @@ const FontIcon: React.FunctionComponent<
     <i
       {...props}
       ref={forwardedRef}
-      style={createStyles(style, forceSize, forceFontSize)}
+      style={createStyles(style, forceSize, forceFontSize, dense)}
       className={cn(
         "rmd-icon rmd-icon--font",
         {

@@ -56,6 +56,44 @@ describe("FontIcon", () => {
     });
   });
 
+  it("should set the correct style when the dense prop is enabled", () => {
+    const icon = mount(<FontIcon dense />);
+
+    expect(icon.find("i").props().style).toBeUndefined();
+
+    const style = { color: "red" };
+    icon.setProps({ style });
+    expect(icon.find("i").props().style).toEqual(style);
+
+    icon.setProps({ style: undefined, forceSize: true });
+    expect(icon.find("i").props().style).toEqual({
+      height: 20,
+      width: 20,
+    });
+
+    icon.setProps({ forceFontSize: true });
+    expect(icon.find("i").props().style).toEqual({
+      fontSize: 20,
+      height: 20,
+      width: 20,
+    });
+
+    icon.setProps({ forceSize: 100 });
+    expect(icon.find("i").props().style).toEqual({
+      fontSize: 100,
+      height: 100,
+      width: 100,
+    });
+
+    icon.setProps({ style });
+    expect(icon.find("i").props().style).toEqual({
+      fontSize: 100,
+      height: 100,
+      width: 100,
+      color: style.color,
+    });
+  });
+
   it("should apply the correct class names", () => {
     const icon = mount(<FontIcon />);
 

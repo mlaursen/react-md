@@ -1,7 +1,6 @@
 {
   "name": "@react-md/icon",
   "version": "2.0.0-alpha.0",
-  "private": true,
   "description": "This package is for including icons within react-md. There is included support for both font icons and SVG icons.  There is also a helper component for applying spacing between icons and text.",
   "scripts": {
     "build": "dev-utils build",
@@ -39,5 +38,8 @@
   },
   "devDependencies": {
     "dev-utils": "^2.0.0-alpha.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.6"
   }
 }
