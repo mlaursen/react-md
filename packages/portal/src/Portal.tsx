@@ -1,13 +1,12 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import * as PropTypes from "prop-types";
+import { createPortal } from "react-dom";
 
 /**
  * This is the type for how a portal can be rendered into another element.
  * This can either be a function that returns the HTMLElement, an HTMLElement,
  * or a `document.querySelector` string.
  */
-export type PortalInto = (() => HTMLElement) | HTMLElement | string;
+export type PortalInto = (() => HTMLElement) | HTMLElement | string | null;
 
 export interface IPortalProps {
   /**
@@ -39,18 +38,14 @@ export interface IPortalState {
   container: HTMLElement | null;
 }
 
-export default class Portal extends React.Component<IPortalProps, IPortalState> {
-  public static propTypes = {
-    visible: PropTypes.bool.isRequired,
-    into: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.instanceOf(HTMLElement),
-    ]),
-    intoId: PropTypes.string,
-  };
-
-  public static getDerivedStateFromProps(nextProps: IPortalProps, prevState: IPortalState) {
+export default class Portal extends React.Component<
+  IPortalProps,
+  IPortalState
+> {
+  public static getDerivedStateFromProps(
+    nextProps: IPortalProps,
+    prevState: IPortalState
+  ) {
     if (!prevState.container && nextProps.visible) {
       return Portal.renderPortal(nextProps);
     } else if (prevState.container && !nextProps.visible) {
@@ -61,7 +56,6 @@ export default class Portal extends React.Component<IPortalProps, IPortalState> 
   }
 
   private static renderPortal = ({ into, intoId }: IPortalProps) => {
-    /* tslint:disable:no-console */
     const isDev = process.env.NODE_ENV !== "production";
     let container: HTMLElement | null = null;
     if (typeof into === "undefined" && typeof intoId === "undefined") {
@@ -103,7 +97,6 @@ export default class Portal extends React.Component<IPortalProps, IPortalState> 
     } else if (into) {
       container = into;
     }
-    /* tslint:enable:no-console */
     return { container };
   };
 
@@ -128,6 +121,6 @@ export default class Portal extends React.Component<IPortalProps, IPortalState> 
       return null;
     }
 
-    return ReactDOM.createPortal(children, container);
+    return createPortal(children, container);
   }
 }

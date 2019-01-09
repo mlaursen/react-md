@@ -1,9 +1,6 @@
 import * as React from "react";
 import Portal, { PortalInto } from "./Portal";
 
-/**
- *
- */
 export interface IConditionalPortalProps {
   /**
    * Boolean if the portal would be visible if one of the other portal props are defined or enabled.
@@ -34,8 +31,6 @@ export interface IConditionalPortalProps {
 /**
  * This is a very simple component that is used in other places within react-md to conditionally
  * render the children within a portal or not based on general portal config props.
- *
- * @props IConditionalPortalProps
  */
 const ConditionalPortal: React.FunctionComponent<IConditionalPortalProps> = ({
   portal,
