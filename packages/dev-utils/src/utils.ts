@@ -12,8 +12,8 @@ import { packageJson, types, dist, src } from "./paths";
 
 export const glob = promisify(nodeGlob);
 
-export function log(message?: string | null, force: boolean = false) {
-  if (message === null || (!force && process.argv.includes("--silent"))) {
+export function log(message?: string | null) {
+  if (message === null || !process.argv.includes("--verbose")) {
     return;
   }
 

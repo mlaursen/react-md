@@ -29,5 +29,8 @@
     "right to left websites",
     "safari scroll fix"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@react-md/dev-utils": "^2.0.0-alpha.0"
+  }
 }

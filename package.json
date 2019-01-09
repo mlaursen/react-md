@@ -6,14 +6,14 @@
   "main": "index.js",
   "scripts": {
     "setup": "npm-run-all dev-utils build",
-    "dev-utils": "lerna run build --scope dev-utils",
-    "build": "lerna run build --ignore dev-utils -- --no-umd --silent",
+    "dev-utils": "lerna run build --scope @react-md/dev-utils",
+    "build": "lerna run build --ignore @react-md/dev-utils -- --no-umd",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
-    "test": "lerna exec --ignore dev-utils -- yarn test",
+    "test": "lerna exec --ignore @react-md/dev-utils -- yarn test",
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
-    "clean": "lerna run clean --ignore dev-utils",
+    "clean": "lerna run clean --ignore @react-md/dev-utils",
     "watch": "node watcher.js"
   },
   "repository": {

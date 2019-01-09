@@ -1,5 +1,5 @@
 {
-  "name": "dev-utils",
+  "name": "@react-md/dev-utils",
   "version": "2.0.0-alpha-1",
   "description": "Common build utilities for react-md. Contains helpers for building, watching, testing, etc",
   "private": true,
@@ -36,7 +36,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-typescript2": "^0.18.1",
     "rollup-plugin-uglify": "^6.0.0",
     "sassdoc": "^2.5.1",
     "typescript": "^3.2.2",

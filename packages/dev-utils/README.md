@@ -7,8 +7,8 @@ of it will be handled automatically behind the scenes.
 
 ## Commands
 
-All the commands will log stuff useful for debugging by default, but this can be
-removed by adding the `--silent` command to all of these below.
+If you would like logging for what the dev-utils are doing, you can add the
+`--verbose` flag to all commands below.
 
 ### `dev-utils clean`
 

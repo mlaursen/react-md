@@ -143,7 +143,7 @@ function rollup(production: boolean) {
 }
 
 function createRollupConfig(packageName: string, umdName: string) {
-  return `const typescript = require('rollup-plugin-typescript');
+  return `const typescript = require('rollup-plugin-typescript2');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const replace = require('rollup-plugin-replace');
@@ -166,6 +166,7 @@ module.exports = {
   external: ['react', 'react-dom'],
   plugins: [
     typescript({
+      check: false,
       tsconfig: '${tsConfigRollup}',
     }),
     resolve(),

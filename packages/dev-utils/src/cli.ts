@@ -14,14 +14,14 @@ if (argv[0] === "test") {
 
 commander
   .command("clean [dirs...]")
-  .option("--silent")
+  .option("--verbose")
   .action((otherFiles: string[]) => {
     clean(otherFiles);
   });
 
 commander
   .command("build [options...]")
-  .option("--silent")
+  .option("--verbose")
   .option(
     "--styles-only",
     "Only copies the scss files into the dist directory and compiles any styles.scss files to css"
@@ -37,7 +37,7 @@ commander
 
 commander
   .command("prepublish")
-  .option("--silent")
+  .option("--verbose")
   .action(() => {
     prepublish();
   });

@@ -27,5 +27,8 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/utils": "^2.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@react-md/dev-utils": "^2.0.0-alpha.0"
   }
 }
