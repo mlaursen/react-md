@@ -100,7 +100,8 @@
 }
 
 /// A small utility function to get a color from the current theme. This is normally used along with the
-/// `rmd-theme-var` function so that both css variables and a fallback can be applied.
+/// `rmd-theme-var` function so that both css variables and a fallback can be applied. If the provided
+/// style prop is a color or 'currentColor', the provided style prop will be returned instead.
 ///
 /// You are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.
 ///
@@ -110,6 +111,10 @@
 /// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
 @function rmd-theme($style) {
+  @if type-of($style) == 'color' or $style == 'currentColor' {
+    @return $style;
+  }
+
   @return rmd-utils-validate($rmd-theme-values, $style, 'theme css variable');
 }
 

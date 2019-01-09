@@ -14,17 +14,17 @@ $rmd-elevation-color: $rmd-black-base;
 /// The opacity to apply to the first box-shadow
 /// @type Number
 /// @see rmd-elevation-shadow-1-map
-$rmd-elevation-shadow-1-opacity: .2;
+$rmd-elevation-shadow-1-opacity: 0.2;
 
 /// The opacity to apply to the second box-shadow
 /// @type Number
 /// @see rmd-elevation-shadow-2-map
-$rmd-elevation-shadow-2-opacity: .14;
+$rmd-elevation-shadow-2-opacity: 0.14;
 
 /// The opacity to apply to the third box-shadow
 /// @type Number
 /// @see rmd-elevation-shadow-3-map
-$rmd-elevation-shadow-3-opacity: .12;
+$rmd-elevation-shadow-3-opacity: 0.12;
 
 /// A Map of the first layer of box-shadows to apply for elevation.
 /// This is a map of numbers from 0 -> 24.
