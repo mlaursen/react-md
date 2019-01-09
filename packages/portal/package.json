@@ -30,9 +30,6 @@
     "components"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "dev-utils": "^2.0.0-alpha.0"
-  },
   "peerDependencies": {
     "react": ">= 16.6",
     "react-dom": ">= 16.6"

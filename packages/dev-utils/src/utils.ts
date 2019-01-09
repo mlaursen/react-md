@@ -126,6 +126,10 @@ export function printSizes(filePaths: string | string[], message?: string) {
     filePaths = [filePaths];
   }
 
+  if (!filePaths.length) {
+    return;
+  }
+
   log(
     message || `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`
   );

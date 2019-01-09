@@ -25,9 +25,6 @@
     "css variables"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "dev-utils": "^2.0.0-alpha.0"
-  },
   "dependencies": {
     "@react-md/utils": "^2.0.0-alpha.0"
   }
