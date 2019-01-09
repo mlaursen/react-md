@@ -1,4 +1,4 @@
-# @react-d/theme
+# @react-md/theme
 
 Create a theme for react-md.
 
@@ -87,7 +87,7 @@ $rmd-theme-secondary: $rmd-orange-a-400;
 @include react-md-theme;
 ```
 
-Note that the theme variables were overridden **before** imporing the main
+Note that the theme variables were overridden **before** importing the main
 `theme` file. You might have problems overriding the theme if you define them
 after.
 
