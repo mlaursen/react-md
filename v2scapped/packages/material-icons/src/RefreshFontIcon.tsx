@@ -1,9 +1,0 @@
-/* tslint:disable:max-line-length */
-// This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
-
-import { FontIcon, IFontIconProps } from "@react-md/icon";
-
-const RefreshFontIcon: React.FunctionComponent<IFontIconProps> = props => <FontIcon {...props}>refresh</FontIcon>;
-
-export default RefreshFontIcon;

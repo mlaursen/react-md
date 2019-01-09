@@ -9,6 +9,8 @@ node_modules
 /packages/*/dist
 /packages/*/types
 /packages/dev-utils/bin
+/packages/material-icons/bin
+/packages/material-icons/temp
 
 # Testing
 coverage
