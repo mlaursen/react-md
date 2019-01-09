@@ -1,11 +1,13 @@
 import fs from "fs-extra";
-import { time } from "./utils";
 import { es, lib, dist, types } from "./paths";
+import { time, list, log } from "./utils";
 
-export default function clean() {
-  return time(cleanDists, "clean");
-}
-
-function cleanDists() {
-  return Promise.all([es, lib, dist, types].map(folder => fs.remove(folder)));
+export default function clean(others: string[] = []) {
+  const toRemove = [es, lib, dist, types, ...others];
+  return time(() => {
+    log("Cleaning the following directories/files:");
+    log(list(toRemove));
+    log();
+    return Promise.all(toRemove.map(path => fs.remove(path)));
+  }, "clean");
 }

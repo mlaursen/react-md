@@ -22,9 +22,10 @@ import {
   exec,
   copyFiles,
   list,
+  log,
 } from "./utils";
 
-export default async function scripts() {
+export default async function scripts(buildUMD: boolean) {
   const allTsFiles = await glob(`${src}/**/*.+(ts|tsx)`);
   const tsFiles = allTsFiles.filter(
     filePath => !filePath.includes("__tests__")
@@ -33,14 +34,14 @@ export default async function scripts() {
     return;
   }
 
-  console.log("Found typescript files:");
-  console.log(list(tsFiles));
-  console.log();
+  log("Found typescript files:");
+  log(list(tsFiles));
+  log();
 
   await tsc(false);
   await tsc(true);
   await definitions();
-  if (tsFiles.length !== 1) {
+  if (buildUMD && tsFiles.length !== 1) {
     await umd();
   }
 }
@@ -54,14 +55,14 @@ async function tsc(commonjs: boolean) {
     createTsConfig(commonjs ? "commonjs" : "module")
   );
 
-  console.log(
+  log(
     `Compiling typescript files for ${commonjs ? "Common jS" : "ES Modules"}...`
   );
   exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
   const generated = await glob(`${commonjs ? lib : es}/**/*`);
-  console.log("Created:");
-  console.log(list(generated));
-  console.log();
+  log("Created:");
+  log(list(generated));
+  log();
 }
 
 async function definitions() {
@@ -71,9 +72,9 @@ async function definitions() {
   }
 
   const defs = await glob(`${types}/**/*.d.ts`);
-  console.log("Created the following defintiion files:");
-  console.log(list(defs));
-  console.log();
+  log("Created the following defintiion files:");
+  log(list(defs));
+  log();
 }
 
 // it seems to break when extending the base config for some reason
@@ -132,13 +133,13 @@ async function createTempRollupFile(tempRollupIndexPath: string) {
 
 function rollup(production: boolean) {
   const env = production ? "production" : "development";
-  console.log(`Creating the ${env} UMD bundle...`);
+  log(`Creating the ${env} UMD bundle...`);
   exec(`${rootNodeModules}/rollup/bin/rollup -c`, {
     env: {
       NODE_ENV: env,
     },
   });
-  console.log();
+  log();
 }
 
 function createRollupConfig(packageName: string, umdName: string) {

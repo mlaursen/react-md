@@ -1,11 +1,12 @@
 import jestConfig from "../../../jest.config";
 
 import { src } from "./paths";
-import { glob } from "./utils";
+import { glob, log, getPackageName } from "./utils";
 
 export default async function test(args: string[]) {
   if (!(await isTestable())) {
-    console.log("No test files for this project.");
+    const name = await getPackageName(true);
+    log(`No test files for ${name} project.`);
     return;
   }
 

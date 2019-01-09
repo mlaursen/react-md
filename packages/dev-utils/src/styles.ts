@@ -9,7 +9,7 @@ import uglifycss from "uglifycss";
 
 import compileScss from "./compileScss";
 import { dist } from "./paths";
-import { copyFiles, getPackageName, list } from "./utils";
+import { copyFiles, getPackageName, list, log } from "./utils";
 import { getPackageVariables, hackVariableValue } from "./sassdoc";
 
 const glob = promisify(nodeGlob);
@@ -26,9 +26,9 @@ export default async function styles() {
     return;
   }
 
-  console.log("Compiling src/styles.scss with the following postcss plugins:");
-  console.log(list(["postcss-preset-env", "postcss-flexbugs-fixes"]));
-  console.log();
+  log("Compiling src/styles.scss with the following postcss plugins:");
+  log(list(["postcss-preset-env", "postcss-flexbugs-fixes"]));
+  log();
   await compile(false);
   await compile(true);
 
@@ -43,11 +43,9 @@ async function compile(production: boolean) {
   const sourceMapFile = `${outFile}.map`;
 
   if (!production) {
-    console.log(
-      "Compiling a development css bundle along with a sourcemap to:"
-    );
-    console.log(list([outFile, !production && sourceMapFile]));
-    console.log();
+    log("Compiling a development css bundle along with a sourcemap to:");
+    log(list([outFile, !production && sourceMapFile]));
+    log();
   }
 
   try {
@@ -79,7 +77,9 @@ async function compile(production: boolean) {
     checkForInvalidCSS(css);
     await fs.writeFile(outFile, css);
   } catch (e) {
-    console.log("e.message:", e.message);
+    console.error(`node-sass compilation error for ${srcFile}`);
+    console.error(e.message);
+    console.error();
     throw e;
   }
 }
@@ -104,13 +104,11 @@ function checkForInvalidCSS(css: string) {
 async function createScssVariables() {
   const fileName = path.join(dist, "scssVariables.js");
 
-  console.log(
-    "Creating a typescript file to be compiled that contains a list of"
-  );
-  console.log(
+  log("Creating a typescript file to be compiled that contains a list of");
+  log(
     "all the scss variables in this project along with their default values."
   );
-  console.log();
+  log();
   const packageName = await getPackageName();
   const unformattedVariables = await getPackageVariables();
   const variables = unformattedVariables.map(variable =>
@@ -119,8 +117,6 @@ async function createScssVariables() {
 
   const contents = `module.exports = ${JSON.stringify(variables)};`;
   await fs.writeFile(fileName, contents);
-  console.log(
-    `Created ${fileName} with ${variables.length} variables defined.`
-  );
-  console.log();
+  log(`Created ${fileName} with ${variables.length} variables defined.`);
+  log();
 }

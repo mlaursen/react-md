@@ -7,6 +7,9 @@ of it will be handled automatically behind the scenes.
 
 ## Commands
 
+All the commands will log stuff useful for debugging by default, but this can be
+removed by adding the `--silent` command to all of these below.
+
 ### `dev-utils clean`
 
 Cleans the project by removing the `es`, `lib`, `types`, and `dist` folders from
@@ -34,5 +37,4 @@ project.
 ### `dev-utils prepublish`
 
 The prepublish command is used with the `prepublishOnly` hook for npm. It will
-just make sure to run the all the tests for the packge with the coverage option
-followed by the build command.
+just make sure to run `clean` followed by `build` before publishing.

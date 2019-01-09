@@ -12,16 +12,25 @@ import { packageJson, types, dist, src } from "./paths";
 
 export const glob = promisify(nodeGlob);
 
+export function log(message?: string | null, force: boolean = false) {
+  if (message === null || (!force && process.argv.includes("--silent"))) {
+    return;
+  }
+
+  if (!message) {
+    console.log();
+  } else {
+    console.log(message);
+  }
+}
+
 export async function copyFiles(
   files: string[],
   dest: string,
   message?: string | null,
   prefix: string = `src${path.sep}`
 ): Promise<any> {
-  const log = (msg: string = "") =>
-    message === null ? undefined : console.log(msg);
-
-  log(message || "Copying the following files:");
+  log(message === null ? null : message || "Copying the following files:");
 
   await Promise.all(
     files.map(src => {
@@ -82,11 +91,11 @@ export function createTsConfig(tsConfigType: TsConfigType) {
 }
 
 export async function time(fn: () => Promise<any>, command: string) {
-  console.log(`Running "${command}"...`);
+  log(`Running "${command}"...`);
   const startTime = now();
   await fn();
 
-  console.log(`Completed "${command}" in ${prettyMS(now() - startTime)}`);
+  log(`Completed "${command}" in ${prettyMS(now() - startTime)}`);
 }
 
 export function exec(command: string, options: ExecOptions = {}) {
@@ -117,10 +126,10 @@ export function printSizes(filePaths: string | string[], message?: string) {
     filePaths = [filePaths];
   }
 
-  console.log(
+  log(
     message || `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`
   );
-  console.log(list(filePaths.map(getFileSize)));
+  log(list(filePaths.map(getFileSize)));
 }
 
 export async function printMinifiedSizes(exclude?: RegExp) {
