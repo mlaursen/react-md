@@ -20,7 +20,7 @@ import { FOCUSABLE_ELEMENTS } from "./constants";
  * @return true if the element is currently focusable OR true if the element is focusable once it
  * is no longer in a disabled state.
  */
-export default function isFocusable(
+export function isFocusable(
   el: HTMLElement | null,
   allowDisabled: boolean = false
 ) {

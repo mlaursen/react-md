@@ -1,7 +1,7 @@
 /**
  * @see https://stackoverflow.com/a/12467610
  */
-export default function isProgrammaticallyFocusable(event: KeyboardEvent) {
+export function isProgrammaticallyFocusable(event: KeyboardEvent) {
   const code = event.which || event.keyCode;
   return (
     (code > 47 && code < 58) ||
