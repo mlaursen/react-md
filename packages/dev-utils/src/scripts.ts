@@ -82,9 +82,9 @@ async function definitions() {
 const ROLLUP_TSCONFIG = {
   compilerOptions: {
     target: "es5",
-    module: "commonjs",
+    module: "es2015",
     jsx: "react",
-    lib: ["dom", "es2017"],
+    lib: ["dom", "dom.iterable", "esnext"],
     noEmit: true,
   },
   include: [src],
@@ -144,7 +144,8 @@ function rollup(production: boolean) {
 }
 
 function createRollupConfig(packageName: string, umdName: string) {
-  return `const typescript = require('rollup-plugin-typescript2');
+  return `const path = require('path');
+const typescript = require('rollup-plugin-typescript2');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const replace = require('rollup-plugin-replace');
@@ -169,6 +170,7 @@ module.exports = {
     typescript({
       check: false,
       tsconfig: '${tsConfigRollup}',
+      cacheRoot: path.join(process.cwd(), '..', '..', 'node_modules', '.rts2Cache', '${packageName}'),
     }),
     resolve(),
     commonjs(),
