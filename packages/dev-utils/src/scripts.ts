@@ -52,7 +52,8 @@ async function tsc(commonjs: boolean) {
   const tsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
   await fs.writeJson(
     tsConfig,
-    createTsConfig(commonjs ? "commonjs" : "module")
+    createTsConfig(commonjs ? "commonjs" : "module"),
+    { spaces: 2 }
   );
 
   log(

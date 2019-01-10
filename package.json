@@ -32,6 +32,7 @@
     "@types/enzyme": "^3.1.15",
     "@types/filesize": "^3.6.0",
     "@types/fs-extra": "^5.0.4",
+    "@types/glob": "^7.1.1",
     "@types/gzip-size": "^4.1.0",
     "@types/jest": "^23.3.11",
     "@types/lodash": "^4.14.119",

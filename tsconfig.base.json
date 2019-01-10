@@ -18,7 +18,8 @@
     "moduleResolution": "node",
     "lib": [
       "dom",
-      "es2017"
+      "dom.iterable",
+      "esnext"
     ]
   }
 }

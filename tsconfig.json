@@ -5,6 +5,6 @@
     "noUnusedParameters": false
   },
   "include": [
-    "packages/*"
+    "packages/*/src/**/*"
   ]
 }
