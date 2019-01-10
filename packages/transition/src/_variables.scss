@@ -5,41 +5,43 @@
 /// The transition timing to use for "sharp" transitions. Not really sure what a "sharp" transition
 /// is at the time of writing this though.
 /// @type String
-$rmd-transition-sharp: cubic-bezier(.4, 0, .6, 1) !default;
+$rmd-transition-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 
 /// The transition timing function to use for standard/normal transitions. This is normally applied
 /// to moving elements within the page.
 /// @type String
-$rmd-transition-standard: cubic-bezier(.4, 0, .2, 1) !default;
+$rmd-transition-standard: cubic-bezier(0.4, 0, 0.2, 1) !default;
 
 /// The transition timing function to use for transitions that should start the animation slowly
 /// and build up momentum at the end of the transition. This is normally used for exit/leave
 /// transitions.
 /// @type String
-$rmd-transition-acceleration: cubic-bezier(.4, 0, 1, 1) !default;
+$rmd-transition-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
 
 /// The transition timing function to use for transitions that should start the animation quickly
 /// and slow down momentum at the end of the transition. This is normally used for enter/appear
 /// transitions.
 /// @type String
-$rmd-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
+$rmd-transition-deceleration: cubic-bezier(0, 0, 0.2, 1) !default;
+
+/// The default enter transition time.
+/// @type Number
+$rmd-transition-enter-time: 0.2s !default;
+
+/// The default leave transition time.
+/// @type Number
+$rmd-transition-leave-time: 0.15s !default;
 
 /// A Map of all the available transitions for react-md.
 /// @type Map
-$rmd-transitions: (
+$rmd-transition-theme-values: (
   sharp: $rmd-transition-sharp,
   standard: $rmd-transition-standard,
   acceleration: $rmd-transition-acceleration,
   deceleration: $rmd-transition-deceleration,
+  enter-time: $rmd-transition-enter-time,
+  leave-time: $rmd-transition-leave-time,
 ) !default;
-
-/// The default enter transition time.
-/// @type Number
-$rmd-enter-transition-time: .2s !default;
-
-/// The default leave transition time.
-/// @type Number
-$rmd-leave-transition-time: .15s !default;
 
 /// The transition easing function to apply when the collapse's content is animating
 /// in. This should be one of the `$rmd-transitions` keys.

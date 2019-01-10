@@ -1,0 +1,39 @@
+////
+/// @group transition
+////
+
+@import '@react-md/utils/dist/functions';
+@import 'variables';
+
+/// This function is used to quickly get one of the transition's theme values. This is really
+/// just for the `rmd-transition-theme` mixin to provide some validation that a correct style
+/// key is used, but might be useful in other cases.
+///
+/// @param {String} style - One of the `$rmd-transition-theme-values` map keys to get a value for.
+/// @return {Color|Number|String} one of the transition's theme values.
+@function rmd-transition-theme($style) {
+  @return rmd-utils-validate($rmd-transition-theme-values, $style, 'transition theme css variable');
+}
+
+/// This function is used to get one of the transition's theme variables as a CSS Variable
+/// to be applied as a style attribute. By default, the CSS Variable will have a fallback
+/// of the current `$rmd-transition-theme-values`
+///
+/// This function is used to create a CSS Variable declaration with an optional fallback value
+/// if the CSS Variable has not been declared somehow.
+///
+/// @param {String} style - One of the `$rmd-transition-theme-values` map keys to set a value for.
+/// @param {Color|String|Number} fallback [null] - An optional fallback color to apply. This is set to `null` by
+/// default and not used since the link's theme variables should always exist.
+@function rmd-transition-theme-var($style, $fallback: null) {
+  $validated: rmd-utils-validate(
+    $rmd-transition-theme-values,
+    $style,
+    'transition theme css variable'
+  );
+  @if $fallback == null {
+    @return var(--rmd-transition-#{$style}, rmd-transition-theme($style));
+  }
+
+  @return var(--rmd-transition-#{$style}, $fallback);
+}

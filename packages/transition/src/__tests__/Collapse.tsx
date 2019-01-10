@@ -1,4 +1,3 @@
-/* tslint:disable max-line-length */
 import * as React from "react";
 import { mount, shallow } from "enzyme";
 
@@ -8,20 +7,25 @@ describe("Collapse", () => {
   describe("rendering", () => {
     it("should render as null when collapsed by default", () => {
       const children = jest.fn();
-      const collapse = shallow(<Collapse collapsed={true}>{children}</Collapse>);
+      const collapse = shallow(<Collapse collapsed>{children}</Collapse>);
       expect(collapse.type()).toBe(null);
     });
 
     it("should not call the children callback function when it is rendered as null", () => {
       const children = jest.fn();
-      mount(<Collapse collapsed={true}>{children}</Collapse>);
+      mount(<Collapse collapsed>{children}</Collapse>);
 
       expect(children).not.toBeCalled();
     });
 
     it("should not render as null if any of minHeight, minPaddingTop, or minPaddingBottom are greater than 0", () => {
       const collapse = shallow(
-        <Collapse collapsed={true} minHeight={1} minPaddingTop={1} minPaddingBottom={1}>
+        <Collapse
+          collapsed
+          minHeight={1}
+          minPaddingTop={1}
+          minPaddingBottom={1}
+        >
           {() => <div />}
         </Collapse>
       );
@@ -41,8 +45,8 @@ describe("Collapse", () => {
     it("should use the value of the isEmptyCollapsed prop over the values of minHeight, minPaddingTop, minPaddingBottom if it is defined", () => {
       const collapse = shallow(
         <Collapse
-          collapsed={true}
-          isEmptyCollapsed={true}
+          collapsed
+          isEmptyCollapsed
           minHeight={1}
           minPaddingTop={1}
           minPaddingBottom={1}
@@ -69,10 +73,11 @@ describe("Collapse", () => {
     beforeEach(() => {
       jest.useFakeTimers();
 
-      window.getComputedStyle = () => ({
-        paddingTop: "12px",
-        paddingBottom: "12px",
-      } as CSSStyleDeclaration);
+      window.getComputedStyle = () =>
+        ({
+          paddingTop: "12px",
+          paddingBottom: "12px",
+        } as CSSStyleDeclaration);
 
       // fake that the scrollHeight is 100px
       Object.defineProperty(Element.prototype, "scrollHeight", {
@@ -83,7 +88,7 @@ describe("Collapse", () => {
 
     it("should correctly stagger the rendering, applying class and style during an enter transition", () => {
       const collapse = mount(
-        <Collapse collapsed={true}>
+        <Collapse collapsed>
           {({ style, className, refCallback }) => (
             <h2 ref={refCallback} style={style} className={className}>
               Content!
@@ -154,7 +159,7 @@ describe("Collapse", () => {
 
     it("should be able to switch transitions if one transition hasn't finished yet", () => {
       const collapse = mount(
-        <Collapse collapsed={true}>
+        <Collapse collapsed>
           {({ style, className, refCallback }) => (
             <h2 ref={refCallback} style={style} className={className}>
               Content!

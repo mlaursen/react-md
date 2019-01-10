@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 import cn from "classnames";
 
 // I could have done this with the react-transition-group instead, but I couldn't figure out how
@@ -146,22 +145,10 @@ export interface ICollapseState {
   paddingBottom?: number | string;
 }
 
-export default class Collapse extends React.Component<ICollapseProps, ICollapseState> {
-  public static propTypes = {
-    style: PropTypes.object,
-    className: PropTypes.string,
-    collapsed: PropTypes.bool.isRequired,
-    minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    minPaddingTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    minPaddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    enterDuration: PropTypes.number,
-    leaveDuration: PropTypes.number,
-    isEmptyCollapsed: PropTypes.bool,
-    onExpanded: PropTypes.func,
-    onCollapsed: PropTypes.func,
-    children: PropTypes.func.isRequired,
-  };
-
+export default class Collapse extends React.Component<
+  ICollapseProps,
+  ICollapseState
+> {
   public static defaultProps: ICollapseDefaultProps = {
     minHeight: 0,
     minPaddingTop: 0,
@@ -170,7 +157,10 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     leaveDuration: 200,
   };
 
-  public static getDerivedStateFromProps(nextProps: ICollapseProps, prevState: ICollapseState) {
+  public static getDerivedStateFromProps(
+    nextProps: ICollapseProps,
+    prevState: ICollapseState
+  ) {
     const { collapsed, minHeight, minPaddingTop, minPaddingBottom } = nextProps;
     if (collapsed !== prevState.prevCollapsed) {
       // when collapsing, need to immediately start the "leaving" transition so that the
@@ -228,9 +218,20 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   }
 
   public render() {
-    const { entering, leaving, maxHeight, paddingTop, paddingBottom } = this.state;
-    const { collapsed, className, children, enterDuration, leaveDuration } = this
-      .props as CollapseWithDefaultProps;
+    const {
+      entering,
+      leaving,
+      maxHeight,
+      paddingTop,
+      paddingBottom,
+    } = this.state;
+    const {
+      collapsed,
+      className,
+      children,
+      enterDuration,
+      leaveDuration,
+    } = this.props as CollapseWithDefaultProps;
 
     if (collapsed && !entering && !leaving && this.isEmptyCollapsed()) {
       return null;
@@ -260,7 +261,8 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
   }
 
   private isEmptyCollapsed = (
-    { isEmptyCollapsed, minHeight, minPaddingTop, minPaddingBottom } = this.props
+    { isEmptyCollapsed, minHeight, minPaddingTop, minPaddingBottom } = this
+      .props
   ) => {
     if (typeof isEmptyCollapsed === "boolean") {
       return isEmptyCollapsed;
