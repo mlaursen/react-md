@@ -22,6 +22,7 @@ function copyFile(filePath, destPath, log) {
 
 const copyScssFile = f => copyFile(f, 'dist', startLoggingScss);
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
+const isNotLazy = process.argv.includes('--no-lazy');
 
 const watchedProjects = new Map();
 function startTsWatcher(filePath) {
@@ -64,6 +65,11 @@ chokidar
 chokidar
   .watch(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
     ignored: new RegExp(IGNORED.source + '|.d.ts'),
+  })
+  .on('add', filePath => {
+    if (isNotLazy) {
+      startTsWatcher(filePath);
+    }
   })
   .on('change', startTsWatcher)
   .on('ready', () => {

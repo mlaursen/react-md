@@ -85,16 +85,23 @@ async function compile(production: boolean) {
 }
 
 function checkForInvalidCSS(css: string) {
-  const matches = css.match(/rmd(-[a-z]+)+\(/);
+  const matches = css.match(/.*rmd(-[a-z]+)+\(.*\n/);
   if (!matches) {
     return;
   }
 
+  const matchContext = css.match(/(.*\n){0,3}.*rmd(-[a-z]+)+\(.*\n(.*\n){0,3}/);
   console.error(
     "There is invalid compiled css in this bundle. Please check the scss files"
   );
   console.error("to try to fix these issues.");
-  console.error(list(matches));
+  console.error(list(matches.slice(0, matches.length - 1)));
+  console.error();
+  console.error("Context:");
+  console.error();
+  console.error("```scss");
+  console.error(matchContext[0].trim());
+  console.error("```");
   console.error();
   const error = new Error();
   console.error(error.stack);
