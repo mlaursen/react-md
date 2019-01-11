@@ -31,6 +31,10 @@ commander
     "Only compiles the typescript files to ES Modules, CommonJS, and UMD."
   )
   .option("--no-umd", "Excludes the UMD build for this project")
+  .option(
+    "--gzip-size",
+    "Always logs the gzip size instead of requiring the verbose flag to be enabled."
+  )
   .action((_, program: IBuildConfig) => {
     build(program);
   });

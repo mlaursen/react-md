@@ -34,6 +34,6 @@ async function runBuild({ stylesOnly, scriptsOnly, umd }: IBuildConfig) {
   }
 
   log();
-  await printMinifiedSizes(exclude);
+  await printMinifiedSizes(exclude, process.argv.includes("--gzip-size"));
   log();
 }

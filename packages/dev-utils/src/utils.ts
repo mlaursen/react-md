@@ -12,16 +12,12 @@ import { packageJson, types, dist, src } from "./paths";
 
 export const glob = promisify(nodeGlob);
 
-export function log(message?: string | null) {
-  if (message === null || !process.argv.includes("--verbose")) {
+export function log(message?: string | null, force: boolean = false) {
+  if (message === null || (!force && !process.argv.includes("--verbose"))) {
     return;
   }
 
-  if (!message) {
-    console.log();
-  } else {
-    console.log(message);
-  }
+  console.log(message || "");
 }
 
 export async function copyFiles(
@@ -121,7 +117,11 @@ export function getFileSize(filePath: string) {
   return `${filePath} ${filesize(gzipSize.sync(filePath))}`;
 }
 
-export function printSizes(filePaths: string | string[], message?: string) {
+export function printSizes(
+  filePaths: string | string[],
+  message?: string,
+  forceLog: boolean = false
+) {
   if (typeof filePaths === "string") {
     filePaths = [filePaths];
   }
@@ -131,16 +131,21 @@ export function printSizes(filePaths: string | string[], message?: string) {
   }
 
   log(
-    message || `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`
+    message ||
+      `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`,
+    forceLog
   );
-  log(list(filePaths.map(getFileSize)));
+  log(list(filePaths.map(getFileSize)), forceLog);
 }
 
-export async function printMinifiedSizes(exclude?: RegExp) {
+export async function printMinifiedSizes(
+  exclude?: RegExp,
+  forceLog: boolean = false
+) {
   let minified = await glob(`${dist}/**/*.min*`);
   if (exclude) {
     minified = minified.filter(name => !exclude.test(name));
   }
 
-  printSizes(minified);
+  printSizes(minified, "", forceLog);
 }

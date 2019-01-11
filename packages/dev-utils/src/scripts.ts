@@ -97,7 +97,9 @@ async function umd() {
   const tsConfigRollupPath = path.join(process.cwd(), tsConfigRollup);
   const tempRollupIndexPath = path.join(process.cwd(), src, tempRollupIndex);
 
-  const umdName = `ReactMD${upperFirst(camelCase(packageName))}`;
+  const umdName = `ReactMD${
+    packageName === "react-md" ? "" : upperFirst(camelCase(packageName))
+  }`;
 
   const config = createRollupConfig(packageName, umdName);
   await fs.writeFile(rollupConfigPath, config, "utf8");
