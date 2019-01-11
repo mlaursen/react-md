@@ -408,3 +408,31 @@ export default class Collapse extends React.Component<
     return { maxHeight, paddingTop, paddingBottom, transitionDuration };
   };
 }
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    // @ts-ignore
+    Collapse.propTypes = {
+      style: PropTypes.object,
+      className: PropTypes.string,
+      collapsed: PropTypes.bool.isRequired,
+      minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      minPaddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      minPaddingBottom: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      enterDuration: PropTypes.number,
+      leaveDuration: PropTypes.number,
+      isEmptyCollapsed: PropTypes.bool,
+      children: PropTypes.func.isRequired,
+      onExpanded: PropTypes.func,
+      onCollapsed: PropTypes.func,
+    };
+  }
+}

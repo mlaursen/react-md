@@ -129,6 +129,24 @@ const defaultProps: IFontIconDefaultProps = {
 
 FontIcon.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    FontIcon.propTypes = {
+      className: PropTypes.string,
+      iconClassName: PropTypes.string,
+      dense: PropTypes.bool,
+      forceSize: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+      forceFontSize: PropTypes.bool,
+      children: PropTypes.node,
+    };
+  }
+}
+
 export default React.forwardRef<HTMLElement, IFontIconProps>((props, ref) => (
   <FontIcon {...props} forwardedRef={ref} />
 ));

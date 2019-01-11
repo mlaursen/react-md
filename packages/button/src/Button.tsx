@@ -105,9 +105,7 @@ if (process.env.NODE_ENV !== "production") {
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
-  } catch (e) {
-    console.log("NO PROP TYPES");
-  }
+  } catch (e) {}
 
   if (PropTypes) {
     Button.propTypes = {

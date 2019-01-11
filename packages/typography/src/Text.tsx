@@ -177,6 +177,40 @@ const defaultProps: ITextDefaultProps = {
 
 Text.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Text.propTypes = {
+      className: PropTypes.string,
+      type: PropTypes.oneOf([
+        "headline-1",
+        "headline-2",
+        "headline-3",
+        "headline-4",
+        "headline-5",
+        "headline-6",
+        "subtitle-1",
+        "subtitle-2",
+        "body-1",
+        "body-2",
+        "caption",
+        "overline",
+        "button",
+      ]),
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    };
+  }
+}
+
 export default React.forwardRef<TextElement, ITextProps>((props, ref) => (
   <Text {...props} forwardedRef={ref} />
 ));

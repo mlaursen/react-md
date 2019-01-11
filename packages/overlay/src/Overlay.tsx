@@ -153,3 +153,40 @@ export default class Overlay extends React.Component<
     });
   };
 }
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes: any = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    // @ts-ignore
+    Overlay.propTypes = {
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          leave: PropTypes.number,
+        }),
+      ]),
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      portalIntoId: PropTypes.string,
+      visible: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired,
+    };
+  }
+}

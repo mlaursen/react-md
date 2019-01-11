@@ -124,3 +124,24 @@ export default class Portal extends React.Component<
     return createPortal(children, container);
   }
 }
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    // @ts-ignore
+    Portal.propTypes = {
+      into: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      intoId: PropTypes.string,
+      visible: PropTypes.bool.isRequired,
+      children: PropTypes.node,
+    };
+  }
+}

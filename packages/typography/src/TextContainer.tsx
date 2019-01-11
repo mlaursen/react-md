@@ -91,6 +91,26 @@ const defaultProps: ITextContainerDefaultProps = {
 
 TextContainer.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TextContainer.propTypes = {
+      className: PropTypes.string,
+      size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    };
+  }
+}
+
 export default React.forwardRef<
   HTMLDivElement | React.ReactType,
   ITextContainerProps

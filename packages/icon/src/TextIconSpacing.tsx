@@ -128,4 +128,23 @@ const defaultProps: ITextIconSpacingDefaultProps = {
 
 TextIconSpacing.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TextIconSpacing.propTypes = {
+      className: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+      iconAfter: PropTypes.bool,
+      children: PropTypes.node,
+      beforeClassName: PropTypes.string,
+      afterClassName: PropTypes.string,
+      forceIconWrap: PropTypes.bool,
+    };
+  }
+}
+
 export default TextIconSpacing;

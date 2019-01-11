@@ -56,4 +56,25 @@ const ConditionalPortal: React.FunctionComponent<IConditionalPortalProps> = ({
   );
 };
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    ConditionalPortal.propTypes = {
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      portalIntoId: PropTypes.string,
+      visible: PropTypes.bool.isRequired,
+      children: PropTypes.node,
+    };
+  }
+}
+
 export default ConditionalPortal;

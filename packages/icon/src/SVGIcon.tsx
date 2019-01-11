@@ -5,9 +5,10 @@ import { IWithForwardedRef } from "@react-md/utils";
 export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as
-   * the default `img` so that it is insured as a graphic.
+   * the default `img` so that it is insured as a graphic, but can also be switched
+   * to `presentation`.
    */
-  role?: "img" | "presentation" | string;
+  role?: string;
 
   /**
    * An optional list of ids to use to label the SVG icon with. This is helpful to add when you
@@ -26,7 +27,7 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
 
   /**
    * An optional title to give to your SVG icon. This is generally recommended for accessibility
-   * when not using the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
+   * when not using the `use` prop, or your sprite map does not contain `<title>` and `<desc>.
    *
    * @see {@link #aria-labelledby}
    */
@@ -34,7 +35,7 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
 
   /**
    * An optional description to give to your SVG icon. This is generally recommended for
-   * accessibility when not using the `use` prop, or your spritemap does not contain `<title>`
+   * accessibility when not using the `use` prop, or your sprite map does not contain `<title>`
    * and `<desc>.
    *
    * @see {@link #aria-labelledby}
@@ -56,16 +57,16 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
   size?: number;
 
   /**
-   * The viewBox attribute allows you to specify that a given set of graphics stretch to
+   * The `viewBox` attribute allows you to specify that a given set of graphics stretch to
    * fit a particular container element.
    *
-   * The value of the viewBox attribute is a list of four numbers min-x, min-y, width and
+   * The value of the `viewBox` attribute is a list of four numbers min-x, min-y, width and
    * height, separated by white space and/or a comma, which specify a rectangle in user
    * space which should be mapped to the bounds of the viewport established by the given
-   * element, taking into account attribute preserveAspectRatio.
+   * element, taking into account attribute `preserveAspectRatio`.
    *
    * Negative values for width or height are not permitted and a value of zero disables
-   * rendering of the element.An optional viewbox for the SVG.
+   * rendering of the element. An optional `viewbox` for the SVG.
    *
    * For example, if the SVG element is 250 (width) by 200 (height) and you provide
    * `viewBox="0 0 25 20"`, the coordinates inside the SVG will go from the top left corner
@@ -74,13 +75,13 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
   viewBox?: string;
 
   /**
-   * An optional xmlns string to provide. The `use` prop will not work without this prop
+   * An optional `xmlns` string to provide. The `use` prop will not work without this prop
    * defined.
    */
   xmlns?: string;
 
   /**
-   * This should be a link to a part of an SVG spritemap. So normally one of the following:
+   * This should be a link to a part of an SVG sprite map. So normally one of the following:
    * - `'#some-custom-svg'`
    * - `'/images/spritemap.svg#some-custom-svg'`
    *
@@ -226,6 +227,30 @@ const defaultProps: ISVGIconDefaultProps = {
 };
 
 SVGIcon.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    SVGIcon.propTypes = {
+      className: PropTypes.string,
+      role: PropTypes.string,
+      "aria-labelledby": PropTypes.string,
+      title: PropTypes.string,
+      desc: PropTypes.string,
+      focusable: PropTypes.oneOf(["true", "false"]),
+      size: PropTypes.number,
+      viewBox: PropTypes.string,
+      xmlns: PropTypes.string,
+      use: PropTypes.string,
+      dense: PropTypes.bool,
+      children: PropTypes.node,
+    };
+  }
+}
 
 export default React.forwardRef<SVGSVGElement, ISVGIconProps>((props, ref) => (
   <SVGIcon {...props} forwardedRef={ref} />

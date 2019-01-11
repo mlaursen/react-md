@@ -98,6 +98,23 @@ const defaultProps: IIconRotatorDefaultProps = {
 
 IconRotator.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    IconRotator.propTypes = {
+      className: PropTypes.string,
+      animate: PropTypes.bool,
+      rotated: PropTypes.bool,
+      forceIconWrap: PropTypes.bool,
+      children: PropTypes.node,
+    };
+  }
+}
+
 export default React.forwardRef<HTMLSpanElement, IIconRotatorProps>(
   (props, ref) => <IconRotator {...props} forwardedRef={ref} />
 );
