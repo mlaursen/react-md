@@ -12,15 +12,11 @@ import { IButtonThemeProps } from "./types.d";
  */
 export default function theme(props: IButtonThemeProps): string {
   const { buttonType, themeType, theme, disabled, className } = props;
-  const text = buttonType === "text";
+  const text = buttonType === "text" || !buttonType;
   const icon = buttonType === "icon";
   const outline = themeType === "outline";
   const contained = themeType === "contained";
-  const primary = theme === "primary";
-  const secondary = theme === "secondary";
-  const defaultTheme = theme === "default";
-  const warning = theme === "warning";
-  const error = theme === "error";
+  const clear = theme === "clear";
 
   return cn(
     "rmd-button",
@@ -29,23 +25,11 @@ export default function theme(props: IButtonThemeProps): string {
       "rmd-button--icon": icon,
       "rmd-button--disabled": disabled,
       "rmd-button--hoverable": !disabled,
-      "rmd-button--primary": !disabled && primary && contained,
-      "rmd-button--secondary": !disabled && secondary && contained,
-      "rmd-button--warning": !disabled && warning && contained,
-      "rmd-button--error": !disabled && error && contained,
-      "rmd-button--default": !disabled && defaultTheme && contained,
-      "rmd-button--text-primary": !disabled && primary && !contained,
-      "rmd-button--text-secondary": !disabled && secondary && !contained,
-      "rmd-button--text-warning": !disabled && warning && !contained,
-      "rmd-button--text-error": !disabled && error && !contained,
-      "rmd-button--text-default": !disabled && defaultTheme && !contained,
-      "rmd-button--outline-disabled": disabled && outline,
-      "rmd-button--outline-primary": !disabled && primary && outline,
-      "rmd-button--outline-secondary": !disabled && secondary && outline,
-      "rmd-button--outline-warning": !disabled && warning && outline,
-      "rmd-button--outline-error": !disabled && error && outline,
-      "rmd-button--outline-default": !disabled && defaultTheme && outline,
       "rmd-button--contained": !disabled && contained,
+      "rmd-button--outline": outline,
+      [`rmd-button--${theme}`]: !disabled && !clear && contained,
+      [`rmd-button--text-${theme}`]: !disabled && !clear && !contained,
+      [`rmd-button--outline-${theme}`]: !disabled && !clear && outline,
     },
     className
   );

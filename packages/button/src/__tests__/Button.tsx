@@ -15,7 +15,6 @@ const themes: ButtonTheme[] = [
   "secondary",
   "warning",
   "error",
-  "default",
 ];
 const themeTypes: ButtonThemeType[] = ["flat", "contained", "outline"];
 const buttonTypes: ButtonType[] = ["text", "icon"];
@@ -33,6 +32,7 @@ function flattenDeep(
 }
 
 describe("Button", () => {
+  // this is actually really bad practice and kind of worthess
   it("should render correctly based on the theme props", () => {
     flattenDeep(
       buttonTypes.map(buttonType =>

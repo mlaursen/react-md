@@ -139,8 +139,24 @@
       @include rmd-button-icon;
     }
 
+    &--outline {
+      box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline);
+    }
+
+    &--contained {
+      @include rmd-elevation($rmd-button-contained-resting-elevation);
+      @include rmd-transition(standard);
+
+      transition: box-shadow $rmd-button-contained-elevation-transition-time;
+
+      &-pressed {
+        @include rmd-elevation($rmd-button-contained-pressed-elevation);
+      }
+    }
+
     &--disabled {
       @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
+      @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
     }
 
     &--primary {
@@ -150,6 +166,7 @@
 
     &--text-primary {
       @include rmd-button-theme-update-var(color, rmd-theme-var(primary));
+      @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));
     }
 
     &--secondary {
@@ -159,6 +176,7 @@
 
     &--text-secondary {
       @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));
+      @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));
     }
 
     &--warning {
@@ -168,6 +186,7 @@
 
     &--text-warning {
       @include rmd-button-theme-update-var(color, rmd-theme-var(warning));
+      @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));
     }
 
     &--error {
@@ -177,42 +196,7 @@
 
     &--text-error {
       @include rmd-button-theme-update-var(color, rmd-theme-var(error));
-    }
-
-    &--outline-primary {
-      box-shadow: $rmd-button-box-shadow rmd-theme-var(primary);
-    }
-
-    &--outline-secondary {
-      box-shadow: $rmd-button-box-shadow rmd-theme-var(secondary);
-    }
-
-    &--outline-warning {
-      box-shadow: $rmd-button-box-shadow rmd-theme-var(warning);
-    }
-
-    &--outline-error {
-      box-shadow: $rmd-button-box-shadow rmd-theme-var(error);
-    }
-
-    &--outline-default {
-      box-shadow: $rmd-button-box-shadow $rmd-button-default-color;
-    }
-
-    &--outline-disabled {
-      box-shadow: $rmd-button-box-shadow rmd-theme(text-disabled-on-background);
-    }
-
-    &--contained {
-      @include rmd-elevation($rmd-button-contained-resting-elevation);
-      @include rmd-transition(standard);
-
-      transition: box-shadow $rmd-button-contained-elevation-transition-time;
-
-      &:active,
-      &-pressed {
-        @include rmd-elevation($rmd-button-contained-pressed-elevation);
-      }
+      @include rmd-button-theme-update-var(outline, rmd-theme-var(error));
     }
   }
 }

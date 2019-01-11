@@ -45,11 +45,10 @@ Using the new `theme` prop is a replacement the `primary` and `secondary` props,
 but also includes 3 additional themes. The supported values are:
 
 - `clear`
-- `primary`
+- `primary` (default)
 - `secondary`
 - `warning`
 - `error`
-- `default`
 
 ### `themeType`
 
@@ -70,7 +69,10 @@ background color.
 ### `buttonType`
 
 Using the new `buttonType` prop is how you can now render either as a text or
-icon button.
+icon button. The supported values are:
+
+- text (default)
+- icon
 
 A small change is that the `floating` spec was entirely removed as it can be
 implemented by providing `buttonType="icon"` and `themeType="contained"`.

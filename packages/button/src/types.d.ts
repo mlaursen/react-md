@@ -13,8 +13,7 @@ export type ButtonTheme =
   | "primary"
   | "secondary"
   | "warning"
-  | "error"
-  | "default";
+  | "error";
 
 /**
  * One of the valid material design "themed" button types that can be used. This will
