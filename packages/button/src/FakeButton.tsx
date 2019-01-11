@@ -129,6 +129,39 @@ const defaultProps: IFakeButtonDefaultProps = {
 
 FakeButton.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {
+    console.log("NO PROP TYPES");
+  }
+
+  if (PropTypes) {
+    FakeButton.propTypes = {
+      tabIndex: PropTypes.number,
+      role: PropTypes.string,
+      className: PropTypes.string,
+      theme: PropTypes.oneOf([
+        "clear",
+        "primary",
+        "secondary",
+        "warning",
+        "error",
+      ]),
+      themeType: PropTypes.oneOf(["flat", "outline", "contained"]),
+      buttonType: PropTypes.oneOf(["text", "icon"]),
+      disabled: PropTypes.bool,
+      children: PropTypes.node,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+      iconAfter: PropTypes.bool,
+      forceIconWrap: PropTypes.bool,
+      beforeClassName: PropTypes.string,
+      afterClassName: PropTypes.string,
+    };
+  }
+}
+
 export default React.forwardRef<HTMLDivElement, IFakeButtonProps>(
   (props, ref) => <FakeButton {...props} forwardedRef={ref} />
 );

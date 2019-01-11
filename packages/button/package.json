@@ -40,5 +40,8 @@
   },
   "peerDependencies": {
     "react": ">= 16.6"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
   }
 }
