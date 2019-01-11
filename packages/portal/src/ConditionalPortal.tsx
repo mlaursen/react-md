@@ -1,12 +1,11 @@
 import * as React from "react";
 import Portal, { PortalInto } from "./Portal";
 
-export interface IConditionalPortalProps {
-  /**
-   * Boolean if the portal would be visible if one of the other portal props are defined or enabled.
-   */
-  visible: boolean;
-
+/**
+ * If any of these props are defined on a component, the component will
+ * render in a portal instead of the current tree.
+ */
+export interface IRenderConditionalPortalProps {
   /**
    * Boolean if the portal should be used.
    */
@@ -21,6 +20,13 @@ export interface IConditionalPortalProps {
    * @see {@link Portal#intoId}
    */
   portalIntoId?: string;
+}
+
+export interface IConditionalPortalProps extends IRenderConditionalPortalProps {
+  /**
+   * Boolean if the portal would be visible if one of the other portal props are defined or enabled.
+   */
+  visible: boolean;
 
   /**
    * This children to render.

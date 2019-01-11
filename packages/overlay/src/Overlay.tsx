@@ -1,10 +1,16 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
+import {
+  ConditionalPortal,
+  IRenderConditionalPortalProps,
+} from "@react-md/portal";
 import { ITransitionProps, TransitionTimeout } from "@react-md/transition";
 
-export interface IOverlayProps extends ITransitionProps, React.HTMLAttributes<HTMLSpanElement> {
+export interface IOverlayProps
+  extends ITransitionProps,
+    IRenderConditionalPortalProps,
+    React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will
    * enter/exit with an opacity transition.
@@ -35,25 +41,10 @@ export interface IOverlayState {
  * an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
  * different area within your app, you should use the `OverlayPortal` component instead.
  */
-export default class Overlay extends React.Component<IOverlayProps, IOverlayState> {
-  public static propTypes = {
-    timeout: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({
-        enter: PropTypes.number,
-        exit: PropTypes.number,
-      }),
-    ]),
-    mountOnEnter: PropTypes.bool,
-    unmountOnExit: PropTypes.bool,
-    onEnter: PropTypes.func,
-    onEntering: PropTypes.func,
-    onEntered: PropTypes.func,
-    onExit: PropTypes.func,
-    onExiting: PropTypes.func,
-    onExited: PropTypes.func,
-  };
-
+export default class Overlay extends React.Component<
+  IOverlayProps,
+  IOverlayState
+> {
   public static defaultProps: IOverlayDefaultProps = {
     timeout: 150,
     mountOnEnter: true,
@@ -87,37 +78,47 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
       onExit,
       onExiting,
       onExited,
+      portal,
+      portalInto,
+      portalIntoId,
       ...props
     } = this.props as OverlayWithDefaultProps;
 
     return (
-      <Transition
-        in={visible}
-        timeout={timeout}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
-        onEnter={this.activate}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={this.deactivate}
-        onExiting={onExiting}
-        onExited={onExited}
-        appear={true}
+      <ConditionalPortal
+        visible={visible || active}
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       >
-        <span
-          className={cn(
-            "rmd-overlay",
-            {
-              "rmd-overlay--active": active,
-            },
-            className
-          )}
-          {...props}
-          onClick={onRequestClose}
+        <Transition
+          in={visible}
+          timeout={timeout}
+          mountOnEnter={mountOnEnter}
+          unmountOnExit={unmountOnExit}
+          onEnter={this.activate}
+          onEntering={onEntering}
+          onEntered={onEntered}
+          onExit={this.deactivate}
+          onExiting={onExiting}
+          onExited={onExited}
+          appear={true}
         >
-          {children}
-        </span>
-      </Transition>
+          <span
+            className={cn(
+              "rmd-overlay",
+              {
+                "rmd-overlay--active": active,
+              },
+              className
+            )}
+            {...props}
+            onClick={onRequestClose}
+          >
+            {children}
+          </span>
+        </Transition>
+      </ConditionalPortal>
     );
   }
 
