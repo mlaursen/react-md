@@ -5,6 +5,7 @@ import nodeGlob from "glob";
 import postcss from "postcss";
 import postcssPresetEnv from "postcss-preset-env";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
+import sorting from "postcss-sorting";
 import uglifycss from "uglifycss";
 
 import compileScss from "./compileScss";
@@ -27,7 +28,9 @@ export default async function styles() {
   }
 
   log("Compiling src/styles.scss with the following postcss plugins:");
-  log(list(["postcss-preset-env", "postcss-flexbugs-fixes"]));
+  log(
+    list(["postcss-preset-env", "postcss-flexbugs-fixes", "postcss-sorting"])
+  );
   log();
   await compile(false);
   await compile(true);
@@ -59,6 +62,11 @@ async function compile(production: boolean) {
     const postcssResult = await postcss([
       postcssPresetEnv({ stage: 3, autoprefixer: { flexbox: "no-2009" } }),
       postcssFlexbugsFixes(),
+      sorting({
+        order: ["custom-properties", "declarations"],
+        "properties-order": "alphabetical",
+        "unspecified-properties-position": "bottom",
+      }),
     ]).process(compiledScss.css, {
       from: srcFile,
       to: outFile,

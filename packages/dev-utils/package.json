@@ -30,6 +30,7 @@
     "postcss": "^7.0.7",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.5.0",
+    "postcss-sorting": "^4.0.1",
     "pretty-ms": "^4.0.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.0.2",
