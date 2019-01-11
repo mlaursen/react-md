@@ -30,7 +30,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/utils": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.0",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

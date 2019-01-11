@@ -85,8 +85,8 @@ async function compile(production: boolean) {
     checkForInvalidCSS(css);
     await fs.writeFile(outFile, css);
   } catch (e) {
-    console.error(`node-sass compilation error for ${srcFile}`);
-    console.error(e.message);
+    console.error(`node-sass compilation error for \`${srcFile}\``);
+    console.error(e.formatted);
     console.error();
     throw e;
   }

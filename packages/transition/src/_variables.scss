@@ -32,17 +32,6 @@ $rmd-transition-enter-time: 0.2s !default;
 /// @type Number
 $rmd-transition-leave-time: 0.15s !default;
 
-/// A Map of all the available transitions for react-md.
-/// @type Map
-$rmd-transition-theme-values: (
-  sharp: $rmd-transition-sharp,
-  standard: $rmd-transition-standard,
-  acceleration: $rmd-transition-acceleration,
-  deceleration: $rmd-transition-deceleration,
-  enter-time: $rmd-transition-enter-time,
-  leave-time: $rmd-transition-leave-time,
-) !default;
-
 /// The transition easing function to apply when the collapse's content is animating
 /// in. This should be one of the `$rmd-transitions` keys.
 ///
@@ -54,3 +43,12 @@ $rmd-collapse-enter-transition-func: deceleration !default;
 ///
 /// @type String
 $rmd-collapse-leave-transition-func: acceleration !default;
+
+/// A Map of all the available transitions for react-md.
+/// @type Map
+$rmd-transition-theme-values: (
+  sharp: $rmd-transition-sharp,
+  standard: $rmd-transition-standard,
+  acceleration: $rmd-transition-acceleration,
+  deceleration: $rmd-transition-deceleration,
+) !default;

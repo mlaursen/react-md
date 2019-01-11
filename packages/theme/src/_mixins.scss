@@ -2,33 +2,20 @@
 /// @group theme
 ////
 
-@import '@react-md/utils/dist/functions';
 @import 'variables';
 @import 'functions';
+@import 'helpers';
 
 /// This is really for internal use with the `react-md-theme` mixin, but you might be able to use it for some other stuff.
 ///
 /// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
-///     color values can be used.
-/// @param {String} style - The type of theme style to use. This should be one of the `$rmd-theme-values` or a literal
-///     color value.
+///   color values can be used.
+/// @param {String} theme-style - The type of theme style to use. This should be one of the `$rmd-theme-values` or a literal
+///   color value.
 /// @param {Boolean} no-css-variables-fallback [rmd-theme-no-css-variables-fallback] - Boolean if the theme should also be applied
-///     without the use of `var(--rmd-theme-NAME)`.
-@mixin rmd-theme(
-  $property,
-  $style,
-  $no-css-variables-fallback: $rmd-theme-no-css-variables-fallback
-) {
-  @if type-of($style) == 'color' or $style == 'currentColor' {
-    #{$property}: $style;
-  } @else {
-    @if not $no-css-variables-fallback {
-      // Apply the base property and color-value for browsers that do not support css-variables.
-      #{$property}: rmd-theme($style);
-    }
-
-    #{$property}: rmd-theme-var($style);
-  }
+///   without the use of `var(--rmd-theme-NAME)`.
+@mixin rmd-theme($property, $theme-style) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-theme-values, theme);
 }
 
 /// This is an extremely simple mixin that will allow you to quickly set or update the value of a theme css variable
@@ -40,18 +27,15 @@
 ///
 ///   .some-class-with-different-themes {
 ///     // no idea if these colors go together...
-///     @include rmd-theme-set-var(primary, $rmd-orange-500);
-///     @include rmd-theme-set-var(secondary, $rmd-brown-700);
+///     @include rmd-theme-update-var(primary, $rmd-orange-500);
+///     @include rmd-theme-update-var(secondary, $rmd-brown-700);
 ///   }
 ///
 /// @param {String} theme-style - The react-md theme style to update. This should be one of the keys of
 ///     `$rmd-theme-values` map.
 /// @param {Color} value - The updated color value to apply.
-@mixin rmd-theme-set-var($theme-style, $value) {
-  $validated: rmd-utils-validate($rmd-theme-values, $theme-style, 'theme css variable');
-
-  // the #{--rmd-theme} is required since sass-lint's AST doesn't work with css-variables yet in this scope
-  #{--rmd-theme-#{$theme-style}}: #{$value};
+@mixin rmd-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-theme-values, theme);
 }
 
 /// Creates all the styles for a theme in react-md. This will start by creating CSS Variables
@@ -67,15 +51,6 @@
 /// @example scss - Alternative SCSS Usage
 ///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` variables
 ///   @include react-md-theme($rmd-teal-500, $rmd-pink-a-400);
-///
-/// @param {Color} primary-color [rmd-theme-primary] - The primary color to use to theme your app.
-/// @param {Color} secondary-color [rmd-theme-secondary] - The secondary color to use to theme your app.
-@mixin react-md-theme($primary-color: $rmd-theme-primary, $secondary-color: $rmd-theme-secondary) {
-  $values: map-keys($rmd-theme-values);
-
-  :root {
-    @each $style in $values {
-      @include rmd-theme-set-var($style, map-get($rmd-theme-values, $style));
-    }
-  }
+@mixin react-md-theme {
+  @include rmd-theme-create-root-theme($rmd-theme-values, theme);
 }

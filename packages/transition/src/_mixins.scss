@@ -2,6 +2,7 @@
 /// @group transition
 ////
 
+@import '@react-md/theme/dist/helpers';
 @import 'functions';
 @import 'variables';
 
@@ -9,32 +10,33 @@
 /// going to be an internal helper mixin util.
 ///
 /// @param {String} property - The property to set a `rmd-transition-theme-values` value to.
-/// @param {String} style - One of the keys of `rmd-transition-theme-values` to extract a value from.
+/// @param {String} theme-style - One of the keys of `rmd-transition-theme-values` to extract a value from.
 /// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
 ///   isn't set somehow. This will default to automatically retrieving the default value
 ///   from the `rmd-transition-theme-values` map when `null`.
-@mixin rmd-transition-theme($property, $style, $fallback: null) {
-  #{$property}: rmd-transition-theme-var($style, $fallback);
+@mixin rmd-transition-theme($property, $theme-style, $fallback: null) {
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-transition-theme-values,
+    transition
+  );
 }
 
 /// Updates one of the transition's theme variables with the new value for the section
 /// of your app.
 ///
-/// @param {String} style - The transition theme style type to update. This should be one
+/// @param {String} theme-style - The transition theme style type to update. This should be one
 ///   of the `$rmd-transition-theme-values` keys.
 /// @param {String|Number|Color} - The new value to use.
 @mixin rmd-transition-set-theme-var($style, $value) {
-  @if not map-has-key($rmd-transition-theme-values, $style) {
-    @error 'Invalid transition theme style: \'#{$style}\'. Choose one of #{map-keys($rmd-transition-theme-values)}.';
-  }
-
-  #{--rmd-transition-#{$style}}: $value;
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-transition-theme-values, transition);
 }
 
 /// Adds a transition timing function for the provided transition type.
 ///
 /// @param {String} type - The transition type that should be used. This should be one of the
-///     keys for `$rmd-transitions`
+///   keys for `$rmd-transitions`
 @mixin rmd-transition($type) {
   @include rmd-transition-theme(transition-timing-function, $type);
 }
@@ -59,12 +61,10 @@
   }
 }
 
+/// Creates the transition theme css variables as well as the styles
+/// for components in the transition package.
 @mixin react-md-transition {
-  :root {
-    @each $key, $value in $rmd-transition-theme-values {
-      @include rmd-transition-set-theme-var($key, $value);
-    }
-  }
+  @include rmd-theme-create-root-theme($rmd-transition-theme-values, transition);
 
   @include rmd-collapse;
 }

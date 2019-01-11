@@ -2,7 +2,7 @@
 /// @group typography
 ////
 
-@import '@react-md/utils/dist/functions';
+@import '@react-md/theme/dist/helpers';
 @import 'variables';
 @import 'functions';
 
@@ -52,7 +52,7 @@
 /// Applies one of the provided material design styles to an element.
 /// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
 @mixin rmd-typography($style) {
-  $style-props: rmd-utils-validate($rmd-typography-styles, $style, 'typography styles');
+  $style-props: rmd-theme-validate($rmd-typography-styles, $style, typography);
 
   @each $key, $value in $style-props {
     #{$key}: $value;
@@ -276,7 +276,7 @@
       @include rmd-typography-google-font-face(
         $font-name,
         $weight,
-        rmd-utils-validate($font-url-prefix-or-url-map, $weight, 'Google font weight')
+        rmd-theme-validate($font-url-prefix-or-url-map, $weight, 'Google font weight')
       );
     }
   }

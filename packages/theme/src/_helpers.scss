@@ -1,0 +1,114 @@
+////
+/// @access private
+/// @group theme
+////
+
+@import 'variables';
+
+/// This function is used to validate a list or map to make sure they contain
+/// the provided key or value. This should mostly really only be internal use.
+///
+/// @access private
+/// @param {List|Map} list-or-map - The list or map to validate
+/// @param {String|Number|Color} key-or-value - Either the value to check
+///   for in a list or a Map's key.
+/// @param {String} error-message - The prop name that was being used
+///   for the validation. This is mostly for a more helpful error message
+///   when a developer/user provided the wrong input.
+/// @return {String|Null} - Either the map's value for the provided key or
+///   the provided value for a list when there is no error.
+@function rmd-theme-validate($list-or-map, $key-or-value, $error-message) {
+  $type: type-of($list-or-map);
+  $is-map: $type == map;
+  $is-list: $type == list;
+
+  @if not $is-map and not $is-list {
+    @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
+  }
+
+  $choices: if($is-map, map-keys($list-or-map), $list-or-map);
+  @if not index($choices, $key-or-value) {
+    @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
+  }
+
+  @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+}
+
+/// @access private
+/// @param {String} theme-name - The name of the theme to extract from the theme-map.
+/// @param {Map} theme-map - The map containing the theme values.
+/// @param {String} theme-group - The group/package that the theme exists in. This should
+///   be one of the react-md packages.
+/// @return {Color|String|Number} The value from the theme map.
+@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {
+  @if type-of($theme-name) == 'color' or $theme-name == 'currentColor' {
+    @return $theme-name;
+  }
+
+  @return rmd-theme-validate($theme-map, $theme-name, '#{$theme-group} property');
+}
+
+/// This function is used behind the scenes of react-md to help get css variables from different
+/// packages with some built in validation. This is generally used to create the helper function
+/// within each package to get the css var string.
+///
+/// @example scss - Example Usage SCSS
+///   $rmd-example-theme-values: (
+///     background-color: #303030,
+///     color: $rmd-red-500,
+///   );
+///
+///   @function rmd-example-get-var($theme-name) {
+///     @return rmd-theme-get-var($theme-name, $rmd-example-theme-values, example);
+///   }
+///
+///   .example-class {
+///     color: rmd-example-get-var(color);
+///   }
+///
+/// @access private
+/// @param {String} theme-name - The name of the theme to extract from the theme-map.
+/// @param {Map} theme-map - The map containing the theme values.
+/// @param {String} theme-group - The group/package that the theme exists in. This should
+///   be one of the react-md packages.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use for css variables
+///   if the theme variable has not been defined somehow. When this is set to `null`, it will
+///   automatically use the value from the `theme-map` instead.
+/// @return {String} a css var string to apply to a css property.
+@function rmd-theme-get-var($theme-name, $theme-map, $theme-group, $fallback: null) {
+  $validated-fallback: rmd-theme-get-var-value($theme-name, $theme-map, $theme-group);
+
+  @return var(
+    --rmd-#{$theme-group}-#{$theme-name},
+    if($fallback == null, $validated-fallback, $fallback)
+  );
+}
+
+///
+/// @access private
+@mixin rmd-theme-apply-rmd-var($property, $theme-name, $theme-map, $theme-group, $fallback: null) {
+  @if not $rmd-theme-no-css-variables-fallback {
+    // Apply the base property and color-value for browsers that do not support css-variables.
+    #{$property}: rmd-theme-get-var-value($theme-name, $theme-map, $theme-group);
+  }
+
+  #{$property}: rmd-theme-get-var($theme-name, $theme-map, $theme-group, $fallback);
+}
+
+///
+/// @access private
+@mixin rmd-theme-update-rmd-var($value, $theme-name, $theme-map, $theme-group) {
+  $validated: rmd-theme-validate($theme-map, $theme-name, '#{$theme-name} property');
+
+  #{--rmd-#{$theme-group}-#{$theme-name}}: $value;
+}
+
+///
+/// @access private
+@mixin rmd-theme-create-root-theme($theme-map, $theme-group) {
+  :root {
+    @each $theme-name, $theme-value in $theme-map {
+      @include rmd-theme-update-rmd-var($theme-value, $theme-name, $theme-map, $theme-group);
+    }
+  }
+}

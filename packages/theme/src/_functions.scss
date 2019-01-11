@@ -2,8 +2,8 @@
 /// @group theme
 ////
 
-@import '@react-md/utils/dist/functions';
 @import 'color-palette';
+@import 'helpers';
 @import 'variables';
 
 /// A theme utility function to convert a material design color to the same color but with a different
@@ -65,7 +65,7 @@
     @return $fallback-color;
   }
 
-  $suffixes: rmd-utils-validate(
+  $suffixes: rmd-theme-validate(
     if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),
     $swatch,
     'material design color swatch'
@@ -108,14 +108,10 @@
 /// @see rmd-theme-var
 /// @see rmd-theme-values
 /// @see rmd-theme
-/// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
+/// @param {String} theme-name - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
-@function rmd-theme($style) {
-  @if type-of($style) == 'color' or $style == 'currentColor' {
-    @return $style;
-  }
-
-  @return rmd-utils-validate($rmd-theme-values, $style, 'theme css variable');
+@function rmd-theme($theme-name) {
+  @return rmd-theme-get-var-value($theme-name, $rmd-theme-values, theme);
 }
 
 /// A small utility function to get a color from the current theme as a css variable. This is normally used along with the
@@ -125,10 +121,8 @@
 ///
 /// @see rmd-theme
 /// @see rmd-theme-values
-/// @param {String} style - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
+/// @param {String} theme-name - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
-@function rmd-theme-var($style, $color: null) {
-  $validated: rmd-utils-validate($rmd-theme-values, $style, 'theme css variable');
-
-  @return var(--rmd-theme-#{$style}, if($color == null, rmd-theme($style), $color));
+@function rmd-theme-var($theme-name, $fallback-color: null) {
+  @return rmd-theme-get-var($theme-name, $rmd-theme-values, theme, $fallback-color);
 }

@@ -4,6 +4,10 @@
 
 @import '@react-md/theme/dist/functions';
 
+/// The base icon color to apply.
+/// @type Color
+$rmd-icon-color: rmd-theme-var(text-icon-on-background) !default;
+
 /// The base icon size to use.
 /// @type Number
 $rmd-icon-size: 1.5rem !default; // 24dp
@@ -55,7 +59,7 @@ $rmd-icon-rotator-to: 180 !default;
 /// needed.
 /// @type Map
 $rmd-icon-theme-values: (
-  color: rmd-theme-var(text-icon-on-background),
+  color: $rmd-icon-color,
   size: $rmd-icon-size,
   dense-size: $rmd-icon-dense-size,
   text-spacing: $rmd-icon-spacing-with-text,

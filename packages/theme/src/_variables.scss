@@ -9,7 +9,7 @@
 /// support CSS Variables yet. This is disabled by default since it is mostly just IE11 at this point and `create-react-app`
 /// already is using a postcss plugin to do this automatically.
 /// @type Boolean
-$rmd-theme-no-css-variables-fallback: false !default;
+$rmd-theme-no-css-variables-fallback: true !default;
 
 /// Boolean if the light and dark theme text colors should be created using `rgba` instead of `lighten` for the light theme colors.
 /// It is generally recommended to keep this `false` since it is more in line with how the dark theme colors are created.
