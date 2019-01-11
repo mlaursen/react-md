@@ -35,7 +35,7 @@ async function compile(production: boolean) {
   const outFile = path.join(cssDist, fileName);
   const sourceMapFile = `${outFile}.map`;
 
-  await fs.ensureDir(dist);
+  await fs.ensureDir(cssDist);
   if (!production) {
     log("Compiling a development css bundle along with a sourcemap to:");
     log(list([outFile, sourceMapFile]));
@@ -83,5 +83,6 @@ async function createScssVariables() {
   const contents = `module.exports = ${JSON.stringify(variables)};`;
   await fs.writeFile(fileName, contents);
   log(`Created ${fileName} with ${variables.length} variables defined.`);
+  log(list(variables.map(({ name, value }) => `$${name}: ${value}`)));
   log();
 }

@@ -10,16 +10,20 @@ import combineMediaQueries from "css-mqpacker";
 import { rootNodeModules, src } from "./paths";
 import { log, list } from "./utils";
 
-export function compileScss(options: nodeSass.Options) {
+export function compileScss(options: nodeSass.Options, exit: boolean = true) {
   try {
     return nodeSass.renderSync({
       ...options,
       includePaths: [src, rootNodeModules],
     });
   } catch (e) {
-    console.error(e.formatted);
-    console.error();
-    process.exit(1);
+    if (exit) {
+      console.error(e.formatted);
+      console.error();
+      process.exit(1);
+    } else {
+      throw e;
+    }
   }
 }
 
@@ -99,10 +103,13 @@ export function hackSCSSVariableValue(scssVariable: any, packageName: string) {
 @error '${prefix}#{${value}}';
 `;
 
-    compileScss({
-      data,
-      outputStyle: "expanded",
-    }).css.toString();
+    compileScss(
+      {
+        data,
+        outputStyle: "expanded",
+      },
+      false
+    );
   } catch (error) {
     return {
       name,
