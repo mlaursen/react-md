@@ -180,26 +180,18 @@
     }
 
     &--outline-primary {
-      // sass-lint:disable-block no-duplicate-properties
-      box-shadow: $rmd-button-box-shadow rmd-theme(primary);
       box-shadow: $rmd-button-box-shadow rmd-theme-var(primary);
     }
 
     &--outline-secondary {
-      // sass-lint:disable-block no-duplicate-properties
-      box-shadow: $rmd-button-box-shadow rmd-theme(secondary);
       box-shadow: $rmd-button-box-shadow rmd-theme-var(secondary);
     }
 
     &--outline-warning {
-      // sass-lint:disable-block no-duplicate-properties
-      box-shadow: $rmd-button-box-shadow rmd-theme(warning);
       box-shadow: $rmd-button-box-shadow rmd-theme-var(warning);
     }
 
     &--outline-error {
-      // sass-lint:disable-block no-duplicate-properties
-      box-shadow: $rmd-button-box-shadow rmd-theme(error);
       box-shadow: $rmd-button-box-shadow rmd-theme-var(error);
     }
 
