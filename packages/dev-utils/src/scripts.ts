@@ -41,7 +41,7 @@ export default async function scripts(buildUMD: boolean) {
   await tsc(false);
   await tsc(true);
   await definitions();
-  if (buildUMD && tsFiles.length !== 1) {
+  if (buildUMD) {
     await umd();
   }
 }
