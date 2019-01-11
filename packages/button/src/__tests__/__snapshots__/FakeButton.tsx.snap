@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FakeButton should render correctly based on the theme props 1`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 2`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 3`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 4`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 5`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--primary rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 6`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary rmd-button--outline-primary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 7`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 8`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--secondary rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 9`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary rmd-button--outline-secondary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 10`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 11`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--warning rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 12`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning rmd-button--outline-warning"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 13`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 14`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--error rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 15`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error rmd-button--outline-error"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 16`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-default"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 17`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--default rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 18`] = `
+<div
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-default rmd-button--outline-default"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  Button Text
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 19`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 20`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 21`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 22`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 23`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--primary rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 24`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary rmd-button--outline-primary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 25`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 26`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--secondary rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 27`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary rmd-button--outline-secondary"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 28`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 29`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--warning rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 30`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning rmd-button--outline-warning"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 31`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 32`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--error rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 33`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error rmd-button--outline-error"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 34`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-default"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 35`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--default rmd-button--contained"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;
+
+exports[`FakeButton should render correctly based on the theme props 36`] = `
+<div
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-default rmd-button--outline-default"
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <i />
+</div>
+`;

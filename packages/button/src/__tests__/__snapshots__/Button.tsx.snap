@@ -1,0 +1,325 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render correctly based on the theme props 1`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 2`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 3`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 4`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 5`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--primary rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 6`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary rmd-button--outline-primary"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 7`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 8`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--secondary rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 9`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary rmd-button--outline-secondary"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 10`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 11`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--warning rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 12`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning rmd-button--outline-warning"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 13`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 14`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--error rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 15`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error rmd-button--outline-error"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 16`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-default"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 17`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--default rmd-button--contained"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 18`] = `
+<button
+  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-default rmd-button--outline-default"
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 19`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 20`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 21`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 22`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 23`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--primary rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 24`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary rmd-button--outline-primary"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 25`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 26`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--secondary rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 27`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary rmd-button--outline-secondary"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 28`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 29`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--warning rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 30`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning rmd-button--outline-warning"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 31`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 32`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--error rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 33`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error rmd-button--outline-error"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 34`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-default"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 35`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--default rmd-button--contained"
+  disabled={false}
+>
+  <i />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 36`] = `
+<button
+  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-default rmd-button--outline-default"
+  disabled={false}
+>
+  <i />
+</button>
+`;
