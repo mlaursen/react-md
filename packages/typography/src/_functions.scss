@@ -33,5 +33,5 @@
 @function rmd-typography-value($style, $property) {
   $style-props: rmd-theme-validate($rmd-typography-styles, $style, typography);
 
-  @return rmd-theme-validate($style-props, $property);
+  @return rmd-theme-validate($style-props, $property, 'typeography #{$style} property');
 }
