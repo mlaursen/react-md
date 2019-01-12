@@ -137,7 +137,11 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     TextIconSpacing.propTypes = {
       className: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+      icon: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.node,
+        PropTypes.object,
+      ]),
       iconAfter: PropTypes.bool,
       children: PropTypes.node,
       beforeClassName: PropTypes.string,

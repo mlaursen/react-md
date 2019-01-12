@@ -104,6 +104,8 @@
 }
 
 @mixin rmd-button {
+  $is-light-theme: rmd-theme-contrast-tone($rmd-theme-background) != 'dark';
+
   .rmd-button {
     &::before {
       @include rmd-transition(standard);
@@ -128,7 +130,19 @@
     &--hoverable {
       &:hover {
         cursor: pointer;
+
+        &::before {
+          opacity: if($is-light-theme, 0.08, 0.04);
+        }
       }
+
+      &:focus::before {
+        opacity: if($is-light-theme, 0.24, 0.12);
+      }
+    }
+
+    &:active::before {
+      opacity: if($is-light-theme, 0.32, 0.16);
     }
 
     &--text {
@@ -144,6 +158,7 @@
     }
 
     &--contained {
+      @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
       @include rmd-elevation($rmd-button-contained-resting-elevation);
       @include rmd-transition(standard);
 
@@ -197,6 +212,26 @@
     &--text-error {
       @include rmd-button-theme-update-var(color, rmd-theme-var(error));
       @include rmd-button-theme-update-var(outline, rmd-theme-var(error));
+    }
+
+    &__content {
+      visibility: hidden;
+    }
+
+    &__content-mask {
+      align-items: center;
+      display: inline-flex;
+      height: inherit;
+      left: 0;
+      padding: inherit;
+      position: absolute;
+      top: 0;
+      width: inherit;
+      z-index: 1;
+
+      .rmd-button--icon & {
+        justify-content: center;
+      }
     }
   }
 }

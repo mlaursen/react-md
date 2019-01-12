@@ -1,7 +1,8 @@
 import * as React from "react";
-import { ITextIconSpacingProps, TextIconSpacing } from "@react-md/icon";
+import { ITextIconSpacingProps } from "@react-md/icon";
 import { IWithForwardedRef } from "@react-md/utils";
 
+import ButtonChildren from "./ButtonChildren";
 import {
   IButtonThemeProps,
   ButtonTheme,
@@ -45,6 +46,7 @@ export interface IButtonDefaultProps {
   themeType: ButtonThemeType;
   buttonType: ButtonType;
   iconAfter: boolean;
+  disableColorFix: boolean;
 }
 
 export type ButtonWithDefaultProps = IButtonProps &
@@ -67,6 +69,7 @@ const Button: ButtonComponent = providedProps => {
     beforeClassName,
     afterClassName,
     forceIconWrap,
+    disableColorFix,
     ...props
   } = providedProps as ButtonWithDefaultProps;
 
@@ -76,15 +79,16 @@ const Button: ButtonComponent = providedProps => {
       ref={forwardedRef}
       className={Button.theme(providedProps)}
     >
-      <TextIconSpacing
+      <ButtonChildren
         icon={icon}
         iconAfter={iconAfter}
         beforeClassName={beforeClassName}
         afterClassName={afterClassName}
         forceIconWrap={forceIconWrap}
+        disabled={disableColorFix}
       >
         {children}
-      </TextIconSpacing>
+      </ButtonChildren>
     </button>
   );
 };
@@ -97,6 +101,7 @@ const defaultProps: IButtonDefaultProps = {
   themeType: "flat",
   buttonType: "text",
   iconAfter: false,
+  disableColorFix: false,
 };
 
 Button.defaultProps = defaultProps;
@@ -121,7 +126,11 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       disabled: PropTypes.bool,
       children: PropTypes.node,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+      icon: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.node,
+        PropTypes.object,
+      ]),
       iconAfter: PropTypes.bool,
       forceIconWrap: PropTypes.bool,
       beforeClassName: PropTypes.string,

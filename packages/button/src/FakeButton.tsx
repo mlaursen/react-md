@@ -1,8 +1,9 @@
 import * as React from "react";
-import { ITextIconSpacingProps, TextIconSpacing } from "@react-md/icon";
+import { ITextIconSpacingProps } from "@react-md/icon";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
 import { IButtonDefaultProps } from "./Button";
+import ButtonChildren from "./ButtonChildren";
 
 import { IButtonThemeProps } from "./types.d";
 import theme from "./theme";
@@ -70,6 +71,7 @@ const FakeButton: React.FunctionComponent<
     iconAfter,
     children,
     forwardedRef,
+    disableColorFix,
     beforeClassName,
     afterClassName,
     forceIconWrap,
@@ -104,15 +106,14 @@ const FakeButton: React.FunctionComponent<
       tabIndex={disabled ? undefined : tabIndex}
       onKeyDown={disabled ? undefined : handleKeyDown}
     >
-      <TextIconSpacing
+      <ButtonChildren
         icon={icon}
         iconAfter={iconAfter}
         beforeClassName={beforeClassName}
         afterClassName={afterClassName}
         forceIconWrap={forceIconWrap}
-      >
-        {children}
-      </TextIconSpacing>
+        disabled={disableColorFix}
+      />
     </div>
   );
 };
@@ -125,6 +126,7 @@ const defaultProps: IFakeButtonDefaultProps = {
   themeType: "flat",
   buttonType: "text",
   iconAfter: false,
+  disableColorFix: false,
 };
 
 FakeButton.defaultProps = defaultProps;

@@ -5,7 +5,17 @@ exports[`Button should render correctly based on the theme props 1`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -14,7 +24,17 @@ exports[`Button should render correctly based on the theme props 2`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -23,7 +43,17 @@ exports[`Button should render correctly based on the theme props 3`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -32,7 +62,17 @@ exports[`Button should render correctly based on the theme props 4`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -41,7 +81,17 @@ exports[`Button should render correctly based on the theme props 5`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--primary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -50,7 +100,17 @@ exports[`Button should render correctly based on the theme props 6`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -59,7 +119,17 @@ exports[`Button should render correctly based on the theme props 7`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -68,7 +138,17 @@ exports[`Button should render correctly based on the theme props 8`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--secondary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -77,7 +157,17 @@ exports[`Button should render correctly based on the theme props 9`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -86,7 +176,17 @@ exports[`Button should render correctly based on the theme props 10`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -95,7 +195,17 @@ exports[`Button should render correctly based on the theme props 11`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--warning"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -104,7 +214,17 @@ exports[`Button should render correctly based on the theme props 12`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -113,7 +233,17 @@ exports[`Button should render correctly based on the theme props 13`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -122,7 +252,17 @@ exports[`Button should render correctly based on the theme props 14`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--error"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -131,7 +271,17 @@ exports[`Button should render correctly based on the theme props 15`] = `
   className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-error rmd-button--outline-error"
   disabled={false}
 >
-  Button Text
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    Button Text
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    Button Text
+  </span>
 </button>
 `;
 
@@ -140,7 +290,17 @@ exports[`Button should render correctly based on the theme props 16`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -149,7 +309,17 @@ exports[`Button should render correctly based on the theme props 17`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -158,7 +328,17 @@ exports[`Button should render correctly based on the theme props 18`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -167,7 +347,17 @@ exports[`Button should render correctly based on the theme props 19`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -176,7 +366,17 @@ exports[`Button should render correctly based on the theme props 20`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--primary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -185,7 +385,17 @@ exports[`Button should render correctly based on the theme props 21`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -194,7 +404,17 @@ exports[`Button should render correctly based on the theme props 22`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -203,7 +423,17 @@ exports[`Button should render correctly based on the theme props 23`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--secondary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -212,7 +442,17 @@ exports[`Button should render correctly based on the theme props 24`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -221,7 +461,17 @@ exports[`Button should render correctly based on the theme props 25`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -230,7 +480,17 @@ exports[`Button should render correctly based on the theme props 26`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--warning"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -239,7 +499,17 @@ exports[`Button should render correctly based on the theme props 27`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -248,7 +518,17 @@ exports[`Button should render correctly based on the theme props 28`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -257,7 +537,17 @@ exports[`Button should render correctly based on the theme props 29`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--error"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
 
@@ -266,6 +556,16 @@ exports[`Button should render correctly based on the theme props 30`] = `
   className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-error rmd-button--outline-error"
   disabled={false}
 >
-  <i />
+  <span
+    aria-hidden="true"
+    className="rmd-button__content"
+  >
+    <i />
+  </span>
+  <span
+    className="rmd-button__content-mask"
+  >
+    <i />
+  </span>
 </button>
 `;
