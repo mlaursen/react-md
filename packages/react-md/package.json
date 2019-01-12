@@ -31,6 +31,7 @@
     "@react-md/button": "^2.0.0-alpha.0",
     "@react-md/elevation": "^2.0.0-alpha.0",
     "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/link": "^2.0.0-alpha.0",
     "@react-md/material-icons": "^2.0.0-alpha.0",
     "@react-md/overlay": "^2.0.0-alpha.0",
     "@react-md/portal": "^2.0.0-alpha.0",

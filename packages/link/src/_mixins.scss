@@ -36,6 +36,7 @@
 
   .rmd-link {
     @include rmd-link-theme(color);
+    @include rmd-typography-base;
 
     text-decoration: none;
     transition: color $rmd-link-transition-time;
@@ -46,11 +47,11 @@
     }
 
     &:visited {
-      @include rmd-link-theme(visited-color);
+      @include rmd-link-theme(color, visited-color);
     }
 
     &:hover {
-      @include rmd-link-theme(hover-color);
+      @include rmd-link-theme(color, hover-color);
 
       text-decoration: underline;
     }

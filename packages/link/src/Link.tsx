@@ -95,6 +95,7 @@ const Link: React.FunctionComponent<
     rel: propRel,
     flexCentered,
     preventMaliciousTarget,
+    forwardedRef,
     ...props
   } = providedProps as LinkWithDefaultProps;
   const { target } = props;
@@ -115,7 +116,7 @@ const Link: React.FunctionComponent<
   if (component) {
     return React.createElement(
       component,
-      { ...props, rel, href, className },
+      { ...props, rel, href, className, ref: forwardedRef },
       children
     );
   }
