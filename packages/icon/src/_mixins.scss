@@ -11,11 +11,11 @@
 /// going to be an internal helper mixin util.
 ///
 /// @param {String} property - The property to set a `rmd-icon-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-icon-theme-values` to extract a value from.
+/// @param {String} theme-style [property] - One of the keys of `rmd-icon-theme-values` to extract a value from.
 /// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
 ///   isn't set somehow. This will default to automatically retrieving the default value
 ///   from the `rmd-icon-theme-values` map when `null`.
-@mixin rmd-icon-theme($property, $theme-style, $fallback: null) {
+@mixin rmd-icon-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-icon-theme-values, icon);
 }
 
@@ -54,7 +54,7 @@
 ///     @include rmd-icon-font;
 ///   }
 @mixin rmd-icon-font {
-  @include rmd-icon-theme(color, color);
+  @include rmd-icon-theme(color);
   @include rmd-icon-theme(font-size, size);
 
   text-align: center;

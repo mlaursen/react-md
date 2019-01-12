@@ -7,7 +7,7 @@
 
 /// The transition time for links to change color.
 /// @type Number
-$rmd-link-transition-time: .15s !default;
+$rmd-link-transition-time: 0.15s !default;
 
 /// The default color to use for links.
 /// @type Color
@@ -16,16 +16,16 @@ $rmd-link-color: rmd-theme-var(primary) !default;
 /// The color to use for links that have been visited.
 /// @type Color
 $rmd-link-visited-color: darken($rmd-theme-primary, 10%) !default;
-// $rmd-link-visited-color: rmd-theme-get-swatch($rmd-theme-primary, 700, false, null, rmd-link-visited-color) !default;
 
 /// The color to use for links that are being hovered.
 /// @type Color
 $rmd-link-hover-color: lighten($rmd-theme-primary, 10%) !default;
 
-/// A Map of all the link theme variables. Each key in this map will be used to generate the link's theme CSS Variables
-/// by prefixing each key with `--rmd-`.
+/// A Map of all the "themeable" parts of the link package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the link as
+/// needed.
 /// @type Map
-$rmd-link-theme: (
+$rmd-link-theme-values: (
   color: $rmd-link-color,
   hover-color: $rmd-link-hover-color,
   visited-color: $rmd-link-visited-color,

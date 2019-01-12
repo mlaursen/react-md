@@ -3,6 +3,7 @@
 exports[`Link should render correctly when there is no component prop 1`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
   href="#"
 >
   Content
@@ -12,6 +13,7 @@ exports[`Link should render correctly when there is no component prop 1`] = `
 exports[`Link should render correctly when there is no component prop 2`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
 >
   Disabled Link
 </a>
@@ -20,6 +22,7 @@ exports[`Link should render correctly when there is no component prop 2`] = `
 exports[`Link should render correctly when there is no component prop 3`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
   href="/direct-url"
 >
   Direct url
@@ -57,6 +60,7 @@ exports[`Link should should render correctly when using @reach/router's Link com
 exports[`Link should should render correctly when using react-router's Link component 1`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
   href="/"
   onClick={[Function]}
 >
@@ -67,6 +71,7 @@ exports[`Link should should render correctly when using react-router's Link comp
 exports[`Link should should render correctly when using react-router's Link component 2`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
   href="/"
   onClick={[Function]}
 >
@@ -77,6 +82,7 @@ exports[`Link should should render correctly when using react-router's Link comp
 exports[`Link should should render correctly when using react-router's Link component 3`] = `
 <a
   className="rmd-link"
+  forwardedRef={null}
   href="/direct-url"
   onClick={[Function]}
 >

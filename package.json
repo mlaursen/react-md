@@ -40,6 +40,7 @@
     "@types/node-sass": "^3.10.32",
     "@types/prettier": "^1.15.2",
     "@types/pretty-ms": "^4.0.0",
+    "@types/reach__router": "^1.2.2",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-router": "^4.4.3",
