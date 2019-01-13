@@ -42,6 +42,6 @@
   },
   "peerDependencies": {
     "@react-md/icon": "^2.0.0-alpha.0",
-    "react": ">= 16.6"
+    "react": "^16.8.0-alpha.0 || >= 16.8"
   }
 }

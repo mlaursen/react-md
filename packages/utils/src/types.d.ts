@@ -7,3 +7,5 @@ import * as React from "react";
 export interface IWithForwardedRef<E = HTMLElement> {
   forwardedRef?: React.Ref<E>;
 }
+
+export type Maybe<T, NotFound = null> = T | NotFound;
