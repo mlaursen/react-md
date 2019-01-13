@@ -1,7 +1,7 @@
 import * as Constants from "./constants";
 export { Constants };
 
-export * from "./throttleEvent";
+export * from "./delegateEvent";
 export * from "./touches";
 
 export * from "./isFocusable";
