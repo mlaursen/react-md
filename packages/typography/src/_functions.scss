@@ -2,7 +2,7 @@
 /// @group typography
 ////
 
-@import '@react-md/theme/dist/helpers';
+@import '@react-md/utils/dist/functions';
 @import 'variables';
 
 /// Gets the Google font suffix for the provided font weight.
@@ -11,7 +11,7 @@
 ///   `$rmd-typography-google-font-weight-suffixes` keys.
 /// @return {String} the suffix for the provided font weight.
 @function rmd-typography-google-font-suffix($weight) {
-  @return rmd-theme-validate(
+  @return rmd-utils-validate(
     $rmd-typography-google-font-weight-suffixes,
     $weight,
     'Google font weight suffix'
@@ -31,7 +31,7 @@
 /// @param {String} property - One of the property values to extract.
 /// @return {String} the typography style value.
 @function rmd-typography-value($style, $property) {
-  $style-props: rmd-theme-validate($rmd-typography-styles, $style, typography);
+  $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);
 
-  @return rmd-theme-validate($style-props, $property, 'typeography #{$style} property');
+  @return rmd-utils-validate($style-props, $property, 'typeography #{$style} property');
 }

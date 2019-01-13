@@ -3,36 +3,8 @@
 /// @group theme
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'variables';
-
-/// This function is used to validate a list or map to make sure they contain
-/// the provided key or value. This should mostly really only be internal use.
-///
-/// @access private
-/// @param {List|Map} list-or-map - The list or map to validate
-/// @param {String|Number|Color} key-or-value - Either the value to check
-///   for in a list or a Map's key.
-/// @param {String} error-message - The prop name that was being used
-///   for the validation. This is mostly for a more helpful error message
-///   when a developer/user provided the wrong input.
-/// @return {String|Null} - Either the map's value for the provided key or
-///   the provided value for a list when there is no error.
-@function rmd-theme-validate($list-or-map, $key-or-value, $error-message) {
-  $type: type-of($list-or-map);
-  $is-map: $type == map;
-  $is-list: $type == list;
-
-  @if not $is-map and not $is-list {
-    @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
-  }
-
-  $choices: if($is-map, map-keys($list-or-map), $list-or-map);
-  @if not index($choices, $key-or-value) {
-    @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
-  }
-
-  @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
-}
 
 /// @access private
 /// @param {String} theme-name - The name of the theme to extract from the theme-map.
@@ -45,7 +17,7 @@
     @return $theme-name;
   }
 
-  @return rmd-theme-validate($theme-map, $theme-name, '#{$theme-group} property');
+  @return rmd-utils-validate($theme-map, $theme-name, '#{$theme-group} property');
 }
 
 /// This function is used behind the scenes of react-md to help get css variables from different
@@ -98,7 +70,7 @@
 ///
 /// @access private
 @mixin rmd-theme-update-rmd-var($value, $theme-name, $theme-map, $theme-group) {
-  $validated: rmd-theme-validate($theme-map, $theme-name, '#{$theme-name} property');
+  $validated: rmd-utils-validate($theme-map, $theme-name, '#{$theme-name} property');
 
   #{--rmd-#{$theme-group}-#{$theme-name}}: $value;
 }

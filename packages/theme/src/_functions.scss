@@ -2,6 +2,7 @@
 /// @group theme
 ////
 
+@import '@react-md/utils/dist/functions';
 @import 'color-palette';
 @import 'helpers';
 @import 'variables';
@@ -65,7 +66,7 @@
     @return $fallback-color;
   }
 
-  $suffixes: rmd-theme-validate(
+  $suffixes: rmd-utils-validate(
     if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),
     $swatch,
     'material design color swatch'
