@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 
+import { delegateEvent, IDelegatedEventHandler } from "./delegateEvent";
 import { Maybe } from "./types.d";
 
+export interface IEventListenerOptions extends AddEventListenerOptions {
+  delegate?: boolean;
+  throttle?: boolean;
+  shouldUpdate?: any[];
+}
 /**
  * A hook that to attach a window event listener when a component mounts and
  * then remove it when the component unmounts.
@@ -13,16 +19,29 @@ import { Maybe } from "./types.d";
 export function useEventListener<K extends keyof WindowEventMap>(
   type: K,
   handler: (event: WindowEventMap[K]) => void,
-  options?: boolean | AddEventListenerOptions,
-  update: any[] = [false]
+  options: IEventListenerOptions = {}
 ) {
-  return useEffect(() => {
-    window.addEventListener(type, handler, options);
+  const { shouldUpdate = [], throttle, delegate, ...opts } = options;
+  return useEffect(
+    () => {
+      let eventHandler: IDelegatedEventHandler;
+      if (throttle || delegate) {
+        eventHandler = delegateEvent(type, window, throttle, opts);
+        eventHandler.add(handler);
+      } else {
+        window.addEventListener(type, handler, opts);
+      }
 
-    return () => {
-      window.removeEventListener(type, handler, options);
-    };
-  }, update);
+      return () => {
+        if (eventHandler) {
+          eventHandler.remove(handler);
+        } else {
+          window.removeEventListener(type, handler, opts);
+        }
+      };
+    },
+    [throttle, ...shouldUpdate]
+  );
 }
 
 /**
@@ -50,5 +69,8 @@ export function useHideOnOutsideClick(
     }
   };
 
-  return useEventListener("click", hide, true, [container, ...ignore]);
+  return useEventListener("click", hide, {
+    capture: true,
+    shouldUpdate: [container, ...ignore],
+  });
 }
