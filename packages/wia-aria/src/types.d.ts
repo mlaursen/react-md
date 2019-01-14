@@ -1,3 +1,5 @@
+import { Maybe } from "@react-md/utils";
+
 /**
  * This type is used to require at least one of the optional arguments from
  * an interface. This is useful for requiring specific a11y props when there
@@ -34,3 +36,19 @@ export type KeyboardWiaAriaElement =
   | HTMLOListElement
   | HTMLLIElement
   | HTMLDivElement;
+
+export type KeyboardContextElementFunction = (
+  element: KeyboardWiaAriaElement
+) => void;
+export type KeyboardContextFallbackElementFunction = (
+  element: Maybe<KeyboardWiaAriaElement>
+) => void;
+
+export interface IKeyboardTrackerContext {
+  target: Maybe<KeyboardWiaAriaElement>;
+  fallbackTarget: Maybe<KeyboardWiaAriaElement>;
+  addElement: KeyboardContextElementFunction;
+  removeElement: KeyboardContextElementFunction;
+  forceActiveElement: KeyboardContextElementFunction;
+  setFallbackElement: KeyboardContextElementFunction;
+}
