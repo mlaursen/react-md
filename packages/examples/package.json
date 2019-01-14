@@ -1,0 +1,44 @@
+{
+  "name": "examples",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-md/button": "^2.0.0-alpha.0",
+    "@react-md/elevation": "^2.0.0-alpha.0",
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/link": "^2.0.0-alpha.0",
+    "@react-md/material-icons": "^2.0.0-alpha.0",
+    "@react-md/overlay": "^2.0.0-alpha.0",
+    "@react-md/portal": "^2.0.0-alpha.0",
+    "@react-md/react-scripts": "^2.1.4",
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/tooltip": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
+    "@react-md/typography": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "23.3.12",
+    "@types/node": "10.12.18",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11",
+    "classnames": "^2.2.6",
+    "react": "^16.8.0-alpha.0",
+    "react-dom": "^16.8.0-alpha.0",
+    "typescript": "3.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

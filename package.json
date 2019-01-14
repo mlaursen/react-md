@@ -5,9 +5,10 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cp ./webpack.config.js ./node_modules/@react-md/react-scripts/config/webpack.config.js",
     "setup": "npm-run-all dev-utils build",
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
-    "build": "lerna run build --ignore @react-md/dev-utils --stream -- --no-umd",
+    "build": "lerna run build --ignore @react-md/dev-utils --stream --ignore examples -- --no-umd",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
