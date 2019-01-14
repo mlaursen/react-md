@@ -9,6 +9,8 @@ import {
 } from "@react-md/wia-aria";
 import { useEventListener } from "@react-md/utils";
 
+import styles from "./menu.module.scss";
+
 export interface IAppSize {
   [key: string]: boolean;
   isPhone: boolean;
@@ -69,26 +71,39 @@ const App = () => {
 
   return (
     <TextContainer>
-      <Text type={appSize.isPhone ? "headline-6" : "headline-3"}>
-        <pre>{JSON.stringify(appSize, null, 2)}</pre>
-      </Text>
       <MenuButton
         id="menu-button-1"
         menuId="menu-1"
         onRequestShow={() => setVisible(!visible)}
         visible={visible}
-        className={theme({ theme: "primary", themeType: "outline" })}
+        className={theme({
+          theme: "primary",
+          themeType: "outline",
+        })}
       >
         Hello
       </MenuButton>
       {visible && (
-        <Menu id="menu-1" onRequestHide={() => setVisible(false)}>
+        <Menu
+          id="menu-1"
+          onRequestHide={() => setVisible(false)}
+          className={styles.menu}
+        >
           {Array.from(new Array(5)).map((_, i) => (
-            <MenuItem id={`item-${i + 1}`} key={i}>{`Item ${i + 1}`}</MenuItem>
+            <MenuItem
+              id={`item-${i + 1}`}
+              key={i}
+              className={styles.item}
+            >{`Item ${i + 1}`}</MenuItem>
           ))}
-          <MenuItemCheckbox id="item-6">Look at me!</MenuItemCheckbox>
+          <MenuItemCheckbox id="item-6" className={styles.item}>
+            Look at me!
+          </MenuItemCheckbox>
         </Menu>
       )}
+      <Text type={appSize.isPhone ? "headline-6" : "headline-3"}>
+        <pre>{JSON.stringify(appSize, null, 2)}</pre>
+      </Text>
     </TextContainer>
   );
 };
