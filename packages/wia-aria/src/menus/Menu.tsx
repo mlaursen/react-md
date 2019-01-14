@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { IWithForwardedRef, useHideOnOutsideClick } from "@react-md/utils";
+import {
+  IWithForwardedRef,
+  useHideOnOutsideClick,
+  Maybe,
+} from "@react-md/utils";
 
 import { IdRequired } from "../types";
-import { loopByRole } from "../utils/loopByRole";
+import { loopByQuerySelector } from "../utils";
 import { MenuElement, MenuButtonElement } from "./types";
 import {
   useMenuNodes,
-  useMenuMountEffect,
+  useMenuShowFocusEffect,
   useMenuHideFocusEffect,
   useActiveDescendateState,
 } from "./hooks";
@@ -38,6 +42,14 @@ export interface IMenuDefaultProps {
 
 export type MenuWithDefaultProps = MenuProps & IMenuDefaultProps;
 
+const MENU_ITEM_QUERY = '[role^="menuitem"]:not([aria-disabled="true"])';
+
+function clickActiveDescendant(menuNode: Maybe<MenuElement>) {
+  if (!menuNode) {
+    return;
+  }
+}
+
 const Menu: React.FunctionComponent<MenuProps> = providedProps => {
   const {
     component,
@@ -47,6 +59,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     onRequestHide,
     forwardedRef,
     children,
+    onClick,
     onKeyDown,
     ...props
   } = providedProps as MenuWithDefaultProps;
@@ -59,7 +72,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     menuNode
   );
   useHideOnOutsideClick(menuNode, onRequestHide, [menuButtonNode]);
-  useMenuMountEffect(menuNode);
+  useMenuShowFocusEffect(menuNode);
   useMenuHideFocusEffect(menuButtonNode);
 
   function handleKeyDown(event: React.KeyboardEvent<MenuElement>) {
@@ -76,10 +89,10 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
       case "ArrowDown":
       case "Home":
       case "End":
-        const nextId = loopByRole(menuNode, {
+        const nextId = loopByQuerySelector(menuNode, {
           first: key === "Home",
           last: key === "End",
-          roles: ["menuitem", "menuitemcheckbox", "menuitemradio"],
+          query: MENU_ITEM_QUERY,
           increment: key === "ArrowDown",
         });
 
@@ -87,6 +100,17 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
           setActiveId(nextId);
         }
         break;
+    }
+  }
+
+  function handleOnClick(event: React.MouseEvent<MenuElement>) {
+    if (onClick) {
+      onClick(event);
+    }
+
+    const target = event.target as Maybe<HTMLElement>;
+    if (target && target.closest(MENU_ITEM_QUERY)) {
+      window.requestAnimationFrame(onRequestHide);
     }
   }
 
@@ -98,6 +122,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
       tabIndex: -1,
       ref: forwardedRef,
       onKeyDown: handleKeyDown,
+      onClick: handleOnClick,
     },
     children
   );

@@ -4,23 +4,19 @@ import { useHideOnOutsideClick, Maybe } from "@react-md/utils";
 import { MenuElement, MenuButtonElement } from "./types";
 import { IMenuProps } from "./Menu";
 
-type MaybeMenuElement = Maybe<MenuElement>;
-type MaybeMenuButtonElement = Maybe<MenuButtonElement>;
-
 export function useMenuNodes(
   id: string
-): [MaybeMenuElement, MaybeMenuButtonElement] {
-  const [menuNode, setMenuNode] = useState(null as MaybeMenuElement);
-  const [menuButtonNode, setMenuButtonNode] = useState(
-    null as MaybeMenuButtonElement
-  );
+): [Maybe<MenuElement>, Maybe<MenuButtonElement>] {
+  const [menuNode, setMenuNode] = useState<Maybe<MenuElement>>(null);
+  // prettier-ignore
+  const [menuButtonNode, setMenuButtonNode] = useState<Maybe<MenuButtonElement>>(null);
 
   useEffect(
     () => {
-      const currentMenuNode = document.getElementById(id) as MenuElement | null;
+      const currentMenuNode = document.getElementById(id) as Maybe<MenuElement>;
       const currentMenuButtonNode = document.querySelector(
         `[aria-controls="${id}"]`
-      ) as MenuButtonElement | null;
+      ) as Maybe<MenuButtonElement>;
       setMenuNode(currentMenuNode);
       setMenuButtonNode(currentMenuButtonNode);
 
@@ -47,7 +43,7 @@ export function useMenuNodes(
   return [menuNode, menuButtonNode];
 }
 
-export function useMenuMountEffect(menuNode: Maybe<MenuElement>) {
+export function useMenuShowFocusEffect(menuNode: Maybe<MenuElement>) {
   return useEffect(() => {
     if (!menuNode) {
       return;

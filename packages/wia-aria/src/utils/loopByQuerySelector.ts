@@ -1,8 +1,9 @@
 import { Maybe } from "@react-md/utils";
-import { getNodesByRole } from "./getNodesByRole";
+
+import incrementLoop from "./incrementLoop";
 
 export interface ILoopOptions {
-  roles: string | string[];
+  query: string;
   first?: boolean;
   last?: boolean;
   increment?: boolean;
@@ -18,19 +19,11 @@ function error(message: string, ...others: any[]) {
   return "";
 }
 
-export default function loop(x: number, max: number, increment: boolean) {
-  let next = x + (increment ? 1 : -1);
-  if (next > max) {
-    next = 0;
-  } else if (next < 0) {
-    next = max;
-  }
-
-  return next;
-}
-
-export function loopByRole(node: Maybe<HTMLElement>, options: ILoopOptions) {
-  const { first = false, last = false, increment = true, roles } = options;
+export default function loopByQuerySelector(
+  node: Maybe<HTMLElement>,
+  options: ILoopOptions
+) {
+  const { first = false, last = false, increment = true, query } = options;
   if (!node) {
     return "";
   }
@@ -51,7 +44,7 @@ export function loopByRole(node: Maybe<HTMLElement>, options: ILoopOptions) {
     );
   }
 
-  const nodes = getNodesByRole(node, roles);
+  const nodes = Array.from(node.querySelectorAll(query)) as HTMLElement[];
   if (process.env.NODE_ENV !== "production") {
     const withoutIds = nodes.filter(node => !node.id);
     if (withoutIds.length) {
@@ -76,7 +69,7 @@ export function loopByRole(node: Maybe<HTMLElement>, options: ILoopOptions) {
     nextNode = nodes[nodes.length - 1];
   } else {
     const currentIndex = nodes.findIndex(node => node === active);
-    nextNode = nodes[loop(currentIndex, nodes.length - 1, increment)];
+    nextNode = nodes[incrementLoop(currentIndex, nodes.length - 1, increment)];
   }
 
   return (nextNode && nextNode.id) || "";

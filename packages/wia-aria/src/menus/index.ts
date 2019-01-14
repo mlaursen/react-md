@@ -10,4 +10,7 @@ export * from "./MenuItem";
 export { default as MenuItemCheckbox } from "./MenuItemCheckbox";
 export * from "./MenuItemCheckbox";
 
+export { default as MenuItemRadio } from "./MenuItemRadio";
+export * from "./MenuItemRadio";
+
 export * from "./types.d";

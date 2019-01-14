@@ -1,5 +1,5 @@
 import * as React from "react";
-import { delegateEvent, IDelgatedEventHandler } from "@react-md/utils";
+import { delegateEvent, IDelegatedEventHandler } from "@react-md/utils";
 import {
   KeyboardWiaAriaElement,
   IKeyboardTrackerContext,
@@ -58,8 +58,8 @@ export default class KeyboardTracker extends React.Component<
   IKeyboardTrackerContext
 > {
   private elements: Set<KeyboardWiaAriaElement>;
-  private keydownHandler?: IDelgatedEventHandler;
-  private mousedownHandler?: IDelgatedEventHandler;
+  private keydownHandler?: IDelegatedEventHandler;
+  private mousedownHandler?: IDelegatedEventHandler;
   constructor(props: IKeyboardTrackerProps) {
     super(props);
 
