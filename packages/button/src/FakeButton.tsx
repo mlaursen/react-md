@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ITextIconSpacingProps } from "@react-md/icon";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
 import { IButtonDefaultProps } from "./Button";
@@ -10,7 +9,6 @@ import theme from "./theme";
 
 export interface IFakeButtonProps
   extends IButtonThemeProps,
-    ITextIconSpacingProps,
     React.HTMLAttributes<HTMLDivElement> {}
 
 export interface IFakeButtonDefaultProps extends IButtonDefaultProps {
@@ -67,14 +65,9 @@ const FakeButton: React.FunctionComponent<
     theme: propTheme,
     themeType,
     buttonType,
-    icon,
-    iconAfter,
     children,
     forwardedRef,
-    disableColorFix,
-    beforeClassName,
-    afterClassName,
-    forceIconWrap,
+    preventColorPollution,
     disabled,
     tabIndex,
     onKeyDown,
@@ -106,14 +99,9 @@ const FakeButton: React.FunctionComponent<
       tabIndex={disabled ? undefined : tabIndex}
       onKeyDown={disabled ? undefined : handleKeyDown}
     >
-      <ButtonChildren
-        icon={icon}
-        iconAfter={iconAfter}
-        beforeClassName={beforeClassName}
-        afterClassName={afterClassName}
-        forceIconWrap={forceIconWrap}
-        disabled={disableColorFix}
-      />
+      <ButtonChildren preventColorPollution={preventColorPollution}>
+        {children}
+      </ButtonChildren>
     </div>
   );
 };
@@ -125,8 +113,7 @@ const defaultProps: IFakeButtonDefaultProps = {
   theme: "primary",
   themeType: "flat",
   buttonType: "text",
-  iconAfter: false,
-  disableColorFix: false,
+  preventColorPollution: false,
 };
 
 FakeButton.defaultProps = defaultProps;
@@ -153,11 +140,6 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       disabled: PropTypes.bool,
       children: PropTypes.node,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-      iconAfter: PropTypes.bool,
-      forceIconWrap: PropTypes.bool,
-      beforeClassName: PropTypes.string,
-      afterClassName: PropTypes.string,
     };
   }
 }

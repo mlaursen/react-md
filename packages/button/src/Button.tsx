@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ITextIconSpacingProps } from "@react-md/icon";
 import { IWithForwardedRef } from "@react-md/utils";
 
 import ButtonChildren from "./ButtonChildren";
@@ -18,7 +17,6 @@ import theme from "./theme";
  */
 export interface IButtonProps
   extends IButtonThemeProps,
-    ITextIconSpacingProps,
     React.HTMLAttributes<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
@@ -45,8 +43,7 @@ export interface IButtonDefaultProps {
   theme: ButtonTheme;
   themeType: ButtonThemeType;
   buttonType: ButtonType;
-  iconAfter: boolean;
-  disableColorFix: boolean;
+  preventColorPollution: boolean;
 }
 
 export type ButtonWithDefaultProps = IButtonProps &
@@ -64,12 +61,7 @@ const Button: ButtonComponent = providedProps => {
     buttonType,
     children,
     forwardedRef,
-    icon,
-    iconAfter,
-    beforeClassName,
-    afterClassName,
-    forceIconWrap,
-    disableColorFix,
+    preventColorPollution,
     ...props
   } = providedProps as ButtonWithDefaultProps;
 
@@ -79,14 +71,7 @@ const Button: ButtonComponent = providedProps => {
       ref={forwardedRef}
       className={Button.theme(providedProps)}
     >
-      <ButtonChildren
-        icon={icon}
-        iconAfter={iconAfter}
-        beforeClassName={beforeClassName}
-        afterClassName={afterClassName}
-        forceIconWrap={forceIconWrap}
-        disabled={disableColorFix}
-      >
+      <ButtonChildren preventColorPollution={preventColorPollution}>
         {children}
       </ButtonChildren>
     </button>
@@ -100,8 +85,7 @@ const defaultProps: IButtonDefaultProps = {
   theme: "primary",
   themeType: "flat",
   buttonType: "text",
-  iconAfter: false,
-  disableColorFix: false,
+  preventColorPollution: false,
 };
 
 Button.defaultProps = defaultProps;
@@ -126,15 +110,6 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       disabled: PropTypes.bool,
       children: PropTypes.node,
-      icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.node,
-        PropTypes.object,
-      ]),
-      iconAfter: PropTypes.bool,
-      forceIconWrap: PropTypes.bool,
-      beforeClassName: PropTypes.string,
-      afterClassName: PropTypes.string,
     };
   }
 }

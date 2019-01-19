@@ -1,30 +1,26 @@
 import * as React from "react";
-import { ITextIconSpacingProps, TextIconSpacing } from "@react-md/icon";
 
-export interface IButtonChildrenProps extends ITextIconSpacingProps {
+export interface IButtonChildrenProps {
   children?: React.ReactNode;
-  disabled: boolean;
+  preventColorPollution: boolean;
 }
 
 const ButtonChildren: React.FunctionComponent<IButtonChildrenProps> = ({
-  disabled,
+  preventColorPollution,
   children,
-  ...props
 }) => {
-  let content = <TextIconSpacing {...props}>{children}</TextIconSpacing>;
-
-  if (!disabled) {
-    content = (
-      <React.Fragment>
-        <span aria-hidden="true" className="rmd-button__content">
-          {content}
-        </span>
-        <span className="rmd-button__content-mask">{content}</span>
-      </React.Fragment>
-    );
+  if (!preventColorPollution) {
+    return <React.Fragment>{children}</React.Fragment>;
   }
 
-  return content;
+  return (
+    <React.Fragment>
+      <span aria-hidden="true" className="rmd-button__content">
+        {children}
+      </span>
+      <span className="rmd-button__content-mask">{children}</span>
+    </React.Fragment>
+  );
 };
 
 export default ButtonChildren;

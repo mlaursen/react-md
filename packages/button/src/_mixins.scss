@@ -128,6 +128,8 @@
     }
     @include rmd-button-base;
 
+    // it's temp right now until i finish up wia-aria package with keyboard only focus states
+    // sass-lint:disable force-pseudo-nesting
     &--hoverable {
       &:hover {
         cursor: pointer;

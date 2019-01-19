@@ -7,13 +7,7 @@ exports[`FakeButton should render correctly based on the theme props 1`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -24,13 +18,7 @@ exports[`FakeButton should render correctly based on the theme props 2`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -41,13 +29,7 @@ exports[`FakeButton should render correctly based on the theme props 3`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -58,13 +40,7 @@ exports[`FakeButton should render correctly based on the theme props 4`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -75,13 +51,7 @@ exports[`FakeButton should render correctly based on the theme props 5`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -92,13 +62,7 @@ exports[`FakeButton should render correctly based on the theme props 6`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -109,13 +73,7 @@ exports[`FakeButton should render correctly based on the theme props 7`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -126,13 +84,7 @@ exports[`FakeButton should render correctly based on the theme props 8`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -143,13 +95,7 @@ exports[`FakeButton should render correctly based on the theme props 9`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -160,13 +106,7 @@ exports[`FakeButton should render correctly based on the theme props 10`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -177,13 +117,7 @@ exports[`FakeButton should render correctly based on the theme props 11`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -194,13 +128,7 @@ exports[`FakeButton should render correctly based on the theme props 12`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -211,13 +139,7 @@ exports[`FakeButton should render correctly based on the theme props 13`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -228,13 +150,7 @@ exports[`FakeButton should render correctly based on the theme props 14`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -245,13 +161,7 @@ exports[`FakeButton should render correctly based on the theme props 15`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  Button Text
 </div>
 `;
 
@@ -262,13 +172,7 @@ exports[`FakeButton should render correctly based on the theme props 16`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -279,13 +183,7 @@ exports[`FakeButton should render correctly based on the theme props 17`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -296,13 +194,7 @@ exports[`FakeButton should render correctly based on the theme props 18`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -313,13 +205,7 @@ exports[`FakeButton should render correctly based on the theme props 19`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -330,13 +216,7 @@ exports[`FakeButton should render correctly based on the theme props 20`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -347,13 +227,7 @@ exports[`FakeButton should render correctly based on the theme props 21`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -364,13 +238,7 @@ exports[`FakeButton should render correctly based on the theme props 22`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -381,13 +249,7 @@ exports[`FakeButton should render correctly based on the theme props 23`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -398,13 +260,7 @@ exports[`FakeButton should render correctly based on the theme props 24`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -415,13 +271,7 @@ exports[`FakeButton should render correctly based on the theme props 25`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -432,13 +282,7 @@ exports[`FakeButton should render correctly based on the theme props 26`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -449,13 +293,7 @@ exports[`FakeButton should render correctly based on the theme props 27`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -466,13 +304,7 @@ exports[`FakeButton should render correctly based on the theme props 28`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -483,13 +315,7 @@ exports[`FakeButton should render correctly based on the theme props 29`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
 
@@ -500,12 +326,6 @@ exports[`FakeButton should render correctly based on the theme props 30`] = `
   role="button"
   tabIndex={0}
 >
-  <span
-    aria-hidden="true"
-    className="rmd-button__content"
-  />
-  <span
-    className="rmd-button__content-mask"
-  />
+  <i />
 </div>
 `;
