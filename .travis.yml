@@ -1,7 +1,3 @@
-branches:
-  except:
-    next
-
 language: node_js
 
 node_js:
@@ -10,10 +6,17 @@ node_js:
 cache:
   yarn: true
 
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
 install:
   - yarn global add lerna
-  - yarn
+  - yarn install
+  - lerna run build --scope @react-md/dev-utils
+  - yarn install --force
+  - yarn build
 
 script:
   - yarn lint
-  - lerna exec --ignore dev-utils --no-bail -- yarn test --coverage --runInBand
+  - lerna exec --ignore @react-md/dev-utils --ignore react-md --ignore examples -- yarn test --runInBand --verbose

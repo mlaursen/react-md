@@ -69,6 +69,18 @@ $ yarn setup
 $ yarn watch
 ```
 
+> There is currently a weird bug with yarn workspaces or lerna wher eit doesn't
+> always symlink the bin directories correctly. If you see an error like
+> `/bin/sh: 1: /bin/sh: 1: dev-utils: not found` when running the above
+> commands, try this instead:
+
+```sh
+$ yarn
+$ yarn dev-utils
+$ yarn install --force
+$ yarn build
+```
+
 ### Project structure
 
 Each package will have a structure similar to this:

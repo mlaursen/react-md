@@ -1,10 +1,10 @@
 {
   "name": "@react-md/dev-utils",
-  "version": "2.0.0-alpha-1",
+  "version": "2.0.0-alpha.0",
   "description": "Common build utilities for react-md. Contains helpers for building, watching, testing, etc",
   "private": true,
   "bin": {
-    "dev-utils": "bin/cli.js"
+    "dev-utils": "./bin/cli.js"
   },
   "scripts": {
     "clean": "rimraf bin dist",

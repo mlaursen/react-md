@@ -1,5 +1,6 @@
 files:
   include: 'packages/*/src/**/*.scss'
+  ignore: 'packages/examples/**/*.scss'
 options:
   formatter: stylish
   merge-default-rules: false
@@ -12,7 +13,7 @@ rules:
     - convention: zero
   class-name-format:
     - 1
-    - convention: hyphenatedlowercase
+    - convention: hyphenatedbem
   clean-import-paths:
     - 1
     - filename-extension: false
