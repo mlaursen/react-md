@@ -66,3 +66,67 @@
     }
   }
 }
+
+/// This is a small utility function that helps set up your react-md app.
+///
+/// This will:
+/// - update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)
+/// - remove the margin and padding from the `html` and `body`
+/// - apply the base background color and text colors to the `html` tag if the `@react-md/theme` package
+///   has been correctly included
+/// - apply the base typography to the `html` element if the `@react-md/typography` package
+///   has been correctly included
+@mixin rmd-utils-base {
+  *,
+  *::before,
+  *::after {
+    // setting everything to border-box for easier positioning
+    // and calculations
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    @if mixin-exists(rmd-theme) {
+      @include rmd-theme(background-color, background);
+      @include rmd-theme(color, text-primary-on-background);
+    }
+
+    @if mixin-exists(rmd-typography-base) {
+      @include rmd-typography-base;
+    }
+  }
+}
+
+/// This mixin will include the styles for all packages that have been
+/// imported in your scss files. If there are missing styles, you need
+/// to make sure to correctly import that package before calling this
+/// function.
+@mixin react-md-utils {
+  @if mixin-exists(react-md-button) {
+    @include react-md-button;
+  }
+
+  @if mixin-exists(react-md-link) {
+    @include react-md-link;
+  }
+
+  @if mixin-exists(react-md-theme) {
+    @include react-md-theme;
+  }
+
+  @if mixin-exists(react-md-transition) {
+    @include react-md-transition;
+  }
+
+  @if mixin-exists(react-md-typography) {
+    @include react-md-typography;
+  }
+
+  @include rmd-utils-base;
+}
