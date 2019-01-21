@@ -1,4 +1,4 @@
-import jestConfig from "../../../jest.config";
+import jestConfig from "../../../jest.sharedConfig";
 
 import { src } from "./paths";
 import { glob, log, getPackageName } from "./utils";

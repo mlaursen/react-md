@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
 const { spawn } = require('child_process');
@@ -17,14 +17,14 @@ function copyFile(filePath, destPath, log) {
     console.log(`${filePath} -> ${dest}`);
   }
 
-  fs.copy(filePath, dest);
+  fs.copyFileSync(filePath, dest);
 }
 
 const copyScssFile = f => copyFile(f, 'dist', startLoggingScss);
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 const isNotLazy = process.argv.includes('--no-lazy');
 
-const watchedProjects = new Map();
+const watchedProjects = new Set();
 function startTsWatcher(filePath) {
   const [packages, project] = filePath.split(path.sep);
   if (watchedProjects.has(project)) {
@@ -32,14 +32,18 @@ function startTsWatcher(filePath) {
   }
 
   const tsc = './node_modules/typescript/bin/tsc';
-  const args = [
-    '-p',
-    path.join(packages, project, 'tsconfig.esmodule.json'),
-    '-w',
-  ];
+  const tsconfig = path.join(packages, project, 'tsconfig.esmodule.json');
+  const args = ['-p', tsconfig, '-w'];
 
   console.log(`Staring new tsc watcher in ${project}...`);
-  watchedProjects.set(project, spawn(tsc, args, { stdio: 'inherit' }));
+  spawn(tsc, args, { stdio: 'inherit' });
+  if (process.argv.includes('--cjs')) {
+    const cjsArgs = args.slice();
+    cjsArgs[1] = tsconfig.replace('esmodule', 'commonjs');
+    spawn(tsc, cjsArgs, { stdio: 'inherit' });
+  }
+
+  watchedProjects.add(project);
 }
 
 chokidar

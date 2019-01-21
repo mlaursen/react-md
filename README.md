@@ -69,7 +69,7 @@ $ yarn setup
 $ yarn watch
 ```
 
-> There is currently a weird bug with yarn workspaces or lerna wher eit doesn't
+> There is currently a weird bug with yarn workspaces or lerna where it doesn't
 > always symlink the bin directories correctly. If you see an error like
 > `/bin/sh: 1: /bin/sh: 1: dev-utils: not found` when running the above
 > commands, try this instead:
@@ -106,12 +106,25 @@ packages/typography
 
 ### Running tests
 
-Tests can be run either with `lerna` or changing into a specific package
-directory and running the test command:
+Tests can be run from the root directory with either:
 
 ```sh
 $ yarn test
 ```
+
+Or
+
+```sh
+$ yarn test:each
+```
+
+The difference between these two commands is that the base `yarn test` command
+will run tests for all packages in a single `jest` test runner while the
+`yarn test:each` will spin up a different `jest` test runner for each project
+that has tests.
+
+Otherwise, you can change directories into a related project and run test from
+there.
 
 ```sh
 $ cd packages/typography

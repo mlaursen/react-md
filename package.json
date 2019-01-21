@@ -12,7 +12,8 @@
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p \"lint:scripts\" \"lint:styles\"",
-    "test": "lerna exec --ignore @react-md/dev-utils --ignore examples --stream -- yarn test",
+    "test:each": "lerna exec --ignore @react-md/dev-utils --ignore examples --stream -- yarn test",
+    "test": "jest --config jest.config.js",
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
     "clean": "lerna run clean --ignore @react-md/dev-utils --stream",
     "watch": "node watcher.js"

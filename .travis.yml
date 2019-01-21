@@ -19,4 +19,4 @@ install:
 
 script:
   - yarn lint
-  - lerna exec --ignore @react-md/dev-utils --ignore react-md --ignore examples -- yarn test --runInBand --verbose
+  - yarn test --runInBand
