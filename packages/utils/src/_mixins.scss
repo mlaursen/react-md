@@ -116,6 +116,10 @@
     @include react-md-link;
   }
 
+  @if mixin-exists(react-md-states) {
+    @include react-md-states;
+  }
+
   @if mixin-exists(react-md-theme) {
     @include react-md-theme;
   }

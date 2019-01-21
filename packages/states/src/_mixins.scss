@@ -1,0 +1,176 @@
+////
+/// @group states
+////
+
+@import '@react-md/transition/dist/variables';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/theme/dist/helpers';
+@import 'variables';
+@import 'functions';
+
+/// Creates the styles for one of the states's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-states-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-states-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-states-theme-values` map when `null`.
+@mixin rmd-states-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-states-theme-values, states);
+}
+
+/// Updates one of the states's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The states theme style type to update. This should be one
+///   of the `$rmd-states-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-states-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-states-theme-values, states);
+}
+
+/// This mixin applies one of the opacity values as a css variable to a surface.
+/// This is probably really just for internal use right now, but I might expose
+/// and document it more later.
+/// @access private
+@mixin rmd-states-opacity($type) {
+  @include rmd-states-theme(opacity, '#{$type}-opacity');
+}
+
+/// This is a mixin that is used to be able to create a "surface" for a psuedo
+/// element. It applies some base styling so that it will fill the entire
+/// container element and not have pointer-events attached.
+@mixin rmd-states-psuedo-surface {
+  border-radius: inherit;
+  bottom: 0;
+  content: '';
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
+}
+
+/// Generates all the base styles for an interaction "surface". This should
+/// normally be applied to a `::before` or `::after` psuedo element.
+@mixin rmd-states-surface-base {
+  @include rmd-transition(standard);
+  @include rmd-states-psuedo-surface;
+  @include rmd-states-theme(background-color);
+
+  transition: opacity $rmd-transition-linear-time;
+}
+
+@mixin rmd-states-color-pullution-content-overlay {
+  @if $rmd-states-prevent-color-pollution {
+    .rmd-states__content-overlay {
+      @content;
+    }
+  }
+}
+
+/// This is the main interaction states creator. It will apply all the styles
+/// to an element so that it will:
+/// - gain the pointer cursor when it is not disabled (also works for aria-disabled)
+/// - create a `::before` element for transitioning between the different interaction
+///   states
+/// - apply the hover opacity when not disabled **and for non-touch devices** (see more below)
+/// - apply the focused opacity after a **keyboard** focus event (see more below)
+/// - apply the pressed opacity if not using the ripple effect (see more below)
+///
+/// ### Hover Opacity
+/// This requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is
+/// not used in your application, the hover effect will be applied on mobile devices after touch
+/// events. This is because a touch event still goes through the mouse events and applies the
+/// hover state after being touched.
+///
+/// ### Focused Opacity
+/// This requires the usage of the `KeyboardTracker` component to work correctly. If the
+/// `KeyboardTracker` is not used in your application and not near the root of the React render
+/// tree, you most likely will not have any focus states. This is actually one of the "biggest"
+/// features of react-md until the `:focus-visible` css selector has gained traction and browser
+/// support.
+///
+/// ### Pressed Opacity
+/// If you are using the ripple effect for pressed states, this will be ignored as a ripple element
+/// will be created instead to show the pressed state. When the ripple effect is disabled, pressing
+/// an element will just trigger a background opacity change like the over interaction states.
+@mixin rmd-states-surface {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &:focus {
+    outline-style: none;
+  }
+
+  @if $rmd-states-remove-firefox-inner-ring {
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+
+  &::before {
+    @include rmd-states-surface-base;
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    @include rmd-states-theme-update-var(hover-opacity, 0);
+  }
+
+  &:not(:disabled):not([aria-disabled='true']):hover {
+    cursor: pointer;
+  }
+
+  &:hover::before {
+    @include rmd-states-opacity(hover);
+  }
+
+  &.rmd-states--focused::before {
+    @include rmd-states-opacity(focus);
+  }
+
+  @if not $rmd-states-use-ripple {
+    &.rmd-states--pressed::before {
+      @include rmd-states-opacity(pressed);
+    }
+  }
+}
+
+/// This is a mixin that should be used along with the `rmd-states-surface` mixin if you'd also
+/// like to be able to add a selected state to an element. This really just adds another opacity
+/// background change when the element is considered selected. This is not apart of the main
+/// surface mixin since selection states are a bit less used and it might be better to do different
+/// styles than just a background change to show selection.
+@mixin rmd-states-surface-selected($selector: '&--selected') {
+  #{$selector}::before {
+    @include rmd-states-opacity(selected);
+  }
+}
+
+@mixin react-md-states {
+  @include rmd-theme-create-root-theme($rmd-states-theme-values, states);
+
+  @if $rmd-states-prevent-color-pollution {
+    .rmd-states__content-mask {
+      visibility: hidden;
+    }
+
+    @include rmd-states-color-pullution-content-overlay {
+      height: inherit;
+      left: 0;
+      padding: inherit;
+      position: absolute;
+      top: 0;
+      width: inherit;
+      z-index: 1;
+    }
+  }
+
+  .rmd-states--touch {
+    @include rmd-states-theme-update-var(hover-opacity, 0);
+  }
+}

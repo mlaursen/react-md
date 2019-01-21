@@ -1,0 +1,43 @@
+{
+  "name": "@react-md/states",
+  "version": "2.0.0-alpha.0",
+  "description": "A package for adding the different focus, hover, selected, active, etc states to elements",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean",
+    "test": "dev-utils test",
+    "prepublishOnly": "dev-utils prepublish"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "keyboard",
+    "focus",
+    "selection"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "@react-md/wia-aria": "^2.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@react-md/dev-utils": "^2.0.0-alpha.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0-alpha.0 || >= 16.8"
+  }
+}

@@ -1,0 +1,69 @@
+////
+/// @group states
+////
+
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/theme/dist/color-a11y';
+@import '@react-md/theme/dist/functions';
+
+/// Boolean if the each surface in react-md should also be updated
+/// to remove the `::-moz-focus-inner` default styles when focused.
+/// @type Boolean
+$rmd-states-remove-firefox-inner-ring: true !default;
+
+/// Boolean if the pressed and keyboard focus interaction states should use
+/// the ripple effect. If this is set to false, a different background opacity
+/// will be applied to the element instead.
+///
+/// Note: You will still need to update the `InteractionStatesContext` to
+/// disable the ripple effects in javascript.
+///
+/// @type Boolean
+$rmd-states-use-ripple: true !default;
+
+/// This is used along with the `PreventColorPullution` component to be able to
+/// fix color issues that might arise using the states package. This is enabled
+/// by default since it might be confusing to update both your javascript and
+/// your SCSS to enable this feature. If you aren't using this feature, you can
+/// save a few bytes in your bundle size by setting this to `false`.
+///
+/// @see TODO: ADD LINK TO COLOR POLLUTION FIX DOCUMENTATION
+/// @type Boolean
+$rmd-states-prevent-color-pollution: true !default;
+
+/// The background color to use for the different states. The default behavior
+/// is to use a base color and apply different opacities depending on the interaction
+/// with the element.
+/// @type Color
+$rmd-states-background-color: $rmd-black-base !default;
+
+/// The opacity to apply to the `$rmd-states-background-color` value when the
+/// element is in a hover state.
+/// @type Number
+$rmd-states-hover-opacity: 0.08 !default;
+
+/// The opacity to apply to the `$rmd-states-background-color` value when the
+/// element is in a focus state.
+///
+/// Note: By default, this opacity will only be applied for **keyboard focus**
+/// instead of all focus events.
+/// @type Number
+$rmd-states-focus-opacity: 0.24 !default;
+
+/// The opacity to apply to the `$rmd-states-background-color` value when the
+/// element is in a pressed state.
+/// @type Number
+$rmd-states-pressed-opacity: 0.32 !default;
+
+/// The opacity to apply to the `$rmd-states-background-color` value when the
+/// element is in a selected state.
+/// @type Number
+$rmd-states-selected-opacity: 0.16 !default;
+
+$rmd-states-theme-values: (
+  background-color: $rmd-states-background-color,
+  hover-opacity: $rmd-states-hover-opacity,
+  focus-opacity: $rmd-states-focus-opacity,
+  pressed-opacity: $rmd-states-pressed-opacity,
+  selected-opacity: $rmd-states-selected-opacity,
+) !default;
