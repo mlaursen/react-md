@@ -6,5 +6,8 @@
   },
   "include": [
     "packages/*/src/**/*"
+  ],
+  "exclude": [
+    "packages/examples/**/*"
   ]
 }

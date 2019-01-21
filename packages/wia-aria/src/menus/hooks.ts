@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useHideOnOutsideClick, Maybe } from "@react-md/utils";
+import { Maybe } from "@react-md/utils";
 
 import { MenuElement, MenuButtonElement } from "./types";
-import { IMenuProps } from "./Menu";
 
 export function useMenuNodes(
   id: string

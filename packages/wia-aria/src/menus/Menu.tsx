@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   IWithForwardedRef,
   useHideOnOutsideClick,
@@ -7,7 +7,7 @@ import {
 
 import { IdRequired } from "../types";
 import { loopByQuerySelector } from "../utils";
-import { MenuElement, MenuButtonElement } from "./types";
+import { MenuElement } from "./types";
 import { useMenuNodes, useActiveDescendateState } from "./hooks";
 import { useKeyboardFocusContext } from "../keyboard/hooks";
 
@@ -40,12 +40,6 @@ export type MenuWithDefaultProps = MenuProps & IMenuDefaultProps;
 
 const MENU_ITEM_QUERY = '[role^="menuitem"]:not([aria-disabled="true"])';
 
-function clickActiveDescendant(menuNode: Maybe<MenuElement>) {
-  if (!menuNode) {
-    return;
-  }
-}
-
 const Menu: React.FunctionComponent<MenuProps> = providedProps => {
   const {
     component,
@@ -69,21 +63,24 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
   );
   const { focusedId, setFocusedId } = useKeyboardFocusContext();
   useHideOnOutsideClick(menuNode, onRequestHide, [menuButtonNode]);
-  useEffect(() => {
-    if (!menuNode) {
-      return;
-    }
+  useEffect(
+    () => {
+      if (!menuNode) {
+        return;
+      }
 
-    menuNode.focus();
+      menuNode.focus();
 
-    if (!isVisibleByKeyboard) {
-      return;
-    }
+      if (!isVisibleByKeyboard) {
+        return;
+      }
 
-    window.requestAnimationFrame(() => {
-      setFocusedId(menuNode.getAttribute("aria-activedescendant"));
-    });
-  }, [menuNode]);
+      window.requestAnimationFrame(() => {
+        setFocusedId(menuNode.getAttribute("aria-activedescendant"));
+      });
+    },
+    [menuNode]
+  );
 
   function handleKeyDown(event: React.KeyboardEvent<MenuElement>) {
     if (onKeyDown) {

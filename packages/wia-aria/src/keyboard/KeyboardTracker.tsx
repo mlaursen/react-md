@@ -8,7 +8,6 @@ import React, {
 import { useEventListener, Maybe } from "@react-md/utils";
 
 import { KeyboardWiaAriaElement } from "../types";
-import { KeyboardTrackerContext } from "./context";
 import { FocusChangeHandler } from "./types.d";
 import KeyboardTrackerProvider from "./KeyboardTrackerProvider";
 
@@ -140,13 +139,16 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
     { shouldUpdate: [focusedId] }
   );
 
-  useEffect(() => {
-    if (!onFocusChange) {
-      return;
-    }
+  useEffect(
+    () => {
+      if (!onFocusChange) {
+        return;
+      }
 
-    onFocusChange(focusedId);
-  }, [onFocusChange, focusedId]);
+      onFocusChange(focusedId);
+    },
+    [onFocusChange, focusedId]
+  );
 
   return { focusedId, setFocusedId };
 }
@@ -161,7 +163,7 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
  * using the `KeyboardTrackerContext` or the exposed hooks.
  */
 const KeyboardTracker: FunctionComponent<IKeyboardTrackerProps> = props => {
-  const { children, onFocusChange } = props;
+  const { children } = props;
   const { focusedId, setFocusedId } = useKeyboardTracker(props);
 
   return (
