@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IWithForwardedRef,
   useHideOnOutsideClick,
@@ -8,12 +8,8 @@ import {
 import { IdRequired } from "../types";
 import { loopByQuerySelector } from "../utils";
 import { MenuElement, MenuButtonElement } from "./types";
-import {
-  useMenuNodes,
-  useMenuShowFocusEffect,
-  useMenuHideFocusEffect,
-  useActiveDescendateState,
-} from "./hooks";
+import { useMenuNodes, useActiveDescendateState } from "./hooks";
+import { useKeyboardFocusContext } from "../keyboard/hooks";
 
 export interface IMenuLabel {
   "aria-label"?: string;
@@ -71,9 +67,23 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     defaultActiveId,
     menuNode
   );
+  const { focusedId, setFocusedId } = useKeyboardFocusContext();
   useHideOnOutsideClick(menuNode, onRequestHide, [menuButtonNode]);
-  useMenuShowFocusEffect(menuNode);
-  useMenuHideFocusEffect(menuButtonNode);
+  useEffect(() => {
+    if (!menuNode) {
+      return;
+    }
+
+    menuNode.focus();
+
+    if (!isVisibleByKeyboard) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      setFocusedId(menuNode.getAttribute("aria-activedescendant"));
+    });
+  }, [menuNode]);
 
   function handleKeyDown(event: React.KeyboardEvent<MenuElement>) {
     if (onKeyDown) {
@@ -96,10 +106,18 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
           increment: key === "ArrowDown",
         });
 
-        if (nextId) {
+        if (nextId && nextId !== focusedId) {
           setActiveId(nextId);
+          setFocusedId(nextId);
         }
         break;
+      case " ":
+        event.preventDefault();
+        const activeId = event.currentTarget.getAttribute(
+          "aria-activedescendant"
+        ) as string;
+        const item = document.getElementById(activeId) as HTMLLIElement;
+        item.click();
     }
   }
 
@@ -121,8 +139,8 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
       "aria-activedescendant": activeId,
       tabIndex: -1,
       ref: forwardedRef,
-      onKeyDown: handleKeyDown,
       onClick: handleOnClick,
+      onKeyDown: handleKeyDown,
     },
     children
   );

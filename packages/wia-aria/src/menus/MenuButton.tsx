@@ -57,14 +57,19 @@ function handleKeyDown({ onKeyDown, onRequestShow }: MenuButtonProps) {
     }
 
     const { key } = event;
-    if (key === "Enter" || key === " " || key === "Up" || key === "Down") {
+    if (
+      key === "Enter" ||
+      key === " " ||
+      key === "ArrowUp" ||
+      key === "ArrowDown"
+    ) {
       if (key !== "Enter") {
         // don't want the default page scrolling behavior to be triggered
         event.preventDefault();
       }
 
       event.stopPropagation();
-      onRequestShow(key !== "Up", true);
+      onRequestShow(key !== "ArrowUp", true);
     }
   };
 }

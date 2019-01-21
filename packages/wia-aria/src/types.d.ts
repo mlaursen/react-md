@@ -36,19 +36,3 @@ export type KeyboardWiaAriaElement =
   | HTMLOListElement
   | HTMLLIElement
   | HTMLDivElement;
-
-export type KeyboardContextElementFunction = (
-  element: KeyboardWiaAriaElement
-) => void;
-export type KeyboardContextFallbackElementFunction = (
-  element: Maybe<KeyboardWiaAriaElement>
-) => void;
-
-export interface IKeyboardTrackerContext {
-  target: Maybe<KeyboardWiaAriaElement>;
-  fallbackTarget: Maybe<KeyboardWiaAriaElement>;
-  addElement: KeyboardContextElementFunction;
-  removeElement: KeyboardContextElementFunction;
-  forceActiveElement: KeyboardContextElementFunction;
-  setFallbackElement: KeyboardContextElementFunction;
-}

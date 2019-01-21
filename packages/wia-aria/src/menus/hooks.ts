@@ -11,62 +11,33 @@ export function useMenuNodes(
   // prettier-ignore
   const [menuButtonNode, setMenuButtonNode] = useState<Maybe<MenuButtonElement>>(null);
 
-  useEffect(
-    () => {
-      const currentMenuNode = document.getElementById(id) as Maybe<MenuElement>;
-      const currentMenuButtonNode = document.querySelector(
-        `[aria-controls="${id}"]`
-      ) as Maybe<MenuButtonElement>;
-      setMenuNode(currentMenuNode);
-      setMenuButtonNode(currentMenuButtonNode);
+  useEffect(() => {
+    const currentMenuNode = document.getElementById(id) as Maybe<MenuElement>;
+    const currentMenuButtonNode = document.querySelector(
+      `[aria-controls="${id}"]`
+    ) as Maybe<MenuButtonElement>;
+    setMenuNode(currentMenuNode);
+    setMenuButtonNode(currentMenuButtonNode);
 
-      if (process.env.NODE_ENV === "development") {
-        if (!currentMenuNode) {
-          console.error(`Unable to find a menu with an id: \`${id}\`.`);
-          console.error(new Error().stack);
-        }
-
-        if (!currentMenuButtonNode) {
-          console.error(
-            "Unable to find an element on the page that controls the menu with " +
-              `an id of \`${id}\`. There must be a menu button on the page that ` +
-              `has an \`aria-controls="${id}"\` attribute for keyboard accessibility ` +
-              "to be implemented correctly."
-          );
-          console.error(new Error().stack);
-        }
+    if (process.env.NODE_ENV === "development") {
+      if (!currentMenuNode) {
+        console.error(`Unable to find a menu with an id: \`${id}\`.`);
+        console.error(new Error().stack);
       }
-    },
-    [false]
-  );
+
+      if (!currentMenuButtonNode) {
+        console.error(
+          "Unable to find an element on the page that controls the menu with " +
+            `an id of \`${id}\`. There must be a menu button on the page that ` +
+            `has an \`aria-controls="${id}"\` attribute for keyboard accessibility ` +
+            "to be implemented correctly."
+        );
+        console.error(new Error().stack);
+      }
+    }
+  }, []);
 
   return [menuNode, menuButtonNode];
-}
-
-export function useMenuShowFocusEffect(menuNode: Maybe<MenuElement>) {
-  return useEffect(() => {
-    if (!menuNode) {
-      return;
-    }
-    menuNode.focus();
-  });
-}
-
-export function useMenuHideFocusEffect(
-  menuButtonNode: Maybe<MenuButtonElement>
-) {
-  return useEffect(
-    () => () => {
-      window.requestAnimationFrame(() => {
-        if (!menuButtonNode || document.activeElement !== document.body) {
-          return;
-        }
-
-        menuButtonNode.focus();
-      });
-    },
-    [menuButtonNode !== null]
-  );
 }
 
 export function useActiveDescendateState(
