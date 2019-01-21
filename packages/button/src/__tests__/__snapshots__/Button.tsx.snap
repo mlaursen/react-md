@@ -2,8 +2,7 @@
 
 exports[`Button should render correctly based on the theme props 1`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable"
-  disabled={false}
+  class="rmd-button rmd-button--text"
 >
   Button Text
 </button>
@@ -11,8 +10,7 @@ exports[`Button should render correctly based on the theme props 1`] = `
 
 exports[`Button should render correctly based on the theme props 2`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--contained"
 >
   Button Text
 </button>
@@ -20,8 +18,7 @@ exports[`Button should render correctly based on the theme props 2`] = `
 
 exports[`Button should render correctly based on the theme props 3`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--outline"
 >
   Button Text
 </button>
@@ -29,8 +26,7 @@ exports[`Button should render correctly based on the theme props 3`] = `
 
 exports[`Button should render correctly based on the theme props 4`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-primary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--text-primary"
 >
   Button Text
 </button>
@@ -38,8 +34,7 @@ exports[`Button should render correctly based on the theme props 4`] = `
 
 exports[`Button should render correctly based on the theme props 5`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--primary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
 >
   Button Text
 </button>
@@ -47,8 +42,7 @@ exports[`Button should render correctly based on the theme props 5`] = `
 
 exports[`Button should render correctly based on the theme props 6`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
 >
   Button Text
 </button>
@@ -56,8 +50,7 @@ exports[`Button should render correctly based on the theme props 6`] = `
 
 exports[`Button should render correctly based on the theme props 7`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-secondary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--text-secondary"
 >
   Button Text
 </button>
@@ -65,8 +58,7 @@ exports[`Button should render correctly based on the theme props 7`] = `
 
 exports[`Button should render correctly based on the theme props 8`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--secondary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
 >
   Button Text
 </button>
@@ -74,8 +66,7 @@ exports[`Button should render correctly based on the theme props 8`] = `
 
 exports[`Button should render correctly based on the theme props 9`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
 >
   Button Text
 </button>
@@ -83,8 +74,7 @@ exports[`Button should render correctly based on the theme props 9`] = `
 
 exports[`Button should render correctly based on the theme props 10`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-warning"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--text-warning"
 >
   Button Text
 </button>
@@ -92,8 +82,7 @@ exports[`Button should render correctly based on the theme props 10`] = `
 
 exports[`Button should render correctly based on the theme props 11`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--warning"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
 >
   Button Text
 </button>
@@ -101,8 +90,7 @@ exports[`Button should render correctly based on the theme props 11`] = `
 
 exports[`Button should render correctly based on the theme props 12`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
 >
   Button Text
 </button>
@@ -110,8 +98,7 @@ exports[`Button should render correctly based on the theme props 12`] = `
 
 exports[`Button should render correctly based on the theme props 13`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--text-error"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--text-error"
 >
   Button Text
 </button>
@@ -119,8 +106,7 @@ exports[`Button should render correctly based on the theme props 13`] = `
 
 exports[`Button should render correctly based on the theme props 14`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--contained rmd-button--error"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
 >
   Button Text
 </button>
@@ -128,8 +114,7 @@ exports[`Button should render correctly based on the theme props 14`] = `
 
 exports[`Button should render correctly based on the theme props 15`] = `
 <button
-  className="rmd-button rmd-button--text rmd-button--hoverable rmd-button--outline rmd-button--text-error rmd-button--outline-error"
-  disabled={false}
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
 >
   Button Text
 </button>
@@ -137,8 +122,7 @@ exports[`Button should render correctly based on the theme props 15`] = `
 
 exports[`Button should render correctly based on the theme props 16`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable"
-  disabled={false}
+  class="rmd-button rmd-button--icon"
 >
   <i />
 </button>
@@ -146,8 +130,7 @@ exports[`Button should render correctly based on the theme props 16`] = `
 
 exports[`Button should render correctly based on the theme props 17`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--contained"
 >
   <i />
 </button>
@@ -155,8 +138,7 @@ exports[`Button should render correctly based on the theme props 17`] = `
 
 exports[`Button should render correctly based on the theme props 18`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--outline"
 >
   <i />
 </button>
@@ -164,8 +146,7 @@ exports[`Button should render correctly based on the theme props 18`] = `
 
 exports[`Button should render correctly based on the theme props 19`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-primary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--text-primary"
 >
   <i />
 </button>
@@ -173,8 +154,7 @@ exports[`Button should render correctly based on the theme props 19`] = `
 
 exports[`Button should render correctly based on the theme props 20`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--primary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
 >
   <i />
 </button>
@@ -182,8 +162,7 @@ exports[`Button should render correctly based on the theme props 20`] = `
 
 exports[`Button should render correctly based on the theme props 21`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
 >
   <i />
 </button>
@@ -191,8 +170,7 @@ exports[`Button should render correctly based on the theme props 21`] = `
 
 exports[`Button should render correctly based on the theme props 22`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-secondary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--text-secondary"
 >
   <i />
 </button>
@@ -200,8 +178,7 @@ exports[`Button should render correctly based on the theme props 22`] = `
 
 exports[`Button should render correctly based on the theme props 23`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--secondary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
 >
   <i />
 </button>
@@ -209,8 +186,7 @@ exports[`Button should render correctly based on the theme props 23`] = `
 
 exports[`Button should render correctly based on the theme props 24`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
 >
   <i />
 </button>
@@ -218,8 +194,7 @@ exports[`Button should render correctly based on the theme props 24`] = `
 
 exports[`Button should render correctly based on the theme props 25`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-warning"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--text-warning"
 >
   <i />
 </button>
@@ -227,8 +202,7 @@ exports[`Button should render correctly based on the theme props 25`] = `
 
 exports[`Button should render correctly based on the theme props 26`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--warning"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
 >
   <i />
 </button>
@@ -236,8 +210,7 @@ exports[`Button should render correctly based on the theme props 26`] = `
 
 exports[`Button should render correctly based on the theme props 27`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
 >
   <i />
 </button>
@@ -245,8 +218,7 @@ exports[`Button should render correctly based on the theme props 27`] = `
 
 exports[`Button should render correctly based on the theme props 28`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--text-error"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--text-error"
 >
   <i />
 </button>
@@ -254,8 +226,7 @@ exports[`Button should render correctly based on the theme props 28`] = `
 
 exports[`Button should render correctly based on the theme props 29`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--contained rmd-button--error"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
 >
   <i />
 </button>
@@ -263,8 +234,7 @@ exports[`Button should render correctly based on the theme props 29`] = `
 
 exports[`Button should render correctly based on the theme props 30`] = `
 <button
-  className="rmd-button rmd-button--icon rmd-button--hoverable rmd-button--outline rmd-button--text-error rmd-button--outline-error"
-  disabled={false}
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
 >
   <i />
 </button>

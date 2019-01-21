@@ -1,5 +1,5 @@
 import * as React from "react";
-import { create } from "react-test-renderer";
+import { mount } from "enzyme";
 
 import Button from "../Button";
 import {
@@ -46,7 +46,7 @@ describe("Button", () => {
         )
       )
     ).forEach(themeProps => {
-      expect(create(<Button {...themeProps} />).toJSON()).toMatchSnapshot();
+      expect(mount(<Button {...themeProps} />).render()).toMatchSnapshot();
     });
   });
 });

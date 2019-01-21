@@ -1,6 +1,5 @@
 import * as React from "react";
 import { mount } from "enzyme";
-import { create } from "react-test-renderer";
 
 import FakeButton from "../FakeButton";
 
@@ -108,7 +107,7 @@ describe("FakeButton", () => {
         )
       )
     ).forEach(themeProps => {
-      expect(create(<FakeButton {...themeProps} />).toJSON()).toMatchSnapshot();
+      expect(mount(<FakeButton {...themeProps} />).render()).toMatchSnapshot();
     });
   });
 });
