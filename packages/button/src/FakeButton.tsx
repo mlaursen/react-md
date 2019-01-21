@@ -1,8 +1,8 @@
 import * as React from "react";
+import { FixColorPollution } from "@react-md/states";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
 import { IButtonDefaultProps } from "./Button";
-import ButtonChildren from "./ButtonChildren";
 
 import { IButtonThemeProps } from "./types.d";
 import theme from "./theme";
@@ -67,7 +67,6 @@ const FakeButton: React.FunctionComponent<
     buttonType,
     children,
     forwardedRef,
-    preventColorPollution,
     disabled,
     tabIndex,
     onKeyDown,
@@ -99,9 +98,7 @@ const FakeButton: React.FunctionComponent<
       tabIndex={disabled ? undefined : tabIndex}
       onKeyDown={disabled ? undefined : handleKeyDown}
     >
-      <ButtonChildren preventColorPollution={preventColorPollution}>
-        {children}
-      </ButtonChildren>
+      <FixColorPollution>{children}</FixColorPollution>
     </div>
   );
 };
@@ -113,7 +110,6 @@ const defaultProps: IFakeButtonDefaultProps = {
   theme: "primary",
   themeType: "flat",
   buttonType: "text",
-  preventColorPollution: false,
 };
 
 FakeButton.defaultProps = defaultProps;

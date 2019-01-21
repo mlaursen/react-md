@@ -16,15 +16,12 @@ describe("theme", () => {
 
   it("should apply the hoverable className when the disabled prop is not provided", () => {
     const emptyClassName = theme({});
-    expect(emptyClassName).toContain("rmd-button--hoverable");
     expect(emptyClassName).not.toContain("rmd-button--disabled");
 
     const enabledClassName = theme({ disabled: false });
-    expect(enabledClassName).toContain("rmd-button--hoverable");
     expect(enabledClassName).not.toContain("rmd-button--disabled");
 
     const disabledClassName = theme({ disabled: true });
-    expect(disabledClassName).not.toContain("rmd-button--hoverable");
     expect(disabledClassName).toContain("rmd-button--disabled");
   });
 
@@ -73,9 +70,7 @@ describe("theme", () => {
     });
 
     it("should not apply any additional class theme suffixes when the theme prop is clear", () => {
-      expect(theme({ theme: "clear" })).toBe(
-        "rmd-button rmd-button--text rmd-button--hoverable"
-      );
+      expect(theme({ theme: "clear" })).toBe("rmd-button rmd-button--text");
     });
 
     it("should apply the correct theme class names for flat buttons", () => {

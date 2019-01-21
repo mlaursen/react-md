@@ -24,7 +24,6 @@ export default function theme(props: IButtonThemeProps): string {
       "rmd-button--text": text,
       "rmd-button--icon": icon,
       "rmd-button--disabled": disabled,
-      "rmd-button--hoverable": !disabled,
       "rmd-button--contained": !disabled && contained,
       "rmd-button--outline": outline,
       [`rmd-button--${theme}`]: !disabled && !clear && contained,

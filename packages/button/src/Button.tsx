@@ -1,7 +1,7 @@
 import * as React from "react";
+import { FixColorPollution } from "@react-md/states";
 import { IWithForwardedRef } from "@react-md/utils";
 
-import ButtonChildren from "./ButtonChildren";
 import {
   IButtonThemeProps,
   ButtonTheme,
@@ -43,7 +43,6 @@ export interface IButtonDefaultProps {
   theme: ButtonTheme;
   themeType: ButtonThemeType;
   buttonType: ButtonType;
-  preventColorPollution: boolean;
 }
 
 export type ButtonWithDefaultProps = IButtonProps &
@@ -61,7 +60,6 @@ const Button: ButtonComponent = providedProps => {
     buttonType,
     children,
     forwardedRef,
-    preventColorPollution,
     ...props
   } = providedProps as ButtonWithDefaultProps;
 
@@ -71,9 +69,7 @@ const Button: ButtonComponent = providedProps => {
       ref={forwardedRef}
       className={Button.theme(providedProps)}
     >
-      <ButtonChildren preventColorPollution={preventColorPollution}>
-        {children}
-      </ButtonChildren>
+      <FixColorPollution>{children}</FixColorPollution>
     </button>
   );
 };
@@ -85,7 +81,6 @@ const defaultProps: IButtonDefaultProps = {
   theme: "primary",
   themeType: "flat",
   buttonType: "text",
-  preventColorPollution: false,
 };
 
 Button.defaultProps = defaultProps;

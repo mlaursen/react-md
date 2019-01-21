@@ -59,16 +59,4 @@ export interface IButtonThemeProps {
    * the button by applying different border or box shadow.
    */
   themeType?: ButtonThemeType;
-
-  /**
-   * When the focus, hover, and pressed states are applied to the button, a black underlay with
-   * an opacity will also be applied to show that interaction. This has an unfortunate side-effect
-   * that it will also modified the text and icon opacities. To work around this, the button
-   * has been modified to fix the html structure to ensure that the text and icon color is not modified
-   * by creating a "mask" of the button content that is positioned above the background colors.
-   *
-   * This is feature is not enabled by default as it seemed unexpected to modify the button html
-   * structure so much out of the box.
-   */
-  preventColorPolution?: boolean;
 }
