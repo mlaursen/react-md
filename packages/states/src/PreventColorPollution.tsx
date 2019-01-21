@@ -10,16 +10,51 @@ import React, { createContext, FunctionComponent, ReactNode } from "react";
  */
 export const ColorPollutionContext = createContext(false);
 
+export interface IPreventColorPollutionProps {
+  enabled?: boolean;
+  children: ReactNode;
+}
+
+export interface IPreventColorPollutionDefaultProps {
+  enabled: boolean;
+}
+
+type PreventColorPollutionWithDefaultProps = IPreventColorPollutionProps &
+  IPreventColorPollutionDefaultProps;
+
 /**
  * This is an extremely simple component that will update the `ColorPollutionContext`
  * to have a value of `true` isntead of false.
  */
-const PreventColorPollution: FunctionComponent<{ children: ReactNode }> = ({
-  children,
-}) => (
-  <ColorPollutionContext.Provider value={true}>
-    {children}
-  </ColorPollutionContext.Provider>
-);
+const PreventColorPollution: FunctionComponent<
+  IPreventColorPollutionProps
+> = props => {
+  const { enabled, children } = props as PreventColorPollutionWithDefaultProps;
+  return (
+    <ColorPollutionContext.Provider value={enabled}>
+      {children}
+    </ColorPollutionContext.Provider>
+  );
+};
+
+const defaultProps: IPreventColorPollutionDefaultProps = {
+  enabled: true,
+};
+
+PreventColorPollution.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    PreventColorPollution.propTypes = {
+      enabled: PropTypes.bool,
+      children: PropTypes.node.isRequired,
+    };
+  }
+}
 
 export default PreventColorPollution;

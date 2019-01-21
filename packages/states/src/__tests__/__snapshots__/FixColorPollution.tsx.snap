@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixColorPollution should render correctly when the fix is enabled 1`] = `
+<button
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-states__content-mask"
+  >
+    <span>
+      Hello
+    </span>
+  </span>
+  <span
+    class="rmd-states__content-overlay"
+  >
+    <span>
+      Hello
+    </span>
+  </span>
+</button>
+`;
+
+exports[`FixColorPollution should render correctly when the fix is enabled 2`] = `
+<button
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-states__content-mask"
+  >
+    <span>
+      Hello
+    </span>
+  </span>
+  <span
+    class="rmd-states__content-overlay"
+  >
+    <span>
+      Hello
+    </span>
+  </span>
+</button>
+`;
+
+exports[`FixColorPollution should render the children as normal when the color pollution context is diabled 1`] = `
+<button
+  type="button"
+>
+  <span>
+    Hello
+  </span>
+</button>
+`;
+
+exports[`FixColorPollution should render the children as normal when the color pollution context is diabled 2`] = `
+<button
+  type="button"
+>
+  <span>
+    Hello
+  </span>
+</button>
+`;

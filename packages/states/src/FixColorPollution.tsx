@@ -1,5 +1,6 @@
 import React, {
   useContext,
+  isValidElement,
   Fragment,
   FunctionComponent,
   ReactNode,
@@ -8,6 +9,7 @@ import React, {
 import { ColorPollutionContext } from "./PreventColorPollution";
 
 export interface IFixColorPollutionProps {
+  enabled?: boolean;
   children: ReactNode;
 }
 
@@ -18,10 +20,16 @@ export interface IFixColorPollutionProps {
  * color will not have the opacity applied to them as well.
  */
 const FixColorPollution: FunctionComponent<IFixColorPollutionProps> = ({
+  enabled,
   children,
 }) => {
-  const isFixEnabled = useContext(ColorPollutionContext);
+  const isFixEnabled =
+    typeof enabled === "boolean" ? enabled : useContext(ColorPollutionContext);
   if (!isFixEnabled) {
+    if (isValidElement(children)) {
+      return children;
+    }
+
     return <Fragment>{children}</Fragment>;
   }
 
@@ -34,5 +42,19 @@ const FixColorPollution: FunctionComponent<IFixColorPollutionProps> = ({
     </Fragment>
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    FixColorPollution.propTypes = {
+      enabled: PropTypes.bool,
+      children: PropTypes.node.isRequired,
+    };
+  }
+}
 
 export default FixColorPollution;

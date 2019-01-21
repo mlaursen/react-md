@@ -163,17 +163,20 @@ export function useTouchDetection() {
     return () => {
       window.removeEventListener("touchstart", updateTouchTime);
     };
-  }, [false]);
+  }, []);
 
-  useEffect(() => {
-    if (lastTouchTime !== 0) {
-      window.addEventListener("mousemove", resetTouchTime, true);
-    }
+  useEffect(
+    () => {
+      if (lastTouchTime !== 0) {
+        window.addEventListener("mousemove", resetTouchTime, true);
+      }
 
-    return () => {
-      window.removeEventListener("mousemove", resetTouchTime, true);
-    };
-  }, [lastTouchTime]);
+      return () => {
+        window.removeEventListener("mousemove", resetTouchTime, true);
+      };
+    },
+    [lastTouchTime]
+  );
 
   return lastTouchTime !== 0;
 }
@@ -183,18 +186,21 @@ export function useTouchDetectionClassNameToggle(
 ) {
   const isTouch = useTouchDetection();
 
-  useEffect(() => {
-    const html = document.querySelector("html") as HTMLElement;
-    if (!html) {
-      return;
-    }
+  useEffect(
+    () => {
+      const html = document.querySelector("html") as HTMLElement;
+      if (!html) {
+        return;
+      }
 
-    if (isTouch) {
-      html.classList.add(className);
-    }
+      if (isTouch) {
+        html.classList.add(className);
+      }
 
-    return () => {
-      html.classList.remove(className);
-    };
-  }, [isTouch]);
+      return () => {
+        html.classList.remove(className);
+      };
+    },
+    [isTouch]
+  );
 }
