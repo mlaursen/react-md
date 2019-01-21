@@ -28,10 +28,10 @@ rules:
     - include: true
   force-attribute-nesting: 1
   force-element-nesting: 1
-  force-pseudo-nesting: 1
+  force-pseudo-nesting: 0
   function-name-format:
     - 1
-    - allow-leading-underscore: true
+    - allow-leading-underscore: false
       convention: hyphenatedlowercase
   hex-length:
     - 1
@@ -44,7 +44,7 @@ rules:
     - convention: hyphenatedlowercase
   mixin-name-format:
     - 1
-    - allow-leading-underscore: true
+    - allow-leading-underscore: false
       convention: hyphenatedlowercase
   mixins-before-declarations: 1
   nesting-depth:
