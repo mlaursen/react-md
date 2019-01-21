@@ -16,7 +16,7 @@
   z-index: 100;
 }
 
-.item {
+.menuItem {
   $is-light-theme: rmd-theme-contrast-tone($rmd-theme-background) != 'dark';
   align-items: center;
   display: flex;
@@ -47,11 +47,17 @@
     }
   }
 
-  &:focus::before {
-    opacity: if($is-light-theme, 0.24, 0.12);
-  }
+  // &:focus::before {
+  //   opacity: if($is-light-theme, 0.24, 0.12);
+  // }
 
-  &:active::before {
-    opacity: if($is-light-theme, 0.32, 0.16);
+  // &:active::before {
+  //   opacity: if($is-light-theme, 0.32, 0.16);
+  // }
+}
+
+.focused {
+  &::before {
+    opacity: 0.24;
   }
 }
