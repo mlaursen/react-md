@@ -4,7 +4,15 @@ import React, {
   ReactNode,
   HTMLAttributes,
 } from "react";
-import { FixColorPollution } from "@react-md/states";
+import cn from "classnames";
+
+import {
+  FixColorPollution,
+  RippleContainer,
+  IRipple,
+  useRipplesState,
+} from "@react-md/states";
+import { useIsKeyboardFocused } from "@react-md/wia-aria";
 import { IWithForwardedRef } from "@react-md/utils";
 
 import {
@@ -65,16 +73,28 @@ const Button: ButtonComponent = providedProps => {
     buttonType,
     children,
     forwardedRef,
+    onMouseDown,
+    onKeyDown,
     ...props
   } = providedProps as ButtonWithDefaultProps;
+
+  const { ripples, setRipples, ...handlers } = useRipplesState({
+    disabled: props.disabled,
+    onMouseDown,
+    onKeyDown,
+  });
 
   return (
     <button
       {...props}
+      {...handlers}
       ref={forwardedRef}
-      className={Button.theme(providedProps)}
+      className={cn(Button.theme(providedProps), {
+        "rmd-states--focused": useIsKeyboardFocused(props.id || ""),
+      })}
     >
       <FixColorPollution>{children}</FixColorPollution>
+      <RippleContainer ripples={ripples} setRipples={setRipples} />
     </button>
   );
 };

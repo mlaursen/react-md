@@ -173,4 +173,37 @@
   .rmd-states--touch {
     @include rmd-states-theme-update-var(hover-opacity, 0);
   }
+
+  .rmd-ripple-container {
+    border-radius: inherit;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .rmd-ripple {
+    @include rmd-states-theme(background-color, ripple-background-color);
+    @include rmd-states-theme(opacity, ripple-opacity);
+
+    border-radius: 50%;
+    position: absolute;
+    transform: scale(0);
+
+    &--animating {
+      transition: transform 0.45s $rmd-transition-deceleration,
+        opacity 0.3s $rmd-transition-acceleration;
+    }
+
+    &--scaling {
+      transform: scale(1);
+    }
+
+    &--fading {
+      opacity: 0;
+    }
+  }
 }

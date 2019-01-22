@@ -37,6 +37,9 @@ $rmd-states-prevent-color-pollution: true !default;
 /// @type Color
 $rmd-states-background-color: $rmd-black-base !default;
 
+$rmd-states-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+$rmd-states-ripple-opacity: 1 !default;
+
 /// The opacity to apply to the `$rmd-states-background-color` value when the
 /// element is in a hover state.
 /// @type Number
@@ -66,4 +69,6 @@ $rmd-states-theme-values: (
   focus-opacity: $rmd-states-focus-opacity,
   pressed-opacity: $rmd-states-pressed-opacity,
   selected-opacity: $rmd-states-selected-opacity,
+  ripple-background-color: $rmd-states-ripple-background-color,
+  ripple-opacity: $rmd-states-ripple-opacity,
 ) !default;

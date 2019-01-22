@@ -128,6 +128,7 @@ const App = () => {
           <Button id="yolo-2" themeType="contained" theme="secondary" disabled>
             Yolo
           </Button>
+          <Button id="hello-2">Hello, World!</Button>
           <Text type="body-1" component="section">
             <pre>{JSON.stringify(appSize, null, 2)}</pre>
           </Text>
