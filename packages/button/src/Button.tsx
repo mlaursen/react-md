@@ -1,4 +1,9 @@
-import * as React from "react";
+import React, {
+  forwardRef,
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+} from "react";
 import { FixColorPollution } from "@react-md/states";
 import { IWithForwardedRef } from "@react-md/utils";
 
@@ -17,7 +22,7 @@ import theme from "./theme";
  */
 export interface IButtonProps
   extends IButtonThemeProps,
-    React.HTMLAttributes<HTMLButtonElement> {
+    HTMLAttributes<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
    * accidentally submitted when this prop is omitted since buttons without a type attribute work
@@ -31,7 +36,7 @@ export interface IButtonProps
    * Please note that it is considered invalid html to have a `<div>` as a descendant of a
    * `<button>`. You can fix this by enabling the `asDiv` prop.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 /**
@@ -49,7 +54,7 @@ export type ButtonWithDefaultProps = IButtonProps &
   IButtonDefaultProps &
   IWithForwardedRef<HTMLButtonElement>;
 
-export type ButtonComponent = React.FunctionComponent<
+export type ButtonComponent = FunctionComponent<
   IButtonProps & IWithForwardedRef<HTMLButtonElement>
 > & { theme: (props: IButtonThemeProps) => string };
 
@@ -109,6 +114,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<HTMLButtonElement, IButtonProps>(
-  (props, ref) => <Button {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));

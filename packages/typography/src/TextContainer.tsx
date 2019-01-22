@@ -1,4 +1,12 @@
-import * as React from "react";
+import React, {
+  createElement,
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
+  ReactType,
+  ReactNode,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
@@ -14,13 +22,12 @@ export type TextContainerSize = "auto" | "mobile" | "desktop";
  */
 export type TextContainerRenderFunction = (
   props: { className: string }
-) => React.ReactElement<any>;
+) => ReactElement<any>;
 
 /**
  * The base props for rendering the text component.
  */
-export interface ITextContainerProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ITextContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * An optional className to merge with typography text container styles.
    */
@@ -36,13 +43,13 @@ export interface ITextContainerProps
   /**
    * The component to render as. By default this will just be a div, but anything can be provided.
    */
-  component?: React.ReactType;
+  component?: ReactType;
 
   /**
    * Either a child render function or a react node. If this is not the child render function, a
    * different wrapper component can be provided using the `component` prop.
    */
-  children?: React.ReactNode | TextContainerRenderFunction;
+  children?: ReactNode | TextContainerRenderFunction;
 }
 
 /**
@@ -50,15 +57,15 @@ export interface ITextContainerProps
  */
 export interface ITextContainerDefaultProps {
   size: TextContainerSize;
-  component: React.ReactType;
+  component: ReactType;
 }
 
 export type TextContainerWithDefaultProps = ITextContainerProps &
   ITextContainerDefaultProps &
-  IWithForwardedRef<HTMLDivElement | React.ReactType>;
+  IWithForwardedRef<HTMLDivElement | ReactType>;
 
-const TextContainer: React.FunctionComponent<
-  ITextContainerProps & IWithForwardedRef<HTMLDivElement | React.ReactType>
+const TextContainer: FunctionComponent<
+  ITextContainerProps & IWithForwardedRef<HTMLDivElement | ReactType>
 > = providedProps => {
   const {
     className: propClassName,
@@ -77,7 +84,7 @@ const TextContainer: React.FunctionComponent<
     return (children as TextContainerRenderFunction)({ className });
   }
 
-  return React.createElement(
+  return createElement(
     Component,
     { ...props, className, ref: forwardedRef },
     children
@@ -111,7 +118,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<
-  HTMLDivElement | React.ReactType,
-  ITextContainerProps
->((props, ref) => <TextContainer {...props} forwardedRef={ref} />);
+export default forwardRef<HTMLDivElement | ReactType, ITextContainerProps>(
+  (props, ref) => <TextContainer {...props} forwardedRef={ref} />
+);

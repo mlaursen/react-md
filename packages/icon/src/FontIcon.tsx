@@ -1,11 +1,17 @@
-import * as React from "react";
+import React, {
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  CSSProperties,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
 const ICON_SIZE = 24;
 const DENSE_ICON_SIZE = 20;
 
-export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
+export interface IFontIconProps extends HTMLAttributes<HTMLElement> {
   /**
    * The font icon class name to use.
    */
@@ -19,7 +25,7 @@ export interface IFontIconProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Any children to render to create the font icon. This is required for material-icons.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
@@ -51,7 +57,7 @@ export type FontIconWithDefaultProps = IFontIconProps &
  * any of the resizing props are enabled.
  */
 function createStyles(
-  style: React.CSSProperties | undefined,
+  style: CSSProperties | undefined,
   forceSize: boolean | number,
   forceFontSize: boolean,
   dense: boolean
@@ -86,7 +92,7 @@ function createStyles(
  * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
  * and `forceFontSize` props to fix the sizing issues.
  */
-const FontIcon: React.FunctionComponent<
+const FontIcon: FunctionComponent<
   IFontIconProps & IWithForwardedRef
 > = providedProps => {
   const {
@@ -147,6 +153,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<HTMLElement, IFontIconProps>((props, ref) => (
+export default forwardRef<HTMLElement, IFontIconProps>((props, ref) => (
   <FontIcon {...props} forwardedRef={ref} />
 ));

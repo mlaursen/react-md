@@ -1,4 +1,12 @@
-import * as React from "react";
+import React, {
+  cloneElement,
+  isValidElement,
+  Fragment,
+  Children,
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+} from "react";
 import cn from "classnames";
 
 export interface ITextIconSpacingProps {
@@ -17,7 +25,7 @@ export interface ITextIconSpacingProps {
    * If this is not a valid react element, the icon will be wrapped in a `<span>` instead
    * with the class names applied.
    */
-  icon?: React.ReactElement<Element> | React.ReactNode;
+  icon?: ReactElement<Element> | ReactNode;
 
   /**
    * Boolean if the icon should appear after the text instead of before.
@@ -28,7 +36,7 @@ export interface ITextIconSpacingProps {
    * The children to render before or after the provided icon. This is defaulted to `null` so that
    * providing a `null` icon will correctly render without React crashing.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * The class name to use for an icon that is placed before text.
@@ -48,7 +56,7 @@ export interface ITextIconSpacingProps {
 }
 
 export interface ITextIconSpacingDefaultProps {
-  children: React.ReactNode;
+  children: ReactNode;
   iconAfter: boolean;
   beforeClassName: string;
   afterClassName: string;
@@ -58,9 +66,7 @@ export interface ITextIconSpacingDefaultProps {
 export type TextIconSpacingWithDefaultProps = ITextIconSpacingProps &
   ITextIconSpacingDefaultProps;
 
-const TextIconSpacing: React.FunctionComponent<
-  ITextIconSpacingProps
-> = props => {
+const TextIconSpacing: FunctionComponent<ITextIconSpacingProps> = props => {
   const {
     icon: propIcon,
     iconAfter,
@@ -72,14 +78,14 @@ const TextIconSpacing: React.FunctionComponent<
   } = props as TextIconSpacingWithDefaultProps;
 
   if (!propIcon) {
-    return children as React.ReactElement<any>;
+    return children as ReactElement<any>;
   }
 
   let iconEl = propIcon;
   let content = children;
-  if (!forceIconWrap && React.isValidElement(propIcon)) {
-    const icon = React.Children.only(propIcon);
-    iconEl = React.cloneElement(icon, {
+  if (!forceIconWrap && isValidElement(propIcon)) {
+    const icon = Children.only(propIcon);
+    iconEl = cloneElement(icon, {
       className: cn(
         {
           [beforeClassName]: !iconAfter,
@@ -107,15 +113,15 @@ const TextIconSpacing: React.FunctionComponent<
 
   if (iconEl) {
     content = (
-      <React.Fragment>
+      <Fragment>
         {!iconAfter && iconEl}
         {children}
         {iconAfter && iconEl}
-      </React.Fragment>
+      </Fragment>
     );
   }
 
-  return content as React.ReactElement<any>;
+  return content as ReactElement<any>;
 };
 
 const defaultProps: ITextIconSpacingDefaultProps = {

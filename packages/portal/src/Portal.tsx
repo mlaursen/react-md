@@ -1,4 +1,4 @@
-import * as React from "react";
+import { Component, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -31,17 +31,14 @@ export interface IPortalProps {
   /**
    * The children to render within the portal.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export interface IPortalState {
   container: HTMLElement | null;
 }
 
-export default class Portal extends React.Component<
-  IPortalProps,
-  IPortalState
-> {
+export default class Portal extends Component<IPortalProps, IPortalState> {
   public static getDerivedStateFromProps(
     nextProps: IPortalProps,
     prevState: IPortalState

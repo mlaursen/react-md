@@ -1,15 +1,21 @@
-import * as React from "react";
+import React, {
+  createElement,
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactType,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
-export interface ILinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
+export interface ILinkProps extends HTMLAttributes<HTMLAnchorElement> {
   /**
    * An optional component to render as. This should really only be used if you are using a
    * router library like [react-router](https://github.com/ReactTraining/react-router) or
-   * [@reach/router](https://github.com/reach/router). This will call `React.createElement` with
+   * [@reach/router](https://github.com/reach/router). This will call `createElement` with
    * this value and provide all props and class name.
    */
-  component?: React.ReactType;
+  component?: ReactType;
 
   /**
    * An optional href to apply to the link. If this value is set to the empty string and the
@@ -65,7 +71,7 @@ export interface ILinkWithComponentProps extends ILinkProps {
    * all valid props from that component should also be allowed.
    */
   [key: string]: any;
-  component: React.ReactType;
+  component: ReactType;
 }
 
 export interface ILinkDefaultProps {
@@ -75,7 +81,7 @@ export interface ILinkDefaultProps {
 
 export type LinkWithDefaultProps = ILinkProps &
   ILinkDefaultProps &
-  IWithForwardedRef<HTMLAnchorElement | React.ReactType>;
+  IWithForwardedRef<HTMLAnchorElement | ReactType>;
 
 /**
  * The `Link` component is used to render links within your app with a basic styles applied and
@@ -83,9 +89,9 @@ export type LinkWithDefaultProps = ILinkProps &
  * routing library like `react-router` or `reach-router` by providing the `Link` as the
  * `linkComponent` prop.
  */
-const Link: React.FunctionComponent<
+const Link: FunctionComponent<
   (ILinkProps | ILinkWithComponentProps) &
-    IWithForwardedRef<HTMLAnchorElement | React.ReactType>
+    IWithForwardedRef<HTMLAnchorElement | ReactType>
 > = providedProps => {
   const {
     className: propClassName,
@@ -114,7 +120,7 @@ const Link: React.FunctionComponent<
   }
 
   if (component) {
-    return React.createElement(
+    return createElement(
       component,
       { ...props, rel, href, className, ref: forwardedRef },
       children
@@ -154,7 +160,7 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<
-  HTMLAnchorElement | React.ReactType,
+export default forwardRef<
+  HTMLAnchorElement | ReactType,
   ILinkProps | ILinkWithComponentProps
 >((props, ref) => <Link {...props} forwardedRef={ref} />);

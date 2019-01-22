@@ -1,8 +1,14 @@
-import * as React from "react";
+import React, {
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  CSSProperties,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
-export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
+export interface ISVGIconProps extends HTMLAttributes<SVGSVGElement> {
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as
    * the default `img` so that it is insured as a graphic, but can also be switched
@@ -99,7 +105,7 @@ export interface ISVGIconProps extends React.HTMLAttributes<SVGSVGElement> {
   /**
    * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export interface ISVGIconDefaultProps {
@@ -110,7 +116,7 @@ export interface ISVGIconDefaultProps {
   dense: boolean;
 }
 
-function createStyle(style?: React.CSSProperties, size?: number) {
+function createStyle(style?: CSSProperties, size?: number) {
   if (style && size) {
     return { height: size, width: size, ...style };
   } else if (style) {
@@ -159,7 +165,7 @@ function getA11yIds(
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
  */
-const SVGIcon: React.FunctionComponent<
+const SVGIcon: FunctionComponent<
   ISVGIconProps & IWithForwardedRef<SVGSVGElement>
 > = ({
   style,
@@ -252,6 +258,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<SVGSVGElement, ISVGIconProps>((props, ref) => (
+export default forwardRef<SVGSVGElement, ISVGIconProps>((props, ref) => (
   <SVGIcon {...props} forwardedRef={ref} />
 ));

@@ -1,14 +1,22 @@
-import * as React from "react";
+import React, {
+  cloneElement,
+  isValidElement,
+  forwardRef,
+  Children,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  CSSProperties,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
-export interface IIconRotatorBaseProps
-  extends React.HTMLAttributes<HTMLSpanElement> {
+export interface IIconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap` prop is enabled
    * or the children is not a single react element.
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /**
    * An optional className to apply.
@@ -38,7 +46,7 @@ export interface IIconRotatorProps extends IIconRotatorBaseProps {
    * cloned into that icon, otherwise the icon will be wrapped in a span with the correct class
    * names applied.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export interface IIconRotatorDefaultProps {
@@ -54,7 +62,7 @@ export type IconRotatorWithDefaultProps = IIconRotatorProps &
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
-const IconRotator: React.FunctionComponent<
+const IconRotator: FunctionComponent<
   IIconRotatorProps & IWithForwardedRef<HTMLSpanElement>
 > = providedProps => {
   const {
@@ -77,9 +85,9 @@ const IconRotator: React.FunctionComponent<
     propClassName
   );
 
-  if (!forceIconWrap && React.isValidElement(children)) {
-    const child = React.Children.only(children);
-    return React.cloneElement(child, {
+  if (!forceIconWrap && isValidElement(children)) {
+    const child = Children.only(children);
+    return cloneElement(child, {
       className: cn(className, child.props.className),
     });
   }
@@ -115,6 +123,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<HTMLSpanElement, IIconRotatorProps>(
-  (props, ref) => <IconRotator {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLSpanElement, IIconRotatorProps>((props, ref) => (
+  <IconRotator {...props} forwardedRef={ref} />
+));

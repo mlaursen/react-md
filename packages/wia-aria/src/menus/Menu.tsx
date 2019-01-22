@@ -1,4 +1,12 @@
-import React, { useEffect } from "react";
+import React, {
+  createElement,
+  forwardRef,
+  useEffect,
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEvent,
+  KeyboardEvent,
+} from "react";
 import {
   IWithForwardedRef,
   useHideOnOutsideClick,
@@ -26,7 +34,7 @@ export interface IMenuProps extends IdRequired, IMenuLabel {
 
 export type MenuProps = IMenuProps &
   IWithForwardedRef<MenuElement> &
-  React.HTMLAttributes<MenuElement>;
+  HTMLAttributes<MenuElement>;
 
 export interface IMenuDefaultProps {
   role: "menu";
@@ -40,7 +48,7 @@ export type MenuWithDefaultProps = MenuProps & IMenuDefaultProps;
 
 const MENU_ITEM_QUERY = '[role^="menuitem"]:not([aria-disabled="true"])';
 
-const Menu: React.FunctionComponent<MenuProps> = providedProps => {
+const Menu: FunctionComponent<MenuProps> = providedProps => {
   const {
     component,
     defaultActiveId,
@@ -82,7 +90,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     [menuNode]
   );
 
-  function handleKeyDown(event: React.KeyboardEvent<MenuElement>) {
+  function handleKeyDown(event: KeyboardEvent<MenuElement>) {
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -118,7 +126,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     }
   }
 
-  function handleOnClick(event: React.MouseEvent<MenuElement>) {
+  function handleOnClick(event: MouseEvent<MenuElement>) {
     if (onClick) {
       onClick(event);
     }
@@ -129,7 +137,7 @@ const Menu: React.FunctionComponent<MenuProps> = providedProps => {
     }
   }
 
-  return React.createElement(
+  return createElement(
     component,
     {
       ...props,
@@ -153,6 +161,6 @@ const defaultProps: IMenuDefaultProps = {
 
 Menu.defaultProps = defaultProps;
 
-export default React.forwardRef<MenuElement, MenuProps>((props, ref) => (
+export default forwardRef<MenuElement, MenuProps>((props, ref) => (
   <Menu {...props} forwardedRef={ref} />
 ));

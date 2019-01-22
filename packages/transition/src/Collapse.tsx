@@ -1,4 +1,4 @@
-import * as React from "react";
+import { Component, ReactNode, CSSProperties } from "react";
 import cn from "classnames";
 
 // I could have done this with the react-transition-group instead, but I couldn't figure out how
@@ -10,7 +10,7 @@ export interface ICollapseChildrenProps {
    * or more of the `minHeight`, `minPaddingBottom`, or `minPaddingTop` props are greater than 0 OR
    * the `isEmptyCollapsed` prop is set to `false` OR there are prop styles defined.
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /**
    * The class name to apply that will allow for the child element to transition between collapsed
@@ -48,7 +48,7 @@ export interface ICollapseProps {
    * `min-height`, `padding-top`, and `padding-bottom`. If the `style` prop defines any of these
    * values, they will be used instead of this component's computed values.
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /**
    * An optional class name to also apply to the collapse.
@@ -111,7 +111,7 @@ export interface ICollapseProps {
    * A callback function that will include the props for rendering a child element with the collapse
    * transition.
    */
-  children: (props: ICollapseChildrenProps) => React.ReactNode;
+  children: (props: ICollapseChildrenProps) => ReactNode;
 
   /**
    * An optional function to call when the "expanding" animation has finished when the `collapsed`
@@ -145,7 +145,7 @@ export interface ICollapseState {
   paddingBottom?: number | string;
 }
 
-export default class Collapse extends React.Component<
+export default class Collapse extends Component<
   ICollapseProps,
   ICollapseState
 > {
@@ -383,7 +383,7 @@ export default class Collapse extends React.Component<
    */
   private createStyle = (
     transitionDuration: string,
-    propStyle?: React.CSSProperties,
+    propStyle?: CSSProperties,
     maxHeight?: number | string,
     paddingTop?: number | string,
     paddingBottom?: number | string

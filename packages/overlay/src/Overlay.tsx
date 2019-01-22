@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component, HTMLAttributes } from "react";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
 import {
@@ -10,7 +10,7 @@ import { ITransitionProps, TransitionTimeout } from "@react-md/transition";
 export interface IOverlayProps
   extends ITransitionProps,
     IRenderConditionalPortalProps,
-    React.HTMLAttributes<HTMLSpanElement> {
+    HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will
    * enter/exit with an opacity transition.
@@ -41,10 +41,7 @@ export interface IOverlayState {
  * an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
  * different area within your app, you should use the `OverlayPortal` component instead.
  */
-export default class Overlay extends React.Component<
-  IOverlayProps,
-  IOverlayState
-> {
+export default class Overlay extends Component<IOverlayProps, IOverlayState> {
   public static defaultProps: IOverlayDefaultProps = {
     timeout: 150,
     mountOnEnter: true,
@@ -161,6 +158,7 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 
   if (PropTypes) {
+    // ignoring since it would have to be instantiated as a static property on the class
     // @ts-ignore
     Overlay.propTypes = {
       timeout: PropTypes.oneOfType([

@@ -1,4 +1,9 @@
-import * as React from "react";
+import React, {
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  KeyboardEvent,
+} from "react";
 import { FixColorPollution } from "@react-md/states";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
@@ -9,7 +14,7 @@ import theme from "./theme";
 
 export interface IFakeButtonProps
   extends IButtonThemeProps,
-    React.HTMLAttributes<HTMLDivElement> {}
+    HTMLAttributes<HTMLDivElement> {}
 
 export interface IFakeButtonDefaultProps extends IButtonDefaultProps {
   role: string;
@@ -58,7 +63,7 @@ const EVENT_LISTENERS = [
  * @see https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element
  * @see https://html.spec.whatwg.org/multipage/dom.html#phrasing-content-2
  */
-const FakeButton: React.FunctionComponent<
+const FakeButton: FunctionComponent<
   IFakeButtonProps & IWithForwardedRef<HTMLDivElement>
 > = providedProps => {
   const {
@@ -73,7 +78,7 @@ const FakeButton: React.FunctionComponent<
     ...props
   } = providedProps as FakeButtonWithDefaultProps;
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -140,6 +145,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<HTMLDivElement, IFakeButtonProps>(
-  (props, ref) => <FakeButton {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLDivElement, IFakeButtonProps>((props, ref) => (
+  <FakeButton {...props} forwardedRef={ref} />
+));

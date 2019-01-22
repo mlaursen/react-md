@@ -1,4 +1,12 @@
-import * as React from "react";
+import React, {
+  createElement,
+  forwardRef,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
+  ReactType,
+  ReactNode,
+} from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
 
@@ -38,9 +46,9 @@ export type TextElement =
 
 export type TextRenderFunction = ((
   props: { className: string }
-) => React.ReactElement<any>);
+) => ReactElement<any>);
 
-export interface ITextProps extends React.HTMLAttributes<TextElement> {
+export interface ITextProps extends HTMLAttributes<TextElement> {
   /**
    * An optional className to merge into typography styles.
    */
@@ -64,7 +72,7 @@ export interface ITextProps extends React.HTMLAttributes<TextElement> {
    * - `"button"     -> <button>`
    *
    */
-  component?: React.ReactType | null;
+  component?: ReactType | null;
 
   /**
    * One of the material design typography text styles. This is used to generate a className
@@ -76,13 +84,10 @@ export interface ITextProps extends React.HTMLAttributes<TextElement> {
    * Either a child render function or a react node. If this is not the child render function, a
    * different wrapper component can be provided using the `component` prop.
    */
-  children?: React.ReactNode | TextRenderFunction;
+  children?: ReactNode | TextRenderFunction;
 }
 
-function getComponent(
-  component: React.ReactType | null,
-  type: TextTypes
-): React.ReactType {
+function getComponent(component: ReactType | null, type: TextTypes): ReactType {
   if (component) {
     return component;
   }
@@ -116,7 +121,7 @@ function getComponent(
 
 export interface ITextDefaultProps {
   type: TextTypes;
-  component: React.ReactType | null;
+  component: ReactType | null;
 }
 
 export type TextWithDefaultProps = ITextProps &
@@ -146,7 +151,7 @@ export type TextWithDefaultProps = ITextProps &
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
  * `component` will be used instead.
  */
-const Text: React.FunctionComponent<
+const Text: FunctionComponent<
   ITextProps & IWithForwardedRef<TextElement>
 > = providedProps => {
   const {
@@ -163,7 +168,7 @@ const Text: React.FunctionComponent<
     return (children as TextRenderFunction)({ className });
   }
 
-  return React.createElement(
+  return createElement(
     getComponent(component, type),
     { ...props, className, ref: forwardedRef },
     children
@@ -211,6 +216,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<TextElement, ITextProps>((props, ref) => (
+export default forwardRef<TextElement, ITextProps>((props, ref) => (
   <Text {...props} forwardedRef={ref} />
 ));
