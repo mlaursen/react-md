@@ -4,12 +4,18 @@ import cn from "classnames";
 import Ripple from "./Ripple";
 import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
 import { IRipple, RippleSetter } from "./types";
+import {
+  TransitionTimeout,
+  CSSTransitionClassNames,
+} from "@react-md/transition";
 
 export interface IRippleContainerProps {
   ripples: IRipple[];
   setRipples: RippleSetter;
   className?: string;
   rippleClassName?: string;
+  timeout?: TransitionTimeout;
+  classNames?: CSSTransitionClassNames;
 }
 
 const RippleContainer: FunctionComponent<IRippleContainerProps> = ({
@@ -17,6 +23,8 @@ const RippleContainer: FunctionComponent<IRippleContainerProps> = ({
   setRipples,
   className,
   rippleClassName,
+  timeout,
+  classNames,
 }) => (
   <span className={cn("rmd-ripple-container", className)}>
     {ripples.map(({ startTime, exiting, style }) => (
@@ -29,6 +37,8 @@ const RippleContainer: FunctionComponent<IRippleContainerProps> = ({
           triggerRippleExitAnimation(startTime, ripples, setRipples)
         }
         onExited={() => removeRippleByStartTime(startTime, ripples, setRipples)}
+        timeout={timeout}
+        classNames={classNames}
       />
     ))}
   </span>

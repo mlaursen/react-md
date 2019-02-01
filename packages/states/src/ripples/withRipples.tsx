@@ -22,11 +22,14 @@ export default function withRipples<P extends IWithRipples = IWithRipples>(
       rippleContainerClassName,
       ...props
     } = providedProps as any; // doesn't seem to work with types with anything other than any
-    const { ripples, setRipples, eventHandlers } = useRipplesState(
-      providedProps
-    );
+    const {
+      ripples,
+      setRipples,
+      eventHandlers,
+      disableRipple: isRippleDisabled,
+    } = useRipplesState(providedProps);
 
-    const container: ReactNode = !disableRipple && (
+    const container: ReactNode = !isRippleDisabled && (
       <RippleContainer
         ripples={ripples}
         setRipples={setRipples}

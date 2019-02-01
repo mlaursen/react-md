@@ -5,6 +5,10 @@ import {
   HTMLAttributes,
   ReactNode,
 } from "react";
+import {
+  TransitionTimeout,
+  CSSTransitionClassNames,
+} from "@react-md/transition";
 export type RippleTrigger = "mouse" | "touch" | "keyboard" | "programmatic";
 export type RippleEvent =
   | React.KeyboardEvent<HTMLElement>
@@ -49,6 +53,8 @@ export interface IRipplesOptions<E extends HTMLElement = HTMLElement>
   disableProgrammaticRipple?: boolean;
   rippleClassName?: string;
   rippleContainerClassName?: string;
+  rippleTimeout?: TransitionTimeout;
+  rippleClassNames?: CSSTransitionClassNames;
 }
 
 export interface IWithRipples {

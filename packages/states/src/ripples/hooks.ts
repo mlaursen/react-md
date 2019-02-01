@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { IRipple, IRipplesOptions } from "./types";
 import {
   addRippleFromEvent,
@@ -6,6 +6,7 @@ import {
   triggerRippleExitAnimations,
   cancelRipplesByType,
 } from "./utils";
+import { RippleContext } from "./context";
 
 /**
  * A hook for using the ripple effect when the user interacts with
@@ -15,8 +16,8 @@ import {
  */
 export function useRipplesState({
   disabled: propDisabled,
-  disableRipple,
-  disableProgrammaticRipple,
+  disableRipple: propDisableRipple,
+  disableProgrammaticRipple: propDisableProgrammaticRipple,
   onKeyDown,
   onKeyUp,
   onMouseDown,
@@ -27,6 +28,23 @@ export function useRipplesState({
   onTouchMove,
   onTouchEnd,
 }: IRipplesOptions) {
+  let disableRipple = propDisableRipple;
+  let disableProgrammaticRipple = propDisableProgrammaticRipple;
+  if (
+    typeof disableRipple === "undefined" ||
+    typeof disableProgrammaticRipple === "undefined"
+  ) {
+    const context = useRippleContext();
+
+    if (typeof propDisableRipple === "undefined") {
+      disableRipple = context.disableRipple;
+    }
+
+    if (typeof disableProgrammaticRipple === "undefined") {
+      disableProgrammaticRipple = context.disableProgrammaticRipple;
+    }
+  }
+
   const disabled = propDisabled || disableRipple;
   const [ripples, setRipples] = useState<IRipple[]>([]);
 
@@ -112,6 +130,7 @@ export function useRipplesState({
   return {
     ripples,
     setRipples,
+    disableRipple,
     eventHandlers: {
       onMouseDown: disabled ? onMouseDown : handleMouseDown,
       onMouseUp: disabled ? onMouseUp : handleMouseUp,
@@ -124,4 +143,14 @@ export function useRipplesState({
       onTouchEnd: disabled ? onTouchEnd : handleTouchEnd,
     },
   };
+}
+
+/**
+ * A simple hook that can be used to get the Ripple context. This is used
+ * behind the scenes for the Ripple component and _probably_ shouldn't be
+ * used anywhere else. It's mostly used to just use the context defaults when
+ * the timeout or classNames are undefined.
+ */
+export function useRippleContext() {
+  return useContext(RippleContext);
 }

@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from "react";
+import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/transition";
-import cn from "classnames";
 
 import { IRipple } from "./types.d";
+import { useRippleContext } from "./hooks";
 
 export interface IRippleProps extends Pick<IRipple, "style" | "exiting"> {
   className?: string;
@@ -17,23 +18,30 @@ export interface IRippleProps extends Pick<IRipple, "style" | "exiting"> {
   onExited: () => void;
 }
 
-export interface IRippleDefaultProps {
-  classNames: CSSTransitionClassNames;
-  timeout: TransitionTimeout;
-}
-
-type RippleWithDefaultProps = IRippleProps & IRippleDefaultProps;
-
 const Ripple: FunctionComponent<IRippleProps> = props => {
   const {
     style,
     className,
-    classNames,
-    timeout,
+    classNames: propClassNames,
+    timeout: propTimeout,
     exiting,
     onEntered,
     onExited,
-  } = props as RippleWithDefaultProps;
+  } = props;
+
+  let timeout = propTimeout;
+  let classNames = propClassNames;
+  if (typeof timeout === "undefined" || typeof classNames === "undefined") {
+    const context = useRippleContext();
+
+    if (typeof timeout === "undefined") {
+      timeout = context.timeout;
+    }
+
+    if (typeof classNames === "undefined") {
+      classNames = context.classNames;
+    }
+  }
 
   return (
     <CSSTransition
@@ -48,21 +56,5 @@ const Ripple: FunctionComponent<IRippleProps> = props => {
     </CSSTransition>
   );
 };
-
-const defaultProps: IRippleDefaultProps = {
-  classNames: {
-    enter: "rmd-ripple--animating",
-    enterActive: "rmd-ripple--scaling",
-    enterDone: "rmd-ripple--animating rmd-ripple--scaling",
-    exit: "rmd-ripple--animating rmd-ripple--scaling",
-    exitActive: "rmd-ripple--fading",
-  },
-  timeout: {
-    enter: 150,
-    exit: 300,
-  },
-};
-
-Ripple.defaultProps = defaultProps;
 
 export default Ripple;

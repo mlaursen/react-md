@@ -134,7 +134,8 @@
   }
 
   @if not $rmd-states-use-ripple {
-    &.rmd-states--pressed::before {
+    &.rmd-states--pressed::before,
+    &:not(:disabled):not([aria-disabled='true']):active::before {
       @include rmd-states-opacity(pressed);
     }
   }
