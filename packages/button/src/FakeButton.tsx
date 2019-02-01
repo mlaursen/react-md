@@ -9,14 +9,23 @@ import { IWithForwardedRef, omit } from "@react-md/utils";
 
 import { IButtonDefaultProps } from "./Button";
 
-import { IButtonThemeProps } from "./types.d";
+import {
+  IButtonThemeProps,
+  ButtonTheme,
+  ButtonThemeType,
+  ButtonType,
+} from "./types.d";
 import theme from "./theme";
 
 export interface IFakeButtonProps
   extends IButtonThemeProps,
     HTMLAttributes<HTMLDivElement> {}
 
-export interface IFakeButtonDefaultProps extends IButtonDefaultProps {
+export interface IFakeButtonDefaultProps {
+  disabled: boolean;
+  theme: ButtonTheme;
+  themeType: ButtonThemeType;
+  buttonType: ButtonType;
   role: string;
   tabIndex: number;
 }

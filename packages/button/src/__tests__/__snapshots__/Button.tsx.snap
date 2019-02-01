@@ -5,6 +5,9 @@ exports[`Button should render correctly based on the theme props 1`] = `
   class="rmd-button rmd-button--text"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -13,6 +16,9 @@ exports[`Button should render correctly based on the theme props 2`] = `
   class="rmd-button rmd-button--text rmd-button--contained"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -21,6 +27,9 @@ exports[`Button should render correctly based on the theme props 3`] = `
   class="rmd-button rmd-button--text rmd-button--outline"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -29,6 +38,9 @@ exports[`Button should render correctly based on the theme props 4`] = `
   class="rmd-button rmd-button--text rmd-button--text-primary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -37,6 +49,9 @@ exports[`Button should render correctly based on the theme props 5`] = `
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -45,6 +60,9 @@ exports[`Button should render correctly based on the theme props 6`] = `
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -53,6 +71,9 @@ exports[`Button should render correctly based on the theme props 7`] = `
   class="rmd-button rmd-button--text rmd-button--text-secondary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -61,6 +82,9 @@ exports[`Button should render correctly based on the theme props 8`] = `
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -69,6 +93,9 @@ exports[`Button should render correctly based on the theme props 9`] = `
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -77,6 +104,9 @@ exports[`Button should render correctly based on the theme props 10`] = `
   class="rmd-button rmd-button--text rmd-button--text-warning"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -85,6 +115,9 @@ exports[`Button should render correctly based on the theme props 11`] = `
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -93,6 +126,9 @@ exports[`Button should render correctly based on the theme props 12`] = `
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -101,6 +137,9 @@ exports[`Button should render correctly based on the theme props 13`] = `
   class="rmd-button rmd-button--text rmd-button--text-error"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -109,6 +148,9 @@ exports[`Button should render correctly based on the theme props 14`] = `
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -117,6 +159,9 @@ exports[`Button should render correctly based on the theme props 15`] = `
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
 >
   Button Text
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -125,6 +170,9 @@ exports[`Button should render correctly based on the theme props 16`] = `
   class="rmd-button rmd-button--icon"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -133,6 +181,9 @@ exports[`Button should render correctly based on the theme props 17`] = `
   class="rmd-button rmd-button--icon rmd-button--contained"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -141,6 +192,9 @@ exports[`Button should render correctly based on the theme props 18`] = `
   class="rmd-button rmd-button--icon rmd-button--outline"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -149,6 +203,9 @@ exports[`Button should render correctly based on the theme props 19`] = `
   class="rmd-button rmd-button--icon rmd-button--text-primary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -157,6 +214,9 @@ exports[`Button should render correctly based on the theme props 20`] = `
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -165,6 +225,9 @@ exports[`Button should render correctly based on the theme props 21`] = `
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -173,6 +236,9 @@ exports[`Button should render correctly based on the theme props 22`] = `
   class="rmd-button rmd-button--icon rmd-button--text-secondary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -181,6 +247,9 @@ exports[`Button should render correctly based on the theme props 23`] = `
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -189,6 +258,9 @@ exports[`Button should render correctly based on the theme props 24`] = `
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -197,6 +269,9 @@ exports[`Button should render correctly based on the theme props 25`] = `
   class="rmd-button rmd-button--icon rmd-button--text-warning"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -205,6 +280,9 @@ exports[`Button should render correctly based on the theme props 26`] = `
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -213,6 +291,9 @@ exports[`Button should render correctly based on the theme props 27`] = `
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -221,6 +302,9 @@ exports[`Button should render correctly based on the theme props 28`] = `
   class="rmd-button rmd-button--icon rmd-button--text-error"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -229,6 +313,9 @@ exports[`Button should render correctly based on the theme props 29`] = `
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;
 
@@ -237,5 +324,8 @@ exports[`Button should render correctly based on the theme props 30`] = `
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
 >
   <i />
+  <span
+    class="rmd-ripple-container"
+  />
 </button>
 `;

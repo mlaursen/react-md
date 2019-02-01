@@ -8,9 +8,9 @@ import cn from "classnames";
 
 import {
   FixColorPollution,
-  RippleContainer,
-  IRipple,
-  useRipplesState,
+  withRipples,
+  IWithRipples,
+  IRipplesOptions,
 } from "@react-md/states";
 import { useIsKeyboardFocused } from "@react-md/wia-aria";
 import { IWithForwardedRef } from "@react-md/utils";
@@ -30,6 +30,7 @@ import theme from "./theme";
  */
 export interface IButtonProps
   extends IButtonThemeProps,
+    IRipplesOptions<HTMLButtonElement>,
     HTMLAttributes<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
@@ -60,10 +61,11 @@ export interface IButtonDefaultProps {
 
 export type ButtonWithDefaultProps = IButtonProps &
   IButtonDefaultProps &
-  IWithForwardedRef<HTMLButtonElement>;
+  IWithForwardedRef<HTMLButtonElement> &
+  IWithRipples;
 
 export type ButtonComponent = FunctionComponent<
-  IButtonProps & IWithForwardedRef<HTMLButtonElement>
+  IButtonProps & IWithForwardedRef<HTMLButtonElement> & IWithRipples
 > & { theme: (props: IButtonThemeProps) => string };
 
 const Button: ButtonComponent = providedProps => {
@@ -73,28 +75,20 @@ const Button: ButtonComponent = providedProps => {
     buttonType,
     children,
     forwardedRef,
-    onMouseDown,
-    onKeyDown,
+    ripples,
     ...props
   } = providedProps as ButtonWithDefaultProps;
-
-  const { ripples, setRipples, ...handlers } = useRipplesState({
-    disabled: props.disabled,
-    onMouseDown,
-    onKeyDown,
-  });
 
   return (
     <button
       {...props}
-      {...handlers}
       ref={forwardedRef}
       className={cn(Button.theme(providedProps), {
         "rmd-states--focused": useIsKeyboardFocused(props.id || ""),
       })}
     >
       <FixColorPollution>{children}</FixColorPollution>
-      <RippleContainer ripples={ripples} setRipples={setRipples} />
+      {ripples}
     </button>
   );
 };
@@ -134,6 +128,8 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
+const ButtonWithRipples = withRipples(Button);
+
 export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
-  <Button {...props} forwardedRef={ref} />
+  <ButtonWithRipples {...props} forwardedRef={ref} />
 ));
