@@ -1,5 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
-import Portal, { PortalInto } from "./Portal";
+
+import Portal from "./Portal";
+import { PortalInto } from "./types.d";
 
 /**
  * If any of these props are defined on a component, the component will
