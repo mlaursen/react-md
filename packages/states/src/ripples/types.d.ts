@@ -5,7 +5,7 @@ import {
   HTMLAttributes,
   ReactNode,
 } from "react";
-export type RippleTrigger = "mouse" | "touch" | "programmatic";
+export type RippleTrigger = "mouse" | "touch" | "keyboard" | "programmatic";
 export type RippleEvent =
   | React.KeyboardEvent<HTMLElement>
   | React.MouseEvent<HTMLElement>

@@ -1,9 +1,8 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { TransitionGroup } from "react-transition-group";
 
 import Ripple from "./Ripple";
-import { triggerRippleExitAnimation, removeRippleByStartTime } from "./hooks";
+import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
 import { IRipple, RippleSetter } from "./types";
 
 export interface IRippleContainerProps {

@@ -1,13 +1,9 @@
 import React, { ComponentType, FunctionComponent, ReactNode } from "react";
-
-import { useRipplesState } from "./hooks";
-import RippleContainer from "./RippleContainer";
-import {
-  IRipplesOptions,
-  MergableRippleHandlers,
-  IWithRipples,
-} from "./types.d";
 import { Omit } from "@react-md/utils";
+
+import RippleContainer from "./RippleContainer";
+import { useRipplesState } from "./hooks";
+import { IRipplesOptions, IWithRipples } from "./types.d";
 
 /**
  * A higher order component for adding ripples to a component. No idea if
