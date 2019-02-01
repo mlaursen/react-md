@@ -1,8 +1,9 @@
 import React, { ComponentType, FunctionComponent, ReactNode } from "react";
+import cn from "classnames";
 import { Omit } from "@react-md/utils";
 
 import RippleContainer from "./RippleContainer";
-import { useRipplesState } from "./hooks";
+import { useRipplesState, usePressedStates } from "./hooks";
 import { IRipplesOptions, IWithRipples } from "./types.d";
 
 /**
@@ -29,16 +30,32 @@ export default function withRipples<P extends IWithRipples = IWithRipples>(
       disableRipple: isRippleDisabled,
     } = useRipplesState(providedProps);
 
-    const container: ReactNode = !isRippleDisabled && (
-      <RippleContainer
-        ripples={ripples}
-        setRipples={setRipples}
-        className={rippleContainerClassName}
-        rippleClassName={rippleClassName}
+    if (!isRippleDisabled) {
+      const container: ReactNode = (
+        <RippleContainer
+          ripples={ripples}
+          setRipples={setRipples}
+          className={rippleContainerClassName}
+          rippleClassName={rippleClassName}
+        />
+      );
+
+      return <Component {...props} {...eventHandlers} ripples={container} />;
+    }
+
+    const { pressed, eventHandlers: handlers } = usePressedStates(
+      providedProps
+    );
+    return (
+      <Component
+        {...props}
+        {...handlers}
+        ripples={null}
+        className={cn(props.className, {
+          "rmd-states--pressed": pressed,
+        })}
       />
     );
-
-    return <Component {...props} {...eventHandlers} ripples={container} />;
   };
 
   if (process.env.NODE_ENV !== "production") {

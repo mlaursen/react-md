@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { IRipple, IRipplesOptions } from "./types";
+import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types";
 import {
   addRippleFromEvent,
   disableRippleHolding,
@@ -141,6 +141,121 @@ export function useRipplesState({
       onTouchStart: disabled ? onTouchStart : handleTouchStart,
       onTouchMove: disabled ? onTouchMove : handleTouchMove,
       onTouchEnd: disabled ? onTouchEnd : handleTouchEnd,
+    },
+  };
+}
+
+/**
+ * This is a different version of the useRippleStates that will allow you to know
+ * when a component is being pressed by the user. This is really just a fallback for
+ * when the ripples are disabled.
+ *
+ * This will return an object containing the current pressed state of the element as well
+ * as all the merged eventHandlers required to trigger the different states.
+ */
+export function usePressedStates<E extends HTMLElement = HTMLElement>({
+  onKeyDown,
+  onKeyUp,
+  onMouseDown,
+  onMouseUp,
+  onMouseLeave,
+  onTouchStart,
+  onTouchMove,
+  onTouchEnd,
+}: MergableRippleHandlers<E>) {
+  const [pressed, setPressed] = useState(false);
+
+  function handleTouchStart(event: React.TouchEvent<E>) {
+    if (onTouchStart) {
+      onTouchStart(event);
+    }
+
+    if (!pressed) {
+      setPressed(true);
+    }
+  }
+
+  function handleTouchMove(event: React.TouchEvent<E>) {
+    if (onTouchMove) {
+      onTouchMove(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }
+
+  function handleTouchEnd(event: React.TouchEvent<E>) {
+    if (onTouchEnd) {
+      onTouchEnd(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }
+
+  function handleMouseDown(event: React.MouseEvent<E>) {
+    if (onMouseDown) {
+      onMouseDown(event);
+    }
+
+    if (!pressed && event.button === 0) {
+      setPressed(true);
+    }
+  }
+
+  function handleMouseUp(event: React.MouseEvent<E>) {
+    if (onMouseUp) {
+      onMouseUp(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }
+
+  function handleMouseLeave(event: React.MouseEvent<E>) {
+    if (onMouseLeave) {
+      onMouseLeave(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<E>) {
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+
+    if (!pressed && [" ", "Enter"].includes(event.key)) {
+      setPressed(true);
+    }
+  }
+
+  function handleKeyUp(event: React.KeyboardEvent<E>) {
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }
+
+  return {
+    pressed,
+    eventHandlers: {
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
+      onTouchEnd: handleTouchEnd,
+      onMouseDown: handleMouseDown,
+      onMouseUp: handleMouseUp,
+      onMouseLeave: handleMouseLeave,
+      onKeyDown: handleKeyDown,
+      onKeyUp: handleKeyUp,
     },
   };
 }
