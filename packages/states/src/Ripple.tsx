@@ -8,7 +8,7 @@ import {
 } from "@react-md/transition";
 
 import { IRipple } from "./types.d";
-import { useRippleContext } from "./hooks";
+import { useStatesContext } from "./hooks";
 
 export interface IRippleProps extends Pick<IRipple, "style" | "exiting"> {
   className?: string;
@@ -32,14 +32,14 @@ const Ripple: FunctionComponent<IRippleProps> = props => {
   let timeout = propTimeout;
   let classNames = propClassNames;
   if (typeof timeout === "undefined" || typeof classNames === "undefined") {
-    const context = useRippleContext();
+    const context = useStatesContext();
 
     if (typeof timeout === "undefined") {
-      timeout = context.timeout;
+      timeout = context.rippleTimeout;
     }
 
     if (typeof classNames === "undefined") {
-      classNames = context.classNames;
+      classNames = context.rippleClassNames;
     }
   }
 

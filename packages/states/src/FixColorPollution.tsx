@@ -1,12 +1,11 @@
 import React, {
-  useContext,
   isValidElement,
   Fragment,
   FunctionComponent,
   ReactNode,
 } from "react";
 
-import { ColorPollutionContext } from "./PreventColorPollution";
+import { useStatesContext } from "./hooks";
 
 export interface IFixColorPollutionProps {
   enabled?: boolean;
@@ -24,7 +23,10 @@ const FixColorPollution: FunctionComponent<IFixColorPollutionProps> = ({
   children,
 }) => {
   const isFixEnabled =
-    typeof enabled === "boolean" ? enabled : useContext(ColorPollutionContext);
+    typeof enabled === "boolean"
+      ? enabled
+      : useStatesContext().preventColorPollution;
+
   if (!isFixEnabled) {
     if (isValidElement(children)) {
       return children;

@@ -1,9 +1,8 @@
 export * from "./hooks";
+export * from "./context";
+export { default as withRipples } from "./withRipples";
 
-export * from "./FixColorPollution";
 export { default as FixColorPollution } from "./FixColorPollution";
+export * from "./FixColorPollution";
 
-export * from "./PreventColorPollution";
-export { default as PreventColorPollution } from "./PreventColorPollution";
-
-export * from "./ripples";
+export * from "./types.d";

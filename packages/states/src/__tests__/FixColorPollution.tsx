@@ -1,8 +1,12 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { mount } from "enzyme";
 
 import FixColorPollution from "../FixColorPollution";
-import PreventColorPollution from "../PreventColorPollution";
+import { StatesConfig } from "../context";
+
+const PreventColorPollution: FunctionComponent = ({ children }) => (
+  <StatesConfig preventColorPollution>{children}</StatesConfig>
+);
 
 describe("FixColorPollution", () => {
   it("should render the children as normal when the color pollution context is diabled", () => {
