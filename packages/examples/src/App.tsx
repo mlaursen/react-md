@@ -82,6 +82,14 @@ const App = () => {
       <KeyboardTracker>
         <TextContainer>
           <Text type="headline-4">App</Text>
+          <form name="example-form" onSubmit={event => event.preventDefault()}>
+            <label htmlFor="input-1">Text input</label>
+            <input id="input-1" type="text" />
+
+            <Button id="example-form-submit" theme="primary" type="submit">
+              Submit
+            </Button>
+          </form>
           <MenuButton
             id="menu-button-1"
             menuId="menu-1"
@@ -129,7 +137,11 @@ const App = () => {
             Yolo
           </Button>
           <Button id="hello-2">Hello, World!</Button>
-          <Text type="body-1" component="section">
+          <Text
+            type="body-1"
+            component="section"
+            style={{ marginTop: "20rem" }}
+          >
             <pre>{JSON.stringify(appSize, null, 2)}</pre>
           </Text>
         </TextContainer>
