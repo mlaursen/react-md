@@ -1,12 +1,13 @@
 import { useState, useContext, useEffect } from "react";
-import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types";
+
+import { StatesContext } from "./context";
 import {
   addRippleFromEvent,
   disableRippleHolding,
   triggerRippleExitAnimations,
   cancelRipplesByType,
 } from "./utils";
-import { StatesContext } from "./context";
+import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types";
 
 /**
  * This is a small hook that is used to determine if the app is currently

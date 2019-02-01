@@ -1,5 +1,5 @@
-import { IRipple, RippleTrigger, RippleEvent, RippleSetter } from "./types";
 import { getRippleRadius } from "./getRippleRadius";
+import { IRipple, RippleTrigger, RippleEvent, RippleSetter } from "./types";
 
 /**
  * This does some simple validation based on the provided event to ensure

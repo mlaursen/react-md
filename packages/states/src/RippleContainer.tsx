@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
 
-import Ripple from "./Ripple";
-import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
-import { IRipple, RippleSetter } from "./types";
 import {
   TransitionTimeout,
   CSSTransitionClassNames,
 } from "@react-md/transition";
+
+import Ripple from "./Ripple";
+import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
+import { IRipple, RippleSetter } from "./types";
 
 export interface IRippleContainerProps {
   ripples: IRipple[];

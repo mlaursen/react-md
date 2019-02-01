@@ -1,10 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Button } from "@react-md/button";
 import { TextContainer, Text } from "@react-md/typography";
-import {
-  useTouchDetectionClassNameToggle,
-  PreventColorPollution,
-} from "@react-md/states";
+import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
 import { useEventListener } from "@react-md/utils";
 
@@ -75,10 +72,9 @@ const App = () => {
   });
   const [appSize, setSize] = useState<IAppSize>(getCurrentAppSize());
   useEventListener("resize", () => setSize(getCurrentAppSize()));
-  useTouchDetectionClassNameToggle();
 
   return (
-    <PreventColorPollution>
+    <StatesConfig preventColorPollution>
       <KeyboardTracker>
         <TextContainer>
           <Text type="headline-4">App</Text>
@@ -146,7 +142,7 @@ const App = () => {
           </Text>
         </TextContainer>
       </KeyboardTracker>
-    </PreventColorPollution>
+    </StatesConfig>
   );
 };
 

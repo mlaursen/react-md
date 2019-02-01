@@ -9,6 +9,7 @@ import {
   TransitionTimeout,
   CSSTransitionClassNames,
 } from "@react-md/transition";
+
 export type RippleTrigger = "mouse" | "touch" | "keyboard" | "programmatic";
 export type RippleEvent =
   | React.KeyboardEvent<HTMLElement>
