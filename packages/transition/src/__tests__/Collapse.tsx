@@ -68,8 +68,6 @@ describe("Collapse", () => {
   });
 
   describe("transition", () => {
-    const REAL_COMPUTED_STYLE = window.getComputedStyle;
-    const REAL_RAF = window.requestAnimationFrame;
     beforeEach(() => {
       jest.useFakeTimers();
 

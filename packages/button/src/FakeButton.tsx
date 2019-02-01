@@ -7,8 +7,6 @@ import React, {
 import { FixColorPollution } from "@react-md/states";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
-import { IButtonDefaultProps } from "./Button";
-
 import {
   IButtonThemeProps,
   ButtonTheme,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { create } from "react-test-renderer";
 
-import Text, { TextTypes, TextRenderFunction } from "../Text";
+import Text, { TextTypes } from "../Text";
 import { mount } from "enzyme";
 
 describe("Text", () => {

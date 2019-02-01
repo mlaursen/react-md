@@ -3,8 +3,6 @@ import { create } from "react-test-renderer";
 import { mount } from "enzyme";
 
 import TextIconSpacing from "../TextIconSpacing";
-import FontIcon from "../FontIcon";
-import SVGIcon from "../SVGIcon";
 
 describe("TextIconSpacing", () => {
   it("should be able to render without any children or icon even though it's worthless", () => {
