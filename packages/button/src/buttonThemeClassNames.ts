@@ -10,9 +10,17 @@ import { IButtonThemeProps } from "./types.d";
  * className.
  * @return a string of class names to create an element with a button theme.
  */
-export default function theme(props: IButtonThemeProps): string {
-  const { buttonType, themeType, theme, disabled, className } = props;
-  const text = buttonType === "text" || !buttonType;
+export default function buttonThemeClassNames(
+  props: IButtonThemeProps
+): string {
+  const {
+    buttonType = "text",
+    themeType = "flat",
+    theme = "primary",
+    disabled,
+    className,
+  } = props;
+  const text = buttonType === "text";
   const icon = buttonType === "icon";
   const outline = themeType === "outline";
   const contained = themeType === "contained";

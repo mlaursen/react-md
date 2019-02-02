@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { theme, IButtonThemeProps } from "@react-md/button";
+import { buttonThemeClassNames, IButtonThemeProps } from "@react-md/button";
 import {
   MenuButton as WIAMenuButton,
   MenuButtonProps,
@@ -18,7 +18,7 @@ const MenuButton: FunctionComponent<
   return (
     <WIAMenuButton
       {...props}
-      className={cn(theme(allProps), {
+      className={cn(buttonThemeClassNames(allProps), {
         [styles.focused]: useIsKeyboardFocused(props.id),
       })}
     />

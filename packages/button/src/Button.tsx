@@ -14,7 +14,7 @@ import {
   ButtonThemeType,
   ButtonType,
 } from "./types.d";
-import theme from "./theme";
+import buttonThemeClassNames from "./buttonThemeClassNames";
 
 /**
  * This interface includes all the props that the `Button` component accepts so the main
@@ -56,11 +56,9 @@ export type ButtonWithDefaultProps = IButtonProps &
   IWithForwardedRef<HTMLButtonElement> &
   IWithStatesConfig;
 
-export type ButtonComponent = FunctionComponent<
+const Button: FunctionComponent<
   IButtonProps & IWithForwardedRef<HTMLButtonElement>
-> & { theme: (props: IButtonThemeProps) => string };
-
-const Button: ButtonComponent = providedProps => {
+> = providedProps => {
   const {
     theme,
     themeType,
@@ -74,14 +72,12 @@ const Button: ButtonComponent = providedProps => {
     <button
       {...props}
       ref={forwardedRef}
-      className={Button.theme(providedProps)}
+      className={buttonThemeClassNames(providedProps)}
     >
       {children}
     </button>
   );
 };
-
-Button.theme = theme;
 
 const defaultProps: IButtonDefaultProps = {
   disabled: false,

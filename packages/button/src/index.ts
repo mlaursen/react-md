@@ -1,5 +1,5 @@
 export * from "./types.d";
-export { default as theme } from "./theme";
+export { default as buttonThemeClassNames } from "./buttonThemeClassNames";
 
 export { default as Button } from "./Button";
 export * from "./Button";

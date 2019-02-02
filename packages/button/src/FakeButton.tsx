@@ -13,7 +13,7 @@ import {
   ButtonThemeType,
   ButtonType,
 } from "./types.d";
-import theme from "./theme";
+import buttonThemeClassNames from "./buttonThemeClassNames";
 
 export interface IFakeButtonProps
   extends IButtonThemeProps,
@@ -106,7 +106,7 @@ const FakeButton: FunctionComponent<
       aria-disabled={disabled ? "true" : undefined}
       {...(disabled ? omit(props, EVENT_LISTENERS) : props)}
       ref={forwardedRef}
-      className={theme(providedProps)}
+      className={buttonThemeClassNames(providedProps)}
       tabIndex={disabled ? undefined : tabIndex}
       onKeyDown={disabled ? undefined : handleKeyDown}
     >
