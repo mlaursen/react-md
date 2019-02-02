@@ -7,7 +7,6 @@ import { usePortalState } from "./hooks";
 const Portal: FunctionComponent<IPortalProps> = props => {
   const { visible, children } = props;
   const container = usePortalState(props);
-  console.log("container:", container);
   if (!visible || !container) {
     return null;
   }

@@ -7,6 +7,7 @@ import React, {
   HTMLAttributes,
   ReactNode,
   CSSProperties,
+  ReactElement,
 } from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
@@ -86,7 +87,7 @@ const IconRotator: FunctionComponent<
   );
 
   if (!forceIconWrap && isValidElement(children)) {
-    const child = Children.only(children);
+    const child: ReactElement<{ className?: string }> = Children.only(children);
     return cloneElement(child, {
       className: cn(className, child.props.className),
     });

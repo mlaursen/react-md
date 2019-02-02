@@ -4,6 +4,7 @@ import { TextContainer, Text } from "@react-md/typography";
 import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
 import { useEventListener } from "@react-md/utils";
+import { Portal } from "@react-md/portal";
 
 import styles from "./menu.module.scss";
 import { MenuButton, Menu, MenuItem } from "./components/menus";
@@ -141,6 +142,9 @@ const App = () => {
             <pre>{JSON.stringify(appSize, null, 2)}</pre>
           </Text>
         </TextContainer>
+        <Portal visible>
+          <Text type="headline-1">Hello, world!</Text>
+        </Portal>
       </KeyboardTracker>
     </StatesConfig>
   );
