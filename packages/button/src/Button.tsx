@@ -4,15 +4,8 @@ import React, {
   ReactNode,
   HTMLAttributes,
 } from "react";
-import cn from "classnames";
 
-import {
-  FixColorPollution,
-  withRipples,
-  IWithRipples,
-  IRipplesOptions,
-} from "@react-md/states";
-import { useIsKeyboardFocused } from "@react-md/wia-aria";
+import { withStates, IWithStatesConfig } from "@react-md/states";
 import { IWithForwardedRef } from "@react-md/utils";
 
 import {
@@ -30,7 +23,6 @@ import theme from "./theme";
  */
 export interface IButtonProps
   extends IButtonThemeProps,
-    IRipplesOptions<HTMLButtonElement>,
     HTMLAttributes<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
@@ -62,10 +54,10 @@ export interface IButtonDefaultProps {
 export type ButtonWithDefaultProps = IButtonProps &
   IButtonDefaultProps &
   IWithForwardedRef<HTMLButtonElement> &
-  IWithRipples;
+  IWithStatesConfig;
 
 export type ButtonComponent = FunctionComponent<
-  IButtonProps & IWithForwardedRef<HTMLButtonElement> & IWithRipples
+  IButtonProps & IWithForwardedRef<HTMLButtonElement>
 > & { theme: (props: IButtonThemeProps) => string };
 
 const Button: ButtonComponent = providedProps => {
@@ -75,7 +67,6 @@ const Button: ButtonComponent = providedProps => {
     buttonType,
     children,
     forwardedRef,
-    ripples,
     ...props
   } = providedProps as ButtonWithDefaultProps;
 
@@ -83,12 +74,9 @@ const Button: ButtonComponent = providedProps => {
     <button
       {...props}
       ref={forwardedRef}
-      className={cn(Button.theme(providedProps), {
-        "rmd-states--focused": useIsKeyboardFocused(props.id || ""),
-      })}
+      className={Button.theme(providedProps)}
     >
-      <FixColorPollution>{children}</FixColorPollution>
-      {ripples}
+      {children}
     </button>
   );
 };
@@ -105,6 +93,9 @@ const defaultProps: IButtonDefaultProps = {
 Button.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
+  Button.displayName = "Button";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -128,8 +119,8 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-const ButtonWithRipples = withRipples(Button);
+const ButtonWithStates = withStates(Button);
 
 export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
-  <ButtonWithRipples {...props} forwardedRef={ref} />
+  <ButtonWithStates {...props} forwardedRef={ref} />
 ));

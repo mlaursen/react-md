@@ -57,7 +57,3 @@ export interface IRipplesOptions<E extends HTMLElement = HTMLElement>
   rippleTimeout?: TransitionTimeout;
   rippleClassNames?: CSSTransitionClassNames;
 }
-
-export interface IWithRipples {
-  ripples: ReactNode;
-}

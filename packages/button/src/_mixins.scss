@@ -106,8 +106,6 @@
 }
 
 @mixin rmd-button {
-  $is-light-theme: rmd-theme-contrast-tone($rmd-theme-background) != 'dark';
-
   .rmd-button {
     @if $rmd-button-text-icon-inherit-color {
       @include rmd-icon-theme-update-var(color, currentColor);

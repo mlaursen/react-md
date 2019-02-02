@@ -35,6 +35,14 @@ interface IStatesConfigDefaultProps extends IStatesContext {
 type StatesConfigWithDefaultProps = IStatesConfigProps &
   IStatesConfigDefaultProps;
 
+/**
+ * This component should normally be near the root of your React tree as it
+ * allows for customization of the react-md states package.
+ *
+ * NOTE: There should *only be one* `StatesConfig` component on your page at
+ * a time when the `disableTouchDetection` prop is not enabled as it will cause
+ * multiple touch detection updates.
+ */
 export const StatesConfig: FunctionComponent<IStatesConfigProps> = props => {
   const {
     preventColorPollution,

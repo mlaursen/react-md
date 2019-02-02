@@ -45,6 +45,7 @@ export function getRippleTriggerType(
     case "touchend":
       return "touch";
     case "keydown":
+    case "keyup":
       return "keyboard";
     default:
       return "programmatic";

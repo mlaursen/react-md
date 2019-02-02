@@ -4,7 +4,7 @@ import React, {
   HTMLAttributes,
   KeyboardEvent,
 } from "react";
-import { FixColorPollution } from "@react-md/states";
+import { withStates } from "@react-md/states";
 import { IWithForwardedRef, omit } from "@react-md/utils";
 
 import {
@@ -110,7 +110,7 @@ const FakeButton: FunctionComponent<
       tabIndex={disabled ? undefined : tabIndex}
       onKeyDown={disabled ? undefined : handleKeyDown}
     >
-      <FixColorPollution>{children}</FixColorPollution>
+      {children}
     </div>
   );
 };
@@ -127,6 +127,9 @@ const defaultProps: IFakeButtonDefaultProps = {
 FakeButton.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
+  FakeButton.displayName = "FakeButton";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -152,6 +155,8 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
+const FakeButtonWithStates = withStates(FakeButton);
+
 export default forwardRef<HTMLDivElement, IFakeButtonProps>((props, ref) => (
-  <FakeButton {...props} forwardedRef={ref} />
+  <FakeButtonWithStates {...props} forwardedRef={ref} />
 ));

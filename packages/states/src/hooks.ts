@@ -96,8 +96,8 @@ export function useTouchDetectionClassNameToggle(
  */
 export function useRipplesState({
   disabled: propDisabled,
-  disableRipple: propDisableRipple,
-  disableProgrammaticRipple: propDisableProgrammaticRipple,
+  disableRipple,
+  disableProgrammaticRipple,
   onKeyDown,
   onKeyUp,
   onMouseDown,
@@ -108,23 +108,6 @@ export function useRipplesState({
   onTouchMove,
   onTouchEnd,
 }: IRipplesOptions) {
-  let disableRipple = propDisableRipple;
-  let disableProgrammaticRipple = propDisableProgrammaticRipple;
-  if (
-    typeof disableRipple === "undefined" ||
-    typeof disableProgrammaticRipple === "undefined"
-  ) {
-    const context = useStatesContext();
-
-    if (typeof propDisableRipple === "undefined") {
-      disableRipple = context.disableRipple;
-    }
-
-    if (typeof disableProgrammaticRipple === "undefined") {
-      disableProgrammaticRipple = context.disableProgrammaticRipple;
-    }
-  }
-
   const disabled = propDisabled || disableRipple;
   const [ripples, setRipples] = useState<IRipple[]>([]);
 
@@ -210,7 +193,6 @@ export function useRipplesState({
   return {
     ripples,
     setRipples,
-    disableRipple,
     eventHandlers: {
       onMouseDown: disabled ? onMouseDown : handleMouseDown,
       onMouseUp: disabled ? onMouseUp : handleMouseUp,
