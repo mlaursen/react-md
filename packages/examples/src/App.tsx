@@ -1,13 +1,25 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { Button } from "@react-md/button";
+import React, { useState, Fragment, useEffect, FunctionComponent } from "react";
+import cn from "classnames";
+import { Button, buttonThemeClassNames } from "@react-md/button";
 import { TextContainer, Text } from "@react-md/typography";
-import { StatesConfig } from "@react-md/states";
-import { KeyboardTracker } from "@react-md/wia-aria";
+import { StatesConfig, withStates } from "@react-md/states";
+import { KeyboardTracker, useIsKeyboardFocused } from "@react-md/wia-aria";
 import { useEventListener } from "@react-md/utils";
 import { Portal } from "@react-md/portal";
 
 import styles from "./menu.module.scss";
 import { MenuButton, Menu, MenuItem } from "./components/menus";
+
+const LinkButton: FunctionComponent<any> = withStates(
+  ({ children, ...themeProps }) => {
+    const { theme, themeType, buttonType, ...props } = themeProps;
+    return (
+      <a {...props} className={buttonThemeClassNames(themeProps)}>
+        {children}
+      </a>
+    );
+  }
+);
 
 export interface IAppSize {
   [key: string]: boolean;
@@ -145,6 +157,9 @@ const App = () => {
         <Portal visible>
           <Text type="headline-1">Hello, world!</Text>
         </Portal>
+        <LinkButton id="link-1" href="#" themeType="contained">
+          Link button
+        </LinkButton>
       </KeyboardTracker>
     </StatesConfig>
   );
