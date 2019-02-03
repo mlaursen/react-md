@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-elevation-color", value: "#000" },
   { name: "rmd-elevation-shadow-1-opacity", value: "0.2" },

@@ -8,6 +8,9 @@
     "test": "dev-utils test",
     "prepublishOnly": "dev-utils prepublish"
   },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
   "files": [
     "es/*",
     "lib/*",

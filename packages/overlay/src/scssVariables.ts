@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-overlay-z-index", value: "16" },
   { name: "rmd-overlay-transition-duration", value: "0.15s" },

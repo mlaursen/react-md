@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-red-50", value: "#ffebee" },
   { name: "rmd-red-100", value: "#ffcdd2" },

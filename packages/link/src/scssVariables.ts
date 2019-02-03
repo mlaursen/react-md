@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-link-transition-time", value: "0.15s" },
   { name: "rmd-link-color", value: "var(--rmd-theme-primary, #9c27b0)" },

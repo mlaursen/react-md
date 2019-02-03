@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-button-text-icon-inherit-color", value: true },
   { name: "rmd-button-text-border-radius", value: "0.5rem" },

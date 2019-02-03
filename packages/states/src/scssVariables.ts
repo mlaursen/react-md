@@ -1,4 +1,4 @@
-/** this is an auto-generated file */
+/** this is an auto-generated file from @react-md/dev-utils */
 export default [
   { name: "rmd-states-remove-firefox-inner-ring", value: true },
   { name: "rmd-states-use-ripple", value: true },
