@@ -1,21 +1,18 @@
 /** this is an auto-generated file from @react-md/dev-utils */
-export default [
-  { name: "rmd-transition-sharp", value: "cubic-bezier(0.4, 0, 0.6, 1)" },
-  { name: "rmd-transition-standard", value: "cubic-bezier(0.4, 0, 0.2, 1)" },
-  { name: "rmd-transition-acceleration", value: "cubic-bezier(0.4, 0, 1, 1)" },
-  { name: "rmd-transition-deceleration", value: "cubic-bezier(0, 0, 0.2, 1)" },
-  { name: "rmd-transition-enter-time", value: "0.2s" },
-  { name: "rmd-transition-leave-time", value: "0.15s" },
-  { name: "rmd-transition-linear-time", value: "0.15s" },
-  { name: "rmd-collapse-enter-transition-func", value: "deceleration" },
-  { name: "rmd-collapse-leave-transition-func", value: "acceleration" },
-  {
-    name: "rmd-transition-theme-values",
-    value: [
-      { name: "sharp", value: "cubic-bezier(0.4, 0, 0.6, 1)" },
-      { name: "standard", value: "cubic-bezier(0.4, 0, 0.2, 1)" },
-      { name: "acceleration", value: "cubic-bezier(0.4, 0, 1, 1)" },
-      { name: "deceleration", value: "cubic-bezier(0, 0, 0.2, 1)" },
-    ],
+export default {
+  "rmd-transition-sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+  "rmd-transition-standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+  "rmd-transition-acceleration": "cubic-bezier(0.4, 0, 1, 1)",
+  "rmd-transition-deceleration": "cubic-bezier(0, 0, 0.2, 1)",
+  "rmd-transition-enter-time": "0.2s",
+  "rmd-transition-leave-time": "0.15s",
+  "rmd-transition-linear-time": "0.15s",
+  "rmd-collapse-enter-transition-func": "deceleration",
+  "rmd-collapse-leave-transition-func": "acceleration",
+  "rmd-transition-theme-values": {
+    sharp: "cubic-bezier(0.4, 0, 0.6, 1)",
+    standard: "cubic-bezier(0.4, 0, 0.2, 1)",
+    acceleration: "cubic-bezier(0.4, 0, 1, 1)",
+    deceleration: "cubic-bezier(0, 0, 0.2, 1)",
   },
-];
+};

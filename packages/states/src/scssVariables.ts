@@ -1,11 +1,11 @@
 /** this is an auto-generated file from @react-md/dev-utils */
-export default [
-  { name: "rmd-states-remove-firefox-inner-ring", value: true },
-  { name: "rmd-states-use-ripple", value: true },
-  { name: "rmd-states-prevent-color-pollution", value: true },
-  { name: "rmd-states-background-color", value: "#000" },
-  { name: "rmd-states-hover-opacity", value: "0.08" },
-  { name: "rmd-states-focus-opacity", value: "0.24" },
-  { name: "rmd-states-pressed-opacity", value: "0.32" },
-  { name: "rmd-states-selected-opacity", value: "0.16" },
-];
+export default {
+  "rmd-states-remove-firefox-inner-ring": true,
+  "rmd-states-use-ripple": true,
+  "rmd-states-prevent-color-pollution": true,
+  "rmd-states-background-color": "#000",
+  "rmd-states-hover-opacity": "0.08",
+  "rmd-states-focus-opacity": "0.24",
+  "rmd-states-pressed-opacity": "0.32",
+  "rmd-states-selected-opacity": "0.16",
+};

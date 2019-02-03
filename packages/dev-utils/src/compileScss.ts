@@ -94,7 +94,13 @@ export function checkForInvalidCSS(css: string) {
   process.exit(1);
 }
 
-function toBool(value: string) {
+type HackedVariableValue = string | boolean | IHackedVariableValue[];
+export interface IHackedVariableValue {
+  name: string;
+  value: HackedVariableValue;
+}
+
+function toBool(value: HackedVariableValue) {
   if (value === "true" || value === "false") {
     return Boolean(value);
   }
@@ -102,9 +108,27 @@ function toBool(value: string) {
   return value;
 }
 
+function matchParen(s: string, count: number = 0) {
+  const match = s.match(/\(|\)/);
+  if (!match) {
+    return s;
+  }
+
+  const i = match.index + 1;
+  if (match[0] === ")") {
+    if (count === 1) {
+      return s.substring(0, i);
+    }
+    console.log("count:", count);
+    return s.substring(0, i);
+  }
+
+  return s.substring(0, i) + matchParen(s.substring(i), count + 1);
+}
+
 function hackSCSSMapValues(mapValue: string) {
   let remaining = mapValue.substring(1, mapValue.length - 1);
-  const values = [];
+  const values: IHackedVariableValue[] = [];
   while (remaining.length) {
     const i = remaining.indexOf(": ");
     if (i === -1) {
@@ -118,16 +142,22 @@ function hackSCSSMapValues(mapValue: string) {
 
     const name = remaining.substring(0, i);
     remaining = remaining.substring(i + 2);
-
-    let j = remaining.indexOf(",");
+    let j =
+      name === "font-family"
+        ? remaining.search(/, [-a-z]+: /)
+        : remaining.indexOf(",");
     if (j === -1) {
       j = remaining.length;
     }
 
-    let value = remaining.substring(0, j);
-    if (/rgba|cubic-b/.test(value)) {
-      j = remaining.indexOf(")") + 1;
-      value = remaining.substring(0, j);
+    let value: HackedVariableValue = remaining.substring(0, j);
+    if (value.startsWith("(")) {
+      const mapString = matchParen(remaining);
+      j = mapString.length;
+      value = hackSCSSMapValues(mapString);
+    } else if (value.includes("(")) {
+      value = matchParen(remaining);
+      j = (value as string).length;
     }
 
     remaining = remaining.substring(j + 1).trim();
@@ -137,7 +167,10 @@ function hackSCSSMapValues(mapValue: string) {
   return values;
 }
 
-export function hackSCSSVariableValue(scssVariable: any, packageName: string) {
+export function hackSCSSVariableValue(
+  scssVariable: any,
+  packageName: string
+): IHackedVariableValue {
   const { name, value } = scssVariable.context;
   const prefix = `$${name}: `;
 

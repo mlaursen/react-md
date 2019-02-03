@@ -1,15 +1,12 @@
 /** this is an auto-generated file from @react-md/dev-utils */
-export default [
-  { name: "rmd-link-transition-time", value: "0.15s" },
-  { name: "rmd-link-color", value: "var(--rmd-theme-primary, #9c27b0)" },
-  { name: "rmd-link-visited-color", value: "#771e86" },
-  { name: "rmd-link-hover-color", value: "#bc37d3" },
-  {
-    name: "rmd-link-theme-values",
-    value: [
-      { name: "color", value: "var(--rmd-theme-primary" },
-      { name: "#9c27b0), hover-color", value: "#bc37d3" },
-      { name: "visited-color", value: "#771e86" },
-    ],
+export default {
+  "rmd-link-transition-time": "0.15s",
+  "rmd-link-color": "var(--rmd-theme-primary, #9c27b0)",
+  "rmd-link-visited-color": "#771e86",
+  "rmd-link-hover-color": "#bc37d3",
+  "rmd-link-theme-values": {
+    color: "var(--rmd-theme-primary, #9c27b0)",
+    "hover-color": "#bc37d3",
+    "visited-color": "#771e86",
   },
-];
+};

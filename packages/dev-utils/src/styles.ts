@@ -3,7 +3,12 @@ import path from "path";
 import { promisify } from "util";
 import nodeGlob from "glob";
 
-import { compileScss, postcss, hackSCSSVariableValue } from "./compileScss";
+import {
+  compileScss,
+  postcss,
+  hackSCSSVariableValue,
+  IHackedVariableValue,
+} from "./compileScss";
 import {
   dist,
   cssDist,
@@ -73,6 +78,14 @@ async function compile(production: boolean) {
   await fs.writeFile(outFile, css);
 }
 
+function createVariableMap(variables: IHackedVariableValue[]) {
+  return variables.reduce((obj, { name, value }) => {
+    obj[name] = Array.isArray(value) ? createVariableMap(value) : value;
+
+    return obj;
+  }, {});
+}
+
 async function createScssVariables() {
   const fileName = path.join(src, scssVariables);
 
@@ -99,7 +112,7 @@ async function createScssVariables() {
 
   const contents = await format(
     `/** this is an auto-generated file from @react-md/dev-utils */
-export default ${JSON.stringify(variables)};
+export default ${JSON.stringify(createVariableMap(variables))};
 `,
     path.join(projectRoot, "packages", fileName)
   );

@@ -1,13 +1,10 @@
 /** this is an auto-generated file from @react-md/dev-utils */
-export default [
-  { name: "rmd-overlay-z-index", value: "16" },
-  { name: "rmd-overlay-transition-duration", value: "0.15s" },
-  { name: "rmd-overlay-color", value: "rgba(0, 0, 0, 0.4)" },
-  {
-    name: "rmd-overlay-theme-values",
-    value: [
-      { name: "background-color", value: "rgba(0, 0, 0, 0.4)" },
-      { name: "z-index", value: "16" },
-    ],
+export default {
+  "rmd-overlay-z-index": "16",
+  "rmd-overlay-transition-duration": "0.15s",
+  "rmd-overlay-color": "rgba(0, 0, 0, 0.4)",
+  "rmd-overlay-theme-values": {
+    "background-color": "rgba(0, 0, 0, 0.4)",
+    "z-index": "16",
   },
-];
+};
