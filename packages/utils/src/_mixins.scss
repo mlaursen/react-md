@@ -116,6 +116,10 @@
     @include react-md-button;
   }
 
+  @if mixin-exists(react-md-divider) {
+    @include react-md-divider;
+  }
+
   @if mixin-exists(react-md-icon) {
     @include react-md-icon;
   }
