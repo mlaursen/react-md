@@ -212,7 +212,7 @@ const SVGIcon: FunctionComponent<
       className={cn(
         "rmd-icon rmd-icon--svg",
         {
-          "rmd-icon--svg-dense": dense,
+          "rmd-icon--dense": dense,
         },
         className
       )}

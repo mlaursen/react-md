@@ -115,7 +115,7 @@ const FontIcon: FunctionComponent<
       className={cn(
         "rmd-icon rmd-icon--font",
         {
-          "rmd-icon--font-dense": dense,
+          "rmd-icon--dense": dense,
         },
         iconClassName,
         className

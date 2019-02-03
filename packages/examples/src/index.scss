@@ -11,13 +11,6 @@ button {
   margin: 1rem;
 }
 
-@media (min-width: 1025px) {
-  body {
-    @include rmd-list-dense-theme;
-    @include rmd-list-item-dense-theme;
-  }
-}
-
 .flex-grid {
   display: flex;
   flex-wrap: wrap;

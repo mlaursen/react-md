@@ -60,22 +60,9 @@
   text-align: center;
 }
 
-/// Creates the styles for updating a font icon to use the dense spec. This requires the
-/// base font icon styles to already be applied.
-///
-/// @example scss - Example SCSS Usage
-///   .font-icon {
-///     @include rmd-icon-base;
-///     @include rmd-icon-font;
-///   }
-///
-///   @media (min-width: 1200px) {
-///     .font-icon {
-///       @include rmd-icon-font-dense;
-///     }
-///   }
-@mixin rmd-icon-font-dense {
-  @include rmd-icon-theme(font-size, dense-size);
+/// A simple mixin to create the dense theme for an icon.
+@mixin rmd-icon-dense-theme {
+  @include rmd-icon-theme-update-var(size, rmd-icon-theme-var(dense-size));
 }
 
 /// Creates the base styles for an svg icon.
@@ -89,25 +76,6 @@
   @include rmd-icon-theme(fill, color);
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
-}
-
-/// Creates the styles for updating an svg icon to use the dense spec. This requires the
-/// base svg icon styles to already be applied.
-///
-/// @example scss - Example SCSS Usage
-///   .svg-icon {
-///     @include rmd-icon-base;
-///     @include rmd-icon-svg;
-///   }
-///
-///   @media (min-width: 1200px) {
-///     .svg-icon {
-///       @include rmd-icon-svg-dense;
-///     }
-///   }
-@mixin rmd-icon-svg-dense {
-  @include rmd-icon-theme(height, dense-size);
-  @include rmd-icon-theme(width, dense-size);
 }
 
 /// Creates the styles that should be applied to an icon that is placed before text.
@@ -190,15 +158,15 @@
   .rmd-icon {
     @include rmd-icon-base;
 
+    @if $rmd-icon-include-dense {
+      &--dense {
+        @include rmd-icon-dense-theme;
+      }
+    }
+
     @if $rmd-icon-use-font-icons {
       &--font {
         @include rmd-icon-font;
-      }
-
-      @if $rmd-icon-include-dense {
-        &--font-dense {
-          @include rmd-icon-font-dense;
-        }
       }
     }
 
@@ -210,12 +178,6 @@
           // make sit so that paths and other things won't be event targets which makes things easier
           // to determine if something is an icon or not
           pointer-events: none;
-        }
-      }
-
-      @if $rmd-icon-include-dense {
-        &--svg-dense {
-          @include rmd-icon-svg-dense;
         }
       }
     }
