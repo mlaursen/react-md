@@ -15,6 +15,7 @@
     "test:each": "lerna exec --ignore @react-md/dev-utils --ignore examples --stream -- yarn test",
     "test": "jest --config jest.config.js",
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
+    "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore examples -- yarn build --styles-only",
     "clean": "lerna run clean --ignore @react-md/dev-utils --stream",
     "watch": "node watcher.js"
   },

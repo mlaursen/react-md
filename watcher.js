@@ -92,7 +92,6 @@ chokidar
 
 process.on('exit', () => {
   processes.forEach(proc => {
-    console.log('KILLING');
     proc.kill('SIGINT');
   });
 });
