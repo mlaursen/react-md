@@ -2,6 +2,36 @@
 /// @group typography
 ////
 
+/// A utility function to help merge typography styles together with global definition overrides.
+///
+/// @access private
+/// @param {Map} base-styles - The base styles to merge with
+/// @param {Map} additional-styles - Any additional styles to merge with
+/// @return {Map} a Map of the base-styles and additional styles merged together
+@function rmd-typography-set-styles($base-styles, $additional-styles) {
+  @each $style, $style-props in $additional-styles {
+    $style-props: map-merge($base-styles, $style-props);
+
+    @if global-variable-exists(rmd-typography-styles-#{$style}) {
+      $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
+    }
+
+    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
+  }
+
+  @return $additional-styles;
+}
+
+/// A small utility function to get the letter spacing based on tracking and font-size
+///
+/// @access private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @return {Number} the letter spacing value in em
+@function rmd-typography-get-letter-spacing($tracking, $font-size) {
+  @return $tracking / ($font-size * 16) * 1em;
+}
+
 /// The font family to use throughout the entire application.
 /// @type String
 $rmd-typography-font-family: Roboto, sans-serif !default;
@@ -260,34 +290,4 @@ $rmd-typography-styles: rmd-typography-set-styles(
   }
 
   @return ();
-}
-
-/// A utility function to help merge typography styles together with global definition overrides.
-///
-/// @access private
-/// @param {Map} base-styles - The base styles to merge with
-/// @param {Map} additional-styles - Any additional styles to merge with
-/// @return {Map} a Map of the base-styles and additional styles merged together
-@function rmd-typography-set-styles($base-styles, $additional-styles) {
-  @each $style, $style-props in $additional-styles {
-    $style-props: map-merge($base-styles, $style-props);
-
-    @if global-variable-exists(rmd-typography-styles-#{$style}) {
-      $style-props: map-merge($style-props, rmd-typography-get-global-variable(#{$style}));
-    }
-
-    $additional-styles: map-merge($additional-styles, (#{$style}: $style-props));
-  }
-
-  @return $additional-styles;
-}
-
-/// A small utility function to get the letter spacing based on tracking and font-size
-///
-/// @access private
-/// @param {Number} tracking - The tracking to use
-/// @param {Number} font-size - The font size to use
-/// @return {Number} the letter spacing value in em
-@function rmd-typography-get-letter-spacing($tracking, $font-size) {
-  @return $tracking / ($font-size * 16) * 1em;
 }

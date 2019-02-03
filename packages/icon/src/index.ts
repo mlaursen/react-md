@@ -9,3 +9,5 @@ export * from "./TextIconSpacing";
 
 export { default as IconRotator } from "./IconRotator";
 export * from "./IconRotator";
+
+export { default as IconScssVariables } from "./scssVariables";

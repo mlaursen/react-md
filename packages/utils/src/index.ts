@@ -12,3 +12,5 @@ export * from "./omit";
 export * from "./types.d";
 
 export * from "./hooks";
+
+export { default as UtilsScssVariables } from "./scssVariables";
