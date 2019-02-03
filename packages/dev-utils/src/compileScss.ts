@@ -94,6 +94,49 @@ export function checkForInvalidCSS(css: string) {
   process.exit(1);
 }
 
+function toBool(value: string) {
+  if (value === "true" || value === "false") {
+    return Boolean(value);
+  }
+
+  return value;
+}
+
+function hackSCSSMapValues(mapValue: string) {
+  let remaining = mapValue.substring(1, mapValue.length - 1);
+  const values = [];
+  while (remaining.length) {
+    const i = remaining.indexOf(": ");
+    if (i === -1) {
+      console.error(
+        "Unable to hack a css variable correctly since no valid key/value split was found."
+      );
+      console.error("Original Map Value: ", mapValue);
+      console.error("Remaining string: ", remaining);
+      break;
+    }
+
+    const name = remaining.substring(0, i);
+    remaining = remaining.substring(i + 2);
+
+    let j = remaining.indexOf(",");
+    if (j === -1) {
+      j = remaining.length;
+    }
+
+    let value = remaining.substring(0, j);
+    if (/rgba|cubic-b/.test(value)) {
+      j = remaining.indexOf(")") + 1;
+      value = remaining.substring(0, j);
+    }
+
+    remaining = remaining.substring(j + 1).trim();
+    values.push({ name, value: toBool(value) });
+  }
+
+  return values;
+}
+
 export function hackSCSSVariableValue(scssVariable: any, packageName: string) {
   const { name, value } = scssVariable.context;
   const prefix = `$${name}: `;
@@ -111,9 +154,14 @@ export function hackSCSSVariableValue(scssVariable: any, packageName: string) {
       false
     );
   } catch (error) {
+    let value = error.message.substring(prefix.length);
+    if (/^\(.*\)$/.test(value)) {
+      value = hackSCSSMapValues(value);
+    }
+
     return {
       name,
-      value: error.message.substring(prefix.length),
+      value: toBool(value),
     };
   }
 }

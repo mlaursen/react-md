@@ -7,6 +7,7 @@ import now from "performance-now";
 import prettyMS from "pretty-ms";
 import gzipSize from "gzip-size";
 import filesize from "filesize";
+import prettier from "prettier";
 
 import { packageJson, types, dist, src } from "./paths";
 
@@ -148,4 +149,11 @@ export async function printMinifiedSizes(
   }
 
   printSizes(minified, "", forceLog);
+}
+
+export async function format(code: string, filePath: string) {
+  const options = await prettier.resolveConfig(filePath);
+  // @ts-ignore
+  options.parser = options.parser || "babel";
+  return prettier.format(code, options);
 }

@@ -4,8 +4,15 @@ import { promisify } from "util";
 import nodeGlob from "glob";
 
 import { compileScss, postcss, hackSCSSVariableValue } from "./compileScss";
-import { dist, cssDist, src, stylesScss, scssVariables } from "./paths";
-import { copyFiles, getPackageName, list, log } from "./utils";
+import {
+  dist,
+  cssDist,
+  src,
+  stylesScss,
+  scssVariables,
+  projectRoot,
+} from "./paths";
+import { copyFiles, getPackageName, list, log, format } from "./utils";
 import { getPackageVariables } from "./sassdoc";
 
 const glob = promisify(nodeGlob);
@@ -67,11 +74,10 @@ async function compile(production: boolean) {
 }
 
 async function createScssVariables() {
-  const fileName = path.join(dist, scssVariables);
+  const fileName = path.join(src, scssVariables);
 
-  log("Creating a typescript file to be compiled that contains a list of");
   log(
-    "all the scss variables in this project along with their default values."
+    "Attempting to find all scss variables in the this project along with their default values."
   );
   log();
   const packageName = await getPackageName();
@@ -80,7 +86,23 @@ async function createScssVariables() {
     hackSCSSVariableValue(variable, packageName)
   );
 
-  const contents = `module.exports = ${JSON.stringify(variables)};`;
+  if (!variables.length) {
+    log("No variables found");
+    return;
+  }
+
+  log(
+    "Creating a typescript file to be compiled that contains a list of " +
+      "all the scss variables in this project along with their default values."
+  );
+  log();
+
+  const contents = await format(
+    `/** this is an auto-generated file from @react-md/dev-utils */
+export default ${JSON.stringify(variables)};
+`,
+    path.join(projectRoot, "packages", fileName)
+  );
   await fs.writeFile(fileName, contents);
   log(`Created ${fileName} with ${variables.length} variables defined.`);
   log(list(variables.map(({ name, value }) => `$${name}: ${value}`)));

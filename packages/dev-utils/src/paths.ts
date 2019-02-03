@@ -13,7 +13,7 @@ export const rootNodeModules = path.join(projectRoot, nodeModules);
 
 export const packageJson = "package.json";
 export const stylesScss = "styles.scss";
-export const scssVariables = "scssVariables.js";
+export const scssVariables = "scssVariables.ts";
 export const tsConfigCommonJS = "tsconfig.commonjs.json";
 export const tsConfigESModule = "tsconfig.esmodule.json";
 export const tsConfigRollup = "tsconfig.rollup.json";
