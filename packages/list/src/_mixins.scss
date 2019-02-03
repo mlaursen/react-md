@@ -1,0 +1,191 @@
+////
+/// @group list
+////
+
+@import '@react-md/avatar/dist/functions';
+@import '@react-md/divider/dist/mixins';
+@import '@react-md/icon/dist/variables';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/states/dist/mixins';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import 'variables';
+
+/// Creates the styles for one of the list's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-list-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-list-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-list-theme-values` map when `null`.
+@mixin rmd-list-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-list-theme-values, list);
+}
+
+/// Updates one of the list's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The list theme style type to update. This should be one
+///   of the `$rmd-list-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-list-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-list-theme-values, list);
+}
+
+/// A "general" use mixin that will remove the default browser styles for a list and apply the
+/// optionally provided margin and padding instead.
+///
+/// @param {Number | String} padding [0] - The amount of padding to apply.
+/// @param {Number | String} margin [0] - The amount of margin to apply.
+@mixin rmd-list-unstyled($padding: 0, $margin: 0) {
+  list-style-type: none;
+  margin: $margin;
+  padding: $padding;
+}
+
+@mixin rmd-list-dense-theme {
+  @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
+  @include rmd-list-theme-update-var(vertical-padding, rmd-list-theme-var(dense-vertical-padding));
+  @include rmd-list-theme-update-var(
+    horizontal-padding,
+    rmd-list-theme-var(dense-horizontal-padding)
+  );
+  @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
+}
+
+/// Creates the styles for a list in react-md.
+@mixin rmd-list {
+  .rmd-list {
+    @include rmd-typography(subtitle-1);
+    @include rmd-divider-theme-update-var(inset, rmd-list-theme-var(text-keyline));
+    @include rmd-list-unstyled(null);
+    @include rmd-list-theme(font-size);
+
+    line-height: $rmd-list-line-height;
+    padding: rmd-list-theme-var(vertical-padding) rmd-list-theme-var(horizontal-padding);
+    word-break: break-word;
+
+    &--horizontal {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    &--dense {
+      @include rmd-list-dense-theme;
+    }
+  }
+}
+
+@mixin rmd-list-item-base {
+  @include rmd-list-theme(min-height, item-height);
+
+  align-items: center;
+  display: flex;
+  padding: rmd-list-theme-var(item-vertical-padding) rmd-list-theme-var(item-horizontal-padding);
+}
+
+@mixin rmd-list-item-dense-theme {
+  @include rmd-list-theme-update-var(
+    item-medium-height,
+    rmd-list-theme-var(dense-item-medium-height)
+  );
+  @include rmd-list-theme-update-var(
+    item-large-height,
+    rmd-list-theme-var(dense-item-large-height)
+  );
+  @include rmd-list-theme-update-var(
+    item-extra-large-height,
+    rmd-list-theme-var(dense-item-extra-large-height)
+  );
+  @include rmd-list-theme-update-var(
+    item-three-line-height,
+    rmd-list-theme-var(dense-item-three-line-height)
+  );
+}
+
+@mixin rmd-list-item-icon-spacing($subtract) {
+  $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(item-horizontal-padding)};
+  @include rmd-icon-theme-update-var(text-spacing, calc(#{$to-keyline} - #{$subtract}));
+}
+
+@mixin rmd-list-item {
+  .rmd-list-item {
+    @include rmd-list-item-base;
+    @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
+
+    &--clickable {
+      @include rmd-states-surface;
+      @include rmd-states-color-pullution-content-overlay {
+        align-items: center;
+      }
+
+      position: relative;
+    }
+
+    &--medium {
+      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-medium-height));
+    }
+
+    &--large {
+      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-large-height));
+    }
+
+    &--extra-large {
+      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-extra-large-height));
+    }
+
+    &--three-line {
+      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-three-line-height));
+    }
+
+    &--dense {
+      @include rmd-list-item-dense-theme;
+    }
+
+    &__text {
+      @include rmd-typography-text-overflow-ellipsis;
+
+      display: block;
+      flex-grow: 1;
+
+      // sass-lint:disable-block mixins-before-declarations
+      @include rmd-utils-rtl {
+        margin-left: auto;
+      }
+
+      &--secondary {
+        @include rmd-theme(color, text-secondary-on-background);
+      }
+    }
+
+    &__avatar {
+      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
+    }
+  }
+}
+
+@mixin rmd-list-subheader {
+  .rmd-list-subheader {
+    @include rmd-typography(subtitle-2);
+    @include rmd-theme(color, text-secondary-on-background);
+    @include rmd-list-item-base;
+
+    &--inset {
+      @include rmd-list-theme(padding-left, text-keyline);
+      @include rmd-utils-rtl {
+        @include rmd-list-theme(padding-left, item-horizontal-padding);
+        @include rmd-list-theme(padding-left, text-keyline);
+      }
+    }
+  }
+}
+
+@mixin react-md-list {
+  @include rmd-theme-create-root-theme($rmd-list-theme-values, list);
+
+  @include rmd-list;
+  @include rmd-list-item;
+  @include rmd-list-subheader;
+}

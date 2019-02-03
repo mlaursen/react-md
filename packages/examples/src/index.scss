@@ -11,6 +11,17 @@ button {
   margin: 1rem;
 }
 
+@media (min-width: 1025px) {
+  body {
+    @include rmd-list-dense-theme;
+    @include rmd-list-item-dense-theme;
+    @include rmd-icon-dense-theme;
+
+    @include rmd-avatar-theme-update-var(font-size, rmd-icon-theme-var(dense-size));
+    @include rmd-avatar-theme-update-var(size, 2rem);
+  }
+}
+
 .flex-grid {
   display: flex;
   flex-wrap: wrap;

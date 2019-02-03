@@ -156,11 +156,13 @@
 
   @if $rmd-states-prevent-color-pollution {
     .rmd-states__content-mask {
+      display: inherit;
       visibility: hidden;
     }
 
     @include rmd-states-color-pullution-content-overlay {
       bottom: 0;
+      display: inherit;
       left: 0;
       padding: inherit;
       position: absolute;

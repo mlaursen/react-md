@@ -39,7 +39,7 @@
 
     border: 0;
     border-bottom-style: inset;
-    display: inline-block;
+    display: block;
     flex-shrink: 0;
     margin: rmd-divider-theme-var(spacing) auto;
 
@@ -51,6 +51,7 @@
 
       border-bottom-style: none;
       border-left-style: inset;
+      display: inline-block;
       margin: auto rmd-divider-theme-var(spacing);
     }
 

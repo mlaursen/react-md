@@ -128,6 +128,10 @@
     @include react-md-link;
   }
 
+  @if mixin-exists(react-md-list) {
+    @include react-md-list;
+  }
+
   @if mixin-exists(react-md-states) {
     @include react-md-states;
   }

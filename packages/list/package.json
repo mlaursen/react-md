@@ -1,0 +1,50 @@
+{
+  "name": "@react-md/list",
+  "version": "2.0.0-alpha.0",
+  "description": "This package is used to create lists with the material design specs.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean",
+    "test": "dev-utils test",
+    "prepublishOnly": "dev-utils prepublish"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "material design",
+    "react",
+    "list",
+    "list item",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/avatar": "^2.0.0-alpha.0",
+    "@react-md/divider": "^2.0.0-alpha.0",
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/states": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/typography": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0-alpha.0 || >= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  }
+}
