@@ -50,6 +50,7 @@ export interface IRipplesOptions<E extends HTMLElement = HTMLElement>
   disabled?: boolean;
   disableRipple?: boolean;
   disableProgrammaticRipple?: boolean;
+  disableSpacebarClick?: boolean;
   rippleClassName?: string;
   rippleContainerClassName?: string;
   rippleTimeout?: TransitionTimeout;

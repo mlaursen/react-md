@@ -38,18 +38,15 @@ export function useTouchDetection() {
     };
   }, []);
 
-  useEffect(
-    () => {
-      if (lastTouchTime !== 0) {
-        window.addEventListener("mousemove", resetTouchTime, true);
-      }
+  useEffect(() => {
+    if (lastTouchTime !== 0) {
+      window.addEventListener("mousemove", resetTouchTime, true);
+    }
 
-      return () => {
-        window.removeEventListener("mousemove", resetTouchTime, true);
-      };
-    },
-    [lastTouchTime]
-  );
+    return () => {
+      window.removeEventListener("mousemove", resetTouchTime, true);
+    };
+  }, [lastTouchTime]);
 
   return lastTouchTime !== 0;
 }
@@ -69,23 +66,20 @@ export function useTouchDetectionClassNameToggle(
 ) {
   const isTouch = useTouchDetection();
 
-  useEffect(
-    () => {
-      const html = document.querySelector("html") as HTMLElement;
-      if (!html) {
-        return;
-      }
+  useEffect(() => {
+    const html = document.querySelector("html") as HTMLElement;
+    if (!html) {
+      return;
+    }
 
-      if (isTouch) {
-        html.classList.add(className);
-      }
+    if (isTouch) {
+      html.classList.add(className);
+    }
 
-      return () => {
-        html.classList.remove(className);
-      };
-    },
-    [isTouch]
-  );
+    return () => {
+      html.classList.remove(className);
+    };
+  }, [isTouch]);
 }
 
 /**
@@ -96,6 +90,7 @@ export function useTouchDetectionClassNameToggle(
  */
 export function useRipplesState({
   disabled: propDisabled,
+  disableSpacebarClick,
   disableRipple,
   disableProgrammaticRipple,
   onKeyDown,
@@ -116,7 +111,7 @@ export function useRipplesState({
       onKeyDown(event);
     }
 
-    addRippleFromEvent(event, ripples, setRipples);
+    addRippleFromEvent(event, ripples, setRipples, disableSpacebarClick);
   }
 
   function handleKeyUp(event: React.KeyboardEvent<HTMLElement>) {
@@ -224,7 +219,8 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
   onTouchStart,
   onTouchMove,
   onTouchEnd,
-}: MergableRippleHandlers<E>) {
+  disableSpacebarClick = false,
+}: MergableRippleHandlers<E> & { disableSpacebarClick?: boolean }) {
   const [pressed, setPressed] = useState(false);
 
   function handleTouchStart(event: React.TouchEvent<E>) {
@@ -292,7 +288,11 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
       onKeyDown(event);
     }
 
-    if (!pressed && [" ", "Enter"].includes(event.key)) {
+    const { key } = event;
+    if (
+      !pressed &&
+      (key === "Enter" || (!disableSpacebarClick && key === " "))
+    ) {
       setPressed(true);
     }
   }

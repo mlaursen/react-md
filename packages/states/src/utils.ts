@@ -10,7 +10,10 @@ import {
  * This does some simple validation based on the provided event to ensure
  * that a ripple can actually be triggered from the current event.
  */
-export function isValidRippleTrigger(event: RippleableEvent) {
+export function isValidRippleTrigger(
+  event: RippleableEvent,
+  disableSpacebarClick: boolean = false
+) {
   switch (event.type) {
     case "mousedown":
       event = event as React.MouseEvent<HTMLElement>;
@@ -20,7 +23,9 @@ export function isValidRippleTrigger(event: RippleableEvent) {
       );
     case "keydown":
       event = event as React.KeyboardEvent<HTMLElement>;
-      return event.key === " " || event.key === "Enter";
+      return (
+        (!disableSpacebarClick && event.key === " ") || event.key === "Enter"
+      );
     case "click":
     case "touchstart":
       return true;
@@ -130,9 +135,10 @@ export function createRipple(event: RippleableEvent): IRipple {
 export function addRippleFromEvent(
   event: RippleableEvent,
   ripples: IRipple[],
-  setRipples: RippleSetter
+  setRipples: RippleSetter,
+  disableSpacebarClick: boolean = false
 ) {
-  if (!isValidRippleTrigger(event)) {
+  if (!isValidRippleTrigger(event, disableSpacebarClick)) {
     return;
   }
 
