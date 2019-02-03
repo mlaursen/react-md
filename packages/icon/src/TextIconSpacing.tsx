@@ -12,7 +12,8 @@ import cn from "classnames";
 export interface ITextIconSpacingProps {
   /**
    * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop
-   * is enabled or the icon is not a valid React Element.
+   * is enabled or the icon is not a valid React Element. If the `forceIconWrap` prop is
+   * not enabled, it will be cloned into the icon instead.
    */
   className?: string;
 
@@ -87,6 +88,7 @@ const TextIconSpacing: FunctionComponent<ITextIconSpacingProps> = props => {
     const icon = Children.only(propIcon);
     iconEl = cloneElement(icon, {
       className: cn(
+        className,
         {
           [beforeClassName]: !iconAfter,
           [afterClassName]: iconAfter,
