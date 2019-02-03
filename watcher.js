@@ -8,10 +8,19 @@ let startLoggingScss = false;
 let startLoggingDefs = false;
 
 function copyFile(filePath, destPath, log) {
+  const destWithSep = `${path.sep}${destPath}`;
   const dest = filePath.replace(
     `${path.sep}src${path.sep}`,
-    `${path.sep}${destPath}${path.sep}`
+    `${destWithSep}${path.sep}`
   );
+  const destFolderPath = dest.substring(
+    0,
+    dest.indexOf(destWithSep) + destWithSep.length
+  );
+
+  if (!fs.existsSync(destFolderPath)) {
+    fs.mkdirSync(destFolderPath);
+  }
 
   if (log) {
     console.log(`${filePath} -> ${dest}`);
@@ -25,6 +34,7 @@ const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 const isNotLazy = process.argv.includes('--no-lazy');
 
 const watchedProjects = new Set();
+const processes = [];
 function startTsWatcher(filePath) {
   const [packages, project] = filePath.split(path.sep);
   if (watchedProjects.has(project)) {
@@ -36,11 +46,11 @@ function startTsWatcher(filePath) {
   const args = ['-p', tsconfig, '-w'];
 
   console.log(`Staring new tsc watcher in ${project}...`);
-  spawn(tsc, args, { stdio: 'inherit' });
+  processes.push(spawn(tsc, args, { stdio: 'inherit' }));
   if (process.argv.includes('--cjs')) {
     const cjsArgs = args.slice();
     cjsArgs[1] = tsconfig.replace('esmodule', 'commonjs');
-    spawn(tsc, cjsArgs, { stdio: 'inherit' });
+    processes.push(spawn(tsc, cjsArgs, { stdio: 'inherit' }));
   }
 
   watchedProjects.add(project);
@@ -79,3 +89,10 @@ chokidar
   .on('ready', () => {
     console.log('Watching for typescript changes...');
   });
+
+process.on('exit', () => {
+  processes.forEach(proc => {
+    console.log('KILLING');
+    proc.kill('SIGINT');
+  });
+});

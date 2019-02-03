@@ -28,6 +28,7 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-divider-theme-values, divider);
 }
 
+/// Creates all the styles for the divider package as well as the root css variable theme.
 @mixin react-md-divider {
   @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);
 
@@ -36,6 +37,8 @@
     @include rmd-divider-theme(border-width, size);
     @include rmd-divider-theme(width, max-size);
 
+    border: 0;
+    border-bottom-style: inset;
     display: inline-block;
     flex-shrink: 0;
     margin: rmd-divider-theme-var(spacing) auto;
@@ -46,6 +49,7 @@
       @include rmd-divider-theme(height, max-size);
       @include rmd-divider-theme(width, size);
 
+      border-bottom-style: none;
       border-left-style: inset;
       margin: auto rmd-divider-theme-var(spacing);
     }

@@ -65,8 +65,7 @@
   }
 }
 
-/// Creates all the styles for the avatar package. This will create the root css variable
-/// theme as well
+/// Creates all the styles for the avatar package as well as the root css variable theme.
 @mixin react-md-avatar {
   @include rmd-theme-create-root-theme($rmd-avatar-theme-values, avatar);
 
