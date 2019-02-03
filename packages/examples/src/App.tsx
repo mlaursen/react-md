@@ -4,11 +4,13 @@ import { KeyboardTracker } from "@react-md/wia-aria";
 
 import MenuDemo from "./MenuDemo";
 import AppSize from "./AppSize";
+import AvatarDemo from "./AvatarDemo";
 
 const App: FunctionComponent = () => (
   <StatesConfig preventColorPollution>
     <KeyboardTracker>
       <AppSize />
+      <AvatarDemo />
       <MenuDemo />
     </KeyboardTracker>
   </StatesConfig>
