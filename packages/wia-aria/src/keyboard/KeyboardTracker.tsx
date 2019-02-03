@@ -110,6 +110,7 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
         return;
       } else if (!target.id) {
         if (
+          target.tagName !== "A" &&
           !disableUntrackableWarning &&
           process.env.NODE_ENV !== "production" &&
           !DEBUG_SET.has(target)
@@ -139,16 +140,13 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
     { shouldUpdate: [focusedId] }
   );
 
-  useEffect(
-    () => {
-      if (!onFocusChange) {
-        return;
-      }
+  useEffect(() => {
+    if (!onFocusChange) {
+      return;
+    }
 
-      onFocusChange(focusedId);
-    },
-    [onFocusChange, focusedId]
-  );
+    onFocusChange(focusedId);
+  }, [onFocusChange, focusedId]);
 
   return { focusedId, setFocusedId };
 }

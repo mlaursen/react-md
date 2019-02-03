@@ -46,7 +46,9 @@ describe("Button", () => {
         )
       )
     ).forEach(themeProps => {
-      expect(mount(<Button {...themeProps} />).render()).toMatchSnapshot();
+      expect(
+        mount(<Button {...themeProps} id="button-example" />).render()
+      ).toMatchSnapshot();
     });
   });
 });

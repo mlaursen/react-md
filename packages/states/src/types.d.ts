@@ -10,8 +10,8 @@ import {
   CSSTransitionClassNames,
 } from "@react-md/transition";
 
-export type RippleTrigger = "mouse" | "touch" | "keyboard" | "programmatic";
-export type RippleEvent =
+export type RippleEventType = "mouse" | "touch" | "keyboard" | "programmatic";
+export type RippleableEvent =
   | React.KeyboardEvent<HTMLElement>
   | React.MouseEvent<HTMLElement>
   | React.TouchEvent<HTMLElement>;
@@ -24,16 +24,14 @@ export interface IRipple {
     height: number;
     width: number;
   };
-  type: RippleTrigger;
+  type: RippleEventType;
   holding: boolean;
   exiting: boolean;
 }
 
 export type RippleSetter = Dispatch<SetStateAction<IRipple[]>>;
 
-export type MergableRippleHandlers<
-  E extends HTMLElement = HTMLEmbedElement
-> = Pick<
+export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   HTMLAttributes<E>,
   | "onKeyDown"
   | "onKeyUp"

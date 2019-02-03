@@ -115,8 +115,9 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-const ButtonWithStates = withStates(Button);
+const ButtonWithStates = withStates<IButtonProps, HTMLButtonElement>(Button);
 
-export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
-  <ButtonWithStates {...props} forwardedRef={ref} />
-));
+export default forwardRef<
+  HTMLButtonElement,
+  IButtonProps & IWithStatesConfig<HTMLButtonElement>
+>((props, ref) => <ButtonWithStates {...props} forwardedRef={ref} />);

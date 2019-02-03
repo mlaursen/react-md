@@ -160,12 +160,12 @@
     }
 
     @include rmd-states-color-pullution-content-overlay {
-      height: inherit;
+      bottom: 0;
       left: 0;
       padding: inherit;
       position: absolute;
+      right: 0;
       top: 0;
-      width: inherit;
       z-index: 1;
     }
   }

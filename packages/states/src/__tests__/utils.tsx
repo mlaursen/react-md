@@ -13,7 +13,7 @@ import {
   cancelRipplesByType,
 } from "../utils";
 import { getRippleRadius as unmockedRippleRadius } from "../getRippleRadius";
-import { RippleEvent, IRipple } from "../types";
+import { RippleableEvent, IRipple } from "../types";
 
 type FakeMouseEvent = React.MouseEvent<HTMLElement>;
 type FakeTouchEvent = React.TouchEvent<HTMLElement>;
@@ -65,7 +65,7 @@ describe("utils", () => {
       ];
 
       types.forEach(type => {
-        expect(isValidRippleTrigger({ type } as RippleEvent)).toBe(false);
+        expect(isValidRippleTrigger({ type } as RippleableEvent)).toBe(false);
       });
     });
 
@@ -230,7 +230,7 @@ describe("utils", () => {
 
   describe("createRipple", () => {
     let result: IRipple = TEMP_RIPPLE;
-    const setResult = (event: RippleEvent) => {
+    const setResult = (event: RippleableEvent) => {
       result = createRipple(event);
     };
 
@@ -452,7 +452,7 @@ describe("utils", () => {
     let ripples: IRipple[] = [];
     let root: ReactWrapper<any, any, any>;
     const setRipples = jest.fn();
-    const handler = (event: RippleEvent) =>
+    const handler = (event: RippleableEvent) =>
       addRippleFromEvent(event, ripples, setRipples);
 
     beforeEach(() => {
@@ -553,7 +553,7 @@ describe("utils", () => {
     let ripples: IRipple[] = [];
     let root: ReactWrapper<any, any, any>;
     const setRipples = jest.fn();
-    const handler = (event: RippleEvent) =>
+    const handler = (event: RippleableEvent) =>
       disableRippleHolding(event, ripples, setRipples);
 
     beforeEach(() => {

@@ -1,11 +1,16 @@
 import { getRippleRadius } from "./getRippleRadius";
-import { IRipple, RippleTrigger, RippleEvent, RippleSetter } from "./types";
+import {
+  IRipple,
+  RippleEventType,
+  RippleableEvent,
+  RippleSetter,
+} from "./types";
 
 /**
  * This does some simple validation based on the provided event to ensure
  * that a ripple can actually be triggered from the current event.
  */
-export function isValidRippleTrigger(event: RippleEvent) {
+export function isValidRippleTrigger(event: RippleableEvent) {
   switch (event.type) {
     case "mousedown":
       event = event as React.MouseEvent<HTMLElement>;
@@ -29,7 +34,7 @@ export function isValidRippleTrigger(event: RippleEvent) {
  * event type.
  */
 export function getRippleTriggerType(
-  triggerOrEvent: RippleTrigger | RippleEvent
+  triggerOrEvent: RippleEventType | RippleableEvent
 ) {
   if (typeof triggerOrEvent === "string") {
     return triggerOrEvent;
@@ -57,7 +62,7 @@ export function getRippleTriggerType(
  * the ripple will be positioned where the user "touched"/"interacted" with the element within
  * the page. Otherwise, the ripple will be positioned in the center of the element.
  */
-export function createRipple(event: RippleEvent): IRipple {
+export function createRipple(event: RippleableEvent): IRipple {
   const element = event.currentTarget;
   const { offsetWidth, offsetHeight } = element;
   const type = getRippleTriggerType(event);
@@ -123,7 +128,7 @@ export function createRipple(event: RippleEvent): IRipple {
  * just clear them all up to be safe.
  */
 export function addRippleFromEvent(
-  event: RippleEvent,
+  event: RippleableEvent,
   ripples: IRipple[],
   setRipples: RippleSetter
 ) {
@@ -146,7 +151,7 @@ export function addRippleFromEvent(
  * 300ms, it will also trigger the exit animation.
  */
 export function disableRippleHolding(
-  event: RippleEvent,
+  event: RippleableEvent,
   ripples: IRipple[],
   setRipples: RippleSetter
 ) {
@@ -203,7 +208,7 @@ export function triggerRippleExitAnimation(
  * the mouse is no longer within the element.
  */
 export function triggerRippleExitAnimations(
-  typeOrEvent: RippleTrigger | RippleEvent,
+  typeOrEvent: RippleEventType | RippleableEvent,
   setRipples: RippleSetter
 ) {
   const type = getRippleTriggerType(typeOrEvent);
@@ -243,7 +248,7 @@ export function removeRippleByStartTime(
  * while pressing an "interactable" element.
  */
 export function cancelRipplesByType(
-  typeOrEvent: RippleTrigger | RippleEvent,
+  typeOrEvent: RippleEventType | RippleableEvent,
   setRipples: RippleSetter
 ) {
   const type = getRippleTriggerType(typeOrEvent);
