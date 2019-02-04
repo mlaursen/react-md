@@ -9,7 +9,7 @@ import gzipSize from "gzip-size";
 import filesize from "filesize";
 import prettier from "prettier";
 
-import { packageJson, types, dist, src } from "./paths";
+import { packageJson, types, dist, src, es, lib } from "./paths";
 
 export const glob = promisify(nodeGlob);
 
@@ -59,31 +59,44 @@ export async function getPackageName(prefixed: boolean = false) {
   return prefixed ? name : name.replace(/.+\//, "");
 }
 
-export type TsConfigType = "commonjs" | "module" | "test";
+export type TsConfigType = "commonjs" | "module" | "test" | "variables";
 
 export function createTsConfig(tsConfigType: TsConfigType) {
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isTest = tsConfigType === "test";
+  const isVariables = tsConfigType === "variables";
 
   let outDir: undefined | string;
   if (isESModule) {
-    outDir = "./es";
+    outDir = `./${es}`;
   } else if (isCommonJS) {
-    outDir = "./lib";
+    outDir = `./${lib}`;
+  } else if (isVariables) {
+    outDir = `./${dist}`;
+  }
+
+  let extendsPrefix = "base";
+  if (isVariables) {
+    extendsPrefix = "commonjs";
+  } else if (!isESModule) {
+    extendsPrefix = tsConfigType;
   }
 
   return {
-    extends: `../../tsconfig.${isESModule ? "base" : tsConfigType}.json`,
+    extends: `../../tsconfig.${extendsPrefix}.json`,
     compilerOptions: {
       outDir,
       rootDir: src,
-      declaration: isESModule,
+      declaration: isESModule || isVariables,
       declarationDir: isESModule ? types : undefined,
       target: isESModule ? undefined : "es5",
     },
-    include: [src],
-    exclude: isTest ? undefined : ["**/__tests__/*"],
+    include: [isVariables ? path.join(src, "scssVariables.ts") : src],
+    exclude: [
+      !isTest && "**/__tests__/*",
+      !isVariables && !isTest && "**/scssVariables.ts",
+    ].filter(Boolean),
   };
 }
 

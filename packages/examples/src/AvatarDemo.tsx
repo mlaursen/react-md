@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Avatar, AvatarScssVariables } from "@react-md/avatar";
+import { Avatar } from "@react-md/avatar";
+import AvatarScssVariables from "@react-md/avatar/dist/scssVariables";
 import { TextContainer, Text } from "@react-md/typography";
 import { HomeSVGIcon } from "@react-md/material-icons";
 import { FontIcon } from "@react-md/icon";

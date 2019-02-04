@@ -1,20 +1,16 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./bin",
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ]
+    "outDir": "./es",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationDir": "types"
   },
   "include": [
-    "scripts"
+    "src"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
   ]
 }

@@ -8,9 +8,9 @@
     "test": "dev-utils test",
     "prepublishOnly": "dev-utils prepublish"
   },
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
-  "types": "./types/index.d.ts",
+  "main": "./lib/scssVariables.js",
+  "module": "./es/scssVariables.js",
+  "types": "./types/scssVariables.d.ts",
   "files": [
     "es/*",
     "lib/*",

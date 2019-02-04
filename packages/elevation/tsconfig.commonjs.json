@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "types",
     "target": "es5"
   },
   "include": [

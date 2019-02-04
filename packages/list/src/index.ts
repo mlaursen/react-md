@@ -12,5 +12,3 @@ export * from "./ListItemLink";
 
 export { default as ListSubheader } from "./ListSubheader";
 export * from "./ListSubheader";
-
-export { default as ListScssVariables } from "./scssVariables";

@@ -1,13 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.commonjs.json",
   "compilerOptions": {
-    "outDir": "./es",
+    "outDir": "./dist",
     "rootDir": "src",
     "declaration": true,
-    "declarationDir": "types"
+    "target": "es5"
   },
   "include": [
-    "src"
+    "src/scssVariables.ts"
   ],
   "exclude": [
     "**/__tests__/*"

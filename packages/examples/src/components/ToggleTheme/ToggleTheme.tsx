@@ -1,10 +1,11 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { AvatarScssVariables } from "@react-md/avatar";
-import { Button, ButtonScssVariables } from "@react-md/button";
+import { Button } from "@react-md/button";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
-import { DividerScssVariables } from "@react-md/divider";
-import { IconScssVariables } from "@react-md/icon";
-import { ThemeScssVariables } from "@react-md/theme";
+import AvatarScssVariables from "@react-md/avatar/dist/scssVariables";
+import ButtonScssVariables from "@react-md/button/dist/scssVariables";
+import DividerScssVariables from "@react-md/divider/dist/scssVariables";
+import IconScssVariables from "@react-md/icon/dist/scssVariables";
+import ThemeScssVariables from "@react-md/theme/dist/scssVariables";
 
 import styles from "./styles.module.scss";
 import { upperFirst } from "lodash";

@@ -8,5 +8,3 @@ export { default as FixColorPollution } from "./FixColorPollution";
 export * from "./FixColorPollution";
 
 export * from "./types.d";
-
-export { default as StatesScssVariables } from "./scssVariables";

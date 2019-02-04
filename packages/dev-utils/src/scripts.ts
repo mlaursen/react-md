@@ -14,6 +14,7 @@ import {
   tempRollupIndex,
   rootNodeModules,
   umdDist,
+  tsConfigVariables,
 } from "./paths";
 import {
   glob,
@@ -34,6 +35,19 @@ export default async function scripts(buildUMD: boolean) {
     return;
   }
 
+  if (tsFiles.find(name => name.includes("scssVariables"))) {
+    await tscVariables();
+  }
+
+  if (tsFiles.length === 1 && tsFiles[0].includes("scssVariables")) {
+    log(
+      "Skipping typescript compilation since this package only contains a " +
+        "`scssVariables.ts` file."
+    );
+    log();
+    return;
+  }
+
   log("Found typescript files:");
   log(list(tsFiles));
   log();
@@ -44,6 +58,18 @@ export default async function scripts(buildUMD: boolean) {
   if (buildUMD) {
     await umd();
   }
+}
+
+async function tscVariables() {
+  const tsConfig = tsConfigVariables;
+  await fs.writeJson(tsConfig, createTsConfig("variables"), { spaces: 2 });
+
+  log("Compiling scssVariables...");
+  exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
+  // const generated = await glob(`${commonjs ? lib : es}/**/*`);
+  // log("Created:");
+  // log(list(generated));
+  // log();
 }
 
 async function tsc(commonjs: boolean) {
@@ -57,7 +83,7 @@ async function tsc(commonjs: boolean) {
   );
 
   log(
-    `Compiling typescript files for ${commonjs ? "Common jS" : "ES Modules"}...`
+    `Compiling typescript files for ${commonjs ? "Common JS" : "ES Modules"}...`
   );
   exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
   const generated = await glob(`${commonjs ? lib : es}/**/*`);
