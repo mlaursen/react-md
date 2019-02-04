@@ -34,5 +34,5 @@ class name.
 
 #### `md-list--drawer`
 This is a simple utility class that gets applied automatically to the nav items list in the drawer. It basically
-sets the height of the list to be `height: calc(100vh - #{$current-toolbar-media-height});`. This will allow the
+sets the height of the list to be `height: calc(100% - #{$current-toolbar-media-height});`. This will allow the
 list to be scrollable.
