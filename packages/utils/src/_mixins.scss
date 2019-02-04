@@ -140,6 +140,10 @@
     @include react-md-theme;
   }
 
+  @if mixin-exists(react-md-tooltip) {
+    @include react-md-tooltip;
+  }
+
   @if mixin-exists(react-md-transition) {
     @include react-md-transition;
   }

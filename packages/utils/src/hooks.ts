@@ -4,6 +4,7 @@ import { delegateEvent, IDelegatedEventHandler } from "./delegateEvent";
 import { Maybe } from "./types.d";
 
 export interface IEventListenerOptions extends AddEventListenerOptions {
+  enabled?: boolean;
   delegate?: boolean;
   throttle?: boolean;
   shouldUpdate?: any[];
@@ -21,27 +22,34 @@ export function useEventListener<K extends keyof WindowEventMap>(
   handler: (event: WindowEventMap[K]) => void,
   options: IEventListenerOptions = {}
 ) {
-  const { shouldUpdate = [], throttle, delegate, ...opts } = options;
-  return useEffect(
-    () => {
-      let eventHandler: IDelegatedEventHandler;
-      if (throttle || delegate) {
-        eventHandler = delegateEvent(type, window, throttle, opts);
-        eventHandler.add(handler);
-      } else {
-        window.addEventListener(type, handler, opts);
-      }
+  const {
+    shouldUpdate = [],
+    throttle,
+    delegate,
+    enabled = true,
+    ...opts
+  } = options;
+  return useEffect(() => {
+    if (!enabled) {
+      return;
+    }
 
-      return () => {
-        if (eventHandler) {
-          eventHandler.remove(handler);
-        } else {
-          window.removeEventListener(type, handler, opts);
-        }
-      };
-    },
-    [throttle, ...shouldUpdate]
-  );
+    let eventHandler: IDelegatedEventHandler;
+    if (throttle || delegate) {
+      eventHandler = delegateEvent(type, window, throttle, opts);
+      eventHandler.add(handler);
+    } else {
+      window.addEventListener(type, handler, opts);
+    }
+
+    return () => {
+      if (eventHandler) {
+        eventHandler.remove(handler);
+      } else {
+        window.removeEventListener(type, handler, opts);
+      }
+    };
+  }, [throttle, enabled, ...shouldUpdate]);
 }
 
 /**

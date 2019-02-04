@@ -13,4 +13,7 @@ export * from "./MenuItemCheckbox";
 export { default as MenuItemRadio } from "./MenuItemRadio";
 export * from "./MenuItemRadio";
 
+export { default as MenuItemFileInput } from "./MenuItemFileInput";
+export * from "./MenuItemFileInput";
+
 export * from "./types.d";

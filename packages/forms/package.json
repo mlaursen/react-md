@@ -1,7 +1,7 @@
 {
-  "name": "react-md",
+  "name": "@react-md/forms",
   "version": "2.0.0-alpha.0",
-  "description": "This is the full react-md library bundled together for convenience.",
+  "description": "This package is used to create form stuff.",
   "scripts": {
     "build": "dev-utils build",
     "clean": "dev-utils clean",
@@ -20,31 +20,32 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
   "keywords": [
+    "accessibility",
+    "a11y",
     "react-md",
     "material design",
     "react",
+    "form",
+    "checkbox",
+    "radio",
+    "switch",
     "component",
     "components"
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.0.0-alpha.0",
-    "@react-md/elevation": "^2.0.0-alpha.0",
     "@react-md/icon": "^2.0.0-alpha.0",
-    "@react-md/link": "^2.0.0-alpha.0",
-    "@react-md/material-icons": "^2.0.0-alpha.0",
-    "@react-md/overlay": "^2.0.0-alpha.0",
-    "@react-md/portal": "^2.0.0-alpha.0",
+    "@react-md/states": "^2.0.0-alpha.0",
     "@react-md/theme": "^2.0.0-alpha.0",
-    "@react-md/tooltip": "^2.0.0-alpha.0",
     "@react-md/transition": "^2.0.0-alpha.0",
     "@react-md/typography": "^2.0.0-alpha.0",
-    "@react-md/utils": "^2.0.0-alpha.0"
-  },
-  "devDependencies": {
-    "@react-md/dev-utils": "^2.0.0-alpha.0"
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.0-alpha.0 || >= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
   }
 }
