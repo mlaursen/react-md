@@ -7,10 +7,6 @@ code {
   font-family: 'Source Code Pro', monospace;
 }
 
-button {
-  margin: 1rem;
-}
-
 @media (min-width: 1025px) {
   body {
     @include rmd-list-dense-theme;
@@ -28,5 +24,12 @@ button {
 
   &--spaced > * {
     margin: 1rem;
+  }
+}
+
+.nav-item {
+  &--active {
+    @include rmd-theme(color, primary);
+    @include rmd-icon-theme-update-var(color, currentColor);
   }
 }

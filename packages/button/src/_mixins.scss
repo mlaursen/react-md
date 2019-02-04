@@ -112,14 +112,6 @@
     }
     @include rmd-button-base;
     @include rmd-states-surface;
-    @include rmd-states-color-pullution-content-overlay {
-      align-items: center;
-      display: inline-flex;
-
-      .rmd-button--icon & {
-        justify-content: center;
-      }
-    }
 
     &--text {
       @include rmd-button-text;

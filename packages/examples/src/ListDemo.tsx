@@ -1,5 +1,12 @@
 import React, { FunctionComponent } from "react";
-import { List, SimpleListItem, ListItem, ListSubheader } from "@react-md/list";
+import { NavLink } from "react-router-dom";
+import {
+  List,
+  SimpleListItem,
+  ListItem,
+  ListSubheader,
+  ListItemLink,
+} from "@react-md/list";
 import { TextContainer, Text } from "@react-md/typography";
 import {
   InboxSVGIcon,
@@ -8,6 +15,7 @@ import {
   DraftsSVGIcon,
   FolderSVGIcon,
   InfoSVGIcon,
+  HomeSVGIcon,
 } from "@react-md/material-icons";
 import { Avatar } from "@react-md/avatar";
 import { Divider } from "@react-md/divider";
@@ -66,6 +74,27 @@ const ListDemo: FunctionComponent = () => (
         primaryText="Recent"
         secondaryText="Jan 9, 2018"
       />
+      <ListItemLink
+        id="link-item"
+        to="/"
+        component={NavLink}
+        exact
+        leftIcon={<HomeSVGIcon />}
+        className="nav-item"
+        activeClassName="nav-item--active"
+      >
+        Home
+      </ListItemLink>
+      <ListItemLink
+        id="link-item"
+        to="/folders"
+        component={NavLink}
+        leftIcon={<FolderSVGIcon />}
+        className="nav-item"
+        activeClassName="nav-item--active"
+      >
+        Folders
+      </ListItemLink>
     </List>
   </TextContainer>
 );

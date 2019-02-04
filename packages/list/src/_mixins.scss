@@ -124,6 +124,11 @@
       position: relative;
     }
 
+    &--link {
+      color: inherit;
+      text-decoration: none;
+    }
+
     &--medium {
       @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-medium-height));
     }

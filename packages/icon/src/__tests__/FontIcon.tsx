@@ -99,14 +99,14 @@ describe("FontIcon", () => {
 
     expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
     expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font-dense")).toBe(false);
+    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(false);
     expect(icon.find("i").hasClass("material-icons")).toBe(true);
     expect(icon.render()).toMatchSnapshot();
 
     icon.setProps({ className: "test-thing", dense: true });
     expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
     expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font-dense")).toBe(true);
+    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(true);
     expect(icon.find("i").hasClass("material-icons")).toBe(true);
     expect(icon.find("i").hasClass("test-thing")).toBe(true);
     expect(icon.render()).toMatchSnapshot();
@@ -114,7 +114,7 @@ describe("FontIcon", () => {
     icon.setProps({ iconClassName: "fa fa-github" });
     expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
     expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font-dense")).toBe(true);
+    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(true);
     expect(icon.find("i").hasClass("material-icons")).toBe(false);
     expect(icon.find("i").hasClass("test-thing")).toBe(true);
     expect(icon.find("i").hasClass("fa")).toBe(true);

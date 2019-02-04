@@ -161,8 +161,10 @@
     }
 
     @include rmd-states-color-pullution-content-overlay {
+      align-items: inherit;
       bottom: 0;
       display: inherit;
+      justify-content: inherit;
       left: 0;
       padding: inherit;
       position: absolute;

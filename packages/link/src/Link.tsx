@@ -115,7 +115,11 @@ const Link: FunctionComponent<
   );
 
   let rel = propRel;
-  if (typeof rel !== "string" && target === "_blank") {
+  if (
+    preventMaliciousTarget &&
+    typeof rel !== "string" &&
+    target === "_blank"
+  ) {
     rel = "noopener noreferrer";
   }
 
