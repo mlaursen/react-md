@@ -16,5 +16,10 @@
     "object-shorthand-properties-first": false,
     "no-else-after-return": false,
     "prefer-array-literal": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/scssVariables.ts"
+    ]
   }
 }
