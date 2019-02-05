@@ -63,6 +63,8 @@ $rmd-states-pressed-opacity: 0.32 !default;
 /// @type Number
 $rmd-states-selected-opacity: 0.16 !default;
 
+/// The theme values for the states
+/// @type Map
 $rmd-states-theme-values: (
   background-color: $rmd-states-background-color,
   hover-opacity: $rmd-states-hover-opacity,
