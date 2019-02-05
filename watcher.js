@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
 
 const IGNORED = /(\_\_tests\_\_|dev-utils|examples)/;
 let startLoggingScss = false;
@@ -32,34 +32,79 @@ function copyFile(filePath, destPath, log) {
 const copyScssFile = f => copyFile(f, 'dist', startLoggingScss);
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 const isNotLazy = process.argv.includes('--no-lazy');
+const isVariablesWatched = process.argv.includes('--watch-variables');
 
 const watchedProjects = new Set();
 const processes = [];
-function startTsWatcher(filePath) {
+
+function tscWatcher(filePath, extension = '') {
   const [packages, project] = filePath.split(path.sep);
+  const tsc = path.join(
+    process.cwd(),
+    'node_modules',
+    'typescript',
+    'bin',
+    'tsc'
+  );
+  const tsConfig = path.join(packages, project, `tsconfig${extension}.json`);
+  const args = ['-p', tsConfig, '-w'];
+
+  processes.push(spawn(tsc, args, { stdio: 'inherit' }));
+}
+
+function startTsWatcher(filePath) {
+  const [, project] = filePath.split(path.sep);
   if (watchedProjects.has(project)) {
     return;
   }
 
-  const tsc = './node_modules/typescript/bin/tsc';
-  const tsconfig = path.join(packages, project, 'tsconfig.esmodule.json');
-  const args = ['-p', tsconfig, '-w'];
-
   console.log(`Staring new tsc watcher in ${project}...`);
-  processes.push(spawn(tsc, args, { stdio: 'inherit' }));
+  tscWatcher(filePath);
   if (process.argv.includes('--cjs')) {
-    const cjsArgs = args.slice();
-    cjsArgs[1] = tsconfig.replace('esmodule', 'commonjs');
-    processes.push(spawn(tsc, cjsArgs, { stdio: 'inherit' }));
+    tscWatcher(filePath, '.commonjs');
   }
 
   watchedProjects.add(project);
 }
 
+function startVariablesWatcher(filePath) {
+  const [, project] = filePath.split(path.sep);
+  const name = `${project}-variables`;
+  const args = [
+    'run',
+    'build',
+    '--scope',
+    `@react-md/${project}`,
+    '--',
+    '--variables-only',
+  ];
+
+  spawn('lerna', args, { stdio: 'inherit' });
+  if (watchedProjects.has(name)) {
+    return;
+  }
+
+  tscWatcher(filePath, '.variables');
+}
+
 chokidar
   .watch('packages/*/src/**/*.scss', { ignored: IGNORED })
-  .on('add', copyScssFile)
-  .on('change', copyScssFile)
+  .on('add', filePath => {
+    copyScssFile(filePath);
+    if (
+      isVariablesWatched &&
+      isNotLazy &&
+      filePath.includes('variables.scss')
+    ) {
+      startVariablesWatcher(filePath);
+    }
+  })
+  .on('change', filePath => {
+    copyScssFile(filePath);
+    if (isVariablesWatched && filePath.includes('variables.scss')) {
+      startVariablesWatcher(filePath);
+    }
+  })
   .on('ready', () => {
     console.log('Watching for scss file changes...');
     startLoggingScss = true;
@@ -78,7 +123,7 @@ chokidar
 
 chokidar
   .watch(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
-    ignored: new RegExp(IGNORED.source + '|.d.ts'),
+    ignored: new RegExp(IGNORED.source + '|.d.ts|scssVariables.ts'),
   })
   .on('add', filePath => {
     if (isNotLazy) {

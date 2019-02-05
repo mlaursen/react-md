@@ -32,6 +32,10 @@ commander
   )
   .option("--no-umd", "Excludes the UMD build for this project")
   .option(
+    "--variables-only",
+    "Only creates updates the `src/scssVariables.ts` file"
+  )
+  .option(
     "--gzip-size",
     "Always logs the gzip size instead of requiring the verbose flag to be enabled."
   )

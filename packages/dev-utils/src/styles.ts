@@ -86,7 +86,7 @@ function createVariableMap(variables: IHackedVariableValue[]) {
   }, {});
 }
 
-async function createScssVariables() {
+export async function createScssVariables() {
   const fileName = path.join(src, scssVariables);
 
   log(
