@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useRef } from "react";
 import { Button } from "@react-md/button";
 import { Sheet, SheetPosition } from "@react-md/sheet";
 import { TextContainer, Text } from "@react-md/typography";
@@ -12,6 +12,8 @@ import {
 } from "@react-md/material-icons";
 import { List, ListItem } from "@react-md/list";
 import { Divider } from "@react-md/divider";
+import { Maybe } from "@react-md/utils";
+import { useFocusTrap, useScrollLock } from "@react-md/wia-aria";
 
 const SheetDemo: FunctionComponent = () => {
   const [visible, setVisible] = useState(false);
@@ -24,6 +26,10 @@ const SheetDemo: FunctionComponent = () => {
 
   const hide = () => setVisible(false);
   const toggle = () => setVisible(prevVisible => !prevVisible);
+
+  const [sheetEl, setSheetEl] = useState<Maybe<HTMLElement>>(null);
+  useFocusTrap({ container: sheetEl });
+  useScrollLock(visible);
 
   return (
     <TextContainer>
@@ -66,6 +72,7 @@ const SheetDemo: FunctionComponent = () => {
           visible={visible}
           position={position}
           onRequestClose={hide}
+          ref={setSheetEl}
           portal
           role="menu"
         >
@@ -80,6 +87,7 @@ const SheetDemo: FunctionComponent = () => {
               id="menu-item-1"
               role="menuitem"
               leftIcon={<ShareSVGIcon />}
+              disabled
             >
               Share
             </ListItem>
