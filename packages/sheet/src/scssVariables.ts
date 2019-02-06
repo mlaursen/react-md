@@ -1,2 +1,32 @@
 /** this is an auto-generated file from @react-md/dev-utils */
-export default { "rmd-sheet-theme-values": "" };
+export default {
+  "rmd-sheet-elevation": 2,
+  "rmd-sheet-fixed-elevation": 16,
+  "rmd-sheet-z-index": 17,
+  "rmd-sheet-enter-duration": "0.2s",
+  "rmd-sheet-leave-duration": "0.15s",
+  "rmd-sheet-touch-margin": "3.5rem",
+  "rmd-sheet-small-width": "calc(100vw - 3.5rem)",
+  "rmd-sheet-small-max-width": "20rem",
+  "rmd-sheet-large-width": "16rem",
+  "rmd-sheet-large-max-width": "25rem",
+  "rmd-sheet-max-height": "100%",
+  "rmd-sheet-touchable-max-height": "calc(100% - 3.5rem)",
+  "rmd-sheet-recommended-min-height": "3.5rem",
+  "rmd-sheet-recommended-max-height": "50%",
+  "rmd-sheet-positions": "top right bottom left",
+  "rmd-sheet-enabled-positions": "top right bottom left",
+  "rmd-sheet-theme-values": {
+    "background-color": "var(--rmd-theme-surface, #fff)",
+    "small-width": "calc(100vw - 3.5rem)",
+    "small-max-width": "20rem",
+    "large-width": "16rem",
+    "large-max-width": "25rem",
+    "touchable-max-height": "calc(100% - 3.5rem)",
+    "max-width": null,
+    "max-height": null,
+    height: null,
+    width: null,
+    "transform-offscreen": null,
+  },
+};

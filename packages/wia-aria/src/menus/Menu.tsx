@@ -71,24 +71,21 @@ const Menu: FunctionComponent<MenuProps> = providedProps => {
   );
   const { focusedId, setFocusedId } = useKeyboardFocusContext();
   useHideOnOutsideClick(menuNode, onRequestHide, [menuButtonNode]);
-  useEffect(
-    () => {
-      if (!menuNode) {
-        return;
-      }
+  useEffect(() => {
+    if (!menuNode) {
+      return;
+    }
 
-      menuNode.focus();
+    menuNode.focus();
 
-      if (!isVisibleByKeyboard) {
-        return;
-      }
+    if (!isVisibleByKeyboard) {
+      return;
+    }
 
-      window.requestAnimationFrame(() => {
-        setFocusedId(menuNode.getAttribute("aria-activedescendant"));
-      });
-    },
-    [menuNode]
-  );
+    window.requestAnimationFrame(() => {
+      setFocusedId(menuNode.getAttribute("aria-activedescendant"));
+    });
+  }, [menuNode]);
 
   function handleKeyDown(event: KeyboardEvent<MenuElement>) {
     if (onKeyDown) {

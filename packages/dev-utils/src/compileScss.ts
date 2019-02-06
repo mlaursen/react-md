@@ -94,15 +94,22 @@ export function checkForInvalidCSS(css: string) {
   process.exit(1);
 }
 
-type HackedVariableValue = string | boolean | IHackedVariableValue[];
+type HackedVariableValue = string | boolean | number | IHackedVariableValue[];
 export interface IHackedVariableValue {
   name: string;
   value: HackedVariableValue;
 }
 
-function toBool(value: HackedVariableValue) {
+function parseValue(value: HackedVariableValue) {
   if (value === "true" || value === "false") {
     return Boolean(value);
+  } else if (value === "null") {
+    return null;
+  } else if (typeof value === "string") {
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed) && parsed.toString().length === value.length) {
+      return parsed;
+    }
   }
 
   return value;
@@ -160,8 +167,9 @@ function hackSCSSMapValues(mapValue: string) {
       j = (value as string).length;
     }
 
+    value = parseValue(value);
     remaining = remaining.substring(j + 1).trim();
-    values.push({ name, value: toBool(value) });
+    values.push({ name, value });
   }
 
   return values;
@@ -194,7 +202,7 @@ export function hackSCSSVariableValue(
 
     return {
       name,
-      value: toBool(value),
+      value: parseValue(value),
     };
   }
 }

@@ -1,9 +1,9 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-elevation-color": "#000",
-  "rmd-elevation-shadow-1-opacity": "0.2",
-  "rmd-elevation-shadow-2-opacity": "0.14",
-  "rmd-elevation-shadow-3-opacity": "0.12",
+  "rmd-elevation-shadow-1-opacity": 0.2,
+  "rmd-elevation-shadow-2-opacity": 0.14,
+  "rmd-elevation-shadow-3-opacity": 0.12,
   "rmd-elevation-shadow-1-map": {
     "0": '"0px 0px 0px 0px"',
     "1": '"0px 2px 1px -1px"',

@@ -5,6 +5,7 @@
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/transition/dist/mixins';
 @import '@react-md/utils/dist/functions';
 @import '@react-md/utils/dist/mixins';
 @import 'functions';
@@ -41,12 +42,18 @@
       $translate: if($horizontal, translateX, translateY);
 
       &--#{$position} {
-        --rmd-sheet-transform-offscreen: #{$translate + '(' + $distance + ')'};
+        @include rmd-sheet-theme-update-var(
+          transform-offscreen,
+          #{$translate + '(' + $distance + ')'}
+        );
         #{$position}: 0;
 
         @if $horizontal {
           @include rmd-utils-rtl {
-            --rmd-sheet-transform-offscreen: #{$translate + '(' + ($distance * -1) + ')'};
+            @include rmd-sheet-theme-update-var(
+              transform-offscreen,
+              #{$translate + '(' + $distance + ')'}
+            );
             #{$position}: auto;
             #{rmd-utils-swap-position($position)}: 0;
           }
@@ -58,11 +65,7 @@
 
 /// Creates all the styles for the sheet package as well as the root css variable theme.
 @mixin react-md-sheet {
-  @include rmd-theme-create-root-theme(
-    $rmd-sheet-theme-values,
-    sheet,
-    (max-width, max-height, height, width)
-  );
+  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);
 
   .rmd-sheet {
     @include rmd-elevation($rmd-sheet-elevation);
@@ -129,16 +132,16 @@
     }
 
     &--recommended-height {
-      @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-recommended-max-height);
-      @include rmd-sheet-theme-update-var(min-height, $rmd-sheet-recommended-min-height);
+      max-height: $rmd-sheet-recommended-max-height;
+      min-height: $rmd-sheet-recommended-min-height;
     }
 
     &--offscreen {
-      transform: var(--rmd-sheet-transform-offscreen);
+      @include rmd-sheet-theme(transform, transform-offscreen);
     }
 
     &--visible {
-      transform: var(--rmd-sheet-transform-visible);
+      transform: none;
     }
 
     &--enter {
@@ -152,13 +155,5 @@
 
       transition: transform $rmd-sheet-enter-duration;
     }
-
-    // &--small-width {
-    //   @include rmd-sheet-theme(width, rmd-sheet-theme-var(small-width));
-    // }
-
-    // &--large-width {
-    //   @include rmd-sheet-theme(width, rmd-sheet-theme-var(large-width));
-    // }
   }
 }

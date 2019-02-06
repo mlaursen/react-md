@@ -80,7 +80,7 @@
 @mixin rmd-theme-create-root-theme($theme-map, $theme-group, $exclude: null) {
   :root {
     @each $theme-name, $theme-value in $theme-map {
-      @if exclude == null or not index($exclude, $theme-name) {
+      @if $theme-value != null and $exclude == null or not index($exclude, $theme-name) {
         @include rmd-theme-update-rmd-var($theme-value, $theme-name, $theme-map, $theme-group);
       }
     }
