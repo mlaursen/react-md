@@ -37,8 +37,6 @@
     @include rmd-divider-theme(border-width, size);
     @include rmd-divider-theme(width, max-size);
 
-    border: 0;
-    border-bottom-style: inset;
     display: block;
     flex-shrink: 0;
     margin: rmd-divider-theme-var(spacing) auto;

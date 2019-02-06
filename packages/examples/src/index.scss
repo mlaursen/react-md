@@ -37,3 +37,10 @@ code {
     @include rmd-icon-theme-update-var(color, currentColor);
   }
 }
+
+.rmd-theme-error {
+  @include rmd-theme(color, error);
+  @include rmd-icon-theme-update-var(color, rmd-theme-var(error));
+
+  font-weight: map-get($rmd-typography-font-weights, medium);
+}

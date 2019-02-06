@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ITransitionProps } from "@react-md/transition";
 
 /**
  * This is the type for how a portal can be rendered into another element.
@@ -32,3 +33,6 @@ export interface IPortalProps {
    */
   children?: ReactNode;
 }
+
+export type IStaggerablePortalProps = Pick<IPortalProps, "visible"> &
+  Pick<ITransitionProps, "onExited">;

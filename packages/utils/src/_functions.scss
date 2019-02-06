@@ -2,13 +2,15 @@
 /// @group utils
 ////
 
+@import 'variables';
+
 /// Replace `$search` with `$replace` in `$string`
 ///
 /// @author Hugo Giraudel
 /// @access private
 /// @param {String} string - Initial string
 /// @param {String} search - Substring to replace
-/// @param {String} replace  - New value
+/// @param {String} replace - New value
 /// @return {String} - Updated string
 /// @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
 @function str-replace($string, $search, $replace) {
@@ -39,6 +41,10 @@
   $is-map: $type == map;
   $is-list: $type == list;
 
+  @if $rmd-utils-skip-validation {
+    @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+  }
+
   @if not $is-map and not $is-list {
     @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
   }
@@ -49,4 +55,32 @@
   }
 
   @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+}
+
+/// A utility function that can swap the position of different css styles. This is useful for
+/// RTL switching.
+/// @param {String} style - The style to swap. This should be one of `$rmd-utils-swappable-positions`.
+@function rmd-utils-swap-position($style) {
+  $prefix: '';
+  $position: $style;
+  @if str-index($style, 'padding-') {
+    $prefix: 'padding-';
+    $position: str-replace($style, 'padding-', '');
+  } @else if str-index($style, 'margin-') {
+    $prefix: 'margin-';
+    $position: str-replace($style, 'margin-', '');
+  }
+
+  $current: rmd-utils-validate($rmd-utils-swappable-positions, $style, 'swappable position');
+
+  $next-position: bottom;
+  @if $position == left {
+    $next-position: right;
+  } @else if $position == right {
+    $next-position: left;
+  } @else if $position == bottom {
+    $next-position: top;
+  }
+
+  @return '#{$prefix}#{$next-position}';
 }

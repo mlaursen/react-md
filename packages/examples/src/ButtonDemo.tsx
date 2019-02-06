@@ -42,7 +42,7 @@ const ButtonWithTooltip: FunctionComponent<IButtonProps & ITooltippedProps> = ({
 const ButtonDemo: FunctionComponent = () => {
   return (
     <TextContainer>
-      <Text type="headline-3">Avatar Demo</Text>
+      <Text type="headline-3">Button Demo</Text>
       <div className="flex-grid flex-grid--spaced">
         <ButtonWithTooltip id="button-1" tooltip="Tooltip 1 Button">
           Button 1

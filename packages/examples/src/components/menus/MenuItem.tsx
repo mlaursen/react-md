@@ -6,8 +6,6 @@ import {
   useIsKeyboardFocused,
 } from "@react-md/wia-aria";
 
-import styles from "./menu.module.scss";
-
 const MenuItem: FunctionComponent<IMenuItemProps> = ({
   className,
   ...props
@@ -16,9 +14,9 @@ const MenuItem: FunctionComponent<IMenuItemProps> = ({
     <WIAMenuItem
       {...props}
       className={cn(
-        styles.menuItem,
+        "menu-item",
         {
-          [styles.focused]: useIsKeyboardFocused(props.id),
+          "rmd-states--focused": useIsKeyboardFocused(props.id),
         },
         className
       )}

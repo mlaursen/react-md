@@ -7,8 +7,6 @@ import {
   useIsKeyboardFocused,
 } from "@react-md/wia-aria";
 
-import styles from "./menu.module.scss";
-
 export interface IMenuButtonProps extends IButtonThemeProps {}
 
 const MenuButton: FunctionComponent<
@@ -19,7 +17,7 @@ const MenuButton: FunctionComponent<
     <WIAMenuButton
       {...props}
       className={cn(buttonThemeClassNames(allProps), {
-        [styles.focused]: useIsKeyboardFocused(props.id),
+        "rmd-states--focused": useIsKeyboardFocused(props.id),
       })}
     />
   );

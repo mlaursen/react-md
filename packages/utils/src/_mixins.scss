@@ -108,16 +108,17 @@
 /// to make sure to correctly import that package before calling this
 /// function.
 @mixin react-md-utils {
-  @if mixin-exists(react-md-app-bar) {
-    @include react-md-app-bar;
-  }
-
   @if mixin-exists(react-md-avatar) {
     @include react-md-avatar;
   }
 
   @if mixin-exists(react-md-button) {
     @include react-md-button;
+  }
+
+  // has to come after buttons
+  @if mixin-exists(react-md-app-bar) {
+    @include react-md-app-bar;
   }
 
   @if mixin-exists(react-md-divider) {
@@ -134,6 +135,14 @@
 
   @if mixin-exists(react-md-list) {
     @include react-md-list;
+  }
+
+  @if mixin-exists(react-md-overlay) {
+    @include react-md-overlay;
+  }
+
+  @if mixin-exists(react-md-sheet) {
+    @include react-md-sheet;
   }
 
   @if mixin-exists(react-md-states) {

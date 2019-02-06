@@ -15,6 +15,7 @@
     "@react-md/overlay": "^2.0.0-alpha.0",
     "@react-md/portal": "^2.0.0-alpha.0",
     "@react-md/react-scripts": "^2.1.4",
+    "@react-md/sheet": "^2.0.0-alpha.0",
     "@react-md/states": "^2.0.0-alpha.0",
     "@react-md/theme": "^2.0.0-alpha.0",
     "@react-md/transition": "^2.0.0-alpha.0",

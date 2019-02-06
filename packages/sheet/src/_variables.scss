@@ -3,6 +3,10 @@
 ////
 
 @import '@react-md/overlay/dist/variables';
+@import '@react-md/theme/dist/functions';
+@import '@react-md/theme/dist/variables';
+
+$rmd-sheet-background-color: rmd-theme-var(surface) !default;
 
 /// The elevation to use for sheets that are displayed "inline" with other content. This _should__ most likely
 /// stay the default, but it needs to be a number between 0 and 16.
@@ -26,15 +30,6 @@ $rmd-sheet-enter-duration: 0.2s !default;
 /// The duration for the leave transition.
 /// @type Number
 $rmd-sheet-leave-duration: 0.15s !default;
-
-/// A list of positions that are supported by the sheet component.
-/// @type List
-$rmd-sheet-positions: top right bottom left;
-
-/// The positions that are created by default with the `react-md-sheet` mixin. When generating
-/// styles, this list will be looped through to create the correct position styles.
-/// @type List
-$rmd-sheet-enabled-positions: $rmd-sheet-positions !default;
 
 /// The amount of horizontal margin to use between the viewport's edge and the sheet's edge. This
 /// is used so that mobile devies have an overlay "touch target" to close the sheet without requiring
@@ -82,3 +77,29 @@ $rmd-sheet-recommended-min-height: 3.5rem !default;
 /// to either set the max-height to `calc(100% - 3.5rem)` or `100%` with a close button.
 /// @type Number
 $rmd-sheet-recommended-max-height: 50% !default;
+
+/// A list of positions that are supported by the sheet component.
+/// @type List
+$rmd-sheet-positions: top right bottom left;
+
+/// The positions that are created by default with the `react-md-sheet` mixin. When generating
+/// styles, this list will be looped through to create the correct position styles.
+/// @type List
+$rmd-sheet-enabled-positions: $rmd-sheet-positions !default;
+
+/// A Map of all the "themeable" parts of the sheet package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-sheet-theme-values: (
+  background-color: $rmd-sheet-background-color,
+  small-width: $rmd-sheet-small-width,
+  small-max-width: $rmd-sheet-small-max-width,
+  large-width: $rmd-sheet-large-width,
+  large-max-width: $rmd-sheet-large-max-width,
+  touchable-max-height: $rmd-sheet-touchable-max-height,
+  max-width: null,
+  max-height: null,
+  height: null,
+  width: null,
+) !default;

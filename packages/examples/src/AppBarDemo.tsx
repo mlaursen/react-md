@@ -11,7 +11,7 @@ import { TextContainer, Text } from "@react-md/typography";
 const AppBarDemo: FunctionComponent = () => (
   <TextContainer>
     <Text type="headline-3">AppBar Demo</Text>
-    <AppBar fixed={false}>
+    <AppBar>
       <AppBarNav id="app-bar-nav-1">
         <MenuSVGIcon />
       </AppBarNav>
@@ -20,7 +20,7 @@ const AppBarDemo: FunctionComponent = () => (
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar fixedPosition="bottom">
+    <AppBar theme="secondary">
       <AppBarTitle>Hello, world!</AppBarTitle>
     </AppBar>
   </TextContainer>

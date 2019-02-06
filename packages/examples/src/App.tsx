@@ -12,6 +12,7 @@ import AvatarDemo from "./AvatarDemo";
 import ButtonDemo from "./ButtonDemo";
 import AppBarDemo from "./AppBarDemo";
 import { Header } from "./components/Header";
+import SheetDemo from "./SheetDemo";
 
 const history = createBrowserHistory();
 
@@ -29,6 +30,8 @@ const App: FunctionComponent = () => (
         <ButtonDemo />
         <Divider />
         <ListDemo />
+        <Divider />
+        <SheetDemo />
         <Divider />
         <MenuDemo />
         <Divider />

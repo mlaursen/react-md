@@ -117,7 +117,7 @@ const AppBar: FunctionComponent<IAppBarProps> = providedProps => {
 
 const defaultProps: IAppBarDefaultProps = {
   component: "header",
-  fixed: true,
+  fixed: false,
   fixedPosition: "top",
   fixedElevation: true,
   dense: false,

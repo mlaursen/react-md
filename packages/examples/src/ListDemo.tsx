@@ -75,7 +75,7 @@ const ListDemo: FunctionComponent = () => (
         secondaryText="Jan 9, 2018"
       />
       <ListItemLink
-        id="link-item"
+        id="link-item-home"
         to="/"
         component={NavLink}
         exact
@@ -86,7 +86,7 @@ const ListDemo: FunctionComponent = () => (
         Home
       </ListItemLink>
       <ListItemLink
-        id="link-item"
+        id="link-item-folders"
         to="/folders"
         component={NavLink}
         leftIcon={<FolderSVGIcon />}

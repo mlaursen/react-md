@@ -7,3 +7,13 @@
 /// the main document.
 /// @type Boolean
 $rmd-utils-ios-scroll-momentum: true !default;
+
+/// A list of the supported swappable variables for `rmd-utils-swap-position`.
+/// @type List
+$rmd-utils-swappable-positions: (top right bottom left);
+
+/// Boolean if the validation for valid themes and other things should occur. It is
+/// recommended to keep this enabled, but you might see a build speed perf by setting
+/// this to true.
+/// @type Boolean
+$rmd-utils-skip-validation: false !default;

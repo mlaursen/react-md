@@ -97,20 +97,29 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
   useEventListener("keydown", enableKeyboardMode, {
     shouldUpdate: [isKeyboardMode],
   });
+  useEventListener(
+    "focus",
+    (event: FocusEvent) => {
+      const target = event.target as Maybe<HTMLElement>;
+      if (isKeyboardMode && target && target.id !== focusedId) {
+        setFocusedId(target.id);
+      }
+    },
+    {
+      enabled: isKeyboardMode,
+      capture: true,
+      shouldUpdate: [isKeyboardMode, focusedId],
+    }
+  );
 
   useEventListener(
     "keyup",
     (event: KeyboardEvent) => {
       const target = event.target as Maybe<KeyboardWiaAriaElement>;
-      const triggers = ["Tab"];
-      if (target && (target.tagName === "BUTTON" || target.tabIndex !== null)) {
-        triggers.push("Enter", " ");
-      }
-
       if (
         !target ||
         (target as HTMLElement | Window) === window ||
-        !triggers.includes(event.key)
+        event.key !== "Tab"
       ) {
         return;
       } else if (!target.id) {
