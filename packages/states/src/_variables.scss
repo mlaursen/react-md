@@ -63,7 +63,9 @@ $rmd-states-pressed-opacity: 0.32 !default;
 /// @type Number
 $rmd-states-selected-opacity: 0.16 !default;
 
-/// The theme values for the states
+/// A Map of all the "themeable" parts of the states package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-states-theme-values: (
   background-color: $rmd-states-background-color,

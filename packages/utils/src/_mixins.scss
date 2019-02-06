@@ -108,6 +108,10 @@
 /// to make sure to correctly import that package before calling this
 /// function.
 @mixin react-md-utils {
+  @if mixin-exists(react-md-app-bar) {
+    @include react-md-app-bar;
+  }
+
   @if mixin-exists(react-md-avatar) {
     @include react-md-avatar;
   }

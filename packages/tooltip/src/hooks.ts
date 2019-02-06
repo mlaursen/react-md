@@ -1,28 +1,13 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { Maybe, useEventListener } from "@react-md/utils";
+import { Maybe, useEventListener, positionRelativeTo } from "@react-md/utils";
 import { useIsKeyboardFocused } from "@react-md/wia-aria";
 
 import { ITooltipConfig, TooltipEventType, TooltipableEvent } from "./types.d";
-import { determineBestPosition } from "./utils";
 import {
-  TooltipHoverModeContext,
-  ITooltipHoverModeContext,
-} from "./TooltipHoverMode";
-
-export function useHoverModeContext() {
-  return useContext(TooltipHoverModeContext);
-}
-
-export function useHoverModeDelay(
-  hoverDelay: number,
-  context?: ITooltipHoverModeContext
-) {
-  if ((context || useHoverModeContext()).isActive) {
-    return 0;
-  }
-
-  return hoverDelay;
-}
+  determineBestPosition,
+  createPositionOptions,
+  getSpacing,
+} from "./utils";
 
 export function useTooltipState(config: ITooltipConfig) {
   const {
@@ -32,23 +17,34 @@ export function useTooltipState(config: ITooltipConfig) {
     denseSpacing,
     onMouseEnter,
     onMouseLeave,
+    onClick,
     onBlur,
     defaultVisible,
     defaultPosition,
-    hoverDelay: propHoverDelay,
+    hoverDelay,
     focusDelay,
     vwMargin,
     vhMargin,
+    portal,
+    style: propStyle,
   } = config;
-  const hoverModeContext = useHoverModeContext();
-  const hoverDelay = useHoverModeDelay(propHoverDelay, hoverModeContext);
   const isKeyboardFocus = useIsKeyboardFocused(id);
   const [trigger, setTrigger] = useState<Maybe<TooltipEventType>>(null);
   const [visible, setVisible] = useState(defaultVisible);
-  const [position, setProsition] = useState(
+  const [position, setPosition] = useState(
     defaultPosition === "auto" ? "below" : defaultPosition
   );
+  const [style, setStyle] = useState(propStyle);
   const container = useRef<Maybe<HTMLElement>>(null);
+  const positionConfig = {
+    id,
+    dense,
+    spacing,
+    denseSpacing,
+    vwMargin,
+    vhMargin,
+    position: defaultPosition,
+  };
 
   useEffect(() => {
     if (!isKeyboardFocus || trigger !== null) {
@@ -81,17 +77,7 @@ export function useTooltipState(config: ITooltipConfig) {
     }
 
     const timeout = window.setTimeout(() => {
-      setProsition(
-        determineBestPosition(container.current, {
-          id,
-          dense,
-          spacing,
-          denseSpacing,
-          vwMargin,
-          vhMargin,
-          position: defaultPosition,
-        })
-      );
+      setPosition(determineBestPosition(container.current, positionConfig));
 
       setVisible(true);
     }, duration);
@@ -100,14 +86,6 @@ export function useTooltipState(config: ITooltipConfig) {
       window.clearTimeout(timeout);
     };
   }, [trigger]);
-
-  useEffect(() => {
-    if (!visible || hoverModeContext.disabled || hoverModeContext.isActive) {
-      return;
-    }
-
-    hoverModeContext.setActive(true);
-  }, [visible]);
 
   function handleMouseEnter(event: React.MouseEvent<HTMLElement>) {
     if (onMouseEnter) {
@@ -125,8 +103,10 @@ export function useTooltipState(config: ITooltipConfig) {
       onMouseLeave(event);
     }
 
-    setTrigger(null);
-    setVisible(false);
+    if (trigger === "mouse") {
+      setTrigger(null);
+      setVisible(false);
+    }
   }
 
   function handleBlur(event: React.FocusEvent<HTMLElement>) {
@@ -140,13 +120,50 @@ export function useTooltipState(config: ITooltipConfig) {
     }
   }
 
+  function handleClick(event: React.MouseEvent<HTMLElement>) {
+    if (onClick) {
+      onClick(event);
+    }
+
+    setTrigger(null);
+    setVisible(false);
+  }
+
+  function handleEnter(node: Maybe<HTMLSpanElement>, isAppearing: boolean) {
+    const nextPosition = determineBestPosition(
+      container.current,
+      positionConfig
+    );
+
+    if (position !== nextPosition) {
+      setPosition(nextPosition);
+    }
+
+    if (!node || !portal) {
+      return;
+    }
+
+    const nextStyle = positionRelativeTo(
+      container.current,
+      node,
+      createPositionOptions(nextPosition, getSpacing(config))
+    );
+
+    setStyle(nextStyle);
+  }
+
   return {
     visible,
     position,
-    handlers: {
+    tooltipHandlers: {
+      style,
+      onEnter: handleEnter,
+    },
+    containerHandlers: {
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,
       onBlur: handleBlur,
+      onClick: handleClick,
     },
   };
 }

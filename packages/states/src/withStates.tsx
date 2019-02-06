@@ -167,7 +167,7 @@ export default function withStates<
     // in other components/elements for styling, the ripples and color pollution fixes will not
     // work as expected and positioning will be wrong. The current workaround is to create another
     // wrapper for the "custom" component children and do the wrapping before passing to the WithStates
-    // hoc. ListItem is a good example of this
+    // hoc. ListItem is a good example of this. Also has problems with Tooltips :/
     if (preventColorPollution) {
       // note that the `ripplesContainer` is NOT added to the color pollution fix children. if the
       // ripples are added in here, the same color problems will occur when the ripples are visible

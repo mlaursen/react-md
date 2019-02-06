@@ -1,9 +1,8 @@
-export { default as TooltipBase } from "./TooltipBase";
-export * from "./TooltipBase";
+export { default as Tooltip } from "./Tooltip";
+export * from "./Tooltip";
+
 export { default as Tooltipped } from "./Tooltipped";
 export * from "./Tooltipped";
-
-export * from "./TooltipHoverMode";
 
 export * from "./hooks";
 export * from "./types.d";

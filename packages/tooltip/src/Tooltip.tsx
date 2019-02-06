@@ -1,18 +1,94 @@
-import * as React from "react";
+import React, {
+  forwardRef,
+  FunctionComponent,
+  ReactNode,
+  CSSProperties,
+  HTMLAttributes,
+} from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
+  ITransitionProps,
 } from "@react-md/transition";
 import { IWithForwardedRef } from "@react-md/utils";
 
-import { IBaseTooltipProps, TooltipPosition } from "./types.d";
+import { TooltipPosition } from "./types.d";
+import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
 
 /**
- * All the props that can be applied to the `TooltipBase` component.
+ * The base props for the `Tooltip` component. This can be extended when creating custom tooltip implementations.
  */
-export interface ITooltipBaseProps extends IBaseTooltipProps {
+export interface ITooltipProps
+  extends Pick<
+      ITransitionProps,
+      | "onEnter"
+      | "onEntering"
+      | "onEntered"
+      | "onExit"
+      | "onExiting"
+      | "onExited"
+    >,
+    HTMLAttributes<HTMLSpanElement> {
+  /**
+   * An id for the tooltip. This is required for accessibility and finding an element to attach
+   * event listeners to show and hide the tooltip.
+   */
+  id: string;
+
+  /**
+   * An optional style to apply to the tooltip.
+   */
+  style?: CSSProperties;
+
+  /**
+   * An optional class name to apply to the tooltip.
+   */
+  className?: string;
+
+  /**
+   * The contents of the tooltip to display. This can be any renderable element, but this is normally
+   * just text.
+   *
+   * If this is placed within a `<button>` element, make sure that there are no `<div>` since it is invalid html
+   * to have a `<div>` as a child of a `<button>`.
+   */
+  children?: ReactNode;
+
+  /**
+   * Boolean if the dense styles for tooltips should be displayed.
+   */
+  dense?: boolean;
+
+  /**
+   * Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
+   * will display weirdly when its container element is small in size. It is advised to only enable
+   * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+   *
+   * Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+   */
+  lineWrap?: boolean;
+
+  /**
+   * This ties directly into the CSSTransition `classNames` prop and is used to generate and apply the correct
+   * class names during the tooltip's transition.
+   */
+  classNames?: CSSTransitionClassNames;
+
+  /**
+   * The enter duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
+   * set for `$rmd-tooltip-enter-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
+   * animations easier.
+   */
+  timeout?: TransitionTimeout;
+
+  /**
+   * Boolean if the tooltip should be "lazily mounted" into the dom. When this is set to true, the tooltip element won't
+   * be rendered until the visible prop is set to true or during the exit transition.
+   */
+  lazyMount?: boolean;
+
   /**
    * This is the position that the tooltip should appear related to its container element as well as
    * updating the animation direction.
@@ -28,7 +104,7 @@ export interface ITooltipBaseProps extends IBaseTooltipProps {
 /**
  * An interface containing all the props that have a default value.
  */
-export interface ITooltipBaseDefaultProps {
+export interface ITooltipDefaultProps {
   dense: boolean;
   position: TooltipPosition;
   lineWrap: boolean;
@@ -37,8 +113,8 @@ export interface ITooltipBaseDefaultProps {
   lazyMount: boolean;
 }
 
-export type TooltipBaseWithDefaultProps = ITooltipBaseProps &
-  ITooltipBaseDefaultProps &
+export type TooltipWithDefaultProps = ITooltipProps &
+  ITooltipDefaultProps &
   IWithForwardedRef<HTMLSpanElement>;
 
 /**
@@ -46,8 +122,8 @@ export type TooltipBaseWithDefaultProps = ITooltipBaseProps &
  * when the visibility changes. If this component is used, you will need to manually add all the
  * event listeners and triggers to change the `visible` prop.
  */
-const TooltipBase: React.FunctionComponent<
-  ITooltipBaseProps & IWithForwardedRef<HTMLSpanElement>
+const Tooltip: FunctionComponent<
+  ITooltipProps & IWithForwardedRef<HTMLSpanElement>
 > = providedProps => {
   const {
     className,
@@ -67,7 +143,7 @@ const TooltipBase: React.FunctionComponent<
     onExiting,
     onExited,
     ...props
-  } = providedProps as TooltipBaseWithDefaultProps;
+  } = providedProps as TooltipWithDefaultProps;
 
   return (
     <CSSTransition
@@ -105,29 +181,20 @@ const TooltipBase: React.FunctionComponent<
   );
 };
 
-const defaultProps: ITooltipBaseDefaultProps = {
+const defaultProps: ITooltipDefaultProps = {
   dense: false,
   position: "below",
   lineWrap: false,
-  classNames: {
-    enter: "rmd-tooltip--enter",
-    enterActive: "rmd-tooltip--visible",
-    enterDone: "rmd-tooltip--visible",
-    exit: "rmd-tooltip--visible rmd-tooltip--exit",
-    exitActive: "rmd-tooltip--exit-active",
-  },
-  timeout: {
-    enter: 200,
-    exit: 150,
-  },
+  classNames: TOOLTIP_CLASS_NAMES,
+  timeout: TOOLTIP_TRANSITION_TIMEOUT,
   lazyMount: true,
 };
 
-TooltipBase.defaultProps = defaultProps;
+Tooltip.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
   // there's a problem with forwardedRef components that set the `displayName` to `undefined`
-  TooltipBase.displayName = "TooltipBase";
+  Tooltip.displayName = "Tooltip";
 
   let PropTypes;
   try {
@@ -135,7 +202,7 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 
   if (PropTypes) {
-    TooltipBase.propTypes = {
+    Tooltip.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -175,6 +242,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default React.forwardRef<HTMLSpanElement, ITooltipBaseProps>(
-  (props, ref) => <TooltipBase {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLSpanElement, ITooltipProps>((props, ref) => (
+  <Tooltip {...props} forwardedRef={ref} />
+));

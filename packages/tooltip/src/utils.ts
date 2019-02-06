@@ -1,17 +1,24 @@
 import {
-  TooltipPosition,
-  IDeterminePositionConfig,
-  ISpacingConfig,
-} from "./types.d";
-import {
   getViewportBounds,
   getViewportSize,
   unitToNumber,
   Maybe,
+  HorizontalPosition,
+  VerticalPosition,
 } from "@react-md/utils";
 import { IRenderConditionalPortalProps } from "@react-md/portal";
 
-export function getSpacing({ spacing, denseSpacing, dense }: ISpacingConfig) {
+import {
+  TooltipPosition,
+  IDeterminePositionConfig,
+  ITooltipSpacingConfig,
+} from "./types.d";
+
+export function getSpacing({
+  spacing,
+  denseSpacing,
+  dense,
+}: ITooltipSpacingConfig) {
   return `${dense ? denseSpacing : spacing}`;
 }
 
@@ -86,4 +93,34 @@ export function validateContainerPosition(
     console.error(new Error().stack);
     container.style.position = "relative";
   }
+}
+
+export function createPositionOptions(
+  position: TooltipPosition,
+  spacing: string
+) {
+  let horizontalSpacing: string = "";
+  let verticalSpacing: string = "";
+  let horizontalPosition: HorizontalPosition = "center";
+  let verticalPosition: VerticalPosition = "center";
+  switch (position) {
+    case "left":
+      horizontalPosition = position;
+      horizontalSpacing = spacing;
+      break;
+    case "right":
+      horizontalPosition = position;
+      horizontalSpacing = spacing;
+      break;
+    default:
+      verticalPosition = position;
+      verticalSpacing = spacing;
+  }
+
+  return {
+    horizontalPosition,
+    horizontalSpacing,
+    verticalPosition,
+    verticalSpacing,
+  };
 }

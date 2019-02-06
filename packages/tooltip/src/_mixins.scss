@@ -180,20 +180,24 @@
       right: auto;
       top: auto;
 
+      $distance: rmd-tooltip-theme-var(transition-distance);
+      // have to use calc to negate the value of a css variable
+      $negative-distance: calc(-1 * #{$distance});
+
       &.rmd-tooltip--above {
-        transform: translateY(calc(-1 * #{rmd-tooltip-theme-var(transition-distance)}));
+        transform: translateY($negative-distance);
       }
 
       &.rmd-tooltip--below {
-        transform: translateY(rmd-tooltip-theme-var(transition-distance));
+        transform: translateY($distance);
       }
 
       &.rmd-tooltip--left {
-        transform: translateX(calc(-1 * #{rmd-tooltip-theme-var(transition-distance)}));
+        transform: translateX($distance);
       }
 
       &.rmd-tooltip--right {
-        transform: translateX(rmd-tooltip-theme-var(transition-distance));
+        transform: translateX($negative-distance);
       }
 
       &.rmd-tooltip--visible {

@@ -1,32 +1,49 @@
-import React, { FunctionComponent, ReactNode, ReactElement } from "react";
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+  HTMLAttributes,
+} from "react";
+import cn from "classnames";
+import { ITransitionProps } from "@react-md/transition";
+import { Omit } from "@react-md/utils";
+import {
+  IRenderConditionalPortalProps,
+  ConditionalPortal,
+} from "@react-md/portal";
+
 import {
   ITooltipConfig,
   TooltipPositionOrAuto,
   MergableTooltipHandlers,
 } from "./types.d";
 import { useTooltipState } from "./hooks";
-import TooltipBase from "./TooltipBase";
+import Tooltip, { ITooltipProps } from "./Tooltip";
 
-// export type TooltippedChildrenRenderer = (
-//   config: ITooltipState & { handlers: MergableTooltipHandlers }
-// ) => ReactElement<any>;
 export type TooltippedChildrenRenderer = (config: {
   tooltip: ReactNode;
   containerProps?: MergableTooltipHandlers & {
+    id: string;
     "aria-describedby"?: string;
   };
 }) => ReactElement<any>;
-export interface ITooltippedProps extends Partial<ITooltipConfig> {
+
+export interface ITooltippedProps
+  extends Partial<ITooltipConfig>,
+    IRenderConditionalPortalProps,
+    Omit<ITooltipProps, keyof HTMLAttributes<HTMLSpanElement> | "visible"> {
   id: string;
   tooltip?: ReactNode;
   tooltipId?: string;
+  className?: string;
 }
 
-interface ITooltippedWithChildrenProps extends ITooltippedProps {
+type TooltippedProps = ITooltippedProps & {
   children: TooltippedChildrenRenderer;
-}
+};
 
 interface ITooltippedDefaultProps {
+  portal: boolean;
   dense: boolean;
   hoverDelay: number;
   focusDelay: number;
@@ -38,36 +55,75 @@ interface ITooltippedDefaultProps {
   defaultPosition: TooltipPositionOrAuto;
 }
 
-type TooltippedWithDefaultProps = ITooltippedWithChildrenProps &
-  ITooltippedDefaultProps;
+type TooltippedWithDefaultProps = TooltippedProps & ITooltippedDefaultProps;
 
-const Tooltipped: FunctionComponent<ITooltippedWithChildrenProps> = props => {
-  const { children, tooltip: tooltipChildren } = props;
+const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
+  const props = providedProps as TooltippedWithDefaultProps;
+  const {
+    id,
+    className,
+    children,
+    tooltip: tooltipChildren,
+    vhMargin,
+    vwMargin,
+    hoverDelay,
+    focusDelay,
+    spacing,
+    denseSpacing,
+    defaultVisible,
+    defaultPosition,
+    portal,
+    portalInto,
+    portalIntoId,
+    ...tooltipProps
+  } = props;
   if (!tooltipChildren) {
     return children({ tooltip: null });
   }
 
   let { tooltipId } = props;
   if (!tooltipId) {
-    tooltipId = `${props.id}-tooltip`;
+    tooltipId = `${id}-tooltip`;
   }
 
-  const { visible, position, handlers } = useTooltipState(
-    props as TooltippedWithDefaultProps
-  );
+  const {
+    visible,
+    position,
+    tooltipHandlers,
+    containerHandlers,
+  } = useTooltipState(props);
+
   const tooltip = (
-    <TooltipBase id={tooltipId} visible={visible} position={position}>
-      {tooltipChildren}
-    </TooltipBase>
+    <ConditionalPortal
+      portal={portal}
+      portalInto={portalInto}
+      portalIntoId={portalIntoId}
+      visible={visible}
+    >
+      <Tooltip
+        id={tooltipId}
+        {...tooltipProps}
+        {...tooltipHandlers}
+        className={cn(
+          { "rmd-tooltip--portal": portal || portalInto || portalIntoId },
+          className
+        )}
+        visible={visible}
+        position={position}
+      >
+        {tooltipChildren}
+      </Tooltip>
+    </ConditionalPortal>
   );
 
   return children({
     tooltip,
-    containerProps: { "aria-describedby": tooltipId, ...handlers },
+    containerProps: { id, "aria-describedby": tooltipId, ...containerHandlers },
   });
 };
 
 const defaultProps: ITooltippedDefaultProps = {
+  portal: false,
   dense: false,
   hoverDelay: 1000,
   focusDelay: 1000,

@@ -4,6 +4,8 @@ import {
 } from "@react-md/transition";
 
 export const TOOLTIP_CLASS_NAMES: CSSTransitionClassNames = {
+  appear: "rmd-tooltip--enter",
+  appearActive: "rmd-tooltip--visible",
   enter: "rmd-tooltip--enter",
   enterActive: "rmd-tooltip--visible",
   enterDone: "rmd-tooltip--visible",
