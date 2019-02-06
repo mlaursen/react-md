@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { Button } from "@react-md/button";
+import { AppBarAction } from "@react-md/app-bar";
 import {
   FormatAlignLeftSVGIcon,
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
-
-import styles from "./styles.module.scss";
+import { Tooltipped } from "@react-md/tooltip";
 
 const ToggleRTL: FunctionComponent = props => {
   const [toggled, setToggled] = useState(false);
@@ -20,16 +19,18 @@ const ToggleRTL: FunctionComponent = props => {
   }, [toggled]);
 
   return (
-    <Button
+    <Tooltipped
       id="toggle-rtl"
+      tooltip="Toggle left-to-right/right-to-left"
       onClick={() => setToggled(prevToggled => !prevToggled)}
-      theme="primary"
-      themeType="contained"
-      buttonType="icon"
-      className={styles.root}
     >
-      {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
-    </Button>
+      {({ tooltip, containerProps }) => (
+        <AppBarAction {...containerProps} last>
+          {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
+          {tooltip}
+        </AppBarAction>
+      )}
+    </Tooltipped>
   );
 };
 

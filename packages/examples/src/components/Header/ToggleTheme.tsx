@@ -1,24 +1,12 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { Button } from "@react-md/button";
+import cn from "classnames";
+import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
-import AvatarScssVariables from "@react-md/avatar/dist/scssVariables";
-import ButtonScssVariables from "@react-md/button/dist/scssVariables";
-import DividerScssVariables from "@react-md/divider/dist/scssVariables";
-import IconScssVariables from "@react-md/icon/dist/scssVariables";
-import ThemeScssVariables from "@react-md/theme/dist/scssVariables";
+import { Tooltipped } from "@react-md/tooltip";
 
-import styles from "./styles.module.scss";
-import { upperFirst } from "lodash";
+import "./toggle-theme.scss";
 
-const THEMES = [
-  AvatarScssVariables["rmd-avatar-theme-values"],
-  ButtonScssVariables["rmd-button-theme-values"],
-  DividerScssVariables["rmd-divider-theme-values"],
-  IconScssVariables["rmd-icon-theme-values"],
-  ThemeScssVariables["rmd-theme-values"],
-];
-
-const themes = {
+const THEMES = {
   dark: {
     "theme-background": "",
     "theme-surface": "",
@@ -55,23 +43,32 @@ const ToggleTheme: FunctionComponent = () => {
     const root = document.documentElement;
     const key = isLight ? "light" : "dark";
 
-    Object.entries(themes[key]).forEach(([key, value]) => {
+    Object.entries(THEMES[key]).forEach(([key, value]) => {
       root.style.setProperty(`--rmd-${key}`, value);
     });
     window.localStorage.setItem("isLight", isLight.toString());
   }, [isLight]);
 
   return (
-    <Button
+    <Tooltipped
       id="toggle-theme"
+      tooltip="Toggle light/dark theme"
       onClick={() => setIsDark(prevDark => !prevDark)}
-      theme="primary"
-      themeType="contained"
-      buttonType="icon"
-      className={styles.root}
     >
-      <LightbulbOutlineSVGIcon />
-    </Button>
+      {({ tooltip, containerProps }) => (
+        <AppBarAction
+          {...containerProps}
+          first
+          className={cn("toggle-theme", {
+            "toggle-theme--on": isLight,
+            "toggle-theme--off": !isLight,
+          })}
+        >
+          <LightbulbOutlineSVGIcon />
+          {tooltip}
+        </AppBarAction>
+      )}
+    </Tooltipped>
   );
 };
 

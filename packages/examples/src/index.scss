@@ -27,6 +27,10 @@ code {
   }
 }
 
+#main-app-bar + * {
+  @include rmd-app-bar-offset;
+}
+
 .nav-item {
   &--active {
     @include rmd-theme(color, primary);

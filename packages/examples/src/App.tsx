@@ -3,39 +3,37 @@ import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { Divider, VerticalDivider } from "@react-md/divider";
 import { StatesConfig } from "@react-md/states";
-import { TooltipHoverMode } from "@react-md/tooltip";
 import { KeyboardTracker } from "@react-md/wia-aria";
 
 import MenuDemo from "./MenuDemo";
 import AppSize from "./AppSize";
 import ListDemo from "./ListDemo";
 import AvatarDemo from "./AvatarDemo";
-import { ToggleRTL } from "./components/ToggleRTL";
-import { ToggleTheme } from "./components/ToggleTheme";
 import ButtonDemo from "./ButtonDemo";
+import AppBarDemo from "./AppBarDemo";
+import { Header } from "./components/Header";
 
 const history = createBrowserHistory();
 
 const App: FunctionComponent = () => (
   <Router history={history}>
-    <TooltipHoverMode>
-      <StatesConfig>
-        <KeyboardTracker>
-          <ToggleRTL />
-          <ToggleTheme />
-          <AppSize />
-          <Divider />
-          <AvatarDemo />
-          <Divider />
-          <ButtonDemo />
-          <Divider />
-          <ListDemo />
-          <Divider />
-          <MenuDemo />
-          <Divider />
-        </KeyboardTracker>
-      </StatesConfig>
-    </TooltipHoverMode>
+    <StatesConfig preventColorPollution>
+      <KeyboardTracker>
+        <Header />
+        <AppSize />
+        <Divider />
+        <AppBarDemo />
+        <Divider />
+        <AvatarDemo />
+        <Divider />
+        <ButtonDemo />
+        <Divider />
+        <ListDemo />
+        <Divider />
+        <MenuDemo />
+        <Divider />
+      </KeyboardTracker>
+    </StatesConfig>
   </Router>
 );
 export default App;

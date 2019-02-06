@@ -1,0 +1,8 @@
+@import 'common';
+
+.toggle-theme {
+  &--on:not(:hover),
+  &--off:hover {
+    color: $rmd-yellow-500;
+  }
+}
