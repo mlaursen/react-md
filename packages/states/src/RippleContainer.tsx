@@ -8,7 +8,7 @@ import {
 
 import Ripple from "./Ripple";
 import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
-import { IRipple, RippleSetter } from "./types";
+import { IRipple, RippleSetter } from "./types.d";
 
 export interface IRippleContainerProps {
   ripples: IRipple[];

@@ -1,7 +1,8 @@
 import * as React from "react";
 import MenuItem from "./MenuItem";
 import { Omit, IWithForwardedRef, Maybe } from "@react-md/utils";
-import { IdRequired, RequireAtLeastOne } from "../types";
+
+import { IdRequired, RequireAtLeastOne } from "../types.d";
 
 type MenuItemInputAttributes = Pick<
   React.HTMLAttributes<HTMLInputElement>,

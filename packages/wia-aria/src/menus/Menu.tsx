@@ -13,10 +13,11 @@ import {
   Maybe,
 } from "@react-md/utils";
 
-import { IdRequired } from "../types";
-import { loopByQuerySelector } from "../utils";
-import { MenuElement } from "./types";
+import { MenuElement } from "./types.d";
 import { useMenuNodes, useActiveDescendateState } from "./hooks";
+
+import { IdRequired } from "../types.d";
+import { loopByQuerySelector } from "../utils";
 import { useKeyboardFocusContext } from "../keyboard/hooks";
 
 export interface IMenuLabel {

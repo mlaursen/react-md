@@ -1,6 +1,6 @@
 import * as React from "react";
 import MenuItem, { IMenuItemProps } from "./MenuItem";
-import { FakeFormChangeEventHandler } from "./types";
+import { FakeFormChangeEventHandler } from "./types.d";
 
 export interface IMenuItemRadioProps extends IMenuItemProps {
   checked: boolean;

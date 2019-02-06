@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { useEventListener, Maybe } from "@react-md/utils";
 
-import { KeyboardWiaAriaElement } from "../types";
+import { KeyboardWiaAriaElement } from "../types.d";
 import { FocusChangeHandler } from "./types.d";
 import KeyboardTrackerProvider from "./KeyboardTrackerProvider";
 

@@ -15,8 +15,8 @@ install:
   - yarn install
   - lerna run build --scope @react-md/dev-utils
   - yarn install --force
-  - yarn build
 
 script:
+  - yarn build
   - yarn lint
   - yarn test --runInBand

@@ -4,7 +4,7 @@ import {
   RippleEventType,
   RippleableEvent,
   RippleSetter,
-} from "./types";
+} from "./types.d";
 
 /**
  * This does some simple validation based on the provided event to ensure

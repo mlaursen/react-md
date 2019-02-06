@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Omit, IWithForwardedRef } from "@react-md/utils";
 
-import { IdRequired } from "../types";
+import { IdRequired } from "../types.d";
 
 export type MenuItemRole = "menuitem" | "menuitemcheckbox" | "menuitemradio";
 

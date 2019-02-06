@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { IKeyboardTrackerContext } from "./types";
+import { IKeyboardTrackerContext } from "./types.d";
 
 let warnedOnce = false;
 

@@ -7,7 +7,7 @@ import {
   triggerRippleExitAnimations,
   cancelRipplesByType,
 } from "./utils";
-import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types";
+import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types.d";
 
 /**
  * This is a small hook that is used to determine if the app is currently

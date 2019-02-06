@@ -13,7 +13,7 @@ import {
   cancelRipplesByType,
 } from "../utils";
 import { getRippleRadius as unmockedRippleRadius } from "../getRippleRadius";
-import { RippleableEvent, IRipple } from "../types";
+import { RippleableEvent, IRipple } from "../types.d";
 
 type FakeMouseEvent = React.MouseEvent<HTMLElement>;
 type FakeTouchEvent = React.TouchEvent<HTMLElement>;

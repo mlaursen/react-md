@@ -1,7 +1,8 @@
 import * as React from "react";
 import { IWithForwardedRef } from "@react-md/utils";
-import { RequireAtLeastOne, IdRequired } from "../types";
-import { ShowMenuRequestFunction, MenuButtonElement } from "./types";
+
+import { RequireAtLeastOne, IdRequired } from "../types.d";
+import { ShowMenuRequestFunction, MenuButtonElement } from "./types.d";
 
 interface IMenuButtonControls {
   "aria-controls"?: string;

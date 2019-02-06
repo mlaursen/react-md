@@ -1,7 +1,7 @@
 import React, { memo, FunctionComponent } from "react";
 
 import { KeyboardTrackerContext } from "./context";
-import { IKeyboardTrackerContext } from "./types";
+import { IKeyboardTrackerContext } from "./types.d";
 
 const { Provider } = KeyboardTrackerContext;
 

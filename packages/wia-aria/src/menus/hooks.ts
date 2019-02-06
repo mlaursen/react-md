@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Maybe } from "@react-md/utils";
 
-import { MenuElement, MenuButtonElement } from "./types";
+import { MenuElement, MenuButtonElement } from "./types.d";
 
 export function useMenuNodes(
   id: string

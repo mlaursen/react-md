@@ -7,7 +7,7 @@ import {
   ButtonThemeType,
   ButtonType,
   IButtonThemeProps,
-} from "../types";
+} from "../types.d";
 
 const themes: ButtonTheme[] = [
   "clear",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import MenuItem, { IMenuItemProps } from "./MenuItem";
-import { FakeFormChangeEventHandler } from "./types";
+import { FakeFormChangeEventHandler } from "./types.d";
 
 export interface IMenuItemCheckboxProps extends IMenuItemProps {
   checked?: boolean | "mixed";
