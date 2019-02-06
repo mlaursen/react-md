@@ -1,6 +1,6 @@
 import React, { forwardRef, FunctionComponent } from "react";
 import cn from "classnames";
-import { withStates } from "@react-md/states";
+import { withStates, IWithStatesConfig } from "@react-md/states";
 
 import SimpleListItem, {
   ISimpleListItemProps,
@@ -9,7 +9,9 @@ import SimpleListItem, {
 import ListItemChildren from "./ListItemChildren";
 import getListItemHeight from "./getListItemHeight";
 
-export interface IListItemProps extends ISimpleListItemProps {
+export interface IListItemProps
+  extends ISimpleListItemProps,
+    IWithStatesConfig<HTMLLIElement> {
   id: string;
 }
 
@@ -21,7 +23,9 @@ export interface IListItemDefaultProps {
 
 type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
 
-const ListItemWithStates = withStates(SimpleListItem);
+const ListItemWithStates = withStates<IListItemProps, HTMLLIElement>(
+  SimpleListItem
+);
 
 const ListItem: FunctionComponent<IListItemProps> = providedProps => {
   const {

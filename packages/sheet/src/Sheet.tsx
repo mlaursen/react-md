@@ -14,7 +14,7 @@ import {
 } from "@react-md/portal";
 import { Overlay } from "@react-md/overlay";
 import { ICSSTransitionProps } from "@react-md/transition";
-import { IWithForwardedRef, Maybe } from "@react-md/utils";
+import { IWithForwardedRef } from "@react-md/utils";
 
 export type SheetPosition = "calculated" | "top" | "right" | "bottom" | "left";
 export type SheetHorizontalSize =

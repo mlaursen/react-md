@@ -10,7 +10,7 @@ import { useIsKeyboardFocused } from "@react-md/wia-aria";
 
 import { useStatesContext, useRipplesState, usePressedStates } from "./hooks";
 import { IStatesContext } from "./context";
-import { MergableRippleHandlers } from "./types.d";
+import { IRipplesOptions } from "./types.d";
 
 import RippleContainer from "./RippleContainer";
 import FixColorPollution from "./FixColorPollution";
@@ -23,7 +23,7 @@ export interface IWithStatesInjectedProps {
 export interface IWithStatesConfig<E extends HTMLElement = HTMLElement>
   extends Partial<IStatesContext>,
     IWithForwardedRef<E>,
-    MergableRippleHandlers<E> {
+    IRipplesOptions<E> {
   /**
    * Boolean if the wrapped component needs to have the functionality of a keyboard click
    * event. This is really only necessary when the wrapped component is not a native clickable
