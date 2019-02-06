@@ -35,10 +35,10 @@
     "classnames": "^2.2.6",
     "react-transition-group": "^2.5.2"
   },
-  "devDependencies": {
-    "@react-md/dev-utils": "^2.0.0-alpha.0"
-  },
   "peerDependencies": {
-    "react": "^16.8.0-alpha.0 || >= 16.8"
+    "react": ">= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
   }
 }

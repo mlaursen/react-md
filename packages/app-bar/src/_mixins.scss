@@ -2,7 +2,9 @@
 /// @group app-bar
 ////
 
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/helpers';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 
 /// Creates the styles for one of the app-bar's theme values. This is mostly
@@ -54,11 +56,6 @@
 ///   <div class="app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom">
 ///     An app-bar fixed to the bottom of the page with elevation
 ///   </div>
-///
-/// @example scss - Custom Elevation Example
-///   .app-bar {
-///     @include rmd-app-bar-fixed(8);
-///   }
 ///
 /// @param {Number} elevation [$rmd-app-bar-fixed-elevation] - The elevation to use for a fixed app bar. This should
 ///   be a number between 0 and 24 since it uses the `rmd-elevation` mixin.

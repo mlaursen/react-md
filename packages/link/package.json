@@ -41,6 +41,9 @@
     "@react-md/dev-utils": "^2.0.0-alpha.0",
     "react-router-dom": "^4.3.1"
   },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
   "optionalDependencies": {
     "prop-types": "^15.6.2"
   }
