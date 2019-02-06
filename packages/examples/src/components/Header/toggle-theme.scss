@@ -6,3 +6,10 @@
     color: $rmd-yellow-500;
   }
 }
+
+.toggle-theme-transition {
+  @include rmd-transition(standard);
+
+  transition-duration: 0.15s;
+  transition-property: background-color, color;
+}

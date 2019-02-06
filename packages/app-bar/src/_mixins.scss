@@ -64,6 +64,8 @@
 ///   be a number between 0 and 24 since it uses the `rmd-elevation` mixin.
 @mixin rmd-app-bar-fixed {
   &--fixed {
+    @include rmd-theme-update-var(surface, rmd-app-bar-theme-var(background-color));
+
     left: 0;
     position: fixed;
     right: 0;
@@ -117,19 +119,25 @@
 /// @param {Color} default-background-color [$rmd-app-bar-default-background-color] - The background color to use for the "default" theme.
 /// @param {Color} default-text-color [$rmd-app-bar-default-text-color] - The text color to use for the "default" theme.
 @mixin rmd-app-bar-themes {
+  @include rmd-app-bar-theme(background-color);
+  @include rmd-app-bar-theme(color);
+
   &--primary {
-    @include rmd-app-bar-theme(background-color, primary);
-    @include rmd-app-bar-theme(color, on-primary);
+    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(primary));
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-primary));
   }
 
   &--secondary {
-    @include rmd-app-bar-theme(background-color, secondary);
-    @include rmd-app-bar-theme(color, on-secondary);
+    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(secondary));
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-secondary));
   }
 
   &--default {
-    @include rmd-app-bar-theme(background-color, default-background-color);
-    @include rmd-app-bar-theme(color, default-color);
+    @include rmd-app-bar-theme-update-var(
+      background-color,
+      rmd-app-bar-theme-var(default-background-color)
+    );
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(default-color));
   }
 
   &--child-inherit {
