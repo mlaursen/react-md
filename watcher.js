@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const { spawn, exec } = require('child_process');
+const { spawn, spawnSync, exec } = require('child_process');
 
 const IGNORED = /(\_\_tests\_\_|dev-utils|examples)/;
 let startLoggingScss = false;
@@ -53,9 +53,22 @@ function tscWatcher(filePath, extension = '') {
 }
 
 function startTsWatcher(filePath) {
-  const [, project] = filePath.split(path.sep);
+  const [packages, project] = filePath.split(path.sep);
   if (watchedProjects.has(project)) {
     return;
+  }
+
+  if (!fs.existsSync(path.join(packages, project, 'tsconfig.json'))) {
+    const args = [
+      'run',
+      'build',
+      '--scope',
+      `@react-md/${project}`,
+      '--',
+      '--scripts-only',
+      '--no-umd',
+    ];
+    spawnSync('lerna', args, { stdio: 'inherit' });
   }
 
   console.log(`Staring new tsc watcher in ${project}...`);
@@ -121,18 +134,20 @@ chokidar
     startLoggingDefs = true;
   });
 
+let isNoLongerLazy = false;
 chokidar
   .watch(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
     ignored: new RegExp(IGNORED.source + '|.d.ts|scssVariables.ts'),
   })
   .on('add', filePath => {
-    if (isNotLazy) {
+    if (isNotLazy || isNoLongerLazy) {
       startTsWatcher(filePath);
     }
   })
   .on('change', startTsWatcher)
   .on('ready', () => {
     console.log('Watching for typescript changes...');
+    isNoLongerLazy = true;
   });
 
 process.on('exit', () => {

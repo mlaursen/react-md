@@ -102,10 +102,15 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
     "keyup",
     (event: KeyboardEvent) => {
       const target = event.target as Maybe<KeyboardWiaAriaElement>;
+      const triggers = ["Tab"];
+      if (target && (target.tagName === "BUTTON" || target.tabIndex !== null)) {
+        triggers.push("Enter", " ");
+      }
+
       if (
         !target ||
         (target as HTMLElement | Window) === window ||
-        event.key !== "Tab"
+        !triggers.includes(event.key)
       ) {
         return;
       } else if (!target.id) {
