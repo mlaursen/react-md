@@ -34,7 +34,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.5.0",
     "postcss-sorting": "^4.0.1",
-    "prettier": "^1.16.3",
+    "prettier": "^1.16.4",
     "pretty-ms": "^4.0.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.0",
@@ -44,7 +44,7 @@
     "rollup-plugin-typescript2": "^0.18.1",
     "rollup-plugin-uglify": "^6.0.1",
     "sassdoc": "^2.5.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.3.1"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.1"

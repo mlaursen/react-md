@@ -22,9 +22,9 @@
     "@react-md/typography": "^2.0.0-alpha.0",
     "@react-md/utils": "^2.0.0-alpha.0",
     "classnames": "^2.2.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "typescript": "3.2.2"
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "typescript": "3.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

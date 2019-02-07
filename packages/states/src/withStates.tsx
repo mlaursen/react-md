@@ -10,7 +10,7 @@ import { useIsKeyboardFocused } from "@react-md/wia-aria";
 
 import { useStatesContext, useRipplesState, usePressedStates } from "./hooks";
 import { IStatesContext } from "./context";
-import { IRipplesOptions } from "./types.d";
+import { IRipplesOptions, MergableRippleHandlers } from "./types.d";
 
 import RippleContainer from "./RippleContainer";
 import FixColorPollution from "./FixColorPollution";
