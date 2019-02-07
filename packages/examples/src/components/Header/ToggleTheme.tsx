@@ -3,6 +3,7 @@ import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
+import { UpdateVariables } from "@react-md/theme";
 
 import "./toggle-theme.scss";
 
@@ -46,38 +47,35 @@ const ToggleTheme: FunctionComponent = () => {
   }, [isLight]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    const key = isLight ? "light" : "dark";
-
-    Object.entries(LIGHT_THEMES).forEach(([key, value]) => {
-      // my app is pre-built for dark theme, so just reset all values when
-      // dark
-      root.style.setProperty(`--rmd-${key}`, isLight ? value : "");
-    });
-
     window.localStorage.setItem("isLight", isLight.toString());
   }, [isLight]);
 
+  const variables = Object.entries(LIGHT_THEMES).map(([name, value]) => ({
+    name: `--rmd-${name}`,
+    value: isLight ? value : "",
+  }));
   return (
-    <Tooltipped
-      id="toggle-theme"
-      tooltip="Toggle light/dark theme"
-      onClick={() => setIsDark(prevDark => !prevDark)}
-    >
-      {({ tooltip, containerProps }) => (
-        <AppBarAction
-          {...containerProps}
-          first
-          className={cn("toggle-theme", {
-            "toggle-theme--on": isLight,
-            "toggle-theme--off": !isLight,
-          })}
-        >
-          <LightbulbOutlineSVGIcon />
-          {tooltip}
-        </AppBarAction>
-      )}
-    </Tooltipped>
+    <UpdateVariables variables={variables}>
+      <Tooltipped
+        id="toggle-theme"
+        tooltip="Toggle light/dark theme"
+        onClick={() => setIsDark(prevDark => !prevDark)}
+      >
+        {({ tooltip, containerProps }) => (
+          <AppBarAction
+            {...containerProps}
+            first
+            className={cn("toggle-theme", {
+              "toggle-theme--on": isLight,
+              "toggle-theme--off": !isLight,
+            })}
+          >
+            <LightbulbOutlineSVGIcon />
+            {tooltip}
+          </AppBarAction>
+        )}
+      </Tooltipped>
+    </UpdateVariables>
   );
 };
 
