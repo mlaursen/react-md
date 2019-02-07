@@ -13,22 +13,52 @@ import {
 import { List, ListItem } from "@react-md/list";
 import { Divider } from "@react-md/divider";
 import { Maybe } from "@react-md/utils";
-import { useFocusTrap, useScrollLock } from "@react-md/wia-aria";
+import {
+  useFocusTrap,
+  useScrollLock,
+  useKeyboardFocusContext,
+} from "@react-md/wia-aria";
 
 const SheetDemo: FunctionComponent = () => {
+  const [activeId, setActiveId] = useState("menu-item-1");
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState<SheetPosition>("bottom");
 
-  const show = (position: SheetPosition) => () => {
+  const show = (position: SheetPosition, first: boolean = true) => () => {
     setPosition(position);
     setVisible(true);
+    setActiveId("menu-item-1");
+  };
+
+  const handleKeyDown = (position: SheetPosition) => (
+    event: React.KeyboardEvent<HTMLButtonElement>
+  ) => {
+    const { key } = event;
+    if (key === "ArrowUp") {
+      event.preventDefault();
+      show(position, false)();
+    } else if (key === "ArrowDown") {
+      event.preventDefault();
+      show(position)();
+    }
   };
 
   const hide = () => setVisible(false);
   const toggle = () => setVisible(prevVisible => !prevVisible);
+  const { setFocusedId } = useKeyboardFocusContext();
 
   const [sheetEl, setSheetEl] = useState<Maybe<HTMLElement>>(null);
-  useFocusTrap({ container: sheetEl });
+  useFocusTrap({
+    container: sheetEl,
+    onFocus: el => {
+      if (el && el.id) {
+        setFocusedId(el.id);
+        setActiveId(el.id);
+      }
+    },
+    incrementKeys: ["ArrowDown"],
+    decrementKeys: ["ArrowUp"],
+  });
   useScrollLock(visible);
 
   return (
@@ -38,6 +68,7 @@ const SheetDemo: FunctionComponent = () => {
         <Button
           id="show-sheet-top"
           onClick={show("top")}
+          onKeyDown={handleKeyDown("top")}
           themeType="contained"
           theme="secondary"
         >
@@ -46,6 +77,7 @@ const SheetDemo: FunctionComponent = () => {
         <Button
           id="show-sheet-right"
           onClick={show("right")}
+          onKeyDown={handleKeyDown("right")}
           themeType="contained"
           theme="secondary"
         >
@@ -54,6 +86,7 @@ const SheetDemo: FunctionComponent = () => {
         <Button
           id="show-sheet-"
           onClick={show("bottom")}
+          onKeyDown={handleKeyDown("bottom")}
           themeType="contained"
           theme="secondary"
         >
@@ -62,6 +95,7 @@ const SheetDemo: FunctionComponent = () => {
         <Button
           id="show-sheet-left"
           onClick={show("left")}
+          onKeyDown={handleKeyDown("left")}
           themeType="contained"
           theme="secondary"
         >
@@ -75,6 +109,7 @@ const SheetDemo: FunctionComponent = () => {
           ref={setSheetEl}
           portal
           role="menu"
+          aria-activedescendant={activeId}
         >
           <List
             onClick={event => {
@@ -87,7 +122,7 @@ const SheetDemo: FunctionComponent = () => {
               id="menu-item-1"
               role="menuitem"
               leftIcon={<ShareSVGIcon />}
-              disabled
+              tabIndex={-1}
             >
               Share
             </ListItem>
@@ -95,6 +130,7 @@ const SheetDemo: FunctionComponent = () => {
               id="menu-item-2"
               role="menuitem"
               leftIcon={<LinkSVGIcon />}
+              tabIndex={-1}
             >
               Get Link
             </ListItem>
@@ -102,6 +138,7 @@ const SheetDemo: FunctionComponent = () => {
               id="menu-item-3"
               role="menuitem"
               leftIcon={<EditSVGIcon />}
+              tabIndex={-1}
             >
               Edit Name
             </ListItem>
@@ -110,6 +147,7 @@ const SheetDemo: FunctionComponent = () => {
               role="menuitem"
               leftIcon={<DeleteSVGIcon />}
               className="rmd-theme-error"
+              tabIndex={-1}
             >
               Delete Collection
             </ListItem>
@@ -118,6 +156,7 @@ const SheetDemo: FunctionComponent = () => {
               id="menu-item-close"
               role="menuitem"
               leftIcon={<CloseSVGIcon />}
+              tabIndex={-1}
             >
               Close
             </ListItem>

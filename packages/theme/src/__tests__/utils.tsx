@@ -23,6 +23,17 @@ describe("utils", () => {
       expect(toCSSVariableName("--1")).toBe("--1");
       expect(toCSSVariableName("--1-2-3")).toBe("--1-2-3");
     });
+
+    it("should prefix a string with whatever prefix value if it does not start with it", () => {
+      expect(toCSSVariableName("name", "--")).toBe("--name");
+      expect(toCSSVariableName("--name", "--")).toBe("--name");
+
+      expect(toCSSVariableName("name", "--rmd-")).toBe("--rmd-name");
+      expect(toCSSVariableName("--rmd-name", "--rmd-")).toBe("--rmd-name");
+
+      expect(toCSSVariableName("name", "-r-")).toBe("-r-name");
+      expect(toCSSVariableName("-r-name", "-r-")).toBe("-r-name");
+    });
   });
 
   describe("fixVariables", () => {
@@ -47,6 +58,25 @@ describe("utils", () => {
         { name: "--hello-world", value: "#000" },
         { name: "--1", value: "1" },
         { name: "--1-2-3", value: "rgba(1, 2, 3, .12)" },
+      ]);
+
+      expect(fixVariables(variables, "--")).toEqual([
+        { name: "--name", value: "" },
+        { name: "--hello-world", value: "#000" },
+        { name: "--1", value: "1" },
+        { name: "--1-2-3", value: "rgba(1, 2, 3, .12)" },
+        { name: "--name", value: "" },
+        { name: "--hello-world", value: "#000" },
+        { name: "--1", value: "1" },
+        { name: "--1-2-3", value: "rgba(1, 2, 3, .12)" },
+      ]);
+
+      const variables2 = variables.slice(0, 4);
+      expect(fixVariables(variables2, "--rmd-")).toEqual([
+        { name: "--rmd-name", value: "" },
+        { name: "--rmd-hello-world", value: "#000" },
+        { name: "--rmd-1", value: "1" },
+        { name: "--rmd-1-2-3", value: "rgba(1, 2, 3, .12)" },
       ]);
     });
   });

@@ -51,6 +51,8 @@ const UpdateVariables: FunctionComponent<IUpdateVariablesProps> = ({
     });
   }
 
+  // TODO: Add a dev runtime check to make sure that only one instance
+  // of the UpdateVariables is setting the values
   useDocumentCSSVariables(variables);
 
   return (children as ReactElement<any>) || null;

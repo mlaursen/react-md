@@ -1,8 +1,9 @@
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties, useEffect, Dispatch, SetStateAction } from "react";
 
+export type CSSVariableValue = string | null;
 export interface ICSSVariable {
   name: string;
-  value: string;
+  value: CSSVariableValue;
 }
 
 /**
@@ -13,8 +14,8 @@ export interface ICSSVariable {
  * @param name - The css variable name to fix
  * @return a "valid" css variable name.
  */
-export function toCSSVariableName(name: string) {
-  return name.startsWith("--") ? name : `--${name}`;
+export function toCSSVariableName(name: string, prefix: string = "--") {
+  return name.startsWith(prefix) ? name : `${prefix}${name}`;
 }
 
 /**
@@ -23,9 +24,9 @@ export function toCSSVariableName(name: string) {
  * @param variables a list of css variables and their values
  * @return a new list ensuring that all variable names are prefixed with `--`
  */
-export function fixVariables(variables: ICSSVariable[]) {
+export function fixVariables(variables: ICSSVariable[], prefix: string = "--") {
   return variables.map(({ name, value }) => ({
-    name: toCSSVariableName(name),
+    name: toCSSVariableName(name, prefix),
     value,
   }));
 }
@@ -69,4 +70,59 @@ export function useDocumentCSSVariables(variables: ICSSVariable[]) {
       style.setProperty(name, value);
     });
   });
+}
+
+type ScssVariableMap = {
+  [key: string]: CSSVariableValue;
+};
+
+function tryImport(packageName: string) {
+  return import(`@react-md/${packageName}/dist/scssVariables`)
+    .then(pkg => {
+      const themeVars = `rmd-${packageName}${
+        packageName === "theme" ? "" : "-theme"
+      }-values`;
+      const values = (pkg.default[themeVars] || {}) as ScssVariableMap;
+
+      return Object.entries(values).reduce<ICSSVariable[]>(
+        (list, [variableName, variableValue]) => [
+          ...list,
+          {
+            name: `--rmd-${packageName}-${variableName}`,
+            value: variableValue,
+          },
+        ],
+        []
+      );
+    })
+    .catch(() => []);
+}
+
+export async function resolveVariables(
+  setRMDVariables: Dispatch<SetStateAction<ICSSVariable[]>>
+) {
+  const variables = await Promise.all([
+    tryImport("app-bar"),
+    tryImport("avatar"),
+    tryImport("button"),
+    tryImport("divider"),
+    tryImport("elevation"),
+    tryImport("icon"),
+    tryImport("link"),
+    tryImport("list"),
+    tryImport("overlay"),
+    tryImport("portal"),
+    tryImport("sheet"),
+    tryImport("states"),
+    tryImport("theme"),
+    tryImport("tooltip"),
+    tryImport("transition"),
+    tryImport("typography"),
+    tryImport("utils"),
+    tryImport("wia-aria"),
+  ]);
+
+  setRMDVariables(
+    variables.reduce((list, pkgVars) => [...list, ...pkgVars], [])
+  );
 }

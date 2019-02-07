@@ -3,7 +3,7 @@ import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { UpdateVariables } from "@react-md/theme";
+import { UpdateVariables, UpdateRMDVariables } from "@react-md/theme";
 
 import "./toggle-theme.scss";
 
@@ -51,11 +51,12 @@ const ToggleTheme: FunctionComponent = () => {
   }, [isLight]);
 
   const variables = Object.entries(LIGHT_THEMES).map(([name, value]) => ({
-    name: `--rmd-${name}`,
+    name,
     value: isLight ? value : "",
   }));
+
   return (
-    <UpdateVariables variables={variables}>
+    <UpdateRMDVariables variables={variables}>
       <Tooltipped
         id="toggle-theme"
         tooltip="Toggle light/dark theme"
@@ -75,7 +76,7 @@ const ToggleTheme: FunctionComponent = () => {
           </AppBarAction>
         )}
       </Tooltipped>
-    </UpdateVariables>
+    </UpdateRMDVariables>
   );
 };
 
