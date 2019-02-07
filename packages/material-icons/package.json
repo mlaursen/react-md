@@ -20,6 +20,7 @@
     "es/*",
     "lib/*",
     "types/*",
+    "src/*",
     "svgs/*"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",

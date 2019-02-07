@@ -14,8 +14,9 @@
   "files": [
     "es/*",
     "lib/*",
-    "dist/*",
-    "types/*"
+    "src/*",
+    "types/*",
+    "dist/*"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
