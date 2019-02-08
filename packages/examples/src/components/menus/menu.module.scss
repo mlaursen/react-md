@@ -1,4 +1,9 @@
-@import 'common';
+@import '@react-md/utils/dist/mixins';
+@import '@react-md/theme/dist/functions';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/variables';
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/typography/dist/mixins';
 
 .menu {
   @include rmd-utils-hide-focus-outline;

@@ -1,4 +1,5 @@
-@import 'common';
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/transition/dist/mixins';
 
 .toggle-theme {
   &--on:not(:hover),
