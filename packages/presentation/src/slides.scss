@@ -1,0 +1,76 @@
+@import 'branding';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/theme/dist/theme';
+
+.cross-fade-enter,
+.cross-fade-entered {
+  opacity: 0;
+  transform: translateY(-2rem);
+}
+
+.cross-fade-enter-active {
+  @include rmd-transition(deceleration);
+
+  opacity: 1;
+  transform: none;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.cross-fade-enter + *,
+.rmd-cross-fade-exit-done {
+  display: none;
+}
+
+// slide hacks
+// ====================================
+// HACK 1 START
+// ====================================
+#react-react-logo {
+  align-items: center;
+  display: flex;
+}
+
+img[alt='react logo'] {
+  animation: react-logo-spin infinite 20s linear;
+  height: 20rem;
+}
+
+@keyframes react-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ====================================
+// HACK 2 START
+// ====================================
+
+#state-management ~ blockquote {
+  @include rmd-typography(headline-4);
+}
+
+// ====================================
+// HACK 3 START
+// ====================================
+
+#presented-by {
+  &::before {
+    content: '(Friday, Feb 08, 2019)';
+    font-size: 0.3em;
+    font-style: italic;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.output {
+  @include rmd-theme(background-color, surface);
+
+  padding: 4rem;
+  height: 10rem;
+  width: 10rem;
+}

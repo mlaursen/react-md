@@ -1,0 +1,37 @@
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/states/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+
+.slide-navigator {
+  @include rmd-states-surface;
+  @include rmd-icon-theme-update-var(size, 4rem);
+  @include rmd-transition(standard);
+
+  $start-color: rgba($rmd-black-base, 0.08);
+  $end-color: rgba($rmd-black-base, 0.02);
+
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  transition: background-image 0.15s;
+
+  &--left {
+    left: 0;
+
+    &:hover {
+      background-image: linear-gradient(to left, $start-color, $end-color);
+    }
+  }
+
+  &--right {
+    right: 0;
+
+    &:hover {
+      background-image: linear-gradient(to right, $start-color, $end-color);
+    }
+  }
+}

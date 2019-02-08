@@ -1,0 +1,172 @@
+@import 'branding';
+@import '@react-md/divider/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+@mixin code-styles {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  hyphens: none;
+  tab-size: 4;
+  word-wrap: break-word;
+}
+
+@mixin inline-code-styles {
+  background-color: darken($rmd-theme-background, 10%);
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  white-space: pre-wrap;
+}
+
+pre,
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+h1 {
+  position: relative;
+
+  &::after {
+    @include rmd-divider-theme(background-color);
+
+    bottom: -1rem;
+    content: '';
+    height: 0.125rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.code {
+  @include inline-code-styles;
+}
+
+.markdown-container {
+  @include rmd-theme(color, text-primary-on-background);
+  @include rmd-typography(body-1);
+
+  pre,
+  code {
+    @include code-styles;
+  }
+
+  pre {
+    @include rmd-utils-scroll;
+
+    background-color: $solarized-base-03;
+    color: $solarized-base-1;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  p,
+  li {
+    code {
+      @include inline-code-styles;
+    }
+  }
+
+  .comment {
+    color: $solarized-base-01;
+  }
+
+  .operator {
+    color: $solarized-base-00;
+  }
+
+  .keyword,
+  .property {
+    color: $solarized-yellow;
+  }
+
+  .string {
+    color: $solarized-cyan;
+  }
+
+  .selector,
+  .function {
+    color: $solarized-blue;
+  }
+
+  .tag > .punctuation {
+    color: $solarized-yellow;
+  }
+
+  .attr-value {
+    color: $solarized-cyan;
+
+    .punctuation:first-child {
+      color: $solarized-base-1;
+    }
+  }
+
+  .inserted {
+    color: $solarized-green;
+  }
+
+  .deleted {
+    color: $solarized-red;
+  }
+
+  .language-scss {
+    color: $solarized-cyan;
+
+    .keyword {
+      color: $solarized-red;
+    }
+
+    .punctuation {
+      color: $solarized-base-1;
+    }
+
+    .variable {
+      color: $solarized-blue;
+    }
+  }
+
+  .language-html {
+    .attr-name,
+    .punctuation {
+      color: $solarized-base-00;
+    }
+  }
+
+  $index: 1;
+  @while $index < 6 {
+    h#{$index} {
+      @include rmd-typography(headline-#{$index});
+
+      margin: 0.5em 0;
+    }
+    $index: $index + 1;
+  }
+
+  blockquote {
+    @include rmd-typography(subtitle-1);
+    $border-color: rgba($rmd-black-base, 0.12);
+    $background-color: rgba($rmd-black-base, 0.04);
+
+    margin: 2em 0;
+    padding-left: 1.5em;
+    padding-right: 1em;
+    position: relative;
+
+    &::before {
+      background-color: $border-color;
+      content: '';
+      height: 130%;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.5em;
+    }
+  }
+
+  ul {
+    @include rmd-typography(headline-4);
+    line-height: 4rem;
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "presentation",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-md/app-bar": "^2.0.0-alpha.0",
+    "@react-md/avatar": "^2.0.0-alpha.0",
+    "@react-md/button": "^2.0.0-alpha.0",
+    "@react-md/divider": "^2.0.0-alpha.0",
+    "@react-md/elevation": "^2.0.0-alpha.0",
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/link": "^2.0.0-alpha.0",
+    "@react-md/list": "^2.0.0-alpha.0",
+    "@react-md/material-icons": "^2.0.0-alpha.0",
+    "@react-md/overlay": "^2.0.0-alpha.0",
+    "@react-md/portal": "^2.0.0-alpha.0",
+    "@react-md/react-scripts": "^2.1.4",
+    "@react-md/sheet": "^2.0.0-alpha.0",
+    "@react-md/states": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
+    "@react-md/typography": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "@types/marked": "^0.6.0",
+    "@types/prismjs": "^1.9.0",
+    "@types/styled-components": "^4.1.8",
+    "classnames": "^2.2.6",
+    "markdown-loader": "^5.0.0",
+    "marked": "^0.6.0",
+    "prismjs": "^1.15.0",
+    "raw-loader": "^1.0.0",
+    "react": "^16.8.1",
+    "react-confetti": "^2.3.0",
+    "react-dom": "^16.8.1",
+    "styled-components": "^4.1.3",
+    "typescript": "3.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,md}\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

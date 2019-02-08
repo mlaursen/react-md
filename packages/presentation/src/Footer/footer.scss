@@ -1,0 +1,41 @@
+@import 'branding';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+
+.footer {
+  @include rmd-transition(standard);
+  @include rmd-text-container-base;
+  @include rmd-text-container-auto;
+
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  transition: opacity 0.15s;
+
+  &--intro {
+    p {
+      @include rmd-theme(background-color, surface);
+      padding: 1rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  &--to-home {
+    @include rmd-theme(background-color, surface);
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .rmd-link {
+      display: block;
+      padding: 1rem 4rem;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

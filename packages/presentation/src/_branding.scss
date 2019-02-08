@@ -1,0 +1,28 @@
+@import '@react-md/theme/dist/color-palette';
+
+$rmd-typography-desktop-max-line-length: 60rem;
+$rmd-theme-primary: #00a7f7;
+$rmd-typography-font-family: Montserrat, sans-serif;
+// $rmd-theme-primary: $rmd-teal-500;
+// $rmd-theme-secondary: $rmd-pink-a-200;
+$rmd-theme-background: #303030;
+$rmd-theme-surface: $rmd-grey-800;
+$rmd-states-use-focus-box-shadow: true;
+
+$solarized-base-03: #002b36;
+$solarized-base-02: #073642;
+$solarized-base-01: #586e75;
+$solarized-base-00: #657b83;
+$solarized-base-0: #839496;
+$solarized-base-1: #93a1a1;
+$solarized-base-2: #eee8d5;
+$solarized-base-3: #fdf6e3;
+
+$solarized-yellow: #b58900;
+$solarized-orange: #cb4b16;
+$solarized-red: #d30102;
+$solarized-magenta: #d33682;
+$solarized-violet: #6c71c4;
+$solarized-blue: #268bd2;
+$solarized-cyan: #2aa198;
+$solarized-green: #859900;

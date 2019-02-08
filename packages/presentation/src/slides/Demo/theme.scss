@@ -1,0 +1,28 @@
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+.group {
+  margin: 1rem;
+}
+
+.label {
+  @include rmd-typography(body-1);
+  @include rmd-theme(color, text-secondary-on-background);
+
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  @include rmd-typography(body-1);
+  @include rmd-utils-hide-focus-outline;
+
+  border: 0;
+  border-radius: 0.25rem;
+  width: 100%;
+
+  &--text {
+    padding: 0.5rem;
+  }
+}
