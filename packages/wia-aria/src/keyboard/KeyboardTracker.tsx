@@ -116,11 +116,19 @@ function useKeyboardTracker(props: IKeyboardTrackerProps) {
     "keyup",
     (event: KeyboardEvent) => {
       const target = event.target as Maybe<KeyboardWiaAriaElement>;
-      if (
-        !target ||
-        (target as HTMLElement | Window) === window ||
-        event.key !== "Tab"
-      ) {
+      if (!target) {
+        return;
+      }
+
+      if ((target as KeyboardWiaAriaElement | Window) === window) {
+        if (focusedId !== null) {
+          setFocusedId(null);
+        }
+
+        return;
+      }
+
+      if (event.key !== "Tab") {
         return;
       } else if (!target.id) {
         if (

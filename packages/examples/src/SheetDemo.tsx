@@ -14,7 +14,7 @@ import { List, ListItem } from "@react-md/list";
 import { Divider } from "@react-md/divider";
 import { Maybe } from "@react-md/utils";
 import {
-  useFocusTrap,
+  useKeyboardFocusEffect,
   useScrollLock,
   useKeyboardFocusContext,
 } from "@react-md/wia-aria";
@@ -48,7 +48,7 @@ const SheetDemo: FunctionComponent = () => {
   const { setFocusedId } = useKeyboardFocusContext();
 
   const [sheetEl, setSheetEl] = useState<Maybe<HTMLElement>>(null);
-  useFocusTrap({
+  useKeyboardFocusEffect({
     container: sheetEl,
     onFocus: el => {
       if (el && el.id) {
