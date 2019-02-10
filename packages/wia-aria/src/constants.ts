@@ -1,20 +1,3 @@
-export const KEYBOARD_MOVEMENT_KEYS = [
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "Home",
-  "End",
-  "Tab",
-];
-
-export const PROGRAMMATIC_FOCUS_KEYS = [
-  ...KEYBOARD_MOVEMENT_KEYS,
-  " ",
-  "Enter",
-  "Escape",
-];
-
 export const FOCUSABLE_ELEMENTS = ["BUTTON", "TEXTAREA", "SELECT"];
 
 const BASE_FOCUSABLE_ELEMENTS =
@@ -41,3 +24,15 @@ export const PROGRAMATICALLY_FOCUSABLE = `${BASE_FOCUSABLE_QUERY},[tabindex]`;
  * // do something with elements
  */
 export const TAB_FOCUSABLE = `${PROGRAMATICALLY_FOCUSABLE}:not([tabindex="-1"])`;
+
+/**
+ * This is used with the `useScrollLock` effect to determine if the styles were
+ * applied by scroll locking or not in the cleanup stage.
+ */
+export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
+
+/**
+ * I mispell this alot for some reason, so just using a constant to make sure
+ * it's spelled correctly.
+ */
+export const ACTIVE_DESCENDANT = "aria-activedescendant";

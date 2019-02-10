@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 
-export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
+import { DATA_RMD_NOSCROLL } from "../constants";
 
 /**
  * This will enable scroll locking for the provided element. Scroll locking works

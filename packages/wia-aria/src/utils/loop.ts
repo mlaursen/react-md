@@ -4,15 +4,11 @@
  * to 0 or the max value respectively. This does not work for different
  * increment numbers or any values below 0 for now.
  *
- * @param x - The number to increment or decrement
- * @param max - The max number that can be set
- * @param increment - Boolean if it should be incremented or decremented
+ * @param x The number to increment or decrement
+ * @param max The max number that can be set
+ * @param increment Boolean if it should be incremented or decremented
  */
-export default function incrementLoop(
-  x: number,
-  max: number,
-  increment: boolean
-) {
+export default function loop(x: number, max: number, increment: boolean) {
   let next = x + (increment ? 1 : -1);
   if (next > max) {
     next = 0;
