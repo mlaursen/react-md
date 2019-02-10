@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IKey } from "../types.d";
+import { IKeyMapping } from "../types.d";
 
 /**
  * A small util get the the `KeyboardFocusKeyType` based on the provided keys
@@ -15,7 +15,7 @@ import { IKey } from "../types.d";
  */
 export default function getKeyboardEventType(
   event: KeyboardEvent | React.KeyboardEvent,
-  keys: IKey[]
+  keys: IKeyMapping[]
 ) {
   const { key, altKey, metaKey, shiftKey } = event;
   const found = keys.find(

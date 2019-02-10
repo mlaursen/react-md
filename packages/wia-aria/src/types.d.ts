@@ -1,38 +1,66 @@
-import { Maybe } from "@react-md/utils";
+import { HTMLAttributes, Ref } from "react";
+
+import findMatchIndex from "./utils/findMatchIndex";
+
+export type Maybe<T> = T | null;
 
 /**
- * This type is used to require at least one of the optional arguments from
- * an interface. This is useful for requiring specific a11y props when there
- * are a lost of choices to choose from where only one is required.
- *
- * One side-affect is that it will only list one of the keys as missing instead
- * of listing all of them to say that "one is required".
- *
- * @see https://stackoverflow.com/a/49725198
+ * The value object to provide to the custom keyboard change event.
  */
-export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
-  T,
-  Exclude<keyof T, Keys>
-> &
-  { [K in Keys]-?: Required<Pick<T, K>> }[Keys];
+export interface IKeyboardFocusChangeValue {
+  /**
+   * The element that should now have focus.
+   */
+  element: HTMLElement;
 
-/**
- * A simple interface that is used to help note that an id is required
- * for accessibility or implementing a widget.
- */
-export interface IdRequired {
-  id: string;
+  /**
+   * The index for the element that should now be focused from the
+   * `focusableElements` list.
+   */
+  elementIndex: number;
+
+  /**
+   * A list of all the focusable elements for the event.
+   */
+  focusableElements: HTMLElement[];
 }
 
 /**
- * This type is used to keep track of specific dom elements that
- * normally have "contracts" with one of the roles from wia-aria.
- * These will normally have custom focus events and keydown behavior
- * added to them.
+ * The change event function that gets called each time the keyboard focus changes
+ * in any of the custom keyboard focus hooks.
  */
-export type KeyboardWiaAriaElement =
-  | HTMLButtonElement
-  | HTMLUListElement
-  | HTMLOListElement
-  | HTMLLIElement
-  | HTMLDivElement;
+export type KeyboardFocusChangeEvent = (
+  value: IKeyboardFocusChangeValue,
+  event: KeyboardEvent | React.KeyboardEvent
+) => void;
+
+export type KeyboardFocusKeyType = "increment" | "decrement" | "first" | "last";
+export type KeyboardFocusedId = string | null;
+
+/**
+ * A key object that is used to determine what type of behavior to do from
+ * a keyboard event.
+ */
+export interface IKeyMapping {
+  key: string;
+  type: KeyboardFocusKeyType;
+  altKey: boolean;
+  metaKey: boolean;
+  shiftKey: boolean;
+}
+
+/**
+ * This interface is used to show how keyboard focus can be achieved with different
+ * key presses. When any of the values are omitted, an empty list will be used instead.
+ */
+export interface IKeyboardFocusKeys {
+  incrementKeys?: string[];
+  decrementKeys?: string[];
+  jumpToFirstKeys?: string[];
+  jumpToLastKeys?: string[];
+}
+
+export interface IWithKeyboardFocusChange {
+  onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
+  onKeyboardFocus: KeyboardFocusChangeEvent;
+}

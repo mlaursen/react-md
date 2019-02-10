@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { cleanup, testHook, act } from "react-testing-library";
+import { act, cleanup, testHook } from "react-testing-library";
 
 import useResetValueTimeout from "../useResetValueTimeout";
 
