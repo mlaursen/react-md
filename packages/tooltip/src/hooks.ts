@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { Maybe, useEventListener, positionRelativeTo } from "@react-md/utils";
-import { useIsKeyboardFocused } from "@react-md/wia-aria";
+// import { useIsKeyboardFocused } from "@react-md/wia-aria";
 
 import { ITooltipConfig, TooltipEventType, TooltipableEvent } from "./types.d";
 import {
@@ -28,7 +28,8 @@ export function useTooltipState(config: ITooltipConfig) {
     portal,
     style: propStyle,
   } = config;
-  const isKeyboardFocus = useIsKeyboardFocused(id);
+  // const isKeyboardFocus = useIsKeyboardFocused(id);
+  const isKeyboardFocus = false;
   const [trigger, setTrigger] = useState<Maybe<TooltipEventType>>(null);
   const [visible, setVisible] = useState(defaultVisible);
   const [position, setPosition] = useState(

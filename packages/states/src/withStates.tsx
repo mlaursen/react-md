@@ -6,7 +6,6 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { IWithForwardedRef } from "@react-md/utils";
-import { useIsKeyboardFocused } from "@react-md/wia-aria";
 
 import { useStatesContext, useRipplesState, usePressedStates } from "./hooks";
 import { IStatesContext } from "./context";
@@ -151,9 +150,9 @@ export default function withStates<
     if (props.id) {
       // if the element is "valid" and has an id, we can also start the keyboard focus only
       // states for the element by merging the class name
-      className = cn(className, {
-        "rmd-states--focused": useIsKeyboardFocused(props.id),
-      });
+      // className = cn(className, {
+      //   "rmd-states--focused": useIsKeyboardFocused(props.id),
+      // });
     } else if (process.env.NODE_ENV !== "production") {
       console.error(
         "Found a component that does not have an `id` prop, but is wrapped `withStates`. " +
