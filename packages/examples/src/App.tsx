@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { Divider, VerticalDivider } from "@react-md/divider";
 import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
+import { useMediaQuery } from "@react-md/utils";
 
 import AppSize from "./AppSize";
 import ListDemo from "./ListDemo";
@@ -16,6 +17,9 @@ import SheetDemo from "./SheetDemo";
 const history = createBrowserHistory();
 
 const App: FunctionComponent = () => {
+  const isDesktop = useMediaQuery("screen and (min-width: 1025px)");
+  const isTablet = useMediaQuery("screen and (min-width: 768px)");
+  const isPhone = useMediaQuery("(screen and (max-width: 767px))");
   return (
     <KeyboardTracker>
       <Router history={history}>
