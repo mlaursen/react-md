@@ -106,9 +106,7 @@
 ///
 /// You are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.
 ///
-/// @see rmd-theme-var
-/// @see rmd-theme-values
-/// @see rmd-theme
+/// @access private
 /// @param {String} theme-name - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
 @function rmd-theme($theme-name) {
@@ -120,8 +118,7 @@
 ///
 /// You are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.
 ///
-/// @see rmd-theme
-/// @see rmd-theme-values
+/// @access private
 /// @param {String} theme-name - The theme style to get. This should be one of the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
 @function rmd-theme-var($theme-name, $fallback-color: null) {

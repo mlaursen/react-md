@@ -6,14 +6,26 @@
 @import 'functions';
 @import 'helpers';
 
-/// This is really for internal use with the `react-md-theme` mixin, but you might be able to use it for some other stuff.
+/// Applies one of theme values to the provided property.
+///
+/// @example scss - Example Theme Application
+///   html {
+///     @include rmd-theme(background-color, background);
+///     @include rmd-theme(color, primary-text-on-background);
+///   }
+///
+///   .primary-bg {
+///     @include rmd-theme(background-color, primary);
+///   }
+///
+///   .primary-text {
+///     @include rmd-theme(color, primary);
+///   }
 ///
 /// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
 ///   color values can be used.
 /// @param {String} theme-style - The type of theme style to use. This should be one of the `$rmd-theme-values` or a literal
 ///   color value.
-/// @param {Boolean} no-css-variables-fallback [rmd-theme-no-css-variables-fallback] - Boolean if the theme should also be applied
-///   without the use of `var(--rmd-theme-NAME)`.
 @mixin rmd-theme($property, $theme-style) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-theme-values, theme);
 }

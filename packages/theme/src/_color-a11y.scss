@@ -80,6 +80,7 @@ $rmd-theme-linear-channel-values: (
 
 /// Calculate the luminance for a color.
 ///
+/// @access private
 /// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 /// @returns {Number}
 @function rmd-theme-luminance($color) {
@@ -94,6 +95,7 @@ $rmd-theme-linear-channel-values: (
 }
 
 /// Gets the contrast between two colors.
+/// @access private
 /// @returns {Number}
 @function rmd-theme-contrast($back, $front) {
   $back-luminance: rmd-theme-luminance($back) + 0.05;
