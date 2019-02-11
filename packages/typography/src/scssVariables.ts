@@ -3,7 +3,7 @@ export default {
   "rmd-typography-font-family": "Roboto, sans-serif",
   "rmd-typography-mobile-max-line-length": "17em",
   "rmd-typography-desktop-max-line-length": "40em",
-  "rmd-typography-text-container-breakpoint": "600px",
+  "rmd-typography-text-container-breakpoint": "37.5rem",
   "rmd-typography-base": {
     "font-family": "Roboto, sans-serif",
     "-moz-osx-font-smoothing": "grayscale",
@@ -172,5 +172,10 @@ export default {
       "text-decoration": "none",
       "text-transform": "uppercase",
     },
+  },
+  "rmd-typography-theme-values": {
+    "line-width": "40em",
+    "mobile-line-width": "17em",
+    "desktop-line-width": "40em",
   },
 };

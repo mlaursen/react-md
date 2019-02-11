@@ -2,9 +2,37 @@
 /// @group typography
 ////
 
+@import '@react-md/theme/dist/helpers';
 @import '@react-md/utils/dist/functions';
 @import 'variables';
 @import 'functions';
+
+/// Creates the styles for one of the typography's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-typography-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-typography-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-typography-theme-values` map when `null`.
+@mixin rmd-typography-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-typography-theme-values,
+    typography
+  );
+}
+
+/// Updates one of the typography's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The typography theme style type to update. This should be one
+///   of the `$rmd-typography-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-typography-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-typography-theme-values, typography);
+}
 
 /// Applies each property value from the `$rmd-typography-styles` map that matches the style name.
 ///
@@ -63,6 +91,8 @@
 /// to be able to center the text in a container once the `max-width` value has
 /// also been applied.
 @mixin rmd-text-container-base {
+  @include rmd-typography-theme(max-width, line-width);
+
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -116,15 +146,58 @@
   $desktop-max-width: $rmd-typography-desktop-max-line-length,
   $mobile-breakpoint: $rmd-typography-text-container-breakpoint
 ) {
-  max-width: $desktop-max-width;
-
   @media (max-width: #{$mobile-breakpoint}) {
-    max-width: $mobile-max-width;
+    @include rmd-typography-theme-update-var(
+      line-width,
+      rmd-typography-theme-var(mobile-line-width)
+    );
   }
+}
+
+/// Creates all the styles for the text container component.
+///
+/// @access private
+@mixin rmd-text-container {
+  @include rmd-text-container-base;
+
+  &--auto {
+    @include rmd-text-container-auto;
+  }
+
+  &--mobile {
+    @include rmd-typography-theme-update-var(
+      line-width,
+      rmd-typography-theme-var(mobile-line-width)
+    );
+  }
+
+  &--desktop {
+    @include rmd-typography-theme-update-var(
+      line-width,
+      rmd-typography-theme-var(desktop-line-width)
+    );
+  }
+}
+
+/// A simple mixin that can be used to update an element to ellipsis text when
+/// it is too long.
+///
+//  @example scss - Example Usage
+//    .truncate-this {
+//      @include rmd-typography-text-overflow-ellipsis;
+//
+//      width: 5rem;
+//    }
+@mixin rmd-typography-text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /// Creates all the typography styles from the react-md typography variables.
 @mixin react-md-typography {
+  @include rmd-theme-create-root-theme($rmd-typography-theme-values, typography);
+
   .rmd-typography {
     @include rmd-typography-base;
 
@@ -136,27 +209,8 @@
   }
 
   .rmd-text-container {
-    @include rmd-text-container-base;
-
-    &--auto {
-      @include rmd-text-container-auto;
-    }
-
-    &--mobile {
-      max-width: $rmd-typography-mobile-max-line-length;
-    }
-
-    &--desktop {
-      max-width: $rmd-typography-desktop-max-line-length;
-    }
+    @include rmd-text-container;
   }
-}
-
-/// A simple mixin that can be used to update an element to ellipsis text when it is too long.
-@mixin rmd-typography-text-overflow-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 /// Creates the font face declaration for a Google font with a provided font weight. This will
