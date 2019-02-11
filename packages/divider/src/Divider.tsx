@@ -70,7 +70,6 @@ const defaultProps: IDividerDefaultProps = {
 
 Divider.defaultProps = defaultProps;
 if (process.env.NODE_ENV !== "production") {
-  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
   Divider.displayName = "Divider";
 
   let PropTypes = null;

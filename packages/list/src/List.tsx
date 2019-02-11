@@ -77,7 +77,6 @@ const defaultProps: IListDefaultProps = {
 List.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
-  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
   List.displayName = "List";
 
   let PropTypes = null;

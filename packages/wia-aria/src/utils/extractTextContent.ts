@@ -1,5 +1,3 @@
-import { Maybe } from "@react-md/utils";
-
 /**
  * The default function used to extract the text from nodes. This will just return the textContent
  * by default unless the node has a react-md FontIcon as a child. If there is a FontIcon child,
@@ -26,7 +24,7 @@ export default function extractTextContent(
 
     if (fontIcons.some(i => !!i.textContent)) {
       const cloned = stringOrElement.cloneNode(true) as HTMLElement;
-      let icon: Maybe<HTMLElement>;
+      let icon: HTMLElement | null;
       while ((icon = cloned.querySelector(fontIconQuerySelector))) {
         cloned.removeChild(icon);
       }

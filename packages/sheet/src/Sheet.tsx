@@ -1,20 +1,24 @@
 import React, {
+  CSSProperties,
+  forwardRef,
+  Fragment,
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  Fragment,
-  forwardRef,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
+
+import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   IRenderConditionalPortalProps,
   useStaggeredVisibility,
 } from "@react-md/portal";
-import { Overlay } from "@react-md/overlay";
 import { ICSSTransitionProps } from "@react-md/transition";
 import { IWithForwardedRef } from "@react-md/utils";
+
+import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
 
 export type SheetPosition = "calculated" | "top" | "right" | "bottom" | "left";
 export type SheetHorizontalSize =
@@ -26,7 +30,6 @@ export type SheetHorizontalSize =
   | "until-large"
   | "until-media";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
-import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
 
 export interface ISheetProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -65,6 +68,16 @@ export interface ISheetProps
    * on mobile devices.
    */
   overlay?: boolean;
+
+  /**
+   * An optional style to apply to the overlay.
+   */
+  overlayStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the overlay.
+   */
+  overlayClassName?: string;
 
   /**
    * The position for the sheet to be rendered.
@@ -123,6 +136,8 @@ const Sheet: FunctionComponent<ISheetProps> = providedProps => {
   const {
     inline,
     overlay,
+    overlayStyle,
+    overlayClassName,
     visible,
     timeout,
     onRequestClose,
@@ -147,10 +162,19 @@ const Sheet: FunctionComponent<ISheetProps> = providedProps => {
     ...props
   } = providedProps as SheetWithDefaultProps;
 
+  const isCalculated = position === "calculated";
   const isHorizontal = position === "left" || position === "right";
   let overlayEl: ReactNode = null;
   if (overlay) {
-    overlayEl = <Overlay visible={visible} onRequestClose={onRequestClose} />;
+    overlayEl = (
+      <Overlay
+        id={`${props.id}-overlay`}
+        style={overlayStyle}
+        className={overlayClassName}
+        visible={visible}
+        onRequestClose={onRequestClose}
+      />
+    );
   }
 
   const { portalVisible, onExited } = useStaggeredVisibility({
@@ -188,7 +212,7 @@ const Sheet: FunctionComponent<ISheetProps> = providedProps => {
               "rmd-sheet",
               {
                 "rmd-sheet--fixed": !inline,
-                "rmd-sheet--horizontal": isHorizontal,
+                "rmd-sheet--horizontal": !isCalculated && isHorizontal,
                 "rmd-sheet--small-width":
                   isHorizontal && horizontalSize === "small",
                 "rmd-sheet--large-width":
@@ -201,7 +225,7 @@ const Sheet: FunctionComponent<ISheetProps> = providedProps => {
                   isHorizontal && horizontalSize === "until-large",
                 "rmd-sheet--until-media-width":
                   isHorizontal && horizontalSize === "until-media",
-                "rmd-sheet--vertical": !isHorizontal,
+                "rmd-sheet--vertical": !isCalculated && !isHorizontal,
                 "rmd-sheet--viewport-height":
                   !isHorizontal && verticalSize === "none",
                 "rmd-sheet--touchable-height":
@@ -236,6 +260,80 @@ const defaultProps: SheetDefaultProps = {
 };
 
 Sheet.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  Sheet.displayName = "Sheet";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Sheet.propTypes = {
+      style: PropTypes.object,
+      className: PropTypes.string,
+      children: PropTypes.node.isRequired,
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string,
+        PropTypes.object,
+      ]),
+      id: PropTypes.string.isRequired,
+      visible: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired,
+      tabIndex: PropTypes.number,
+      overlay: PropTypes.bool,
+      overlayStyle: PropTypes.object,
+      overlayClassName: PropTypes.string,
+      position: PropTypes.oneOf([
+        "calculated",
+        "top",
+        "right",
+        "bottom",
+        "left",
+      ]),
+      horizontalSize: PropTypes.oneOf([
+        "none",
+        "media",
+        "small",
+        "large",
+        "until-small",
+        "until-large",
+        "until-media",
+      ]),
+      verticalSize: PropTypes.oneOf(["none", "touch", "recommended"]),
+      inline: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLDivElement, ISheetProps>((props, ref) => (
   <Sheet {...props} forwardedRef={ref} />

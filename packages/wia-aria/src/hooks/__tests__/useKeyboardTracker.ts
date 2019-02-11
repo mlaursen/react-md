@@ -357,7 +357,7 @@ describe("useKeyboardTrackerState", () => {
     });
   });
 
-  it.only("should update correctly", () => {
+  it("should update correctly", () => {
     const btn = button as HTMLButtonElement;
     const inp = input as HTMLInputElement;
     let value;

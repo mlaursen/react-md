@@ -1,8 +1,7 @@
-import React, { FunctionComponent, ReactNode, useMemo } from "react";
-import useKeyboardFocusState from "./hooks/useKeyboardFocusState";
-import { KeyboardFocusedId } from "./types.d";
+import React, { FunctionComponent, ReactNode } from "react";
 import { KeyboardFocusContext } from "./contexts";
 import useKeyboardTrackerState from "./hooks/useKeyboardTrackerState";
+import { KeyboardFocusedId } from "./types.d";
 
 export interface IKeyboardTrackerProps {
   children?: ReactNode;

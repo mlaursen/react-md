@@ -47,7 +47,6 @@ const defaultProps: IAppBarTitleDefaultProps = {
 AppBarTitle.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
-  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
   AppBarTitle.displayName = "AppBarTitle";
 
   let PropTypes = null;

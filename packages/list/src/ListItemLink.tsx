@@ -120,7 +120,6 @@ const defaultProps: IListItemLinkDefaultProps = {
 
 ListItemLink.defaultProps = defaultProps;
 if (process.env.NODE_ENV !== "production") {
-  // there's a problem with forwardedRef components that set the `displayName` to `undefined`
   ListItemLink.displayName = "ListItemLink";
 
   let PropTypes = null;
