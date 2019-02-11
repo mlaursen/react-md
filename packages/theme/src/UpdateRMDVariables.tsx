@@ -1,18 +1,11 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useRef,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 
 import UpdateVariables, { IUpdateVariablesProps } from "./UpdateVariables";
 import {
-  resolveVariables,
-  toCSSVariableName,
   fixVariables,
   ICSSVariable,
+  resolveVariables,
+  toCSSVariableName,
 } from "./utils";
 
 const UpdateRMDVariables: FunctionComponent<IUpdateVariablesProps> = ({

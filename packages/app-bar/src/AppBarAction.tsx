@@ -27,9 +27,6 @@ interface IAppBarActionDefaultProps {
   buttonType: ButtonType;
 }
 
-type AppBarActionWithDefaultProps = IAppBarActionProps &
-  IAppBarActionDefaultProps;
-
 const AppBarAction: FunctionComponent<IAppBarActionProps> = ({
   className,
   first,
