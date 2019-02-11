@@ -16,3 +16,52 @@ from [https://w3.org](https://w3.org).
 ```sh
 $ npm install --save @react-md/wia-aria
 ```
+
+Unlike the majority of the packages in `react-md`, this package **does not**
+export any styles and is just used for basic accessibility utils to be used in
+different components.
+
+## KeyboardTracker
+
+This is the main component export for this package. This should be included
+somewhere near the root of your React render tree to ensure that keyboard focus
+can be tracked in your app and there _should_ probably only be one
+`KeyboardTracker` defined per app. This component will automatically update the
+keyboard tracker context as needed and is used by most of the hooks provided.
+
+Example usage:
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+import { KeyboardTracker } from "@react-md/wia-aria";
+
+import App from "./App";
+
+render(
+  <KeyboardTracker>
+    <App />
+  </KeyboardTracker>,
+  document.getElementById("root")
+);
+```
+
+## Hooks
+
+### Utility Hooks
+
+#### `useKeyboardFocusContext`
+
+#### `useKeyboardFocused`
+
+#### `useKeyboardFocusedClassName`
+
+#### `useKeyboardFocusEventHandler`
+
+#### `usePreviousFocus`
+
+#### `useResetValueTimeout`
+
+#### `useScrollLock`
+
+#### `useSearchEventHandler`

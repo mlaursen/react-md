@@ -1,10 +1,5 @@
 import { createContext } from "react";
-import { IKeyboardFocusState } from "./hooks/useKeyboardFocusState";
-import { KeyboardFocusedId } from "./types.d";
-
-export interface IKeyboardFocusContext extends IKeyboardFocusState {
-  setFocusedId: (nextFocusedId: KeyboardFocusedId) => void;
-}
+import { IKeyboardFocusContext } from "./types.d";
 
 let warnedOnce = false;
 

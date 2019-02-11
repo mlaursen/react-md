@@ -50,6 +50,8 @@ export default function useKeyboardFocusEventHandler({
       return;
     }
 
+    // implementing custom behavior, so need to stop native behavior
+    event.preventDefault();
     const focusableElements = getFocusableElements(container);
     const handleFocus = (i: number) => {
       onKeyboardFocus(

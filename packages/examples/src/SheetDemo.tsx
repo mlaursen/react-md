@@ -10,24 +10,48 @@ import {
   EditSVGIcon,
   DeleteSVGIcon,
 } from "@react-md/material-icons";
-import { List, ListItem } from "@react-md/list";
+import { List, ListItem, SimpleListItem } from "@react-md/list";
 import { Divider } from "@react-md/divider";
-import { Maybe } from "@react-md/utils";
+import { Maybe, positionRelativeTo } from "@react-md/utils";
 import {
-  useKeyboardFocusEffect,
   useScrollLock,
-  useKeyboardFocusContext,
+  KeyboardFocusChangeEvent,
+  // useActiveDescendantState,
+  // useFocusSwap,
 } from "@react-md/wia-aria";
+import SheetList from "./SheetList";
+
+import "./sheet.scss";
+
+const hackStyle = (node: HTMLElement) => {
+  const style = positionRelativeTo(
+    document.getElementById("show-sheet-left"),
+    node
+  );
+
+  if (!style) {
+    return;
+  }
+
+  Object.entries(style).forEach(([property, value]) => {
+    if (typeof value === "number") {
+      value = `${value}px`;
+    }
+    // @ts-ignore
+    node.style[property] = value;
+  });
+};
 
 const SheetDemo: FunctionComponent = () => {
-  const [activeId, setActiveId] = useState("menu-item-1");
+  // const [activeId, setActiveId] = useState("menu-item-1");
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState<SheetPosition>("bottom");
+  const [focusFirst, setFocusfirst] = useState(true);
 
   const show = (position: SheetPosition, first: boolean = true) => () => {
     setPosition(position);
     setVisible(true);
-    setActiveId("menu-item-1");
+    setFocusfirst(first);
   };
 
   const handleKeyDown = (position: SheetPosition) => (
@@ -45,21 +69,22 @@ const SheetDemo: FunctionComponent = () => {
 
   const hide = () => setVisible(false);
   const toggle = () => setVisible(prevVisible => !prevVisible);
-  const { setFocusedId } = useKeyboardFocusContext();
-
-  const [sheetEl, setSheetEl] = useState<Maybe<HTMLElement>>(null);
-  useKeyboardFocusEffect({
-    container: sheetEl,
-    onFocus: el => {
-      if (el && el.id) {
-        setFocusedId(el.id);
-        setActiveId(el.id);
-      }
-    },
-    incrementKeys: ["ArrowDown"],
-    decrementKeys: ["ArrowUp"],
-  });
   useScrollLock(visible);
+
+  // const { containerProps, setActiveId } = useActiveDescendantState({
+  //   // search: true,
+  //   defaultActiveId: "",
+  //   // incrementKeys: ["ArrowDown"],
+  //   // decrementKeys: ["ArrowUp"],
+  //   // jumpToFirstKeys: ["Home"],
+  //   // jumpToLastKeys: ["End"],
+  //   onKeyDown: event => {
+  //     if (event.key === "Tab" || event.key === "Escape") {
+  //       event.stopPropagation();
+  //       hide();
+  //     }
+  //   },
+  // });
 
   return (
     <TextContainer>
@@ -104,63 +129,36 @@ const SheetDemo: FunctionComponent = () => {
         <Sheet
           id="sheet-1"
           visible={visible}
-          position={position}
+          position="calculated"
+          classNames={{
+            appear: "rmd-menu--enter",
+            appearActive: "rmd-menu--enter-active",
+            enter: "rmd-menu--enter",
+            enterActive: "rmd-menu--enter-active",
+            exit: "rmd-menu--exit",
+            exitActive: "rmd-menu--exit-active",
+          }}
           onRequestClose={hide}
-          ref={setSheetEl}
-          portal
-          role="menu"
-          aria-activedescendant={activeId}
+          onClick={event => {
+            const target = event.target as HTMLElement;
+            if (!target || target === event.currentTarget) {
+              return;
+            }
+
+            window.requestAnimationFrame(hide);
+          }}
+          onEnter={node => {
+            const ids = Array.from(node.querySelectorAll("[id]")).map(
+              ({ id }) => id
+            );
+
+            hackStyle(node);
+          }}
+          onEntering={hackStyle}
+          onEntered={hackStyle}
+          // ref={useFocusSwap()}
         >
-          <List
-            onClick={event => {
-              if (event.target !== event.currentTarget) {
-                setVisible(false);
-              }
-            }}
-          >
-            <ListItem
-              id="menu-item-1"
-              role="menuitem"
-              leftIcon={<ShareSVGIcon />}
-              tabIndex={-1}
-            >
-              Share
-            </ListItem>
-            <ListItem
-              id="menu-item-2"
-              role="menuitem"
-              leftIcon={<LinkSVGIcon />}
-              tabIndex={-1}
-            >
-              Get Link
-            </ListItem>
-            <ListItem
-              id="menu-item-3"
-              role="menuitem"
-              leftIcon={<EditSVGIcon />}
-              tabIndex={-1}
-            >
-              Edit Name
-            </ListItem>
-            <ListItem
-              id="menu-item-4"
-              role="menuitem"
-              leftIcon={<DeleteSVGIcon />}
-              className="rmd-theme-error"
-              tabIndex={-1}
-            >
-              Delete Collection
-            </ListItem>
-            <Divider />
-            <ListItem
-              id="menu-item-close"
-              role="menuitem"
-              leftIcon={<CloseSVGIcon />}
-              tabIndex={-1}
-            >
-              Close
-            </ListItem>
-          </List>
+          <SheetList />
         </Sheet>
       </div>
     </TextContainer>

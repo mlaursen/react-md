@@ -3,6 +3,7 @@ import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { Divider, VerticalDivider } from "@react-md/divider";
 import { StatesConfig } from "@react-md/states";
+import { KeyboardTracker } from "@react-md/wia-aria";
 
 import AppSize from "./AppSize";
 import ListDemo from "./ListDemo";
@@ -14,24 +15,27 @@ import SheetDemo from "./SheetDemo";
 
 const history = createBrowserHistory();
 
-const App: FunctionComponent = () => (
-  <Router history={history}>
-    <StatesConfig preventColorPollution>
-      <Header />
-      <AppSize />
-      <Divider />
-      <AppBarDemo />
-      <Divider />
-      <AvatarDemo />
-      <Divider />
-      <ButtonDemo />
-      <Divider />
-      <ListDemo />
-      <Divider />
-      <SheetDemo />
-      <Divider />
-      <Divider />
-    </StatesConfig>
-  </Router>
-);
+const App: FunctionComponent = () => {
+  return (
+    <KeyboardTracker>
+      <Router history={history}>
+        <StatesConfig preventColorPollution>
+          <Header />
+          <AppSize />
+          <Divider />
+          <AppBarDemo />
+          <Divider />
+          <AvatarDemo />
+          <Divider />
+          <ButtonDemo />
+          <Divider />
+          <ListDemo />
+          <Divider />
+          <SheetDemo />
+          <Divider />
+        </StatesConfig>
+      </Router>
+    </KeyboardTracker>
+  );
+};
 export default App;

@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import { Maybe, useEventListener, positionRelativeTo } from "@react-md/utils";
-// import { useIsKeyboardFocused } from "@react-md/wia-aria";
-
-import { ITooltipConfig, TooltipEventType, TooltipableEvent } from "./types.d";
+import { useEffect, useRef, useState } from "react";
+import { Maybe, positionRelativeTo, useEventListener } from "@react-md/utils";
+import { useKeyboardFocused } from "@react-md/wia-aria";
+import { ITooltipConfig, TooltipEventType } from "./types.d";
 import {
-  determineBestPosition,
   createPositionOptions,
+  determineBestPosition,
   getSpacing,
 } from "./utils";
 
@@ -28,8 +27,7 @@ export function useTooltipState(config: ITooltipConfig) {
     portal,
     style: propStyle,
   } = config;
-  // const isKeyboardFocus = useIsKeyboardFocused(id);
-  const isKeyboardFocus = false;
+  const isKeyboardFocus = useKeyboardFocused(id);
   const [trigger, setTrigger] = useState<Maybe<TooltipEventType>>(null);
   const [visible, setVisible] = useState(defaultVisible);
   const [position, setPosition] = useState(
@@ -130,7 +128,7 @@ export function useTooltipState(config: ITooltipConfig) {
     setVisible(false);
   }
 
-  function handleEnter(node: Maybe<HTMLSpanElement>, isAppearing: boolean) {
+  function handleEnter(node: Maybe<HTMLSpanElement>) {
     const nextPosition = determineBestPosition(
       container.current,
       positionConfig

@@ -3,6 +3,7 @@ import { HTMLAttributes, Ref } from "react";
 import findMatchIndex from "./utils/findMatchIndex";
 
 export type Maybe<T> = T | null;
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * The value object to provide to the custom keyboard change event.
@@ -63,4 +64,13 @@ export interface IKeyboardFocusKeys {
 export interface IWithKeyboardFocusChange {
   onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
   onKeyboardFocus: KeyboardFocusChangeEvent;
+}
+
+export interface IKeyboardFocusState {
+  focusedId: KeyboardFocusedId;
+  isKeyboardMode: boolean;
+}
+
+export interface IKeyboardFocusContext extends IKeyboardFocusState {
+  setFocusedId: (nextFocusedId: KeyboardFocusedId) => void;
 }
