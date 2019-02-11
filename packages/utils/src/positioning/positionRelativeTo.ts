@@ -4,6 +4,7 @@ import {
   HorizontalPosition,
   IPositionOptions,
   IPositioningStyle,
+  VerticalPosition,
 } from "./types.d";
 
 function determineBestHorizontalPosition(
@@ -38,6 +39,40 @@ function getFixedToDimensions(fixedTo: HTMLElement) {
     fixedToWidth,
     fixedToHeight,
   };
+}
+
+function getHorizontalOrigin(horizontalPosition: HorizontalPosition) {
+  switch (horizontalPosition) {
+    case "left":
+    case "inner left":
+      return "0";
+    case "right":
+    case "inner right":
+      return "100%";
+    default:
+      return "0";
+  }
+}
+
+function getVerticalOrigin(verticalPosition: VerticalPosition) {
+  switch (verticalPosition) {
+    case "above":
+      return "100%";
+    case "center":
+      return "50%";
+    default:
+      console.log("verticalPosition:", verticalPosition);
+      return "0";
+  }
+}
+
+function createTransformOrigin(
+  horizontalPosition: HorizontalPosition,
+  verticalPosition: VerticalPosition
+) {
+  return `${getHorizontalOrigin(horizontalPosition)} ${getVerticalOrigin(
+    verticalPosition
+  )}`;
 }
 
 /**
@@ -95,7 +130,10 @@ export default function positionRelativeTo(
     top,
     left,
     position: "fixed",
-    transformOrigin: "0 0",
+    transformOrigin: createTransformOrigin(
+      horizontalPosition,
+      verticalPosition
+    ),
   };
 
   if (!target) {
@@ -105,7 +143,8 @@ export default function positionRelativeTo(
 
   let isTooTall = false;
   let isTooWide = false;
-  let bestPosition = horizontalPosition;
+  let bestHPosition = horizontalPosition;
+  let bestVPosition = verticalPosition;
 
   // using scrollHeight and scrollWIdth so transitions don't mess up the sizes
   const { scrollWidth: targetWidth, scrollHeight: targetHeight } = target;
@@ -114,13 +153,13 @@ export default function positionRelativeTo(
     style.left = vwMargin;
     style.right = vwMargin;
   } else {
-    bestPosition = determineBestHorizontalPosition(
+    bestHPosition = determineBestHorizontalPosition(
       horizontalPosition,
       fixedToLeft,
       vw,
       viewportThreshold
     );
-    switch (bestPosition) {
+    switch (bestHPosition) {
       case "left":
         style.left = fixedToLeft - targetWidth + overlapWidth;
         break;
@@ -150,14 +189,11 @@ export default function positionRelativeTo(
     style.top = fixedToTop + fixedToHeight / 2 - targetHeight / 2;
   } else if (verticalPosition === "above") {
     style.top = fixedToTop - targetHeight;
-  } else if (
-    verticalPosition !== "below" &&
-    top + targetHeight > vh - vhMargin
-  ) {
+  } else if (top + targetHeight > vh - vhMargin) {
+    bestVPosition = "above";
     // The target element would be out of bounds at the bottom edge, so swap position to be above
     // the element, but it can overlap and restrict the top to be within the vh's defined margin.
     style.top = Math.max(vhMargin, fixedToTop + overlapHeight - targetHeight);
-    style.transformOrigin = "0 100%";
   }
 
   if (horizontalSpacing && !isTooWide) {
@@ -171,6 +207,10 @@ export default function positionRelativeTo(
   if (verticalSpacing && !isTooTall) {
     const sign = verticalPosition === "above" ? "-" : "+";
     style.top = `calc(${style.top}px ${sign} ${verticalSpacing})`;
+  }
+
+  if (!isTooTall) {
+    style.transformOrigin = createTransformOrigin(bestHPosition, bestVPosition);
   }
 
   return style;

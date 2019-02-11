@@ -1,24 +1,24 @@
 import React, {
   FunctionComponent,
-  ReactNode,
-  ReactElement,
   HTMLAttributes,
+  ReactElement,
+  ReactNode,
 } from "react";
 import cn from "classnames";
-import { ITransitionProps } from "@react-md/transition";
-import { Omit } from "@react-md/utils";
-import {
-  IRenderConditionalPortalProps,
-  ConditionalPortal,
-} from "@react-md/portal";
 
 import {
-  ITooltipConfig,
-  TooltipPositionOrAuto,
-  MergableTooltipHandlers,
-} from "./types.d";
+  ConditionalPortal,
+  IRenderConditionalPortalProps,
+} from "@react-md/portal";
+import { Omit } from "@react-md/utils";
+
 import { useTooltipState } from "./hooks";
 import Tooltip, { ITooltipProps } from "./Tooltip";
+import {
+  ITooltipConfig,
+  MergableTooltipHandlers,
+  TooltipPositionOrAuto,
+} from "./types.d";
 
 export type TooltippedChildrenRenderer = (config: {
   tooltip: ReactNode;

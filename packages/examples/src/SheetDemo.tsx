@@ -12,43 +12,77 @@ import {
 } from "@react-md/material-icons";
 import { List, ListItem, SimpleListItem } from "@react-md/list";
 import { Divider } from "@react-md/divider";
-import { Maybe, positionRelativeTo } from "@react-md/utils";
+import {
+  Maybe,
+  positionRelativeTo,
+  VerticalPosition,
+  HorizontalPosition,
+} from "@react-md/utils";
 import {
   useScrollLock,
   KeyboardFocusChangeEvent,
   // useActiveDescendantState,
   // useFocusSwap,
 } from "@react-md/wia-aria";
+import { useRelativePositioningStyle } from "@react-md/transition";
 import SheetList from "./SheetList";
 
 import "./sheet.scss";
 
-const hackStyle = (node: HTMLElement) => {
-  const style = positionRelativeTo(
-    document.getElementById("show-sheet-left"),
-    node
-  );
+// const hackStyle = (node: HTMLElement) => {
+//   const style = positionRelativeTo(
+//     document.getElementById("show-sheet-left"),
+//     node
+//   );
 
-  if (!style) {
-    return;
-  }
+//   if (!style) {
+//     return;
+//   }
 
-  Object.entries(style).forEach(([property, value]) => {
-    if (typeof value === "number") {
-      value = `${value}px`;
-    }
-    // @ts-ignore
-    node.style[property] = value;
-  });
-};
+//   Object.entries(style).forEach(([property, value]) => {
+//     if (typeof value === "number") {
+//       value = `${value}px`;
+//     }
+//     // @ts-ignore
+//     node.style[property] = value;
+//   });
+// };
 
 const SheetDemo: FunctionComponent = () => {
   // const [activeId, setActiveId] = useState("menu-item-1");
+  const ref = useRef<Maybe<HTMLButtonElement>>(null);
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState<SheetPosition>("bottom");
   const [focusFirst, setFocusfirst] = useState(true);
 
-  const show = (position: SheetPosition, first: boolean = true) => () => {
+  let horizontalPosition: HorizontalPosition | undefined;
+  let verticalPosition: VerticalPosition | undefined;
+  switch (position) {
+    case "left":
+      horizontalPosition = "inner left";
+      break;
+    case "right":
+      horizontalPosition = "inner right";
+      break;
+    case "top":
+      verticalPosition = "above";
+      break;
+    case "bottom":
+      verticalPosition = "below";
+      break;
+  }
+  const styleProps = useRelativePositioningStyle({
+    fixedTo: ref.current,
+    horizontalPosition,
+    verticalPosition,
+  });
+
+  const show = (position: SheetPosition, first: boolean = true) => (
+    event:
+      | React.KeyboardEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    ref.current = event.currentTarget;
     setPosition(position);
     setVisible(true);
     setFocusfirst(first);
@@ -60,10 +94,10 @@ const SheetDemo: FunctionComponent = () => {
     const { key } = event;
     if (key === "ArrowUp") {
       event.preventDefault();
-      show(position, false)();
+      show(position, false)(event);
     } else if (key === "ArrowDown") {
       event.preventDefault();
-      show(position)();
+      show(position)(event);
     }
   };
 
@@ -130,6 +164,7 @@ const SheetDemo: FunctionComponent = () => {
           id="sheet-1"
           visible={visible}
           position="calculated"
+          overlayClassName="rmd-overlay--sheet"
           classNames={{
             appear: "rmd-menu--enter",
             appearActive: "rmd-menu--enter-active",
@@ -139,6 +174,7 @@ const SheetDemo: FunctionComponent = () => {
             exitActive: "rmd-menu--exit-active",
           }}
           onRequestClose={hide}
+          {...styleProps}
           onClick={event => {
             const target = event.target as HTMLElement;
             if (!target || target === event.currentTarget) {
@@ -147,16 +183,6 @@ const SheetDemo: FunctionComponent = () => {
 
             window.requestAnimationFrame(hide);
           }}
-          onEnter={node => {
-            const ids = Array.from(node.querySelectorAll("[id]")).map(
-              ({ id }) => id
-            );
-
-            hackStyle(node);
-          }}
-          onEntering={hackStyle}
-          onEntered={hackStyle}
-          // ref={useFocusSwap()}
         >
           <SheetList />
         </Sheet>
