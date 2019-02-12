@@ -1,3 +1,4 @@
+import { useCallback, useRef, useEffect } from "react";
 import { IKeyboardFocusKeys, IWithKeyboardFocusChange } from "../types.d";
 import getCurrentFocusedIndex from "../utils/getCurrentFocusedIndex";
 import getFocusableElements from "../utils/getFocusableElements";
@@ -38,49 +39,61 @@ export default function useKeyboardFocusEventHandler({
     jumpToLastKeys,
   });
 
-  return (event: React.KeyboardEvent<HTMLElement>) => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  // storing the event handlers in a ref so the callback doesn't need to be
+  // updated each time an arrow function is used for the event listeners.
+  const eventHandlersRef = useRef({ onKeyDown, onKeyboardFocus });
+  useEffect(() => {
+    eventHandlersRef.current.onKeyDown = onKeyDown;
+    eventHandlersRef.current.onKeyboardFocus = onKeyboardFocus;
+  }, [onKeyDown, onKeyboardFocus]);
 
-    const target = event.target as HTMLElement;
-    const container = event.currentTarget;
-    const type = getKeyboardEventType(event, keys);
-    if (!container || !type || !target) {
-      return;
-    }
+  return useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-    // implementing custom behavior, so need to stop native behavior
-    event.preventDefault();
-    const focusableElements = getFocusableElements(container);
-    const handleFocus = (i: number) => {
-      onKeyboardFocus(
-        {
-          element: focusableElements[i],
-          elementIndex: i,
-          focusableElements,
-        },
-        event
+      const target = event.target as HTMLElement;
+      const container = event.currentTarget;
+      const type = getKeyboardEventType(event, keys);
+      if (!container || !type || !target) {
+        return;
+      }
+
+      // implementing custom behavior, so need to stop native behavior
+      event.preventDefault();
+      const focusableElements = getFocusableElements(container);
+      const handleFocus = (i: number) => {
+        onKeyboardFocus(
+          {
+            element: focusableElements[i],
+            elementIndex: i,
+            focusableElements,
+          },
+          event
+        );
+      };
+
+      const lastIndex = Math.max(0, focusableElements.length - 1);
+      if (type === "first") {
+        handleFocus(0);
+        return;
+      } else if (type === "last") {
+        handleFocus(lastIndex);
+        return;
+      }
+
+      const currentIndex = getCurrentFocusedIndex(
+        container,
+        focusableElements,
+        target
       );
-    };
 
-    const lastIndex = Math.max(0, focusableElements.length - 1);
-    if (type === "first") {
-      handleFocus(0);
-      return;
-    } else if (type === "last") {
-      handleFocus(lastIndex);
-      return;
-    }
-
-    const currentIndex = getCurrentFocusedIndex(
-      container,
-      focusableElements,
-      target
-    );
-
-    if (currentIndex !== -1) {
-      handleFocus(loop(currentIndex, lastIndex, type === "increment"));
-    }
-  };
+      if (currentIndex !== -1) {
+        handleFocus(loop(currentIndex, lastIndex, type === "increment"));
+      }
+    },
+    [keys]
+  );
 }

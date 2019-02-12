@@ -1,4 +1,6 @@
 import { useEffect, useMemo } from "react";
+
+import { ACTIVE_DESCENDANT } from "../constants";
 import { KeyboardFocusedId } from "../types.d";
 import useKeyboardFocusState from "./useKeyboardFocusState";
 
@@ -124,8 +126,10 @@ export function useKeyboardDefaultTracker(
       }
 
       const el = target as HTMLElement;
-      if (el.id && focusedId !== el.id) {
-        setFocusedId(el.id);
+      const activeId = target.getAttribute(ACTIVE_DESCENDANT);
+      const id = activeId || el.id;
+      if (id && focusedId !== id) {
+        setFocusedId(id);
       }
     };
 

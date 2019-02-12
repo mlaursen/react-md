@@ -30,9 +30,9 @@ export interface IKeyboardFocusChangeValue {
  * The change event function that gets called each time the keyboard focus changes
  * in any of the custom keyboard focus hooks.
  */
-export type KeyboardFocusChangeEvent = (
+export type KeyboardFocusChangeEvent<E extends HTMLElement = HTMLElement> = (
   value: IKeyboardFocusChangeValue,
-  event: KeyboardEvent | React.KeyboardEvent
+  event: React.KeyboardEvent<E>
 ) => void;
 
 export type KeyboardFocusKeyType = "increment" | "decrement" | "first" | "last";

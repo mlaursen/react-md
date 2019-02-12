@@ -1,3 +1,5 @@
+const removeWhitespace = (s: string) => s.replace(/\s/g, "");
+
 /**
  * The default function used to extract the text from nodes. This will just return the textContent
  * by default unless the node has a react-md FontIcon as a child. If there is a FontIcon child,
@@ -14,7 +16,7 @@ export default function extractTextContent(
   fontIconQuerySelector: string = ".rmd-icon--font"
 ) {
   if (typeof stringOrElement === "string") {
-    return stringOrElement;
+    return removeWhitespace(stringOrElement);
   }
 
   if (fontIconQuerySelector) {
@@ -29,9 +31,9 @@ export default function extractTextContent(
         cloned.removeChild(icon);
       }
 
-      return cloned.textContent || "";
+      return removeWhitespace(cloned.textContent || "");
     }
   }
 
-  return stringOrElement.textContent || "";
+  return removeWhitespace(stringOrElement.textContent || "");
 }

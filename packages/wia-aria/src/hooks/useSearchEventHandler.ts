@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useCallback, useRef, useEffect } from "react";
 
 import { KeyboardFocusChangeEvent } from "../types.d";
 import extractTextContent from "../utils/extractTextContent";
@@ -6,7 +6,7 @@ import defaultFindMatchIndex from "../utils/findMatchIndex";
 import getCurrentFocusedIndex from "../utils/getCurrentFocusedIndex";
 import getFocusableElements from "../utils/getFocusableElements";
 
-import useResetValueTimeout from "./useResetValueTimeout";
+import useValueReset from "./useValueReset";
 
 export interface ISearchEffectOptions {
   /**
@@ -45,6 +45,7 @@ export interface ISearchEffectOptions {
   /**
    * A function to call when the search is successful and a new element _should_
    * be focused.
+   *
    */
   onKeyboardFocus: KeyboardFocusChangeEvent;
 }
@@ -67,44 +68,56 @@ export default function useSearchEventHandler({
   findMatchIndex = defaultFindMatchIndex,
   isSelfMatchable = true,
 }: ISearchEffectOptions) {
-  const { value, setValue } = useResetValueTimeout("", searchResetTime);
+  const { valueRef, setValue } = useValueReset("", searchResetTime);
 
-  return (event: React.KeyboardEvent<HTMLElement>) => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  // storing the event handlers in a ref so the callback doesn't need to be
+  // updated each time an arrow function is used for the event listeners.
+  const eventHandlersRef = useRef({ onKeyDown, onKeyboardFocus });
+  useEffect(() => {
+    eventHandlersRef.current.onKeyDown = onKeyDown;
+    eventHandlersRef.current.onKeyboardFocus = onKeyboardFocus;
+  }, [onKeyDown, onKeyboardFocus]);
 
-    const { key } = event;
-    if (key.length > 1) {
-      // might need to change this later if other languages have
-      // non-meta keys that are more than 1 letter
-      return;
-    }
+  return useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-    const nextValue = `${value}${key}`;
-    setValue(nextValue);
-    const focusableElements = getFocusableElements(event.currentTarget);
-    const values = getValues(focusableElements);
-    const currentIndex = getCurrentFocusedIndex(
-      event.currentTarget,
-      focusableElements,
-      event.target as HTMLElement
-    );
-    const index = findMatchIndex(
-      nextValue,
-      values,
-      currentIndex,
-      isSelfMatchable
-    );
-    if (index !== -1) {
-      onKeyboardFocus(
-        {
-          element: focusableElements[index],
-          elementIndex: index,
-          focusableElements,
-        },
-        event
+      const { key } = event;
+      if (key.length > 1 || !valueRef) {
+        // might need to change this later if other languages have
+        // non-meta keys that are more than 1 letter
+        return;
+      }
+
+      const nextValue = `${valueRef.current}${key}`;
+      setValue(nextValue);
+      const focusableElements = getFocusableElements(event.currentTarget);
+      const values = getValues(focusableElements);
+      const currentIndex = getCurrentFocusedIndex(
+        event.currentTarget,
+        focusableElements,
+        event.target as HTMLElement
       );
-    }
-  };
+      const index = findMatchIndex(
+        nextValue,
+        values,
+        currentIndex,
+        isSelfMatchable
+      );
+      if (index !== -1) {
+        onKeyboardFocus(
+          {
+            element: focusableElements[index],
+            elementIndex: index,
+            focusableElements,
+          },
+          event
+        );
+      }
+    },
+    [onKeyDown]
+  );
 }

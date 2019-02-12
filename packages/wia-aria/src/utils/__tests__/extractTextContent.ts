@@ -7,7 +7,7 @@ describe("extractTextContent", () => {
     expect(extractTextContent("hello")).toBe("hello");
   });
 
-  it("should return the HTMLElement's textContent", () => {
+  it("should return the HTMLElement's textContent without whitespace", () => {
     const span = document.createElement("span");
     span.innerHTML = "span";
 
@@ -19,7 +19,7 @@ describe("extractTextContent", () => {
 
     expect(extractTextContent(span)).toBe("span");
     expect(extractTextContent(div)).toBe("div");
-    expect(extractTextContent(li)).toBe("List Item");
+    expect(extractTextContent(li)).toBe("ListItem");
   });
 
   describe("fixing font icons", () => {
@@ -48,7 +48,7 @@ describe("extractTextContent", () => {
       div2.textContent = "This should be removed";
       div.appendChild(div2);
       div.appendChild(div2);
-      expect(extractTextContent(div, ".remove-me")).toBe("Div value");
+      expect(extractTextContent(div, ".remove-me")).toBe("Divvalue");
     });
   });
 });
