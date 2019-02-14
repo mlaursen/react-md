@@ -17,6 +17,11 @@ export interface ISimpleListItemProps
     HTMLAttributes<HTMLLIElement>,
     IWithForwardedRef<HTMLLIElement> {
   /**
+   * This prop shouldn't really be used other than a pass-down value from the ListItem component.
+   */
+  disabled?: boolean;
+
+  /**
    * Boolean if the list item should be considered "three-lines" in height. This will update
    * the `secondaryText` to span 2 lines instead of one, but it will not correctly applied
    * the trailing ellipsis overflow due to browser compatibility of `line-clamp`. If you
@@ -58,6 +63,8 @@ const SimpleListItem: FunctionComponent<
     forwardedRef,
     height: propHeight,
     threeLines,
+    "aria-disabled": ariaDisabled,
+    disabled,
     ...props
   } = providedProps as SimpleListItemWithDefaultProps;
 
@@ -65,6 +72,11 @@ const SimpleListItem: FunctionComponent<
   return (
     <li
       {...props}
+      aria-disabled={
+        typeof ariaDisabled === "string"
+          ? ariaDisabled
+          : (disabled && "true") || undefined
+      }
       ref={forwardedRef}
       className={cn(
         "rmd-list-item",

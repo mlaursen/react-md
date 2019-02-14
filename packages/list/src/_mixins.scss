@@ -84,6 +84,7 @@
   align-items: center;
   display: flex;
   padding: rmd-list-theme-var(item-vertical-padding) rmd-list-theme-var(item-horizontal-padding);
+  position: relative;
 }
 
 @mixin rmd-list-item-dense-theme {
@@ -120,8 +121,10 @@
       @include rmd-states-color-pullution-content-overlay {
         align-items: center;
       }
+    }
 
-      position: relative;
+    &[aria-disabled] {
+      @include rmd-theme(color, text-disabled-on-background);
     }
 
     &--link {
