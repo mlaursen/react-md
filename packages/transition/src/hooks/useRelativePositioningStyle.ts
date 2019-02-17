@@ -64,7 +64,7 @@ export default function useRelativePositioningStyle({
 
   useEffect(() => {
     optionsRef.current = options;
-    fixedToRef.current = fixedTo;
+    fixedToRef.current = typeof fixedTo === "function" ? fixedTo() : fixedTo;
   });
 
   return {

@@ -14,9 +14,9 @@ describe("useKeyboardFocusEventHandler", () => {
       handlers: { onKeyboardFocus: _, ...handlers },
     } = useKeyboardFocusEventHandler({
       ...config,
+      onKeyboardFocus,
       handlers: {
         onKeyDown,
-        onKeyboardFocus,
       },
     });
 
@@ -46,14 +46,14 @@ describe("useKeyboardFocusEventHandler", () => {
     testHook(
       () =>
         (value = useKeyboardFocusEventHandler({
-          handlers: { onKeyboardFocus },
+          onKeyboardFocus,
+          handlers: {},
         }))
     );
 
     expect(value).toEqual({
       handlers: expect.objectContaining({
         onKeyDown: expect.any(Function),
-        onKeyboardFocus,
       }),
     });
   });
