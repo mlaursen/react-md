@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const { spawn, spawnSync, exec } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 
-const IGNORED = /(\_\_tests\_\_|dev-utils|examples)/;
+const IGNORED = /(__tests__|dev-utils|examples)/;
 let startLoggingScss = false;
 let startLoggingDefs = false;
 
