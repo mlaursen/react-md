@@ -7,7 +7,7 @@ export interface IRelativePositioningStyleOptions
   extends IPositionOptions,
     Pick<ITransitionProps, "onEnter" | "onEntering" | "onEntered"> {
   style?: CSSProperties;
-  fixedTo: Maybe<HTMLElement>;
+  fixedTo: Maybe<HTMLElement> | (() => Maybe<HTMLElement>);
 }
 
 export default function useRelativePositioningStyle({
@@ -18,6 +18,7 @@ export default function useRelativePositioningStyle({
   onEntered,
   ...options
 }: IRelativePositioningStyleOptions) {
+  fixedTo = typeof fixedTo === "function" ? fixedTo() : fixedTo;
   const [style, setStyle] = useState(propStyle);
   const optionsRef = useRef<IPositionOptions>(options);
   const fixedToRef = useRef<Maybe<HTMLElement>>(fixedTo);

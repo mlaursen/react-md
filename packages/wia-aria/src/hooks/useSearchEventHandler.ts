@@ -1,20 +1,15 @@
-import { HTMLAttributes, useCallback, useRef, useEffect } from "react";
-
-import { KeyboardFocusChangeEvent } from "../types.d";
+import { useCallback, useRef } from "react";
+import { WithEventHandlers, WithKeyboardFocusCallback } from "../types.d";
 import extractTextContent from "../utils/extractTextContent";
 import defaultFindMatchIndex from "../utils/findMatchIndex";
 import getCurrentFocusedIndex from "../utils/getCurrentFocusedIndex";
 import getFocusableElements from "../utils/getFocusableElements";
-
 import useValueReset from "./useValueReset";
 
-export interface ISearchEffectOptions {
-  /**
-   * An optional onKeyDown event listener to merge into the logic for the keyboard
-   * search behavior. This will be called immediately before the search begins.
-   */
-  onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
-
+export interface ISearchEffectOptions<
+  H = {},
+  E extends HTMLElement = HTMLElement
+> extends WithEventHandlers<H, E>, Required<WithKeyboardFocusCallback> {
   /**
    * An optional function to get the string values for all the focusable elements
    * in the keydown container element. If this is omitted, it will just return the
@@ -41,13 +36,6 @@ export interface ISearchEffectOptions {
    * by default if omitted.
    */
   isSelfMatchable?: boolean;
-
-  /**
-   * A function to call when the search is successful and a new element _should_
-   * be focused.
-   *
-   */
-  onKeyboardFocus: KeyboardFocusChangeEvent;
 }
 
 /**
@@ -60,25 +48,25 @@ export interface ISearchEffectOptions {
  * @param options All the options to create the search event handler.
  * @return a keydown event handler that should be provided to a React element
  */
-export default function useSearchEventHandler({
-  onKeyDown,
+export default function useSearchEventHandler<H = {}>({
+  handlers,
   onKeyboardFocus,
   searchResetTime = 500,
   getValues = els => els.map(el => extractTextContent(el)),
   findMatchIndex = defaultFindMatchIndex,
   isSelfMatchable = true,
-}: ISearchEffectOptions) {
+}: ISearchEffectOptions<H>) {
   const { valueRef, setValue } = useValueReset("", searchResetTime);
 
   // storing the event handlers in a ref so the callback doesn't need to be
   // updated each time an arrow function is used for the event listeners.
-  const eventHandlersRef = useRef({ onKeyDown, onKeyboardFocus });
-  useEffect(() => {
-    eventHandlersRef.current.onKeyDown = onKeyDown;
-    eventHandlersRef.current.onKeyboardFocus = onKeyboardFocus;
-  }, [onKeyDown, onKeyboardFocus]);
+  const eventHandlersRef = useRef({
+    onKeyDown: handlers.onKeyDown,
+    onKeyboardFocus,
+  });
+  eventHandlersRef.current = { onKeyDown: handlers.onKeyDown, onKeyboardFocus };
 
-  return useCallback(
+  const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
       if (onKeyDown) {
@@ -118,6 +106,13 @@ export default function useSearchEventHandler({
         );
       }
     },
-    [onKeyDown]
+    []
   );
+
+  return {
+    handlers: {
+      ...handlers,
+      onKeyDown: handleKeyDown,
+    },
+  };
 }

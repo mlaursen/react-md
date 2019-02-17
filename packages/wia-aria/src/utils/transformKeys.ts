@@ -1,4 +1,4 @@
-import { IKeyMapping, KeyboardFocusKeyType } from "../types.d";
+import { KeyConfig, KeyboardFocusKeyType } from "../types.d";
 
 /**
  * A small util function to transform a list of key codes into a list of
@@ -13,7 +13,7 @@ export default function transformKeys(
   keys: string[],
   type: KeyboardFocusKeyType
 ) {
-  return keys.map<IKeyMapping>(key => ({
+  return keys.map<KeyConfig>(key => ({
     shiftKey: key.includes("Shift+"),
     metaKey: key.includes("Meta+"),
     altKey: key.includes("Alt+"),

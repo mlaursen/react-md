@@ -1,17 +1,27 @@
 import React, { FunctionComponent } from "react";
 import { cleanup, testHook, render, fireEvent } from "react-testing-library";
 
-import useKeyboardFocusEventHandler from "../useKeyboardFocusEventHandler";
+import { useKeyboardFocusEventHandler } from "../useKeyboardFocus";
 
 describe("useKeyboardFocusEventHandler", () => {
   const onKeyboardFocus = jest.fn();
-  const Test: FunctionComponent<any> = props => {
-    const onKeyDown = useKeyboardFocusEventHandler({
-      onKeyboardFocus,
-      ...props,
+  const Test: FunctionComponent<any> = ({
+    onKeyDown,
+    onKeyboardFocus,
+    ...config
+  }) => {
+    const {
+      handlers: { onKeyboardFocus: _, ...handlers },
+    } = useKeyboardFocusEventHandler({
+      ...config,
+      handlers: {
+        onKeyDown,
+        onKeyboardFocus,
+      },
     });
+
     return (
-      <ul id="menu-1" role="menu" onKeyDown={onKeyDown}>
+      <ul id="menu-1" role="menu" {...handlers}>
         {Array.from(
           new Array(10).map((_, i) => (
             <li key={i} id={`item-${i + 1}`} role="menuitem" tabIndex={-1}>
@@ -22,19 +32,30 @@ describe("useKeyboardFocusEventHandler", () => {
       </ul>
     );
   };
+  Test.defaultProps = {
+    onKeyboardFocus,
+  };
 
   afterEach(() => {
     cleanup();
     onKeyboardFocus.mockClear();
   });
 
-  it("should return a function", () => {
-    let onKeyDown;
+  it("should return the correct object", () => {
+    let value;
     testHook(
-      () => (onKeyDown = useKeyboardFocusEventHandler({ onKeyboardFocus }))
+      () =>
+        (value = useKeyboardFocusEventHandler({
+          handlers: { onKeyboardFocus },
+        }))
     );
 
-    expect(onKeyDown).toBeInstanceOf(Function);
+    expect(value).toEqual({
+      handlers: expect.objectContaining({
+        onKeyDown: expect.any(Function),
+        onKeyboardFocus,
+      }),
+    });
   });
 
   it("should call the onKeyDown option correctly", () => {

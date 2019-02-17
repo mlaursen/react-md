@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { IKeyboardFocusKeys } from "../types.d";
+import { KeyboardFocusKeys } from "../types.d";
 import transformKeys from "../utils/transformKeys";
 
 /**
@@ -13,7 +13,7 @@ export default function useMemoizedFocusKeys({
   decrementKeys = ["Shift+Tab"],
   jumpToFirstKeys = [],
   jumpToLastKeys = [],
-}: IKeyboardFocusKeys) {
+}: KeyboardFocusKeys) {
   return useMemo(
     () => [
       ...transformKeys(incrementKeys, "increment"),

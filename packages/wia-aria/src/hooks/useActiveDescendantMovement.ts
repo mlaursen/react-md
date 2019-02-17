@@ -1,19 +1,16 @@
-import { Dispatch, HTMLAttributes, SetStateAction, useState } from "react";
-
+import { Dispatch, SetStateAction, useState } from "react";
+import {
+  KeyboardFocusKeys,
+  WithKeyboardFocusCallback,
+  WithEventHandlers,
+  EventHandlersWithKeyDown,
+} from "../types.d";
 import createKeyboardClickHandler from "../utils/createKeyboardClickHandler";
 import getFocusableElements from "../utils/getFocusableElements";
-
-import { useKeyboardFocusContext } from "./useKeyboardFocus";
-import useKeyboardFocusEventHandler, {
-  IKeyboardFocusOptions,
-} from "./useKeyboardFocusEventHandler";
-
-interface IActiveDescendantMovementOptions<E extends HTMLElement>
-  extends Partial<IKeyboardFocusOptions> {
-  defaultActiveId?: string | null;
-  defaultActiveFirst?: boolean;
-  defaultActiveIndex?: number;
-}
+import {
+  useKeyboardFocusContext,
+  useKeyboardFocusEventHandler,
+} from "./useKeyboardFocus";
 
 export interface DefaultIdOptions<E extends HTMLElement> {
   instance: E | null;
@@ -46,34 +43,56 @@ export function getDefaultActiveId<E extends HTMLElement>({
   return focusableElements[index].id as string;
 }
 
-export interface IActiveDescendantProps<E> {
+interface IActiveDescendantMovementOptions<
+  H = {},
+  E extends HTMLElement = HTMLElement
+>
+  extends KeyboardFocusKeys,
+    WithEventHandlers<H, E>,
+    WithKeyboardFocusCallback {
+  defaultActiveId: string;
+}
+
+export interface IActiveDescendantValues<
+  H,
+  E extends HTMLElement = HTMLElement
+> extends EventHandlersWithKeyDown<H, E> {
   activeId: string;
   setActiveId: Dispatch<SetStateAction<string>>;
-  onKeyDown: HTMLAttributes<E>["onKeyDown"];
 }
 
 export function useActiveDescendantMovement<
+  H = {},
   E extends HTMLElement = HTMLElement
 >({
-  defaultActiveId = null,
-  defaultActiveFirst = true,
-  defaultActiveIndex,
+  handlers: providedHandlers,
   onKeyboardFocus,
-  onKeyDown,
+  defaultActiveId,
   ...focusOptions
-}: IActiveDescendantMovementOptions<E>): IActiveDescendantProps<E> {
+}: IActiveDescendantMovementOptions<H, E>): IActiveDescendantValues<H, E> {
   const [activeId, setActiveId] = useState(defaultActiveId || "");
   const { setFocusedId } = useKeyboardFocusContext();
-  const handleKeyDown = useKeyboardFocusEventHandler({
-    onKeyDown: createKeyboardClickHandler(onKeyDown),
+  const updateId = (id: string | ((prevId: string) => string)) => {
+    if (typeof id === "function") {
+      id = id(activeId);
+    }
+
+    setActiveId(id);
+    setFocusedId(id);
+  };
+
+  const updatedHandlers = useKeyboardFocusEventHandler({
+    handlers: {
+      ...providedHandlers,
+      onKeyDown: createKeyboardClickHandler(providedHandlers.onKeyDown),
+    },
     onKeyboardFocus: (value, event) => {
       if (onKeyboardFocus) {
         onKeyboardFocus(value, event);
       }
 
       const { id } = value.element;
-      setActiveId(id);
-      setFocusedId(id);
+      updateId(id);
       if (event.currentTarget) {
         // this might be a bit hacky.. but this is a way to ensure that the element is
         // visible by triggering the native scroll behavior of focus as and then
@@ -88,7 +107,7 @@ export function useActiveDescendantMovement<
 
   return {
     activeId,
-    setActiveId,
-    onKeyDown: handleKeyDown,
+    setActiveId: updateId,
+    handlers: updatedHandlers.handlers,
   };
 }

@@ -61,7 +61,6 @@ function getVerticalOrigin(verticalPosition: VerticalPosition) {
     case "center":
       return "50%";
     default:
-      console.log("verticalPosition:", verticalPosition);
       return "0";
   }
 }

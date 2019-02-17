@@ -1,10 +1,10 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from "react";
 import {
-  testHook,
-  cleanup,
-  render,
-  fireEvent,
   act,
+  cleanup,
+  fireEvent,
+  render,
+  testHook,
 } from "react-testing-library";
 
 import useSearchEventHandler, {
@@ -26,43 +26,51 @@ describe("useSearchEventHandler", () => {
     onKeyboardFocus.mockClear();
   });
 
-  it("should create an event handler", () => {
-    let onKeyDown;
+  it("should return the correct object", () => {
+    let value;
     testHook(
-      () => (onKeyDown = useSearchEventHandler({ onKeyboardFocus: () => {} }))
+      () => (value = useSearchEventHandler({ onKeyboardFocus, handlers: {} }))
     );
 
-    progress();
-    expect(onKeyDown).toBeInstanceOf(Function);
+    expect(value).toEqual({
+      handlers: expect.objectContaining({
+        onKeyDown: expect.any(Function),
+      }),
+    });
   });
 
   describe("event handler", () => {
     type TestType = FunctionComponent<
-      { items?: ReactNode[] } & Pick<
+      {
+        items?: ReactNode[];
+        onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
+      } & Pick<
         ISearchEffectOptions,
-        "onKeyDown" | "searchResetTime" | "getValues" | "findMatchIndex"
+        "searchResetTime" | "getValues" | "findMatchIndex"
       >
     >;
 
     const Test: TestType = ({
       items = ["Item 1", "Item 2", "Item 3", "Item 4"],
+      onKeyDown: propOnKeyDown,
       ...others
-    }) => (
-      <ul
-        id="menu-1"
-        role="menu"
-        onKeyDown={useSearchEventHandler({
-          ...others,
-          onKeyboardFocus,
-        })}
-      >
-        {items.map((value, i) => (
-          <li key={i} id={`item-${i + 1}`} role="menuitem" tabIndex={-1}>
-            {value}
-          </li>
-        ))}
-      </ul>
-    );
+    }) => {
+      const { handlers } = useSearchEventHandler({
+        ...others,
+        onKeyboardFocus,
+        handlers: { onKeyDown: propOnKeyDown },
+      });
+
+      return (
+        <ul id="menu-1" role="menu" {...handlers}>
+          {items.map((value, i) => (
+            <li key={i} id={`item-${i + 1}`} role="menuitem" tabIndex={-1}>
+              {value}
+            </li>
+          ))}
+        </ul>
+      );
+    };
 
     it("should call the prop onKeyDown", () => {
       const onKeyDown = jest.fn();
