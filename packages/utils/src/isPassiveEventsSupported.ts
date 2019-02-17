@@ -6,6 +6,10 @@ let cached = false;
  * outside of this file, but you can always check again if needed.
  */
 export function supports() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
   let isPassiveEventsSupported = false;
   const opts = Object.defineProperty({}, "passive", {
     get() {

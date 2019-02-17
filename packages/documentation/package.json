@@ -1,0 +1,49 @@
+{
+  "name": "documentation",
+  "version": "2.0.0-alpha.0",
+  "description": "The documentation site for react-md",
+  "private": true,
+  "scripts": {
+    "dev": "next ./src",
+    "dev-log": "FORCE_COLOR=true yarn dev | cat",
+    "build": "next build ./src",
+    "start": "next start ./src"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/app-bar": "^2.0.0-alpha.0",
+    "@react-md/avatar": "^2.0.0-alpha.0",
+    "@react-md/button": "^2.0.0-alpha.0",
+    "@react-md/divider": "^2.0.0-alpha.0",
+    "@react-md/elevation": "^2.0.0-alpha.0",
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/link": "^2.0.0-alpha.0",
+    "@react-md/list": "^2.0.0-alpha.0",
+    "@react-md/material-icons": "^2.0.0-alpha.0",
+    "@react-md/overlay": "^2.0.0-alpha.0",
+    "@react-md/portal": "^2.0.0-alpha.0",
+    "@react-md/react-scripts": "^2.1.4",
+    "@react-md/sheet": "^2.0.0-alpha.0",
+    "@react-md/states": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
+    "@react-md/typography": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "mobile-detect": "^1.4.3",
+    "next": "^8.0.1",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  },
+  "devDependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "fork-ts-checker-webpack-plugin": "^0.5.2",
+    "node-sass": "^4.11.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-preset-env": "^6.5.0",
+    "raw-loader": "^1.0.0",
+    "typescript": "^3.3.3"
+  }
+}

@@ -4,7 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const { spawn, spawnSync } = require('child_process');
 
-const IGNORED = /(__tests__|dev-utils|examples)/;
+const IGNORED = /(__tests__|dev-utils|documentation)/;
 let startLoggingScss = false;
 let startLoggingDefs = false;
 

@@ -1,0 +1,14 @@
+@import '@react-md/transition/dist/mixins';
+
+.cross-fade {
+  opacity: 0;
+  transform: translateY(-1rem);
+
+  &--active {
+    @include rmd-transition(deceleration);
+
+    opacity: 1;
+    transform: none;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+}

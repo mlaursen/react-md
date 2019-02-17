@@ -44,14 +44,24 @@ export function useWidthMediaQuery({
 
 export function useMediaQuery(
   query: string,
-  checkImmediately: boolean = typeof document !== "undefined"
+  defaultValue?: boolean,
+  checkImmediately: boolean = typeof window !== "undefined"
 ) {
-  const defaultValue = checkImmediately
-    ? () => window.matchMedia(query).matches
-    : false;
-  const [matches, setMatches] = useState(defaultValue);
+  const [matches, setMatches] = useState(() => {
+    if (typeof defaultValue !== "undefined") {
+      return defaultValue;
+    } else if (checkImmediately && typeof window !== "undefined") {
+      return window.matchMedia(query).matches;
+    }
+
+    return false;
+  });
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const mq = window.matchMedia(query);
     const updater = ({ matches }: MediaQueryListEvent) => setMatches(matches);
     mq.addListener(updater);
@@ -66,10 +76,16 @@ export function useMediaQuery(
   return matches;
 }
 
-export function useOrientation() {
-  const [value, setValue] = useState<OrientationType>(
-    () => window.screen.orientation.type
-  );
+export function useOrientation(defaultValue?: OrientationType) {
+  const [value, setValue] = useState<OrientationType>(() => {
+    if (defaultValue) {
+      return defaultValue;
+    } else if (typeof window !== "undefined") {
+      return window.screen.orientation.type;
+    }
+
+    return "landscape-primary";
+  });
 
   useEffect(() => {
     const handler = () => {
@@ -88,14 +104,40 @@ interface IAppSizeOptions {
   tabletMinWidth?: QuerySize;
   tabletMaxWidth?: QuerySize;
   desktopMinWidth?: QuerySize;
+  defaultValue?: IAppSize;
 }
+
+export interface IAppSize {
+  isPhone: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
+  isPortraitPhone: boolean;
+  isLandscapePhone: boolean;
+  isPortraitTablet: boolean;
+  isLandscapeTablet: boolean;
+}
+
+const DEFAULT_APP_SIZE = {
+  isPhone: false,
+  isTablet: false,
+  isDesktop: true,
+  isPortraitPhone: false,
+  isLandscapePhone: false,
+  isPortraitTablet: false,
+  isLandscapeTablet: false,
+};
 
 export function useAppSize({
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
   tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
   desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
-}: IAppSizeOptions = {}) {
+  defaultValue = DEFAULT_APP_SIZE,
+}: IAppSizeOptions = {}): IAppSize {
+  if (typeof window === "undefined") {
+    return defaultValue;
+  }
+
   const matchesDesktop = useWidthMediaQuery({ min: desktopMinWidth });
   const matchesTablet = useWidthMediaQuery({
     min: tabletMinWidth,
