@@ -11,7 +11,7 @@ describe("getFocusableElements", () => {
 
   it("should call container.querySelectorAll with the PROGRAMATICALLY_FOCUSABLE query", () => {
     const div = document.createElement("div");
-    div.querySelectorAll = jest.fn(() => []);
+    div.querySelectorAll = jest.fn(div.querySelectorAll);
 
     getFocusableElements(div);
     expect(div.querySelectorAll).toBeCalledWith(PROGRAMATICALLY_FOCUSABLE);

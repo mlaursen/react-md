@@ -4,10 +4,8 @@ import useValueReset from "../useValueReset";
 
 jest.useFakeTimers();
 
-const setTimeout = window.setTimeout as jest.Mock<typeof window.setTimeout>;
-const clearTimeout = window.clearTimeout as jest.Mock<
-  typeof window.clearTimeout
->;
+const setTimeout = window.setTimeout as jest.Mock;
+const clearTimeout = window.clearTimeout as jest.Mock;
 
 describe("useResetValueTimeout", () => {
   beforeEach(() => {

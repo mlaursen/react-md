@@ -21,9 +21,7 @@ type FakeKeyboardEvent = React.KeyboardEvent<HTMLElement>;
 
 jest.mock("../getRippleRadius");
 
-const getRippleRadius = unmockedRippleRadius as jest.Mock<
-  typeof unmockedRippleRadius
->;
+const getRippleRadius = unmockedRippleRadius as jest.Mock;
 
 const TEMP_RIPPLE: IRipple = {
   startTime: -1,
@@ -677,8 +675,14 @@ describe("utils", () => {
   describe("triggerRippleExitAnimations", () => {
     let ripples: IRipple[] = [];
     const setRipples = jest.fn();
-    const setRipplesCB = jest.fn((cb: (rs: IRipple[]) => IRipple[]) =>
-      setRipples(cb(ripples))
+    const setRipplesCB = jest.fn(
+      (cbOrRipples: IRipple[] | ((rs: IRipple[]) => IRipple[])) => {
+        if (typeof cbOrRipples === "function") {
+          setRipples(cbOrRipples(ripples));
+        } else {
+          setRipples(cbOrRipples);
+        }
+      }
     );
 
     beforeEach(() => {
@@ -741,8 +745,14 @@ describe("utils", () => {
   describe("cancelRipplesByType", () => {
     let ripples: IRipple[] = [];
     const setRipples = jest.fn();
-    const setRipplesCB = jest.fn((cb: (rs: IRipple[]) => IRipple[]) =>
-      setRipples(cb(ripples))
+    const setRipplesCB = jest.fn(
+      (cbOrRipples: IRipple[] | ((rs: IRipple[]) => IRipple[])) => {
+        if (typeof cbOrRipples === "function") {
+          setRipples(cbOrRipples(ripples));
+        } else {
+          setRipples(cbOrRipples);
+        }
+      }
     );
     beforeEach(() => {
       ripples = [];

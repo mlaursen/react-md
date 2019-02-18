@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { act } from "react-dom/test-utils";
 import UpdateVariables from "../UpdateVariables";
+import { ICSSVariable } from "../utils";
 
 describe("UpdateVariables", () => {
   let container: HTMLElement | null = null;
@@ -11,7 +12,7 @@ describe("UpdateVariables", () => {
 
     // looks like the setProperty and getPropertyValue are mocked out, so
     // can add a fake implementation for tests
-    const style = document.documentElement.style as any;
+    const style = (document.documentElement as HTMLElement).style as any;
     style.setProperty = (name: string, value: string) => {
       style[name] = value;
     };
@@ -40,15 +41,16 @@ describe("UpdateVariables", () => {
   });
 
   it("should provide the correct style prop for a children render function", () => {
-    const renderer = jest.fn(() => null);
+    const renderer = jest.fn(({ style }) => <div style={style} />);
+    let variables: ICSSVariable[] = [];
     render(
-      <UpdateVariables variables={[]}>{renderer}</UpdateVariables>,
+      <UpdateVariables variables={variables}>{renderer}</UpdateVariables>,
       container
     );
 
     expect(renderer).toBeCalledWith({});
 
-    const variables = [
+    variables = [
       { name: "name", value: "" },
       { name: "hello-world", value: "#000" },
       { name: "1", value: "1" },
@@ -81,7 +83,7 @@ describe("UpdateVariables", () => {
       render(<UpdateVariables variables={variables} />, container);
     });
 
-    const rootStyle = document.documentElement.style;
+    const rootStyle = (document.documentElement as HTMLElement).style;
     expect(rootStyle.getPropertyValue("--name")).toBe("");
     expect(rootStyle.getPropertyValue("--hello-world")).toBe("#000");
     expect(rootStyle.getPropertyValue("--1")).toBe("1");

@@ -1,6 +1,8 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, ReactNode } from "react";
+import cn from "classnames";
+import { useKeyboardFocusedClassName } from "@react-md/wia-aria";
 
-import { StatesContext } from "./context";
+import { StatesContext, IStatesContext } from "./context";
 import {
   addRippleFromEvent,
   disableRippleHolding,
@@ -8,6 +10,7 @@ import {
   cancelRipplesByType,
 } from "./utils";
 import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types.d";
+import RippleContainer from "./RippleContainer";
 
 /**
  * This is a small hook that is used to determine if the app is currently
@@ -330,4 +333,106 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
  */
 export function useStatesContext() {
   return useContext(StatesContext);
+}
+
+export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
+  extends Partial<IStatesContext>,
+    IRipplesOptions<E> {
+  id: string;
+  className?: string;
+  /**
+   * Boolean if the component should fallback to using the custom pressed class names when ripples are
+   * disabled.
+   */
+  disablePressedFallback?: boolean;
+}
+
+export interface IInteractionStates {
+  ripples: ReactNode;
+}
+
+export function useInteractionStates(options: IInteractionStatesOptions) {
+  const {
+    id,
+    rippleClassName,
+    rippleContainerClassName,
+    disablePressedFallback = false,
+  } = options;
+
+  let {
+    className,
+    disableRipple,
+    disableProgrammaticRipple,
+    preventColorPollution,
+    rippleTimeout,
+    rippleClassNames,
+  } = options;
+  // populate undefined props from their context values
+  const context = useStatesContext();
+  if (typeof disableRipple === "undefined") {
+    ({ disableRipple } = context);
+  }
+
+  if (typeof disableProgrammaticRipple === "undefined") {
+    ({ disableProgrammaticRipple } = context);
+  }
+
+  if (typeof preventColorPollution === "undefined") {
+    ({ preventColorPollution } = context);
+  }
+
+  if (typeof rippleTimeout === "undefined") {
+    ({ rippleTimeout } = context);
+  }
+
+  if (typeof rippleClassNames === "undefined") {
+    ({ rippleClassNames } = context);
+  }
+
+  // this will be populated with a list of event handlers for managing the different
+  // interaction states for an element. This will only be undefined if both the ripple
+  // and pressed fallback states are disabled
+  let handlers: MergableRippleHandlers | null = null;
+  let ripplesContainer: ReactNode = null;
+  if (!disableRipple) {
+    // if the ripple effect is not disabled, will we have ripple interaction states
+    // instead of just pressed states.
+    const { ripples, setRipples, eventHandlers } = useRipplesState(options);
+    handlers = eventHandlers;
+
+    ripplesContainer = (
+      <RippleContainer
+        ripples={ripples}
+        setRipples={setRipples}
+        className={rippleContainerClassName}
+        rippleClassName={rippleClassName}
+        timeout={rippleTimeout}
+        classNames={rippleClassNames}
+      />
+    );
+  } else if (!disablePressedFallback) {
+    // if the ripple effect was disabled and the default pressed state interactions were
+    // also not disabled, we can hook into it there
+    const { pressed, eventHandlers } = usePressedStates(options);
+    handlers = eventHandlers;
+    className = cn(className, { "rmd-states--pressed": pressed });
+  }
+
+  if (id) {
+    // if the element is "valid" and has an id, we can also start the keyboard focus only
+    // states for the element by merging the class name
+    className = cn(className, useKeyboardFocusedClassName(id));
+  } else if (process.env.NODE_ENV !== "production") {
+    console.error(
+      "Found a component that does not have an `id` prop, but is wrapped `withStates`. " +
+        "This component will be unable to have keyboard focus states applied until this is fixed."
+    );
+    console.error(new Error().stack);
+  }
+
+  return {
+    ripples: ripplesContainer,
+    className,
+    handlers,
+  };
 }
