@@ -195,6 +195,12 @@ export function hackSCSSVariableValue(
       false
     );
   } catch (error) {
+    if (error.message.includes("Undefined variable")) {
+      console.error(error.message);
+      console.error();
+      process.exit(1);
+    }
+
     let value = error.message.substring(prefix.length);
     if (/^\(.*\)$/.test(value)) {
       value = hackSCSSMapValues(value);
