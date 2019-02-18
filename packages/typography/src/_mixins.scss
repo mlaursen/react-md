@@ -206,6 +206,10 @@
         @include rmd-typography($suffix);
       }
     }
+
+    &--no-margin {
+      margin: 0;
+    }
   }
 
   .rmd-text-container {

@@ -44,9 +44,9 @@ export type TextElement =
   | HTMLBodyElement
   | HTMLHtmlElement;
 
-export type TextRenderFunction = ((
-  props: { className: string }
-) => ReactElement<any>);
+export type TextRenderFunction = (props: {
+  className: string;
+}) => ReactElement<any>;
 
 export interface ITextProps extends HTMLAttributes<TextElement> {
   /**
@@ -85,6 +85,13 @@ export interface ITextProps extends HTMLAttributes<TextElement> {
    * different wrapper component can be provided using the `component` prop.
    */
   children?: ReactNode | TextRenderFunction;
+
+  /**
+   * Boolean if the browser default margin's should be removed. This is generally disabled
+   * by default since it is helpful to have the default margins in place when using this
+   * component to create text pages.
+   */
+  noMargin?: boolean;
 }
 
 function getComponent(component: ReactType | null, type: TextTypes): ReactType {
@@ -122,6 +129,7 @@ function getComponent(component: ReactType | null, type: TextTypes): ReactType {
 export interface ITextDefaultProps {
   type: TextTypes;
   component: ReactType | null;
+  noMargin: boolean;
 }
 
 export type TextWithDefaultProps = ITextProps &
@@ -160,10 +168,17 @@ const Text: FunctionComponent<
     type,
     component,
     forwardedRef,
+    noMargin,
     ...props
   } = providedProps as TextWithDefaultProps;
 
-  const className = cn(`rmd-typography rmd-typography--${type}`, propClassName);
+  const className = cn(
+    `rmd-typography rmd-typography--${type}`,
+    {
+      "rmd-typography--no-margin": noMargin,
+    },
+    propClassName
+  );
   if (typeof children === "function") {
     return (children as TextRenderFunction)({ className });
   }
@@ -178,6 +193,7 @@ const Text: FunctionComponent<
 const defaultProps: ITextDefaultProps = {
   type: "body-1",
   component: null,
+  noMargin: false,
 };
 
 Text.defaultProps = defaultProps;
