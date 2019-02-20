@@ -74,7 +74,7 @@ function startTsWatcher(filePath) {
 
   console.log(`Staring new tsc watcher in ${project}...`);
   tscWatcher(filePath);
-  if (process.argv.includes('--cjs')) {
+  if (!process.argv.includes('--no-cjs')) {
     tscWatcher(filePath, '.commonjs');
   }
 
