@@ -1,23 +1,16 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-  useRef,
-  useCallback,
-} from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import cn from "classnames";
-import { useKeyboardFocusedClassName, Omit } from "@react-md/wia-aria";
+import { Omit, useKeyboardFocusedClassName } from "@react-md/wia-aria";
 
-import { StatesContext, IStatesContext } from "./context";
+import { IStatesContext, StatesContext } from "./context";
+import RippleContainer from "./RippleContainer";
+import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types.d";
 import {
   addRippleFromEvent,
+  cancelRipplesByType,
   disableRippleHolding,
   triggerRippleExitAnimations,
-  cancelRipplesByType,
 } from "./utils";
-import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types.d";
-import RippleContainer from "./RippleContainer";
 
 /**
  * This is a small hook that is used to determine if the app is currently
@@ -107,85 +100,83 @@ export function useRipplesState<E extends HTMLElement = HTMLElement>({
 }: IRipplesOptions<E>) {
   const disabled = propDisabled || disableRipple;
   const [ripples, setRipples] = useState<IRipple[]>([]);
-  const handlersRef = useRef(handlers);
-  useEffect(() => {
-    handlersRef.current = handlers;
-  });
+  const {
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onClick,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  } = handlers;
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown } = handlersRef.current;
+  const handleKeyDown = (event: React.KeyboardEvent<E>) => {
     if (onKeyDown) {
       onKeyDown(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples, disableSpacebarClick);
-  }, []);
+  };
 
-  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyUp } = handlersRef.current;
+  const handleKeyUp = (event: React.KeyboardEvent<E>) => {
     if (onKeyUp) {
       onKeyUp(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }, []);
+  };
 
-  const handleMouseDown = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseDown } = handlersRef.current;
+  const handleMouseDown = (event: React.MouseEvent<E>) => {
     if (onMouseDown) {
       onMouseDown(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }, []);
+  };
 
-  const handleMouseUp = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseUp } = handlersRef.current;
+  const handleMouseUp = (event: React.MouseEvent<E>) => {
     if (onMouseUp) {
       onMouseUp(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }, []);
+  };
 
-  const handleMouseLeave = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseLeave } = handlersRef.current;
+  const handleMouseLeave = (event: React.MouseEvent<E>) => {
     if (onMouseLeave) {
       onMouseLeave(event);
     }
 
     triggerRippleExitAnimations(event, setRipples);
-  }, []);
+  };
 
-  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchStart } = handlersRef.current;
+  const handleTouchStart = (event: React.TouchEvent<E>) => {
     if (onTouchStart) {
       onTouchStart(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }, []);
+  };
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchMove } = handlersRef.current;
+  const handleTouchMove = (event: React.TouchEvent<E>) => {
     if (onTouchMove) {
       onTouchMove(event);
     }
 
     cancelRipplesByType(event, setRipples);
-  }, []);
+  };
 
-  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchEnd } = handlersRef.current;
+  const handleTouchEnd = (event: React.TouchEvent<E>) => {
     if (onTouchEnd) {
       onTouchEnd(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }, []);
+  };
 
-  const handleClick = useCallback((event: React.MouseEvent<E>) => {
-    const { onClick } = handlersRef.current;
+  const handleClick = (event: React.MouseEvent<E>) => {
     if (onClick) {
       onClick(event);
     }
@@ -198,22 +189,21 @@ export function useRipplesState<E extends HTMLElement = HTMLElement>({
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }, []);
+  };
 
   return {
     ripples,
     setRipples,
     handlers: {
-      onMouseDown: disabled ? handlers.onMouseDown : handleMouseDown,
-      onMouseUp: disabled ? handlers.onMouseUp : handleMouseUp,
-      onMouseLeave: disabled ? handlers.onMouseLeave : handleMouseLeave,
-      onKeyDown: disabled ? handlers.onKeyDown : handleKeyDown,
-      onKeyUp: disabled ? handlers.onKeyUp : handleKeyUp,
-      onClick:
-        disabled || disableProgrammaticRipple ? handlers.onClick : handleClick,
-      onTouchStart: disabled ? handlers.onTouchStart : handleTouchStart,
-      onTouchMove: disabled ? handlers.onTouchMove : handleTouchMove,
-      onTouchEnd: disabled ? handlers.onTouchEnd : handleTouchEnd,
+      onMouseDown: disabled ? onMouseDown : handleMouseDown,
+      onMouseUp: disabled ? onMouseUp : handleMouseUp,
+      onMouseLeave: disabled ? onMouseLeave : handleMouseLeave,
+      onKeyDown: disabled ? onKeyDown : handleKeyDown,
+      onKeyUp: disabled ? onKeyUp : handleKeyUp,
+      onClick: disabled || disableProgrammaticRipple ? onClick : handleClick,
+      onTouchStart: disabled ? onTouchStart : handleTouchStart,
+      onTouchMove: disabled ? onTouchMove : handleTouchMove,
+      onTouchEnd: disabled ? onTouchEnd : handleTouchEnd,
     },
   };
 }
@@ -236,13 +226,18 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
   disableSpacebarClick = false,
 }: IPressedStatesOptions<E>) {
   const [pressed, setPressed] = useState(false);
-  const handlersRef = useRef(handlers);
-  useEffect(() => {
-    handlersRef.current = handlers;
-  });
+  const {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onKeyDown,
+    onKeyUp,
+  } = handlers;
 
-  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchStart } = handlersRef.current;
+  const handleTouchStart = (event: React.TouchEvent<E>) => {
     if (onTouchStart) {
       onTouchStart(event);
     }
@@ -250,10 +245,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed) {
       setPressed(true);
     }
-  }, []);
+  };
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchMove } = handlersRef.current;
+  const handleTouchMove = (event: React.TouchEvent<E>) => {
     if (onTouchMove) {
       onTouchMove(event);
     }
@@ -261,10 +255,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }, []);
+  };
 
-  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchEnd } = handlersRef.current;
+  const handleTouchEnd = (event: React.TouchEvent<E>) => {
     if (onTouchEnd) {
       onTouchEnd(event);
     }
@@ -272,10 +265,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }, []);
+  };
 
-  const handleMouseDown = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseDown } = handlersRef.current;
+  const handleMouseDown = (event: React.MouseEvent<E>) => {
     if (onMouseDown) {
       onMouseDown(event);
     }
@@ -283,10 +275,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed && event.button === 0) {
       setPressed(true);
     }
-  }, []);
+  };
 
-  const handleMouseUp = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseUp } = handlersRef.current;
+  const handleMouseUp = (event: React.MouseEvent<E>) => {
     if (onMouseUp) {
       onMouseUp(event);
     }
@@ -294,10 +285,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }, []);
+  };
 
-  const handleMouseLeave = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseLeave } = handlersRef.current;
+  const handleMouseLeave = (event: React.MouseEvent<E>) => {
     if (onMouseLeave) {
       onMouseLeave(event);
     }
@@ -305,10 +295,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }, []);
+  };
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown } = handlersRef.current;
+  const handleKeyDown = (event: React.KeyboardEvent<E>) => {
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -320,10 +309,9 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     ) {
       setPressed(true);
     }
-  }, []);
+  };
 
-  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyUp } = handlersRef.current;
+  const handleKeyUp = (event: React.KeyboardEvent<E>) => {
     if (onKeyUp) {
       onKeyUp(event);
     }
@@ -331,7 +319,7 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }, []);
+  };
 
   return {
     pressed,
