@@ -20,27 +20,51 @@ import {
   TooltipPositionOrAuto,
 } from "./types.d";
 
-export type TooltippedChildrenRenderer = (config: {
+export interface ITooltippedWithTooltip {
   tooltip: ReactNode;
-  containerProps?: MergableTooltipHandlers & {
+  containerProps: {
     id: string;
     "aria-describedby"?: string;
-  };
-}) => ReactElement<any>;
+  } & MergableTooltipHandlers;
+}
+
+export type TooltippedChildrenRenderer = (
+  props: ITooltippedWithTooltip
+) => ReactElement<any>;
 
 export interface ITooltippedProps
   extends Partial<ITooltipConfig>,
     IRenderConditionalPortalProps,
     Omit<ITooltipProps, keyof HTMLAttributes<HTMLSpanElement> | "visible"> {
+  /**
+   * The id for the element that has a tooltip. This is always required since it will
+   * be passed down to the `containerProps` in the children renderer function. It is
+   * also used to generate a `tooltipId` when there is a tooltip.
+   */
   id: string;
-  tooltip?: ReactNode;
-  tooltipId?: string;
-  className?: string;
-}
 
-type TooltippedProps = ITooltippedProps & {
+  /**
+   * The tooltip to display. When this is false-ish, the children renderer will always
+   * return `null` for the `tooltip` prop.
+   */
+  tooltip?: ReactNode;
+
+  /**
+   * An optional id for the tooltip. When this is omitted, it will be set as `${id}-tooltip`.
+   */
+  tooltipId?: string;
+
+  /**
+   * An optional className for the tooltip
+   */
+  className?: string;
+
+  /**
+   * A children renderer function to render the tooltip as well as provide the required
+   * container props to dynamically show/hide the tooltip.
+   */
   children: TooltippedChildrenRenderer;
-};
+}
 
 interface ITooltippedDefaultProps {
   portal: boolean;
@@ -55,9 +79,9 @@ interface ITooltippedDefaultProps {
   defaultPosition: TooltipPositionOrAuto;
 }
 
-type TooltippedWithDefaultProps = TooltippedProps & ITooltippedDefaultProps;
+type TooltippedWithDefaultProps = ITooltippedProps & ITooltippedDefaultProps;
 
-const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
+const Tooltipped: FunctionComponent<ITooltippedProps> = providedProps => {
   const props = providedProps as TooltippedWithDefaultProps;
   const {
     id,
@@ -78,7 +102,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     ...tooltipProps
   } = props;
   if (!tooltipChildren) {
-    return children({ tooltip: null });
+    return children({ containerProps: { id }, tooltip: null });
   }
 
   let { tooltipId } = props;
