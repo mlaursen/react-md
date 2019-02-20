@@ -44,8 +44,8 @@ export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   | "onTouchEnd"
 >;
 
-export interface IRipplesOptions<E extends HTMLElement = HTMLElement>
-  extends MergableRippleHandlers<E> {
+export interface IRipplesOptions<E extends HTMLElement = HTMLElement> {
+  handlers?: MergableRippleHandlers<E>;
   type?: string;
   disabled?: boolean;
   disableRipple?: boolean;

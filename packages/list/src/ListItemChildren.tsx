@@ -1,6 +1,8 @@
-import React, { FunctionComponent, Fragment, ReactNode } from "react";
-import ListItemText from "./ListItemText";
+import React, { FunctionComponent, ReactNode } from "react";
+import { FixColorPollution } from "@react-md/states";
+
 import ListItemIcon from "./ListItemIcon";
+import ListItemText from "./ListItemText";
 
 export interface IListItemChildrenProps {
   /**
@@ -65,7 +67,22 @@ export interface IListItemChildrenProps {
    */
   forceIconWrap?: boolean;
 
+  /**
+   * An optional avatar to display to the left of the children or provided text elements. If this is
+   * a valid React element, the spacing class names will be cloned into the element. Otherwise it
+   * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
+   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name
+   * applied.
+   */
   leftAvatar?: ReactNode;
+
+  /**
+   * An optional avatar to display to the right of the children or provided text elements. If this is
+   * a valid React element, the spacing class names will be cloned into the element. Otherwise it
+   * will be wrapped with a `<span>` to have the correct class name applied. You can also use the
+   * `forceIconWrap` prop to **always** wrap the icon in a `<span>` with the correct class name
+   * applied.
+   */
   rightAvatar?: ReactNode;
 }
 
@@ -117,10 +134,10 @@ const ListItemChildren: FunctionComponent<IListItemChildrenProps> = ({
   );
 
   return (
-    <Fragment>
+    <FixColorPollution>
       {children}
       {(primaryText && propChildren) || null}
-    </Fragment>
+    </FixColorPollution>
   );
 };
 

@@ -1,6 +1,13 @@
-import React, { useState, useContext, useEffect, ReactNode } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+  useRef,
+  useCallback,
+} from "react";
 import cn from "classnames";
-import { useKeyboardFocusedClassName } from "@react-md/wia-aria";
+import { useKeyboardFocusedClassName, Omit } from "@react-md/wia-aria";
 
 import { StatesContext, IStatesContext } from "./context";
 import {
@@ -91,89 +98,94 @@ export function useTouchDetectionClassNameToggle(
  * the scenes for the `withRipples` hoc, but might be useful in other
  * places.
  */
-export function useRipplesState({
+export function useRipplesState<E extends HTMLElement = HTMLElement>({
+  handlers = {},
   disabled: propDisabled,
   disableSpacebarClick,
   disableRipple,
   disableProgrammaticRipple,
-  onKeyDown,
-  onKeyUp,
-  onMouseDown,
-  onMouseUp,
-  onClick,
-  onMouseLeave,
-  onTouchStart,
-  onTouchMove,
-  onTouchEnd,
-}: IRipplesOptions) {
+}: IRipplesOptions<E>) {
   const disabled = propDisabled || disableRipple;
   const [ripples, setRipples] = useState<IRipple[]>([]);
+  const handlersRef = useRef(handlers);
+  useEffect(() => {
+    handlersRef.current = handlers;
+  });
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyDown } = handlersRef.current;
     if (onKeyDown) {
       onKeyDown(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples, disableSpacebarClick);
-  }
+  }, []);
 
-  function handleKeyUp(event: React.KeyboardEvent<HTMLElement>) {
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyUp } = handlersRef.current;
     if (onKeyUp) {
       onKeyUp(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }
+  }, []);
 
-  function handleMouseDown(event: React.MouseEvent<HTMLElement>) {
+  const handleMouseDown = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseDown } = handlersRef.current;
     if (onMouseDown) {
       onMouseDown(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }
+  }, []);
 
-  function handleMouseUp(event: React.MouseEvent<HTMLElement>) {
+  const handleMouseUp = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseUp } = handlersRef.current;
     if (onMouseUp) {
       onMouseUp(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }
+  }, []);
 
-  function handleMouseLeave(event: React.MouseEvent<HTMLElement>) {
+  const handleMouseLeave = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseLeave } = handlersRef.current;
     if (onMouseLeave) {
       onMouseLeave(event);
     }
 
     triggerRippleExitAnimations(event, setRipples);
-  }
+  }, []);
 
-  function handleTouchStart(event: React.TouchEvent<HTMLElement>) {
+  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchStart } = handlersRef.current;
     if (onTouchStart) {
       onTouchStart(event);
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }
+  }, []);
 
-  function handleTouchMove(event: React.TouchEvent<HTMLElement>) {
+  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchMove } = handlersRef.current;
     if (onTouchMove) {
       onTouchMove(event);
     }
 
     cancelRipplesByType(event, setRipples);
-  }
+  }, []);
 
-  function handleTouchEnd(event: React.TouchEvent<HTMLElement>) {
+  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchEnd } = handlersRef.current;
     if (onTouchEnd) {
       onTouchEnd(event);
     }
 
     disableRippleHolding(event, ripples, setRipples);
-  }
+  }, []);
 
-  function handleClick(event: React.MouseEvent<HTMLElement>) {
+  const handleClick = useCallback((event: React.MouseEvent<E>) => {
+    const { onClick } = handlersRef.current;
     if (onClick) {
       onClick(event);
     }
@@ -186,23 +198,29 @@ export function useRipplesState({
     }
 
     addRippleFromEvent(event, ripples, setRipples);
-  }
+  }, []);
 
   return {
     ripples,
     setRipples,
-    eventHandlers: {
-      onMouseDown: disabled ? onMouseDown : handleMouseDown,
-      onMouseUp: disabled ? onMouseUp : handleMouseUp,
-      onMouseLeave: disabled ? onMouseLeave : handleMouseLeave,
-      onKeyDown: disabled ? onKeyDown : handleKeyDown,
-      onKeyUp: disabled ? onKeyUp : handleKeyUp,
-      onClick: disabled || disableProgrammaticRipple ? onClick : handleClick,
-      onTouchStart: disabled ? onTouchStart : handleTouchStart,
-      onTouchMove: disabled ? onTouchMove : handleTouchMove,
-      onTouchEnd: disabled ? onTouchEnd : handleTouchEnd,
+    handlers: {
+      onMouseDown: disabled ? handlers.onMouseDown : handleMouseDown,
+      onMouseUp: disabled ? handlers.onMouseUp : handleMouseUp,
+      onMouseLeave: disabled ? handlers.onMouseLeave : handleMouseLeave,
+      onKeyDown: disabled ? handlers.onKeyDown : handleKeyDown,
+      onKeyUp: disabled ? handlers.onKeyUp : handleKeyUp,
+      onClick:
+        disabled || disableProgrammaticRipple ? handlers.onClick : handleClick,
+      onTouchStart: disabled ? handlers.onTouchStart : handleTouchStart,
+      onTouchMove: disabled ? handlers.onTouchMove : handleTouchMove,
+      onTouchEnd: disabled ? handlers.onTouchEnd : handleTouchEnd,
     },
   };
+}
+
+interface IPressedStatesOptions<E extends HTMLElement = HTMLElement> {
+  handlers?: MergableRippleHandlers<E>;
+  disableSpacebarClick?: boolean;
 }
 
 /**
@@ -214,19 +232,17 @@ export function useRipplesState({
  * as all the merged eventHandlers required to trigger the different states.
  */
 export function usePressedStates<E extends HTMLElement = HTMLElement>({
-  onKeyDown,
-  onKeyUp,
-  onMouseDown,
-  onMouseUp,
-  onMouseLeave,
-  onTouchStart,
-  onTouchMove,
-  onTouchEnd,
+  handlers = {},
   disableSpacebarClick = false,
-}: MergableRippleHandlers<E> & { disableSpacebarClick?: boolean }) {
+}: IPressedStatesOptions<E>) {
   const [pressed, setPressed] = useState(false);
+  const handlersRef = useRef(handlers);
+  useEffect(() => {
+    handlersRef.current = handlers;
+  });
 
-  function handleTouchStart(event: React.TouchEvent<E>) {
+  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchStart } = handlersRef.current;
     if (onTouchStart) {
       onTouchStart(event);
     }
@@ -234,9 +250,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed) {
       setPressed(true);
     }
-  }
+  }, []);
 
-  function handleTouchMove(event: React.TouchEvent<E>) {
+  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchMove } = handlersRef.current;
     if (onTouchMove) {
       onTouchMove(event);
     }
@@ -244,9 +261,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }
+  }, []);
 
-  function handleTouchEnd(event: React.TouchEvent<E>) {
+  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchEnd } = handlersRef.current;
     if (onTouchEnd) {
       onTouchEnd(event);
     }
@@ -254,9 +272,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }
+  }, []);
 
-  function handleMouseDown(event: React.MouseEvent<E>) {
+  const handleMouseDown = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseDown } = handlersRef.current;
     if (onMouseDown) {
       onMouseDown(event);
     }
@@ -264,9 +283,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed && event.button === 0) {
       setPressed(true);
     }
-  }
+  }, []);
 
-  function handleMouseUp(event: React.MouseEvent<E>) {
+  const handleMouseUp = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseUp } = handlersRef.current;
     if (onMouseUp) {
       onMouseUp(event);
     }
@@ -274,9 +294,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }
+  }, []);
 
-  function handleMouseLeave(event: React.MouseEvent<E>) {
+  const handleMouseLeave = useCallback((event: React.MouseEvent<E>) => {
+    const { onMouseLeave } = handlersRef.current;
     if (onMouseLeave) {
       onMouseLeave(event);
     }
@@ -284,9 +305,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }
+  }, []);
 
-  function handleKeyDown(event: React.KeyboardEvent<E>) {
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyDown } = handlersRef.current;
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -298,9 +320,10 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     ) {
       setPressed(true);
     }
-  }
+  }, []);
 
-  function handleKeyUp(event: React.KeyboardEvent<E>) {
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyUp } = handlersRef.current;
     if (onKeyUp) {
       onKeyUp(event);
     }
@@ -308,11 +331,11 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
-  }
+  }, []);
 
   return {
     pressed,
-    eventHandlers: {
+    handlers: {
       onTouchStart: handleTouchStart,
       onTouchMove: handleTouchMove,
       onTouchEnd: handleTouchEnd,
@@ -336,26 +359,82 @@ export function useStatesContext() {
 }
 
 export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Partial<IStatesContext>,
+  extends Omit<Partial<IStatesContext>, "preventColorPollution">,
     IRipplesOptions<E> {
+  /**
+   * An id for the element. This is required for all keyboard tracking.
+   */
   id: string;
+
+  /**
+   * An optional className to merge with the different interactions tates.
+   */
   className?: string;
+
+  /**
+   * Boolean if the wrapped component needs to have the functionality of a keyboard click
+   * event. This is really only necessary when the wrapped component is not a native clickable
+   * element like a `<button>`.
+   *
+   * @default false
+   */
+  enableKeyboardClick?: boolean;
+
+  /**
+   * Boolean if the spacebar should not trigger a click event when using the `enableKeyboardClick`
+   * prop. You _normally_ want the spacebar to also trigger a click event when the `enableKeyboardClick`
+   * prop is enabled, but there are a few cases where it should not (like custom links).
+   *
+   * When this is disabled, it will also make sure that the ripple and pressed effects are not triggered
+   * from a spacebar click.
+   *
+   * @default false
+   */
+  disableSpacebarClick?: boolean;
+
   /**
    * Boolean if the component should fallback to using the custom pressed class names when ripples are
    * disabled.
+   *
+   * @default false
    */
   disablePressedFallback?: boolean;
 }
 
-export interface IInteractionStates {
-  ripples: ReactNode;
-}
-
-export function useInteractionStates(options: IInteractionStatesOptions) {
+/**
+ * This is probably one of the most useful hook in react-md. Any functional component component that uses
+ * this will gain all the different interaction states based on the states context or any custom overrides.
+ *
+ * The main interaction state is the "ripple" effect when an element has been clicked either via keyboard,
+ * mouse, or touch.
+ *
+ * If the ripple effect is disabled, it will fallback to "polyfilling"/fixing the `:pressed` pseudo-selector
+ * state for items so that a different background-color opacity is applied instead of the entire ripple
+ * effect. This is polyfilled since the `:pressed` state does not work on anything other than buttons and links
+ * by default and it is not triggered on "valid" keyboard clicks with a spacebar.
+ *
+ * Finally, the element that uses this hook will gain a focused classname whenever it gains keyboard focus only.
+ *
+ * To get all these interaction states to work correctly, this hook returns an object containing:
+ * - `handlers`- an object of event handlers that must be passed down to your component to get the different
+ *  interaction states. All the event handlers are automatically merged with any `handlers` that are provided
+ *  to this hook so they can all be called if needed.
+ * - `className` - the current class name for the element
+ * - `ripples` - a renderable element that displays the ripple effects. This will be `null` when ripples are
+ *  disabled.
+ *
+ * @typeparam E The element type for the component being wrapped. This is really just used to "better type"
+ * the event handlers.
+ */
+export function useInteractionStates<E extends HTMLElement = HTMLElement>(
+  options: IInteractionStatesOptions<E>
+) {
   const {
     id,
     rippleClassName,
     rippleContainerClassName,
+    enableKeyboardClick = false,
+    disableSpacebarClick = false,
     disablePressedFallback = false,
   } = options;
 
@@ -363,10 +442,10 @@ export function useInteractionStates(options: IInteractionStatesOptions) {
     className,
     disableRipple,
     disableProgrammaticRipple,
-    preventColorPollution,
     rippleTimeout,
     rippleClassNames,
   } = options;
+
   // populate undefined props from their context values
   const context = useStatesContext();
   if (typeof disableRipple === "undefined") {
@@ -375,10 +454,6 @@ export function useInteractionStates(options: IInteractionStatesOptions) {
 
   if (typeof disableProgrammaticRipple === "undefined") {
     ({ disableProgrammaticRipple } = context);
-  }
-
-  if (typeof preventColorPollution === "undefined") {
-    ({ preventColorPollution } = context);
   }
 
   if (typeof rippleTimeout === "undefined") {
@@ -392,13 +467,13 @@ export function useInteractionStates(options: IInteractionStatesOptions) {
   // this will be populated with a list of event handlers for managing the different
   // interaction states for an element. This will only be undefined if both the ripple
   // and pressed fallback states are disabled
-  let handlers: MergableRippleHandlers | null = null;
+  let handlers: MergableRippleHandlers<E> | null = null;
   let ripplesContainer: ReactNode = null;
   if (!disableRipple) {
     // if the ripple effect is not disabled, will we have ripple interaction states
     // instead of just pressed states.
-    const { ripples, setRipples, eventHandlers } = useRipplesState(options);
-    handlers = eventHandlers;
+    const { ripples, setRipples, handlers: h } = useRipplesState(options);
+    handlers = h;
 
     ripplesContainer = (
       <RippleContainer
@@ -413,8 +488,8 @@ export function useInteractionStates(options: IInteractionStatesOptions) {
   } else if (!disablePressedFallback) {
     // if the ripple effect was disabled and the default pressed state interactions were
     // also not disabled, we can hook into it there
-    const { pressed, eventHandlers } = usePressedStates(options);
-    handlers = eventHandlers;
+    const { pressed, handlers: h } = usePressedStates(options);
+    handlers = h;
     className = cn(className, { "rmd-states--pressed": pressed });
   }
 
@@ -422,12 +497,27 @@ export function useInteractionStates(options: IInteractionStatesOptions) {
     // if the element is "valid" and has an id, we can also start the keyboard focus only
     // states for the element by merging the class name
     className = cn(className, useKeyboardFocusedClassName(id));
-  } else if (process.env.NODE_ENV !== "production") {
-    console.error(
-      "Found a component that does not have an `id` prop, but is wrapped `withStates`. " +
-        "This component will be unable to have keyboard focus states applied until this is fixed."
-    );
-    console.error(new Error().stack);
+  }
+
+  // "polyfill" the keyboard click events for elements that are supposed to behave like clickable
+  // elements but really aren't. this will make sure to merge existing onKeyDown behaviors from
+  // the ripple/pressed effects (if any) or the onKeyDown behavior from props
+  if (enableKeyboardClick) {
+    handlers = handlers || options.handlers || {};
+    const { onKeyDown } = handlers;
+    handlers.onKeyDown = (event: React.KeyboardEvent<E>) => {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      if (!disableSpacebarClick && event.key === " ") {
+        // need to prevent default behavior of screen scrolling
+        event.preventDefault();
+        event.currentTarget.click();
+      } else if (event.key === "Enter") {
+        event.currentTarget.click();
+      }
+    };
   }
 
   return {

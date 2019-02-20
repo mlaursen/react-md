@@ -22,6 +22,13 @@ export interface ISimpleListItemProps
   disabled?: boolean;
 
   /**
+   * Boolean if the list item should be updated to use the clickable styles to the item. This
+   * is really just a pass-down value for the main `ListItem` component and shouldn't really be
+   * used unless you are implementing your own clickable `ListItem` component.
+   */
+  clickable?: boolean;
+
+  /**
    * Boolean if the list item should be considered "three-lines" in height. This will update
    * the `secondaryText` to span 2 lines instead of one, but it will not correctly applied
    * the trailing ellipsis overflow due to browser compatibility of `line-clamp`. If you
@@ -41,6 +48,8 @@ export interface ISimpleListItemProps
 
 interface ISimpleListItemDefaultProps {
   height: ListItemHeight;
+  clickable: boolean;
+  threeLines: boolean;
 }
 
 type SimpleListItemWithDefaultProps = ISimpleListItemProps &
@@ -65,6 +74,7 @@ const SimpleListItem: FunctionComponent<
     threeLines,
     "aria-disabled": ariaDisabled,
     disabled,
+    clickable,
     ...props
   } = providedProps as SimpleListItemWithDefaultProps;
 
@@ -84,6 +94,7 @@ const SimpleListItem: FunctionComponent<
           [`rmd-list-item--${height}`]:
             height !== "auto" && height !== "normal",
           "rmd-list-item--three-lines": !!secondaryText && threeLines,
+          "rmd-list-item--clickable": clickable,
         },
         className
       )}
@@ -106,6 +117,8 @@ const SimpleListItem: FunctionComponent<
 
 const defaultProps: ISimpleListItemDefaultProps = {
   height: "auto",
+  clickable: false,
+  threeLines: false,
 };
 
 SimpleListItem.defaultProps = defaultProps;
@@ -120,6 +133,9 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     SimpleListItem.propTypes = {
+      disabled: PropTypes.bool,
+      clickable: PropTypes.bool,
+      threeLines: PropTypes.bool,
       height: PropTypes.oneOf([
         "auto",
         "normal",

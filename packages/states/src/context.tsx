@@ -1,4 +1,9 @@
-import React, { createContext, FunctionComponent, ReactNode } from "react";
+import React, {
+  createContext,
+  FunctionComponent,
+  ReactNode,
+  useMemo,
+} from "react";
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
@@ -58,18 +63,24 @@ export const StatesConfig: FunctionComponent<IStatesConfigProps> = props => {
     useTouchDetectionClassNameToggle();
   }
 
+  const value = useMemo(
+    () => ({
+      rippleTimeout,
+      rippleClassNames,
+      disableRipple,
+      disableProgrammaticRipple,
+      preventColorPollution,
+    }),
+    [
+      rippleTimeout,
+      rippleClassNames,
+      disableRipple,
+      disableProgrammaticRipple,
+      preventColorPollution,
+    ]
+  );
   return (
-    <StatesContext.Provider
-      value={{
-        rippleTimeout,
-        rippleClassNames,
-        disableRipple,
-        disableProgrammaticRipple,
-        preventColorPollution,
-      }}
-    >
-      {children}
-    </StatesContext.Provider>
+    <StatesContext.Provider value={value}>{children}</StatesContext.Provider>
   );
 };
 

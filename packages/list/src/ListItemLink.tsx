@@ -1,22 +1,26 @@
 import React, {
+  createElement,
   forwardRef,
   FunctionComponent,
-  ReactType,
   HTMLAttributes,
-  createElement,
+  ReactType,
 } from "react";
 import cn from "classnames";
-import { withStates } from "@react-md/states";
+import {
+  IInteractionStatesOptions,
+  useInteractionStates,
+} from "@react-md/states";
 import { IWithForwardedRef } from "@react-md/utils";
 
-import { ListItemHeight, ISimpleListItemProps } from "./SimpleListItem";
-import ListItemChildren, { IListItemChildrenProps } from "./ListItemChildren";
 import getListItemHeight from "./getListItemHeight";
+import ListItemChildren, { IListItemChildrenProps } from "./ListItemChildren";
+import { ISimpleListItemProps, ListItemHeight } from "./SimpleListItem";
 
 export interface IListItemLinkProps
   extends HTMLAttributes<HTMLAnchorElement>,
     IListItemChildrenProps,
     Pick<ISimpleListItemProps, "threeLines" | "height">,
+    IInteractionStatesOptions<HTMLAnchorElement>,
     IWithForwardedRef<HTMLAnchorElement> {
   /**
    * An id for the link. This is really just required since this component
@@ -41,24 +45,11 @@ export interface IListItemLinkProps
 
 export interface IListItemLinkDefaultProps {
   height: ListItemHeight;
+  component: ReactType;
 }
 
 type ListItemLinkWithDefaultProps = IListItemLinkProps &
   IListItemLinkDefaultProps;
-
-const LinkWithStates = withStates<IListItemLinkProps>(
-  (providedProps: IListItemLinkProps) => {
-    const { component, ...props } = providedProps as IListItemLinkProps & {
-      component: ReactType;
-    };
-
-    return createElement(component, props);
-  }
-);
-
-LinkWithStates.defaultProps = {
-  component: "a",
-};
 
 const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
   const {
@@ -77,16 +68,18 @@ const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
     forceIconWrap,
     height: propHeight,
     threeLines,
+    component,
     ...props
   } = providedProps as ListItemLinkWithDefaultProps;
 
   const height = getListItemHeight(providedProps);
-  return (
-    <LinkWithStates
-      {...props}
-      disableSpacebarClick
-      ref={forwardedRef}
-      className={cn(
+  return createElement(
+    component,
+    {
+      ...props,
+      disableSpacebarClick: true,
+      ref: forwardedRef,
+      className: cn(
         "rmd-list-item rmd-list-item--clickable rmd-list-item--link",
         {
           [`rmd-list-item--${height}`]:
@@ -94,31 +87,33 @@ const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
           "rmd-list-item--three-lines": !!secondaryText && threeLines,
         },
         className
-      )}
-      enableKeyboardClick
+      ),
+      enableKeyboardClick: true,
+    },
+    <ListItemChildren
+      textClassName={textClassName}
+      secondaryTextClassName={secondaryTextClassName}
+      textChildren={textChildren}
+      primaryText={primaryText}
+      secondaryText={secondaryText}
+      leftIcon={leftIcon}
+      leftAvatar={leftAvatar}
+      rightIcon={rightIcon}
+      rightAvatar={rightAvatar}
+      forceIconWrap={forceIconWrap}
     >
-      <ListItemChildren
-        textClassName={textClassName}
-        secondaryTextClassName={secondaryTextClassName}
-        textChildren={textChildren}
-        primaryText={primaryText}
-        secondaryText={secondaryText}
-        leftIcon={leftIcon}
-        leftAvatar={leftAvatar}
-        rightIcon={rightIcon}
-        rightAvatar={rightAvatar}
-        forceIconWrap={forceIconWrap}
-      >
-        {children}
-      </ListItemChildren>
-    </LinkWithStates>
+      {children}
+    </ListItemChildren>
   );
 };
+
 const defaultProps: IListItemLinkDefaultProps = {
   height: "auto",
+  component: "a",
 };
 
 ListItemLink.defaultProps = defaultProps;
+
 if (process.env.NODE_ENV !== "production") {
   ListItemLink.displayName = "ListItemLink";
 

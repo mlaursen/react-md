@@ -1,17 +1,19 @@
 import React, { forwardRef, FunctionComponent } from "react";
-import cn from "classnames";
-import { withStates, IWithStatesConfig } from "@react-md/states";
+import {
+  IInteractionStatesOptions,
+  useInteractionStates,
+} from "@react-md/states";
 
+import getListItemHeight from "./getListItemHeight";
+import ListItemChildren from "./ListItemChildren";
 import SimpleListItem, {
   ISimpleListItemProps,
   ListItemHeight,
 } from "./SimpleListItem";
-import ListItemChildren from "./ListItemChildren";
-import getListItemHeight from "./getListItemHeight";
 
 export interface IListItemProps
   extends ISimpleListItemProps,
-    IWithStatesConfig<HTMLLIElement> {
+    IInteractionStatesOptions<HTMLLIElement> {
   id: string;
 }
 
@@ -19,17 +21,15 @@ export interface IListItemDefaultProps {
   height: ListItemHeight;
   role: string;
   tabIndex: number;
+  enableKeyboardClick: boolean;
+  disableSpacebarClick: boolean;
+  disablePressedFallback: boolean;
 }
 
 type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
 
-const ListItemWithStates = withStates<IListItemProps, HTMLLIElement>(
-  SimpleListItem
-);
-
 const ListItem: FunctionComponent<IListItemProps> = providedProps => {
   const {
-    className,
     textClassName,
     secondaryTextClassName,
     textChildren,
@@ -43,16 +43,33 @@ const ListItem: FunctionComponent<IListItemProps> = providedProps => {
     rightAvatar,
     forceIconWrap,
     height,
+    enableKeyboardClick,
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
     ...props
   } = providedProps as ListItemWithDefaultProps;
 
+  const { ripples, className, handlers } = useInteractionStates({
+    ...props,
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
+    enableKeyboardClick,
+  });
+
   return (
-    <ListItemWithStates
+    <SimpleListItem
       {...props}
+      clickable
       height={getListItemHeight(providedProps)}
       ref={forwardedRef}
-      className={cn("rmd-list-item--clickable", className)}
-      enableKeyboardClick
     >
       <ListItemChildren
         textClassName={textClassName}
@@ -68,13 +85,16 @@ const ListItem: FunctionComponent<IListItemProps> = providedProps => {
       >
         {children}
       </ListItemChildren>
-    </ListItemWithStates>
+    </SimpleListItem>
   );
 };
 const defaultProps: IListItemDefaultProps = {
   height: "auto",
   role: "button",
   tabIndex: 0,
+  enableKeyboardClick: true,
+  disableSpacebarClick: false,
+  disablePressedFallback: false,
 };
 
 ListItem.defaultProps = defaultProps;

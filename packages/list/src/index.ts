@@ -12,3 +12,8 @@ export * from "./ListItemLink";
 
 export { default as ListSubheader } from "./ListSubheader";
 export * from "./ListSubheader";
+
+export { default as ListItemChildren } from "./ListItemChildren";
+export * from "./ListItemChildren";
+
+export { default as getListItemHeight } from "./getListItemHeight";

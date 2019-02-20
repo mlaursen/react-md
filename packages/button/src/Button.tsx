@@ -5,8 +5,12 @@ import React, {
   HTMLAttributes,
 } from "react";
 
-import { withStates, IWithStatesConfig } from "@react-md/states";
-import { IWithForwardedRef } from "@react-md/utils";
+import {
+  IInteractionStatesOptions,
+  FixColorPollution,
+  useInteractionStates,
+} from "@react-md/states";
+import { IWithForwardedRef, Omit } from "@react-md/utils";
 
 import {
   IButtonThemeProps,
@@ -23,7 +27,9 @@ import buttonThemeClassNames from "./buttonThemeClassNames";
  */
 export interface IButtonProps
   extends IButtonThemeProps,
-    HTMLAttributes<HTMLButtonElement> {
+    Omit<HTMLAttributes<HTMLButtonElement>, "id">,
+    Omit<IInteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick">,
+    IWithForwardedRef<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
    * accidentally submitted when this prop is omitted since buttons without a type attribute work
@@ -51,30 +57,39 @@ export interface IButtonDefaultProps {
   buttonType: ButtonType;
 }
 
-export type ButtonWithDefaultProps = IButtonProps &
-  IButtonDefaultProps &
-  IWithForwardedRef<HTMLButtonElement> &
-  IWithStatesConfig;
+export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;
 
-const Button: FunctionComponent<
-  IButtonProps & IWithForwardedRef<HTMLButtonElement>
-> = providedProps => {
+const Button: FunctionComponent<IButtonProps> = providedProps => {
   const {
     theme,
     themeType,
     buttonType,
     children,
     forwardedRef,
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
     ...props
   } = providedProps as ButtonWithDefaultProps;
 
+  const { ripples, className, handlers } = useInteractionStates({
+    ...props,
+    className: buttonThemeClassNames(providedProps),
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
+  });
+
   return (
-    <button
-      {...props}
-      ref={forwardedRef}
-      className={buttonThemeClassNames(providedProps)}
-    >
-      {children}
+    <button {...props} {...handlers} ref={forwardedRef} className={className}>
+      <FixColorPollution>{children}</FixColorPollution>
+      {ripples}
     </button>
   );
 };
@@ -114,9 +129,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-const ButtonWithStates = withStates<IButtonProps, HTMLButtonElement>(Button);
-
-export default forwardRef<
-  HTMLButtonElement,
-  IButtonProps & IWithStatesConfig<HTMLButtonElement>
->((props, ref) => <ButtonWithStates {...props} forwardedRef={ref} />);
+export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
