@@ -121,7 +121,13 @@ export default class CalendarMonth extends PureComponent {
     firstDay.setDate(1);
     const lastDay = getLastDay(calendarDate);
     let currentDate = toDayOfWeek(firstDay, 0);
+
+    // changing with DST and different timezones gets tricky... setting
+    // to noon might fix the date comparison below since it should be
+    // more than the DST time difference
     let endDate = toDayOfWeek(lastDay, 6);
+    endDate.setHours(12);
+
     const activeDateTime = stripTime(calendarTempDate).getTime();
     const todayTime = new Date().getTime();
 

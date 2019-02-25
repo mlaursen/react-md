@@ -1,3 +1,8 @@
+## February 2019
+### v1.9.3 Released
+#####
+- Hopefully fixed another date/time bug in the `DatePicker` that causes dates to be incorrect in different timezones. [commit-2323a6e]
+
 ## December 2018
 ### v1.9.2 Released
 ##### Changelog
