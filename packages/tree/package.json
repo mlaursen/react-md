@@ -1,0 +1,48 @@
+{
+  "name": "@react-md/tree",
+  "version": "2.0.0-alpha.0",
+  "description": "A package for creating an accessible tree component following the tree role.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean",
+    "test": "dev-utils test",
+    "prepublishOnly": "dev-utils prepublish"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": "https://github.com/mlaursen/react-md",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "transition",
+    "component",
+    "components",
+    "collapse"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "@react-md/list": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.0",
+    "@react-md/wia-aria": "^2.0.0-alpha.0",
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  }
+}
