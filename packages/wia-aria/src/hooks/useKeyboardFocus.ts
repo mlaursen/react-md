@@ -4,7 +4,6 @@ import {
   KeyboardFocusKeys,
   KeyboardFocusedId,
   WithEventHandlers,
-  EventHandlersWithKeyDown,
   WithKeyboardFocusCallback,
 } from "../types.d";
 import getCurrentFocusedIndex from "../utils/getCurrentFocusedIndex";
@@ -55,10 +54,19 @@ export function useKeyboardFocusedClassName(
 /**
  * All the options for a custom keyboard focus handler.
  */
-export interface IKeyboardFocusOptions<H, E extends HTMLElement = HTMLElement>
+export interface IKeyboardFocusOptions<
+  E extends HTMLElement = HTMLElement,
+  H = {}
+>
   extends KeyboardFocusKeys,
-    WithEventHandlers<H, E>,
+    WithEventHandlers<E, H>,
     Required<WithKeyboardFocusCallback> {}
+
+interface IKeyboardFocusResult<E extends HTMLElement = HTMLElement, H = {}> {
+  handlers: H & {
+    onKeyDown: (event: React.KeyboardEvent<E>) => void;
+  };
+}
 
 /**
  * Creates an `onKeyDown` event handler to apply to an element so that
@@ -70,14 +78,17 @@ export interface IKeyboardFocusOptions<H, E extends HTMLElement = HTMLElement>
  * @param options All the keyboard focus event options
  * @return an keydown handler that can be used on any react element
  */
-export function useKeyboardFocusEventHandler<H = {}>({
+export function useKeyboardFocusEventHandler<
+  E extends HTMLElement = HTMLElement,
+  H = {}
+>({
   handlers,
   onKeyboardFocus,
-  incrementKeys = ["Tab"],
-  decrementKeys = ["Shift+Tab"],
-  jumpToFirstKeys = [],
-  jumpToLastKeys = [],
-}: IKeyboardFocusOptions<H>): EventHandlersWithKeyDown<H> {
+  incrementKeys = ["ArrowDown"],
+  decrementKeys = ["ArrowUp"],
+  jumpToFirstKeys = ["Home"],
+  jumpToLastKeys = ["End"],
+}: IKeyboardFocusOptions<E, H>): IKeyboardFocusResult<E, H> {
   const keys = useMemoizedFocusKeys({
     incrementKeys,
     decrementKeys,
@@ -95,7 +106,7 @@ export function useKeyboardFocusEventHandler<H = {}>({
   }, [onKeyDown, onKeyboardFocus]);
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLElement>) => {
+    (event: React.KeyboardEvent<E>) => {
       const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
       if (onKeyDown) {
         onKeyDown(event);

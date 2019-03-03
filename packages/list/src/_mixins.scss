@@ -58,24 +58,22 @@
 
 /// Creates the styles for a list in react-md.
 @mixin rmd-list {
-  .rmd-list {
-    @include rmd-typography(subtitle-1);
-    @include rmd-divider-theme-update-var(inset, rmd-list-theme-var(text-keyline));
-    @include rmd-list-unstyled(null);
-    @include rmd-list-theme(font-size);
+  @include rmd-typography(subtitle-1);
+  @include rmd-divider-theme-update-var(inset, rmd-list-theme-var(text-keyline));
+  @include rmd-list-unstyled(null);
+  @include rmd-list-theme(font-size);
 
-    line-height: $rmd-list-line-height;
-    padding: rmd-list-theme-var(vertical-padding) rmd-list-theme-var(horizontal-padding);
-    word-break: break-word;
+  line-height: $rmd-list-line-height;
+  padding: rmd-list-theme-var(vertical-padding) rmd-list-theme-var(horizontal-padding);
+  word-break: break-word;
 
-    &--horizontal {
-      display: flex;
-      flex-wrap: nowrap;
-    }
+  &--horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
-    &--dense {
-      @include rmd-list-dense-theme;
-    }
+  &--dense {
+    @include rmd-list-dense-theme;
   }
 }
 
@@ -112,82 +110,79 @@
   @include rmd-icon-theme-update-var(text-spacing, calc(#{$to-keyline} - #{$subtract}));
 }
 
+/// Creates all the styles for a list item.
 @mixin rmd-list-item {
-  .rmd-list-item {
-    @include rmd-list-item-base;
-    @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
+  @include rmd-list-item-base;
+  @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
 
-    &--clickable {
-      @include rmd-utils-hide-focus-outline;
-      @include rmd-states-surface;
-      @include rmd-states-color-pullution-content-overlay {
-        align-items: center;
-      }
+  &--clickable {
+    @include rmd-utils-hide-focus-outline;
+    @include rmd-states-surface;
+    @include rmd-states-color-pullution-content-overlay {
+      align-items: center;
+    }
+  }
+
+  &[aria-disabled] {
+    @include rmd-theme(color, text-disabled-on-background);
+  }
+
+  &--link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &--medium {
+    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-medium-height));
+  }
+
+  &--large {
+    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-large-height));
+  }
+
+  &--extra-large {
+    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-extra-large-height));
+  }
+
+  &--three-line {
+    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-three-line-height));
+  }
+
+  &--dense {
+    @include rmd-list-item-dense-theme;
+  }
+
+  &__text {
+    @include rmd-typography-text-overflow-ellipsis;
+
+    display: block;
+    flex-grow: 1;
+
+    // sass-lint:disable-block mixins-before-declarations
+    @include rmd-utils-rtl {
+      margin-left: auto;
     }
 
-    &[aria-disabled] {
-      @include rmd-theme(color, text-disabled-on-background);
+    &--secondary {
+      @include rmd-theme(color, text-secondary-on-background);
     }
+  }
 
-    &--link {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    &--medium {
-      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-medium-height));
-    }
-
-    &--large {
-      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-large-height));
-    }
-
-    &--extra-large {
-      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-extra-large-height));
-    }
-
-    &--three-line {
-      @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-three-line-height));
-    }
-
-    &--dense {
-      @include rmd-list-item-dense-theme;
-    }
-
-    &__text {
-      @include rmd-typography-text-overflow-ellipsis;
-
-      display: block;
-      flex-grow: 1;
-
-      // sass-lint:disable-block mixins-before-declarations
-      @include rmd-utils-rtl {
-        margin-left: auto;
-      }
-
-      &--secondary {
-        @include rmd-theme(color, text-secondary-on-background);
-      }
-    }
-
-    &__avatar {
-      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
-    }
+  &__avatar {
+    @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
   }
 }
 
 @mixin rmd-list-subheader {
-  .rmd-list-subheader {
-    @include rmd-typography(subtitle-2);
-    @include rmd-theme(color, text-secondary-on-background);
-    @include rmd-list-item-base;
+  @include rmd-typography(subtitle-2);
+  @include rmd-theme(color, text-secondary-on-background);
+  @include rmd-list-item-base;
 
-    &--inset {
+  &--inset {
+    @include rmd-list-theme(padding-left, text-keyline);
+    @include rmd-utils-rtl {
+      @include rmd-list-theme(padding-left, item-horizontal-padding);
       @include rmd-list-theme(padding-left, text-keyline);
-      @include rmd-utils-rtl {
-        @include rmd-list-theme(padding-left, item-horizontal-padding);
-        @include rmd-list-theme(padding-left, text-keyline);
-      }
     }
   }
 }
@@ -195,7 +190,15 @@
 @mixin react-md-list {
   @include rmd-theme-create-root-theme($rmd-list-theme-values, list);
 
-  @include rmd-list;
-  @include rmd-list-item;
-  @include rmd-list-subheader;
+  .rmd-list {
+    @include rmd-list;
+  }
+
+  .rmd-list-item {
+    @include rmd-list-item;
+  }
+
+  .rmd-list-subheader {
+    @include rmd-list-subheader;
+  }
 }

@@ -68,6 +68,7 @@ const ListItem: FunctionComponent<IListItemProps> = providedProps => {
     <SimpleListItem
       {...props}
       clickable
+      preventColorPollution={false}
       height={getListItemHeight(providedProps)}
       ref={forwardedRef}
     >

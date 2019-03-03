@@ -21,7 +21,7 @@ export interface IListItemChildrenProps {
    * Boolean if the children should be treated as the `primaryText` prop. This will wrap them in
    * an additional class so that they have ellipsis for text overflow.
    *
-   * If you want to have more "fredom" within the ListItem, you can disable this prop so that the
+   * If you want to have more "freedom" within the ListItem, you can disable this prop so that the
    * height will grow depending on content.
    *
    * NOTE: If the `secondaryText` prop is provided, this will always be considered `true`.
@@ -31,7 +31,7 @@ export interface IListItemChildrenProps {
   /**
    * An optional element that should be rendered as the `primaryText` within the list item. It is
    * most likely easier to use the `children` prop instead, but this allows you to create more\
-   * complexcomponents with the ListItem since you can provided `children` and have the styles for
+   * complex components with the ListItem since you can provided `children` and have the styles for
    * the `primaryText` still applied. By default, this will only allow one line of text and add
    * ellipsis for any text overflow.
    */
@@ -84,6 +84,12 @@ export interface IListItemChildrenProps {
    * applied.
    */
   rightAvatar?: ReactNode;
+
+  /**
+   * Boolean if the color pollution should be fixed at this level. This is really used when
+   * composing the children with clickable list items and tree items.
+   */
+  preventColorPollution?: boolean;
 }
 
 const ListItemChildren: FunctionComponent<IListItemChildrenProps> = ({
@@ -98,6 +104,7 @@ const ListItemChildren: FunctionComponent<IListItemChildrenProps> = ({
   rightAvatar,
   forceIconWrap,
   children: propChildren,
+  preventColorPollution,
 }) => {
   let children = propChildren;
   if (primaryText || secondaryText || textChildren) {
@@ -134,7 +141,7 @@ const ListItemChildren: FunctionComponent<IListItemChildrenProps> = ({
   );
 
   return (
-    <FixColorPollution>
+    <FixColorPollution enabled={preventColorPollution}>
       {children}
       {(primaryText && propChildren) || null}
     </FixColorPollution>

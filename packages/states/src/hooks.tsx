@@ -350,9 +350,9 @@ export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
   extends Omit<Partial<IStatesContext>, "preventColorPollution">,
     IRipplesOptions<E> {
   /**
-   * An id for the element. This is required for all keyboard tracking.
+   * An optional id for the element so that keyboard tracking can be enabled.
    */
-  id: string;
+  id?: string;
 
   /**
    * An optional className to merge with the different interactions tates.
@@ -415,7 +415,7 @@ export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
  * the event handlers.
  */
 export function useInteractionStates<E extends HTMLElement = HTMLElement>(
-  options: IInteractionStatesOptions<E>
+  options: IInteractionStatesOptions<E> = {}
 ) {
   const {
     id,

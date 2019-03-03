@@ -66,14 +66,12 @@ export type EventHandlers<E extends HTMLElement = HTMLElement> = Pick<
   "onKeyDown" | "onClick"
 >;
 
-export interface WithEventHandlers<H, E extends HTMLElement = HTMLElement> {
-  handlers: EventHandlers<E> & H;
+export interface WithEventHandlers<
+  E extends HTMLElement = HTMLElement,
+  H = {}
+> {
+  handlers: H & EventHandlers<E>;
 }
-
-export type EventHandlersWithKeyDown<
-  H,
-  E extends HTMLElement = HTMLElement
-> = WithEventHandlers<H, E> & Required<HTMLAttributes<E>["onKeyDown"]>;
 
 export interface WithKeyboardFocusCallback {
   onKeyboardFocus?: KeyboardFocusChangeEvent;

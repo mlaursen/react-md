@@ -7,9 +7,9 @@ import getFocusableElements from "../utils/getFocusableElements";
 import useValueReset from "./useValueReset";
 
 export interface ISearchEffectOptions<
-  H = {},
-  E extends HTMLElement = HTMLElement
-> extends WithEventHandlers<H, E>, Required<WithKeyboardFocusCallback> {
+  E extends HTMLElement = HTMLElement,
+  H = {}
+> extends WithEventHandlers<E, H>, Required<WithKeyboardFocusCallback> {
   /**
    * An optional function to get the string values for all the focusable elements
    * in the keydown container element. If this is omitted, it will just return the
@@ -48,14 +48,17 @@ export interface ISearchEffectOptions<
  * @param options All the options to create the search event handler.
  * @return a keydown event handler that should be provided to a React element
  */
-export default function useSearchEventHandler<H = {}>({
+export default function useSearchEventHandler<
+  E extends HTMLElement = HTMLElement,
+  H = {}
+>({
   handlers,
   onKeyboardFocus,
   searchResetTime = 500,
   getValues = els => els.map(el => extractTextContent(el)),
   findMatchIndex = defaultFindMatchIndex,
   isSelfMatchable = true,
-}: ISearchEffectOptions<H>) {
+}: ISearchEffectOptions<E, H>) {
   const { valueRef, setValue } = useValueReset("", searchResetTime);
 
   // storing the event handlers in a ref so the callback doesn't need to be
@@ -66,48 +69,45 @@ export default function useSearchEventHandler<H = {}>({
   });
   eventHandlersRef.current = { onKeyDown: handlers.onKeyDown, onKeyboardFocus };
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLElement>) => {
-      const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyDown, onKeyboardFocus } = eventHandlersRef.current;
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
 
-      const { key } = event;
-      if (key.length > 1 || !valueRef) {
-        // might need to change this later if other languages have
-        // non-meta keys that are more than 1 letter
-        return;
-      }
+    const { key } = event;
+    if (key.length > 1 || !valueRef || (!valueRef.current && key === " ")) {
+      // might need to change this later if other languages have
+      // non-meta keys that are more than 1 letter
+      return;
+    }
 
-      const nextValue = `${valueRef.current}${key}`;
-      setValue(nextValue);
-      const focusableElements = getFocusableElements(event.currentTarget);
-      const values = getValues(focusableElements);
-      const currentIndex = getCurrentFocusedIndex(
-        event.currentTarget,
-        focusableElements,
-        event.target as HTMLElement
+    const nextValue = `${valueRef.current}${key}`;
+    setValue(nextValue);
+    const focusableElements = getFocusableElements(event.currentTarget);
+    const values = getValues(focusableElements);
+    const currentIndex = getCurrentFocusedIndex(
+      event.currentTarget,
+      focusableElements,
+      event.target as HTMLElement
+    );
+    const index = findMatchIndex(
+      nextValue,
+      values,
+      currentIndex,
+      isSelfMatchable
+    );
+    if (index !== -1) {
+      onKeyboardFocus(
+        {
+          element: focusableElements[index],
+          elementIndex: index,
+          focusableElements,
+        },
+        event
       );
-      const index = findMatchIndex(
-        nextValue,
-        values,
-        currentIndex,
-        isSelfMatchable
-      );
-      if (index !== -1) {
-        onKeyboardFocus(
-          {
-            element: focusableElements[index],
-            elementIndex: index,
-            focusableElements,
-          },
-          event
-        );
-      }
-    },
-    []
-  );
+    }
+  }, []);
 
   return {
     handlers: {

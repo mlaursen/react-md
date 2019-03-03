@@ -436,7 +436,7 @@ export function useCollapsibleElement(
   const { transitionProps, rendered } = useCollapseTransition({
     ...options,
     style: el.props.style,
-    className: el.props.className,
+    className: cn(options.className, el.props.className),
   });
 
   if (!rendered) {

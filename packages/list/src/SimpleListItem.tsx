@@ -75,6 +75,7 @@ const SimpleListItem: FunctionComponent<
     "aria-disabled": ariaDisabled,
     disabled,
     clickable,
+    preventColorPollution,
     ...props
   } = providedProps as SimpleListItemWithDefaultProps;
 
@@ -100,6 +101,7 @@ const SimpleListItem: FunctionComponent<
       )}
     >
       <ListItemChildren
+        preventColorPollution={preventColorPollution}
         textClassName={textClassName}
         secondaryTextClassName={secondaryTextClassName}
         primaryText={primaryText}

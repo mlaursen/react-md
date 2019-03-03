@@ -161,6 +161,10 @@
     @include react-md-transition;
   }
 
+  @if mixin-exists(react-md-tree) {
+    @include react-md-tree;
+  }
+
   @if mixin-exists(react-md-typography) {
     @include react-md-typography;
   }

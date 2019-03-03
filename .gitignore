@@ -11,7 +11,7 @@ node_modules
 /packages/dev-utils/bin
 /packages/material-icons/bin
 /packages/material-icons/temp
-/packages/documentation/src/.next
+.next
 
 # Testing
 coverage

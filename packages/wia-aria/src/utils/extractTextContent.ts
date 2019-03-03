@@ -28,7 +28,9 @@ export default function extractTextContent(
       const cloned = stringOrElement.cloneNode(true) as HTMLElement;
       let icon: HTMLElement | null;
       while ((icon = cloned.querySelector(fontIconQuerySelector))) {
-        cloned.removeChild(icon);
+        if (icon.parentNode) {
+          icon.parentNode.removeChild(icon);
+        }
       }
 
       return removeWhitespace(cloned.textContent || "");

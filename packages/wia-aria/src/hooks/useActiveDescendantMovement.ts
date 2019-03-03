@@ -3,7 +3,6 @@ import {
   KeyboardFocusKeys,
   WithKeyboardFocusCallback,
   WithEventHandlers,
-  EventHandlersWithKeyDown,
 } from "../types.d";
 import createKeyboardClickHandler from "../utils/createKeyboardClickHandler";
 import getFocusableElements from "../utils/getFocusableElements";
@@ -44,32 +43,35 @@ export function getDefaultActiveId<E extends HTMLElement>({
 }
 
 interface IActiveDescendantMovementOptions<
-  H = {},
-  E extends HTMLElement = HTMLElement
+  E extends HTMLElement = HTMLElement,
+  H = {}
 >
   extends KeyboardFocusKeys,
-    WithEventHandlers<H, E>,
+    WithEventHandlers<E, H>,
     WithKeyboardFocusCallback {
   defaultActiveId: string;
 }
 
 export interface IActiveDescendantValues<
-  H,
-  E extends HTMLElement = HTMLElement
-> extends EventHandlersWithKeyDown<H, E> {
+  E extends HTMLElement = HTMLElement,
+  H = {}
+> {
   activeId: string;
   setActiveId: Dispatch<SetStateAction<string>>;
+  handlers: H & {
+    onKeyDown: (event: React.KeyboardEvent<E>) => void;
+  };
 }
 
 export function useActiveDescendantMovement<
-  H = {},
-  E extends HTMLElement = HTMLElement
+  E extends HTMLElement = HTMLElement,
+  H = {}
 >({
   handlers: providedHandlers,
   onKeyboardFocus,
   defaultActiveId,
   ...focusOptions
-}: IActiveDescendantMovementOptions<H, E>): IActiveDescendantValues<H, E> {
+}: IActiveDescendantMovementOptions<E, H>): IActiveDescendantValues<E, H> {
   const [activeId, setActiveId] = useState(defaultActiveId || "");
   const { setFocusedId } = useKeyboardFocusContext();
   const updateId = (id: string | ((prevId: string) => string)) => {
@@ -81,7 +83,7 @@ export function useActiveDescendantMovement<
     setFocusedId(id);
   };
 
-  const updatedHandlers = useKeyboardFocusEventHandler({
+  const { handlers } = useKeyboardFocusEventHandler({
     handlers: {
       ...providedHandlers,
       onKeyDown: createKeyboardClickHandler(providedHandlers.onKeyDown),
@@ -108,6 +110,6 @@ export function useActiveDescendantMovement<
   return {
     activeId,
     setActiveId: updateId,
-    handlers: updatedHandlers.handlers,
+    handlers,
   };
 }
