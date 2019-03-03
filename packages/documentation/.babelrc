@@ -2,5 +2,11 @@
   "presets": [
     "next/babel",
     "@zeit/next-typescript/babel"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./"],
+      "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    }]
   ]
 }

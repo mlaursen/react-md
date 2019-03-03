@@ -1,31 +1,25 @@
 import React, { FunctionComponent, useEffect } from "react";
-import {
-  AppBar,
-  AppBarTitle,
-  APP_BAR_OFFSET_CLASSNAME,
-} from "@react-md/app-bar";
+import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
 import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
-import { useAppSize } from "@react-md/utils";
+
+import AppSize from "./AppSize";
+import Header from "./Header";
+import NavigationTree from "./NavigationTree";
 
 import "./layout.scss";
-import Header from "./Header";
-import AppSize from "./AppSize";
 
-const Layout: FunctionComponent<{ title: string }> = ({
+const Layout: FunctionComponent<{ title: string; pageTitle: string }> = ({
   children,
   title,
   ...others
 }) => {
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
-
   return (
     <AppSize>
       <KeyboardTracker>
         <StatesConfig preventColorPollution>
           <Header title={title} />
+          <NavigationTree />
           <main id="main-content" className={APP_BAR_OFFSET_CLASSNAME}>
             {children}
           </main>

@@ -28,7 +28,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "rootDir": "src"
   },
   "include": ["src"]
 }
