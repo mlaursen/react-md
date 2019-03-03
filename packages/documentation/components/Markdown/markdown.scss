@@ -1,0 +1,35 @@
+@import '../../variables';
+@import '@react-md/divider/dist/functions';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+.markdown {
+  &__p {
+    @include rmd-typography(body-1);
+
+    @media (min-width: 75rem) {
+      @include rmd-typography(body-2);
+    }
+  }
+}
+
+.blockquote {
+  $border-style: 0.25em solid rmd-divider-theme-var(background-color);
+
+  @include rmd-theme(color, text-secondary-on-background);
+  @include rmd-typography(subtitle-1);
+  @include rmd-utils-rtl {
+    border-left: 0;
+    border-right: $border-style;
+  }
+
+  border-left: $border-style;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  position: relative;
+
+  p {
+    margin: 0;
+  }
+}

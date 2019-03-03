@@ -1,0 +1,33 @@
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/transition/dist/variables';
+@import '@react-md/utils/dist/mixins';
+
+.heading {
+  margin-left: -1em;
+  padding-left: 1em;
+  position: relative;
+
+  &:hover .heading__link {
+    opacity: 1;
+  }
+
+  &__link {
+    @include rmd-icon-theme(color);
+    @include rmd-utils-hide-focus-outline;
+
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    text-decoration: none;
+    transition: opacity $rmd-transition-linear-time;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+}

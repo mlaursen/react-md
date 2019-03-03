@@ -28,6 +28,9 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <script
+            dangerouslySetInnerHTML={{ __html: 'window.Prism={manual:true}' }}
+          />
           <NextScript />
         </body>
       </html>

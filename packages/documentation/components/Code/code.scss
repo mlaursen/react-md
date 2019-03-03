@@ -1,0 +1,154 @@
+@import '../../variables';
+@import '@react-md/theme/dist/variables';
+@import '@react-md/typography/dist/variables';
+@import '@react-md/typography/dist/mixins';
+
+$code-background-color: darken($rmd-theme-background, 10%);
+$solarized-base-03: #002b36;
+$solarized-base-02: #073642;
+$solarized-base-01: #586e75;
+$solarized-base-00: #657b83;
+$solarized-base-0: #839496;
+$solarized-base-1: #93a1a1;
+$solarized-base-2: #eee8d5;
+$solarized-base-3: #fdf6e3;
+
+$solarized-yellow: #b58900;
+$solarized-orange: #cb4b16;
+$solarized-red: #d30102;
+$solarized-magenta: #d33682;
+$solarized-violet: #6c71c4;
+$solarized-blue: #268bd2;
+$solarized-cyan: #2aa198;
+$solarized-green: #859900;
+
+:root {
+  --code-bg: #{$code-background-color};
+  --code-bg-light: #{$rmd-grey-200};
+  --code-bg-dark: #{$code-background-color};
+}
+
+.code {
+  @include rmd-typography(body-1);
+
+  background-color: $solarized-base-03;
+  color: $solarized-base-2;
+
+  font-family: 'Source Code Pro', Consolas, Monaco, monospace;
+  hyphens: none;
+  tab-size: 2;
+  white-space: pre;
+
+  &::selection,
+  *::selection {
+    background-color: $solarized-base-02;
+  }
+
+  &--block {
+    // always enforce ltr for blocked code
+    direction: ltr;
+    margin: 0.5em 0;
+    overflow: auto;
+    padding: 1em;
+    word-wrap: break-word;
+  }
+
+  &--inline {
+    background-color: var(--code-bg);
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    padding: 0.1em 0.4em;
+    white-space: pre-wrap;
+  }
+
+  &--counted {
+    padding-left: 3em;
+    position: relative;
+  }
+
+  &__lines {
+    border-right: 1px solid $solarized-base-01;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding-right: 0.25em;
+    pointer-events: none;
+    position: absolute;
+    text-align: right;
+    width: 2.5em;
+  }
+
+  .comment {
+    color: $solarized-base-1;
+  }
+
+  .punctuation {
+    color: $solarized-base-00;
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+
+  .property,
+  .tag,
+  .boolean,
+  .number,
+  .constant,
+  .symbol,
+  .deleted {
+    color: $solarized-magenta;
+  }
+
+  .selector,
+  .attr-name,
+  .string,
+  .char,
+  .builtin,
+  .inserted {
+    color: $solarized-cyan;
+  }
+
+  .operator,
+  .entity,
+  .url,
+  .language-css .string {
+    color: $solarized-green;
+  }
+
+  .atrule,
+  .attr-value,
+  .keyword {
+    color: $solarized-yellow;
+  }
+
+  .function,
+  .class-name {
+    color: $solarized-blue;
+  }
+
+  .regex,
+  .important,
+  .variable {
+    color: $solarized-orange;
+  }
+
+  .important,
+  .bold {
+    font-weight: bold;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .entity {
+    cursor: help;
+  }
+
+  &.language-bash {
+    &::before {
+      content: '$ ';
+    }
+  }
+}

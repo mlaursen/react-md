@@ -1,6 +1,7 @@
 const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
+const withCSS = require('@zeit/next-css');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const withImages = require('next-images');
 
@@ -19,6 +20,12 @@ const withCustomConfig = (nextConfig = {}) => ({
       );
     }
 
+    config.module.rules.unshift({
+      test: /\.md$/,
+      use: 'raw-loader',
+      exclude: /node_modules/,
+    });
+
     if (typeof nextConfig.webpack === 'function') {
       return nextConfig.webpack(config, options);
     }
@@ -30,16 +37,18 @@ const withCustomConfig = (nextConfig = {}) => ({
 module.exports = withImages(
   withTypescript(
     withCustomConfig(
-      withSass({
-        sassLoaderOptions: {
-          sourceMap: !isProduction,
-          includePaths: [path.join(root, nodeModules)],
-        },
-        postcssLoaderOptions: {
-          ident: 'postcss',
-          sourceMap: !isProduction,
-        },
-      })
+      withCSS(
+        withSass({
+          sassLoaderOptions: {
+            sourceMap: !isProduction,
+            includePaths: [path.join(root, nodeModules)],
+          },
+          postcssLoaderOptions: {
+            ident: 'postcss',
+            sourceMap: !isProduction,
+          },
+        })
+      )
     )
   )
 );

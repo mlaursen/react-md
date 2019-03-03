@@ -1,31 +1,34 @@
 import React, {
   FunctionComponent,
-  useState,
   useEffect,
-  useRef,
   useMemo,
+  useRef,
+  useState,
 } from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
+import { UpdateVariables } from "@react-md/theme";
 import { Tooltipped } from "@react-md/tooltip";
-import { UpdateVariables, UpdateRMDVariables } from "@react-md/theme";
 
-import "./toggle-theme.scss";
 import * as storage from "../../utils/storage";
+import "./toggle-theme.scss";
 
 const LIGHT_THEMES = {
-  "theme-background": "#fafafa",
-  "theme-surface": "#fff",
-  "theme-on-surface": "#000",
-  "theme-text-primary-on-background": "var(--rmd-theme-text-primary-on-light)",
-  "theme-text-secondary-on-background":
+  "rmd-theme-background": "#fafafa",
+  "rmd-theme-surface": "#fff",
+  "rmd-theme-on-surface": "#000",
+  "rmd-theme-text-primary-on-background":
+    "var(--rmd-theme-text-primary-on-light)",
+  "rmd-theme-text-secondary-on-background":
     "var(--rmd-theme-text-secondary-on-light)",
-  "theme-text-hint-on-background": "var(--rmd-theme-text-hint-on-light)",
-  "theme-text-disabled-on-background":
+  "rmd-theme-text-hint-on-background": "var(--rmd-theme-text-hint-on-light)",
+  "rmd-theme-text-disabled-on-background":
     "var(--rmd-theme-text-disabled-on-light)",
-  "theme-text-icon-on-background": "var(--rmd-theme-text-icon-on-light)",
-  "divider-background-color": "var(--rmd-divider-background-color-on-light)",
+  "rmd-theme-text-icon-on-background": "var(--rmd-theme-text-icon-on-light)",
+  "rmd-divider-background-color":
+    "var(--rmd-divider-background-color-on-light)",
+  "code-bg": "var(--code-bg-light)",
 };
 
 const THEME_TRANSITION_DURATION = 150;
@@ -79,7 +82,7 @@ const ToggleTheme: FunctionComponent = () => {
   useThemeStorage(isLight);
   const variables = useThemeVariables(isLight);
   return (
-    <UpdateRMDVariables variables={variables}>
+    <UpdateVariables variables={variables}>
       <Tooltipped
         id="toggle-theme"
         tooltip="Toggle light/dark theme"
@@ -99,7 +102,7 @@ const ToggleTheme: FunctionComponent = () => {
           </AppBarAction>
         )}
       </Tooltipped>
-    </UpdateRMDVariables>
+    </UpdateVariables>
   );
 };
 
