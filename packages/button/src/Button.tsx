@@ -76,7 +76,8 @@ const Button: FunctionComponent<IButtonProps> = providedProps => {
   } = providedProps as ButtonWithDefaultProps;
 
   const { ripples, className, handlers } = useInteractionStates({
-    ...props,
+    id: props.id,
+    handlers: props,
     className: buttonThemeClassNames(providedProps),
     disableRipple,
     disableProgrammaticRipple,

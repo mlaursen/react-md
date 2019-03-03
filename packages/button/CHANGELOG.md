@@ -83,11 +83,3 @@ Built-in icon rendering support was also removed since it became confusing about
 how to render an icon button vs an text button with an icon. There is also a new
 icon package (`@react-md/material-icons`) that can be used to implement all the
 pre-made icons, so it felt easier to keep the icon support omitted.
-
-## Fixed Fake Button Accessibility
-
-I had misunderstood some of the `aria-` attributes when I implemented the
-`AccessibleFakeButton` component and actually decreased accessibility slightly
-because of it. The `FakeButton` will now follow the
-[button widget spec](https://www.w3.org/TR/wai-aria-practices/#button)
-correctly.

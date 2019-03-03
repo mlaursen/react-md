@@ -147,14 +147,14 @@
   }
 }
 
-/// Creats the styles for the `AppBarNav` component. The base classes for buttons neext to be applied
+/// Creates the styles for the `AppBarNav` component. The base classes for buttons next to be applied
 /// as well.
 ///
 /// @example scss - Simple Example
 ///   .app-bar__nav {
-///     // add the next two lines if not applying the base .rmd-btn classes
-///     // @include rmd-btn-base;
-///     // @include rmd-btn-text;
+///     // add the next two lines if not applying the base .rmd-button classes
+///     // @include rmd-button-base;
+///     // @include rmd-button-text;
 ///     @include rmd-app-bar-nav;
 ///   }
 ///

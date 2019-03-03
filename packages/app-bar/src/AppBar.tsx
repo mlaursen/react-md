@@ -14,7 +14,16 @@ export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 export interface IAppBarProps
   extends HTMLAttributes<HTMLDivElement>,
     IWithForwardedRef<HTMLDivElement> {
+  /**
+   * The component for the `AppBar` to render as. This should normally either just be the default
+   * `"header"` or a `"div"` component.
+   *
+   * It is generally recommended to not provide other React components for this prop even though
+   * it is possible since it leads to bad practice and props might not get passed as one would
+   * expect.
+   */
   component?: ReactType;
+
   /**
    * Boolean if the `AppBar` should be fixed to the top or bottom of the page.
    */
@@ -70,6 +79,16 @@ interface IAppBarDefaultProps {
 
 type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
 
+/**
+ * This component is used to create a top-level app bar in your application that can be used to contain
+ * a navigation menu toggle button, the app's logo and/or title, as well as any top-level actions that
+ * will be reused throughout your app. When using this component with the `fixed` prop, it is recommended
+ * to also use one of the "offset class names" so that your content will not be convered by the app bar.
+ * You can also use any of the exposed mixins to add these offsets as well.
+ *
+ * TODO: Add links to offset class names and mixins once I figure out how to generate my documentation
+ * site from Typedoc.
+ */
 const AppBar: FunctionComponent<IAppBarProps> = providedProps => {
   const {
     component,

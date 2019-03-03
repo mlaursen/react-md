@@ -7,11 +7,6 @@
 @import '@react-md/theme/dist/color-palette';
 @import '@react-md/theme/dist/variables';
 
-$rmd-app-bar-primary-background-color: rmd-theme-var(primary) !default;
-$rmd-app-bar-primary-color: rmd-theme-var(on-primary) !default;
-$rmd-app-bar-secondary-background-color: rmd-theme-var(secondary) !default;
-$rmd-app-bar-secondary-color: rmd-theme-var(on-secondary) !default;
-
 /// The z-index to use for the fixed app bar. Ideally this value should be less than
 /// any of the "temporary" materials like overlays, sheets, and menus.
 /// @type Number
@@ -61,26 +56,64 @@ $rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-mar
 /// @type Number
 $rmd-app-bar-lr-margin: 0.25rem !default;
 
+/// The background color for the app bar when the `theme` prop is set to `"primary"`.
+/// @type Color
+$rmd-app-bar-primary-background-color: rmd-theme-var(primary) !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"primary"`.
+/// @type Color
+$rmd-app-bar-primary-color: rmd-theme-var(on-primary) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"secondary"`.
+/// @type Color
+$rmd-app-bar-secondary-background-color: rmd-theme-var(secondary) !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"secondary"`.
+/// @type Color
+$rmd-app-bar-secondary-color: rmd-theme-var(on-secondary) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"default"`
+/// and the app is currently using a light theme.
+/// @type Color
 $rmd-app-bar-default-light-theme-background-color: $rmd-grey-100 !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"default"` and
+/// the app is currently using a light theme.
+/// @type Color
 $rmd-app-bar-default-light-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-light-theme-background-color) == light,
   $rmd-white-base,
   $rmd-black-base
 ) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"default"`
+/// and the app is currently using a dark theme.
+/// @type Color
 $rmd-app-bar-default-dark-theme-background-color: $rmd-grey-900 !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"default"` and
+/// the app is currently using a dark theme.
+/// @type Color
 $rmd-app-bar-default-dark-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-dark-theme-background-color) == light,
   $rmd-white-base,
   $rmd-black-base
 ) !default;
 
-/// The color to use for an `AppBar` that is using the `default` theme.
+/// The background color to use for the app bar that is using the `default` theme. This
+/// value is derived based on the current background color of the app for light or dark
+/// themed apps.
 /// @type Color
 $rmd-app-bar-default-background-color: if(
   rmd-theme-tone($rmd-theme-background) == light,
   $rmd-app-bar-default-light-theme-background-color,
   $rmd-app-bar-default-dark-theme-background-color
 ) !default;
+
+/// The text color to use for the app bar that is using the `default` theme. This
+/// value is derived based on the current background color of the app for light or dark
+/// themed apps.
+/// @type Color
 $rmd-app-bar-default-color: if(
   rmd-theme-tone($rmd-app-bar-default-background-color) == light,
   $rmd-app-bar-default-light-theme-color,

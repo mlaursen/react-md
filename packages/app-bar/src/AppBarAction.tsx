@@ -27,6 +27,12 @@ interface IAppBarActionDefaultProps {
   buttonType: ButtonType;
 }
 
+/**
+ * This component is really just a simple wrapper for the `Button` component that adds a few
+ * additional styles to prevent the button from shrinking when an `AppBar` has a lot of content.
+ * It also will automatically add spacing either before or after this button when the `first`
+ * or `last` props are provided.
+ */
 const AppBarAction: FunctionComponent<IAppBarActionProps> = ({
   className,
   first,

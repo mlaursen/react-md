@@ -18,6 +18,11 @@ export interface IAppBarTitleDefaultProps {
 export type AppBarTitleWithDefaultProps = IAppBarTitleProps &
   IAppBarTitleDefaultProps;
 
+/**
+ * This component is used to create a title for your application. If your app
+ * is not using the `AppBarNav` component, you can enable the `keyline` prop
+ * to ensure that your title aligns with the keyline of your navigation element.
+ */
 const AppBarTitle: FunctionComponent<IAppBarTitleProps> = ({
   keyline,
   className,
