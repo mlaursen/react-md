@@ -1,7 +1,7 @@
 import findAllParentIds from "../findAllParentIds";
-import { TreeViewDataList } from "../../types";
+import { TreeDataList } from "../../types";
 
-const SIMPLE_NESTED_LIST: TreeViewDataList = [
+const SIMPLE_NESTED_LIST: TreeDataList = [
   {
     itemId: "item-1",
     childItems: [

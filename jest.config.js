@@ -3,7 +3,7 @@ const path = require('path');
 
 const packages = fs
   .readdirSync(path.join(process.cwd(), 'packages'))
-  .filter(name => !['dev-utils', 'examples'].includes(name));
+  .filter(name => !['dev-utils', 'examples', 'documentation'].includes(name));
 
 module.exports = {
   preset: 'ts-jest',

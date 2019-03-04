@@ -1,7 +1,7 @@
 import findAllIds from "../findAllIds";
-import { TreeViewDataList } from "../../types";
+import { TreeDataList } from "../../types";
 
-const SIMPLE_FLAT_LIST: TreeViewDataList = [
+const SIMPLE_FLAT_LIST: TreeDataList = [
   {
     itemId: "item-1",
   },
@@ -13,7 +13,7 @@ const SIMPLE_FLAT_LIST: TreeViewDataList = [
   },
 ];
 
-const SIMPLE_NESTED_LIST: TreeViewDataList = [
+const SIMPLE_NESTED_LIST: TreeDataList = [
   {
     itemId: "item-1",
     childItems: [

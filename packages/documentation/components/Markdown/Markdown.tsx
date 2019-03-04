@@ -12,7 +12,7 @@ import Head from "next/head";
 import "./markdown.scss";
 import { markdownToHTML } from "./utils";
 
-function useMarkdownResolver(markdown: IMarkdownProps["markdown"]) {
+function useMarkdownResolver(markdown: IMarkdownProps["children"]) {
   if (typeof markdown === "string") {
     return markdown;
   }

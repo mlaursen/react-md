@@ -11,7 +11,17 @@ export default {
   "rmd-app-bar-title-keyline": "4.5rem",
   "rmd-app-bar-title-nav-margin": "1.25rem",
   "rmd-app-bar-lr-margin": "0.25rem",
+  "rmd-app-bar-primary-background-color": "var(--rmd-theme-primary, #9c27b0)",
+  "rmd-app-bar-primary-color": "var(--rmd-theme-on-primary, #fff)",
+  "rmd-app-bar-secondary-background-color":
+    "var(--rmd-theme-secondary, #f50057)",
+  "rmd-app-bar-secondary-color": "var(--rmd-theme-on-secondary, #fff)",
+  "rmd-app-bar-default-light-theme-background-color": "#f5f5f5",
+  "rmd-app-bar-default-light-theme-color": "#fff",
+  "rmd-app-bar-default-dark-theme-background-color": "#212121",
+  "rmd-app-bar-default-dark-theme-color": "#000",
   "rmd-app-bar-default-background-color": "#f5f5f5",
+  "rmd-app-bar-default-color": "#fff",
   "rmd-app-bar-theme-values": {
     "background-color": "transparent",
     color: "initial",
