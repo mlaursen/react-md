@@ -164,9 +164,12 @@ export async function printMinifiedSizes(
   printSizes(minified, "", forceLog);
 }
 
-export async function format(code: string, filePath: string) {
+export async function format(
+  code: string,
+  filePath: string,
+  parser?: prettier.BuiltInParserName
+) {
   const options = await prettier.resolveConfig(filePath);
-  // @ts-ignore
-  options.parser = options.parser || "babel";
+  options.parser = parser || options.parser || "babel";
   return prettier.format(code, options);
 }

@@ -6,6 +6,7 @@ import { default as build, IBuildConfig } from "./build";
 import clean from "./clean";
 import test from "./test";
 import prepublish from "./prepublish";
+import markdownTOC from "./markdownTOC";
 
 const argv = process.argv.slice(2);
 if (argv[0] === "test") {
@@ -48,6 +49,13 @@ commander
   .option("--verbose")
   .action(() => {
     prepublish();
+  });
+
+commander
+  .command("toc [glob]")
+  .option("--verbose")
+  .action((glob: string) => {
+    markdownTOC(glob);
   });
 
 commander.parse(process.argv);
