@@ -17,12 +17,16 @@ export interface ICodeBlockProps {
   highlight?: boolean;
 }
 
-const CodeBlock: FunctionComponent<ICodeBlockProps> = ({
-  className,
-  language,
-  children: propChildren,
-  highlight,
-}) => {
+type WithDefaultProps = ICodeBlockProps & { language: string };
+
+const CodeBlock: FunctionComponent<ICodeBlockProps> = props => {
+  const {
+    className,
+    language,
+    children: propChildren,
+    highlight,
+  } = props as WithDefaultProps;
+
   const children = useMemo(() => {
     if (!highlight || typeof propChildren !== "string") {
       return <Code inline={false}>{propChildren}</Code>;
@@ -49,6 +53,7 @@ const CodeBlock: FunctionComponent<ICodeBlockProps> = ({
 
 CodeBlock.defaultProps = {
   highlight: true,
+  language: "markup",
 };
 
 export default CodeBlock;

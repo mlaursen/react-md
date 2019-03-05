@@ -31,9 +31,6 @@ $solarized-green: #859900;
 .code {
   @include rmd-typography(body-1);
 
-  background-color: $solarized-base-03;
-  color: $solarized-base-2;
-
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
   hyphens: none;
   tab-size: 2;
@@ -45,6 +42,9 @@ $solarized-green: #859900;
   }
 
   &--block {
+    background-color: $solarized-base-03;
+    color: $solarized-base-2;
+
     // always enforce ltr for blocked code
     direction: ltr;
     margin: 0.5em 0;

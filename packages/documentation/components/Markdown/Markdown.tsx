@@ -47,7 +47,7 @@ export type ResolveMarkdown = () => Promise<string | { default: string }>;
 export type MarkdownChildren = string | ResolveMarkdown;
 
 export interface IMarkdownProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ResolveMarkdown | string;
+  children: ResolveMarkdown | string;
 }
 
 const Markdown: FunctionComponent<IMarkdownProps> = ({

@@ -25,6 +25,13 @@ const Installation: FunctionComponent<IInstallationProps> = ({
           since they work hand-in-hand with this package:
         </Text>
       )}
+      {recommendations.length > 0 && (
+        <CodeBlock language="bash">
+          {`npm install --save ${recommendations
+            .map(n => `@react-md/${n}`)
+            .join(" \\\n  ")}`}
+        </CodeBlock>
+      )}
     </Fragment>
   );
 };

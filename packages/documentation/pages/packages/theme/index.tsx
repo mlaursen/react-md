@@ -1,5 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import React, { Fragment, FunctionComponent } from "react";
 import PackageHome from "components/PackageHome";
 
 const description = `

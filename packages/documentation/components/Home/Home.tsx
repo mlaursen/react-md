@@ -2,18 +2,17 @@ import React, { FunctionComponent } from "react";
 import { Text } from "@react-md/typography";
 
 import "./home.scss";
+import Banner from "./Banner";
 import Goals from "./Goals";
-import { Component as Logo } from "./logo.svg";
+import JumpStart from "./JumpStart";
+import LibraryWarning from "./LibraryWarning";
 
 const Home: FunctionComponent = () => (
   <div className="home">
-    <div className="home__banner">
-      <Text type="headline-2" className="home__title">
-        react-md
-      </Text>
-      <Logo className="home__logo" />
-    </div>
+    <Banner />
     <Goals />
+    <JumpStart />
+    <LibraryWarning />
   </div>
 );
 

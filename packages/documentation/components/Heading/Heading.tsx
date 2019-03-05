@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
-import { Text, ITextProps } from "@react-md/typography";
+import { Text, ITextProps, TextTypes } from "@react-md/typography";
 import { Omit } from "@react-md/utils";
 
 import "./heading.scss";
@@ -21,7 +21,7 @@ const Heading: FunctionComponent<IHeadingProps> = ({
   <Text
     id={id}
     {...props}
-    type={`headline-${level}`}
+    type={`headline-${level}` as TextTypes}
     className={cn("heading", className)}
   >
     <HeadingLink idRef={id} />

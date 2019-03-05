@@ -29,7 +29,13 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "rootDir": "src"
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "utils/*": ["utils/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["components", "pages", "utils", "custom.d.ts"]
 }

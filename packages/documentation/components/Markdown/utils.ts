@@ -38,7 +38,7 @@ const renderer = new marked.Renderer();
 renderer.code = (rawCode, language, escaped) => {
   const lang = `language-${language}`;
   const code = highlightCode(rawCode, language);
-  const lines = rawCode.match(/\r?\n/g).length + 1;
+  const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
   if (lines > 3) {
     lineNumbers = Array.from(new Array(lines))

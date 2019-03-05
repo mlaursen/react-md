@@ -1,4 +1,8 @@
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/transition/dist/variables';
+@import '@react-md/utils/dist/mixins';
 
 .home {
   &__banner {
@@ -13,6 +17,12 @@
     @include rmd-theme(color, on-surface);
   }
 
+  &__goals {
+    @media (min-width: 37.5625rem) {
+      padding: 0 2rem;
+    }
+  }
+
   &__logo {
     margin-bottom: 2em;
 
@@ -23,5 +33,51 @@
     &--secondary {
       @include rmd-theme(fill, secondary);
     }
+  }
+
+  &__jump-start {
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 0 1rem;
+  }
+
+  &__card {
+    @include rmd-elevation(4);
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, on-surface);
+
+    align-self: flex-start;
+    margin: 1rem;
+    text-decoration: none;
+    width: calc(100% - 2rem);
+
+    @media (min-width: 46.875rem) {
+      width: calc(50% - 2rem);
+    }
+
+    @media (min-width: 64rem) {
+      width: calc(#{100% / 3} - 2rem);
+    }
+  }
+
+  &__card-title {
+    margin: 1em;
+  }
+
+  &__card-svg {
+    height: auto;
+    width: 100%;
+  }
+
+  &__card-text {
+    padding: 0 1rem;
+  }
+
+  &__card-footer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
   }
 }

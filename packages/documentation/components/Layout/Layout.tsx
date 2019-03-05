@@ -10,9 +10,16 @@ import NavigationTree from "./NavigationTree";
 
 import "./layout.scss";
 
-const Layout: FunctionComponent<{ title: string; pageTitle: string }> = ({
+export interface ILayoutProps {
+  title: string;
+  pageTitle: string;
+  pathname: string;
+}
+
+const Layout: FunctionComponent<ILayoutProps> = ({
   children,
   title,
+  pathname,
   ...others
 }) => {
   return (

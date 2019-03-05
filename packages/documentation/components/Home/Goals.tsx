@@ -5,7 +5,7 @@ import Link from "components/Link";
 import { Code } from "components/Code";
 
 const Goals: FunctionComponent = () => (
-  <TextContainer>
+  <TextContainer className="home__goals">
     <Text type="headline-6" component="p">
       This project's goal is to create extremely customizable and fully
       accessible React components matching the guidelines from{" "}
