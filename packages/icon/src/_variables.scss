@@ -46,13 +46,15 @@ $rmd-icon-spacing-with-text: 0.5rem !default; // 8dp
 /// @type Number
 $rmd-icon-rotator-transition-time: 0.15s !default;
 
-/// The default starting position for the `IconRotator` component.
+/// The default starting position for the `IconRotator` component. This needs to be
+/// a valid transformation value to work.
 /// @type Number
-$rmd-icon-rotator-from: 0 !default;
+$rmd-icon-rotator-from: rotate(0deg) !default;
 
-/// The default ending position for the `IconRotator` component.
+/// The default ending position for the `IconRotator` component. This needs to be
+/// a valid transformation value to work.
 /// @type Number
-$rmd-icon-rotator-to: 180 !default;
+$rmd-icon-rotator-to: rotate(180deg) !default;
 
 /// A Map of all the "themeable" parts of the icon package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
