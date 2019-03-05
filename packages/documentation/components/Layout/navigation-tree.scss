@@ -1,4 +1,5 @@
 @import '@react-md/app-bar/dist/app-bar';
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/sheet/dist/sheet';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
@@ -149,8 +150,19 @@
   width: $rmd-icon-size;
 }
 
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+.layout__main {
+  height: 100%;
+}
+
 // update the navigation tree to be "super dense"
-#main-navigation-tree {
+.layout__nav {
+  @include rmd-elevation(2);
   @include rmd-app-bar-offset(top);
   @include rmd-theme(background-color, surface);
   @include rmd-sheet-theme(width, large-width);
@@ -160,7 +172,7 @@
   position: fixed;
   z-index: 1;
 
-  ~ #main-content {
+  ~ .layout__main {
     @include rmd-sheet-theme(margin-left, large-width);
   }
   // $base-padding: $rmd-icon-dense-size + $rmd-icon-spacing-with-text +

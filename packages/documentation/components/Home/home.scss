@@ -1,0 +1,27 @@
+@import '@react-md/theme/dist/mixins';
+
+.home {
+  &__banner {
+    @include rmd-theme(background-color, primary);
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include rmd-theme(color, on-surface);
+  }
+
+  &__logo {
+    margin-bottom: 2em;
+
+    &--primary {
+      @include rmd-theme(fill, primary);
+    }
+
+    &--secondary {
+      @include rmd-theme(fill, secondary);
+    }
+  }
+}
