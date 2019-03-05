@@ -4,10 +4,12 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
+    "dev": "npm-run-all add-toc startDev",
     "dev-log": "FORCE_COLOR=true yarn dev | cat",
-    "build": "next build ./src",
-    "start": "next start ./src"
+    "build": "next build",
+    "start": "next start",
+    "startDev": "next"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",
@@ -34,13 +36,14 @@
     "@react-md/utils": "^2.0.0-alpha.0",
     "marked": "^0.6.1",
     "mobile-detect": "^1.4.3",
-    "next": "^8.0.1",
-    "next-images": "^1.0.4",
+    "next": "^8.0.3",
+    "next-images": "^1.1.0",
     "prismjs": "^1.15.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
   "devDependencies": {
+    "@react-md/dev-utils": "^2.0.0-alpha.0",
     "@types/marked": "^0.6.1",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.9.1",
@@ -51,6 +54,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
     "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.5.0",
     "raw-loader": "^1.0.0",

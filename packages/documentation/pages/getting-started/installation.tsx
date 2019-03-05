@@ -1,12 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import { MarkdownPage } from "components/Markdown";
 
-const Installation: FunctionComponent = () => {
-  return (
-    <TextContainer>
-      <Text type="headline-4">Installation</Text>
-    </TextContainer>
-  );
-};
+import installation from "./installation.md";
 
-export default Installation;
+export default () => <MarkdownPage>{installation}</MarkdownPage>;

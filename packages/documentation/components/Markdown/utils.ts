@@ -80,5 +80,8 @@ renderer.link = (href, title, text) => {
 renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 
 export function markdownToHTML(markdown: string) {
-  return marked.parse(markdown, { renderer });
+  return marked.parse(
+    markdown.replace(/{{CURRENT_VERSION}}/g, "2.0.0-alpha.0"),
+    { renderer }
+  );
 }
