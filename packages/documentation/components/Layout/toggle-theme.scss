@@ -1,7 +1,9 @@
 @import '@react-md/theme/dist/color-palette';
 @import '@react-md/transition/dist/mixins';
 
-.toggle-theme {
+// need extra precedence since the app bar has inherit colors which we want
+// for all other actions except this one.
+.toggle-theme.toggle-theme {
   &--on:not(:hover),
   &--off:hover {
     color: $rmd-yellow-500;

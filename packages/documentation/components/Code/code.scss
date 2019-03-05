@@ -104,14 +104,14 @@ $solarized-green: #859900;
   .attr-name,
   .string,
   .char,
-  .builtin,
-  .inserted {
+  .builtin {
     color: $solarized-cyan;
   }
 
   .operator,
   .entity,
   .url,
+  .inserted,
   .language-css .string {
     color: $solarized-green;
   }

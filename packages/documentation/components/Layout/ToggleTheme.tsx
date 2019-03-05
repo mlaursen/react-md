@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  ReactNode,
 } from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
@@ -11,7 +12,8 @@ import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 import { Tooltipped } from "@react-md/tooltip";
 
-import * as storage from "../../utils/storage";
+import LightbulbSVGIcon from "./LightbulbSVGIcon";
+import * as storage from "utils/storage";
 import "./toggle-theme.scss";
 
 const LIGHT_THEMES = {
@@ -73,6 +75,24 @@ function useThemeVariables(isLight: boolean) {
   );
 }
 
+function useHover() {
+  const [hover, setHover] = useState(false);
+
+  return {
+    hover,
+    enable: () => {
+      if (!hover) {
+        setHover(true);
+      }
+    },
+    disable: () => {
+      if (hover) {
+        setHover(false);
+      }
+    },
+  };
+}
+
 const ToggleTheme: FunctionComponent = () => {
   const [isLight, setLightTheme] = useState(
     () => storage.getItem("isLight") === "true"
@@ -80,13 +100,21 @@ const ToggleTheme: FunctionComponent = () => {
 
   useThemeTransition(isLight);
   useThemeStorage(isLight);
+  const { hover, enable, disable } = useHover();
   const variables = useThemeVariables(isLight);
+  let icon: ReactNode = <LightbulbOutlineSVGIcon />;
+  if (hover !== isLight) {
+    icon = <LightbulbSVGIcon />;
+  }
+
   return (
     <UpdateVariables variables={variables}>
       <Tooltipped
         id="toggle-theme"
         tooltip="Toggle light/dark theme"
         onClick={() => setLightTheme(prevDark => !prevDark)}
+        onMouseEnter={enable}
+        onMouseLeave={disable}
       >
         {({ tooltip, containerProps }) => (
           <AppBarAction
@@ -97,7 +125,7 @@ const ToggleTheme: FunctionComponent = () => {
               "toggle-theme--off": !isLight,
             })}
           >
-            <LightbulbOutlineSVGIcon />
+            {icon}
             {tooltip}
           </AppBarAction>
         )}

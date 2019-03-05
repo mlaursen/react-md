@@ -60,6 +60,7 @@ const Markdown: FunctionComponent<IMarkdownProps> = ({
     <Fragment>
       <Head>
         <link
+          key="source-code-pro"
           href="https://fonts.googleapis.com/css?family=Source+Code+Pro"
           rel="stylesheet"
         />

@@ -17,6 +17,11 @@
 @import '@react-md/typography/dist/typography';
 @import '@react-md/utils/dist/utils';
 
+// styles that must *always* be included.
+@import 'components/Code/code';
+@import 'components/Heading/heading';
+@import 'components/blockquote';
+
 @include react-md-utils;
 
 @media (min-width: 1025px) {

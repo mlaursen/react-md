@@ -4,11 +4,13 @@ import React, {
   useRef,
   useEffect,
   useMemo,
+  Fragment,
 } from "react";
 import cn from "classnames";
 
 import Code from "./Code";
 import { highlightCode } from "components/Markdown/utils";
+import Head from "next/head";
 
 export interface ICodeBlockProps {
   className?: string;
@@ -43,11 +45,22 @@ const CodeBlock: FunctionComponent<ICodeBlockProps> = props => {
   }, [propChildren, highlight, language]);
 
   return (
-    <pre
-      className={cn("code code--block", { [`language-${language}`]: language })}
-    >
-      {children}
-    </pre>
+    <Fragment>
+      <Head>
+        <link
+          key="source-code-pro"
+          href="https://fonts.googleapis.com/css?family=Source+Code+Pro"
+          rel="stylesheet"
+        />
+      </Head>
+      <pre
+        className={cn("code code--block", {
+          [`language-${language}`]: language,
+        })}
+      >
+        {children}
+      </pre>
+    </Fragment>
   );
 };
 
