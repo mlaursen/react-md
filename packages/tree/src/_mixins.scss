@@ -2,6 +2,7 @@
 /// @group tree
 ////
 
+@import '@react-md/icon/dist/mixins';
 @import '@react-md/list/dist/mixins';
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/utils/dist/mixins';
@@ -150,5 +151,9 @@
 
   .rmd-tree-group {
     @include rmd-tree-group;
+  }
+
+  .rmd-tree-item__rotator-icon {
+    @include rmd-icon-theme-update-var(rotate-to, rotate(90deg));
   }
 }

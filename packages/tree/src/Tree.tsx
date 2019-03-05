@@ -88,8 +88,10 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
 
   const onKeyboardFocus: KeyboardFocusChangeEvent = (value, event) => {
     setActiveId(value.element.id);
-    const tree = event.currentTarget;
-    window.requestAnimationFrame(() => tree.focus());
+    // allows for the current active descendant to be visible if there
+    // is scrolling enabled..
+    value.element.focus();
+    event.currentTarget.focus();
   };
 
   let { handlers } = useKeyboardFocusEventHandler<
@@ -178,11 +180,21 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
     searchResetTime,
   }));
 
-  const renderChildItems = (data: TreeDataList, depth: number): ReactNode => {
+  const renderChildItems = (
+    data: TreeDataList,
+    depth: number,
+    prefix: string
+  ): ReactNode => {
     const listSize = data.length;
     return data.map((item, i) => {
       const { itemId, childItems } = item;
-      const id = getItemId({ itemId, treeId: props.id, depth, itemIndex: i });
+      const id = getItemId({
+        itemId,
+        treeId: props.id,
+        depth,
+        itemIndex: i,
+        prefix,
+      });
       const selected = selectedIds.includes(itemId);
       const expanded = expandedIds.includes(itemId);
       const focused = activeId === id;
@@ -198,7 +210,7 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
           expanded,
           focused,
           renderChildItems: childItems
-            ? () => renderChildItems(childItems, depth + 1)
+            ? () => renderChildItems(childItems, depth + 1, `${prefix}-${i}`)
             : undefined,
         },
         item,
@@ -224,7 +236,7 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
     "aria-activedescendant": activeId,
     role: "tree",
     className: cn("rmd-tree", className),
-    children: renderChildItems(data, 0),
+    children: renderChildItems(data, 0, ""),
   });
 };
 
@@ -235,8 +247,8 @@ const defaultProps: ITreeDefaultProps = {
   disableGroupSelection: false,
   disableSiblingExpansion: false,
   expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
-  getItemId: ({ treeId, depth, itemIndex }) =>
-    `${treeId}-item-${depth}-${itemIndex}`,
+  getItemId: ({ treeId, itemIndex, prefix }) =>
+    `${treeId}-item${prefix}-${itemIndex}`,
   treeRenderer: props => <List {...props} />,
   itemRenderer: (
     props,

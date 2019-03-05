@@ -350,4 +350,5 @@ export type GetItemId = (props: {
   itemId: string;
   depth: number;
   itemIndex: number;
+  prefix: string;
 }) => string;

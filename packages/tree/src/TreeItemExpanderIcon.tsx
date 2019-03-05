@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import cn from "classnames";
 import { FontIcon, IconRotator, IIconRotatorBaseProps } from "@react-md/icon";
 
 export interface ITreeItemExpanderIconProps extends IIconRotatorBaseProps {
@@ -6,8 +7,6 @@ export interface ITreeItemExpanderIconProps extends IIconRotatorBaseProps {
 }
 
 export interface ITreeItemExpanderIconDefaultProps {
-  to: number;
-  from: number;
   rotated: boolean;
   children: ReactElement<any>;
 }
@@ -22,14 +21,21 @@ export type TreeItemExpanderWithDefaultProps = ITreeItemExpanderIconProps &
 const TreeItemExpanderIcon: React.FunctionComponent<
   ITreeItemExpanderIconProps
 > = providedProps => {
-  const props = providedProps as ITreeItemExpanderIconDefaultProps;
-  return <IconRotator {...props} />;
+  const {
+    className,
+    ...props
+  } = providedProps as TreeItemExpanderWithDefaultProps;
+
+  return (
+    <IconRotator
+      {...props}
+      className={cn("rmd-tree-item__rotator-icon", className)}
+    />
+  );
 };
 
 const defaultProps: ITreeItemExpanderIconDefaultProps = {
   rotated: false,
-  to: 0,
-  from: 90,
   children: <FontIcon>keyboard_arrow_down</FontIcon>,
 };
 
