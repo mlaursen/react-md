@@ -1,10 +1,13 @@
 import React from 'react';
 import NextApp, { Container } from 'next/app';
 import Head from 'next/head';
+import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
 import { CSSTransition } from 'react-transition-group';
+import { parse } from 'url';
 
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
+import smoothScroll from 'utils/smoothScroll';
 
 import './app.scss';
 
@@ -41,6 +44,54 @@ export default class App extends NextApp {
       },
     };
   }
+
+  initialPageScroll = true;
+
+  componentDidMount() {
+    this.smoothScroll(window.location.pathname);
+
+    Router.events.on('hashChangeStart', this.beforeChange);
+    Router.events.on('hashChangeComplete', this.smoothScroll);
+    Router.events.on('routeChangeComplete', this.smoothScroll);
+  }
+
+  componentWillUnmount() {
+    Router.events.off('hashChangeStart', this.beforeChange);
+    Router.events.off('routeChangeComplete', this.smoothScroll);
+    Router.events.off('hashChangeComplete', this.smoothScroll);
+  }
+
+  beforeChange = () => {
+    this.x = window.scrollX;
+    this.y = window.scrollY;
+  };
+
+  smoothScroll = url => {
+    if (this.initialPageScroll) {
+      this.initialPageScroll = false;
+      return;
+    }
+
+    const { hash } = parse(url);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const element = document.getElementById(hash.substring(1));
+    const header = document.getElementById('main-app-bar');
+    if (!element || !header) {
+      return;
+    }
+
+    // this is kind of hacky and I'm not sure how to fix it. When markdown
+    // links are clicked, the native scroll behavior is still used for some
+    // reason from the next/router and there are no options to disable it. So
+    // we have to scroll back to the original position, then scroll to the
+    // correct position with the header offset.
+    window.scrollTo(this.x, this.y);
+    smoothScroll(element.offsetTop - header.offsetHeight);
+  };
 
   getPageTitle(pathname, statusCode) {
     let title = '';
@@ -81,7 +132,7 @@ export default class App extends NextApp {
         <Head>
           <title>{pageTitle}</title>
         </Head>
-        <Layout title={title} {...appSize}>
+        <Layout title={title} {...appSize} pathname={pathname}>
           <CSSTransition
             in
             exit={false}

@@ -61,8 +61,14 @@ renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
 
 renderer.heading = (text, level, raw, slugger) => {
   const id = slugger.slug(text);
+  const className = cn(
+    `rmd-typography rmd-typography--headline-${level} heading`,
+    {
+      heading__toc: text.includes("Table of Contents"),
+    }
+  );
 
-  return `<h${level} id="${id}" class="rmd-typography rmd-typography--headline-${level} heading">
+  return `<h${level} id="${id}" class="${className}">
   <a href="#${id}" class="heading__link">#</a>
   ${text}
 </h${level}>`;

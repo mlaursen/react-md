@@ -41,7 +41,9 @@ async function doWork(globString: string) {
 
     log(`Updating "${filePath}" to include a table of contents...`);
     log();
-    const { content } = toc(markdown);
+    const { content } = toc(markdown, {
+      filter: s => !s.includes("Table of Contents"),
+    });
     log(content);
 
     const updated = await format(

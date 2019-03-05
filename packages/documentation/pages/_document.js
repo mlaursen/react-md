@@ -7,6 +7,10 @@ export default class MyDocument extends Document {
     return { ...initialProps };
   }
 
+  componentDidMount() {
+    require('smoothscroll-polyfill').polyfill();
+  }
+
   render() {
     return (
       <html lang="en" dir="ltr">

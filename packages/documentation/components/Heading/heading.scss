@@ -1,5 +1,6 @@
 @import '@react-md/icon/dist/mixins';
 @import '@react-md/transition/dist/variables';
+@import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
 .heading {
@@ -28,6 +29,24 @@
 
     &:focus {
       opacity: 1;
+    }
+  }
+
+  &__toc {
+    margin-bottom: 0.25em;
+
+    + ul {
+      margin: 0;
+      padding-bottom: 2em;
+
+      p {
+        margin: 0;
+      }
+
+      a,
+      li {
+        @include rmd-typography(headline-6);
+      }
     }
   }
 }

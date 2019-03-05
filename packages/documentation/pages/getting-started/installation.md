@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Installing Packages](#installing-packages)
   - [Installing with npm](#installing-with-npm)
   - [Using UMD Bundles](#using-umd-bundles)

@@ -40,7 +40,8 @@
     "next-images": "^1.1.0",
     "prismjs": "^1.15.0",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "smoothscroll-polyfill": "^0.4.3"
   },
   "devDependencies": {
     "@react-md/dev-utils": "^2.0.0-alpha.0",

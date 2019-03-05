@@ -23,6 +23,7 @@ const Link: FunctionComponent<ILinkProps> = ({
 Link.defaultProps = {
   prefetch: true,
   passHref: true,
+  scroll: false,
 };
 
 export default Link;

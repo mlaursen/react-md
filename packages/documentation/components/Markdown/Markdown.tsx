@@ -5,9 +5,11 @@ import React, {
   useMemo,
   HTMLAttributes,
   Fragment,
+  useRef,
 } from "react";
 import cn from "classnames";
 import Head from "next/head";
+import Router from "next/router";
 
 import "./markdown.scss";
 import { markdownToHTML } from "./utils";
@@ -43,6 +45,30 @@ function useHTML(children: MarkdownChildren) {
   return html;
 }
 
+function useLinkUpdates({ __html: html }: { __html: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const { origin } = window.location;
+    Array.from(
+      ref.current.querySelectorAll<HTMLAnchorElement>("a[href]")
+    ).forEach(link => {
+      if (link.href.startsWith(origin)) {
+        link.onclick = event => {
+          event.preventDefault();
+          const href = link.href.replace(origin, "");
+          Router.push(href);
+        };
+      }
+    });
+  }, [html]);
+
+  return ref;
+}
+
 export type ResolveMarkdown = () => Promise<string | { default: string }>;
 export type MarkdownChildren = string | ResolveMarkdown;
 
@@ -56,6 +82,7 @@ const Markdown: FunctionComponent<IMarkdownProps> = ({
   ...props
 }) => {
   const html = useHTML(children);
+  const ref = useLinkUpdates(html);
   return (
     <Fragment>
       <Head>
@@ -67,6 +94,7 @@ const Markdown: FunctionComponent<IMarkdownProps> = ({
       </Head>
       <div
         {...props}
+        ref={ref}
         className={cn("markdown-container", className)}
         dangerouslySetInnerHTML={html}
       />
