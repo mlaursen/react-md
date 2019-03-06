@@ -1,4 +1,10 @@
-import { CSSProperties, HTMLAttributes, ReactElement, ReactNode } from "react";
+import {
+  CSSProperties,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import { IListProps } from "@react-md/list";
 import { Omit } from "@react-md/utils";
 
@@ -221,10 +227,15 @@ export interface ITreeProps<D = IAnyRecord>
    * The default implementation will create an id like:
    *
    * ```
-   * const id = `${treeId}-item-${depth}-${itemIndex}`;
+   * const id = `${treeId}-item${prefix}-${itemIndex}`;
    * ```
    */
   getItemId?: GetItemId;
+
+  /**
+   * The default active id within the tree. This will be for the keyboard focus behavior
+   */
+  defaultActiveId?: string;
 
   /**
    * An optional expander icon that should be used for tree items that have nested items.
@@ -246,7 +257,7 @@ export interface ITreeProps<D = IAnyRecord>
  * just so it isn't super hard to get something rendered.
  */
 export type TreeRenderer = (
-  props: ITreeInjectedProps & IListProps
+  props: ITreeInjectedProps & IListProps & { ref?: Ref<TreeElement> }
 ) => ReactElement<any> | null;
 
 export interface ITreeItemA11yProps {
@@ -348,7 +359,6 @@ export type MultipleIdHandler = (itemIds: string[]) => void;
 export type GetItemId = (props: {
   treeId: string;
   itemId: string;
-  depth: number;
   itemIndex: number;
   prefix: string;
 }) => string;

@@ -1,20 +1,24 @@
-import { useState, HTMLAttributes } from "react";
-import {
-  ITreeIdsProps,
-  ITreeBaseProps,
-  TreeDataList,
-  IAnyRecord,
-  TreeElement,
-  ITreeProps,
-} from "./types.d";
-import handleItemSelect from "./utils/handleItemSelect";
-import handleItemExpandedChange from "./utils/handleItemExpandedChange";
+import { useMemo, useState } from "react";
 import {
   KeyboardFocusChangeEvent,
   useKeyboardFocusEventHandler,
   useSearchEventHandler,
 } from "@react-md/wia-aria";
+
+import {
+  FlattenedTreeSort,
+  IAnyRecord,
+  IFlattenedTree,
+  ITreeBaseProps,
+  ITreeIdsProps,
+  ITreeProps,
+  TreeElement,
+  FlattenedTreeDataList,
+} from "./types.d";
+import buildTree from "./utils/buildTree";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
+import handleItemExpandedChange from "./utils/handleItemExpandedChange";
+import handleItemSelect from "./utils/handleItemSelect";
 
 interface TreeItemSelectHook
   extends Required<
@@ -32,7 +36,7 @@ interface TreeItemSelectHook
  * or not.
  */
 export function useTreeItemSelect(
-  defaultSelectedIds: string[],
+  defaultSelectedIds: string[] | (() => string[]),
   multiSelect: boolean = false
 ): TreeItemSelectHook {
   const [selectedIds, setSelectedIds] = useState(defaultSelectedIds);
@@ -56,7 +60,7 @@ interface TreeItemExpansionHook
  * items.
  */
 export function useTreeItemExpansion(
-  defaultExpandedIds: string[]
+  defaultExpandedIds: string[] | (() => string[])
 ): TreeItemExpansionHook {
   const [expandedIds, setExpandedIds] = useState(defaultExpandedIds);
 
@@ -155,4 +159,16 @@ export function useTreeMovement<D = IAnyRecord>({
     activeId,
     setActiveId,
   };
+}
+
+export function useFlattenedTree<D = IAnyRecord>(
+  data: IFlattenedTree<D>,
+  rootId: string | null,
+  sort?: FlattenedTreeSort<D>
+): FlattenedTreeDataList<D> {
+  return useMemo(() => buildTree(rootId, Object.values(data), sort) || [], [
+    data,
+    rootId,
+    sort,
+  ]);
 }

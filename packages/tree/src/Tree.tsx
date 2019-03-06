@@ -1,32 +1,32 @@
 import React, {
-  FunctionComponent,
-  ReactElement,
-  useState,
   forwardRef,
-  ReactNode,
+  FunctionComponent,
   HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState,
 } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { List } from "@react-md/list";
 import {
-  useKeyboardFocusEventHandler,
   KeyboardFocusChangeEvent,
+  useKeyboardFocusEventHandler,
   useSearchEventHandler,
-  useKeyboardFocusContext,
 } from "@react-md/wia-aria";
 
+import TreeItem from "./TreeItem";
 import {
+  GetItemId,
   ITreeProps,
-  TreeRenderer,
+  TreeDataList,
   TreeElement,
   TreeItemRenderer,
-  TreeDataList,
-  GetItemId,
+  TreeRenderer,
 } from "./types.d";
-import TreeItem from "./TreeItem";
-import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 import findTreeItemElement from "./utils/findTreeItemElement";
+import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 
 interface ITreeDefaultProps {
   searchResetTime: number;
@@ -38,6 +38,7 @@ interface ITreeDefaultProps {
   treeRenderer: TreeRenderer;
   itemRenderer: TreeItemRenderer;
   getItemId: GetItemId;
+  defaultActiveId: string;
 }
 
 type TreeWithDefaultProps = ITreeProps & ITreeDefaultProps;
@@ -73,18 +74,13 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
     expanderIcon,
     treeRenderer,
     itemRenderer,
+    defaultActiveId,
+    forwardedRef,
     ...props
   } = providedProps as TreeWithDefaultProps;
 
-  const [activeId, setActiveId] = useState<string>(() => {
-    if (selectedIds.length >= 1) {
-      return selectedIds[0];
-    } else if (data[0]) {
-      return data[0].itemId;
-    }
-
-    return "";
-  });
+  const [activeId, setActiveId] = useState(defaultActiveId);
+  const [isTreeFocused, setTreeFocused] = useState(false);
 
   const onKeyboardFocus: KeyboardFocusChangeEvent = (value, event) => {
     setActiveId(value.element.id);
@@ -180,6 +176,12 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
     searchResetTime,
   }));
 
+  useEffect(() => {
+    if (activeId) {
+      return;
+    }
+  }, []);
+
   const renderChildItems = (
     data: TreeDataList,
     depth: number,
@@ -191,13 +193,12 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
       const id = getItemId({
         itemId,
         treeId: props.id,
-        depth,
         itemIndex: i,
         prefix,
       });
       const selected = selectedIds.includes(itemId);
       const expanded = expandedIds.includes(itemId);
-      const focused = activeId === id;
+      const focused = isTreeFocused && activeId === id;
 
       return itemRenderer(
         {
@@ -221,6 +222,7 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
 
   return treeRenderer({
     ...props,
+    ref: forwardedRef,
     ...handlers,
     onKeyUp: event => {
       if (
@@ -232,6 +234,24 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
         return;
       }
     },
+    onFocus: event => {
+      if (props.onFocus) {
+        props.onFocus(event);
+      }
+
+      if (!isTreeFocused) {
+        setTreeFocused(true);
+      }
+    },
+    onBlur: event => {
+      if (props.onBlur) {
+        props.onBlur(event);
+      }
+
+      if (!event.target || !event.currentTarget.contains(event.target)) {
+        setTreeFocused(false);
+      }
+    },
     tabIndex: 0,
     "aria-activedescendant": activeId,
     role: "tree",
@@ -241,6 +261,7 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
 };
 
 const defaultProps: ITreeDefaultProps = {
+  defaultActiveId: "",
   searchResetTime: 500,
   multiSelect: false,
   selectOnFocus: false,
