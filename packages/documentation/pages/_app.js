@@ -140,6 +140,7 @@ export default class App extends NextApp {
               enter: 'cross-fade',
               enterActive: 'cross-fade--active',
             }}
+            key={pathname}
             timeout={{ enter: 300 }}
           >
             <Component {...componentProps} />

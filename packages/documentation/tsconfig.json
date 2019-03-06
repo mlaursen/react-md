@@ -32,8 +32,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
+      "contants/*": ["constants/*"],
       "components/*": ["components/*"],
       "pages/*": ["pages/*"],
+      "svgs/*": ["svgs/*"],
       "utils/*": ["utils/*"]
     }
   },

@@ -11,6 +11,9 @@
   - [SCSS Naming Paradigm](#scss-naming-paradigm)
   - [Exported SCSS Files](#exported-scss-files)
   - [Including Styles Example](#including-styles-example)
+- [Adding fonts](#adding-fonts)
+  - [Google Fonts](#google-fonts)
+  - [Self-hosted fonts](#self-hosted-fonts)
 
 <!-- tocstop -->
 
@@ -53,15 +56,15 @@ Or you can just install the entire `react-md` library with:
 $ npm install --save react-md
 ```
 
-It is recommended to install each subpackage as needed as you will probably get
+It is recommended to install each sub-package as needed as you will probably get
 better code splitting, but it is more convenient to only have one package to
 extract components and styles from.
 
 ### Using UMD Bundles
 
-The main `react-md` package also exports a UMD bundle as well as 255 precompiled
-themes for quick setup. You can use these bundles by updating your `index.html`
-file as follows:
+The main `react-md` package also exports a UMD bundle as well as 255
+pre-compiled themes for quick setup. You can use these bundles by updating your
+`index.html` file as follows:
 
 ```diff
  <!DOCTYPE html>
@@ -114,6 +117,10 @@ are using
 can skip this and read the
 [updating create-react-app](/getting-started/updating-create-react-app) guide
 instead.
+
+> NOTE: Another alternative to this might be to just use the environment
+> variable `SASS_PATH=node_modules:src` which might make it so you don't need to
+> modify the `webpack.config.js` file at all.
 
 ### Updating webpack config
 
@@ -235,3 +242,47 @@ simplified to:
 // or if you don't need to use any of the provided variables, mixins, or functions, only include the following line
 @import "react-md/dist/styles";
 ```
+
+## Adding fonts
+
+`react-md` uses the [Roboto](https://fonts.google.com/specimen/Roboto) font for
+text and [material-icons](https://material.io/tools/icons/) for font icons, so
+you will need to add the fonts to your application either through:
+
+- [Google Fonts](https://fonts.google.com/)
+- [Web Font Loader](https://github.com/typekit/webfontloader)
+- or self-hosted
+
+If you'd like to use Web Font Loader, check out
+[their documentation](https://github.com/typekit/webfontloader#get-started)
+instead as they will give better information than I can.
+
+> You can ignore including `material-icons` if you want to use SVG Icons instead
+> and it is possible to customize the font used throughout `react-md`. Check out
+> the [customizing your app's font](/customization#customizing-your-apps-font)
+> or [SVG Icons](/packages/icon/svg) for more information.
+
+### Google Fonts
+
+Using Google fonts is probably one of the easier options as all it requires is
+adding a new `<link>` tag to your `html`.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:400,500,700"
+/>
+
+<!-- or Robot and material icons -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons"
+/>
+```
+
+### Self-hosted fonts
+
+This route is not recommended by default as it adds a bit more complexity to it
+and it has not been fully tested out with different boilerplates or frameworks.
+
+LINK_TO_HOSTING_MIXINS

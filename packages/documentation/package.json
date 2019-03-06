@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
-    "dev": "npm-run-all add-toc startDev",
+    "gen-routes": "npx @babel/node scripts/createRoutes.js",
+    "dev": "npm-run-all add-toc gen-routes startDev",
     "dev-log": "FORCE_COLOR=true yarn dev | cat",
     "build": "next build",
     "start": "next start",
