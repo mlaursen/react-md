@@ -163,8 +163,6 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
         }
 
         setActiveId(element.id);
-        const tree = event.currentTarget;
-        window.requestAnimationFrame(() => tree.focus());
       },
     },
     onKeyboardFocus,
@@ -225,6 +223,10 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
     ref: forwardedRef,
     ...handlers,
     onKeyUp: event => {
+      if (!isTreeFocused) {
+        setTreeFocused(true);
+      }
+
       if (
         !event.target ||
         event.target !== event.currentTarget ||
@@ -234,13 +236,13 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
         return;
       }
     },
-    onFocus: event => {
-      if (props.onFocus) {
-        props.onFocus(event);
+    onMouseDown: event => {
+      if (props.onMouseDown) {
+        props.onMouseDown(event);
       }
 
-      if (!isTreeFocused) {
-        setTreeFocused(true);
+      if (isTreeFocused) {
+        setTreeFocused(false);
       }
     },
     onBlur: event => {

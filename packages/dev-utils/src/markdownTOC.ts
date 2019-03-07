@@ -29,6 +29,10 @@ async function doWork(globString: string) {
   markdowns.forEach(async ({ filePath, markdown }) => {
     const start = markdown.indexOf(START_TOKEN);
     const end = markdown.indexOf(STOP_TOKEN);
+    if (start === -1 && end === -1) {
+      return;
+    }
+
     if (start === -1 || end === -1) {
       console.error(
         "A markdown file does not have the required comments so a " +

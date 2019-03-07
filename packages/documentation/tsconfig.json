@@ -34,10 +34,19 @@
     "paths": {
       "contants/*": ["constants/*"],
       "components/*": ["components/*"],
+      "hooks/*": ["hooks/*"],
+      "icons/*": ["icons/*"],
       "pages/*": ["pages/*"],
-      "svgs/*": ["svgs/*"],
       "utils/*": ["utils/*"]
     }
   },
-  "include": ["components", "pages", "utils", "custom.d.ts"]
+  "include": [
+    "constants",
+    "components",
+    "hooks",
+    "icons",
+    "pages",
+    "utils",
+    "custom.d.ts"
+  ]
 }

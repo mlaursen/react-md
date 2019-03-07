@@ -1,5 +1,4 @@
-import React, { FunctionComponent } from "react";
-import Link from "next/link";
+import React, { FunctionComponent, useRef, useEffect } from "react";
 import { SingletonRouter, withRouter } from "next/router";
 import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
@@ -11,29 +10,40 @@ import {
   useFlattenedTree,
   useTreeItemExpansion,
   useTreeItemSelect,
+  findAllParentIds,
   FlattenedTreeData,
+  IAnyRecord,
 } from "@react-md/tree";
 
-import routesTree, { RoutesTreeData, RoutesTree } from "constants/routesTree";
+import {
+  RoutesTreeData,
+  RoutesTree,
+  routesTree,
+  IRouteDivider,
+  IRouteSubheader,
+  IRouteLink,
+} from "constants/routesTree";
+import LinkUnstyled from "components/LinkUnstyled";
 
 import "./navigation-tree.scss";
 
-const L: FunctionComponent<any> = ({ href, children, ...props }) => (
-  <Link href={href} prefetch scroll={false}>
-    <a {...props}>{children}</a>
-  </Link>
-);
-
-const itemRenderer: TreeItemRenderer = (
+/**
+ * A custom tree-item renderer that can also create dividers and subheader
+ * components within the tree based on attributes on the item.
+ */
+const itemRenderer: TreeItemRenderer<IAnyRecord | RoutesTreeData> = (
   props,
-  { children, href, target, leftIcon, leftAvatar, subheader, divider },
+  item,
   treeProps
 ) => {
-  if (divider) {
+  if ((item as IRouteDivider).divider) {
     return <Divider key={props.key} />;
-  } else if (subheader) {
+  }
+
+  const { leftIcon, href, target, children } = item as IRouteLink;
+  if ((item as IRouteSubheader).subheader) {
     return (
-      <ListSubheader key={props.key} id={props.id}>
+      <ListSubheader key={props.key} id={props.id} role="none">
         {children}
       </ListSubheader>
     );
@@ -43,63 +53,61 @@ const itemRenderer: TreeItemRenderer = (
     <TreeItem
       {...props}
       leftIcon={leftIcon}
-      leftAvatar={leftAvatar}
       href={href}
       target={target}
-      contentComponent={href ? L : undefined}
+      contentComponent={href ? LinkUnstyled : undefined}
     >
       {children}
     </TreeItem>
   );
 };
 
-const noop = () => {};
+const onItemSelect = () => {};
 
-const sort: FlattenedTreeSort<RoutesTreeData> = data => {
-  const sorted = data.slice();
-  sorted.sort((a, b) => {
-    if (a.index === 0) {
-      return -1;
-    } else if (b.index === 0) {
-      return 1;
+function useCustomItemExpansion(
+  pathname: string,
+  data: FlattenedTreeData<RoutesTreeData>[]
+) {
+  const {
+    expandedIds,
+    onItemExpandedChange,
+    onMultipleItemExpansion,
+  } = useTreeItemExpansion(() => findAllParentIds(data, [pathname]));
+
+  const pathnameRef = useRef(pathname);
+  if (pathname !== pathnameRef.current) {
+    const nextIds = findAllParentIds(data, [pathname]).filter(
+      id => !expandedIds.includes(id)
+    );
+
+    if (nextIds.length) {
+      onMultipleItemExpansion([...expandedIds, ...nextIds]);
     }
-
-    return a.index - b.index;
-  });
-
-  return sorted;
-};
-
-const getIndexes = (item: FlattenedTreeData<RoutesTreeData>) => {
-  const indexes = [item.index];
-  let current = routesTree[item.parentId || ""];
-  while (current) {
-    indexes.unshift(current.index);
-    current = routesTree[current.parentId || ""];
   }
 
-  return indexes;
-};
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  });
+
+  return { expandedIds, onItemExpandedChange };
+}
 
 const NavigationTree: FunctionComponent<{ router: SingletonRouter }> = ({
   router,
 }) => {
-  const data = useFlattenedTree<RoutesTreeData>(routesTree, null, sort);
-  const { selectedIds, onItemSelect } = useTreeItemSelect(() => {
-    const item = routesTree[router.pathname] || routesTree["/"];
-    return [item.itemId];
-  });
-  const { expandedIds, onItemExpandedChange } = useTreeItemExpansion(() => {
-    const item = routesTree[router.pathname] || routesTree["/"];
-    return [];
-  });
+  const data = useFlattenedTree<RoutesTreeData>(routesTree, null);
+  const { expandedIds, onItemExpandedChange } = useCustomItemExpansion(
+    router.pathname,
+    data
+  );
+
   return (
     <Tree
       id="main-navigation-tree"
       aria-label="Main Navigation"
       defaultActiveId="main-navigation-tree-item-0"
       data={data}
-      selectedIds={selectedIds}
+      selectedIds={[router.pathname]}
       expandedIds={expandedIds}
       onItemSelect={onItemSelect}
       onItemExpandedChange={onItemExpandedChange}

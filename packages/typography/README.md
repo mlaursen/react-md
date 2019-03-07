@@ -15,3 +15,36 @@ $ npm install --save @react-md/typography
 ```
 
 ## Usage
+
+You should check out the
+[full documentation](https://react-md.dev/packages/typography) for live examples
+and more customization information, but an example usage is shown below.
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+import { Text, TextContainer } from "@react-md/typography";
+
+import "@react-md/typography/dist/css/typography.min.css";
+
+const App = () => (
+  <TextContainer>
+    <Text type="headline-1">Headline 1</Text>
+    <Text type="headline-2">Headline 2</Text>
+    <Text type="headline-3">Headline 3</Text>
+    <Text type="headline-4">Headline 4</Text>
+    <Text type="headline-5">Headline 5</Text>
+    <Text type="headline-6">Headline 6</Text>
+    <Text type="subtitle-1">Subtitle 1</Text>
+    <Text type="subtitle-2">Subtitle 2</Text>
+    <Text type="body-1">Body 1</Text>
+    <Text type="body-2">Body 2</Text>
+    <Text type="overline">Overline</Text>
+    <Text type="caption" component="p">
+      Caption
+    </Text>
+  </TextContainer>
+);
+
+render(<App />, document.getElementById("root"));
+```

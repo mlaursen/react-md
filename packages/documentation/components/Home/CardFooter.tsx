@@ -1,7 +1,8 @@
 import React, { FunctionComponent, Fragment, ReactNode } from "react";
-import Link from "next/link";
 import { buttonThemeClassNames } from "@react-md/button";
 import { Divider } from "@react-md/divider";
+
+import LinkUnstyled from "components/LinkUnstyled";
 
 export interface ICardFooterProps {
   href: string;
@@ -15,11 +16,12 @@ const CardFooter: FunctionComponent<ICardFooterProps> = ({
   <Fragment>
     <Divider />
     <footer className="home__card-footer">
-      <Link href={href} prefetch>
-        <a className={buttonThemeClassNames({ themeType: "outline" })}>
-          {children}
-        </a>
-      </Link>
+      <LinkUnstyled
+        href={href}
+        className={buttonThemeClassNames({ themeType: "outline" })}
+      >
+        {children}
+      </LinkUnstyled>
     </footer>
   </Fragment>
 );

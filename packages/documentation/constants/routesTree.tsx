@@ -1,125 +1,154 @@
-/* this is an auto-generated file */
 import React, { ReactNode } from "react";
 import { Avatar } from "@react-md/avatar";
 import {
   HomeSVGIcon,
   InfoOutlineSVGIcon,
   ColorLensSVGIcon,
+  BuildSVGIcon,
 } from "@react-md/material-icons";
-import { IFlattenedTree } from "@react-md/tree";
+import { IFlattenedTree, TreeDataList } from "@react-md/tree";
+import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
+import ReactSVGIcon from "icons/ReactSVGIcon";
 
-import { Component as ReactLogo } from "svgs/reactLogo.svg";
-import { Component as GoogleLogo } from "svgs/googleLogo.svg";
-import { Component as MaterialDesignLogo } from "svgs/materialDesignLogo.svg";
-
-export type RouteLink = {
+export interface IRouteLink {
   children: ReactNode;
   target?: string;
   href?: string;
   leftIcon?: ReactNode;
-};
+}
 
-export type RouteSubheader = RouteLink & {
+export interface IRouteSubheader extends IRouteLink {
   subheader: true;
-};
+}
 
-export type RouteDivider = { divider: true };
-export type RoutesTreeData = ((RouteLink | RouteSubheader) | RouteDivider) & {
-  index: number;
-};
+export interface IRouteDivider {
+  divider: boolean;
+}
+
+export type RoutesTreeData = (IRouteLink | IRouteSubheader) | IRouteDivider;
 export type RoutesTree = IFlattenedTree<RoutesTreeData>;
 
-const tree: RoutesTree = {
-  "/customization/css-variables": {
-    index: 0,
-    parentId: "/customization",
-    itemId: "/customization/css-variables",
-    href: "/customization/css-variables",
-    children: "CSS Variables",
-  },
-  "/customization": {
-    index: 2,
-    parentId: null,
-    itemId: "/customization",
-    children: "Customization",
-    leftIcon: <ColorLensSVGIcon />,
-  },
-  "/customization/dynamic-themes": {
-    index: 1,
-    parentId: "/customization",
-    itemId: "/customization/dynamic-themes",
-    href: "/customization/dynamic-themes",
-    children: "Dynamic Themes",
-  },
-  "/customization/overriding-defaults": {
-    index: 2,
-    parentId: "/customization",
-    itemId: "/customization/overriding-defaults",
-    href: "/customization/overriding-defaults",
-    children: "Overriding Defaults",
-  },
-  "/getting-started/installation": {
-    index: 0,
-    parentId: "/getting-started",
-    itemId: "/getting-started/installation",
-    href: "/getting-started/installation",
-    children: "Installation",
-  },
-  "/getting-started": {
-    index: 1,
-    parentId: null,
-    itemId: "/getting-started",
-    children: "Getting Started",
-    leftIcon: <InfoOutlineSVGIcon />,
-  },
-  "/getting-started/updating-create-react-app": {
-    index: 1,
-    parentId: "/getting-started",
-    itemId: "/getting-started/updating-create-react-app",
-    href: "/getting-started/updating-create-react-app",
-    children: "Updating Create React App",
-  },
-  "/": {
-    index: 0,
-    parentId: null,
-    itemId: "/",
-    href: "/",
-    children: "Home",
-    leftIcon: <HomeSVGIcon />,
-  },
-  "divider-1": {
-    index: 3,
-    parentId: null,
-    itemId: "divider-1",
-    divider: true,
-  },
-  references: {
-    index: 4,
-    parentId: null,
-    itemId: "references",
-    children: "References",
-    subheader: true,
-  },
-  react: {
-    index: 5,
-    parentId: null,
-    itemId: "react",
-    children: "React",
-    href: "https://reactjs.org/",
-    target: "_blank",
-    leftIcon: <ReactLogo className="rmd-icon rmd-icon--svg react-logo" />,
-  },
-  "material-design": {
-    index: 6,
-    parentId: null,
-    itemId: "material-design",
-    children: "Material Design",
-    href: "https://material.io/design/",
-    target: "_blank",
-    leftIcon: (
-      <MaterialDesignLogo className="rmd-icon rmd-icon--svg materail-design-logo" />
-    ),
-  },
-};
+interface IChildRouteConfig {
+  path: string;
+  children: ReactNode;
+  childRoutes?: IChildRouteConfig[];
+}
 
-export default tree;
+interface IRouteConfig {
+  icon?: ReactNode;
+  childRoutes?: IChildRouteConfig[];
+  parentPath?: string | null;
+}
+
+export const routesTree: RoutesTree = {};
+
+/**
+ * A small helper function to create a child route from the base `createRoute`
+ * function. This is really used so that the parent pathnames can be prepended
+ * the the provided child route's path.
+ */
+function createChildRoute(childRoute: IChildRouteConfig, parentPath: string) {
+  const { path, children, childRoutes } = childRoute;
+  createRoute(path, children, { childRoutes, parentPath });
+}
+
+/**
+ * Creates a route in the `routesTree` from the provided configuration. When
+ * child routes are provided, they will also be inserted into the tree with
+ * the parentId set automatically to the current route path and will be
+ * updated to be prepended with the current route path.
+ *
+ * This will render as an expandable tree item when there are no child routes,
+ * otherwise it will render as a link tree item.
+ */
+function createRoute(path: string, children: ReactNode, config: IRouteConfig) {
+  const { icon, childRoutes = [], parentPath = null } = config;
+  const href = `${parentPath || ""}${path}`;
+  routesTree[href] = {
+    itemId: href,
+    parentId: parentPath,
+    children,
+    leftIcon: icon,
+    href: childRoutes.length ? undefined : href,
+  };
+
+  childRoutes.forEach(childRoute => createChildRoute(childRoute, href));
+}
+
+/**
+ * Creates a divider in the tree.
+ */
+function createDivider(index: number, parentId: string | null = null) {
+  const itemId = `divider-${index}`;
+  routesTree[itemId] = {
+    itemId,
+    parentId,
+    divider: true,
+  };
+}
+
+/**
+ * Creates a subheader in the tree.
+ */
+function createSubheader(
+  itemId: string,
+  children: ReactNode,
+  parentId: string | null = null
+) {
+  routesTree[itemId] = {
+    itemId,
+    parentId,
+    children,
+    subheader: true,
+  };
+}
+
+/**
+ * Creates an external route in the tree that will open the link
+ * in an external tab.
+ */
+function createExternalRoute(
+  href: string,
+  children: ReactNode,
+  icon?: ReactNode
+) {
+  routesTree[href] = {
+    itemId: href,
+    parentId: null,
+    children,
+    href,
+    target: "_blank",
+    leftIcon: icon,
+  };
+}
+
+createRoute("/", "Home", { icon: <HomeSVGIcon /> });
+createRoute("/getting-started", "Getting Started", {
+  icon: <InfoOutlineSVGIcon />,
+  childRoutes: [
+    { path: "/installation", children: "Installation" },
+    {
+      path: "/updating-create-react-app",
+      children: "Updating create-react-app",
+    },
+  ],
+});
+createRoute("/customization", "Customization", {
+  icon: <ColorLensSVGIcon />,
+  childRoutes: [
+    { path: "/overriding-defaults", children: "Overriding Defaults" },
+    { path: "/creating-dynamic-themes", children: "Creating Dynamic Themes" },
+  ],
+});
+createRoute("/packages", "Packages", {
+  icon: <BuildSVGIcon />,
+  childRoutes: [{ path: "/typography", children: "Typography" }],
+});
+createDivider(0);
+createSubheader("references", "References");
+createExternalRoute("https://reactjs.org", "React", <ReactSVGIcon />);
+createExternalRoute(
+  "https://material.io/design",
+  "Material Design",
+  <MaterialDesignSVGIcon />
+);

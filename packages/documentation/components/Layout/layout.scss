@@ -45,22 +45,3 @@
     }
   }
 }
-
-.react-logo {
-  $margin-right: calc(#{rmd-icon-theme-var(text-spacing)} - 0.5rem);
-  $margin-left: -0.5rem;
-
-  @include rmd-icon-theme-update-var(size, 2.5rem);
-  @include rmd-utils-rtl {
-    margin-left: $margin-right;
-    margin-right: $margin-left;
-  }
-
-  margin-left: $margin-left;
-  margin-right: $margin-right;
-
-  @media (min-width: 1025px) {
-    @include rmd-icon-theme-update-var(size, 2.25rem);
-    // no idea why margins don't need to be updated as well
-  }
-}

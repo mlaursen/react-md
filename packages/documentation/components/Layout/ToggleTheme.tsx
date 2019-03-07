@@ -12,8 +12,9 @@ import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 import { Tooltipped } from "@react-md/tooltip";
 
-import LightbulbSVGIcon from "./LightbulbSVGIcon";
+import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import * as storage from "utils/storage";
+
 import "./toggle-theme.scss";
 
 const LIGHT_THEMES = {

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useCallback } from "react";
-import Link from "next/link";
 import { Tooltipped } from "@react-md/tooltip";
+import LinkUnstyled from "components/LinkUnstyled";
 
 export interface IHeadingLinkProps {
   idRef: string;
@@ -31,11 +31,13 @@ const HeadingLink: FunctionComponent<IHeadingLinkProps> = ({ idRef }) => {
       onClick={handleClick}
     >
       {({ tooltip, containerProps }) => (
-        <Link href={`#${idRef}`}>
-          <a className="heading__link" {...containerProps}>
-            #{tooltip}
-          </a>
-        </Link>
+        <LinkUnstyled
+          href={`#${idRef}`}
+          className="heading__link"
+          {...containerProps}
+        >
+          #{tooltip}
+        </LinkUnstyled>
       )}
     </Tooltipped>
   );

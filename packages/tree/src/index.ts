@@ -8,4 +8,5 @@ export { default as TreeGroup } from "./TreeGroup";
 export * from "./TreeGroup";
 
 export * from "./hooks";
+export * from "./utils";
 export * from "./types.d";
