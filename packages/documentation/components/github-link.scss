@@ -1,0 +1,11 @@
+@import '@react-md/theme/dist/mixins';
+
+.github-link {
+  &.github-link {
+    @include rmd-theme(color, text-icon-on-background);
+  }
+
+  .rmd-app-bar--child-inherit & {
+    color: inherit;
+  }
+}

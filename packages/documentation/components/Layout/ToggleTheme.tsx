@@ -7,7 +7,6 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 import { Tooltipped } from "@react-md/tooltip";
@@ -16,6 +15,7 @@ import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import * as storage from "utils/storage";
 
 import "./toggle-theme.scss";
+import AppBarAction from "components/AppBarAction";
 
 const LIGHT_THEMES = {
   "rmd-theme-background": "#fafafa",
@@ -110,27 +110,20 @@ const ToggleTheme: FunctionComponent = () => {
 
   return (
     <UpdateVariables variables={variables}>
-      <Tooltipped
+      <AppBarAction
         id="toggle-theme"
+        first
         tooltip="Toggle light/dark theme"
         onClick={() => setLightTheme(prevDark => !prevDark)}
         onMouseEnter={enable}
         onMouseLeave={disable}
+        className={cn("toggle-theme", {
+          "toggle-theme--on": isLight,
+          "toggle-theme--off": !isLight,
+        })}
       >
-        {({ tooltip, containerProps }) => (
-          <AppBarAction
-            {...containerProps}
-            first
-            className={cn("toggle-theme", {
-              "toggle-theme--on": isLight,
-              "toggle-theme--off": !isLight,
-            })}
-          >
-            {icon}
-            {tooltip}
-          </AppBarAction>
-        )}
-      </Tooltipped>
+        {icon}
+      </AppBarAction>
     </UpdateVariables>
   );
 };

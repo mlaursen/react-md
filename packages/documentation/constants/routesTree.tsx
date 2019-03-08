@@ -142,7 +142,14 @@ createRoute("/customization", "Customization", {
 });
 createRoute("/packages", "Packages", {
   icon: <BuildSVGIcon />,
-  childRoutes: [{ path: "/typography", children: "Typography" }],
+  childRoutes: [
+    {
+      path: "/button",
+      children: "Button",
+      childRoutes: [{ path: "/demos", children: "Demos" }],
+    },
+    { path: "/typography", children: "Typography" },
+  ],
 });
 createDivider(0);
 createSubheader("references", "References");

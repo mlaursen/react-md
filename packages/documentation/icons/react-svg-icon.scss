@@ -2,6 +2,8 @@
 @import '@react-md/utils/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 
+// have to do some hacks since the logo is badly formatted with a lot of extra whitespace
+// around the icon
 .react-logo.react-logo {
   $margin-right: calc(#{rmd-icon-theme-var(text-spacing)} - 0.5rem);
   $margin-left: -0.5rem;

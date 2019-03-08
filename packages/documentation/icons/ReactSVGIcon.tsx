@@ -11,11 +11,13 @@ const ReactSVGIcon: FunctionComponent<ISVGIconProps> = ({
 }) => (
   <ReactLogo
     {...props}
-    focusable="false"
-    role="img"
     className={cn("rmd-icon rmd-icon--svg react-logo", className)}
-    aria-label="React Logo"
   />
 );
+
+ReactSVGIcon.defaultProps = {
+  role: "img",
+  focusable: "false",
+};
 
 export default ReactSVGIcon;

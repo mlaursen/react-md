@@ -1,0 +1,18 @@
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/button/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+
+.custom-button-themes {
+  @include rmd-button-theme-update-var(outline-width, 4px);
+  @include rmd-button-theme-update-var(text-height, 4rem);
+  @include rmd-button-theme-update-var(text-min-width, 8rem);
+  @include rmd-button-theme-update-var(text-horizontal-padding, 4rem);
+  @include rmd-button-theme-update-var(text-border-radius, 2rem);
+  @include rmd-button-theme-update-var(icon-border-radius, 1rem);
+
+  &__big-icon {
+    @include rmd-button-theme-update-var(icon-size, $rmd-button-icon-size * 2);
+    @include rmd-icon-theme-update-var(size, $rmd-icon-size * 2);
+  }
+}

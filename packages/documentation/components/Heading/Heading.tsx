@@ -6,9 +6,11 @@ import { Omit } from "@react-md/utils";
 import "./heading.scss";
 import HeadingLink from "./HeadingLink";
 
+export type Level = 1 | 2 | 3 | 4 | 5 | 6;
+
 export interface IHeadingProps extends Omit<ITextProps, "type"> {
   id: string;
-  level: 1 | 2 | 3 | 4 | 5 | 6;
+  level: Level;
 }
 
 const Heading: FunctionComponent<IHeadingProps> = ({

@@ -38,9 +38,8 @@
                     <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
                     <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
                 </g>
-                <text class="home__logo--secondary" font-family="Montserrat" font-size="22" font-weight="bold" letter-spacing="-7.17000008">
-                    <tspan x="86" y="106">M</tspan>
-                    <tspan x="99.8179999" y="106">D</tspan>
+                <text class="home__logo__text home__logo--secondary" x="103" y="103">
+                  MD
                 </text>
             </g>
             <ellipse stroke="#FFFFFF" stroke-width="3" cx="103" cy="103" rx="100" ry="100"></ellipse>

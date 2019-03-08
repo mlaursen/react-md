@@ -29,6 +29,7 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "resolveJsonModule": true,
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {

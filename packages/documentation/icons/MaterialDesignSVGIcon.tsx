@@ -9,11 +9,13 @@ const MaterialDesignSVGIcon: FunctionComponent<ISVGIconProps> = ({
 }) => (
   <MaterialDesignLogo
     {...props}
-    focusable="false"
-    role="img"
     className={cn("rmd-icon rmd-icon--svg", className)}
-    aria-label="Material Design Logo"
   />
 );
+
+MaterialDesignSVGIcon.defaultProps = {
+  role: "img",
+  focusable: "false",
+};
 
 export default MaterialDesignSVGIcon;

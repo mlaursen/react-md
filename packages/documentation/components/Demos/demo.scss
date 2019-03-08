@@ -1,0 +1,26 @@
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+
+.demo {
+  @include rmd-text-container;
+  @include rmd-text-container-auto;
+
+  &__description {
+    @include rmd-typography(subtitle-1);
+
+    padding-bottom: 2em;
+
+    * {
+      font: inherit;
+    }
+  }
+
+  &__preview {
+    @include rmd-elevation(2);
+    @include rmd-theme-update-var(background, rmd-theme-var(surface));
+    @include rmd-theme(background-color, background);
+
+    padding: 2rem;
+  }
+}
