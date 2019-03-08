@@ -9,6 +9,13 @@ import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-git";
 
+import {
+  GITHUB_URL,
+  PACKAGE_NAMES,
+  PACKAGES_RECORD,
+  VERSION,
+} from "constants/index";
+
 /**
  * Gets one of the prismjs languages from a markdown language.
  */
@@ -85,9 +92,54 @@ renderer.link = (href, title, text) => {
 
 renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 
+// ///////////////////////////////////////////////////
+// MARKDOWN TRANSFORMATIONS
+
+type Transform = (markdown: string) => string;
+const joinedNames = PACKAGE_NAMES.join("|");
+const allNames = `${joinedNames}|react-md`;
+const whitespace = "(?=\r?\n| )";
+
+const getVersion = (name: string) => {
+  let version = VERSION;
+  if (name !== "react-md") {
+    const lookup = `@react-md/${name}`;
+    version = PACKAGES_RECORD[lookup] || VERSION;
+  }
+  return version;
+};
+
+const transforms: Transform[] = [
+  // package-name@ -> package-name@version
+  md =>
+    md.replace(
+      new RegExp(`(${allNames})@`, "g"),
+      (_, lookup) => `${lookup}@${getVersion(lookup)}`
+    ),
+  // @package-name -> version
+  md =>
+    md.replace(new RegExp(`@(${allNames})${whitespace}`, "g"), (_, lookup) =>
+      getVersion(lookup)
+    ),
+  // #package-name -> [@react-md/package-name](/packages/package-name)
+  md =>
+    md.replace(
+      new RegExp(`#(${joinedNames})${whitespace}`, "g"),
+      "[@react-md/$1](/packages/$1)"
+    ),
+  // #including-styles -> [including styles](/getting-started/installation#including-styles)
+  md =>
+    md.replace(
+      /#including-styles/g,
+      "[including styles](/getting-started/installation#including-styles)"
+    ),
+  md => md.replace(/(#)(\d+)/g, `[$1$2](${GITHUB_URL}/issues/$2)`),
+  md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
+];
+
+const transform = (markdown: string) =>
+  transforms.reduce((updated, fn) => fn(updated), markdown);
+
 export function markdownToHTML(markdown: string) {
-  return marked.parse(
-    markdown.replace(/{{CURRENT_VERSION}}/g, "2.0.0-alpha.0"),
-    { renderer }
-  );
+  return marked.parse(transform(markdown), { renderer });
 }

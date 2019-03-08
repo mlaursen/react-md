@@ -33,7 +33,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "contants/*": ["constants/*"],
+      "constants/*": ["constants/*"],
       "components/*": ["components/*"],
       "hooks/*": ["hooks/*"],
       "icons/*": ["icons/*"],

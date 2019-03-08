@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
-  "homepage": "https://github.com/mlaursen/react-md#readme",
+  "homepage": "https://react-md.dev",
   "devDependencies": {
     "@types/chokidar": "^1.7.5",
     "@types/classnames": "^2.2.7",

@@ -19,6 +19,8 @@
 
 ## Installing Packages
 
+@react-md @material-icons
+
 `react-md` has been split up into separate scoped packages to hopefully make it
 easy to pick and choose what functionality you want to bring into your app
 without requiring the entire framework. However, you can still install the base
@@ -70,14 +72,14 @@ pre-compiled themes for quick setup. You can use these bundles by updating your
  <!DOCTYPE html>
  <html>
    <head>
-+    <link rel="stylesheet" href="https://unpkg.com/react-md@{{CURRENT_VERSION}}/dist/react-md.indigo-pink.min.css">
++    <link rel="stylesheet" href="https://unpkg.com/react-md@/dist/react-md.indigo-pink.min.css">
    </head>
    <body>
      <div id="root"></div>
      <script src="https://unpkg.com/react/dist/react.min.js"></script>
      <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-+    <script src="https://unpkg.com/react-md@{{CURRENT_VERSION}}/dist/react-md.min.js"></script>
-+    <script src="https://unpkg.com/@react-md/material-icons@{{CURRENT_VERSION}}/dist/react-md.min.js"></script>
++    <script src="https://unpkg.com/react-md@/dist/react-md.min.js"></script>
++    <script src="https://unpkg.com/@react-md/material-icons@/dist/react-md.min.js"></script>
    </body>
  </html>
 ```

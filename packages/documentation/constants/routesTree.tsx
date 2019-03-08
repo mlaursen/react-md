@@ -190,9 +190,24 @@ createRoute("/customization", "Customization", {
 createRoute("/packages", "Packages", {
   icon: <BuildSVGIcon />,
   childRoutes: [
+    createPackageRoute("app-bar"),
+    createPackageRoute("avatar"),
     createPackageRoute("button"),
+    createPackageRoute("divider"),
+    createPackageRoute("elevation", { api: false }),
+    createPackageRoute("icon"),
+    createPackageRoute("link"),
+    createPackageRoute("list"),
+    createPackageRoute("material-icons"),
+    createPackageRoute("portal"),
+    createPackageRoute("sheet"),
+    createPackageRoute("states"),
     createPackageRoute("theme"),
+    createPackageRoute("transition"),
+    createPackageRoute("tree"),
     createPackageRoute("typography"),
+    createPackageRoute("utils"),
+    createPackageRoute("wia-aria"),
   ],
 });
 createDivider(0);

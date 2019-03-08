@@ -97,6 +97,7 @@
 @mixin rmd-tree {
   @include rmd-tree-depths;
   @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll;
 
   width: 100%;
 }

@@ -8,6 +8,7 @@ import { Markdown } from "components/Markdown";
 import GithubLink from "components/GithubLink";
 
 import "./demo.scss";
+import FullPageDemo from "./FullPageDemo";
 
 export interface IDemoProps {
   id: string;
@@ -21,13 +22,16 @@ export interface IDemoProps {
   children: ReactNode;
 }
 
-const Demo: FunctionComponent<IDemoProps> = ({
-  id,
-  name,
-  description,
-  fullPage,
-  children,
-}) => {
+type WithDefaultProps = IDemoProps & Required<Pick<IDemoProps, "fullPage">>;
+
+const Demo: FunctionComponent<IDemoProps> = props => {
+  const {
+    id,
+    name,
+    description,
+    fullPage,
+    children,
+  } = props as WithDefaultProps;
   return (
     <section id={id} className="demo">
       <Heading level={2} id={`${id}-title`}>
@@ -47,7 +51,11 @@ const Demo: FunctionComponent<IDemoProps> = ({
         <GithubLink id={`${id}-github`} />
       </AppBar>
       <div id={`${id}-preview`} className="demo__preview">
-        {children}
+        {fullPage ? (
+          <FullPageDemo id={`${id}-preview`}>{children}</FullPageDemo>
+        ) : (
+          children
+        )}
       </div>
     </section>
   );

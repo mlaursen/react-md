@@ -14,18 +14,24 @@ to help add typography throughout your app.
 $ npm install --save @react-md/typography
 ```
 
-## Usage
+<!-- DOCS_REMOVE -->
+
+## Documentation
 
 You should check out the
 [full documentation](https://react-md.dev/packages/typography) for live examples
 and more customization information, but an example usage is shown below.
 
+<!-- DOCS_REMOVE_END -->
+
+<!-- INCLUDING_STYLES -->
+
+## Usage
+
 ```tsx
 import React from "react";
 import { render } from "react-dom";
 import { Text, TextContainer } from "@react-md/typography";
-
-import "@react-md/typography/dist/css/typography.min.css";
 
 const App = () => (
   <TextContainer>

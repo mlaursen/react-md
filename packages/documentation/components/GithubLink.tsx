@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import cn from "classnames";
 import { Omit } from "@react-md/utils";
 
+import { GITHUB_URL } from "constants/index";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 
 import LinkButton, { ILinkButtonProps } from "./LinkButton";
@@ -25,7 +26,7 @@ const GithubLink: FunctionComponent<IGithubLinkProps> = ({
   </LinkButton>
 );
 GithubLink.defaultProps = {
-  href: "https://github.com/mlaursen/react-md",
+  href: GITHUB_URL,
   target: "_blank",
   theme: "clear",
   buttonType: "icon",

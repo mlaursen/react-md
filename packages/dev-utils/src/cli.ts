@@ -7,6 +7,7 @@ import clean from "./clean";
 import test from "./test";
 import prepublish from "./prepublish";
 import markdownTOC from "./markdownTOC";
+import copyReadmes from "./copyReadmes";
 
 const argv = process.argv.slice(2);
 if (argv[0] === "test") {
@@ -57,5 +58,10 @@ commander
   .action((glob: string) => {
     markdownTOC(glob);
   });
+
+commander
+  .command("readmes")
+  .option("--verbose")
+  .action(() => copyReadmes());
 
 commander.parse(process.argv);

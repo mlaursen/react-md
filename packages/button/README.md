@@ -20,14 +20,24 @@ If you would also like dynamic themes and icon support, it is recommended to
 also install:
 
 ```sh
-$ npm install --save @react-md/theme @react-md/typography @react-md/icon
+$ npm install --save @react-md/theme \
+    @react-md/typography \
+    @react-md/icon
 ```
 
-## Usage and Documentation
+<!-- DOCS_REMOVE -->
+
+## Documentation
 
 Full usage and documentation can be found on the main documentation site at the
 [buttons page](https://react-md.mlaursen.com/packages/buttons), but there will
 be a few examples in this README.
+
+<!-- DOCS_REMOVE_END -->
+
+<!-- INCLUDING_STYLES -->
+
+## Usage
 
 Starting with v2 of `react-md`, all interactable elements require a unique `id`
 to help ensure best practices, accessibility, and a way to track keyboard focus.
