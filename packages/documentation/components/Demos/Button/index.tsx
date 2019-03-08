@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, Fragment } from "react";
 
 import DemoPage from "../DemoPage";
 
@@ -19,6 +19,10 @@ import textWithIconDescription from "./TextButtonsWithIcons.md";
 
 import CustomButtonTheme from "./CustomButtonTheme";
 import customThemeDescription from "./CustomButtonTheme.md";
+import { MarkdownPage } from "components/Markdown";
+
+import readme from "./README.md";
+import DemoPageFromMarkdown from "../DemoPageFromMarkdown";
 
 const demos = [
   {
@@ -53,4 +57,9 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} />;
+export default () => (
+  <Fragment>
+    <DemoPageFromMarkdown markdown={readme} />
+    <DemoPage demos={demos} />
+  </Fragment>
+);
