@@ -9,6 +9,7 @@ import {
 import { IFlattenedTree, TreeDataList } from "@react-md/tree";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
+import { toTitle } from "utils/toTitle";
 
 export interface IRouteLink {
   children: ReactNode;
@@ -73,6 +74,52 @@ function createRoute(path: string, children: ReactNode, config: IRouteConfig) {
   };
 
   childRoutes.forEach(childRoute => createChildRoute(childRoute, href));
+}
+
+interface IPackageRouteConfig {
+  install?: boolean;
+  api?: boolean;
+  demos?: boolean;
+  sassdoc?: boolean;
+}
+
+function createPackageRoute(name: string, config: IPackageRouteConfig = {}) {
+  const { install = true, api = true, demos = true, sassdoc = true } = config;
+
+  const childRoutes: IChildRouteConfig[] = [];
+  if (install) {
+    childRoutes.push({
+      path: "/installation",
+      children: "Installation",
+    });
+  }
+
+  if (demos) {
+    childRoutes.push({
+      path: "/demos",
+      children: "Demos",
+    });
+  }
+
+  if (api) {
+    childRoutes.push({
+      path: "/api",
+      children: "API",
+    });
+  }
+
+  if (sassdoc) {
+    childRoutes.push({
+      path: "/sassdoc",
+      children: "SassDoc",
+    });
+  }
+
+  return {
+    path: `/${name}`,
+    children: toTitle(name),
+    childRoutes,
+  };
 }
 
 /**
@@ -143,12 +190,9 @@ createRoute("/customization", "Customization", {
 createRoute("/packages", "Packages", {
   icon: <BuildSVGIcon />,
   childRoutes: [
-    {
-      path: "/button",
-      children: "Button",
-      childRoutes: [{ path: "/demos", children: "Demos" }],
-    },
-    { path: "/typography", children: "Typography" },
+    createPackageRoute("button"),
+    createPackageRoute("theme"),
+    createPackageRoute("typography"),
   ],
 });
 createDivider(0);

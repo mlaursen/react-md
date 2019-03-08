@@ -1,17 +1,19 @@
-import React, { Fragment, FunctionComponent } from "react";
-import PackageHome from "components/PackageHome";
+import { NextFunctionComponent } from "next";
+import Router from "next/router";
 
-const description = `
-The \`@react-md/theme\` package is used to create a theme for your application as
-well as define all the base material design colors as variables for quick usage.
-`;
+const Index: NextFunctionComponent = () => null;
 
-const Theme: FunctionComponent = () => {
-  return (
-    <Fragment>
-      <PackageHome name="theme" description={description} />
-    </Fragment>
-  );
+Index.getInitialProps = ({ res, pathname }) => {
+  const indexPath = `${pathname}/installation`;
+  if (res) {
+    res.writeHead(302, {
+      Location: indexPath,
+    });
+  } else {
+    Router.replace(indexPath);
+  }
+
+  return {};
 };
 
-export default Theme;
+export default Index;

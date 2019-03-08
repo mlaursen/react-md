@@ -19,7 +19,7 @@ const Components: FunctionComponent = () => (
   Example Button
 </Button>`}
     </CodeBlock>
-    <CardFooter href="/packages/app-bar">See Examples!</CardFooter>
+    <CardFooter href="/packages">See Examples!</CardFooter>
   </Card>
 );
 

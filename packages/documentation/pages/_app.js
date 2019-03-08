@@ -8,15 +8,9 @@ import { parse } from 'url';
 
 import Layout from 'components/Layout';
 import smoothScroll from 'utils/smoothScroll';
+import { toTitle, toBreadcrumbPageTitle } from 'utils/toTitle';
 
 import './app.scss';
-
-const upperFirst = s => s.substring(0, 1).toUpperCase() + s.substring(1);
-const toTitle = s =>
-  s
-    .split('-')
-    .map(upperFirst)
-    .join(' ');
 
 export default class App extends NextApp {
   static async getInitialProps({ Component, /* router, */ ctx }) {
@@ -124,7 +118,7 @@ export default class App extends NextApp {
       router: { pathname },
     } = this.props;
     const { statusCode } = componentProps;
-    const pageTitle = this.getPageTitle(pathname, statusCode);
+    const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
     const title = this.getTitle(pageTitle);
 
     return (
