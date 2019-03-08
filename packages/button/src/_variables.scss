@@ -60,12 +60,12 @@ $rmd-button-hover-background-color: rgba(
 $rmd-button-background-color-transition-time: 0.15s !default;
 
 /// The base box-shadow width to apply to buttons
-$rmd-button-box-shadow-width: 1px !default;
+$rmd-button-outline-width: 1px !default;
 
 /// The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable
 /// to define a box shadow.
 /// @type String
-$rmd-button-box-shadow: inset 0 0 0 $rmd-button-box-shadow-width !default;
+$rmd-button-box-shadow: inset 0 0 0 !default;
 
 /// This is the color that will be applied to the box-shadow/border for the button
 /// when the `outline` theme type is applied **unless** one of the theme values are
@@ -109,9 +109,8 @@ $rmd-button-theme-values: (
   text-min-width: $rmd-button-text-min-width,
   icon-border-radius: $rmd-button-icon-border-radius,
   icon-size: $rmd-button-icon-size,
-  resting-elevation: $rmd-button-contained-resting-elevation,
-  pressed-elevation: $rmd-button-contained-pressed-elevation,
   background-color: $rmd-button-background-color,
   color: $rmd-button-color,
   outline: $rmd-button-outline-color,
+  outline-width: $rmd-button-outline-width,
 ) !default;
