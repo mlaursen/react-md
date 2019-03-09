@@ -21,9 +21,6 @@ import CustomButtonTheme from "./CustomButtonTheme";
 import customThemeDescription from "./CustomButtonTheme.md";
 import { MarkdownPage } from "components/Markdown";
 
-import readme from "./README.md";
-import DemoPageFromMarkdown from "../DemoPageFromMarkdown";
-
 const demos = [
   {
     name: "Text Buttons",
@@ -57,9 +54,4 @@ const demos = [
   },
 ];
 
-export default () => (
-  <Fragment>
-    <DemoPageFromMarkdown markdown={readme} />
-    <DemoPage demos={demos} />
-  </Fragment>
-);
+export default () => <DemoPage demos={demos} />;

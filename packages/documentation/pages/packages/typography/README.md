@@ -17,7 +17,7 @@ $ npm install --save @react-md/typography
 ### Including Styles
 
 > If you have not done so already, please read the main documentation about
-> @including-styles before continuing.
+> #including-styles before continuing.
 
 ### Usage
 

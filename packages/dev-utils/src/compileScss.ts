@@ -183,7 +183,7 @@ export function hackSCSSVariableValue(
   const prefix = `$${name}: `;
 
   try {
-    const data = `@import 'src/${packageName}';
+    const data = `@import 'src/mixins';
 @error '${prefix}#{${value}}';
 `;
 
@@ -195,13 +195,16 @@ export function hackSCSSVariableValue(
       false
     );
   } catch (error) {
-    if (error.message.includes("Undefined variable")) {
+    const { message } = error;
+    if (/Undefined variable |File to import not found/.test(message)) {
+      console.error(`Variable hack error in ${packageName}`);
+      console.error();
       console.error(error.message);
       console.error();
       process.exit(1);
     }
 
-    let value = error.message.substring(prefix.length);
+    let value = message.substring(prefix.length);
     if (/^\(.*\)$/.test(value)) {
       value = hackSCSSMapValues(value);
     }

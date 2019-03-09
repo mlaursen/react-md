@@ -28,7 +28,7 @@ $ npm install --save @react-md/theme \
 ### Including Styles
 
 > If you have not done so already, please read the main documentation about
-> @including-styles before continuing.
+> #including-styles before continuing.
 
 ### Usage
 

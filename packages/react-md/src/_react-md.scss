@@ -1,11 +1,11 @@
-@import '@react-md/button/dist/button';
-@import '@react-md/elevation/dist/elevation';
-@import '@react-md/icon/dist/icon';
-@import '@react-md/overlay/dist/overlay';
-@import '@react-md/theme/dist/theme';
-@import '@react-md/transition/dist/transition';
-@import '@react-md/typography/dist/typography';
-@import '@react-md/utils/dist/utils';
+@import '@react-md/button/dist/mixins';
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/overlay/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 
 /// A simple mixin to include all the styles within react-md.
 @mixin react-md-everything {

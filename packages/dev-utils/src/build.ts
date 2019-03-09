@@ -1,20 +1,24 @@
 import styles, { createScssVariables } from "./styles";
 import scripts from "./scripts";
 import { time, printMinifiedSizes, log } from "./utils";
+import runClean from "./clean";
 
 export interface IBuildConfig {
   umd: boolean;
+  clean: boolean;
   stylesOnly: boolean;
   scriptsOnly: boolean;
   variablesOnly: boolean;
 }
 
-const DEFAULT_CONFIG = {
+const DEFAULT_CONFIG: IBuildConfig = {
   umd: true,
+  clean: false,
   stylesOnly: false,
   scriptsOnly: false,
   variablesOnly: false,
 };
+
 export default async function build(config: IBuildConfig = DEFAULT_CONFIG) {
   time(() => runBuild(config), "build");
 }
@@ -24,7 +28,11 @@ async function runBuild({
   scriptsOnly,
   variablesOnly,
   umd,
+  clean,
 }: IBuildConfig) {
+  if (clean) {
+    await time(runClean, "clean");
+  }
   if (variablesOnly) {
     await time(createScssVariables, "createScssVariables");
     return;

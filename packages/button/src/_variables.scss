@@ -2,7 +2,9 @@
 /// @group button
 ////
 
-@import '@react-md/theme/dist/theme';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/variables';
 
 /// Boolean if text buttons with icons should have the icons inherit
 /// the current color. If this is disabled, only icon buttons will

@@ -130,7 +130,7 @@ const transforms: Transform[] = [
   // #including-styles -> [including styles](/getting-started/installation#including-styles)
   md =>
     md.replace(
-      /#including-styles/g,
+      /(!=\()#including-styles/g,
       "[including styles](/getting-started/installation#including-styles)"
     ),
   md => md.replace(/(#)(\d+)/g, `[$1$2](${GITHUB_URL}/issues/$2)`),

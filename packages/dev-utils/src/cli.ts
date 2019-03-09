@@ -24,6 +24,7 @@ commander
 commander
   .command("build [options...]")
   .option("--verbose")
+  .option("--clean", "Boolean if the clean command should be run before build.")
   .option(
     "--styles-only",
     "Only copies the scss files into the dist directory and compiles any styles.scss files to css"
