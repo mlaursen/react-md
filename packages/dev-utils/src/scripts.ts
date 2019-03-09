@@ -26,7 +26,7 @@ import {
   log,
 } from "./utils";
 
-export default async function scripts(buildUMD: boolean) {
+export default async function scripts(umd: boolean) {
   const allTsFiles = await glob(`${src}/**/*.+(ts|tsx)`);
   const tsFiles = allTsFiles.filter(
     filePath => !filePath.includes("__tests__")
@@ -55,8 +55,8 @@ export default async function scripts(buildUMD: boolean) {
   await tsc(false);
   await tsc(true);
   await definitions();
-  if (buildUMD) {
-    await umd();
+  if (umd) {
+    await buildUMD();
   }
 }
 
@@ -117,7 +117,7 @@ const ROLLUP_TSCONFIG = {
   exclude: ["**/__tests__/*"],
 };
 
-async function umd() {
+export async function buildUMD() {
   const packageName = await getPackageName();
   const rollupConfigPath = path.join(process.cwd(), rollupConfig);
   const tsConfigRollupPath = path.join(process.cwd(), tsConfigRollup);
@@ -135,9 +135,10 @@ async function umd() {
   rollup(false);
   rollup(true);
 
+  const files = await glob("+(src|es|lib|dist|types)/rollup*");
   await Promise.all(
-    [rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath].map(filePath =>
-      fs.remove(filePath)
+    [rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath, ...files].map(
+      p => fs.remove(p)
     )
   );
 }
