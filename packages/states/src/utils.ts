@@ -67,10 +67,12 @@ export function getRippleTriggerType(
  * the ripple will be positioned where the user "touched"/"interacted" with the element within
  * the page. Otherwise, the ripple will be positioned in the center of the element.
  */
-export function createRipple(event: RippleableEvent): IRipple {
-  const element = event.currentTarget;
+export function createRipple(
+  event: RippleableEvent,
+  type: RippleEventType,
+  element: HTMLElement
+): IRipple {
   const { offsetWidth, offsetHeight } = element;
-  const type = getRippleTriggerType(event);
 
   let x: number;
   let y: number;
@@ -138,7 +140,8 @@ export function addRippleFromEvent(
   setRipples: RippleSetter,
   disableSpacebarClick: boolean = false
 ) {
-  if (!isValidRippleTrigger(event, disableSpacebarClick)) {
+  const { target, currentTarget } = event;
+  if (!target || !isValidRippleTrigger(event, disableSpacebarClick)) {
     return;
   }
 
@@ -147,8 +150,40 @@ export function addRippleFromEvent(
     return;
   }
 
-  const ripple = createRipple(event);
-  setRipples(ripples.filter(ripple => ripple.type === type).concat(ripple));
+  // TODO: Find a better way to prevent tree nodes from triggering parent ripple
+  // events since this will only work within the react-md library's definitions
+  const childItems = Array.from(
+    currentTarget.querySelectorAll('[role="treeitem"]')
+  );
+
+  // don't want to create a ripple if there is a child treeitem that contains the
+  // current event target since only that item should trigger the ripple effect.
+  if (childItems.some(item => item.contains(target as HTMLElement))) {
+    return;
+  }
+
+  let element = currentTarget;
+  const role = currentTarget.getAttribute("role");
+  if (type === "programmatic") {
+    if (target !== currentTarget) {
+      return;
+    } else if (childItems.length) {
+      const content = currentTarget.querySelector<HTMLElement>(
+        ".rmd-tree-item__content"
+      );
+
+      if (!content) {
+        return;
+      }
+
+      element = content;
+    }
+  }
+
+  const ripple = createRipple(event, type, element);
+  setRipples(prevRipples =>
+    prevRipples.filter(ripple => ripple.type === type).concat(ripple)
+  );
 }
 
 /**
