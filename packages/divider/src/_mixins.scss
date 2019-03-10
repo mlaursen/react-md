@@ -29,6 +29,19 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-divider-theme-values, divider);
 }
 
+/// This mixin allows you to add a custom border to any element if you don't want
+/// to add an extra element within your page for a divider.
+///
+/// @param {String} position - The border position to use. This should be one of `top`, `right`,
+///   `bottom`, or `left`
+@mixin rmd-divider-border($position) {
+  @include rmd-divider-theme(border-color, background-color);
+  @include rmd-divider-theme(border-width, size);
+  @include rmd-divider-theme('border-#{$position}-width', size);
+
+  border-#{$position}-style: solid;
+}
+
 /// Creates all the styles for the divider package as well as the root css variable theme.
 @mixin react-md-divider {
   @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);
