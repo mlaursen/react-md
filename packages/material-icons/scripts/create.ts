@@ -55,9 +55,9 @@ function createIconFile(componentName, children, iconType) {
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
 import React, { FunctionComponent } from "react";
 
-import { ${iconType}Icon, I${iconType}IconProps } from "@react-md/icon";
+import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 
-const ${componentName}${iconType}Icon: FunctionComponent<I${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
+const ${componentName}${iconType}Icon: FunctionComponent<${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
 
 export default ${componentName}${iconType}Icon;
 
@@ -95,9 +95,9 @@ async function parseSVGFileAndCreateComponents(
 async function createIndexFile(components: string[]) {
   const contents = `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 ${components.reduce(
-    (s, c) => `${s ? `${s}\n` : ""}export { default as ${c} } from "./${c}";`,
-    ""
-  )}
+  (s, c) => `${s ? `${s}\n` : ""}export { default as ${c} } from "./${c}";`,
+  ""
+)}
 `;
 
   return fs.outputFile(path.join(srcDir, "index.ts"), contents);

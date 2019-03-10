@@ -1,34 +1,38 @@
 import React, { forwardRef, FunctionComponent } from "react";
 import {
-  IInteractionStatesOptions,
+  InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
+import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight from "./getListItemHeight";
 import ListItemChildren from "./ListItemChildren";
 import SimpleListItem, {
-  ISimpleListItemProps,
+  SimpleListItemProps,
   ListItemHeight,
 } from "./SimpleListItem";
 
-export interface IListItemProps
-  extends ISimpleListItemProps,
-    IInteractionStatesOptions<HTMLLIElement> {
+export interface ListItemProps
+  extends SimpleListItemProps,
+    InteractionStatesOptions<HTMLLIElement> {
   id: string;
 }
 
-export interface IListItemDefaultProps {
-  height: ListItemHeight;
-  role: string;
-  tabIndex: number;
-  enableKeyboardClick: boolean;
-  disableSpacebarClick: boolean;
-  disablePressedFallback: boolean;
-}
+type WithRef = WithForwardedRef<HTMLLIElement>;
+type DefaultProps = Required<
+  Pick<
+    ListItemProps,
+    | "height"
+    | "role"
+    | "tabIndex"
+    | "enableKeyboardClick"
+    | "disableSpacebarClick"
+    | "disablePressedFallback"
+  >
+>;
+type ListItemWithDefaultProps = ListItemProps & DefaultProps & WithRef;
 
-type ListItemWithDefaultProps = IListItemProps & IListItemDefaultProps;
-
-const ListItem: FunctionComponent<IListItemProps> = providedProps => {
+const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
   const {
     textClassName,
     secondaryTextClassName,
@@ -89,7 +93,7 @@ const ListItem: FunctionComponent<IListItemProps> = providedProps => {
     </SimpleListItem>
   );
 };
-const defaultProps: IListItemDefaultProps = {
+const defaultProps: DefaultProps = {
   height: "auto",
   role: "button",
   tabIndex: 0,
@@ -123,6 +127,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLLIElement, IListItemProps>((props, ref) => (
+export default forwardRef<HTMLLIElement, ListItemProps>((props, ref) => (
   <ListItem {...props} forwardedRef={ref} />
 ));

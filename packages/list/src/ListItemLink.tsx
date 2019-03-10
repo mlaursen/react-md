@@ -7,21 +7,20 @@ import React, {
 } from "react";
 import cn from "classnames";
 import {
-  IInteractionStatesOptions,
+  InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight from "./getListItemHeight";
-import ListItemChildren, { IListItemChildrenProps } from "./ListItemChildren";
-import { ISimpleListItemProps, ListItemHeight } from "./SimpleListItem";
+import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
+import { SimpleListItemProps, ListItemHeight } from "./SimpleListItem";
 
-export interface IListItemLinkProps
+export interface ListItemLinkProps
   extends HTMLAttributes<HTMLAnchorElement>,
-    IListItemChildrenProps,
-    Pick<ISimpleListItemProps, "threeLines" | "height">,
-    IInteractionStatesOptions<HTMLAnchorElement>,
-    IWithForwardedRef<HTMLAnchorElement> {
+    ListItemChildrenProps,
+    Pick<SimpleListItemProps, "threeLines" | "height">,
+    InteractionStatesOptions<HTMLAnchorElement> {
   /**
    * An id for the link. This is really just required since this component
    * needs the keyboard focus only states enabled.
@@ -43,15 +42,11 @@ export interface IListItemLinkProps
   [key: string]: any;
 }
 
-export interface IListItemLinkDefaultProps {
-  height: ListItemHeight;
-  component: ReactType;
-}
+type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
+type DefaultProps = Required<Pick<ListItemLinkProps, "height" | "component">>;
+type WithDefaultProps = ListItemLinkProps & DefaultProps;
 
-type ListItemLinkWithDefaultProps = IListItemLinkProps &
-  IListItemLinkDefaultProps;
-
-const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
+const ListItemLink: FunctionComponent<ListItemLinkProps> = providedProps => {
   const {
     className,
     textClassName,
@@ -70,7 +65,7 @@ const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
     threeLines,
     component,
     ...props
-  } = providedProps as ListItemLinkWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const height = getListItemHeight(providedProps);
   return createElement(
@@ -107,7 +102,7 @@ const ListItemLink: FunctionComponent<IListItemLinkProps> = providedProps => {
   );
 };
 
-const defaultProps: IListItemLinkDefaultProps = {
+const defaultProps: DefaultProps = {
   height: "auto",
   component: "a",
 };
@@ -136,6 +131,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLAnchorElement, IListItemLinkProps>(
+export default forwardRef<HTMLAnchorElement | ReactType, ListItemLinkProps>(
   (props, ref) => <ListItemLink {...props} forwardedRef={ref} />
 );

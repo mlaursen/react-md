@@ -1,38 +1,33 @@
 import React, {
-  FunctionComponent,
-  ReactType,
-  ReactElement,
-  ReactNode,
   CSSProperties,
+  forwardRef,
+  FunctionComponent,
   HTMLAttributes,
+  ReactNode,
+  ReactType,
 } from "react";
 import cn from "classnames";
 import {
-  IListItemChildrenProps,
   ListItemChildren,
-  ISimpleListItemProps,
-  ListItemHeight,
+  ListItemChildrenProps,
+  SimpleListItemProps,
 } from "@react-md/list";
-import {
-  useInteractionStates,
-  useRipplesState,
-  RippleContainer,
-} from "@react-md/states";
-import { IWithForwardedRef, Omit } from "@react-md/utils";
+import { RippleContainer, useRipplesState } from "@react-md/states";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
 import BaseTreeItem from "./BaseTreeItem";
-import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
 import TreeGroup from "./TreeGroup";
-import { ITreeItemInjectedProps, ITreeProps } from "./types.d";
+import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
+import { TreeItemInjectedProps, TreeProps } from "./types.d";
 
-export interface ITreeItemProps
-  extends ITreeItemInjectedProps,
-    IListItemChildrenProps,
-    Pick<ITreeProps, "expanderIcon" | "expanderLeft">,
-    Pick<ISimpleListItemProps, "threeLines" | "height">,
-    Omit<HTMLAttributes<HTMLSpanElement | HTMLAnchorElement>, "id">,
-    IWithForwardedRef<HTMLLIElement> {
+export interface TreeItemProps
+  extends TreeItemInjectedProps,
+    ListItemChildrenProps,
+    Pick<TreeProps, "expanderIcon" | "expanderLeft">,
+    Pick<SimpleListItemProps, "threeLines" | "height">,
+    Omit<HTMLAttributes<HTMLSpanElement | HTMLAnchorElement>, "id"> {
   [key: string]: any;
+  disabled?: boolean;
   className?: string;
   liStyle?: CSSProperties;
   liClassName?: string;
@@ -41,16 +36,16 @@ export interface ITreeItemProps
   isLink?: boolean;
 }
 
-interface ITreeItemDefaultProps {
-  contentComponent: ReactType;
-  height: ListItemHeight;
-  threeLines: boolean;
-  textChildren: boolean;
-}
+type WithRef = WithForwardedRef<HTMLLIElement>;
+type DefaultProps = Required<
+  Pick<
+    TreeItemProps,
+    "contentComponent" | "height" | "threeLines" | "textChildren"
+  >
+>;
+type WithDefaultProps = TreeItemProps & DefaultProps & WithRef;
 
-type TreeItemWithDefaultProps = ITreeItemProps & ITreeItemDefaultProps;
-
-const TreeItem: FunctionComponent<ITreeItemProps> = providedProps => {
+const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
   const {
     id,
     depth,
@@ -80,7 +75,7 @@ const TreeItem: FunctionComponent<ITreeItemProps> = providedProps => {
     threeLines,
     children,
     ...props
-  } = providedProps as TreeItemWithDefaultProps;
+  } = providedProps as WithDefaultProps;
   const { disabled } = props;
 
   let isLink = propIsLink;
@@ -166,7 +161,7 @@ const TreeItem: FunctionComponent<ITreeItemProps> = providedProps => {
   );
 };
 
-const defaultProps: ITreeItemDefaultProps = {
+const defaultProps: DefaultProps = {
   contentComponent: "span",
   height: "auto",
   threeLines: false,
@@ -175,4 +170,6 @@ const defaultProps: ITreeItemDefaultProps = {
 
 TreeItem.defaultProps = defaultProps;
 
-export default TreeItem;
+export default forwardRef<HTMLLIElement, TreeItemProps>((props, ref) => (
+  <TreeItem {...props} forwardedRef={ref} />
+));

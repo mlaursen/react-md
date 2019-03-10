@@ -8,19 +8,19 @@ import cn from "classnames";
 
 import {
   ConditionalPortal,
-  IRenderConditionalPortalProps,
+  RenderConditionalPortalProps,
 } from "@react-md/portal";
 import { Omit } from "@react-md/utils";
 
 import { useTooltipState } from "./hooks";
-import Tooltip, { ITooltipProps } from "./Tooltip";
+import Tooltip, { TooltipProps } from "./Tooltip";
 import {
-  ITooltipConfig,
+  TooltipConfig,
   MergableTooltipHandlers,
   TooltipPositionOrAuto,
 } from "./types.d";
 
-export interface ITooltippedWithTooltip {
+export interface TooltippedWithTooltip {
   tooltip: ReactNode;
   containerProps: {
     id: string;
@@ -29,13 +29,13 @@ export interface ITooltippedWithTooltip {
 }
 
 export type TooltippedChildrenRenderer = (
-  props: ITooltippedWithTooltip
+  props: TooltippedWithTooltip
 ) => ReactElement<any>;
 
-export interface ITooltippedProps
-  extends Partial<ITooltipConfig>,
-    IRenderConditionalPortalProps,
-    Omit<ITooltipProps, keyof HTMLAttributes<HTMLSpanElement> | "visible"> {
+export interface TooltippedProps
+  extends Partial<TooltipConfig>,
+    RenderConditionalPortalProps,
+    Omit<TooltipProps, keyof HTMLAttributes<HTMLSpanElement> | "visible"> {
   /**
    * The id for the element that has a tooltip. This is always required since it will
    * be passed down to the `containerProps` in the children renderer function. It is
@@ -66,7 +66,7 @@ export interface ITooltippedProps
   children: TooltippedChildrenRenderer;
 }
 
-interface ITooltippedDefaultProps {
+interface DefaultProps {
   portal: boolean;
   dense: boolean;
   hoverDelay: number;
@@ -79,10 +79,10 @@ interface ITooltippedDefaultProps {
   defaultPosition: TooltipPositionOrAuto;
 }
 
-type TooltippedWithDefaultProps = ITooltippedProps & ITooltippedDefaultProps;
+type WithDefaultProps = TooltippedProps & DefaultProps;
 
-const Tooltipped: FunctionComponent<ITooltippedProps> = providedProps => {
-  const props = providedProps as TooltippedWithDefaultProps;
+const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
+  const props = providedProps as WithDefaultProps;
   const {
     id,
     className,
@@ -146,7 +146,7 @@ const Tooltipped: FunctionComponent<ITooltippedProps> = providedProps => {
   });
 };
 
-const defaultProps: ITooltippedDefaultProps = {
+const defaultProps: DefaultProps = {
   portal: false,
   dense: false,
   hoverDelay: 1000,
@@ -158,6 +158,7 @@ const defaultProps: ITooltippedDefaultProps = {
   defaultVisible: false,
   defaultPosition: "auto",
 };
+
 Tooltipped.defaultProps = defaultProps;
 
 export default Tooltipped;

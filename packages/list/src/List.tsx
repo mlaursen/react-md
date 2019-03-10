@@ -5,12 +5,10 @@ import React, {
   HTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-type ListElement = HTMLUListElement | HTMLOListElement;
-export interface IListProps
-  extends HTMLAttributes<ListElement>,
-    IWithForwardedRef<ListElement> {
+export type ListElement = HTMLUListElement | HTMLOListElement;
+export interface ListProps extends HTMLAttributes<ListElement> {
   /**
    * Boolean if the dense spec should be applied to the list.
    */
@@ -28,18 +26,16 @@ export interface IListProps
   horizontal?: boolean;
 }
 
-export interface IListDefaultProps {
-  dense: boolean;
-  ordered: boolean;
-  horizontal: boolean;
-}
-
-type ListWithDefaultProps = IListProps & IListDefaultProps;
+type WithRef = WithForwardedRef<ListElement>;
+type DefaultProps = Required<
+  Pick<ListProps, "dense" | "ordered" | "horizontal">
+>;
+type WithDefaultProps = ListProps & DefaultProps & WithRef;
 
 /**
  * Creates an unordered or ordered list.
  */
-const List: FunctionComponent<IListProps> = providedProps => {
+const List: FunctionComponent<ListProps & WithRef> = providedProps => {
   const {
     dense,
     horizontal,
@@ -48,7 +44,7 @@ const List: FunctionComponent<IListProps> = providedProps => {
     className,
     children,
     ...props
-  } = providedProps as ListWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return createElement(
     ordered ? "ol" : "ul",
@@ -68,7 +64,7 @@ const List: FunctionComponent<IListProps> = providedProps => {
   );
 };
 
-const defaultProps: IListDefaultProps = {
+const defaultProps: DefaultProps = {
   dense: false,
   horizontal: false,
   ordered: false,
@@ -93,6 +89,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<ListElement, IListProps>((props, ref) => (
+export default forwardRef<ListElement, ListProps>((props, ref) => (
   <List {...props} forwardedRef={ref} />
 ));

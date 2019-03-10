@@ -1,13 +1,16 @@
 import React, { FunctionComponent } from "react";
-import { AppBarNav as RMDNav, IAppBarNavProps } from "@react-md/app-bar";
-import { Tooltipped, ITooltippedProps } from "@react-md/tooltip";
-import { IRenderConditionalPortalProps } from "@react-md/portal";
+import {
+  AppBarNav as RMDNav,
+  AppBarNavProps as RMDNavProps,
+} from "@react-md/app-bar";
+import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import { Omit } from "@react-md/utils";
 
 interface AppBarNavProps
-  extends Omit<IAppBarNavProps, "id">,
-    IRenderConditionalPortalProps,
-    Pick<ITooltippedProps, "id" | "tooltip"> {
+  extends Omit<RMDNavProps, "id">,
+    RenderConditionalPortalProps,
+    Pick<TooltippedProps, "id" | "tooltip"> {
   tooltipClassName?: string;
 }
 

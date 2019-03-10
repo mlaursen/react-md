@@ -1,11 +1,11 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { FontIcon, IFontIconProps } from "@react-md/icon";
+import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const AccountBalanceFontIcon: React.FunctionComponent<
-  IFontIconProps
-> = props => <FontIcon {...props}>account_balance</FontIcon>;
+const AccountBalanceFontIcon: FunctionComponent<FontIconProps> = props => (
+  <FontIcon {...props}>account_balance</FontIcon>
+);
 
 export default AccountBalanceFontIcon;

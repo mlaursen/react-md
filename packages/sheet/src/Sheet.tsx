@@ -12,11 +12,11 @@ import { CSSTransition } from "react-transition-group";
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
-  IRenderConditionalPortalProps,
+  RenderConditionalPortalProps,
   useStaggeredVisibility,
 } from "@react-md/portal";
-import { ICSSTransitionProps } from "@react-md/transition";
-import { IWithForwardedRef } from "@react-md/utils";
+import { CSSTransitionProps } from "@react-md/transition";
+import { WithForwardedRef } from "@react-md/utils";
 
 import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
 
@@ -31,11 +31,10 @@ export type SheetHorizontalSize =
   | "until-media";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-export interface ISheetProps
+export interface SheetProps
   extends HTMLAttributes<HTMLDivElement>,
-    ICSSTransitionProps,
-    IRenderConditionalPortalProps,
-    IWithForwardedRef<HTMLDivElement> {
+    CSSTransitionProps,
+    RenderConditionalPortalProps {
   /**
    * An id for the sheet. This is required by default since the sheet must behave like one
    * of the a11y roles.
@@ -113,9 +112,10 @@ export interface ISheetProps
   inline?: boolean;
 }
 
+type WithRef = WithForwardedRef<HTMLDivElement>;
 type SheetDefaultProps = Required<
   Pick<
-    ISheetProps,
+    SheetProps,
     | "role"
     | "tabIndex"
     | "inline"
@@ -129,10 +129,9 @@ type SheetDefaultProps = Required<
     | "verticalSize"
   >
 >;
+type SheetWithDefaultProps = SheetProps & SheetDefaultProps & WithRef;
 
-type SheetWithDefaultProps = ISheetProps & SheetDefaultProps;
-
-const Sheet: FunctionComponent<ISheetProps> = providedProps => {
+const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
   const {
     inline,
     overlay,
@@ -335,6 +334,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, ISheetProps>((props, ref) => (
+export default forwardRef<HTMLDivElement, SheetProps>((props, ref) => (
   <Sheet {...props} forwardedRef={ref} />
 ));

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IKeyboardFocusContext } from "./types.d";
+import { KeyboardFocusContextType } from "./types.d";
 
 let warnedOnce = false;
 
@@ -14,7 +14,7 @@ let warnedOnce = false;
  * NOTE: The default implementation will throw an error with a stack trace if
  * you forgot to initialize the `KeyboardTracker` component in your app.
  */
-export const KeyboardFocusContext = createContext<IKeyboardFocusContext>({
+export const KeyboardFocusContext = createContext<KeyboardFocusContextType>({
   focusedId: null,
   setFocusedId: (id: string | null) => {
     if (process.env.NODE_ENV !== "production" && !warnedOnce) {

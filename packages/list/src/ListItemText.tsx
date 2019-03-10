@@ -1,14 +1,14 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
 
-export interface IListItemTextProps {
+export interface ListItemTextProps {
   className?: string;
   secondaryTextClassName?: string;
   children?: ReactNode;
   secondaryText?: ReactNode;
 }
 
-const ListItemText: FunctionComponent<IListItemTextProps> = ({
+const ListItemText: FunctionComponent<ListItemTextProps> = ({
   className,
   secondaryTextClassName,
   secondaryText,

@@ -1,11 +1,9 @@
 import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
-import { Button, IButtonProps, ButtonType } from "@react-md/button";
-import { IWithForwardedRef } from "@react-md/utils";
+import { Button, ButtonProps, ButtonType } from "@react-md/button";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IAppBarActionProps
-  extends IButtonProps,
-    IWithForwardedRef<HTMLButtonElement> {
+export interface AppBarActionProps extends ButtonProps {
   /**
    * Boolean if this is the first action within the app bar. This is really just used to
    * automatically right-align all the actions by applying `margin-left: auto` to this action.
@@ -21,11 +19,10 @@ export interface IAppBarActionProps
   last?: boolean;
 }
 
-interface IAppBarActionDefaultProps {
-  first: boolean;
-  last: boolean;
-  buttonType: ButtonType;
-}
+type WithRef = WithForwardedRef<HTMLButtonElement>;
+type DefaultProps = Required<
+  Pick<AppBarActionProps, "first" | "last" | "buttonType">
+>;
 
 /**
  * This component is really just a simple wrapper for the `Button` component that adds a few
@@ -33,7 +30,7 @@ interface IAppBarActionDefaultProps {
  * It also will automatically add spacing either before or after this button when the `first`
  * or `last` props are provided.
  */
-const AppBarAction: FunctionComponent<IAppBarActionProps> = ({
+const AppBarAction: FunctionComponent<AppBarActionProps & WithRef> = ({
   className,
   first,
   last,
@@ -55,7 +52,7 @@ const AppBarAction: FunctionComponent<IAppBarActionProps> = ({
   </Button>
 );
 
-const defaultProps: IAppBarActionDefaultProps = {
+const defaultProps: DefaultProps = {
   first: false,
   last: false,
   buttonType: "icon",
@@ -81,6 +78,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLButtonElement, IAppBarActionProps>(
+export default forwardRef<HTMLButtonElement, AppBarActionProps>(
   (props, ref) => <AppBarAction {...props} forwardedRef={ref} />
 );

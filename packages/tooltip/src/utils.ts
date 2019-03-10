@@ -6,25 +6,25 @@ import {
   HorizontalPosition,
   VerticalPosition,
 } from "@react-md/utils";
-import { IRenderConditionalPortalProps } from "@react-md/portal";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 
 import {
   TooltipPosition,
-  IDeterminePositionConfig,
-  ITooltipSpacingConfig,
+  DeterminePositionConfig,
+  TooltipSpacingConfig,
 } from "./types.d";
 
 export function getSpacing({
   spacing,
   denseSpacing,
   dense,
-}: ITooltipSpacingConfig) {
+}: TooltipSpacingConfig) {
   return `${dense ? denseSpacing : spacing}`;
 }
 
 export function determineBestPosition(
   container: Maybe<HTMLElement>,
-  config: IDeterminePositionConfig
+  config: DeterminePositionConfig
 ): TooltipPosition {
   const { id, position, vwMargin, vhMargin } = config;
   if (position !== "auto") {
@@ -67,7 +67,7 @@ export function determineBestPosition(
 
 export function validateContainerPosition(
   container: Maybe<HTMLElement>,
-  config: IRenderConditionalPortalProps
+  config: RenderConditionalPortalProps
 ) {
   if (process.env.NODE_ENV === "production" || !container) {
     return;

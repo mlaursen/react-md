@@ -1,11 +1,11 @@
 import { CSSProperties, useCallback, useRef, useEffect, useState } from "react";
-import { Maybe, IPositionOptions, positionRelativeTo } from "@react-md/utils";
+import { Maybe, PositionOptions, positionRelativeTo } from "@react-md/utils";
 
-import { ITransitionProps, TransitionEnterHandler } from "../types.d";
+import { TransitionProps, TransitionEnterHandler } from "../types.d";
 
-export interface IRelativePositioningStyleOptions
-  extends IPositionOptions,
-    Pick<ITransitionProps, "onEnter" | "onEntering" | "onEntered"> {
+export interface RelativePositioningStyleOptions
+  extends PositionOptions,
+    Pick<TransitionProps, "onEnter" | "onEntering" | "onEntered"> {
   style?: CSSProperties;
   fixedTo: Maybe<HTMLElement> | (() => Maybe<HTMLElement>);
 }
@@ -17,10 +17,10 @@ export default function useRelativePositioningStyle({
   onEntering,
   onEntered,
   ...options
-}: IRelativePositioningStyleOptions) {
+}: RelativePositioningStyleOptions) {
   fixedTo = typeof fixedTo === "function" ? fixedTo() : fixedTo;
   const [style, setStyle] = useState(propStyle);
-  const optionsRef = useRef<IPositionOptions>(options);
+  const optionsRef = useRef<PositionOptions>(options);
   const fixedToRef = useRef<Maybe<HTMLElement>>(fixedTo);
 
   const handleEnter = useCallback<TransitionEnterHandler>(

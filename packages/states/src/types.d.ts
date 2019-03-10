@@ -16,7 +16,7 @@ export type RippleableEvent =
   | React.MouseEvent<HTMLElement>
   | React.TouchEvent<HTMLElement>;
 
-export interface IRipple {
+export interface RippleConfig {
   startTime: number;
   style: CSSProperties & {
     left: number;
@@ -29,7 +29,7 @@ export interface IRipple {
   exiting: boolean;
 }
 
-export type RippleSetter = Dispatch<SetStateAction<IRipple[]>>;
+export type RippleSetter = Dispatch<SetStateAction<RippleConfig[]>>;
 
 export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   HTMLAttributes<E>,
@@ -44,7 +44,7 @@ export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   | "onTouchEnd"
 >;
 
-export interface IRipplesOptions<E extends HTMLElement = HTMLElement> {
+export interface RipplesOptions<E extends HTMLElement = HTMLElement> {
   handlers?: MergableRippleHandlers<E>;
   type?: string;
   disabled?: boolean;

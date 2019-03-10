@@ -26,7 +26,7 @@ export type ButtonThemeType = "flat" | "outline" | "contained";
  * This is an interface of all the button's customizable theme props. This is mainly used if you
  * want to add a button theme to another component and have it configurable via props.
  */
-export interface IButtonThemeProps {
+export interface ButtonThemeProps {
   /**
    * An optional className to also apply to the button for additional theming and styling. This
    * will be merged with the `Button.theme` class name styles.

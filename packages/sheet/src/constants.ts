@@ -1,6 +1,6 @@
 import {
   TransitionTimeout,
-  ICSSTransitionClassNames,
+  CSSTransitionClassNames,
 } from "@react-md/transition";
 
 export const SHEET_TRANSITION_TIMEOUT: TransitionTimeout = {
@@ -8,7 +8,7 @@ export const SHEET_TRANSITION_TIMEOUT: TransitionTimeout = {
   exit: 150,
 };
 
-export const SHEET_CLASS_NAMES: ICSSTransitionClassNames = {
+export const SHEET_CLASS_NAMES: CSSTransitionClassNames = {
   appear: "rmd-sheet--offscreen",
   appearActive: "rmd-sheet--enter rmd-sheet--visible",
   enter: "rmd-sheet--offscreen",

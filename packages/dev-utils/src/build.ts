@@ -3,7 +3,7 @@ import scripts, { buildUMD } from "./scripts";
 import { time, printMinifiedSizes, log } from "./utils";
 import runClean from "./clean";
 
-export interface IBuildConfig {
+export interface BuildConfig {
   umd: boolean;
   clean: boolean;
   umdOnly: boolean;
@@ -12,7 +12,7 @@ export interface IBuildConfig {
   variablesOnly: boolean;
 }
 
-const DEFAULT_CONFIG: IBuildConfig = {
+const DEFAULT_CONFIG: BuildConfig = {
   umd: true,
   clean: false,
   umdOnly: false,
@@ -21,7 +21,7 @@ const DEFAULT_CONFIG: IBuildConfig = {
   variablesOnly: false,
 };
 
-export default async function build(config: IBuildConfig = DEFAULT_CONFIG) {
+export default async function build(config: BuildConfig = DEFAULT_CONFIG) {
   time(() => runBuild(config), "build");
 }
 
@@ -32,7 +32,7 @@ async function runBuild({
   stylesOnly,
   scriptsOnly,
   variablesOnly,
-}: IBuildConfig) {
+}: BuildConfig) {
   if (clean) {
     await time(runClean, "clean");
   }

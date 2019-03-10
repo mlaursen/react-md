@@ -6,7 +6,7 @@ export type DelegatedEventTarget = Window | Document | HTMLElement;
  * event is triggered. This means that you will need to make sure to remove the provided
  * callback when it is no longer in use.
  */
-export interface IDelegatedEventHandler {
+export interface DelegatedEventHandler {
   /**
    * Adds the provided callback to the throttled event listener.
    */
@@ -19,15 +19,15 @@ export interface IDelegatedEventHandler {
   remove: (callback: EventListener) => void;
 }
 
-export interface IDelegatableEvent {
+export interface DelegatableEvent {
   type: string;
   target: DelegatedEventTarget;
   throttle: boolean;
-  handler: IDelegatedEventHandler;
+  handler: DelegatedEventHandler;
   options?: boolean | AddEventListenerOptions;
 }
 
-const delegatedEvents: IDelegatableEvent[] = [];
+const delegatedEvents: DelegatableEvent[] = [];
 
 /**
  * Creates the delegated event handler that will run all the callbacks once
@@ -76,7 +76,7 @@ function createDelegatedEventHandler(
   eventTarget: DelegatedEventTarget = window,
   throttle: boolean = false,
   options?: boolean | AddEventListenerOptions
-): IDelegatedEventHandler {
+): DelegatedEventHandler {
   const callbacks: EventListener[] = [];
   const handler = createEventHandler(throttle, callbacks);
 

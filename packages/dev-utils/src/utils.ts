@@ -40,7 +40,7 @@ export async function copyFiles(
   log();
 }
 
-export interface IPackageJson {
+export interface PackageJson {
   name: string;
   version: string;
   scripts?: JSON;
@@ -48,7 +48,7 @@ export interface IPackageJson {
   devDependencies?: JSON;
 }
 
-export function getPackageJson(): Promise<IPackageJson> {
+export function getPackageJson(): Promise<PackageJson> {
   return fs.readJson(path.join(process.cwd(), packageJson));
 }
 

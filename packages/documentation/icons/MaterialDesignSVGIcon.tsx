@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { ISVGIconProps } from "@react-md/icon";
+import { SVGIconProps } from "@react-md/icon";
 import { Component as MaterialDesignLogo } from "./materialDesignLogo.svg";
 
-const MaterialDesignSVGIcon: FunctionComponent<ISVGIconProps> = ({
+const MaterialDesignSVGIcon: FunctionComponent<SVGIconProps> = ({
   className,
   ...props
 }) => (

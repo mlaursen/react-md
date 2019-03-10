@@ -1,10 +1,8 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IMediaContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    IWithForwardedRef<HTMLDivElement> {
+export interface MediaContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * An optional aspect ratio height to enforce. This **must** be used alongside
    * the `width` prop.
@@ -23,33 +21,23 @@ export interface IMediaContainerProps
   auto?: boolean;
 }
 
-export interface IMediaContainerWithAspectRatio extends IMediaContainerProps {
+export interface MediaContainerWithAspectRatioProps
+  extends MediaContainerProps {
   height: number;
   width: number;
 }
 
-interface IMediaContainerDefaultProps {
-  auto: boolean;
-}
-
-export type MediaContainerProps =
-  | IMediaContainerProps
-  | IMediaContainerWithAspectRatio;
+type WithRef = WithForwardedRef<HTMLDivElement>;
+type DefaultProps = Required<Pick<MediaContainerProps, "auto">>;
 
 /**
  * The `MediaContainer` component is used to make responsive images and videos
  * within your app. This component also allows for focing a specific aspect ratio
  * for these elements with both the `height` and `width` props are provided.
  */
-const MediaContainer: FunctionComponent<MediaContainerProps> = ({
-  className,
-  height,
-  width,
-  children,
-  forwardedRef,
-  auto,
-  ...props
-}) => {
+const MediaContainer: FunctionComponent<
+  (MediaContainerProps | MediaContainerWithAspectRatioProps) & WithRef
+> = ({ className, height, width, children, forwardedRef, auto, ...props }) => {
   const aspectRatio =
     height && width ? `rmd-media-container--${width}-${height}` : "";
 
@@ -72,7 +60,7 @@ const MediaContainer: FunctionComponent<MediaContainerProps> = ({
   );
 };
 
-const defaultProps: IMediaContainerDefaultProps = {
+const defaultProps: DefaultProps = {
   auto: true,
 };
 

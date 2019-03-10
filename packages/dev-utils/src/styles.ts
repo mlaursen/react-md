@@ -7,7 +7,7 @@ import {
   compileScss,
   postcss,
   hackSCSSVariableValue,
-  IHackedVariableValue,
+  HackedVariable,
 } from "./compileScss";
 import {
   dist,
@@ -78,7 +78,7 @@ async function compile(production: boolean) {
   await fs.writeFile(outFile, css);
 }
 
-function createVariableMap(variables: IHackedVariableValue[]) {
+function createVariableMap(variables: HackedVariable[]) {
   return variables.reduce((obj, { name, value }) => {
     obj[name] = Array.isArray(value) ? createVariableMap(value) : value;
 

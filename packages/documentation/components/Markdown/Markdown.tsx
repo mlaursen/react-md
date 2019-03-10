@@ -14,7 +14,7 @@ import Router from "next/router";
 import "./markdown.scss";
 import { markdownToHTML } from "./utils";
 
-function useMarkdownResolver(markdown: IMarkdownProps["children"]) {
+function useMarkdownResolver(markdown: MarkdownProps["children"]) {
   if (typeof markdown === "string") {
     return markdown;
   }
@@ -72,11 +72,11 @@ function useLinkUpdates({ __html: html }: { __html: string }) {
 export type ResolveMarkdown = () => Promise<string | { default: string }>;
 export type MarkdownChildren = string | ResolveMarkdown;
 
-export interface IMarkdownProps extends HTMLAttributes<HTMLDivElement> {
+export interface MarkdownProps extends HTMLAttributes<HTMLDivElement> {
   children: ResolveMarkdown | string;
 }
 
-const Markdown: FunctionComponent<IMarkdownProps> = ({
+const Markdown: FunctionComponent<MarkdownProps> = ({
   className,
   children,
   ...props

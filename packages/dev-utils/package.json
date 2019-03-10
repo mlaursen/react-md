@@ -45,9 +45,9 @@
     "rollup-plugin-typescript2": "^0.19.2",
     "rollup-plugin-uglify": "^6.0.2",
     "sassdoc": "^2.5.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3333"
   },
   "devDependencies": {
-    "chokidar-cli": "^1.2.1"
+    "chokidar-cli": "^1.2.2"
   }
 }

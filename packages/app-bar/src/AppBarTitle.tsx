@@ -1,29 +1,24 @@
 import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IAppBarTitleProps
-  extends HTMLAttributes<HTMLHeadingElement>,
-    IWithForwardedRef<HTMLHeadingElement> {
+export interface AppBarTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   /**
    * Boolean if the title should be placed at the `$rmd-app-bar-title-keyline`.
    */
   keyline?: boolean;
 }
 
-export interface IAppBarTitleDefaultProps {
-  keyline: boolean;
-}
-
-export type AppBarTitleWithDefaultProps = IAppBarTitleProps &
-  IAppBarTitleDefaultProps;
+type WithRef = WithForwardedRef<HTMLHeadingElement>;
+type DefaultProps = Required<Pick<AppBarTitleProps, "keyline">>;
+type AppBarTitleWithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
 
 /**
  * This component is used to create a title for your application. If your app
  * is not using the `AppBarNav` component, you can enable the `keyline` prop
  * to ensure that your title aligns with the keyline of your navigation element.
  */
-const AppBarTitle: FunctionComponent<IAppBarTitleProps> = ({
+const AppBarTitle: FunctionComponent<AppBarTitleProps & WithRef> = ({
   keyline,
   className,
   forwardedRef,
@@ -45,7 +40,7 @@ const AppBarTitle: FunctionComponent<IAppBarTitleProps> = ({
   </h6>
 );
 
-const defaultProps: IAppBarTitleDefaultProps = {
+const defaultProps: DefaultProps = {
   keyline: false,
 };
 
@@ -68,6 +63,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLHeadingElement, IAppBarTitleProps>(
+export default forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   (props, ref) => <AppBarTitle {...props} forwardedRef={ref} />
 );

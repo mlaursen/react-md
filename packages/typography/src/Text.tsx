@@ -8,7 +8,7 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with the Text
@@ -30,6 +30,17 @@ export type TextTypes =
   | "overline"
   | "button";
 
+export type TextAlign = "left" | "center" | "right";
+export type TextDecoration = "underline" | "overline" | "line-through";
+export type TextWeight =
+  | "thin"
+  | "light"
+  | "regular"
+  | "medium"
+  | "bold"
+  | "semi-bold"
+  | "black";
+
 /**
  * A union of the default supported elements that the `Text` component can be rendered as. This
  * is mostly used for adding the correct HTMLAttributes and enabling the forward ref.
@@ -48,7 +59,7 @@ export type TextRenderFunction = (props: {
   className: string;
 }) => ReactElement<any>;
 
-export interface ITextProps extends HTMLAttributes<TextElement> {
+export interface TextProps extends HTMLAttributes<TextElement> {
   /**
    * An optional className to merge into typography styles.
    */
@@ -92,6 +103,21 @@ export interface ITextProps extends HTMLAttributes<TextElement> {
    * component to create text pages.
    */
   noMargin?: boolean;
+
+  /**
+   * An optional text alignment to apply.
+   */
+  align?: TextAlign;
+
+  /**
+   * An optional text decoration to apply.
+   */
+  decoration?: TextDecoration;
+
+  /**
+   * An optional font-weight to apply.
+   */
+  weight?: TextWeight;
 }
 
 function getComponent(component: ReactType | null, type: TextTypes): ReactType {
@@ -126,15 +152,11 @@ function getComponent(component: ReactType | null, type: TextTypes): ReactType {
   }
 }
 
-export interface ITextDefaultProps {
-  type: TextTypes;
-  component: ReactType | null;
-  noMargin: boolean;
-}
-
-export type TextWithDefaultProps = ITextProps &
-  ITextDefaultProps &
-  IWithForwardedRef<TextElement>;
+type WithRef = WithForwardedRef<TextElement>;
+type DefaultProps = Required<
+  Pick<TextProps, "type" | "component" | "noMargin">
+>;
+type WithDefaultProps = TextProps & DefaultProps & WithRef;
 
 /**
  * The `Text` component is used to render text with the material design typography styles applied.
@@ -159,9 +181,7 @@ export type TextWithDefaultProps = ITextProps &
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
  * `component` will be used instead.
  */
-const Text: FunctionComponent<
-  ITextProps & IWithForwardedRef<TextElement>
-> = providedProps => {
+const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
   const {
     className: propClassName,
     children,
@@ -169,13 +189,19 @@ const Text: FunctionComponent<
     component,
     forwardedRef,
     noMargin,
+    align,
+    decoration,
+    weight,
     ...props
-  } = providedProps as TextWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const className = cn(
     `rmd-typography rmd-typography--${type}`,
     {
       "rmd-typography--no-margin": noMargin,
+      [`rmd-typography--${align}`]: align,
+      [`rmd-typography--${decoration}`]: decoration,
+      [`rmd-typography--${weight}`]: weight,
     },
     propClassName
   );
@@ -190,7 +216,7 @@ const Text: FunctionComponent<
   );
 };
 
-const defaultProps: ITextDefaultProps = {
+const defaultProps: DefaultProps = {
   type: "body-1",
   component: null,
   noMargin: false,
@@ -199,6 +225,8 @@ const defaultProps: ITextDefaultProps = {
 Text.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  Text.displayName = "Text";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -228,10 +256,21 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+      align: PropTypes.oneOf(["left", "center", "right"]),
+      decoration: PropTypes.oneOf(["underline", "overline", "line-through"]),
+      weight: PropTypes.oneOf([
+        "thin",
+        "light",
+        "regular",
+        "medium",
+        "bold",
+        "semi-bold",
+        "black",
+      ]),
     };
   }
 }
 
-export default forwardRef<TextElement, ITextProps>((props, ref) => (
+export default forwardRef<TextElement, TextProps>((props, ref) => (
   <Text {...props} forwardedRef={ref} />
 ));

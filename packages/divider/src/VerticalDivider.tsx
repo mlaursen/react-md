@@ -8,7 +8,7 @@ import React, {
 
 import Divider from "./Divider";
 
-export interface IVerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
+export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The max height for the vertical divider. This number **must** be greater than 0 to work
    * correctly.
@@ -20,12 +20,8 @@ export interface IVerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   maxHeight?: number;
 }
 
-interface IVerticalDividerDefaultProps {
-  maxHeight: number;
-}
-
-type VerticalDividerWithDefaultProps = IVerticalDividerProps &
-  IVerticalDividerDefaultProps;
+type DefaultProps = Required<Pick<VerticalDividerProps, "maxHeight">>;
+type WithDefaultProps = VerticalDividerProps & DefaultProps;
 
 /**
  * This is a small hook that is used to automatically create a vertical divider based
@@ -68,19 +64,15 @@ export function useVerticalDividerHeight(maxHeight: number) {
  * element.
  */
 const VerticalDivider: FunctionComponent<
-  IVerticalDividerProps
+  VerticalDividerProps
 > = providedProps => {
-  const {
-    style,
-    maxHeight,
-    ...props
-  } = providedProps as VerticalDividerWithDefaultProps;
+  const { style, maxHeight, ...props } = providedProps as WithDefaultProps;
 
   const { ref, height } = useVerticalDividerHeight(maxHeight);
   return <Divider {...props} style={{ ...style, height }} ref={ref} vertical />;
 };
 
-const defaultProps: IVerticalDividerDefaultProps = {
+const defaultProps: DefaultProps = {
   maxHeight: 1,
 };
 VerticalDivider.defaultProps = defaultProps;
@@ -96,7 +88,7 @@ if (process.env.NODE_ENV !== "production") {
       maxHeight: PropTypes.number,
       // @ts-ignore
       _validateMaxHeight: (
-        props: VerticalDividerWithDefaultProps,
+        props: WithDefaultProps,
         _: string,
         componentName: string
       ) => {

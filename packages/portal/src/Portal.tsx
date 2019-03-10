@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 import { createPortal } from "react-dom";
 
-import { IPortalProps } from "./types.d";
+import { PortalProps } from "./types.d";
 import { usePortalState } from "./hooks";
 
-const Portal: FunctionComponent<IPortalProps> = props => {
+const Portal: FunctionComponent<PortalProps> = props => {
   const { visible, children } = props;
   const container = usePortalState(props);
   if (!visible || !container) {

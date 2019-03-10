@@ -1,7 +1,7 @@
 import { NextFunctionComponent } from "next";
 import Router from "next/router";
 
-export interface IRedirectConfig {
+export interface RedirectConfig {
   concat?: boolean;
   statusCode?: number;
 }
@@ -12,7 +12,7 @@ export interface IRedirectConfig {
  */
 export default function redirect(
   to: string,
-  { concat = true, statusCode = 302 }: IRedirectConfig = {}
+  { concat = true, statusCode = 302 }: RedirectConfig = {}
 ) {
   const Redirect: NextFunctionComponent = () => null;
 

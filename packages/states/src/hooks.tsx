@@ -2,9 +2,13 @@ import React, { ReactNode, useContext, useEffect, useState } from "react";
 import cn from "classnames";
 import { Omit, useKeyboardFocusedClassName } from "@react-md/wia-aria";
 
-import { IStatesContext, StatesContext } from "./context";
+import { StatesContextType, StatesContext } from "./context";
 import RippleContainer from "./RippleContainer";
-import { IRipple, IRipplesOptions, MergableRippleHandlers } from "./types.d";
+import {
+  RippleConfig,
+  RipplesOptions,
+  MergableRippleHandlers,
+} from "./types.d";
 import {
   addRippleFromEvent,
   cancelRipplesByType,
@@ -97,9 +101,9 @@ export function useRipplesState<E extends HTMLElement = HTMLElement>({
   disableSpacebarClick,
   disableRipple,
   disableProgrammaticRipple,
-}: IRipplesOptions<E>) {
+}: RipplesOptions<E>) {
   const disabled = propDisabled || disableRipple;
-  const [ripples, setRipples] = useState<IRipple[]>([]);
+  const [ripples, setRipples] = useState<RippleConfig[]>([]);
   const {
     onKeyDown,
     onKeyUp,
@@ -208,7 +212,7 @@ export function useRipplesState<E extends HTMLElement = HTMLElement>({
   };
 }
 
-interface IPressedStatesOptions<E extends HTMLElement = HTMLElement> {
+interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
   handlers?: MergableRippleHandlers<E>;
   disableSpacebarClick?: boolean;
 }
@@ -224,7 +228,7 @@ interface IPressedStatesOptions<E extends HTMLElement = HTMLElement> {
 export function usePressedStates<E extends HTMLElement = HTMLElement>({
   handlers = {},
   disableSpacebarClick = false,
-}: IPressedStatesOptions<E>) {
+}: PressedStatesOptions<E>) {
   const [pressed, setPressed] = useState(false);
   const {
     onTouchStart,
@@ -346,9 +350,9 @@ export function useStatesContext() {
   return useContext(StatesContext);
 }
 
-export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Omit<Partial<IStatesContext>, "preventColorPollution">,
-    IRipplesOptions<E> {
+export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
+  extends Omit<Partial<StatesContextType>, "preventColorPollution">,
+    RipplesOptions<E> {
   /**
    * An optional id for the element so that keyboard tracking can be enabled.
    */
@@ -415,7 +419,7 @@ export interface IInteractionStatesOptions<E extends HTMLElement = HTMLElement>
  * the event handlers.
  */
 export function useInteractionStates<E extends HTMLElement = HTMLElement>(
-  options: IInteractionStatesOptions<E> = {}
+  options: InteractionStatesOptions<E> = {}
 ) {
   const {
     id,

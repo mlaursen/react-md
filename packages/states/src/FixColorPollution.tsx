@@ -7,7 +7,7 @@ import React, {
 
 import { useStatesContext } from "./hooks";
 
-export interface IFixColorPollutionProps {
+export interface FixColorPollutionProps {
   enabled?: boolean;
   children: ReactNode;
 }
@@ -18,7 +18,7 @@ export interface IFixColorPollutionProps {
  * the children of your "interactiable" element so that their text
  * color will not have the opacity applied to them as well.
  */
-const FixColorPollution: FunctionComponent<IFixColorPollutionProps> = ({
+const FixColorPollution: FunctionComponent<FixColorPollutionProps> = ({
   enabled,
   children,
 }) => {

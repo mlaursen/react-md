@@ -1,10 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { SVGIcon, ISVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const SpaSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
+const SpaSVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
     <path
       fill="#607D8B"

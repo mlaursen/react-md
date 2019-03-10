@@ -2,13 +2,13 @@ import React, { FunctionComponent, ReactNode, Fragment } from "react";
 import cn from "classnames";
 import Head from "next/head";
 
-export interface ICodeProps {
+export interface CodeProps {
   className?: string;
   children: ReactNode;
   inline?: boolean;
 }
 
-const Code: FunctionComponent<ICodeProps> = ({
+const Code: FunctionComponent<CodeProps> = ({
   children,
   inline,
   className,

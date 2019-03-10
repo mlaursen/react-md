@@ -1,30 +1,24 @@
 import React, { ReactElement } from "react";
 import cn from "classnames";
-import { FontIcon, IconRotator, IIconRotatorBaseProps } from "@react-md/icon";
+import { FontIcon, IconRotator, IconRotatorBaseProps } from "@react-md/icon";
 
-export interface ITreeItemExpanderIconProps extends IIconRotatorBaseProps {
+export interface TreeItemExpanderIconProps extends IconRotatorBaseProps {
   children?: React.ReactElement<any>;
 }
 
-export interface ITreeItemExpanderIconDefaultProps {
-  rotated: boolean;
-  children: ReactElement<any>;
-}
-
-export type TreeItemExpanderWithDefaultProps = ITreeItemExpanderIconProps &
-  ITreeItemExpanderIconDefaultProps;
+type DefaultProps = Required<
+  Pick<TreeItemExpanderIconProps, "rotated" | "children">
+>;
+export type WithDefaultProps = TreeItemExpanderIconProps & DefaultProps;
 
 /**
  * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to be used within
  * a `TreeView`.
  */
 const TreeItemExpanderIcon: React.FunctionComponent<
-  ITreeItemExpanderIconProps
+  TreeItemExpanderIconProps
 > = providedProps => {
-  const {
-    className,
-    ...props
-  } = providedProps as TreeItemExpanderWithDefaultProps;
+  const { className, ...props } = providedProps as WithDefaultProps;
 
   return (
     <IconRotator
@@ -34,7 +28,7 @@ const TreeItemExpanderIcon: React.FunctionComponent<
   );
 };
 
-const defaultProps: ITreeItemExpanderIconDefaultProps = {
+const defaultProps: DefaultProps = {
   rotated: false,
   children: <FontIcon>keyboard_arrow_down</FontIcon>,
 };

@@ -6,9 +6,9 @@ import React, {
   ReactType,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface ILinkProps extends HTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
   /**
    * An optional component to render as. This should really only be used if you are using a
    * router library like [react-router](https://github.com/ReactTraining/react-router) or
@@ -65,7 +65,7 @@ export interface ILinkProps extends HTMLAttributes<HTMLAnchorElement> {
   flexCentered?: boolean;
 }
 
-export interface ILinkWithComponentProps extends ILinkProps {
+export interface LinkWithComponentProps extends LinkProps {
   /**
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
    * all valid props from that component should also be allowed.
@@ -74,14 +74,13 @@ export interface ILinkWithComponentProps extends ILinkProps {
   component: ReactType;
 }
 
-export interface ILinkDefaultProps {
+export interface DefaultProps {
   preventMaliciousTarget: boolean;
   flexCentered: boolean;
 }
 
-export type LinkWithDefaultProps = ILinkProps &
-  ILinkDefaultProps &
-  IWithForwardedRef<HTMLAnchorElement | ReactType>;
+type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
+type WithDefaultProps = LinkProps & DefaultProps & WithRef;
 
 /**
  * The `Link` component is used to render links within your app with a basic styles applied and
@@ -90,8 +89,7 @@ export type LinkWithDefaultProps = ILinkProps &
  * `linkComponent` prop.
  */
 const Link: FunctionComponent<
-  (ILinkProps | ILinkWithComponentProps) &
-    IWithForwardedRef<HTMLAnchorElement | ReactType>
+  (LinkProps | LinkWithComponentProps) & WithRef
 > = providedProps => {
   const {
     className: propClassName,
@@ -103,7 +101,7 @@ const Link: FunctionComponent<
     preventMaliciousTarget,
     forwardedRef,
     ...props
-  } = providedProps as LinkWithDefaultProps;
+  } = providedProps as WithDefaultProps;
   const { target } = props;
   const href = propHref === "" ? undefined : propHref;
   const className = cn(
@@ -138,7 +136,7 @@ const Link: FunctionComponent<
   );
 };
 
-const defaultProps: ILinkDefaultProps = {
+const defaultProps: DefaultProps = {
   preventMaliciousTarget: true,
   flexCentered: false,
 };
@@ -146,6 +144,8 @@ const defaultProps: ILinkDefaultProps = {
 Link.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  Link.displayName = "Link";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -166,5 +166,5 @@ if (process.env.NODE_ENV !== "production") {
 
 export default forwardRef<
   HTMLAnchorElement | ReactType,
-  ILinkProps | ILinkWithComponentProps
+  LinkProps | LinkWithComponentProps
 >((props, ref) => <Link {...props} forwardedRef={ref} />);

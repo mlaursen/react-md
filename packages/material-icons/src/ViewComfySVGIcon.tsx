@@ -1,10 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { SVGIcon, ISVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const ViewComfySVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
+const ViewComfySVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
     <path d="M3 9h4V5H3v4zm0 5h4v-4H3v4zm5 0h4v-4H8v4zm5 0h4v-4h-4v4zM8 9h4V5H8v4zm5-4v4h4V5h-4zm5 9h4v-4h-4v4zM3 19h4v-4H3v4zm5 0h4v-4H8v4zm5 0h4v-4h-4v4zm5 0h4v-4h-4v4zm0-14v4h4V5h-4z" />
   </SVGIcon>

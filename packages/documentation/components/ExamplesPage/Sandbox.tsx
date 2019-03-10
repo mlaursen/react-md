@@ -8,7 +8,7 @@ import { Omit } from "@react-md/utils";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 import { Tooltipped } from "@react-md/tooltip";
 
-interface ISandboxProps
+interface SandboxProps
   extends Omit<CodeSandboxerProps, "gitInfo" | "children"> {
   id: string;
   gitInfo?: GitInfo;
@@ -16,13 +16,13 @@ interface ISandboxProps
   branch?: string;
 }
 
-interface ISandboxDefaultProps {
+interface DefaultProps {
   gitInfo: GitInfo;
 }
 
-type SandboxWithDefaultProps = ISandboxProps & ISandboxDefaultProps;
+type SandboxWithDefaultProps = SandboxProps & DefaultProps;
 
-const Sandbox: FunctionComponent<ISandboxProps> = providedProps => {
+const Sandbox: FunctionComponent<SandboxProps> = providedProps => {
   const {
     id,
     exampleName,
@@ -61,7 +61,7 @@ const Sandbox: FunctionComponent<ISandboxProps> = providedProps => {
   );
 };
 
-const defaultProps: ISandboxDefaultProps = {
+const defaultProps: DefaultProps = {
   gitInfo: {
     account: "mlaursen",
     repository: "react-md",

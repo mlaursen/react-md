@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { IPortalProps, IStaggerablePortalProps } from "./types.d";
+import { PortalProps, StaggerablePortalProps } from "./types.d";
 
-function getContainer({ into, intoId }: IPortalProps) {
+function getContainer({ into, intoId }: PortalProps) {
   const isDev = process.env.NODE_ENV !== "production";
   let container: HTMLElement | null = null;
   if (typeof into === "undefined" && typeof intoId === "undefined") {
@@ -48,7 +48,7 @@ function getContainer({ into, intoId }: IPortalProps) {
   return container;
 }
 
-export function usePortalState(props: IPortalProps) {
+export function usePortalState(props: PortalProps) {
   const { visible } = props;
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
@@ -62,7 +62,7 @@ export function usePortalState(props: IPortalProps) {
 export function useStaggeredVisibility({
   visible,
   onExited,
-}: IStaggerablePortalProps) {
+}: StaggerablePortalProps) {
   const [portalVisible, setPortalVisible] = useState(() => visible);
 
   useEffect(() => {

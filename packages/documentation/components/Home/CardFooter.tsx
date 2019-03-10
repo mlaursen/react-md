@@ -4,15 +4,12 @@ import { Divider } from "@react-md/divider";
 
 import LinkUnstyled from "components/LinkUnstyled";
 
-export interface ICardFooterProps {
+export interface CardFooterProps {
   href: string;
   children: ReactNode;
 }
 
-const CardFooter: FunctionComponent<ICardFooterProps> = ({
-  href,
-  children,
-}) => (
+const CardFooter: FunctionComponent<CardFooterProps> = ({ href, children }) => (
   <Fragment>
     <Divider />
     <footer className="home__card-footer">

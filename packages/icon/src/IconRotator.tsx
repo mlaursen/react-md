@@ -10,9 +10,9 @@ import React, {
   ReactElement,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IIconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
+export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap` prop is enabled
    * or the children is not a single react element.
@@ -41,7 +41,7 @@ export interface IIconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   forceIconWrap?: boolean;
 }
 
-export interface IIconRotatorProps extends IIconRotatorBaseProps {
+export interface IconRotatorProps extends IconRotatorBaseProps {
   /**
    * The icon that should be rotated. If this is a valid React Element, the class names will be
    * cloned into that icon, otherwise the icon will be wrapped in a span with the correct class
@@ -50,21 +50,18 @@ export interface IIconRotatorProps extends IIconRotatorBaseProps {
   children: ReactNode;
 }
 
-export interface IIconRotatorDefaultProps {
-  animate: boolean;
-  forceIconWrap: boolean;
-}
-
-export type IconRotatorWithDefaultProps = IIconRotatorProps &
-  IIconRotatorDefaultProps &
-  IWithForwardedRef<HTMLSpanElement>;
+type WithRef = WithForwardedRef<HTMLSpanElement>;
+type DefaultProps = Required<
+  Pick<IconRotatorProps, "animate" | "forceIconWrap">
+>;
+type WithDefaultProps = IconRotatorProps & DefaultProps & WithRef;
 
 /**
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
 const IconRotator: FunctionComponent<
-  IIconRotatorProps & IWithForwardedRef<HTMLSpanElement>
+  IconRotatorProps & WithRef
 > = providedProps => {
   const {
     style,
@@ -75,7 +72,7 @@ const IconRotator: FunctionComponent<
     forceIconWrap,
     forwardedRef,
     ...props
-  } = providedProps as IconRotatorWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const className = cn(
     "rmd-icon-rotator",
@@ -100,7 +97,7 @@ const IconRotator: FunctionComponent<
   );
 };
 
-const defaultProps: IIconRotatorDefaultProps = {
+const defaultProps: DefaultProps = {
   animate: true,
   forceIconWrap: false,
 };
@@ -108,6 +105,8 @@ const defaultProps: IIconRotatorDefaultProps = {
 IconRotator.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  IconRotator.displayName = "IconRotator";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -124,6 +123,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLSpanElement, IIconRotatorProps>((props, ref) => (
+export default forwardRef<HTMLSpanElement, IconRotatorProps>((props, ref) => (
   <IconRotator {...props} forwardedRef={ref} />
 ));

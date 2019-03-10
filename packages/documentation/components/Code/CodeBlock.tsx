@@ -1,27 +1,20 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  useRef,
-  useEffect,
-  useMemo,
-  Fragment,
-} from "react";
+import React, { Fragment, FunctionComponent, ReactNode, useMemo } from "react";
 import cn from "classnames";
-
-import Code from "./Code";
-import { highlightCode } from "components/Markdown/utils";
 import Head from "next/head";
 
-export interface ICodeBlockProps {
+import { highlightCode } from "components/Markdown/utils";
+import Code from "./Code";
+
+export interface CodeBlockProps {
   className?: string;
   language?: string;
   children: ReactNode;
   highlight?: boolean;
 }
 
-type WithDefaultProps = ICodeBlockProps & { language: string };
+type WithDefaultProps = CodeBlockProps & { language: string };
 
-const CodeBlock: FunctionComponent<ICodeBlockProps> = props => {
+const CodeBlock: FunctionComponent<CodeBlockProps> = props => {
   const {
     className,
     language,

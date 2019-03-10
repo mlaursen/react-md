@@ -1,7 +1,7 @@
 import { FunctionComponent, CSSProperties, ReactElement } from "react";
 
 import {
-  ICSSVariable,
+  CSSVariable,
   useDocumentCSSVariables,
   createCSSVariablesStyle,
 } from "./utils";
@@ -10,7 +10,7 @@ export type VariableChildrenRenderer = (props: {
   style: CSSProperties | undefined;
 }) => ReactElement<any>;
 
-export interface IUpdateVariablesProps {
+export interface UpdateVariablesProps {
   /**
    * An optional style object to merge the css variables into when using the children render
    * function.
@@ -33,14 +33,14 @@ export interface IUpdateVariablesProps {
    * NOTE: There is no real "validation" for the css variable values, so use at your own risk
    * and debugging.
    */
-  variables: ICSSVariable[];
+  variables: CSSVariable[];
 }
 
 /**
  * This component is used to update css variables either at the root html or provide a style
  * object to the children render function that can be applied to an element to update the values.
  */
-const UpdateVariables: FunctionComponent<IUpdateVariablesProps> = ({
+const UpdateVariables: FunctionComponent<UpdateVariablesProps> = ({
   variables,
   style,
   children,

@@ -7,7 +7,7 @@ import { PortalInto } from "./types.d";
  * If any of these props are defined on a component, the component will
  * render in a portal instead of the current tree.
  */
-export interface IRenderConditionalPortalProps {
+export interface RenderConditionalPortalProps {
   /**
    * Boolean if the portal should be used.
    */
@@ -24,7 +24,7 @@ export interface IRenderConditionalPortalProps {
   portalIntoId?: string;
 }
 
-export interface IConditionalPortalProps extends IRenderConditionalPortalProps {
+export interface ConditionalPortalProps extends RenderConditionalPortalProps {
   /**
    * Boolean if the portal would be visible if one of the other portal props are defined or enabled.
    */
@@ -40,7 +40,7 @@ export interface IConditionalPortalProps extends IRenderConditionalPortalProps {
  * This is a very simple component that is used in other places within react-md to conditionally
  * render the children within a portal or not based on general portal config props.
  */
-const ConditionalPortal: FunctionComponent<IConditionalPortalProps> = ({
+const ConditionalPortal: FunctionComponent<ConditionalPortalProps> = ({
   portal,
   portalInto,
   portalIntoId,

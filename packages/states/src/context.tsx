@@ -12,7 +12,7 @@ import {
 import { RIPPLE_TIMEOUT, RIPPLE_CLASS_NAMES } from "./contants";
 import { useTouchDetectionClassNameToggle } from "./hooks";
 
-export interface IStatesContext {
+export interface StatesContextType {
   preventColorPollution: boolean;
   rippleTimeout: TransitionTimeout;
   rippleClassNames: CSSTransitionClassNames;
@@ -20,7 +20,7 @@ export interface IStatesContext {
   disableProgrammaticRipple: boolean;
 }
 
-export const StatesContext = createContext<IStatesContext>({
+export const StatesContext = createContext<StatesContextType>({
   preventColorPollution: false,
   rippleTimeout: RIPPLE_TIMEOUT,
   rippleClassNames: RIPPLE_CLASS_NAMES,
@@ -28,17 +28,16 @@ export const StatesContext = createContext<IStatesContext>({
   disableProgrammaticRipple: false,
 });
 
-export interface IStatesConfigProps extends Partial<IStatesContext> {
+export interface StatesConfigProps extends Partial<StatesContextType> {
   children?: ReactNode;
   disableTouchDetection?: boolean;
 }
 
-interface IStatesConfigDefaultProps extends IStatesContext {
+interface DefaultProps extends StatesContextType {
   disableTouchDetection: boolean;
 }
 
-type StatesConfigWithDefaultProps = IStatesConfigProps &
-  IStatesConfigDefaultProps;
+type WithDefaultProps = StatesConfigProps & DefaultProps;
 
 /**
  * This component should normally be near the root of your React tree as it
@@ -48,7 +47,7 @@ type StatesConfigWithDefaultProps = IStatesConfigProps &
  * a time when the `disableTouchDetection` prop is not enabled as it will cause
  * multiple touch detection updates.
  */
-export const StatesConfig: FunctionComponent<IStatesConfigProps> = props => {
+export const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
   const {
     preventColorPollution,
     rippleTimeout,
@@ -57,7 +56,7 @@ export const StatesConfig: FunctionComponent<IStatesConfigProps> = props => {
     disableProgrammaticRipple,
     disableTouchDetection,
     children,
-  } = props as StatesConfigWithDefaultProps;
+  } = props as WithDefaultProps;
 
   if (!disableTouchDetection) {
     useTouchDetectionClassNameToggle();
@@ -84,7 +83,7 @@ export const StatesConfig: FunctionComponent<IStatesConfigProps> = props => {
   );
 };
 
-const defaultProps: IStatesConfigDefaultProps = {
+const defaultProps: DefaultProps = {
   preventColorPollution: false,
   rippleTimeout: RIPPLE_TIMEOUT,
   rippleClassNames: RIPPLE_CLASS_NAMES,

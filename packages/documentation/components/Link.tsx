@@ -1,18 +1,18 @@
 import React, { FunctionComponent, ReactNode } from "react";
-import NextLink, { LinkProps } from "next/link";
+import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import Router from "next/router";
 import { Link as RMDLink } from "@react-md/link";
 import { Omit } from "@react-md/utils";
 
 import useLinkPrefetch from "hooks/useLinkPrefetch";
 
-export interface ILinkProps extends Omit<LinkProps, "children"> {
+export interface LinkProps extends Omit<NextLinkProps, "children"> {
   className?: string;
   children: ReactNode;
   href: string;
 }
 
-const Link: FunctionComponent<ILinkProps> = ({
+const Link: FunctionComponent<LinkProps> = ({
   children,
   className,
   prefetch,

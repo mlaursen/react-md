@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { ISVGIconProps } from "@react-md/icon";
+import { SVGIconProps } from "@react-md/icon";
 import { Component as LightbulbIcon } from "./lightbulb.svg";
 
 // this one isn't included in material icons for some reason?
-const LightbulbSVGIcon: FunctionComponent<ISVGIconProps> = ({
+const LightbulbSVGIcon: FunctionComponent<SVGIconProps> = ({
   className,
   ...props
 }) => (

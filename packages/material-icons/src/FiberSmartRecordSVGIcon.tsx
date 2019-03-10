@@ -1,12 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { SVGIcon, ISVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const FiberSmartRecordSVGIcon: React.FunctionComponent<
-  ISVGIconProps
-> = props => (
+const FiberSmartRecordSVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
     <g fill="#010101">
       <circle cx="9" cy="12" r="8" />

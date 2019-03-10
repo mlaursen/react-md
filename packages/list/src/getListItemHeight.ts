@@ -1,4 +1,4 @@
-import { ListItemHeight, ISimpleListItemProps } from "./SimpleListItem";
+import { ListItemHeight, SimpleListItemProps } from "./SimpleListItem";
 
 export default function getListItemHeight({
   height = "auto",
@@ -7,7 +7,7 @@ export default function getListItemHeight({
   leftAvatar,
   rightAvatar,
   secondaryText,
-}: ISimpleListItemProps): ListItemHeight {
+}: SimpleListItemProps): ListItemHeight {
   if (height !== "auto") {
     return height;
   }

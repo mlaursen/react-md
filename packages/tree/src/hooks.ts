@@ -7,11 +7,11 @@ import {
 
 import {
   FlattenedTreeSort,
-  IAnyRecord,
-  IFlattenedTree,
-  ITreeBaseProps,
-  ITreeIdsProps,
-  ITreeProps,
+  AnyRecord,
+  FlattenedTree,
+  TreeBaseProps,
+  TreeIdsProps,
+  TreeProps,
   TreeElement,
   FlattenedTreeDataList,
 } from "./types.d";
@@ -22,9 +22,9 @@ import handleItemSelect from "./utils/handleItemSelect";
 
 interface TreeItemSelectHook
   extends Required<
-      Pick<ITreeBaseProps, "onItemSelect" | "onMultipleItemSelection">
+      Pick<TreeBaseProps, "onItemSelect" | "onMultipleItemSelection">
     >,
-    Pick<ITreeIdsProps, "selectedIds"> {}
+    Pick<TreeIdsProps, "selectedIds"> {}
 
 /**
  * A hook that implements the base functionality for selecting different
@@ -51,9 +51,9 @@ export function useTreeItemSelect(
 
 interface TreeItemExpansionHook
   extends Required<
-      Pick<ITreeBaseProps, "onItemExpandedChange" | "onMultipleItemExpansion">
+      Pick<TreeBaseProps, "onItemExpandedChange" | "onMultipleItemExpansion">
     >,
-    Pick<ITreeIdsProps, "expandedIds"> {}
+    Pick<TreeIdsProps, "expandedIds"> {}
 
 /**
  * A hook that implements the base functionality for epxnading different tree
@@ -72,7 +72,7 @@ export function useTreeItemExpansion(
   };
 }
 
-export function useTreeMovement<D = IAnyRecord>({
+export function useTreeMovement<D = AnyRecord>({
   selectedIds,
   expandedIds,
   data,
@@ -81,7 +81,7 @@ export function useTreeMovement<D = IAnyRecord>({
   disableGroupSelection,
   onItemSelect,
   onItemExpandedChange,
-}: ITreeProps<D>) {
+}: TreeProps<D>) {
   const [activeId, setActiveId] = useState(() => {
     if (selectedIds.length >= 1) {
       return selectedIds[0];
@@ -161,8 +161,8 @@ export function useTreeMovement<D = IAnyRecord>({
   };
 }
 
-export function useFlattenedTree<D = IAnyRecord>(
-  data: IFlattenedTree<D>,
+export function useFlattenedTree<D = AnyRecord>(
+  data: FlattenedTree<D>,
   rootId: string | null,
   sort?: FlattenedTreeSort<D>
 ): FlattenedTreeDataList<D> {

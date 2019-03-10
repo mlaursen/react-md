@@ -42,7 +42,7 @@ export function getDefaultActiveId<E extends HTMLElement>({
   return focusableElements[index].id as string;
 }
 
-interface IActiveDescendantMovementOptions<
+interface ActiveDescendantMovementOptions<
   E extends HTMLElement = HTMLElement,
   H = {}
 >
@@ -52,7 +52,7 @@ interface IActiveDescendantMovementOptions<
   defaultActiveId: string;
 }
 
-export interface IActiveDescendantValues<
+export interface ActiveDescendantValues<
   E extends HTMLElement = HTMLElement,
   H = {}
 > {
@@ -71,7 +71,7 @@ export function useActiveDescendantMovement<
   onKeyboardFocus,
   defaultActiveId,
   ...focusOptions
-}: IActiveDescendantMovementOptions<E, H>): IActiveDescendantValues<E, H> {
+}: ActiveDescendantMovementOptions<E, H>): ActiveDescendantValues<E, H> {
   const [activeId, setActiveId] = useState(defaultActiveId || "");
   const { setFocusedId } = useKeyboardFocusContext();
   const updateId = (id: string | ((prevId: string) => string)) => {

@@ -5,12 +5,11 @@ import React, {
   HTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
-export interface IDividerProps
-  extends HTMLAttributes<DividerElement>,
-    IWithForwardedRef<DividerElement> {
+
+export interface DividerProps extends HTMLAttributes<DividerElement> {
   /**
    * Boolean if the divider should appear inset instead of full width. This
    * really just applied a margin-left (or margin-right when dir="rtl").
@@ -33,21 +32,18 @@ export interface IDividerProps
   vertical?: boolean;
 }
 
-interface IDividerDefaultProps {
-  inset: boolean;
-  vertical: boolean;
-}
+type WithRef = WithForwardedRef<DividerElement>;
+type DefaultProps = Required<Pick<DividerProps, "inset" | "vertical">>;
+type WithDefaultProps = DividerProps & DefaultProps & WithRef;
 
-type DividerWithDefaultProps = IDividerProps & IDividerDefaultProps;
-
-const Divider: FunctionComponent<IDividerProps> = providedProps => {
+const Divider: FunctionComponent<DividerProps & WithRef> = providedProps => {
   const {
     inset,
     vertical,
     forwardedRef,
     className,
     ...props
-  } = providedProps as DividerWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return createElement(vertical ? "div" : "hr", {
     ...props,
@@ -63,7 +59,7 @@ const Divider: FunctionComponent<IDividerProps> = providedProps => {
   });
 };
 
-const defaultProps: IDividerDefaultProps = {
+const defaultProps: DefaultProps = {
   inset: false,
   vertical: false,
 };
@@ -85,6 +81,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<DividerElement, IDividerProps>((props, ref) => (
+export default forwardRef<DividerElement, DividerProps>((props, ref) => (
   <Divider {...props} forwardedRef={ref} />
 ));

@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { TextIconSpacing, ITextIconSpacingProps } from "@react-md/icon";
+import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 
-export interface IListItemIconProps extends ITextIconSpacingProps {
+export interface ListItemIconProps extends TextIconSpacingProps {
   position: "before" | "after";
   avatar: boolean;
 }
 
-const ListItemIcon: FunctionComponent<IListItemIconProps> = ({
+const ListItemIcon: FunctionComponent<ListItemIconProps> = ({
   className,
   avatar,
   position,

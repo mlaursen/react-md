@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-export interface ITextIconSpacingProps {
+export interface TextIconSpacingProps {
   /**
    * An optional className to apply to the surroudning `<span>` when the `forceIconWrap` prop
    * is enabled or the icon is not a valid React Element. If the `forceIconWrap` prop is
@@ -56,18 +56,19 @@ export interface ITextIconSpacingProps {
   forceIconWrap?: boolean;
 }
 
-export interface ITextIconSpacingDefaultProps {
-  children: ReactNode;
-  iconAfter: boolean;
-  beforeClassName: string;
-  afterClassName: string;
-  forceIconWrap: boolean;
-}
+type DefaultProps = Required<
+  Pick<
+    TextIconSpacingProps,
+    | "children"
+    | "iconAfter"
+    | "beforeClassName"
+    | "afterClassName"
+    | "forceIconWrap"
+  >
+>;
+type WithDefaultProps = TextIconSpacingProps & DefaultProps;
 
-export type TextIconSpacingWithDefaultProps = ITextIconSpacingProps &
-  ITextIconSpacingDefaultProps;
-
-const TextIconSpacing: FunctionComponent<ITextIconSpacingProps> = props => {
+const TextIconSpacing: FunctionComponent<TextIconSpacingProps> = props => {
   const {
     icon: propIcon,
     iconAfter,
@@ -76,7 +77,7 @@ const TextIconSpacing: FunctionComponent<ITextIconSpacingProps> = props => {
     beforeClassName,
     afterClassName,
     forceIconWrap,
-  } = props as TextIconSpacingWithDefaultProps;
+  } = props as WithDefaultProps;
 
   if (!propIcon) {
     return children as ReactElement<any>;
@@ -126,7 +127,7 @@ const TextIconSpacing: FunctionComponent<ITextIconSpacingProps> = props => {
   return content as ReactElement<any>;
 };
 
-const defaultProps: ITextIconSpacingDefaultProps = {
+const defaultProps: DefaultProps = {
   children: null,
   iconAfter: false,
   forceIconWrap: false,
@@ -137,6 +138,8 @@ const defaultProps: ITextIconSpacingDefaultProps = {
 TextIconSpacing.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  TextIconSpacing.displayName = "TextIconSpacing";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");

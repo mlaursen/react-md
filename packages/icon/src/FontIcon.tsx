@@ -6,12 +6,12 @@ import React, {
   CSSProperties,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 const ICON_SIZE = 24;
 const DENSE_ICON_SIZE = 20;
 
-export interface IFontIconProps extends HTMLAttributes<HTMLElement> {
+export interface FontIconProps extends HTMLAttributes<HTMLElement> {
   /**
    * The font icon class name to use.
    */
@@ -41,16 +41,10 @@ export interface IFontIconProps extends HTMLAttributes<HTMLElement> {
   forceFontSize?: boolean;
 }
 
-export interface IFontIconDefaultProps {
-  dense: boolean;
-  iconClassName: string;
-  forceSize: boolean;
-  forceFontSize: boolean;
-}
-
-export type FontIconWithDefaultProps = IFontIconProps &
-  IFontIconDefaultProps &
-  IWithForwardedRef;
+type DefaultProps = Required<
+  Pick<FontIconProps, "dense" | "iconClassName" | "forceSize" | "forceFontSize">
+>;
+type WithDefaultProps = FontIconProps & DefaultProps & WithForwardedRef;
 
 /**
  * A utility function that will merge the different inline styles together for the `FontIcon` if
@@ -93,7 +87,7 @@ function createStyles(
  * and `forceFontSize` props to fix the sizing issues.
  */
 const FontIcon: FunctionComponent<
-  IFontIconProps & IWithForwardedRef
+  FontIconProps & WithForwardedRef
 > = providedProps => {
   const {
     style,
@@ -105,7 +99,7 @@ const FontIcon: FunctionComponent<
     children,
     forwardedRef,
     ...props
-  } = providedProps as FontIconWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return (
     <i
@@ -126,7 +120,7 @@ const FontIcon: FunctionComponent<
   );
 };
 
-const defaultProps: IFontIconDefaultProps = {
+const defaultProps: DefaultProps = {
   dense: false,
   iconClassName: "material-icons",
   forceSize: false,
@@ -136,6 +130,8 @@ const defaultProps: IFontIconDefaultProps = {
 FontIcon.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  FontIcon.displayName = "FontIcon";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -153,6 +149,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLElement, IFontIconProps>((props, ref) => (
+export default forwardRef<HTMLElement, FontIconProps>((props, ref) => (
   <FontIcon {...props} forwardedRef={ref} />
 ));

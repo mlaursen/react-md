@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { ACTIVE_DESCENDANT } from "../constants";
 
-export interface ICreateActiveDescendantOptions {
+export interface CreateActiveDescendantOptions {
   onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
   includeSpace?: boolean | null;
 }

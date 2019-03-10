@@ -11,12 +11,12 @@ import { AppBar, APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
 import AppBarNav from "components/AppBarNav";
 import "./full-page-demo.scss";
 
-export interface IFullPageDemoProps {
+export interface FullPageDemoProps {
   id: string;
   children: ReactNode;
 }
 
-const FullPageDemo: FunctionComponent<IFullPageDemoProps> = ({
+const FullPageDemo: FunctionComponent<FullPageDemoProps> = ({
   id,
   children,
 }) => {

@@ -1,8 +1,8 @@
-import { IAnyRecord, TreeData, TreeDataList, TreeElement } from "../types.d";
+import { AnyRecord, TreeData, TreeDataList, TreeElement } from "../types.d";
 import buildItemIndexStack from "./buildItemIndexStack";
 import findTreeItemElement from "./findTreeItemElement";
 
-export interface IRootOrEndIdsConfig<D = IAnyRecord> {
+export interface RootOrEndIdsConfig<D = AnyRecord> {
   element: HTMLElement;
   data: TreeDataList<D>;
   treeEl: TreeElement;
@@ -16,7 +16,7 @@ export default function findIdsToRootOrEnd<D>({
   treeEl,
   selectedIds,
   toRoot = true,
-}: IRootOrEndIdsConfig<D>): string[] {
+}: RootOrEndIdsConfig<D>): string[] {
   const itemElement = findTreeItemElement(element);
   if (!itemElement) {
     return selectedIds;

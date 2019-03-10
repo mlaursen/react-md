@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { ISVGIconProps } from "@react-md/icon";
+import { SVGIconProps } from "@react-md/icon";
 import { Component as GithubIcon } from "./github.svg";
 
-const GithubSVGIcon: FunctionComponent<ISVGIconProps> = ({
+const GithubSVGIcon: FunctionComponent<SVGIconProps> = ({
   className,
   ...props
 }) => (

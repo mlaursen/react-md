@@ -6,7 +6,7 @@ import {
   ButtonTheme,
   ButtonThemeType,
   ButtonType,
-  IButtonThemeProps,
+  ButtonThemeProps,
 } from "../types.d";
 
 const themes: ButtonTheme[] = [
@@ -21,7 +21,7 @@ const buttonTypes: ButtonType[] = ["text", "icon"];
 
 function flattenDeep(
   arr: any[]
-): (IButtonThemeProps & { children: React.ReactNode })[] {
+): (ButtonThemeProps & { children: React.ReactNode })[] {
   return arr.reduce(
     (flattened, val) =>
       Array.isArray(val)

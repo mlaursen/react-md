@@ -1,11 +1,11 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { FontIcon, IFontIconProps } from "@react-md/icon";
+import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LaptopChromebookFontIcon: React.FunctionComponent<
-  IFontIconProps
-> = props => <FontIcon {...props}>laptop_chromebook</FontIcon>;
+const LaptopChromebookFontIcon: FunctionComponent<FontIconProps> = props => (
+  <FontIcon {...props}>laptop_chromebook</FontIcon>
+);
 
 export default LaptopChromebookFontIcon;

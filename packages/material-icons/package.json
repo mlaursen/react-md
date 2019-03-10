@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "dev-utils clean bin",
     "executable": "chmod +x bin/cli.js",
-    "compile": "tsc -p tsconfig.json",
+    "compile": "tsc -p tsconfig.cli.json",
     "build-cli": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
     "watch": "npm-run-all -p \"compile -- -w\" watcher",
@@ -39,7 +39,9 @@
   "license": "MIT",
   "devDependencies": {
     "@react-md/dev-utils": "^2.0.0-alpha.0",
-    "@react-md/icon": "^2.0.0-alpha.0"
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "download": "^7.1.0",
+    "unzipper": "^0.9.11"
   },
   "peerDependencies": {
     "@react-md/icon": "^2.0.0-alpha.0",

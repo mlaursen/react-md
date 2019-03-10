@@ -1,10 +1,10 @@
-import { IAnyRecord, TreeDataList } from "../types.d";
+import { AnyRecord, TreeDataList } from "../types.d";
 
 /**
  * Attempts to find the `TreeItemDataList` based on a stack of item indexes by digging down into the
  * provided `data` list.
  */
-export default function findTreeItemDataList<D = IAnyRecord>(
+export default function findTreeItemDataList<D = AnyRecord>(
   stack: number[],
   data: TreeDataList<D>
 ) {

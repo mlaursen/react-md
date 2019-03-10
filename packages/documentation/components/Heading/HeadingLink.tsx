@@ -2,11 +2,11 @@ import React, { FunctionComponent, useCallback } from "react";
 import { Tooltipped } from "@react-md/tooltip";
 import LinkUnstyled from "components/LinkUnstyled";
 
-export interface IHeadingLinkProps {
+export interface HeadingLinkProps {
   idRef: string;
 }
 
-const HeadingLink: FunctionComponent<IHeadingLinkProps> = ({ idRef }) => {
+const HeadingLink: FunctionComponent<HeadingLinkProps> = ({ idRef }) => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       const area = document.createElement("textarea");

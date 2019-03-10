@@ -6,38 +6,38 @@ import {
   ColorLensSVGIcon,
   BuildSVGIcon,
 } from "@react-md/material-icons";
-import { IFlattenedTree, TreeDataList } from "@react-md/tree";
+import { FlattenedTree, TreeDataList } from "@react-md/tree";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
 
-export interface IRouteLink {
+export interface RouteLink {
   children: ReactNode;
   target?: string;
   href?: string;
   leftIcon?: ReactNode;
 }
 
-export interface IRouteSubheader extends IRouteLink {
+export interface RouteSubheader extends RouteLink {
   subheader: true;
 }
 
-export interface IRouteDivider {
+export interface RouteDivider {
   divider: boolean;
 }
 
-export type RoutesTreeData = (IRouteLink | IRouteSubheader) | IRouteDivider;
-export type RoutesTree = IFlattenedTree<RoutesTreeData>;
+export type RoutesTreeData = (RouteLink | RouteSubheader) | RouteDivider;
+export type RoutesTree = FlattenedTree<RoutesTreeData>;
 
-interface IChildRouteConfig {
+interface ChildRouteConfig {
   path: string;
   children: ReactNode;
-  childRoutes?: IChildRouteConfig[];
+  childRoutes?: ChildRouteConfig[];
 }
 
-interface IRouteConfig {
+interface RouteConfig {
   icon?: ReactNode;
-  childRoutes?: IChildRouteConfig[];
+  childRoutes?: ChildRouteConfig[];
   parentPath?: string | null;
 }
 
@@ -48,7 +48,7 @@ export const routesTree: RoutesTree = {};
  * function. This is really used so that the parent pathnames can be prepended
  * the the provided child route's path.
  */
-function createChildRoute(childRoute: IChildRouteConfig, parentPath: string) {
+function createChildRoute(childRoute: ChildRouteConfig, parentPath: string) {
   const { path, children, childRoutes } = childRoute;
   createRoute(path, children, { childRoutes, parentPath });
 }
@@ -62,7 +62,7 @@ function createChildRoute(childRoute: IChildRouteConfig, parentPath: string) {
  * This will render as an expandable tree item when there are no child routes,
  * otherwise it will render as a link tree item.
  */
-function createRoute(path: string, children: ReactNode, config: IRouteConfig) {
+function createRoute(path: string, children: ReactNode, config: RouteConfig) {
   const { icon, childRoutes = [], parentPath = null } = config;
   const href = `${parentPath || ""}${path}`;
   routesTree[href] = {
@@ -76,17 +76,17 @@ function createRoute(path: string, children: ReactNode, config: IRouteConfig) {
   childRoutes.forEach(childRoute => createChildRoute(childRoute, href));
 }
 
-interface IPackageRouteConfig {
+interface PackageRouteConfig {
   install?: boolean;
   api?: boolean;
   demos?: boolean;
   sassdoc?: boolean;
 }
 
-function createPackageRoute(name: string, config: IPackageRouteConfig = {}) {
+function createPackageRoute(name: string, config: PackageRouteConfig = {}) {
   const { install = true, api = true, demos = true, sassdoc = true } = config;
 
-  const childRoutes: IChildRouteConfig[] = [];
+  const childRoutes: ChildRouteConfig[] = [];
   if (install) {
     childRoutes.push({
       path: "/installation",

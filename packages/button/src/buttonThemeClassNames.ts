@@ -1,6 +1,6 @@
 import cn from "classnames";
 
-import { IButtonThemeProps } from "./types.d";
+import { ButtonThemeProps } from "./types.d";
 
 /**
  * Creates a button theme based on the button theming props. This is really just used so that
@@ -10,9 +10,7 @@ import { IButtonThemeProps } from "./types.d";
  * className.
  * @return a string of class names to create an element with a button theme.
  */
-export default function buttonThemeClassNames(
-  props: IButtonThemeProps
-): string {
+export default function buttonThemeClassNames(props: ButtonThemeProps): string {
   const {
     buttonType = "text",
     themeType = "flat",

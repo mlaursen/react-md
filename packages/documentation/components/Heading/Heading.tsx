@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
-import { Text, ITextProps, TextTypes } from "@react-md/typography";
+import { Text, TextProps, TextTypes } from "@react-md/typography";
 import { Omit } from "@react-md/utils";
 
 import "./heading.scss";
@@ -8,13 +8,13 @@ import HeadingLink from "./HeadingLink";
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
-export interface IHeadingProps extends Omit<ITextProps, "type"> {
+export interface HeadingProps extends Omit<TextProps, "type"> {
   id: string;
   level: Level;
   noMarginTop?: boolean;
 }
 
-const Heading: FunctionComponent<IHeadingProps> = ({
+const Heading: FunctionComponent<HeadingProps> = ({
   id,
   level,
   children,

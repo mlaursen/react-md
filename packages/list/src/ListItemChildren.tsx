@@ -4,7 +4,7 @@ import { FixColorPollution } from "@react-md/states";
 import ListItemIcon from "./ListItemIcon";
 import ListItemText from "./ListItemText";
 
-export interface IListItemChildrenProps {
+export interface ListItemChildrenProps {
   /**
    * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
    * `secondaryText` within the list item.
@@ -92,7 +92,7 @@ export interface IListItemChildrenProps {
   preventColorPollution?: boolean;
 }
 
-const ListItemChildren: FunctionComponent<IListItemChildrenProps> = ({
+const ListItemChildren: FunctionComponent<ListItemChildrenProps> = ({
   textClassName,
   secondaryTextClassName,
   textChildren,

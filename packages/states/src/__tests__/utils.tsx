@@ -13,7 +13,7 @@ import {
   cancelRipplesByType,
 } from "../utils";
 import { getRippleRadius as unmockedRippleRadius } from "../getRippleRadius";
-import { RippleableEvent, IRipple } from "../types.d";
+import { RippleableEvent, RippleConfig } from "../types.d";
 
 type FakeMouseEvent = React.MouseEvent<HTMLElement>;
 type FakeTouchEvent = React.TouchEvent<HTMLElement>;
@@ -23,7 +23,7 @@ jest.mock("../getRippleRadius");
 
 const getRippleRadius = unmockedRippleRadius as jest.Mock;
 
-const TEMP_RIPPLE: IRipple = {
+const TEMP_RIPPLE: RippleConfig = {
   startTime: -1,
   style: {
     left: -1,
@@ -227,9 +227,10 @@ describe("utils", () => {
   });
 
   describe("createRipple", () => {
-    let result: IRipple = TEMP_RIPPLE;
+    let result: RippleConfig = TEMP_RIPPLE;
     const setResult = (event: RippleableEvent) => {
-      result = createRipple(event);
+      const type = getRippleTriggerType(event);
+      result = createRipple(event, type, event.currentTarget);
     };
 
     beforeEach(() => {
@@ -447,7 +448,7 @@ describe("utils", () => {
   });
 
   describe("addRippleFromEvent", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     let root: ReactWrapper<any, any, any>;
     const setRipples = jest.fn();
     const handler = (event: RippleableEvent) =>
@@ -548,7 +549,7 @@ describe("utils", () => {
   });
 
   describe("disableRippleHolding", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     let root: ReactWrapper<any, any, any>;
     const setRipples = jest.fn();
     const handler = (event: RippleableEvent) =>
@@ -643,7 +644,7 @@ describe("utils", () => {
   });
 
   describe("triggerRippleExitAnimation", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     const setRipples = jest.fn();
     beforeEach(() => {
       ripples = [];
@@ -673,10 +674,12 @@ describe("utils", () => {
   });
 
   describe("triggerRippleExitAnimations", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     const setRipples = jest.fn();
     const setRipplesCB = jest.fn(
-      (cbOrRipples: IRipple[] | ((rs: IRipple[]) => IRipple[])) => {
+      (
+        cbOrRipples: RippleConfig[] | ((rs: RippleConfig[]) => RippleConfig[])
+      ) => {
         if (typeof cbOrRipples === "function") {
           setRipples(cbOrRipples(ripples));
         } else {
@@ -723,7 +726,7 @@ describe("utils", () => {
   });
 
   describe("removeRippleByStartTime", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     const setRipples = jest.fn();
     beforeEach(() => {
       ripples = [];
@@ -743,10 +746,12 @@ describe("utils", () => {
   });
 
   describe("cancelRipplesByType", () => {
-    let ripples: IRipple[] = [];
+    let ripples: RippleConfig[] = [];
     const setRipples = jest.fn();
     const setRipplesCB = jest.fn(
-      (cbOrRipples: IRipple[] | ((rs: IRipple[]) => IRipple[])) => {
+      (
+        cbOrRipples: RippleConfig[] | ((rs: RippleConfig[]) => RippleConfig[])
+      ) => {
         if (typeof cbOrRipples === "function") {
           setRipples(cbOrRipples(ripples));
         } else {
@@ -763,10 +768,13 @@ describe("utils", () => {
       cancelRipplesByType("mouse", setRipplesCB);
       expect(setRipples).toBeCalledWith(ripples);
 
-      const mouse: IRipple = { ...TEMP_RIPPLE, type: "mouse" };
-      const touch: IRipple = { ...TEMP_RIPPLE, type: "touch" };
-      const keyboard: IRipple = { ...TEMP_RIPPLE, type: "keyboard" };
-      const programmatic: IRipple = { ...TEMP_RIPPLE, type: "programmatic" };
+      const mouse: RippleConfig = { ...TEMP_RIPPLE, type: "mouse" };
+      const touch: RippleConfig = { ...TEMP_RIPPLE, type: "touch" };
+      const keyboard: RippleConfig = { ...TEMP_RIPPLE, type: "keyboard" };
+      const programmatic: RippleConfig = {
+        ...TEMP_RIPPLE,
+        type: "programmatic",
+      };
       ripples = [mouse, touch, keyboard, programmatic];
 
       cancelRipplesByType("mouse", setRipplesCB);

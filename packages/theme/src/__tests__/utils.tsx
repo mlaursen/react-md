@@ -7,7 +7,7 @@ import {
   fixVariables,
   createCSSVariablesStyle,
   useDocumentCSSVariables,
-  ICSSVariable,
+  CSSVariable,
 } from "../utils";
 
 describe("utils", () => {
@@ -203,7 +203,7 @@ describe("utils", () => {
       style.getPropertyValue = (name: string) => style[name];
     });
 
-    const Test: FunctionComponent<{ variables: ICSSVariable[] }> = ({
+    const Test: FunctionComponent<{ variables: CSSVariable[] }> = ({
       variables,
     }) => {
       useDocumentCSSVariables(variables);

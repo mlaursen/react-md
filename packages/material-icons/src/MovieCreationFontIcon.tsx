@@ -1,11 +1,11 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { FontIcon, IFontIconProps } from "@react-md/icon";
+import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MovieCreationFontIcon: React.FunctionComponent<
-  IFontIconProps
-> = props => <FontIcon {...props}>movie_creation</FontIcon>;
+const MovieCreationFontIcon: FunctionComponent<FontIconProps> = props => (
+  <FontIcon {...props}>movie_creation</FontIcon>
+);
 
 export default MovieCreationFontIcon;

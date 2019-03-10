@@ -3,19 +3,19 @@ import { KeyboardFocusContext } from "./contexts";
 import useKeyboardTrackerState from "./hooks/useKeyboardTrackerState";
 import { KeyboardFocusedId } from "./types.d";
 
-export interface IKeyboardTrackerProps {
+export interface KeyboardTrackerProps {
   children?: ReactNode;
   defaultFocusedId?: KeyboardFocusedId;
   defaultKeyboardMode?: boolean;
 }
 
-interface IKeyboardTrackerDefaultProps {
+interface KeyboardTrackerDefaultProps {
   defaultFocusedId: KeyboardFocusedId;
   defaultKeyboardMode: boolean;
 }
 
-type KeyboardTrackerWithDefaultProps = IKeyboardTrackerProps &
-  IKeyboardTrackerDefaultProps;
+type KeyboardTrackerWithDefaultProps = KeyboardTrackerProps &
+  KeyboardTrackerDefaultProps;
 
 /**
  * The `KeyboardTracker` component is used to determine if your app is in keyboard mode
@@ -28,7 +28,7 @@ type KeyboardTrackerWithDefaultProps = IKeyboardTrackerProps &
  * There should probably only be 1 `KeyboardTracker` component defined in your app at
  * a time since they create window event listeners to track the current focused element.
  */
-const KeyboardTracker: FunctionComponent<IKeyboardTrackerProps> = props => {
+const KeyboardTracker: FunctionComponent<KeyboardTrackerProps> = props => {
   const {
     children,
     defaultFocusedId,
@@ -43,7 +43,7 @@ const KeyboardTracker: FunctionComponent<IKeyboardTrackerProps> = props => {
   );
 };
 
-const defaultProps: IKeyboardTrackerDefaultProps = {
+const defaultProps: KeyboardTrackerDefaultProps = {
   defaultFocusedId: null,
   defaultKeyboardMode: false,
 };

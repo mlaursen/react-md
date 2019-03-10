@@ -77,11 +77,11 @@ export interface WithKeyboardFocusCallback {
   onKeyboardFocus?: KeyboardFocusChangeEvent;
 }
 
-export interface IKeyboardFocusState {
+export interface KeyboardFocusState {
   focusedId: KeyboardFocusedId;
   isKeyboardMode: boolean;
 }
 
-export interface IKeyboardFocusContext extends IKeyboardFocusState {
+export interface KeyboardFocusContextType extends KeyboardFocusState {
   setFocusedId: (nextFocusedId: KeyboardFocusedId) => void;
 }

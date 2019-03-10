@@ -11,7 +11,7 @@ import {
 } from "react";
 import cn from "classnames";
 
-export interface ICollapseOptions {
+export interface CollapseOptions {
   /**
    * Boolean if currently collapsed. When this prop changes, the collapse transition will begin.
    */
@@ -89,10 +89,10 @@ export interface ICollapseOptions {
   onCollapsed?: () => void;
 }
 
-type CollapseOptionsWithDefaults = ICollapseOptions &
+type CollapseOptionsWithDefaults = CollapseOptions &
   Required<
     Pick<
-      ICollapseOptions,
+      CollapseOptions,
       | "minHeight"
       | "minPaddingTop"
       | "minPaddingBottom"
@@ -103,12 +103,12 @@ type CollapseOptionsWithDefaults = ICollapseOptions &
 
 type CollapsedStateConfig = Required<
   Pick<
-    ICollapseOptions,
+    CollapseOptions,
     "collapsed" | "minHeight" | "minPaddingTop" | "minPaddingBottom"
   >
 >;
 
-interface ICollapseState {
+interface CollapseState {
   entering: boolean;
   leaving: boolean;
   maxHeight?: number | string;
@@ -116,8 +116,8 @@ interface ICollapseState {
   paddingBottom?: number | string;
 }
 
-interface ICollapseStateWithSetter extends ICollapseState {
-  setState: Dispatch<SetStateAction<ICollapseState>>;
+interface CollapseStateWithSetter extends CollapseState {
+  setState: Dispatch<SetStateAction<CollapseState>>;
 }
 
 /**
@@ -131,8 +131,8 @@ export function useCollapseState({
   minHeight,
   minPaddingTop,
   minPaddingBottom,
-}: CollapsedStateConfig): ICollapseStateWithSetter {
-  const [state, setState] = useState<ICollapseState>({
+}: CollapsedStateConfig): CollapseStateWithSetter {
+  const [state, setState] = useState<CollapseState>({
     entering: false,
     leaving: false,
     maxHeight: collapsed ? minHeight : undefined,
@@ -173,7 +173,7 @@ export function unmountOnExit({
   return minHeight === 0 && minPaddingTop === 0 && minPaddingBottom === 0;
 }
 
-interface IRenderedOptions extends EmptyCollapsedOptions {
+interface RenderedOptions extends EmptyCollapsedOptions {
   entering: boolean;
   leaving: boolean;
   collapsed: boolean;
@@ -184,7 +184,7 @@ interface IRenderedOptions extends EmptyCollapsedOptions {
  *
  * @private
  */
-export function isRendered(options: IRenderedOptions) {
+export function isRendered(options: RenderedOptions) {
   const { collapsed, entering, leaving } = options;
 
   return !collapsed || entering || leaving || !unmountOnExit(options);
@@ -284,7 +284,7 @@ export function createTransitionStyle({
  * for the correct transition styles.
  */
 export function useCollapseTransition<E extends HTMLElement>(
-  options: ICollapseOptions
+  options: CollapseOptions
 ) {
   const {
     collapsed,
@@ -430,7 +430,7 @@ export function useCollapseTransition<E extends HTMLElement>(
  */
 export function useCollapsibleElement(
   element: ReactElement<any>,
-  options: ICollapseOptions
+  options: CollapseOptions
 ) {
   const el = Children.only(element);
   const { transitionProps, rendered } = useCollapseTransition({

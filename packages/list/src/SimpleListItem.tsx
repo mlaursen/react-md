@@ -1,8 +1,8 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-import ListItemChildren, { IListItemChildrenProps } from "./ListItemChildren";
+import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
 import getListItemHeight from "./getListItemHeight";
 
 export type ListItemHeight =
@@ -12,10 +12,9 @@ export type ListItemHeight =
   | "large"
   | "extra-large";
 
-export interface ISimpleListItemProps
-  extends IListItemChildrenProps,
-    HTMLAttributes<HTMLLIElement>,
-    IWithForwardedRef<HTMLLIElement> {
+export interface SimpleListItemProps
+  extends ListItemChildrenProps,
+    HTMLAttributes<HTMLLIElement> {
   /**
    * This prop shouldn't really be used other than a pass-down value from the ListItem component.
    */
@@ -46,17 +45,14 @@ export interface ISimpleListItemProps
   height?: ListItemHeight;
 }
 
-interface ISimpleListItemDefaultProps {
-  height: ListItemHeight;
-  clickable: boolean;
-  threeLines: boolean;
-}
-
-type SimpleListItemWithDefaultProps = ISimpleListItemProps &
-  ISimpleListItemDefaultProps;
+type WithRef = WithForwardedRef<HTMLLIElement>;
+type DefaultProps = Required<
+  Pick<SimpleListItemProps, "height" | "clickable" | "threeLines">
+>;
+type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
 
 const SimpleListItem: FunctionComponent<
-  ISimpleListItemProps
+  SimpleListItemProps & WithRef
 > = providedProps => {
   const {
     className,
@@ -77,7 +73,7 @@ const SimpleListItem: FunctionComponent<
     clickable,
     preventColorPollution,
     ...props
-  } = providedProps as SimpleListItemWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const height = getListItemHeight(providedProps);
   return (
@@ -117,7 +113,7 @@ const SimpleListItem: FunctionComponent<
   );
 };
 
-const defaultProps: ISimpleListItemDefaultProps = {
+const defaultProps: DefaultProps = {
   height: "auto",
   clickable: false,
   threeLines: false,
@@ -149,6 +145,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLLIElement, ISimpleListItemProps>((props, ref) => (
+export default forwardRef<HTMLLIElement, SimpleListItemProps>((props, ref) => (
   <SimpleListItem forwardedRef={ref} {...props} />
 ));

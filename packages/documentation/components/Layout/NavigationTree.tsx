@@ -12,16 +12,16 @@ import {
   useTreeItemSelect,
   findAllParentIds,
   FlattenedTreeData,
-  IAnyRecord,
+  AnyRecord,
 } from "@react-md/tree";
 
 import {
   RoutesTreeData,
   RoutesTree,
   routesTree,
-  IRouteDivider,
-  IRouteSubheader,
-  IRouteLink,
+  RouteDivider,
+  RouteSubheader,
+  RouteLink,
 } from "constants/routesTree";
 import LinkUnstyled from "components/LinkUnstyled";
 
@@ -31,17 +31,17 @@ import "./navigation-tree.scss";
  * A custom tree-item renderer that can also create dividers and subheader
  * components within the tree based on attributes on the item.
  */
-const itemRenderer: TreeItemRenderer<IAnyRecord | RoutesTreeData> = (
+const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
   props,
   item,
   treeProps
 ) => {
-  if ((item as IRouteDivider).divider) {
+  if ((item as RouteDivider).divider) {
     return <Divider key={props.key} />;
   }
 
-  const { leftIcon, href, target, children } = item as IRouteLink;
-  if ((item as IRouteSubheader).subheader) {
+  const { leftIcon, href, target, children } = item as RouteLink;
+  if ((item as RouteSubheader).subheader) {
     return (
       <ListSubheader key={props.key} id={props.id} role="none">
         {children}

@@ -1,11 +1,11 @@
 import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
-import { Button, IButtonProps } from "@react-md/button";
-import { IWithForwardedRef } from "@react-md/utils";
+import { Button, ButtonProps } from "@react-md/button";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IAppBarNavProps
-  extends IButtonProps,
-    IWithForwardedRef<HTMLButtonElement> {}
+export interface AppBarNavProps extends ButtonProps {}
+
+type WithRef = WithForwardedRef<HTMLButtonElement>;
 
 /**
  * This component is really just a simple wrapper for the `Button` component that adds some
@@ -17,7 +17,7 @@ export interface IAppBarNavProps
  * This component is generally really only used when you want to have a temporary navigation
  * element like a hamburger menu.
  */
-const AppBarNav: FunctionComponent<IAppBarNavProps> = ({
+const AppBarNav: FunctionComponent<AppBarNavProps & WithRef> = ({
   className,
   forwardedRef,
   children,
@@ -40,6 +40,6 @@ if (process.env.NODE_ENV !== "production") {
   AppBarNav.displayName = "AppBarNav";
 }
 
-export default forwardRef<HTMLButtonElement, IAppBarNavProps>((props, ref) => (
+export default forwardRef<HTMLButtonElement, AppBarNavProps>((props, ref) => (
   <AppBarNav {...props} forwardedRef={ref} />
 ));

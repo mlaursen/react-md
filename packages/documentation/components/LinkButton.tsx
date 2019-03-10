@@ -1,22 +1,22 @@
 import React, { FunctionComponent } from "react";
-import { buttonThemeClassNames, IButtonThemeProps } from "@react-md/button";
-import { Tooltipped, ITooltippedProps } from "@react-md/tooltip";
+import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
+import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
 
-import LinkUnstyled, { ILinkUnstyledProps } from "./LinkUnstyled";
-import { IRenderConditionalPortalProps } from "@react-md/portal";
+import LinkUnstyled, { LinkUnstyledProps } from "./LinkUnstyled";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import { Omit } from "@react-md/utils";
 import { useInteractionStates } from "@react-md/states";
 
-export interface ILinkButtonProps
-  extends Omit<ILinkUnstyledProps, "id">,
-    IRenderConditionalPortalProps,
-    IButtonThemeProps,
-    Pick<ITooltippedProps, "id" | "tooltip"> {
+export interface LinkButtonProps
+  extends Omit<LinkUnstyledProps, "id">,
+    RenderConditionalPortalProps,
+    ButtonThemeProps,
+    Pick<TooltippedProps, "id" | "tooltip"> {
   target?: string;
   tooltipClassName?: string;
 }
 
-const LinkButton: FunctionComponent<ILinkButtonProps> = providedProps => {
+const LinkButton: FunctionComponent<LinkButtonProps> = providedProps => {
   const {
     id,
     className: propClassName,

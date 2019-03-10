@@ -6,9 +6,9 @@ import React, {
   CSSProperties,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface ISVGIconProps extends HTMLAttributes<SVGSVGElement> {
+export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
   /**
    * The role to apply to the SVG. When using icons, it is generally recommended to leave it as
    * the default `img` so that it is insured as a graphic, but can also be switched
@@ -108,13 +108,10 @@ export interface ISVGIconProps extends HTMLAttributes<SVGSVGElement> {
   children?: ReactNode;
 }
 
-export interface ISVGIconDefaultProps {
-  role: string;
-  focusable: string;
-  xmlns: string;
-  viewBox: string;
-  dense: boolean;
-}
+type DefaultProps = Required<
+  Pick<SVGIconProps, "role" | "focusable" | "xmlns" | "viewBox" | "dense">
+>;
+type WithDefaultProps = SVGIconProps & DefaultProps;
 
 function createStyle(style?: CSSProperties, size?: number) {
   if (style && size) {
@@ -166,7 +163,7 @@ function getA11yIds(
  * as an icon.
  */
 const SVGIcon: FunctionComponent<
-  ISVGIconProps & IWithForwardedRef<SVGSVGElement>
+  SVGIconProps & WithForwardedRef<SVGSVGElement>
 > = ({
   style,
   className,
@@ -224,7 +221,7 @@ const SVGIcon: FunctionComponent<
   );
 };
 
-const defaultProps: ISVGIconDefaultProps = {
+const defaultProps: DefaultProps = {
   role: "img",
   focusable: "false",
   xmlns: "http://www.w3.org/2000/svg",
@@ -235,6 +232,8 @@ const defaultProps: ISVGIconDefaultProps = {
 SVGIcon.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  SVGIcon.displayName = "SVGIcon";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -258,6 +257,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<SVGSVGElement, ISVGIconProps>((props, ref) => (
+export default forwardRef<SVGSVGElement, SVGIconProps>((props, ref) => (
   <SVGIcon {...props} forwardedRef={ref} />
 ));

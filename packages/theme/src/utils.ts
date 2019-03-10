@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, Dispatch, SetStateAction } from "react";
 
 export type CSSVariableValue = string | null;
-export interface ICSSVariable {
+export interface CSSVariable {
   name: string;
   value: CSSVariableValue;
 }
@@ -24,7 +24,7 @@ export function toCSSVariableName(name: string, prefix: string = "--") {
  * @param variables a list of css variables and their values
  * @return a new list ensuring that all variable names are prefixed with `--`
  */
-export function fixVariables(variables: ICSSVariable[], prefix: string = "--") {
+export function fixVariables(variables: CSSVariable[], prefix: string = "--") {
   return variables.map(({ name, value }) => ({
     name: toCSSVariableName(name, prefix),
     value,
@@ -41,7 +41,7 @@ export function fixVariables(variables: ICSSVariable[], prefix: string = "--") {
  * @return a style object or undefined
  */
 export function createCSSVariablesStyle(
-  variables: ICSSVariable[],
+  variables: CSSVariable[],
   style?: CSSProperties
 ) {
   if (!variables.length) {
@@ -63,7 +63,7 @@ export function createCSSVariablesStyle(
  *
  * @param variables The list of css variables to create a style object for
  */
-export function useDocumentCSSVariables(variables: ICSSVariable[]) {
+export function useDocumentCSSVariables(variables: CSSVariable[]) {
   useEffect(() => {
     const { style } = document.documentElement;
     fixVariables(variables).forEach(({ name, value }) => {
@@ -84,7 +84,7 @@ function tryImport(packageName: string) {
       }-values`;
       const values = (pkg.default[themeVars] || {}) as ScssVariableMap;
 
-      return Object.entries(values).reduce<ICSSVariable[]>(
+      return Object.entries(values).reduce<CSSVariable[]>(
         (list, [variableName, variableValue]) => [
           ...list,
           {
@@ -99,7 +99,7 @@ function tryImport(packageName: string) {
 }
 
 export async function resolveVariables(
-  setRMDVariables: Dispatch<SetStateAction<ICSSVariable[]>>
+  setRMDVariables: Dispatch<SetStateAction<CSSVariable[]>>
 ) {
   const variables = await Promise.all([
     tryImport("app-bar"),

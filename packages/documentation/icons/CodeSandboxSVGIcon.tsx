@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { ISVGIconProps } from "@react-md/icon";
+import { SVGIconProps } from "@react-md/icon";
 import { Component as CodeSandboxIcon } from "./codesandbox.svg";
 
-const CodeSandboxSVGIcon: FunctionComponent<ISVGIconProps> = ({
+const CodeSandboxSVGIcon: FunctionComponent<SVGIconProps> = ({
   className,
   ...props
 }) => (

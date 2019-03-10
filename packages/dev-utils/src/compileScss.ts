@@ -27,7 +27,7 @@ export function compileScss(options: nodeSass.Options, exit: boolean = true) {
   }
 }
 
-export interface IPostCSSOptions {
+export interface PostCSSOptions {
   production: boolean;
   srcFile: string;
   outFile: string;
@@ -35,7 +35,7 @@ export interface IPostCSSOptions {
 
 export async function postcss(
   css: string,
-  { production, srcFile, outFile }: IPostCSSOptions
+  { production, srcFile, outFile }: PostCSSOptions
 ) {
   log("Running postcss with the following plugins:");
   log(
@@ -94,8 +94,8 @@ export function checkForInvalidCSS(css: string) {
   process.exit(1);
 }
 
-type HackedVariableValue = string | boolean | number | IHackedVariableValue[];
-export interface IHackedVariableValue {
+type HackedVariableValue = string | boolean | number | HackedVariable[];
+export interface HackedVariable {
   name: string;
   value: HackedVariableValue;
 }
@@ -135,7 +135,7 @@ function matchParen(s: string, count: number = 0) {
 
 function hackSCSSMapValues(mapValue: string) {
   let remaining = mapValue.substring(1, mapValue.length - 1);
-  const values: IHackedVariableValue[] = [];
+  const values: HackedVariable[] = [];
   while (remaining.length) {
     const i = remaining.indexOf(": ");
     if (i === -1) {
@@ -178,7 +178,7 @@ function hackSCSSMapValues(mapValue: string) {
 export function hackSCSSVariableValue(
   scssVariable: any,
   packageName: string
-): IHackedVariableValue {
+): HackedVariable {
   const { name, value } = scssVariable.context;
   const prefix = `$${name}: `;
 

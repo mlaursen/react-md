@@ -17,12 +17,12 @@ const toWidthPart = (v: QuerySize | undefined, prefix: "min" | "max") => {
   return `(${prefix}-width: ${v})`;
 };
 
-interface IWidthMediaQuery {
+interface WidthMediaQuery {
   min?: QuerySize;
   max?: QuerySize;
 }
 
-type WidthMediaQuery =
+type WidthMediaQuerys =
   | { min: QuerySize }
   | { max: QuerySize }
   | { min: QuerySize; max: QuerySize };
@@ -30,7 +30,7 @@ type WidthMediaQuery =
 export function useWidthMediaQuery({
   min,
   max,
-}: IWidthMediaQuery & WidthMediaQuery) {
+}: WidthMediaQuery & WidthMediaQuerys) {
   const query = useMemo(
     () =>
       `screen and ${[toWidthPart(min, "min"), toWidthPart(max, "max")]
@@ -99,15 +99,15 @@ export function useOrientation(defaultValue?: OrientationType) {
   return value;
 }
 
-interface IAppSizeOptions {
+interface AppSizeOptions {
   phoneMaxWidth?: QuerySize;
   tabletMinWidth?: QuerySize;
   tabletMaxWidth?: QuerySize;
   desktopMinWidth?: QuerySize;
-  defaultValue?: IAppSize;
+  defaultValue?: AppSize;
 }
 
-export interface IAppSize {
+export interface AppSize {
   isPhone: boolean;
   isTablet: boolean;
   isDesktop: boolean;
@@ -133,7 +133,7 @@ export function useAppSize({
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
   desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
   defaultValue = DEFAULT_APP_SIZE,
-}: IAppSizeOptions = {}): IAppSize {
+}: AppSizeOptions = {}): AppSize {
   if (typeof window === "undefined") {
     return defaultValue;
   }

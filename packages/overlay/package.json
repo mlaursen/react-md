@@ -34,7 +34,7 @@
     "@react-md/theme": "^2.0.0-alpha.0",
     "@react-md/transition": "^2.0.0-alpha.0",
     "classnames": "^2.2.6",
-    "react-transition-group": "^2.5.2"
+    "react-transition-group": "^2.6.0"
   },
   "peerDependencies": {
     "react": ">= 16.8"

@@ -11,13 +11,13 @@ import NavigationTree from "./NavigationTree";
 
 import "./layout.scss";
 
-export interface ILayoutProps {
+export interface LayoutProps {
   title: string;
   pageTitle: string;
   pathname: string;
 }
 
-const Layout: FunctionComponent<ILayoutProps> = ({
+const Layout: FunctionComponent<LayoutProps> = ({
   children,
   title,
   pathname,

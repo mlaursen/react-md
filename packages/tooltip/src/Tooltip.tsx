@@ -10,9 +10,9 @@ import { CSSTransition } from "react-transition-group";
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
-  ITransitionProps,
+  TransitionProps,
 } from "@react-md/transition";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import { TooltipPosition } from "./types.d";
 import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
@@ -20,9 +20,9 @@ import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
 /**
  * The base props for the `Tooltip` component. This can be extended when creating custom tooltip implementations.
  */
-export interface ITooltipProps
+export interface TooltipProps
   extends Pick<
-      ITransitionProps,
+      TransitionProps,
       | "onEnter"
       | "onEntering"
       | "onEntered"
@@ -101,30 +101,20 @@ export interface ITooltipProps
   visible: boolean;
 }
 
-/**
- * An interface containing all the props that have a default value.
- */
-export interface ITooltipDefaultProps {
-  dense: boolean;
-  position: TooltipPosition;
-  lineWrap: boolean;
-  classNames: CSSTransitionClassNames;
-  timeout: TransitionTimeout;
-  lazyMount: boolean;
-}
-
-export type TooltipWithDefaultProps = ITooltipProps &
-  ITooltipDefaultProps &
-  IWithForwardedRef<HTMLSpanElement>;
-
+type WithRef = WithForwardedRef<HTMLSpanElement>;
+type DefaultProps = Required<
+  Pick<
+    TooltipProps,
+    "dense" | "position" | "lineWrap" | "classNames" | "timeout" | "lazyMount"
+  >
+>;
+type WithDefaultProps = TooltipProps & DefaultProps & WithRef;
 /**
  * This is the base tooltip component that can only be used to render a tooltip with an animation
  * when the visibility changes. If this component is used, you will need to manually add all the
  * event listeners and triggers to change the `visible` prop.
  */
-const Tooltip: FunctionComponent<
-  ITooltipProps & IWithForwardedRef<HTMLSpanElement>
-> = providedProps => {
+const Tooltip: FunctionComponent<TooltipProps & WithRef> = providedProps => {
   const {
     className,
     classNames,
@@ -143,7 +133,7 @@ const Tooltip: FunctionComponent<
     onExiting,
     onExited,
     ...props
-  } = providedProps as TooltipWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return (
     <CSSTransition
@@ -181,7 +171,7 @@ const Tooltip: FunctionComponent<
   );
 };
 
-const defaultProps: ITooltipDefaultProps = {
+const defaultProps: DefaultProps = {
   dense: false,
   position: "below",
   lineWrap: false,
@@ -241,6 +231,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLSpanElement, ITooltipProps>((props, ref) => (
+export default forwardRef<HTMLSpanElement, TooltipProps>((props, ref) => (
   <Tooltip {...props} forwardedRef={ref} />
 ));

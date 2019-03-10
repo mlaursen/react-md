@@ -1,10 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { SVGIcon, ISVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const NetworkWifiSVGIcon: React.FunctionComponent<ISVGIconProps> = props => (
+const NetworkWifiSVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
     <path
       fillOpacity=".3"

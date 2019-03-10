@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { MarkdownPage } from "components/Markdown";
 
-import installation from "./Installation.md";
+import readme from "./Installation.md";
 
-export default () => <MarkdownPage>{installation}</MarkdownPage>;
+export default () => <MarkdownPage>{readme}</MarkdownPage>;

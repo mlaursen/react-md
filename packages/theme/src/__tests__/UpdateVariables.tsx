@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { act } from "react-dom/test-utils";
 import UpdateVariables from "../UpdateVariables";
-import { ICSSVariable } from "../utils";
+import { CSSVariable } from "../utils";
 
 describe("UpdateVariables", () => {
   let container: HTMLElement | null = null;
@@ -42,7 +42,7 @@ describe("UpdateVariables", () => {
 
   it("should provide the correct style prop for a children render function", () => {
     const renderer = jest.fn(({ style }) => <div style={style} />);
-    let variables: ICSSVariable[] = [];
+    let variables: CSSVariable[] = [];
     render(
       <UpdateVariables variables={variables}>{renderer}</UpdateVariables>,
       container

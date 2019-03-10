@@ -54,7 +54,7 @@ export function useKeyboardFocusedClassName(
 /**
  * All the options for a custom keyboard focus handler.
  */
-export interface IKeyboardFocusOptions<
+export interface KeyboardFocusOptions<
   E extends HTMLElement = HTMLElement,
   H = {}
 >
@@ -62,7 +62,7 @@ export interface IKeyboardFocusOptions<
     WithEventHandlers<E, H>,
     Required<WithKeyboardFocusCallback> {}
 
-interface IKeyboardFocusResult<E extends HTMLElement = HTMLElement, H = {}> {
+interface KeyboardFocusResult<E extends HTMLElement = HTMLElement, H = {}> {
   handlers: H & {
     onKeyDown: (event: React.KeyboardEvent<E>) => void;
   };
@@ -88,7 +88,7 @@ export function useKeyboardFocusEventHandler<
   decrementKeys = ["ArrowUp"],
   jumpToFirstKeys = ["Home"],
   jumpToLastKeys = ["End"],
-}: IKeyboardFocusOptions<E, H>): IKeyboardFocusResult<E, H> {
+}: KeyboardFocusOptions<E, H>): KeyboardFocusResult<E, H> {
   const keys = useMemoizedFocusKeys({
     incrementKeys,
     decrementKeys,

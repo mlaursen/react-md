@@ -6,14 +6,12 @@ import React, {
   createElement,
 } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
-export interface IAppBarProps
-  extends HTMLAttributes<HTMLDivElement>,
-    IWithForwardedRef<HTMLDivElement> {
+export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The component for the `AppBar` to render as. This should normally either just be the default
    * `"header"` or a `"div"` component.
@@ -67,17 +65,20 @@ export interface IAppBarProps
   inheritColor?: boolean;
 }
 
-interface IAppBarDefaultProps {
-  component: ReactType;
-  fixed: boolean;
-  fixedPosition: AppBarPosition;
-  fixedElevation: boolean;
-  dense: boolean;
-  prominent: boolean;
-  theme: AppBarTheme;
-}
-
-type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
+type WithRef = WithForwardedRef<HTMLDivElement>;
+type DefaultProps = Required<
+  Pick<
+    AppBarProps,
+    | "component"
+    | "fixed"
+    | "fixedPosition"
+    | "fixedElevation"
+    | "dense"
+    | "prominent"
+    | "theme"
+  >
+>;
+type WithDefaultProps = AppBarProps & DefaultProps & WithRef;
 
 /**
  * This component is used to create a top-level app bar in your application that can be used to contain
@@ -89,7 +90,7 @@ type AppBarWithDefaultProps = IAppBarProps & IAppBarDefaultProps;
  * TODO: Add links to offset class names and mixins once I figure out how to generate my documentation
  * site from Typedoc.
  */
-const AppBar: FunctionComponent<IAppBarProps> = providedProps => {
+const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
   const {
     component,
     className,
@@ -103,7 +104,7 @@ const AppBar: FunctionComponent<IAppBarProps> = providedProps => {
     theme,
     inheritColor,
     ...props
-  } = providedProps as AppBarWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const inherit =
     typeof inheritColor === "boolean"
@@ -134,7 +135,7 @@ const AppBar: FunctionComponent<IAppBarProps> = providedProps => {
   );
 };
 
-const defaultProps: IAppBarDefaultProps = {
+const defaultProps: DefaultProps = {
   component: "header",
   fixed: false,
   fixedPosition: "top",
@@ -174,6 +175,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, IAppBarProps>((props, ref) => (
+export default forwardRef<HTMLDivElement, AppBarProps>((props, ref) => (
   <AppBar {...props} forwardedRef={ref} />
 ));

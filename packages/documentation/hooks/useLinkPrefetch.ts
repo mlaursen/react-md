@@ -58,7 +58,7 @@ export function useLinkKeyboardPrefetch(
   );
 }
 
-export interface ILinkPrefetchConfig
+export interface LinkPrefetchConfig
   extends Pick<HTMLAttributes<HTMLAnchorElement>, "onMouseEnter" | "onKeyUp"> {
   href: string;
   disabled?: boolean;
@@ -69,7 +69,7 @@ export default function useLinkPrefetch({
   disabled = false,
   onMouseEnter,
   onKeyUp,
-}: ILinkPrefetchConfig) {
+}: LinkPrefetchConfig) {
   return {
     onMouseEnter: useLinkMousePrefetch(href, disabled, onMouseEnter),
     onKeyUp: useLinkKeyboardPrefetch(href, disabled, onKeyUp),

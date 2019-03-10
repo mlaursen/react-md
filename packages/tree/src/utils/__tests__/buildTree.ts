@@ -1,14 +1,14 @@
-import { IFlattenedTree } from "../../types";
+import { FlattenedTree } from "../../types";
 import buildTree from "../buildTree";
 
 describe("buildTree", () => {
   it("should return undefined if the tree is empty", () => {
-    const data: IFlattenedTree = {};
+    const data: FlattenedTree = {};
     expect(buildTree(null, Object.values(data))).toBeUndefined();
   });
 
   it("should be able to create a tree with a single item", () => {
-    const data: IFlattenedTree = {
+    const data: FlattenedTree = {
       "item-1": {
         itemId: "item-1",
         parentId: null,
@@ -22,7 +22,7 @@ describe("buildTree", () => {
   });
 
   it("should be able to create a tree with multiple items on the root level", () => {
-    const data: IFlattenedTree = {
+    const data: FlattenedTree = {
       "item-1": {
         itemId: "item-1",
         parentId: null,
@@ -61,7 +61,7 @@ describe("buildTree", () => {
   });
 
   it("should be able to create a tree with multiple levels", () => {
-    const data: IFlattenedTree = {
+    const data: FlattenedTree = {
       "item-1": {
         itemId: "item-1",
         parentId: null,

@@ -2,8 +2,8 @@ import { Maybe } from "../types.d";
 import findSizingContainer from "./findSizingContainer";
 import {
   HorizontalPosition,
-  IPositionOptions,
-  IPositioningStyle,
+  PositionOptions,
+  PositioningStyle,
   VerticalPosition,
 } from "./types.d";
 
@@ -85,8 +85,8 @@ function createTransformOrigin(
 export default function positionRelativeTo(
   fixedTo: Maybe<HTMLElement>,
   target: Maybe<HTMLElement>,
-  options: IPositionOptions = {}
-): IPositioningStyle | undefined {
+  options: PositionOptions = {}
+): PositioningStyle | undefined {
   fixedTo = findSizingContainer(fixedTo);
   if (!fixedTo) {
     return undefined;
@@ -125,7 +125,7 @@ export default function positionRelativeTo(
   // first pass at generating the styles. this makes it a bit "smoother" if animating a new element
   // into the DOM since you can get a close position for the first render and get it correct in the
   // second.
-  const style: IPositioningStyle = {
+  const style: PositioningStyle = {
     top,
     left,
     position: "fixed",

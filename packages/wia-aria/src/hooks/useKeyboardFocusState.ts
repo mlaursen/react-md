@@ -1,11 +1,11 @@
 import { Reducer, useReducer } from "react";
-import { KeyboardFocusedId, IKeyboardFocusState } from "../types.d";
+import { KeyboardFocusedId, KeyboardFocusState } from "../types.d";
 
 export const ENABLE_KEYBOARD_MODE = "ENABLE_KEYBOARD_MODE";
-export interface IEnableKeyboardModeAction {
+export interface EnableKeyboardModeAction {
   type: typeof ENABLE_KEYBOARD_MODE;
 }
-export type EnableKeyboardModeActionCreator = () => IEnableKeyboardModeAction;
+export type EnableKeyboardModeActionCreator = () => EnableKeyboardModeAction;
 
 /**
  * The action creator to enable keyboard mode. This is normally called immediately
@@ -16,10 +16,10 @@ export const enableKeyboardMode: EnableKeyboardModeActionCreator = () => ({
 });
 
 export const DISABLE_KEYBOARD_MODE = "DISABLE_KEYBOARD_MODE";
-export interface IDisableKeyboardModeAction {
+export interface DisableKeyboardModeAction {
   type: typeof DISABLE_KEYBOARD_MODE;
 }
-export type DisableKeyboardModeActionCreator = () => IDisableKeyboardModeAction;
+export type DisableKeyboardModeActionCreator = () => DisableKeyboardModeAction;
 
 /**
  * The action creator to disable keyboard mode. This is normally called immediately
@@ -30,13 +30,13 @@ export const disableKeyboardMode: DisableKeyboardModeActionCreator = () => ({
 });
 
 export const SET_FOCUSED_ID = "SET_FOCUSED_ID";
-export interface ISetFocusedIdAction {
+export interface SetFocusedIdAction {
   type: typeof SET_FOCUSED_ID;
   focusedId: KeyboardFocusedId;
 }
 export type SetFocusedIdActionCreator = (
   focusedId: KeyboardFocusedId
-) => ISetFocusedIdAction;
+) => SetFocusedIdAction;
 
 /**
  * An action creator to just update the focused id. The main purpose of this functionality
@@ -54,8 +54,8 @@ export const setFocusedId: SetFocusedIdActionCreator = (
 });
 
 type KeyboardFocusReducer = Reducer<
-  IKeyboardFocusState,
-  IEnableKeyboardModeAction | IDisableKeyboardModeAction | ISetFocusedIdAction
+  KeyboardFocusState,
+  EnableKeyboardModeAction | DisableKeyboardModeAction | SetFocusedIdAction
 >;
 
 export const reducer: KeyboardFocusReducer = (state, action) => {

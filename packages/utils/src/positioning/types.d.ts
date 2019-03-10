@@ -13,7 +13,7 @@ export type VerticalPosition =
   | "overlap"
   | "auto";
 
-export interface IPositionOptions {
+export interface PositionOptions {
   /**
    * An optional horizontal position to use. This defaults to automagically determining the
    * "best" location based on the `fixedTo` element's position within the viewport and the
@@ -96,7 +96,7 @@ export interface IPositionOptions {
   verticalSpacing?: string;
 }
 
-export interface IPositioningStyle {
+export interface PositioningStyle {
   top: number | string;
   left: number | string;
   position: "fixed";

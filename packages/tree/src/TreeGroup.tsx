@@ -1,19 +1,19 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import { Collapse, ICollapseProps } from "@react-md/transition";
-import { List, IListProps } from "@react-md/list";
+import { Collapse, CollapseProps } from "@react-md/transition";
+import { List, ListProps } from "@react-md/list";
 import { Omit } from "@react-md/utils";
 
-export interface ITreeGroupProps
-  extends IListProps,
-    Omit<ICollapseProps, "children"> {}
+export interface TreeGroupProps
+  extends ListProps,
+    Omit<CollapseProps, "children"> {}
 
 /**
  * The `TreeGroup` component is used to render a tree item's nested items whenever the `expanded`
  * prop is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view
  * and will fully unrender when the `expanded` prop is `false`.
  */
-const TreeGroup: FunctionComponent<ITreeGroupProps> = ({
+const TreeGroup: FunctionComponent<TreeGroupProps> = ({
   style,
   className,
   collapsed,

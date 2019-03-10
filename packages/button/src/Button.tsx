@@ -6,14 +6,14 @@ import React, {
 } from "react";
 
 import {
-  IInteractionStatesOptions,
+  InteractionStatesOptions,
   FixColorPollution,
   useInteractionStates,
 } from "@react-md/states";
-import { IWithForwardedRef, Omit } from "@react-md/utils";
+import { WithForwardedRef, Omit } from "@react-md/utils";
 
 import {
-  IButtonThemeProps,
+  ButtonThemeProps,
   ButtonTheme,
   ButtonThemeType,
   ButtonType,
@@ -25,11 +25,11 @@ import buttonThemeClassNames from "./buttonThemeClassNames";
  * usecase might be creating a functionality wrapper for the `Button` component, but passes
  * all props down as normal.
  */
-export interface IButtonProps
-  extends IButtonThemeProps,
+export interface ButtonProps
+  extends ButtonThemeProps,
     Omit<HTMLAttributes<HTMLButtonElement>, "id">,
-    Omit<IInteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick">,
-    IWithForwardedRef<HTMLButtonElement> {
+    Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick">,
+    WithForwardedRef<HTMLButtonElement> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
    * accidentally submitted when this prop is omitted since buttons without a type attribute work
@@ -46,20 +46,13 @@ export interface IButtonProps
   children?: ReactNode;
 }
 
-/**
- * All the declared default props for the `Button` component. This probably won't be used in many
- * places.
- */
-export interface IButtonDefaultProps {
-  disabled: boolean;
-  theme: ButtonTheme;
-  themeType: ButtonThemeType;
-  buttonType: ButtonType;
-}
+type WithRef = WithForwardedRef<HTMLButtonElement>;
+type DefaultProps = Required<
+  Pick<ButtonProps, "disabled" | "theme" | "themeType" | "buttonType">
+>;
+type ButtonWithDefaultProps = ButtonProps & DefaultProps;
 
-export type ButtonWithDefaultProps = IButtonProps & IButtonDefaultProps;
-
-const Button: FunctionComponent<IButtonProps> = providedProps => {
+const Button: FunctionComponent<ButtonProps> = providedProps => {
   const {
     theme,
     themeType,
@@ -95,7 +88,7 @@ const Button: FunctionComponent<IButtonProps> = providedProps => {
   );
 };
 
-const defaultProps: IButtonDefaultProps = {
+const defaultProps: DefaultProps = {
   disabled: false,
   theme: "primary",
   themeType: "flat",
@@ -130,6 +123,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => (
+export default forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => (
   <Button {...props} forwardedRef={ref} />
 ));

@@ -1,30 +1,27 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IListSubheaderProps
-  extends HTMLAttributes<HTMLLIElement>,
-    IWithForwardedRef<HTMLLIElement> {
+export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
   /**
    * Boolean if the subheader should be inset to match the ListItem text keyline
    */
   inset?: boolean;
 }
 
-interface IListSubheaderDefaultProps {
-  inset: boolean;
-}
+type WithRef = WithForwardedRef<HTMLLIElement>;
+type DefaultProps = Required<Pick<ListSubheaderProps, "inset">>;
+type WithDefaultProps = ListSubheaderProps & DefaultProps & WithRef;
 
-type ListSubheaderWithDefaultProps = IListSubheaderProps &
-  IListSubheaderDefaultProps;
-
-const ListSubheader: FunctionComponent<IListSubheaderProps> = providedProps => {
+const ListSubheader: FunctionComponent<
+  ListSubheaderProps & WithRef
+> = providedProps => {
   const {
     className,
     forwardedRef,
     inset,
     ...props
-  } = providedProps as ListSubheaderWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return (
     <li
@@ -41,7 +38,7 @@ const ListSubheader: FunctionComponent<IListSubheaderProps> = providedProps => {
   );
 };
 
-const defaultProps: IListSubheaderDefaultProps = {
+const defaultProps: DefaultProps = {
   inset: false,
 };
 
@@ -63,6 +60,6 @@ if (process.env.NODE_ENV !== "production") {
     };
   }
 }
-export default forwardRef<HTMLLIElement, IListSubheaderProps>((props, ref) => (
+export default forwardRef<HTMLLIElement, ListSubheaderProps>((props, ref) => (
   <ListSubheader {...props} forwardedRef={ref} />
 ));

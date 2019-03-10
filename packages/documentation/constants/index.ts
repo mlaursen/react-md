@@ -18,11 +18,11 @@ export const PACKAGES = Object.entries(packageJson.dependencies)
     version: version.replace(/([^0-9])+/, ""),
   }));
 
-interface IPackagesRecord {
+interface PackagesRecord {
   [key: string]: string;
 }
 
-export const PACKAGES_RECORD: IPackagesRecord = PACKAGES.reduce(
+export const PACKAGES_RECORD: PackagesRecord = PACKAGES.reduce(
   (obj, { name, version }) => ({
     ...obj,
     [name]: version,

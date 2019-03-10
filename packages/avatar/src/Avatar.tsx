@@ -1,10 +1,8 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IAvatarProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    IWithForwardedRef<HTMLSpanElement> {
+export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * This should be an image `src` attribute to create an avatar from. When
    * this prop is defined, you should not add any children to the avatar as
@@ -28,11 +26,9 @@ export interface IAvatarProps
   color?: string;
 }
 
-interface IAvatarDefaultProps {
-  alt: string;
-}
-
-type AvatarWithDefaultProps = IAvatarProps & IAvatarDefaultProps;
+type WithRef = WithForwardedRef<HTMLSpanElement>;
+type DefaultProps = Required<Pick<AvatarProps, "alt">>;
+type AvatarWithDefaultProps = AvatarProps & DefaultProps & WithRef;
 
 /**
  * An `Avatar` is generally used to represent objects or people within your app.
@@ -40,7 +36,7 @@ type AvatarWithDefaultProps = IAvatarProps & IAvatarDefaultProps;
  * the avatar is not an image, different themes can be applied to make the avatar
  * more unique.
  */
-const Avatar: FunctionComponent<IAvatarProps> = providedProps => {
+const Avatar: FunctionComponent<AvatarProps & WithRef> = providedProps => {
   const {
     className,
     children,
@@ -81,7 +77,7 @@ const Avatar: FunctionComponent<IAvatarProps> = providedProps => {
   );
 };
 
-const defaultProps: IAvatarDefaultProps = {
+const defaultProps: DefaultProps = {
   alt: "avatar",
 };
 
@@ -89,6 +85,7 @@ Avatar.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
   Avatar.displayName = "Avatar";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -104,6 +101,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLSpanElement, IAvatarProps>((props, ref) => (
+export default forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => (
   <Avatar {...props} forwardedRef={ref} />
 ));

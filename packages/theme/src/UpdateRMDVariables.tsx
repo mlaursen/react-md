@@ -1,20 +1,20 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 
-import UpdateVariables, { IUpdateVariablesProps } from "./UpdateVariables";
+import UpdateVariables, { UpdateVariablesProps } from "./UpdateVariables";
 import {
   fixVariables,
-  ICSSVariable,
+  CSSVariable,
   resolveVariables,
   toCSSVariableName,
 } from "./utils";
 
-const UpdateRMDVariables: FunctionComponent<IUpdateVariablesProps> = ({
+const UpdateRMDVariables: FunctionComponent<UpdateVariablesProps> = ({
   variables: propVariables,
   ...props
 }) => {
   if (process.env.NODE_ENV !== "production") {
     const renderRef = useRef(false);
-    const [rmdVariables, setRMDVariables] = useState<ICSSVariable[]>([]);
+    const [rmdVariables, setRMDVariables] = useState<CSSVariable[]>([]);
     if (!renderRef.current) {
       renderRef.current = true;
 

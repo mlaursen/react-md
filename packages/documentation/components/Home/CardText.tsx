@@ -1,11 +1,11 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { Text } from "@react-md/typography";
 
-export interface ICardTextProps {
+export interface CardTextProps {
   children: ReactNode;
 }
 
-const CardText: FunctionComponent<ICardTextProps> = ({ children }) => (
+const CardText: FunctionComponent<CardTextProps> = ({ children }) => (
   <Text className="home__card-text">{children}</Text>
 );
 

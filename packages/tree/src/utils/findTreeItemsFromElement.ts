@@ -1,4 +1,4 @@
-import { IAnyRecord, TreeDataList, TreeElement } from "../types.d";
+import { AnyRecord, TreeDataList, TreeElement } from "../types.d";
 import findTreeItemElement from "./findTreeItemElement";
 import findTreeItemDataList from "./findTreeItemDataList";
 import buildItemIndexStack from "./buildItemIndexStack";
@@ -47,7 +47,7 @@ import buildItemIndexStack from "./buildItemIndexStack";
  * // ]
  * ```
  */
-export default function findTreeItemsFromElement<D = IAnyRecord>(
+export default function findTreeItemsFromElement<D = AnyRecord>(
   element: HTMLElement,
   data: TreeDataList<D>,
   treeEl: TreeElement | null

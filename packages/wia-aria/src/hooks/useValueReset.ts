@@ -1,6 +1,6 @@
 import { MutableRefObject, useCallback, useRef } from "react";
 
-interface IValueReset<T> {
+interface ValueReset<T> {
   valueRef: MutableRefObject<T>;
   setValue: (nextValue: T) => void;
   resetValue: () => void;
@@ -20,7 +20,7 @@ interface IValueReset<T> {
 export default function useValueReset<T>(
   defaultValue: T,
   resetTime: number = 500
-): IValueReset<T> {
+): ValueReset<T> {
   const valueRef = useRef(defaultValue);
   const timeout = useRef<number | undefined>(undefined);
 

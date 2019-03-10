@@ -5,7 +5,7 @@ export { default as UpdateRMDVariables } from "./UpdateRMDVariables";
 export * from "./UpdateRMDVariables";
 
 export {
-  ICSSVariable,
+  CSSVariable,
   createCSSVariablesStyle,
   useDocumentCSSVariables,
 } from "./utils";

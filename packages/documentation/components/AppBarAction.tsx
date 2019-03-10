@@ -1,16 +1,16 @@
 import React, { FunctionComponent } from "react";
 import {
   AppBarAction as RMDAction,
-  IAppBarActionProps,
+  AppBarActionProps as RMDActionProps,
 } from "@react-md/app-bar";
-import { Tooltipped, ITooltippedProps } from "@react-md/tooltip";
-import { IRenderConditionalPortalProps } from "@react-md/portal";
+import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import { Omit } from "@react-md/utils";
 
 interface AppBarActionProps
-  extends Omit<IAppBarActionProps, "id">,
-    IRenderConditionalPortalProps,
-    Pick<ITooltippedProps, "id" | "tooltip"> {
+  extends Omit<RMDActionProps, "id">,
+    RenderConditionalPortalProps,
+    Pick<TooltippedProps, "id" | "tooltip"> {
   tooltipClassName?: string;
 }
 

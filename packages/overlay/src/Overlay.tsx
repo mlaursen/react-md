@@ -1,15 +1,25 @@
-import React, { Component, HTMLAttributes } from "react";
+import React, {
+  Component,
+  HTMLAttributes,
+  FunctionComponent,
+  useState,
+  forwardRef,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 import cn from "classnames";
 import { Transition } from "react-transition-group";
 import {
   ConditionalPortal,
-  IRenderConditionalPortalProps,
+  RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { ITransitionProps, TransitionTimeout } from "@react-md/transition";
+import { TransitionProps, TransitionTimeout } from "@react-md/transition";
+import { WithForwardedRef } from "@react-md/utils";
 
-export interface IOverlayProps
-  extends ITransitionProps,
-    IRenderConditionalPortalProps,
+export interface OverlayProps
+  extends TransitionProps,
+    RenderConditionalPortalProps,
     HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the overlay will
@@ -24,142 +34,132 @@ export interface IOverlayProps
   onRequestClose: () => void;
 }
 
-export interface IOverlayDefaultProps {
-  timeout: TransitionTimeout;
-  mountOnEnter: boolean;
-  unmountOnExit: boolean;
-}
-
-export type OverlayWithDefaultProps = IOverlayProps & IOverlayDefaultProps;
-
-export interface IOverlayState {
-  active: boolean;
-}
+type WithRef = WithForwardedRef<HTMLSpanElement>;
+type DefaultProps = Required<
+  Pick<OverlayProps, "timeout" | "mountOnEnter" | "unmountOnExit">
+>;
+type WithDefaultProps = OverlayProps & DefaultProps & WithRef;
 
 /**
  * The `Overlay` component is a simple component used to render a full page overlay in the page with
  * an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
  * different area within your app, you should use the `OverlayPortal` component instead.
  */
-export default class Overlay extends Component<IOverlayProps, IOverlayState> {
-  public static defaultProps: IOverlayDefaultProps = {
-    timeout: 150,
-    mountOnEnter: true,
-    unmountOnExit: true,
+const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
+  const {
+    className,
+    visible,
+    timeout,
+    children,
+    mountOnEnter,
+    unmountOnExit,
+    onRequestClose,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    portal,
+    portalInto,
+    portalIntoId,
+    forwardedRef,
+    ...props
+  } = providedProps as WithDefaultProps;
+
+  const [active, setActive] = useState(visible);
+  const triggers = useRef({ onEnter, onExit });
+  useEffect(() => {
+    triggers.current = { onEnter, onExit };
+  });
+
+  const frame = useRef<number | undefined>(undefined);
+  const clear = () => {
+    if (typeof frame.current === "number") {
+      window.cancelAnimationFrame(frame.current);
+    }
   };
+  const stagger = (enabled: boolean) => {
+    clear();
+    frame.current = window.requestAnimationFrame(() => {
+      frame.current = undefined;
+      setActive(enabled);
+    });
+  };
+  useEffect(() => clear, []);
 
-  private frame?: number;
-  constructor(props: IOverlayProps) {
-    super(props);
+  const activate = useCallback((node: HTMLElement, isEntering: boolean) => {
+    if (triggers.current.onEnter) {
+      triggers.current.onEnter(node, isEntering);
+    }
 
-    this.state = { active: props.visible };
-  }
+    stagger(true);
+  }, []);
 
-  public componentWillUnmount() {
-    this.clear();
-  }
+  const deactivate = useCallback((node: HTMLElement) => {
+    if (triggers.current.onExit) {
+      triggers.current.onExit(node);
+    }
 
-  public render() {
-    const { active } = this.state;
-    const {
-      className,
-      visible,
-      timeout,
-      children,
-      mountOnEnter,
-      unmountOnExit,
-      onRequestClose,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      portal,
-      portalInto,
-      portalIntoId,
-      ...props
-    } = this.props as OverlayWithDefaultProps;
+    stagger(false);
+  }, []);
 
-    return (
-      <ConditionalPortal
-        visible={visible || active}
-        portal={portal}
-        portalInto={portalInto}
-        portalIntoId={portalIntoId}
+  return (
+    <ConditionalPortal
+      visible={visible || active}
+      portal={portal}
+      portalInto={portalInto}
+      portalIntoId={portalIntoId}
+    >
+      <Transition
+        in={visible}
+        timeout={timeout}
+        mountOnEnter={mountOnEnter}
+        unmountOnExit={unmountOnExit}
+        onEnter={activate}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={deactivate}
+        onExiting={onExiting}
+        onExited={onExited}
+        appear={true}
       >
-        <Transition
-          in={visible}
-          timeout={timeout}
-          mountOnEnter={mountOnEnter}
-          unmountOnExit={unmountOnExit}
-          onEnter={this.activate}
-          onEntering={onEntering}
-          onEntered={onEntered}
-          onExit={this.deactivate}
-          onExiting={onExiting}
-          onExited={onExited}
-          appear={true}
+        <span
+          {...props}
+          ref={forwardedRef}
+          className={cn(
+            "rmd-overlay",
+            {
+              "rmd-overlay--active": active,
+            },
+            className
+          )}
+          onClick={onRequestClose}
         >
-          <span
-            className={cn(
-              "rmd-overlay",
-              {
-                "rmd-overlay--active": active,
-              },
-              className
-            )}
-            {...props}
-            onClick={onRequestClose}
-          >
-            {children}
-          </span>
-        </Transition>
-      </ConditionalPortal>
-    );
-  }
+          {children}
+        </span>
+      </Transition>
+    </ConditionalPortal>
+  );
+};
 
-  private clear = () => {
-    if (this.frame) {
-      window.cancelAnimationFrame(this.frame);
-      this.frame = undefined;
-    }
-  };
+const defaultProps: DefaultProps = {
+  timeout: 150,
+  mountOnEnter: true,
+  unmountOnExit: true,
+};
 
-  private activate = (node: HTMLElement, isEntering: boolean) => {
-    if (this.props.onEnter) {
-      this.props.onEnter(node, isEntering);
-    }
-
-    this.clear();
-    this.frame = window.requestAnimationFrame(() => {
-      this.frame = undefined;
-      this.setState({ active: true });
-    });
-  };
-
-  private deactivate = (node: HTMLElement) => {
-    if (this.props.onExit) {
-      this.props.onExit(node);
-    }
-
-    this.clear();
-    this.frame = window.requestAnimationFrame(() => {
-      this.frame = undefined;
-      this.setState({ active: false });
-    });
-  };
-}
+Overlay.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  Overlay.displayName = "Overlay";
+
   let PropTypes: any = null;
   try {
     PropTypes = require("prop-types");
   } catch (e) {}
 
   if (PropTypes) {
-    // ignoring since it would have to be instantiated as a static property on the class
-    // @ts-ignore
     Overlay.propTypes = {
       timeout: PropTypes.oneOfType([
         PropTypes.number,
@@ -188,3 +188,7 @@ if (process.env.NODE_ENV !== "production") {
     };
   }
 }
+
+export default forwardRef<HTMLSpanElement, OverlayProps>((props, ref) => (
+  <Overlay {...props} forwardedRef={ref} />
+));

@@ -2,7 +2,7 @@
 
 import commander from "commander";
 
-import { default as build, IBuildConfig } from "./build";
+import { default as build, BuildConfig } from "./build";
 import clean from "./clean";
 import test from "./test";
 import prepublish from "./prepublish";
@@ -43,7 +43,7 @@ commander
     "--gzip-size",
     "Always logs the gzip size instead of requiring the verbose flag to be enabled."
   )
-  .action((_, program: IBuildConfig) => {
+  .action((_, program: BuildConfig) => {
     build(program);
   });
 

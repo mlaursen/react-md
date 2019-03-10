@@ -1,7 +1,7 @@
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
-  ITransitionProps,
+  TransitionProps,
 } from "@react-md/transition";
 import { HTMLAttributes, CSSProperties } from "react";
 import { Maybe } from "@react-md/utils";
@@ -31,7 +31,7 @@ export type MergableTooltipHandlers<E extends HTMLElement = HTMLElement> = Pick<
   | "onContextMenu"
 >;
 
-export interface ITooltipSpacingConfig {
+export interface TooltipSpacingConfig {
   dense: boolean;
   spacing: number | string;
   denseSpacing: number | string;
@@ -39,16 +39,16 @@ export interface ITooltipSpacingConfig {
   vhMargin: number;
 }
 
-export interface IDeterminePositionConfig extends ITooltipSpacingConfig {
+export interface DeterminePositionConfig extends TooltipSpacingConfig {
   id: string;
   position: TooltipPositionOrAuto;
 }
 
 export type TooltipEventType = "mouse" | "touch" | "keyboard";
 
-export interface ITooltipConfig<E extends HTMLElement = HTMLElement>
+export interface TooltipConfig<E extends HTMLElement = HTMLElement>
   extends MergableTooltipHandlers<E>,
-    ITooltipSpacingConfig {
+    TooltipSpacingConfig {
   id: string;
   style?: CSSProperties;
   portal: boolean;
@@ -56,9 +56,4 @@ export interface ITooltipConfig<E extends HTMLElement = HTMLElement>
   hoverDelay: number;
   defaultVisible: boolean;
   defaultPosition: TooltipPositionOrAuto;
-}
-
-export interface ITooltipState {
-  visible: boolean;
-  position: TooltipPosition;
 }

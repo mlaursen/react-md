@@ -5,16 +5,16 @@ import { Omit } from "@react-md/utils";
 import { GITHUB_URL } from "constants/index";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 
-import LinkButton, { ILinkButtonProps } from "./LinkButton";
+import LinkButton, { LinkButtonProps } from "./LinkButton";
 
 import "./github-link.scss";
-export interface IGithubLinkProps extends Omit<ILinkButtonProps, "href"> {
+export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
   href?: string;
 }
 
-type WithDefaultProps = IGithubLinkProps & { href: string };
+type WithDefaultProps = GithubLinkProps & { href: string };
 
-const GithubLink: FunctionComponent<IGithubLinkProps> = ({
+const GithubLink: FunctionComponent<GithubLinkProps> = ({
   className,
   ...props
 }) => (

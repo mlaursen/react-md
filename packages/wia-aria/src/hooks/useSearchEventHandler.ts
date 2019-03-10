@@ -6,7 +6,7 @@ import getCurrentFocusedIndex from "../utils/getCurrentFocusedIndex";
 import getFocusableElements from "../utils/getFocusableElements";
 import useValueReset from "./useValueReset";
 
-export interface ISearchEffectOptions<
+export interface SearchEffectOptions<
   E extends HTMLElement = HTMLElement,
   H = {}
 > extends WithEventHandlers<E, H>, Required<WithKeyboardFocusCallback> {
@@ -58,7 +58,7 @@ export default function useSearchEventHandler<
   getValues = els => els.map(el => extractTextContent(el)),
   findMatchIndex = defaultFindMatchIndex,
   isSelfMatchable = true,
-}: ISearchEffectOptions<E, H>) {
+}: SearchEffectOptions<E, H>) {
   const { valueRef, setValue } = useValueReset("", searchResetTime);
 
   // storing the event handlers in a ref so the callback doesn't need to be

@@ -3,13 +3,13 @@ import Link, { LinkProps } from "next/link";
 import { Omit } from "@react-md/utils";
 import useLinkPrefetch from "hooks/useLinkPrefetch";
 
-export interface ILinkUnstyledProps
+export interface LinkUnstyledProps
   extends Omit<LinkProps, "children" | "passHref" | "onError">,
     Omit<HTMLAttributes<HTMLAnchorElement>, "onError"> {
   href: string;
 }
 
-const LinkUnstyled: FunctionComponent<ILinkUnstyledProps> = ({
+const LinkUnstyled: FunctionComponent<LinkUnstyledProps> = ({
   prefetch,
   shallow,
   scroll,

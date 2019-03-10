@@ -9,20 +9,20 @@ export type TransitionExitHandler = (node: HTMLElement) => void;
 export type TransitionTimeout = number | { enter?: number; exit?: number };
 
 // this was copied over just for simplicity and not requiring adding react-transition-group for this
-export interface ICSSTransitionClassNames {
-  appear?: string;
-  appearActive?: string;
-  enter?: string;
-  enterActive?: string;
-  enterDone?: string;
-  exit?: string;
-  exitActive?: string;
-  exitDone?: string;
-}
+export type CSSTransitionClassNames =
+  | string
+  | {
+      appear?: string;
+      appearActive?: string;
+      enter?: string;
+      enterActive?: string;
+      enterDone?: string;
+      exit?: string;
+      exitActive?: string;
+      exitDone?: string;
+    };
 
-export type CSSTransitionClassNames = string | ICSSTransitionClassNames;
-
-export interface ITransitionProps {
+export interface TransitionProps {
   /**
    * The transition duration for the overlay. This should not be changed unless you manually change the
    * `$rmd-overlay-transition-duration` scss variable.
@@ -74,7 +74,7 @@ export interface ITransitionProps {
   onExited?: TransitionExitHandler;
 }
 
-export interface ICSSTransitionProps extends ITransitionProps {
+export interface CSSTransitionProps extends TransitionProps {
   /**
    * The class names to use during the different parts of the animation.
    */

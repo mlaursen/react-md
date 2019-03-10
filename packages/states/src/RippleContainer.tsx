@@ -8,10 +8,10 @@ import {
 
 import Ripple from "./Ripple";
 import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
-import { IRipple, RippleSetter } from "./types.d";
+import { RippleConfig, RippleSetter } from "./types.d";
 
-export interface IRippleContainerProps {
-  ripples: IRipple[];
+export interface RippleContainerProps {
+  ripples: RippleConfig[];
   setRipples: RippleSetter;
   className?: string;
   rippleClassName?: string;
@@ -19,7 +19,7 @@ export interface IRippleContainerProps {
   classNames?: CSSTransitionClassNames;
 }
 
-const RippleContainer: FunctionComponent<IRippleContainerProps> = ({
+const RippleContainer: FunctionComponent<RippleContainerProps> = ({
   ripples,
   setRipples,
   className,

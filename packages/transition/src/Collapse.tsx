@@ -6,12 +6,12 @@ import {
   RefObject,
 } from "react";
 import {
-  ICollapseOptions,
+  CollapseOptions,
   useCollapseTransition,
   useCollapsibleElement,
 } from "./hooks/useCollapseTransition";
 
-export interface ICollapseChildrenProps {
+export interface CollapseChildrenProps {
   /**
    * A conditional style that should be applied to the child element. This will be provided if one
    * or more of the `minHeight`, `minPaddingBottom`, or `minPaddingTop` props are greater than 0 OR
@@ -33,25 +33,27 @@ export interface ICollapseChildrenProps {
 }
 
 export type CollapseChildrenRenderer = (
-  props: ICollapseChildrenProps
+  props: CollapseChildrenProps
 ) => ReactElement<any>;
 
-export interface ICollapseProps extends ICollapseOptions {
+export interface CollapseProps extends CollapseOptions {
   children: ReactElement<any> | CollapseChildrenRenderer;
 }
 
-interface ICollapseDefaultProps {
-  minHeight: number;
-  minPaddingBottom: number;
-  minPaddingTop: number;
-  enterDuration: number;
-  leaveDuration: number;
-}
+type DefaultProps = Required<
+  Pick<
+    CollapseProps,
+    | "minHeight"
+    | "minPaddingBottom"
+    | "minPaddingTop"
+    | "enterDuration"
+    | "leaveDuration"
+  >
+>;
+type WithDefaultProps = CollapseProps & DefaultProps;
 
-export type CollapseWithDefaultProps = ICollapseProps & ICollapseDefaultProps;
-
-const Collapse: FunctionComponent<ICollapseProps> = providedProps => {
-  const { children, ...props } = providedProps as CollapseWithDefaultProps;
+const Collapse: FunctionComponent<CollapseProps> = providedProps => {
+  const { children, ...props } = providedProps as WithDefaultProps;
   if (isValidElement(children)) {
     return useCollapsibleElement(children, props);
   }
@@ -64,7 +66,7 @@ const Collapse: FunctionComponent<ICollapseProps> = providedProps => {
   return (children as CollapseChildrenRenderer)(transitionProps);
 };
 
-const defaultProps: ICollapseDefaultProps = {
+const defaultProps: DefaultProps = {
   minHeight: 0,
   minPaddingBottom: 0,
   minPaddingTop: 0,
@@ -75,6 +77,8 @@ const defaultProps: ICollapseDefaultProps = {
 Collapse.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
+  Collapse.displayName = "Collapse";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");

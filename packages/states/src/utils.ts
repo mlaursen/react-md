@@ -1,6 +1,6 @@
 import { getRippleRadius } from "./getRippleRadius";
 import {
-  IRipple,
+  RippleConfig,
   RippleEventType,
   RippleableEvent,
   RippleSetter,
@@ -71,7 +71,7 @@ export function createRipple(
   event: RippleableEvent,
   type: RippleEventType,
   element: HTMLElement
-): IRipple {
+): RippleConfig {
   const { offsetWidth, offsetHeight } = element;
 
   let x: number;
@@ -136,7 +136,7 @@ export function createRipple(
  */
 export function addRippleFromEvent(
   event: RippleableEvent,
-  ripples: IRipple[],
+  ripples: RippleConfig[],
   setRipples: RippleSetter,
   disableSpacebarClick: boolean = false
 ) {
@@ -181,9 +181,7 @@ export function addRippleFromEvent(
   }
 
   const ripple = createRipple(event, type, element);
-  setRipples(prevRipples =>
-    prevRipples.filter(ripple => ripple.type === type).concat(ripple)
-  );
+  setRipples(ripples.filter(ripple => ripple.type === type).concat(ripple));
 }
 
 /**
@@ -193,7 +191,7 @@ export function addRippleFromEvent(
  */
 export function disableRippleHolding(
   event: RippleableEvent,
-  ripples: IRipple[],
+  ripples: RippleConfig[],
   setRipples: RippleSetter
 ) {
   const type = getRippleTriggerType(event);
@@ -222,7 +220,7 @@ export function disableRippleHolding(
  */
 export function triggerRippleExitAnimation(
   startTime: number,
-  ripples: IRipple[],
+  ripples: RippleConfig[],
   setRipples: RippleSetter
 ) {
   const i = ripples.findIndex(
@@ -270,7 +268,7 @@ export function triggerRippleExitAnimations(
  */
 export function removeRippleByStartTime(
   startTime: number,
-  ripples: IRipple[],
+  ripples: RippleConfig[],
   setRipples: RippleSetter
 ) {
   const i = ripples.findIndex(ripple => ripple.startTime === startTime);

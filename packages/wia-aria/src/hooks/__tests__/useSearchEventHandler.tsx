@@ -8,7 +8,7 @@ import {
 } from "react-testing-library";
 
 import useSearchEventHandler, {
-  ISearchEffectOptions,
+  SearchEffectOptions,
 } from "../useSearchEventHandler";
 
 jest.useFakeTimers();
@@ -45,7 +45,7 @@ describe("useSearchEventHandler", () => {
         items?: ReactNode[];
         onKeyDown?: HTMLAttributes<HTMLElement>["onKeyDown"];
       } & Pick<
-        ISearchEffectOptions,
+        SearchEffectOptions,
         "searchResetTime" | "getValues" | "findMatchIndex"
       >
     >;

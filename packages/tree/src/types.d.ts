@@ -5,7 +5,7 @@ import {
   ReactNode,
   Ref,
 } from "react";
-import { IListProps } from "@react-md/list";
+import { ListProps } from "@react-md/list";
 import { Omit } from "@react-md/utils";
 
 /**
@@ -18,7 +18,7 @@ export type TreeElement = HTMLUListElement | HTMLOListElement;
  * It's really just a fallback until I can figure out better typing, but it is also a
  * "reasonable" default.
  */
-export interface IAnyRecord {
+export interface AnyRecord {
   [key: string]: any;
 }
 
@@ -29,7 +29,7 @@ export interface IAnyRecord {
  * a specific type or interface can be supplied to get better typing. This allows for "easier"
  * data manipulation and rendering if you want to have a single lookup instead of multiple.
  */
-export type TreeData<D = IAnyRecord> = D & {
+export type TreeData<D = AnyRecord> = D & {
   itemId: string;
   childItems?: TreeData<D>[];
 };
@@ -37,28 +37,28 @@ export type TreeData<D = IAnyRecord> = D & {
 /**
  * A simple list version of the TreeData.
  */
-export type TreeDataList<D = IAnyRecord> = TreeData<D>[];
+export type TreeDataList<D = AnyRecord> = TreeData<D>[];
 
 /**
  * This is an expansion of the TreeData to work when it is in a "flattened" structure instead of
  * a list. It has the same base requirements as the TreeData, but also requires an additional
  * `parentId` to help link nodes together.
  */
-export type FlattenedTreeData<D = IAnyRecord> = TreeData<D> & {
+export type FlattenedTreeData<D = AnyRecord> = TreeData<D> & {
   parentId: string | null;
 };
 
 /**
  * This is the flattened tree view's data structure.
  */
-export interface IFlattenedTree<D = IAnyRecord> {
+export interface FlattenedTree<D = AnyRecord> {
   [key: string]: FlattenedTreeData<D>;
 }
 
 /**
  * A simple list version of the FlattenedTreeData.
  */
-export type FlattenedTreeDataList<D = IAnyRecord> = FlattenedTreeData<D>[];
+export type FlattenedTreeDataList<D = AnyRecord> = FlattenedTreeData<D>[];
 
 /**
  * The sort function for a flattened tree view.
@@ -71,7 +71,7 @@ export type FlattenedTreeSort<D> = (
  * The "base" injected props for the Tree's renderer. These props should be applied to your
  * list element to get the desired keyboard behavior and rendering.
  */
-export interface ITreeInjectedProps
+export interface TreeInjectedProps
   extends Omit<HTMLAttributes<TreeElement>, "onClick" | "onKeyDown">,
     Required<Pick<HTMLAttributes<TreeElement>, "onClick" | "onKeyDown">> {
   id: string;
@@ -82,7 +82,7 @@ export interface ITreeInjectedProps
   children: ReactNode;
 }
 
-export interface ITreeBaseProps<D = IAnyRecord> {
+export interface TreeBaseProps<D = AnyRecord> {
   /**
    * The id for the tree view. This is required as it will be passes as a prop to the `treeViewRenderer`.
    */
@@ -199,7 +199,7 @@ export interface ITreeBaseProps<D = IAnyRecord> {
   onMultipleItemSelection?: MultipleIdHandler;
 }
 
-export interface ITreeIdsProps {
+export interface TreeIdsProps {
   /**
    * A list of tree item ids that are currently selected.
    */
@@ -211,11 +211,11 @@ export interface ITreeIdsProps {
   expandedIds: string[];
 }
 
-export interface ITreeProps<D = IAnyRecord>
-  extends Omit<IListProps, "id">,
-    Omit<ITreeBaseProps<D>, "onItemSelect" | "onItemExpandedChange">,
-    Required<Pick<ITreeBaseProps<D>, "onItemSelect" | "onItemExpandedChange">>,
-    ITreeIdsProps {
+export interface TreeProps<D = AnyRecord>
+  extends Omit<ListProps, "id">,
+    Omit<TreeBaseProps<D>, "onItemSelect" | "onItemExpandedChange">,
+    Required<Pick<TreeBaseProps<D>, "onItemSelect" | "onItemExpandedChange">>,
+    TreeIdsProps {
   /**
    * The id for the tree. This is required for a11y.
    */
@@ -257,10 +257,10 @@ export interface ITreeProps<D = IAnyRecord>
  * just so it isn't super hard to get something rendered.
  */
 export type TreeRenderer = (
-  props: ITreeInjectedProps & IListProps & { ref?: Ref<TreeElement> }
+  props: TreeInjectedProps & ListProps & { ref?: Ref<TreeElement> }
 ) => ReactElement<any> | null;
 
-export interface ITreeItemA11yProps {
+export interface TreeItemA11yProps {
   /**
    * An optional aria-expanded attribute to apply to the tree item. This should only be provided
    * as the value "true" and only if it is currently expanded. It should be `undefined` otherwise.
@@ -299,7 +299,7 @@ export interface ITreeItemA11yProps {
 /**
  * The "base" injected props for the TreeItem's renderer.
  */
-export interface ITreeItemInjectedProps {
+export interface TreeItemInjectedProps {
   /**
    * The id for the tree item. This is injected and required for a11y since the tree component handles
    * keyboard movement with the `aria-activedescendant` tag.
@@ -347,10 +347,10 @@ export interface ITreeItemInjectedProps {
   renderChildItems?: () => ReactNode;
 }
 
-export type TreeItemRenderer<D = IAnyRecord> = (
-  props: ITreeItemInjectedProps & { key: string },
+export type TreeItemRenderer<D = AnyRecord> = (
+  props: TreeItemInjectedProps & { key: string },
   item: TreeData<D>,
-  treeProps: ITreeProps<D>
+  treeProps: TreeProps<D>
 ) => ReactNode;
 
 export type OnItemSelect = (itemId: string) => void;

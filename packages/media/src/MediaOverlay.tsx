@@ -1,6 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { IWithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 /**
  * The overlay positions relative to the `MediaContainer` component.
@@ -16,27 +16,25 @@ export type MediaOverlayPosition =
   | "center"
   | "absolute-center";
 
-export interface IMediaOverlayProps
-  extends HTMLAttributes<HTMLDivElement>,
-    IWithForwardedRef<HTMLDivElement> {
+export interface MediaOverlayProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The position of the overlay within the `MediaContainer`.
    */
   position?: MediaOverlayPosition;
 }
 
-interface IMediaOverlayDefaultProps {
-  position: MediaOverlayPosition;
-}
-
-type WithDefaultProps = IMediaOverlayProps & IMediaOverlayDefaultProps;
+type WithRef = WithForwardedRef<HTMLDivElement>;
+type DefaultProps = Required<Pick<MediaOverlayProps, "position">>;
+type WithDefaultProps = MediaOverlayProps & DefaultProps & WithRef;
 
 /**
  * The `MediaOverlay` component is used to create an overlay over specific media
  * items within the `MediaContainer` component. You will need to apply most of
  * your own styles as this is really just used for positioning.
  */
-const MediaOverlay: FunctionComponent<IMediaOverlayProps> = providedProps => {
+const MediaOverlay: FunctionComponent<
+  MediaOverlayProps & WithRef
+> = providedProps => {
   const {
     className,
     children,
@@ -56,7 +54,7 @@ const MediaOverlay: FunctionComponent<IMediaOverlayProps> = providedProps => {
   );
 };
 
-const defaultProps: IMediaOverlayDefaultProps = {
+const defaultProps: DefaultProps = {
   position: "bottom",
 };
 
@@ -85,6 +83,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, IMediaOverlayProps>((props, ref) => (
+export default forwardRef<HTMLDivElement, MediaOverlayProps>((props, ref) => (
   <MediaOverlay {...props} forwardedRef={ref} />
 ));

@@ -1,12 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-import { SVGIcon, ISVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const SentimentDissatisfiedSVGIcon: React.FunctionComponent<
-  ISVGIconProps
-> = props => (
+const SentimentDissatisfiedSVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
     <circle cx="15.5" cy="9.5" r="1.5" />
     <circle cx="8.5" cy="9.5" r="1.5" />

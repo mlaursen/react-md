@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { IDelegatedEventHandler, delegateEvent } from "../delegateEvent";
+import { DelegatedEventHandler, delegateEvent } from "../delegateEvent";
 
-export interface IEventListenerOptions extends AddEventListenerOptions {
+export interface EventListenerOptions extends AddEventListenerOptions {
   enabled?: boolean;
   delegate?: boolean;
   throttle?: boolean;
@@ -19,7 +19,7 @@ export interface IEventListenerOptions extends AddEventListenerOptions {
 export default function useEventListener<K extends keyof WindowEventMap>(
   type: K,
   handler: (event: WindowEventMap[K]) => void,
-  options: IEventListenerOptions = {}
+  options: EventListenerOptions = {}
 ) {
   const {
     shouldUpdate = [],
@@ -33,7 +33,7 @@ export default function useEventListener<K extends keyof WindowEventMap>(
       return;
     }
 
-    let eventHandler: IDelegatedEventHandler;
+    let eventHandler: DelegatedEventHandler;
     if (throttle || delegate) {
       eventHandler = delegateEvent(type, window, throttle, opts);
       eventHandler.add(handler);

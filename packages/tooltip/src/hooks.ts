@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Maybe, positionRelativeTo, useEventListener } from "@react-md/utils";
 import { useKeyboardFocused } from "@react-md/wia-aria";
-import { ITooltipConfig, TooltipEventType } from "./types.d";
+import { TooltipConfig, TooltipEventType } from "./types.d";
 import {
   createPositionOptions,
   determineBestPosition,
   getSpacing,
 } from "./utils";
 
-export function useTooltipState(config: ITooltipConfig) {
+export function useTooltipState(config: TooltipConfig) {
   const {
     id,
     dense,

@@ -1,41 +1,15 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ReactNode,
-  CSSProperties,
-  Fragment,
-  createElement,
-  ComponentType,
-  ReactType,
-} from "react";
+import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
 import cn from "classnames";
-import {
-  getListItemHeight,
-  IListItemProps,
-  ListItemChildren,
-  SimpleListItem,
-  IListItemChildrenProps,
-  ISimpleListItemProps,
-} from "@react-md/list";
-import {
-  IInteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
-import { IWithForwardedRef, Omit } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-import { ITreeItemA11yProps } from "./types.d";
+export interface BaseTreeItemProps extends HTMLAttributes<HTMLLIElement> {}
 
-export interface IBaseTreeItemProps
-  extends IWithForwardedRef<HTMLLIElement>,
-    HTMLAttributes<HTMLLIElement> {}
-
-interface IBaseTreeItemDefaultProps {
+interface DefaultProps {
   role: "none" | "treeitem";
 }
 
-type BaseTreeItemWithDefaultProps = IBaseTreeItemProps &
-  IBaseTreeItemDefaultProps;
+type WithRef = WithForwardedRef<HTMLLIElement>;
+type WithDefaultProps = BaseTreeItemProps & DefaultProps & WithRef;
 
 /**
  * The `BaseTreeItem` component is an extremely simple component that just renders an `li` element
@@ -45,13 +19,15 @@ type BaseTreeItemWithDefaultProps = IBaseTreeItemProps &
  * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
  * of this one.
  */
-const BaseTreeItem: FunctionComponent<IBaseTreeItemProps> = providedProps => {
+const BaseTreeItem: FunctionComponent<
+  BaseTreeItemProps & WithRef
+> = providedProps => {
   const {
     className,
     children,
     forwardedRef,
     ...props
-  } = providedProps as BaseTreeItemWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   return (
     <li
@@ -64,7 +40,7 @@ const BaseTreeItem: FunctionComponent<IBaseTreeItemProps> = providedProps => {
   );
 };
 
-const defaultProps: IBaseTreeItemDefaultProps = {
+const defaultProps: DefaultProps = {
   role: "treeitem",
 };
 
@@ -94,6 +70,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLLIElement, IBaseTreeItemProps>((props, ref) => (
+export default forwardRef<HTMLLIElement, BaseTreeItemProps>((props, ref) => (
   <BaseTreeItem {...props} forwardedRef={ref} />
 ));

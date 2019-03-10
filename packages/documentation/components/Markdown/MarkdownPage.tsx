@@ -2,13 +2,13 @@ import React, { FunctionComponent } from "react";
 import cn from "classnames";
 import { TextContainer } from "@react-md/typography";
 
-import Markdown, { IMarkdownProps } from "./Markdown";
+import Markdown, { MarkdownProps } from "./Markdown";
 
-export interface IMarkdownPageProps extends IMarkdownProps {
+export interface MarkdownPageProps extends MarkdownProps {
   containerClassName?: string;
 }
 
-const MarkdownPage: FunctionComponent<IMarkdownPageProps> = ({
+const MarkdownPage: FunctionComponent<MarkdownPageProps> = ({
   containerClassName,
   children,
   ...props

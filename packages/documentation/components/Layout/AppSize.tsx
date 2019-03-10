@@ -1,7 +1,11 @@
 import React, { createContext, FunctionComponent, useContext } from "react";
-import { useEventListener, useAppSize, IAppSize } from "@react-md/utils";
+import {
+  useEventListener,
+  useAppSize,
+  AppSize as AppSizeType,
+} from "@react-md/utils";
 
-const AppSizeContext = createContext<IAppSize>({
+const AppSizeContext = createContext<AppSizeType>({
   isPhone: false,
   isTablet: false,
   isDesktop: true,

@@ -2,7 +2,6 @@ import React, {
   forwardRef,
   FunctionComponent,
   HTMLAttributes,
-  ReactElement,
   ReactNode,
   useEffect,
   useState,
@@ -10,6 +9,7 @@ import React, {
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { List } from "@react-md/list";
+import { WithForwardedRef } from "@react-md/utils";
 import {
   KeyboardFocusChangeEvent,
   useKeyboardFocusEventHandler,
@@ -17,43 +17,38 @@ import {
 } from "@react-md/wia-aria";
 
 import TreeItem from "./TreeItem";
-import {
-  GetItemId,
-  ITreeProps,
-  TreeDataList,
-  TreeElement,
-  TreeItemRenderer,
-  TreeRenderer,
-} from "./types.d";
+import { TreeDataList, TreeElement, TreeProps } from "./types.d";
 import findTreeItemElement from "./utils/findTreeItemElement";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 
-interface ITreeDefaultProps {
-  searchResetTime: number;
-  multiSelect: boolean;
-  selectOnFocus: boolean;
-  disableGroupSelection: boolean;
-  disableSiblingExpansion: boolean;
-  expanderIcon: ReactElement<any>;
-  treeRenderer: TreeRenderer;
-  itemRenderer: TreeItemRenderer;
-  getItemId: GetItemId;
-  defaultActiveId: string;
-}
-
-type TreeWithDefaultProps = ITreeProps & ITreeDefaultProps;
-
-export interface ITreeWithLabel extends ITreeProps {
+export interface TreeWithLabel extends TreeProps {
   "aria-label": string;
 }
 
-export interface ITreeWithLabelledBy extends ITreeProps {
+export interface TreeWithLabelledBy extends TreeProps {
   "aria-labelledby": string;
 }
 
-type TreeProps = ITreeWithLabel | ITreeWithLabelledBy;
+type WithRef = WithForwardedRef<TreeElement>;
+type DefaultProps = Required<
+  Pick<
+    TreeProps,
+    | "searchResetTime"
+    | "multiSelect"
+    | "selectOnFocus"
+    | "disableGroupSelection"
+    | "disableSiblingExpansion"
+    | "expanderIcon"
+    | "treeRenderer"
+    | "itemRenderer"
+    | "getItemId"
+    | "defaultActiveId"
+  >
+>;
+type TreeWithDefaultProps = TreeProps & DefaultProps & WithRef;
+type RequiredTreeProps = TreeWithLabel | TreeWithLabelledBy;
 
-const Tree: FunctionComponent<TreeProps> = providedProps => {
+const Tree: FunctionComponent<RequiredTreeProps & WithRef> = providedProps => {
   const {
     className,
     onKeyDown,
@@ -270,7 +265,7 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
   });
 };
 
-const defaultProps: ITreeDefaultProps = {
+const defaultProps: DefaultProps = {
   defaultActiveId: "",
   searchResetTime: 500,
   multiSelect: false,
@@ -303,6 +298,6 @@ const defaultProps: ITreeDefaultProps = {
 
 Tree.defaultProps = defaultProps;
 
-export default forwardRef<TreeElement, TreeProps>((props, ref) => (
+export default forwardRef<TreeElement, RequiredTreeProps>((props, ref) => (
   <Tree {...props} forwardedRef={ref} />
 ));

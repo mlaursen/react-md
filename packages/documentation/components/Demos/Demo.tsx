@@ -11,7 +11,7 @@ import GithubLink from "components/GithubLink";
 import "./demo.scss";
 import FullPageDemo from "./FullPageDemo";
 
-export interface IDemoProps {
+export interface DemoProps {
   id: string;
   name: string;
   description: string;
@@ -24,9 +24,9 @@ export interface IDemoProps {
   children: ReactNode;
 }
 
-type WithDefaultProps = IDemoProps & Required<Pick<IDemoProps, "fullPage">>;
+type WithDefaultProps = DemoProps & Required<Pick<DemoProps, "fullPage">>;
 
-const Demo: FunctionComponent<IDemoProps> = props => {
+const Demo: FunctionComponent<DemoProps> = props => {
   const {
     id,
     name,

@@ -3,16 +3,14 @@ import cn from "classnames";
 import toId from "utils/toId";
 import Demo from "./Demo";
 
-export interface IDemo {
-  name: string;
-  description: string;
-  fullPage?: boolean;
-  children: ReactNode;
-}
-
-export interface IDemoPageProps {
+export interface DemoPageProps {
   className?: string;
-  demos: IDemo[];
+  demos: {
+    name: string;
+    description: string;
+    fullPage?: boolean;
+    children: ReactNode;
+  }[];
 }
 
 interface Result {
@@ -20,7 +18,7 @@ interface Result {
   children: ReactNode[];
 }
 
-const DemoPage: FunctionComponent<IDemoPageProps> = ({ demos, className }) => {
+const DemoPage: FunctionComponent<DemoPageProps> = ({ demos, className }) => {
   const { ids, children } = demos.reduce<Result>(
     (result, demo, index) => {
       const { name, description, fullPage, children } = demo;

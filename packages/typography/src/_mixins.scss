@@ -210,6 +210,24 @@
     &--no-margin {
       margin: 0;
     }
+
+    @each $weight in $rmd-typography-default-font-weights {
+      &--#{$weight} {
+        font-weight: map-get($rmd-typography-font-weights, $weight);
+      }
+    }
+
+    @each $align in (left center right) {
+      &--#{$align} {
+        text-align: $align;
+      }
+    }
+
+    @each $decoration in (underline overline line-through) {
+      &--#{$decoration} {
+        text-decoration: $decoration;
+      }
+    }
   }
 
   .rmd-text-container {

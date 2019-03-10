@@ -7,10 +7,10 @@ import {
   TransitionTimeout,
 } from "@react-md/transition";
 
-import { IRipple } from "./types.d";
+import { RippleConfig } from "./types.d";
 import { useStatesContext } from "./hooks";
 
-export interface IRippleProps extends Pick<IRipple, "style" | "exiting"> {
+export interface RippleProps extends Pick<RippleConfig, "style" | "exiting"> {
   className?: string;
   classNames?: CSSTransitionClassNames;
   timeout?: TransitionTimeout;
@@ -18,7 +18,7 @@ export interface IRippleProps extends Pick<IRipple, "style" | "exiting"> {
   onExited: () => void;
 }
 
-const Ripple: FunctionComponent<IRippleProps> = props => {
+const Ripple: FunctionComponent<RippleProps> = props => {
   const {
     style,
     className,
