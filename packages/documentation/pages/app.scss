@@ -7,6 +7,7 @@
 @import '@react-md/icon/dist/mixins';
 @import '@react-md/link/dist/mixins';
 @import '@react-md/list/dist/mixins';
+@import '@react-md/media/dist/mixins';
 @import '@react-md/overlay/dist/mixins';
 @import '@react-md/sheet/dist/mixins';
 @import '@react-md/states/dist/mixins';
@@ -17,12 +18,12 @@
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
+@include react-md-utils;
+
 // styles that must *always* be included.
 @import 'components/Code/code';
 @import 'components/Heading/heading';
 @import 'components/blockquote';
-
-@include react-md-utils;
 
 @media (min-width: 1025px) {
   body {
@@ -33,6 +34,10 @@
     @include rmd-avatar-theme-update-var(font-size, rmd-icon-theme-var(dense-size));
     @include rmd-avatar-theme-update-var(size, 2rem);
   }
+}
+
+.page-container {
+  padding: 0 4rem;
 }
 
 .cross-fade {

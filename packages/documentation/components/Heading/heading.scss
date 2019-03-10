@@ -8,6 +8,10 @@
   padding-left: 1em;
   position: relative;
 
+  &--no-margin-top {
+    margin-top: 0;
+  }
+
   &:hover .heading__link {
     opacity: 1;
   }

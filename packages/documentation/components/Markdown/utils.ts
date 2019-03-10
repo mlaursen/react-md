@@ -47,7 +47,7 @@ renderer.code = (rawCode, language, escaped) => {
   const code = highlightCode(rawCode, language);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
-  if (lines > 3) {
+  if (lines > 3 && !/markup/.test(language) && language) {
     lineNumbers = Array.from(new Array(lines))
       .map((_, i) => `<span class="code__line-number">${i + 1}</span>`)
       .join("");
@@ -130,7 +130,7 @@ const transforms: Transform[] = [
   // #including-styles -> [including styles](/getting-started/installation#including-styles)
   md =>
     md.replace(
-      /(!=\()#including-styles/g,
+      /#including-styles(?![)-])/g,
       "[including styles](/getting-started/installation#including-styles)"
     ),
   md => md.replace(/(#)(\d+)/g, `[$1$2](${GITHUB_URL}/issues/$2)`),

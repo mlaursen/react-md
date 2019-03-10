@@ -28,7 +28,7 @@ const Layout: FunctionComponent<ILayoutProps> = ({
       <KeyboardTracker>
         <StatesConfig preventColorPollution>
           <Header title={title} />
-          <nav className="layout__nav">
+          <nav id="main-navigation" className="layout__nav">
             <NavigationTree />
           </nav>
           <TransitionGroup

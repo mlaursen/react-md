@@ -22,4 +22,8 @@
   p {
     margin: 0;
   }
+
+  code {
+    @include rmd-theme(color, text-primary-on-background);
+  }
 }

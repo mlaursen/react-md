@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactNode } from "react";
+import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
 
@@ -15,6 +16,7 @@ export interface IDemoProps {
   name: string;
   description: string;
   fullPage?: boolean;
+  index: number;
 
   /**
    * This should be the demo content to display.
@@ -31,10 +33,12 @@ const Demo: FunctionComponent<IDemoProps> = props => {
     description,
     fullPage,
     children,
+    index,
   } = props as WithDefaultProps;
+
   return (
-    <section id={id} className="demo">
-      <Heading level={2} id={`${id}-title`}>
+    <section id={id} className={cn("demo", { "demo--spaced": index > 0 })}>
+      <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
         {name}
       </Heading>
       <Markdown id={`${id}-description`} className="demo__description">

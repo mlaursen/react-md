@@ -137,6 +137,10 @@
     @include react-md-list;
   }
 
+  @if mixin-exists(react-md-media) {
+    @include react-md-media;
+  }
+
   @if mixin-exists(react-md-overlay) {
     @include react-md-overlay;
   }

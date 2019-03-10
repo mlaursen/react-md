@@ -3,8 +3,6 @@ import cn from "classnames";
 import toId from "utils/toId";
 import Demo from "./Demo";
 
-import "./demos-page.scss";
-
 export interface IDemo {
   name: string;
   description: string;
@@ -24,7 +22,7 @@ interface Result {
 
 const DemoPage: FunctionComponent<IDemoPageProps> = ({ demos, className }) => {
   const { ids, children } = demos.reduce<Result>(
-    (result, demo) => {
+    (result, demo, index) => {
       const { name, description, fullPage, children } = demo;
       const id = toId(name);
       result.ids.push(id);
@@ -35,6 +33,7 @@ const DemoPage: FunctionComponent<IDemoPageProps> = ({ demos, className }) => {
           name={name}
           description={description}
           fullPage={fullPage}
+          index={index}
         >
           {children}
         </Demo>
