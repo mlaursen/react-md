@@ -1,58 +1,27 @@
 ## @react-md/theme
 
-Create a theme for react-md.
-
-- [Installation](#installation) - How to install this package and use the
-  provided mixins
-- [Defining a theme](#defining-a-theme) - Creating a theme for your application
+This package is used for creating a color theme within react-md. It also exposes
+some utility Components and mixins for updating the theme at runtime through CSS
+Variables.
 
 ### Installation
 
-This package can be installed through `npm` if you want access to all the scss
+This package can be installed through `npm` if you want access to all the SCSS
 variables, functions, and mixins or by using the pre-compiled bundles hosted on
 [https://unpkg.com](https://unpkg.com).
-
-#### With npm
 
 ```sh
 $ npm install --save @react-md/theme
 ```
 
-Please read the full
-[installation guide](https://mlaursen.github.io/react-md/installation) for more
-details on how to include this package in your app in different configurations
-(such as `create-react-app`).
+### Including Styles
 
-#### From [https://unpkg.com](https://unpkg.com)
-
-If you just want import the pre-compiled css files into your project, you can
-use the version that are hosted on [https://unpkg.com](https://unpkg.com) or
-directly from the `node_modules` directory. All you need to do is update your
-main `index.html` file to include a new `<link>` tag that points to the hosted
-file.
-
-For a development version that is unminified and includes a source map, you can
-add the following `<link>` tag:
-
-```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@react-md/theme/dist/theme.css"
-/>
-```
-
-For a production version, use:
-
-```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@react-md/theme/dist/theme.min.css"
-/>
-```
+> If you have not done so already, please read the main documentation about
+> #including-styles before continuing.
 
 ### Defining a theme
 
-Starting with v2.0.0, react-md will use both scss and css variables to define
+Starting with v2.0.0, react-md will use both SCSS and css variables to define
 themes. This allows you to use the nice dynamic themes with css variables in
 evergreen browsers but also support the older ones if needed.
 
@@ -72,7 +41,7 @@ importing the main `theme` file.
 #### With a material design color
 
 If the theme colors are one of the material design colors, you can use some of
-the existing scss variables to update your theme.
+the existing SCSS variables to update your theme.
 
 Example:
 
@@ -82,7 +51,7 @@ Example:
 $rmd-theme-primary: $rmd-blue-500;
 $rmd-theme-secondary: $rmd-orange-a-400;
 
-@import "@react-md/theme/dist/theme";
+@import "@react-md/theme/dist/mixins";
 
 @include react-md-theme;
 ```
@@ -103,7 +72,7 @@ $my-awesome-company-orange: #e67e22;
 $rmd-theme-primary: $my-awesome-company-purple;
 $rmd-theme-secondary: $my-awesome-company-orange;
 
-@import "@react-md/theme/dist/theme";
+@import "@react-md/theme/dist/mixins";
 
 @include react-md-theme;
 ```
@@ -122,14 +91,14 @@ So here is an example of enabling the same dark theme as before.
 $rmd-theme-background: #303030;
 $rmd-theme-surface: $md-grey-800;
 
-@import "@react-md/theme/dist/theme";
+@import "@react-md/theme/dist/mixins";
 
 @include react-md-theme;
 ```
 
 ### Recommended base project files
 
-To make including custom styles easy, it is generally recommended to have the
+To make including custom styles easy, it might be helpful to create the
 following files in your project:
 
 - `src/_branding.scss` - A file that contains the color variables for your
@@ -162,7 +131,7 @@ $rmd-theme-secondary: $my-awesome-company-orange;
 @import "my-awesome-company-branding";
 @import "my-awesome-company-react-md-overrides";
 
-@import "@react-md/theme/dist/theme";
+@import "@react-md/theme/dist/mixins";
 ```
 
 ```scss

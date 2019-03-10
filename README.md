@@ -5,15 +5,15 @@ Create an accessible React application with the
 
 - [Creating a new project](#creating-a-new-project) - How to create a new
   project with react-md
-- [Updating an existing project](https://mlaursen.github.io/react-md/getting-started/updating-an-existing-project) -
+- [Updating an existing project](https://react-md.dev/getting-started/updating-an-existing-project) -
   How to add react-md into an existing project
-- [Installing packages](https://mlaursen.github.io/react-md/getting-started/installation) -
-  How to install related components and packages within react-md for building
-  your application
-- [Implementing a theme](https://mlaursen.github.io/react-md/implementing-a-theme) -
-  How to implement a different theme for your React application
-- [Full documentation](https://mlaursen.github.io/react-md/) - All the remaining
-  documentation along with every single guide, API Reference, and examples
+- [Installing packages](https://react-md.dev/getting-started/installation) - How
+  to install related components and packages within react-md for building your
+  application
+- [Implementing a theme](https://react-md.dev/implementing-a-theme) - How to
+  implement a different theme for your React application
+- [Full documentation](https://react-md.dev) - All the remaining documentation
+  along with every single guide, API Reference, and examples
 
 ### Highlights/Features
 

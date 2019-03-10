@@ -173,6 +173,7 @@ createRoute("/", "Home", { icon: <HomeSVGIcon /> });
 createRoute("/getting-started", "Getting Started", {
   icon: <InfoOutlineSVGIcon />,
   childRoutes: [
+    { path: "/quick-start", children: "Quick Start" },
     { path: "/installation", children: "Installation" },
     {
       path: "/updating-create-react-app",
@@ -199,6 +200,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("link"),
     createPackageRoute("list"),
     createPackageRoute("material-icons"),
+    createPackageRoute("media"),
     createPackageRoute("portal"),
     createPackageRoute("sheet"),
     createPackageRoute("states"),

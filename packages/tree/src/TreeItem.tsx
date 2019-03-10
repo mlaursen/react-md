@@ -108,6 +108,7 @@ const TreeItem: FunctionComponent<ITreeItemProps> = providedProps => {
   const { ripples, setRipples, handlers } = useRipplesState({
     disabled,
     handlers: isLink ? props : undefined,
+    disableSpacebarClick: isLink,
   });
 
   const Content = contentComponent as ReactType;
@@ -119,7 +120,7 @@ const TreeItem: FunctionComponent<ITreeItemProps> = providedProps => {
     "aria-disabled": disabled ? "true" : undefined,
     id,
     role: "treeitem",
-    tabIndex: selected ? 0 : -1,
+    tabIndex: -1,
     ...handlers,
   };
   const noA11y = { role: "none" };

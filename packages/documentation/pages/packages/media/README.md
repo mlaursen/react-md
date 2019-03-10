@@ -1,28 +1,21 @@
-# @react-md/media
+## @react-md/media
 
 This package is used for adding responsive media within your page such as images
 and videos. Unlike other `react-md` pacakges, this package does not include a
 theme.
 
-## Installation
+### Installation
 
 ```sh
 $ npm install --save @react-md/media
 ```
 
-<!-- DOCS_REMOVE -->
+### Including Styles
 
-## Documentation
+> If you have not done so already, please read the main documentation about
+> #including-styles before continuing.
 
-You should check out the
-[full documentation](https://react-md.dev/packages/media) for live examples and
-more customization information, but an example usage is shown below.
-
-<!-- DOCS_REMOVE_END -->
-
-<!-- INCLUDING_STYLES -->
-
-## Usage
+### Usage
 
 ```tsx
 import React from "react";

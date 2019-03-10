@@ -4,6 +4,10 @@
 
 - [Installing Packages](#installing-packages)
   - [Installing with npm](#installing-with-npm)
+  - [Package File Structure](#package-file-structure)
+    - [File Structure Exceptions](#file-structure-exceptions)
+      - [Package is not styleable](#package-is-not-styleable)
+    - [Package does not generate styles](#package-does-not-generate-styles)
   - [Using UMD Bundles](#using-umd-bundles)
 - [Updating Sass Include Paths](#updating-sass-include-paths)
   - [Updating webpack config](#updating-webpack-config)
@@ -18,8 +22,6 @@
 <!-- tocstop -->
 
 ## Installing Packages
-
-@react-md @material-icons
 
 `react-md` has been split up into separate scoped packages to hopefully make it
 easy to pick and choose what functionality you want to bring into your app
@@ -62,11 +64,95 @@ It is recommended to install each sub-package as needed as you will probably get
 better code splitting, but it is more convenient to only have one package to
 extract components and styles from.
 
+### Package File Structure
+
+To make things easy and consistent, every package will follow the same published
+structure:
+
+```
+PACKAGE_NAME
+├── dist
+│   ├── ... OTHER SCSS IN PACKAGE ...
+│   ├── _functions.scss
+│   ├── _helpers.scss
+│   ├── _mixins.scss
+│   ├── _variables.scss
+│   ├── css
+│   │   ├── PACKAGE_NAME.css
+│   │   ├── PACKAGE_NAME.css.map
+│   │   └── PACKAGE_NAME.min.css
+│   ├── scssVariables.d.ts
+│   ├── scssVariables.js
+│   ├── scssVariables.js.map
+│   ├── styles.scss
+│   └── umd
+│       ├── PACKAGE_NAME.development.js
+│       ├── PACKAGE_NAME.development.js.map
+│       └── PACKAGE_NAME.production.min.js
+├── es
+│   ├── ... OTHER FILES IN PACKAGE ...
+│   ├── index.js
+│   └── index.js.map
+├── lib
+│   ├── ... OTHER FILES IN PACKAGE ...
+│   ├── index.js
+│   └── index.js.map
+└── types
+│   ├── ... OTHER FILES IN PACKAGE ...
+    └── index.d.ts
+```
+
+As you can see, the `dist` folder is used to store:
+
+- the `*.scss` files in the package
+- the pre-compiled css files for development and production,
+- a generated file of all the scss variables in the package with their default
+  values so you have access to them for CSS-in-JS solutions if that's your thing
+- the UMD build
+
+#### File Structure Exceptions
+
+If a package is an excemption to the rule listed above, the installation
+documentation for that package will include a note as a reminder.
+
+##### Package is not styleable
+
+When the package does not export any styles, the `dist` folder will no longer
+contain any `*.scss`, `*.css`, or `scssVariables*` files.
+
+#### Package does not generate styles
+
+If the package only exports utility `functions`, `mixins`, and `variables` in
+scss, the `dist` folder will not contain the `*.css` files.
+
 ### Using UMD Bundles
 
-The main `react-md` package also exports a UMD bundle as well as 255
-pre-compiled themes for quick setup. You can use these bundles by updating your
-`index.html` file as follows:
+Every package within `react-md` will also create a UMD bundle as well as
+pre-compiled css both for development and production with the default theme. The
+UMD and css can be included in your `index.html` file as follows:
+
+```diff
+ <!DOCTYPE html>
+ <html>
+   <head>
++    <link rel="stylesheet" href="https://unpkg.com/@react-md/theme@/dist/css/theme.css">
++    <!-- or you can use the minified version for production -->
++    <link rel="stylesheet" href="https://unpkg.com/@react-md/theme@/dist/css/theme.min.css">
+   </head>
+   <body>
+     <div id="root"></div>
+     <script src="https://unpkg.com/react/dist/react.min.js"></script>
+     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
++    <script src="https://unpkg.com/react-md@/dist/react-md.min.js"></script>
++    <script src="https://unpkg.com/@react-md/material-icons@/dist/react-md.min.js"></script>
+   </body>
+ </html>
+```
+
+The main `react-md` package will create a UMD containing every package within
+`react-md` excluding @material-icons as well as 255 pre-compiled themes for a
+quick setup. You can use these bundles by updating your `index.html` file as
+follows:
 
 ```diff
  <!DOCTYPE html>

@@ -102,6 +102,14 @@ const Tree: FunctionComponent<TreeProps> = providedProps => {
 
         const { key } = event;
         if (key === " " || key === "Enter") {
+          if (key === " ") {
+            event.preventDefault();
+
+            if (!multiSelect) {
+              return;
+            }
+          }
+
           const active = document.getElementById(activeId);
           if (active) {
             active.click();

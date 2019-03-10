@@ -104,7 +104,6 @@ function startVariablesWatcher(filePath) {
 chokidar
   .watch('packages/*/src/**/*.scss', { ignored: IGNORED })
   .on('add', filePath => {
-    copyScssFile(filePath);
     if (
       isVariablesWatched &&
       isNotLazy &&
@@ -115,6 +114,11 @@ chokidar
   })
   .on('change', filePath => {
     copyScssFile(filePath);
+    if (filePath.endsWith('mixins.scss')) {
+      // doesn't seem to update in documentation site otherwise..
+      copyScssFile(filePath.replace('mixin', 'variable'));
+    }
+
     if (isVariablesWatched && filePath.includes('variables.scss')) {
       startVariablesWatcher(filePath);
     }
@@ -125,9 +129,7 @@ chokidar
   });
 
 chokidar
-  .watch('packages/*/src/**/*.d.ts', {
-    ignored: IGNORED,
-  })
+  .watch('packages/*/src/**/*.d.ts', { ignored: IGNORED })
   .on('add', copyDefinitionFile)
   .on('change', copyDefinitionFile)
   .on('ready', () => {
@@ -149,6 +151,28 @@ chokidar
   .on('ready', () => {
     console.log('Watching for typescript changes...');
     isNoLongerLazy = true;
+  });
+
+chokidar
+  .watch(['packages/*/README.md'], { ignored: IGNORED })
+  .on('change', () => {
+    const cwd = path.join(process.cwd(), 'packages', 'documentation');
+    spawnSync('yarn', ['copy-readmes'], { stdio: 'inherit', cwd });
+    console.log('Done!');
+  })
+  .on('ready', () => {
+    console.log('Watching package readme changes...');
+  });
+
+chokidar
+  .watch(['packages/documentation/components/**/*.md'], { ignored: IGNORED })
+  .on('change', () => {
+    const cwd = path.join(process.cwd(), 'packages', 'documentation');
+    spawnSync('yarn', ['add-toc'], { stdio: 'inherit', cwd });
+    console.log('Done!');
+  })
+  .on('ready', () => {
+    console.log('Watching documentation markdown toc changes...');
   });
 
 process.on('exit', () => {
