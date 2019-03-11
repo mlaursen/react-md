@@ -1,3 +1,8 @@
+export interface UnitToNumberOptions {
+  unit: number | string;
+  element?: Element;
+  fontSizeFallback?: number;
+}
 /**
  * A simple util to convert a unit that is using `px`, `em`, or `rem` to a number so that
  * calculations can be made on that unit.
@@ -6,14 +11,20 @@
  * @param element - The element to use to use for calculating `em`
  * @return the unit as a number
  */
-export default function unitToNumber(
-  unit: number | string,
-  element?: Element
-): number {
+export default function unitToNumber({
+  unit,
+  fontSizeFallback = 16,
+  element,
+}: UnitToNumberOptions): number {
   if (typeof unit === "number") {
     return unit;
-  } else if (/px$/.test(unit)) {
-    return parseFloat(unit);
+  }
+
+  const parsed = parseFloat(unit);
+  if (/px$/.test(unit)) {
+    return parsed;
+  } else if (typeof document === "undefined") {
+    return parsed * fontSizeFallback;
   }
 
   const rem = /rem$/.test(unit);
@@ -22,7 +33,9 @@ export default function unitToNumber(
     el = element.parentElement || element;
   }
 
-  const fontSize = parseFloat(window.getComputedStyle(el).fontSize || "16px");
+  const fontSize = parseFloat(
+    window.getComputedStyle(el).fontSize || `${fontSizeFallback}px`
+  );
 
-  return parseFloat(unit) + fontSize;
+  return parseFloat(unit) * fontSize;
 }

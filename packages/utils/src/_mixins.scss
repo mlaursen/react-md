@@ -24,6 +24,14 @@
   }
 }
 
+/// A very simple mixin that will center an element within the page for you
+/// when you aren't using flexbox or grid for the part of the layout.
+@mixin rmd-utils-block-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /// An extremely simple util that is used to add scrolling to an element with a "patch" for adding scroll
 /// momentum to iOS.
 ///
