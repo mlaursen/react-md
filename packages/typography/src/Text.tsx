@@ -32,6 +32,7 @@ export type TextTypes =
 
 export type TextAlign = "left" | "center" | "right";
 export type TextDecoration = "underline" | "overline" | "line-through";
+export type TextTransform = "capitalize" | "uppercase" | "lowercase";
 export type TextWeight =
   | "thin"
   | "light"
@@ -115,6 +116,11 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   decoration?: TextDecoration;
 
   /**
+   * An optional text transformation to apply.
+   */
+  transform?: TextTransform;
+
+  /**
    * An optional font-weight to apply.
    */
   weight?: TextWeight;
@@ -191,6 +197,7 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
     noMargin,
     align,
     decoration,
+    transform,
     weight,
     ...props
   } = providedProps as WithDefaultProps;
@@ -201,6 +208,7 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
       "rmd-typography--no-margin": noMargin,
       [`rmd-typography--${align}`]: align,
       [`rmd-typography--${decoration}`]: decoration,
+      [`rmd-typography--${transform}`]: transform,
       [`rmd-typography--${weight}`]: weight,
     },
     propClassName
@@ -267,6 +275,7 @@ if (process.env.NODE_ENV !== "production") {
         "semi-bold",
         "black",
       ]),
+      transform: PropTypes.oneOf(["capitalize", "uppercase", "lowercase"]),
     };
   }
 }

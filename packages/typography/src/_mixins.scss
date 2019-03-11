@@ -228,6 +228,12 @@
         text-decoration: $decoration;
       }
     }
+
+    @each $transform in (capitalize uppercase lowercase) {
+      &--#{$transform} {
+        text-transform: $transform;
+      }
+    }
   }
 
   .rmd-text-container {
