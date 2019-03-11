@@ -48,8 +48,10 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     forceIconWrap,
     height,
     enableKeyboardClick,
+    disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,
+    disablePressedFallback,
     rippleTimeout,
     rippleClassNames,
     rippleClassName,
@@ -66,6 +68,8 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     rippleClassName,
     rippleContainerClassName,
     enableKeyboardClick,
+    disableSpacebarClick,
+    disablePressedFallback,
   });
 
   return (
