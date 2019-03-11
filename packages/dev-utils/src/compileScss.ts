@@ -10,7 +10,10 @@ import combineMediaQueries from "css-mqpacker";
 import { rootNodeModules, src } from "./paths";
 import { log, list } from "./utils";
 
-export function compileScss(options: nodeSass.Options, exit: boolean = true) {
+export function compileScss(
+  options: nodeSass.SyncOptions,
+  exit: boolean = true
+) {
   try {
     return nodeSass.renderSync({
       ...options,
