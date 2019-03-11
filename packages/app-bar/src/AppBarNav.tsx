@@ -34,6 +34,7 @@ const AppBarNav: FunctionComponent<AppBarNavProps & WithRef> = ({
 
 AppBarNav.defaultProps = {
   buttonType: "icon",
+  theme: "clear",
 };
 
 if (process.env.NODE_ENV !== "production") {

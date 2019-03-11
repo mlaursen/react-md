@@ -21,7 +21,7 @@ export interface AppBarActionProps extends ButtonProps {
 
 type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
-  Pick<AppBarActionProps, "first" | "last" | "buttonType">
+  Pick<AppBarActionProps, "first" | "last" | "buttonType" | "theme">
 >;
 
 /**
@@ -56,6 +56,7 @@ const defaultProps: DefaultProps = {
   first: false,
   last: false,
   buttonType: "icon",
+  theme: "clear",
 };
 
 AppBarAction.defaultProps = defaultProps;

@@ -82,8 +82,8 @@ $rmd-app-bar-default-light-theme-background-color: $rmd-grey-100 !default;
 /// @type Color
 $rmd-app-bar-default-light-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-light-theme-background-color) == light,
-  $rmd-white-base,
-  $rmd-black-base
+  $rmd-black-base,
+  $rmd-white-base
 ) !default;
 
 /// The background color for the app bar when the `theme` prop is set to `"default"`
@@ -96,8 +96,8 @@ $rmd-app-bar-default-dark-theme-background-color: $rmd-grey-900 !default;
 /// @type Color
 $rmd-app-bar-default-dark-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-dark-theme-background-color) == light,
-  $rmd-white-base,
-  $rmd-black-base
+  $rmd-black-base,
+  $rmd-white-base
 ) !default;
 
 /// The background color to use for the app bar that is using the `default` theme. This

@@ -29,4 +29,10 @@
 
     padding: 2rem;
   }
+
+  &__container {
+    > * {
+      margin: 1rem;
+    }
+  }
 }

@@ -22,7 +22,58 @@ $ npm install --save @react-md/theme \
     @react-md/icon
 ```
 
-## Customization and Theming
+<!-- DOCS_REMOVE -->
 
-If you have not read the documentation about theming before, first head over to
-[general theming and customization](https://react-md.dev/customization)
+## Documentation
+
+Full usage and documentation can be found on the main documentation site at the
+[App Bar page](https://react-md.mlaursen.com/packages/app-bar), but there will
+be a few examples in this README.
+
+<!-- DOCS_REMOVE_END -->
+
+<!-- INCLUDING_STYLES -->
+
+## Usage
+
+The primary use of this package is to create a fixed header that includes your
+app's logo, title, mobile navagitation, or common actions. Here's a quick
+example:
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+import {
+  AppBar,
+  AppBarTitle,
+  AppBarNav,
+  AppBarAction,
+  APP_BAR_OFFSET_CLASSNAME,
+} from "@react-md/app-bar";
+import { MenuSVGIcon, SearchSVGIcon } from "@react-md/material-icons";
+
+const App = () => {
+  const mobile = window.innerWidth < 600;
+
+  return (
+    <Fragment>
+      <AppBar id="main-app-bar" fixed>
+        {mobile && (
+          <AppBarNav id="main-mobile-navigation" aria-label="Mobile navigation">
+            <MenuSVGIcon />
+          </AppBarNav>
+        )}
+        {<AppBarTitle keyline={!mobile}>My Company's Name</AppBarTitle>}
+        <AppBarAction id="search" aria-label="Search">
+          <SearchSVGIcon />
+        </AppBarAction>
+      </AppBar>
+      <main className={APP_BAR_OFFSET_CLASSNAME}>
+        <h3>Hello, world!</h3>
+      </main>
+    </Fragment>
+  );
+};
+
+render(<App />, document.getElementById("root"));
+```

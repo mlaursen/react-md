@@ -1,0 +1,47 @@
+@import '@react-md/utils/dist/mixins';
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/app-bar/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+
+.fixed-with-offset {
+  @include rmd-elevation(6);
+  @include rmd-utils-block-centered;
+
+  max-width: 20rem;
+  position: relative;
+
+  // this is only required for the demo size if we keep it as `fixed`,
+  // it'll cover the main app bar of this app
+  .rmd-app-bar--fixed {
+    position: absolute;
+  }
+
+  .rmd-app-bar--prominent {
+    @include rmd-app-bar-theme(padding-bottom, height);
+  }
+
+  .rmd-app-bar--prominent {
+    @include rmd-app-bar-theme(padding-bottom, dense-height);
+  }
+
+  &__title {
+    @include rmd-typography-text-overflow-ellipsis;
+
+    // just a reminder that you don't need to use the `rmd-PACKAGE-theme-var` stuff if
+    // you will have mostly static variables. You can instead use the corresponding
+    // SCSS variable instead. I'm just using them since the documentation site can be
+    // fully configured
+    $offset: $rmd-app-bar-title-keyline + $rmd-app-bar-lr-margin * 2;
+    width: calc(100% - #{$offset} - #{rmd-button-theme-var(icon-size)} * 2);
+  }
+
+  &__content {
+    @include rmd-utils-scroll;
+
+    height: 35rem;
+  }
+
+  + .fixed-with-offset {
+    margin-top: 3rem;
+  }
+}

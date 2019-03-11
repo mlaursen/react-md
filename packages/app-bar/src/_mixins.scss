@@ -2,6 +2,7 @@
 /// @group app-bar
 ////
 
+@import '@react-md/button/dist/functions';
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/typography/dist/mixins';
@@ -246,12 +247,12 @@
 @mixin rmd-app-bar-action {
   flex-shrink: 0;
 
-  &--first {
-    @include rmd-app-bar-action-position(true);
-  }
-
   &--last {
     @include rmd-app-bar-action-position(false);
+  }
+
+  &--first {
+    @include rmd-app-bar-action-position(true);
   }
 }
 
@@ -314,6 +315,7 @@
 
     align-items: center;
     display: flex;
+    width: 100%;
 
     &--dense {
       @include rmd-app-bar-theme(height, dense-height);
@@ -321,6 +323,8 @@
 
     &--prominent {
       @include rmd-app-bar-theme(height, prominent-height);
+
+      flex-wrap: wrap;
     }
 
     &--prominent-dense {

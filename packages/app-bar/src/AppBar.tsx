@@ -92,7 +92,7 @@ type WithDefaultProps = AppBarProps & DefaultProps & WithRef;
  */
 const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
   const {
-    component,
+    component: Component,
     className,
     forwardedRef,
     children,
@@ -111,11 +111,10 @@ const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
       ? inheritColor
       : theme !== "clear" && theme !== "default";
 
-  return createElement(
-    component,
-    {
-      ...props,
-      className: cn(
+  return (
+    <Component
+      {...props}
+      className={cn(
         "rmd-app-bar",
         {
           "rmd-app-bar--child-inherit": inherit,
@@ -128,10 +127,11 @@ const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
           [`rmd-app-bar--${fixedPosition}`]: fixed,
         },
         className
-      ),
-      ref: forwardedRef,
-    },
-    children
+      )}
+      ref={forwardedRef}
+    >
+      {children}
+    </Component>
   );
 };
 
