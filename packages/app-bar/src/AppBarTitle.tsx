@@ -11,34 +11,40 @@ export interface AppBarTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 
 type WithRef = WithForwardedRef<HTMLHeadingElement>;
 type DefaultProps = Required<Pick<AppBarTitleProps, "keyline">>;
-type AppBarTitleWithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
+type WithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
 
 /**
  * This component is used to create a title for your application. If your app
  * is not using the `AppBarNav` component, you can enable the `keyline` prop
  * to ensure that your title aligns with the keyline of your navigation element.
  */
-const AppBarTitle: FunctionComponent<AppBarTitleProps & WithRef> = ({
-  keyline,
-  className,
-  forwardedRef,
-  children,
-  ...props
-}) => (
-  <h6
-    {...props}
-    className={cn(
-      "rmd-app-bar__title",
-      {
-        "rmd-app-bar__title--keyline": keyline,
-      },
-      className
-    )}
-    ref={forwardedRef}
-  >
-    {children}
-  </h6>
-);
+const AppBarTitle: FunctionComponent<
+  AppBarTitleProps & WithRef
+> = providedProps => {
+  const {
+    keyline,
+    className,
+    forwardedRef,
+    children,
+    ...props
+  } = providedProps as WithDefaultProps;
+
+  return (
+    <h6
+      {...props}
+      className={cn(
+        "rmd-app-bar__title",
+        {
+          "rmd-app-bar__title--keyline": keyline,
+        },
+        className
+      )}
+      ref={forwardedRef}
+    >
+      {children}
+    </h6>
+  );
+};
 
 const defaultProps: DefaultProps = {
   keyline: false,

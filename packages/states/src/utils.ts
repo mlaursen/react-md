@@ -163,7 +163,6 @@ export function addRippleFromEvent(
   }
 
   let element = currentTarget;
-  const role = currentTarget.getAttribute("role");
   if (type === "programmatic") {
     if (target !== currentTarget) {
       return;

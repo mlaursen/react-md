@@ -1,5 +1,4 @@
 import React, {
-  createElement,
   forwardRef,
   FunctionComponent,
   HTMLAttributes,
@@ -14,7 +13,7 @@ import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight from "./getListItemHeight";
 import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
-import { SimpleListItemProps, ListItemHeight } from "./SimpleListItem";
+import { SimpleListItemProps } from "./SimpleListItem";
 
 export interface ListItemLinkProps
   extends HTMLAttributes<HTMLAnchorElement>,
@@ -44,11 +43,12 @@ export interface ListItemLinkProps
 
 type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
 type DefaultProps = Required<Pick<ListItemLinkProps, "height" | "component">>;
-type WithDefaultProps = ListItemLinkProps & DefaultProps;
+type WithDefaultProps = ListItemLinkProps & DefaultProps & WithRef;
 
-const ListItemLink: FunctionComponent<ListItemLinkProps> = providedProps => {
+const ListItemLink: FunctionComponent<
+  ListItemLinkProps & WithRef
+> = providedProps => {
   const {
-    className,
     textClassName,
     secondaryTextClassName,
     textChildren,
@@ -63,18 +63,38 @@ const ListItemLink: FunctionComponent<ListItemLinkProps> = providedProps => {
     forceIconWrap,
     height: propHeight,
     threeLines,
-    component,
+    component: Component,
+    enableKeyboardClick,
+    disableSpacebarClick,
+    disableRipple,
+    disableProgrammaticRipple,
+    disablePressedFallback,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
     ...props
   } = providedProps as WithDefaultProps;
 
   const height = getListItemHeight(providedProps);
-  return createElement(
-    component,
-    {
-      ...props,
-      disableSpacebarClick: true,
-      ref: forwardedRef,
-      className: cn(
+  const { ripples, className, handlers } = useInteractionStates({
+    ...props,
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassNames,
+    rippleClassName,
+    rippleContainerClassName,
+    enableKeyboardClick,
+    disableSpacebarClick,
+    disablePressedFallback,
+  });
+  return (
+    <Component
+      {...props}
+      {...handlers}
+      ref={forwardedRef}
+      className={cn(
         "rmd-list-item rmd-list-item--clickable rmd-list-item--link",
         {
           [`rmd-list-item--${height}`]:
@@ -82,23 +102,24 @@ const ListItemLink: FunctionComponent<ListItemLinkProps> = providedProps => {
           "rmd-list-item--three-lines": !!secondaryText && threeLines,
         },
         className
-      ),
-      enableKeyboardClick: true,
-    },
-    <ListItemChildren
-      textClassName={textClassName}
-      secondaryTextClassName={secondaryTextClassName}
-      textChildren={textChildren}
-      primaryText={primaryText}
-      secondaryText={secondaryText}
-      leftIcon={leftIcon}
-      leftAvatar={leftAvatar}
-      rightIcon={rightIcon}
-      rightAvatar={rightAvatar}
-      forceIconWrap={forceIconWrap}
+      )}
     >
-      {children}
-    </ListItemChildren>
+      <ListItemChildren
+        textClassName={textClassName}
+        secondaryTextClassName={secondaryTextClassName}
+        textChildren={textChildren}
+        primaryText={primaryText}
+        secondaryText={secondaryText}
+        leftIcon={leftIcon}
+        leftAvatar={leftAvatar}
+        rightIcon={rightIcon}
+        rightAvatar={rightAvatar}
+        forceIconWrap={forceIconWrap}
+      >
+        {children}
+      </ListItemChildren>
+      {ripples}
+    </Component>
   );
 };
 

@@ -1,5 +1,4 @@
 export interface UnitToNumberOptions {
-  unit: number | string;
   element?: Element;
   fontSizeFallback?: number;
 }
@@ -11,11 +10,11 @@ export interface UnitToNumberOptions {
  * @param element - The element to use to use for calculating `em`
  * @return the unit as a number
  */
-export default function unitToNumber({
-  unit,
-  fontSizeFallback = 16,
-  element,
-}: UnitToNumberOptions): number {
+export default function unitToNumber(
+  unit: string | number,
+  options: UnitToNumberOptions = {}
+): number {
+  const { fontSizeFallback = 16, element } = options;
   if (typeof unit === "number") {
     return unit;
   }

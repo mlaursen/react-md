@@ -3,7 +3,6 @@ import React, {
   ReactType,
   HTMLAttributes,
   forwardRef,
-  createElement,
 } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";

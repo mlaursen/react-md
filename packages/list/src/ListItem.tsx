@@ -7,15 +7,13 @@ import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight from "./getListItemHeight";
 import ListItemChildren from "./ListItemChildren";
-import SimpleListItem, {
-  SimpleListItemProps,
-  ListItemHeight,
-} from "./SimpleListItem";
+import SimpleListItem, { SimpleListItemProps } from "./SimpleListItem";
 
 export interface ListItemProps
   extends SimpleListItemProps,
     InteractionStatesOptions<HTMLLIElement> {
   id: string;
+  tabIndex?: number;
 }
 
 type WithRef = WithForwardedRef<HTMLLIElement>;
@@ -56,6 +54,8 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
+    tabIndex,
+    role,
     ...props
   } = providedProps as ListItemWithDefaultProps;
 
@@ -75,6 +75,10 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
   return (
     <SimpleListItem
       {...props}
+      {...handlers}
+      tabIndex={tabIndex}
+      role={role}
+      className={className}
       clickable
       preventColorPollution={false}
       height={getListItemHeight(providedProps)}
@@ -94,9 +98,11 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
       >
         {children}
       </ListItemChildren>
+      {ripples}
     </SimpleListItem>
   );
 };
+
 const defaultProps: DefaultProps = {
   height: "auto",
   role: "button",

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
-import { Button, ButtonProps, ButtonType } from "@react-md/button";
+import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface AppBarActionProps extends ButtonProps {
@@ -23,6 +23,7 @@ type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<AppBarActionProps, "first" | "last" | "buttonType" | "theme">
 >;
+type WithDefaultProps = AppBarActionProps & DefaultProps & WithRef;
 
 /**
  * This component is really just a simple wrapper for the `Button` component that adds a few
@@ -30,27 +31,33 @@ type DefaultProps = Required<
  * It also will automatically add spacing either before or after this button when the `first`
  * or `last` props are provided.
  */
-const AppBarAction: FunctionComponent<AppBarActionProps & WithRef> = ({
-  className,
-  first,
-  last,
-  children,
-  ...props
-}) => (
-  <Button
-    {...props}
-    className={cn(
-      "rmd-app-bar__action",
-      {
-        "rmd-app-bar__action--first": first,
-        "rmd-app-bar__action--last": last,
-      },
-      className
-    )}
-  >
-    {children}
-  </Button>
-);
+const AppBarAction: FunctionComponent<
+  AppBarActionProps & WithRef
+> = providedProps => {
+  const {
+    className,
+    first,
+    last,
+    children,
+    ...props
+  } = providedProps as WithDefaultProps;
+
+  return (
+    <Button
+      {...props}
+      className={cn(
+        "rmd-app-bar__action",
+        {
+          "rmd-app-bar__action--first": first,
+          "rmd-app-bar__action--last": last,
+        },
+        className
+      )}
+    >
+      {children}
+    </Button>
+  );
+};
 
 const defaultProps: DefaultProps = {
   first: false,

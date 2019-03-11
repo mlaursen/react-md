@@ -45,7 +45,7 @@ type DefaultProps = Required<
     | "defaultActiveId"
   >
 >;
-type TreeWithDefaultProps = TreeProps & DefaultProps & WithRef;
+type WithDefaultProps = TreeProps & DefaultProps & WithRef;
 type RequiredTreeProps = TreeWithLabel | TreeWithLabelledBy;
 
 const Tree: FunctionComponent<RequiredTreeProps & WithRef> = providedProps => {
@@ -72,7 +72,7 @@ const Tree: FunctionComponent<RequiredTreeProps & WithRef> = providedProps => {
     defaultActiveId,
     forwardedRef,
     ...props
-  } = providedProps as TreeWithDefaultProps;
+  } = providedProps as WithDefaultProps;
 
   const [activeId, setActiveId] = useState(defaultActiveId);
   const [isTreeFocused, setTreeFocused] = useState(false);
@@ -216,7 +216,7 @@ const Tree: FunctionComponent<RequiredTreeProps & WithRef> = providedProps => {
             : undefined,
         },
         item,
-        providedProps as TreeWithDefaultProps
+        providedProps as WithDefaultProps
       );
     });
   };

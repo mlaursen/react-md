@@ -5,7 +5,8 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
-    "setup": "npm-run-all dev-utils build",
+    "force-install": "yarn --force",
+    "setup": "npm-run-all dev-utils force-install build",
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
     "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --stream -- --no-umd",
     "lint:scripts": "tslint -p tsconfig.json",

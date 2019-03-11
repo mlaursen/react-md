@@ -108,10 +108,11 @@ export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
   children?: ReactNode;
 }
 
+type WithRef = WithForwardedRef<SVGSVGElement>;
 type DefaultProps = Required<
   Pick<SVGIconProps, "role" | "focusable" | "xmlns" | "viewBox" | "dense">
 >;
-type WithDefaultProps = SVGIconProps & DefaultProps;
+type WithDefaultProps = SVGIconProps & DefaultProps & WithRef;
 
 function createStyle(style?: CSSProperties, size?: number) {
   if (style && size) {
@@ -164,20 +165,21 @@ function getA11yIds(
  */
 const SVGIcon: FunctionComponent<
   SVGIconProps & WithForwardedRef<SVGSVGElement>
-> = ({
-  style,
-  className,
-  use,
-  "aria-labelledby": ariaLabelledBy,
-  size,
-  title: propTitle,
-  desc: propDesc,
-  style: propStyle,
-  children: propChildren,
-  dense,
-  forwardedRef,
-  ...props
-}) => {
+> = providedProps => {
+  const {
+    style,
+    className,
+    use,
+    "aria-labelledby": ariaLabelledBy,
+    size,
+    title: propTitle,
+    desc: propDesc,
+    style: propStyle,
+    children: propChildren,
+    dense,
+    forwardedRef,
+    ...props
+  } = providedProps as WithDefaultProps;
   const { labelledBy, titleId, descId } = getA11yIds(
     use,
     ariaLabelledBy,

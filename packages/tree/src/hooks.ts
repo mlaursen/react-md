@@ -92,7 +92,7 @@ export function useTreeMovement<D = AnyRecord>({
     return "";
   });
 
-  const onKeyboardFocus: KeyboardFocusChangeEvent = (value, event) => {
+  const onKeyboardFocus: KeyboardFocusChangeEvent = (value, _event) => {
     setActiveId(value.element.id);
   };
 

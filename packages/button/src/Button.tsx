@@ -12,12 +12,7 @@ import {
 } from "@react-md/states";
 import { WithForwardedRef, Omit } from "@react-md/utils";
 
-import {
-  ButtonThemeProps,
-  ButtonTheme,
-  ButtonThemeType,
-  ButtonType,
-} from "./types.d";
+import { ButtonThemeProps } from "./types.d";
 import buttonThemeClassNames from "./buttonThemeClassNames";
 
 /**
@@ -28,8 +23,7 @@ import buttonThemeClassNames from "./buttonThemeClassNames";
 export interface ButtonProps
   extends ButtonThemeProps,
     Omit<HTMLAttributes<HTMLButtonElement>, "id">,
-    Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick">,
-    WithForwardedRef<HTMLButtonElement> {
+    Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
    * accidentally submitted when this prop is omitted since buttons without a type attribute work
@@ -50,9 +44,9 @@ type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<ButtonProps, "disabled" | "theme" | "themeType" | "buttonType">
 >;
-type ButtonWithDefaultProps = ButtonProps & DefaultProps;
+type ButtonWithDefaultProps = ButtonProps & DefaultProps & WithRef;
 
-const Button: FunctionComponent<ButtonProps> = providedProps => {
+const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
   const {
     theme,
     themeType,

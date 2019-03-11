@@ -1,5 +1,4 @@
 import React, {
-  Component,
   HTMLAttributes,
   FunctionComponent,
   useState,
@@ -14,7 +13,7 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { TransitionProps, TransitionTimeout } from "@react-md/transition";
+import { TransitionProps } from "@react-md/transition";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface OverlayProps
