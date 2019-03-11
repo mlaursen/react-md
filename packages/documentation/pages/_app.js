@@ -87,24 +87,6 @@ export default class App extends NextApp {
     smoothScroll(element.offsetTop - header.offsetHeight);
   };
 
-  getPageTitle(pathname, statusCode) {
-    let title = '';
-    if (statusCode) {
-      switch (statusCode) {
-        case 404:
-          title = 'Not Found';
-          break;
-        default:
-          title = 'Server error';
-      }
-    } else {
-      const parts = pathname.split('/').filter(p => !!p && !/packages/.test(p));
-      title = parts.map(toTitle).join(' - ');
-    }
-
-    return `react-md${title ? ` - ${title}` : ''}`;
-  }
-
   getTitle(pageTitle) {
     const i = pageTitle.lastIndexOf('- ');
     return i > -1 ? pageTitle.substring(i + 2) : pageTitle;

@@ -8,6 +8,9 @@ const {
 } = rootPackageJson;
 
 export const GITHUB_URL = url.replace(/\/issues/, "");
+export const GITHUB_FILE_URL = `${GITHUB_URL}/tree/next`;
+export const GITHUB_DOC_PREFIX = `${GITHUB_FILE_URL}/packages/documentation`;
+export const GITHUB_DEMO_URL = `${GITHUB_DOC_PREFIX}/components/Demos`;
 export const HOMEPAGE = homepage;
 export const VERSION = version;
 

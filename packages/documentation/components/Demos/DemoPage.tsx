@@ -1,16 +1,15 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
-import toId from "utils/toId";
-import Demo from "./Demo";
+import { toId } from "utils/toTitle";
+import Demo, { DemoProps } from "./Demo";
 
 export interface DemoPageProps {
   className?: string;
-  demos: {
-    name: string;
-    description: string;
-    fullPage?: boolean;
-    children: ReactNode;
-  }[];
+  packageName: string;
+  demos: Pick<
+    DemoProps,
+    "name" | "description" | "fullPage" | "fileName" | "children"
+  >[];
 }
 
 interface Result {
@@ -18,7 +17,11 @@ interface Result {
   children: ReactNode[];
 }
 
-const DemoPage: FunctionComponent<DemoPageProps> = ({ demos, className }) => {
+const DemoPage: FunctionComponent<DemoPageProps> = ({
+  demos,
+  packageName,
+  className,
+}) => {
   const { ids, children } = demos.reduce<Result>(
     (result, demo, index) => {
       const { name, description, fullPage, children } = demo;
@@ -32,6 +35,7 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({ demos, className }) => {
           description={description}
           fullPage={fullPage}
           index={index}
+          packageName={packageName}
         >
           {children}
         </Demo>

@@ -14,6 +14,7 @@
   // it'll cover the main app bar of this app
   .rmd-app-bar--fixed {
     position: absolute;
+    z-index: $rmd-app-bar-z-index - 1;
   }
 
   .rmd-app-bar--prominent {

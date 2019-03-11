@@ -12,7 +12,7 @@ import {
   ArrowDropDownSVGIcon,
 } from "@react-md/material-icons";
 
-import Container from "../Container";
+import Container from "./Container";
 import { TextIconSpacing } from "@react-md/icon";
 
 const DenseAppBar = () => (

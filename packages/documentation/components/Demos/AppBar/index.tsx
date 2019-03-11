@@ -45,4 +45,4 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} />;
+export default () => <DemoPage demos={demos} packageName="app-bar" />;

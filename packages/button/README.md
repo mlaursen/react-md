@@ -30,8 +30,8 @@ $ npm install --save @react-md/theme \
 ## Documentation
 
 Full usage and documentation can be found on the main documentation site at the
-[buttons page](https://react-md.mlaursen.com/packages/buttons), but there will
-be a few examples in this README.
+[buttons page](https://react-md.dev/packages/buttons), but there will be a few
+examples in this README.
 
 <!-- DOCS_REMOVE_END -->
 

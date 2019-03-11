@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FunctionComponent } from "react";
 import {
   AppBar,
   AppBarNav,
@@ -12,7 +12,7 @@ import {
   MoreVertSVGIcon,
 } from "@react-md/material-icons";
 
-import Container from "../Container";
+import Container from "./Container";
 
 const themes: AppBarTheme[] = ["primary", "secondary", "default", "clear"];
 

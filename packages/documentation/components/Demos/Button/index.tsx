@@ -3,53 +3,52 @@ import React, { FunctionComponent, Fragment } from "react";
 import DemoPage from "../DemoPage";
 
 import TextButtons from "./TextButtons";
-import textDescription from "./TextButtons.md";
+import textButtons from "./TextButtons.md";
 
 import ContainedButtons from "./ContainedButtons";
-import containedDesciption from "./ContainedButtons.md";
+import containedButtons from "./ContainedButtons.md";
 
 import OutlinedButtons from "./OutlinedButtons";
-import outlineDescription from "./OutlinedButtons.md";
+import outlinedButtons from "./OutlinedButtons.md";
 
 import IconButtons from "./IconButtons";
-import iconDescription from "./IconButtons.md";
+import iconButtons from "./IconButtons.md";
 
 import TextButtonsWithIcons from "./TextButtonsWithIcons";
-import textWithIconDescription from "./TextButtonsWithIcons.md";
+import textButtonsWithIcons from "./TextButtonsWithIcons.md";
 
 import CustomButtonTheme from "./CustomButtonTheme";
-import customThemeDescription from "./CustomButtonTheme.md";
-import { MarkdownPage } from "components/Markdown";
+import customButtonTheme from "./CustomButtonTheme.md";
 
 const demos = [
   {
     name: "Text Buttons",
-    description: textDescription,
+    description: textButtons,
     children: <TextButtons />,
   },
   {
     name: "Outlined Buttons",
-    description: outlineDescription,
+    description: outlinedButtons,
     children: <OutlinedButtons />,
   },
   {
     name: "Contained Buttons",
-    description: containedDesciption,
+    description: containedButtons,
     children: <ContainedButtons />,
   },
   {
     name: "Icon Buttons",
-    description: iconDescription,
+    description: iconButtons,
     children: <IconButtons />,
   },
   {
     name: "Text Buttons with Icons",
-    description: textWithIconDescription,
+    description: textButtonsWithIcons,
     children: <TextButtonsWithIcons />,
   },
   {
     name: "Custom Button Theme",
-    description: customThemeDescription,
+    description: customButtonTheme,
     children: <CustomButtonTheme />,
   },
 ];

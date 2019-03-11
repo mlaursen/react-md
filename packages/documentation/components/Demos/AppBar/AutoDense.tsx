@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
+import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
+import { MenuSVGIcon } from "@react-md/material-icons";
 
 import "./auto-dense.scss";
-import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
-import Container from "../Container";
-import { MenuSVGIcon } from "@react-md/material-icons";
+import Container from "./Container";
 
 const AutoDense: FunctionComponent = () => (
   <Container className="auto-dense">
