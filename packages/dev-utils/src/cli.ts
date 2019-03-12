@@ -8,7 +8,7 @@ import test from "./test";
 import prepublish from "./prepublish";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
-import resolveImports from "./resolveImports";
+import sandbox from "./sandbox";
 
 const argv = process.argv.slice(2);
 if (argv[0] === "test") {
@@ -68,8 +68,12 @@ commander
   .action(() => copyReadmes());
 
 commander
-  .command("resolve [files...]")
+  .command("sandbox")
   .option("--verbose")
-  .action((files: string[]) => resolveImports(files));
+  .option("--ignore [glob]")
+  .option("--lookups-only")
+  .action(({ lookupsOnly = false, ignore = "" }: any) => {
+    sandbox({ lookupsOnly, ignore });
+  });
 
 commander.parse(process.argv);

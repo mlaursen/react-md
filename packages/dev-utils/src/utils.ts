@@ -13,8 +13,12 @@ import { packageJson, types, dist, src, es, lib } from "./paths";
 
 export const glob = promisify(nodeGlob);
 
+export function isVerbose() {
+  return process.argv.includes("--verbose");
+}
+
 export function log(message?: string | null, force: boolean = false) {
-  if (message === null || (!force && !process.argv.includes("--verbose"))) {
+  if (message === null || (!force && !isVerbose())) {
     return;
   }
 
