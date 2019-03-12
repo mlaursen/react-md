@@ -24,7 +24,6 @@ commander
 
 commander
   .command("build [options...]")
-  .option("--verbose")
   .option("--clean", "Boolean if the clean command should be run before build.")
   .option(
     "--styles-only",
@@ -44,6 +43,7 @@ commander
     "--gzip-size",
     "Always logs the gzip size instead of requiring the verbose flag to be enabled."
   )
+  .option("--verbose")
   .action((_, program: BuildConfig) => {
     build(program);
   });
@@ -68,12 +68,18 @@ commander
   .action(() => copyReadmes());
 
 commander
-  .command("sandbox")
+  .command("sandbox [components...]")
+  .description(
+    "Creates all the `Sandbox.json` files within the documentation package " +
+      "so that dynamic code sandboxes and inline code can be used."
+  )
+  .option(
+    "--lookups-only",
+    "This will only the command to update the sandboxes.ts file in the demos folder."
+  )
   .option("--verbose")
-  .option("--ignore [glob]")
-  .option("--lookups-only")
-  .action(({ lookupsOnly = false, ignore = "" }: any) => {
-    sandbox({ lookupsOnly, ignore });
+  .action((components: string[], { lookupsOnly = false }: any) => {
+    sandbox({ lookupsOnly, components });
   });
 
 commander.parse(process.argv);

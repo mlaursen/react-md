@@ -25,6 +25,17 @@ export function log(message?: string | null, force: boolean = false) {
   console.log(message || "");
 }
 
+export function upperFirst(s: string) {
+  return s.substring(0, 1).toUpperCase() + s.substring(1);
+}
+
+export function toTitle(s: string, joinWith: string = "") {
+  return s
+    .split("-")
+    .map(upperFirst)
+    .join(joinWith);
+}
+
 export async function copyFiles(
   files: string[],
   dest: string,

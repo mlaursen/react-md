@@ -10,12 +10,12 @@ import {
   NOOP_FILE,
   parseFile,
 } from "./sandboxUtils";
-import { glob, list, log, isVerbose, time } from "./utils";
+import { glob, list, log, isVerbose, time, toTitle } from "./utils";
 
 const DEMOS_FOLDER = "components/Demos/";
 
 export interface ResolveConfig {
-  ignore: string;
+  components: string[];
   lookupsOnly: boolean;
 }
 
@@ -32,7 +32,7 @@ function parseDemo(
   log();
 
   const demoRoot = getRelativeRoot(indexPath);
-  const demos = parseFile(indexPath, compilerOptions).filter(name =>
+  const demos = parseFile(indexPath, aliases, compilerOptions).filter(name =>
     name.startsWith(demoRoot)
   );
 
@@ -45,7 +45,22 @@ function parseDemo(
   );
 }
 
-async function createSandboxJsonFiles(ignore: string) {
+async function createSandboxJsonFiles(components: string[]) {
+  if (!isVerbose()) {
+    log(
+      `Starting to traverse all the demo files to resolve their imports so
+that a code sandbox and inline-code blocks can be shown.
+
+This will take a *very* long time especially when specific package filters
+have not been used.
+
+You can also enable the \`--verbose\` flag to list everything that is going on
+behind the scenes so there is _some_ sense of progress...
+`,
+      true
+    );
+  }
+
   log("Creating a noop file for resolutions and base tsconfig...");
   log();
   await fs.writeFile(NOOP_FILE, "", "utf-8");
@@ -59,7 +74,23 @@ async function createSandboxJsonFiles(ignore: string) {
     name.replace("/*", "")
   );
 
-  const demoIndexes = await glob(`${DEMOS_FOLDER}*/index.tsx`);
+  const matcher = components.length
+    ? `+(${components.map(name => toTitle(name)).join("|")})`
+    : "*";
+
+  const globString = `${DEMOS_FOLDER}${matcher}/index.tsx`;
+  log("Using the following glob string...");
+  log(list([globString]));
+  log();
+
+  const demoIndexes = await glob(globString);
+  if (!demoIndexes.length) {
+    log("No demo indexes found!");
+    log();
+    process.exit(1);
+    return;
+  }
+
   log("Found the following demos:");
   log(list(demoIndexes));
   log();
@@ -97,9 +128,9 @@ async function createSandboxLookups() {
  * This will take a long time...
  */
 export default async function sandbox(config: ResolveConfig) {
-  const { ignore, lookupsOnly } = config;
+  const { components, lookupsOnly } = config;
   if (!lookupsOnly) {
-    time(() => createSandboxJsonFiles(ignore), "creating sandboxes");
+    time(() => createSandboxJsonFiles(components), "creating sandboxes");
   }
 
   time(createSandboxLookups, "sandbox lookups");

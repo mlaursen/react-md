@@ -20,6 +20,10 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./AppBar/FixedWithOffsetSandbox.json")),
   "AppBar/SimpleUsage": () =>
     resolve(import("./AppBar/SimpleUsageSandbox.json")),
+  "Avatar/ColorExamples": () =>
+    resolve(import("./Avatar/ColorExamplesSandbox.json")),
+  "Avatar/SimpleUsage": () =>
+    resolve(import("./Avatar/SimpleUsageSandbox.json")),
   "Button/ContainedButtons": () =>
     resolve(import("./Button/ContainedButtonsSandbox.json")),
   "Button/CustomButtonTheme": () =>

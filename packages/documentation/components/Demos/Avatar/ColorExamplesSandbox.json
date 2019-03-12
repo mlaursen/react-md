@@ -1,0 +1,37 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/avatar": "latest",
+      "@react-md/avatar/dist/scssVariables.d.ts": "latest",
+      "@react-md/elevation": "latest",
+      "@react-md/list": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport scssVariables from \"@react-md/avatar/dist/scssVariables\";\nimport { List, ListItem } from \"@react-md/list\";\n\nimport people from \"constants/people\";\n\nimport Container from \"./Container\";\nimport \"./color-examples.scss\";\n\nconst COLORS = Object.keys(scssVariables[\"rmd-avatar-colors\"]);\nconst transformedPeople = people.map((name, i) => ({\n  id: name.toLowerCase().replace(/ /g, \"-\"),\n  name,\n  avatar: name.substring(0, 1),\n  color: COLORS[i % COLORS.length],\n}));\n\nconst ColorExamples: FunctionComponent = () => (\n  <Fragment>\n    <Container>\n      {COLORS.map(color => (\n        <Avatar color={color} key={color}>\n          {color.substring(0, 1).toUpperCase()}\n        </Avatar>\n      ))}\n    </Container>\n    <List className=\"avatar-color-list\">\n      {transformedPeople.map(({ id, name, avatar, color }, i) => (\n        <ListItem\n          id={`person-${i}`}\n          key={id}\n          leftAvatar={<Avatar color={color}>{avatar}</Avatar>}\n        >\n          {name}\n        </ListItem>\n      ))}\n    </List>\n  </Fragment>\n);\n\nexport default ColorExamples;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div className={cn(\"avatar-container\", className)} {...props}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/color-examples.scss": {
+    "content": "@import '@react-md/elevation/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n\n.avatar-color-list {\n  @include rmd-elevation(4);\n  @include rmd-utils-scroll;\n\n  margin: 2rem auto;\n  max-height: 30rem;\n  max-width: 25rem;\n}\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".avatar-container {\n  .rmd-avatar {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+    "isBinary": false
+  }
+}

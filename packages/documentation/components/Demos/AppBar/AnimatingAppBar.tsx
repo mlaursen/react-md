@@ -15,55 +15,15 @@ import {
 import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
+import { MoreVertSVGIcon, MenuSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 
+import people from "constants/people";
 import "./animating-app-bar.scss";
-import { MoreVertSVGIcon, MenuSVGIcon } from "@react-md/material-icons";
 
 const COLORS = Object.keys(avatarVariables["rmd-avatar-colors"]);
 
-const people = [
-  "Jasmine Robinson",
-  "Devonte Craig",
-  "Dean Reid",
-  "Shaquille Bauer",
-  "Vivian Bishop",
-  "Braden Mullins",
-  "Katlyn Mcdonald",
-  "Isabella Marshall",
-  "Lee Christensen",
-  "Tommy Hogan",
-  "Timothy Harvey",
-  "Preston Phillips",
-  "Marco Sherman",
-  "Haley Coleman",
-  "Mario Swanson",
-  "Xavier Solis",
-  "Keaton Cannon",
-  "Cassandra Austin",
-  "Irene Holland",
-  "Gustavo Love",
-  "Meghan Stewart",
-  "Renee Townsend",
-  "Bobby Newman",
-  "Keaton Ortiz",
-  "Dustin Wells",
-  "Jerry Mcgee",
-  "Carl Howard",
-  "Sabrina Lang",
-  "Reed Baker",
-  "Kristen Fields",
-  "Gavin Carrillo",
-  "Claudia Neal",
-  "Leonard Schneider",
-  "Dominick Boyd",
-  "Mary Hampton",
-  "Mark Ayala",
-  "Kristina Warner",
-  "Antonio Walton",
-  "Tyson Scott",
-  "Harley Moss",
-].map((name, i) => ({
+const transformedPeople = people.map((name, i) => ({
   id: name.toLowerCase().replace(/ /g, "-"),
   name,
   avatar: name.substring(0, 1),
@@ -124,7 +84,7 @@ const AnimatingAppBar: FunctionComponent = () => {
           </AppBar>
           <div className="animating-app-bar__content" onScroll={handleScroll}>
             <List>
-              {people.map(({ id, name, avatar, color }, i) => (
+              {transformedPeople.map(({ id, name, avatar, color }, i) => (
                 <ListItem
                   id={`person-${i}`}
                   key={id}

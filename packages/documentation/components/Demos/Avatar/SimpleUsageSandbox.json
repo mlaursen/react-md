@@ -1,0 +1,28 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/avatar": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { FontIcon } from \"@react-md/icon\";\nimport { NoteSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst SimpleUsage: FunctionComponent = () => (\n  <Container>\n    <Avatar\n      src=\"https://picsum.photos/40/40?image=153\"\n      alt=\"An image from https://picsum.photos\"\n    />\n    <Avatar\n      src=\"https://picsum.photos/40/40?image=103\"\n      alt=\"An image from https://picsum.photos\"\n      color=\"blue\"\n    />\n    <Avatar>A</Avatar>\n    <Avatar color=\"orange\">PL</Avatar>\n    <Avatar color=\"red\">\n      <FontIcon>favorite</FontIcon>\n    </Avatar>\n    <Avatar color=\"teal\">\n      <NoteSVGIcon />\n    </Avatar>\n  </Container>\n);\n\nexport default SimpleUsage;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div className={cn(\"avatar-container\", className)} {...props}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".avatar-container {\n  .rmd-avatar {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+    "isBinary": false
+  }
+}

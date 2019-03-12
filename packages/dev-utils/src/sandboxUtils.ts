@@ -34,6 +34,7 @@ export function getSourceFile(fileName: string, language: ScriptTarget) {
  */
 export function createCompilerHost(
   imports: Set<string>,
+  aliases: string[],
   compilerOptions: CompilerOptions
 ): CompilerHost {
   return {
@@ -49,7 +50,7 @@ export function createCompilerHost(
     fileExists,
     readFile,
     resolveModuleNames: (moduleNames, file) =>
-      resolveModuleNames(moduleNames, file, compilerOptions, imports),
+      resolveModuleNames(moduleNames, file, imports, aliases, compilerOptions),
   };
 }
 
@@ -83,8 +84,9 @@ export const NOOP_FILE = path.join(documentationRoot, "noop.ts");
 export function resolveModuleNames(
   moduleNames: string[],
   fileContents: string,
-  compilerOptions: CompilerOptions,
-  imports: Set<string>
+  imports: Set<string>,
+  aliases: string[],
+  compilerOptions: CompilerOptions
 ): ResolvedModule[] {
   const resolvedModules: ResolvedModule[] = [];
   for (const name of moduleNames) {
@@ -108,11 +110,23 @@ export function resolveModuleNames(
       const moduleName = getModuleName(resolvedModule.resolvedFileName);
       resolvedModules.push(resolvedModule);
       imports.add(moduleName);
-    } else {
-      console.error(`Unable to find a module for "${name}"`);
-      console.error();
-      process.exit(1);
+      continue;
     }
+
+    if (isAliased(name, aliases)) {
+      let resolvedFileName = name;
+      if (!/\.\w+/.test(name)) {
+        const ext = `.ts${/[A-Z]/.test(name) ? "x" : ""}`;
+        resolvedFileName = `${resolvedFileName}${ext}`;
+      }
+
+      resolvedModules.push({ resolvedFileName });
+      continue;
+    }
+
+    console.error(`Unable to find a module for "${name}"`);
+    console.error();
+    process.exit(1);
   }
 
   return resolvedModules;
@@ -121,9 +135,10 @@ export function resolveModuleNames(
 export function parseTypescript(
   filePath: string,
   imports: Set<string>,
+  aliases: string[],
   compilerOptions: CompilerOptions
 ) {
-  const host = createCompilerHost(imports, compilerOptions);
+  const host = createCompilerHost(imports, aliases, compilerOptions);
   createProgram([filePath], compilerOptions, host);
 
   return imports;
@@ -141,13 +156,14 @@ export function parseScss(filePath: string, imports: Set<string>) {
 
 export function parseFile(
   filePath: string,
+  aliases: string[],
   compilerOptions: CompilerOptions
 ): string[] {
   const imports: Set<string> = new Set();
   if (isStyle(filePath)) {
     parseScss(filePath, imports);
   } else {
-    parseTypescript(filePath, imports, compilerOptions);
+    parseTypescript(filePath, imports, aliases, compilerOptions);
   }
 
   return Array.from(imports);
@@ -196,7 +212,7 @@ export function createSandboxedDemo(
   log(list([demoPath]));
   log();
 
-  const importedModules = parseFile(demoPath, compilerOptions);
+  const importedModules = parseFile(demoPath, aliases, compilerOptions);
   const traversed = new Set(importedModules);
   traversed.add("react");
   traversed.add("react-dom");
@@ -219,7 +235,7 @@ export function createSandboxedDemo(
 
     const nextResolved: string[] = [];
     const nextRemaining: string[] = [];
-    const parsedModules = parseFile(moduleName, compilerOptions);
+    const parsedModules = parseFile(moduleName, aliases, compilerOptions);
     parsedModules.forEach(name => {
       if (isRelative(name)) {
         nextRemaining.push(path.join(getRelativeRoot(moduleName), name));
