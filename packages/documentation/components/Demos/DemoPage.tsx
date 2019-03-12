@@ -2,6 +2,8 @@ import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
 import { toId } from "utils/toTitle";
 import Demo, { DemoProps } from "./Demo";
+import TableOfContents from "components/TableOfContents";
+import { Heading } from "components/TableOfContents/TableOfContents";
 
 export interface DemoPageProps {
   className?: string;
@@ -13,7 +15,7 @@ export interface DemoPageProps {
 }
 
 interface Result {
-  ids: string[];
+  headings: Heading[];
   children: ReactNode[];
 }
 
@@ -22,11 +24,14 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
   packageName,
   className,
 }) => {
-  const { ids, children } = demos.reduce<Result>(
+  const { headings, children } = demos.reduce<Result>(
     (result, demo, index) => {
       const { name, description, fullPage, children } = demo;
       const id = toId(name);
-      result.ids.push(id);
+      result.headings.push({
+        id,
+        title: name,
+      });
       result.children.push(
         <Demo
           key={id}
@@ -43,10 +48,11 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
 
       return result;
     },
-    { ids: [], children: [] }
+    { headings: [], children: [] }
   );
   return (
     <div id="demo-page-container" className={cn("demo-page", className)}>
+      <TableOfContents headings={headings} />
       {children}
     </div>
   );

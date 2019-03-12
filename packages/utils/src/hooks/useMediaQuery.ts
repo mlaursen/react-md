@@ -6,6 +6,7 @@ export const DEFAULT_DESKTOP_MIN_WIDTH = `${1025 / 16}rem`;
 export const DEFAULT_TABLET_MIN_WIDTH = `${768 / 16}rem`;
 export const DEFAULT_TABLET_MAX_WIDTH = `${1024 / 16}rem`;
 export const DEFAULT_PHONE_MAX_WIDTH = `${767 / 16}rem`;
+export const DEFAULT_DESKTOP_LARGE_MIN_WIDTH = `${1280 / 16}rem`;
 
 const toWidthPart = (v: QuerySize | undefined, prefix: "min" | "max") => {
   const type = typeof v;
@@ -104,6 +105,7 @@ interface AppSizeOptions {
   tabletMinWidth?: QuerySize;
   tabletMaxWidth?: QuerySize;
   desktopMinWidth?: QuerySize;
+  desktopLargeMinWidth?: QuerySize;
   defaultValue?: AppSize;
 }
 
@@ -115,9 +117,10 @@ export interface AppSize {
   isLandscapePhone: boolean;
   isPortraitTablet: boolean;
   isLandscapeTablet: boolean;
+  isLargeDesktop: boolean;
 }
 
-const DEFAULT_APP_SIZE = {
+const DEFAULT_APP_SIZE: AppSize = {
   isPhone: false,
   isTablet: false,
   isDesktop: true,
@@ -125,6 +128,7 @@ const DEFAULT_APP_SIZE = {
   isLandscapePhone: false,
   isPortraitTablet: false,
   isLandscapeTablet: false,
+  isLargeDesktop: false,
 };
 
 export function useAppSize({
@@ -132,6 +136,7 @@ export function useAppSize({
   tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
   desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
+  desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   defaultValue = DEFAULT_APP_SIZE,
 }: AppSizeOptions = {}): AppSize {
   if (typeof window === "undefined") {
@@ -139,6 +144,7 @@ export function useAppSize({
   }
 
   const matchesDesktop = useWidthMediaQuery({ min: desktopMinWidth });
+  const matchesLargeDesktop = useWidthMediaQuery({ min: desktopLargeMinWidth });
   const matchesTablet = useWidthMediaQuery({
     min: tabletMinWidth,
     max: tabletMaxWidth,
@@ -159,5 +165,6 @@ export function useAppSize({
     isLandscapePhone: isPhone && !isPortrait,
     isPortraitTablet: isTablet && isPortrait,
     isLandscapeTablet: isTablet && !isPortrait,
+    isLargeDesktop: matchesLargeDesktop,
   };
 }

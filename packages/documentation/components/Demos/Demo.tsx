@@ -1,6 +1,7 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode, Fragment } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
+import { Divider } from "@react-md/divider";
 import { CodeSVGIcon } from "@react-md/material-icons";
 
 import AppBarAction from "components/AppBarAction";
@@ -58,33 +59,36 @@ const Demo: FunctionComponent<DemoProps> = props => {
   const sandboxDescription = `This is the ${name} example from react-md`;
   const getSandbox = getSandboxer(title, name);
   return (
-    <section id={id} className={cn("demo", { "demo--spaced": index > 0 })}>
-      <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
-        {name}
-      </Heading>
-      <Markdown id={`${id}-description`} className="demo__description">
-        {description}
-      </Markdown>
-      <AppBar id={`${id}-preview-toolbar`} theme="clear">
-        <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
-        <Sandbox
-          id={`${id}-sandbox`}
-          title={name}
-          description={sandboxDescription}
-          packageName={packageName}
-          getSandbox={getSandbox}
-        />
-        <GithubLink id={`${id}-github`} href={fileName} />
-      </AppBar>
-      <div id={`${id}-code-preview`} />
-      <div id={`${id}-preview`} className="demo__preview">
-        {fullPage ? (
-          <FullPageDemo id={`${id}-preview`}>{children}</FullPageDemo>
-        ) : (
-          children
-        )}
-      </div>
-    </section>
+    <Fragment>
+      {index > 0 && <Divider key="divider" className="demo__divider" />}
+      <section id={id} className="demo">
+        <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
+          {name}
+        </Heading>
+        <Markdown id={`${id}-description`} className="demo__description">
+          {description}
+        </Markdown>
+        <AppBar id={`${id}-preview-toolbar`} theme="clear">
+          <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
+          <Sandbox
+            id={`${id}-sandbox`}
+            title={name}
+            description={sandboxDescription}
+            packageName={packageName}
+            getSandbox={getSandbox}
+          />
+          <GithubLink id={`${id}-github`} href={fileName} />
+        </AppBar>
+        <div id={`${id}-code-preview`} />
+        <div id={`${id}-preview`} className="demo__preview">
+          {fullPage ? (
+            <FullPageDemo id={`${id}-preview`}>{children}</FullPageDemo>
+          ) : (
+            children
+          )}
+        </div>
+      </section>
+    </Fragment>
   );
 };
 

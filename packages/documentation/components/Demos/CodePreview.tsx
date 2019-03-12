@@ -48,7 +48,9 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
           content: sandbox[fileName].content,
         }));
 
-      setFiles(files);
+      if (!cancelled) {
+        setFiles(files);
+      }
     }
 
     load();

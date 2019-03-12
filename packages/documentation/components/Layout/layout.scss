@@ -1,4 +1,5 @@
 @import '@react-md/sheet/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 
 .layout {
   &__main {
@@ -6,7 +7,20 @@
     height: 100%;
 
     .layout__nav ~ & {
+      @include rmd-utils-rtl {
+        @include rmd-sheet-theme(margin-right, large-width);
+
+        margin-left: auto;
+      }
+
       @include rmd-sheet-theme(margin-left, large-width);
+    }
+  }
+
+  &__nav {
+    @include rmd-utils-rtl {
+      left: auto;
+      right: 0;
     }
   }
 }

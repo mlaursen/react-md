@@ -13,6 +13,7 @@ const AppSizeContext = createContext<AppSizeType>({
   isLandscapePhone: false,
   isPortraitTablet: false,
   isLandscapeTablet: false,
+  isLargeDesktop: false,
 });
 
 export function useAppSizeContext() {

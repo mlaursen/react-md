@@ -6,11 +6,9 @@
 .demo {
   padding: 0 6rem;
 
-  &--spaced {
-    @include rmd-divider-border(top);
-
+  &__divider {
+    margin-bottom: 2rem;
     margin-top: 6rem;
-    padding-top: 2rem;
   }
 
   &__description {

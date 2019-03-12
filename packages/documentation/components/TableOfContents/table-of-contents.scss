@@ -1,0 +1,85 @@
+@import '@react-md/utils/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/app-bar/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/link/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+
+$page-margin: 1rem;
+$toc-width: 15rem;
+
+.table-of-contents {
+  @include rmd-utils-rtl {
+    left: $page-margin;
+    right: auto;
+  }
+  @include rmd-elevation(2);
+  @include rmd-transition(standard);
+  @include rmd-theme-update-var(background, rmd-theme-var(surface));
+  @include rmd-theme(background-color, background);
+
+  padding: 2rem;
+  position: fixed;
+  right: $page-margin;
+  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
+  transition: opacity $rmd-transition-linear-time;
+  width: 100%;
+  z-index: 10;
+
+  @media (min-width: 56rem) {
+    max-width: $toc-width;
+  }
+
+  @media (min-width: 56rem) and (max-width: 80rem) {
+    opacity: 0;
+
+    &::before {
+      @include rmd-elevation(6);
+      @include rmd-transition(standard);
+
+      content: '';
+      opacity: 0;
+      transition: opacity $rmd-transition-linear-time;
+    }
+
+    &:hover,
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 80.1rem) {
+    @at-root {
+      .demo {
+        @include rmd-utils-rtl {
+          margin-left: $toc-width;
+          margin-right: auto;
+        }
+
+        margin-right: $toc-width;
+      }
+    }
+  }
+
+  &__header {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin: 0;
+    margin-left: -1rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    @include rmd-link-theme-update-var(color, rmd-theme-var(text-primary-on-background));
+    @include rmd-link-theme-update-var(visited-color, rmd-theme-var(text-primary-on-background));
+    @include rmd-link-theme-update-var(hover-color, rmd-theme-var(text-secondary-on-background));
+    @include rmd-typography(subtitle-1);
+    @include rmd-typography-value(body-1, line-height);
+
+    margin: 0.25rem 0;
+  }
+}
