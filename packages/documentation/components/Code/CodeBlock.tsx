@@ -1,9 +1,16 @@
-import React, { Fragment, FunctionComponent, ReactNode, useMemo } from "react";
+import React, {
+  Fragment,
+  FunctionComponent,
+  ReactNode,
+  useMemo,
+  forwardRef,
+} from "react";
 import cn from "classnames";
 import Head from "next/head";
 
 import { highlightCode } from "components/Markdown/utils";
 import Code from "./Code";
+import { WithForwardedRef } from "@react-md/utils";
 
 export interface CodeBlockProps {
   className?: string;
@@ -12,14 +19,16 @@ export interface CodeBlockProps {
   highlight?: boolean;
 }
 
-type WithDefaultProps = CodeBlockProps & { language: string };
+type WithRef = WithForwardedRef<HTMLPreElement>;
+type WithDefaultProps = CodeBlockProps & { language: string } & WithRef;
 
-const CodeBlock: FunctionComponent<CodeBlockProps> = props => {
+const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
   const {
     className,
     language,
     children: propChildren,
     highlight,
+    forwardedRef,
   } = props as WithDefaultProps;
 
   const children = useMemo(() => {
@@ -47,6 +56,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = props => {
         />
       </Head>
       <pre
+        ref={forwardedRef}
         className={cn("code code--block", {
           [`language-${language}`]: language,
         })}
@@ -62,4 +72,6 @@ CodeBlock.defaultProps = {
   language: "markup",
 };
 
-export default CodeBlock;
+export default forwardRef<HTMLPreElement, CodeBlockProps>((props, ref) => (
+  <CodeBlock {...props} forwardedRef={ref} />
+));

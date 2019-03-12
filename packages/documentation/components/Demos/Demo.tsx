@@ -15,6 +15,7 @@ import "./demo.scss";
 import FullPageDemo from "./FullPageDemo";
 import Sandbox from "./Sandbox";
 import getSandboxer from "./sandboxes";
+import CodePreview from "./CodePreview";
 
 export interface DemoProps {
   id: string;
@@ -65,13 +66,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
         {description}
       </Markdown>
       <AppBar id={`${id}-preview-toolbar`} theme="clear">
-        <AppBarAction
-          id={`${id}-show-code`}
-          first
-          tooltip="Show the code for this example"
-        >
-          <CodeSVGIcon />
-        </AppBarAction>
+        <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
         <Sandbox
           id={`${id}-sandbox`}
           title={name}
@@ -81,6 +76,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
         />
         <GithubLink id={`${id}-github`} href={fileName} />
       </AppBar>
+      <div id={`${id}-code-preview`} />
       <div id={`${id}-preview`} className="demo__preview">
         {fullPage ? (
           <FullPageDemo id={`${id}-preview`}>{children}</FullPageDemo>

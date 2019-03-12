@@ -39,12 +39,14 @@ const AppBarAction: FunctionComponent<
     first,
     last,
     children,
+    forwardedRef,
     ...props
   } = providedProps as WithDefaultProps;
 
   return (
     <Button
       {...props}
+      ref={forwardedRef}
       className={cn(
         "rmd-app-bar__action",
         {

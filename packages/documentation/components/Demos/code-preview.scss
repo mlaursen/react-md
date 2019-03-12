@@ -1,0 +1,20 @@
+.demo__code-preview {
+  &__file-name {
+    margin-bottom: -0.5rem;
+    margin-top: 1rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 2rem;
+
+    .rmd-button {
+      &::after {
+        content: '/';
+        font-size: 1.8em;
+        position: absolute;
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, forwardRef } from "react";
 import {
   AppBarAction as RMDAction,
   AppBarActionProps as RMDActionProps,
 } from "@react-md/app-bar";
 import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
 import { RenderConditionalPortalProps } from "@react-md/portal";
-import { Omit } from "@react-md/utils";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
 interface AppBarActionProps
   extends Omit<RMDActionProps, "id">,
@@ -14,7 +14,9 @@ interface AppBarActionProps
   tooltipClassName?: string;
 }
 
-const AppBarAction: FunctionComponent<AppBarActionProps> = ({
+const AppBarAction: FunctionComponent<
+  AppBarActionProps & WithForwardedRef<HTMLButtonElement>
+> = ({
   id,
   tooltip: propTooltip,
   tooltipClassName,
@@ -25,6 +27,7 @@ const AppBarAction: FunctionComponent<AppBarActionProps> = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
+  forwardedRef,
   ...props
 }) => (
   <Tooltipped
@@ -39,7 +42,7 @@ const AppBarAction: FunctionComponent<AppBarActionProps> = ({
     onMouseLeave={onMouseLeave}
   >
     {({ tooltip, containerProps }) => (
-      <RMDAction {...props} {...containerProps}>
+      <RMDAction {...props} {...containerProps} ref={forwardedRef}>
         {children}
         {tooltip}
       </RMDAction>
@@ -47,4 +50,6 @@ const AppBarAction: FunctionComponent<AppBarActionProps> = ({
   </Tooltipped>
 );
 
-export default AppBarAction;
+export default forwardRef<HTMLButtonElement, AppBarActionProps>(
+  (props, ref) => <AppBarAction {...props} forwardedRef={ref} />
+);
