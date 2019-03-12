@@ -1,0 +1,37 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/app-bar": "latest",
+      "@react-md/button": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBar, AppBarNav, AppBarTitle } from \"@react-md/app-bar\";\nimport { MenuSVGIcon } from \"@react-md/material-icons\";\n\nimport \"./auto-dense.scss\";\nimport Container from \"./Container\";\n\nconst AutoDense: FunctionComponent = () => (\n  <Container className=\"auto-dense\">\n    <AppBar id=\"auto-dense-app-bar\">\n      <AppBarNav id=\"auto-dense-app-bar-nav\" aria-label=\"Navigation\">\n        <MenuSVGIcon />\n      </AppBarNav>\n      <AppBarTitle>Auto Dense</AppBarTitle>\n    </AppBar>\n    <AppBar\n      id=\"auto-prominent-dense-app-bar\"\n      className=\"auto-dense__prominent\"\n      prominent\n    >\n      <AppBar component=\"div\">\n        <AppBarNav\n          id=\"auto-prominent-dense-app-bar-nav\"\n          aria-label=\"Navigation\"\n        >\n          <MenuSVGIcon />\n        </AppBarNav>\n        <AppBarTitle>Auto Dense and prominent</AppBarTitle>\n      </AppBar>\n    </AppBar>\n  </Container>\n);\n\nexport default AutoDense;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div {...props} className={cn(\"app-bar-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/auto-dense.scss": {
+    "content": "@import '@react-md/app-bar/dist/mixins';\n\n.auto-dense {\n  @media (min-width: 75rem) {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    &__prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n\n      // just because I don't want to create 2 rows of data for this example\n      align-items: flex-start;\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n\n.app-bar-container {\n  @include rmd-utils-block-centered;\n\n  max-width: 40rem;\n\n  > .rmd-app-bar {\n    margin: 2rem auto;\n  }\n}\n",
+    "isBinary": false
+  }
+}

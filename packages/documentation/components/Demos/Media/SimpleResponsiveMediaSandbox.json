@@ -1,0 +1,21 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/media": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport \"./simple-responsive-media.scss\";\nconst images = [\n  \"/200/300?image=30\",\n  \"/300/200?image=3\",\n  \"/300?image=1008\",\n  \"/100/110?image=233\",\n];\n\nconst SimpleResponsiveImages: FunctionComponent = () => (\n  <Fragment>\n    {images.map((image, i) => (\n      <MediaContainer key={i} className=\"responsive-item\">\n        <img\n          src={`https://picsum.photos${image}`}\n          role=\"presentation\"\n          alt=\"An image from https://picsum.photos\"\n        />\n      </MediaContainer>\n    ))}\n  </Fragment>\n);\n\nexport default SimpleResponsiveImages;\n",
+    "isBinary": false
+  },
+  "src/simple-responsive-media.scss": {
+    "content": ".responsive-item {\n  margin: 0.5rem;\n}\n",
+    "isBinary": false
+  }
+}

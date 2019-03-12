@@ -36,3 +36,6 @@ export const PACKAGES_RECORD: PackagesRecord = PACKAGES.reduce(
 export const PACKAGE_NAMES = Object.keys(PACKAGES_RECORD).map(
   name => `${name.substring(name.indexOf("/") + 1)}`
 );
+
+export const CODE_SANDBOX_DEFINE_API =
+  "https://codesandbox.io/api/v1/sandboxes/define";

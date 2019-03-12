@@ -1,0 +1,32 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/button": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { FontIcon, TextIconSpacing } from \"@react-md/icon\";\nimport {\n  ChatSVGIcon,\n  DeleteSVGIcon,\n  DoneSVGIcon,\n  SaveSVGIcon,\n} from \"@react-md/material-icons\";\nimport Container from \"./Container\";\n\nconst TextButtonsWithIcons: FunctionComponent = () => (\n  <Container>\n    <Button id=\"combined-button-1\">\n      <TextIconSpacing icon={<FontIcon>favorite</FontIcon>}>\n        Favorite\n      </TextIconSpacing>\n    </Button>\n    <Button id=\"combined-button-2\" theme=\"secondary\" themeType=\"outline\">\n      <TextIconSpacing icon={<ChatSVGIcon />} iconAfter>\n        Messages\n      </TextIconSpacing>\n    </Button>\n    <Button id=\"combined-button-3\" theme=\"warning\" themeType=\"contained\">\n      <TextIconSpacing icon={<DoneSVGIcon />}>Done</TextIconSpacing>\n    </Button>\n    <Button id=\"combined-button-4\" theme=\"error\" themeType=\"contained\">\n      <TextIconSpacing icon={<DoneSVGIcon />}>\n        <TextIconSpacing icon={<DeleteSVGIcon />} iconAfter>\n          Delete Forever\n        </TextIconSpacing>\n      </TextIconSpacing>\n    </Button>\n    <Button id=\"combined-button-5\" theme=\"clear\" themeType=\"outline\">\n      <TextIconSpacing icon={<SaveSVGIcon />}>Save</TextIconSpacing>\n    </Button>\n    <Button id=\"combined-button-6\" theme=\"error\" themeType=\"outline\" disabled>\n      <TextIconSpacing icon={<SaveSVGIcon />}>Save</TextIconSpacing>\n    </Button>\n  </Container>\n);\n\nexport default TextButtonsWithIcons;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"button-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".button-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  // justify-content: center;\n\n  .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  }
+}

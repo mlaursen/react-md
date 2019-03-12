@@ -1,0 +1,32 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/button": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport Container from \"./Container\";\nimport { Button } from \"@react-md/button\";\nimport { FontIcon } from \"@react-md/icon\";\nimport { FavoriteSVGIcon, DeleteSVGIcon } from \"@react-md/material-icons\";\n\nconst IconButtons: FunctionComponent = () => (\n  <Container>\n    <Button id=\"icon-button-1\" buttonType=\"icon\">\n      <FontIcon>favorite</FontIcon>\n    </Button>\n    <Button\n      id=\"icon-button-2\"\n      buttonType=\"icon\"\n      theme=\"secondary\"\n      aria-label=\"Favorite\"\n    >\n      <FavoriteSVGIcon />\n    </Button>\n    <Button\n      id=\"icon-button-3\"\n      buttonType=\"icon\"\n      theme=\"warning\"\n      aria-label=\"Move to Trash\"\n    >\n      <DeleteSVGIcon />\n    </Button>\n    <Button\n      id=\"icon-button-4\"\n      buttonType=\"icon\"\n      theme=\"error\"\n      aria-label=\"Permanently Delete\"\n    >\n      <DeleteSVGIcon />\n    </Button>\n    <Button id=\"icon-button-5\" buttonType=\"icon\" theme=\"clear\">\n      <FontIcon>add</FontIcon>\n    </Button>\n    <Button\n      id=\"icon-button-6\"\n      buttonType=\"icon\"\n      disabled\n      aria-label=\"Disabled Add Button\"\n    >\n      <FontIcon>add</FontIcon>\n    </Button>\n    <Button id=\"icon-button-7\" buttonType=\"icon\" themeType=\"outline\">\n      <FontIcon>favorite</FontIcon>\n    </Button>\n    <Button\n      id=\"icon-button-8\"\n      buttonType=\"icon\"\n      theme=\"secondary\"\n      themeType=\"outline\"\n      aria-label=\"Favorite\"\n    >\n      <FavoriteSVGIcon />\n    </Button>\n    <Button\n      id=\"icon-button-9\"\n      buttonType=\"icon\"\n      theme=\"warning\"\n      themeType=\"contained\"\n      aria-label=\"Move to Trash\"\n    >\n      <DeleteSVGIcon />\n    </Button>\n    <Button\n      id=\"icon-button-10\"\n      buttonType=\"icon\"\n      theme=\"error\"\n      themeType=\"contained\"\n      aria-label=\"Permanently Delete\"\n    >\n      <DeleteSVGIcon />\n    </Button>\n    <Button\n      id=\"icon-button-11\"\n      buttonType=\"icon\"\n      theme=\"clear\"\n      themeType=\"outline\"\n    >\n      <FontIcon>add</FontIcon>\n    </Button>\n    <Button\n      id=\"icon-button-12\"\n      buttonType=\"icon\"\n      disabled\n      aria-label=\"Disabled Add Button\"\n      themeType=\"outline\"\n    >\n      <FontIcon>add</FontIcon>\n    </Button>\n  </Container>\n);\n\nexport default IconButtons;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"button-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".button-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  // justify-content: center;\n\n  .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  }
+}

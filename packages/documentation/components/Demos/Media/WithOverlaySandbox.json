@@ -1,0 +1,19 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/link": "latest",
+      "@react-md/media": "latest",
+      "@react-md/typography": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport {\n  MediaContainer,\n  MediaOverlay,\n  MediaOverlayPosition,\n} from \"@react-md/media\";\nimport { Link } from \"@react-md/link\";\nimport { Text } from \"@react-md/typography\";\n\nconst positions: MediaOverlayPosition[] = [\n  \"top\",\n  \"right\",\n  \"bottom\",\n  \"left\",\n  \"middle\",\n  \"center\",\n  \"absolute-center\",\n];\n\nconst WithOverlay: FunctionComponent = () => (\n  <Fragment>\n    {positions.map((position, i) => (\n      <MediaContainer\n        key={position}\n        id={`overlay-container-${i}`}\n        height={9}\n        width={16}\n        className=\"responsive-item\"\n      >\n        <img\n          src={`https://picsum.photos/800/800?image=43${i}`}\n          role=\"presentation\"\n          aria-describedby={`overlay-container-overlay-${i}`}\n        />\n        <MediaOverlay id={`overlay-container-overlay-${i}`} position={position}>\n          <Text\n            type=\"headline-5\"\n            noMargin\n            align={\n              [\"left\", \"right\", \"center\"].includes(position)\n                ? \"center\"\n                : undefined\n            }\n          >\n            This is a random picture!\n          </Text>\n        </MediaOverlay>\n      </MediaContainer>\n    ))}\n  </Fragment>\n);\n\nexport default WithOverlay;\n",
+    "isBinary": false
+  }
+}

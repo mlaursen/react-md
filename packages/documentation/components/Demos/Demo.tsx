@@ -3,15 +3,18 @@ import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
 
-import { GITHUB_DEMO_URL } from "constants/index";
 import AppBarAction from "components/AppBarAction";
+import GithubLink from "components/GithubLink";
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
-import GithubLink from "components/GithubLink";
+import { GITHUB_DEMO_URL } from "constants/index";
+
 import { toTitle } from "utils/toTitle";
 
 import "./demo.scss";
 import FullPageDemo from "./FullPageDemo";
+import Sandbox from "./Sandbox";
+import getSandboxer from "./sandboxes";
 
 export interface DemoProps {
   id: string;
@@ -40,9 +43,10 @@ const Demo: FunctionComponent<DemoProps> = props => {
     index,
     packageName,
   } = props as WithDefaultProps;
+
+  const title = toTitle(packageName, "");
   let { fileName } = props;
   if (!fileName) {
-    const title = toTitle(packageName, "");
     fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(/ /g, "")}`;
   }
 
@@ -50,6 +54,8 @@ const Demo: FunctionComponent<DemoProps> = props => {
     fileName = `${fileName}.tsx`;
   }
 
+  const sandboxDescription = `This is the ${name} example from react-md`;
+  const getSandbox = getSandboxer(title, name);
   return (
     <section id={id} className={cn("demo", { "demo--spaced": index > 0 })}>
       <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
@@ -66,6 +72,13 @@ const Demo: FunctionComponent<DemoProps> = props => {
         >
           <CodeSVGIcon />
         </AppBarAction>
+        <Sandbox
+          id={`${id}-sandbox`}
+          title={name}
+          description={sandboxDescription}
+          packageName={packageName}
+          getSandbox={getSandbox}
+        />
         <GithubLink id={`${id}-github`} href={fileName} />
       </AppBar>
       <div id={`${id}-preview`} className="demo__preview">

@@ -1,0 +1,30 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/button": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport Container from \"./Container\";\nimport { Button } from \"@react-md/button\";\n\nconst OutlinedButtons: FunctionComponent = () => (\n  <Container>\n    <Button id=\"outlined-button-1\" themeType=\"outline\">\n      Outlined Button 1\n    </Button>\n    <Button id=\"outlined-button-2\" theme=\"secondary\" themeType=\"outline\">\n      Outlined Button 2\n    </Button>\n    <Button id=\"outlined-button-3\" theme=\"warning\" themeType=\"outline\">\n      Outlined Button 3\n    </Button>\n    <Button id=\"outlined-button-4\" theme=\"error\" themeType=\"outline\">\n      Outlined Button 4\n    </Button>\n    <Button id=\"outlined-button-5\" theme=\"clear\" themeType=\"outline\">\n      Outlined Button 5\n    </Button>\n    <Button id=\"outlined-button-6\" themeType=\"outline\" disabled>\n      Disabled Outlined Button\n    </Button>\n  </Container>\n);\n\nexport default OutlinedButtons;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"button-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".button-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  // justify-content: center;\n\n  .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  }
+}

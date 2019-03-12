@@ -15,6 +15,11 @@ declare module "*.md" {
   export default content;
 }
 
+declare module "*.html" {
+  const content: any;
+  export default content;
+}
+
 declare module "react-codesandboxer" {
   import { FunctionComponent, ReactNode, CSSProperties } from "react";
 

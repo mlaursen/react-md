@@ -1,0 +1,33 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/app-bar": "latest",
+      "@react-md/button": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport {\n  AppBar,\n  AppBarNav,\n  AppBarTitle,\n  AppBarAction,\n} from \"@react-md/app-bar\";\nimport {\n  MenuSVGIcon,\n  SearchSVGIcon,\n  MoreVertSVGIcon,\n  ArrowDropDownSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\nimport { TextIconSpacing } from \"@react-md/icon\";\n\nconst DenseAppBar = () => (\n  <AppBar dense>\n    <AppBarNav aria-label=\"Navigation\" id=\"dense-nav\">\n      <MenuSVGIcon />\n    </AppBarNav>\n    <AppBarTitle>Dense</AppBarTitle>\n    <AppBarAction first aria-label=\"Search\" id=\"dense-search\">\n      <SearchSVGIcon />\n    </AppBarAction>\n    <AppBarAction last aria-label=\"Actions\" id=\"dense-actions\">\n      <MoreVertSVGIcon />\n    </AppBarAction>\n  </AppBar>\n);\n\nconst NormalAppBar = () => (\n  <AppBar component=\"div\">\n    <AppBarNav aria-label=\"Navigation\" id=\"normal-nav\">\n      <MenuSVGIcon />\n    </AppBarNav>\n    <AppBarTitle>Dense Prominent</AppBarTitle>\n    <AppBarAction first aria-label=\"Search\" id=\"normal-search\">\n      <SearchSVGIcon />\n    </AppBarAction>\n    <AppBarAction last aria-label=\"Actions\" id=\"normal-actions\">\n      <MoreVertSVGIcon />\n    </AppBarAction>\n  </AppBar>\n);\n\nconst DenseProminentAppBar = () => (\n  <AppBar dense prominent>\n    <AppBar component=\"div\" dense>\n      <AppBarNav aria-label=\"Navigation\" id=\"dense-prominent-nav\">\n        <MenuSVGIcon />\n      </AppBarNav>\n      <AppBarTitle>Dense</AppBarTitle>\n      <AppBarAction first aria-label=\"Search\" id=\"dense-prominent-search\">\n        <SearchSVGIcon />\n      </AppBarAction>\n      <AppBarAction last aria-label=\"Actions\" id=\"dense-prominent-actions\">\n        <MoreVertSVGIcon />\n      </AppBarAction>\n    </AppBar>\n    <AppBar component=\"div\" dense>\n      <AppBarTitle keyline>And Prominent!</AppBarTitle>\n      <AppBarAction first buttonType=\"text\" id=\"dense-prominent-new\">\n        <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>\n          New...\n        </TextIconSpacing>\n      </AppBarAction>\n    </AppBar>\n  </AppBar>\n);\n\nconst ProminentAppBar = () => (\n  <AppBar prominent>\n    <AppBar component=\"div\">\n      <AppBarNav aria-label=\"Navigation\">\n        <MenuSVGIcon />\n      </AppBarNav>\n      <AppBarAction first aria-label=\"Search\">\n        <SearchSVGIcon />\n      </AppBarAction>\n      <AppBarAction last aria-label=\"Actions\" id=\"prominent-actions\">\n        <MoreVertSVGIcon />\n      </AppBarAction>\n    </AppBar>\n    <AppBar component=\"div\">\n      <AppBarTitle keyline>Only Prominent</AppBarTitle>\n      <AppBarAction first buttonType=\"text\" id=\"prominent-new\">\n        <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>\n          New...\n        </TextIconSpacing>\n      </AppBarAction>\n    </AppBar>\n  </AppBar>\n);\n\nconst DifferentSizes: FunctionComponent = () => (\n  <Container>\n    <DenseAppBar />\n    <NormalAppBar />\n    <DenseProminentAppBar />\n    <ProminentAppBar />\n  </Container>\n);\n\nexport default DifferentSizes;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div {...props} className={cn(\"app-bar-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n\n.app-bar-container {\n  @include rmd-utils-block-centered;\n\n  max-width: 40rem;\n\n  > .rmd-app-bar {\n    margin: 2rem auto;\n  }\n}\n",
+    "isBinary": false
+  }
+}

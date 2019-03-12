@@ -1,0 +1,33 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/app-bar": "latest",
+      "@react-md/button": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport {\n  AppBar,\n  AppBarNav,\n  AppBarTitle,\n  AppBarAction,\n  AppBarTheme,\n} from \"@react-md/app-bar\";\nimport {\n  MenuSVGIcon,\n  SearchSVGIcon,\n  MoreVertSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst themes: AppBarTheme[] = [\"primary\", \"secondary\", \"default\", \"clear\"];\n\nconst SimpleUsage: FunctionComponent = () => (\n  <Container>\n    {themes.map((theme, i) => (\n      <AppBar id={`simple-usage-app-bar-${i}`} theme={theme} key={theme}>\n        <AppBarNav id={`simple-usage-nav-${i}`} aria-label=\"Navigation\">\n          <MenuSVGIcon />\n        </AppBarNav>\n        <AppBarTitle\n          id={`simple-usage-title-${i}`}\n          className=\"rmd-typography--capitalize\"\n        >\n          {theme}\n        </AppBarTitle>\n        <AppBarAction id={`simple-usage-search-${i}`} first aria-label=\"Search\">\n          <SearchSVGIcon />\n        </AppBarAction>\n        <AppBarAction id={`simple-usage-kebab-${i}`} last aria-label=\"Actions\">\n          <MoreVertSVGIcon />\n        </AppBarAction>\n      </AppBar>\n    ))}\n  </Container>\n);\n\nexport default SimpleUsage;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div {...props} className={cn(\"app-bar-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n\n.app-bar-container {\n  @include rmd-utils-block-centered;\n\n  max-width: 40rem;\n\n  > .rmd-app-bar {\n    margin: 2rem auto;\n  }\n}\n",
+    "isBinary": false
+  }
+}

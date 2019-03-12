@@ -21,4 +21,4 @@ default.`,
   },
 ];
 
-export default () => <DemoPage demos={demos} />;
+export default () => <DemoPage demos={demos} packageName="typography" />;

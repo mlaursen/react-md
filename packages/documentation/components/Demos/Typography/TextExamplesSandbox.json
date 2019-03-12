@@ -1,0 +1,17 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/typography": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Text } from \"@react-md/typography\";\n\nconst TextExamples: FunctionComponent = () => (\n  <Fragment>\n    <Text type=\"headline-1\">Headline 1</Text>\n    <Text type=\"headline-2\">Headline 2</Text>\n    <Text type=\"headline-3\">Headline 3</Text>\n    <Text type=\"headline-4\">Headline 4</Text>\n    <Text type=\"headline-5\">Headline 5</Text>\n    <Text type=\"headline-6\">Headline 6</Text>\n    <Text type=\"subtitle-1\">Subtitle 1</Text>\n    <Text type=\"subtitle-2\">Subtitle 2</Text>\n    <Text type=\"body-1\">\n      Body 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus\n      accumsan auctor neque, eu dignissim ex. Etiam vitae nisl ex. Maecenas ut\n      elit risus. In consequat augue quis dui ultrices, nec interdum ipsum\n      lacinia. Sed cursus justo erat, vehicula vestibulum lacus mattis ut. Fusce\n      id lacinia sem, nec volutpat nunc. Suspendisse nec sem libero.\n      Pellentesque diam eros, ornare ut nunc vitae, finibus feugiat purus.\n      Mauris finibus aliquam consequat.\n    </Text>\n    <Text type=\"body-2\">\n      Body 2: Cras condimentum facilisis augue vel porta. Proin eget aliquam\n      libero. Class aptent taciti sociosqu ad litora torquent per conubia\n      nostra, per inceptos himenaeos. Donec elementum imperdiet erat, sed\n      feugiat turpis sodales a. Aenean congue luctus venenatis. Phasellus congue\n      nulla justo, nec facilisis mi porttitor eu. Mauris semper ex et ex\n      scelerisque placerat. Cras id urna vulputate, euismod dolor a, laoreet\n      odio. Etiam accumsan vehicula nulla, quis luctus ante iaculis id. Quisque\n      hendrerit, odio sit amet rutrum vestibulum, metus purus ultrices risus, ac\n      vulputate mi ante id purus. Cras in felis ut lorem aliquam dapibus ut id\n      lacus. Ut maximus tortor libero, sit amet mollis ipsum euismod id. Morbi\n      vulputate ac sapien nec bibendum. Interdum et malesuada fames ac ante\n      ipsum primis in faucibus. Cras ipsum massa, tristique tincidunt finibus\n      vitae, aliquam vitae est.\n    </Text>\n    <Text type=\"caption\" component=\"h5\">\n      Caption text\n    </Text>\n    <Text type=\"overline\" component=\"h5\">\n      Overline text\n    </Text>\n    <Text type=\"button\" component=\"h5\">\n      Button text\n    </Text>\n  </Fragment>\n);\n\nexport default TextExamples;\n",
+    "isBinary": false
+  }
+}

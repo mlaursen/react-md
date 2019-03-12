@@ -1,0 +1,17 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/media": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nconst ForcedAspectRatio: FunctionComponent = () => (\n  <div className=\"forced-aspect-ratio\">\n    <MediaContainer height={9} width={16} className=\"responsive-item\">\n      <img\n        src=\"https://picsum.photos/400/300?image=3\"\n        role=\"presentation\"\n        alt=\"An image from https://picsum.photos\"\n      />\n    </MediaContainer>\n    <MediaContainer height={1} width={1} className=\"responsive-item\">\n      <img\n        src=\"https://picsum.photos/400/300?image=623\"\n        role=\"presentation\"\n        alt=\"An image from https://picsum.photos\"\n      />\n    </MediaContainer>\n    <MediaContainer height={9} width={16} className=\"responsive-item\">\n      <iframe\n        src=\"https://www.youtube.com/embed/kyAn3fSs8_A\"\n        allowFullScreen\n        frameBorder=\"0\"\n      />\n    </MediaContainer>\n  </div>\n);\n\nexport default ForcedAspectRatio;\n",
+    "isBinary": false
+  }
+}
