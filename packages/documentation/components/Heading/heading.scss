@@ -24,7 +24,7 @@
     opacity: 0;
     position: absolute;
     text-decoration: none;
-    transition: opacity $rmd-transition-linear-time;
+    transition: opacity $rmd-transition-standard-time;
 
     &:hover,
     &:focus {

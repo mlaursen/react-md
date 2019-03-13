@@ -40,7 +40,7 @@ $toc-width: 15rem;
   right: $page-margin;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
   transform-origin: 98% ($rmd-icon-size / 2);
-  transition: opacity $rmd-transition-linear-time, transform $rmd-transition-linear-time;
+  transition: opacity $rmd-transition-standard-time, transform $rmd-transition-standard-time;
   width: 100%;
   z-index: 1;
 

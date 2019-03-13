@@ -6,7 +6,7 @@ export default {
   "rmd-transition-deceleration": "cubic-bezier(0, 0, 0.2, 1)",
   "rmd-transition-enter-time": "0.2s",
   "rmd-transition-leave-time": "0.15s",
-  "rmd-transition-linear-time": "0.15s",
+  "rmd-transition-standard-time": "0.15s",
   "rmd-collapse-enter-transition-func": "deceleration",
   "rmd-collapse-leave-transition-func": "acceleration",
   "rmd-transition-theme-values": {

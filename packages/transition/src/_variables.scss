@@ -34,7 +34,7 @@ $rmd-transition-leave-time: 0.15s !default;
 
 /// The default transition time for a linear animation/transition.
 /// @type Number
-$rmd-transition-linear-time: 0.15s !default;
+$rmd-transition-standard-time: 0.15s !default;
 
 /// The transition easing function to apply when the collapse's content is animating
 /// in. This should be one of the `$rmd-transitions` keys.

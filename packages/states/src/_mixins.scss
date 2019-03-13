@@ -62,7 +62,7 @@
   @include rmd-states-psuedo-surface;
   @include rmd-states-theme(background-color);
 
-  transition: opacity $rmd-transition-linear-time;
+  transition: opacity $rmd-transition-standard-time;
 }
 
 @mixin rmd-states-color-pullution-content-overlay {
