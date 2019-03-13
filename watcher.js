@@ -4,6 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const { spawn, spawnSync } = require('child_process');
 
+const docsRoot = path.join(process.cwd(), 'packages', 'documentation');
 const IGNORED = /(__tests__|dev-utils|documentation)/;
 let startLoggingScss = false;
 let startLoggingDefs = false;
@@ -30,7 +31,11 @@ function copyFile(filePath, destPath, log) {
   fs.copyFileSync(filePath, dest);
 }
 
-const copyScssFile = f => copyFile(f, 'dist', startLoggingScss);
+const copyScssFile = f => {
+  copyFile(f, 'dist', startLoggingScss);
+  spawnSync('yarn', ['base-styles'], { stdio: 'inherit', cwd: docsRoot });
+};
+
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 const isNotLazy = process.argv.includes('--no-lazy');
 const isVariablesWatched = process.argv.includes('--watch-variables');
@@ -114,11 +119,6 @@ chokidar
   })
   .on('change', filePath => {
     copyScssFile(filePath);
-    if (filePath.endsWith('mixins.scss')) {
-      // doesn't seem to update in documentation site otherwise..
-      copyScssFile(filePath.replace('mixin', 'variable'));
-    }
-
     if (isVariablesWatched && filePath.includes('variables.scss')) {
       startVariablesWatcher(filePath);
     }
@@ -156,8 +156,7 @@ chokidar
 chokidar
   .watch(['packages/*/README.md'], { ignored: IGNORED })
   .on('change', () => {
-    const cwd = path.join(process.cwd(), 'packages', 'documentation');
-    spawnSync('yarn', ['copy-readmes'], { stdio: 'inherit', cwd });
+    spawnSync('yarn', ['copy-readmes'], { stdio: 'inherit', cwd: docsRoot });
     console.log('Done!');
   })
   .on('ready', () => {
@@ -167,8 +166,7 @@ chokidar
 chokidar
   .watch(['packages/documentation/components/**/*.md'], { ignored: IGNORED })
   .on('change', () => {
-    const cwd = path.join(process.cwd(), 'packages', 'documentation');
-    spawnSync('yarn', ['add-toc'], { stdio: 'inherit', cwd });
+    spawnSync('yarn', ['add-toc'], { stdio: 'inherit', cwd: docsRoot });
     console.log('Done!');
   })
   .on('ready', () => {

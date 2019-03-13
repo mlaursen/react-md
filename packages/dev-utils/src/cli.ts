@@ -9,6 +9,7 @@ import prepublish from "./prepublish";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
 import sandbox from "./sandbox";
+import { docStyles } from "./docStyles";
 
 const argv = process.argv.slice(2);
 if (argv[0] === "test") {
@@ -66,6 +67,11 @@ commander
   .command("readmes")
   .option("--verbose")
   .action(() => copyReadmes());
+
+commander
+  .command("doc-styles")
+  .option("--verbose")
+  .action(() => docStyles());
 
 commander
   .command("sandbox [components...]")

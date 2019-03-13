@@ -3,7 +3,6 @@ import cn from "classnames";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
 import { Omit } from "@react-md/utils";
 
-import "./heading.scss";
 import HeadingLink from "./HeadingLink";
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6;

@@ -40,7 +40,7 @@ export default async function styles() {
   await compile(true);
 }
 
-async function compile(production: boolean) {
+export async function compile(production: boolean) {
   const packageName = await getPackageName();
   const srcFile = path.join(src, stylesScss);
   const fileName = `${packageName}${production ? ".min" : ""}.css`;

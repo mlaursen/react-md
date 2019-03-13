@@ -15,9 +15,10 @@ export function compileScss(
   exit: boolean = true
 ) {
   try {
+    const { includePaths = [src] } = options;
     return nodeSass.renderSync({
       ...options,
-      includePaths: [src, rootNodeModules],
+      includePaths: [...includePaths, rootNodeModules],
     });
   } catch (e) {
     if (exit) {
