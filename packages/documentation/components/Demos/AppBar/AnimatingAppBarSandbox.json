@@ -5,6 +5,7 @@
       "@react-md/avatar": "latest",
       "@react-md/avatar/dist/scssVariables.d.ts": "latest",
       "@react-md/button": "latest",
+      "@react-md/elevation": "latest",
       "@react-md/icon": "latest",
       "@react-md/list": "latest",
       "@react-md/material-icons": "latest",

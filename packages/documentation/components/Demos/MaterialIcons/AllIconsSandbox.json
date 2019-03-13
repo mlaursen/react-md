@@ -7,11 +7,11 @@
       "@react-md/material-icons": "latest",
       "@react-md/states": "latest",
       "@react-md/transition": "latest",
+      "@react-md/typography": "latest",
       "@react-md/utils": "latest",
       "@react-md/wia-aria": "latest",
       "react": "latest",
-      "react-dom": "latest",
-      "react-virtualized": "latest"
+      "react-dom": "latest"
     }
   },
   "src/index.tsx": {
@@ -19,7 +19,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent } from \"react\";\nimport { SimpleListItem } from \"@react-md/list\";\nimport scssVariables from \"@react-md/list/dist/scssVariables\";\nimport * as MaterialIcons from \"@react-md/material-icons\";\nimport { unitToNumber } from \"@react-md/utils\";\n\nimport { AutoSizer, List } from \"react-virtualized\";\n\nimport \"./all-icons.scss\";\nimport { Code } from \"components/Code\";\n\nconst allIcons = Object.entries(MaterialIcons).filter(([name]) =>\n  name.endsWith(\"SVGIcon\")\n);\n\nconst AllIcons = () => (\n  <div className=\"all-icons-container\">\n    {allIcons.map(([name, Icon]) => (\n      <div key={name} className=\"all-icons__info\">\n        <Icon />\n        <Code className=\"all-icons__name\">{name.replace(/SVGIcon/, \"\")}</Code>\n      </div>\n    ))}\n  </div>\n);\n\nexport default AllIcons;\n",
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { SimpleListItem } from \"@react-md/list\";\nimport scssVariables from \"@react-md/list/dist/scssVariables\";\nimport * as MaterialIcons from \"@react-md/material-icons\";\nimport { unitToNumber } from \"@react-md/utils\";\n\nimport \"./all-icons.scss\";\nimport { Code } from \"components/Code\";\n\nconst allIcons = Object.entries(MaterialIcons).filter(([name]) =>\n  name.endsWith(\"SVGIcon\")\n);\n\nconst AllIcons = () => (\n  <div className=\"all-icons-container\">\n    {allIcons.map(([name, Icon]) => (\n      <div key={name} className=\"all-icons__info\">\n        <Icon />\n        <Code className=\"all-icons__name\">{name.replace(/SVGIcon/, \"\")}</Code>\n      </div>\n    ))}\n  </div>\n);\n\nexport default AllIcons;\n",
     "isBinary": false
   },
   "src/all-icons.scss": {

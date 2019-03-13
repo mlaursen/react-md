@@ -144,7 +144,7 @@ export function parseTypescript(
   return imports;
 }
 
-const SCSS_IMPORT = /@import '(.+)';/;
+const SCSS_IMPORT = /@import '(.+)';/g;
 
 export function parseScss(filePath: string, imports: Set<string>) {
   const contents = fs.readFileSync(filePath, "utf8");

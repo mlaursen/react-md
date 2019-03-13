@@ -3,6 +3,7 @@
     "dependencies": {
       "@react-md/app-bar": "latest",
       "@react-md/button": "latest",
+      "@react-md/elevation": "latest",
       "@react-md/icon": "latest",
       "@react-md/material-icons": "latest",
       "@react-md/states": "latest",
