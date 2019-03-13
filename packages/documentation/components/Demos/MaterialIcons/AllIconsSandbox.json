@@ -1,0 +1,29 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/icon": "latest",
+      "@react-md/list": "latest",
+      "@react-md/list/dist/scssVariables.d.ts": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "react": "latest",
+      "react-dom": "latest",
+      "react-virtualized": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { SimpleListItem } from \"@react-md/list\";\nimport scssVariables from \"@react-md/list/dist/scssVariables\";\nimport * as MaterialIcons from \"@react-md/material-icons\";\nimport { unitToNumber } from \"@react-md/utils\";\n\nimport { AutoSizer, List } from \"react-virtualized\";\n\nimport \"./all-icons.scss\";\nimport { Code } from \"components/Code\";\n\nconst allIcons = Object.entries(MaterialIcons).filter(([name]) =>\n  name.endsWith(\"SVGIcon\")\n);\n\nconst AllIcons = () => (\n  <div className=\"all-icons-container\">\n    {allIcons.map(([name, Icon]) => (\n      <div key={name} className=\"all-icons__info\">\n        <Icon />\n        <Code className=\"all-icons__name\">{name.replace(/SVGIcon/, \"\")}</Code>\n      </div>\n    ))}\n  </div>\n);\n\nexport default AllIcons;\n",
+    "isBinary": false
+  },
+  "src/all-icons.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.all-icons-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\n.all-icons__info {\n  @include rmd-icon-theme-update-var(size, 2.5rem);\n\n  align-items: center;\n  display: inline-flex;\n  flex-direction: column;\n  margin: 1rem;\n  width: 8rem;\n}\n\n.all-icons__name {\n  @include rmd-typography-text-overflow-ellipsis;\n\n  margin-top: 0.5rem;\n  text-align: center;\n  width: 100%;\n}\n",
+    "isBinary": false
+  }
+}

@@ -81,8 +81,11 @@ async function parseSVGFileAndCreateComponents(
   const svg = await fs.readFile(path.join(process.cwd(), svgFilePath), "utf8");
   const contents = svg
     .substring(SVG_ICON_PREFIX.length, svg.length - SVG_ICON_SUFFIX.length)
-    .replace(/fill-opacity/g, "fillOpacity");
+    .replace(/fill-opacity/g, "fillOpacity")
+    // remove fill so the colors can be overridden in css
+    .replace(/ ?fill="#[A-Fa-f0-9]{3,6}"/g, "");
 
+  console.log(contents.match(/fill/));
   await Promise.all([
     fs.outputFile(svgIconFile, createIconFile(componentName, contents, "SVG")),
     fs.outputFile(

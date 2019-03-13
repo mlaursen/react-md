@@ -42,6 +42,10 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Divider/VerticalDividersSandbox.json")),
   "Divider/WithinLists": () =>
     resolve(import("./Divider/WithinListsSandbox.json")),
+  "MaterialIcons/AllIcons": () =>
+    resolve(import("./MaterialIcons/AllIconsSandbox.json")),
+  "MaterialIcons/SimpleExamples": () =>
+    resolve(import("./MaterialIcons/SimpleExamplesSandbox.json")),
   "Media/ForcedAspectRatio": () =>
     resolve(import("./Media/ForcedAspectRatioSandbox.json")),
   "Media/SimpleResponsiveMedia": () =>

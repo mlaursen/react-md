@@ -6,7 +6,7 @@ import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
 const FiberManualRecordSVGIcon: FunctionComponent<SVGIconProps> = props => (
   <SVGIcon {...props}>
-    <circle fill="#010101" cx="12" cy="12" r="8" />
+    <circle cx="12" cy="12" r="8" />
   </SVGIcon>
 );
 

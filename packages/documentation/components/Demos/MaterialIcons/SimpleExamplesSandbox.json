@@ -1,0 +1,23 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/icon": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/typography": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport {\n  AccessAlarmFontIcon,\n  AccessAlarmSVGIcon,\n  Rotation3DFontIcon, // the sprite name for this was 3d_rotation.svg\n  Rotation3DSVGIcon, // the sprite name for this was 3d_rotation.svg\n  TvFontIcon,\n  TvSVGIcon,\n  HomeFontIcon,\n  HomeSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport \"./simple-examples.scss\";\n\nconst SimpleExamples: FunctionComponent = () => (\n  <div className=\"material-icons-container\">\n    <Text type=\"headline-4\">Font Icon Versions</Text>\n    <AccessAlarmFontIcon />\n    <Rotation3DFontIcon />\n    <HomeFontIcon />\n    <TvFontIcon />\n    <Text type=\"headline-4\">SVG Icon Versions</Text>\n    <AccessAlarmSVGIcon />\n    <Rotation3DSVGIcon />\n    <HomeSVGIcon />\n    <TvSVGIcon />\n  </div>\n);\n\nexport default SimpleExamples;\n",
+    "isBinary": false
+  },
+  "src/simple-examples.scss": {
+    "content": ".material-icons-container {\n  .rmd-icon {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+    "isBinary": false
+  }
+}
