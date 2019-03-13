@@ -29,7 +29,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.0.0-alpha.0"
+    "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0"
   },
   "devDependencies": {
     "@react-md/dev-utils": "^2.0.0-alpha.0"
