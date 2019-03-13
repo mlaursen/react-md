@@ -26,24 +26,6 @@
 
   &__logo {
     margin-bottom: 2em;
-
-    &--primary {
-      @include rmd-theme(fill, primary);
-    }
-
-    &--secondary {
-      @include rmd-theme(fill, secondary);
-    }
-
-    &__text {
-      @include rmd-typography(headline-6);
-      @include rmd-utils-rtl {
-        transform: translateX(0.7em);
-      }
-
-      font-weight: map-get($rmd-typography-font-weights, bold);
-      transform: translateX(-0.8em);
-    }
   }
 
   &__jump-start {

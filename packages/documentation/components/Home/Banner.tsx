@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Text } from "@react-md/typography";
-
-import { Component as Logo } from "./logo.svg";
+import Logo from "./Logo";
 
 const Banner: FunctionComponent = () => (
   <div className="home__banner">
