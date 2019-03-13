@@ -4,8 +4,6 @@ import scssVariables from "@react-md/list/dist/scssVariables";
 import * as MaterialIcons from "@react-md/material-icons";
 import { unitToNumber } from "@react-md/utils";
 
-import { AutoSizer, List } from "react-virtualized";
-
 import "./all-icons.scss";
 import { Code } from "components/Code";
 

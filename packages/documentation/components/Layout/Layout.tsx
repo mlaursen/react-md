@@ -4,6 +4,7 @@ import { TransitionGroup } from "react-transition-group";
 import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
 import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
+import { AppSize as AppSizeType } from "@react-md/utils";
 
 import AppSize from "./AppSize";
 import Header from "./Header";
@@ -11,7 +12,7 @@ import NavigationTree from "./NavigationTree";
 
 import "./layout.scss";
 
-export interface LayoutProps {
+export interface LayoutProps extends Partial<AppSizeType> {
   title: string;
   pageTitle: string;
   pathname: string;
@@ -21,10 +22,10 @@ const Layout: FunctionComponent<LayoutProps> = ({
   children,
   title,
   pathname,
-  ...others
+  ...defaultMedia
 }) => {
   return (
-    <AppSize>
+    <AppSize {...defaultMedia}>
       <KeyboardTracker>
         <StatesConfig preventColorPollution>
           <Header title={title} />

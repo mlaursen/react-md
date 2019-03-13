@@ -19,22 +19,25 @@ export default class App extends NextApp {
       componentProps = await Component.getInitialProps(ctx);
     }
 
-    let tablet;
-    let mobile;
-    let desktop;
+    let isTablet;
+    let isMobile;
+    let isDesktop;
+    let isLargeDesktop;
     if (ctx && ctx.req) {
       const md = new MobileDetect(ctx.req.headers['user-agent']);
-      tablet = !!md.tablet();
-      mobile = !tablet && !!md.mobile();
-      desktop = !mobile && !tablet;
+      isTablet = !!md.tablet();
+      isMobile = !isTablet && !!md.mobile();
+      isDesktop = !isMobile && !isTablet;
+      isLargeDesktop = isDesktop;
     }
 
     return {
       componentProps,
       appSize: {
-        mobile,
-        tablet,
-        desktop,
+        isMobile,
+        isTablet,
+        isDesktop,
+        isLargeDesktop,
       },
     };
   }

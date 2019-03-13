@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode, Fragment } from "react";
 import cn from "classnames";
 import { toId } from "utils/toTitle";
 import Demo, { DemoProps } from "./Demo";
@@ -51,10 +51,12 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
     { headings: [], children: [] }
   );
   return (
-    <div id="demo-page-container" className={cn("demo-page", className)}>
+    <Fragment>
       <TableOfContents headings={headings} />
-      {children}
-    </div>
+      <div id="demo-page-container" className={cn("demo-page", className)}>
+        {children}
+      </div>
+    </Fragment>
   );
 };
 
