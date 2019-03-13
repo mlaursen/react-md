@@ -1,0 +1,29 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/app-bar": "latest",
+      "@react-md/button": "latest",
+      "@react-md/divider": "latest",
+      "@react-md/media": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/typography": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBar, AppBarTitle } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { MediaContainer } from \"@react-md/media\";\nimport { Text } from \"@react-md/typography\";\n\nimport \"./vertical-dividers.scss\";\n\nconst VerticalDividers: FunctionComponent = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className=\"vertical-dividers-logo\"\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default VerticalDividers;\n",
+    "isBinary": false
+  },
+  "src/vertical-dividers.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n@import '@react-md/app-bar/dist/mixins';\n\n.vertical-dividers-logo {\n  @include rmd-utils-rtl {\n    margin-left: auto;\n    margin-right: $rmd-app-bar-lr-margin;\n  }\n\n  margin-left: $rmd-app-bar-lr-margin;\n}\n",
+    "isBinary": false
+  }
+}

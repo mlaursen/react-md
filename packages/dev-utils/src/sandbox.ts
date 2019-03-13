@@ -46,7 +46,7 @@ function parseDemo(
 }
 
 async function createSandboxJsonFiles(components: string[]) {
-  if (!isVerbose()) {
+  if (!isVerbose() && !components.length) {
     log(
       `Starting to traverse all the demo files to resolve their imports so
 that a code sandbox and inline-code blocks can be shown.
@@ -130,7 +130,7 @@ async function createSandboxLookups() {
 export default async function sandbox(config: ResolveConfig) {
   const { components, lookupsOnly } = config;
   if (!lookupsOnly) {
-    time(() => createSandboxJsonFiles(components), "creating sandboxes");
+    await time(() => createSandboxJsonFiles(components), "creating sandboxes");
   }
 
   time(createSandboxLookups, "sandbox lookups");

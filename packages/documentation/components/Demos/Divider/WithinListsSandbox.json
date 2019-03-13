@@ -1,0 +1,34 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/divider": "latest",
+      "@react-md/elevation": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/list": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "classnames": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { List, ListItem } from \"@react-md/list\";\n\nimport Container from \"./Container\";\nimport {\n  FavoriteSVGIcon,\n  BookSVGIcon,\n  TvSVGIcon,\n  AddSVGIcon,\n  TocSVGIcon,\n  AdbSVGIcon,\n} from \"@react-md/material-icons\";\n\nconst WithinLists: FunctionComponent = () => (\n  <Container>\n    <List>\n      <ListItem id=\"list1-item-0\">First Item</ListItem>\n      <ListItem id=\"list1-item-1\">Second Item</ListItem>\n      <ListItem id=\"list1-item-2\">Third Item</ListItem>\n      <ListItem id=\"list1-item-3\">Forth Item</ListItem>\n      <Divider />\n      <ListItem id=\"list1-item-3\">Fifth Item</ListItem>\n      <ListItem id=\"list1-item-5\">Sixth Item</ListItem>\n    </List>\n    <List>\n      <ListItem id=\"list2-item-0\" leftIcon={<FavoriteSVGIcon />}>\n        First Item\n      </ListItem>\n      <ListItem id=\"list2-item-1\" leftIcon={<BookSVGIcon />}>\n        Second Item\n      </ListItem>\n      <ListItem id=\"list2-item-2\" leftIcon={<TvSVGIcon />}>\n        Third Item\n      </ListItem>\n      <ListItem id=\"list2-item-3\" leftIcon={<AddSVGIcon />}>\n        Forth Item\n      </ListItem>\n      <Divider inset />\n      <ListItem id=\"list2-item-3\" leftIcon={<TocSVGIcon />}>\n        Fifth Item\n      </ListItem>\n      <ListItem id=\"list2-item-5\" leftIcon={<AdbSVGIcon />}>\n        Sixth Item\n      </ListItem>\n    </List>\n  </Container>\n);\n\nexport default WithinLists;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"divider-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": "@import '@react-md/elevation/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n\n.divider-container {\n  .rmd-list {\n    @include rmd-elevation(2);\n\n    margin: 2rem auto;\n    max-width: 25rem;\n  }\n}\n",
+    "isBinary": false
+  }
+}
