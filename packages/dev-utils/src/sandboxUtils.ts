@@ -21,7 +21,7 @@ const {
   useCaseSensitiveFileNames,
 } = sys;
 
-export function getSourceFile(fileName: string, language: ScriptTarget) {
+function getSourceFile(fileName: string, language: ScriptTarget) {
   const source = sys.readFile(fileName);
   return typeof source !== "undefined"
     ? createSourceFile(fileName, source, language)
@@ -32,7 +32,7 @@ export function getSourceFile(fileName: string, language: ScriptTarget) {
  * This is where the "magic" happens. The compiler host is used to track all the imports
  * for each file with the `resolveModulesName` function.
  */
-export function createCompilerHost(
+function createCompilerHost(
   imports: Set<string>,
   aliases: string[],
   compilerOptions: CompilerOptions
@@ -60,7 +60,7 @@ export const NOOP_PACKAGE = "NOOP_PACKAGE";
  * A small util that will make a "pretty" module name from the provided
  * file path.
  */
-export function getModuleName(filePath: string, scss: boolean = false) {
+function getModuleName(filePath: string, scss: boolean = false) {
   if (/csstype\/index|prop-types/.test(filePath)) {
     return NOOP_PACKAGE;
   } else if (scss && filePath.includes("@react-md")) {
@@ -73,6 +73,74 @@ export function getModuleName(filePath: string, scss: boolean = false) {
     .replace(/.+documentation\//, "")
     .replace(/prismjs.+/, "prismjs")
     .replace(/.*@types\/([a-z-]+)\/.+/, "$1");
+}
+
+function isDirectory(filePath: string) {
+  try {
+    return fs.lstatSync(filePath).isDirectory();
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Checks if the module is resolved as a non typescript file. This has a side-effect
+ * of also updating the `resolvedModules` with the "resolved" fake name and adding
+ * the resolved import to the imports set.
+ */
+function isNonTSResolved(
+  name: string,
+  resolvedModules: ResolvedModule[],
+  imports: Set<string>
+): boolean {
+  if (!isMarkdown(name) && !isStyle(name) && !isSvg(name)) {
+    return false;
+  }
+
+  resolvedModules.push({ resolvedFileName: `${name}.ts` });
+
+  if (!isMarkdown(name)) {
+    imports.add(getModuleName(name));
+  }
+
+  return true;
+}
+
+function isAliasedResolved(
+  name: string,
+  resolvedModules: ResolvedModule[],
+  imports: Set<string>,
+  aliases: string[]
+): boolean {
+  if (!isAliased(name, aliases)) {
+    return false;
+  }
+
+  let resolvedFileName = name;
+  if (isDirectory(name)) {
+    resolvedFileName = path.join(resolvedFileName, "index");
+  }
+
+  if (!path.extname(resolvedFileName)) {
+    const extensions = ["ts", "tsx"];
+    const ext = extensions.find(e => fs.existsSync(`${resolvedFileName}.${e}`));
+
+    if (!ext) {
+      console.error("Unknown extension for file");
+      process.exit(1);
+    }
+
+    resolvedFileName = `${resolvedFileName}.${ext}`;
+  }
+
+  if (/Code\.tsx/.test(resolvedFileName)) {
+    imports.add("components/Code/code.scss");
+    imports.add("_variables.scss");
+  }
+
+  imports.add(resolvedFileName);
+  resolvedModules.push({ resolvedFileName });
+  return true;
 }
 
 /**
@@ -89,13 +157,10 @@ export function resolveModuleNames(
 ): ResolvedModule[] {
   const resolvedModules: ResolvedModule[] = [];
   for (const name of moduleNames) {
-    if (isMarkdown(name) || isStyle(name) || isSvg(name)) {
-      resolvedModules.push({ resolvedFileName: `${name}.ts` });
-
-      if (!isMarkdown(name)) {
-        imports.add(getModuleName(name));
-      }
-
+    if (
+      isNonTSResolved(name, resolvedModules, imports) ||
+      isAliasedResolved(name, resolvedModules, imports, aliases)
+    ) {
       continue;
     }
 
@@ -109,30 +174,6 @@ export function resolveModuleNames(
       const moduleName = getModuleName(resolvedModule.resolvedFileName);
       resolvedModules.push(resolvedModule);
       imports.add(moduleName);
-      continue;
-    }
-
-    if (isAliased(name, aliases)) {
-      let resolvedFileName = name;
-      if (isDirectory(name)) {
-        resolvedFileName = path.join(resolvedFileName, "index");
-      }
-      if (!path.extname(resolvedFileName)) {
-        const extensions = ["ts", "tsx"];
-        const ext = extensions.find(e =>
-          fs.existsSync(`${resolvedFileName}.${e}`)
-        );
-
-        if (!ext) {
-          console.error("Unknown extension for file");
-          process.exit(1);
-        }
-
-        resolvedFileName = `${resolvedFileName}.${ext}`;
-      }
-
-      imports.add(resolvedFileName);
-      resolvedModules.push({ resolvedFileName });
       continue;
     }
 
@@ -232,6 +273,9 @@ export function createSandboxedDemo(
   const traversed = new Set(importedModules);
   traversed.add("react");
   traversed.add("react-dom");
+  traversed.add("@react-md/theme");
+  traversed.add("@react-md/typography");
+  traversed.add("@react-md/utils");
 
   const relativeModules: string[] = [];
   getRelativeModules(importedModules).forEach(moduleName => {
@@ -295,26 +339,33 @@ export function createSandboxedDemo(
   return createSandbox(demoPath, dependencies, imports, aliases);
 }
 
-function toSandboxFileName(filePath: string, aliases: string[]) {
-  if (filePath.startsWith("components")) {
-    return filePath.substring(filePath.lastIndexOf("/") + 1);
-  }
-
-  const alias = aliases.find(a => filePath.startsWith(a));
-  if (alias) {
-    return `${alias}/${filePath.substring(filePath.lastIndexOf("/") + 1)}`;
-  }
-
-  return filePath;
-}
-
 const indexFile = `import React from "react";
 import { render } from "react-dom";
+
+import "./styles.scss";
 
 import Demo from "./Demo";
 
 render(<Demo />, document.getElementById("root"));
 `;
+
+function createDefaultStyles(dependencies: string[]) {
+  const rmdDependencies = dependencies.filter(name =>
+    name.startsWith("@react-md")
+  );
+
+  const i = rmdDependencies.findIndex(name => name.endsWith("utils"));
+  const utils = rmdDependencies.splice(i, 1);
+
+  const imports = [...rmdDependencies, utils]
+    .map(name => `@import '${name}/dist/mixins';`)
+    .join("\n");
+
+  return `${imports}
+
+@include react-md-utils;
+`;
+}
 
 function createSandbox(
   demoPath: string,
@@ -338,10 +389,14 @@ function createSandbox(
     "package.json": packageJson,
     "src/index.tsx": { content: indexFile, isBinary: false },
     "src/Demo.tsx": { content: demoFile, isBinary: false },
+    "src/styles.scss": {
+      content: createDefaultStyles(dependencies),
+      isBinary: false,
+    },
   };
 
   const files = imports.reduce((content, filePath) => {
-    const fileName = `src/${toSandboxFileName(filePath, aliases)}`;
+    const fileName = `src/${filePath}`;
     if (content[fileName]) {
       console.error(
         "Sandbox rules need to be updated. Found multiple files with the same name."
