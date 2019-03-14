@@ -7,7 +7,6 @@ import {
   createSandboxedDemo,
   createSandboxesFile,
   getRelativeRoot,
-  NOOP_FILE,
   parseFile,
 } from "./sandboxUtils";
 import { glob, list, log, isVerbose, time, toTitle } from "./utils";
@@ -61,9 +60,6 @@ behind the scenes so there is _some_ sense of progress...
     );
   }
 
-  log("Creating a noop file for resolutions and base tsconfig...");
-  log();
-  await fs.writeFile(NOOP_FILE, "", "utf-8");
   const tsconfig = await fs.readJson(
     path.join(documentationRoot, "tsconfig.json")
   );
@@ -105,9 +101,6 @@ behind the scenes so there is _some_ sense of progress...
       return parse();
     })
   );
-
-  log("Cleaning up the noop file...");
-  await fs.remove(NOOP_FILE);
 }
 
 async function createSandboxLookups() {

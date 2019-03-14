@@ -69,12 +69,11 @@ export function getModuleName(filePath: string, scss: boolean = false) {
 
   return filePath
     .replace(/.*node_modules\//, "")
-    .replace(/\/types.+$/, "")
+    .replace(/\/(types|dist\/).+$/, "")
     .replace(/.+documentation\//, "")
+    .replace(/prismjs.+/, "prismjs")
     .replace(/.*@types\/([a-z-]+)\/.+/, "$1");
 }
-
-export const NOOP_FILE = path.join(documentationRoot, "noop.ts");
 
 /**
  * This function will add all the imports found in the file into the main imports
@@ -90,10 +89,10 @@ export function resolveModuleNames(
 ): ResolvedModule[] {
   const resolvedModules: ResolvedModule[] = [];
   for (const name of moduleNames) {
-    if (isMarkdown(name) || isStyle(name)) {
-      resolvedModules.push({ resolvedFileName: NOOP_FILE });
+    if (isMarkdown(name) || isStyle(name) || isSvg(name)) {
+      resolvedModules.push({ resolvedFileName: `${name}.ts` });
 
-      if (isStyle(name)) {
+      if (!isMarkdown(name)) {
         imports.add(getModuleName(name));
       }
 
@@ -115,11 +114,24 @@ export function resolveModuleNames(
 
     if (isAliased(name, aliases)) {
       let resolvedFileName = name;
-      if (!/\.\w+/.test(name)) {
-        const ext = `.ts${/[A-Z]/.test(name) ? "x" : ""}`;
-        resolvedFileName = `${resolvedFileName}${ext}`;
+      if (isDirectory(name)) {
+        resolvedFileName = path.join(resolvedFileName, "index");
+      }
+      if (!path.extname(resolvedFileName)) {
+        const extensions = ["ts", "tsx"];
+        const ext = extensions.find(e =>
+          fs.existsSync(`${resolvedFileName}.${e}`)
+        );
+
+        if (!ext) {
+          console.error("Unknown extension for file");
+          process.exit(1);
+        }
+
+        resolvedFileName = `${resolvedFileName}.${ext}`;
       }
 
+      imports.add(resolvedFileName);
       resolvedModules.push({ resolvedFileName });
       continue;
     }
@@ -175,6 +187,10 @@ export function isMarkdown(filePath: string) {
 
 export function isStyle(filePath: string) {
   return /\.s?css$/.test(filePath);
+}
+
+export function isSvg(filePath: string) {
+  return /\.svg$/.test(filePath);
 }
 
 export function isRelative(filePath: string) {
