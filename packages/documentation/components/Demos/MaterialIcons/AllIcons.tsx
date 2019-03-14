@@ -5,7 +5,7 @@ import * as MaterialIcons from "@react-md/material-icons";
 import { unitToNumber } from "@react-md/utils";
 
 import "./all-icons.scss";
-import { Code } from "components/Code";
+import Code from "components/Code/Code";
 
 const allIcons = Object.entries(MaterialIcons).filter(([name]) =>
   name.endsWith("SVGIcon")

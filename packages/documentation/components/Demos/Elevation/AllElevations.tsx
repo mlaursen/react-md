@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Code } from "components/Code";
+import Code from "components/Code/Code";
 
 import "./all-elevations.scss";
 
