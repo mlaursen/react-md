@@ -39,7 +39,7 @@
 /// This should really only be used internally.
 ///
 /// @param {String} shadow - The box shadow to apply.
-/// @param {Number} duration - The transition duration for the shadow opacity change.
+/// @param {Number|String} duration - The transition duration for the shadow opacity change.
 /// @access private
 @mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time) {
   @include rmd-transition(standard);
@@ -83,7 +83,7 @@
 ///   to determine when the `$end-shadow` should be used.
 /// @param {Boolean} before [true] - Boolean if the `::before` or `::after` pseudo selector should be
 ///   used as the `end-shadow` target.
-/// @param {Number} duration [rmd-transition-standard-time] - The animation duration
+/// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration
 @mixin rmd-elevation-shadow-transition(
   $start-shadow,
   $end-shadow,
@@ -125,13 +125,13 @@
 /// updated to 1 and it'll animate in. This is really just because it is more performant to animate opacity
 /// instead of box-shadow itself.
 ///
-/// @param {Number} start - This should be the starting shadow z-index. So any number from 0 to 24 (inclusive).
-/// @param {Number} end - This should be the ending shadow z-index. So any number from 0 to 24 (inclusive).
+/// @param {Number|String} start - This should be the starting shadow z-index. So any number from 0 to 24 (inclusive).
+/// @param {Number|String} end - This should be the ending shadow z-index. So any number from 0 to 24 (inclusive).
 /// @param {String|List} active-selectors - This is normally a class name that should be used or a list of class names
 ///   for when the box shadow should start animating. This can also be different states such as `&:hover` or `&:focus`
 /// @param {Boolean} before [true] - Boolean the shadow should be placed within the `::before` pseudo element.
 ///   When this is set to `false`, the `::after` pseudo element will be used instead.
-/// @param {Number} duration [rmd-transition-standard-time] - The animation duration to use.
+/// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration to use.
 /// @param {Color} color [rmd-elevation-color] - The color to use for the box-shadow.
 /// @param {Number} opacity-boost [0] - The amount to boost the default opacity levels for the
 ///   three box-shadows applied.
@@ -144,8 +144,12 @@
   $color: $rmd-elevation-color,
   $opacity-boost: 0
 ) {
-  $start-shadow: rmd-elevation($start, $color, $opacity-boost);
-  $end-shadow: rmd-elevation($end, $color, $opacity-boost);
+  $start-shadow: if(
+    $start == none or $start == 0,
+    none,
+    rmd-elevation($start, $color, $opacity-boost)
+  );
+  $end-shadow: if($end == none or $end == 0, none, rmd-elevation($end, $color, $opacity-boost));
 
   @include rmd-elevation-shadow-transition(
     $start-shadow,

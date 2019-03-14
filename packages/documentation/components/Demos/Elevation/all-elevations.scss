@@ -1,0 +1,32 @@
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/list/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+
+.elevations-container {
+  @include rmd-list-unstyled;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.elevation-container {
+  @include rmd-theme(background-color, background);
+
+  display: inline-flex;
+  height: 10rem;
+  margin: 1rem;
+  position: relative;
+  width: 18rem;
+
+  @for $i from 0 to 24 {
+    &--#{$i} {
+      @include rmd-elevation($i);
+    }
+  }
+
+  &__import {
+    margin: auto;
+  }
+}
