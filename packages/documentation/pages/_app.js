@@ -3,7 +3,6 @@ import NextApp, { Container } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
-import { CSSTransition } from 'react-transition-group';
 import { parse } from 'url';
 
 import Layout from 'components/Layout';
@@ -112,18 +111,7 @@ export default class App extends NextApp {
           <title>{pageTitle}</title>
         </Head>
         <Layout title={title} {...appSize} pathname={pathname}>
-          <CSSTransition
-            in
-            exit={false}
-            classNames={{
-              enter: 'cross-fade',
-              enterActive: 'cross-fade--active',
-            }}
-            key={pathname}
-            timeout={{ enter: 300 }}
-          >
-            <Component {...componentProps} />
-          </CSSTransition>
+          <Component {...componentProps} />
         </Layout>
       </Container>
     );

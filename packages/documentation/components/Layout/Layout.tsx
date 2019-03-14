@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect } from "react";
 import cn from "classnames";
-import { TransitionGroup } from "react-transition-group";
 import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
 import { StatesConfig } from "@react-md/states";
 import { KeyboardTracker } from "@react-md/wia-aria";
@@ -32,13 +31,12 @@ const Layout: FunctionComponent<LayoutProps> = ({
           <nav id="main-navigation" className="layout__nav">
             <NavigationTree />
           </nav>
-          <TransitionGroup
+          <main
             id="main-content"
-            component={"main" as "div"}
             className={cn("layout__main", APP_BAR_OFFSET_CLASSNAME)}
           >
             {children}
-          </TransitionGroup>
+          </main>
         </StatesConfig>
       </KeyboardTracker>
     </AppSize>

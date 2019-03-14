@@ -18,6 +18,14 @@
     * {
       font: inherit;
     }
+
+    strong {
+      font-weight: map-get($rmd-typography-font-weights, bold);
+    }
+
+    em {
+      font-style: italic;
+    }
   }
 
   &__preview {

@@ -4,6 +4,7 @@ import { toId } from "utils/toTitle";
 import Demo, { DemoProps } from "./Demo";
 import TableOfContents from "components/TableOfContents";
 import { Heading } from "components/TableOfContents/TableOfContents";
+import useCrossFade from "hooks/useCrossFade";
 
 export interface DemoPageProps {
   className?: string;
@@ -22,7 +23,7 @@ interface Result {
 const DemoPage: FunctionComponent<DemoPageProps> = ({
   demos,
   packageName,
-  className,
+  className: propClassName,
 }) => {
   const { headings, children } = demos.reduce<Result>(
     (result, demo, index) => {
@@ -50,6 +51,8 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
     },
     { headings: [], children: [] }
   );
+
+  const className = useCrossFade(propClassName);
   return (
     <Fragment>
       <TableOfContents headings={headings} />

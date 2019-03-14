@@ -42,6 +42,10 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Divider/VerticalDividersSandbox.json")),
   "Divider/WithinLists": () =>
     resolve(import("./Divider/WithinListsSandbox.json")),
+  "Elevation/AllElevations": () =>
+    resolve(import("./Elevation/AllElevationsSandbox.json")),
+  "Elevation/AnimatingElevation": () =>
+    resolve(import("./Elevation/AnimatingElevationSandbox.json")),
   "MaterialIcons/AllIcons": () =>
     resolve(import("./MaterialIcons/AllIconsSandbox.json")),
   "MaterialIcons/SimpleExamples": () =>

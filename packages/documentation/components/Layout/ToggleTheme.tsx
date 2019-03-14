@@ -32,6 +32,7 @@ const LIGHT_THEMES = {
   "rmd-divider-background-color":
     "var(--rmd-divider-background-color-on-light)",
   "code-bg": "var(--code-bg-light)",
+  "strong-color": "var(--strong-color)",
 };
 
 const THEME_TRANSITION_DURATION = 150;
