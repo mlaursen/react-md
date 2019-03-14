@@ -29,9 +29,9 @@ $ npm install --save @react-md/theme \
 
 ## Documentation
 
-Full usage and documentation can be found on the main documentation site at the
-[buttons page](https://react-md.dev/packages/buttons), but there will be a few
-examples in this README.
+You should check out the
+[full documentation](https://react-md.dev/packages/button) for live examples and
+more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
@@ -48,24 +48,32 @@ purposes.
 ### Buttons with Text
 
 ```tsx
-import React from "react";
+import React, { Fragment } from "react";
 import { render } from "react-dom";
-import { Button } from "@react-md/button"
+import { Button } from "@react-md/button";
 
 const App = () => (
-  <Button id="button-1">Text Button</Button>
-  <Button id="button-2" theme="primary" themeType="flat">
-    Text Button
-  </Button>
-  <Button id="button-3" theme="secondary" themeType="raised">
-    Text Button
-  </Button>
-  <Button id="button-4" theme="warning" themeType="contained">
-    Text Button
-  </Button>
-  <Button id="button-5" theme="error">Text Button</Button>
-  <Button id="button-6" theme="clear">Text Button</Button>
-  <Button id="button-7" disabled>Text Button</Button>
+  <Fragment>
+    <Button id="button-1">Text Button</Button>
+    <Button id="button-2" theme="primary" themeType="flat">
+      Text Button
+    </Button>
+    <Button id="button-3" theme="secondary" themeType="raised">
+      Text Button
+    </Button>
+    <Button id="button-4" theme="warning" themeType="contained">
+      Text Button
+    </Button>
+    <Button id="button-5" theme="error">
+      Text Button
+    </Button>
+    <Button id="button-6" theme="clear">
+      Text Button
+    </Button>
+    <Button id="button-7" disabled>
+      Text Button
+    </Button>
+  </Fragment>
 );
 
 render(<App />, document.getElementById("root"));
@@ -80,28 +88,30 @@ the `@react-md/material-icons` package if you'd like pre-built components for
 every material icon that exists.
 
 ```tsx
-import React from "react";
+import React, { Fragment } from "react";
 import { render } from "react-dom";
-import { Button } from "@react-md/button"
+import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";
 import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
-  <Button id="button-1">
-    <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>}>
-      About
-    </TextIconSpacing>
-  </Button>
-  <Button id="button-2" theme="primary" themeType="raised">
-    <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>} iconAfter>
-      About
-    </TextIconSpacing>
-  </Button>
-  <Button id="button-3" theme="error" themeType="contained">
-    <TextIconSpacing icon={<DeleteSVGIcon />}>
-      Permanently Delete
-    </TextIconSpacing>
-  </Button>
+  <Fragment>
+    <Button id="button-1">
+      <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>}>
+        About
+      </TextIconSpacing>
+    </Button>
+    <Button id="button-2" theme="primary" themeType="raised">
+      <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>} iconAfter>
+        About
+      </TextIconSpacing>
+    </Button>
+    <Button id="button-3" theme="error" themeType="contained">
+      <TextIconSpacing icon={<DeleteSVGIcon />}>
+        Permanently Delete
+      </TextIconSpacing>
+    </Button>
+  </Fragment>
 );
 
 render(<App />, document.getElementById("root"));
@@ -125,33 +135,35 @@ screen readers and generally recommended, but there are no restrictions in place
 at this time to enforce this behavior.
 
 ```tsx
-import React from "react";
+import React, { Fragment } from "react";
 import { render } from "react-dom";
-import { Button } from "@react-md/button"
+import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";
 import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
-  <Button id="button-1" aria-label="More Info" buttonType="icon">
-    <FontIcon>info_outline</FontIcon>
-  </Button>
-  <Button
-    id="button-2"
-    theme="primary"
-    themeType="raised"
-    buttonType="icon"
-    aria-label="More Info"
-  >
-    <FontIcon>info_outline</FontIcon>
-  </Button>
-  <Button
-    id="button-3"
-    theme="error"
-    themeType="contained"
-    buttonType="icon"
-    aria-label="Permanently Delete"
-  >
-    <DeleteSVGIcon />
-  </Button>
+  <Fragment>
+    <Button id="button-1" aria-label="More Info" buttonType="icon">
+      <FontIcon>info_outline</FontIcon>
+    </Button>
+    <Button
+      id="button-2"
+      theme="primary"
+      themeType="raised"
+      buttonType="icon"
+      aria-label="More Info"
+    >
+      <FontIcon>info_outline</FontIcon>
+    </Button>
+    <Button
+      id="button-3"
+      theme="error"
+      themeType="contained"
+      buttonType="icon"
+      aria-label="Permanently Delete"
+    >
+      <DeleteSVGIcon />
+    </Button>
+  </Fragment>
 );
 ```

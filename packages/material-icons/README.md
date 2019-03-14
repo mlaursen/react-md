@@ -7,20 +7,23 @@ as either font icons or SVG icons. All of the icons were pulled directly from
 Please thank all the contributors and maintainers of material icons for the work
 they have put in.
 
-You can look in the
-[source folder](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/src)
-to view a list of all the available icons.
-
 ## Installation
 
 ```sh
 $ npm install --save @react-md/material-icons @react-md/icon
 ```
 
-This requires the styles to be included from the `@react-md/icon` package to
-work correctly, so read the
-[documentation](https://github.com/mlaursen/react-md/tree/next/packages/icon/README.md#installation)
-for more information there.
+<!-- DOCS_REMOVE -->
+
+## Documentation
+
+You should check out the
+[full documentation](https://react-md.dev/packages/button) for live examples and
+more customization information, but an example usage is shown below.
+
+<!-- DOCS_REMOVE_END -->
+
+<!-- INCLUDING_STYLES -->
 
 ## Usage
 

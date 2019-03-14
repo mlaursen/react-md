@@ -158,6 +158,17 @@
   .rmd-icon {
     @include rmd-icon-base;
 
+    // sass-lint:disable no-important
+    // when other icon libraries don't have consistent sizes...
+    &--forced-font {
+      font-size: rmd-icon-theme-var(size) !important;
+    }
+
+    &--forced-size {
+      height: rmd-icon-theme-var(size) !important;
+      width: rmd-icon-theme-var(size) !important;
+    }
+
     @if $rmd-icon-include-dense {
       &--dense {
         @include rmd-icon-dense-theme;

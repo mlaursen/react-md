@@ -12,8 +12,7 @@ routing library if needed.
 $ npm install --save @react-md/link
 ```
 
-It is also recommended to install the following packages to the the full
-experience.
+It is also recommended to install the following packages to the full experience.
 
 ```sh
 $ npm install --save @react-md/theme @react-md/typography

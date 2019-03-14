@@ -1,0 +1,30 @@
+{
+  "package.json": {
+    "dependencies": {
+      "@react-md/button": "latest",
+      "@react-md/divider": "latest",
+      "@react-md/icon": "latest",
+      "@react-md/list": "latest",
+      "@react-md/material-icons": "latest",
+      "@react-md/states": "latest",
+      "@react-md/transition": "latest",
+      "@react-md/typography": "latest",
+      "@react-md/utils": "latest",
+      "@react-md/wia-aria": "latest",
+      "react": "latest",
+      "react-dom": "latest"
+    }
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Divider } from \"@react-md/divider\";\nimport { TextIconSpacing } from \"@react-md/icon\";\nimport { Text } from \"@react-md/typography\";\nimport { HomeSVGIcon, CloseSVGIcon } from \"@react-md/material-icons\";\n\nimport \"./icon-spacing.scss\";\n\nconst CustomIcon = () => <HomeSVGIcon />;\n\nconst IconSpacing: FunctionComponent = () => (\n  <Fragment>\n    <Text type=\"headline-5\">Within buttons</Text>\n    <Button id=\"icon-button-1\" className=\"icon-spacing-button\">\n      <TextIconSpacing icon={<HomeSVGIcon />}>Button</TextIconSpacing>\n    </Button>\n    <Button\n      id=\"icon-button-2\"\n      className=\"icon-spacing-button\"\n      themeType=\"outline\"\n      theme=\"secondary\"\n    >\n      <TextIconSpacing icon={<HomeSVGIcon />} iconAfter>\n        Button\n      </TextIconSpacing>\n    </Button>\n    <Button\n      id=\"icon-button-3\"\n      className=\"icon-spacing-button\"\n      themeType=\"contained\"\n      theme=\"warning\"\n    >\n      <TextIconSpacing icon={<HomeSVGIcon />}>\n        <TextIconSpacing icon={<CloseSVGIcon />} iconAfter>\n          Multiple\n        </TextIconSpacing>\n      </TextIconSpacing>\n    </Button>\n    <Text type=\"headline-5\">Normal usage</Text>\n    <ul className=\"icon-spacing-container\">\n      <li>\n        <TextIconSpacing icon={<HomeSVGIcon />}>Icon Before</TextIconSpacing>\n      </li>\n      <li>\n        <TextIconSpacing icon={<HomeSVGIcon />} iconAfter>\n          Icon After\n        </TextIconSpacing>\n      </li>\n      <li>\n        <TextIconSpacing icon={<HomeSVGIcon />}>\n          <TextIconSpacing icon={<CloseSVGIcon />} iconAfter>\n            Multiple\n          </TextIconSpacing>\n        </TextIconSpacing>\n      </li>\n      <Divider />\n      <li>\n        <TextIconSpacing icon={<CustomIcon />}>\n          Broken Custom Icon\n        </TextIconSpacing>\n      </li>\n      <li>\n        <TextIconSpacing icon={<CustomIcon />} forceIconWrap>\n          Fixed Custom Icon\n        </TextIconSpacing>\n      </li>\n      <li>\n        <TextIconSpacing icon=\"*\" forceIconWrap>\n          Using an asterisk \"icon\"\n        </TextIconSpacing>\n      </li>\n      <li>\n        <TextIconSpacing icon=\"*\" forceIconWrap iconAfter>\n          Using an asterisk \"icon\"\n        </TextIconSpacing>\n      </li>\n    </ul>\n  </Fragment>\n);\n\nexport default IconSpacing;\n",
+    "isBinary": false
+  },
+  "src/icon-spacing.scss": {
+    "content": "@import '@react-md/list/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.icon-spacing-button {\n  margin: 1rem;\n  vertical-align: top;\n}\n\n.icon-spacing-container {\n  @include rmd-list-unstyled;\n\n  li {\n    @include rmd-typography(subtitle-1);\n\n    align-items: center;\n    display: flex;\n    margin: 1rem auto;\n  }\n}\n",
+    "isBinary": false
+  }
+}

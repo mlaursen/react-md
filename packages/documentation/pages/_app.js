@@ -48,12 +48,10 @@ export default class App extends NextApp {
 
     Router.events.on('hashChangeStart', this.beforeChange);
     Router.events.on('hashChangeComplete', this.smoothScroll);
-    Router.events.on('routeChangeComplete', this.smoothScroll);
   }
 
   componentWillUnmount() {
     Router.events.off('hashChangeStart', this.beforeChange);
-    Router.events.off('routeChangeComplete', this.smoothScroll);
     Router.events.off('hashChangeComplete', this.smoothScroll);
   }
 
@@ -69,6 +67,7 @@ export default class App extends NextApp {
     }
 
     const { hash } = parse(url);
+    console.log('hash:', hash);
     if (!hash) {
       window.scrollTo(0, 0);
       return;

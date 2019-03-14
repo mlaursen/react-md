@@ -3,7 +3,6 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  CSSProperties,
 } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
@@ -53,14 +52,6 @@ export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
    * since IE11 and Edge actually default this to true and keyboard's will tab focus all SVGs.
    */
   focusable?: string;
-
-  /**
-   * An optional size to apply to the SVG. This can be used to set both the
-   * `height` and `width` simultaneously. This will be provided as inline styles
-   * since the `height` and `width` are normally controlled by CSS, and CSS has
-   * higher precedence than the `height`/`width` attributes.
-   */
-  size?: number;
 
   /**
    * The `viewBox` attribute allows you to specify that a given set of graphics stretch to
@@ -114,17 +105,6 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = SVGIconProps & DefaultProps & WithRef;
 
-function createStyle(style?: CSSProperties, size?: number) {
-  if (style && size) {
-    return { height: size, width: size, ...style };
-  } else if (style) {
-    return style;
-  } else if (size) {
-    return { height: size, width: size };
-  }
-
-  return undefined;
-}
 /**
  * A small helper function that will automatically generate specific ids within the icon
  * to add additional accessibility.
@@ -167,11 +147,9 @@ const SVGIcon: FunctionComponent<
   SVGIconProps & WithForwardedRef<SVGSVGElement>
 > = providedProps => {
   const {
-    style,
     className,
     use,
     "aria-labelledby": ariaLabelledBy,
-    size,
     title: propTitle,
     desc: propDesc,
     style: propStyle,
@@ -206,7 +184,6 @@ const SVGIcon: FunctionComponent<
     <svg
       {...props}
       ref={forwardedRef}
-      style={createStyle(style, size)}
       aria-labelledby={ariaLabelledBy || labelledBy}
       className={cn(
         "rmd-icon rmd-icon--svg",
@@ -249,7 +226,6 @@ if (process.env.NODE_ENV !== "production") {
       title: PropTypes.string,
       desc: PropTypes.string,
       focusable: PropTypes.oneOf(["true", "false"]),
-      size: PropTypes.number,
       viewBox: PropTypes.string,
       xmlns: PropTypes.string,
       use: PropTypes.string,

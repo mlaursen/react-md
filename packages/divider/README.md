@@ -24,9 +24,9 @@ $ npm install --save @react-md/theme \
 
 ## Documentation
 
-Full usage and documentation can be found on the main documentation site at the
-[divider page](https://react-md.mlaursen.com/packages/divider), but there will
-be a few examples in this README.
+You should check out the
+[full documentation](https://react-md.dev/packages/divider) for live examples
+and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 

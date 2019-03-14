@@ -55,29 +55,6 @@ describe("SVGIcon", () => {
     expect(icon.render()).toMatchSnapshot();
   });
 
-  it("should apply the correct style prop", () => {
-    const icon = mount(<SVGIcon />);
-
-    expect(icon.find("svg").props().style).toBeUndefined();
-
-    const style = { color: "red" };
-    icon.setProps({ style });
-    expect(icon.find("svg").props().style).toEqual(style);
-
-    icon.setProps({ style: undefined, size: 24 });
-    expect(icon.find("svg").props().style).toEqual({
-      height: 24,
-      width: 24,
-    });
-
-    icon.setProps({ style });
-    expect(icon.find("svg").props().style).toEqual({
-      height: 24,
-      width: 24,
-      color: style.color,
-    });
-  });
-
   it("should render correctly with the dense prop", () => {
     expect(
       create(<SVGIcon dense>{homePath}</SVGIcon>).toJSON()

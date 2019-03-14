@@ -46,6 +46,9 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Elevation/AllElevationsSandbox.json")),
   "Elevation/AnimatingElevation": () =>
     resolve(import("./Elevation/AnimatingElevationSandbox.json")),
+  "Icon/IconSpacing": () => resolve(import("./Icon/IconSpacingSandbox.json")),
+  "Icon/SimpleExamples": () =>
+    resolve(import("./Icon/SimpleExamplesSandbox.json")),
   "MaterialIcons/AllIcons": () =>
     resolve(import("./MaterialIcons/AllIconsSandbox.json")),
   "MaterialIcons/SimpleExamples": () =>

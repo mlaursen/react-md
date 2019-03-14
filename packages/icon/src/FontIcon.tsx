@@ -3,13 +3,9 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  CSSProperties,
 } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
-
-const ICON_SIZE = 24;
-const DENSE_ICON_SIZE = 20;
 
 export interface FontIconProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -32,7 +28,7 @@ export interface FontIconProps extends HTMLAttributes<HTMLElement> {
    * to enforce. This is useful when using other font icon libraries that do not have a consistent
    * size.
    */
-  forceSize?: boolean | number;
+  forceSize?: boolean;
 
   /**
    * Boolean if the `forceSize` prop should also force the `font-size` instead of only `width` and
@@ -47,37 +43,6 @@ type DefaultProps = Required<
 type WithDefaultProps = FontIconProps & DefaultProps & WithForwardedRef;
 
 /**
- * A utility function that will merge the different inline styles together for the `FontIcon` if
- * any of the resizing props are enabled.
- */
-function createStyles(
-  style: CSSProperties | undefined,
-  forceSize: boolean | number,
-  forceFontSize: boolean,
-  dense: boolean
-) {
-  let nextStyle = style;
-  if (typeof forceSize === "boolean" && forceSize) {
-    const size = dense ? DENSE_ICON_SIZE : ICON_SIZE;
-    nextStyle = {
-      fontSize: forceFontSize ? size : undefined,
-      height: size,
-      width: size,
-      ...style,
-    };
-  } else if (typeof forceSize === "number") {
-    nextStyle = {
-      fontSize: forceFontSize ? forceSize : undefined,
-      height: forceSize,
-      width: forceSize,
-      ...style,
-    };
-  }
-
-  return nextStyle;
-}
-
-/**
  * The `FontIcon` component is used for rendering a font-icon library's
  * icon. The default is to use the `material-icons` library, but others
  * can be used as well.
@@ -90,7 +55,6 @@ const FontIcon: FunctionComponent<
   FontIconProps & WithForwardedRef
 > = providedProps => {
   const {
-    style,
     className,
     iconClassName,
     dense,
@@ -105,11 +69,12 @@ const FontIcon: FunctionComponent<
     <i
       {...props}
       ref={forwardedRef}
-      style={createStyles(style, forceSize, forceFontSize, dense)}
       className={cn(
         "rmd-icon rmd-icon--font",
         {
           "rmd-icon--dense": dense,
+          "rmd-icon--forced-font": forceFontSize,
+          "rmd-icon--forced-size": forceSize,
         },
         iconClassName,
         className
@@ -142,7 +107,7 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       iconClassName: PropTypes.string,
       dense: PropTypes.bool,
-      forceSize: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+      forceSize: PropTypes.bool,
       forceFontSize: PropTypes.bool,
       children: PropTypes.node,
     };
