@@ -152,7 +152,6 @@ const SVGIcon: FunctionComponent<
     "aria-labelledby": ariaLabelledBy,
     title: propTitle,
     desc: propDesc,
-    style: propStyle,
     children: propChildren,
     dense,
     forwardedRef,

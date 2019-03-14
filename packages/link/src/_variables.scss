@@ -2,8 +2,7 @@
 /// @group link
 ////
 
-@import '@react-md/theme/dist/variables';
-@import '@react-md/theme/dist/functions';
+@import '@react-md/theme/dist/color-palette';
 
 /// The transition time for links to change color.
 /// @type Number
@@ -11,15 +10,16 @@ $rmd-link-transition-time: 0.15s !default;
 
 /// The default color to use for links.
 /// @type Color
-$rmd-link-color: rmd-theme-var(primary) !default;
+// $rmd-link-color: rmd-theme-var(primary) !default;
+$rmd-link-color: $rmd-blue-500 !default;
 
 /// The color to use for links that have been visited.
 /// @type Color
-$rmd-link-visited-color: darken($rmd-theme-primary, 10%) !default;
+$rmd-link-visited-color: $rmd-blue-600 !default;
 
 /// The color to use for links that are being hovered.
 /// @type Color
-$rmd-link-hover-color: lighten($rmd-theme-primary, 10%) !default;
+$rmd-link-hover-color: $rmd-blue-400 !default;
 
 /// A Map of all the "themeable" parts of the link package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the link as

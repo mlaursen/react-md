@@ -3,7 +3,7 @@
 Create simple links from react-md with a customizable theme. The provided `Link`
 component can easily integrate with
 [react-router](https://github.com/ReactTraining/react-router),
-[@react/router](https://github.com/reach/router), and theoretically any other
+[@reach/router](https://github.com/reach/router), and theoretically any other
 routing library if needed.
 
 ### Installation
@@ -18,10 +18,15 @@ It is also recommended to install the following packages to the full experience.
 $ npm install --save @react-md/theme @react-md/typography
 ```
 
+### Including Styles
+
+> If you have not done so already, please read the main documentation about
+> #including-styles before continuing.
+
 ### Usage with react-router
 
 ```tsx
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { Link as ReactRouterLink, LinkProps } from "react-router-dom";
 import { Link as ReactMDLink, ILinkProps } from "@react-md/link";
 
@@ -33,7 +38,7 @@ export default Link;
 ```
 
 ```tsx
-import * as React from "react";
+import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 

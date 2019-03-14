@@ -38,7 +38,6 @@
     @include rmd-link-theme(color);
     @include rmd-typography-base;
 
-    text-decoration: none;
     transition: color $rmd-link-transition-time;
 
     &--flex-centered {
@@ -52,8 +51,6 @@
 
     &:hover {
       @include rmd-link-theme(color, hover-color);
-
-      text-decoration: underline;
     }
   }
 }
