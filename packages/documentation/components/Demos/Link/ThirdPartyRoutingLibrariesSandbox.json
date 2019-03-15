@@ -1,0 +1,57 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Link Example - Third Party Routing Libraries</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/link/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import 'next/dist/mixins';\n@import 'next-server/dist/mixins';\n@import 'react/dist/mixins';\n@import 'url/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Link Example - Third Party Routing Libraries",
+      "description": "Example from https://react-md.dev/packages/link/demos#third-party-routing-libraries",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/link": "latest",
+        "@react-md/utils": "latest",
+        "next": "latest",
+        "next-server": "latest",
+        "react": "latest",
+        "url": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport Link from \"./Link\";\n\nconst ThirdPartyRoutingLibraries: FunctionComponent = () => (\n  <ul>\n    <li>\n      <Link href=\"#with-icons\">With Icons demo link</Link>\n    </li>\n  </ul>\n);\n\nexport default ThirdPartyRoutingLibraries;\n",
+    "isBinary": false
+  },
+  "src/Link.tsx": {
+    "content": "import React, { FunctionComponent, ReactNode } from \"react\";\nimport NextLink, { LinkProps as NextLinkProps } from \"next/link\";\nimport Router from \"next/router\";\nimport { Link as RMDLink } from \"@react-md/link\";\nimport { Omit } from \"@react-md/utils\";\n\nimport useLinkPrefetch from \"./useLinkPrefetch\";\n\nexport interface LinkProps extends Omit<NextLinkProps, \"children\"> {\n  className?: string;\n  children: ReactNode;\n  href: string;\n}\n\nconst Link: FunctionComponent<LinkProps> = ({\n  children,\n  className,\n  prefetch,\n  ...props\n}) => {\n  const { href } = props;\n  const handlers = useLinkPrefetch({ href, disabled: !prefetch });\n\n  return (\n    <NextLink {...props}>\n      <RMDLink {...handlers} className={className}>\n        {children}\n      </RMDLink>\n    </NextLink>\n  );\n};\n\nLink.defaultProps = {\n  prefetch: true,\n  passHref: true,\n  scroll: false,\n};\n\nexport default Link;\n",
+    "isBinary": false
+  },
+  "src/useLinkPrefetch.ts": {
+    "content": "import { useCallback, HTMLAttributes, useState } from \"react\";\nimport Router from \"next/router\";\n\nexport function useLinkMousePrefetch(\n  href: string,\n  disabled: boolean = false,\n  onMouseEnter?: HTMLAttributes<HTMLAnchorElement>[\"onMouseEnter\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.MouseEvent<HTMLAnchorElement>) => {\n      if (onMouseEnter) {\n        onMouseEnter(event);\n      }\n\n      if (disabled || fetched) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n      }\n    },\n    [href, onMouseEnter, disabled, fetched]\n  );\n}\n\nexport function useLinkKeyboardPrefetch(\n  href: string,\n  disabled: boolean = false,\n  onKeyUp?: HTMLAttributes<HTMLAnchorElement>[\"onKeyUp\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.KeyboardEvent<HTMLAnchorElement>) => {\n      if (onKeyUp) {\n        onKeyUp(event);\n      }\n\n      if (\n        disabled ||\n        fetched ||\n        ![\"Tab\", \"ArrowDown\", \"ArrowUp\"].includes(event.key)\n      ) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n        setFetched(true);\n      }\n    },\n    [href, onKeyUp, disabled, fetched]\n  );\n}\n\nexport interface LinkPrefetchConfig\n  extends Pick<HTMLAttributes<HTMLAnchorElement>, \"onMouseEnter\" | \"onKeyUp\"> {\n  href: string;\n  disabled?: boolean;\n}\n\nexport default function useLinkPrefetch({\n  href,\n  disabled = false,\n  onMouseEnter,\n  onKeyUp,\n}: LinkPrefetchConfig) {\n  return {\n    onMouseEnter: useLinkMousePrefetch(href, disabled, onMouseEnter),\n    onKeyUp: useLinkKeyboardPrefetch(href, disabled, onKeyUp),\n  };\n}\n",
+    "isBinary": false
+  }
+}

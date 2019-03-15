@@ -1,25 +1,51 @@
 {
-  "package.json": {
-    "dependencies": {
-      "@react-md/avatar": "latest",
-      "@react-md/avatar/dist/scssVariables.d.ts": "latest",
-      "@react-md/elevation": "latest",
-      "@react-md/list": "latest",
-      "@react-md/states": "latest",
-      "@react-md/transition": "latest",
-      "@react-md/utils": "latest",
-      "@react-md/wia-aria": "latest",
-      "classnames": "latest",
-      "react": "latest",
-      "react-dom": "latest"
-    }
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Avatar Example - Color Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/avatar/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Avatar Example - Color Examples",
+      "description": "Example from https://react-md.dev/packages/avatar/demos#color-examples",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/avatar": "latest",
+        "@react-md/list": "latest",
+        "@react-md/states": "latest",
+        "@react-md/transition": "latest",
+        "@react-md/utils": "latest",
+        "@react-md/wia-aria": "latest",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport scssVariables from \"@react-md/avatar/dist/scssVariables\";\nimport { List, ListItem } from \"@react-md/list\";\n\nimport people from \"constants/people\";\n\nimport Container from \"./Container\";\nimport \"./color-examples.scss\";\n\nconst COLORS = Object.keys(scssVariables[\"rmd-avatar-colors\"]);\nconst transformedPeople = people.map((name, i) => ({\n  id: name.toLowerCase().replace(/ /g, \"-\"),\n  name,\n  avatar: name.substring(0, 1),\n  color: COLORS[i % COLORS.length],\n}));\n\nconst ColorExamples: FunctionComponent = () => (\n  <Fragment>\n    <Container>\n      {COLORS.map(color => (\n        <Avatar color={color} key={color}>\n          {color.substring(0, 1).toUpperCase()}\n        </Avatar>\n      ))}\n    </Container>\n    <List className=\"avatar-color-list\">\n      {transformedPeople.map(({ id, name, avatar, color }, i) => (\n        <ListItem\n          id={`person-${i}`}\n          key={id}\n          leftAvatar={<Avatar color={color}>{avatar}</Avatar>}\n        >\n          {name}\n        </ListItem>\n      ))}\n    </List>\n  </Fragment>\n);\n\nexport default ColorExamples;\n",
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport scssVariables from \"@react-md/avatar/dist/scssVariables\";\nimport { List, ListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport \"./color-examples.scss\";\n\nconst COLORS = Object.keys(scssVariables[\"rmd-avatar-colors\"]);\nconst transformedPeople = people.map((name, i) => ({\n  id: name.toLowerCase().replace(/ /g, \"-\"),\n  name,\n  avatar: name.substring(0, 1),\n  color: COLORS[i % COLORS.length],\n}));\n\nconst ColorExamples: FunctionComponent = () => (\n  <Fragment>\n    <Container>\n      {COLORS.map(color => (\n        <Avatar color={color} key={color}>\n          {color.substring(0, 1).toUpperCase()}\n        </Avatar>\n      ))}\n    </Container>\n    <List className=\"avatar-color-list\">\n      {transformedPeople.map(({ id, name, avatar, color }, i) => (\n        <ListItem\n          id={`person-${i}`}\n          key={id}\n          leftAvatar={<Avatar color={color}>{avatar}</Avatar>}\n        >\n          {name}\n        </ListItem>\n      ))}\n    </List>\n  </Fragment>\n);\n\nexport default ColorExamples;\n",
     "isBinary": false
   },
   "src/Container.tsx": {
@@ -32,6 +58,10 @@
   },
   "src/container.scss": {
     "content": ".avatar-container {\n  .rmd-avatar {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/people.ts": {
+    "content": "export default [\n  \"Jasmine Robinson\",\n  \"Devonte Craig\",\n  \"Dean Reid\",\n  \"Shaquille Bauer\",\n  \"Vivian Bishop\",\n  \"Braden Mullins\",\n  \"Katlyn Mcdonald\",\n  \"Isabella Marshall\",\n  \"Lee Christensen\",\n  \"Tommy Hogan\",\n  \"Timothy Harvey\",\n  \"Preston Phillips\",\n  \"Marco Sherman\",\n  \"Haley Coleman\",\n  \"Mario Swanson\",\n  \"Xavier Solis\",\n  \"Keaton Cannon\",\n  \"Cassandra Austin\",\n  \"Irene Holland\",\n  \"Gustavo Love\",\n  \"Meghan Stewart\",\n  \"Renee Townsend\",\n  \"Bobby Newman\",\n  \"Keaton Ortiz\",\n  \"Dustin Wells\",\n  \"Jerry Mcgee\",\n  \"Carl Howard\",\n  \"Sabrina Lang\",\n  \"Reed Baker\",\n  \"Kristen Fields\",\n  \"Gavin Carrillo\",\n  \"Claudia Neal\",\n  \"Leonard Schneider\",\n  \"Dominick Boyd\",\n  \"Mary Hampton\",\n  \"Mark Ayala\",\n  \"Kristina Warner\",\n  \"Antonio Walton\",\n  \"Tyson Scott\",\n  \"Harley Moss\",\n];\n",
     "isBinary": false
   }
 }

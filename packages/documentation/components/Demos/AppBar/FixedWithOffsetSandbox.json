@@ -1,23 +1,49 @@
 {
-  "package.json": {
-    "dependencies": {
-      "@react-md/app-bar": "latest",
-      "@react-md/button": "latest",
-      "@react-md/elevation": "latest",
-      "@react-md/icon": "latest",
-      "@react-md/material-icons": "latest",
-      "@react-md/states": "latest",
-      "@react-md/transition": "latest",
-      "@react-md/typography": "latest",
-      "@react-md/utils": "latest",
-      "@react-md/wia-aria": "latest",
-      "classnames": "latest",
-      "react": "latest",
-      "react-dom": "latest"
-    }
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>AppBar Example - Fixed With Offset</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/button/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/material-icons/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "AppBar Example - Fixed With Offset",
+      "description": "Example from https://react-md.dev/packages/app-bar/demos#fixed-with-offset",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "latest",
+        "@react-md/button": "latest",
+        "@react-md/icon": "latest",
+        "@react-md/material-icons": "latest",
+        "@react-md/states": "latest",
+        "@react-md/transition": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "@react-md/wia-aria": "latest",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/theme": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
     "isBinary": false
   },
   "src/Demo.tsx": {

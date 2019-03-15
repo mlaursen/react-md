@@ -1,19 +1,19 @@
 import React, { FunctionComponent } from "react";
 import {
   AppBar,
+  AppBarAction,
   AppBarNav,
   AppBarTitle,
-  AppBarAction,
 } from "@react-md/app-bar";
+import { TextIconSpacing } from "@react-md/icon";
 import {
-  MenuSVGIcon,
-  SearchSVGIcon,
-  MoreVertSVGIcon,
   ArrowDropDownSVGIcon,
+  MenuSVGIcon,
+  MoreVertSVGIcon,
+  SearchSVGIcon,
 } from "@react-md/material-icons";
 
 import Container from "./Container";
-import { TextIconSpacing } from "@react-md/icon";
 
 const DenseAppBar = () => (
   <AppBar dense>

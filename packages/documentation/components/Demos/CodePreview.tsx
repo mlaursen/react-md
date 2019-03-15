@@ -28,6 +28,13 @@ export interface CodeFile {
 
 import "./code-preview.scss";
 
+const ignoredFiles = [
+  "package.json",
+  "src/styles.scss",
+  "src/index.tsx",
+  "public/index.html",
+];
+
 const CodePreview: FunctionComponent<CodePreviewProps> = ({
   demoId,
   demoTitle,
@@ -40,7 +47,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
     async function load() {
       const sandbox = await getSandbox();
       const files = Object.keys(sandbox)
-        .filter(fileName => !/package\.json|index.tsx$/.test(fileName))
+        .filter(fileName => !ignoredFiles.includes(fileName))
         .map(fileName => ({
           fileName: fileName
             .substring(fileName.lastIndexOf("/") + 1)

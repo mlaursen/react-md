@@ -111,6 +111,12 @@ interface GenerateSandboxConfig {
   packageName: string;
 }
 
+const alwaysRequired = [
+  "@react-md/theme",
+  "@react-md/typography",
+  "@react-md/utils",
+];
+
 const devDependencies = [
   "react-scripts",
   "node-sass",
@@ -128,12 +134,17 @@ const nonStyleable = [
 ];
 
 function createDemoStyles(dependencies: string[]) {
-  const imports = dependencies
-    .filter(
-      name => name.startsWith("@react-md") && !nonStyleable.includes(name)
-    )
+  const rmd = dependencies.filter(
+    name => name.startsWith("@react-md") && !nonStyleable.includes(name)
+  );
+
+  const imports = [
+    ...dependencies,
+    ...alwaysRequired.filter(name => !dependencies.includes(name)),
+  ]
     .map(name => `@import '${name}/dist/mixins';`)
     .join("\n");
+
   return `${imports};
 
 @include react-md-utils;
@@ -155,13 +166,16 @@ export default async function generate({
   const homepage = (await fs.readJson(path.join(projectRoot, "package.json")))
     .homepage as string;
   const demoTitle = `${packageName} Example - ${toTitle(demoName)}`;
+  const packageDependencies = Array.from(
+    new Set([...dependencies, ...alwaysRequired, "react", "react-dom"])
+  );
   const packageJson = {
     title: demoTitle,
     description: `Example from ${homepage}/packages/${toUrlId(
       packageName
-    )}#${toUrlId(demoName)}`,
+    )}/demos#${toUrlId(demoName)}`,
     main: "src/index.tsx",
-    dependencies: toDependencyJson(dependencies),
+    dependencies: toDependencyJson(packageDependencies),
     devDependencies: toDependencyJson(devDependencies),
     scripts: {
       start: "react-scripts start",
@@ -186,7 +200,10 @@ export default async function generate({
       content: createDemoStyles(dependencies),
       isBinary: false,
     },
-    "package.json": packageJson,
+    "package.json": {
+      content: packageJson,
+      isBinary: false,
+    },
   };
 
   const files = (await Promise.all(

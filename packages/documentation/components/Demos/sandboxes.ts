@@ -49,6 +49,13 @@ const sandboxes: SandboxesRecord = {
   "Icon/IconSpacing": () => resolve(import("./Icon/IconSpacingSandbox.json")),
   "Icon/SimpleExamples": () =>
     resolve(import("./Icon/SimpleExamplesSandbox.json")),
+  "Link/MaliciousTarget": () =>
+    resolve(import("./Link/MaliciousTargetSandbox.json")),
+  "Link/SimpleExamples": () =>
+    resolve(import("./Link/SimpleExamplesSandbox.json")),
+  "Link/ThirdPartyRoutingLibraries": () =>
+    resolve(import("./Link/ThirdPartyRoutingLibrariesSandbox.json")),
+  "Link/WithIcons": () => resolve(import("./Link/WithIconsSandbox.json")),
   "MaterialIcons/AllIcons": () =>
     resolve(import("./MaterialIcons/AllIconsSandbox.json")),
   "MaterialIcons/SimpleExamples": () =>

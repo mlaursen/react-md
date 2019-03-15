@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { CODE_SANDBOX_DEFINE_API } from "constants/index";
 
 export interface SandboxDefineFormProps {
@@ -8,7 +9,7 @@ export interface SandboxDefineFormProps {
   title: string;
   description: string;
   packageName: string;
-  getSandbox: () => Promise<any>;
+  getSandbox: () => Promise<IFiles>;
 }
 
 const SandboxDefineForm: FunctionComponent<SandboxDefineFormProps> = ({
@@ -23,47 +24,9 @@ const SandboxDefineForm: FunctionComponent<SandboxDefineFormProps> = ({
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      const demoTitle = `${packageName} Example - ${title}`;
-      const baseSandbox = await getSandbox();
-      const indexHtml = await import("raw-loader!./index.html").then(
-        content => ({
-          isBinary: false,
-          content: content.default as string,
-        })
-      );
-      indexHtml.content.replace(/{{DEMO_TITLE}}/, demoTitle);
-
-      const packageJson = baseSandbox["package.json"];
-      const devDependencies = {
-        ...packageJson.devDependencies,
-        "react-scripts": "latests",
-      };
-
-      const scripts = {
-        start: "react-scripts start",
-      };
-
-      const files = {
-        ...baseSandbox,
-        "public/index.html": indexHtml,
-        "package.json": {
-          isBinary: false,
-          content: {
-            main: "src/index.tsx",
-            title: demoTitle,
-            description,
-            dependencies: packageJson.dependencies,
-            devDependencies,
-            scripts,
-          },
-        },
-      };
-
+      const files = await getSandbox();
+      console.log("files:", files);
       if (!cancelled) {
-        // typescript def isn't correct since there's a special usecase for the
-        // package.json file
-
-        // @ts-ignore
         setParameters(getParameters({ files }));
       }
     }
