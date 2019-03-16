@@ -16,6 +16,12 @@ $rmd-theme-no-css-variables-fallback: true !default;
 /// @type Boolean
 $rmd-theme-define-colors-with-rgba: false !default;
 
+/// Boolean if the light theme **default** colors should be used. This means that the
+/// background-color, surface, and text colors will be updated to their light theme defaults.
+/// Setting this to `false`, will use their dark theme defaults.
+/// @type Boolean
+$rmd-theme-light: true !default;
+
 /// The primary theme color to use for your app. This is normally one of the material design colors with a `-500` suffix,
 /// but it can be any color.
 /// @type Color
@@ -92,15 +98,39 @@ $rmd-theme-on-success: if(
   $rmd-white-base
 ) !default;
 
+/// The light theme's background color.
+/// @type Color
+$rmd-theme-light-background: #fafafa !default;
+
+/// The light theme's surface color.
+/// @type Color
+$rmd-theme-light-surface: #fff !default;
+
+/// The dark theme's background color.
+/// @type Color
+$rmd-theme-dark-background: #303030 !default;
+
+/// The dark theme's surface color.
+/// @type Color
+$rmd-theme-dark-surface: $rmd-grey-800 !default;
+
 /// The theme's background color.
 /// @type Color
-$rmd-theme-background: #fafafa !default;
+$rmd-theme-background: if(
+  $rmd-theme-light,
+  $rmd-theme-light-background,
+  $rmd-theme-dark-background
+) !default;
 
 /// The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)
 ///
 /// Ex: Dialogs, Lists
 /// @type Color
-$rmd-theme-surface: #fff !default;
+$rmd-theme-surface: if(
+  $rmd-theme-light,
+  $rmd-theme-light-surface,
+  $rmd-theme-dark-surface
+) !default;
 
 /// The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface
 /// color's contrast tone. If the color is considered 'dark', `$rd-white-base` will be used. Otherwise `$rmd-black-base` will
@@ -338,6 +368,10 @@ $rmd-theme-values: (
   text-hint-on-background: $rmd-theme-hint-text-on-background-color,
   text-disabled-on-background: $rmd-theme-disabled-text-on-background-color,
   text-icon-on-background: $rmd-theme-icon-on-background-color,
+  light-background: $rmd-theme-light-background,
+  light-surface: $rmd-theme-light-surface,
+  dark-background: $rmd-theme-dark-background,
+  dark-surface: $rmd-theme-dark-surface,
   text-primary-on-light: $rmd-theme-primary-text-on-light-color,
   text-secondary-on-light: $rmd-theme-secondary-text-on-light-color,
   text-hint-on-light: $rmd-theme-hint-text-on-light-color,

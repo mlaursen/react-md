@@ -25,18 +25,38 @@ Starting with v2.0.0, react-md will use both SCSS and css variables to define
 themes. This allows you to use the nice dynamic themes with css variables in
 evergreen browsers but also support the older ones if needed.
 
-The theme by default is:
+The default theme is:
 
-- `$rmd-theme-primary: $rmd-purple-500 !default;`
-- `$rmd-theme-secondary: $rmd-pink-a-400 !default;`
-- `$rmd-theme-background: #fff !default;` // the default background color. This
-  is normally applied to the <html> tag
-- `$rmd-theme-surface: #fff !default;` // the background color to use for
-  temporary material such as menus or dialogs.
+```scss
+$rmd-theme-primary: $rmd-purple-500 !default;
+$rmd-theme-secondary: $rmd-pink-a-400 !default;
+
+// the background color for your app. Normally applied to the base <html> tag
+$rmd-theme-background: #fafafa !default;
+
+// the background color for "surfaces" (things like dialogs, menus, cards, etc)
+$rmd-theme-surface: #fff !default;
+```
 
 This can be overridden by setting these variables to new colors that are
 included in react-md, or a custom color by re-defining these values before
 importing the main `theme` file.
+
+#### Using the default dark theme
+
+If you override the `$md-theme-light` varaible to be `false`, the default theme
+will be:
+
+```scss
+$rmd-theme-primary: $rmd-purple-500 !default;
+$rmd-theme-secondary: $rmd-pink-a-400 !default;
+
+// the background color for your app. Normally applied to the base <html> tag
+$rmd-theme-background: #303030 !default;
+
+// the background color for "surfaces" (things like dialogs, menus, cards, etc)
+$rmd-theme-surface: $md-grey-800 !default;
+```
 
 #### With a material design color
 
