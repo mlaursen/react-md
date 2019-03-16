@@ -32,18 +32,10 @@ $solarized-green: #859900;
   @include rmd-typography(body-1);
 
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
-  hyphens: none;
-  tab-size: 2;
-  white-space: pre;
-
-  &::selection,
-  *::selection {
-    background-color: $solarized-base-02;
-  }
 
   &--block {
     background-color: $solarized-base-03;
-    color: $solarized-base-2;
+    color: $solarized-base-1;
 
     // always enforce ltr for blocked code
     direction: ltr;
@@ -76,79 +68,5 @@ $solarized-green: #859900;
     position: absolute;
     text-align: right;
     width: 2.5em;
-  }
-
-  .comment {
-    color: $solarized-base-1;
-  }
-
-  .punctuation {
-    color: $solarized-base-00;
-  }
-
-  .namespace {
-    opacity: 0.7;
-  }
-
-  .property,
-  .tag,
-  .boolean,
-  .number,
-  .constant,
-  .symbol,
-  .deleted {
-    color: $solarized-magenta;
-  }
-
-  .selector,
-  .attr-name,
-  .string,
-  .char,
-  .builtin {
-    color: $solarized-cyan;
-  }
-
-  .operator,
-  .entity,
-  .url,
-  .inserted,
-  .language-css .string {
-    color: $solarized-green;
-  }
-
-  .atrule,
-  .attr-value,
-  .keyword {
-    color: $solarized-yellow;
-  }
-
-  .function,
-  .class-name {
-    color: $solarized-blue;
-  }
-
-  .regex,
-  .important,
-  .variable {
-    color: $solarized-orange;
-  }
-
-  .important,
-  .bold {
-    font-weight: bold;
-  }
-
-  .italic {
-    font-style: italic;
-  }
-
-  .entity {
-    cursor: help;
-  }
-
-  &.language-bash {
-    &::before {
-      content: '$ ';
-    }
   }
 }

@@ -20,6 +20,19 @@ declare module "*.html" {
   export default content;
 }
 
+declare module "highlight.js/lib/highlight" {
+  import * as hljs from "highlight.js";
+
+  export default hljs;
+}
+
+declare module "highlight.js/lib/languages/*" {
+  import * as hljs from "highlight.js";
+
+  declare function language(hljs?: hljs.HLJSStatic): hljs.IModeBase;
+  export default language;
+}
+
 declare module "react-codesandboxer" {
   import { FunctionComponent, ReactNode, CSSProperties } from "react";
 

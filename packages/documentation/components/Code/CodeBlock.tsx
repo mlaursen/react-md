@@ -40,7 +40,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
       <code
         className="code"
         dangerouslySetInnerHTML={{
-          __html: highlightCode(propChildren, language),
+          __html: highlightCode(propChildren),
         }}
       />
     );

@@ -1,13 +1,8 @@
 import cn from "classnames";
 import * as marked from "marked";
-import * as Prism from "prismjs";
+import highlight from "highlight.js";
 
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-css-extras";
-import "prismjs/components/prism-scss";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-git";
+import "highlight.js/styles/solarized-dark.css";
 
 import {
   GITHUB_URL,
@@ -16,24 +11,8 @@ import {
   VERSION,
 } from "constants/index";
 
-/**
- * Gets one of the prismjs languages from a markdown language.
- */
-export function getPrismLanguage(language: string) {
-  switch (language) {
-    case "tsx":
-      return "typescript";
-    case "sh":
-      return "bash";
-    case "diff":
-      return "git";
-    default:
-      return language || "markup";
-  }
-}
-
-export function highlightCode(code: string, language: string) {
-  return Prism.highlight(code, Prism.languages[getPrismLanguage(language)]);
+export function highlightCode(code: string) {
+  return highlight.highlightAuto(code).value;
 }
 
 /**
@@ -44,7 +23,7 @@ const renderer = new marked.Renderer();
 
 renderer.code = (rawCode, language, escaped) => {
   const lang = `language-${language}`;
-  const code = highlightCode(rawCode, language);
+  const code = highlightCode(rawCode);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
   if (lines > 3 && !/markup/.test(language) && language) {

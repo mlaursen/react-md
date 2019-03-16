@@ -41,10 +41,10 @@
     "@react-md/typography": "^2.0.0-alpha.0",
     "@react-md/utils": "^2.0.0-alpha.0",
     "codesandbox": "^2.1.1",
+    "highlight.js": "^9.15.6",
     "marked": "^0.6.1",
     "mobile-detect": "^1.4.3",
     "next": "^8.0.3",
-    "prismjs": "^1.15.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "smoothscroll-polyfill": "^0.4.3"
@@ -52,9 +52,9 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@react-md/dev-utils": "^2.0.0-alpha.0",
+    "@types/highlight.js": "^9.12.3",
     "@types/marked": "^0.6.3",
     "@types/next": "^8.0.1",
-    "@types/prismjs": "^1.9.1",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
