@@ -14,6 +14,9 @@ import maliciousTarget from "./MaliciousTarget.md";
 import WithIcons from "./WithIcons";
 import withIcons from "./WithIcons.md";
 
+import WithButtonStyles from "./WithButtonStyles";
+import withButtonStyles from "./WithButtonStyles.md";
+
 const demos = [
   {
     name: "Simple Examples",
@@ -34,6 +37,11 @@ const demos = [
     name: "With Icons",
     description: withIcons,
     children: <WithIcons />,
+  },
+  {
+    name: "With Button Styles",
+    description: withButtonStyles,
+    children: <WithButtonStyles />,
   },
 ];
 

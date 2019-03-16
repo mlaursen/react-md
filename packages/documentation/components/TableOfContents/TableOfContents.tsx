@@ -3,6 +3,8 @@ import React, {
   useState,
   Fragment,
   useCallback,
+  useEffect,
+  useRef,
 } from "react";
 import cn from "classnames";
 import { Text } from "@react-md/typography";
@@ -55,6 +57,24 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
     }
   }, []);
 
+  const visible = isLargeDesktop || hovering;
+
+  useEffect(() => {
+    // if the server wasn't able to guess the correct default size based on
+    // the user-agent -- force update this component by triggering the two hover
+    // changes
+    window.requestAnimationFrame(() => {
+      const query = `.table-of-contents.table-of-contents--${
+        visible ? "visible" : "hidden"
+      }`;
+
+      if (!document.querySelector(query)) {
+        setHovering(true);
+        setHovering(() => false);
+      }
+    });
+  }, []);
+
   return (
     <Fragment>
       <ViewHeadlineSVGIcon
@@ -68,8 +88,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
       <aside
         id="table-of-contents"
         className={cn("table-of-contents", {
-          "table-of-contents--hidden": !isLargeDesktop && !hovering,
-          "table-of-contents--visible": isLargeDesktop || hovering,
+          "table-of-contents--hidden": !visible,
+          "table-of-contents--visible": visible,
         })}
         onFocus={enable}
         onMouseLeave={disable}

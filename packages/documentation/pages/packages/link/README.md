@@ -27,22 +27,19 @@ $ npm install --save @react-md/theme @react-md/typography
 
 ```tsx
 import React, { FunctionComponent } from "react";
-import { Link as ReactRouterLink, LinkProps } from "react-router-dom";
-import { Link as ReactMDLink, ILinkProps } from "@react-md/link";
+import { render } from "react-dom";
+import {
+  Link as ReactRouterLink,
+  LinkProps as ReactRouterLinkProps,
+  BrowserRouter,
+} from "react-router-dom";
+import { Link as ReactMDLink, LinkProps as RMDLinkProps } from "@react-md/link";
 
-const Link: FunctionComponent<ILinkProps & LinkProps> = props => (
+export type LinkProps = RDMLinkProps & ReactRouterLinkProps;
+
+const Link: FunctionComponent<LinkProps> = props => (
   <ReactMDLink {...props} component={ReactRouterLink} />
 );
-
-export default Link;
-```
-
-```tsx
-import React from "react";
-import { render } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-
-import Link from "./Link";
 
 const Home = () => <h1>Home page!</h1>;
 const About = () => <h1>About page!</h1>;
