@@ -56,7 +56,7 @@
     "isBinary": false
   },
   "src/container.scss": {
-    "content": ".list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    margin: 1rem;\n    max-width: 100%;\n  }\n}\n",
+    "content": "@import '@react-md/elevation/dist/mixins';\n\n.list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
     "isBinary": false
   },
   "src/people.ts": {

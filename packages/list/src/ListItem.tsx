@@ -24,6 +24,8 @@ type DefaultProps = Required<
     | "height"
     | "role"
     | "tabIndex"
+    | "leftPosition"
+    | "rightPosition"
     | "enableKeyboardClick"
     | "disableSpacebarClick"
     | "disablePressedFallback"
@@ -44,10 +46,12 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     leftAvatar,
     leftMedia,
     leftMediaLarge,
+    leftPosition,
     rightIcon,
     rightAvatar,
     rightMedia,
     rightMediaLarge,
+    rightPosition,
     forceIconWrap,
     height,
     enableKeyboardClick,
@@ -98,10 +102,12 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
         leftAvatar={leftAvatar}
         leftMedia={leftMedia}
         leftMediaLarge={leftMediaLarge}
+        leftPosition={leftPosition}
         rightIcon={rightIcon}
         rightAvatar={rightAvatar}
         rightMedia={rightMedia}
         rightMediaLarge={rightMediaLarge}
+        rightPosition={rightPosition}
         forceIconWrap={forceIconWrap}
       >
         {children}
@@ -119,6 +125,8 @@ const defaultProps: DefaultProps = {
   disableSpacebarClick: false,
   disablePressedFallback: false,
   textChildren: true,
+  leftPosition: "middle",
+  rightPosition: "middle",
 };
 
 ListItem.defaultProps = defaultProps;
@@ -142,6 +150,8 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
+      leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
     };
   }
 }

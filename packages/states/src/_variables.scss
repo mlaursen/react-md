@@ -5,6 +5,7 @@
 @import '@react-md/theme/dist/color-palette';
 @import '@react-md/theme/dist/color-a11y';
 @import '@react-md/theme/dist/functions';
+@import '@react-md/theme/dist/variables';
 
 /// Boolean if the pressed and keyboard focus interaction states should use
 /// the ripple effect. If this is set to false, a different background opacity
@@ -26,15 +27,45 @@ $rmd-states-use-ripple: true !default;
 /// @type Boolean
 $rmd-states-prevent-color-pollution: true !default;
 
+/// The base background color to use for the different interaction states for
+/// a light themed application. This is the color that gets different opacities
+/// applied to it.
+/// @type Color
+$rmd-states-light-theme-background-color: $rmd-black-base !default;
+
+/// The base background color to use for the different interaction states for
+/// a dark themed application. This is the color that gets different opacities
+/// applied to it.
+/// @type Color
+$rmd-states-dark-theme-background-color: $rmd-white-base !default;
+
+/// The base background color to use for the ripple effect in a light themed
+/// application.
+/// @type Color
+$rmd-states-light-theme-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+
+/// The base background color to use for the ripple effect in a dark themed
+/// application.
+/// @type Color
+$rmd-states-dark-theme-ripple-background-color: rgba($rmd-white-base, 0.08) !default;
+
 /// The background color to use for the different states. The default behavior
 /// is to use a base color and apply different opacities depending on the interaction
 /// with the element.
 /// @type Color
-$rmd-states-background-color: $rmd-black-base !default;
+$rmd-states-background-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-background-color,
+  $rmd-states-dark-theme-background-color
+) !default;
 
 /// The base background color for the ripple effect.
 /// @type Color
-$rmd-states-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+$rmd-states-ripple-background-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-ripple-background-color,
+  $rmd-states-dark-theme-ripple-background-color
+) !default;
 
 /// The opacity for the ripple effect.
 /// @type Color
@@ -69,10 +100,14 @@ $rmd-states-selected-opacity: 0.16 !default;
 /// @type Map
 $rmd-states-theme-values: (
   background-color: $rmd-states-background-color,
+  dark-background-color: $rmd-states-dark-theme-background-color,
+  light-background-color: $rmd-states-light-theme-background-color,
   hover-opacity: $rmd-states-hover-opacity,
   focus-opacity: $rmd-states-focus-opacity,
   pressed-opacity: $rmd-states-pressed-opacity,
   selected-opacity: $rmd-states-selected-opacity,
   ripple-background-color: $rmd-states-ripple-background-color,
+  dark-ripple-background-color: $rmd-states-dark-theme-ripple-background-color,
+  light-ripple-background-color: $rmd-states-light-theme-ripple-background-color,
   ripple-opacity: $rmd-states-ripple-opacity,
 ) !default;

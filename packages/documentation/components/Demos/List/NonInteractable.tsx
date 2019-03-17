@@ -23,13 +23,6 @@ const NonInteractable: FunctionComponent = () => (
           </SimpleListItem>
         ))}
       </List>
-      <List className="ordered-list">
-        {people.slice(11, 20).map(name => (
-          <SimpleListItem key={name} className="li li--absolute">
-            {name}
-          </SimpleListItem>
-        ))}
-      </List>
     </Container>
   </div>
 );

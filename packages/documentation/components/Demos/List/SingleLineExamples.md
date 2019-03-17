@@ -6,3 +6,7 @@ interaction states.
 
 The `ListItem` can also be modified to have icons, avatars, or media placed with
 the main content.
+
+> Note: Lists do not normally have elevation and it was just added for the
+> examples on this page to add some more contrast to the backgrounds. Lists are
+> by default flat against whichever surface they are placed upon.

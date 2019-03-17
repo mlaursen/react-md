@@ -9,6 +9,28 @@ import { Tooltipped } from "@react-md/tooltip";
 import people from "constants/people";
 
 import "./two-line-examples.scss";
+import Container from "./Container";
+
+const lastAccessedPhotos = new Date(2019, 0, 4);
+const lastAccessedRecipes = new Date();
+lastAccessedRecipes.setDate(lastAccessedRecipes.getDate() - 2);
+const lastAccessedWork = new Date();
+
+const formatShort = (d: Date) =>
+  d.toLocaleString(undefined, {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+const formatLong = (d: Date) =>
+  d.toLocaleString(undefined, {
+    month: "long",
+    weekday: "short",
+    day: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
 const Folder: FunctionComponent<AvatarProps> = props => (
   <Avatar {...props}>
@@ -16,33 +38,12 @@ const Folder: FunctionComponent<AvatarProps> = props => (
   </Avatar>
 );
 
-const lastAccessedPhotos = new Date(2019, 0, 4);
-const lastAccessedRecipes = new Date();
-lastAccessedRecipes.setDate(lastAccessedRecipes.getDate() - 2);
-const lastAccessedWork = new Date();
-
-const format = (d: Date, options: Intl.DateTimeFormatOptions) =>
-  d.toLocaleString(undefined, options);
-const itemOptions: Intl.DateTimeFormatOptions = {
-  month: "short",
-  day: "2-digit",
-  year: "numeric",
-};
-const tooltipOptions: Intl.DateTimeFormatOptions = {
-  month: "long",
-  weekday: "short",
-  day: "2-digit",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-};
-
 const InfoIcon: FunctionComponent<
   SVGIconProps & { id: string; date: Date }
 > = ({ id, className, date, ...props }) => (
   <Tooltipped
     id={`${id}-info`}
-    tooltip={`Last Accessed: ${format(date, tooltipOptions)}`}
+    tooltip={`Last Accessed: ${formatLong(date)}`}
     portal
     lineWrap
     className="two-line-list-example__tooltip"
@@ -61,33 +62,38 @@ const InfoIcon: FunctionComponent<
 );
 
 const TwoLineExamples: FunctionComponent = () => (
-  <List className="two-line-list-example">
-    <ListSubheader>Folders</ListSubheader>
-    <ListItem
-      id="two-line-item-0"
-      secondaryText={format(lastAccessedPhotos, itemOptions)}
-      leftAvatar={<Folder color="blue" />}
-      rightIcon={<InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />}
-    >
-      Photos
-    </ListItem>
-    <ListItem
-      id="two-line-item-1"
-      secondaryText={format(lastAccessedRecipes, itemOptions)}
-      leftAvatar={<Folder color="green" />}
-      rightIcon={<InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />}
-    >
-      Recipes
-    </ListItem>
-    <ListItem
-      id="two-line-item-2"
-      secondaryText={format(lastAccessedWork, itemOptions)}
-      leftAvatar={<Folder color="red" />}
-      rightIcon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
-    >
-      Work
-    </ListItem>
-  </List>
+  <Container>
+    <List className="two-line-list-example">
+      <ListSubheader>Folders</ListSubheader>
+      <ListItem
+        id="two-line-item-0"
+        secondaryText={formatShort(lastAccessedPhotos)}
+        leftAvatar={<Folder color="blue" />}
+        rightIcon={<InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />}
+        rightPosition="top"
+      >
+        Photos
+      </ListItem>
+      <ListItem
+        id="two-line-item-1"
+        secondaryText={formatShort(lastAccessedRecipes)}
+        leftAvatar={<Folder color="green" />}
+        rightIcon={<InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />}
+        rightPosition="top"
+      >
+        Recipes
+      </ListItem>
+      <ListItem
+        id="two-line-item-2"
+        secondaryText={formatShort(lastAccessedWork)}
+        leftAvatar={<Folder color="red" />}
+        rightIcon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
+        rightPosition="top"
+      >
+        Work
+      </ListItem>
+    </List>
+  </Container>
 );
 
 export default TwoLineExamples;

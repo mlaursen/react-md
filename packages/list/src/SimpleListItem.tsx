@@ -49,7 +49,12 @@ type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
   Pick<
     SimpleListItemProps,
-    "height" | "clickable" | "threeLines" | "preventColorPollution"
+    | "height"
+    | "clickable"
+    | "threeLines"
+    | "preventColorPollution"
+    | "leftPosition"
+    | "rightPosition"
   >
 >;
 type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
@@ -65,7 +70,15 @@ const SimpleListItem: FunctionComponent<
     primaryText,
     secondaryText,
     leftIcon,
+    leftAvatar,
+    leftMedia,
+    leftMediaLarge,
+    leftPosition,
     rightIcon,
+    rightAvatar,
+    rightMedia,
+    rightMediaLarge,
+    rightPosition,
     forceIconWrap,
     children,
     forwardedRef,
@@ -93,22 +106,30 @@ const SimpleListItem: FunctionComponent<
         {
           [`rmd-list-item--${height}`]:
             height !== "auto" && height !== "normal",
-          "rmd-list-item--three-lines": !!secondaryText && threeLines,
+          "rmd-list-item--three-lines": threeLines,
           "rmd-list-item--clickable": clickable,
         },
         className
       )}
     >
       <ListItemChildren
-        preventColorPollution={preventColorPollution}
         textClassName={textClassName}
         secondaryTextClassName={secondaryTextClassName}
+        textChildren={textChildren}
         primaryText={primaryText}
         secondaryText={secondaryText}
-        textChildren={textChildren}
         leftIcon={leftIcon}
+        leftAvatar={leftAvatar}
+        leftMedia={leftMedia}
+        leftMediaLarge={leftMediaLarge}
+        leftPosition={leftPosition}
         rightIcon={rightIcon}
+        rightAvatar={rightAvatar}
+        rightMedia={rightMedia}
+        rightMediaLarge={rightMediaLarge}
+        rightPosition={rightPosition}
         forceIconWrap={forceIconWrap}
+        preventColorPollution={preventColorPollution}
       >
         {children}
       </ListItemChildren>
@@ -121,6 +142,8 @@ const defaultProps: DefaultProps = {
   clickable: false,
   threeLines: false,
   preventColorPollution: false,
+  leftPosition: "middle",
+  rightPosition: "middle",
 };
 
 SimpleListItem.defaultProps = defaultProps;
@@ -145,6 +168,8 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
+      leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
     };
   }
 }

@@ -104,6 +104,10 @@
     item-three-line-height,
     rmd-list-theme-var(dense-item-three-line-height)
   );
+  @include rmd-list-theme-update-var(
+    item-secondary-three-line-height,
+    rmd-list-theme-var(dense-item-secondary-three-line-height)
+  );
 }
 
 @mixin rmd-list-item-icon-spacing($subtract) {
@@ -145,8 +149,14 @@
     @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-extra-large-height));
   }
 
-  &--three-line {
+  &--three-lines {
     @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-three-line-height));
+
+    .rmd-list-item__text--secondary {
+      @include rmd-list-theme(max-height, item-secondary-three-line-height);
+
+      white-space: normal;
+    }
   }
 
   &--dense {
@@ -171,6 +181,14 @@
 
   &__icon {
     flex-shrink: 0;
+
+    &--top {
+      align-self: flex-start;
+    }
+
+    &--bottom {
+      align-self: flex-end;
+    }
   }
 
   &__avatar {

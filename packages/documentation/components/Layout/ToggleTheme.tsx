@@ -29,6 +29,9 @@ const LIGHT_THEMES = {
   "rmd-theme-text-disabled-on-background":
     "var(--rmd-theme-text-disabled-on-light)",
   "rmd-theme-text-icon-on-background": "var(--rmd-theme-text-icon-on-light)",
+  "rmd-states-background-color": "var(--rmd-states-light-background-color)",
+  "rmd-states-ripple-background-color":
+    "var(--rmd-states-light-ripple-background-color)",
   "rmd-divider-background-color":
     "var(--rmd-divider-background-color-on-light)",
   "code-bg": "var(--code-bg-light)",

@@ -1,10 +1,15 @@
+@import '@react-md/elevation/dist/mixins';
+
 .list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 
   .rmd-list {
+    @include rmd-elevation(4);
+
     margin: 1rem;
-    max-width: 100%;
+    max-width: 20rem;
+    width: 100%;
   }
 }

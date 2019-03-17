@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/list/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,6 +17,7 @@
       "description": "Example from https://react-md.dev/packages/list/demos#non-interactable",
       "main": "src/index.tsx",
       "dependencies": {
+        "@react-md/icon": "latest",
         "@react-md/list": "latest",
         "@react-md/states": "latest",
         "@react-md/transition": "latest",
@@ -44,7 +45,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent } from \"react\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport \"./non-interactable.scss\";\n\nconst NonInteractable: FunctionComponent = () => (\n  <div className=\"simple-list-examples\">\n    <Container title=\"Non-interactable\">\n      <List>\n        {people.slice(0, 10).map(name => (\n          <SimpleListItem key={name} className=\"li li--dotted li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map(name => (\n          <SimpleListItem key={name} className=\"li li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map(name => (\n          <SimpleListItem key={name} className=\"li li--absolute\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n    </Container>\n  </div>\n);\n\nexport default NonInteractable;\n",
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport \"./non-interactable.scss\";\n\nconst NonInteractable: FunctionComponent = () => (\n  <div className=\"simple-list-examples\">\n    <Container title=\"Non-interactable\">\n      <List>\n        {people.slice(0, 10).map(name => (\n          <SimpleListItem key={name} className=\"li li--dotted li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map(name => (\n          <SimpleListItem key={name} className=\"li li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n    </Container>\n  </div>\n);\n\nexport default NonInteractable;\n",
     "isBinary": false
   },
   "src/Container.tsx": {
@@ -52,11 +53,11 @@
     "isBinary": false
   },
   "src/container.scss": {
-    "content": ".list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    margin: 1rem;\n    max-width: 100%;\n  }\n}\n",
+    "content": "@import '@react-md/elevation/dist/mixins';\n\n.list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
     "isBinary": false
   },
   "src/non-interactable.scss": {
-    "content": "@import '@react-md/utils/dist/mixins';\n\n// since the `SimpleListItem` component has `display: flex`, the\n// default list item numbering and styles are no longer applied.\n// If you want to add it back, you can use one of the following\n// methods\n// - using a counter for ordered lists\n// - inserting the custom style in the ::before tag\n\n.ordered-list {\n  counter-reset: non-interactable-list;\n\n  .li::before {\n    content: counter(non-interactable-list);\n    counter-increment: non-interactable-list;\n  }\n}\n\n.li--margin::before {\n  @include rmd-utils-rtl {\n    margin-left: 1rem;\n    margin-right: 0;\n  }\n\n  margin-right: 1rem;\n}\n\n.li--absolute::before {\n  @include rmd-utils-rtl {\n    left: auto;\n    right: 0;\n  }\n\n  left: 0;\n  position: absolute;\n}\n\n.li--dotted::before {\n  // dot character\n  content: '\\2022';\n  font-size: 2em;\n}\n",
+    "content": "@import '@react-md/utils/dist/mixins';\n\n// since the `SimpleListItem` component has `display: flex`, the\n// default list item numbering and styles are no longer applied.\n// If you want to add it back, you can use one of the following\n// methods\n// - using a counter for ordered lists\n// - inserting the custom style in the ::before tag\n\n.ordered-list {\n  counter-reset: non-interactable-list;\n\n  .li::before {\n    content: counter(non-interactable-list);\n    counter-increment: non-interactable-list;\n  }\n}\n\n.li--margin::before {\n  @include rmd-utils-rtl {\n    margin-left: 1rem;\n    margin-right: 0;\n  }\n\n  margin-right: 1rem;\n}\n\n.li--dotted::before {\n  // dot character\n  content: '\\2022';\n  font-size: 2em;\n}\n",
     "isBinary": false
   },
   "src/people.ts": {

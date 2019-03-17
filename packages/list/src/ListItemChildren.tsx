@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { FixColorPollution } from "@react-md/states";
 
-import ListItemIcon from "./ListItemIcon";
+import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
 import ListItemText from "./ListItemText";
 
 export interface ListItemChildrenProps {
@@ -94,12 +94,20 @@ export interface ListItemChildrenProps {
   rightMedia?: ReactNode;
   rightMediaLarge?: ReactNode;
 
+  leftPosition?: ListItemIconPosition;
+  rightPosition?: ListItemIconPosition;
+
   /**
    * Boolean if the color pollution should be fixed at this level. This is really used when
    * composing the children with clickable list items and tree items.
    */
   preventColorPollution?: boolean;
 }
+
+type DefaultProps = Required<
+  Pick<ListItemChildrenProps, "leftPosition" | "rightPosition">
+>;
+type WithDefaultProps = ListItemChildrenProps & DefaultProps;
 
 const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
   const {
@@ -111,15 +119,17 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
     leftIcon,
     leftAvatar,
     leftMedia,
+    leftMediaLarge,
+    leftPosition,
     rightIcon,
     rightAvatar,
     rightMedia,
-    leftMediaLarge,
     rightMediaLarge,
+    rightPosition,
     forceIconWrap,
     children: propChildren,
     preventColorPollution,
-  } = props;
+  } = props as WithDefaultProps;
   let children = propChildren;
   if (primaryText || secondaryText || textChildren) {
     children = (
@@ -140,7 +150,8 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
       mediaLarge={!!leftMediaLarge}
       icon={leftIcon || leftAvatar || leftMedia || leftMediaLarge}
       forceIconWrap={forceIconWrap}
-      position="before"
+      before
+      position={leftPosition}
     >
       {children}
     </ListItemIcon>
@@ -152,7 +163,8 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
       mediaLarge={!!rightMediaLarge}
       icon={rightIcon || rightAvatar || rightMedia || rightMediaLarge}
       forceIconWrap={forceIconWrap}
-      position="after"
+      before={false}
+      position={rightPosition}
     >
       {children}
     </ListItemIcon>
@@ -165,5 +177,12 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
     </FixColorPollution>
   );
 };
+
+const defaultProps: DefaultProps = {
+  leftPosition: "middle",
+  rightPosition: "middle",
+};
+
+ListItemChildren.defaultProps = defaultProps;
 
 export default ListItemChildren;

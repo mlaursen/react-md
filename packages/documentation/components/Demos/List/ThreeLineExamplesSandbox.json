@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/avatar/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/material-icons/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,10 +17,18 @@
       "description": "Example from https://react-md.dev/packages/list/demos#three-line-examples",
       "main": "src/index.tsx",
       "dependencies": {
+        "@react-md/avatar": "latest",
+        "@react-md/icon": "latest",
+        "@react-md/list": "latest",
+        "@react-md/material-icons": "latest",
+        "@react-md/states": "latest",
+        "@react-md/transition": "latest",
+        "@react-md/utils": "latest",
+        "@react-md/wia-aria": "latest",
+        "classnames": "latest",
         "react": "latest",
         "@react-md/theme": "latest",
         "@react-md/typography": "latest",
-        "@react-md/utils": "latest",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -39,7 +47,15 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent } from \"react\";\n\nconst ThreeLineExamples: FunctionComponent = () => {\n  return null;\n};\n\nexport default ThreeLineExamples;\n",
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { StarSVGIcon } from \"@react-md/material-icons\";\nimport Container from \"./Container\";\n\nconst inbox = [\n  {\n    from: \"Ali Connors\",\n    subject: \"Bunch this weekend?\",\n    message:\n      \"I'll be in your neighborhood sometime this week. Would you like to try brunch this weekend?\",\n  },\n  {\n    from: \"Ali Connors\",\n    subject: \"Summer BBQ\",\n    message: \"Wish I could come, but I'm out of town this weekend.\",\n  },\n  {\n    from: \"Scott Stirling\",\n    subject: \"See your video? You're a legend!\",\n    message:\n      \"I still can't believe it happened... I'm not sure if my face will ever recover.\",\n  },\n];\n\nconst ThreeLineExamples: FunctionComponent = () => (\n  <Container>\n    <List>\n      {inbox.map(({ from, subject, message }, i) => (\n        <ListItem\n          id={`three-line-item-${i}`}\n          key={i}\n          leftMedia={\n            <img src={`https://picsum.photos/40?image=100${i}`} alt=\"\" />\n          }\n          rightIcon={<StarSVGIcon />}\n          rightPosition=\"top\"\n          secondaryText={message}\n          threeLines\n        >\n          {subject}\n        </ListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default ThreeLineExamples;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"list-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": "@import '@react-md/elevation/dist/mixins';\n\n.list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
     "isBinary": false
   }
 }
