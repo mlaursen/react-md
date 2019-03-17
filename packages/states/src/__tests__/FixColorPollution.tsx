@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { mount } from "enzyme";
 
 import FixColorPollution from "../FixColorPollution";
-import { StatesConfig } from "../context";
+import StatesConfig from "../StatesConfig";
 
 const PreventColorPollution: FunctionComponent = ({ children }) => (
   <StatesConfig preventColorPollution>{children}</StatesConfig>
