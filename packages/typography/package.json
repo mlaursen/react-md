@@ -5,8 +5,7 @@
   "scripts": {
     "build": "dev-utils build",
     "clean": "dev-utils clean",
-    "test": "dev-utils test",
-    "prepublishOnly": "dev-utils prepublish"
+    "test": "dev-utils test"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

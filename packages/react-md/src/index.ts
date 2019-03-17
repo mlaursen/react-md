@@ -11,6 +11,7 @@ export * from "@react-md/portal";
 export * from "@react-md/sheet";
 export * from "@react-md/states";
 export * from "@react-md/theme";
+export * from "@react-md/tooltip";
 export * from "@react-md/transition";
 export * from "@react-md/tree";
 export * from "@react-md/typography";

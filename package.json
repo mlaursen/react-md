@@ -8,6 +8,8 @@
     "force-install": "yarn --force",
     "setup": "npm-run-all dev-utils force-install build",
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
+    "clean-build": "npm-run-all clean build-dist",
+    "build-dist": "lerna run build --ignore @react-md/dev-utils --ignore documentation --stream",
     "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --stream -- --no-umd",
     "lint:scripts": "tslint -p tsconfig.json",
     "lint:styles": "sass-lint -c .sass-lint.yml -v",
