@@ -1,4 +1,11 @@
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, {
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+} from "react";
 import cn from "classnames";
 import { Omit, useKeyboardFocusedClassName } from "@react-md/wia-aria";
 
@@ -25,23 +32,29 @@ import {
  */
 export function useTouchDetection() {
   const [lastTouchTime, setTouchTime] = useState(0);
-  function updateTouchTime() {
-    setTouchTime(Date.now());
-  }
+  const touchRef = useRef(lastTouchTime);
+  useEffect(() => {
+    touchRef.current = lastTouchTime;
+  });
 
-  function resetTouchTime() {
+  const updateTouchTime = useCallback(() => {
+    setTouchTime(Date.now());
+  }, []);
+
+  const resetTouchTime = useCallback(() => {
+    const lastTouchTime = touchRef.current;
     if (Date.now() - lastTouchTime < 500) {
       return;
     }
 
     setTouchTime(0);
-  }
+  }, []);
 
   useEffect(() => {
     window.addEventListener("touchstart", updateTouchTime, true);
 
     return () => {
-      window.removeEventListener("touchstart", updateTouchTime);
+      window.removeEventListener("touchstart", updateTouchTime, true);
     };
   }, []);
 

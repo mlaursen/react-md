@@ -35,7 +35,10 @@ export type TooltippedChildrenRenderer = (
 export interface TooltippedProps
   extends Partial<TooltipConfig>,
     RenderConditionalPortalProps,
-    Omit<TooltipProps, keyof HTMLAttributes<HTMLSpanElement> | "visible"> {
+    Omit<
+      TooltipProps,
+      keyof HTMLAttributes<HTMLSpanElement> | "visible" | "position"
+    > {
   /**
    * The id for the element that has a tooltip. This is always required since it will
    * be passed down to the `containerProps` in the children renderer function. It is

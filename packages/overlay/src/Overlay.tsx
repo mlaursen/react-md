@@ -35,7 +35,7 @@ export interface OverlayProps
 
 type WithRef = WithForwardedRef<HTMLSpanElement>;
 type DefaultProps = Required<
-  Pick<OverlayProps, "timeout" | "mountOnEnter" | "unmountOnExit">
+  Pick<OverlayProps, "timeout" | "mountOnEnter" | "unmountOnExit" | "tabIndex">
 >;
 type WithDefaultProps = OverlayProps & DefaultProps & WithRef;
 
@@ -143,6 +143,7 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  tabIndex: -1,
   timeout: 150,
   mountOnEnter: true,
   unmountOnExit: true,

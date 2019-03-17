@@ -6,11 +6,6 @@
 @import '@react-md/theme/dist/color-a11y';
 @import '@react-md/theme/dist/functions';
 
-/// Boolean if the each surface in react-md should also be updated
-/// to remove the `::-moz-focus-inner` default styles when focused.
-/// @type Boolean
-$rmd-states-remove-firefox-inner-ring: true !default;
-
 /// Boolean if the pressed and keyboard focus interaction states should use
 /// the ripple effect. If this is set to false, a different background opacity
 /// will be applied to the element instead.
@@ -37,7 +32,12 @@ $rmd-states-prevent-color-pollution: true !default;
 /// @type Color
 $rmd-states-background-color: $rmd-black-base !default;
 
+/// The base background color for the ripple effect.
+/// @type Color
 $rmd-states-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+
+/// The opacity for the ripple effect.
+/// @type Color
 $rmd-states-ripple-opacity: 1 !default;
 
 /// The opacity to apply to the `$rmd-states-background-color` value when the

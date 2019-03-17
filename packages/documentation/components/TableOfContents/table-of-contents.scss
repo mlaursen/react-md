@@ -1,4 +1,5 @@
 @import '@react-md/utils/dist/mixins';
+@import '@react-md/button/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/app-bar/dist/mixins';
@@ -11,38 +12,44 @@ $page-margin: 1rem;
 $toc-width: 15rem;
 
 .table-of-contents-toggle {
+  $button-size: 2rem;
+  $size-difference: ($rmd-button-icon-size - $button-size) / 2;
+  $margin: $size-difference + $rmd-app-bar-lr-margin;
+  @include rmd-button-theme-update-var(icon-size, $button-size);
   @include rmd-utils-rtl {
-    left: $page-margin;
+    left: $margin;
     right: auto;
   }
 
-  $icon-margin: $page-margin + 0.5rem;
-
   position: fixed;
-  right: 1.25rem;
-  top: calc(#{rmd-app-bar-theme-var(height)} + #{$icon-margin});
-  z-index: 2;
+  right: $margin;
+  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference});
+  z-index: 11;
 }
 
 .table-of-contents {
   @include rmd-utils-rtl {
     left: $page-margin;
     right: auto;
+    transform-origin: 2% ($rmd-icon-size / 2);
   }
   @include rmd-elevation(2);
   @include rmd-transition(standard);
   @include rmd-theme-update-var(background, rmd-theme-var(surface));
   @include rmd-theme(background-color, background);
 
-  max-width: 20rem;
   padding: 2rem;
   position: fixed;
-  right: $page-margin;
+  right: $rmd-app-bar-lr-margin;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
   transform-origin: 98% ($rmd-icon-size / 2);
   transition: opacity $rmd-transition-standard-time, transform $rmd-transition-standard-time;
-  width: 100%;
-  z-index: 1;
+  width: calc(100% - #{$rmd-app-bar-lr-margin * 2});
+  z-index: 10;
+
+  @media (min-width: 40rem) {
+    max-width: 20rem;
+  }
 
   @media (min-width: 56rem) {
     max-width: $toc-width;

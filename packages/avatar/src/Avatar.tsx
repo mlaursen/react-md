@@ -13,6 +13,11 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * An optional alt tag to display on the `<img>` when the `src` prop is also
    * applied.
+   *
+   * For accessibility and screen readers, you normally do not want to actually
+   * provide this prop. This should only be used if the `Avatar` is not accompanied
+   * by some other component or main content as it will be extra noise for screen
+   * readers.
    */
   alt?: string;
 
@@ -78,7 +83,7 @@ const Avatar: FunctionComponent<AvatarProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  alt: "avatar",
+  alt: "",
 };
 
 Avatar.defaultProps = defaultProps;

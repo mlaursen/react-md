@@ -4,11 +4,19 @@
 @import '@react-md/typography/dist/mixins';
 
 .demo {
-  padding: 0 6rem;
+  padding: 0 2rem;
+
+  @media (min-width: 600px) {
+    padding: 0 6rem;
+  }
 
   &__divider {
     margin-bottom: 2rem;
     margin-top: 6rem;
+  }
+
+  &__title {
+    overflow-wrap: break-word;
   }
 
   &__description {

@@ -5,6 +5,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
+  ReactType,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -110,10 +111,20 @@ export interface SheetProps
    * lower the box shadow.
    */
   inline?: boolean;
+
+  /**
+   * An optional component to render the sheet as. This should really only be one of:
+   * - "div"
+   * - "nav"
+   * - "ul"
+   *
+   * where `"div"` and `"nav"` will be the most used.
+   */
+  component?: ReactType;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
-type SheetDefaultProps = Required<
+type DefaultProps = Required<
   Pick<
     SheetProps,
     | "role"
@@ -127,9 +138,10 @@ type SheetDefaultProps = Required<
     | "classNames"
     | "horizontalSize"
     | "verticalSize"
+    | "component"
   >
 >;
-type SheetWithDefaultProps = SheetProps & SheetDefaultProps & WithRef;
+type SheetWithDefaultProps = SheetProps & DefaultProps & WithRef;
 
 const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
   const {
@@ -158,6 +170,7 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
     portal,
     portalInto,
     portalIntoId,
+    component: Component,
     ...props
   } = providedProps as SheetWithDefaultProps;
 
@@ -191,7 +204,7 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
       <Fragment>
         {overlayEl}
         <CSSTransition
-          appear
+          appear={mountOnEnter}
           in={visible}
           classNames={classNames}
           timeout={timeout}
@@ -204,47 +217,51 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
           mountOnEnter={mountOnEnter}
           unmountOnExit={unmountOnExit}
         >
-          <div
-            {...props}
-            ref={forwardedRef}
-            className={cn(
-              "rmd-sheet",
-              {
-                "rmd-sheet--fixed": !inline,
-                "rmd-sheet--horizontal": !isCalculated && isHorizontal,
-                "rmd-sheet--small-width":
-                  isHorizontal && horizontalSize === "small",
-                "rmd-sheet--large-width":
-                  isHorizontal && horizontalSize === "large",
-                "rmd-sheet--media-width":
-                  isHorizontal && horizontalSize === "media",
-                "rmd-sheet--until-small-width":
-                  isHorizontal && horizontalSize === "until-small",
-                "rmd-sheet--until-large-width":
-                  isHorizontal && horizontalSize === "until-large",
-                "rmd-sheet--until-media-width":
-                  isHorizontal && horizontalSize === "until-media",
-                "rmd-sheet--vertical": !isCalculated && !isHorizontal,
-                "rmd-sheet--viewport-height":
-                  !isHorizontal && verticalSize === "none",
-                "rmd-sheet--touchable-height":
-                  !isHorizontal && verticalSize === "touch",
-                "rmd-sheet--recommended-height":
-                  !isHorizontal && verticalSize === "recommended",
-                [`rmd-sheet--${position}`]: position !== "calculated",
-              },
-              className
-            )}
-          >
-            {children}
-          </div>
+          {state => (
+            <Component
+              {...props}
+              ref={forwardedRef}
+              className={cn(
+                "rmd-sheet",
+                {
+                  "rmd-sheet--fixed": !inline,
+                  "rmd-sheet--horizontal": !isCalculated && isHorizontal,
+                  "rmd-sheet--small-width":
+                    isHorizontal && horizontalSize === "small",
+                  "rmd-sheet--large-width":
+                    isHorizontal && horizontalSize === "large",
+                  "rmd-sheet--media-width":
+                    isHorizontal && horizontalSize === "media",
+                  "rmd-sheet--until-small-width":
+                    isHorizontal && horizontalSize === "until-small",
+                  "rmd-sheet--until-large-width":
+                    isHorizontal && horizontalSize === "until-large",
+                  "rmd-sheet--until-media-width":
+                    isHorizontal && horizontalSize === "until-media",
+                  "rmd-sheet--vertical": !isCalculated && !isHorizontal,
+                  "rmd-sheet--viewport-height":
+                    !isHorizontal && verticalSize === "none",
+                  "rmd-sheet--touchable-height":
+                    !isHorizontal && verticalSize === "touch",
+                  "rmd-sheet--recommended-height":
+                    !isHorizontal && verticalSize === "recommended",
+                  [`rmd-sheet--${position}`]: position !== "calculated",
+                  "rmd-sheet--hidden": state === "exited" && !visible,
+                },
+                className
+              )}
+            >
+              {children}
+            </Component>
+          )}
         </CSSTransition>
       </Fragment>
     </ConditionalPortal>
   );
 };
 
-const defaultProps: SheetDefaultProps = {
+const defaultProps: DefaultProps = {
+  component: "div",
   role: "dialog",
   tabIndex: -1,
   inline: false,

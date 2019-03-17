@@ -1,42 +1,26 @@
-import React, { FunctionComponent, useEffect } from "react";
-import cn from "classnames";
-import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
+import React, { FunctionComponent } from "react";
 import { StatesConfig } from "@react-md/states";
-import { KeyboardTracker } from "@react-md/wia-aria";
 import { AppSize as AppSizeType } from "@react-md/utils";
+import { KeyboardTracker } from "@react-md/wia-aria";
 
 import AppSize from "./AppSize";
-import Header from "./Header";
-import NavigationTree from "./NavigationTree";
-
+import Combined from "./Combined";
 import "./layout.scss";
 
 export interface LayoutProps extends Partial<AppSizeType> {
   title: string;
-  pageTitle: string;
-  pathname: string;
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({
   children,
   title,
-  pathname,
   ...defaultMedia
 }) => {
   return (
     <AppSize {...defaultMedia}>
       <KeyboardTracker>
         <StatesConfig preventColorPollution>
-          <Header title={title} />
-          <nav id="main-navigation" className="layout__nav">
-            <NavigationTree />
-          </nav>
-          <main
-            id="main-content"
-            className={cn("layout__main", APP_BAR_OFFSET_CLASSNAME)}
-          >
-            {children}
-          </main>
+          <Combined title={title}>{children}</Combined>
         </StatesConfig>
       </KeyboardTracker>
     </AppSize>

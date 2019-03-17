@@ -8,14 +8,18 @@ import GithubLink from "components/GithubLink";
 
 interface Props {
   title: string;
+  toggle: () => void;
+  isDesktop: boolean;
 }
 
-const Header: FunctionComponent<Props> = ({ title }) => (
+const Header: FunctionComponent<Props> = ({ title, toggle, isDesktop }) => (
   <AppBar id="main-app-bar" fixed>
-    <AppBarNav id="main-nav-toggle">
-      <MenuSVGIcon />
-    </AppBarNav>
-    <AppBarTitle>{title}</AppBarTitle>
+    {!isDesktop && (
+      <AppBarNav id="main-nav-toggle" onClick={toggle}>
+        <MenuSVGIcon />
+      </AppBarNav>
+    )}
+    <AppBarTitle keyline={isDesktop}>{title}</AppBarTitle>
     <ToggleTheme />
     <GithubLink id="main-github-link" />
     <ToggleRTL />

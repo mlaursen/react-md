@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useEffect } from "react";
+import React, { FunctionComponent, useRef, useEffect, memo } from "react";
 import { SingletonRouter, withRouter } from "next/router";
 import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
@@ -92,28 +92,32 @@ function useCustomItemExpansion(
   return { expandedIds, onItemExpandedChange };
 }
 
-const NavigationTree: FunctionComponent<{ router: SingletonRouter }> = ({
+const NavigationTree: FunctionComponent<{ pathname: string }> = memo(
+  ({ pathname }) => {
+    const data = useFlattenedTree<RoutesTreeData>(routesTree, null);
+    const { expandedIds, onItemExpandedChange } = useCustomItemExpansion(
+      pathname,
+      data
+    );
+
+    return (
+      <Tree
+        id="main-navigation-tree"
+        aria-label="Main Navigation"
+        defaultActiveId="main-navigation-tree-item-0"
+        data={data}
+        selectedIds={[pathname]}
+        expandedIds={expandedIds}
+        onItemSelect={onItemSelect}
+        onItemExpandedChange={onItemExpandedChange}
+        itemRenderer={itemRenderer}
+      />
+    );
+  }
+);
+
+const RoutedTree: FunctionComponent<{ router: SingletonRouter }> = ({
   router,
-}) => {
-  const data = useFlattenedTree<RoutesTreeData>(routesTree, null);
-  const { expandedIds, onItemExpandedChange } = useCustomItemExpansion(
-    router.pathname,
-    data
-  );
+}) => <NavigationTree pathname={router.pathname} />;
 
-  return (
-    <Tree
-      id="main-navigation-tree"
-      aria-label="Main Navigation"
-      defaultActiveId="main-navigation-tree-item-0"
-      data={data}
-      selectedIds={[router.pathname]}
-      expandedIds={expandedIds}
-      onItemSelect={onItemSelect}
-      onItemExpandedChange={onItemExpandedChange}
-      itemRenderer={itemRenderer}
-    />
-  );
-};
-
-export default withRouter(NavigationTree);
+export default withRouter(RoutedTree);

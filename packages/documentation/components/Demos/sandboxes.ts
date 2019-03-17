@@ -60,8 +60,12 @@ const sandboxes: SandboxesRecord = {
   "Link/WithIcons": () => resolve(import("./Link/WithIconsSandbox.json")),
   "List/NonInteractable": () =>
     resolve(import("./List/NonInteractableSandbox.json")),
-  "List/SimpleExamples": () =>
-    resolve(import("./List/SimpleExamplesSandbox.json")),
+  "List/SingleLineExamples": () =>
+    resolve(import("./List/SingleLineExamplesSandbox.json")),
+  "List/ThreeLineExamples": () =>
+    resolve(import("./List/ThreeLineExamplesSandbox.json")),
+  "List/TwoLineExamples": () =>
+    resolve(import("./List/TwoLineExamplesSandbox.json")),
   "MaterialIcons/AllIcons": () =>
     resolve(import("./MaterialIcons/AllIconsSandbox.json")),
   "MaterialIcons/SimpleExamples": () =>

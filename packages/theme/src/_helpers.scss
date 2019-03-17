@@ -49,11 +49,13 @@
 /// @return {String} a css var string to apply to a css property.
 @function rmd-theme-get-var($theme-name, $theme-map, $theme-group, $fallback: null) {
   $validated-fallback: rmd-theme-get-var-value($theme-name, $theme-map, $theme-group);
+  $fallback: if($fallback == null, $validated-fallback, $fallback);
 
-  @return var(
-    --rmd-#{$theme-group}-#{$theme-name},
-    if($fallback == null, $validated-fallback, $fallback)
-  );
+  @if $fallback == null {
+    @return var(--rmd-#{$theme-group}-#{$theme-name});
+  }
+
+  @return var(--rmd-#{$theme-group}-#{$theme-name}, #{$fallback});
 }
 
 ///

@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/container.scss": {
-    "content": ".list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    margin: 1rem;\n  }\n}\n",
+    "content": ".list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    margin: 1rem;\n    max-width: 100%;\n  }\n}\n",
     "isBinary": false
   },
   "src/non-interactable.scss": {

@@ -15,4 +15,5 @@ export const SHEET_CLASS_NAMES: CSSTransitionClassNames = {
   enterActive: "rmd-sheet--enter rmd-sheet--visible",
   exit: "rmd-sheet--exit",
   exitActive: "rmd-sheet--offscreen",
+  exitDone: "rmd-sheet--offscreen",
 };

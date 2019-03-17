@@ -1,12 +1,14 @@
-@import '@react-md/sheet/dist/mixins';
+@import '@react-md/theme/dist/mixins';
 @import '@react-md/utils/dist/mixins';
+@import '@react-md/app-bar/dist/mixins';
+@import '@react-md/sheet/dist/mixins';
 
 .layout {
   &__main {
     display: block;
     height: 100%;
 
-    .layout__nav ~ & {
+    &--desktop {
       @include rmd-utils-rtl {
         @include rmd-sheet-theme(margin-right, large-width);
 
@@ -15,12 +17,24 @@
 
       @include rmd-sheet-theme(margin-left, large-width);
     }
+
+    // .layout__nav ~ & {
+    // }
   }
 
   &__nav {
-    @include rmd-utils-rtl {
-      left: auto;
-      right: 0;
+    &--desktop.rmd-sheet {
+      @include rmd-app-bar-offset(top);
+
+      position: fixed;
+      z-index: 10;
     }
   }
+
+  // &__nav {
+  //   @include rmd-utils-rtl {
+  //     left: auto;
+  //     right: 0;
+  //   }
+  // }
 }

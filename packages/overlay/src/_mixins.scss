@@ -4,6 +4,7 @@
 
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/transition/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 @import 'functions';
 
@@ -31,25 +32,24 @@
 
 /// Creates the styles for the overlay component.
 @mixin rmd-overlay {
-  .rmd-overlay {
-    @include rmd-overlay-theme(background-color);
-    @include rmd-overlay-theme(z-index);
-    @include rmd-transition(standard);
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-overlay-theme(background-color);
+  @include rmd-overlay-theme(z-index);
+  @include rmd-transition(standard);
 
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transition: opacity $rmd-overlay-transition-duration;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity $rmd-overlay-transition-duration;
 
-    &--active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
@@ -58,5 +58,7 @@
 @mixin react-md-overlay {
   @include rmd-theme-create-root-theme($rmd-overlay-theme-values, overlay);
 
-  @include rmd-overlay;
+  .rmd-overlay {
+    @include rmd-overlay;
+  }
 }

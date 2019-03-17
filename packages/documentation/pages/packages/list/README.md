@@ -1,9 +1,9 @@
-# @react-md/list
+## @react-md/list
 
 Create lists of content that can have optional supplementary icons, avatars, or
 images placed with the text.
 
-## Installation
+### Installation
 
 ```sh
 $ npm install --save @react-md/list
@@ -21,19 +21,12 @@ $ npm install --save @react-md/theme \
     @react-md/media
 ```
 
-<!-- DOCS_REMOVE -->
+### Including Styles
 
-## Documentation
+> If you have not done so already, please read the main documentation about
+> #including-styles before continuing.
 
-You should check out the
-[full documentation](https://react-md.dev/packages/list) for live examples and
-more customization information, but an example usage is shown below.
-
-<!-- DOCS_REMOVE_END -->
-
-<!-- INCLUDING_STYLES -->
-
-## Usage
+### Usage
 
 ```tsx
 import React from "react";

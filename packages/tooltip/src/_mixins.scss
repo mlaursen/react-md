@@ -123,86 +123,93 @@
   }
 }
 
+/// Creates all the styles for a tooltip element. This should be used within a
+/// css class.
+@mixin rmd-tooltip {
+  @include rmd-tooltip-base;
+
+  &--line-wrap {
+    @include rmd-tooltip-line-wrap;
+  }
+
+  &--dense {
+    @include rmd-tooltip-dense;
+  }
+
+  &--visible {
+    opacity: 1;
+  }
+
+  &--enter {
+    @include rmd-transition(deceleration);
+
+    transition: opacity $rmd-tooltip-enter-duration, transform $rmd-tooltip-enter-duration * 2;
+  }
+
+  &--exit {
+    @include rmd-transition(acceleration);
+
+    transition-duration: $rmd-tooltip-exit-duration;
+  }
+
+  &--exit-active {
+    opacity: 0;
+  }
+
+  &--left {
+    @include rmd-tooltip-position(left);
+  }
+
+  &--above {
+    @include rmd-tooltip-position(above);
+  }
+
+  &--right {
+    @include rmd-tooltip-position(right);
+  }
+
+  &--below {
+    @include rmd-tooltip-position(below);
+  }
+
+  &--portal {
+    // reset everything since it is now handled by inline styles
+    bottom: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+
+    $distance: rmd-tooltip-theme-var(transition-distance);
+    // have to use calc to negate the value of a css variable
+    $negative-distance: calc(-1 * #{$distance});
+
+    &.rmd-tooltip--above {
+      transform: translateY($negative-distance);
+    }
+
+    &.rmd-tooltip--below {
+      transform: translateY($distance);
+    }
+
+    &.rmd-tooltip--left {
+      transform: translateX($distance);
+    }
+
+    &.rmd-tooltip--right {
+      transform: translateX($negative-distance);
+    }
+
+    &.rmd-tooltip--visible {
+      transform: none;
+    }
+  }
+}
+
+/// Creates all the styles and theme for the tooltip package.
 @mixin react-md-tooltip {
   @include rmd-theme-create-root-theme($rmd-tooltip-theme-values, tooltip);
 
   .rmd-tooltip {
-    @include rmd-tooltip-base;
-
-    &--line-wrap {
-      @include rmd-tooltip-line-wrap;
-    }
-
-    &--dense {
-      @include rmd-tooltip-dense;
-    }
-
-    &--visible {
-      opacity: 1;
-    }
-
-    &--enter {
-      @include rmd-transition(deceleration);
-
-      transition: opacity $rmd-tooltip-enter-duration, transform $rmd-tooltip-enter-duration * 2;
-    }
-
-    &--exit {
-      @include rmd-transition(acceleration);
-
-      transition-duration: $rmd-tooltip-exit-duration;
-    }
-
-    &--exit-active {
-      opacity: 0;
-    }
-
-    &--left {
-      @include rmd-tooltip-position(left);
-    }
-
-    &--above {
-      @include rmd-tooltip-position(above);
-    }
-
-    &--right {
-      @include rmd-tooltip-position(right);
-    }
-
-    &--below {
-      @include rmd-tooltip-position(below);
-    }
-
-    &--portal {
-      // reset everything since it is now handled by inline styles
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: auto;
-
-      $distance: rmd-tooltip-theme-var(transition-distance);
-      // have to use calc to negate the value of a css variable
-      $negative-distance: calc(-1 * #{$distance});
-
-      &.rmd-tooltip--above {
-        transform: translateY($negative-distance);
-      }
-
-      &.rmd-tooltip--below {
-        transform: translateY($distance);
-      }
-
-      &.rmd-tooltip--left {
-        transform: translateX($distance);
-      }
-
-      &.rmd-tooltip--right {
-        transform: translateX($negative-distance);
-      }
-
-      &.rmd-tooltip--visible {
-        transform: none;
-      }
-    }
+    @include rmd-tooltip;
   }
 }

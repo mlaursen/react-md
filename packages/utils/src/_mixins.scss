@@ -64,6 +64,8 @@
 /// @param {Boolean} fix-moz-focus [true] - Boolean if the Firefox focus inner styles should also
 ///     be removed.
 @mixin rmd-utils-hide-focus-outline($fix-moz-focus: true) {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   &:focus {
     outline-style: none;
   }

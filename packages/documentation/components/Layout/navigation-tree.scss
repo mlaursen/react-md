@@ -5,17 +5,17 @@
 @import '@react-md/elevation/dist/mixins';
 
 .layout__nav {
-  @include rmd-elevation(2);
-  @include rmd-app-bar-offset(top);
-  @include rmd-theme(background-color, surface);
-  @include rmd-sheet-theme(width, large-width);
+  // @include rmd-elevation(2);
+  // @include rmd-app-bar-offset(top);
+  // @include rmd-theme(background-color, surface);
+  // @include rmd-sheet-theme(width, large-width);
 
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  z-index: 1;
+  // bottom: 0;
+  // left: 0;
+  // position: fixed;
+  // z-index: 1;
 
-  .rmd-tree {
-    height: 100%;
-  }
+  // .rmd-tree {
+  //   height: 100%;
+  // }
 }

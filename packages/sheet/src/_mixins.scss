@@ -33,31 +33,40 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-sheet-theme-values, sheet);
 }
 
+/// Creates the different positioning styles for all the sheet positions.
+/// @access private
 @mixin rmd-sheet-positions {
   @if $rmd-sheet-enabled-positions {
     @each $position in $rmd-sheet-enabled-positions {
       $position: rmd-utils-validate($rmd-sheet-positions, $position, 'sheet position');
-      $horizontal: $position == left or $position == right;
-      $distance: if($position == top or $position == left, -100%, 100%);
-      $translate: if($horizontal, translateX, translateY);
+      @if $position == left {
+        @include rmd-utils-rtl {
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
 
-      &--#{$position} {
-        @include rmd-sheet-theme-update-var(
-          transform-offscreen,
-          #{$translate + '(' + $distance + ')'}
-        );
-        #{$position}: 0;
-
-        @if $horizontal {
-          @include rmd-utils-rtl {
-            @include rmd-sheet-theme-update-var(
-              transform-offscreen,
-              #{$translate + '(' + $distance + ')'}
-            );
-            #{$position}: auto;
-            #{rmd-utils-swap-position($position)}: 0;
-          }
+          left: auto;
+          right: 0;
         }
+        @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+
+        left: 0;
+      } @else if $position == right {
+        @include rmd-utils-rtl {
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+
+          left: 0;
+          right: auto;
+        }
+        @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
+
+        right: 0;
+      } @else if $position == top {
+        @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, -100%, 0));
+
+        top: 0;
+      } @else if $position == bottom {
+        @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, 100%, 0));
+
+        bottom: 0;
       }
     }
   }
@@ -140,8 +149,12 @@
       @include rmd-sheet-theme(transform, transform-offscreen);
     }
 
+    &--hidden {
+      box-shadow: none;
+    }
+
     &--visible {
-      transform: none;
+      transform: translate3d(0, 0, 0);
     }
 
     &--enter {

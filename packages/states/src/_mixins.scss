@@ -6,6 +6,7 @@
 @import '@react-md/transition/dist/mixins';
 @import '@react-md/theme/dist/color-palette';
 @import '@react-md/theme/dist/helpers';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 @import 'functions';
 
@@ -100,17 +101,7 @@
 /// will be created instead to show the pressed state. When the ripple effect is disabled, pressing
 /// an element will just trigger a background opacity change like the over interaction states.
 @mixin rmd-states-surface {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-  &:focus {
-    outline-style: none;
-  }
-
-  @if $rmd-states-remove-firefox-inner-ring {
-    &::-moz-focus-inner {
-      border: 0;
-    }
-  }
+  @include rmd-utils-hide-focus-outline;
 
   &::before {
     @include rmd-states-surface-base;

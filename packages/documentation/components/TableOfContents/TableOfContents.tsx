@@ -1,20 +1,21 @@
 import React, {
-  FunctionComponent,
-  useState,
   Fragment,
+  FunctionComponent,
   useCallback,
   useEffect,
+  useState,
   useRef,
 } from "react";
 import cn from "classnames";
+import { Button } from "@react-md/button";
+import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
+import { useAppSizeContext } from "components/Layout/AppSize";
 import Link from "components/Link";
 
 import "./table-of-contents.scss";
-import { useAppSizeContext } from "components/Layout/AppSize";
-import { Button } from "@react-md/button";
-import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
+import { useEventListener } from "@react-md/utils";
 
 export interface Heading {
   id: string;
@@ -37,12 +38,13 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
     setHovering(false);
   }, []);
 
-  const handleIconKeyDown = useCallback((event: React.KeyboardEvent) => {
-    if (
-      event.key === "Tab" &&
-      event.shiftKey &&
-      event.currentTarget === event.target
-    ) {
+  const handleIconKeyPress = useCallback((event: React.KeyboardEvent) => {
+    if (event.key !== "Tab" || event.currentTarget !== event.target) {
+      return;
+    }
+    if (event.type === "keyup" && !event.shiftKey) {
+      enable();
+    } else if (event.type === "keydown" && event.shiftKey) {
       disable();
     }
   }, []);
@@ -75,18 +77,42 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
     });
   }, []);
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const tableRef = useRef<HTMLDivElement>(null);
+
+  useEventListener("click", event => {
+    const button = buttonRef.current;
+    const table = tableRef.current;
+    const target = event.target as HTMLElement | null;
+    if (
+      !target ||
+      !button ||
+      !table ||
+      !(button.contains(target) || table.contains(target))
+    ) {
+      disable();
+    }
+  });
+
   return (
     <Fragment>
-      <ViewHeadlineSVGIcon
-        focusable="true"
-        tabIndex={0}
+      <Button
+        id="table-of-contents-toggle"
+        theme="clear"
+        buttonType="icon"
         className="table-of-contents-toggle"
         onMouseEnter={enable}
-        onFocus={enable}
-        onKeyDown={handleIconKeyDown}
-      />
+        onClick={() => setHovering(prevHovering => !prevHovering)}
+        onKeyUp={handleIconKeyPress}
+        onKeyDown={handleIconKeyPress}
+        ref={buttonRef}
+        aria-labelledby="table-of-contents-title"
+      >
+        <ViewHeadlineSVGIcon />
+      </Button>
       <aside
         id="table-of-contents"
+        ref={tableRef}
         className={cn("table-of-contents", {
           "table-of-contents--hidden": !visible,
           "table-of-contents--visible": visible,
@@ -95,7 +121,11 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
         onMouseLeave={disable}
         onKeyDown={handleAsideKeyDown}
       >
-        <Text type="headline-6" className="table-of-contents__header">
+        <Text
+          id="table-of-contents-title"
+          type="headline-6"
+          className="table-of-contents__header"
+        >
           Table of Contents
         </Text>
         <ul>

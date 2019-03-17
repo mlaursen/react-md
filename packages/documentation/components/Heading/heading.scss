@@ -4,9 +4,12 @@
 @import '@react-md/utils/dist/mixins';
 
 .heading {
-  margin-left: -1em;
-  padding-left: 1em;
   position: relative;
+
+  @media (min-width: 60rem) {
+    margin-left: -1em;
+    padding-left: 1em;
+  }
 
   &--no-margin-top {
     margin-top: 0;
@@ -20,6 +23,7 @@
     @include rmd-icon-theme(color);
     @include rmd-utils-hide-focus-outline;
 
+    display: none;
     left: 0;
     opacity: 0;
     position: absolute;
@@ -33,6 +37,10 @@
 
     &:focus {
       opacity: 1;
+    }
+
+    @media (min-width: 60rem) {
+      display: block;
     }
   }
 
