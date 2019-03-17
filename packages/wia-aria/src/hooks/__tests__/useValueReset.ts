@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { act, cleanup, testHook } from "react-testing-library";
+import { act, cleanup, renderHook } from "react-hooks-testing-library";
 import useValueReset from "../useValueReset";
 
 jest.useFakeTimers();
@@ -17,7 +17,7 @@ describe("useResetValueTimeout", () => {
 
   it("should return the correct object", () => {
     let config;
-    testHook(() => (config = useValueReset(null)));
+    renderHook(() => (config = useValueReset(null)));
 
     expect(config).toMatchObject({
       valueRef: { current: null },
@@ -29,7 +29,7 @@ describe("useResetValueTimeout", () => {
   it("should trigger a timeout when the setter function is called", () => {
     let valueRef: MutableRefObject<string> = { current: "" };
     let setValue: (v: string) => void;
-    testHook(() => ({ valueRef, setValue } = useValueReset("", 500)));
+    renderHook(() => ({ valueRef, setValue } = useValueReset("", 500)));
 
     expect(valueRef.current).toBe("");
     expect(setTimeout).not.toBeCalled();
@@ -53,7 +53,7 @@ describe("useResetValueTimeout", () => {
   it("should reset the timeout if the setValue is triggered again before the timeout finishes", () => {
     let valueRef: MutableRefObject<string> = { current: "" };
     let setValue: (v: string) => void;
-    testHook(() => ({ valueRef, setValue } = useValueReset("", 500)));
+    renderHook(() => ({ valueRef, setValue } = useValueReset("", 500)));
 
     act(() => {
       setValue("hello");

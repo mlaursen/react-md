@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { cleanup, testHook, render, fireEvent } from "react-testing-library";
+import { render, fireEvent } from "react-testing-library";
+import { cleanup, renderHook } from "react-hooks-testing-library";
 
 import { useKeyboardFocusEventHandler } from "../useKeyboardFocus";
 
@@ -43,7 +44,7 @@ describe("useKeyboardFocusEventHandler", () => {
 
   it("should return the correct object", () => {
     let value;
-    testHook(
+    renderHook(
       () =>
         (value = useKeyboardFocusEventHandler({
           onKeyboardFocus,

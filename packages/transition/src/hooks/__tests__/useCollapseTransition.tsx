@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { testHook, cleanup } from "react-testing-library";
+import { renderHook, cleanup } from "react-hooks-testing-library";
 import {
   useCollapseState,
   unmountOnExit,
@@ -13,7 +13,7 @@ afterEach(cleanup);
 describe("useCollapseState", () => {
   it("should retrun the correct defaults when starting collapsed", () => {
     let value;
-    testHook(
+    renderHook(
       () =>
         (value = useCollapseState({
           collapsed: true,
@@ -35,7 +35,7 @@ describe("useCollapseState", () => {
 
   it("should return the correct defaults when starting expanded", () => {
     let value;
-    testHook(
+    renderHook(
       () =>
         (value = useCollapseState({
           collapsed: false,

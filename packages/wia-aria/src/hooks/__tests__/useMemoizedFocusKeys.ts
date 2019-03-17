@@ -1,4 +1,4 @@
-import { cleanup, testHook } from "react-testing-library";
+import { cleanup, renderHook } from "react-hooks-testing-library";
 import useMemoizedFocusKeys from "../useMemoizedFocusKeys";
 
 describe("useMemoizedFocusKeys", () => {
@@ -6,7 +6,7 @@ describe("useMemoizedFocusKeys", () => {
 
   it("should return the correct list of keys", () => {
     let value;
-    testHook(
+    renderHook(
       () =>
         (value = useMemoizedFocusKeys({
           incrementKeys: ["ArrowDown"],
@@ -50,7 +50,7 @@ describe("useMemoizedFocusKeys", () => {
 
   it("should default to using Tab and Shift+Tab", () => {
     let value;
-    testHook(() => (value = useMemoizedFocusKeys({})));
+    renderHook(() => (value = useMemoizedFocusKeys({})));
 
     expect(value).toEqual([
       {

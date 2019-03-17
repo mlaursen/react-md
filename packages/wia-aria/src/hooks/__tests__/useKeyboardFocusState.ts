@@ -1,4 +1,4 @@
-import { act, cleanup, testHook } from "react-testing-library";
+import { act, cleanup, renderHook } from "react-hooks-testing-library";
 import { KeyboardFocusedId } from "../../types.d";
 import useKeyboardFocusState, {
   disableKeyboardMode,
@@ -93,7 +93,7 @@ describe("useKeyboardFocusState", () => {
     afterEach(cleanup);
     it("should return the correct values", () => {
       let value;
-      testHook(() => {
+      renderHook(() => {
         value = useKeyboardFocusState(null);
       });
 
@@ -105,7 +105,7 @@ describe("useKeyboardFocusState", () => {
         setFocusedId: expect.any(Function),
       });
 
-      testHook(() => {
+      renderHook(() => {
         value = useKeyboardFocusState("default-id");
       });
 
@@ -122,7 +122,7 @@ describe("useKeyboardFocusState", () => {
       let focusedId: KeyboardFocusedId = null;
       let isKeyboardMode = false;
       let enable = () => {};
-      testHook(
+      renderHook(
         () =>
           ({ focusedId, enable, isKeyboardMode } = useKeyboardFocusState(null))
       );
@@ -141,7 +141,7 @@ describe("useKeyboardFocusState", () => {
       let focusedId: KeyboardFocusedId = null;
       let isKeyboardMode = false;
       let disable = () => {};
-      testHook(
+      renderHook(
         () =>
           ({ focusedId, disable, isKeyboardMode } = useKeyboardFocusState(
             "some-id"
@@ -162,7 +162,7 @@ describe("useKeyboardFocusState", () => {
       let focusedId: KeyboardFocusedId = null;
       let isKeyboardMode = false;
       let setFocusedId = (_focusedId: KeyboardFocusedId) => {};
-      testHook(
+      renderHook(
         () =>
           ({ focusedId, setFocusedId, isKeyboardMode } = useKeyboardFocusState(
             "some-id"

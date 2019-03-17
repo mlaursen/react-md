@@ -1,4 +1,4 @@
-import { cleanup, testHook, act } from "react-testing-library";
+import { cleanup, renderHook, act } from "react-hooks-testing-library";
 import useKeyboardTrackerState, {
   useKeyboardTrackerEnabler,
   useKeyboardTrackerDisabler,
@@ -47,14 +47,14 @@ afterEach(() => {
 describe("useKeyboardTrackerEnabler", () => {
   it("should attach a keydown event listener when keyboard mode is not enabled", () => {
     const enable = jest.fn();
-    testHook(() => useKeyboardTrackerEnabler(false, enable));
+    renderHook(() => useKeyboardTrackerEnabler(false, enable));
 
     expect(window.addEventListener).toBeCalledWith("keydown", enable, true);
   });
 
   it("should not attach a keydown event listener when keyboard mode is enabled", () => {
     const enable = jest.fn();
-    testHook(() => useKeyboardTrackerEnabler(true, enable));
+    renderHook(() => useKeyboardTrackerEnabler(true, enable));
 
     expect(window.addEventListener).not.toBeCalledWith("keydown", enable, true);
   });
@@ -62,7 +62,7 @@ describe("useKeyboardTrackerEnabler", () => {
   it("should trigger the enable function on keydown", () => {
     const keyDownEvent = new KeyboardEvent("keydown", { bubbles: true });
     const enable = jest.fn();
-    testHook(() => useKeyboardTrackerEnabler(false, enable));
+    renderHook(() => useKeyboardTrackerEnabler(false, enable));
     expect(enable).not.toBeCalled();
 
     act(() => {
@@ -89,14 +89,14 @@ describe("useKeyboardTrackerEnabler", () => {
 describe("useKeyboardTrackerDisabler", () => {
   it("should attach a mousedown event when keyboard mode is enabled", () => {
     const disable = jest.fn();
-    testHook(() => useKeyboardTrackerDisabler(true, disable));
+    renderHook(() => useKeyboardTrackerDisabler(true, disable));
 
     expect(window.addEventListener).toBeCalledWith("mousedown", disable, true);
   });
 
   it("should not attach a mousedown event when keyboard mode is disabled", () => {
     const disable = jest.fn();
-    testHook(() => useKeyboardTrackerDisabler(false, disable));
+    renderHook(() => useKeyboardTrackerDisabler(false, disable));
 
     expect(window.addEventListener).not.toBeCalledWith(
       "mousedown",
@@ -108,7 +108,7 @@ describe("useKeyboardTrackerDisabler", () => {
   it("should trigger the disable function on mousdown", () => {
     const mouseDownEvent = new MouseEvent("mousedown", { bubbles: true });
     const disable = jest.fn();
-    testHook(() => useKeyboardTrackerDisabler(true, disable));
+    renderHook(() => useKeyboardTrackerDisabler(true, disable));
     expect(disable).not.toBeCalled();
 
     act(() => {
@@ -135,7 +135,7 @@ describe("useKeyboardTrackerDisabler", () => {
 describe("useKeyboardWindowBlurTracker", () => {
   it("should attach a window blur event handler when keyboard mode is enabled", () => {
     const setFocusedId = jest.fn();
-    testHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
+    renderHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
 
     // can't test the function exactly since there's a custom handler implementation
     expect(window.addEventListener).toBeCalledWith(
@@ -146,7 +146,7 @@ describe("useKeyboardWindowBlurTracker", () => {
 
   it("should not attach a window blur event handler when keyboard mode is disabled", () => {
     const setFocusedId = jest.fn();
-    testHook(() => useKeyboardWindowBlurTracker(false, setFocusedId));
+    renderHook(() => useKeyboardWindowBlurTracker(false, setFocusedId));
 
     // can't test the function exactly since there's a custom handler implementation
     expect(window.addEventListener).not.toBeCalledWith(
@@ -158,7 +158,7 @@ describe("useKeyboardWindowBlurTracker", () => {
   it("should call the setFocusedId action with null if the blur target was the window element", () => {
     const blurEvent = new FocusEvent("blur", { bubbles: true });
     const setFocusedId = jest.fn();
-    testHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
+    renderHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
 
     act(() => {
       window.dispatchEvent(blurEvent);
@@ -171,7 +171,7 @@ describe("useKeyboardWindowBlurTracker", () => {
     const blurEvent = new FocusEvent("blur", { bubbles: true });
     const setFocusedId = jest.fn();
 
-    testHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
+    renderHook(() => useKeyboardWindowBlurTracker(true, setFocusedId));
 
     // not sure how to "prove" that the event handler is still called, but adding logs into the
     // main hook shows they are called.
@@ -186,7 +186,7 @@ describe("useKeyboardWindowBlurTracker", () => {
 
 describe("useKeyboardDefaultTracker", () => {
   it("should attach a keyup event handler when keyboard mode is enabled", () => {
-    testHook(() => useKeyboardDefaultTracker("", jest.fn(), true));
+    renderHook(() => useKeyboardDefaultTracker("", jest.fn(), true));
 
     expect(window.addEventListener).toBeCalledWith(
       "keyup",
@@ -196,7 +196,7 @@ describe("useKeyboardDefaultTracker", () => {
   });
 
   it("should not attach a keyup event handler when keyboard mode is disabled", () => {
-    testHook(() => useKeyboardDefaultTracker("", jest.fn(), false));
+    renderHook(() => useKeyboardDefaultTracker("", jest.fn(), false));
 
     expect(window.addEventListener).not.toBeCalledWith(
       "keyup",
@@ -207,7 +207,7 @@ describe("useKeyboardDefaultTracker", () => {
 
   it("should trigger the setFocusedId callback with the element's id on Tab, Enter, or Spacebar key presses", () => {
     const setFocusedId = jest.fn();
-    testHook(() => useKeyboardDefaultTracker("", setFocusedId, true));
+    renderHook(() => useKeyboardDefaultTracker("", setFocusedId, true));
 
     const tabEvent = new KeyboardEvent("keyup", { key: "Tab", bubbles: true });
 
@@ -246,7 +246,7 @@ describe("useKeyboardDefaultTracker", () => {
     document.body.appendChild(buttonWithoutId);
 
     const setFocusedId = jest.fn();
-    testHook(() => useKeyboardDefaultTracker("", setFocusedId, true));
+    renderHook(() => useKeyboardDefaultTracker("", setFocusedId, true));
 
     const tabEvent = new KeyboardEvent("keyup", { key: "Tab", bubbles: true });
     const enterEvent = new KeyboardEvent("keyup", {
@@ -268,7 +268,7 @@ describe("useKeyboardDefaultTracker", () => {
   it("should not trigger the setFocusedId callback if the current focusedId is the same as the element's id", () => {
     const tabEvent = new KeyboardEvent("keyup", { key: "Tab", bubbles: true });
     const setFocusedId = jest.fn();
-    testHook(() =>
+    renderHook(() =>
       useKeyboardDefaultTracker(
         (button as HTMLButtonElement).id,
         setFocusedId,
@@ -286,70 +286,70 @@ describe("useKeyboardDefaultTracker", () => {
 describe("useKeyboardTrackerState", () => {
   it("should return the correct state object", () => {
     let value;
-    testHook(() => (value = useKeyboardTrackerState()));
+    renderHook(() => (value = useKeyboardTrackerState()));
     expect(value).toMatchObject({
       focusedId: null,
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState(null)));
+    renderHook(() => (value = useKeyboardTrackerState(null)));
     expect(value).toMatchObject({
       focusedId: null,
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState(null, false)));
+    renderHook(() => (value = useKeyboardTrackerState(null, false)));
     expect(value).toMatchObject({
       focusedId: null,
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState(null, true)));
+    renderHook(() => (value = useKeyboardTrackerState(null, true)));
     expect(value).toMatchObject({
       focusedId: null,
       isKeyboardMode: true,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("")));
+    renderHook(() => (value = useKeyboardTrackerState("")));
     expect(value).toMatchObject({
       focusedId: "",
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("", false)));
+    renderHook(() => (value = useKeyboardTrackerState("", false)));
     expect(value).toMatchObject({
       focusedId: "",
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("", true)));
+    renderHook(() => (value = useKeyboardTrackerState("", true)));
     expect(value).toMatchObject({
       focusedId: "",
       isKeyboardMode: true,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("default-id")));
+    renderHook(() => (value = useKeyboardTrackerState("default-id")));
     expect(value).toMatchObject({
       focusedId: "default-id",
       isKeyboardMode: true,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("default-id", false)));
+    renderHook(() => (value = useKeyboardTrackerState("default-id", false)));
     expect(value).toMatchObject({
       focusedId: "default-id",
       isKeyboardMode: false,
       setFocusedId: expect.any(Function),
     });
 
-    testHook(() => (value = useKeyboardTrackerState("default-id", true)));
+    renderHook(() => (value = useKeyboardTrackerState("default-id", true)));
     expect(value).toMatchObject({
       focusedId: "default-id",
       isKeyboardMode: true,
@@ -361,7 +361,7 @@ describe("useKeyboardTrackerState", () => {
     const btn = button as HTMLButtonElement;
     const inp = input as HTMLInputElement;
     let value;
-    testHook(() => (value = useKeyboardTrackerState()));
+    renderHook(() => (value = useKeyboardTrackerState()));
 
     // switch to keyboard mode
     act(() => {

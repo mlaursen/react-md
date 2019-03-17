@@ -1,10 +1,12 @@
-import { testHook } from "react-testing-library";
+import { renderHook, cleanup } from "react-hooks-testing-library";
 import usePreviousFocus from "../usePreviousFocus";
+
+afterEach(cleanup);
 
 describe("usePreviousFocus", () => {
   it("should return null when save is set to false", () => {
     let value;
-    testHook(() => (value = usePreviousFocus(false)));
+    renderHook(() => (value = usePreviousFocus(false)));
     expect(value).toBeNull();
   });
 
@@ -17,7 +19,7 @@ describe("usePreviousFocus", () => {
 
     expect(document.activeElement).toBe(button);
     let value;
-    testHook(() => (value = usePreviousFocus(true)));
+    renderHook(() => (value = usePreviousFocus(true)));
     expect(value).toBe(button);
   });
 
@@ -40,7 +42,7 @@ describe("usePreviousFocus", () => {
     expect(document.activeElement).toBe(button1);
 
     let value;
-    testHook(() => (value = usePreviousFocus(true)));
+    renderHook(() => (value = usePreviousFocus(true)));
     expect(value).toBe(button1);
 
     button2.focus();

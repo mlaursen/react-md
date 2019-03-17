@@ -1,11 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from "react";
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  testHook,
-} from "react-testing-library";
+import { cleanup, fireEvent, render } from "react-testing-library";
+import { act, renderHook } from "react-hooks-testing-library";
 
 import useSearchEventHandler, {
   SearchEffectOptions,
@@ -28,7 +23,7 @@ describe("useSearchEventHandler", () => {
 
   it("should return the correct object", () => {
     let value;
-    testHook(
+    renderHook(
       () => (value = useSearchEventHandler({ onKeyboardFocus, handlers: {} }))
     );
 

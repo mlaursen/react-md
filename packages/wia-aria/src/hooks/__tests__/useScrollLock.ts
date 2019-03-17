@@ -1,4 +1,4 @@
-import { cleanup, testHook } from "react-testing-library";
+import { cleanup, renderHook } from "react-hooks-testing-library";
 
 import { DATA_RMD_NOSCROLL } from "../../constants";
 
@@ -148,8 +148,8 @@ describe("useScrollLock", () => {
     });
 
     it("should apply the correct styles when enabled", () => {
-      testHook(() => useScrollLock(true, div));
-      testHook(() => useScrollLock(true, document.body));
+      renderHook(() => useScrollLock(true, div));
+      renderHook(() => useScrollLock(true, document.body));
 
       expect(div.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
@@ -160,11 +160,11 @@ describe("useScrollLock", () => {
     // it changes to the document.body...
 
     it("should default to using the document.body for scroll locking", () => {
-      testHook(() => useScrollLock(true));
+      renderHook(() => useScrollLock(true));
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
 
       disable(document.body);
-      testHook(() => useScrollLock(true, null));
+      renderHook(() => useScrollLock(true, null));
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
     });
   });
