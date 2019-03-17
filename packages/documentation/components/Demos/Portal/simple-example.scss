@@ -1,0 +1,23 @@
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/overlay/dist/variables';
+@import '@react-md/utils/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/overlay/dist/mixins';
+
+.portal-container {
+  @include rmd-utils-scroll;
+
+  height: 10rem;
+  position: relative;
+}
+
+.portal-menu-overlay {
+  @include rmd-overlay-theme(background-color, transparent);
+}
+
+.portal-menu {
+  @include rmd-elevation(4);
+  @include rmd-theme(background-color, surface);
+
+  z-index: $rmd-overlay-z-index + 1;
+}

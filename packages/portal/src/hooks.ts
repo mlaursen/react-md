@@ -48,22 +48,38 @@ function getContainer({ into, intoId }: PortalProps) {
   return container;
 }
 
+/**
+ * This is an internal hook that will set the portal's container and validate that the portal
+ * target is valid in dev mode.
+ * @private
+ */
 export function usePortalState(props: PortalProps) {
-  const { visible } = props;
+  const { visible, into, intoId } = props;
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setContainer(visible ? getContainer(props) : null);
-  }, [visible]);
+  }, [visible, into, intoId]);
 
   return container;
 }
 
+/**
+ * This hook allows you to stagger the visibility of a portal so that it will stay visible
+ * until an exit animation has finished. This relies on the react-transition-group onExited
+ * hook to work.
+ *
+ * @param visible - Boolean if the main component should be visible. This will trigger the staggered
+ * animation in or out
+ * @param onExited - An optional onExited callback
+ * @return an object containing a boolean if the portal is visible as well as a merged `onExited` callback
+ * to apply to the react-transition-group child that is animating.
+ */
 export function useStaggeredVisibility({
   visible,
   onExited,
 }: StaggerablePortalProps) {
-  const [portalVisible, setPortalVisible] = useState(() => visible);
+  const [portalVisible, setPortalVisible] = useState(visible);
 
   useEffect(() => {
     if (visible) {

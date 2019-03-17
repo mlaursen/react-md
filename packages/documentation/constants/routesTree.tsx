@@ -201,6 +201,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("list"),
     createPackageRoute("material-icons"),
     createPackageRoute("media"),
+    createPackageRoute("overlay"),
     createPackageRoute("portal"),
     createPackageRoute("sheet"),
     createPackageRoute("states"),

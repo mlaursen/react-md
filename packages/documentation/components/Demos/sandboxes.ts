@@ -75,6 +75,16 @@ const sandboxes: SandboxesRecord = {
   "Media/SimpleResponsiveMedia": () =>
     resolve(import("./Media/SimpleResponsiveMediaSandbox.json")),
   "Media/WithOverlay": () => resolve(import("./Media/WithOverlaySandbox.json")),
+  "Overlay/CustomTheme": () =>
+    resolve(import("./Overlay/CustomThemeSandbox.json")),
+  "Overlay/FixingOverflowIssues": () =>
+    resolve(import("./Overlay/FixingOverflowIssuesSandbox.json")),
+  "Overlay/SimpleExample": () =>
+    resolve(import("./Overlay/SimpleExampleSandbox.json")),
+  "Portal/CustomPortalContainer": () =>
+    resolve(import("./Portal/CustomPortalContainerSandbox.json")),
+  "Portal/SimpleExample": () =>
+    resolve(import("./Portal/SimpleExampleSandbox.json")),
   "Typography/TextContainerExamples": () =>
     resolve(import("./Typography/TextContainerExamplesSandbox.json")),
   "Typography/TextExamples": () =>

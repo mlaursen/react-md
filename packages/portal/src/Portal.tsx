@@ -4,6 +4,10 @@ import { createPortal } from "react-dom";
 import { PortalProps } from "./types.d";
 import { usePortalState } from "./hooks";
 
+/**
+ * This component hooks into the `createPortal` API from React and will
+ * conditionally render the children when visible in the target DOM element.
+ */
 const Portal: FunctionComponent<PortalProps> = props => {
   const { visible, children } = props;
   const container = usePortalState(props);

@@ -12,7 +12,7 @@
 /// going to be an internal helper mixin util.
 ///
 /// @param {String} property - The property to set a `rmd-overlay-theme-values` value to.
-/// @param {String} theme-style [property] - One of the keys of `rmd-overlay-theme-values` to extract a value from.
+/// @param {String} theme-style - One of the keys of `rmd-overlay-theme-values` to extract a value from.
 /// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
 ///   isn't set somehow. This will default to automatically retrieving the default value
 ///   from the `rmd-overlay-theme-values` map when `null`.
@@ -25,8 +25,8 @@
 ///
 /// @param {String} theme-style - The overlay theme style type to update. This should be one
 ///   of the `$rmd-overlay-theme-values` keys.
-/// @param {String|Number|Color} - The new value to use.
-@mixin rmd-overlay-set-theme-var($style, $value) {
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-overlay-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-overlay-theme-values, overlay);
 }
 

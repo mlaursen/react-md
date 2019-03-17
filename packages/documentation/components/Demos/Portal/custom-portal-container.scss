@@ -1,0 +1,12 @@
+@import '@react-md/elevation/dist/mixins';
+
+.custom-portal-container {
+  @include rmd-elevation(4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 10rem;
+  margin: 1rem;
+  width: 10rem;
+}

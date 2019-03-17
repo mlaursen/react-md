@@ -1,0 +1,61 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Portal Example - Custom Portal Container</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/portal/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Portal Example - Custom Portal Container",
+      "description": "Example from https://react-md.dev/packages/portal/demos#custom-portal-container",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/icon": "latest",
+        "@react-md/portal": "latest",
+        "@react-md/transition": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/theme": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, useState, useCallback } from \"react\";\nimport { TextIconSpacing } from \"@react-md/icon\";\nimport { Portal } from \"@react-md/portal\";\nimport { Text } from \"@react-md/typography\";\nimport Code from \"./Code\";\n\nimport \"./custom-portal-container.scss\";\n\nconst values = [\n  { intoId: \"example-portal-container-1\" },\n  { into: \".portal-container-example .custom-portal-container:nth-of-type(2)\" },\n  {\n    into: () =>\n      document.getElementById(\"example-portal-container-3\") as HTMLDivElement,\n  },\n];\n\ntype SelectedIndex = 0 | 1 | 2;\n\nconst CustomPortalContainer: FunctionComponent = () => {\n  const [selected, setSelected] = useState<SelectedIndex>(0);\n  const handleChange = useCallback(\n    (event: React.ChangeEvent<HTMLInputElement>) => {\n      const { id } = event.target;\n      let index: SelectedIndex = 0;\n      if (id === \"use-into-query\") {\n        index = 1;\n      } else if (id === \"use-into-callback\") {\n        index = 2;\n      }\n      setSelected(index);\n    },\n    []\n  );\n\n  return (\n    <div className=\"portal-container-example\">\n      <TextIconSpacing\n        icon={\n          <input\n            id=\"use-into-id\"\n            name=\"portal-props\"\n            type=\"radio\"\n            checked={selected === 0}\n            onChange={handleChange}\n          />\n        }\n        iconAfter\n      >\n        <label htmlFor=\"use-into-id\">into id</label>\n      </TextIconSpacing>\n      <TextIconSpacing\n        icon={\n          <input\n            id=\"use-into-query\"\n            name=\"portal-props\"\n            type=\"radio\"\n            checked={selected === 1}\n            onChange={handleChange}\n          />\n        }\n        iconAfter\n      >\n        <label htmlFor=\"use-into-id\">into query</label>\n      </TextIconSpacing>\n      <TextIconSpacing\n        icon={\n          <input\n            id=\"use-into-callback\"\n            name=\"portal-props\"\n            type=\"radio\"\n            checked={selected === 2}\n            onChange={handleChange}\n          />\n        }\n        iconAfter\n      >\n        <label htmlFor=\"use-into-id\">into function</label>\n      </TextIconSpacing>\n      <Portal visible {...values[selected]}>\n        <Text type=\"subtitle-1\" noMargin>\n          Portal content!\n        </Text>\n      </Portal>\n      <div id=\"example-portal-container-1\" className=\"custom-portal-container\">\n        <Code>\"example-portal-container-1\"</Code>\n      </div>\n      <div id=\"example-portal-container-2\" className=\"custom-portal-container\">\n        <Code>\"example-portal-container-2\"</Code>\n      </div>\n      <div id=\"example-portal-container-3\" className=\"custom-portal-container\">\n        <Code>\"example-portal-container-3\"</Code>\n      </div>\n    </div>\n  );\n};\n\nexport default CustomPortalContainer;\n",
+    "isBinary": false
+  },
+  "src/Code.tsx": {
+    "content": "import React, { FunctionComponent, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nexport interface CodeProps {\n  className?: string;\n  children: ReactNode;\n  inline?: boolean;\n}\n\nconst Code: FunctionComponent<CodeProps> = ({\n  children,\n  inline,\n  className,\n}) => (\n  <code className={cn(\"code\", { \"code--inline\": inline }, className)}>\n    {children}\n  </code>\n);\n\nCode.defaultProps = {\n  inline: true,\n};\n\nexport default Code;\n",
+    "isBinary": false
+  },
+  "src/code.scss": {
+    "content": "@import 'variables';\n@import '@react-md/theme/dist/variables';\n@import '@react-md/typography/dist/variables';\n@import '@react-md/typography/dist/mixins';\n\n$code-background-color: darken($rmd-theme-background, 10%);\n$solarized-base-03: #002b36;\n$solarized-base-02: #073642;\n$solarized-base-01: #586e75;\n$solarized-base-00: #657b83;\n$solarized-base-0: #839496;\n$solarized-base-1: #93a1a1;\n$solarized-base-2: #eee8d5;\n$solarized-base-3: #fdf6e3;\n\n$solarized-yellow: #b58900;\n$solarized-orange: #cb4b16;\n$solarized-red: #d30102;\n$solarized-magenta: #d33682;\n$solarized-violet: #6c71c4;\n$solarized-blue: #268bd2;\n$solarized-cyan: #2aa198;\n$solarized-green: #859900;\n\n:root {\n  --code-bg: #{$code-background-color};\n  --code-bg-light: #{$rmd-grey-200};\n  --code-bg-dark: #{$code-background-color};\n}\n\n.code {\n  @include rmd-typography(body-1);\n\n  font-family: 'Source Code Pro', Consolas, Monaco, monospace;\n\n  &--block {\n    background-color: $solarized-base-03;\n    color: $solarized-base-1;\n\n    // always enforce ltr for blocked code\n    direction: ltr;\n    margin: 0.5em 0;\n    overflow: auto;\n    padding: 1em;\n    word-wrap: break-word;\n  }\n\n  &--inline {\n    background-color: var(--code-bg);\n    border-radius: 0.25rem;\n    font-size: 0.9em;\n    padding: 0.1em 0.4em;\n    white-space: pre-wrap;\n  }\n\n  &--counted {\n    padding-left: 3em;\n    position: relative;\n  }\n\n  &__lines {\n    border-right: 1px solid $solarized-base-01;\n    display: flex;\n    flex-direction: column;\n    left: 0;\n    padding-right: 0.25em;\n    pointer-events: none;\n    position: absolute;\n    text-align: right;\n    width: 2.5em;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/custom-portal-container.scss": {
+    "content": "@import '@react-md/elevation/dist/mixins';\n\n.custom-portal-container {\n  @include rmd-elevation(4);\n\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 10rem;\n  margin: 1rem;\n  width: 10rem;\n}\n",
+    "isBinary": false
+  }
+}
