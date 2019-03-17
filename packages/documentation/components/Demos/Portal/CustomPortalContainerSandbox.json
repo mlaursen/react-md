@@ -55,7 +55,7 @@
     "isBinary": false
   },
   "src/custom-portal-container.scss": {
-    "content": "@import '@react-md/elevation/dist/mixins';\n\n.custom-portal-container {\n  @include rmd-elevation(4);\n\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 10rem;\n  margin: 1rem;\n  width: 10rem;\n}\n",
+    "content": "@import '@react-md/elevation/dist/mixins';\n\n.custom-portal-container {\n  @include rmd-elevation(4);\n\n  display: flex;\n  flex-direction: column;\n  height: 10rem;\n  justify-content: space-between;\n  margin: 1rem;\n  width: 10rem;\n}\n",
     "isBinary": false
   }
 }
