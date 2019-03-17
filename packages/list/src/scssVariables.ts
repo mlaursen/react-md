@@ -20,6 +20,9 @@ export default {
   "rmd-list-item-three-line-height": "5.5rem",
   "rmd-list-item-dense-three-line-height": "5rem",
   "rmd-list-item-text-keyline": "4.5rem",
+  "rmd-list-item-media-size": "3.5rem",
+  "rmd-list-item-media-large-size": "6.25rem",
+  "rmd-list-item-media-spacing": "1rem",
   "rmd-list-theme-values": {
     "vertical-padding": "0.5rem",
     "horizontal-padding": 0,
@@ -40,5 +43,8 @@ export default {
     "dense-item-large-height": "3.5rem",
     "dense-item-extra-large-height": "4rem",
     "dense-item-three-line-height": "5rem",
+    "media-size": "3.5rem",
+    "media-spacing": "1rem",
+    "media-large-size": "6.25rem",
   },
 };

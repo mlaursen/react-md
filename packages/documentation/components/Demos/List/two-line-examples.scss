@@ -1,0 +1,26 @@
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+$start-shadow: none;
+$end-shadow: 0 0 2px $rmd-blue-300;
+
+.two-line-list-example {
+  @include rmd-elevation(4);
+
+  margin: 1rem auto;
+  max-width: 20rem;
+  width: 100%;
+
+  &__icon {
+    @include rmd-elevation-shadow-transition(none, $end-shadow, '&:focus');
+    @include rmd-icon-theme(height, size);
+    @include rmd-utils-hide-focus-outline;
+
+    align-self: flex-start;
+  }
+
+  &__tooltip {
+    max-width: 15rem;
+  }
+}

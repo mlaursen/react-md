@@ -1,0 +1,67 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>List Example - Two Line Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/avatar/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/material-icons/dist/mixins';\n@import '@react-md/portal/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/tooltip/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'classnames/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "List Example - Two Line Examples",
+      "description": "Example from https://react-md.dev/packages/list/demos#two-line-examples",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/avatar": "latest",
+        "@react-md/icon": "latest",
+        "@react-md/list": "latest",
+        "@react-md/material-icons": "latest",
+        "@react-md/portal": "latest",
+        "@react-md/states": "latest",
+        "@react-md/tooltip": "latest",
+        "@react-md/transition": "latest",
+        "@react-md/utils": "latest",
+        "@react-md/wia-aria": "latest",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { Avatar, AvatarProps } from \"@react-md/avatar\";\nimport { FolderSVGIcon, InfoOutlineSVGIcon } from \"@react-md/material-icons\";\nimport { List, ListItem, ListSubheader } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport { SVGIconProps } from \"@react-md/icon\";\nimport { Tooltipped } from \"@react-md/tooltip\";\n\nconst Folder: FunctionComponent<AvatarProps> = props => (\n  <Avatar {...props}>\n    <FolderSVGIcon />\n  </Avatar>\n);\n\nconst InfoIcon: FunctionComponent<SVGIconProps & { id: string }> = ({\n  id,\n  className,\n  ...props\n}) => (\n  <Tooltipped id={`${id}-info`} tooltip=\"Last Accessed\" defaultPosition=\"left\">\n    {({ tooltip, containerProps }) => (\n      <span {...containerProps} tabIndex={0} className={className}>\n        <InfoOutlineSVGIcon {...props} />\n        {tooltip}\n      </span>\n    )}\n  </Tooltipped>\n);\n\nconst TwoLineExamples: FunctionComponent = () => (\n  <Container>\n    <List>\n      <ListSubheader>Folders</ListSubheader>\n      <ListItem\n        id=\"two-line-item-0\"\n        secondaryText=\"Jan 09, 2014\"\n        leftAvatar={<Folder color=\"blue\" />}\n        rightIcon={<InfoIcon id=\"two-line-item-0\" />}\n      >\n        Photos\n      </ListItem>\n      <ListItem\n        id=\"two-line-item-1\"\n        secondaryText=\"Jan 11, 2014\"\n        leftAvatar={<Folder color=\"green\" />}\n        rightIcon={<InfoIcon id=\"two-line-item-1\" />}\n      >\n        Recipes\n      </ListItem>\n      <ListItem\n        id=\"two-line-item-2\"\n        secondaryText=\"Jan 09, 2014\"\n        leftAvatar={<Folder color=\"red\" />}\n        rightIcon={<InfoIcon id=\"two-line-item-2\" />}\n      >\n        Work\n      </ListItem>\n    </List>\n  </Container>\n);\n\nexport default TwoLineExamples;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./container.scss\";\n\nconst Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"list-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".list-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/people.ts": {
+    "content": "const people: ReadonlyArray<string> = [\n  \"Jasmine Robinson\",\n  \"Devonte Craig\",\n  \"Dean Reid\",\n  \"Shaquille Bauer\",\n  \"Vivian Bishop\",\n  \"Braden Mullins\",\n  \"Katlyn Mcdonald\",\n  \"Isabella Marshall\",\n  \"Lee Christensen\",\n  \"Tommy Hogan\",\n  \"Timothy Harvey\",\n  \"Preston Phillips\",\n  \"Marco Sherman\",\n  \"Haley Coleman\",\n  \"Mario Swanson\",\n  \"Xavier Solis\",\n  \"Keaton Cannon\",\n  \"Cassandra Austin\",\n  \"Irene Holland\",\n  \"Gustavo Love\",\n  \"Meghan Stewart\",\n  \"Renee Townsend\",\n  \"Bobby Newman\",\n  \"Keaton Ortiz\",\n  \"Dustin Wells\",\n  \"Jerry Mcgee\",\n  \"Carl Howard\",\n  \"Sabrina Lang\",\n  \"Reed Baker\",\n  \"Kristen Fields\",\n  \"Gavin Carrillo\",\n  \"Claudia Neal\",\n  \"Leonard Schneider\",\n  \"Dominick Boyd\",\n  \"Mary Hampton\",\n  \"Mark Ayala\",\n  \"Kristina Warner\",\n  \"Antonio Walton\",\n  \"Tyson Scott\",\n  \"Harley Moss\",\n];\nexport default people;\n",
+    "isBinary": false
+  }
+}

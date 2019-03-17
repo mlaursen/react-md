@@ -1,0 +1,10 @@
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .rmd-list {
+    margin: 1rem;
+    max-width: 100%;
+  }
+}

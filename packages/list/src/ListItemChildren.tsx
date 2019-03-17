@@ -5,6 +5,7 @@ import ListItemIcon from "./ListItemIcon";
 import ListItemText from "./ListItemText";
 
 export interface ListItemChildrenProps {
+  children?: ReactNode;
   /**
    * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
    * `secondaryText` within the list item.
@@ -86,26 +87,39 @@ export interface ListItemChildrenProps {
   rightAvatar?: ReactNode;
 
   /**
+   * An optional graphic to be placed left of the main content.
+   */
+  leftMedia?: ReactNode;
+  leftMediaLarge?: ReactNode;
+  rightMedia?: ReactNode;
+  rightMediaLarge?: ReactNode;
+
+  /**
    * Boolean if the color pollution should be fixed at this level. This is really used when
    * composing the children with clickable list items and tree items.
    */
   preventColorPollution?: boolean;
 }
 
-const ListItemChildren: FunctionComponent<ListItemChildrenProps> = ({
-  textClassName,
-  secondaryTextClassName,
-  textChildren,
-  primaryText,
-  secondaryText,
-  leftIcon,
-  leftAvatar,
-  rightIcon,
-  rightAvatar,
-  forceIconWrap,
-  children: propChildren,
-  preventColorPollution,
-}) => {
+const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
+  const {
+    textClassName,
+    secondaryTextClassName,
+    textChildren,
+    primaryText,
+    secondaryText,
+    leftIcon,
+    leftAvatar,
+    leftMedia,
+    rightIcon,
+    rightAvatar,
+    rightMedia,
+    leftMediaLarge,
+    rightMediaLarge,
+    forceIconWrap,
+    children: propChildren,
+    preventColorPollution,
+  } = props;
   let children = propChildren;
   if (primaryText || secondaryText || textChildren) {
     children = (
@@ -122,7 +136,9 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = ({
   children = (
     <ListItemIcon
       avatar={!!leftAvatar}
-      icon={leftIcon || leftAvatar}
+      media={!!leftMedia}
+      mediaLarge={!!leftMediaLarge}
+      icon={leftIcon || leftAvatar || leftMedia || leftMediaLarge}
       forceIconWrap={forceIconWrap}
       position="before"
     >
@@ -132,7 +148,9 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = ({
   children = (
     <ListItemIcon
       avatar={!!rightAvatar}
-      icon={rightIcon || rightAvatar}
+      media={!!rightMedia}
+      mediaLarge={!!rightMediaLarge}
+      icon={rightIcon || rightAvatar || rightMedia || rightMediaLarge}
       forceIconWrap={forceIconWrap}
       position="after"
     >

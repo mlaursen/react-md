@@ -6,6 +6,10 @@ export default function getListItemHeight({
   rightIcon,
   leftAvatar,
   rightAvatar,
+  leftMedia,
+  rightMedia,
+  leftMediaLarge,
+  rightMediaLarge,
   secondaryText,
 }: SimpleListItemProps): ListItemHeight {
   if (height !== "auto") {
@@ -14,9 +18,11 @@ export default function getListItemHeight({
 
   const isIcon = leftIcon || rightIcon;
   const isAvatar = leftAvatar || rightAvatar;
-  if (isAvatar || (secondaryText && isIcon)) {
+  const isGraphic =
+    leftMedia || rightMedia || leftMediaLarge || rightMediaLarge;
+  if (isGraphic || (secondaryText && (isIcon || isAvatar))) {
     return "extra-large";
-  } else if (secondaryText && !isIcon) {
+  } else if (isAvatar || (secondaryText && !isIcon)) {
     return "large";
   } else if (isIcon) {
     return "medium";

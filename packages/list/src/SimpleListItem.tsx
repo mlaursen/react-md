@@ -47,7 +47,10 @@ export interface SimpleListItemProps
 
 type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
-  Pick<SimpleListItemProps, "height" | "clickable" | "threeLines">
+  Pick<
+    SimpleListItemProps,
+    "height" | "clickable" | "threeLines" | "preventColorPollution"
+  >
 >;
 type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
 
@@ -117,6 +120,7 @@ const defaultProps: DefaultProps = {
   height: "auto",
   clickable: false,
   threeLines: false,
+  preventColorPollution: false,
 };
 
 SimpleListItem.defaultProps = defaultProps;

@@ -169,11 +169,25 @@
     }
   }
 
+  &__icon {
+    flex-shrink: 0;
+  }
+
   &__avatar {
     @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
   }
+
+  &__media {
+    @include rmd-icon-theme-update-var(text-spacing, rmd-list-theme-var(media-spacing));
+    @include rmd-list-theme(width, media-size);
+
+    &--large {
+      @include rmd-list-theme-update-var(media-size, rmd-list-theme-var(media-large-size));
+    }
+  }
 }
 
+/// Creates the styles for a subheader within a list.
 @mixin rmd-list-subheader {
   @include rmd-typography(subtitle-2);
   @include rmd-theme(color, text-secondary-on-background);
@@ -188,6 +202,7 @@
   }
 }
 
+/// Creats all the styles for the list package.
 @mixin react-md-list {
   @include rmd-theme-create-root-theme($rmd-list-theme-values, list);
 

@@ -20,6 +20,7 @@ type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
   Pick<
     ListItemProps,
+    | "textChildren"
     | "height"
     | "role"
     | "tabIndex"
@@ -41,8 +42,12 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     forwardedRef,
     leftIcon,
     leftAvatar,
+    leftMedia,
+    leftMediaLarge,
     rightIcon,
     rightAvatar,
+    rightMedia,
+    rightMediaLarge,
     forceIconWrap,
     height,
     enableKeyboardClick,
@@ -80,7 +85,6 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
       role={role}
       className={className}
       clickable
-      preventColorPollution={false}
       height={getListItemHeight(providedProps)}
       ref={forwardedRef}
     >
@@ -92,8 +96,12 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
         secondaryText={secondaryText}
         leftIcon={leftIcon}
         leftAvatar={leftAvatar}
+        leftMedia={leftMedia}
+        leftMediaLarge={leftMediaLarge}
         rightIcon={rightIcon}
         rightAvatar={rightAvatar}
+        rightMedia={rightMedia}
+        rightMediaLarge={rightMediaLarge}
         forceIconWrap={forceIconWrap}
       >
         {children}
@@ -110,6 +118,7 @@ const defaultProps: DefaultProps = {
   enableKeyboardClick: true,
   disableSpacebarClick: false,
   disablePressedFallback: false,
+  textChildren: true,
 };
 
 ListItem.defaultProps = defaultProps;

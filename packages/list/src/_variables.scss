@@ -81,7 +81,7 @@ $rmd-list-item-medium-height: 3.5rem !default;
 $rmd-list-item-dense-medium-height: 3rem !default;
 
 /// The height for a "large" sized list item. This will normally get applied
-/// for any list item that has secondary text with no icon, avatar, or graphic.
+/// for any list item that has secondary text with no icon, or avatar.
 /// @type Number
 $rmd-list-item-large-height: 4rem !default;
 
@@ -91,8 +91,8 @@ $rmd-list-item-dense-large-height: 3.5rem !default;
 
 /// The height for an "extra large" sized list item. This will normally get applied
 /// for any list item that:
-/// - is single line but has a graphic
-/// - has secondary text with an icon, avatar, graphic, or metadata
+/// - is single line but has a media
+/// - has secondary text with an icon, avatar, media, or metadata
 ///
 /// @type Number
 $rmd-list-item-extra-large-height: 4.5rem !default;
@@ -114,6 +114,21 @@ $rmd-list-item-dense-three-line-height: 5rem !default;
 /// with other components.
 /// @type Number
 $rmd-list-item-text-keyline: 4.5rem !default;
+
+/// The size to use for media that appears before or after the main content in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-size: 3.5rem !default;
+
+/// The size to use for large media that appears before or after the main content in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-large-size: 6.25rem !default;
+
+/// The amount of spacing to place between the main content and media that appears in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-spacing: 1rem !default;
 
 /// All the themeable parts for the list item.
 /// @type Map
@@ -137,4 +152,7 @@ $rmd-list-theme-values: (
   dense-item-large-height: $rmd-list-item-dense-large-height,
   dense-item-extra-large-height: $rmd-list-item-dense-extra-large-height,
   dense-item-three-line-height: $rmd-list-item-dense-three-line-height,
+  media-size: $rmd-list-item-media-size,
+  media-spacing: $rmd-list-item-media-spacing,
+  media-large-size: $rmd-list-item-media-large-size,
 ) !default;
