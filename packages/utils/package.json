@@ -29,5 +29,8 @@
     "right to left websites",
     "safari scroll fix"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

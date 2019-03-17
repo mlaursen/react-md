@@ -37,7 +37,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@react-md/dev-utils": "^2.0.0-alpha.0",
     "@react-md/icon": "^2.0.0-alpha.0",
     "download": "^7.1.0",
     "unzipper": "^0.9.11"
@@ -45,5 +44,8 @@
   "peerDependencies": {
     "@react-md/icon": "^2.0.0-alpha.0",
     "react": ">= 16.8"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

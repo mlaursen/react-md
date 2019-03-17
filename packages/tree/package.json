@@ -43,5 +43,8 @@
   },
   "optionalDependencies": {
     "prop-types": ">= 15.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
