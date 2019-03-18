@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/portal/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/portal/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,18 +17,18 @@
       "description": "Example from https://react-md.dev/packages/overlay/demos#custom-theme",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/button": "latest",
-        "@react-md/icon": "latest",
-        "@react-md/list": "latest",
-        "@react-md/overlay": "latest",
-        "@react-md/portal": "latest",
-        "@react-md/states": "latest",
-        "@react-md/transition": "latest",
-        "@react-md/utils": "latest",
-        "@react-md/wia-aria": "latest",
+        "@react-md/button": "next",
+        "@react-md/icon": "next",
+        "@react-md/list": "next",
+        "@react-md/overlay": "next",
+        "@react-md/portal": "next",
+        "@react-md/states": "next",
+        "@react-md/transition": "next",
+        "@react-md/utils": "next",
+        "@react-md/wia-aria": "next",
         "react": "latest",
-        "@react-md/theme": "latest",
-        "@react-md/typography": "latest",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -44,6 +44,10 @@
         "start": "react-scripts start"
       }
     },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
     "isBinary": false
   },
   "src/Demo.tsx": {

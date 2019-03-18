@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/link/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/link/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,12 +17,12 @@
       "description": "Example from https://react-md.dev/packages/link/demos#with-icons",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/icon": "latest",
-        "@react-md/link": "latest",
+        "@react-md/icon": "next",
+        "@react-md/link": "next",
         "react": "latest",
-        "@react-md/theme": "latest",
-        "@react-md/typography": "latest",
-        "@react-md/utils": "latest",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -38,6 +38,10 @@
         "start": "react-scripts start"
       }
     },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
     "isBinary": false
   },
   "src/Demo.tsx": {

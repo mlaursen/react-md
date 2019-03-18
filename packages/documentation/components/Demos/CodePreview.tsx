@@ -33,6 +33,7 @@ const ignoredFiles = [
   "src/styles.scss",
   "src/index.tsx",
   "public/index.html",
+  ".env",
 ];
 
 const CodePreview: FunctionComponent<CodePreviewProps> = ({

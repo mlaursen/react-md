@@ -24,7 +24,7 @@ function toDependencyJson(dependencies: string[]) {
   return dependencies.reduce(
     (json, dependency) => ({
       ...json,
-      [dependency]: "latest",
+      [dependency]: dependency.startsWith("@react-md") ? "next" : "latest",
     }),
     {}
   );
@@ -139,7 +139,7 @@ function createDemoStyles(dependencies: string[]) {
   );
 
   const imports = [
-    ...dependencies,
+    ...rmd,
     ...alwaysRequired.filter(name => !dependencies.includes(name)),
   ]
     .map(name => `@import '${name}/dist/mixins';`)
@@ -169,6 +169,7 @@ export default async function generate({
   const packageDependencies = Array.from(
     new Set([...dependencies, ...alwaysRequired, "react", "react-dom"])
   );
+
   const packageJson = {
     title: demoTitle,
     description: `Example from ${homepage}/packages/${toUrlId(
@@ -202,6 +203,10 @@ export default async function generate({
     },
     "package.json": {
       content: packageJson,
+      isBinary: false,
+    },
+    ".env": {
+      content: "SASS_PATH=node_modules:src",
       isBinary: false,
     },
   };

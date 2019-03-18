@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/media/dist/mixins';\n@import 'react/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/media/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,11 +17,11 @@
       "description": "Example from https://react-md.dev/packages/media/demos#simple-responsive-media",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/media": "latest",
+        "@react-md/media": "next",
         "react": "latest",
-        "@react-md/theme": "latest",
-        "@react-md/typography": "latest",
-        "@react-md/utils": "latest",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -37,6 +37,10 @@
         "start": "react-scripts start"
       }
     },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
     "isBinary": false
   },
   "src/Demo.tsx": {

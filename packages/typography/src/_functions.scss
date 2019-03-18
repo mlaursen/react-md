@@ -58,5 +58,5 @@
 @function rmd-typography-value($style, $property) {
   $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);
 
-  @return rmd-utils-validate($style-props, $property, 'typeography #{$style} property');
+  @return rmd-utils-validate($style-props, $property, 'typography #{$style} property');
 }

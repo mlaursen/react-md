@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/link/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import 'next/dist/mixins';\n@import 'next-server/dist/mixins';\n@import 'react/dist/mixins';\n@import 'url/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/link/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -17,14 +17,14 @@
       "description": "Example from https://react-md.dev/packages/link/demos#third-party-routing-libraries",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/link": "latest",
-        "@react-md/utils": "latest",
+        "@react-md/link": "next",
+        "@react-md/utils": "next",
         "next": "latest",
         "next-server": "latest",
         "react": "latest",
         "url": "latest",
-        "@react-md/theme": "latest",
-        "@react-md/typography": "latest",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -40,6 +40,10 @@
         "start": "react-scripts start"
       }
     },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
     "isBinary": false
   },
   "src/Demo.tsx": {

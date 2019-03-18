@@ -25,7 +25,6 @@ const SandboxDefineForm: FunctionComponent<SandboxDefineFormProps> = ({
     let cancelled = false;
     async function load() {
       const files = await getSandbox();
-      console.log("files:", files);
       if (!cancelled) {
         setParameters(getParameters({ files }));
       }
