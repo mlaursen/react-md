@@ -25,6 +25,7 @@ describe("useVisibility", () => {
       show: expect.any(Function),
       hide: expect.any(Function),
       toggle: expect.any(Function),
+      setVisible: expect.any(Function),
     });
   });
 

@@ -11,6 +11,7 @@ import Header from "./Header";
 import NavigationTree from "./NavigationTree";
 import { Sheet } from "@react-md/sheet";
 import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
+import { useVisibility } from "@react-md/utils";
 
 export interface CombinedProps {
   title: string;
@@ -19,19 +20,13 @@ export interface CombinedProps {
 const Combined: FunctionComponent<CombinedProps> = ({ title, children }) => {
   const context = useAppSizeContext();
   const { isDesktop, isTablet, isPhone } = context;
-  const [visible, setVisible] = useState(isDesktop);
+  const { visible, hide, toggle, setVisible } = useVisibility(isDesktop);
   useEffect(() => {
     if (visible !== isDesktop) {
       setVisible(isDesktop);
     }
   }, [isDesktop, isTablet, isPhone]);
 
-  const toggle = useCallback(() => {
-    setVisible(prevVisibile => !prevVisibile);
-  }, []);
-  const hide = useCallback(() => {
-    setVisible(false);
-  }, []);
   return (
     <Fragment>
       <Header title={title} toggle={toggle} isDesktop={isDesktop} />

@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useState, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
-import useToggle from "./useToggle";
+import { useVisibility } from "@react-md/utils";
 
 const SimpleExample: FunctionComponent = () => {
-  const { visible, toggle, hide } = useToggle();
+  const { visible, toggle, hide } = useVisibility();
   return (
     <Fragment>
       <Button id="simple-overlay-button" onClick={toggle} themeType="contained">

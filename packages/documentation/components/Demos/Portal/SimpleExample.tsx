@@ -11,12 +11,12 @@ import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
-import { positionRelativeTo } from "@react-md/utils";
+import { positionRelativeTo, useVisibility } from "@react-md/utils";
 
 import "./simple-example.scss";
 
 const SimpleExample: FunctionComponent = () => {
-  const [visible, setVisible] = useState(false);
+  const { visible, toggle, hide } = useVisibility();
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -38,7 +38,7 @@ const SimpleExample: FunctionComponent = () => {
         themeType="outline"
         aria-haspopup="true"
         aria-expanded={visible}
-        onClick={() => setVisible(prevVisibile => !prevVisibile)}
+        onClick={toggle}
         ref={buttonRef}
       >
         <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
@@ -49,7 +49,7 @@ const SimpleExample: FunctionComponent = () => {
         id="portal-menu-overlay"
         className="portal-menu-overlay"
         visible={visible}
-        onRequestClose={() => setVisible(false)}
+        onRequestClose={hide}
       >
         <List
           role="menu"
@@ -61,7 +61,7 @@ const SimpleExample: FunctionComponent = () => {
           className="portal-menu"
           onClick={event => {
             if (event.currentTarget !== event.target) {
-              setVisible(false);
+              hide();
             }
           }}
         >

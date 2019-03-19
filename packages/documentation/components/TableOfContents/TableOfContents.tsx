@@ -15,7 +15,7 @@ import { useAppSizeContext } from "components/Layout/AppSize";
 import Link from "components/Link";
 
 import "./table-of-contents.scss";
-import { useEventListener } from "@react-md/utils";
+import { useEventListener, useVisibility } from "@react-md/utils";
 
 export interface Heading {
   id: string;
@@ -30,22 +30,16 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
   headings,
 }) => {
   const { isLargeDesktop } = useAppSizeContext();
-  const [hovering, setHovering] = useState(false);
-  const enable = useCallback(() => {
-    setHovering(true);
-  }, []);
-  const disable = useCallback(() => {
-    setHovering(false);
-  }, []);
+  const { visible: hovering, hide, show, toggle } = useVisibility();
 
   const handleIconKeyPress = useCallback((event: React.KeyboardEvent) => {
     if (event.key !== "Tab" || event.currentTarget !== event.target) {
       return;
     }
     if (event.type === "keyup" && !event.shiftKey) {
-      enable();
+      show();
     } else if (event.type === "keydown" && event.shiftKey) {
-      disable();
+      hide();
     }
   }, []);
 
@@ -55,7 +49,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
     }
 
     if (event.currentTarget.querySelector("li:last-child a") === event.target) {
-      disable();
+      hide();
     }
   }, []);
 
@@ -71,8 +65,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
       }`;
 
       if (!document.querySelector(query)) {
-        setHovering(true);
-        setHovering(() => false);
+        show();
+        hide();
       }
     });
   }, []);
@@ -90,7 +84,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
       !table ||
       !(button.contains(target) || table.contains(target))
     ) {
-      disable();
+      hide();
     }
   });
 
@@ -101,8 +95,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
         theme="clear"
         buttonType="icon"
         className="table-of-contents-toggle"
-        onMouseEnter={enable}
-        onClick={() => setHovering(prevHovering => !prevHovering)}
+        onMouseEnter={show}
+        onClick={toggle}
         onKeyUp={handleIconKeyPress}
         onKeyDown={handleIconKeyPress}
         ref={buttonRef}
@@ -117,8 +111,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
           "table-of-contents--hidden": !visible,
           "table-of-contents--visible": visible,
         })}
-        onFocus={enable}
-        onMouseLeave={disable}
+        onFocus={show}
+        onMouseLeave={hide}
         onKeyDown={handleAsideKeyDown}
       >
         <Text

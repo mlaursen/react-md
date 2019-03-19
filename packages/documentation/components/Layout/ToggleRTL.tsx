@@ -5,27 +5,28 @@ import {
 } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
 import AppBarAction from "components/AppBarAction";
+import { useVisibility } from "@react-md/utils";
 
 const ToggleRTL: FunctionComponent = props => {
-  const [toggled, setToggled] = useState(false);
+  const { visible, toggle } = useVisibility();
 
   useEffect(() => {
     const html = document.querySelector("html") as HTMLElement;
-    if (toggled) {
+    if (visible) {
       html.setAttribute("dir", "rtl");
     } else {
       html.setAttribute("dir", "ltr");
     }
-  }, [toggled]);
+  }, [visible]);
 
   return (
     <AppBarAction
       id="toggle-rtl"
       tooltip="Toggle left-to-right/right-to-left"
-      onClick={() => setToggled(prevToggled => !prevToggled)}
+      onClick={toggle}
       last
     >
-      {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
+      {visible ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
     </AppBarAction>
   );
 };

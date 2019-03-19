@@ -1,21 +1,21 @@
 import React, {
   FunctionComponent,
+  ReactNode,
   useEffect,
   useMemo,
   useRef,
   useState,
-  ReactNode,
 } from "react";
 import cn from "classnames";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
-import { Tooltipped } from "@react-md/tooltip";
+import { useVisibility } from "@react-md/utils";
 
+import AppBarAction from "components/AppBarAction";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import * as storage from "utils/storage";
 
 import "./toggle-theme.scss";
-import AppBarAction from "components/AppBarAction";
 
 const LIGHT_THEMES = {
   "rmd-theme-background": "#fafafa",
@@ -80,24 +80,6 @@ function useThemeVariables(isLight: boolean) {
   );
 }
 
-function useHover() {
-  const [hover, setHover] = useState(false);
-
-  return {
-    hover,
-    enable: () => {
-      if (!hover) {
-        setHover(true);
-      }
-    },
-    disable: () => {
-      if (hover) {
-        setHover(false);
-      }
-    },
-  };
-}
-
 const ToggleTheme: FunctionComponent = () => {
   const [isLight, setLightTheme] = useState(
     () => storage.getItem("isLight") === "true"
@@ -105,10 +87,10 @@ const ToggleTheme: FunctionComponent = () => {
 
   useThemeTransition(isLight);
   useThemeStorage(isLight);
-  const { hover, enable, disable } = useHover();
+  const { visible, show, hide } = useVisibility();
   const variables = useThemeVariables(isLight);
   let icon: ReactNode = <LightbulbOutlineSVGIcon />;
-  if (hover !== isLight) {
+  if (visible !== isLight) {
     icon = <LightbulbSVGIcon />;
   }
 
@@ -119,8 +101,8 @@ const ToggleTheme: FunctionComponent = () => {
         first
         tooltip="Toggle light/dark theme"
         onClick={() => setLightTheme(prevDark => !prevDark)}
-        onMouseEnter={enable}
-        onMouseLeave={disable}
+        onMouseEnter={show}
+        onMouseLeave={hide}
         className={cn("toggle-theme", {
           "toggle-theme--on": isLight,
           "toggle-theme--off": !isLight,

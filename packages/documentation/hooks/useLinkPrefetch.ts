@@ -21,6 +21,7 @@ export function useLinkMousePrefetch(
       const { origin } = window.location;
       if (currentTarget.href.startsWith(origin)) {
         Router.prefetch(href);
+        setFetched(true);
       }
     },
     [href, onMouseEnter, disabled, fetched]

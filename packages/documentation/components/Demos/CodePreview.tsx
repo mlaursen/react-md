@@ -27,6 +27,7 @@ export interface CodeFile {
 }
 
 import "./code-preview.scss";
+import { useVisibility } from "@react-md/utils";
 
 const ignoredFiles = [
   "package.json",
@@ -42,7 +43,8 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
   getSandbox,
 }) => {
   const [files, setFiles] = useState<CodeFile[]>([]);
-  const [collapsed, setCollapsed] = useState(true);
+  const { visible: collapsed, show, toggle } = useVisibility(true);
+  // const [collapsed, setCollapsed] = useState(true);
   useEffect(() => {
     let cancelled = false;
     async function load() {
@@ -103,7 +105,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
                 tooltip="Hide the code for this example"
                 buttonType="icon"
                 theme="clear"
-                onClick={() => setCollapsed(true)}
+                onClick={show}
               >
                 <CodeSVGIcon />
               </Button>
@@ -115,7 +117,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
         id={`${demoId}-show-code`}
         first
         tooltip="Show the code for this example"
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={toggle}
         ref={ref}
       >
         <CodeSVGIcon />

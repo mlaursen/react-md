@@ -1,13 +1,13 @@
 import React, { FunctionComponent, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
+import { List, ListItem } from "@react-md/list";
+import { useVisibility } from "@react-md/utils";
 
 import "./custom-theme.scss";
-import useToggle from "./useToggle";
-import { List, ListItem } from "@react-md/list";
 
 const CustomTheme: FunctionComponent = () => {
-  const { visible, toggle, hide } = useToggle();
+  const { visible, toggle, hide } = useVisibility();
   return (
     <Fragment>
       <Button

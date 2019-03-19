@@ -1,11 +1,6 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useState,
-  Fragment,
-} from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Portal } from "@react-md/portal";
-import { Omit } from "@react-md/utils";
+import { Omit, useVisibility } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
@@ -24,9 +19,7 @@ const Sandbox: FunctionComponent<SandboxProps> = ({
   packageName,
   getSandbox,
 }) => {
-  const [loading, setLoading] = useState(false);
-  const enable = useCallback(() => setLoading(true), []);
-  const disable = useCallback(() => setLoading(false), []);
+  const { visible: loading, show: enable, hide: disable } = useVisibility();
 
   return (
     <Fragment>

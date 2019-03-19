@@ -1,16 +1,16 @@
-import React, { FunctionComponent, useState, Fragment } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
+import { useVisibility } from "@react-md/utils";
 
 import "./fixing-overflow-issues.scss";
-import useToggle from "./useToggle";
 
 const FixingOverflowIssues: FunctionComponent = () => {
-  const { visible, hide, toggle } = useToggle();
-  const [portal, setPortal] = useState(false);
+  const { visible, hide, toggle } = useVisibility();
+  const { visible: portal, setVisible: setPortal } = useVisibility();
   return (
     <Fragment>
       <AppBar theme="default">

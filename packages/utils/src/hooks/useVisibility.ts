@@ -30,5 +30,5 @@ export default function useVisibility(defaultVisible: boolean = false) {
     setVisible(prevVisible => !prevVisible);
   }, []);
 
-  return { visible, show, hide, toggle };
+  return { visible, show, hide, toggle, setVisible };
 }
