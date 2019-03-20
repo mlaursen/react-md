@@ -4,7 +4,7 @@
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nrender(<Demo />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\nimport { KeyboardTracker } from \"@react-md/wia-aria\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig preventColorPollution>\n    <KeyboardTracker>\n      <Demo />\n    </StatesConfig>\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {

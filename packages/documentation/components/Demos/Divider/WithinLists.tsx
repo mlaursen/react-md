@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";
-
-import Container from "./Container";
 import {
   FavoriteSVGIcon,
   BookSVGIcon,
@@ -12,15 +10,17 @@ import {
   AdbSVGIcon,
 } from "@react-md/material-icons";
 
+import Container from "./Container";
+
 const WithinLists: FunctionComponent = () => (
   <Container>
     <List>
       <ListItem id="list1-item-0">First Item</ListItem>
       <ListItem id="list1-item-1">Second Item</ListItem>
       <ListItem id="list1-item-2">Third Item</ListItem>
-      <ListItem id="list1-item-3">Forth Item</ListItem>
+      <ListItem id="list1-item-3">Fourth Item</ListItem>
       <Divider />
-      <ListItem id="list1-item-3">Fifth Item</ListItem>
+      <ListItem id="list1-item-4">Fifth Item</ListItem>
       <ListItem id="list1-item-5">Sixth Item</ListItem>
     </List>
     <List>
@@ -34,10 +34,10 @@ const WithinLists: FunctionComponent = () => (
         Third Item
       </ListItem>
       <ListItem id="list2-item-3" leftIcon={<AddSVGIcon />}>
-        Forth Item
+        Fourth Item
       </ListItem>
       <Divider inset />
-      <ListItem id="list2-item-3" leftIcon={<TocSVGIcon />}>
+      <ListItem id="list2-item-4" leftIcon={<TocSVGIcon />}>
         Fifth Item
       </ListItem>
       <ListItem id="list2-item-5" leftIcon={<AdbSVGIcon />}>

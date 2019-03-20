@@ -112,9 +112,11 @@ interface GenerateSandboxConfig {
 }
 
 const alwaysRequired = [
+  "@react-md/states",
   "@react-md/theme",
   "@react-md/typography",
   "@react-md/utils",
+  "@react-md/wia-aria",
 ];
 
 const devDependencies = [
