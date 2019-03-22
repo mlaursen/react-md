@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { MarkdownPage } from "components/Markdown";
 
 import readme from "./QuickStart.md";

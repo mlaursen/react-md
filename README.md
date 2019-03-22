@@ -36,8 +36,8 @@ $ cd my-app
 $ npm start
 ```
 
-(_npx comes with npm 5.2+ and higher, if you have an older version you will need
-to install `create-react-app` globally instead_)
+> npx comes with npm 5.2+ and higher, if you have an older version you will need
+> to install `create-react-app` globally instead
 
 Or with `yarn`:
 
@@ -51,7 +51,7 @@ $ yarn start
 > typescript support
 
 More information can be found on the documentation site's page
-[about creating projects](https://mlaursen.github.io/react-md/getting-started/creating-a-project)
+[about creating projects](https://react-md.dev/getting-started/installation)
 
 ## Contributing
 
@@ -67,18 +67,8 @@ $ cd react-md
 $ yarn
 $ yarn setup
 $ yarn watch
-```
-
-> There is currently a weird bug with yarn workspaces or lerna where it doesn't
-> always symlink the bin directories correctly. If you see an error like
-> `/bin/sh: 1: /bin/sh: 1: dev-utils: not found` when running the above
-> commands, try this instead:
-
-```sh
-$ yarn
-$ yarn dev-utils
-$ yarn install --force
-$ yarn build
+$ cd packages/documentation
+$ yarn dev
 ```
 
 ### Project structure

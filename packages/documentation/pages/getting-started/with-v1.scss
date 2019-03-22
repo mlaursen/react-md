@@ -1,0 +1,8 @@
+.with-v1 {
+  @media (min-width: 60rem) {
+    pre {
+      margin-left: -10rem;
+      margin-right: -10rem;
+    }
+  }
+}

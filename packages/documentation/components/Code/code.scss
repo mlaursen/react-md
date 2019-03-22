@@ -33,6 +33,11 @@ $solarized-green: #859900;
 
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
 
+  &::selection,
+  *::selection {
+    background-color: $solarized-base-02;
+  }
+
   &--block {
     background-color: $solarized-base-03;
     color: $solarized-base-1;

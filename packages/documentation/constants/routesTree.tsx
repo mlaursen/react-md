@@ -179,6 +179,7 @@ createRoute("/getting-started", "Getting Started", {
       path: "/updating-create-react-app",
       children: "Updating create-react-app",
     },
+    { path: "/with-v1", children: "With v1" },
   ],
 });
 createRoute("/customization", "Customization", {

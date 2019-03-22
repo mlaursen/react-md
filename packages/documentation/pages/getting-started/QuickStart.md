@@ -1,3 +1,25 @@
+## Super Quick Start
+
+```sh
+$ npx create-react-app my-app --scripts-version=@react-md/react-scripts
+$ cd my-app
+$ npm start
+```
+
+> npx comes with npm 5.2+ and higher, if you have an older version you will need
+> to install `create-react-app` globally instead
+
+or with [yarn][1]:
+
+```sh
+$ yarn create react-app my-app --scripts-version=@react-md/react-scripts
+$ cd my-app
+$ yarn start
+```
+
+> You can also add the `--typescript` flag to either command above to bootstrap
+> with [Typescript][2] support.
+
 ## Quick Start
 
 #### Install packages:
@@ -85,3 +107,7 @@ an understanding of the included files, published structure, and naming
 conventions, check out the [installation](/getting-started/installation) page.
 Otherwise, start looking at each package's documentation page. For convenience,
 I have listed them all below:
+
+[1]: [https://yarnpkg.com]
+
+[2]: [https://www.typescriptlang.org]

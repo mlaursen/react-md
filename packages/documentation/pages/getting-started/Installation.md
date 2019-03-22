@@ -1,26 +1,3 @@
-<!-- toc -->
-
-## Table of Contents
-
-- [Installing Packages](#installing-packages)
-  - [Installing with npm](#installing-with-npm)
-  - [Package File Structure](#package-file-structure)
-    - [File Structure Exceptions](#file-structure-exceptions)
-      - [Package is not styleable](#package-is-not-styleable)
-    - [Package does not generate styles](#package-does-not-generate-styles)
-  - [Using UMD Bundles](#using-umd-bundles)
-- [Updating Sass Include Paths](#updating-sass-include-paths)
-  - [Updating webpack config](#updating-webpack-config)
-- [Including Styles](#including-styles)
-  - [SCSS Naming Paradigm](#scss-naming-paradigm)
-  - [Exported SCSS Files](#exported-scss-files)
-  - [Including Styles Example](#including-styles-example)
-- [Adding fonts](#adding-fonts)
-  - [Google Fonts](#google-fonts)
-  - [Self-hosted fonts](#self-hosted-fonts)
-
-<!-- tocstop -->
-
 ## Installing Packages
 
 `react-md` has been split up into separate scoped packages to hopefully make it
@@ -40,7 +17,9 @@ installing with npm as the UMD bundle will include every component and styles
 within react-md.
 
 > NOTE: `@react-md/material-icons` will be the only package that is **not**
-> included in the UMD bundle since it includes 500+ icons and components.
+> included in the base react-md UMD bundle since it includes 500+ icons and
+> components. `@react-md/material-icons` will still create its own UMD bundle
+> like the other scoped packages so you can access them as normal.
 
 ### Installing with npm
 
@@ -50,6 +29,7 @@ as follows:
 
 ```sh
 $ npm install --save @react-md/icon \
+    @rect-md/states \
     @react-md/theme \
     @react-md/typography
 ```

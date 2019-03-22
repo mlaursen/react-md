@@ -1,13 +1,3 @@
-<!-- toc -->
-
-## Table of Contents
-
-- [Adding a Sass stylesheet](#adding-a-sass-stylesheet)
-- [Defining your theme](#defining-your-theme)
-- [Including react-md styles](#including-react-md-styles)
-
-<!-- tocstop -->
-
 ## Adding a Sass stylesheet
 
 The following steps have been taken directly from the
