@@ -246,7 +246,8 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
                   "rmd-sheet--recommended-height":
                     !isHorizontal && verticalSize === "recommended",
                   [`rmd-sheet--${position}`]: position !== "calculated",
-                  "rmd-sheet--hidden": state === "exited" && !visible,
+                  "rmd-sheet--offscreen rmd-sheet--hidden":
+                    state === "exited" && !visible,
                 },
                 className
               )}
