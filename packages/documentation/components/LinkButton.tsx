@@ -29,13 +29,9 @@ const LinkButton: FunctionComponent<LinkButtonProps> = providedProps => {
     portalInto,
     portalIntoId,
     children,
-    // onClick,
-    // onMouseEnter,
-    // onMouseLeave,
     ...props
   } = providedProps;
   const { ripples, className, handlers } = useInteractionStates({
-    id,
     handlers: props,
     className: buttonThemeClassNames(providedProps),
   });

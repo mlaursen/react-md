@@ -28,7 +28,7 @@ export function determineBestPosition(
 ): TooltipPosition {
   const { id, position, vwMargin, vhMargin } = config;
   if (position !== "auto") {
-    return position as TooltipPosition;
+    return position;
   } else if (!container) {
     return "below";
   }

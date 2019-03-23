@@ -22,7 +22,7 @@ import buttonThemeClassNames from "./buttonThemeClassNames";
  */
 export interface ButtonProps
   extends ButtonThemeProps,
-    Omit<HTMLAttributes<HTMLButtonElement>, "id">,
+    HTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
@@ -63,7 +63,6 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
   } = providedProps as ButtonWithDefaultProps;
 
   const { ripples, className, handlers } = useInteractionStates({
-    id: props.id,
     handlers: props,
     className: buttonThemeClassNames(providedProps),
     disableRipple,

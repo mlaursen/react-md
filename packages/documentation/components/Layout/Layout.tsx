@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { StatesConfig } from "@react-md/states";
 import { AppSize as AppSizeType } from "@react-md/utils";
-import { KeyboardTracker } from "@react-md/wia-aria";
 
 import AppSize from "./AppSize";
 import Combined from "./Combined";
@@ -18,11 +17,9 @@ const Layout: FunctionComponent<LayoutProps> = ({
 }) => {
   return (
     <AppSize {...defaultMedia}>
-      <KeyboardTracker>
-        <StatesConfig preventColorPollution>
-          <Combined title={title}>{children}</Combined>
-        </StatesConfig>
-      </KeyboardTracker>
+      <StatesConfig preventColorPollution>
+        <Combined title={title}>{children}</Combined>
+      </StatesConfig>
     </AppSize>
   );
 };

@@ -78,14 +78,13 @@ const ListItemLink: FunctionComponent<
 
   const height = getListItemHeight(providedProps);
   const { ripples, className, handlers } = useInteractionStates({
-    ...props,
+    handlers: props,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
-    enableKeyboardClick,
     disableSpacebarClick,
     disablePressedFallback,
   });

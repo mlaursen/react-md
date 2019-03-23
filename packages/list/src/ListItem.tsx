@@ -12,7 +12,6 @@ import SimpleListItem, { SimpleListItemProps } from "./SimpleListItem";
 export interface ListItemProps
   extends SimpleListItemProps,
     InteractionStatesOptions<HTMLLIElement> {
-  id: string;
   tabIndex?: number;
 }
 
@@ -26,7 +25,6 @@ type DefaultProps = Required<
     | "tabIndex"
     | "leftPosition"
     | "rightPosition"
-    | "enableKeyboardClick"
     | "disableSpacebarClick"
     | "disablePressedFallback"
   >
@@ -54,7 +52,6 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
     rightPosition,
     forceIconWrap,
     height,
-    enableKeyboardClick,
     disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,
@@ -69,14 +66,13 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
   } = providedProps as ListItemWithDefaultProps;
 
   const { ripples, className, handlers } = useInteractionStates({
-    ...props,
+    handlers: props,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
-    enableKeyboardClick,
     disableSpacebarClick,
     disablePressedFallback,
   });
@@ -121,7 +117,6 @@ const defaultProps: DefaultProps = {
   height: "auto",
   role: "button",
   tabIndex: 0,
-  enableKeyboardClick: true,
   disableSpacebarClick: false,
   disablePressedFallback: false,
   textChildren: true,
@@ -140,7 +135,6 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     ListItem.propTypes = {
-      id: PropTypes.string.isRequired,
       role: PropTypes.string,
       tabIndex: PropTypes.number,
       height: PropTypes.oneOf([

@@ -74,6 +74,30 @@
   }
 }
 
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app on a touch device.
+@mixin rmd-states-touch-only {
+  .rmd-states--touch & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a keyboard.
+@mixin rmd-states-keyboard-only {
+  .rmd-states--keyboard & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a mouse.
+@mixin rmd-states-mouse-only {
+  .rmd-states--mouse & {
+    @content;
+  }
+}
+
 /// This is the main interaction states creator. It will apply all the styles
 /// to an element so that it will:
 /// - gain the pointer cursor when it is not disabled (also works for aria-disabled)
@@ -116,18 +140,20 @@
     cursor: pointer;
   }
 
+  // don't want to limit the hover effect to mouse only since it's possible
+  // to use both the keyboard and mouse together
   &:hover::before {
     @include rmd-states-opacity(hover);
   }
 
-  &.rmd-states--focused::before {
-    @include rmd-states-opacity(focus);
+  @include rmd-states-keyboard-only {
+    &:focus::before {
+      @include rmd-states-opacity(focus);
+    }
   }
 
-  @if not $rmd-states-use-ripple {
-    &.rmd-states--pressed::before {
-      @include rmd-states-opacity(pressed);
-    }
+  &.rmd-states--pressed::before {
+    @include rmd-states-opacity(pressed);
   }
 }
 
@@ -142,6 +168,8 @@
   }
 }
 
+/// Creates all the root styles for the states package as well as the themeable
+/// css variables and their default values.
 @mixin react-md-states {
   @include rmd-theme-create-root-theme($rmd-states-theme-values, states);
 

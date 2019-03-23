@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Maybe, positionRelativeTo, useEventListener } from "@react-md/utils";
-import { useKeyboardFocused } from "@react-md/wia-aria";
 import { TooltipConfig, TooltipEventType } from "./types.d";
 import {
   createPositionOptions,
@@ -27,7 +26,6 @@ export function useTooltipState(config: TooltipConfig) {
     portal,
     style: propStyle,
   } = config;
-  const isKeyboardFocus = useKeyboardFocused(id);
   const [trigger, setTrigger] = useState<Maybe<TooltipEventType>>(null);
   const [visible, setVisible] = useState(defaultVisible);
   const [position, setPosition] = useState(
@@ -45,14 +43,14 @@ export function useTooltipState(config: TooltipConfig) {
     position: defaultPosition,
   };
 
-  useEffect(() => {
-    if (!isKeyboardFocus || trigger !== null) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!isKeyboardFocus || trigger !== null) {
+  //     return;
+  //   }
 
-    setTrigger("keyboard");
-    container.current = document.getElementById(id) as HTMLElement;
-  }, [isKeyboardFocus]);
+  //   setTrigger("keyboard");
+  //   container.current = document.getElementById(id) as HTMLElement;
+  // }, [isKeyboardFocus]);
 
   useEventListener(
     "keydown",

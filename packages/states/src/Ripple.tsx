@@ -8,7 +8,7 @@ import {
 } from "@react-md/transition";
 
 import { RippleConfig } from "./types.d";
-import { useStatesContext } from "./hooks";
+import useStatesContext from "./useStatesContext";
 
 export interface RippleProps extends Pick<RippleConfig, "style" | "exiting"> {
   className?: string;

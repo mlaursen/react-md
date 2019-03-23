@@ -1,44 +1,44 @@
 import React, { FunctionComponent, ReactNode, useMemo } from "react";
-import { StatesContextType, StatesContext } from "./context";
-import { useTouchDetectionClassNameToggle } from "./hooks";
+import { Omit } from "@react-md/utils";
+import {
+  StatesContextType,
+  StatesContext,
+  UserInteractionMode,
+} from "./context";
 import { RIPPLE_TIMEOUT, RIPPLE_CLASS_NAMES } from "./contants";
+import { useModeDetection, useModeClassName } from "./useModeDetection";
 
 export interface StatesConfigProps extends Partial<StatesContextType> {
   children?: ReactNode;
-  disableTouchDetection?: boolean;
 }
 
-interface DefaultProps extends StatesContextType {
-  disableTouchDetection: boolean;
-}
-
+type DefaultProps = Omit<StatesContextType, "mode">;
 type WithDefaultProps = StatesConfigProps & DefaultProps;
 
 /**
- * This component should normally be near the root of your React tree as it
- * allows for customization of the react-md states package.
- *
- * NOTE: There should *only be one* `StatesConfig` component on your page at
- * a time when the `disableTouchDetection` prop is not enabled as it will cause
- * multiple touch detection updates.
+ * The `StatesConfig` component is a top-level context provider for the states
+ * context configuration. It'll keep track of:
+ * - the current interaction mode of your user
+ * - configuration for ripple effects
+ * - disabling or enabling the ripple effects
+ * - disabling or enabling the fix for color pollution
  */
 const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
   const {
-    preventColorPollution,
     rippleTimeout,
     rippleClassNames,
     disableRipple,
     disableProgrammaticRipple,
-    disableTouchDetection,
+    preventColorPollution,
     children,
   } = props as WithDefaultProps;
 
-  if (!disableTouchDetection) {
-    useTouchDetectionClassNameToggle();
-  }
+  const mode = useModeDetection();
+  useModeClassName(mode);
 
   const value = useMemo(
     () => ({
+      mode,
       rippleTimeout,
       rippleClassNames,
       disableRipple,
@@ -53,6 +53,7 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
       preventColorPollution,
     ]
   );
+
   return (
     <StatesContext.Provider value={value}>{children}</StatesContext.Provider>
   );
@@ -64,7 +65,6 @@ const defaultProps: DefaultProps = {
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,
   disableProgrammaticRipple: false,
-  disableTouchDetection: false,
 };
 
 StatesConfig.defaultProps = defaultProps;
@@ -97,7 +97,7 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       disableRipple: PropTypes.bool,
       disableProgrammaticRipple: PropTypes.bool,
-      disableTouchDetection: PropTypes.bool,
+      children: PropTypes.node.isRequired,
     };
   }
 }

@@ -4,8 +4,7 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from "react";
-
-import { useStatesContext } from "./hooks";
+import useStatesContext from "./useStatesContext";
 
 export interface FixColorPollutionProps {
   enabled?: boolean;
