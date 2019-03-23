@@ -85,6 +85,8 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Portal/CustomPortalContainerSandbox.json")),
   "Portal/SimpleExample": () =>
     resolve(import("./Portal/SimpleExampleSandbox.json")),
+  "Sheet/PositionExamples": () =>
+    resolve(import("./Sheet/PositionExamplesSandbox.json")),
   "Typography/TextContainerExamples": () =>
     resolve(import("./Typography/TextContainerExamplesSandbox.json")),
   "Typography/TextExamples": () =>
