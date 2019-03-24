@@ -1,22 +1,19 @@
-import {
-  CSSProperties,
-  Dispatch,
-  SetStateAction,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { CSSProperties, HTMLAttributes } from "react";
 import {
   TransitionTimeout,
   CSSTransitionClassNames,
 } from "@react-md/transition";
 
-export type RippleEventType = "mouse" | "touch" | "keyboard" | "programmatic";
-export type RippleableEvent =
-  | React.KeyboardEvent<HTMLElement>
-  | React.MouseEvent<HTMLElement>
-  | React.TouchEvent<HTMLElement>;
+export type RippleType = "mouse" | "touch" | "keyboard" | "programmatic";
+export type RippleEvent<E extends HTMLElement> = Pick<
+  React.MouseEvent<E>,
+  "target" | "currentTarget" | "type"
+> &
+  Partial<Pick<React.MouseEvent<E>, "pageX" | "pageY" | "button">> &
+  Partial<Pick<React.KeyboardEvent<E>, "key">> &
+  Partial<Pick<React.TouchEvent<E>, "touches">>;
 
-export interface RippleConfig {
+export interface RippleState {
   startTime: number;
   style: CSSProperties & {
     left: number;
@@ -24,12 +21,12 @@ export interface RippleConfig {
     height: number;
     width: number;
   };
-  type: RippleEventType;
+  type: RippleType;
   holding: boolean;
   exiting: boolean;
+  entered: boolean;
 }
-
-export type RippleSetter = Dispatch<SetStateAction<RippleConfig[]>>;
+export type RipplesState = RippleState[];
 
 export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   HTMLAttributes<E>,

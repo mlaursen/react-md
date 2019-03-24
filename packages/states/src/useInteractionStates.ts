@@ -1,17 +1,18 @@
 import { ReactNode } from "react";
-import cn from "classnames";
 import { Maybe } from "@react-md/utils";
+import cn from "classnames";
 
-import { StatesContextType } from "./context";
-import useStatesContext from "./useStatesContext";
-import { useRipples } from "./useRipples";
-import { usePressedStates } from "./usePressedStates";
-
-import { RipplesOptions, MergableRippleHandlers } from "./types.d";
+import { MergableRippleHandlers, RipplesOptions } from "./ripples/types.d";
+import useRipples from "./ripples/useRipples";
+import {
+  StatesConfigContextType,
+  useStatesConfigContext,
+} from "./StatesConfig";
 import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
+import usePressedStates from "./usePressedStates";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Partial<StatesContextType>,
+  extends Partial<StatesConfigContextType>,
     RipplesOptions<E> {
   /**
    * An optional className to merge with the different interactions tates.
@@ -85,7 +86,7 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
   } = options;
 
   // populate undefined props from their context values
-  const context = useStatesContext();
+  const context = useStatesConfigContext();
   if (typeof disableRipple === "undefined") {
     ({ disableRipple } = context);
   }

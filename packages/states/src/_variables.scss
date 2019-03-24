@@ -25,9 +25,10 @@ $rmd-states-light-theme-background-color: $rmd-black-base !default;
 
 /// The base background color to use for the different interaction states for
 /// a dark themed application. This is the color that gets different opacities
-/// applied to it.
+/// applied to it. This is currently the same color as the light themed version,
+/// but it's available for reconfiguration if it's desired.
 /// @type Color
-$rmd-states-dark-theme-background-color: $rmd-white-base !default;
+$rmd-states-dark-theme-background-color: $rmd-black-base !default;
 
 /// The hover color to use for light themed backgrounds.
 /// @type Color

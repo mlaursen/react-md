@@ -1,18 +1,17 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
-
 import {
-  TransitionTimeout,
   CSSTransitionClassNames,
+  TransitionTimeout,
 } from "@react-md/transition";
 
 import Ripple from "./Ripple";
-import { triggerRippleExitAnimation, removeRippleByStartTime } from "./utils";
-import { RippleConfig, RippleSetter } from "./types.d";
+import { RipplesState, RippleState } from "./types.d";
 
 export interface RippleContainerProps {
-  ripples: RippleConfig[];
-  setRipples: RippleSetter;
+  ripples: RipplesState;
+  entered: (ripple: RippleState) => void;
+  exited: (ripple: RippleState) => void;
   className?: string;
   rippleClassName?: string;
   timeout?: TransitionTimeout;
@@ -21,23 +20,21 @@ export interface RippleContainerProps {
 
 const RippleContainer: FunctionComponent<RippleContainerProps> = ({
   ripples,
-  setRipples,
   className,
   rippleClassName,
   timeout,
   classNames,
+  entered,
+  exited,
 }) => (
   <span className={cn("rmd-ripple-container", className)}>
-    {ripples.map(({ startTime, exiting, style }) => (
+    {ripples.map(ripple => (
       <Ripple
-        key={startTime}
-        style={style}
-        exiting={exiting}
+        key={ripple.startTime}
+        ripple={ripple}
         className={rippleClassName}
-        onEntered={() =>
-          triggerRippleExitAnimation(startTime, ripples, setRipples)
-        }
-        onExited={() => removeRippleByStartTime(startTime, ripples, setRipples)}
+        entered={entered}
+        exited={exited}
         timeout={timeout}
         classNames={classNames}
       />

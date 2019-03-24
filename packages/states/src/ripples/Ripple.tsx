@@ -1,38 +1,43 @@
-import React, { FunctionComponent } from "react";
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
-
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/transition";
 
-import { RippleConfig } from "./types.d";
-import useStatesContext from "./useStatesContext";
+import { RippleState } from "./types.d";
+import { useStatesConfigContext } from "../StatesConfig";
 
-export interface RippleProps extends Pick<RippleConfig, "style" | "exiting"> {
+export interface RippleProps {
   className?: string;
   classNames?: CSSTransitionClassNames;
   timeout?: TransitionTimeout;
-  onEntered: () => void;
-  onExited: () => void;
+  entered: (ripple: RippleState) => void;
+  exited: (ripple: RippleState) => void;
+  ripple: RippleState;
 }
 
 const Ripple: FunctionComponent<RippleProps> = props => {
   const {
-    style,
     className,
     classNames: propClassNames,
     timeout: propTimeout,
-    exiting,
-    onEntered,
-    onExited,
+    ripple,
+    entered,
+    exited,
   } = props;
+  const { exiting, style } = ripple;
 
   let timeout = propTimeout;
   let classNames = propClassNames;
   if (typeof timeout === "undefined" || typeof classNames === "undefined") {
-    const context = useStatesContext();
+    const context = useStatesConfigContext();
 
     if (typeof timeout === "undefined") {
       timeout = context.rippleTimeout;
@@ -42,6 +47,19 @@ const Ripple: FunctionComponent<RippleProps> = props => {
       classNames = context.rippleClassNames;
     }
   }
+  const ref = useRef({ ripple, entered, exited });
+  useEffect(() => {
+    ref.current = { ripple, entered, exited };
+  });
+
+  const onEntered = useCallback(() => {
+    const { ripple, entered } = ref.current;
+    entered(ripple);
+  }, []);
+  const onExited = useCallback(() => {
+    const { ripple, exited } = ref.current;
+    exited(ripple);
+  }, []);
 
   return (
     <CSSTransition

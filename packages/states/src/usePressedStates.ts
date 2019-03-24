@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { MergableRippleHandlers } from "./types.d";
+import { MergableRippleHandlers } from "./ripples/types.d";
 
 interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
   handlers?: MergableRippleHandlers<E>;
@@ -13,11 +13,14 @@ interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
  *
  * This will return an object containing the current pressed state of the element as well
  * as all the merged eventHandlers required to trigger the different states.
+ *
+ * NOTE: Unlike the ripple effect, this pressed states will not be triggered from
+ * a programmatic click event.
  */
-export function usePressedStates<E extends HTMLElement = HTMLElement>({
+export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   handlers = {},
   disableSpacebarClick = false,
-}: PressedStatesOptions<E>) {
+}: PressedStatesOptions<E> = {}) {
   const [pressed, setPressed] = useState(false);
   const ref = useRef({ ...handlers, pressed });
   useEffect(() => {
@@ -27,32 +30,25 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     };
   });
 
-  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchStart, pressed } = ref.current;
-    if (onTouchStart) {
-      onTouchStart(event);
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyDown, pressed } = ref.current;
+    if (onKeyDown) {
+      onKeyDown(event);
     }
 
-    if (!pressed) {
+    const { key } = event;
+    if (
+      !pressed &&
+      (key === "Enter" || (!disableSpacebarClick && key === " "))
+    ) {
       setPressed(true);
     }
   }, []);
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchMove, pressed } = ref.current;
-    if (onTouchMove) {
-      onTouchMove(event);
-    }
-
-    if (pressed) {
-      setPressed(false);
-    }
-  }, []);
-
-  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchEnd, pressed } = ref.current;
-    if (onTouchEnd) {
-      onTouchEnd(event);
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
+    const { onKeyUp, pressed } = ref.current;
+    if (onKeyUp) {
+      onKeyUp(event);
     }
 
     if (pressed) {
@@ -93,25 +89,32 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
     }
   }, []);
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown, pressed } = ref.current;
-    if (onKeyDown) {
-      onKeyDown(event);
+  const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchStart, pressed } = ref.current;
+    if (onTouchStart) {
+      onTouchStart(event);
     }
 
-    const { key } = event;
-    if (
-      !pressed &&
-      (key === "Enter" || (!disableSpacebarClick && key === " "))
-    ) {
+    if (!pressed) {
       setPressed(true);
     }
   }, []);
 
-  const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyUp, pressed } = ref.current;
-    if (onKeyUp) {
-      onKeyUp(event);
+  const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchMove, pressed } = ref.current;
+    if (onTouchMove) {
+      onTouchMove(event);
+    }
+
+    if (pressed) {
+      setPressed(false);
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
+    const { onTouchEnd, pressed } = ref.current;
+    if (onTouchEnd) {
+      onTouchEnd(event);
     }
 
     if (pressed) {
@@ -122,14 +125,14 @@ export function usePressedStates<E extends HTMLElement = HTMLElement>({
   return {
     pressed,
     handlers: {
-      onTouchStart: handleTouchStart,
-      onTouchMove: handleTouchMove,
-      onTouchEnd: handleTouchEnd,
+      onKeyDown: handleKeyDown,
+      onKeyUp: handleKeyUp,
       onMouseDown: handleMouseDown,
       onMouseUp: handleMouseUp,
       onMouseLeave: handleMouseLeave,
-      onKeyDown: handleKeyDown,
-      onKeyUp: handleKeyUp,
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
+      onTouchEnd: handleTouchEnd,
     },
   };
 }

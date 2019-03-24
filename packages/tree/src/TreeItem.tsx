@@ -12,7 +12,7 @@ import {
   ListItemChildrenProps,
   SimpleListItemProps,
 } from "@react-md/list";
-import { RippleContainer, useRipplesState } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 import { Omit, WithForwardedRef } from "@react-md/utils";
 
 import BaseTreeItem from "./BaseTreeItem";
@@ -55,7 +55,7 @@ const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
     expanded,
     selected,
     focused,
-    className,
+    className: propClassName,
     contentComponent,
     isLink: propIsLink,
     expanderIcon,
@@ -74,6 +74,8 @@ const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
     height,
     threeLines,
     children,
+    disableRipple,
+    disableProgrammaticRipple,
     ...props
   } = providedProps as WithDefaultProps;
   const { disabled } = props;
@@ -100,9 +102,12 @@ const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
     group = <TreeGroup collapsed={!expanded}>{renderChildItems()}</TreeGroup>;
   }
 
-  const { ripples, setRipples, handlers } = useRipplesState({
+  const { ripples, className, handlers } = useInteractionStates({
     disabled,
+    className: propClassName,
     handlers: isLink ? props : undefined,
+    disableRipple,
+    disableProgrammaticRipple,
     disableSpacebarClick: isLink,
   });
 
@@ -154,7 +159,7 @@ const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
         >
           {children}
         </ListItemChildren>
-        <RippleContainer ripples={ripples} setRipples={setRipples} />
+        {ripples}
       </Content>
       {group}
     </BaseTreeItem>

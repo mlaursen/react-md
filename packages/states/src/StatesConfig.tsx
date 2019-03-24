@@ -1,15 +1,81 @@
-import React, { FunctionComponent, ReactNode, useMemo } from "react";
+import React, {
+  createContext,
+  FunctionComponent,
+  ReactNode,
+  useContext,
+  useMemo,
+} from "react";
+import {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "@react-md/transition";
 import { Omit } from "@react-md/utils";
+import { RIPPLE_CLASS_NAMES, RIPPLE_TIMEOUT } from "./ripples/contants";
+import {
+  useModeClassName,
+  useModeDetection,
+  UserInteractionMode,
+} from "./useModeDetection";
 
-import { RIPPLE_CLASS_NAMES, RIPPLE_TIMEOUT } from "./contants";
-import { StatesContext, StatesContextType } from "./context";
-import { useModeClassName, useModeDetection } from "./useModeDetection";
+/**
+ * Contains all teh values in the `StatesConfig` component.
+ */
+export interface StatesConfigContextType {
+  /**
+   * The amount of time before a ripple finishes its animation. You probably
+   * don't want to change this value unless you updated the duration in scss
+   * or chnaged the different class names for the ripple animation.
+   */
+  rippleTimeout: TransitionTimeout;
 
-export interface StatesConfigProps extends Partial<StatesContextType> {
+  /**
+   * The class names to apply during hte different stages for the ripple animation.
+   * You probably don't want to use this.
+   */
+  rippleClassNames: CSSTransitionClassNames;
+
+  /**
+   * Boolean if the ripple effect should be disabled for all child components
+   * that use the Ripple states.
+   */
+  disableRipple: boolean;
+
+  /**
+   * Boolean if the ripple component should not be triggered after a "programmatic"
+   * ripple effect. This would be if  the `.click()` function is called on an element
+   * through javascript or some other means.
+   */
+  disableProgrammaticRipple: boolean;
+
+  /**
+   * The user's current interaction mode with your app.
+   */
+  mode: UserInteractionMode;
+}
+
+export const StatesConfigContext = createContext<StatesConfigContextType>({
+  rippleTimeout: RIPPLE_TIMEOUT,
+  rippleClassNames: RIPPLE_CLASS_NAMES,
+  disableRipple: false,
+  disableProgrammaticRipple: false,
+  mode: "keyboard",
+});
+
+/**
+ * A simple hook that can be used to get the Ripple context. This is used
+ * behind the scenes for the Ripple component and _probably_ shouldn't be
+ * used anywhere else. It's mostly used to just use the context defaults when
+ * the timeout or classNames are undefined.
+ */
+export function useStatesConfigContext() {
+  return useContext(StatesConfigContext);
+}
+
+export interface StatesConfigProps extends Partial<StatesConfigContextType> {
   children?: ReactNode;
 }
 
-type DefaultProps = Omit<StatesContextType, "mode">;
+type DefaultProps = Omit<StatesConfigContextType, "mode">;
 type WithDefaultProps = StatesConfigProps & DefaultProps;
 
 /**
@@ -44,7 +110,9 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
   );
 
   return (
-    <StatesContext.Provider value={value}>{children}</StatesContext.Provider>
+    <StatesConfigContext.Provider value={value}>
+      {children}
+    </StatesConfigContext.Provider>
   );
 };
 
