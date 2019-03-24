@@ -10,6 +10,9 @@ import cn from "classnames";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 import { useVisibility } from "@react-md/utils";
+import dividerVariables from "@react-md/divider/dist/scssVariables";
+import statesVariables from "@react-md/states/dist/scssVariables";
+import themeVariables from "@react-md/theme/dist/scssVariables";
 
 import AppBarAction from "components/AppBarAction";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
@@ -17,23 +20,33 @@ import * as storage from "utils/storage";
 
 import "./toggle-theme.scss";
 
+let lastTheme = "";
+const lightVariables = Object.keys({
+  "light-states-start": "",
+  ...statesVariables["rmd-states-theme-values"],
+  "light-divider-start": "",
+  ...dividerVariables["rmd-divider-theme-values"],
+  "light-theme-start": "",
+  ...themeVariables["rmd-theme-values"],
+})
+  .filter(name => name.includes("light"))
+  .reduce((collected, name) => {
+    if (name.endsWith("-start")) {
+      lastTheme = name.replace(/^light-/, "").replace(/-start$/, "");
+      return collected;
+    }
+
+    const prefix = `rmd-${lastTheme}`;
+    const key = name.replace(/^light-/, "").replace(/light$/, "background");
+
+    return {
+      ...collected,
+      [`${prefix}-${key}`]: `var(--${prefix}-${name})`,
+    };
+  }, {});
+
 const LIGHT_THEMES = {
-  "rmd-theme-background": "#fafafa",
-  "rmd-theme-surface": "#fff",
-  "rmd-theme-on-surface": "#000",
-  "rmd-theme-text-primary-on-background":
-    "var(--rmd-theme-text-primary-on-light)",
-  "rmd-theme-text-secondary-on-background":
-    "var(--rmd-theme-text-secondary-on-light)",
-  "rmd-theme-text-hint-on-background": "var(--rmd-theme-text-hint-on-light)",
-  "rmd-theme-text-disabled-on-background":
-    "var(--rmd-theme-text-disabled-on-light)",
-  "rmd-theme-text-icon-on-background": "var(--rmd-theme-text-icon-on-light)",
-  "rmd-states-background-color": "var(--rmd-states-light-background-color)",
-  "rmd-states-ripple-background-color":
-    "var(--rmd-states-light-ripple-background-color)",
-  "rmd-divider-background-color":
-    "var(--rmd-divider-background-color-on-light)",
+  ...lightVariables,
   "code-bg": "var(--code-bg-light)",
   "strong-color": "var(--strong-color)",
 };

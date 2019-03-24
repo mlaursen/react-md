@@ -123,8 +123,6 @@
     cursor: pointer;
   }
 
-  // don't want to limit the hover effect to mouse only since it's possible
-  // to use both the keyboard and mouse together
   &:hover {
     @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
   }
@@ -132,6 +130,17 @@
   @include rmd-states-keyboard-only {
     &:focus {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+
+      &:hover {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+      }
+    }
+  }
+
+  @include rmd-states-touch-only {
+    &:focus,
+    &:hover {
+      @include rmd-states-theme-update-var(background-color, transparent);
     }
   }
 

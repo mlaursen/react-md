@@ -86,7 +86,7 @@
   }
 
   @include rmd-button-theme(border-radius, text-border-radius);
-  @include rmd-button-theme(height, text-height);
+  @include rmd-button-theme(min-height, text-height);
   @include rmd-button-theme(min-width, text-min-width);
 
   padding: rmd-button-theme-var(text-vertical-padding) rmd-button-theme-var(text-horizontal-padding);

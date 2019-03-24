@@ -103,7 +103,7 @@ export function useKeyboardDetection() {
       window.removeEventListener("mousedown", disable, true);
       window.removeEventListener("touchstart", disable, true);
     };
-  }, []);
+  }, [enabled]);
 
   return enabled;
 }

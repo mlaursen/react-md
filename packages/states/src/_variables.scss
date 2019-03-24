@@ -53,19 +53,19 @@ $rmd-states-light-theme-selected-color: rgba(
 
 /// The hover color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-hover-color: rgba($rmd-states-dark-theme-background-color, 0.08) !default;
+$rmd-states-dark-theme-hover-color: rgba($rmd-states-dark-theme-background-color, 0.04) !default;
 
 /// The keyboard focus color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-focus-color: rgba($rmd-states-dark-theme-background-color, 0.24) !default;
+$rmd-states-dark-theme-focus-color: rgba($rmd-states-dark-theme-background-color, 0.12) !default;
 
 /// The pressed color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-pressed-color: rgba($rmd-states-dark-theme-background-color, 0.32) !default;
+$rmd-states-dark-theme-pressed-color: rgba($rmd-states-dark-theme-background-color, 0.16) !default;
 
 /// The selected color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-selected-color: rgba($rmd-states-dark-theme-background-color, 0.16) !default;
+$rmd-states-dark-theme-selected-color: rgba($rmd-states-dark-theme-background-color, 0.12) !default;
 
 /// The base background color to use for the ripple effect in a light themed
 /// application.

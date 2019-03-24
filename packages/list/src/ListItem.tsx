@@ -67,6 +67,7 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
 
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
+    disabled: props.disabled,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
