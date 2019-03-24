@@ -1,2 +1,4 @@
 /.next
 /pages/app.css*
+/pages/packages/*/README.md
+
