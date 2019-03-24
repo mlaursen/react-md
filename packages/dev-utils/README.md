@@ -33,8 +33,3 @@ Builds the project by
 This runs `jest` in the current project. This is really just so I don't need to
 keep remembering to install `jest` and create the `ts-jest` config in each
 project.
-
-### `dev-utils prepublish`
-
-The prepublish command is used with the `prepublishOnly` hook for npm. It will
-just make sure to run `clean` followed by `build` before publishing.

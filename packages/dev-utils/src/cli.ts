@@ -5,7 +5,6 @@ import commander from "commander";
 import { default as build, BuildConfig } from "./build";
 import clean from "./clean";
 import test from "./test";
-import prepublish from "./prepublish";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
 import sandbox from "./sandbox";
@@ -47,13 +46,6 @@ commander
   .option("--verbose")
   .action((_, program: BuildConfig) => {
     build(program);
-  });
-
-commander
-  .command("prepublish")
-  .option("--verbose")
-  .action(() => {
-    prepublish();
   });
 
 commander
