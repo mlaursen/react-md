@@ -116,7 +116,6 @@ const alwaysRequired = [
   "@react-md/theme",
   "@react-md/typography",
   "@react-md/utils",
-  "@react-md/wia-aria",
 ];
 
 const devDependencies = [
@@ -131,7 +130,8 @@ const devDependencies = [
 
 const nonStyleable = [
   "@react-md/elevation",
-  "@react-md/material-cicons",
+  "@react-md/portal",
+  "@react-md/material-icons",
   "@react-md/wia-aria",
 ];
 

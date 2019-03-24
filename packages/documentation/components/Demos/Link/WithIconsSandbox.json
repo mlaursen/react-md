@@ -4,11 +4,11 @@
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\nimport { KeyboardTracker } from \"@react-md/wia-aria\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig preventColorPollution>\n    <KeyboardTracker>\n      <Demo />\n    </StatesConfig>\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/link/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/link/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -24,7 +24,6 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "@react-md/wia-aria": "next",
         "react-dom": "latest"
       },
       "devDependencies": {

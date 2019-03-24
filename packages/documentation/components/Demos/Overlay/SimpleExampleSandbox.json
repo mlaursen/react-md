@@ -4,11 +4,11 @@
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\nimport { KeyboardTracker } from \"@react-md/wia-aria\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig preventColorPollution>\n    <KeyboardTracker>\n      <Demo />\n    </StatesConfig>\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/portal/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -23,7 +23,6 @@
         "@react-md/states": "next",
         "@react-md/transition": "next",
         "@react-md/utils": "next",
-        "@react-md/wia-aria": "next",
         "react": "latest",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
@@ -49,11 +48,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent, useState, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport useToggle from \"./useToggle\";\n\nconst SimpleExample: FunctionComponent = () => {\n  const { visible, toggle, hide } = useToggle();\n  return (\n    <Fragment>\n      <Button id=\"simple-overlay-button\" onClick={toggle} themeType=\"contained\">\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={visible} onRequestClose={hide} />\n    </Fragment>\n  );\n};\n\nexport default SimpleExample;\n",
-    "isBinary": false
-  },
-  "src/useToggle.ts": {
-    "content": "import { useState, useRef, useCallback, useEffect } from \"react\";\n\nexport default function useToggle() {\n  const [visible, setVisible] = useState(false);\n  const visibleRef = useRef(visible);\n  useEffect(() => {\n    visibleRef.current = visible;\n  });\n  const show = useCallback(() => {\n    if (!visibleRef.current) {\n      setVisible(true);\n    }\n  }, []);\n  const hide = useCallback(() => {\n    if (visibleRef.current) {\n      setVisible(false);\n    }\n  }, []);\n\n  const toggle = useCallback(() => {\n    setVisible(prevVisible => !prevVisible);\n  }, []);\n\n  return { visible, show, hide, toggle };\n}\n",
+    "content": "import React, { FunctionComponent, useState, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useVisibility } from \"@react-md/utils\";\n\nconst SimpleExample: FunctionComponent = () => {\n  const { visible, toggle, hide } = useVisibility();\n  return (\n    <Fragment>\n      <Button id=\"simple-overlay-button\" onClick={toggle} themeType=\"contained\">\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={visible} onRequestClose={hide} />\n    </Fragment>\n  );\n};\n\nexport default SimpleExample;\n",
     "isBinary": false
   }
 }

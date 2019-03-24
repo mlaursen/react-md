@@ -4,11 +4,11 @@
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\nimport { KeyboardTracker } from \"@react-md/wia-aria\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig preventColorPollution>\n    <KeyboardTracker>\n      <Demo />\n    </StatesConfig>\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/material-icons/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -23,7 +23,6 @@
         "@react-md/states": "next",
         "@react-md/transition": "next",
         "@react-md/utils": "next",
-        "@react-md/wia-aria": "next",
         "classnames": "latest",
         "react": "latest",
         "@react-md/theme": "next",
@@ -58,7 +57,7 @@
     "isBinary": false
   },
   "src/code.scss": {
-    "content": "@import 'variables';\n@import '@react-md/theme/dist/variables';\n@import '@react-md/typography/dist/variables';\n@import '@react-md/typography/dist/mixins';\n\n$code-background-color: darken($rmd-theme-background, 10%);\n$solarized-base-03: #002b36;\n$solarized-base-02: #073642;\n$solarized-base-01: #586e75;\n$solarized-base-00: #657b83;\n$solarized-base-0: #839496;\n$solarized-base-1: #93a1a1;\n$solarized-base-2: #eee8d5;\n$solarized-base-3: #fdf6e3;\n\n$solarized-yellow: #b58900;\n$solarized-orange: #cb4b16;\n$solarized-red: #d30102;\n$solarized-magenta: #d33682;\n$solarized-violet: #6c71c4;\n$solarized-blue: #268bd2;\n$solarized-cyan: #2aa198;\n$solarized-green: #859900;\n\n:root {\n  --code-bg: #{$code-background-color};\n  --code-bg-light: #{$rmd-grey-200};\n  --code-bg-dark: #{$code-background-color};\n}\n\n.code {\n  @include rmd-typography(body-1);\n\n  font-family: 'Source Code Pro', Consolas, Monaco, monospace;\n\n  &--block {\n    background-color: $solarized-base-03;\n    color: $solarized-base-1;\n\n    // always enforce ltr for blocked code\n    direction: ltr;\n    margin: 0.5em 0;\n    overflow: auto;\n    padding: 1em;\n    word-wrap: break-word;\n  }\n\n  &--inline {\n    background-color: var(--code-bg);\n    border-radius: 0.25rem;\n    font-size: 0.9em;\n    padding: 0.1em 0.4em;\n    white-space: pre-wrap;\n  }\n\n  &--counted {\n    padding-left: 3em;\n    position: relative;\n  }\n\n  &__lines {\n    border-right: 1px solid $solarized-base-01;\n    display: flex;\n    flex-direction: column;\n    left: 0;\n    padding-right: 0.25em;\n    pointer-events: none;\n    position: absolute;\n    text-align: right;\n    width: 2.5em;\n  }\n}\n",
+    "content": "@import 'variables';\n@import '@react-md/theme/dist/variables';\n@import '@react-md/typography/dist/variables';\n@import '@react-md/typography/dist/mixins';\n\n$code-background-color: darken($rmd-theme-background, 10%);\n$solarized-base-03: #002b36;\n$solarized-base-02: #073642;\n$solarized-base-01: #586e75;\n$solarized-base-00: #657b83;\n$solarized-base-0: #839496;\n$solarized-base-1: #93a1a1;\n$solarized-base-2: #eee8d5;\n$solarized-base-3: #fdf6e3;\n\n$solarized-yellow: #b58900;\n$solarized-orange: #cb4b16;\n$solarized-red: #d30102;\n$solarized-magenta: #d33682;\n$solarized-violet: #6c71c4;\n$solarized-blue: #268bd2;\n$solarized-cyan: #2aa198;\n$solarized-green: #859900;\n\n:root {\n  --code-bg: #{$code-background-color};\n  --code-bg-light: #{$rmd-grey-200};\n  --code-bg-dark: #{$code-background-color};\n}\n\n.code {\n  @include rmd-typography(body-1);\n\n  font-family: 'Source Code Pro', Consolas, Monaco, monospace;\n\n  &::selection,\n  *::selection {\n    background-color: $solarized-base-02;\n  }\n\n  &--block {\n    background-color: $solarized-base-03;\n    color: $solarized-base-1;\n\n    // always enforce ltr for blocked code\n    direction: ltr;\n    margin: 0.5em 0;\n    overflow: auto;\n    padding: 1em;\n    word-wrap: break-word;\n  }\n\n  &--inline {\n    background-color: var(--code-bg);\n    border-radius: 0.25rem;\n    font-size: 0.9em;\n    padding: 0.1em 0.4em;\n    white-space: pre-wrap;\n  }\n\n  &--counted {\n    padding-left: 3em;\n    position: relative;\n  }\n\n  &__lines {\n    border-right: 1px solid $solarized-base-01;\n    display: flex;\n    flex-direction: column;\n    left: 0;\n    padding-right: 0.25em;\n    pointer-events: none;\n    position: absolute;\n    text-align: right;\n    width: 2.5em;\n  }\n}\n",
     "isBinary": false
   },
   "src/all-icons.scss": {

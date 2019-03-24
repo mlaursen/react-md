@@ -4,11 +4,11 @@
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\nimport { KeyboardTracker } from \"@react-md/wia-aria\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig preventColorPollution>\n    <KeyboardTracker>\n      <Demo />\n    </StatesConfig>\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/link/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/wia-aria/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/link/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -26,7 +26,6 @@
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
-        "@react-md/wia-aria": "next",
         "react-dom": "latest"
       },
       "devDependencies": {
@@ -57,7 +56,7 @@
     "isBinary": false
   },
   "src/useLinkPrefetch.ts": {
-    "content": "import { useCallback, HTMLAttributes, useState } from \"react\";\nimport Router from \"next/router\";\n\nexport function useLinkMousePrefetch(\n  href: string,\n  disabled: boolean = false,\n  onMouseEnter?: HTMLAttributes<HTMLAnchorElement>[\"onMouseEnter\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.MouseEvent<HTMLAnchorElement>) => {\n      if (onMouseEnter) {\n        onMouseEnter(event);\n      }\n\n      if (disabled || fetched) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n      }\n    },\n    [href, onMouseEnter, disabled, fetched]\n  );\n}\n\nexport function useLinkKeyboardPrefetch(\n  href: string,\n  disabled: boolean = false,\n  onKeyUp?: HTMLAttributes<HTMLAnchorElement>[\"onKeyUp\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.KeyboardEvent<HTMLAnchorElement>) => {\n      if (onKeyUp) {\n        onKeyUp(event);\n      }\n\n      if (\n        disabled ||\n        fetched ||\n        ![\"Tab\", \"ArrowDown\", \"ArrowUp\"].includes(event.key)\n      ) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n        setFetched(true);\n      }\n    },\n    [href, onKeyUp, disabled, fetched]\n  );\n}\n\nexport interface LinkPrefetchConfig\n  extends Pick<HTMLAttributes<HTMLAnchorElement>, \"onMouseEnter\" | \"onKeyUp\"> {\n  href: string;\n  disabled?: boolean;\n}\n\nexport default function useLinkPrefetch({\n  href,\n  disabled = false,\n  onMouseEnter,\n  onKeyUp,\n}: LinkPrefetchConfig) {\n  return {\n    onMouseEnter: useLinkMousePrefetch(href, disabled, onMouseEnter),\n    onKeyUp: useLinkKeyboardPrefetch(href, disabled, onKeyUp),\n  };\n}\n",
+    "content": "import { useCallback, HTMLAttributes, useState } from \"react\";\nimport Router from \"next/router\";\n\nexport function useLinkMousePrefetch(\n  href: string,\n  disabled: boolean = false,\n  onMouseEnter?: HTMLAttributes<HTMLAnchorElement>[\"onMouseEnter\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.MouseEvent<HTMLAnchorElement>) => {\n      if (onMouseEnter) {\n        onMouseEnter(event);\n      }\n\n      if (disabled || fetched) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n        setFetched(true);\n      }\n    },\n    [href, onMouseEnter, disabled, fetched]\n  );\n}\n\nexport function useLinkKeyboardPrefetch(\n  href: string,\n  disabled: boolean = false,\n  onKeyUp?: HTMLAttributes<HTMLAnchorElement>[\"onKeyUp\"]\n) {\n  const [fetched, setFetched] = useState(false);\n  return useCallback(\n    (event: React.KeyboardEvent<HTMLAnchorElement>) => {\n      if (onKeyUp) {\n        onKeyUp(event);\n      }\n\n      if (\n        disabled ||\n        fetched ||\n        ![\"Tab\", \"ArrowDown\", \"ArrowUp\"].includes(event.key)\n      ) {\n        return;\n      }\n\n      const { currentTarget } = event;\n      const { origin } = window.location;\n      if (currentTarget.href.startsWith(origin)) {\n        Router.prefetch(href);\n        setFetched(true);\n      }\n    },\n    [href, onKeyUp, disabled, fetched]\n  );\n}\n\nexport interface LinkPrefetchConfig\n  extends Pick<HTMLAttributes<HTMLAnchorElement>, \"onMouseEnter\" | \"onKeyUp\"> {\n  href: string;\n  disabled?: boolean;\n}\n\nexport default function useLinkPrefetch({\n  href,\n  disabled = false,\n  onMouseEnter,\n  onKeyUp,\n}: LinkPrefetchConfig) {\n  return {\n    onMouseEnter: useLinkMousePrefetch(href, disabled, onMouseEnter),\n    onKeyUp: useLinkKeyboardPrefetch(href, disabled, onKeyUp),\n  };\n}\n",
     "isBinary": false
   }
 }
