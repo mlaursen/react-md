@@ -1,12 +1,9 @@
 import React, { FunctionComponent, ReactNode, useMemo } from "react";
 import { Omit } from "@react-md/utils";
-import {
-  StatesContextType,
-  StatesContext,
-  UserInteractionMode,
-} from "./context";
-import { RIPPLE_TIMEOUT, RIPPLE_CLASS_NAMES } from "./contants";
-import { useModeDetection, useModeClassName } from "./useModeDetection";
+
+import { RIPPLE_CLASS_NAMES, RIPPLE_TIMEOUT } from "./contants";
+import { StatesContext, StatesContextType } from "./context";
+import { useModeClassName, useModeDetection } from "./useModeDetection";
 
 export interface StatesConfigProps extends Partial<StatesContextType> {
   children?: ReactNode;
@@ -29,7 +26,6 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
     rippleClassNames,
     disableRipple,
     disableProgrammaticRipple,
-    preventColorPollution,
     children,
   } = props as WithDefaultProps;
 
@@ -43,15 +39,8 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
       rippleClassNames,
       disableRipple,
       disableProgrammaticRipple,
-      preventColorPollution,
     }),
-    [
-      rippleTimeout,
-      rippleClassNames,
-      disableRipple,
-      disableProgrammaticRipple,
-      preventColorPollution,
-    ]
+    [rippleTimeout, rippleClassNames, disableRipple, disableProgrammaticRipple]
   );
 
   return (
@@ -60,7 +49,6 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
 };
 
 const defaultProps: DefaultProps = {
-  preventColorPollution: false,
   rippleTimeout: RIPPLE_TIMEOUT,
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,
@@ -77,7 +65,6 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     StatesConfig.propTypes = {
-      preventColorPollution: PropTypes.bool,
       rippleTimeout: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.shape({

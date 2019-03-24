@@ -17,13 +17,6 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  */
 export interface StatesContextType {
   /**
-   * Boolean if all components using the state effects should be updated
-   * to work around the color pollution problems with the different opacity
-   * applications.
-   */
-  preventColorPollution: boolean;
-
-  /**
    * The amount of time before a ripple finishes its animation. You probably
    * don't want to change this value unless you updated the duration in scss
    * or chnaged the different class names for the ripple animation.
@@ -56,7 +49,6 @@ export interface StatesContextType {
 }
 
 export const StatesContext = createContext<StatesContextType>({
-  preventColorPollution: false,
   rippleTimeout: RIPPLE_TIMEOUT,
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,

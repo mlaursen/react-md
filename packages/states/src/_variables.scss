@@ -8,24 +8,14 @@
 @import '@react-md/theme/dist/variables';
 
 /// Boolean if the pressed and keyboard focus interaction states should use
-/// the ripple effect. If this is set to false, a different background opacity
-/// will be applied to the element instead.
+/// the ripple effect. If this is set to false, a different background color
+/// will be applied for each interaction state instead.
 ///
 /// Note: You will still need to update the `InteractionStatesContext` to
 /// disable the ripple effects in javascript.
 ///
 /// @type Boolean
 $rmd-states-use-ripple: true !default;
-
-/// This is used along with the `PreventColorPullution` component to be able to
-/// fix color issues that might arise using the states package. This is enabled
-/// by default since it might be confusing to update both your javascript and
-/// your SCSS to enable this feature. If you aren't using this feature, you can
-/// save a few bytes in your bundle size by setting this to `false`.
-///
-/// @see TODO: ADD LINK TO COLOR POLLUTION FIX DOCUMENTATION
-/// @type Boolean
-$rmd-states-prevent-color-pollution: true !default;
 
 /// The base background color to use for the different interaction states for
 /// a light themed application. This is the color that gets different opacities
@@ -39,6 +29,44 @@ $rmd-states-light-theme-background-color: $rmd-black-base !default;
 /// @type Color
 $rmd-states-dark-theme-background-color: $rmd-white-base !default;
 
+/// The hover color to use for light themed backgrounds.
+/// @type Color
+$rmd-states-light-theme-hover-color: rgba($rmd-states-light-theme-background-color, 0.08) !default;
+
+/// The keyboard focus color to use for light themed backgrounds.
+/// @type Color
+$rmd-states-light-theme-focus-color: rgba($rmd-states-light-theme-background-color, 0.24) !default;
+
+/// The pressed color to use for light themed backgrounds.
+/// @type Color
+$rmd-states-light-theme-pressed-color: rgba(
+  $rmd-states-light-theme-background-color,
+  0.32
+) !default;
+
+/// The selected color to use for light themed backgrounds.
+/// @type Color
+$rmd-states-light-theme-selected-color: rgba(
+  $rmd-states-light-theme-background-color,
+  0.16
+) !default;
+
+/// The hover color to use for dark themed backgrounds.
+/// @type Color
+$rmd-states-dark-theme-hover-color: rgba($rmd-states-dark-theme-background-color, 0.08) !default;
+
+/// The keyboard focus color to use for dark themed backgrounds.
+/// @type Color
+$rmd-states-dark-theme-focus-color: rgba($rmd-states-dark-theme-background-color, 0.24) !default;
+
+/// The pressed color to use for dark themed backgrounds.
+/// @type Color
+$rmd-states-dark-theme-pressed-color: rgba($rmd-states-dark-theme-background-color, 0.32) !default;
+
+/// The selected color to use for dark themed backgrounds.
+/// @type Color
+$rmd-states-dark-theme-selected-color: rgba($rmd-states-dark-theme-background-color, 0.16) !default;
+
 /// The base background color to use for the ripple effect in a light themed
 /// application.
 /// @type Color
@@ -47,7 +75,7 @@ $rmd-states-light-theme-ripple-background-color: rgba($rmd-black-base, 0.08) !de
 /// The base background color to use for the ripple effect in a dark themed
 /// application.
 /// @type Color
-$rmd-states-dark-theme-ripple-background-color: rgba($rmd-white-base, 0.08) !default;
+$rmd-states-dark-theme-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
 
 /// The background color to use for the different states. The default behavior
 /// is to use a base color and apply different opacities depending on the interaction
@@ -59,6 +87,42 @@ $rmd-states-background-color: if(
   $rmd-states-dark-theme-background-color
 ) !default;
 
+/// The default hover color to use. This will be determined based on the current theme type
+/// of light or dark.
+/// @type Color
+$rmd-states-hover-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-hover-color,
+  $rmd-states-dark-theme-hover-color
+) !default;
+
+/// The default focus color to use. This will be determined based on the current theme type
+/// of light or dark.
+/// @type Color
+$rmd-states-focus-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-focus-color,
+  $rmd-states-dark-theme-focus-color
+) !default;
+
+/// The default pressed color to use. This will be determined based on the current theme type
+/// of light or dark.
+/// @type Color
+$rmd-states-pressed-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-pressed-color,
+  $rmd-states-dark-theme-pressed-color
+) !default;
+
+/// The default selected color to use. This will be determined based on the current theme type
+/// of light or dark.
+/// @type Color
+$rmd-states-selected-color: if(
+  $rmd-theme-light,
+  $rmd-states-light-theme-selected-color,
+  $rmd-states-dark-theme-selected-color
+) !default;
+
 /// The base background color for the ripple effect.
 /// @type Color
 $rmd-states-ripple-background-color: if(
@@ -67,47 +131,35 @@ $rmd-states-ripple-background-color: if(
   $rmd-states-dark-theme-ripple-background-color
 ) !default;
 
-/// The opacity for the ripple effect.
-/// @type Color
-$rmd-states-ripple-opacity: 1 !default;
-
-/// The opacity to apply to the `$rmd-states-background-color` value when the
-/// element is in a hover state.
+/// The transition duration for the ripple transformation animation. This is the expanding circle
+/// animation that overlaps a bit with the fade out animation.
 /// @type Number
-$rmd-states-hover-opacity: 0.08 !default;
+$rmd-states-ripple-transform-duration: 0.45s !default;
 
-/// The opacity to apply to the `$rmd-states-background-color` value when the
-/// element is in a focus state.
-///
-/// Note: By default, this opacity will only be applied for **keyboard focus**
-/// instead of all focus events.
+/// The transition duration for the ripple opacity animation. This will be triggered
+/// when the ripple starts its exit animation.
 /// @type Number
-$rmd-states-focus-opacity: 0.24 !default;
-
-/// The opacity to apply to the `$rmd-states-background-color` value when the
-/// element is in a pressed state.
-/// @type Number
-$rmd-states-pressed-opacity: 0.32 !default;
-
-/// The opacity to apply to the `$rmd-states-background-color` value when the
-/// element is in a selected state.
-/// @type Number
-$rmd-states-selected-opacity: 0.16 !default;
+$rmd-states-ripple-opacity-duration: 0.3s !default;
 
 /// A Map of all the "themeable" parts of the states package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.
 /// @type Map
 $rmd-states-theme-values: (
-  background-color: $rmd-states-background-color,
-  dark-background-color: $rmd-states-dark-theme-background-color,
-  light-background-color: $rmd-states-light-theme-background-color,
-  hover-opacity: $rmd-states-hover-opacity,
-  focus-opacity: $rmd-states-focus-opacity,
-  pressed-opacity: $rmd-states-pressed-opacity,
-  selected-opacity: $rmd-states-selected-opacity,
+  background-color: inherit,
+  hover-color: $rmd-states-hover-color,
+  focus-color: $rmd-states-focus-color,
+  pressed-color: $rmd-states-pressed-color,
+  selected-color: $rmd-states-selected-color,
   ripple-background-color: $rmd-states-ripple-background-color,
-  dark-ripple-background-color: $rmd-states-dark-theme-ripple-background-color,
+  light-hover-color: $rmd-states-light-theme-hover-color,
+  light-focus-color: $rmd-states-light-theme-focus-color,
+  light-pressed-color: $rmd-states-light-theme-pressed-color,
+  light-selected-color: $rmd-states-light-theme-selected-color,
   light-ripple-background-color: $rmd-states-light-theme-ripple-background-color,
-  ripple-opacity: $rmd-states-ripple-opacity,
+  dark-hover-color: $rmd-states-dark-theme-hover-color,
+  dark-focus-color: $rmd-states-dark-theme-focus-color,
+  dark-pressed-color: $rmd-states-dark-theme-pressed-color,
+  dark-selected-color: $rmd-states-dark-theme-selected-color,
+  dark-ripple-background-color: $rmd-states-dark-theme-ripple-background-color,
 ) !default;

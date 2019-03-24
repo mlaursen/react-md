@@ -49,12 +49,7 @@ type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
   Pick<
     SimpleListItemProps,
-    | "height"
-    | "clickable"
-    | "threeLines"
-    | "preventColorPollution"
-    | "leftPosition"
-    | "rightPosition"
+    "height" | "clickable" | "threeLines" | "leftPosition" | "rightPosition"
   >
 >;
 type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
@@ -87,7 +82,6 @@ const SimpleListItem: FunctionComponent<
     "aria-disabled": ariaDisabled,
     disabled,
     clickable,
-    preventColorPollution,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -129,7 +123,6 @@ const SimpleListItem: FunctionComponent<
         rightMediaLarge={rightMediaLarge}
         rightPosition={rightPosition}
         forceIconWrap={forceIconWrap}
-        preventColorPollution={preventColorPollution}
       >
         {children}
       </ListItemChildren>
@@ -141,7 +134,6 @@ const defaultProps: DefaultProps = {
   height: "auto",
   clickable: false,
   threeLines: false,
-  preventColorPollution: false,
   leftPosition: "middle",
   rightPosition: "middle",
 };

@@ -6,9 +6,6 @@ export { default as useStatesContext } from "./useStatesContext";
 
 export * from "./context";
 
-export { default as FixColorPollution } from "./FixColorPollution";
-export * from "./FixColorPollution";
-
 export { default as StatesConfig } from "./StatesConfig";
 export * from "./StatesConfig";
 

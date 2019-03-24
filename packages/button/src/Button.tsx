@@ -7,7 +7,6 @@ import React, {
 
 import {
   InteractionStatesOptions,
-  FixColorPollution,
   useInteractionStates,
 } from "@react-md/states";
 import { WithForwardedRef, Omit } from "@react-md/utils";
@@ -75,7 +74,7 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
 
   return (
     <button {...props} {...handlers} ref={forwardedRef} className={className}>
-      <FixColorPollution>{children}</FixColorPollution>
+      {children}
       {ripples}
     </button>
   );

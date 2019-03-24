@@ -32,14 +32,6 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-states-theme-values, states);
 }
 
-/// This mixin applies one of the opacity values as a css variable to a surface.
-/// This is probably really just for internal use right now, but I might expose
-/// and document it more later.
-/// @access private
-@mixin rmd-states-opacity($type) {
-  @include rmd-states-theme(opacity, '#{$type}-opacity');
-}
-
 /// This is a mixin that is used to be able to create a "surface" for a psuedo
 /// element. It applies some base styling so that it will fill the entire
 /// container element and not have pointer-events attached.
@@ -48,7 +40,6 @@
   bottom: 0;
   content: '';
   left: 0;
-  opacity: 0;
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -63,15 +54,7 @@
   @include rmd-states-psuedo-surface;
   @include rmd-states-theme(background-color);
 
-  transition: opacity $rmd-transition-standard-time;
-}
-
-@mixin rmd-states-color-pullution-content-overlay {
-  @if $rmd-states-prevent-color-pollution {
-    .rmd-states__content-overlay {
-      @content;
-    }
-  }
+  transition: background-color $rmd-transition-standard-time;
 }
 
 /// This mixin allows you to add styles to an element only when the user is
@@ -133,7 +116,7 @@
 
   &:disabled,
   &[aria-disabled='true'] {
-    @include rmd-states-theme-update-var(hover-opacity, 0);
+    @include rmd-states-theme-update-var(hover-color, transparent);
   }
 
   &:not(:disabled):not([aria-disabled='true']):hover {
@@ -142,18 +125,18 @@
 
   // don't want to limit the hover effect to mouse only since it's possible
   // to use both the keyboard and mouse together
-  &:hover::before {
-    @include rmd-states-opacity(hover);
+  &:hover {
+    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
   }
 
   @include rmd-states-keyboard-only {
-    &:focus::before {
-      @include rmd-states-opacity(focus);
+    &:focus {
+      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
     }
   }
 
-  &.rmd-states--pressed::before {
-    @include rmd-states-opacity(pressed);
+  &.rmd-states--pressed {
+    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
   }
 }
 
@@ -163,39 +146,16 @@
 /// surface mixin since selection states are a bit less used and it might be better to do different
 /// styles than just a background change to show selection.
 @mixin rmd-states-surface-selected($selector: '&--selected') {
-  #{$selector}::before {
-    @include rmd-states-opacity(selected);
+  #{$selector} {
+    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(selected-color));
   }
 }
 
 /// Creates all the root styles for the states package as well as the themeable
 /// css variables and their default values.
 @mixin react-md-states {
-  @include rmd-theme-create-root-theme($rmd-states-theme-values, states);
-
-  @if $rmd-states-prevent-color-pollution {
-    .rmd-states__content-mask {
-      display: inherit;
-      visibility: hidden;
-    }
-
-    @include rmd-states-color-pullution-content-overlay {
-      align-items: inherit;
-      bottom: 0;
-      display: inherit;
-      justify-content: inherit;
-      left: 0;
-      padding: inherit;
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 1;
-    }
-  }
-
-  .rmd-states--touch {
-    @include rmd-states-theme-update-var(hover-opacity, 0);
-  }
+  $ignored: background-color hover-color focus-color selected-color;
+  @include rmd-theme-create-root-theme($rmd-states-theme-values, states, $ignored);
 
   .rmd-ripple-container {
     border-radius: inherit;
@@ -206,19 +166,19 @@
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 0;
   }
 
   .rmd-ripple {
     @include rmd-states-theme(background-color, ripple-background-color);
-    @include rmd-states-theme(opacity, ripple-opacity);
 
     border-radius: 50%;
     position: absolute;
     transform: scale(0);
 
     &--animating {
-      transition: transform 0.45s $rmd-transition-deceleration,
-        opacity 0.3s $rmd-transition-acceleration;
+      transition: transform $rmd-states-ripple-transform-duration $rmd-transition-deceleration,
+        opacity $rmd-states-ripple-opacity-duration $rmd-transition-acceleration;
     }
 
     &--scaling {

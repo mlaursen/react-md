@@ -123,9 +123,6 @@
   &--clickable {
     @include rmd-utils-hide-focus-outline;
     @include rmd-states-surface;
-    @include rmd-states-color-pullution-content-overlay {
-      align-items: center;
-    }
   }
 
   &[aria-disabled] {

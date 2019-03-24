@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import cn from "classnames";
-import { Omit, Maybe } from "@react-md/utils";
+import { Maybe } from "@react-md/utils";
 
 import { StatesContextType } from "./context";
 import useStatesContext from "./useStatesContext";
@@ -11,7 +11,7 @@ import { RipplesOptions, MergableRippleHandlers } from "./types.d";
 import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Omit<Partial<StatesContextType>, "preventColorPollution">,
+  extends Partial<StatesContextType>,
     RipplesOptions<E> {
   /**
    * An optional className to merge with the different interactions tates.

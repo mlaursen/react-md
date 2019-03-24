@@ -3,16 +3,13 @@ export const DEMOS_FOLDER = "components/Demos/";
 export const DEMO_INDEX = `import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";
-import { KeyboardTracker } from "@react-md/wia-aria";
 
 import "./styles.scss";
 import Demo from "./Demo";
 
 const App = () => (
-  <StatesConfig preventColorPollution>
-    <KeyboardTracker>
-      <Demo />
-    </StatesConfig>
+  <StatesConfig>
+    <Demo />
   </StatesConfig>
 );
 

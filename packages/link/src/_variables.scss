@@ -10,7 +10,6 @@ $rmd-link-transition-time: 0.15s !default;
 
 /// The default color to use for links.
 /// @type Color
-// $rmd-link-color: rmd-theme-var(primary) !default;
 $rmd-link-color: $rmd-blue-500 !default;
 
 /// The color to use for links that have been visited.

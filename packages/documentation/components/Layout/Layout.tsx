@@ -17,7 +17,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
 }) => {
   return (
     <AppSize {...defaultMedia}>
-      <StatesConfig preventColorPollution>
+      <StatesConfig>
         <Combined title={title}>{children}</Combined>
       </StatesConfig>
     </AppSize>

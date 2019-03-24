@@ -1,5 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
-import { FixColorPollution } from "@react-md/states";
+import React, { FunctionComponent, ReactNode, Fragment } from "react";
 
 import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
 import ListItemText from "./ListItemText";
@@ -101,7 +100,6 @@ export interface ListItemChildrenProps {
    * Boolean if the color pollution should be fixed at this level. This is really used when
    * composing the children with clickable list items and tree items.
    */
-  preventColorPollution?: boolean;
 }
 
 type DefaultProps = Required<
@@ -128,7 +126,6 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
     rightPosition,
     forceIconWrap,
     children: propChildren,
-    preventColorPollution,
   } = props as WithDefaultProps;
   let children = propChildren;
   if (primaryText || secondaryText || textChildren) {
@@ -171,10 +168,10 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
   );
 
   return (
-    <FixColorPollution enabled={preventColorPollution}>
+    <Fragment>
       {children}
       {(primaryText && propChildren) || null}
-    </FixColorPollution>
+    </Fragment>
   );
 };
 
