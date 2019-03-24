@@ -1,6 +1,7 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-states-use-ripple": true,
+  "rmd-states-use-pressed-states-fallback": true,
   "rmd-states-light-theme-background-color": "#000",
   "rmd-states-dark-theme-background-color": "#000",
   "rmd-states-light-theme-hover-color": "rgba(0, 0, 0, 0.08)",
@@ -21,6 +22,7 @@ export default {
   "rmd-states-ripple-background-color": "rgba(0, 0, 0, 0.08)",
   "rmd-states-ripple-transform-duration": "0.45s",
   "rmd-states-ripple-opacity-duration": "0.3s",
+  "rmd-states-pressed-class-name": ".rmd-states--pressed",
   "rmd-states-theme-values": {
     "background-color": "inherit",
     "hover-color": "rgba(0, 0, 0, 0.08)",

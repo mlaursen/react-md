@@ -58,8 +58,14 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
+    enablePressedAndRipple: propEnablePressedAndRipple,
     ...props
   } = providedProps as ButtonWithDefaultProps;
+
+  const enablePressedAndRipple =
+    typeof propEnablePressedAndRipple === "boolean"
+      ? propEnablePressedAndRipple
+      : themeType === "contained";
 
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
@@ -71,6 +77,7 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
+    enablePressedAndRipple,
   });
 
   return (

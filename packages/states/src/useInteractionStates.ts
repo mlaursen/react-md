@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { Maybe } from "@react-md/utils";
 import cn from "classnames";
+import { Maybe, Omit } from "@react-md/utils";
 
 import { MergableRippleHandlers, RipplesOptions } from "./ripples/types.d";
 import useRipples from "./ripples/useRipples";
@@ -12,7 +12,7 @@ import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
 import usePressedStates from "./usePressedStates";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Partial<StatesConfigContextType>,
+  extends Omit<Partial<StatesConfigContextType>, "mode">,
     RipplesOptions<E> {
   /**
    * An optional className to merge with the different interactions tates.
@@ -39,6 +39,13 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
    * @default false
    */
   disablePressedFallback?: boolean;
+
+  /**
+   * Boolean if the element should be able to gain both the ripple effect and the
+   * pressed states changes. This will only be enabled if both the  `disableRipple`
+   * and `disabledPressedFallback` are still `false`
+   */
+  enablePressedAndRipple?: boolean;
 }
 
 /**
@@ -75,6 +82,7 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
     rippleContainerClassName,
     disableSpacebarClick = false,
     disablePressedFallback = false,
+    enablePressedAndRipple = false,
   } = options;
 
   let {
@@ -115,16 +123,20 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
       rippleClassName,
       rippleContainerClassName,
     }));
-  } else if (!disablePressedFallback) {
+  }
+
+  if (enablePressedAndRipple || (disableRipple && !disablePressedFallback)) {
     const result = usePressedStates({
       ...options,
+      handlers: handlers || options.handlers,
       disableSpacebarClick,
     });
+
     ({ handlers } = result);
     className = cn(className, { "rmd-states--pressed": result.pressed });
-  } else {
-    handlers = options.handlers || ({} as MergableRippleHandlers<E>);
   }
+
+  handlers = handlers || options.handlers || ({} as MergableRippleHandlers<E>);
 
   handlers.onKeyDown = useKeyboardClickPolyfill(
     handlers.onKeyDown,

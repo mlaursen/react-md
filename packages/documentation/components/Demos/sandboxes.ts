@@ -87,6 +87,14 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Portal/SimpleExampleSandbox.json")),
   "Sheet/PositionExamples": () =>
     resolve(import("./Sheet/PositionExamplesSandbox.json")),
+  "States/CustomComponent": () =>
+    resolve(import("./States/CustomComponentSandbox.json")),
+  "States/CustomInteractions": () =>
+    resolve(import("./States/CustomInteractionsSandbox.json")),
+  "States/DisablingRippleEffect": () =>
+    resolve(import("./States/DisablingRippleEffectSandbox.json")),
+  "States/SetupExample": () =>
+    resolve(import("./States/SetupExampleSandbox.json")),
   "Typography/TextContainerExamples": () =>
     resolve(import("./Typography/TextContainerExamplesSandbox.json")),
   "Typography/TextExamples": () =>

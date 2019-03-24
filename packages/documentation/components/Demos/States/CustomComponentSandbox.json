@@ -1,0 +1,56 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>States Example - Custom Component</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "States Example - Custom Component",
+      "description": "Example from https://react-md.dev/packages/states/demos#custom-component",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/states": "next",
+        "@react-md/transition": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes, Fragment } from \"react\";\nimport cn from \"classnames\";\nimport {\n  useInteractionStates,\n  InteractionStatesOptions,\n} from \"@react-md/states\";\nimport { Omit } from \"@react-md/utils\";\n\nimport \"./custom-component.scss\";\n\ninterface CustomButtonProps\n  extends HTMLAttributes<HTMLButtonElement>,\n    Omit<InteractionStatesOptions, \"handlers\"> {}\n\nconst CustomButton: FunctionComponent<CustomButtonProps> = ({\n  disabled,\n  disableRipple,\n  disableSpacebarClick,\n  disableProgrammaticRipple,\n  className: propClassName,\n  children,\n  onKeyDown,\n  onKeyUp,\n  onMouseDown,\n  onMouseUp,\n  onMouseLeave,\n  onTouchStart,\n  onTouchMove,\n  onTouchEnd,\n  ...props\n}) => {\n  const { ripples, handlers, className } = useInteractionStates({\n    handlers: {\n      onKeyDown,\n      onKeyUp,\n      onMouseDown,\n      onMouseUp,\n      onMouseLeave,\n      onTouchStart,\n      onTouchMove,\n      onTouchEnd,\n    },\n    disabled,\n    disableRipple,\n    disableSpacebarClick,\n    disableProgrammaticRipple,\n    className: propClassName,\n  });\n\n  return (\n    <button\n      {...props}\n      type=\"button\"\n      className={cn(\"custom-states-component\", className)}\n      {...handlers}\n    >\n      {children}\n      {ripples}\n    </button>\n  );\n};\n\nconst CustomComponent: FunctionComponent = () => {\n  return (\n    <Fragment>\n      <CustomButton id=\"custom-button-1\">Hello</CustomButton>\n    </Fragment>\n  );\n};\n\nexport default CustomComponent;\n",
+    "isBinary": false
+  },
+  "src/custom-component.scss": {
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.custom-states-component {\n  @include rmd-button-unstyled;\n  @include rmd-typography(button);\n  @include rmd-theme(background-color, primary);\n  @include rmd-theme(color, on-primary);\n  @include rmd-states-surface;\n\n  position: relative;\n}\n",
+    "isBinary": false
+  }
+}

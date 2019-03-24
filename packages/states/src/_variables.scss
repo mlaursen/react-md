@@ -17,6 +17,12 @@
 /// @type Boolean
 $rmd-states-use-ripple: true !default;
 
+/// Boolean if the pressed states fallback should also be included. You'd normally
+/// want to disable this if only using the ripple effects, but there isn't too
+/// much code to it so you'd only save a few bytes by disabling it.
+/// @type Boolean
+$rmd-states-use-pressed-states-fallback: true !default;
+
 /// The base background color to use for the different interaction states for
 /// a light themed application. This is the color that gets different opacities
 /// applied to it.
@@ -141,6 +147,9 @@ $rmd-states-ripple-transform-duration: 0.45s !default;
 /// when the ripple starts its exit animation.
 /// @type Number
 $rmd-states-ripple-opacity-duration: 0.3s !default;
+
+/// The class name to use when using the pressed interaction fallback
+$rmd-states-pressed-class-name: '.rmd-states--pressed' !default;
 
 /// A Map of all the "themeable" parts of the states package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as

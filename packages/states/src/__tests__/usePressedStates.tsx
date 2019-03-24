@@ -119,7 +119,7 @@ describe("usePressedStates", () => {
 
   it("should correctly update the pressed state for keyboard events", () => {
     const pressedRef = createRef<boolean>();
-    const { getByText, rerender } = render(<Test pressedRef={pressedRef} />);
+    const { getByText } = render(<Test pressedRef={pressedRef} />);
     expect(pressedRef.current).toBe(false);
     const button = getByText("Button");
 

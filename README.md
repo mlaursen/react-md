@@ -102,19 +102,7 @@ Tests can be run from the root directory with either:
 $ yarn test
 ```
 
-Or
-
-```sh
-$ yarn test:each
-```
-
-The difference between these two commands is that the base `yarn test` command
-will run tests for all packages in a single `jest` test runner while the
-`yarn test:each` will spin up a different `jest` test runner for each project
-that has tests.
-
-Otherwise, you can change directories into a related project and run test from
-there.
+Or you can change directories into a related project and run test from there.
 
 ```sh
 $ cd packages/typography

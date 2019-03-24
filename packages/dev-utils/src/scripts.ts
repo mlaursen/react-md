@@ -194,6 +194,14 @@ module.exports = {
     },
     sourcemap: !isProduction,
   },
+  onwarn: (warning, warn) => {
+    // hide the typescript helpers warnings
+    if (warning.code === "THIS_IS_UNDEFINED" && /var \_\_(assign|rest)/.test(warning.frame)) {
+      return;
+    }
+
+    warn(warning);
+  },
   external: ['react', 'react-dom'],
   plugins: [
     typescript({

@@ -128,14 +128,16 @@
 
     &--contained {
       @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
-      @include rmd-elevation($rmd-button-contained-resting-elevation);
-      @include rmd-transition(standard);
-
-      transition: box-shadow $rmd-button-contained-elevation-transition-time;
-
-      &-pressed {
-        @include rmd-elevation($rmd-button-contained-pressed-elevation);
-      }
+      @include rmd-elevation-transition(
+        $rmd-button-contained-resting-elevation,
+        $rmd-button-contained-pressed-elevation,
+        '&#{$rmd-states-pressed-class-name}',
+        false,
+        $rmd-button-contained-elevation-transition-time
+      );
+      // don't want the normal pressed colors to appear since we have an elevation change
+      // instead
+      @include rmd-states-theme-update-var(background-color, transparent);
     }
 
     &--disabled {

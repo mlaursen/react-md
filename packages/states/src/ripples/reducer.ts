@@ -89,10 +89,14 @@ function createRipple(
   if (!isRippleable(event, disableSpacebarClick) || isBubbled(event)) {
     return state;
   } else if (
-    getType(event) !== "touch" &&
-    state.find(({ type }) => type === "touch")
+    state.find(r => r.holding) ||
+    (getType(event) !== "touch" && state.find(r => r.type === "touch"))
   ) {
-    // since mouse events get triggered after a touch, we don't want to create 2 ripples
+    // keyboard events are a bit different than the others since it is actually
+    // spammable since the space or enter key can be held down which triggers click
+    // events infinitely until they release. There's also the fun fact that mouse
+    // events are triggered after touch events, so we need to make sure duplicate
+    // ripples aren't created for these
     return state;
   }
 

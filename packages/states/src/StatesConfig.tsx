@@ -73,9 +73,12 @@ export function useStatesConfigContext() {
 
 export interface StatesConfigProps extends Partial<StatesConfigContextType> {
   children?: ReactNode;
+  disableModeDetection?: boolean;
 }
 
-type DefaultProps = Omit<StatesConfigContextType, "mode">;
+type DefaultProps = Omit<StatesConfigContextType, "mode"> & {
+  disableModeDetection: boolean;
+};
 type WithDefaultProps = StatesConfigProps & DefaultProps;
 
 /**
@@ -92,11 +95,18 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
     rippleClassNames,
     disableRipple,
     disableProgrammaticRipple,
+    disableModeDetection,
     children,
   } = props as WithDefaultProps;
 
-  const mode = useModeDetection();
-  useModeClassName(mode);
+  let mode: UserInteractionMode;
+  if (disableModeDetection) {
+    const context = useStatesConfigContext();
+    mode = context.mode;
+  } else {
+    const mode = useModeDetection();
+    useModeClassName(mode);
+  }
 
   const value = useMemo(
     () => ({
@@ -121,6 +131,7 @@ const defaultProps: DefaultProps = {
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,
   disableProgrammaticRipple: false,
+  disableModeDetection: false,
 };
 
 StatesConfig.defaultProps = defaultProps;

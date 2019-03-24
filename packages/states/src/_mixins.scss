@@ -81,6 +81,16 @@
   }
 }
 
+/// A simple mixin that allows you to add custom pressed state styles to an
+/// element.
+/// @param {String} pressed-class-name [rmd-states-pressed-class-name] - The class name
+/// to use to indicate that the element is currently being pressed.
+@mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name) {
+  &#{$pressed-class-name} {
+    @content;
+  }
+}
+
 /// This is the main interaction states creator. It will apply all the styles
 /// to an element so that it will:
 /// - gain the pointer cursor when it is not disabled (also works for aria-disabled)
@@ -144,8 +154,13 @@
     }
   }
 
-  &.rmd-states--pressed {
-    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
+  @if $rmd-states-use-pressed-states-fallback {
+    @include rmd-states-pressed-styles {
+      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
+      @include rmd-states-keyboard-only {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
+      }
+    }
   }
 }
 
@@ -160,42 +175,54 @@
   }
 }
 
+/// @access private
+@mixin rmd-states-ripple-container {
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
+}
+
+/// @access private
+@mixin rmd-states-ripple {
+  @include rmd-states-theme(background-color, ripple-background-color);
+
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0);
+
+  &--animating {
+    transition: transform $rmd-states-ripple-transform-duration $rmd-transition-deceleration,
+      opacity $rmd-states-ripple-opacity-duration $rmd-transition-acceleration;
+  }
+
+  &--scaling {
+    transform: scale(1);
+  }
+
+  &--fading {
+    opacity: 0;
+  }
+}
+
 /// Creates all the root styles for the states package as well as the themeable
 /// css variables and their default values.
 @mixin react-md-states {
   $ignored: background-color hover-color focus-color selected-color;
   @include rmd-theme-create-root-theme($rmd-states-theme-values, states, $ignored);
 
-  .rmd-ripple-container {
-    border-radius: inherit;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 0;
-  }
-
-  .rmd-ripple {
-    @include rmd-states-theme(background-color, ripple-background-color);
-
-    border-radius: 50%;
-    position: absolute;
-    transform: scale(0);
-
-    &--animating {
-      transition: transform $rmd-states-ripple-transform-duration $rmd-transition-deceleration,
-        opacity $rmd-states-ripple-opacity-duration $rmd-transition-acceleration;
+  @if $rmd-states-use-ripple {
+    .rmd-ripple-container {
+      @include rmd-states-ripple-container;
     }
 
-    &--scaling {
-      transform: scale(1);
-    }
-
-    &--fading {
-      opacity: 0;
+    .rmd-ripple {
+      @include rmd-states-ripple;
     }
   }
 }
