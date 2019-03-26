@@ -47,16 +47,16 @@
     "marked": "^0.6.1",
     "mobile-detect": "^1.4.3",
     "next": "^8.0.3",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.4.0",
     "@react-md/dev-utils": "^2.0.0-alpha.0",
     "@types/highlight.js": "^9.12.3",
     "@types/marked": "^0.6.3",
-    "@types/next": "^8.0.1",
+    "@types/next": "^8.0.3",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
@@ -66,9 +66,9 @@
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-preset-env": "^6.5.0",
-    "raw-loader": "^1.0.0",
-    "typescript": "^3.3.3333",
+    "postcss-preset-env": "^6.6.0",
+    "raw-loader": "^2.0.0",
+    "typescript": "^3.3.4000",
     "webpack": "^4.29.6"
   }
 }
