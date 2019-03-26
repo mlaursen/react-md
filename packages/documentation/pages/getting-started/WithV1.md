@@ -7,6 +7,40 @@ can work together during this process. To help with namespacing conflicts, v2 of
 with `rmd` while v1 is using `md` so you should be able to use them together
 without _too_ many problems.
 
+### Installing New Packages
+
+Since v2 is using scoped packages, you'll need to start by installing some of
+the new packages. I recommend starting with the following base packages and
+adding more as you see fit:
+
+- #states
+- #theme
+- #typography
+- #utils
+
+Now that you have installed these packages, you'll want to update the root of
+your app to use the new `StatesConfig` component so that the new interaction
+states work:
+
+```diff
+ import React from "react";
+ import { render } from "react-dom";
++import { StatesConfig } from "@react-md/states";
+
+ import App from "./App";
+
+-render(<App /> , document.getElementById("root"));
++render(
++  <StatesConfig>
++    <App />
++  </StatesConfig>,
++  document.getElementById("root")
++);
+```
+
+> Check out the #states/demos page for more info about the `StatesConfig` and
+> its usage.
+
 ### The Pain Points
 
 In v1 of react-md, I did some bad things which is fixed in v2 with affecting the
