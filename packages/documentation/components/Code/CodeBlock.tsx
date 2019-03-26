@@ -5,7 +5,6 @@ import React, {
   useMemo,
   forwardRef,
 } from "react";
-import cn from "classnames";
 import Head from "next/head";
 
 import { highlightCode } from "components/Markdown/utils";
@@ -40,7 +39,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
       <code
         className="code"
         dangerouslySetInnerHTML={{
-          __html: highlightCode(propChildren),
+          __html: highlightCode(propChildren, language),
         }}
       />
     );
@@ -55,12 +54,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
           rel="stylesheet"
         />
       </Head>
-      <pre
-        ref={forwardedRef}
-        className={cn("code code--block", {
-          [`language-${language}`]: language,
-        })}
-      >
+      <pre ref={forwardedRef} className="code code--block">
         {children}
       </pre>
     </Fragment>

@@ -1,6 +1,6 @@
 import cn from "classnames";
 import * as marked from "marked";
-import highlight from "highlight.js";
+import hljs from "highlight.js";
 
 import "highlight.js/styles/solarized-dark.css";
 
@@ -11,8 +11,21 @@ import {
   VERSION,
 } from "constants/index";
 
-export function highlightCode(code: string) {
-  return highlight.highlightAuto(code).value;
+function getLangauge(language: string) {
+  switch (language) {
+    case "":
+      return "markdown";
+    default:
+      return language;
+  }
+}
+
+export function highlightCode(code: string, lang: string = "") {
+  return hljs.highlight(getLangauge(lang), code).value;
+}
+
+if (typeof document !== "undefined") {
+  hljs.initHighlightingOnLoad();
 }
 
 /**
@@ -22,8 +35,7 @@ export function highlightCode(code: string) {
 const renderer = new marked.Renderer();
 
 renderer.code = (rawCode, language, escaped) => {
-  const lang = `language-${language}`;
-  const code = highlightCode(rawCode);
+  const code = highlightCode(rawCode, language);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
   if (lines > 3 && !/markup/.test(language) && language) {
@@ -33,14 +45,10 @@ renderer.code = (rawCode, language, escaped) => {
     lineNumbers = `<span class="code__lines">${lineNumbers}</span>`;
   }
 
-  const className = cn(
-    "code code--block",
-    {
-      "code--counted": lineNumbers,
-    },
-    lang
-  );
-  return `<pre class="${className}">${lineNumbers}<code class="code ${lang}">${code}</code></pre>`;
+  const className = cn("code code--block", {
+    "code--counted": lineNumbers,
+  });
+  return `<pre class="${className}">${lineNumbers}<code class="code">${code}</code></pre>`;
 };
 
 renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
@@ -105,6 +113,12 @@ const transforms: Transform[] = [
     md.replace(
       new RegExp(`#(${joinedNames})${whitespace}`, "g"),
       "[@react-md/$1](/packages/$1)"
+    ),
+  // #package-name -> [package-name page](/packages/package-name/page)
+  md =>
+    md.replace(
+      new RegExp(`#(${joinedNames})\/(demos|api|sassdoc)`, "g"),
+      "[$1 $2](/packages/$1/$2)"
     ),
   // #including-styles -> [including styles](/getting-started/installation#including-styles)
   md =>
