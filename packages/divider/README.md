@@ -37,7 +37,7 @@ and more customization information, but an example usage is shown below.
 One of the main use-cases will probably be to display a list with specific
 dividers or to add dividers between page elements:
 
-```tsx
+```ts
 import React from "react";
 import { render } from "react-dom";
 import { Divider } from "@react-md/divider";

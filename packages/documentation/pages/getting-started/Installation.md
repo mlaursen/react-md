@@ -153,7 +153,7 @@ follows:
 Once `react-md` has been included, you can use the globally created `ReactMD`
 variable to extract the components you want:
 
-```tsx
+```ts
 const { AppBar, AppBarNav, AppBarTitle, List, ListItem } = ReactMD;
 const { HomeSVGIcon } = ReactMDMaterialIcons;
 

@@ -45,7 +45,7 @@ a time and it should probably be somewhere near the root of your React render
 tree since this component will modify the base `document.body` element with a
 different `className` to help determine the current interaction mode.
 
-```tsx
+```ts
 import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";
@@ -66,7 +66,7 @@ you can also configure the `StatesConfig` to remove the ripples altogether and
 fallback to the default "pressed" states which will just change background color
 temporarily instead.
 
-```tsx
+```ts
 import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";
@@ -95,7 +95,7 @@ return an object containing:
 - `handlers` - An object containing all the event handlers that must be applied
   to the DOM element so all the interaction states can happen.
 
-```tsx
+```ts
 import React, { HTMLAttributes } from "react";
 import { render } from "react-dom";
 import {

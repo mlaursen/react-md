@@ -47,7 +47,7 @@ purposes.
 
 ### Buttons with Text
 
-```tsx
+```ts
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
@@ -87,7 +87,7 @@ and use the `@react-md/icon` package to get icon support. You can also install
 the `@react-md/material-icons` package if you'd like pre-built components for
 every material icon that exists.
 
-```tsx
+```ts
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
@@ -134,7 +134,7 @@ of an element that provides a label for the button. This is really to help
 screen readers and generally recommended, but there are no restrictions in place
 at this time to enforce this behavior.
 
-```tsx
+```ts
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";

@@ -39,7 +39,7 @@ To see a full list of icons, just view the
 
 ### Examples
 
-```tsx
+```ts
 import * as React from "react":
 import * as ReactDOM from "react-dom";
 
@@ -115,7 +115,7 @@ working, update your `webpack.config.js`:
 Then you can just import the SVG into your file and it will automatically
 include that icon in a sprite map.
 
-```tsx
+```ts
 import "svgxuse";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

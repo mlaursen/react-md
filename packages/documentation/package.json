@@ -4,17 +4,17 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all copy-readmes add-toc base-styles",
+    "prebuild": "npm-run-all copy-readmes base-styles",
     "base-styles": "dev-utils doc-styles",
     "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
     "copy-readmes": "dev-utils readmes",
     "sandbox": "dev-utils sandbox",
-    "dev": "npm-run-all prebuild startDev",
-    "dev-log": "FORCE_COLOR=true yarn dev | cat",
+    "dev": "npm-run-all prebuild start-dev",
+    "dev-log": "FORCE_COLOR=true next | cat",
     "build": "next build",
     "start": "next start",
-    "startDev": "next",
-    "startProd": "npm-run-all build start"
+    "start-dev": "next",
+    "start-prod": "npm-run-all build start"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": "https://github.com/mlaursen/react-md",

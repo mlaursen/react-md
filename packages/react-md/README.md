@@ -13,7 +13,7 @@ $ npm install --save react-md
 
 ## Usage
 
-```tsx
+```ts
 import { Button, Text } from "react-md";
 
 // use as normal

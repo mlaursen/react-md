@@ -40,7 +40,7 @@ The primary use of this package is to create a fixed header that includes your
 app's logo, title, mobile navagitation, or common actions. Here's a quick
 example:
 
-```tsx
+```ts
 import React from "react";
 import { render } from "react-dom";
 import {

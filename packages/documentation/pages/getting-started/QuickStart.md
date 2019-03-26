@@ -62,7 +62,7 @@ $ npm install --save @react-md/theme \
 
 #### Use components:
 
-```tsx
+```ts
 // src/index.tsx
 import React from "react";
 import { render } from "react-dom";

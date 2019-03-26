@@ -41,7 +41,7 @@ valid DOM element to be rendered into at the time the portal is visible.
 The `intoId` prop is used when you want to render into a specific element on the
 page by id.
 
-```tsx
+```ts
 const App = () => {
   <div>
     <div id="portal-div" />
@@ -64,7 +64,7 @@ create your portal's node.
 If the `into` prop is a string, the portal will be created into the result of
 `document.querySelector` so you can do some fancy element selecting if you need.
 
-```tsx
+```ts
 const App = () => {
   <div>
     <ul id="some-list">
@@ -85,7 +85,7 @@ If the `into` prop is a function, that function **must** return a valid
 `HTMLElement` once it is called otherwise an error will be logged in the
 console.
 
-```tsx
+```ts
 const App = () => {
   <div>
     <div id="portal-div" />
@@ -101,7 +101,7 @@ Finally, if the `into` prop is an `HTMLElement`, this will behave just like the
 just useful if you would like to use React refs or cache the portal's node
 yourself in your lifecycle methods or some other way.
 
-```tsx
+```ts
 class App extends React.Component {
   private ref = React.createRef<HTMLDivElement>();
 

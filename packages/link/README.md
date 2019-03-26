@@ -32,7 +32,7 @@ more customization information, but an example usage is shown below.
 
 ## Usage with react-router
 
-```tsx
+```ts
 import React, { FunctionComponent } from "react";
 import { render } from "react-dom";
 import {

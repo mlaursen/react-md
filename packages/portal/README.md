@@ -34,7 +34,7 @@ don't need this package.
 The example below will just show the API for the portal and not a real world
 example.
 
-```tsx
+```ts
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Portal } from "@react-md/portal";
