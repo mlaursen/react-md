@@ -97,7 +97,7 @@ $rmd-button-contained-resting-elevation: 2 !default;
 /// The elevation to use for a contained button that is being pressed. This should be a number
 /// between 0 and 24.
 /// @type Number
-$rmd-button-contained-pressed-elevation: 8 !default;
+$rmd-button-contained-pressed-elevation: 4 !default;
 
 /// A Map of all the "themeable" parts of the button package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as

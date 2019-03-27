@@ -18,7 +18,7 @@ export default {
   "rmd-button-color": "var(--rmd-theme-text-primary-on-background, #212121)",
   "rmd-button-contained-elevation-transition-time": "0.15s",
   "rmd-button-contained-resting-elevation": 2,
-  "rmd-button-contained-pressed-elevation": 8,
+  "rmd-button-contained-pressed-elevation": 4,
   "rmd-button-theme-values": {
     "text-border-radius": "0.5rem",
     "text-horizontal-padding": "1rem",

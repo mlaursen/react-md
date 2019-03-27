@@ -1,6 +1,9 @@
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 
 import { ButtonThemeProps } from "./types.d";
+
+const block = bem("rmd-button");
 
 /**
  * Creates a button theme based on the button theming props. This is really just used so that
@@ -25,17 +28,16 @@ export default function buttonThemeClassNames(props: ButtonThemeProps): string {
   const clear = theme === "clear";
 
   return cn(
-    "rmd-button",
-    {
-      "rmd-button--text": text,
-      "rmd-button--icon": icon,
-      "rmd-button--disabled": disabled,
-      "rmd-button--contained": !disabled && contained,
-      "rmd-button--outline": outline,
-      [`rmd-button--${theme}`]: !disabled && !clear && contained,
-      [`rmd-button--text-${theme}`]: !disabled && !clear && !contained,
-      [`rmd-button--outline-${theme}`]: !disabled && !clear && outline,
-    },
+    block({
+      text,
+      icon,
+      disabled,
+      contained: !disabled && contained,
+      outline,
+      [theme]: !disabled && !clear && contained,
+      [`text-${theme}`]: !disabled && !clear && !contained,
+      [`outline-${theme}`]: !disabled && !clear && outline,
+    }),
     className
   );
 }
