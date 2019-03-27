@@ -8,6 +8,7 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 /**
@@ -164,6 +165,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = TextProps & DefaultProps & WithRef;
 
+const block = bem("rmd-typography");
+
 /**
  * The `Text` component is used to render text with the material design typography styles applied.
  * By default, everything will be rendered in a `<p>` tag with the normal paragraph styles.
@@ -203,14 +206,14 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
   } = providedProps as WithDefaultProps;
 
   const className = cn(
-    `rmd-typography rmd-typography--${type}`,
-    {
-      "rmd-typography--no-margin": noMargin,
-      [`rmd-typography--${align}`]: align,
-      [`rmd-typography--${decoration}`]: decoration,
-      [`rmd-typography--${transform}`]: transform,
-      [`rmd-typography--${weight}`]: weight,
-    },
+    block({
+      [type]: true,
+      "no-margin": noMargin,
+      [align as string]: align,
+      [decoration as string]: decoration,
+      [transform as string]: transform,
+      [weight as string]: weight,
+    }),
     propClassName
   );
   if (typeof children === "function") {

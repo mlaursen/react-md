@@ -196,7 +196,7 @@ module.exports = {
   },
   onwarn: (warning, warn) => {
     // hide the typescript helpers warnings
-    if (warning.code === "THIS_IS_UNDEFINED" && /var \_\_(assign|rest)/.test(warning.frame)) {
+    if (warning.code === "THIS_IS_UNDEFINED" && /var \_\_(assign|rest|awaiter|generator)/.test(warning.frame)) {
       return;
     }
 

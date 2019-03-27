@@ -1,11 +1,9 @@
 import React, {
-  useRef,
-  useState,
-  useEffect,
   FunctionComponent,
   HTMLAttributes,
+  useCallback,
+  useState,
 } from "react";
-
 import Divider from "./Divider";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
@@ -38,19 +36,22 @@ export function useVerticalDividerHeight(maxHeight: number) {
     );
   }
 
-  const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    if (ref.current && ref.current.parentElement) {
-      const h = ref.current.parentElement.offsetHeight;
-      if (maxHeight <= 1) {
-        setHeight(h * maxHeight);
-      } else {
-        setHeight(Math.min(h, maxHeight));
+  const ref = useCallback(
+    (instance: HTMLDivElement | null) => {
+      if (!instance || !instance.parentElement) {
+        return;
       }
-    }
-  }, [ref]);
+
+      const height = instance.parentElement.offsetHeight;
+      if (maxHeight <= 1) {
+        setHeight(height * maxHeight);
+      } else {
+        setHeight(Math.min(height, maxHeight));
+      }
+    },
+    [maxHeight]
+  );
 
   return { ref, height };
 }

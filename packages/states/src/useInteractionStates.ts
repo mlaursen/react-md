@@ -15,7 +15,7 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
   extends Omit<Partial<StatesConfigContextType>, "mode">,
     RipplesOptions<E> {
   /**
-   * An optional className to merge with the different interactions tates.
+   * An optional className to merge with the different interaction states.
    */
   className?: string;
 
@@ -60,7 +60,7 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
  * effect. This is polyfilled since the `:pressed` state does not work on anything other than buttons and links
  * by default and it is not triggered on "valid" keyboard clicks with a spacebar.
  *
- * Finally, the element that uses this hook will gain a focused classname whenever it gains keyboard focus only.
+ * Finally, the element that uses this hook will gain a focused className whenever it gains keyboard focus only.
  *
  * To get all these interaction states to work correctly, this hook returns an object containing:
  * - `handlers`- an object of event handlers that must be passed down to your component to get the different

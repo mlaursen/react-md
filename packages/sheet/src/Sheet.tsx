@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
-
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
@@ -17,6 +16,7 @@ import {
   useStaggeredVisibility,
 } from "@react-md/portal";
 import { CSSTransitionProps } from "@react-md/transition";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
@@ -143,6 +143,8 @@ type DefaultProps = Required<
 >;
 type SheetWithDefaultProps = SheetProps & DefaultProps & WithRef;
 
+const block = bem("rmd-sheet");
+
 const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
   const {
     inline,
@@ -222,33 +224,19 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
               {...props}
               ref={forwardedRef}
               className={cn(
-                "rmd-sheet",
-                {
-                  "rmd-sheet--fixed": !inline,
-                  "rmd-sheet--horizontal": !isCalculated && isHorizontal,
-                  "rmd-sheet--small-width":
-                    isHorizontal && horizontalSize === "small",
-                  "rmd-sheet--large-width":
-                    isHorizontal && horizontalSize === "large",
-                  "rmd-sheet--media-width":
-                    isHorizontal && horizontalSize === "media",
-                  "rmd-sheet--until-small-width":
-                    isHorizontal && horizontalSize === "until-small",
-                  "rmd-sheet--until-large-width":
-                    isHorizontal && horizontalSize === "until-large",
-                  "rmd-sheet--until-media-width":
-                    isHorizontal && horizontalSize === "until-media",
-                  "rmd-sheet--vertical": !isCalculated && !isHorizontal,
-                  "rmd-sheet--viewport-height":
-                    !isHorizontal && verticalSize === "none",
-                  "rmd-sheet--touchable-height":
-                    !isHorizontal && verticalSize === "touch",
-                  "rmd-sheet--recommended-height":
+                block({
+                  fixed: !inline,
+                  horizontal: !isCalculated && isHorizontal,
+                  vertical: !isCalculated && !isHorizontal,
+                  [`${horizontalSize}-width`]: isHorizontal,
+                  "viewport-height": !isHorizontal && verticalSize === "none",
+                  "touchable-height": !isHorizontal && verticalSize === "touch",
+                  "recommended-height":
                     !isHorizontal && verticalSize === "recommended",
-                  [`rmd-sheet--${position}`]: position !== "calculated",
-                  "rmd-sheet--offscreen rmd-sheet--hidden":
-                    state === "exited" && !visible,
-                },
+                  [position]: position !== "calculated",
+                  offscreen: !visible && state === "exited",
+                  hidden: !visible && state === "exited",
+                }),
                 className
               )}
             >

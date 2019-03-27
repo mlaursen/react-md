@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface MediaContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -30,6 +31,8 @@ export interface MediaContainerWithAspectRatioProps
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<Pick<MediaContainerProps, "auto">>;
 
+const block = bem("rmd-media-container");
+
 /**
  * The `MediaContainer` component is used to make responsive images and videos
  * within your app. This component also allows for focing a specific aspect ratio
@@ -46,11 +49,7 @@ const MediaContainer: FunctionComponent<
       {...props}
       ref={forwardedRef}
       className={cn(
-        "rmd-media-container",
-        {
-          "rmd-media-container--auto": auto,
-          "rmd-media-container--aspect-ratio": aspectRatio,
-        },
+        block({ auto, "aspect-ratio": aspectRatio }),
         aspectRatio,
         className
       )}

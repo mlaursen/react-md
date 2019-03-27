@@ -18,18 +18,18 @@ import {
 } from "./useModeDetection";
 
 /**
- * Contains all teh values in the `StatesConfig` component.
+ * Contains all the values in the `StatesConfig` component.
  */
 export interface StatesConfigContextType {
   /**
    * The amount of time before a ripple finishes its animation. You probably
    * don't want to change this value unless you updated the duration in scss
-   * or chnaged the different class names for the ripple animation.
+   * or changed the different class names for the ripple animation.
    */
   rippleTimeout: TransitionTimeout;
 
   /**
-   * The class names to apply during hte different stages for the ripple animation.
+   * The class names to apply during the different stages for the ripple animation.
    * You probably don't want to use this.
    */
   rippleClassNames: CSSTransitionClassNames;

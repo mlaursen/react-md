@@ -75,12 +75,10 @@ export interface LinkWithComponentProps extends LinkProps {
   component: ReactType;
 }
 
-export interface DefaultProps {
-  preventMaliciousTarget: boolean;
-  flexCentered: boolean;
-}
-
 type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
+type DefaultProps = Required<
+  Pick<LinkProps, "flexCentered" | "preventMaliciousTarget">
+>;
 type WithDefaultProps = LinkProps & DefaultProps & WithRef;
 
 const block = bem("rmd-link");

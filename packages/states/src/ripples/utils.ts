@@ -2,7 +2,7 @@ import { RippleEvent, RippleType, RippleState } from "./types.d";
 
 /**
  * Checks if the ripple event should be ignored since it was bubbled
- * up from a child treeitem. I should find a beter way to handle
+ * up from a child treeitem. I should find a better way to handle
  * this at some point.
  */
 export function isBubbled<E extends HTMLElement>(
