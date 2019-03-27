@@ -19,7 +19,7 @@ $ npm install --save @react-md/theme
 ## Documentation
 
 Full usage and documentation can be found on the main documentation site at the
-[buttons page](https://react-md.dev/packages/buttons), but there will be a few
+[theme page](https://react-md.dev/packages/theme), but there will be a few
 examples in this README.
 
 <!-- DOCS_REMOVE_END -->
@@ -51,7 +51,7 @@ importing the main `theme` file.
 
 ### Using the default dark theme
 
-If you override the `$md-theme-light` varaible to be `false`, the default theme
+If you override the `$rmd-theme-light` variable to be `false`, the default theme
 will be:
 
 ```scss
@@ -98,25 +98,6 @@ $my-awesome-company-orange: #e67e22;
 
 $rmd-theme-primary: $my-awesome-company-purple;
 $rmd-theme-secondary: $my-awesome-company-orange;
-
-@import "@react-md/theme/dist/mixins";
-
-@include react-md-theme;
-```
-
-## Updating for a Dark theme
-
-In the past version of react-md, the dark theme was enabled by setting a
-`$md-light-theme` variable to `false`, now it is done by updating both the
-`$rmd-theme-background` and `$rmd-theme-surface` variables.
-
-So here is an example of enabling the same dark theme as before.
-
-```scss
-@import "@react-md/theme/dist/color-palette";
-
-$rmd-theme-background: #303030;
-$rmd-theme-surface: $md-grey-800;
 
 @import "@react-md/theme/dist/mixins";
 
