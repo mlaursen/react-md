@@ -44,6 +44,7 @@
 @mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time) {
   @include rmd-transition(standard);
 
+  border-radius: inherit;
   bottom: 0;
   box-shadow: $shadow;
   content: '';

@@ -5,6 +5,7 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
@@ -139,6 +140,8 @@ function getA11yIds(
   return { titleId, descId, labelledBy };
 }
 
+const block = bem("rmd-icon");
+
 /**
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
@@ -184,13 +187,7 @@ const SVGIcon: FunctionComponent<
       {...props}
       ref={forwardedRef}
       aria-labelledby={ariaLabelledBy || labelledBy}
-      className={cn(
-        "rmd-icon rmd-icon--svg",
-        {
-          "rmd-icon--dense": dense,
-        },
-        className
-      )}
+      className={cn(block({ svg: true, dense }), className)}
     >
       {title}
       {desc}

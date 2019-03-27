@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 
 export interface ListItemTextProps {
   className?: string;
@@ -7,6 +8,8 @@ export interface ListItemTextProps {
   children?: ReactNode;
   secondaryText?: ReactNode;
 }
+
+const block = bem("rmd-list-item");
 
 const ListItemText: FunctionComponent<ListItemTextProps> = ({
   className,
@@ -19,7 +22,7 @@ const ListItemText: FunctionComponent<ListItemTextProps> = ({
     secondaryContent = (
       <span
         className={cn(
-          "rmd-list-item__text rmd-list-item__text--secondary",
+          block("text", { secondary: true }),
           secondaryTextClassName
         )}
       >
@@ -28,7 +31,7 @@ const ListItemText: FunctionComponent<ListItemTextProps> = ({
     );
   }
   return (
-    <span className={cn("rmd-list-item__text", className)}>
+    <span className={cn(block("text"), className)}>
       {children}
       {secondaryContent}
     </span>

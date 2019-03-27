@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
@@ -12,6 +13,8 @@ export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
 type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<Pick<ListSubheaderProps, "inset">>;
 type WithDefaultProps = ListSubheaderProps & DefaultProps & WithRef;
+
+const block = bem("rmd-list-subheader");
 
 const ListSubheader: FunctionComponent<
   ListSubheaderProps & WithRef
@@ -26,13 +29,7 @@ const ListSubheader: FunctionComponent<
   return (
     <li
       {...props}
-      className={cn(
-        "rmd-list-subheader",
-        {
-          "rmd-list-subheader--inset": inset,
-        },
-        className
-      )}
+      className={cn(block({ inset }), className)}
       ref={forwardedRef}
     />
   );

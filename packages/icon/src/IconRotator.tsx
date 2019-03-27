@@ -10,6 +10,7 @@ import React, {
   ReactElement,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
@@ -56,6 +57,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = IconRotatorProps & DefaultProps & WithRef;
 
+const block = bem("rmd-icon-rotator");
+
 /**
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
@@ -74,15 +77,7 @@ const IconRotator: FunctionComponent<
     ...props
   } = providedProps as WithDefaultProps;
 
-  const className = cn(
-    "rmd-icon-rotator",
-    {
-      "rmd-icon-rotator--animate": animate,
-      "rmd-icon-rotator--rotated": rotated,
-    },
-    propClassName
-  );
-
+  const className = cn(block({ animate, rotated }), propClassName);
   if (!forceIconWrap && isValidElement(children)) {
     const child: ReactElement<{ className?: string }> = Children.only(children);
     return cloneElement(child, {

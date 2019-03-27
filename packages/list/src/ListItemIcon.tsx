@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 
 export type ListItemIconPosition = "top" | "middle" | "bottom";
@@ -11,6 +12,8 @@ export interface ListItemIconProps extends TextIconSpacingProps {
   mediaLarge: boolean;
   position: ListItemIconPosition;
 }
+
+const base = bem("rmd-list-item");
 
 const ListItemIcon: FunctionComponent<ListItemIconProps> = ({
   className,
@@ -26,13 +29,12 @@ const ListItemIcon: FunctionComponent<ListItemIconProps> = ({
     {...props}
     forceIconWrap={props.forceIconWrap || media}
     className={cn(
-      "rmd-list-item__icon",
-      {
-        [`rmd-list-item__icon--${position}`]: position !== "middle",
-        "rmd-list-item__avatar": avatar,
-        "rmd-list-item__media": media || mediaLarge,
-        "rmd-list-item__media--large": mediaLarge,
-      },
+      base("icon", {
+        [position]: position !== "middle",
+        avatar,
+        media: media || mediaLarge,
+        "media-large": mediaLarge,
+      }),
       className
     )}
     iconAfter={!before}

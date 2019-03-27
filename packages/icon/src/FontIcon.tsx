@@ -5,6 +5,7 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface FontIconProps extends HTMLAttributes<HTMLElement> {
@@ -42,6 +43,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = FontIconProps & DefaultProps & WithForwardedRef;
 
+const block = bem("rmd-icon");
+
 /**
  * The `FontIcon` component is used for rendering a font-icon library's
  * icon. The default is to use the `material-icons` library, but others
@@ -70,12 +73,12 @@ const FontIcon: FunctionComponent<
       {...props}
       ref={forwardedRef}
       className={cn(
-        "rmd-icon rmd-icon--font",
-        {
-          "rmd-icon--dense": dense,
-          "rmd-icon--forced-font": forceFontSize,
-          "rmd-icon--forced-size": forceSize,
-        },
+        block({
+          font: true,
+          dense,
+          "forced-font": forceFontSize,
+          "forced-size": forceSize,
+        }),
         iconClassName,
         className
       )}

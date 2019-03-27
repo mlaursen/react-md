@@ -152,6 +152,7 @@
     .rmd-list-item__text--secondary {
       @include rmd-list-theme(max-height, item-secondary-three-line-height);
 
+      line-height: $rmd-list-item-secondary-text-line-height;
       white-space: normal;
     }
   }
@@ -186,17 +187,17 @@
     &--bottom {
       align-self: flex-end;
     }
-  }
 
-  &__avatar {
-    @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
-  }
+    &--avatar {
+      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
+    }
 
-  &__media {
-    @include rmd-icon-theme-update-var(text-spacing, rmd-list-theme-var(media-spacing));
-    @include rmd-list-theme(width, media-size);
+    &--media {
+      @include rmd-icon-theme-update-var(text-spacing, rmd-list-theme-var(media-spacing));
+      @include rmd-list-theme(width, media-size);
+    }
 
-    &--large {
+    &--media-large {
       @include rmd-list-theme-update-var(media-size, rmd-list-theme-var(media-large-size));
     }
   }

@@ -6,6 +6,7 @@ import React, {
   ReactType,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
@@ -82,6 +83,8 @@ export interface DefaultProps {
 type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
 type WithDefaultProps = LinkProps & DefaultProps & WithRef;
 
+const block = bem("rmd-link");
+
 /**
  * The `Link` component is used to render links within your app with a basic styles applied and
  * some additional "security" built-in if using the `rel="_blank"`. This can be used with a browser
@@ -104,13 +107,7 @@ const Link: FunctionComponent<
   } = providedProps as WithDefaultProps;
   const { target } = props;
   const href = propHref === "" ? undefined : propHref;
-  const className = cn(
-    "rmd-link",
-    {
-      "rmd-link--flex-centered": flexCentered,
-    },
-    propClassName
-  );
+  const className = cn(block({ "flex-centered": flexCentered }), propClassName);
 
   let rel = propRel;
   if (

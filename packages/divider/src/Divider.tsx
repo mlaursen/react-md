@@ -5,6 +5,7 @@ import React, {
   HTMLAttributes,
 } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
@@ -36,6 +37,8 @@ type WithRef = WithForwardedRef<DividerElement>;
 type DefaultProps = Required<Pick<DividerProps, "inset" | "vertical">>;
 type WithDefaultProps = DividerProps & DefaultProps & WithRef;
 
+const block = bem("rmd-divider");
+
 const Divider: FunctionComponent<DividerProps & WithRef> = providedProps => {
   const {
     inset,
@@ -48,14 +51,7 @@ const Divider: FunctionComponent<DividerProps & WithRef> = providedProps => {
   return createElement(vertical ? "div" : "hr", {
     ...props,
     ref: forwardedRef,
-    className: cn(
-      "rmd-divider",
-      {
-        "rmd-divider--inset": inset,
-        "rmd-divider--vertical": vertical,
-      },
-      className
-    ),
+    className: cn(block({ inset, vertical }), className),
   });
 };
 

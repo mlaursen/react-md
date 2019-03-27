@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
@@ -54,6 +55,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
 
+const block = bem("rmd-list-item");
+
 const SimpleListItem: FunctionComponent<
   SimpleListItemProps & WithRef
 > = providedProps => {
@@ -96,13 +99,11 @@ const SimpleListItem: FunctionComponent<
       }
       ref={forwardedRef}
       className={cn(
-        "rmd-list-item",
-        {
-          [`rmd-list-item--${height}`]:
-            height !== "auto" && height !== "normal",
-          "rmd-list-item--three-lines": threeLines,
-          "rmd-list-item--clickable": clickable,
-        },
+        block({
+          [height]: height !== "auto" && height !== "normal",
+          "three-lines": threeLines,
+          clickable,
+        }),
         className
       )}
     >

@@ -109,9 +109,20 @@ $rmd-list-item-three-line-height: 5.5rem !default;
 /// @type Number
 $rmd-list-item-dense-three-line-height: 5rem !default;
 
-$rmd-list-item-secondary-text-three-line-max-height: 3.5rem !default;
+/// The line-height to use for the secondary text within the list item. This is different
+/// than the primary text since this can span multiple lines by default.
+/// @type Number
+$rmd-list-item-secondary-text-line-height: 1.42857 !default;
 
-$rmd-list-item-dense-secondary-text-three-line-max-height: 3rem !default;
+/// The max allowed height for the three-line list item's secondary text. You probably
+/// don't want to change this value unless you changed the other list item heights.
+/// @type Number
+$rmd-list-item-secondary-text-three-line-max-height: 3rem !default;
+
+/// The max allowed height for the dense three-line list item's secondary text. You probably
+/// don't want to change this value unless you changed the other list item heights.
+/// @type Number
+$rmd-list-item-dense-secondary-text-three-line-max-height: 2.25rem !default;
 
 /// The spacing between the left side of the list item up to the left side of the
 /// first character of text. This is normally just used to align the list items
