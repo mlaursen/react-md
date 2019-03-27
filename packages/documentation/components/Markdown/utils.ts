@@ -15,6 +15,8 @@ function getLangauge(language: string) {
   switch (language) {
     case "":
       return "markdown";
+    case "tsx":
+      return "ts";
     default:
       return language;
   }
@@ -126,7 +128,12 @@ const transforms: Transform[] = [
       /#including-styles(?![)-])/g,
       "[including styles](/getting-started/installation#including-styles)"
     ),
-  md => md.replace(/(#)(\d+)/g, `[$1$2](${GITHUB_URL}/issues/$2)`),
+  md =>
+    md.replace(
+      /#defining-a-theme/g,
+      "[defining a theme](/packages/theme/installation#defining-a-theme)"
+    ),
+  md => md.replace(/(#)(\d+)(?=\r?\n| )/g, `[$1$2](${GITHUB_URL}/issues/$2)`),
   md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
 ];
 

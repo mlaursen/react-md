@@ -1,0 +1,16 @@
+import React, { FunctionComponent } from "react";
+
+import DemoPage from "../DemoPage";
+
+import SimpleExample from "./SimpleExample";
+import simpleExample from "./SimpleExample.md";
+
+const demos = [
+  {
+    name: "Simple Example",
+    description: simpleExample,
+    children: <SimpleExample />,
+  },
+];
+
+export default () => <DemoPage demos={demos} packageName="theme" />;

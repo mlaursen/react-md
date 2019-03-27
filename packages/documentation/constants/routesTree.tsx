@@ -187,6 +187,8 @@ createRoute("/customization", "Customization", {
   childRoutes: [
     { path: "/overriding-defaults", children: "Overriding Defaults" },
     { path: "/creating-dynamic-themes", children: "Creating Dynamic Themes" },
+    { path: "/color-palette", children: "Color Palette" },
+    { path: "/theme-builder", children: "Theme Builder" },
   ],
 });
 createRoute("/packages", "Packages", {

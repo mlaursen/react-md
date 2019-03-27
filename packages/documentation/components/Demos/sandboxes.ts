@@ -95,6 +95,8 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./States/DisablingRippleEffectSandbox.json")),
   "States/SetupExample": () =>
     resolve(import("./States/SetupExampleSandbox.json")),
+  "Theme/SimpleExample": () =>
+    resolve(import("./Theme/SimpleExampleSandbox.json")),
   "Typography/TextContainerExamples": () =>
     resolve(import("./Typography/TextContainerExamplesSandbox.json")),
   "Typography/TextExamples": () =>

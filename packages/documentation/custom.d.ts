@@ -11,12 +11,7 @@ declare module "*.scss" {
 }
 
 declare module "*.md" {
-  const content: any;
-  export default content;
-}
-
-declare module "*.html" {
-  const content: any;
+  const content: string;
   export default content;
 }
 

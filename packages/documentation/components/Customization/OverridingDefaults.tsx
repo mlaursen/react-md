@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { MarkdownPage } from "components/Markdown";
 
-const OverridingDefaults: FunctionComponent = () => (
-  <MarkdownPage>## Overriding Defaults</MarkdownPage>
-);
+import readme from "./OverridingDefaults.md";
 
-export default OverridingDefaults;
+export default () => <MarkdownPage>{readme}</MarkdownPage>;
