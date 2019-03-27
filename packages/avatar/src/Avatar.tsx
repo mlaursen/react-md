@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
@@ -32,8 +33,10 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 type WithRef = WithForwardedRef<HTMLSpanElement>;
-type DefaultProps = Required<Pick<AvatarProps, "alt">>;
+type DefaultProps = Required<Pick<AvatarProps, "alt" | "color">>;
 type AvatarWithDefaultProps = AvatarProps & DefaultProps & WithRef;
+
+const block = bem("rmd-avatar");
 
 /**
  * An `Avatar` is generally used to represent objects or people within your app.
@@ -54,27 +57,14 @@ const Avatar: FunctionComponent<AvatarProps & WithRef> = providedProps => {
 
   let img;
   if (src) {
-    img = (
-      <img
-        src={src}
-        alt={alt}
-        role="presentation"
-        className="rmd-avatar__image"
-      />
-    );
+    img = <img src={src} alt={alt} className={block("image")} />;
   }
 
   return (
     <span
       {...props}
       ref={forwardedRef}
-      className={cn(
-        "rmd-avatar",
-        {
-          [`rmd-avatar--${color}`]: color,
-        },
-        className
-      )}
+      className={cn(block({ [color]: color }), className)}
     >
       {img}
       {children}
@@ -83,6 +73,7 @@ const Avatar: FunctionComponent<AvatarProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  color: "",
   alt: "",
 };
 
