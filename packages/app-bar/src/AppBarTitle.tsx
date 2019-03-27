@@ -1,5 +1,6 @@
 import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface AppBarTitleProps extends HTMLAttributes<HTMLHeadingElement> {
@@ -12,6 +13,8 @@ export interface AppBarTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 type WithRef = WithForwardedRef<HTMLHeadingElement>;
 type DefaultProps = Required<Pick<AppBarTitleProps, "keyline">>;
 type WithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
+
+const block = bem("rmd-app-bar");
 
 /**
  * This component is used to create a title for your application. If your app
@@ -32,13 +35,7 @@ const AppBarTitle: FunctionComponent<
   return (
     <h6
       {...props}
-      className={cn(
-        "rmd-app-bar__title",
-        {
-          "rmd-app-bar__title--keyline": keyline,
-        },
-        className
-      )}
+      className={cn(block("title", { keyline }), className)}
       ref={forwardedRef}
     >
       {children}

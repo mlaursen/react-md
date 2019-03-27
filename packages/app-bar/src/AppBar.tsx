@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/theme";
 
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
@@ -79,6 +80,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = AppBarProps & DefaultProps & WithRef;
 
+const block = bem("rmd-app-bar");
+
 /**
  * This component is used to create a top-level app bar in your application that can be used to contain
  * a navigation menu toggle button, the app's logo and/or title, as well as any top-level actions that
@@ -114,17 +117,16 @@ const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
     <Component
       {...props}
       className={cn(
-        "rmd-app-bar",
-        {
-          "rmd-app-bar--child-inherit": inherit,
-          "rmd-app-bar--dense": dense && !prominent,
-          "rmd-app-bar--prominent": prominent,
-          "rmd-app-bar--prominent-dense": dense && prominent,
-          "rmd-app-bar--fixed": fixed,
-          "rmd-app-bar--fixed-elevation": fixed && fixedElevation,
-          [`rmd-app-bar--${theme}`]: theme !== "clear",
-          [`rmd-app-bar--${fixedPosition}`]: fixed,
-        },
+        block({
+          "child-inherit": inherit,
+          [theme]: theme !== "clear",
+          dense: dense && !prominent,
+          prominent,
+          "prominent-dense": dense && prominent,
+          fixed,
+          [fixedPosition]: fixed,
+          "fixed-elevation": fixed && fixedElevation,
+        }),
         className
       )}
       ref={forwardedRef}

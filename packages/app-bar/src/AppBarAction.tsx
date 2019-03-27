@@ -2,6 +2,7 @@ import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/theme";
 
 export interface AppBarActionProps extends ButtonProps {
   /**
@@ -25,6 +26,8 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = AppBarActionProps & DefaultProps & WithRef;
 
+const block = bem("rmd-app-bar");
+
 /**
  * This component is really just a simple wrapper for the `Button` component that adds a few
  * additional styles to prevent the button from shrinking when an `AppBar` has a lot of content.
@@ -47,14 +50,7 @@ const AppBarAction: FunctionComponent<
     <Button
       {...props}
       ref={forwardedRef}
-      className={cn(
-        "rmd-app-bar__action",
-        {
-          "rmd-app-bar__action--first": first,
-          "rmd-app-bar__action--last": last,
-        },
-        className
-      )}
+      className={cn(block("action", { first, last }), className)}
     >
       {children}
     </Button>
