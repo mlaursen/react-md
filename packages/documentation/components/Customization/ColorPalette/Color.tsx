@@ -21,6 +21,12 @@ const Color: FunctionComponent<ColorProps> = ({
   secondary,
 }) => {
   const withoutRMD = name.replace("rmd-", "");
+  let hexValue = value;
+  if (hexValue.length === 4) {
+    // ensure that hex colors are always 6 characters instead of their shortened
+    // 3 character versions
+    hexValue = `${hexValue}${hexValue.substring(1)}`;
+  }
 
   return (
     <li
@@ -41,7 +47,7 @@ const Color: FunctionComponent<ColorProps> = ({
       )}
       <Text component="span" weight="bold">{`$${name}`}</Text>
       <Text component="span" weight="bold" transform="uppercase">
-        {value}
+        {hexValue}
       </Text>
     </li>
   );

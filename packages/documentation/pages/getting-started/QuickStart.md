@@ -1,5 +1,8 @@
 ## Super Quick Start
 
+If you want to get started out immediately, you can use [create-react-app] and
+the react-md react-scripts fork.
+
 ```sh
 $ npx create-react-app my-app --scripts-version=@react-md/react-scripts
 $ cd my-app
@@ -9,7 +12,7 @@ $ npm start
 > npx comes with npm 5.2+ and higher, if you have an older version you will need
 > to install `create-react-app` globally instead
 
-or with [yarn][1]:
+or with [yarn]:
 
 ```sh
 $ yarn create react-app my-app --scripts-version=@react-md/react-scripts
@@ -18,9 +21,12 @@ $ yarn start
 ```
 
 > You can also add the `--typescript` flag to either command above to bootstrap
-> with [Typescript][2] support.
+> with [Typescript] support.
 
 ## Quick Start
+
+If you have an existing app that you'd like to migrate `react-md` into, here are
+the quick steps.
 
 #### Install packages:
 
@@ -47,6 +53,12 @@ $ npm install --save @react-md/theme \
 // generate all the styles for packages that have been imported from react-md
 @include react-md-utils;
 ```
+
+> NOTE: You'll need to ensure the `SASS_PATH` environment variable is set to
+> include `node_modules` or update the sass compiler's `includePaths` to include
+> `node_modules`. See
+> [updating sass include paths](/getting-started/installation#updating-sass-include-paths)
+> for more info.
 
 #### Include Font and optional material-icons font icons:
 
@@ -108,6 +120,6 @@ conventions, check out the [installation](/getting-started/installation) page.
 Otherwise, start looking at each package's documentation page. For convenience,
 I have listed them all below:
 
-[1]: [https://yarnpkg.com]
-
-[2]: [https://www.typescriptlang.org]
+[create-react-app]: https://github.com/facebook/create-react-app
+[yarn]: https://yarnpkg.com
+[typescript]: https://www.typescriptlang.org

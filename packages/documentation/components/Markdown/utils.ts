@@ -26,10 +26,6 @@ export function highlightCode(code: string, lang: string = "") {
   return hljs.highlight(getLangauge(lang), code).value;
 }
 
-if (typeof document !== "undefined") {
-  hljs.initHighlightingOnLoad();
-}
-
 /**
  * The custom markdown renderer. This just adds some additional styles to
  * existing elements, and does some fun stuff with code blocks.

@@ -17,7 +17,12 @@ $list-horizontal-margin: 0.5rem;
     @include rmd-theme(background-color, surface);
 
     margin: 1rem $list-horizontal-margin;
-    width: calc((100% / 3) - #{$list-horizontal-margin * 2});
+
+    width: calc(50% - #{$list-horizontal-margin * 2});
+
+    @media (min-width: 1200px) {
+      width: calc((100% / 3) - #{$list-horizontal-margin * 2});
+    }
   }
 
   &__primary-color {

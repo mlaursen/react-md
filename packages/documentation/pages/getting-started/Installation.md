@@ -29,7 +29,7 @@ as follows:
 
 ```sh
 $ npm install --save @react-md/icon \
-    @rect-md/states \
+    @react-md/states \
     @react-md/theme \
     @react-md/typography
 ```
@@ -92,7 +92,7 @@ As you can see, the `dist` folder is used to store:
 
 #### File Structure Exceptions
 
-If a package is an excemption to the rule listed above, the installation
+If a package is an exemption to the rule listed above, the installation
 documentation for that package will include a note as a reminder.
 
 ##### Package is not styleable
@@ -179,16 +179,21 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ## Updating Sass Include Paths
 
 Every package within `react-md` that has styles will require you to update your
-Sass compiler to include `node_modules` for the `includePaths` to work. If you
-are using
-[create-react-app](https://github.com/facebookincubator/create-react-app), you
-can skip this and read the
-[updating create-react-app](/getting-started/updating-create-react-app) guide
-instead.
+Sass compiler to include `node_modules` for the `includePaths` to work. This can
+be done either with an environment variable change or manually updating your
+Sass compiler to set the `includePaths`. I recommend the environment variable
+change especially if you are using [create-react-app].
 
-> NOTE: Another alternative to this might be to just use the environment
-> variable `SASS_PATH=node_modules:src` which might make it so you don't need to
-> modify the `webpack.config.js` file at all.
+### Environment variable change
+
+This will be the most simple option as all it requires is setting the
+`SASS_PATH` environment variable as follows:
+
+```sh
+SASS_PATH=node_modules:src
+```
+
+The `SASS_PATH` variable can be multiple directories joined by a `:`.
 
 ### Updating webpack config
 

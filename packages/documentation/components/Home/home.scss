@@ -31,6 +31,7 @@
   &__jump-start {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     padding: 0 1rem;
   }
@@ -42,6 +43,7 @@
 
     align-self: flex-start;
     margin: 1rem;
+    min-width: 20rem;
     text-decoration: none;
     width: calc(100% - 2rem);
 

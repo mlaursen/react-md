@@ -2,8 +2,7 @@
 
 The following steps have been taken directly from the
 [adding a Sass stylesheet](https://facebook.github.io/create-react-app/docs/adding-a-sass-stylesheet),
-but have been modified a bit since I disagree a bit with their opinions on CSS
-Preprocessors.
+but have been modified a bit to ensure that it works with `react-md`.
 
 To use Sass with `react-md`, first install `node-sass`:
 
@@ -11,11 +10,14 @@ To use Sass with `react-md`, first install `node-sass`:
 $ npm install --save-dev node-sass
 ```
 
-Now that `node-sass` has been installed, you can rename `src/App.css` to
-`src/App.scss` and `src/index.css` to `src/index.scss`. Once they have been
-renamed, make sure to update both `src/App.jsx` and `src/index.jsx` to point to
-the `App.scss` and `index.scss` instead of their `.css` counterparts so they can
-be processed by Sass.
+Now that `node-sass` has been installed, you can rename the following files:
+
+- `src/App.css -> src/App.scss`
+- `src/index.css -> src.index.scss`
+
+Once they have been renamed, make sure to update both `src/App.jsx` and
+`src/index.jsx` to point to the `App.scss` and `index.scss` instead of their
+`.css` counterparts so they can be processed by Sass.
 
 Next, update your base `.env` file to add a new environment variable:
 
