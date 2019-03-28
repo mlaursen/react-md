@@ -4,6 +4,16 @@
 
 @import 'color-palette';
 
+/// This is the default contrast ratio to use for color accessibility between
+/// background and foreground colors. This number should be at least:
+/// - 3.1 for large text (18pt normal or 14pt bold)
+/// - 4.5 for normal text
+/// - 7.1 for Level AAA requirements.
+///
+/// @see https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+/// @type Number
+$rmd-theme-default-contrast-ratio: 3.1 !default;
+
 /// Precomputed linear color channel values, for use in contrast calculations.
 /// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 ///
@@ -87,7 +97,7 @@ $rmd-theme-linear-channel-values: (
   $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
   $red-multiplier: 0.2126;
   $green: nth($rmd-theme-linear-channel-values, green($color) + 1);
-  $green-multiplier: 0.07152;
+  $green-multiplier: 0.7152;
   $blue: nth($rmd-theme-linear-channel-values, blue($color) + 1);
   $blue-multiplier: 0.0722;
 
@@ -107,12 +117,12 @@ $rmd-theme-linear-channel-values: (
 /// Determines if a provided color is considered light or dark.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
+/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The minimum contrast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
 /// @returns {String} - The string 'light' if the color is considered light, otherwise 'dark'.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-tone($color, $min-contrast: 3.1) {
+@function rmd-theme-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) {
   @if $color == 'dark' or $color == 'light' {
     @return $color;
   }
@@ -131,12 +141,12 @@ $rmd-theme-linear-channel-values: (
 /// luminance algorithm to maintain a required contrast ratio for accessibility.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [3.1] - The minimum contrast that should be applied. The min
+/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The minimum contrast that should be applied. The min
 ///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
 ///     the link for contrasts for more information.
 /// @returns {String} - The string 'dark' if the color is considered light, or 'light' if the
 ///     color is considered dark.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-contrast-tone($color, $min-contrast: 3.1) {
+@function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) {
   @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');
 }
