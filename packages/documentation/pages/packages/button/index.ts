@@ -1,3 +1,3 @@
 import redirect from "utils/redirect";
 
-export default redirect("installation");
+export default redirect("demos");

@@ -1,17 +1,10 @@
-import React, {
-  FunctionComponent,
-  Fragment,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { Fragment, FunctionComponent, useEffect } from "react";
 import cn from "classnames";
+import { Sheet } from "@react-md/sheet";
+import { useVisibility } from "@react-md/utils";
 import { useAppSizeContext } from "./AppSize";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
-import { Sheet } from "@react-md/sheet";
-import { APP_BAR_OFFSET_CLASSNAME } from "@react-md/app-bar";
-import { useVisibility } from "@react-md/utils";
 
 export interface CombinedProps {
   title: string;
@@ -48,13 +41,9 @@ const Combined: FunctionComponent<CombinedProps> = ({ title, children }) => {
       </Sheet>
       <main
         id="main-content"
-        className={cn(
-          "layout__main",
-          {
-            "layout__main--desktop": isDesktop,
-          },
-          APP_BAR_OFFSET_CLASSNAME
-        )}
+        className={cn("layout__main", {
+          "layout__main--desktop": isDesktop,
+        })}
       >
         {children}
       </main>

@@ -27,7 +27,7 @@ export default class App extends NextApp {
       isTablet = !!md.tablet();
       isPhone = !isTablet && !!md.mobile();
       isDesktop = !isPhone && !isTablet;
-      isLargeDesktop = false && isDesktop;
+      isLargeDesktop = isDesktop;
     }
 
     return {

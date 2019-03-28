@@ -31,9 +31,13 @@ function copyFile(filePath, destPath, log) {
   fs.copyFileSync(filePath, dest);
 }
 
+function compileBaseStyles() {
+  spawnSync('yarn', ['base-styles'], { stdio: 'inherit', cwd: docsRoot });
+}
+
 const copyScssFile = f => {
   copyFile(f, 'dist', startLoggingScss);
-  spawnSync('yarn', ['base-styles'], { stdio: 'inherit', cwd: docsRoot });
+  compileBaseStyles();
 };
 
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
@@ -171,6 +175,19 @@ chokidar
   })
   .on('ready', () => {
     console.log('Watching documentation markdown toc changes...');
+  });
+
+const compoonentsPath = 'packages/documentation/components';
+chokidar
+  .watch([
+    'packages/documentation/pages/app.scss',
+    `${compoonentsPath}/blockquote.scss`,
+    `${compoonentsPath}/Code/code.scss`,
+    `${compoonentsPath}/Heading/heading.scss`,
+  ])
+  .on('change', () => compileBaseStyles())
+  .on('ready', () => {
+    console.log('Watching documentation base styles changes...');
   });
 
 process.on('exit', () => {

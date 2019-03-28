@@ -87,17 +87,17 @@ function createPackageRoute(name: string, config: PackageRouteConfig = {}) {
   const { install = true, api = true, demos = true, sassdoc = true } = config;
 
   const childRoutes: ChildRouteConfig[] = [];
-  if (install) {
-    childRoutes.push({
-      path: "/installation",
-      children: "Installation",
-    });
-  }
-
   if (demos) {
     childRoutes.push({
       path: "/demos",
       children: "Demos",
+    });
+  }
+
+  if (install) {
+    childRoutes.push({
+      path: "/installation",
+      children: "Installation",
     });
   }
 
@@ -185,10 +185,10 @@ createRoute("/getting-started", "Getting Started", {
 createRoute("/customization", "Customization", {
   icon: <ColorLensSVGIcon />,
   childRoutes: [
-    { path: "/overriding-defaults", children: "Overriding Defaults" },
-    { path: "/creating-dynamic-themes", children: "Creating Dynamic Themes" },
     { path: "/color-palette", children: "Color Palette" },
     { path: "/theme-builder", children: "Theme Builder" },
+    { path: "/overriding-defaults", children: "Overriding Defaults" },
+    { path: "/creating-dynamic-themes", children: "Creating Dynamic Themes" },
   ],
 });
 createRoute("/packages", "Packages", {
@@ -202,7 +202,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("icon"),
     createPackageRoute("link"),
     createPackageRoute("list"),
-    createPackageRoute("material-icons"),
+    createPackageRoute("material-icons", { sassdoc: false }),
     createPackageRoute("media"),
     createPackageRoute("overlay"),
     createPackageRoute("portal"),

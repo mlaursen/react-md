@@ -5,6 +5,8 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
+    "dev": "npm-run-all -p dev-server watch",
+    "dev-server": "cd packages/documentation && yarn dev",
     "force-install": "yarn --force",
     "setup": "npm-run-all dev-utils force-install build",
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
