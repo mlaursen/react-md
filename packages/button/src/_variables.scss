@@ -62,6 +62,7 @@ $rmd-button-hover-background-color: rgba(
 $rmd-button-background-color-transition-time: 0.15s !default;
 
 /// The base box-shadow width to apply to buttons
+/// @type Number
 $rmd-button-outline-width: 1px !default;
 
 /// The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable

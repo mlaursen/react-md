@@ -182,12 +182,12 @@
 /// A simple mixin that can be used to update an element to ellipsis text when
 /// it is too long.
 ///
-//  @example scss - Example Usage
-//    .truncate-this {
-//      @include rmd-typography-text-overflow-ellipsis;
-//
-//      width: 5rem;
-//    }
+/// @example scss - Example Usage
+///   .truncate-this {
+///     @include rmd-typography-text-overflow-ellipsis;
+///
+///     width: 5rem;
+///   }
 @mixin rmd-typography-text-overflow-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

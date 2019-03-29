@@ -63,6 +63,7 @@ $rmd-theme-warning: $rmd-deep-orange-a-200 !default;
 /// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+/// @type Color
 $rmd-theme-on-warning: if(
   rmd-theme-contrast-tone($rmd-theme-warning) == 'light',
   $rmd-black-base,
@@ -77,6 +78,7 @@ $rmd-theme-error: $rmd-red-500 !default;
 /// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+/// @type Color
 $rmd-theme-on-error: if(
   rmd-theme-contrast-tone($rmd-theme-error) == 'light',
   $rmd-black-base,
@@ -92,6 +94,7 @@ $rmd-theme-success: $rmd-green-a-700 !default;
 /// contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will
 /// be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).
+/// @type Color
 $rmd-theme-on-success: if(
   rmd-theme-contrast-tone($rmd-theme-success) == 'light',
   $rmd-black-base,
@@ -349,6 +352,7 @@ $rmd-theme-icon-on-dark-color: rmd-theme-text-color(icon, dark) !default;
 /// A Map of all the theme values that can be used throughout the app. This is mainly created
 /// so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme` function
 /// to get a specific color within your theme.
+/// @type Map
 $rmd-theme-values: (
   background: $rmd-theme-background,
   primary: $rmd-theme-primary,

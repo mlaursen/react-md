@@ -60,8 +60,6 @@
 ///     An app-bar fixed to the bottom of the page with elevation
 ///   </div>
 ///
-/// @param {Number} elevation [$rmd-app-bar-fixed-elevation] - The elevation to use for a fixed app bar. This should
-///   be a number between 0 and 24 since it uses the `rmd-elevation` mixin.
 @mixin rmd-app-bar-fixed {
   &--fixed {
     @include rmd-theme-update-var(surface, rmd-app-bar-theme-var(background-color));
@@ -115,9 +113,6 @@
 ///   <div class="app-bar app-bar--default">
 ///     An app bar with the default theme applied.
 ///   </div>
-///
-/// @param {Color} default-background-color [$rmd-app-bar-default-background-color] - The background color to use for the "default" theme.
-/// @param {Color} default-text-color [$rmd-app-bar-default-text-color] - The text color to use for the "default" theme.
 @mixin rmd-app-bar-themes {
   @include rmd-app-bar-theme(background-color);
   @include rmd-app-bar-theme(color);
@@ -269,9 +264,9 @@
 ///      @include rmd-app-bar-ofset($height-type: dense-height);
 ///    }
 ///
-/// @param property [padding-top] - The property to apply the offset to. This should be
+/// @param {String} property [padding-top] - The property to apply the offset to. This should be
 /// one of: `padding-top`, `padding-bottom`, `margin-top`, `margin-bottom`, `top`, `bottom`.
-/// @param height-type [height] - The app bar height type to use. This should be one of:
+/// @param {String} height-type [height] - The app bar height type to use. This should be one of:
 /// `height`, `dense-height`, `prominent-height`, `prominent-dense-height`
 @mixin rmd-app-bar-offset($property: padding-top, $height-type: height) {
   $valid-propertys: (padding-top padding-bottom margin-top margin-bottom top bottom);
@@ -304,7 +299,7 @@
   }
 }
 
-/// Creats all the styles for the app bar package.
+/// Creates all the styles for the app bar package.
 @mixin react-md-app-bar {
   @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);
 

@@ -12,7 +12,7 @@ $rmd-media-overlay-background-color: rgba($rmd-black-base, 0.54) !default;
 /// media by default. This will make it so that when using the `MediaContainer`
 /// component, the following elements will be responsive automatically.
 /// @type List
-$rmd-media-selectors: (img '> svg' iframe video embed object) !default;
+$rmd-media-selectors: (img '>svg' iframe video embed object) !default;
 
 /// The default aspect ratio for the media component when an aspect ratio is
 /// enforced.

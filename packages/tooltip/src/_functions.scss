@@ -26,6 +26,7 @@
 /// @param {String} theme-style - One of the `$rmd-tooltip-theme-values` map keys to set a value for.
 /// @param {Color|String|Number} fallback [null] - An optional fallback color to apply. This is set to `null` by
 /// default and not used since the link's theme variables should always exist.
+/// @return {String} one of the tooltip's theme values as a css variable.
 @function rmd-tooltip-theme-var($theme-style, $fallback: null) {
   @return rmd-theme-get-var($theme-style, $rmd-tooltip-theme-values, tooltip, $fallback);
 }
