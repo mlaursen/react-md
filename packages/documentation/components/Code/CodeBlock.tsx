@@ -63,7 +63,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
 
 CodeBlock.defaultProps = {
   highlight: true,
-  language: "markup",
+  language: "markdown",
 };
 
 export default forwardRef<HTMLPreElement, CodeBlockProps>((props, ref) => (

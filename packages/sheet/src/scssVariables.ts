@@ -14,8 +14,8 @@ export default {
   "rmd-sheet-touchable-max-height": "calc(100% - 3.5rem)",
   "rmd-sheet-recommended-min-height": "3.5rem",
   "rmd-sheet-recommended-max-height": "50%",
-  "rmd-sheet-positions": "top right bottom left",
-  "rmd-sheet-enabled-positions": "top right bottom left",
+  "rmd-sheet-positions": ["top", "right", "bottom", "left"],
+  "rmd-sheet-enabled-positions": ["top", "right", "bottom", "left"],
   "rmd-sheet-theme-values": {
     "background-color": "var(--rmd-theme-surface, #fff)",
     "small-width": "calc(100vw - 3.5rem)",

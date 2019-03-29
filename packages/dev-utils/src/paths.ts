@@ -16,6 +16,8 @@ export const packagesRoot = path.join(projectRoot, packages);
 export const documentationRoot = path.join(packagesRoot, documentation);
 export const tempStylesFolder = "tempStyles";
 
+export const devUtils = path.join(packagesRoot, "dev-utils");
+
 export const packageJson = "package.json";
 export const stylesScss = "styles.scss";
 export const scssVariables = "scssVariables.ts";

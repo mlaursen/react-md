@@ -1,10 +1,20 @@
 import { VariableSassDoc } from "sassdoc";
-import { compileScss, CompileOptions } from "../compileScss";
+import { CompileOptions, compileScss } from "../compileScss";
 
-export type HackedVariableValue = string | boolean | number | HackedVariable[];
+export type HackedVariablePrimitive = boolean | number | string | null;
+export type HackedVariableValue =
+  | HackedVariablePrimitive
+  | HackedVariablePrimitive[]
+  | HackedVariable[];
+
 export interface HackedVariable {
   name: string;
   value: HackedVariableValue;
+}
+
+export interface HackedVar {
+  name: string;
+  value: HackedVariableValue | HackedVar[];
 }
 
 export interface HackSCSSVariableOptions extends CompileOptions {
@@ -92,13 +102,9 @@ export function isVariableDerived(value: string) {
   return /\$?rmd|if/.test(value);
 }
 
-export function isVariableMap(value) {
-  return /^\(.*\)$/.test(value);
-}
-
 export function hackSCSSVariableValue(
   options: HackSCSSVariableOptions
-): HackedVariable {
+): HackedVar {
   const {
     scssVariable,
     packageName,
@@ -133,8 +139,20 @@ export function hackSCSSVariableValue(
     }
 
     let value = message.substring(prefix.length);
-    if (isVariableMap(value)) {
-      value = hackSCSSMapValues(value);
+    switch (scssVariable.type) {
+      case "List":
+        value = value.split(/\s|,/);
+        break;
+      case "Map":
+        value = hackSCSSMapValues(value);
+        break;
+      case undefined:
+        console.error(`${name} does not have a valid Sass Data Type.`);
+        console.error();
+        process.exit(1);
+        break;
+      default:
+      // console.log("scssVariable.type:", scssVariable.type);
     }
 
     return {

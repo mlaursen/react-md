@@ -1,13 +1,12 @@
 import {
-  SassDocType,
-  Type,
-  Link,
   Example,
+  Link,
   Parameter,
-  Throw,
   Return,
+  SassDocType,
+  Throw,
+  Type,
 } from "sassdoc";
-import { HackedVariableValue } from "./variables";
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -41,11 +40,12 @@ export interface FormattedSassDocExample extends Example {
 export interface FormattedVariableSassDoc extends BaseFormattedSassDoc {
   code: string;
   derived: boolean;
-  value: HackedVariableValue;
+  value: string;
 }
 
 export interface ParameterizedSassDoc extends BaseFormattedSassDoc {
   code: string;
+  oneLineCode: string;
   examples: FormattedSassDocExample[];
   parameters: Parameter[];
   throws: Throw;
@@ -60,3 +60,14 @@ export type FormattedSassDoc =
   | FormattedVariableSassDoc
   | FormattedMixinSassDoc
   | FormattedFunctionSassDoc;
+
+export interface PackageSassDoc {
+  name: string;
+  variables: FormattedVariableSassDoc[];
+  functions: FormattedFunctionSassDoc[];
+  mixins: FormattedMixinSassDoc[];
+}
+
+export interface PackageSassDocRecord {
+  [name: string]: PackageSassDoc;
+}

@@ -179,6 +179,8 @@ declare module "sassdoc" {
     return: Return;
   }
 
+  export type ItemSassDoc = VariableSassDoc | MixinSassDoc | FunctionSassDoc;
+
   export interface ParseOptions {
     dest?: string;
     exclude?: string[];
@@ -190,5 +192,8 @@ declare module "sassdoc" {
     strict?: boolean;
   }
 
-  export function parse(path: string, options?: ParseOptions): Promise<Item[]>;
+  export function parse(
+    path: string,
+    options?: ParseOptions
+  ): Promise<ItemSassDoc[]>;
 }

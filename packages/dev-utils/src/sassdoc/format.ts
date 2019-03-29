@@ -9,17 +9,24 @@ import {
   Throw,
   VariableSassDoc,
 } from "sassdoc";
+import { compileScss } from "../compileScss";
 import { tempStylesFolder } from "../paths";
+import { format } from "../utils";
 import {
   BaseFormattedSassDoc,
   FormattedFunctionSassDoc,
   FormattedMixinSassDoc,
+  FormattedSassDocExample,
   FormattedVariableSassDoc,
   SassDocReference,
-  FormattedSassDocExample,
 } from "./types.d";
-import { hackSCSSVariableValue, isVariableDerived } from "./variables";
-import { compileScss } from "../compileScss";
+import {
+  hackSCSSVariableValue,
+  isVariableDerived,
+  HackedVariableValue,
+  HackedVariablePrimitive,
+  HackedVar,
+} from "./variables";
 
 function createReferenceLink(see: See, references: SassDocReference[]) {
   const {
@@ -64,6 +71,13 @@ function formatSassDoc(
       return i === list.findIndex(item => item && item.name === linkTo.name);
     });
 
+  const type = item.type || item.context.type;
+  if (!type) {
+    console.error(`${name} does not have a valid Sass Data Type.`);
+    console.error();
+    process.exit(1);
+  }
+
   return {
     name,
     type: item.type || item.context.type,
@@ -73,6 +87,30 @@ function formatSassDoc(
     see,
     links,
   };
+}
+
+function hackedVariableToString(value: HackedVariableValue) {
+  if (value === null) {
+    return "null";
+  } else if (["number", "string", "boolean"].includes(typeof value)) {
+    return `${value}`;
+  } else if (value[0] === null || typeof value[0] !== "object") {
+    return format(
+      `export default ${JSON.stringify(value as HackedVariablePrimitive[])}`
+    ).substring("export defalt ".length);
+  }
+
+  // const stringified = value.
+  const formatted = format(
+    `$fake: (
+  ${(value as HackedVar[])
+    .map(({ name, value }) => `${name}: ${hackedVariableToString(value)}`)
+    .join(",\n")}
+  )`,
+    "scss"
+  );
+
+  return formatted.substring("$fake: ".length);
 }
 
 /**
@@ -94,17 +132,20 @@ export function formatVariableSassDoc(
 
   const code = `$${name}: ${value}${scope === "default" ? " !default" : ""}`;
   const packageName = pathname.substring(0, pathname.indexOf("/"));
+  const hackedValue = hackSCSSVariableValue({
+    scssVariable: sassdoc,
+    packageName,
+    importPath: pathname,
+    includePaths: [tempStylesFolder],
+  }).value;
+
+  const formattedValue = hackedVariableToString(hackedValue);
 
   return {
     ...formatSassDoc(sassdoc, references),
     code,
     derived: isVariableDerived(value),
-    value: hackSCSSVariableValue({
-      scssVariable: sassdoc,
-      packageName,
-      importPath: pathname,
-      includePaths: [tempStylesFolder],
-    }).value,
+    value: formattedValue,
   };
 }
 
@@ -129,7 +170,7 @@ function createParameterizedCode({
         const defaultValue = (param.default || "").replace(/^rmd/, "$rmd");
         const suffix = defaultValue && `: ${defaultValue}`;
 
-        return `$${name}${defaultValue}`;
+        return `$${name}: ${defaultValue}`;
       })
       .join(", ");
     params = `(${params})`;
@@ -172,12 +213,15 @@ ${packages.map(p => `@import '@react-md/${p}/dist/mixins';`).join("\n")}
 ${removeUncompilableCode(example.code)}
   `;
 
-  return compileScss(
-    {
-      data,
-    },
-    false
-  ).css.toString();
+  return format(
+    compileScss(
+      {
+        data,
+      },
+      false
+    ).css.toString(),
+    "scss"
+  );
 }
 
 function formatExamples(
@@ -235,14 +279,25 @@ function formatParameterizedSassDoc(
   packages: string[]
 ) {
   const {
-    context: { type, name, code },
+    context: { type, name },
     throw: throws = [] as Throw,
     example: examples = [] as Example[],
     parameter: parameters = [] as Parameter[],
   } = item;
 
+  const code = createParameterizedCode({
+    name,
+    type,
+    code: item.context.code,
+    parameters,
+  });
+  const prefix = code.substring(0, code.indexOf("{") + 1);
+  const suffix = code.substring(code.lastIndexOf("}"));
+  const oneLineCode = `${prefix} \u2026 ${suffix}`;
+
   return {
-    code: createParameterizedCode({ type, name, code, parameters }),
+    code,
+    oneLineCode,
     throws,
     examples: formatExamples(name, examples, packages),
     parameters,
@@ -277,6 +332,16 @@ export function formatFunctionSassDoc(
   references: SassDocReference[],
   packages: string[]
 ): FormattedFunctionSassDoc {
+  if (!sassdoc.return) {
+    console.error(
+      `${
+        sassdoc.context.name
+      } does not have a return declaration but it is a function.`
+    );
+    console.error();
+    process.exit(1);
+  }
+
   return {
     ...formatSassDoc(sassdoc, references),
     ...formatParameterizedSassDoc(sassdoc, references, packages),

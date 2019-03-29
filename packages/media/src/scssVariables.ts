@@ -1,7 +1,7 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-media-overlay-background-color": "rgba(0, 0, 0, 0.54)",
-  "rmd-media-selectors": "img > svg iframe video embed object",
+  "rmd-media-selectors": ["img", ">svg", "iframe", "video", "embed", "object"],
   "rmd-media-default-aspect-ratio": "56.25%",
   "rmd-media-default-aspect-ratios": {
     '"16-9"': "16 9",
@@ -10,6 +10,13 @@ export default {
   },
   "rmd-media-overlay-padding": "1rem",
   "rmd-media-overlay-horizontal-width": "30%",
-  "rmd-media-overlay-positions":
-    "top right bottom left middle center absolute-center",
+  "rmd-media-overlay-positions": [
+    "top",
+    "right",
+    "bottom",
+    "left",
+    "middle",
+    "center",
+    "absolute-center",
+  ],
 };

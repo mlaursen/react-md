@@ -12,6 +12,9 @@ import prettier from "prettier";
 import { packageJson, types, dist, src, es, lib, packagesRoot } from "./paths";
 
 const readDir = promisify(fs.readdir);
+const prettierConfig = prettier.resolveConfig.sync(
+  path.join(packagesRoot, "button", "src", "index.ts")
+);
 
 export const glob = promisify(nodeGlob);
 
@@ -300,12 +303,9 @@ export async function printMinifiedSizes(
  * @param parser An optional parser to apply when the file being formatted
  * is not typescript or javascript.
  */
-export async function format(
-  code: string,
-  filePath: string,
-  parser?: prettier.BuiltInParserName
-) {
-  const options = await prettier.resolveConfig(filePath);
-  options.parser = parser || options.parser || "babel";
-  return prettier.format(code, options);
+export function format(code: string, parser?: prettier.BuiltInParserName) {
+  return prettier.format(code, {
+    ...prettierConfig,
+    parser: parser || prettierConfig.parser || "babel",
+  });
 }

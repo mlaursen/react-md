@@ -75,7 +75,7 @@ const transform = (markdown: string, readme: string) =>
 
 async function update(readme: string) {
   const markdown = await fs.readFile(readme, "utf8");
-  const updated = await format(transform(markdown, readme), readme, "markdown");
+  const updated = format(transform(markdown, readme), "markdown");
   await fs.writeFile(readme, updated, "utf8");
 }
 

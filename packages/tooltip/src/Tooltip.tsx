@@ -12,6 +12,7 @@ import {
   TransitionTimeout,
   TransitionProps,
 } from "@react-md/transition";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 import { TooltipPosition } from "./types.d";
@@ -109,6 +110,9 @@ type DefaultProps = Required<
   >
 >;
 type WithDefaultProps = TooltipProps & DefaultProps & WithRef;
+
+const block = bem("rmd-tooltip");
+
 /**
  * This is the base tooltip component that can only be used to render a tooltip with an animation
  * when the visibility changes. If this component is used, you will need to manually add all the
@@ -155,13 +159,12 @@ const Tooltip: FunctionComponent<TooltipProps & WithRef> = providedProps => {
         ref={forwardedRef}
         role="tooltip"
         className={cn(
-          "rmd-tooltip",
-          {
-            "rmd-tooltip--dense": dense,
-            "rmd-tooltip--line-wrap": lineWrap,
-            "rmd-tooltip--dense-line-wrap": dense && lineWrap,
-          },
-          `rmd-tooltip--${position}`,
+          block({
+            dense,
+            "line-wrap": lineWrap,
+            "dense-line-wrap": dense && lineWrap,
+            [position]: true,
+          }),
           className
         )}
       >
@@ -177,7 +180,7 @@ const defaultProps: DefaultProps = {
   lineWrap: false,
   classNames: TOOLTIP_CLASS_NAMES,
   timeout: TOOLTIP_TRANSITION_TIMEOUT,
-  lazyMount: true,
+  lazyMount: false,
 };
 
 Tooltip.defaultProps = defaultProps;

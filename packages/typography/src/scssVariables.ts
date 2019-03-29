@@ -18,7 +18,7 @@ export default {
     "semi-bold": 800,
     black: 900,
   },
-  "rmd-typography-default-font-weights": "light regular medium bold",
+  "rmd-typography-default-font-weights": ["light", "regular", "medium", "bold"],
   "rmd-typography-google-font-weight-suffixes": {
     thin: '"-Thin"',
     light: '"-Light"',

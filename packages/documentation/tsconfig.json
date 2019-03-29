@@ -38,6 +38,7 @@
       "hooks/*": ["hooks/*"],
       "icons/*": ["icons/*"],
       "pages/*": ["pages/*"],
+      "types/*": ["types/*"],
       "utils/*": ["utils/*"]
     }
   },
@@ -47,7 +48,7 @@
     "hooks",
     "icons",
     "pages",
-    "utils",
-    "custom.d.ts"
+    "types",
+    "utils"
   ]
 }

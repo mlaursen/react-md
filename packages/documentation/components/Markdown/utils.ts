@@ -14,6 +14,7 @@ import {
 function getLangauge(language: string) {
   switch (language) {
     case "":
+    case "markup":
       return "markdown";
     case "tsx":
       return "ts";

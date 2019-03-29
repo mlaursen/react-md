@@ -17,3 +17,5 @@ export const TOOLTIP_TRANSITION_TIMEOUT: TransitionTimeout = {
   enter: 200,
   exit: 150,
 };
+
+export const DEFAULT_DELAY = 1000;

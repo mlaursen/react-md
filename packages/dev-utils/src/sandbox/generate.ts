@@ -93,12 +93,7 @@ export default function getSandboxer(packageName: string, demoName: string) {
 }
 `;
 
-  const formatted = await format(
-    code,
-    path.join(documentationRoot, "pages", "index.ts"),
-    "typescript"
-  );
-
+  const formatted = format(code, "typescript");
   await fs.writeFile(path.join(DEMOS_FOLDER, "sandboxes.ts"), formatted);
 }
 

@@ -3,18 +3,13 @@ import nodeGlob from "glob";
 import path from "path";
 import { promisify } from "util";
 import { compileScss, postcss } from "./compileScss";
-import {
-  cssDist,
-  dist,
-  projectRoot,
-  scssVariables,
-  src,
-  stylesScss,
-} from "./paths";
+import { cssDist, dist, scssVariables, src, stylesScss } from "./paths";
 import getPackageVariables from "./sassdoc/getPackageVariables";
 import {
-  HackedVariable,
   getHackedScssVariableValues,
+  HackedVar,
+  HackedVariable,
+  HackedVariablePrimitive,
 } from "./sassdoc/variables";
 import { copyFiles, format, getPackageName, list, log } from "./utils";
 
@@ -76,9 +71,19 @@ export async function compile(production: boolean) {
   await fs.writeFile(outFile, css);
 }
 
-function createVariableMap(variables: HackedVariable[]) {
+function createVariableMapOrList(
+  variables: (HackedVariablePrimitive | HackedVariable)[]
+) {
+  if (variables[0] === null || typeof variables[0] !== "object") {
+    return variables as HackedVariablePrimitive[];
+  }
+
+  return createVariableMap(variables as HackedVar[]);
+}
+
+function createVariableMap(variables: HackedVar[]) {
   return variables.reduce((obj, { name, value }) => {
-    obj[name] = Array.isArray(value) ? createVariableMap(value) : value;
+    obj[name] = Array.isArray(value) ? createVariableMapOrList(value) : value;
 
     return obj;
   }, {});
@@ -109,11 +114,10 @@ export async function createScssVariables() {
   );
   log();
 
-  const contents = await format(
+  const contents = format(
     `/** this is an auto-generated file from @react-md/dev-utils */
 export default ${JSON.stringify(createVariableMap(variables))};
-`,
-    path.join(projectRoot, "packages", fileName)
+`
   );
   await fs.writeFile(fileName, contents);
   log(`Created ${fileName} with ${variables.length} variables defined.`);

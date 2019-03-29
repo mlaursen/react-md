@@ -50,7 +50,7 @@ async function doWork(globString: string) {
     });
     log(content);
 
-    const updated = await format(
+    const updated = format(
       `${start > 0 ? markdown.substring(0, start) : ""}${START_TOKEN}
 ## Table of Contents
 ${content}
@@ -59,7 +59,6 @@ ${STOP_TOKEN}
 
 ${markdown.substring(end + STOP_TOKEN.length)}
 `,
-      filePath,
       "markdown"
     );
 

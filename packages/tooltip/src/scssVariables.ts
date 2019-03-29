@@ -18,7 +18,7 @@ export default {
   "rmd-tooltip-dense-spacing": "0.875rem",
   "rmd-tooltip-border-radius": "0.25rem",
   "rmd-tooltip-transition-distance": "0.5rem",
-  "rmd-tooltip-position-values": "above below left right",
+  "rmd-tooltip-position-values": ["above", "below", "left", "right"],
   "rmd-tooltip-theme-values": {
     "background-color": "#232f34",
     color: "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",
