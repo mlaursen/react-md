@@ -100,9 +100,9 @@ function hackedVariableToString(value: HackedVariableValue) {
     ).substring("export defalt ".length);
   }
 
-  // const stringified = value.
+  const prefix = "$fake: ";
   const formatted = format(
-    `$fake: (
+    `${prefix}(
   ${(value as HackedVar[])
     .map(({ name, value }) => `${name}: ${hackedVariableToString(value)}`)
     .join(",\n")}
@@ -110,7 +110,7 @@ function hackedVariableToString(value: HackedVariableValue) {
     "scss"
   );
 
-  return formatted.substring("$fake: ".length);
+  return formatted.substring(prefix.length);
 }
 
 /**
@@ -217,6 +217,7 @@ ${removeUncompilableCode(example.code)}
     compileScss(
       {
         data,
+        customIncludePaths: [tempStylesFolder],
       },
       false
     ).css.toString(),
@@ -255,17 +256,19 @@ function formatExamples(
 
       i += 1;
     } catch (e) {
+      const exampleName = currentExample.description;
       console.error(
         `There was a problem compiling the \`${name}'s\` examples.`
       );
       console.error(
-        `Example number ${i} was the cause with the following code:`
+        `Example ${exampleName} was the cause with the following code:`
       );
       console.error();
       console.error();
       console.error(currentExample.code);
       console.error();
       console.error();
+      console.error(e);
       process.exit(1);
     }
   }

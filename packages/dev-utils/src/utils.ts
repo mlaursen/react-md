@@ -124,7 +124,7 @@ export async function getPackageName(prefixed: boolean = false) {
   return prefixed ? name : name.replace(/.+\//, "");
 }
 
-const NO_STYLES_PACKAGES = /material-icons|portal|utils|wia-aria/;
+const NO_STYLES_PACKAGES = /material-icons|portal|wia-aria/;
 const NO_TYPESCRIPT_PACKAGES = /elevation/;
 type ScopedPackageFilter = (name: string) => boolean;
 interface ScopedPackageOptions {

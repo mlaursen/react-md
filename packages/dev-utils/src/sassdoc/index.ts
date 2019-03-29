@@ -38,7 +38,7 @@ async function run(clean: boolean) {
   await fs.ensureDir(tempStylesFolder);
   await copyFiles(files, tempStylesFolder, {
     noLog: true,
-    replace: src => src.replace("../", "").replace("src", "dist"),
+    replace: src => src.replace("../", "@react-md/").replace("src", "dist"),
   });
 
   log("Compiling the sassdocs...");

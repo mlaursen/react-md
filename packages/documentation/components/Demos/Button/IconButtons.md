@@ -6,7 +6,7 @@ types of buttons. It is also recommended to install the
 [@react-md/material-icons](/packages/material-icons) package for all the
 material icons pre-built as React components.
 
-Unfortunately, icon buttons are not ass accessible out of the box for screen
+Unfortunately, icon buttons are not as accessible out of the box for screen
 readers as they normally do not have text within them.
 [Material Icons](https://design.google.com/icons/) is an exemption to this since
 their font icons are rendered based on the text content, but other font icon

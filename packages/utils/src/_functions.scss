@@ -60,6 +60,7 @@
 /// A utility function that can swap the position of different css styles. This is useful for
 /// RTL switching.
 /// @param {String} style - The style to swap. This should be one of `$rmd-utils-swappable-positions`.
+/// @return {String} a swapped style attribute string.
 @function rmd-utils-swap-position($style) {
   $prefix: '';
   $position: $style;
