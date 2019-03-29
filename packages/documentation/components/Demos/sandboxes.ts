@@ -97,6 +97,8 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./States/SetupExampleSandbox.json")),
   "Theme/SimpleExample": () =>
     resolve(import("./Theme/SimpleExampleSandbox.json")),
+  "Tooltip/SimpleExamples": () =>
+    resolve(import("./Tooltip/SimpleExamplesSandbox.json")),
   "Typography/TextContainerExamples": () =>
     resolve(import("./Typography/TextContainerExamplesSandbox.json")),
   "Typography/TextExamples": () =>
