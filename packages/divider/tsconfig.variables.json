@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/divider.variables",
     "declaration": true,
     "target": "es5"
   },

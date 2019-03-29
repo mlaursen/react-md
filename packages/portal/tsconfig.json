@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./es",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/portal.module",
     "declaration": true,
     "declarationDir": "types"
   },

@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rimraf bin dist",
     "executable": "chmod +x bin/cli.js",
-    "compile": "tsc -p tsconfig.json",
+    "compile": "tsc",
     "build": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
     "watch": "npm-run-all -p \"compile -w\" watcher"
@@ -38,14 +38,14 @@
     "prettier": "^1.16.4",
     "pretty-ms": "^4.0.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.7.3",
+    "rollup": "^1.7.4",
     "rollup-plugin-commonjs": "^9.2.2",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-replace": "^2.1.1",
     "rollup-plugin-typescript2": "^0.20.1",
     "rollup-plugin-uglify": "^6.0.2",
     "sassdoc": "^2.5.1",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.1"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.2"

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./es",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/sheet.module",
     "declaration": true,
     "declarationDir": "types"
   },

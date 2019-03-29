@@ -20,7 +20,7 @@
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
     "prepublishOnly": "npm-run-all clean build-dist lint test",
     "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore examples -- yarn build --styles-only",
-    "clean": "lerna run clean --ignore @react-md/dev-utils --stream",
+    "clean": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation --stream",
     "watch": "node watcher.js"
   },
   "repository": {
@@ -42,12 +42,12 @@
     "@types/gzip-size": "^4.1.0",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
-    "@types/node": "^11.11.7",
+    "@types/node": "^11.12.1",
     "@types/node-sass": "^4.11.0",
     "@types/prettier": "^1.16.1",
     "@types/pretty-ms": "^4.0.0",
     "@types/reach__router": "^1.2.2",
-    "@types/react": "^16.8.8",
+    "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.1",
@@ -69,16 +69,16 @@
     "lint-staged": "^8.1.5",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-hooks-testing-library": "^0.3.8",
-    "react-test-renderer": "^16.8.5",
-    "react-testing-library": "^6.0.2",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^6.0.3",
     "sass-lint": "^1.12.1",
     "ts-jest": "^24.0.0",
     "tslint": "^5.14.0",
     "tslint-config-airbnb": "^5.11.1",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.1"
   },
   "husky": {
     "hooks": {

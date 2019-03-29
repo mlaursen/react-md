@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/overlay.commonjs",
     "declaration": false,
     "target": "es5"
   },

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/tooltip.commonjs",
     "declaration": false,
     "target": "es5"
   },

@@ -33,7 +33,6 @@
     "@react-md/media": "^2.0.0-alpha.0",
     "@react-md/overlay": "^2.0.0-alpha.0",
     "@react-md/portal": "^2.0.0-alpha.0",
-    "@react-md/react-scripts": "^2.1.4",
     "@react-md/sheet": "^2.0.0-alpha.0",
     "@react-md/states": "^2.0.0-alpha.0",
     "@react-md/theme": "^2.0.0-alpha.0",
@@ -48,9 +47,9 @@
     "marked": "^0.6.1",
     "mobile-detect": "^1.4.3",
     "next": "^8.0.3",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "smoothscroll-polyfill": "^0.4.3"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -63,13 +62,13 @@
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-inline-react-svg": "^1.0.1",
     "babel-plugin-module-resolver": "^3.2.0",
-    "fork-ts-checker-webpack-plugin": "^1.0.0",
+    "fork-ts-checker-webpack-plugin": "^1.0.1",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.6.0",
     "raw-loader": "^2.0.0",
-    "typescript": "^3.3.4000",
+    "typescript": "^3.4.1",
     "webpack": "^4.29.6"
   }
 }

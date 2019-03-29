@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./es",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/overlay.module",
     "declaration": true,
     "declarationDir": "types"
   },

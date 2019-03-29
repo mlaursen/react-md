@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/portal.commonjs",
     "declaration": false,
     "target": "es5"
   },

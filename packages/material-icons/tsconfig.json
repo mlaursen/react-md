@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./es",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/material-icons.module",
     "declaration": true,
     "declarationDir": "types"
   },

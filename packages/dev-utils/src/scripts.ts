@@ -52,8 +52,9 @@ export default async function scripts(umd: boolean) {
   log(list(tsFiles));
   log();
 
-  await tsc(false);
-  await tsc(true);
+  const packageName = await getPackageName();
+  await tsc(false, packageName);
+  await tsc(true, packageName);
   await definitions();
   if (umd) {
     await buildUMD();
@@ -61,8 +62,11 @@ export default async function scripts(umd: boolean) {
 }
 
 async function tscVariables() {
+  const packageName = await getPackageName();
   const tsConfig = tsConfigVariables;
-  await fs.writeJson(tsConfig, createTsConfig("variables"), { spaces: 2 });
+  await fs.writeJson(tsConfig, createTsConfig("variables", packageName), {
+    spaces: 2,
+  });
 
   log("Compiling scssVariables...");
   exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
@@ -72,13 +76,13 @@ async function tscVariables() {
   // log();
 }
 
-async function tsc(commonjs: boolean) {
+async function tsc(commonjs: boolean, packageName: string) {
   // I am lazy for updating and maintaining each package, so just overwrite the
   // tsconfig with the "real" config each time
   const tsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
   await fs.writeJson(
     tsConfig,
-    createTsConfig(commonjs ? "commonjs" : "module"),
+    createTsConfig(commonjs ? "commonjs" : "module", packageName),
     { spaces: 2 }
   );
 

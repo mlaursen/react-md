@@ -168,7 +168,10 @@ export type TsConfigType = "commonjs" | "module" | "test" | "variables";
  * files will extend their "root" versions at the project base, but the extend
  * functionality isn't 100% what I need so additional settings are added.
  */
-export function createTsConfig(tsConfigType: TsConfigType) {
+export function createTsConfig(
+  tsConfigType: TsConfigType,
+  packageName: string
+) {
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isTest = tsConfigType === "test";
@@ -195,6 +198,7 @@ export function createTsConfig(tsConfigType: TsConfigType) {
     compilerOptions: {
       outDir,
       rootDir: src,
+      tsBuildInfoFile: `../../.tscache/${packageName}.${tsConfigType}`,
       declaration: isESModule || isVariables,
       declarationDir: isESModule ? types : undefined,
       target: isESModule ? undefined : "es5",

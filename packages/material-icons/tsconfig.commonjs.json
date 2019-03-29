@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/material-icons.commonjs",
     "declaration": false,
     "target": "es5"
   },

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./es",
     "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/app-bar.module",
     "declaration": true,
     "declarationDir": "types"
   },

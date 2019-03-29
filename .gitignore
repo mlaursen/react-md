@@ -1,6 +1,7 @@
 # Caches and modules
 .jest-cache
 .sass-cache
+.tscache
 node_modules
 
 # Compiled files
