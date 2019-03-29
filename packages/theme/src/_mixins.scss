@@ -11,7 +11,7 @@
 /// @example scss - Example Theme Application
 ///   html {
 ///     @include rmd-theme(background-color, background);
-///     @include rmd-theme(color, primary-text-on-background);
+///     @include rmd-theme(color, text-primary-on-background);
 ///   }
 ///
 ///   .primary-bg {
@@ -59,10 +59,6 @@
 ///   $rmd-theme-secondary: $rmd-pink-a-400;
 ///
 ///   @include react-md-theme;
-///
-/// @example scss - Alternative SCSS Usage
-///   // if you want to create a theme without using the `$rmd-theme-primary` and `$rmd-theme-secondary` variables
-///   @include react-md-theme($rmd-teal-500, $rmd-pink-a-400);
 @mixin react-md-theme {
   @include rmd-theme-create-root-theme($rmd-theme-values, theme);
 }

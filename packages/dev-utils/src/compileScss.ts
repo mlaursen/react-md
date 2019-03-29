@@ -1,3 +1,4 @@
+import { VariableSassDoc } from "sassdoc";
 import nodeSass from "node-sass";
 import nodePostcss from "postcss";
 import postcssPresetEnv from "postcss-preset-env";
@@ -10,15 +11,16 @@ import combineMediaQueries from "css-mqpacker";
 import { rootNodeModules, src } from "./paths";
 import { log, list } from "./utils";
 
-export function compileScss(
-  options: nodeSass.SyncOptions,
-  exit: boolean = true
-) {
+export interface CompileOptions extends nodeSass.SyncOptions {
+  customIncludePaths?: string[];
+}
+
+export function compileScss(options: CompileOptions, exit: boolean = true) {
   try {
-    const { includePaths = [src] } = options;
+    const { includePaths = [src], customIncludePaths, ...opts } = options;
     return nodeSass.renderSync({
-      ...options,
-      includePaths: [...includePaths, rootNodeModules],
+      ...opts,
+      includePaths: customIncludePaths || [...includePaths, rootNodeModules],
     });
   } catch (e) {
     if (exit) {
@@ -96,126 +98,4 @@ export function checkForInvalidCSS(css: string) {
   console.error(matchContext[0].trim());
   console.error();
   process.exit(1);
-}
-
-type HackedVariableValue = string | boolean | number | HackedVariable[];
-export interface HackedVariable {
-  name: string;
-  value: HackedVariableValue;
-}
-
-function parseValue(value: HackedVariableValue) {
-  if (value === "true" || value === "false") {
-    return Boolean(value);
-  } else if (value === "null") {
-    return null;
-  } else if (typeof value === "string") {
-    const parsed = parseFloat(value);
-    if (!isNaN(parsed) && parsed.toString().length === value.length) {
-      return parsed;
-    }
-  }
-
-  return value;
-}
-
-function matchParen(s: string, count: number = 0) {
-  const match = s.match(/\(|\)/);
-  if (!match) {
-    return s;
-  }
-
-  const i = match.index + 1;
-  if (match[0] === ")") {
-    if (count === 1) {
-      return s.substring(0, i);
-    }
-    console.log("count:", count);
-    return s.substring(0, i);
-  }
-
-  return s.substring(0, i) + matchParen(s.substring(i), count + 1);
-}
-
-function hackSCSSMapValues(mapValue: string) {
-  let remaining = mapValue.substring(1, mapValue.length - 1);
-  const values: HackedVariable[] = [];
-  while (remaining.length) {
-    const i = remaining.indexOf(": ");
-    if (i === -1) {
-      console.error(
-        "Unable to hack a css variable correctly since no valid key/value split was found."
-      );
-      console.error("Original Map Value: ", mapValue);
-      console.error("Remaining string: ", remaining);
-      break;
-    }
-
-    const name = remaining.substring(0, i);
-    remaining = remaining.substring(i + 2);
-    let j =
-      name === "font-family"
-        ? remaining.search(/, [-a-z]+: /)
-        : remaining.indexOf(",");
-    if (j === -1) {
-      j = remaining.length;
-    }
-
-    let value: HackedVariableValue = remaining.substring(0, j);
-    if (value.startsWith("(")) {
-      const mapString = matchParen(remaining);
-      j = mapString.length;
-      value = hackSCSSMapValues(mapString);
-    } else if (value.includes("(")) {
-      value = matchParen(remaining);
-      j = (value as string).length;
-    }
-
-    value = parseValue(value);
-    remaining = remaining.substring(j + 1).trim();
-    values.push({ name, value });
-  }
-
-  return values;
-}
-
-export function hackSCSSVariableValue(
-  scssVariable: any,
-  packageName: string
-): HackedVariable {
-  const { name, value } = scssVariable.context;
-  const prefix = `$${name}: `;
-
-  try {
-    const data = `@import 'src/mixins';
-@error '${prefix}#{${value}}';
-`;
-
-    compileScss(
-      {
-        data,
-        outputStyle: "expanded",
-      },
-      false
-    );
-  } catch (error) {
-    const { message } = error;
-    if (/Undefined variable |File to import not found/.test(message)) {
-      console.error(`Variable hack error in ${packageName}`);
-      console.error();
-      console.error(error.message);
-      console.error();
-      process.exit(1);
-    }
-
-    let value = message.substring(prefix.length);
-    if (/^\(.*\)$/.test(value)) {
-      value = hackSCSSMapValues(value);
-    }
-
-    return {
-      name,
-      value: parseValue(value),
-    };
-  }
 }

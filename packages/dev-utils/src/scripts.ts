@@ -95,7 +95,7 @@ async function tsc(commonjs: boolean) {
 async function definitions() {
   const defsToCopy = await glob(`${src}/**/*.d.ts`);
   if (defsToCopy.length) {
-    await copyFiles(defsToCopy, types, null);
+    await copyFiles(defsToCopy, types, { message: null });
   }
 
   const defs = await glob(`${types}/**/*.d.ts`);

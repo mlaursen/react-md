@@ -8,7 +8,8 @@ import test from "./test";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
 import sandbox from "./sandbox";
-import { docStyles } from "./docStyles";
+import docStyles from "./docStyles";
+import sassdoc from "./sassdoc";
 
 const argv = process.argv.slice(2);
 if (argv[0] === "test") {
@@ -78,6 +79,17 @@ commander
   .option("--verbose")
   .action((components: string[], { lookupsOnly = false }: any) => {
     sandbox({ lookupsOnly, components });
+  });
+
+commander
+  .command("sassdoc")
+  .option(
+    "--no-clean",
+    "Boolean if the temp styles directory should not be cleaned up after this script is run"
+  )
+  .option("--verbose")
+  .action(({ clean }: { clean: boolean }) => {
+    sassdoc(clean);
   });
 
 commander.parse(process.argv);

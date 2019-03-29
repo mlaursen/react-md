@@ -9,6 +9,7 @@
     "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
     "copy-readmes": "dev-utils readmes",
     "sandbox": "dev-utils sandbox",
+    "sassdoc": "dev-utils sassdoc",
     "dev": "npm-run-all prebuild start-dev",
     "dev-log": "FORCE_COLOR=true next | cat",
     "build": "next build",

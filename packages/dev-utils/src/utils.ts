@@ -9,14 +9,25 @@ import gzipSize from "gzip-size";
 import filesize from "filesize";
 import prettier from "prettier";
 
-import { packageJson, types, dist, src, es, lib } from "./paths";
+import { packageJson, types, dist, src, es, lib, packagesRoot } from "./paths";
+
+const readDir = promisify(fs.readdir);
 
 export const glob = promisify(nodeGlob);
 
+/**
+ * Checks if the script is being run in verbose mode. This normally
+ * allows for additional logging.
+ */
 export function isVerbose() {
   return process.argv.includes("--verbose");
 }
 
+/**
+ * Logs a message to the terminal only when in verbose mode or if forced.
+ * This is preferred instead of console.log for these scripts to keep
+ * console clean until debugging is needed.
+ */
 export function log(message?: string | null, force: boolean = false) {
   if (message === null || (!force && !isVerbose())) {
     return;
@@ -29,6 +40,11 @@ export function upperFirst(s: string) {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
+/**
+ * Converts a string to "title" cased by splitting on all hyphens,
+ * capitializing the first letter of each split, and then joining
+ * back together.
+ */
 export function toTitle(s: string, joinWith: string = "") {
   return s
     .split("-")
@@ -36,23 +52,46 @@ export function toTitle(s: string, joinWith: string = "") {
     .join(joinWith);
 }
 
+export interface CopyFilesOptions {
+  message?: string | null;
+  noLog?: boolean;
+  prefix?: string;
+  replace?: (src: string) => string;
+}
+
+/**
+ * A quick util that can copy a list of files with some nice logging.
+ */
 export async function copyFiles(
   files: string[],
   dest: string,
-  message?: string | null,
-  prefix: string = `src${path.sep}`
+  options: CopyFilesOptions = {}
 ): Promise<any> {
-  log(message === null ? null : message || "Copying the following files:");
+  const {
+    message,
+    prefix = `src${path.sep}`,
+    replace,
+    noLog = false,
+  } = options;
+  if (!noLog) {
+    log(message === null ? null : message || "Copying the following files:");
+  }
 
   await Promise.all(
     files.map(src => {
-      const currDest = path.join(dest, src.substring(prefix.length));
-      log(`- ${src} -> ${currDest}`);
+      const destSrc = replace ? replace(src) : src.substring(prefix.length);
+      const currDest = path.join(dest, destSrc);
+      if (!noLog) {
+        log(`- ${src} -> ${currDest}`);
+      }
+
       return fs.copy(src, currDest);
     })
   );
 
-  log();
+  if (!noLog) {
+    log();
+  }
 }
 
 export interface PackageJson {
@@ -63,10 +102,18 @@ export interface PackageJson {
   devDependencies?: JSON;
 }
 
+/**
+ * Gets the package.json file for the current working directory of
+ * this script.
+ */
 export function getPackageJson(): Promise<PackageJson> {
   return fs.readJson(path.join(process.cwd(), packageJson));
 }
 
+/**
+ * Gets the packge name for the current working directory of this script.
+ * The package name can either be prefixed with @react-md or not.
+ */
 export async function getPackageName(prefixed: boolean = false) {
   const packageJson = await getPackageJson();
   const { name } = packageJson;
@@ -74,8 +121,50 @@ export async function getPackageName(prefixed: boolean = false) {
   return prefixed ? name : name.replace(/.+\//, "");
 }
 
+const NO_STYLES_PACKAGES = /material-icons|portal|utils|wia-aria/;
+const NO_TYPESCRIPT_PACKAGES = /elevation/;
+type ScopedPackageFilter = (name: string) => boolean;
+interface ScopedPackageOptions {
+  prefixed?: boolean;
+  filter?: "ts" | "scss" | ScopedPackageFilter;
+}
+
+/**
+ * Gets all the react-md scoped package names. The packages can either be
+ * prefixed with @react-md/ or not. They will not be prefixed by default.
+ */
+export async function geScopedPackageNames({
+  prefixed = false,
+  filter,
+}: ScopedPackageOptions = {}) {
+  const directories = await fs.readdir(packagesRoot);
+  let customFilter: ScopedPackageFilter;
+  if (filter === "ts") {
+    customFilter = name => !NO_TYPESCRIPT_PACKAGES.test(name);
+  } else if (filter === "scss") {
+    customFilter = name => !NO_STYLES_PACKAGES.test(name);
+  } else if (filter) {
+    customFilter = filter;
+  } else {
+    customFilter = () => true;
+  }
+
+  return directories
+    .filter(
+      name =>
+        !/dev-utils|documentation|react-md/.test(name) && customFilter(name)
+    )
+    .map(name => (prefixed ? `@react-md/${name}` : name));
+}
+
 export type TsConfigType = "commonjs" | "module" | "test" | "variables";
 
+/**
+ * I dislike maintaining multiple config files, so each time I try to build
+ * a package, i'll re-create the tsconfig.json files required. These tsconfig
+ * files will extend their "root" versions at the project base, but the extend
+ * functionality isn't 100% what I need so additional settings are added.
+ */
 export function createTsConfig(tsConfigType: TsConfigType) {
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
@@ -115,6 +204,10 @@ export function createTsConfig(tsConfigType: TsConfigType) {
   };
 }
 
+/**
+ * This will time any async function and log the duration. Requires verbose
+ * mode for any logging though.
+ */
 export async function time(fn: () => Promise<any>, command: string) {
   log(`Running "${command}"...`);
   const startTime = now();
@@ -123,6 +216,11 @@ export async function time(fn: () => Promise<any>, command: string) {
   log(`Completed "${command}" in ${prettyMS(now() - startTime)}`);
 }
 
+/**
+ * A wrapper for execSync that will ensure that the cwd is set,
+ * IO can be shown, and the current environment varaibles are
+ * passed down.
+ */
 export function exec(command: string, options: ExecOptions = {}) {
   execSync(command, {
     cwd: process.cwd(),
@@ -135,6 +233,10 @@ export function exec(command: string, options: ExecOptions = {}) {
   });
 }
 
+/**
+ * A simple function that will convert a list of things into a "prettified"
+ * console.log-able version for debugging.
+ */
 export function list(things: (string | boolean | null | undefined)[]) {
   return things
     .filter(Boolean)
@@ -142,10 +244,17 @@ export function list(things: (string | boolean | null | undefined)[]) {
     .join("\n");
 }
 
+/**
+ * Creates a string of the provided file path as well as the gzipped
+ * file size of the file path.
+ */
 export function getFileSize(filePath: string) {
   return `${filePath} ${filesize(gzipSize.sync(filePath))}`;
 }
 
+/**
+ * Prints the gzip sizes for the provided file paths.
+ */
 export function printSizes(
   filePaths: string | string[],
   message?: string,
@@ -167,6 +276,10 @@ export function printSizes(
   log(list(filePaths.map(getFileSize)), forceLog);
 }
 
+/**
+ * A nice util that will list all the filesizes for the `*.min` files
+ * within a package.
+ */
 export async function printMinifiedSizes(
   exclude?: RegExp,
   forceLog: boolean = false
@@ -179,6 +292,14 @@ export async function printMinifiedSizes(
   printSizes(minified, "", forceLog);
 }
 
+/**
+ * Formats any code provided with prettier.
+ *
+ * @param code The code to format
+ * @param filePath A filepath to use to resolve prettier config.
+ * @param parser An optional parser to apply when the file being formatted
+ * is not typescript or javascript.
+ */
 export async function format(
   code: string,
   filePath: string,

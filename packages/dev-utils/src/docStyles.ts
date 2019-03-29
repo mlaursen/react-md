@@ -30,6 +30,6 @@ async function compile() {
   await fs.writeFile(outFile, css);
 }
 
-export async function docStyles() {
+export default async function docStyles() {
   time(compile, "compile doc styles");
 }

@@ -1,24 +1,22 @@
 import fs from "fs-extra";
+import nodeGlob from "glob";
 import path from "path";
 import { promisify } from "util";
-import nodeGlob from "glob";
-
+import { compileScss, postcss } from "./compileScss";
 import {
-  compileScss,
-  postcss,
-  hackSCSSVariableValue,
-  HackedVariable,
-} from "./compileScss";
-import {
-  dist,
   cssDist,
+  dist,
+  projectRoot,
+  scssVariables,
   src,
   stylesScss,
-  scssVariables,
-  projectRoot,
 } from "./paths";
-import { copyFiles, getPackageName, list, log, format } from "./utils";
-import { getPackageVariables } from "./sassdoc";
+import getPackageVariables from "./sassdoc/getPackageVariables";
+import {
+  HackedVariable,
+  getHackedScssVariableValues,
+} from "./sassdoc/variables";
+import { copyFiles, format, getPackageName, list, log } from "./utils";
 
 const glob = promisify(nodeGlob);
 
@@ -95,8 +93,9 @@ export async function createScssVariables() {
   log();
   const packageName = await getPackageName();
   const unformattedVariables = await getPackageVariables();
-  const variables = unformattedVariables.map(variable =>
-    hackSCSSVariableValue(variable, packageName)
+  const variables = getHackedScssVariableValues(
+    unformattedVariables,
+    packageName
   );
 
   if (!variables.length) {

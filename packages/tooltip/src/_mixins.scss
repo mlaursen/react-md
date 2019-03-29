@@ -32,6 +32,7 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tooltip-theme-values, tooltip);
 }
 
+/// Creates the base styles for a tooltip.
 @mixin rmd-tooltip-base {
   @include rmd-typography-base;
   @include rmd-typography-value(body-1, letter-spacing);
@@ -59,7 +60,7 @@
 ///
 /// @example scss - Example SCSS Usage
 ///   .rmd-tooltip--left {
-///     @include rmd-tooltip-position(left, $rmd-tooltip-spacing);
+///     @include rmd-tooltip-position(left);
 ///   }
 ///
 /// @param {String} position - One of the four tooltip positions. (top, right, bottom, or left)
@@ -69,7 +70,6 @@
   // add a negative spacing since the position will be transformed for centering below
   $inversed-position: rmd-tooltip-inverse-position($position);
   $inversed-property: rmd-tooltip-position-to-property($inversed-position);
-  // top: calc(100% + #{rmd-tooltip-theme-var(spacing)});
   #{$inversed-property}: calc(100% + #{rmd-tooltip-theme-var(spacing)});
 
   $horizontal: $position == 'left' or $position == 'right';
