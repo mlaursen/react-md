@@ -38,9 +38,22 @@ export interface FormattedSassDocExample extends Example {
 }
 
 export interface FormattedVariableSassDoc extends BaseFormattedSassDoc {
-  code: string;
-  derived: boolean;
+  /**
+   * The value for the variable.C Tis
+   */
   value: string;
+
+  /**
+   * The compiled/resolved value for the variable. This will only be different
+   * than the `value` key when the value contains an `if` or any other variables.
+   */
+  compiledValue: string;
+
+  /**
+   * Boolean if the value was created using the !default flag so it can
+   * be overridden.
+   */
+  configurable: boolean;
 }
 
 export interface ParameterizedSassDoc extends BaseFormattedSassDoc {

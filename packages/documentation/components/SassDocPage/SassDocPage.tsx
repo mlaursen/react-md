@@ -1,9 +1,12 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { Text } from "@react-md/typography";
+
 import { CodeBlock } from "components/Code";
 import Heading from "components/Heading";
-import { PackageSassDoc } from "types/formattedSassDoc.d";
 import { Markdown } from "components/Markdown";
+import { PackageSassDoc } from "types/formattedSassDoc.d";
+
+import VariableTable from "./VariableTable";
 
 export interface SassDocPageProps {
   sassdoc: PackageSassDoc;
@@ -16,16 +19,17 @@ const SassDocPage: FunctionComponent<SassDocPageProps> = ({ sassdoc }) => {
       <Heading id="sassdoc-variables" level={2}>
         Variables
       </Heading>
-      {variables.map(v => {
-        const { name, code, description, type, derived, value } = v;
+      <VariableTable variables={variables} />
+      {variables.map(variable => {
+        const { name, value, compiledValue, description, type } = variable;
+        console.log("variable:", variable);
         return (
           <div key={name}>
             <Text>{type}</Text>
             <Heading id={`variable-${name}`} level={6} noMargin>
-              <CodeBlock language="scss">{derived ? value : code}</CodeBlock>
+              <CodeBlock language="scss">{compiledValue}</CodeBlock>
             </Heading>
             <Markdown>{description}</Markdown>
-            <CodeBlock>{JSON.stringify(v, null, 2)}</CodeBlock>
           </div>
         );
       })}

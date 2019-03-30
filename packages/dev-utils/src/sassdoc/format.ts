@@ -49,6 +49,10 @@ function createReferenceLink(see: See, references: SassDocReference[]) {
   };
 }
 
+/**
+ * Creates the base sassdoc for an item that will be used for all sass doc types
+ * (variable, function, mixin).
+ */
 function formatSassDoc(
   item: Item,
   references: SassDocReference[]
@@ -130,22 +134,24 @@ export function formatVariableSassDoc(
     link: links = [] as Link[],
   } = sassdoc;
 
-  const code = `$${name}: ${value}${scope === "default" ? " !default" : ""}`;
   const packageName = pathname.substring(0, pathname.indexOf("/"));
-  const hackedValue = hackSCSSVariableValue({
-    scssVariable: sassdoc,
-    packageName,
-    importPath: pathname,
-    includePaths: [tempStylesFolder],
-  }).value;
+  let compiledValue = value;
+  if (isVariableDerived(value)) {
+    const hackedValue = hackSCSSVariableValue({
+      scssVariable: sassdoc,
+      packageName,
+      importPath: pathname,
+      includePaths: [tempStylesFolder],
+    }).value;
 
-  const formattedValue = hackedVariableToString(hackedValue);
+    compiledValue = hackedVariableToString(hackedValue);
+  }
 
   return {
     ...formatSassDoc(sassdoc, references),
-    code,
-    derived: isVariableDerived(value),
-    value: formattedValue,
+    value,
+    compiledValue,
+    configurable: scope === "default",
   };
 }
 
