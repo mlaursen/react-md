@@ -10,6 +10,7 @@ import cn from "classnames";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 import { useVisibility } from "@react-md/utils";
+import appBarVariables from "@react-md/app-bar/dist/scssVariables";
 import dividerVariables from "@react-md/divider/dist/scssVariables";
 import statesVariables from "@react-md/states/dist/scssVariables";
 import themeVariables from "@react-md/theme/dist/scssVariables";
@@ -22,6 +23,8 @@ import "./toggle-theme.scss";
 
 let lastTheme = "";
 const lightVariables = Object.keys({
+  "light-app-bar-start": "",
+  ...appBarVariables["rmd-app-bar-theme-values"],
   "light-states-start": "",
   ...statesVariables["rmd-states-theme-values"],
   "light-divider-start": "",
@@ -37,7 +40,10 @@ const lightVariables = Object.keys({
     }
 
     const prefix = `rmd-${lastTheme}`;
-    const key = name.replace(/^light-/, "").replace(/light$/, "background");
+    let key = name.replace(/^light-/, "").replace(/light$/, "background");
+    if (lastTheme === "app-bar") {
+      key = key.replace(/-light/, "");
+    }
 
     return {
       ...collected,

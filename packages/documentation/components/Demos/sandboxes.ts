@@ -1,7 +1,7 @@
 /** this is a generated file from `dev-utils sandbox` */
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
-import { upperFirst } from "utils/toTitle";
+import { upperFirst, toTitle } from "utils/toTitle";
 
 interface SandboxesRecord {
   [key: string]: () => Promise<IFiles>;
@@ -132,7 +132,7 @@ export default function getSandboxer(packageName: string, demoName: string) {
     let message = msgStart;
     if (typeof window !== "undefined") {
       const { pathname } = window.location;
-      const expected = pathname.replace(/.+\/([a-z-]+)\/.+$/, "$1");
+      const expected = toTitle(pathname.replace(/.+\/([a-z-]+)\/.+$/, "$1"));
       if (expected !== packageName) {
         message = `${message}.
 

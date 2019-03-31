@@ -90,10 +90,25 @@
 
 /// A very simple mixin that will center an element within the page for you
 /// when you aren't using flexbox or grid for the part of the layout.
-@mixin rmd-utils-block-centered {
+@mixin rmd-utils-block-centered($vertical-margin: null) {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+
+  @if $vertical-margin {
+    margin: $vertical-margin auto;
+  } @else {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/// A very simple mixin that is used to position an element in the center of
+/// another element by using some transforms and `position: absolute`. You will
+/// need to make sure that the parent element has `position: relative` to work.
+@mixin rmd-utils-absolute-centered {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 /// An extremely simple util that is used to add scrolling to an element with a "patch" for adding scroll

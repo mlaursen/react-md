@@ -177,13 +177,14 @@ chokidar
     console.log('Watching documentation markdown toc changes...');
   });
 
-const compoonentsPath = 'packages/documentation/components';
+const DOC_COMPONENTS = 'packages/documentation/components';
 chokidar
   .watch([
+    'packages/documentation/_variables.scss',
     'packages/documentation/pages/app.scss',
-    `${compoonentsPath}/blockquote.scss`,
-    `${compoonentsPath}/Code/code.scss`,
-    `${compoonentsPath}/Heading/heading.scss`,
+    `${DOC_COMPONENTS}/blockquote.scss`,
+    `${DOC_COMPONENTS}/Code/code.scss`,
+    `${DOC_COMPONENTS}/Heading/heading.scss`,
   ])
   .on('change', () => compileBaseStyles())
   .on('ready', () => {
