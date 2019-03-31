@@ -9,13 +9,12 @@
   $margin-left: -0.5rem;
 
   @include rmd-icon-theme-update-var(size, 2.5rem);
-  @include rmd-utils-rtl {
-    margin-left: $margin-right;
-    margin-right: $margin-left;
-  }
-
-  margin-left: $margin-left;
-  margin-right: $margin-right;
+  @include rmd-utils-rtl-auto-group(
+    (
+      margin-left: $margin-left,
+      margin-right: $margin-right,
+    )
+  );
 
   @media (min-width: 1025px) {
     @include rmd-icon-theme-update-var(size, 2.25rem);

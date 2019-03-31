@@ -161,15 +161,13 @@
 ///   </div>
 ///
 @mixin rmd-app-bar-nav {
+  @include rmd-utils-rtl-auto-group(
+    (
+      margin-left: $rmd-app-bar-lr-margin,
+      margin-right: $rmd-app-bar-title-nav-margin,
+    )
+  );
   flex-shrink: 0;
-  margin-left: $rmd-app-bar-lr-margin;
-  margin-right: $rmd-app-bar-title-nav-margin;
-
-  // sass-lint:disable-block mixins-before-declarations
-  @include rmd-utils-rtl {
-    margin-left: $rmd-app-bar-title-nav-margin;
-    margin-right: $rmd-app-bar-lr-margin;
-  }
 }
 
 /// Creates the styles for the `AppBarTitle` component.
@@ -180,33 +178,17 @@
 ///   }
 @mixin rmd-app-bar-title {
   @include rmd-typography(headline-6);
+  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
 
-  // line-height: $rmd-app-bar-title-line-height;
   margin-bottom: 0;
-  margin-left: $rmd-app-bar-keyline;
   margin-top: 0;
 
-  // sass-lint:disable-block mixins-before-declarations
-  @include rmd-utils-rtl {
-    margin-left: auto;
-    margin-right: $rmd-app-bar-keyline;
-  }
-
   .rmd-app-bar__nav ~ & {
-    margin-left: 0;
-
-    @include rmd-utils-rtl {
-      margin-right: 0;
-    }
+    @include rmd-utils-rtl-auto(margin-left, 0);
   }
 
   &--keyline {
-    margin-left: $rmd-app-bar-title-keyline;
-
-    @include rmd-utils-rtl {
-      margin-left: auto;
-      margin-right: $rmd-app-bar-title-keyline;
-    }
+    @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline, auto);
   }
 }
 
@@ -215,21 +197,14 @@
 /// action should be created.
 @mixin rmd-app-bar-action-position($first) {
   @if $first {
-    @include rmd-utils-rtl {
-      margin-left: $rmd-app-bar-lr-margin;
-      margin-right: auto;
-    }
-
-    margin-left: auto;
+    @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);
   } @else {
-    margin-left: $rmd-app-bar-lr-margin;
-    margin-right: $rmd-app-bar-nav-margin;
-
-    // sass-lint:disable-block mixins-before-declarations
-    @include rmd-utils-rtl {
-      margin-left: $rmd-app-bar-nav-margin;
-      margin-right: $rmd-app-bar-lr-margin;
-    }
+    @include rmd-utils-rtl-auto-group(
+      (
+        margin-left: $rmd-app-bar-lr-margin,
+        margin-right: $rmd-app-bar-nav-margin,
+      )
+    );
   }
 }
 

@@ -16,13 +16,9 @@ $toc-width: 15rem;
   $size-difference: ($rmd-button-icon-size - $button-size) / 2;
   $margin: $size-difference + $rmd-app-bar-lr-margin;
   @include rmd-button-theme-update-var(icon-size, $button-size);
-  @include rmd-utils-rtl {
-    left: $margin;
-    right: auto;
-  }
+  @include rmd-utils-rtl-auto(right, $margin);
 
   position: fixed;
-  right: $margin;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference});
   z-index: 11;
 }
@@ -69,12 +65,7 @@ $toc-width: 15rem;
   @media (min-width: 80.1rem) {
     @at-root {
       .demo {
-        @include rmd-utils-rtl {
-          margin-left: $toc-width;
-          margin-right: auto;
-        }
-
-        margin-right: $toc-width;
+        @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
       }
     }
   }

@@ -2,6 +2,7 @@
 /// @group utils
 ////
 
+@import 'functions';
 @import 'variables';
 
 /// A simple mixin that allows you to update styles when the [dir="rtl"] is present
@@ -21,6 +22,69 @@
 @mixin rmd-utils-rtl {
   [dir='rtl'] & {
     @content;
+  }
+}
+
+/// This mixin will try to automatically swap the positioning styles for rtl languages.
+/// If the swapped style should have something other than `auto` as the new style, that
+/// style should be included in the `$swapped-styles` map with the correct value.
+///
+/// @param {String} property - The property that should be reversed for rtl languages.
+/// @param {String|Number} value - The value that should be used for the original property
+/// value or the inversed property value when in rtl mode.
+/// @param {String|Number} swapped-value [null] - The value to use when in rtl languages
+/// for the original property. When this is set to `null`, `0` will be used for margins
+/// and padding while `auto` for everything else.
+@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) {
+  $inversed-property: rmd-utils-swap-position($property);
+
+  @include rmd-utils-rtl {
+    @if $swapped-value == null {
+      $swapped-value: auto;
+
+      @each $prefix in $rmd-utils-swappable-position-prefixes {
+        @if str-index($property, '#{$prefix}-') {
+          $swapped-value: 0;
+        }
+      }
+    }
+
+    #{$property}: #{$swapped-value};
+    #{$inversed-property}: #{$value};
+    @content;
+  }
+
+  #{$property}: #{$value};
+}
+
+/// This mixin will try to automatically swap the positioning styles for rtl languages.
+/// If the swapped style should have something other than `auto` as the new style, that
+/// style should be included in the `$swapped-styles` map with the correct value.
+///
+/// @param {Map} styles - The styles that should be swapped for rtl languages. Right now
+///   react-md only supports the `$rmd-utils-swappable-positions`.
+/// @param {Map} swapped-styles [()] - Any optional swapped style overrides that should
+///   be applied.
+@mixin rmd-utils-rtl-auto-group($styles, $swapped-styles: ()) {
+  @include rmd-utils-rtl {
+    @each $property, $value in $styles {
+      $inversed-property: rmd-utils-swap-position($property);
+      $inversed-value: auto;
+      @if map-has-key($swapped-styles, $property) {
+        $inversed-value: map-get($swapped-styles, $property);
+      } @else if map-has-key($styles, $inversed-property) {
+        $inversed-value: map-get($swapped-styles, $inversed-property);
+      }
+
+      #{$property}: #{$inversed-value};
+      #{$inversed-property}: #{$value};
+
+      @content;
+    }
+  }
+
+  @each $property, $value in $styles {
+    #{$property}: #{$value};
   }
 }
 

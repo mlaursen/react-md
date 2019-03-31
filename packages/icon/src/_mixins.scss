@@ -82,26 +82,23 @@
 ///
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
-  @include rmd-icon-theme(margin-right, text-spacing, $spacing);
-
-  // sass-lint:disable-block mixins-before-declarations
   @include rmd-utils-rtl {
     @include rmd-icon-theme(margin-left, text-spacing, $spacing);
     margin-right: 0;
   }
+
+  @include rmd-icon-theme(margin-right, text-spacing, $spacing);
 }
 
 /// Creates the styles that should be applied to an icon that is placed after text.
 ///
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
-  @include rmd-icon-theme(margin-left, text-spacing, $spacing);
-
-  // sass-lint:disable-block mixins-before-declarations
   @include rmd-utils-rtl {
     @include rmd-icon-theme(margin-right, text-spacing, $spacing);
     margin-left: 0;
   }
+  @include rmd-icon-theme(margin-left, text-spacing, $spacing);
 }
 
 /// A mixin to create the styles to space an icon before or after text with the provided selectors and

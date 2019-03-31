@@ -163,14 +163,12 @@
 
   &__text {
     @include rmd-typography-text-overflow-ellipsis;
-
-    display: block;
-    flex-grow: 1;
-
-    // sass-lint:disable-block mixins-before-declarations
     @include rmd-utils-rtl {
       margin-left: auto;
     }
+
+    display: block;
+    flex-grow: 1;
 
     &--secondary {
       @include rmd-theme(color, text-secondary-on-background);
@@ -213,7 +211,7 @@
     @include rmd-list-theme(padding-left, text-keyline);
     @include rmd-utils-rtl {
       @include rmd-list-theme(padding-left, item-horizontal-padding);
-      @include rmd-list-theme(padding-left, text-keyline);
+      @include rmd-list-theme(padding-right, text-keyline);
     }
   }
 }

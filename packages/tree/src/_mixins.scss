@@ -83,13 +83,7 @@
   $padding: (($depth - 1) * $incrementor) + $base;
 
   #{$selector} {
-    padding-left: $padding;
-
-    // sass-lint:disable mixins-before-declarations
-    @include rmd-utils-rtl {
-      padding-left: $rmd-list-item-horizontal-padding;
-      padding-right: $padding;
-    }
+    @include rmd-utils-rtl-auto(padding-left, $padding, $rmd-list-item-horizontal-padding);
   }
 }
 

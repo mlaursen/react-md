@@ -64,15 +64,14 @@
 @function rmd-utils-swap-position($style) {
   $prefix: '';
   $position: $style;
-  @if str-index($style, 'padding-') {
-    $prefix: 'padding-';
-    $position: str-replace($style, 'padding-', '');
-  } @else if str-index($style, 'margin-') {
-    $prefix: 'margin-';
-    $position: str-replace($style, 'margin-', '');
+  @each $valid-prefix in $rmd-utils-swappable-position-prefixes {
+    @if str-index($style, '#{$valid-prefix}-') {
+      $prefix: '#{$valid-prefix}-';
+      $position: str-replace($style, $prefix, '');
+    }
   }
 
-  $current: rmd-utils-validate($rmd-utils-swappable-positions, $style, 'swappable position');
+  $current: rmd-utils-validate($rmd-utils-swappable-positions, $position, 'swappable position');
 
   $next-position: bottom;
   @if $position == left {

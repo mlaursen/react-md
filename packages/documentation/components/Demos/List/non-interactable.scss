@@ -17,12 +17,7 @@
 }
 
 .li--margin::before {
-  @include rmd-utils-rtl {
-    margin-left: 1rem;
-    margin-right: 0;
-  }
-
-  margin-right: 1rem;
+  @include rmd-utils-rtl-auto(margin-right, 1rem);
 }
 
 .li--dotted::before {
