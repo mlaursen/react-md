@@ -234,6 +234,10 @@
     @include react-md-overlay;
   }
 
+  @if mixin-exists(react-md-progress) {
+    @include react-md-progress;
+  }
+
   @if mixin-exists(react-md-sheet) {
     @include react-md-sheet;
   }

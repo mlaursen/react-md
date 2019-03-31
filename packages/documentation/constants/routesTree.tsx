@@ -206,6 +206,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("media"),
     createPackageRoute("overlay"),
     createPackageRoute("portal"),
+    createPackageRoute("progress"),
     createPackageRoute("sheet"),
     createPackageRoute("states"),
     createPackageRoute("theme"),

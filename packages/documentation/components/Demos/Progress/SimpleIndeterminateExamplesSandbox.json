@@ -1,0 +1,109 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Progress Example - Simple Indeterminate Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/button/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/progress/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Progress Example - Simple Indeterminate Examples",
+      "description": "Example from https://react-md.dev/packages/progress/demos#simple-indeterminate-examples",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/button": "next",
+        "@react-md/icon": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/progress": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/typography": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment, useEffect } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  LinearProgress,\n  CircularProgress,\n  getProgressA11y,\n} from \"@react-md/progress\";\nimport { useVisibility } from \"@react-md/utils\";\n\nimport Phone from \"./Phone\";\nimport \"./simple-examples.scss\";\nimport useTemporaryToggle from \"./useTemporaryToggle\";\n\nconst SimpleIndeterminateExamples: FunctionComponent = () => {\n  const { visible: linearVisible, toggle: toggleLinear } = useTemporaryToggle();\n  const {\n    visible: circularVisible,\n    toggle: toggleCircular,\n  } = useTemporaryToggle();\n\n  return (\n    <Fragment>\n      <Phone id=\"simple-linear\" title=\"Linear\">\n        {linearVisible && <LinearProgress id=\"simple-linear-progress\" />}\n        <Button\n          id=\"show-linear-progress\"\n          {...getProgressA11y(\"simple-linear-progress\", circularVisible)}\n          onClick={toggleLinear}\n          themeType=\"contained\"\n          className=\"centered-progress-toggle\"\n          disabled={linearVisible}\n        >\n          Toggle Progress\n        </Button>\n      </Phone>\n      <Phone id=\"simple-circular\" title=\"Circular\">\n        {circularVisible && <CircularProgress id=\"simple-circular-progress\" />}\n        <Button\n          id=\"show-circular-progress\"\n          {...getProgressA11y(\"simple-circular-progress\", circularVisible)}\n          onClick={toggleCircular}\n          themeType=\"contained\"\n          className=\"centered-progress-toggle\"\n          disabled={circularVisible}\n        >\n          Toggle Progress\n        </Button>\n      </Phone>\n    </Fragment>\n  );\n};\n\nexport default SimpleIndeterminateExamples;\n",
+    "isBinary": false
+  },
+  "src/simple-examples.scss": {
+    "content": "@import '@react-md/utils/dist/mixins';\n\n.centered-progress-toggle {\n  @include rmd-utils-absolute-centered;\n\n  white-space: nowrap;\n}\n",
+    "isBinary": false
+  },
+  "src/useTemporaryToggle.ts": {
+    "content": "import { useEffect } from \"react\";\nimport { useVisibility } from \"@react-md/utils\";\n\nconst TEN_SECONDS = 10000;\n\nexport default function useTemporaryToggle(duration: number = TEN_SECONDS) {\n  const { visible, toggle, hide } = useVisibility();\n  useEffect(() => {\n    let timeout: number | undefined = window.setTimeout(() => {\n      timeout = undefined;\n      hide();\n    }, duration);\n\n    return () => window.clearTimeout(timeout);\n  }, [visible]);\n\n  return { toggle, visible };\n}\n",
+    "isBinary": false
+  },
+  "src/AppSize.tsx": {
+    "content": "import React, { createContext, FunctionComponent, useContext } from \"react\";\nimport {\n  useEventListener,\n  useAppSize,\n  AppSize as AppSizeType,\n} from \"@react-md/utils\";\n\nconst DEFAULTS = {\n  isPhone: false,\n  isTablet: false,\n  isDesktop: true,\n  isPortraitPhone: false,\n  isLandscapePhone: false,\n  isPortraitTablet: false,\n  isLandscapeTablet: false,\n  isLargeDesktop: false,\n};\n\nconst AppSizeContext = createContext<AppSizeType>(DEFAULTS);\n\nexport function useAppSizeContext() {\n  return useContext(AppSizeContext);\n}\n\nexport const AppSize: FunctionComponent<Partial<AppSizeType>> = ({\n  children,\n  ...defaults\n}) => {\n  const value = useAppSize({ defaultValue: defaults as AppSizeType });\n  return (\n    <AppSizeContext.Provider value={value}>{children}</AppSizeContext.Provider>\n  );\n};\n\nAppSize.defaultProps = DEFAULTS;\n\nexport default AppSize;\n",
+    "isBinary": false
+  },
+  "src/ClosePhone.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBarNav, AppBarNavProps } from \"@react-md/app-bar\";\nimport { KeyboardArrowLeftSVGIcon } from \"@react-md/material-icons\";\n\nimport { usePhoneContext } from \"./context\";\n\nconst ClosePhone: FunctionComponent<AppBarNavProps> = ({\n  children,\n  ...props\n}) => {\n  const { id } = usePhoneContext();\n  return (\n    <AppBarNav {...props} id={`${id}-close`}>\n      {children}\n    </AppBarNav>\n  );\n};\n\nClosePhone.defaultProps = {\n  \"aria-label\": \"Go back\",\n  children: <KeyboardArrowLeftSVGIcon />,\n};\n\nexport default ClosePhone;\n",
+    "isBinary": false
+  },
+  "src/DefaultAppBar.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBarTitle, AppBar } from \"@react-md/app-bar\";\n\nimport ClosePhone from \"./ClosePhone\";\nimport { usePhoneContext } from \"./context\";\nimport OptionsAction from \"./OptionsAction\";\nimport PhoneAppBar from \"./PhoneAppBar\";\nimport SearchAction from \"./SearchAction\";\n\nconst DefaultPhoneAppBar: FunctionComponent = () => {\n  const { id, title } = usePhoneContext();\n  return (\n    <PhoneAppBar>\n      <AppBar component=\"div\" theme=\"clear\">\n        <ClosePhone />\n        <AppBarTitle>{title}</AppBarTitle>\n        <SearchAction />\n        <OptionsAction />\n      </AppBar>\n    </PhoneAppBar>\n  );\n};\n\nexport default DefaultPhoneAppBar;\n",
+    "isBinary": false
+  },
+  "src/OptionsAction.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBarAction, AppBarActionProps } from \"@react-md/app-bar\";\nimport { MoreVertSVGIcon } from \"@react-md/material-icons\";\n\nimport { usePhoneContext } from \"./context\";\n\nconst OptionsAction: FunctionComponent<AppBarActionProps> = ({\n  children,\n  ...props\n}) => {\n  const { id } = usePhoneContext();\n  return (\n    <AppBarAction {...props} id={`${id}-options`}>\n      {children}\n    </AppBarAction>\n  );\n};\n\nOptionsAction.defaultProps = {\n  \"aria-label\": \"Options\",\n  children: <MoreVertSVGIcon />,\n  last: true,\n};\n\nexport default OptionsAction;\n",
+    "isBinary": false
+  },
+  "src/Phone.tsx": {
+    "content": "import React, { FunctionComponent, ReactNode } from \"react\";\nimport {\n  APP_BAR_OFFSET_CLASSNAME,\n  APP_BAR_OFFSET_DENSE_CLASSNAME,\n  APP_BAR_OFFSET_PROMINENT_CLASSNAME,\n  APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,\n} from \"@react-md/app-bar\";\nimport { bem } from \"@react-md/theme\";\nimport cn from \"classnames\";\n\nimport { useAppSizeContext } from \"./AppSize\";\n\nimport \"./phone.scss\";\nimport { PhoneContext } from \"./context\";\nimport DefaultAppBar from \"./DefaultAppBar\";\n\nexport interface PhoneProps {\n  id: string;\n  appBar?: ReactNode;\n  title?: ReactNode;\n  children: ReactNode;\n  className?: string;\n  contentClassName?: string;\n  prominent?: boolean;\n}\ntype DefaultProps = Required<Pick<PhoneProps, \"appBar\" | \"title\">>;\ntype WithDefaultProps = PhoneProps & DefaultProps;\n\nconst block = bem(\"phone\");\n\nconst Phone: FunctionComponent<PhoneProps> = props => {\n  const {\n    id,\n    title,\n    children,\n    appBar,\n    className,\n    contentClassName,\n    prominent,\n  } = props as WithDefaultProps;\n  const { isPhone } = useAppSizeContext();\n\n  return (\n    <PhoneContext.Provider value={{ id, title }}>\n      <div\n        id={`${id}-phone`}\n        className={cn(block({ emulated: !isPhone }), className)}\n      >\n        {appBar}\n        <div\n          id={`${id}-content`}\n          className={cn(\n            block(\"content\"),\n            {\n              [APP_BAR_OFFSET_CLASSNAME]: isPhone,\n              [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone && prominent,\n              [APP_BAR_OFFSET_DENSE_CLASSNAME]: !isPhone,\n              [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]: !isPhone && prominent,\n            },\n            contentClassName\n          )}\n        >\n          {children}\n        </div>\n      </div>\n    </PhoneContext.Provider>\n  );\n};\n\nconst defaultProps: DefaultProps = {\n  appBar: <DefaultAppBar />,\n  title: \"Example\",\n};\n\nPhone.defaultProps = defaultProps;\n\nexport default Phone;\n",
+    "isBinary": false
+  },
+  "src/PhoneAppBar.tsx": {
+    "content": "import React, { FunctionComponent, ReactNode } from \"react\";\nimport cn from \"classnames\";\nimport {\n  AppBar,\n  AppBarNav,\n  AppBarTitle,\n  AppBarAction,\n  AppBarProps,\n} from \"@react-md/app-bar\";\nimport {\n  KeyboardArrowLeftSVGIcon,\n  SearchSVGIcon,\n  MoreVertSVGIcon,\n} from \"@react-md/material-icons\";\nimport { bem } from \"@react-md/theme\";\nimport StatusBar from \"./StatusBar\";\nimport { usePhoneContext } from \"./context\";\nimport { useAppSizeContext } from \"./AppSize\";\n\nconst block = bem(\"phone\");\n\nconst PhoneAppBar: FunctionComponent<AppBarProps> = ({\n  className,\n  children,\n  ...props\n}) => {\n  const { id } = usePhoneContext();\n  const { isPhone } = useAppSizeContext();\n\n  return (\n    <AppBar\n      {...props}\n      id={`${id}-app-bar`}\n      className={cn(block(\"app-bar\"), className)}\n      fixed\n      fixedElevation={false}\n      dense={!isPhone}\n    >\n      <StatusBar id={id} isPhone={isPhone} />\n      {children}\n    </AppBar>\n  );\n};\n\nPhoneAppBar.defaultProps = {\n  theme: \"default\",\n};\n\nexport default PhoneAppBar;\n",
+    "isBinary": false
+  },
+  "src/SearchAction.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppBarAction, AppBarActionProps } from \"@react-md/app-bar\";\nimport { SearchSVGIcon } from \"@react-md/material-icons\";\n\nimport { usePhoneContext } from \"./context\";\n\nconst SearchAction: FunctionComponent<AppBarActionProps> = ({\n  children,\n  ...props\n}) => {\n  const { id } = usePhoneContext();\n  return (\n    <AppBarAction {...props} id={`${id}-search`}>\n      {children}\n    </AppBarAction>\n  );\n};\n\nSearchAction.defaultProps = {\n  \"aria-label\": \"Search\",\n  children: <SearchSVGIcon />,\n  first: true,\n};\n\nexport default SearchAction;\n",
+    "isBinary": false
+  },
+  "src/StatusBar.tsx": {
+    "content": "import React, { FunctionComponent } from \"react\";\nimport { bem } from \"@react-md/theme\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport {\n  NetworkWifiSVGIcon,\n  NetworkCellSVGIcon,\n  BatteryFullSVGIcon,\n} from \"@react-md/material-icons\";\n\nexport interface StatusBarProps {\n  id: string;\n  isPhone: boolean;\n}\n\nconst block = bem(\"phone\");\n\nconst StatusBar: FunctionComponent<StatusBarProps> = ({ id, isPhone }) => {\n  if (isPhone) {\n    return null;\n  }\n\n  return (\n    <AppBar\n      id={`${id}-status-bar`}\n      className={block(\"status-bar\")}\n      dense\n      theme=\"clear\"\n      component=\"div\"\n    >\n      <NetworkWifiSVGIcon\n        role=\"presentation\"\n        className={block(\"icon\", { first: true })}\n      />\n      <NetworkCellSVGIcon role=\"presentation\" className={block(\"icon\")} />\n      <BatteryFullSVGIcon role=\"presentation\" className={block(\"icon\")} />\n    </AppBar>\n  );\n};\n\nexport default StatusBar;\n",
+    "isBinary": false
+  },
+  "src/context.ts": {
+    "content": "import { createContext, ReactNode, useContext } from \"react\";\n\ninterface PhoneContextType {\n  id: string;\n  title: ReactNode;\n}\n\nexport const PhoneContext = createContext<PhoneContextType>({\n  id: \"\",\n  title: \"Example\",\n});\nexport function usePhoneContext() {\n  return useContext(PhoneContext);\n}\n",
+    "isBinary": false
+  },
+  "src/index.ts": {
+    "content": "import Phone from \"./Phone\";\n\nexport default Phone;\n\nexport { default as DefaultAppBar } from \"./DefaultAppBar\";\nexport { default as PhoneAppBar } from \"./PhoneAppBar\";\nexport { default as ClosePhone } from \"./ClosePhone\";\nexport { default as OptionsAction } from \"./OptionsAction\";\nexport { default as SearchAction } from \"./SearchAction\";\nexport * from \"./context\";\n",
+    "isBinary": false
+  },
+  "src/phone.scss": {
+    "content": "@import '@react-md/theme/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/elevation/dist/mixins';\n@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n$phone-height: 35.5rem;\n$phone-width: 20rem;\n\n$fixed-classes: (\n  rmd-app-bar--fixed: 1,\n  rmd-sheet--fixed: 2,\n);\n\n.phone {\n  &--emulated {\n    @include rmd-elevation(4);\n    @include rmd-utils-block-centered(1rem);\n    @include rmd-theme(background-color, background);\n    @include rmd-app-bar-theme-update-var(\n      dense-height,\n      calc(#{rmd-app-bar-theme-var(height)} + #{rmd-icon-theme-var(size)})\n    );\n    @include rmd-app-bar-theme-update-var(\n      prominent-dense-height,\n      calc(#{rmd-app-bar-theme-var(prominent-height)} + #{rmd-icon-theme-var(size)})\n    );\n\n    height: $phone-height;\n    position: relative;\n    width: $phone-width;\n\n    @each $fixed-class, $z-index in $fixed-classes {\n      .#{$fixed-class} {\n        position: absolute;\n        z-index: $z-index;\n      }\n    }\n\n    .phone__app-bar {\n      // updated the shadow to be bottom only\n      box-shadow: 0 3px 2px -3px rgba($rmd-black-base, 0.2),\n        0 2px 2px -2px rgba($rmd-black-base, 0.14), 0 1px 5px -1px rgba($rmd-black-base, 0.12);\n    }\n  }\n\n  &__app-bar {\n    flex-wrap: wrap;\n  }\n\n  &__status-bar {\n    @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));\n    background-color: rgba($rmd-black-base, 0.12);\n\n    width: 100%;\n  }\n\n  &__icon {\n    @include rmd-icon-dense-theme;\n\n    margin: 0 $rmd-app-bar-lr-margin;\n\n    &--first {\n      @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);\n    }\n  }\n\n  &__content {\n    @include rmd-utils-scroll;\n\n    height: 100%;\n  }\n}\n",
+    "isBinary": false
+  }
+}

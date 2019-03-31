@@ -85,6 +85,12 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Portal/CustomPortalContainerSandbox.json")),
   "Portal/SimpleExample": () =>
     resolve(import("./Portal/SimpleExampleSandbox.json")),
+  "Progress/SimpleDeterminateExamples": () =>
+    resolve(import("./Progress/SimpleDeterminateExamplesSandbox.json")),
+  "Progress/SimpleIndeterminateExamples": () =>
+    resolve(import("./Progress/SimpleIndeterminateExamplesSandbox.json")),
+  "Progress/WithSuspense": () =>
+    resolve(import("./Progress/WithSuspenseSandbox.json")),
   "Sheet/PositionExamples": () =>
     resolve(import("./Sheet/PositionExamplesSandbox.json")),
   "States/CustomComponent": () =>
