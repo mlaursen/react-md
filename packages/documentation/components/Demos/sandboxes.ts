@@ -128,11 +128,28 @@ export default function getSandboxer(packageName: string, demoName: string) {
     .join("");
   const sandboxer = sandboxes[`${packageName}/${demoName}`];
   if (!sandboxer) {
-    console.error(
-      "Unable to find a sandbox import for the following package and demo name"
-    );
-    console.error("packageName: ", packageName);
-    console.error("demoName: ", demoName);
+    const msgStart = `Unable to find a sandbox import for \`${demoName}\``;
+    let message = msgStart;
+    if (typeof window !== "undefined") {
+      const { pathname } = window.location;
+      const expected = pathname.replace(/.+\/([a-z-]+)\/.+$/, "$1");
+      if (expected !== packageName) {
+        message = `${message}.
+
+Got \`${packageName}\` as the current package name, but based on the url it
+should probably be \`${expected}\`. Make sure the \`index.tsx\` file has the
+correct \`pakageName\` prop set on the \`DemosPage\` component.`;
+      }
+    }
+
+    if (message === msgStart) {
+      message = `${message} in the \`${packageName}\` demo section.`;
+    }
+
+    message = `${message}
+Please run the \`sandbox\` command again in the documentation package to generate the sandbox.`;
+
+    console.error(message);
     return dummy;
   }
 
