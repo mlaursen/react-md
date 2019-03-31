@@ -108,9 +108,8 @@ chokidar
     console.log('Watching documentation base styles changes...');
   });
 
-const DEMOS_GLOB = `${DOC_COMPONENTS}/Demos/*/*`;
 chokidar
-  .watch([`${DEMOS_GLOB}.ts`, `${DEMOS_GLOB}.tsx`, `${DEMOS_GLOB}.scss`])
+  .watch(`${DOC_COMPONENTS}/Demos/*/index.ts`)
   .on('change', file => {
     const [packageName, demo] = file
       .substring(file.indexOf('Demos/') + 'Demos/'.length)

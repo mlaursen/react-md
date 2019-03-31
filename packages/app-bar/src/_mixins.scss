@@ -197,14 +197,9 @@
 /// action should be created.
 @mixin rmd-app-bar-action-position($first) {
   @if $first {
-    @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);
+    @include rmd-utils-rtl-auto(margin-left, auto);
   } @else {
-    @include rmd-utils-rtl-auto-group(
-      (
-        margin-left: $rmd-app-bar-lr-margin,
-        margin-right: $rmd-app-bar-nav-margin,
-      )
-    );
+    @include rmd-utils-rtl-auto(margin-right, $rmd-app-bar-lr-margin);
   }
 }
 

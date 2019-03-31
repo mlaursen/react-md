@@ -1,6 +1,8 @@
 @import '@react-md/typography/dist/mixins';
 
 .markdown {
+  word-break: break-word;
+
   &__p {
     @include rmd-typography(body-1);
 

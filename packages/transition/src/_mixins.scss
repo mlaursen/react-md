@@ -66,10 +66,30 @@
   }
 }
 
+/// Creates the cross fade animation styles. This animation is usually used
+/// when loading in new parts of a page or page transitions as there is no
+/// exit animation by default.
+@mixin rmd-cross-fade {
+  .rmd-cross-fade {
+    opacity: 0;
+    transform: translateY($rmd-cross-fade-translate-distance);
+
+    &--active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: $rmd-cross-fade-transition-duration;
+      transition-property: opacity, transform;
+    }
+  }
+}
+
 /// Creates the transition theme css variables as well as the styles
 /// for components in the transition package.
 @mixin react-md-transition {
   @include rmd-theme-create-root-theme($rmd-transition-theme-values, transition);
 
   @include rmd-collapse;
+  @include rmd-cross-fade;
 }

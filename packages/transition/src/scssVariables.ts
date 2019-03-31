@@ -9,6 +9,8 @@ export default {
   "rmd-transition-standard-time": "0.15s",
   "rmd-collapse-enter-transition-func": "deceleration",
   "rmd-collapse-leave-transition-func": "acceleration",
+  "rmd-cross-fade-translate-distance": "-1rem",
+  "rmd-cross-fade-transition-duration": "0.3s",
   "rmd-transition-theme-values": {
     sharp: "cubic-bezier(0.4, 0, 0.6, 1)",
     standard: "cubic-bezier(0.4, 0, 0.2, 1)",

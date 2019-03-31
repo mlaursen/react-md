@@ -48,6 +48,15 @@ $rmd-collapse-enter-transition-func: deceleration !default;
 /// @type String
 $rmd-collapse-leave-transition-func: acceleration !default;
 
+/// The distance that the cross fade animation should move. This will
+/// be applied to `translateY`.
+/// @type Number
+$rmd-cross-fade-translate-distance: -1rem !default;
+
+/// The transition duration for the cross fade animation.
+/// @type Number
+$rmd-cross-fade-transition-duration: 0.3s !default;
+
 /// A Map of all the available transitions for react-md.
 /// @type Map
 $rmd-transition-theme-values: (

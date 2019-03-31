@@ -5,6 +5,7 @@
 
 .heading {
   position: relative;
+  word-break: break-word;
 
   @media (min-width: 60rem) {
     margin-left: -1em;
