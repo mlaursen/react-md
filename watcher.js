@@ -6,8 +6,31 @@ const { spawn, spawnSync } = require('child_process');
 
 const docsRoot = path.join(process.cwd(), 'packages', 'documentation');
 const IGNORED = /(__tests__|dev-utils|documentation)/;
+
+const processes = [];
+
 let startLoggingScss = false;
 let startLoggingDefs = false;
+
+const PACKAGES = fs
+  .readdirSync('packages')
+  .filter(n => !/documentation|dev-utils/.test(n));
+
+const TYPESCRIPT_PACKAGES = PACKAGES.filter(
+  n => !/elevation|react-md|documentation|material-icons|dev-utils/.test(n)
+);
+
+(function tsc() {
+  const watchablePackages = TYPESCRIPT_PACKAGES.map(n =>
+    path.join('packages', n)
+  );
+  console.log(
+    'Starting tsc in build watcher mode for the following packages...'
+  );
+  console.log(watchablePackages.map(p => `- ${p}`).join('\n'));
+  const args = ['tsc', '-b', '-w', ...watchablePackages];
+  processes.push(spawn('npx', args, { stdio: 'inherit' }));
+})();
 
 function copyFile(filePath, destPath, log) {
   const destWithSep = `${path.sep}${destPath}`;
@@ -41,91 +64,11 @@ const copyScssFile = f => {
 };
 
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
-const isNotLazy = process.argv.includes('--no-lazy');
-const isVariablesWatched = process.argv.includes('--watch-variables');
-
-const watchedProjects = new Set();
-const processes = [];
-
-function tscWatcher(filePath, extension = '') {
-  const [packages, project] = filePath.split(path.sep);
-  const tsc = path.join(
-    process.cwd(),
-    'node_modules',
-    'typescript',
-    'bin',
-    'tsc'
-  );
-  const tsConfig = path.join(packages, project, `tsconfig${extension}.json`);
-  const args = ['-p', tsConfig, '-w'];
-
-  processes.push(spawn(tsc, args, { stdio: 'inherit' }));
-}
-
-function startTsWatcher(filePath) {
-  const [packages, project] = filePath.split(path.sep);
-  if (watchedProjects.has(project)) {
-    return;
-  }
-
-  if (!fs.existsSync(path.join(packages, project, 'tsconfig.json'))) {
-    const args = [
-      'run',
-      'build',
-      '--scope',
-      `@react-md/${project}`,
-      '--',
-      '--scripts-only',
-      '--no-umd',
-    ];
-    spawnSync('lerna', args, { stdio: 'inherit' });
-  }
-
-  console.log(`Staring new tsc watcher in ${project}...`);
-  tscWatcher(filePath);
-  if (!process.argv.includes('--no-cjs')) {
-    tscWatcher(filePath, '.commonjs');
-  }
-
-  watchedProjects.add(project);
-}
-
-function startVariablesWatcher(filePath) {
-  const [, project] = filePath.split(path.sep);
-  const name = `${project}-variables`;
-  const args = [
-    'run',
-    'build',
-    '--scope',
-    `@react-md/${project}`,
-    '--',
-    '--variables-only',
-  ];
-
-  spawn('lerna', args, { stdio: 'inherit' });
-  if (watchedProjects.has(name)) {
-    return;
-  }
-
-  tscWatcher(filePath, '.variables');
-}
 
 chokidar
   .watch('packages/*/src/**/*.scss', { ignored: IGNORED })
-  .on('add', filePath => {
-    if (
-      isVariablesWatched &&
-      isNotLazy &&
-      filePath.includes('variables.scss')
-    ) {
-      startVariablesWatcher(filePath);
-    }
-  })
   .on('change', filePath => {
     copyScssFile(filePath);
-    if (isVariablesWatched && filePath.includes('variables.scss')) {
-      startVariablesWatcher(filePath);
-    }
   })
   .on('ready', () => {
     console.log('Watching for scss file changes...');
@@ -141,22 +84,6 @@ chokidar
     startLoggingDefs = true;
   });
 
-let isNoLongerLazy = false;
-chokidar
-  .watch(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
-    ignored: new RegExp(IGNORED.source + '|.d.ts|scssVariables.ts'),
-  })
-  .on('add', filePath => {
-    if (isNotLazy || isNoLongerLazy) {
-      startTsWatcher(filePath);
-    }
-  })
-  .on('change', startTsWatcher)
-  .on('ready', () => {
-    console.log('Watching for typescript changes...');
-    isNoLongerLazy = true;
-  });
-
 chokidar
   .watch(['packages/*/README.md'], { ignored: IGNORED })
   .on('change', () => {
@@ -165,16 +92,6 @@ chokidar
   })
   .on('ready', () => {
     console.log('Watching package readme changes...');
-  });
-
-chokidar
-  .watch(['packages/documentation/components/**/*.md'], { ignored: IGNORED })
-  .on('change', () => {
-    spawnSync('yarn', ['add-toc'], { stdio: 'inherit', cwd: docsRoot });
-    console.log('Done!');
-  })
-  .on('ready', () => {
-    console.log('Watching documentation markdown toc changes...');
   });
 
 const DOC_COMPONENTS = 'packages/documentation/components';
@@ -189,6 +106,26 @@ chokidar
   .on('change', () => compileBaseStyles())
   .on('ready', () => {
     console.log('Watching documentation base styles changes...');
+  });
+
+const DEMOS_GLOB = `${DOC_COMPONENTS}/Demos/*/*`;
+chokidar
+  .watch([`${DEMOS_GLOB}.ts`, `${DEMOS_GLOB}.tsx`, `${DEMOS_GLOB}.scss`])
+  .on('change', file => {
+    const [packageName, demo] = file
+      .substring(file.indexOf('Demos/') + 'Demos/'.length)
+      .split('/');
+
+    if (!fs.existsSync(file.replace(/\.tsx?$/, 'Sandbox.json'))) {
+      const demoName = demo.replace(/\.tsx?$/, '');
+      console.log(`Creating a new sandbox for ${packageName}'s ${demoName}`);
+
+      const args = ['sandbox', packageName];
+      spawnSync('yarn', args, { stdio: 'inherit', cwd: docsRoot });
+    }
+  })
+  .on('ready', () => {
+    console.log('Watching documentation demos...');
   });
 
 process.on('exit', () => {
