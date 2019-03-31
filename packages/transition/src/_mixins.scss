@@ -37,8 +37,13 @@
 ///
 /// @param {String} type - The transition type that should be used. This should be one of the
 ///   keys for `$rmd-transitions`
-@mixin rmd-transition($type) {
-  @include rmd-transition-theme(transition-timing-function, $type);
+/// @param {Boolean} animation - Boolean if this should be applied to the animation timing
+///   function instead of the transition timing function.
+@mixin rmd-transition($type, $animation: false) {
+  @include rmd-transition-theme(
+    if($animation, animation-timing-function, transition-timing-function),
+    $type
+  );
 }
 
 /// Creates the styles for the Collapse component within react-md
