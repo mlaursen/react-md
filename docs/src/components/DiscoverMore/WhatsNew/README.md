@@ -1,3 +1,8 @@
+## April 2019
+### v1.10.0 Released
+##### Changelog
+- Added a new prop to the `TablePagination` that allows for translating the page range label. [issues-817] ([@bohrsty] - [pull-825])
+
 ## February 2019
 ### v1.9.3 Released
 ##### Changelog
