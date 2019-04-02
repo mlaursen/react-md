@@ -20,7 +20,7 @@ export interface TablePaginationProps extends Props {
   incrementIcon?: React.ReactElement<any>;
   decrementIcon?: React.ReactElement<any>;
   simplifiedMenu?: boolean;
-  paginationLabel?: Function;
+  paginationLabel?: (startRow: number, lastRow: number, totalRows: number) => string;
 
   /**
    * @deprecated
