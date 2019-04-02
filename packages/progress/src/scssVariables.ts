@@ -47,6 +47,22 @@ export default {
     "40%": { bottom: "-8%", top: "107%" },
     "100%": { bottom: "-8%", top: "107%" },
   },
+  "rmd-progress-circle-stroke-width": 6,
+  "rmd-progress-circle-dasharray": 187,
+  "rmd-progress-circle-transition-duration": "2.4s",
+  "rmd-progress-circle-start-offset": 187,
+  "rmd-progress-circle-end-offset": 46.75,
+  "rmd-progress-circle-rotate-styles": {
+    "0%": { transform: "rotate(0deg)" },
+    "50%": { transform: "rotate(135deg)" },
+    "75%": { transform: "rotate(450deg)" },
+    "100%": { transform: "rotate(720deg)" },
+  },
+  "rmd-progress-circle-dash-styles": {
+    "0%": { "stroke-dashoffset": 187 },
+    "50%": { "stroke-dashoffset": 46.75 },
+    "100%": { "stroke-dashoffset": 187 },
+  },
   "rmd-progress-theme-values": {
     color: "#9c27b0",
     "background-color": "#ba68c8",

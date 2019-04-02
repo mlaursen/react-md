@@ -49,11 +49,23 @@ function matchParen(s: string, count: number = 0) {
     if (count === 1) {
       return s.substring(0, i);
     }
+
+    console.log("s:", s);
     console.log("count:", count);
     return s.substring(0, i);
   }
 
-  return s.substring(0, i) + matchParen(s.substring(i), count + 1);
+  const prefix = s.substring(0, i);
+  if (/rotate|transform/.test(prefix)) {
+    const j = s.indexOf(")") + 1;
+    if (j === s.length) {
+      return s;
+    }
+
+    return s.substring(0, j) + matchParen(s.substring(j), count);
+  }
+
+  return prefix + matchParen(s.substring(i), count + 1);
 }
 
 function hackSCSSMapValues(mapValue: string) {
