@@ -255,4 +255,106 @@ describe('TablePagination', () => {
     pagination = test.find(TablePagination).instance();
     expect(pagination.state.start).toBe(0);
   });
+
+  describe('custom pagination label', () => {
+    it('should provide the start row index, the last row index, and the total rows in the paginationLabel prop', () => {
+      const onPagination = jest.fn();
+      const paginationLabel = jest.fn();
+
+      mount((
+        <Table>
+          <TablePagination
+            page={1}
+            rows={1000}
+            rowsPerPage={10}
+            onPagination={onPagination}
+            paginationLabel={paginationLabel}
+          />
+        </Table>
+      ));
+      expect(paginationLabel).toBeCalledWith(1, 10, 1000);
+
+      mount((
+        <Table>
+          <TablePagination
+            page={2}
+            rows={1000}
+            rowsPerPage={10}
+            onPagination={onPagination}
+            paginationLabel={paginationLabel}
+          />
+        </Table>
+      ));
+      expect(paginationLabel).toBeCalledWith(11, 20, 1000);
+    });
+
+    it('should default to an English translation', () => {
+      const onPagination = jest.fn();
+
+      const table = mount((
+        <Table>
+          <TablePagination
+            page={1}
+            rows={1000}
+            rowsPerPage={10}
+            onPagination={onPagination}
+          />
+        </Table>
+      ));
+
+      const label = table.find('.md-table-pagination--label');
+      expect(label.text()).toBe('1-10 of 1000');
+    });
+
+    it('should allow for any translation', () => {
+      const onPagination = jest.fn();
+      const toDanish = (startRow, endRow, totalRows) => `${startRow}-${endRow} af ${totalRows}`;
+      const toGerman = (startRow, endRow, totalRows) => `${startRow}-${endRow} von ${totalRows}`;
+
+      let table = mount((
+        <Table>
+          <TablePagination
+            page={1}
+            rows={1000}
+            rowsPerPage={10}
+            onPagination={onPagination}
+            paginationLabel={toDanish}
+          />
+        </Table>
+      ));
+
+      let label = table.find('.md-table-pagination--label');
+      expect(label.text()).toBe('1-10 af 1000');
+
+      table = mount((
+        <Table>
+          <TablePagination
+            page={1}
+            rows={1000}
+            rowsPerPage={10}
+            onPagination={onPagination}
+            paginationLabel={toGerman}
+          />
+        </Table>
+      ));
+
+      label = table.find('.md-table-pagination--label');
+      expect(label.text()).toBe('1-10 von 1000');
+
+      table = mount((
+        <Table>
+          <TablePagination
+            page={2}
+            rows={100}
+            rowsPerPage={15}
+            onPagination={onPagination}
+            paginationLabel={toGerman}
+          />
+        </Table>
+      ));
+
+      label = table.find('.md-table-pagination--label');
+      expect(label.text()).toBe('16-30 von 100');
+    });
+  });
 });
