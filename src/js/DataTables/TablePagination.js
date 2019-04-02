@@ -163,6 +163,16 @@ export default class TablePagination extends PureComponent {
      */
     decrementIcon: PropTypes.element,
 
+    /**
+     * Function to return the label text (or node) used to display start row and last row
+     * of the current page and total rows. The function has to accept three number parameters
+     * i.e.: (startRow, lastRow, totalRows) => `${startRow}-${lastRow} of ${totalRows}`
+     * and to return a string (or node) to display the label. If you do not return pure text
+     * make sure, the node is allowed to mount inside a <span> node to avoid DOM warnings or
+     * defective layout.
+     */
+    paginationLabel: PropTypes.func,
+
     incrementIconChildren: deprecated(PropTypes.node, 'Use the `incrementIcon` prop instead'),
     incrementIconClassName: deprecated(PropTypes.string, 'Use the `incrementIcon` prop instead'),
     decrementIconChildren: deprecated(PropTypes.node, 'Use the `decrementIcon` prop instead'),
@@ -185,6 +195,7 @@ export default class TablePagination extends PureComponent {
     incrementIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
     decrementIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
     simplifiedMenu: false,
+    paginationLabel: (startRow, lastRow, totalRows) => `${startRow}-${lastRow} of ${totalRows}`,
   };
 
   constructor(props, context) {
@@ -321,6 +332,7 @@ export default class TablePagination extends PureComponent {
       incrementIcon,
       decrementIcon,
       simplifiedMenu,
+      paginationLabel,
 
       // deprecated
       incrementIconChildren,
@@ -355,7 +367,7 @@ export default class TablePagination extends PureComponent {
       decrementId = `${id}-decrement-btn`;
     }
 
-    const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
+    const pagination = paginationLabel(start + 1, Math.min(rows, start + rowsPerPage), rows);
     return (
       <TableFooter {...props} className={cn('md-table-footer--pagination', className)}>
         <ResizeObserver watchWidth component="tr" onResize={this._throttledPosition} />
