@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { PortalProps, StaggerablePortalProps } from "./types.d";
 
@@ -80,21 +80,26 @@ export function useStaggeredVisibility({
   onExited,
 }: StaggerablePortalProps) {
   const [portalVisible, setPortalVisible] = useState(visible);
+  if (visible && !portalVisible) {
+    setPortalVisible(true);
+  }
 
+  const ref = useRef(onExited);
   useEffect(() => {
-    if (visible) {
-      setPortalVisible(true);
+    ref.current = onExited;
+  });
+
+  const handleExited = useCallback((node: HTMLElement) => {
+    const onExited = ref.current;
+    if (onExited) {
+      onExited(node);
     }
-  }, [visible]);
+
+    setPortalVisible(false);
+  }, []);
 
   return {
     portalVisible,
-    onExited: (node: HTMLElement) => {
-      if (onExited) {
-        onExited(node);
-      }
-
-      setPortalVisible(false);
-    },
+    onExited: handleExited,
   };
 }

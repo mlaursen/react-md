@@ -14,7 +14,7 @@ function determineBestHorizontalPosition(
   threshold: number
 ) {
   if (position !== "auto") {
-    // if the position waas actually set to something other than auto, trust that they already
+    // if the position was actually set to something other than auto, trust that they already
     // have verified it can fit in the viewport.
     return position;
   } else if (left < (threshold > 1 ? threshold : vw * threshold)) {
@@ -49,6 +49,8 @@ function getHorizontalOrigin(horizontalPosition: HorizontalPosition) {
     case "right":
     case "inner right":
       return "100%";
+    case "center":
+      return "50%";
     default:
       return "0";
   }

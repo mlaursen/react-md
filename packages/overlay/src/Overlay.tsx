@@ -1,23 +1,15 @@
-import React, {
-  HTMLAttributes,
-  FunctionComponent,
-  useState,
-  forwardRef,
-  useRef,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { HTMLAttributes, FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
-import { Transition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
+  useStaggeredVisibility,
 } from "@react-md/portal";
-import { TransitionProps } from "@react-md/transition";
-import { WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef, Omit } from "@react-md/utils";
 
 export interface OverlayProps
-  extends TransitionProps,
+  extends Omit<CSSTransition.CSSTransitionProps, "children">,
     RenderConditionalPortalProps,
     HTMLAttributes<HTMLSpanElement> {
   /**
@@ -35,7 +27,10 @@ export interface OverlayProps
 
 type WithRef = WithForwardedRef<HTMLSpanElement>;
 type DefaultProps = Required<
-  Pick<OverlayProps, "timeout" | "mountOnEnter" | "unmountOnExit" | "tabIndex">
+  Pick<
+    OverlayProps,
+    "timeout" | "mountOnEnter" | "unmountOnExit" | "tabIndex" | "classNames"
+  >
 >;
 type WithDefaultProps = OverlayProps & DefaultProps & WithRef;
 
@@ -58,67 +53,37 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
     onEntered,
     onExit,
     onExiting,
-    onExited,
+    onExited: propOnExited,
     portal,
     portalInto,
     portalIntoId,
     forwardedRef,
+    classNames,
     ...props
   } = providedProps as WithDefaultProps;
 
-  const [active, setActive] = useState(visible);
-  const triggers = useRef({ onEnter, onExit });
-  useEffect(() => {
-    triggers.current = { onEnter, onExit };
+  const { portalVisible, onExited } = useStaggeredVisibility({
+    visible,
+    onExited: propOnExited,
   });
-
-  const frame = useRef<number | undefined>(undefined);
-  const clear = () => {
-    if (typeof frame.current === "number") {
-      window.cancelAnimationFrame(frame.current);
-    }
-  };
-  const stagger = (enabled: boolean) => {
-    clear();
-    frame.current = window.requestAnimationFrame(() => {
-      frame.current = undefined;
-      setActive(enabled);
-    });
-  };
-  useEffect(() => clear, []);
-
-  const activate = useCallback((node: HTMLElement, isEntering: boolean) => {
-    if (triggers.current.onEnter) {
-      triggers.current.onEnter(node, isEntering);
-    }
-
-    stagger(true);
-  }, []);
-
-  const deactivate = useCallback((node: HTMLElement) => {
-    if (triggers.current.onExit) {
-      triggers.current.onExit(node);
-    }
-
-    stagger(false);
-  }, []);
 
   return (
     <ConditionalPortal
-      visible={visible || active}
+      visible={portalVisible}
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
-      <Transition
+      <CSSTransition
         in={visible}
+        classNames={classNames}
         timeout={timeout}
         mountOnEnter={mountOnEnter}
         unmountOnExit={unmountOnExit}
-        onEnter={activate}
+        onEnter={onEnter}
         onEntering={onEntering}
         onEntered={onEntered}
-        onExit={deactivate}
+        onExit={onExited}
         onExiting={onExiting}
         onExited={onExited}
         appear={true}
@@ -126,18 +91,12 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
         <span
           {...props}
           ref={forwardedRef}
-          className={cn(
-            "rmd-overlay",
-            {
-              "rmd-overlay--active": active,
-            },
-            className
-          )}
+          className={cn("rmd-overlay", className)}
           onClick={onRequestClose}
         >
           {children}
         </span>
-      </Transition>
+      </CSSTransition>
     </ConditionalPortal>
   );
 };
@@ -147,6 +106,16 @@ const defaultProps: DefaultProps = {
   timeout: 150,
   mountOnEnter: true,
   unmountOnExit: true,
+  classNames: {
+    appear: "",
+    appearActive: "rmd-overlay--active",
+    enter: "",
+    enterActive: "rmd-overlay--active",
+    enterDone: "rmd-overlay--active",
+    exit: "",
+    exitActive: "",
+    exitDone: "",
+  },
 };
 
 Overlay.defaultProps = defaultProps;
