@@ -7,7 +7,7 @@ import {
   LaunchSVGIcon,
   KeyboardArrowLeftSVGIcon,
 } from "@react-md/material-icons";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import AppBarNav from "components/AppBarNav";
 import "./full-page-demo.scss";
@@ -21,23 +21,23 @@ const FullPageDemo: FunctionComponent<FullPageDemoProps> = ({
   id,
   children,
 }) => {
-  const { visible, show, hide } = useVisibility();
+  const { toggled, enable, disable } = useToggle();
   return (
     <Fragment>
       <Text type="headline-6">
         This example requires a more screen real estate than what is available
         so you will need to open it in a modal.
       </Text>
-      <Button id={`${id}-toggle`} themeType="contained" onClick={show}>
+      <Button id={`${id}-toggle`} themeType="contained" onClick={enable}>
         <TextIconSpacing icon={<LaunchSVGIcon />}>Launch</TextIconSpacing>
       </Button>
-      {visible && (
+      {toggled && (
         <div id={`${id}-modal`} role="dialog" tabIndex={-1} className="modal">
           <AppBar id={`${id}-modal-toolbar`} fixed>
             <AppBarNav
               id={`${id}-close`}
               tooltip="Close this demo"
-              onClick={hide}
+              onClick={disable}
             >
               <KeyboardArrowLeftSVGIcon />
             </AppBarNav>

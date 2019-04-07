@@ -4,13 +4,13 @@ import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import "./fixing-overflow-issues.scss";
 
 const FixingOverflowIssues: FunctionComponent = () => {
-  const { visible, hide, toggle } = useVisibility();
-  const { visible: portal, setVisible: setPortal } = useVisibility();
+  const { toggled: visible, disable, toggle } = useToggle();
+  const { toggled: portal, setToggled: setPortal } = useToggle();
   return (
     <Fragment>
       <AppBar theme="default">
@@ -56,7 +56,7 @@ const FixingOverflowIssues: FunctionComponent = () => {
           <Overlay
             id="fixing-overflow-overlay"
             visible={visible}
-            onRequestClose={hide}
+            onRequestClose={disable}
             portal={portal}
           />
         </div>

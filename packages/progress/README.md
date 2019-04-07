@@ -41,13 +41,13 @@ have `aria-buys="true"` and `aria-describedby="PROGRESS_ID"`:
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { CircularProgress, LinearProgress } from "@react-md/progress";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 const App = () => {
-  const { visible: loadingCircle, hide: stopLoadingCircle } = useVisibility(
+  const { toggled: loadingCircle, disable: stopLoadingCircle } = useToggle(
     true
   );
-  const { visible: loadingLinear, hide: stopLoadingLinear } = useVisibility(
+  const { toggled: loadingLinear, disable: stopLoadingLinear } = useToggle(
     true
   );
 

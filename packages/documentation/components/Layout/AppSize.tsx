@@ -1,9 +1,5 @@
 import React, { createContext, FunctionComponent, useContext } from "react";
-import {
-  useEventListener,
-  useAppSize,
-  AppSize as AppSizeType,
-} from "@react-md/utils";
+import { useAppSize, AppSize as AppSizeType } from "@react-md/utils";
 
 const DEFAULTS = {
   isPhone: false,

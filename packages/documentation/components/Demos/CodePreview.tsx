@@ -10,6 +10,7 @@ import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
 import { Portal } from "@react-md/portal";
 import { Collapse } from "@react-md/transition";
+import { useToggle } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
 import Button from "components/Button";
@@ -27,7 +28,6 @@ export interface CodeFile {
 }
 
 import "./code-preview.scss";
-import { useVisibility } from "@react-md/utils";
 
 const ignoredFiles = [
   "package.json",
@@ -43,8 +43,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
   getSandbox,
 }) => {
   const [files, setFiles] = useState<CodeFile[]>([]);
-  const { visible: collapsed, show, toggle } = useVisibility(true);
-  // const [collapsed, setCollapsed] = useState(true);
+  const { toggled: collapsed, enable, toggle } = useToggle(true);
   useEffect(() => {
     let cancelled = false;
     async function load() {
@@ -105,7 +104,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
                 tooltip="Hide the code for this example"
                 buttonType="icon"
                 theme="clear"
-                onClick={show}
+                onClick={enable}
               >
                 <CodeSVGIcon />
               </Button>

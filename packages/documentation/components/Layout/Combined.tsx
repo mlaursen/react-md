@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent, useEffect } from "react";
 import cn from "classnames";
 import { Sheet } from "@react-md/sheet";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 import { useAppSizeContext } from "./AppSize";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
@@ -13,10 +13,10 @@ export interface CombinedProps {
 const Combined: FunctionComponent<CombinedProps> = ({ title, children }) => {
   const context = useAppSizeContext();
   const { isDesktop, isTablet, isPhone } = context;
-  const { visible, hide, toggle, setVisible } = useVisibility(isDesktop);
+  const { toggled, disable, toggle, setToggled } = useToggle(isDesktop);
   useEffect(() => {
-    if (visible !== isDesktop) {
-      setVisible(isDesktop);
+    if (toggled !== isDesktop) {
+      setToggled(isDesktop);
     }
   }, [isDesktop, isTablet, isPhone]);
 
@@ -25,8 +25,8 @@ const Combined: FunctionComponent<CombinedProps> = ({ title, children }) => {
       <Header title={title} toggle={toggle} isDesktop={isDesktop} />
       <Sheet
         id="main-navigation"
-        visible={visible}
-        onRequestClose={hide}
+        visible={toggled}
+        onRequestClose={disable}
         position="left"
         overlay={!isDesktop}
         inline={isDesktop}

@@ -36,5 +36,5 @@ export default function unitToNumber(
     window.getComputedStyle(el).fontSize || `${fontSizeFallback}px`
   );
 
-  return parseFloat(unit) * fontSize;
+  return parsed * fontSize;
 }

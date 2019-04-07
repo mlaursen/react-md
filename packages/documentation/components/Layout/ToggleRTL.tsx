@@ -4,20 +4,20 @@ import {
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
+import { useToggle } from "@react-md/utils";
 import AppBarAction from "components/AppBarAction";
-import { useVisibility } from "@react-md/utils";
 
 const ToggleRTL: FunctionComponent = props => {
-  const { visible, toggle } = useVisibility();
+  const { toggled, toggle } = useToggle();
 
   useEffect(() => {
     const html = document.querySelector("html") as HTMLElement;
-    if (visible) {
+    if (toggled) {
       html.setAttribute("dir", "rtl");
     } else {
       html.setAttribute("dir", "ltr");
     }
-  }, [visible]);
+  }, [toggled]);
 
   return (
     <AppBarAction
@@ -26,7 +26,7 @@ const ToggleRTL: FunctionComponent = props => {
       onClick={toggle}
       last
     >
-      {visible ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
+      {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
     </AppBarAction>
   );
 };

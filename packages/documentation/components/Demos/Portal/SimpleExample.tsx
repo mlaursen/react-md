@@ -11,12 +11,12 @@ import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
-import { positionRelativeTo, useVisibility } from "@react-md/utils";
+import { positionRelativeTo, useToggle } from "@react-md/utils";
 
 import "./simple-example.scss";
 
 const SimpleExample: FunctionComponent = () => {
-  const { visible, toggle, hide } = useVisibility();
+  const { toggled, toggle, disable } = useToggle();
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -37,7 +37,7 @@ const SimpleExample: FunctionComponent = () => {
         theme="secondary"
         themeType="outline"
         aria-haspopup="true"
-        aria-expanded={visible}
+        aria-expanded={toggled}
         onClick={toggle}
         ref={buttonRef}
       >
@@ -48,8 +48,8 @@ const SimpleExample: FunctionComponent = () => {
       <Overlay
         id="portal-menu-overlay"
         className="portal-menu-overlay"
-        visible={visible}
-        onRequestClose={hide}
+        visible={toggled}
+        onRequestClose={disable}
       >
         <List
           role="menu"
@@ -61,7 +61,7 @@ const SimpleExample: FunctionComponent = () => {
           className="portal-menu"
           onClick={event => {
             if (event.currentTarget !== event.target) {
-              hide();
+              disable();
             }
           }}
         >

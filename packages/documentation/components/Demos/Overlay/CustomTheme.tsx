@@ -2,12 +2,12 @@ import React, { FunctionComponent, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { List, ListItem } from "@react-md/list";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import "./custom-theme.scss";
 
 const CustomTheme: FunctionComponent = () => {
-  const { visible, toggle, hide } = useVisibility();
+  const { toggled, toggle, disable } = useToggle();
   return (
     <Fragment>
       <Button
@@ -20,8 +20,8 @@ const CustomTheme: FunctionComponent = () => {
       </Button>
       <Overlay
         id="custom-theme-overlay"
-        onRequestClose={hide}
-        visible={visible}
+        onRequestClose={disable}
+        visible={toggled}
         className="custom-theme-overlay"
       >
         <List className="custom-theme-overlay__list">

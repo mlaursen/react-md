@@ -7,11 +7,11 @@ import React, {
 import { Sheet, SheetPosition } from "@react-md/sheet";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 const PositionExamples: FunctionComponent = () => {
   const [position, setPosition] = useState<SheetPosition>("bottom");
-  const { visible, hide, toggle } = useVisibility();
+  const { toggled, disable, toggle } = useToggle();
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,9 +45,9 @@ const PositionExamples: FunctionComponent = () => {
       ))}
       <Sheet
         id="sheet-position-example"
-        visible={visible}
+        visible={toggled}
         position={position || "bottom"}
-        onRequestClose={hide}
+        onRequestClose={disable}
       >
         <List>
           <ListItem id="sheet-item-1">Item 1</ListItem>

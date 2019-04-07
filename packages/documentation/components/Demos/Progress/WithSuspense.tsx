@@ -13,7 +13,6 @@ import { RefreshSVGIcon, CloudDownloadSVGIcon } from "@react-md/material-icons";
 import { getProgressA11y, LinearProgress } from "@react-md/progress";
 import { bem } from "@react-md/theme";
 import { Text, TextContainer } from "@react-md/typography";
-import { useVisibility } from "@react-md/utils";
 
 import Phone from "components/Phone";
 

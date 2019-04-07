@@ -10,12 +10,12 @@ import cn from "classnames";
 import { Button } from "@react-md/button";
 import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
+import { useToggle } from "@react-md/utils";
 
 import { useAppSizeContext } from "components/Layout/AppSize";
 import Link from "components/Link";
 
 import "./table-of-contents.scss";
-import { useEventListener, useVisibility } from "@react-md/utils";
 
 export interface Heading {
   id: string;
@@ -30,16 +30,16 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
   headings,
 }) => {
   const { isLargeDesktop } = useAppSizeContext();
-  const { visible: hovering, hide, show, toggle } = useVisibility();
+  const { toggled: hovering, disable, enable, toggle } = useToggle();
 
   const handleIconKeyPress = useCallback((event: React.KeyboardEvent) => {
     if (event.key !== "Tab" || event.currentTarget !== event.target) {
       return;
     }
     if (event.type === "keyup" && !event.shiftKey) {
-      show();
+      enable();
     } else if (event.type === "keydown" && event.shiftKey) {
-      hide();
+      disable();
     }
   }, []);
 
@@ -49,7 +49,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
     }
 
     if (event.currentTarget.querySelector("li:last-child a") === event.target) {
-      hide();
+      disable();
     }
   }, []);
 
@@ -65,8 +65,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
       }`;
 
       if (!document.querySelector(query)) {
-        show();
-        hide();
+        enable();
+        disable();
       }
     });
   }, []);
@@ -74,19 +74,19 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const tableRef = useRef<HTMLDivElement>(null);
 
-  useEventListener("click", event => {
-    const button = buttonRef.current;
-    const table = tableRef.current;
-    const target = event.target as HTMLElement | null;
-    if (
-      !target ||
-      !button ||
-      !table ||
-      !(button.contains(target) || table.contains(target))
-    ) {
-      hide();
-    }
-  });
+  // useEventListener("click", event => {
+  //   const button = buttonRef.current;
+  //   const table = tableRef.current;
+  //   const target = event.target as HTMLElement | null;
+  //   if (
+  //     !target ||
+  //     !button ||
+  //     !table ||
+  //     !(button.contains(target) || table.contains(target))
+  //   ) {
+  //     hide();
+  //   }
+  // });
 
   return (
     <Fragment>
@@ -95,7 +95,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
         theme="clear"
         buttonType="icon"
         className="table-of-contents-toggle"
-        onMouseEnter={show}
+        onMouseEnter={enable}
         onClick={toggle}
         onKeyUp={handleIconKeyPress}
         onKeyDown={handleIconKeyPress}
@@ -111,8 +111,8 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
           "table-of-contents--hidden": !visible,
           "table-of-contents--visible": visible,
         })}
-        onFocus={show}
-        onMouseLeave={hide}
+        onFocus={enable}
+        onMouseLeave={disable}
         onKeyDown={handleAsideKeyDown}
       >
         <Text

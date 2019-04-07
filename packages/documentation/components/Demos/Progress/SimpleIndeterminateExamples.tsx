@@ -5,16 +5,16 @@ import {
   CircularProgress,
   getProgressA11y,
 } from "@react-md/progress";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import "./simple-examples.scss";
 import useTemporaryToggle from "./useTemporaryToggle";
 
 const SimpleIndeterminateExamples: FunctionComponent = () => {
-  const { visible: linearVisible, toggle: toggleLinear } = useTemporaryToggle();
+  const { toggled: linearVisible, toggle: toggleLinear } = useTemporaryToggle();
   const {
-    visible: circularVisible,
+    toggled: circularVisible,
     toggle: toggleCircular,
   } = useTemporaryToggle();
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Maybe, positionRelativeTo, useEventListener } from "@react-md/utils";
+import { Maybe, positionRelativeTo } from "@react-md/utils";
 import { TooltipConfig, TooltipEventType } from "./types.d";
 import {
   createPositionOptions,
@@ -52,16 +52,16 @@ export function useTooltipState(config: TooltipConfig) {
   //   container.current = document.getElementById(id) as HTMLElement;
   // }, [isKeyboardFocus]);
 
-  useEventListener(
-    "keydown",
-    (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setVisible(false);
-        setTrigger(null);
-      }
-    },
-    { enabled: visible }
-  );
+  // useEventListener(
+  //   "keydown",
+  //   (event: KeyboardEvent) => {
+  //     if (event.key === "Escape") {
+  //       setVisible(false);
+  //       setTrigger(null);
+  //     }
+  //   },
+  //   { enabled: visible }
+  // );
 
   useEffect(() => {
     if (trigger === null) {

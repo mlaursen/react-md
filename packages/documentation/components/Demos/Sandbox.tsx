@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { Portal } from "@react-md/portal";
-import { Omit, useVisibility } from "@react-md/utils";
+import { Omit, useToggle } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
@@ -19,7 +19,7 @@ const Sandbox: FunctionComponent<SandboxProps> = ({
   packageName,
   getSandbox,
 }) => {
-  const { visible: loading, show: enable, hide: disable } = useVisibility();
+  const { toggled: loading, enable, disable } = useToggle();
 
   return (
     <Fragment>

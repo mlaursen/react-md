@@ -9,7 +9,7 @@ import React, {
 import cn from "classnames";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
-import { useVisibility } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 import appBarVariables from "@react-md/app-bar/dist/scssVariables";
 import dividerVariables from "@react-md/divider/dist/scssVariables";
 import statesVariables from "@react-md/states/dist/scssVariables";
@@ -106,10 +106,10 @@ const ToggleTheme: FunctionComponent = () => {
 
   useThemeTransition(isLight);
   useThemeStorage(isLight);
-  const { visible, show, hide } = useVisibility();
+  const { toggled, enable, disable } = useToggle();
   const variables = useThemeVariables(isLight);
   let icon: ReactNode = <LightbulbOutlineSVGIcon />;
-  if (visible !== isLight) {
+  if (toggled !== isLight) {
     icon = <LightbulbSVGIcon />;
   }
 
@@ -120,8 +120,8 @@ const ToggleTheme: FunctionComponent = () => {
         first
         tooltip="Toggle light/dark theme"
         onClick={() => setLightTheme(prevDark => !prevDark)}
-        onMouseEnter={show}
-        onMouseLeave={hide}
+        onMouseEnter={enable}
+        onMouseLeave={disable}
         className={cn("toggle-theme", {
           "toggle-theme--on": isLight,
           "toggle-theme--off": !isLight,
