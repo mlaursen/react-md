@@ -5,8 +5,9 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all -p dev-server watch",
-    "dev-server": "cd packages/documentation && yarn dev",
+    "start-dev": "yarn workspace documentation dev",
+    "start": "yarn workspace documentation start-dev",
+    "dev": "npm-run-all -p watch start-dev",
     "force-install": "yarn --force",
     "setup": "npm-run-all dev-utils force-install build",
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
@@ -19,12 +20,15 @@
     "test": "jest --config jest.config.js",
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
     "prepublishOnly": "npm-run-all clean build-dist lint test",
-    "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore examples -- yarn build --styles-only",
+    "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore documentation -- yarn build --styles-only",
     "clean-packages": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation --stream",
     "clean-dev-utils": "cd packages/dev-utils && yarn clean",
     "clean-tscache": "rm -rf ./.tscache",
     "clean": "npm-run-all clean-packages clean-tscache clean-dev-utils",
     "watch": "node watcher.js"
+  },
+  "engines": {
+    "node": ">= 10"
   },
   "repository": {
     "type": "git",

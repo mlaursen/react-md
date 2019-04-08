@@ -1,5 +1,41 @@
 export const DEMOS_FOLDER = "components/Demos/";
 
+/**
+ * These packages will always be required for a sandbox since they are the base
+ * recommended packages or because they are used to setup the "base" styles.
+ */
+export const ALWAYS_REQUIRED_DEPENDENCIES = [
+  "@react-md/states",
+  "@react-md/theme",
+  "@react-md/typography",
+  "@react-md/utils",
+];
+
+/**
+ * Dev dependencies that will be required for each sandbox.
+ */
+export const ALWAYS_REQUIRED_DEV_DEPENDENCIES = [
+  "react-scripts",
+  "node-sass",
+  "typescript",
+  "@types/node",
+  "@types/react",
+  "@types/react-dom",
+  "@types/jest",
+];
+
+/**
+ * A list of packages tht do not generate styles or do not have any styles.
+ * This list is used to make sure that the @include react-md-NAME is not added
+ * to the base index.scss for this list.
+ */
+export const NON_STYLEABLE_RMD_PACKAGES = [
+  "@react-md/elevation",
+  "@react-md/portal",
+  "@react-md/material-icons",
+  "@react-md/wia-aria",
+];
+
 export const DEMO_INDEX = `import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";

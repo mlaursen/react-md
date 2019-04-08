@@ -1,9 +1,18 @@
 import fs from "fs-extra";
 import path from "path";
-import { documentationRoot, projectRoot } from "../paths.js";
-import { isSvg } from "./matchers.js";
-import { DEMO_INDEX_HTML, DEMO_INDEX, DEMOS_FOLDER } from "./constants.js";
-import { log, list, glob, format } from "../utils.js";
+
+import { documentationRoot, projectRoot } from "../paths";
+import { format, glob, list, log } from "../utils";
+
+import {
+  ALWAYS_REQUIRED_DEPENDENCIES,
+  ALWAYS_REQUIRED_DEV_DEPENDENCIES,
+  DEMOS_FOLDER,
+  DEMO_INDEX,
+  DEMO_INDEX_HTML,
+  NON_STYLEABLE_RMD_PACKAGES,
+} from "./constants";
+import { isSvg } from "./matchers";
 
 function toUrlId(s: string) {
   return s
@@ -125,38 +134,17 @@ interface GenerateSandboxConfig {
   packageName: string;
 }
 
-const alwaysRequired = [
-  "@react-md/states",
-  "@react-md/theme",
-  "@react-md/typography",
-  "@react-md/utils",
-];
-
-const devDependencies = [
-  "react-scripts",
-  "node-sass",
-  "typescript",
-  "@types/node",
-  "@types/react",
-  "@types/react-dom",
-  "@types/jest",
-];
-
-const nonStyleable = [
-  "@react-md/elevation",
-  "@react-md/portal",
-  "@react-md/material-icons",
-  "@react-md/wia-aria",
-];
-
 function createDemoStyles(dependencies: string[]) {
   const rmd = dependencies.filter(
-    name => name.startsWith("@react-md") && !nonStyleable.includes(name)
+    name =>
+      name.startsWith("@react-md") && !NON_STYLEABLE_RMD_PACKAGES.includes(name)
   );
 
   const imports = [
     ...rmd,
-    ...alwaysRequired.filter(name => !dependencies.includes(name)),
+    ...ALWAYS_REQUIRED_DEPENDENCIES.filter(
+      name => !dependencies.includes(name)
+    ),
   ]
     .map(name => `@import '${name}/dist/mixins';`)
     .join("\n");
@@ -183,7 +171,12 @@ export default async function generate({
     .homepage as string;
   const demoTitle = `${packageName} Example - ${toTitle(demoName)}`;
   const packageDependencies = Array.from(
-    new Set([...dependencies, ...alwaysRequired, "react", "react-dom"])
+    new Set([
+      ...dependencies,
+      ...ALWAYS_REQUIRED_DEPENDENCIES,
+      "react",
+      "react-dom",
+    ])
   );
 
   const packageJson = {
@@ -193,7 +186,7 @@ export default async function generate({
     )}/demos#${toUrlId(demoName)}`,
     main: "src/index.tsx",
     dependencies: toDependencyJson(packageDependencies),
-    devDependencies: toDependencyJson(devDependencies),
+    devDependencies: toDependencyJson(ALWAYS_REQUIRED_DEV_DEPENDENCIES),
     scripts: {
       start: "react-scripts start",
     },

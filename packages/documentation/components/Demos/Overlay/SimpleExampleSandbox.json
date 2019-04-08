@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/overlay/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -19,12 +19,9 @@
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/overlay": "next",
-        "@react-md/portal": "next",
-        "@react-md/states": "next",
-        "@react-md/transition": "next",
         "@react-md/utils": "next",
         "react": "latest",
-        "react-transition-group": "latest",
+        "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "react-dom": "latest"

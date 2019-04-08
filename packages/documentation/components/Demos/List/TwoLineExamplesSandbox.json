@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/avatar/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/tooltip/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/avatar/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/tooltip/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
@@ -21,16 +21,13 @@
         "@react-md/icon": "next",
         "@react-md/list": "next",
         "@react-md/material-icons": "next",
-        "@react-md/portal": "next",
-        "@react-md/states": "next",
         "@react-md/tooltip": "next",
-        "@react-md/transition": "next",
-        "@react-md/utils": "next",
         "classnames": "latest",
         "react": "latest",
-        "react-transition-group": "latest",
+        "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
+        "@react-md/utils": "next",
         "react-dom": "latest"
       },
       "devDependencies": {

@@ -143,6 +143,11 @@ export function resolveModuleNames(
     if (resolvedModule) {
       resolvedModules.push(resolvedModule);
 
+      if (filePath.includes("node_modules")) {
+        // don't want to include child dependenencies
+        return;
+      }
+
       let importName = resolvedModule.resolvedFileName;
       if (resolvedModule.packageId && resolvedModule.packageId.name) {
         importName = resolvedModule.packageId.name;

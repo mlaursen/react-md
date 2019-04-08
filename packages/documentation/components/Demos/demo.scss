@@ -5,7 +5,7 @@
 @import '@react-md/sizing/dist/mixins';
 
 .demo {
-  @include rmd-sizing-tablet-min-media {
+  @include rmd-sizing-tablet-media {
     padding: 0 6rem;
   }
 
