@@ -1,8 +1,9 @@
 import React, { Fragment, FunctionComponent, useEffect } from "react";
 import cn from "classnames";
+import { useAppSizeContext } from "@react-md/sizing";
 import { Sheet } from "@react-md/sheet";
 import { useToggle } from "@react-md/utils";
-import { useAppSizeContext } from "./AppSize";
+
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
 
@@ -11,8 +12,7 @@ export interface CombinedProps {
 }
 
 const Combined: FunctionComponent<CombinedProps> = ({ title, children }) => {
-  const context = useAppSizeContext();
-  const { isDesktop, isTablet, isPhone } = context;
+  const { isPhone, isTablet, isDesktop } = useAppSizeContext();
   const { toggled, disable, toggle, setToggled } = useToggle(isDesktop);
   useEffect(() => {
     if (toggled !== isDesktop) {

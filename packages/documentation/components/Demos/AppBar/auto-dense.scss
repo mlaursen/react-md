@@ -1,7 +1,8 @@
 @import '@react-md/app-bar/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 
 .auto-dense {
-  @media (min-width: 75rem) {
+  @include rmd-sizing-desktop-media {
     @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
 
     &__prominent {

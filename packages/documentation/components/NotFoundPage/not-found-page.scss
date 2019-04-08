@@ -1,5 +1,6 @@
 @import 'variables';
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 
 .not-found {
   background-color: rmd-theme-get-swatch($rmd-theme-primary, 800);
@@ -31,24 +32,24 @@
   }
 
   &__message {
+    @include rmd-sizing-phone-media {
+      top: 50%;
+    }
+
     left: 50%;
     position: absolute;
     top: 65%;
     transform: translateX(-50%);
-
-    @media (max-width: 600px) {
-      top: 50%;
-    }
   }
 
   &__home {
+    @include rmd-sizing-phone-media {
+      top: 90%;
+    }
+
     left: 50%;
     position: absolute;
     top: 85%;
     transform: translateX(-50%);
-
-    @media (max-width: 600px) {
-      top: 90%;
-    }
   }
 }

@@ -12,10 +12,11 @@ import {
   SearchSVGIcon,
   MoreVertSVGIcon,
 } from "@react-md/material-icons";
+import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
+
 import StatusBar from "./StatusBar";
 import { usePhoneContext } from "./context";
-import { useAppSizeContext } from "components/Layout/AppSize";
 
 const block = bem("phone");
 

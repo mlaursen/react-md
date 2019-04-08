@@ -26,6 +26,7 @@
         "@react-md/typography": "next",
         "@react-md/utils": "next",
         "react": "latest",
+        "react-transition-group": "latest",
         "@react-md/theme": "next",
         "react-dom": "latest"
       },
@@ -53,7 +54,7 @@
     "isBinary": false
   },
   "src/vertical-dividers.scss": {
-    "content": "@import '@react-md/utils/dist/mixins';\n@import '@react-md/app-bar/dist/mixins';\n\n.vertical-dividers-logo {\n  @include rmd-utils-rtl {\n    margin-left: auto;\n    margin-right: $rmd-app-bar-lr-margin;\n  }\n\n  margin-left: $rmd-app-bar-lr-margin;\n}\n",
+    "content": "@import '@react-md/utils/dist/mixins';\n@import '@react-md/app-bar/dist/mixins';\n\n.vertical-dividers-logo {\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, auto);\n}\n",
     "isBinary": false
   }
 }

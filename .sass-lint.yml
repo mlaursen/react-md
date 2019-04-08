@@ -26,8 +26,8 @@ rules:
   final-newline:
     - 1
     - include: true
-  force-attribute-nesting: 1
-  force-element-nesting: 1
+  force-attribute-nesting: 0
+  force-element-nesting: 0
   force-pseudo-nesting: 0
   function-name-format:
     - 1

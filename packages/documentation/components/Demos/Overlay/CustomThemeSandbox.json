@@ -26,6 +26,7 @@
         "@react-md/transition": "next",
         "@react-md/utils": "next",
         "react": "latest",
+        "react-transition-group": "latest",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "react-dom": "latest"
@@ -50,7 +51,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { useVisibility } from \"@react-md/utils\";\n\nimport \"./custom-theme.scss\";\n\nconst CustomTheme: FunctionComponent = () => {\n  const { visible, toggle, hide } = useVisibility();\n  return (\n    <Fragment>\n      <Button\n        id=\"custom-theme-button\"\n        themeType=\"outline\"\n        theme=\"clear\"\n        onClick={toggle}\n      >\n        Show Overlay\n      </Button>\n      <Overlay\n        id=\"custom-theme-overlay\"\n        onRequestClose={hide}\n        visible={visible}\n        className=\"custom-theme-overlay\"\n      >\n        <List className=\"custom-theme-overlay__list\">\n          {Array.from(new Array(10)).map((_, i) => (\n            <ListItem id={`item-${i}`} key={i}>\n              {`Item ${i + 1}`}\n            </ListItem>\n          ))}\n        </List>\n      </Overlay>\n    </Fragment>\n  );\n};\n\nexport default CustomTheme;\n",
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport \"./custom-theme.scss\";\n\nconst CustomTheme: FunctionComponent = () => {\n  const { toggled, toggle, disable } = useToggle();\n  return (\n    <Fragment>\n      <Button\n        id=\"custom-theme-button\"\n        themeType=\"outline\"\n        theme=\"clear\"\n        onClick={toggle}\n      >\n        Show Overlay\n      </Button>\n      <Overlay\n        id=\"custom-theme-overlay\"\n        onRequestClose={disable}\n        visible={toggled}\n        className=\"custom-theme-overlay\"\n      >\n        <List className=\"custom-theme-overlay__list\">\n          {Array.from(new Array(10)).map((_, i) => (\n            <ListItem id={`item-${i}`} key={i}>\n              {`Item ${i + 1}`}\n            </ListItem>\n          ))}\n        </List>\n      </Overlay>\n    </Fragment>\n  );\n};\n\nexport default CustomTheme;\n",
     "isBinary": false
   },
   "src/custom-theme.scss": {

@@ -1,0 +1,23 @@
+////
+/// @group sizing
+////
+
+/// The max width for a phone when in portrait or landscape mode.
+/// @type Number
+$rmd-sizing-phone-max-width: 47.9375rem !default;
+
+/// The min width for a tablet in portrait or landscape mode.
+/// @type Number
+$rmd-sizing-tablet-min-width: 48rem !default;
+
+/// The max width for a tablet in portrait or landscape mode.
+/// @type Number
+$rmd-sizing-tablet-max-width: 64rem !default;
+
+/// The min width for a desktop screen.
+/// @type Number
+$rmd-sizing-desktop-min-width: 64.0625 !default;
+
+/// The min width for a large desktop screen.
+/// @type Number
+$rmd-sizing-large-desktop-min-width: 80rem !default;

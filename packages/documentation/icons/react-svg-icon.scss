@@ -1,6 +1,7 @@
 @import '@react-md/icon/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 
 // have to do some hacks since the logo is badly formatted with a lot of extra whitespace
 // around the icon
@@ -16,8 +17,8 @@
     )
   );
 
-  @media (min-width: 1025px) {
-    @include rmd-icon-theme-update-var(size, 2.25rem);
+  @include rmd-sizing-desktop-media {
     // no idea why margins don't need to be updated as well
+    @include rmd-icon-theme-update-var(size, 2.25rem);
   }
 }

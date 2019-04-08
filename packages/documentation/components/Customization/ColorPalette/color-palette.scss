@@ -1,4 +1,5 @@
 @import '@react-md/theme/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/utils/dist/functions';
 @import '@react-md/list/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
@@ -15,14 +16,12 @@ $list-horizontal-margin: 0.5rem;
     @include rmd-list-unstyled;
     @include rmd-elevation(2);
     @include rmd-theme(background-color, surface);
-
-    margin: 1rem $list-horizontal-margin;
-
-    width: calc(50% - #{$list-horizontal-margin * 2});
-
-    @media (min-width: 1200px) {
+    @include rmd-sizing-large-desktop-media {
       width: calc((100% / 3) - #{$list-horizontal-margin * 2});
     }
+
+    margin: 1rem $list-horizontal-margin;
+    width: calc(50% - #{$list-horizontal-margin * 2});
   }
 
   &__primary-color {

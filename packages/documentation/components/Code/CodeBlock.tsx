@@ -1,15 +1,14 @@
 import React, {
-  Fragment,
+  forwardRef,
   FunctionComponent,
   ReactNode,
   useMemo,
-  forwardRef,
 } from "react";
-import Head from "next/head";
+import { WithForwardedRef } from "@react-md/utils";
 
 import { highlightCode } from "components/Markdown/utils";
+
 import Code from "./Code";
-import { WithForwardedRef } from "@react-md/utils";
 
 export interface CodeBlockProps {
   className?: string;
@@ -46,18 +45,9 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
   }, [propChildren, highlight, language]);
 
   return (
-    <Fragment>
-      <Head>
-        <link
-          key="source-code-pro"
-          href="https://fonts.googleapis.com/css?family=Source+Code+Pro"
-          rel="stylesheet"
-        />
-      </Head>
-      <pre ref={forwardedRef} className="code code--block">
-        {children}
-      </pre>
-    </Fragment>
+    <pre ref={forwardedRef} className="code code--block">
+      {children}
+    </pre>
   );
 };
 

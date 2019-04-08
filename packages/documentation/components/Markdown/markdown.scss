@@ -1,3 +1,4 @@
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 
 .markdown {
@@ -5,8 +6,7 @@
 
   &__p {
     @include rmd-typography(body-1);
-
-    @media (min-width: 75rem) {
+    @include rmd-sizing-desktop-media {
       @include rmd-typography(body-2);
     }
   }

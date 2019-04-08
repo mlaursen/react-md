@@ -93,6 +93,12 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Progress/WithSuspenseSandbox.json")),
   "Sheet/PositionExamples": () =>
     resolve(import("./Sheet/PositionExamplesSandbox.json")),
+  "Sizing/MediaQueryComponents": () =>
+    resolve(import("./Sizing/MediaQueryComponentsSandbox.json")),
+  "Sizing/SimpleAppSizeListenerExample": () =>
+    resolve(import("./Sizing/SimpleAppSizeListenerExampleSandbox.json")),
+  "Sizing/SimpleResizeObserverExample": () =>
+    resolve(import("./Sizing/SimpleResizeObserverExampleSandbox.json")),
   "States/CustomComponent": () =>
     resolve(import("./States/CustomComponentSandbox.json")),
   "States/CustomInteractions": () =>

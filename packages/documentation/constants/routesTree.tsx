@@ -208,6 +208,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("portal"),
     createPackageRoute("progress"),
     createPackageRoute("sheet"),
+    createPackageRoute("sizing", { sassdoc: false }),
     createPackageRoute("states"),
     createPackageRoute("theme"),
     createPackageRoute("tooltip"),

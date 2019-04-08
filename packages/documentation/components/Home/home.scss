@@ -2,6 +2,7 @@
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/transition/dist/mixins';
 @import '@react-md/transition/dist/variables';
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
@@ -40,20 +41,19 @@
     @include rmd-elevation(4);
     @include rmd-theme(background-color, surface);
     @include rmd-theme(color, on-surface);
+    @include rmd-sizing-tablet-media {
+      width: calc(50% - 2rem);
+    }
+
+    @include rmd-sizing-desktop-media {
+      width: calc(#{100% / 3} - 2rem);
+    }
 
     align-self: flex-start;
     margin: 1rem;
     min-width: 20rem;
     text-decoration: none;
     width: calc(100% - 2rem);
-
-    @media (min-width: 46.875rem) {
-      width: calc(50% - 2rem);
-    }
-
-    @media (min-width: 64rem) {
-      width: calc(#{100% / 3} - 2rem);
-    }
   }
 
   &__card-title {

@@ -1,0 +1,62 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Sizing Example - Simple Resize Observer Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/sizing/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/transition/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Sizing Example - Simple Resize Observer Example",
+      "description": "Example from https://react-md.dev/packages/sizing/demos#simple-resize-observer-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/sizing": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-transition-group": "latest",
+        "@react-md/typography": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, {\n  FunctionComponent,\n  useState,\n  useRef,\n  useEffect,\n  Fragment,\n  useCallback,\n} from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  ResizeObserver,\n  ResizeObserverChangeEventHandler,\n} from \"@react-md/sizing\";\nimport { bem } from \"@react-md/theme\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport { randomInt } from \"./random\";\nimport \"./simple-resize-observer-example.scss\";\n\nconst block = bem(\"simple-resize\");\n\nconst DEFAULT_HEIGHT = 100;\nconst DEFAULT_WIDTH = 150;\n\n/**\n * This hook is used to handle the resize events from the `ResizeObserver`. This will update the\n * table values with the current `height` and `width` while the new sizes are animating.\n */\nfunction useSize() {\n  const [size, setSize] = useState({\n    height: DEFAULT_HEIGHT,\n    width: DEFAULT_WIDTH,\n  });\n\n  const onResize: ResizeObserverChangeEventHandler = event => {\n    const { height, width } = event;\n    if (size.height !== height || size.width !== width) {\n      setSize({ height: event.height, width: event.width });\n    }\n  };\n\n  const { height, width } = size;\n  return {\n    height,\n    width,\n    onResize,\n  };\n}\n\n/**\n * This hook will create a random style for the container element so that\n * the `maxHeight` and `maxWidth` can be animated. It'll stop and start\n * when the `enabled` value is toggled.\n */\nfunction useRandomStyle(enabled: boolean) {\n  const [style, setStyle] = useState({\n    maxHeight: DEFAULT_HEIGHT,\n    maxWidth: DEFAULT_WIDTH,\n  });\n\n  const timeout = useRef<number | undefined>();\n  const containerRef = useRef<HTMLDivElement | null>(null);\n  useEffect(() => {\n    if (!enabled) {\n      return;\n    }\n\n    const randomize = () => {\n      const maxHeight = randomInt({ min: 100, max: 500 });\n      const maxWidth = randomInt({\n        min: 150,\n        max: containerRef.current ? containerRef.current.offsetWidth : 300,\n      });\n\n      setStyle({ maxHeight, maxWidth });\n      timeout.current = window.setTimeout(\n        randomize,\n        randomInt({ min: 2, max: 8 }) * 1000\n      );\n    };\n\n    randomize();\n\n    return () => {\n      window.clearTimeout(timeout.current);\n    };\n  }, [enabled]);\n\n  return { style, containerRef };\n}\n\nconst SimpleExample: FunctionComponent = () => {\n  const { toggled: enabled, toggle } = useToggle(false);\n  const { style, containerRef } = useRandomStyle(enabled);\n  const { height, width, onResize } = useSize();\n\n  return (\n    <Fragment>\n      <Button\n        id=\"start-resizing\"\n        onClick={toggle}\n        themeType=\"contained\"\n        className={block(\"toggle\")}\n      >\n        {enabled ? \"Stop\" : \"Start\"}\n      </Button>\n      <div ref={containerRef} className={block()} style={style}>\n        <ResizeObserver onResize={onResize} />\n        <table className={block(\"table\")}>\n          <tbody>\n            <tr>\n              <th scope=\"row\" className={block(\"th\")}>\n                height:\n              </th>\n              <td className={block(\"td\")}>{height}</td>\n            </tr>\n            <tr>\n              <th scope=\"row\" className={block(\"th\")}>\n                width:\n              </th>\n              <td className={block(\"td\")}>{width}</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </Fragment>\n  );\n};\n\nexport default SimpleExample;\n",
+    "isBinary": false
+  },
+  "src/simple-resize-observer-example.scss": {
+    "content": "@import '@react-md/theme/dist/mixins';\n@import '@react-md/elevation/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.simple-resize {\n  @include rmd-elevation(4);\n\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n\n  &__toggle {\n    margin-bottom: 1rem;\n  }\n\n  &__table {\n    // make it grow to fit the entire max-height\n    padding-bottom: 100%;\n    width: 100%;\n  }\n\n  &__th {\n    @include rmd-typography(subtitle-2);\n    @include rmd-theme(color, text-secondary-on-background);\n\n    height: 2.5rem;\n    padding-left: 1rem;\n    padding-right: 1.5rem;\n  }\n\n  &__td {\n    width: 100%;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/random.ts": {
+    "content": "interface RandomInt {\n  min?: number;\n  max?: number;\n}\n\n/**\n * Generates a random integer between a min and max value. Defaults\n * to 0-10.\n */\nexport function randomInt({ min = 0, max = 10 }: RandomInt = {}) {\n  return Math.floor(Math.random() * max) + min;\n}\n",
+    "isBinary": false
+  }
+}

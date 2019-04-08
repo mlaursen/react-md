@@ -1,28 +1,32 @@
 @import '@react-md/icon/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/transition/dist/variables';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
 .heading {
+  @include rmd-sizing-tablet-media {
+    margin-left: -1em;
+    padding-left: 1em;
+  }
+
   position: relative;
   word-break: break-word;
 
-  @media (min-width: 60rem) {
-    margin-left: -1em;
-    padding-left: 1em;
+  &:hover .heading__link {
+    opacity: 1;
   }
 
   &--no-margin-top {
     margin-top: 0;
   }
 
-  &:hover .heading__link {
-    opacity: 1;
-  }
-
   &__link {
     @include rmd-icon-theme(color);
     @include rmd-utils-hide-focus-outline;
+    @include rmd-sizing-desktop-media {
+      display: block;
+    }
 
     display: none;
     left: 0;
@@ -38,10 +42,6 @@
 
     &:focus {
       opacity: 1;
-    }
-
-    @media (min-width: 60rem) {
-      display: block;
     }
   }
 

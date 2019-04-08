@@ -1,26 +1,25 @@
 import React, { FunctionComponent } from "react";
+import { AppSizeListener, AppSizeListenerProps } from "@react-md/sizing";
 import { StatesConfig } from "@react-md/states";
-import { AppSize as AppSizeType } from "@react-md/utils";
 
-import AppSize from "./AppSize";
 import Combined from "./Combined";
 import "./layout.scss";
 
-export interface LayoutProps extends Partial<AppSizeType> {
+export interface LayoutProps extends AppSizeListenerProps {
   title: string;
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({
   children,
   title,
-  ...defaultMedia
+  defaultSize,
 }) => {
   return (
-    <AppSize {...defaultMedia}>
+    <AppSizeListener defaultSize={defaultSize}>
       <StatesConfig>
         <Combined title={title}>{children}</Combined>
       </StatesConfig>
-    </AppSize>
+    </AppSizeListener>
   );
 };
 

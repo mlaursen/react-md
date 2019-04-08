@@ -9,10 +9,10 @@ import React, {
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
+import { useAppSizeContext } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-import { useAppSizeContext } from "components/Layout/AppSize";
 import Link from "components/Link";
 
 import "./table-of-contents.scss";

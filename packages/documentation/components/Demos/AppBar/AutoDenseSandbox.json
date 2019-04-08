@@ -26,6 +26,7 @@
         "@react-md/utils": "next",
         "classnames": "latest",
         "react": "latest",
+        "react-transition-group": "latest",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "react-dom": "latest"
@@ -58,7 +59,7 @@
     "isBinary": false
   },
   "src/auto-dense.scss": {
-    "content": "@import '@react-md/app-bar/dist/mixins';\n\n.auto-dense {\n  @media (min-width: 75rem) {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    &__prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n\n      // just because I don't want to create 2 rows of data for this example\n      align-items: flex-start;\n    }\n  }\n}\n",
+    "content": "@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/sizing/dist/mixins';\n\n.auto-dense {\n  @include rmd-sizing-desktop-media {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    &__prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n\n      // just because I don't want to create 2 rows of data for this example\n      align-items: flex-start;\n    }\n  }\n}\n",
     "isBinary": false
   },
   "src/container.scss": {

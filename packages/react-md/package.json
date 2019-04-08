@@ -40,6 +40,7 @@
     "@react-md/overlay": "^2.0.0-alpha.0",
     "@react-md/portal": "^2.0.0-alpha.0",
     "@react-md/sheet": "^2.0.0-alpha.0",
+    "@react-md/sizing": "^2.0.0-alpha.0",
     "@react-md/states": "^2.0.0-alpha.0",
     "@react-md/theme": "^2.0.0-alpha.0",
     "@react-md/tooltip": "^2.0.0-alpha.0",

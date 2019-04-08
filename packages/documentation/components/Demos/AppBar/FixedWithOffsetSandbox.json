@@ -27,6 +27,7 @@
         "@react-md/utils": "next",
         "classnames": "latest",
         "react": "latest",
+        "react-transition-group": "latest",
         "@react-md/theme": "next",
         "react-dom": "latest"
       },

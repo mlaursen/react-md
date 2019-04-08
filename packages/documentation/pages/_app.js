@@ -7,7 +7,7 @@ import { parse } from 'url';
 
 import Layout from 'components/Layout';
 import smoothScroll from 'utils/smoothScroll';
-import { toTitle, toBreadcrumbPageTitle } from 'utils/toTitle';
+import { toBreadcrumbPageTitle } from 'utils/toTitle';
 
 import './app.css';
 
@@ -18,26 +18,25 @@ export default class App extends NextApp {
       componentProps = await Component.getInitialProps(ctx);
     }
 
-    let isTablet;
-    let isPhone;
-    let isDesktop;
-    let isLargeDesktop;
+    let defaultSize;
     if (ctx && ctx.req) {
       const md = new MobileDetect(ctx.req.headers['user-agent']);
-      isTablet = !!md.tablet();
-      isPhone = !isTablet && !!md.mobile();
-      isDesktop = !isPhone && !isTablet;
-      isLargeDesktop = isDesktop;
-    }
-
-    return {
-      componentProps,
-      appSize: {
+      const isTablet = !!md.tablet();
+      const isPhone = !isTablet && !!md.mobile();
+      const isDesktop = !isPhone && !isTablet;
+      const isLargeDesktop = isDesktop;
+      defaultSize = {
         isPhone,
         isTablet,
         isDesktop,
         isLargeDesktop,
-      },
+        isLandscape: true,
+      };
+    }
+
+    return {
+      componentProps,
+      defaultSize,
     };
   }
 
@@ -98,7 +97,7 @@ export default class App extends NextApp {
     const {
       Component,
       componentProps,
-      appSize,
+      defaultSize,
       router: { pathname },
     } = this.props;
     const { statusCode } = componentProps;
@@ -110,7 +109,7 @@ export default class App extends NextApp {
         <Head>
           <title>{pageTitle}</title>
         </Head>
-        <Layout title={title} {...appSize} pathname={pathname}>
+        <Layout title={title} defaultSize={defaultSize} pathname={pathname}>
           <Component {...componentProps} />
         </Layout>
       </Container>

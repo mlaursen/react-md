@@ -24,6 +24,7 @@
         "@react-md/transition": "next",
         "@react-md/utils": "next",
         "react": "latest",
+        "react-transition-group": "latest",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "react-dom": "latest"
@@ -48,7 +49,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent, useState, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useVisibility } from \"@react-md/utils\";\n\nconst SimpleExample: FunctionComponent = () => {\n  const { visible, toggle, hide } = useVisibility();\n  return (\n    <Fragment>\n      <Button id=\"simple-overlay-button\" onClick={toggle} themeType=\"contained\">\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={visible} onRequestClose={hide} />\n    </Fragment>\n  );\n};\n\nexport default SimpleExample;\n",
+    "content": "import React, { FunctionComponent, useState, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useToggle } from \"@react-md/utils\";\n\nconst SimpleExample: FunctionComponent = () => {\n  const { toggled, toggle, disable } = useToggle();\n  return (\n    <Fragment>\n      <Button id=\"simple-overlay-button\" onClick={toggle} themeType=\"contained\">\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={toggled} onRequestClose={disable} />\n    </Fragment>\n  );\n};\n\nexport default SimpleExample;\n",
     "isBinary": false
   }
 }

@@ -1,0 +1,48 @@
+////
+/// @group sizing
+////
+
+@import 'variables';
+
+/// Creates a media query so that only phones will be targeted with the
+/// styles. This media query **will stop** at the phone's max width
+/// instead of being a `min-width` query since it would be better to just
+/// apply the phone styles as a base and use the tablet or desktop min-width
+/// queries for additional overrides.
+@mixin rmd-sizing-phone-media {
+  @media screen and (max-width: #{$rmd-sizing-phone-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so devices targeted at the min-width of a tablet and
+/// above will gain these styles.
+@mixin rmd-sizing-tablet-media {
+  @media screen and (min-width: #{$rmd-sizing-tablet-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes between the min and max width of a
+/// tablet will only gain these styles.
+@mixin rmd-sizing-tablet-only-media {
+  @media screen and (min-width: #{$rmd-sizing-tablet-min-width}) and (max-width: #{$rmd-sizing-tablet-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least th emin width
+/// for a desktop will gain these styles.
+@mixin rmd-sizing-desktop-media {
+  @media screen and (min-width: #{$rmd-sizing-desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least th emin width
+/// for a large desktop will gain these styles.
+@mixin rmd-sizing-large-desktop-media {
+  @media screen and (min-width: #{$rmd-sizing-large-desktop-min-width}) {
+    @content;
+  }
+}

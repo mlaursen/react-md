@@ -5,10 +5,9 @@ import {
   APP_BAR_OFFSET_PROMINENT_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
+import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 import cn from "classnames";
-
-import { useAppSizeContext } from "components/Layout/AppSize";
 
 import "./phone.scss";
 import { PhoneContext } from "./context";

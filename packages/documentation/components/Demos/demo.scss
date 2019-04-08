@@ -2,13 +2,14 @@
 @import '@react-md/divider/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 
 .demo {
-  padding: 0 2rem;
-
-  @media (min-width: 600px) {
+  @include rmd-sizing-tablet-min-media {
     padding: 0 6rem;
   }
+
+  padding: 0 2rem;
 
   &__divider {
     margin-bottom: 2rem;

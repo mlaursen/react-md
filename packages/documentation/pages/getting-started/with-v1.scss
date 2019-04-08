@@ -1,5 +1,7 @@
+@import '@react-md/sizing/dist/mixins';
+
 .with-v1 {
-  @media (min-width: 60rem) {
+  @include rmd-sizing-desktop-media {
     pre {
       margin-left: -10rem;
       margin-right: -10rem;
