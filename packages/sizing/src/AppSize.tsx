@@ -3,28 +3,43 @@ import React, {
   FunctionComponent,
   ReactNode,
   useContext,
+  useEffect,
+  useMemo,
   useRef,
 } from "react";
+
+import {
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_PHONE_MAX_WIDTH,
+  DEFAULT_TABLET_MAX_WIDTH,
+  DEFAULT_TABLET_MIN_WIDTH,
+} from "./constants";
 import useAppSize, {
   AppSize,
   AppSizeOptions,
   DEFAULT_APP_SIZE,
 } from "./useAppSize";
-import {
-  DEFAULT_PHONE_MAX_WIDTH,
-  DEFAULT_TABLET_MIN_WIDTH,
-  DEFAULT_TABLET_MAX_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-} from "./constants";
 
-export const AppSizeContext = createContext<AppSize>(DEFAULT_APP_SIZE);
+export const AppSizeContext = createContext<
+  AppSize & { __initialized: boolean }
+>({
+  ...DEFAULT_APP_SIZE,
+  __initialized: false,
+});
 
 /**
  * A helper hook to get the current app size context.
  */
-export function useAppSizeContext() {
-  return useContext(AppSizeContext);
+export function useAppSizeContext(): AppSize {
+  const { __initialized, ...context } = useContext(AppSizeContext);
+  if (!__initialized) {
+    throw new Error(
+      "Attempted to use the current `AppSizeContext` without mounting the `AppSizeListener` component beforehand."
+    );
+  }
+
+  return context;
 }
 
 export interface AppSizeListenerProps extends AppSizeOptions {
@@ -70,8 +85,7 @@ export const AppSizeListener: FunctionComponent<
     desktopLargeMinWidth,
   } = providedProps as WithDefaultProps;
 
-  const lastValue = useRef(defaultSize);
-  const value = useAppSize({
+  const appSize = useAppSize({
     phoneMaxWidth,
     tabletMaxWidth,
     tabletMinWidth,
@@ -79,15 +93,40 @@ export const AppSizeListener: FunctionComponent<
     desktopLargeMinWidth,
     defaultSize,
   });
+  const lastValue = useRef(appSize);
 
-  if (lastValue.current !== value) {
-    if (onChange) {
-      onChange(value, lastValue.current);
+  useEffect(() => {
+    // trigger the onChange prop on mount only if there is a difference between the defaultSize
+    // and the mounted size.
+    if (
+      onChange &&
+      (defaultSize.isPhone !== appSize.isPhone ||
+        defaultSize.isTablet !== appSize.isTablet ||
+        defaultSize.isDesktop !== appSize.isDesktop ||
+        defaultSize.isLargeDesktop !== appSize.isLargeDesktop ||
+        defaultSize.isLandscape !== appSize.isLandscape)
+    ) {
+      onChange(appSize, defaultSize);
     }
+  }, []);
 
-    lastValue.current = value;
-  }
+  useEffect(() => {
+    if (lastValue.current !== appSize) {
+      if (onChange) {
+        onChange(appSize, lastValue.current);
+      }
 
+      lastValue.current = appSize;
+    }
+  });
+
+  const value = useMemo(
+    () => ({
+      ...appSize,
+      __initialized: true,
+    }),
+    [appSize]
+  );
   return (
     <AppSizeContext.Provider value={value}>{children}</AppSizeContext.Provider>
   );

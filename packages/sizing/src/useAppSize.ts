@@ -7,6 +7,7 @@ import {
   QuerySize,
 } from "./constants";
 import useWidthMediaQuery from "./useWidthMediaQuery";
+import { useMemo } from "react";
 
 /**
  * The current size for your application. This should work both server side
@@ -124,12 +125,17 @@ export default function useAppSize({
   const isDesktop = matchesDesktop;
   const isTablet = !matchesDesktop && matchesTablet;
   const isPhone = !isTablet && !isDesktop && matchesPhone;
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const isLargeDesktop = matchesLargeDesktop;
 
-  return {
-    isPhone,
-    isTablet,
-    isDesktop,
-    isLargeDesktop: matchesLargeDesktop,
-    isLandscape: window.innerWidth > window.innerHeight,
-  };
+  return useMemo(
+    () => ({
+      isPhone,
+      isTablet,
+      isDesktop,
+      isLargeDesktop,
+      isLandscape,
+    }),
+    [isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape]
+  );
 }

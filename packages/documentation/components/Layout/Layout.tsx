@@ -13,14 +13,12 @@ const Layout: FunctionComponent<LayoutProps> = ({
   children,
   title,
   defaultSize,
-}) => {
-  return (
-    <AppSizeListener defaultSize={defaultSize}>
-      <StatesConfig>
-        <Combined title={title}>{children}</Combined>
-      </StatesConfig>
-    </AppSizeListener>
-  );
-};
+}) => (
+  <AppSizeListener defaultSize={defaultSize}>
+    <StatesConfig>
+      <Combined title={title}>{children}</Combined>
+    </StatesConfig>
+  </AppSizeListener>
+);
 
 export default Layout;
