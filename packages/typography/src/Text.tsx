@@ -210,7 +210,9 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
       [type]: true,
       "no-margin": noMargin,
       [align as string]: align,
-      [decoration as string]: decoration,
+      [decoration as string]: decoration && decoration !== "overline",
+      // only because "overline" is technically one of the valid material design types :/
+      "overline-decoration": decoration === "overline",
       [transform as string]: transform,
       [weight as string]: weight,
     }),
