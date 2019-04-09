@@ -6,14 +6,46 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
   QuerySize,
 } from "./constants";
-import useOrientation from "./useOrientation";
 import useWidthMediaQuery from "./useWidthMediaQuery";
 
+/**
+ * The current size for your application. This should work both server side
+ * and client side, but you will have much better results client side.
+ */
 export interface AppSize {
+  /**
+   * Boolean if currently matching a phone by comparing the max width of the
+   * device.
+   */
   isPhone: boolean;
+
+  /**
+   * Boolean if currently matching a tablet by comparing the max width of the
+   * device.
+   */
   isTablet: boolean;
+
+  /**
+   * Boolean if currently matching a desktop screen by comparing the max width
+   * of the device.
+   */
   isDesktop: boolean;
+
+  /**
+   * Boolean if currently matching a large desktop screen by comparing the max
+   * width of the device.
+   */
   isLargeDesktop: boolean;
+
+  /**
+   * Boolean if the app is considered to be in landscape mode. This will just
+   * verify that the window width is greater than the window height.
+   *
+   * NOTE: This might not be super accurate on Android devices since the soft
+   * keyboard will change the dimensions of the viewport when it appears. It
+   * is recommended to use the `useOrientation` hook as well if you'd like to
+   * get the current orientation type.
+   */
   isLandscape: boolean;
 }
 
@@ -43,14 +75,32 @@ export interface AppSizeOptions {
    * min to max so that you can have a bit more control.
    */
   tabletMaxWidth?: QuerySize;
+
+  /**
+   * The min width for a desktop screen.
+   */
   desktopMinWidth?: QuerySize;
+
+  /**
+   * The min width for a large desktop screen.
+   */
   desktopLargeMinWidth?: QuerySize;
+
+  /**
+   * An optional default size to use for your app. This is really only helpful
+   * when trying to do server side rendering or initial page render since the
+   * default behavior is to check and update the size once mounted in the DOM.
+   */
   defaultSize?: AppSize;
 }
 
 /**
- * This hook is used to determine the current application size based
- * on the provided query sizes.
+ * This hook is used to determine the current application size based on the
+ * provided query sizes. When you want to render your app server side, you will
+ * need to provide a custom `defaultSize` that implements your logic to determine
+ * the type of device requesting a page. Once the app has been rendered in the DOM,
+ * this hook will attach event listeners to automatically update the app size when
+ * the page is resized.
  */
 export default function useAppSize({
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
@@ -71,10 +121,6 @@ export default function useAppSize({
     max: tabletMaxWidth,
   });
   const matchesPhone = useWidthMediaQuery({ max: phoneMaxWidth });
-  const orientation = useOrientation();
-  const isLandscape =
-    orientation === "landscape-primary" ||
-    orientation === "landscape-secondary";
   const isDesktop = matchesDesktop;
   const isTablet = !matchesDesktop && matchesTablet;
   const isPhone = !isTablet && !isDesktop && matchesPhone;
@@ -84,6 +130,6 @@ export default function useAppSize({
     isTablet,
     isDesktop,
     isLargeDesktop: matchesLargeDesktop,
-    isLandscape,
+    isLandscape: window.innerWidth > window.innerHeight,
   };
 }

@@ -31,8 +31,9 @@ export const ALWAYS_REQUIRED_DEV_DEPENDENCIES = [
  */
 export const NON_STYLEABLE_RMD_PACKAGES = [
   "@react-md/elevation",
-  "@react-md/portal",
   "@react-md/material-icons",
+  "@react-md/portal",
+  "@react-md/sizing",
   "@react-md/wia-aria",
 ];
 

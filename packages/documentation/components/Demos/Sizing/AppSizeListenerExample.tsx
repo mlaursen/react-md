@@ -13,10 +13,10 @@ const CurrentSize = () => {
   );
 };
 
-const SimpleAppSizeListenerExample: FunctionComponent = () => (
+const AppSizeListenerExample: FunctionComponent = () => (
   <AppSizeListener>
     <CurrentSize />
   </AppSizeListener>
 );
 
-export default SimpleAppSizeListenerExample;
+export default AppSizeListenerExample;

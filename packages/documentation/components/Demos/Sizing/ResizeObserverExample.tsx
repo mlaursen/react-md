@@ -1,10 +1,9 @@
 import React, {
-  FunctionComponent,
-  useState,
-  useRef,
-  useEffect,
   Fragment,
-  useCallback,
+  FunctionComponent,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import { Button } from "@react-md/button";
 import {
@@ -15,10 +14,10 @@ import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
 
 import { randomInt } from "utils/random";
-import "./simple-resize-observer-example.scss";
+
+import "./resize-observer-example.scss";
 
 const block = bem("simple-resize");
-
 const DEFAULT_HEIGHT = 100;
 const DEFAULT_WIDTH = 150;
 

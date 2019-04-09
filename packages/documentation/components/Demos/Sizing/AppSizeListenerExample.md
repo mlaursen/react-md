@@ -19,24 +19,17 @@ interface AppSize {
 ```
 
 which will be determined by different min and max widths passed into the
-`AppSizeListener` component. The app size can only have one of the `isPhone`,
-`isTablet`, or `isDesktop` flags enabled by default, but will also enable the
+`AppSizeListener` component.
 
-- `isLargeDesktop` when the app is in desktop mode
-- `isLandscape` when the app has the orientation type set to one of the
-  landscape values
-
-The default media queries will be:
+The default breakpoints and media queries will be:
 
 ```ts
 const isPhone = "screen and (max-width: 767px)";
 const isTablet = "screen and (min-width: 768px) and (max-width: 1024px)";
 const isDesktop = "screen and (min-width: 1025px)";
 const isLargeDesktop = "screen and (min-width: 1280px)";
-const isLandscape =
-  window.orientation.type === "landscape-primary" ||
-  window.orientation.type === "landscape-secondary";
+const isLandscape = window.innerWidth > window.innerHeight;
 ```
 
-> Note that the `isLandscape` is checking the `window` orientation instead of
-> determining if the `width` is greater than the `height`.
+> The media queries will actually be using `em` instead of pixels, but I
+> converted this example to pixels for human readability.

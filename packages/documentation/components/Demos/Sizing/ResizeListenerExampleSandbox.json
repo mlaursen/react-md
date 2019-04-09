@@ -1,6 +1,6 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Sizing Example - Simple App Size Listener Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Sizing Example - Resize Listener Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
     "isBinary": false
   },
   "src/index.tsx": {
@@ -8,16 +8,16 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/sizing/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {
     "content": {
-      "title": "Sizing Example - Simple App Size Listener Example",
-      "description": "Example from https://react-md.dev/packages/sizing/demos#simple-app-size-listener-example",
+      "title": "Sizing Example - Resize Listener Example",
+      "description": "Example from https://react-md.dev/packages/sizing/demos#resize-listener-example",
       "main": "src/index.tsx",
       "dependencies": {
-        "/Users/mikkel.laursen/code/react-md/package.json": "latest",
+        "/Users/mlaursen/code/react-md/package.json": "latest",
         "@react-md/sizing": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent } from \"react\";\nimport { AppSizeListener, useAppSizeContext } from \"@react-md/sizing\";\nimport { TextContainer, Text } from \"@react-md/typography\";\nimport CodeBlock from \"./CodeBlock\";\n\nconst CurrentSize = () => {\n  const context = useAppSizeContext();\n  return (\n    <TextContainer>\n      <Text type=\"headline-6\">The current app size is:</Text>\n      <CodeBlock>{JSON.stringify(context, null, 2)}</CodeBlock>\n    </TextContainer>\n  );\n};\n\nconst SimpleAppSizeListenerExample: FunctionComponent = () => (\n  <AppSizeListener>\n    <CurrentSize />\n  </AppSizeListener>\n);\n\nexport default SimpleAppSizeListenerExample;\n",
+    "content": "import React, { Fragment, FunctionComponent, useState } from \"react\";\nimport { ResizeListener } from \"@react-md/sizing\";\nimport { Text } from \"@react-md/typography\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport CodeBlock from \"./CodeBlock\";\n\nconst ResizeListenerExample: FunctionComponent = () => {\n  const [size, setSize] = useState(() => {\n    if (typeof window !== \"undefined\") {\n      return window.innerWidth;\n    }\n\n    return 0;\n  });\n\n  const { toggled, toggle } = useToggle(true);\n  const { toggled: immediate, toggle: toggleImmediate } = useToggle(true);\n\n  return (\n    <Fragment>\n      <label htmlFor=\"toggle-resize-listener\">Enable Listener:</label>\n      <input\n        id=\"toggle-resize-listener\"\n        type=\"checkbox\"\n        checked={toggled}\n        onChange={toggle}\n      />\n      <label htmlFor=\"toggle-resize-listener\">Invoke on mount:</label>\n      <input\n        id=\"toggle-resize-invocation\"\n        type=\"checkbox\"\n        checked={immediate}\n        onChange={toggleImmediate}\n      />\n      {toggled && (\n        <ResizeListener\n          immediate={immediate}\n          onResize={() => setSize(window.innerWidth)}\n        />\n      )}\n      <Text>The current app size is:</Text>\n      <CodeBlock>{size}px</CodeBlock>\n    </Fragment>\n  );\n};\n\nexport default ResizeListenerExample;\n",
     "isBinary": false
   },
   "src/Code.tsx": {

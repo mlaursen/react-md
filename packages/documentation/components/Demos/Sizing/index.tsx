@@ -2,20 +2,23 @@ import React, { FunctionComponent } from "react";
 
 import DemoPage from "../DemoPage";
 
-import SimpleAppSizeListenerExample from "./SimpleAppSizeListenerExample";
-import simpleAppSizeListenerExample from "./SimpleAppSizeListenerExample.md";
+import AppSizeListenerExample from "./AppSizeListenerExample";
+import appSizeListenerExample from "./AppSizeListenerExample.md";
 
 import MediaQueryComponents from "./MediaQueryComponents";
 import mediaQueryComponents from "./MediaQueryComponents.md";
 
-import SimpleResizeObserverExample from "./SimpleResizeObserverExample";
-import simpleResizeObserverExample from "./SimpleResizeObserverExample.md";
+import ResizeListenerExample from "./ResizeListenerExample";
+import resizeListenerExample from "./ResizeListenerExample.md";
+
+import ResizeObserverExample from "./ResizeObserverExample";
+import resizeObserverExample from "./ResizeObserverExample.md";
 
 const demos = [
   {
-    name: "Simple App Size Listener Example",
-    description: simpleAppSizeListenerExample,
-    children: <SimpleAppSizeListenerExample />,
+    name: "App Size Listener Example",
+    description: appSizeListenerExample,
+    children: <AppSizeListenerExample />,
   },
   {
     name: "Media Query Components",
@@ -23,9 +26,14 @@ const demos = [
     children: <MediaQueryComponents />,
   },
   {
-    name: "Simple Resize Observer Example",
-    description: simpleResizeObserverExample,
-    children: <SimpleResizeObserverExample />,
+    name: "Resize Listener Example",
+    description: resizeListenerExample,
+    children: <ResizeListenerExample />,
+  },
+  {
+    name: "Resize Observer Example",
+    description: resizeObserverExample,
+    children: <ResizeObserverExample />,
   },
 ];
 
