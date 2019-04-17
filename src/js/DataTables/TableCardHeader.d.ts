@@ -14,7 +14,7 @@ export interface TableCardHeaderProps extends Props {
   contextualTitleId?: IdPropType;
   contextualChildren?: React.ReactNode;
   leftChildren?: React.ReactElement<any> | Array<React.ReactElement<any>>;
-  children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
+  children?: React.ReactNode;
   actions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   noActionsAdjust?: boolean;
   noChildrenAdjust?: boolean;
