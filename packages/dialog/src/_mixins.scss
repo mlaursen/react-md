@@ -1,0 +1,55 @@
+////
+/// @group dialog
+////
+
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+@mixin rmd-dialog-content {
+  @include rmd-utils-scroll;
+
+  flex: 1 1 auto;
+}
+
+@mixin rmd-dialog-header {
+  flex: 0 0 auto;
+}
+
+@mixin rmd-dialog-footer {
+  flex: 0 0 auto;
+}
+
+@mixin rmd-dialog-title {
+  @include rmd-typography(headline-4);
+}
+
+@mixin rmd-dialog {
+  @include rmd-theme(background-color, surface);
+  @include rmd-theme(color, text-primary-on-surface);
+
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin react-md-dialog {
+  .rmd-dialog {
+    @include rmd-dialog;
+
+    &__header {
+      @include rmd-dialog-header;
+    }
+
+    &__content {
+      @include rmd-dialog-content;
+    }
+
+    &__footer {
+      @include rmd-dialog-footer;
+    }
+
+    &__title {
+      @include rmd-dialog-title;
+    }
+  }
+}

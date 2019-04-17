@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./es",
+    "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/dialog.module",
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
+  ]
+}
