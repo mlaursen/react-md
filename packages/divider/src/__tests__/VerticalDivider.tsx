@@ -17,13 +17,19 @@ describe("VerticalDivider", () => {
 
   describe("useVerticalDividerHeight", () => {
     it("should throw an error if the maxHeight is less than 0", () => {
-      const { error } = global.console;
-      global.console.error = () => {};
-      expect(() => renderHook(() => useVerticalDividerHeight(-1))).toThrowError(
+      // can't use renderHook for this since the error will be caught in the ErrorBoundary
+      const Test = () => {
+        useVerticalDividerHeight(-1);
+        return null;
+      };
+
+      const consoleError = jest.spyOn(console, "error");
+      // hide React uncaught error message
+      consoleError.mockImplementation();
+
+      expect(() => render(<Test />)).toThrowError(
         "The `maxHeight` for a vertical divider height must be greater than 0"
       );
-
-      global.console.error = error;
     });
 
     it("should provide a ref callback and a height", () => {

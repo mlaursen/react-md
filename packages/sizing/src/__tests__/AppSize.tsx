@@ -1,5 +1,4 @@
 import React from "react";
-import { renderHook } from "react-hooks-testing-library";
 import { cleanup, render } from "react-testing-library";
 
 import { AppSizeListener, useAppSizeContext } from "../AppSize";
@@ -38,11 +37,17 @@ afterEach(cleanup);
 
 describe("useAppSizeContext", () => {
   it("should throw an error when not used as a child of the AppSizeListener", () => {
+    // can't use renderHook for this since the error will be caught in the ErrorBoundary
+    const Test = () => {
+      useAppSizeContext();
+      return null;
+    };
+
     const consoleError = jest.spyOn(console, "error");
     // hide React uncaught error message
     consoleError.mockImplementation();
 
-    expect(() => renderHook(() => useAppSizeContext())).toThrowError(
+    expect(() => render(<Test />)).toThrowError(
       "Attempted to use the current `AppSizeContext` without mounting the `AppSizeListener` component beforehand."
     );
   });
