@@ -87,6 +87,10 @@ export default function useScrollLock(
   selectorOrElement?: string | HTMLElement | null
 ) {
   useEffect(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
     let element: HTMLElement | null = null;
     if (typeof selectorOrElement === "string") {
       element = document.querySelector<HTMLElement>(selectorOrElement);
