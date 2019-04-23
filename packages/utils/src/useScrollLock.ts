@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 /**
  * This is used with the `useScrollLock` effect to determine if the styles were
@@ -86,30 +86,24 @@ export default function useScrollLock(
   enabled: boolean,
   selectorOrElement?: string | HTMLElement | null
 ) {
-  const element = useMemo(() => {
-    let el: HTMLElement | null = null;
+  useEffect(() => {
+    let element: HTMLElement | null = null;
     if (typeof selectorOrElement === "string") {
-      el = document.querySelector<HTMLElement>(selectorOrElement);
+      element = document.querySelector<HTMLElement>(selectorOrElement);
     } else if (selectorOrElement) {
-      el = selectorOrElement;
+      element = selectorOrElement;
     } else {
-      el = document.body;
+      element = document.body;
     }
 
-    return el;
-  }, [selectorOrElement]);
-
-  useEffect(() => {
-    if (!element) {
+    if (!element || !enabled) {
       return;
     }
 
-    if (enabled) {
-      enable(element);
-    }
+    enable(element);
 
     return () => {
-      disable(element);
+      disable(element as HTMLElement);
     };
-  }, [enabled, element]);
+  }, [enabled, selectorOrElement]);
 }

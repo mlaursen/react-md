@@ -156,6 +156,16 @@
   }
 }
 
+/// An extremely simple mixin that will allow any element to be fixed to the entire viewport
+/// size.
+@mixin rmd-utils-full-screen {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
 /// This is a small utility function that helps set up your react-md app.
 ///
 /// This will:

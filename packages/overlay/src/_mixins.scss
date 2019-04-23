@@ -36,15 +36,11 @@
   @include rmd-overlay-theme(background-color);
   @include rmd-overlay-theme(z-index);
   @include rmd-transition(standard);
+  @include rmd-utils-full-screen;
 
-  bottom: 0;
   cursor: pointer;
-  left: 0;
   opacity: 0;
   pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
   transition: opacity $rmd-overlay-transition-duration;
 
   &--active {
