@@ -19,6 +19,17 @@ export default {
     black: 900,
   },
   "rmd-typography-default-font-weights": ["light", "regular", "medium", "bold"],
+  "rmd-typography-colors": {
+    secondary: "text-secondary-on-background",
+    hint: "text-hint-on-background",
+    "theme-primary": "primary",
+    "theme-secondary": "secondary",
+    "theme-warning": "warning",
+    "theme-error": "error",
+  },
+  "rmd-typography-alignments": ["left", "center", "right"],
+  "rmd-typography-decorations": ["underline", "overline", "line-through"],
+  "rmd-typography-transforms": ["capitalize", "uppercase", "lowercase"],
   "rmd-typography-google-font-weight-suffixes": {
     thin: '"-Thin"',
     light: '"-Light"',

@@ -122,6 +122,36 @@ $rmd-typography-font-weights: (
 /// @type List
 $rmd-typography-default-font-weights: light regular medium bold !default;
 
+/// A map of colors that should be added for the `Text` component. If you aren't going
+/// to use the `color` prop on the `Text` component, set this value to an empty map
+/// to reduce your bundle size by a slight amount.
+/// @type Map
+$rmd-typography-colors: (
+  secondary: text-secondary-on-background,
+  hint: text-hint-on-background,
+  theme-primary: primary,
+  theme-secondary: secondary,
+  theme-warning: warning,
+  theme-error: error,
+) !default;
+
+/// A list of `text-align` styles to generate. If you don't want the helper classes for
+/// text alignment, set this to an empty list to reduce your bundle size by a slight
+/// amount.
+/// @type List
+$rmd-typography-alignments: left center right !default;
+
+/// A list of `text-decoration` to apply. If you don't want the helper classes for text
+/// decoration, set this to an empty list to reduce your bundle size by a slight amount.
+/// @type List
+$rmd-typography-decorations: underline overline line-through !default;
+
+/// A list of `text-transform` to apply. If you don't want the helper classes for text
+/// transformation, set this to an empty list to reduce your bundle size by a slight
+/// amount.
+/// @type List
+$rmd-typography-transforms: capitalize uppercase lowercase !default;
+
 /// A Map of font weights to a font file suffix for a Google font.
 ///
 /// @type Map

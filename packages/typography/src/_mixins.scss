@@ -3,6 +3,7 @@
 ////
 
 @import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
 @import '@react-md/utils/dist/functions';
 @import 'variables';
 @import 'functions';
@@ -207,23 +208,25 @@
       }
     }
 
-    &--no-margin {
-      margin: 0;
-    }
-
     @each $weight in $rmd-typography-default-font-weights {
       &--#{$weight} {
         font-weight: map-get($rmd-typography-font-weights, $weight);
       }
     }
 
-    @each $align in (left center right) {
+    @each $suffix, $theme-style in $rmd-typography-colors {
+      &--#{$suffix} {
+        @include rmd-theme(color, $theme-style);
+      }
+    }
+
+    @each $align in $rmd-typography-alignments {
       &--#{$align} {
         text-align: $align;
       }
     }
 
-    @each $decoration in (underline overline line-through) {
+    @each $decoration in $rmd-typography-decorations {
       $suffix: $decoration + if($decoration == overline, 'overline-decoration', '');
 
       &--#{$suffix} {
@@ -231,10 +234,14 @@
       }
     }
 
-    @each $transform in (capitalize uppercase lowercase) {
+    @each $transform in $rmd-typography-transforms {
       &--#{$transform} {
         text-transform: $transform;
       }
+    }
+
+    &--no-margin {
+      margin: 0;
     }
   }
 

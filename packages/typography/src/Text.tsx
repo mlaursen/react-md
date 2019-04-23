@@ -31,10 +31,11 @@ export type TextTypes =
   | "overline"
   | "button";
 
-export type TextAlign = "left" | "center" | "right";
-export type TextDecoration = "underline" | "overline" | "line-through";
-export type TextTransform = "capitalize" | "uppercase" | "lowercase";
+export type TextAlign = "" | "left" | "center" | "right";
+export type TextDecoration = "" | "underline" | "overline" | "line-through";
+export type TextTransform = "" | "capitalize" | "uppercase" | "lowercase";
 export type TextWeight =
+  | ""
   | "thin"
   | "light"
   | "regular"
@@ -42,6 +43,14 @@ export type TextWeight =
   | "bold"
   | "semi-bold"
   | "black";
+export type TextColor =
+  | ""
+  | "secondary"
+  | "hint"
+  | "theme-primary"
+  | "theme-secondary"
+  | "theme-warning"
+  | "theme-error";
 
 /**
  * A union of the default supported elements that the `Text` component can be rendered as. This
@@ -112,6 +121,13 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   align?: TextAlign;
 
   /**
+   * An optional text color to apply. Unline normal theme colors, these will reflect
+   * the `text-secondary-on-background` and `text-hint-on-background` instead of the
+   * primary or secondary theme colors.
+   */
+  color?: TextColor;
+
+  /**
    * An optional text decoration to apply.
    */
   decoration?: TextDecoration;
@@ -161,7 +177,17 @@ function getComponent(component: ReactType | null, type: TextTypes): ReactType {
 
 type WithRef = WithForwardedRef<TextElement>;
 type DefaultProps = Required<
-  Pick<TextProps, "type" | "component" | "noMargin">
+  Pick<
+    TextProps,
+    | "type"
+    | "component"
+    | "noMargin"
+    | "align"
+    | "color"
+    | "decoration"
+    | "transform"
+    | "weight"
+  >
 >;
 type WithDefaultProps = TextProps & DefaultProps & WithRef;
 
@@ -199,6 +225,7 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
     forwardedRef,
     noMargin,
     align,
+    color,
     decoration,
     transform,
     weight,
@@ -209,12 +236,13 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
     block({
       [type]: true,
       "no-margin": noMargin,
-      [align as string]: align,
-      [decoration as string]: decoration && decoration !== "overline",
+      [align]: align,
+      [decoration]: decoration && decoration !== "overline",
+      [color]: color,
       // only because "overline" is technically one of the valid material design types :/
       "overline-decoration": decoration === "overline",
-      [transform as string]: transform,
-      [weight as string]: weight,
+      [transform]: transform,
+      [weight]: weight,
     }),
     propClassName
   );
@@ -230,6 +258,11 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  align: "",
+  color: "",
+  decoration: "",
+  transform: "",
+  weight: "",
   type: "body-1",
   component: null,
   noMargin: false,
@@ -269,9 +302,15 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-      align: PropTypes.oneOf(["left", "center", "right"]),
-      decoration: PropTypes.oneOf(["underline", "overline", "line-through"]),
+      align: PropTypes.oneOf(["", "left", "center", "right"]),
+      decoration: PropTypes.oneOf([
+        "",
+        "underline",
+        "overline",
+        "line-through",
+      ]),
       weight: PropTypes.oneOf([
+        "",
         "thin",
         "light",
         "regular",
@@ -280,7 +319,16 @@ if (process.env.NODE_ENV !== "production") {
         "semi-bold",
         "black",
       ]),
-      transform: PropTypes.oneOf(["capitalize", "uppercase", "lowercase"]),
+      transform: PropTypes.oneOf(["", "capitalize", "uppercase", "lowercase"]),
+      color: PropTypes.oneOf([
+        "",
+        "secondary",
+        "hint",
+        "theme-primary",
+        "theme-secondary",
+        "theme-warning",
+        "theme-error",
+      ]),
     };
   }
 }
