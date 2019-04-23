@@ -2,14 +2,17 @@
 /// @group dialog
 ////
 
+@import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
+@import 'variables';
 
 @mixin rmd-dialog-content {
   @include rmd-utils-scroll;
 
   flex: 1 1 auto;
+  padding: $rmd-dialog-content-padding;
 }
 
 @mixin rmd-dialog-header {
@@ -18,23 +21,39 @@
 
 @mixin rmd-dialog-footer {
   flex: 0 0 auto;
+  padding: $rmd-dialog-footer-padding;
 }
 
 @mixin rmd-dialog-title {
   @include rmd-typography(headline-4);
+
+  margin: 0;
+  padding: 1.5rem;
 }
 
 @mixin rmd-dialog {
+  @include rmd-elevation($rmd-dialog-elevation);
   @include rmd-theme(background-color, surface);
-  @include rmd-theme(color, text-primary-on-surface);
+  @include rmd-theme(color, text-primary-on-background);
+  @include rmd-utils-hide-focus-outline;
 
   display: flex;
   flex-direction: column;
+  max-height: calc(100% - #{$rmd-dialog-vertical-margin * 2});
+  max-width: calc(100% - #{$rmd-dialog-horizontal-margin * 2});
+  position: fixed;
+  z-index: $rmd-dialog-z-index;
 }
 
 @mixin react-md-dialog {
   .rmd-dialog {
     @include rmd-dialog;
+
+    &--centered {
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
 
     &__header {
       @include rmd-dialog-header;

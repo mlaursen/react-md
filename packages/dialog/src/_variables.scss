@@ -1,0 +1,12 @@
+////
+/// @group dialog
+////
+
+@import '@react-md/overlay/dist/variables';
+
+$rmd-dialog-elevation: 16 !default;
+$rmd-dialog-z-index: $rmd-overlay-z-index + 1 !default;
+$rmd-dialog-vertical-margin: 1.5rem !default;
+$rmd-dialog-horizontal-margin: 2.5rem !default;
+$rmd-dialog-content-padding: 1.5rem !default;
+$rmd-dialog-footer-padding: 0.5rem !default;

@@ -24,6 +24,7 @@
     "@react-md/app-bar": "^2.0.0-alpha.0",
     "@react-md/avatar": "^2.0.0-alpha.0",
     "@react-md/button": "^2.0.0-alpha.0",
+    "@react-md/dialog": "^2.0.0-alpha.0",
     "@react-md/divider": "^2.0.0-alpha.0",
     "@react-md/elevation": "^2.0.0-alpha.0",
     "@react-md/icon": "^2.0.0-alpha.0",

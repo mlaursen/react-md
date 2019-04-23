@@ -34,13 +34,14 @@
   "dependencies": {
     "@react-md/app-bar": "^2.0.0-alpha.0",
     "@react-md/elevation": "^2.0.0-alpha.0",
-    "@react-md/sheet": "^2.0.0-alpha.0",
-    "@react-md/states": "^2.0.0-alpha.0",
+    "@react-md/overlay": "^2.0.0-alpha.0",
+    "@react-md/portal": "^2.0.0-alpha.0",
     "@react-md/theme": "^2.0.0-alpha.0",
+    "@react-md/transition": "^2.0.0-alpha.0",
     "@react-md/typography": "^2.0.0-alpha.0",
     "@react-md/utils": "^2.0.0-alpha.0",
-    "@react-md/wia-aria": "^2.0.0-alpha.0",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-transition-group": "^4.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.8"

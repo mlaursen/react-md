@@ -210,6 +210,10 @@
     @include react-md-app-bar;
   }
 
+  @if mixin-exists(react-md-dialog) {
+    @include react-md-dialog;
+  }
+
   @if mixin-exists(react-md-divider) {
     @include react-md-divider;
   }

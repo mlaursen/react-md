@@ -197,6 +197,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("app-bar"),
     createPackageRoute("avatar"),
     createPackageRoute("button"),
+    createPackageRoute("dialog"),
     createPackageRoute("divider"),
     createPackageRoute("elevation", { api: false }),
     createPackageRoute("icon"),
