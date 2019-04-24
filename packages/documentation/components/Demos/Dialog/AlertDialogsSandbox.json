@@ -1,0 +1,52 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Dialog Example - Alert Dialogs</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/dialog/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Dialog Example - Alert Dialogs",
+      "description": "Example from https://react-md.dev/packages/dialog/demos#alert-dialogs",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/dialog": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Dialog, DialogContent, DialogFooter } from \"@react-md/dialog\";\nimport { Text } from \"@react-md/typography\";\nimport { useToggle } from \"@react-md/utils\";\n\nconst AlertDialogs: FunctionComponent = () => {\n  const { toggled: visible, enable, disable } = useToggle();\n  const discard = () => {\n    disable();\n  };\n  return (\n    <Fragment>\n      <Button id=\"alert-dialog-toggle\" onClick={enable}>\n        Show Alert\n      </Button>\n      <Dialog\n        id=\"alert-dialog\"\n        role=\"alertdialog\"\n        visible={visible}\n        onRequestClose={disable}\n        aria-labelledby=\"dialog-title\"\n      >\n        <DialogContent>\n          <Text id=\"dialog-title\" type=\"subtitle-1\" noMargin color=\"secondary\">\n            Discard draft?\n          </Text>\n        </DialogContent>\n        <DialogFooter>\n          <Button id=\"dialog-cancel\" onClick={disable}>\n            Cancel\n          </Button>\n          <Button id=\"dialog-discard\" onClick={discard}>\n            Discard\n          </Button>\n        </DialogFooter>\n      </Dialog>\n    </Fragment>\n  );\n};\n\nexport default AlertDialogs;\n",
+    "isBinary": false
+  }
+}

@@ -8,5 +8,17 @@ $rmd-dialog-elevation: 16 !default;
 $rmd-dialog-z-index: $rmd-overlay-z-index + 1 !default;
 $rmd-dialog-vertical-margin: 1.5rem !default;
 $rmd-dialog-horizontal-margin: 2.5rem !default;
+$rmd-dialog-header-padding: 1.5rem !default;
+$rmd-dialog-header-padding-bottom: 1.25rem !default;
 $rmd-dialog-content-padding: 1.5rem !default;
 $rmd-dialog-footer-padding: 0.5rem !default;
+$rmd-dialog-transition-distance: 1.875em !default;
+$rmd-dialog-enter-duration: 0.2s !default;
+$rmd-dialog-leave-duration: 0.15s !default;
+$rmd-dialog-min-width: 17.5rem !default;
+
+$rmd-dialog-theme-values: (
+  horizontal-margin: $rmd-dialog-horizontal-margin,
+  vertical-margin: $rmd-dialog-vertical-margin,
+  z-index: $rmd-dialog-z-index,
+) !default;

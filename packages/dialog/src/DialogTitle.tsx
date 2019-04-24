@@ -9,6 +9,10 @@ type WithRef = WithForwardedRef<HTMLHeadingElement>;
 
 const block = bem("rmd-dialog");
 
+/**
+ * This component adds some base styles to an `<h2>` element for a title within
+ * a `Dialog`.
+ */
 const DialogTitle: FunctionComponent<DialogTitleProps & WithRef> = ({
   children,
   className,
@@ -21,6 +25,22 @@ const DialogTitle: FunctionComponent<DialogTitleProps & WithRef> = ({
     </h2>
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  DialogTitle.displayName = "DialogTitle";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    DialogTitle.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+    };
+  }
+}
 
 export default forwardRef<HTMLHeadingElement, DialogTitleProps>(
   (props, ref) => <DialogTitle {...props} forwardedRef={ref} />

@@ -79,12 +79,12 @@ export function disable(element: HTMLElement) {
  * or an HTML element can also be used instead.
  *
  * @param enabled Boolean if the scroll locking behavior should be enabled
- * @param selectorOrElement Either a query selector string or HTML element to apply scroll
- * locking to.
+ * @param selectorOrElement Either a query selector string, HTMLElement, or a function
+ * that returns an HTMLElement to apply scroll * locking to.
  */
 export default function useScrollLock(
   enabled: boolean,
-  selectorOrElement?: string | HTMLElement | null
+  selectorOrElement?: string | HTMLElement | (() => HTMLElement) | null
 ) {
   useEffect(() => {
     if (typeof document === "undefined") {
@@ -94,6 +94,8 @@ export default function useScrollLock(
     let element: HTMLElement | null = null;
     if (typeof selectorOrElement === "string") {
       element = document.querySelector<HTMLElement>(selectorOrElement);
+    } else if (typeof selectorOrElement === "function") {
+      element = selectorOrElement();
     } else if (selectorOrElement) {
       element = selectorOrElement;
     } else {

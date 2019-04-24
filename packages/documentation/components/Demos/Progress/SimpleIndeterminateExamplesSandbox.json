@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/button/dist/mixins';\n@import '@react-md/progress/dist/mixins';\n@import '@react-md/sizing/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
+    "content": "@import '@react-md/app-bar/dist/mixins';\n@import '@react-md/button/dist/mixins';\n@import '@react-md/progress/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/typography/dist/mixins';;\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "package.json": {

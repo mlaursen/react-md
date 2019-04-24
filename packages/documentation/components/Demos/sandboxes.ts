@@ -36,8 +36,14 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Button/TextButtonsSandbox.json")),
   "Button/TextButtonsWithIcons": () =>
     resolve(import("./Button/TextButtonsWithIconsSandbox.json")),
+  "Dialog/AlertDialogs": () =>
+    resolve(import("./Dialog/AlertDialogsSandbox.json")),
+  "Dialog/FullPageExample": () =>
+    resolve(import("./Dialog/FullPageExampleSandbox.json")),
   "Dialog/SimpleExample": () =>
     resolve(import("./Dialog/SimpleExampleSandbox.json")),
+  "Dialog/SimpleListExample": () =>
+    resolve(import("./Dialog/SimpleListExampleSandbox.json")),
   "Divider/HorizontalDividers": () =>
     resolve(import("./Divider/HorizontalDividersSandbox.json")),
   "Divider/VerticalDividers": () =>

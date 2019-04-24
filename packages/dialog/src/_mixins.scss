@@ -5,30 +5,31 @@
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/mixins';
+@import '@react-md/transition/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 @import 'variables';
+@import 'functions';
 
-@mixin rmd-dialog-content {
-  @include rmd-utils-scroll;
-
-  flex: 1 1 auto;
-  padding: $rmd-dialog-content-padding;
+/// Creates the styles for one of the dialog's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-dialog-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-dialog-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-dialog-theme-values` map when `null`.
+@mixin rmd-dialog-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-dialog-theme-values, dialog);
 }
 
-@mixin rmd-dialog-header {
-  flex: 0 0 auto;
-}
-
-@mixin rmd-dialog-footer {
-  flex: 0 0 auto;
-  padding: $rmd-dialog-footer-padding;
-}
-
-@mixin rmd-dialog-title {
-  @include rmd-typography(headline-4);
-
-  margin: 0;
-  padding: 1.5rem;
+/// Updates one of the dialog's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The dialog theme style type to update. This should be one
+///   of the `$rmd-dialog-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-dialog-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-dialog-theme-values, dialog);
 }
 
 @mixin rmd-dialog {
@@ -39,21 +40,119 @@
 
   display: flex;
   flex-direction: column;
-  max-height: calc(100% - #{$rmd-dialog-vertical-margin * 2});
-  max-width: calc(100% - #{$rmd-dialog-horizontal-margin * 2});
-  position: fixed;
+
+  &--centered {
+    max-height: 100%;
+    max-width: 100%;
+    min-width: $rmd-dialog-min-width;
+    pointer-events: auto;
+  }
+
+  &--full-page {
+    @include rmd-utils-full-screen;
+    @include rmd-utils-scroll;
+
+    z-index: $rmd-dialog-z-index;
+  }
+
+  &--enter {
+    transform: translateY($rmd-dialog-transition-distance);
+  }
+
+  &--enter-active {
+    @include rmd-transition(deceleration);
+
+    transform: translateY(0);
+    transition: transform $rmd-dialog-enter-duration;
+  }
+
+  &--exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--exit-active {
+    @include rmd-transition(acceleration);
+
+    opacity: 0;
+    transform: translateY($rmd-dialog-transition-distance);
+    transition: transform $rmd-dialog-leave-duration, opacity $rmd-dialog-leave-duration;
+  }
+}
+
+@mixin rmd-dialog-content {
+  @include rmd-utils-scroll;
+
+  flex: 1 1 auto;
+
+  &--padded {
+    padding: $rmd-dialog-content-padding;
+  }
+}
+
+@mixin rmd-dialog-header {
+  flex: 0 0 auto;
+  padding: $rmd-dialog-header-padding;
+  padding-bottom: $rmd-dialog-header-padding-bottom;
+}
+
+@mixin rmd-dialog-footer {
+  flex: 0 0 auto;
+  padding: $rmd-dialog-footer-padding;
+
+  &--flex {
+    display: flex;
+  }
+
+  &--flex-v {
+    flex-direction: column;
+  }
+
+  &--start {
+    justify-content: flex-start;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--end {
+    justify-content: flex-end;
+  }
+}
+
+@mixin rmd-dialog-title {
+  @include rmd-typography(headline-4);
+
+  margin: 0;
+}
+
+/// When the dialog is not set to be full page, the dialog gets wrapped in this
+/// container component so that it can be centered within the page using flexbox.
+//
+/// In the past versions, I did some old-school centering logic with `left`, `top`, and
+/// `transform`, but unfortunately this adds text blur in some browsers and made the
+/// transitions harder to customize since you would always need to apply the transforms
+/// at each stage of the transition. Using a flexbox approach fixes this.
+/// @access private
+@mixin rmd-dialog-container {
+  @include rmd-utils-full-screen;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: $rmd-dialog-vertical-margin $rmd-dialog-horizontal-margin;
+  pointer-events: none;
   z-index: $rmd-dialog-z-index;
 }
 
 @mixin react-md-dialog {
+  .rmd-dialog-container {
+    @include rmd-dialog-container;
+  }
+
   .rmd-dialog {
     @include rmd-dialog;
-
-    &--centered {
-      left: 50%;
-      top: 50%;
-      transform: translateX(-50%) translateY(-50%);
-    }
 
     &__header {
       @include rmd-dialog-header;
