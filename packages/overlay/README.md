@@ -32,7 +32,7 @@ and more customization information, but an example usage is shown below.
 
 ## Usage
 
-```ts
+```tsx
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Overlay } from "@react-md/overlay";

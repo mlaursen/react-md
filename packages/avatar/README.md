@@ -36,7 +36,7 @@ more customization information, but an example usage is shown below.
 One of the main use-cases will probably be to display a list of people with
 specific avatars with them:
 
-```ts
+```tsx
 import React from "react";
 import { render } from "react-dom";
 import { Avatar } from "@react-md/avatar";

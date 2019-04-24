@@ -45,7 +45,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
   }, [propChildren, highlight, language]);
 
   return (
-    <pre ref={forwardedRef} className="code code--block">
+    <pre ref={forwardedRef} className={`code code--block language-${language}`}>
       {children}
     </pre>
   );

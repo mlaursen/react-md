@@ -39,9 +39,9 @@ To see a full list of icons, just view the
 
 ### Examples
 
-```ts
-import * as React from "react":
-import * as ReactDOM from "react-dom";
+```tsx
+import React from "react":
+import { render } from "react-dom";
 
 import {
   AccessAlarmFontIcon,
@@ -63,7 +63,7 @@ const App = () => (
   </main>
 );
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+render(<App />, document.getElementById("root") );
 ```
 
 ## Creating sprite maps
@@ -115,10 +115,10 @@ working, update your `webpack.config.js`:
 Then you can just import the SVG into your file and it will automatically
 include that icon in a sprite map.
 
-```ts
+```tsx
 import "svgxuse";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import { render } from "react-dom";
 import { SVGIcon } from "@react-md/icon";
 import homeIcon from "@react-md/material-icons/svgs/home.svg";
 import menuIcon from "@react-md/material-icons/svgs/menu.svg";
@@ -130,7 +130,7 @@ const App = () => (
   </main>
 );
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+render(<App />, document.getElementById("root"));
 ```
 
 ## Development

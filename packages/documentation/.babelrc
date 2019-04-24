@@ -8,6 +8,23 @@
       "root": ["./"],
       "extensions": [".js", ".jsx", ".ts", ".tsx"]
     }],
-    "inline-react-svg"
+    "inline-react-svg",
+    ["prismjs", {
+      "languages": [
+        "javascript",
+        "typescript",
+        "jsx",
+        "tsx",
+        "css",
+        "scss",
+        "css-extras",
+        "markup",
+        "bash",
+        "diff",
+        "git"
+      ],
+      "plugins": [],
+      "css": true
+    }]
   ]
 }

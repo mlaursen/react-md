@@ -15,7 +15,7 @@ $ npm install --save @react-md/app-bar
 It is generally recommended to also install the following packages since they
 work hand-in-hand with this package:
 
-```
+```sh
 $ npm install --save @react-md/theme \
     @react-md/typography \
     @react-md/button \
@@ -40,7 +40,7 @@ The primary use of this package is to create a fixed header that includes your
 app's logo, title, mobile navagitation, or common actions. Here's a quick
 example:
 
-```ts
+```tsx
 import React from "react";
 import { render } from "react-dom";
 import {

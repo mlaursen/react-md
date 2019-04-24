@@ -31,7 +31,7 @@ keyboard tracker context as needed and is used by most of the hooks provided.
 
 Example usage:
 
-```ts
+```tsx
 import React from "react";
 import { render } from "react-dom";
 import { KeyboardTracker } from "@react-md/wia-aria";

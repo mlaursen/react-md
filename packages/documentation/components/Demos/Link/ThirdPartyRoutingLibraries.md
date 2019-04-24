@@ -13,7 +13,7 @@ If you are using `react-router`, you can use the `component` prop to render as
 the `Link` from `react-router` and provide all the `react-router` link specific
 props into the react-md `Link`:
 
-```ts
+```tsx
 import React, { FunctionComponent } from "react";
 import { render } from "react-dom";
 import { Link as ReactRouterLink, LinkProps } from "react-router";

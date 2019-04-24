@@ -8,7 +8,7 @@ Every app will want to import the `StatesConfig` component and initialize it
 near the root of your app so that you can track the current "user interaction
 mode" and apply styles as needed for that.
 
-```ts
+```tsx
 import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";

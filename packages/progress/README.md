@@ -37,7 +37,7 @@ long running task or initial page loading. For accessibility, you'll need to add
 an `id` to the progress component as well as updating the main loading area to
 have `aria-buys="true"` and `aria-describedby="PROGRESS_ID"`:
 
-```ts
+```tsx
 import React, { Fragment } from "react";
 import { render } from "react-dom";
 import { CircularProgress, LinearProgress } from "@react-md/progress";

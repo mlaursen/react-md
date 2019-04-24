@@ -75,3 +75,81 @@ $solarized-green: #859900;
     width: 2.5em;
   }
 }
+
+// prismjs custom theme
+// this is _basically_ my current vim theme, but not aas good since
+// Prism doesn't have as many tokenizers
+.token {
+  position: relative;
+  z-index: 1;
+
+  &.comment,
+  &.doctype {
+    color: $solarized-base-01;
+  }
+
+  &.keyword {
+    color: $solarized-green;
+  }
+
+  &.punctuation {
+    color: $solarized-base-01;
+  }
+
+  &.inserted,
+  &.string,
+  .language-tsx &.attr-value {
+    color: $solarized-cyan;
+  }
+
+  &.tag,
+  &.selector,
+  &.class-name,
+  // fixes mixins/functions
+  .language-scss &.function,
+  // fixes variables
+  .language-scss &.variable {
+    color: $solarized-blue;
+  }
+
+  &.attr-name,
+  &.property,
+  &.builtin {
+    color: $solarized-yellow;
+  }
+
+  &.script,
+  &.interpolation,
+  // to fix interfaces
+  .language-ts &.keyword + .class-name,
+  .language-tsx &.keyword + .class-name {
+    color: $solarized-base-1;
+  }
+
+  // fixes property colors
+  .language-scss &.keyword,
+  // for npm install
+  .language-shell &.function {
+    color: $solarized-orange;
+  }
+
+  &.deleted,
+  &.boolean,
+  &.number,
+  &.interpolation-punctuation {
+    color: $solarized-red;
+  }
+
+  &.important,
+  &.bold {
+    font-weight: map-get($rmd-typography-font-weights, bold);
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.entity {
+    cursor: help;
+  }
+}

@@ -1738,11 +1738,6 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/highlight.js@^9.12.3":
-  version "9.12.3"
-  resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.3.tgz#b672cfaac25cbbc634a0fd92c515f66faa18dbca"
-  integrity sha512-pGF/zvYOACZ/gLGWdQH8zSwteQS1epp68yRcVLJMgUck/MjEn/FBYmPub9pXT8C1e4a8YZfHo1CKyV8q1vKUnQ==
-
 "@types/history@*":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
@@ -1827,6 +1822,11 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/pretty-ms/-/pretty-ms-4.0.0.tgz#5e5177b9e447fbc8446e6fd2b09aea045971f11d"
   integrity sha512-l5aIszYIm3s4jIL4wLDwajEml1w3E4zqGDDUgvnroX1ux6YAxsCrgRHLUafgrHFGTHlx7TpwiwSwcHV8IBvccw==
+
+"@types/prismjs@^1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.0.tgz#4328c9f65698e59f4feade8f4e5d928c748fd643"
+  integrity sha512-mEyuziLrfDCQ4juQP1k706BUU/c8OGn/ZFl69AXXY6dStHClKX4P+N8+rhqpul1vRDA2VOygzMRSJJZHyDEOfw==
 
 "@types/prop-types@*":
   version "15.7.0"
@@ -2953,6 +2953,11 @@ babel-plugin-module-resolver@^3.2.0:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
+babel-plugin-prismjs@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-prismjs/-/babel-plugin-prismjs-1.0.2.tgz#837bf6b32168b3ba624c054fc755946deb1b63fa"
+  integrity sha512-WbUE86Aih6h6daLpyavuikEXECrkon21oWh4MOHa5stMfY/IK1e/Sr79qEGhl7KrL16fMChB3tdbVR82ubnzOg==
+
 babel-plugin-react-require@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-require/-/babel-plugin-react-require-3.0.0.tgz#2e4e7b4496b93a654a1c80042276de4e4eeb20e3"
@@ -3788,6 +3793,15 @@ cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
+
+clipboard@^2.0.0:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.4.tgz#836dafd66cf0fea5d71ce5d5b0bf6e958009112d"
+  integrity sha512-Vw26VSLRpJfBofiVaFb/I8PVfdI1OxKcYShe6fm0sP/DtmiWQNCjhM/okTvdCo0G+lMMm1rMYbk4IK4x1X+kgQ==
+  dependencies:
+    good-listener "^1.2.2"
+    select "^1.1.2"
+    tiny-emitter "^2.0.0"
 
 cliui@^3.2.0:
   version "3.2.0"
@@ -4914,6 +4928,11 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
+
+delegate@^3.1.2:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
+  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 delegates@^1.0.0:
   version "1.0.0"
@@ -6787,6 +6806,13 @@ gonzales-pe-sl@^4.2.3:
   dependencies:
     minimist "1.1.x"
 
+good-listener@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  integrity sha1-1TswzfkxPf+33JoNR3CWqm0UXFA=
+  dependencies:
+    delegate "^3.1.2"
+
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -6998,11 +7024,6 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
-
-highlight.js@^9.15.6:
-  version "9.15.6"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.6.tgz#72d4d8d779ec066af9a17cb14360c3def0aa57c4"
-  integrity sha512-zozTAWM1D6sozHo8kqhfYgsac+B+q0PmsjXeyDrYIHHcBN0zTVT66+s2GW1GZv7DbyaROdLXKdabwS/WqPyIdQ==
 
 history@^4.9.0:
   version "4.9.0"
@@ -11660,6 +11681,13 @@ pretty-ms@^4.0.0:
   dependencies:
     parse-ms "^2.0.0"
 
+prismjs@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.16.0.tgz#406eb2c8aacb0f5f0f1167930cb83835d10a4308"
+  integrity sha512-OA4MKxjFZHSvZcisLGe14THYsug/nF6O1f0pAJc0KN0wTyAcLqmsbE+lTGKSpyh+9pEW57+k6pg2AfYR+coyHA==
+  optionalDependencies:
+    clipboard "^2.0.0"
+
 private@^0.1.6:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
@@ -12974,6 +13002,11 @@ seek-bzip@^1.0.5:
   dependencies:
     commander "~2.8.1"
 
+select@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
+  integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
+
 semver-compare@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
@@ -14052,6 +14085,11 @@ timsort@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+
+tiny-emitter@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
 tiny-invariant@^1.0.2:
   version "1.0.4"

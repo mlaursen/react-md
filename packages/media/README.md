@@ -24,7 +24,7 @@ more customization information, but an example usage is shown below.
 
 ## Usage
 
-```ts
+```tsx
 import React from "react";
 import { render } from "react-dom";
 import { MediaContainer, MediaOverlay } from "@react-md/media";

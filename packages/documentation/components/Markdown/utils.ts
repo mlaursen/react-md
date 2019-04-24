@@ -1,8 +1,6 @@
 import cn from "classnames";
 import * as marked from "marked";
-import hljs from "highlight.js";
-
-import "highlight.js/styles/solarized-dark.css";
+import Prism from "prismjs";
 
 import {
   GITHUB_URL,
@@ -11,20 +9,31 @@ import {
   VERSION,
 } from "constants/index";
 
-function getLangauge(language: string) {
+export function getLanguage(language: string) {
   switch (language) {
     case "":
-    case "markup":
-      return "markdown";
-    case "tsx":
-      return "ts";
+      return "markup";
+    case "sh":
+      return "shell";
     default:
       return language;
   }
 }
 
 export function highlightCode(code: string, lang: string = "") {
-  return hljs.highlight(getLangauge(lang), code).value;
+  const language = getLanguage(lang);
+  try {
+    return Prism.highlight(code, Prism.languages[language], language);
+  } catch (e) {
+    if (process.env.NODE_ENV === "development") {
+      console.error(
+        `Error trying to parse code with the following language: '${lang}' as '${language}'`
+      );
+      console.error(e);
+    }
+
+    return "";
+  }
 }
 
 /**
@@ -34,19 +43,24 @@ export function highlightCode(code: string, lang: string = "") {
 const renderer = new marked.Renderer();
 
 renderer.code = (rawCode, language, escaped) => {
+  language = getLanguage(language);
   const code = highlightCode(rawCode, language);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
-  if (lines > 3 && !/markup/.test(language) && language) {
+  if (lines > 3 && !/markup|shell/.test(language) && language) {
     lineNumbers = Array.from(new Array(lines))
       .map((_, i) => `<span class="code__line-number">${i + 1}</span>`)
       .join("");
     lineNumbers = `<span class="code__lines">${lineNumbers}</span>`;
   }
 
-  const className = cn("code code--block", {
-    "code--counted": lineNumbers,
-  });
+  const className = cn(
+    "code code--block",
+    {
+      "code--counted": lineNumbers,
+    },
+    `language-${language}`
+  );
   return `<pre class="${className}">${lineNumbers}<code class="code">${code}</code></pre>`;
 };
 
