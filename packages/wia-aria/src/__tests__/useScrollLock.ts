@@ -1,10 +1,7 @@
 import { cleanup, renderHook } from "react-hooks-testing-library";
 
-import useScrollLock, {
-  disable,
-  enable,
-  DATA_RMD_NOSCROLL,
-} from "../useScrollLock";
+import useScrollLock, { disable, enable } from "../useScrollLock";
+import { DATA_RMD_NOSCROLL } from "../constants";
 
 describe("useScrollLock", () => {
   const scrollTo = jest.fn() as jest.Mock<typeof window.scrollTo>;

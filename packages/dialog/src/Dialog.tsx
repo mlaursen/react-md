@@ -5,7 +5,6 @@ import React, {
   Fragment,
   ReactNode,
   forwardRef,
-  useRef,
 } from "react";
 import cn from "classnames";
 import { Overlay } from "@react-md/overlay";
@@ -16,8 +15,8 @@ import {
 } from "@react-md/portal";
 import { CSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, RequireAtLeastOne, applyRef } from "@react-md/utils";
-import { useScrollLock } from "@react-md/wia-aria";
+import { WithForwardedRef, RequireAtLeastOne } from "@react-md/utils";
+import { useScrollLock, FocusContainer } from "@react-md/wia-aria";
 import { CSSTransition } from "react-transition-group";
 
 export interface DialogProps
@@ -123,6 +122,12 @@ export interface DialogProps
    * the escape keypress no longer closes the dialog.
    */
   disableEscapeClose?: boolean;
+
+  /**
+   * Either the "first" or "last" string to focus the first or last focusable element within the
+   * container or a query selector string to find a focusable element within the container.
+   */
+  defaultFocus?: "first" | "last" | string;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -135,6 +140,7 @@ type DefaultProps = Required<
     | "type"
     | "classNames"
     | "timeout"
+    | "defaultFocus"
     | "mountOnEnter"
     | "unmountOnExit"
     | "forceContainer"
@@ -177,6 +183,7 @@ const Dialog: FunctionComponent<
     onExited: propOnExited,
     modal,
     type,
+    defaultFocus,
     disableEscapeClose,
     ...props
   } = providedProps as WithDefaultProps;
@@ -203,8 +210,6 @@ const Dialog: FunctionComponent<
     );
   }
 
-  const lastFocus = useRef<HTMLElement | null>(null);
-
   // TODO: Figure out why the CSSTransition adds undefined to the className here when entered
   const dialog = (
     <CSSTransition
@@ -216,73 +221,13 @@ const Dialog: FunctionComponent<
       onEntering={onEntering}
       onEntered={onEntered}
       onExit={onExit}
-      onExiting={onExiting}
+      onExiting={onExited}
       onExited={onExited}
       mountOnEnter={mountOnEnter}
       unmountOnExit={unmountOnExit}
     >
-      <div
+      <FocusContainer
         {...props}
-        ref={instance => {
-          // this is pretty hacked together. should fix
-          applyRef(instance, forwardedRef);
-          if (!instance) {
-            window.requestAnimationFrame(() => {
-              if (lastFocus.current) {
-                lastFocus.current.focus();
-              }
-              lastFocus.current = null;
-            });
-            return;
-          } else if (!lastFocus.current) {
-            console.log(document.activeElement);
-            lastFocus.current = document.activeElement as HTMLElement;
-          }
-
-          // need to figure out how to do ripples here. If it is done via keyboard
-          // enter or space, the instance will be focused before the keyup event so
-          // the ripple won't disappear. great stuff. Either move click to keyup?
-          // add a timeout?, or add additional event handlers to ripple for this?
-          instance.focus();
-        }}
-        onKeyDown={event => {
-          // this is pretty hacked together. should fix
-          if (event.key === "Escape" && !modal && !disableEscapeClose) {
-            onRequestClose();
-          } else if (event.key === "Tab" && event.target) {
-            const focusableElements = ["BUTTON", "TEXTAREA", "SELECT"];
-
-            const baseFocusableElements =
-              'a[href],area[href],input:not([disabled]):not([type="hidden"])';
-            const baseFocusableQuery = focusableElements.reduce(
-              (queryString, element) =>
-                `${queryString},${element}:not([disabled])`,
-              baseFocusableElements
-            );
-
-            const programaticallyFocusable = `${baseFocusableQuery},[tabindex]`;
-            const tabFocusable = `${programaticallyFocusable}:not([tabindex="-1"])`;
-            const elements = Array.from(
-              event.currentTarget.querySelectorAll<HTMLElement>(tabFocusable)
-            );
-            if (!elements.length) {
-              throw new Error("No focusable elements!");
-            }
-
-            if (elements.length <= 1) {
-              event.preventDefault();
-            } else if (event.shiftKey && elements[0] === event.target) {
-              event.preventDefault();
-              elements[elements.length - 1].focus();
-            } else if (
-              !event.shiftKey &&
-              elements[elements.length - 1] === event.target
-            ) {
-              event.preventDefault();
-              elements[0].focus();
-            }
-          }
-        }}
         className={cn(
           block({
             centered: isCentered,
@@ -292,7 +237,81 @@ const Dialog: FunctionComponent<
         )}
       >
         {children}
-      </div>
+      </FocusContainer>
+      {/*
+      // <div
+      //   {...props}
+      //   ref={instance => {
+      //     // this is pretty hacked together. should fix
+      //     applyRef(instance, forwardedRef);
+      //     if (!instance) {
+      //       window.requestAnimationFrame(() => {
+      //         if (lastFocus.current) {
+      //           lastFocus.current.focus();
+      //         }
+      //         lastFocus.current = null;
+      //       });
+      //       return;
+      //     } else if (!lastFocus.current) {
+      //       console.log(document.activeElement);
+      //       lastFocus.current = document.activeElement as HTMLElement;
+      //     }
+
+      //     // need to figure out how to do ripples here. If it is done via keyboard
+      //     // enter or space, the instance will be focused before the keyup event so
+      //     // the ripple won't disappear. great stuff. Either move click to keyup?
+      //     // add a timeout?, or add additional event handlers to ripple for this?
+      //     instance.focus();
+      //   }}
+      //   onKeyDown={event => {
+      //     // this is pretty hacked together. should fix
+      //     if (event.key === "Escape" && !modal && !disableEscapeClose) {
+      //       onRequestClose();
+      //     } else if (event.key === "Tab" && event.target) {
+      //       const focusableElements = ["BUTTON", "TEXTAREA", "SELECT"];
+
+      //       const baseFocusableElements =
+      //         'a[href],area[href],input:not([disabled]):not([type="hidden"])';
+      //       const baseFocusableQuery = focusableElements.reduce(
+      //         (queryString, element) =>
+      //           `${queryString},${element}:not([disabled])`,
+      //         baseFocusableElements
+      //       );
+
+      //       const programaticallyFocusable = `${baseFocusableQuery},[tabindex]`;
+      //       const tabFocusable = `${programaticallyFocusable}:not([tabindex="-1"])`;
+      //       const elements = Array.from(
+      //         event.currentTarget.querySelectorAll<HTMLElement>(tabFocusable)
+      //       );
+      //       if (!elements.length) {
+      //         throw new Error("No focusable elements!");
+      //       }
+
+      //       if (elements.length <= 1) {
+      //         event.preventDefault();
+      //       } else if (event.shiftKey && elements[0] === event.target) {
+      //         event.preventDefault();
+      //         elements[elements.length - 1].focus();
+      //       } else if (
+      //         !event.shiftKey &&
+      //         elements[elements.length - 1] === event.target
+      //       ) {
+      //         event.preventDefault();
+      //         elements[0].focus();
+      //       }
+      //     }
+      //   }}
+      //   className={cn(
+      //     block({
+      //       centered: isCentered,
+      //       "full-page": isFullPage,
+      //     }),
+      //     className
+      //   )}
+      // >
+      //   {children}
+      // </div>
+      */}
     </CSSTransition>
   );
 
@@ -349,6 +368,7 @@ const defaultProps: DefaultProps = {
     exit: "rmd-dialog--exit",
     exitActive: "rmd-dialog--exit-active",
   },
+  defaultFocus: "first",
   forceContainer: false,
   disableEscapeClose: false,
 };
@@ -415,6 +435,10 @@ if (process.env.NODE_ENV !== "production") {
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
       disableEscapeClose: PropTypes.bool,
+      defaultFocus: PropTypes.oneOfType([
+        PropTypes.oneOf(["first", "last"]),
+        PropTypes.string,
+      ]),
     };
   }
 }
