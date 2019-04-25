@@ -16,7 +16,7 @@ const Customization: FunctionComponent = () => (
       point in having every app look exactly the same especially when you need
       to add your company's branding.
     </CardText>
-    <CardFooter href="/customization">Customize!</CardFooter>
+    <CardFooter href="/customization/color-palette">Customize!</CardFooter>
   </Card>
 );
 

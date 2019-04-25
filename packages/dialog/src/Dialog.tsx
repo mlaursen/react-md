@@ -5,6 +5,7 @@ import React, {
   Fragment,
   ReactNode,
   forwardRef,
+  useCallback,
 } from "react";
 import cn from "classnames";
 import { Overlay } from "@react-md/overlay";
@@ -185,6 +186,7 @@ const Dialog: FunctionComponent<
     type,
     defaultFocus,
     disableEscapeClose,
+    onKeyDown,
     ...props
   } = providedProps as WithDefaultProps;
   const isFullPage = type === "full-page";
@@ -194,6 +196,18 @@ const Dialog: FunctionComponent<
     onExited: propOnExited,
     visible,
   });
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      if (!disableEscapeClose && !modal && event.key === "Escape") {
+        onRequestClose();
+      }
+    },
+    [onKeyDown]
+  );
 
   useScrollLock(visible);
 
@@ -210,128 +224,34 @@ const Dialog: FunctionComponent<
     );
   }
 
-  // TODO: Figure out why the CSSTransition adds undefined to the className here when entered
-  const dialog = (
-    <CSSTransition
-      appear={mountOnEnter}
-      in={visible}
-      classNames={classNames}
-      timeout={timeout}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExited}
-      onExited={onExited}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
+  let dialog = (
+    <FocusContainer
+      {...props}
+      aria-modal
+      onKeyDown={handleKeyDown}
+      className={cn(
+        block({
+          centered: isCentered,
+          "full-page": isFullPage,
+        }),
+        className
+      )}
     >
-      <FocusContainer
-        {...props}
-        className={cn(
-          block({
-            centered: isCentered,
-            "full-page": isFullPage,
-          }),
-          className
-        )}
-      >
-        {children}
-      </FocusContainer>
-      {/*
-      // <div
-      //   {...props}
-      //   ref={instance => {
-      //     // this is pretty hacked together. should fix
-      //     applyRef(instance, forwardedRef);
-      //     if (!instance) {
-      //       window.requestAnimationFrame(() => {
-      //         if (lastFocus.current) {
-      //           lastFocus.current.focus();
-      //         }
-      //         lastFocus.current = null;
-      //       });
-      //       return;
-      //     } else if (!lastFocus.current) {
-      //       console.log(document.activeElement);
-      //       lastFocus.current = document.activeElement as HTMLElement;
-      //     }
-
-      //     // need to figure out how to do ripples here. If it is done via keyboard
-      //     // enter or space, the instance will be focused before the keyup event so
-      //     // the ripple won't disappear. great stuff. Either move click to keyup?
-      //     // add a timeout?, or add additional event handlers to ripple for this?
-      //     instance.focus();
-      //   }}
-      //   onKeyDown={event => {
-      //     // this is pretty hacked together. should fix
-      //     if (event.key === "Escape" && !modal && !disableEscapeClose) {
-      //       onRequestClose();
-      //     } else if (event.key === "Tab" && event.target) {
-      //       const focusableElements = ["BUTTON", "TEXTAREA", "SELECT"];
-
-      //       const baseFocusableElements =
-      //         'a[href],area[href],input:not([disabled]):not([type="hidden"])';
-      //       const baseFocusableQuery = focusableElements.reduce(
-      //         (queryString, element) =>
-      //           `${queryString},${element}:not([disabled])`,
-      //         baseFocusableElements
-      //       );
-
-      //       const programaticallyFocusable = `${baseFocusableQuery},[tabindex]`;
-      //       const tabFocusable = `${programaticallyFocusable}:not([tabindex="-1"])`;
-      //       const elements = Array.from(
-      //         event.currentTarget.querySelectorAll<HTMLElement>(tabFocusable)
-      //       );
-      //       if (!elements.length) {
-      //         throw new Error("No focusable elements!");
-      //       }
-
-      //       if (elements.length <= 1) {
-      //         event.preventDefault();
-      //       } else if (event.shiftKey && elements[0] === event.target) {
-      //         event.preventDefault();
-      //         elements[elements.length - 1].focus();
-      //       } else if (
-      //         !event.shiftKey &&
-      //         elements[elements.length - 1] === event.target
-      //       ) {
-      //         event.preventDefault();
-      //         elements[0].focus();
-      //       }
-      //     }
-      //   }}
-      //   className={cn(
-      //     block({
-      //       centered: isCentered,
-      //       "full-page": isFullPage,
-      //     }),
-      //     className
-      //   )}
-      // >
-      //   {children}
-      // </div>
-      */}
-    </CSSTransition>
+      {children}
+    </FocusContainer>
   );
 
-  // the additional container is only required when we don't have a full page dialog. it's just
-  // used to apply flex center to the dialog and to ensure that the overlay transition isn't
-  // applied to the dialog itself.
-  let content: ReactNode = dialog;
   if (isCentered || forceContainer) {
-    if (!portalVisible) {
-      content = null;
-    } else {
-      content = (
-        <span
-          style={containerStyle}
-          className={cn("rmd-dialog-container", containerClassName)}
-        >
-          {dialog}
-        </span>
-      );
-    }
+    // the additional container is only required when we don't have a full page dialog. it's just
+    // used to apply flex center to the dialog and add some margin
+    dialog = (
+      <span
+        style={containerStyle}
+        className={cn("rmd-dialog-container", containerClassName)}
+      >
+        {dialog}
+      </span>
+    );
   }
 
   return (
@@ -343,7 +263,22 @@ const Dialog: FunctionComponent<
     >
       <Fragment>
         {overlayEl}
-        {content}
+        <CSSTransition
+          appear={mountOnEnter}
+          in={visible}
+          classNames={classNames}
+          timeout={timeout}
+          onEnter={onEnter}
+          onEntering={onEntering}
+          onEntered={onEntered}
+          onExit={onExit}
+          onExiting={onExited}
+          onExited={onExited}
+          mountOnEnter={mountOnEnter}
+          unmountOnExit={unmountOnExit}
+        >
+          {dialog}
+        </CSSTransition>
       </Fragment>
     </ConditionalPortal>
   );

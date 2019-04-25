@@ -16,7 +16,7 @@ const GettingStarted: FunctionComponent = () => (
       installation page for more info about updating existing applications,{" "}
       <Code>create-react-app</Code>, or <Code>next.js</Code>
     </CardText>
-    <CardFooter href="/getting-started">Get started!</CardFooter>
+    <CardFooter href="/getting-started/quick-start">Get started!</CardFooter>
   </Card>
 );
 
