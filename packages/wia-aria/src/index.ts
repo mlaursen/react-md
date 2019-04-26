@@ -6,8 +6,8 @@ export { default as useTempValue } from "./useTempValue";
 export { default as useFocusOnMount } from "./useFocusOnMount";
 export { default as usePreviousFocus } from "./usePreviousFocus";
 export {
-  default as useFocusableElementCache,
-} from "./useFocusableElementCache";
+  default as useFocusableElementsCache,
+} from "./useFocusableElementsCache";
 
 export { default as getFocusableElements } from "./getFocusableElements";
 export { default as focusElementWithin } from "./focusElementWithin";

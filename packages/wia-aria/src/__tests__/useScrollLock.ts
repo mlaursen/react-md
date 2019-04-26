@@ -4,6 +4,7 @@ import useScrollLock, { disable, enable } from "../useScrollLock";
 import { DATA_RMD_NOSCROLL } from "../constants";
 
 describe("useScrollLock", () => {
+  // scrollTo doesn't exist in this version of jsdom
   const scrollTo = jest.fn() as jest.Mock<typeof window.scrollTo>;
   beforeAll(() => {
     window.scrollTo = scrollTo;

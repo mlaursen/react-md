@@ -10,8 +10,8 @@ import { WithForwardedRef, applyRef } from "@react-md/utils";
 
 import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
 import useFocusOnMount from "./useFocusOnMount";
-import useFocusableElementCache from "./useFocusableElementCache";
-import handleFocusWrap from "./handleFocusWrap";
+import useFocusableElementsCache from "./useFocusableElementsCache";
+import handleTabFocusWrap from "./handleTabFocusWrap";
 
 export interface FocusContainerProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -112,12 +112,15 @@ const FocusContainer: FunctionComponent<
   } = providedProps as WithDefaultProps;
 
   const ref = useRef<HTMLElement | null>(null);
-  const refHandler = (instance: HTMLElement | null) => {
-    applyRef(instance, forwardedRef);
-    ref.current = instance;
-  };
+  const refHandler = useCallback(
+    (instance: HTMLElement | null) => {
+      applyRef(instance, forwardedRef);
+      ref.current = instance;
+    },
+    [forwardedRef]
+  );
 
-  const focusables = useFocusableElementCache(ref);
+  const focusables = useFocusableElementsCache(ref);
   usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
   useFocusOnMount(ref, defaultFocus, disableFocusOnMount);
 
@@ -127,7 +130,7 @@ const FocusContainer: FunctionComponent<
         onKeyDown(event);
       }
 
-      if (handleFocusWrap(event, focusables, disableFocusCache)) {
+      if (handleTabFocusWrap(event, focusables, disableFocusCache)) {
         return;
       }
     },

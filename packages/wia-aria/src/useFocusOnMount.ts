@@ -24,11 +24,11 @@ export default function useFocusOnMount(
   disabled: boolean
 ) {
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      if (disabled) {
-        return;
-      }
+    if (disabled) {
+      return;
+    }
 
+    const frame = window.requestAnimationFrame(() => {
       const instance = getInstance(refOrInstance);
       if (!instance) {
         return;

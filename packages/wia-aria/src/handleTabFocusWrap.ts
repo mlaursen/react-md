@@ -17,7 +17,7 @@ import getFocusableElements from "./getFocusableElements";
  * @return False if the focus wrap behavior was not used and True if it was.
  * This is useful for preventing additional keydown handler logic if needed.
  */
-export default function handleFocusWrap(
+export default function handleTabFocusWrap(
   event: React.KeyboardEvent<HTMLElement>,
   focusables: MutableRefObject<HTMLElement[]>,
   disableFocusCache: boolean = false

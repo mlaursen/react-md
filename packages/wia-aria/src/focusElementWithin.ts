@@ -34,7 +34,7 @@ export default function focusElementWithin(
   }
 
   if (!el) {
-    throw new Error("Unable to find a focusable element.");
+    throw new Error("Unable to find a focusable element");
   }
 
   el.focus();
