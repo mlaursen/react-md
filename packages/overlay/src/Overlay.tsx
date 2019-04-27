@@ -4,7 +4,6 @@ import { CSSTransition } from "react-transition-group";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
-  useStaggeredVisibility,
 } from "@react-md/portal";
 import { WithForwardedRef, Omit } from "@react-md/utils";
 
@@ -53,7 +52,7 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
     onEntered,
     onExit,
     onExiting,
-    onExited: propOnExited,
+    onExited,
     portal,
     portalInto,
     portalIntoId,
@@ -62,19 +61,14 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  const { portalVisible, onExited } = useStaggeredVisibility({
-    visible,
-    onExited: propOnExited,
-  });
-
   return (
     <ConditionalPortal
-      visible={portalVisible}
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
       <CSSTransition
+        appear
         in={visible}
         classNames={classNames}
         timeout={timeout}
@@ -86,7 +80,6 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
         onExit={onExited}
         onExiting={onExiting}
         onExited={onExited}
-        appear={true}
       >
         <span
           {...props}

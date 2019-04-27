@@ -125,7 +125,6 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
-      visible={visible}
     >
       <Tooltip
         id={tooltipId}

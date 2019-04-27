@@ -73,7 +73,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
 
   return (
     <Fragment>
-      <Portal visible intoId={`${demoId}-code-preview`}>
+      <Portal intoId={`${demoId}-code-preview`}>
         <Collapse
           collapsed={collapsed}
           onCollapsed={() => {

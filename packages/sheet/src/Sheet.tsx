@@ -13,7 +13,6 @@ import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
-  useStaggeredVisibility,
 } from "@react-md/portal";
 import { CSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/theme";
@@ -165,7 +164,7 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
     onEntered,
     onExit,
     onExiting,
-    onExited: propOnExited,
+    onExited,
     horizontalSize,
     verticalSize,
     forwardedRef,
@@ -191,14 +190,8 @@ const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
     );
   }
 
-  const { portalVisible, onExited } = useStaggeredVisibility({
-    onExited: propOnExited,
-    visible,
-  });
-
   return (
     <ConditionalPortal
-      visible={portalVisible}
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}

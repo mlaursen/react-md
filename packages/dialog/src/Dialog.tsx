@@ -12,13 +12,15 @@ import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
-  useStaggeredVisibility,
 } from "@react-md/portal";
 import { CSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef, RequireAtLeastOne } from "@react-md/utils";
 import { useScrollLock, FocusContainer } from "@react-md/wia-aria";
 import { CSSTransition } from "react-transition-group";
+
+// used for the overlay close handler when the modal prop is enabled
+const noop = () => {};
 
 export interface DialogProps
   extends CSSTransitionProps,
@@ -146,6 +148,7 @@ type DefaultProps = Required<
     | "unmountOnExit"
     | "forceContainer"
     | "disableEscapeClose"
+    | "portal"
   >
 >;
 type WithDefaultProps = DialogProps & DefaultProps & WithRef;
@@ -181,7 +184,7 @@ const Dialog: FunctionComponent<
     onEntered,
     onExit,
     onExiting,
-    onExited: propOnExited,
+    onExited,
     modal,
     type,
     defaultFocus,
@@ -192,10 +195,6 @@ const Dialog: FunctionComponent<
   const isFullPage = type === "full-page";
   const isCentered = type === "center";
   const overlay = typeof propOverlay === "boolean" || !isFullPage;
-  const { portalVisible, onExited } = useStaggeredVisibility({
-    onExited: propOnExited,
-    visible,
-  });
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (onKeyDown) {
@@ -219,7 +218,10 @@ const Dialog: FunctionComponent<
         style={overlayStyle}
         className={overlayClassName}
         visible={visible}
-        onRequestClose={onRequestClose}
+        onRequestClose={modal ? noop : onRequestClose}
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       />
     );
   }
@@ -256,7 +258,6 @@ const Dialog: FunctionComponent<
 
   return (
     <ConditionalPortal
-      visible={portalVisible}
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
@@ -288,6 +289,7 @@ const defaultProps: DefaultProps = {
   role: "dialog",
   type: "center",
   tabIndex: -1,
+  portal: true,
   modal: false,
   mountOnEnter: true,
   unmountOnExit: true,

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 
 import Portal from "./Portal";
-import { PortalInto } from "./types.d";
+import { PortalInto } from "./getContainer";
 
 /**
  * If any of these props are defined on a component, the component will
@@ -26,11 +26,6 @@ export interface RenderConditionalPortalProps {
 
 export interface ConditionalPortalProps extends RenderConditionalPortalProps {
   /**
-   * Boolean if the portal would be visible if one of the other portal props are defined or enabled.
-   */
-  visible: boolean;
-
-  /**
    * This children to render.
    */
   children: ReactElement<any> | null;
@@ -44,7 +39,6 @@ const ConditionalPortal: FunctionComponent<ConditionalPortalProps> = ({
   portal,
   portalInto,
   portalIntoId,
-  visible,
   children,
 }) => {
   if (!portal && !portalInto && !portalIntoId) {
@@ -52,7 +46,7 @@ const ConditionalPortal: FunctionComponent<ConditionalPortalProps> = ({
   }
 
   return (
-    <Portal into={portalInto} intoId={portalIntoId} visible={visible}>
+    <Portal into={portalInto} intoId={portalIntoId}>
       {children}
     </Portal>
   );
@@ -73,7 +67,6 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       portalIntoId: PropTypes.string,
-      visible: PropTypes.bool.isRequired,
       children: PropTypes.node,
     };
   }

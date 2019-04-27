@@ -61,7 +61,7 @@ const CustomPortalContainer: FunctionComponent = () => {
         }
         iconAfter
       >
-        <label htmlFor="use-into-id">into query</label>
+        <label htmlFor="use-into-query">into query</label>
       </TextIconSpacing>
       <TextIconSpacing
         icon={
@@ -75,9 +75,9 @@ const CustomPortalContainer: FunctionComponent = () => {
         }
         iconAfter
       >
-        <label htmlFor="use-into-id">into function</label>
+        <label htmlFor="use-into-callback">into function</label>
       </TextIconSpacing>
-      <Portal visible {...values[selected]}>
+      <Portal {...values[selected]}>
         <Text type="subtitle-1" noMargin>
           Portal content!
         </Text>

@@ -51,11 +51,13 @@ const App = () => {
       >
         Show Portal
       </button>
-      <Portal visible={visible}>
-        <h3>
-          This is some portalled text that will only appear when{" "}
-          <code>visible</code>
-        </h3>
+      <Portal>
+        {visible && (
+          <h3>
+            This is some portalled text that will only appear when{" "}
+            <code>visible</code>
+          </h3>
+        )}
       </Portal>
     </Fragment>
   );

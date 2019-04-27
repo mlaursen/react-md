@@ -23,14 +23,16 @@ const Sandbox: FunctionComponent<SandboxProps> = ({
 
   return (
     <Fragment>
-      <Portal visible={loading}>
-        <SandboxDefineForm
-          title={title}
-          description={description}
-          packageName={packageName}
-          getSandbox={getSandbox}
-          onCreated={disable}
-        />
+      <Portal>
+        {loading && (
+          <SandboxDefineForm
+            title={title}
+            description={description}
+            packageName={packageName}
+            getSandbox={getSandbox}
+            onCreated={disable}
+          />
+        )}
       </Portal>
       <AppBarAction
         id={id}

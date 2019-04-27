@@ -1,17 +1,38 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
-import { PortalProps } from "./types.d";
-import { usePortalState } from "./hooks";
+import getContainer, { PortalInto } from "./getContainer";
+
+export interface PortalProps {
+  /**
+   * Either a function that returns an HTMLElement, an HTMLElement, or a `document.querySelector`
+   * string that will return the HTMLElement to render the children into. If both the `into` and
+   * `intoId` props are `undefined`, the `document.body` will be chosen instead.
+   *
+   * If the `querySelector` string does not return a valid HTMLElement, an error will be thrown.
+   */
+  into?: PortalInto;
+
+  /**
+   * The id of an element that the portal should be rendered into. If an element with the provided
+   * id can not be found on the page at the time of mounting, an error will be thrown.
+   */
+  intoId?: string;
+
+  /**
+   * The children to render within the portal.
+   */
+  children?: ReactNode;
+}
 
 /**
- * This component hooks into the `createPortal` API from React and will
- * conditionally render the children when visible in the target DOM element.
+ * This component is a simple wrapper for the `createPortal` API from ReactDOM that will just ensure
+ * that `null` is always returned for server side rendering as well as a "nice" way to choose specific
+ * portal targets or just falling back to the `document.body`.
  */
-const Portal: FunctionComponent<PortalProps> = props => {
-  const { visible, children } = props;
-  const container = usePortalState(props);
-  if (!visible || !container) {
+const Portal: FunctionComponent<PortalProps> = ({ into, intoId, children }) => {
+  const container = getContainer(into, intoId);
+  if (!container) {
     return null;
   }
 
@@ -32,7 +53,6 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       intoId: PropTypes.string,
-      visible: PropTypes.bool.isRequired,
       children: PropTypes.node,
     };
   }
