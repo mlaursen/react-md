@@ -1,6 +1,8 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 
+import Analytics from './Analytics';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -33,6 +35,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <Analytics />
         </body>
       </html>
     );
