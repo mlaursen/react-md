@@ -2,7 +2,6 @@ const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const root = path.resolve(process.cwd(), '..', '..');
@@ -11,14 +10,6 @@ const withCustomConfig = (nextConfig = {}) => ({
   ...nextConfig,
   poweredByHeader: false,
   webpack(config, options) {
-    if (options.isServer) {
-      config.plugins.push(
-        new ForkTsCheckerWebpackPlugin({
-          tsconfig: path.resolve(process.cwd(), 'tsconfig.json'),
-        })
-      );
-    }
-
     config.module.rules.unshift({
       test: /\.md$/,
       use: 'raw-loader',
