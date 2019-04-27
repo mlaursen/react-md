@@ -97,7 +97,11 @@ export default function useScrollLock(
       element = document.body;
     }
 
-    if (!element || !enabled) {
+    if (
+      !element ||
+      !enabled ||
+      element.getAttribute(DATA_RMD_NOSCROLL) !== null
+    ) {
       return;
     }
 
