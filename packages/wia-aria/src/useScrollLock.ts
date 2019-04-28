@@ -8,7 +8,7 @@ import { DATA_RMD_NOSCROLL } from "./constants";
  * the element is also updated with a negative `top` style immediately so scrolling
  * and page shifting not happen. This offset value is determined by either the
  * current `pageYOffset` if the element is the `<body>` tag, otherwise it will be
- * the * `scrollTop` of the element.
+ * the `scrollTop` of the element.
  *
  * Finally, if the element is the `<body>` tag, the `left` and `right` styles will
  * also be updated to be `0px`. This is extremely helpful for most margin based
@@ -82,7 +82,7 @@ export default function useScrollLock(
   selectorOrElement?: string | HTMLElement | (() => HTMLElement) | null
 ) {
   useEffect(() => {
-    if (typeof document === "undefined") {
+    if (!enabled || typeof document === "undefined") {
       return;
     }
 
@@ -97,16 +97,11 @@ export default function useScrollLock(
       element = document.body;
     }
 
-    if (
-      !element ||
-      !enabled ||
-      element.getAttribute(DATA_RMD_NOSCROLL) !== null
-    ) {
+    if (!element || element.getAttribute(DATA_RMD_NOSCROLL) !== null) {
       return;
     }
 
     enable(element);
-
     return () => {
       disable(element as HTMLElement);
     };

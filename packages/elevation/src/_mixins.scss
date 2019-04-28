@@ -40,8 +40,10 @@
 ///
 /// @param {String} shadow - The box shadow to apply.
 /// @param {Number|String} duration - The transition duration for the shadow opacity change.
+/// @param {Number} z-index [0] - The z-index to apply. This is set to 0 by default so that
+/// it can be shown more easily if there are child elements with position absolute.
 /// @access private
-@mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time) {
+@mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time, $z-index: 0) {
   @include rmd-transition(standard);
 
   border-radius: inherit;
@@ -54,6 +56,7 @@
   right: 0;
   top: 0;
   transition: opacity $duration;
+  z-index: $z-index;
 }
 
 /// A mixin that allows you to animate box shadow performantly.
@@ -85,19 +88,22 @@
 /// @param {Boolean} before [true] - Boolean if the `::before` or `::after` pseudo selector should be
 ///   used as the `end-shadow` target.
 /// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration
+/// @param {Number} pseudo-z-index [0] - The z-index to apply. This is set to 0 by default so that
+/// it can be shown more easily if there are child elements with position absolute
 @mixin rmd-elevation-shadow-transition(
   $start-shadow,
   $end-shadow,
   $active-selectors,
   $before: true,
-  $duration: $rmd-transition-standard-time
+  $duration: $rmd-transition-standard-time,
+  $pseudo-z-index: 0
 ) {
   @include rmd-elevation-parent-shadow($start-shadow);
 
   $shadow-target: if($before, '&::before', '&::after');
 
   #{$shadow-target} {
-    @include rmd-elevation-pseudo-shadow($end-shadow, $duration);
+    @include rmd-elevation-pseudo-shadow($end-shadow, $duration, $pseudo-z-index);
   }
 
   // remove the leading '&'

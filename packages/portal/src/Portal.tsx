@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import getContainer, { PortalInto } from "./getContainer";
@@ -31,7 +31,17 @@ export interface PortalProps {
  * portal targets or just falling back to the `document.body`.
  */
 const Portal: FunctionComponent<PortalProps> = ({ into, intoId, children }) => {
-  const container = getContainer(into, intoId);
+  const [container, setContainer] = useState<HTMLElement | null>(null);
+  // setting the container via useEffect instead of immediately in the render
+  // just so that it doesn't throw an error immediately if the dom hasn't fully
+  // painted after a SSR
+  useEffect(() => {
+    const nextContainer = getContainer(into, intoId);
+    if (container !== nextContainer) {
+      setContainer(nextContainer);
+    }
+  });
+
   if (!container) {
     return null;
   }

@@ -5,6 +5,7 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef, Omit } from "@react-md/utils";
 
 export interface OverlayProps
@@ -32,6 +33,8 @@ type DefaultProps = Required<
   >
 >;
 type WithDefaultProps = OverlayProps & DefaultProps & WithRef;
+
+const block = bem("rmd-overlay");
 
 /**
  * The `Overlay` component is a simple component used to render a full page overlay in the page with
@@ -81,14 +84,24 @@ const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
         onExiting={onExiting}
         onExited={onExited}
       >
-        <span
-          {...props}
-          ref={forwardedRef}
-          className={cn("rmd-overlay", className)}
-          onClick={onRequestClose}
-        >
-          {children}
-        </span>
+        {state => (
+          <span
+            {...props}
+            ref={forwardedRef}
+            className={cn(
+              block({
+                // have to manually set the active state here since react-transition-group doesn't
+                // clone in the transition `classNames` and if the overlay re-renders while the
+                // animation has finished, the active className will disappear
+                active: state === "entered",
+              }),
+              className
+            )}
+            onClick={onRequestClose}
+          >
+            {children}
+          </span>
+        )}
       </CSSTransition>
     </ConditionalPortal>
   );
@@ -100,14 +113,9 @@ const defaultProps: DefaultProps = {
   mountOnEnter: true,
   unmountOnExit: true,
   classNames: {
-    appear: "",
     appearActive: "rmd-overlay--active",
-    enter: "",
     enterActive: "rmd-overlay--active",
     enterDone: "rmd-overlay--active",
-    exit: "",
-    exitActive: "",
-    exitDone: "",
   },
 };
 
