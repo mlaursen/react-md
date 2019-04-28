@@ -1,6 +1,36 @@
 import { useCallback, useRef, useEffect, useMemo } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
 
+// these are copied from the ResizeObserverPolyfill type definitions since the type definition
+// file doesn't seem to be importing the polyfill which causes compilation errors in other packages.
+// I don't really know how to fix it.
+
+interface DOMRectReadOnly {
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+  readonly top: number;
+  readonly right: number;
+  readonly bottom: number;
+  readonly left: number;
+}
+
+interface ResizeObserverCallback {
+  (entries: ResizeObserverEntry[], observer: ResizeObserver): void;
+}
+
+interface ResizeObserverEntry {
+  readonly target: Element;
+  readonly contentRect: DOMRectReadOnly;
+}
+
+interface ResizeObserver {
+  observe(target: Element): void;
+  unobserve(target: Element): void;
+  disconnect(): void;
+}
+
 /**
  * A function that will return the resize observer target element. This
  * should return an HTMLElement or null.
@@ -109,7 +139,7 @@ export function useMeasure({
     };
   });
 
-  return useCallback((entries: ResizeObserverEntry[]) => {
+  return useCallback<ResizeObserverCallback>(entries => {
     const { onResize, disableHeight, disableWidth } = options.current;
     for (const entry of entries) {
       if (!entry) {

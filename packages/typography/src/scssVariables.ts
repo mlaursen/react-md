@@ -6,6 +6,7 @@ export default {
   "rmd-typography-text-container-breakpoint": "37.5rem",
   "rmd-typography-base": {
     "font-family": "Roboto, sans-serif",
+    "overflow-wrap": "break-word",
     "-moz-osx-font-smoothing": "grayscale",
     "-webkit-font-smoothing": "antialiased",
   },
@@ -42,6 +43,7 @@ export default {
   "rmd-typography-styles": {
     "headline-1": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "6rem",
@@ -53,6 +55,7 @@ export default {
     },
     "headline-2": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "3.75rem",
@@ -64,6 +67,7 @@ export default {
     },
     "headline-3": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "3rem",
@@ -75,6 +79,7 @@ export default {
     },
     "headline-4": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "2.125rem",
@@ -86,6 +91,7 @@ export default {
     },
     "headline-5": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "1.5rem",
@@ -97,6 +103,7 @@ export default {
     },
     "headline-6": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "1.25rem",
@@ -108,6 +115,7 @@ export default {
     },
     "subtitle-1": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "1rem",
@@ -119,6 +127,7 @@ export default {
     },
     "subtitle-2": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "0.875rem",
@@ -130,6 +139,7 @@ export default {
     },
     "body-1": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "1rem",
@@ -141,6 +151,7 @@ export default {
     },
     "body-2": {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "0.875rem",
@@ -152,6 +163,7 @@ export default {
     },
     caption: {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "0.75rem",
@@ -163,6 +175,7 @@ export default {
     },
     button: {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "0.875rem",
@@ -174,6 +187,7 @@ export default {
     },
     overline: {
       "font-family": "Roboto, sans-serif",
+      "overflow-wrap": "break-word",
       "-moz-osx-font-smoothing": "grayscale",
       "-webkit-font-smoothing": "antialiased",
       "font-size": "0.75rem",
