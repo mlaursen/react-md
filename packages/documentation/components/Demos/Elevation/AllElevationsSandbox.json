@@ -45,7 +45,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FunctionComponent } from \"react\";\nimport Code from \"./Code\";\n\nimport \"./all-elevations.scss\";\n\nconst AllElevations: FunctionComponent = () => (\n  <ul className=\"elevations-container\">\n    {Array.from(new Array(24)).map((_, elevation) => (\n      <li\n        key={elevation}\n        className={`elevation-container elevation-container--${elevation}`}\n      >\n        <Code className=\"elevation-container__import\">{`@include rmd-elevation(${elevation})`}</Code>\n      </li>\n    ))}\n  </ul>\n);\n\nexport default AllElevations;\n",
+    "content": "import React, { FunctionComponent } from \"react\";\nimport Code from \"./Code\";\n\nimport \"./all-elevations.scss\";\n\nconst AllElevations: FunctionComponent = () => (\n  <ul className=\"elevations-container\">\n    {Array.from(new Array(25)).map((_, elevation) => (\n      <li\n        key={elevation}\n        className={`elevation-container elevation-container--${elevation}`}\n      >\n        <Code className=\"elevation-container__import\">{`@include rmd-elevation(${elevation})`}</Code>\n      </li>\n    ))}\n  </ul>\n);\n\nexport default AllElevations;\n",
     "isBinary": false
   },
   "src/Code.tsx": {
@@ -57,7 +57,7 @@
     "isBinary": false
   },
   "src/all-elevations.scss": {
-    "content": "@import '@react-md/elevation/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.elevations-container {\n  @include rmd-list-unstyled;\n\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\n.elevation-container {\n  @include rmd-theme(background-color, background);\n\n  display: inline-flex;\n  height: 10rem;\n  margin: 1rem;\n  position: relative;\n  width: 18rem;\n\n  @for $i from 0 to 24 {\n    &--#{$i} {\n      @include rmd-elevation($i);\n    }\n  }\n\n  &__import {\n    margin: auto;\n  }\n}\n",
+    "content": "@import '@react-md/elevation/dist/mixins';\n@import '@react-md/list/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n\n.elevations-container {\n  @include rmd-list-unstyled;\n\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\n.elevation-container {\n  @include rmd-theme(background-color, background);\n\n  display: inline-flex;\n  height: 10rem;\n  margin: 1rem;\n  position: relative;\n  width: 18rem;\n\n  @for $i from 0 through 24 {\n    &--#{$i} {\n      @include rmd-elevation($i);\n    }\n  }\n\n  &__import {\n    margin: auto;\n  }\n}\n",
     "isBinary": false
   }
 }
