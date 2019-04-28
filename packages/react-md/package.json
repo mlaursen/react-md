@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "This is the full react-md library bundled together for convenience.",
   "scripts": {
     "build": "dev-utils build",
@@ -31,7 +31,7 @@
     "@react-md/app-bar": "^2.0.0-alpha.1",
     "@react-md/avatar": "^2.0.0-alpha.1",
     "@react-md/button": "^2.0.0-alpha.1",
-    "@react-md/dialog": "^2.0.0-alpha.1",
+    "@react-md/dialog": "^2.0.0-alpha.2",
     "@react-md/divider": "^2.0.0-alpha.1",
     "@react-md/elevation": "^2.0.0-alpha.1",
     "@react-md/icon": "^2.0.0-alpha.1",
@@ -47,10 +47,10 @@
     "@react-md/theme": "^2.0.0-alpha.1",
     "@react-md/tooltip": "^2.0.0-alpha.1",
     "@react-md/transition": "^2.0.0-alpha.1",
-    "@react-md/tree": "^2.0.0-alpha.1",
+    "@react-md/tree": "^2.0.0-alpha.2",
     "@react-md/typography": "^2.0.0-alpha.1",
     "@react-md/utils": "^2.0.0-alpha.1",
-    "@react-md/wia-aria": "^2.0.0-alpha.1"
+    "@react-md/wia-aria": "^2.0.0-alpha.2"
   },
   "peerDependencies": {
     "react": ">= 16.8"

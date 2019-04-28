@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
     "@react-md/app-bar": "^2.0.0-alpha.1",
     "@react-md/avatar": "^2.0.0-alpha.1",
     "@react-md/button": "^2.0.0-alpha.1",
-    "@react-md/dialog": "^2.0.0-alpha.1",
+    "@react-md/dialog": "^2.0.0-alpha.2",
     "@react-md/divider": "^2.0.0-alpha.1",
     "@react-md/elevation": "^2.0.0-alpha.1",
     "@react-md/icon": "^2.0.0-alpha.1",
@@ -39,10 +39,10 @@
     "@react-md/theme": "^2.0.0-alpha.1",
     "@react-md/tooltip": "^2.0.0-alpha.1",
     "@react-md/transition": "^2.0.0-alpha.1",
-    "@react-md/tree": "^2.0.0-alpha.1",
+    "@react-md/tree": "^2.0.0-alpha.2",
     "@react-md/typography": "^2.0.0-alpha.1",
     "@react-md/utils": "^2.0.0-alpha.1",
-    "@react-md/wia-aria": "^2.0.0-alpha.1",
+    "@react-md/wia-aria": "^2.0.0-alpha.2",
     "codesandbox": "^2.1.4",
     "marked": "^0.6.2",
     "mobile-detect": "^1.4.3",
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@react-md/dev-utils": "^2.0.0-alpha.1",
+    "@react-md/dev-utils": "^2.0.0-alpha.2",
     "@types/marked": "^0.6.5",
     "@types/next": "^8.0.3",
     "@types/prismjs": "^1.16.0",
