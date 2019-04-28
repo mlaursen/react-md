@@ -11,7 +11,13 @@ export interface DemoPageProps {
   packageName: string;
   demos: Pick<
     DemoProps,
-    "name" | "description" | "fullPage" | "fileName" | "children"
+    | "name"
+    | "description"
+    | "fullPage"
+    | "phoneFullPage"
+    | "mobileFullPage"
+    | "fileName"
+    | "children"
   >[];
 }
 
@@ -27,12 +33,21 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
 }) => {
   const { headings, children } = demos.reduce<Result>(
     (result, demo, index) => {
-      const { name, description, fullPage, children } = demo;
+      const {
+        name,
+        description,
+        fullPage,
+        phoneFullPage,
+        mobileFullPage,
+        children,
+      } = demo;
+
       const id = toId(name);
       result.headings.push({
         id,
         title: name,
       });
+
       result.children.push(
         <Demo
           key={id}
@@ -40,6 +55,8 @@ const DemoPage: FunctionComponent<DemoPageProps> = ({
           name={name}
           description={description}
           fullPage={fullPage}
+          phoneFullPage={phoneFullPage}
+          mobileFullPage={mobileFullPage}
           index={index}
           packageName={packageName}
         >

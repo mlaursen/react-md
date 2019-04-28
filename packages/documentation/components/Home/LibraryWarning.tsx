@@ -6,8 +6,8 @@ const LibraryWarning: FunctionComponent = () => (
   <TextContainer className="home__goals">
     <Blockquote>
       Before choosing this library, please note that there is only one active
-      developer maintaining it at this time for free in personal time. Updates
-      might be a bit slow unless more people start contributing.
+      developer maintaining it at this time for free in personal time so updates
+      will be much slower than other libraries.
     </Blockquote>
   </TextContainer>
 );

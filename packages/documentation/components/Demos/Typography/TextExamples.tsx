@@ -1,8 +1,8 @@
-import React, { FunctionComponent, Fragment } from "react";
-import { Text } from "@react-md/typography";
+import React, { FunctionComponent } from "react";
+import { Text, TextContainer } from "@react-md/typography";
 
 const TextExamples: FunctionComponent = () => (
-  <Fragment>
+  <TextContainer>
     <Text type="headline-1">Headline 1</Text>
     <Text type="headline-2">Headline 2</Text>
     <Text type="headline-3">Headline 3</Text>
@@ -44,7 +44,7 @@ const TextExamples: FunctionComponent = () => (
     <Text type="button" component="h5">
       Button text
     </Text>
-  </Fragment>
+  </TextContainer>
 );
 
 export default TextExamples;

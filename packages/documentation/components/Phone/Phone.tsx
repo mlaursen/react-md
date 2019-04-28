@@ -1,4 +1,5 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode, useMemo } from "react";
+import cn from "classnames";
 import {
   APP_BAR_OFFSET_CLASSNAME,
   APP_BAR_OFFSET_DENSE_CLASSNAME,
@@ -7,7 +8,9 @@ import {
 } from "@react-md/app-bar";
 import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
-import cn from "classnames";
+import { useToggle } from "@react-md/utils";
+
+import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 
 import "./phone.scss";
 import { PhoneContext } from "./context";
@@ -38,30 +41,52 @@ const Phone: FunctionComponent<PhoneProps> = props => {
     prominent,
   } = props as WithDefaultProps;
   const { isPhone } = useAppSizeContext();
+  const { toggled: visible, enable, disable } = useToggle();
+  if (visible && !isPhone) {
+    disable();
+  }
+
+  const value = useMemo(
+    () => ({
+      id,
+      title,
+      closePhone: disable,
+    }),
+    [id, title, disable]
+  );
 
   return (
-    <PhoneContext.Provider value={{ id, title }}>
-      <div
-        id={`${id}-phone`}
-        className={cn(block({ emulated: !isPhone }), className)}
+    <PhoneContext.Provider value={value}>
+      <ConditionalFullPageDialog
+        id={id}
+        disabled={!isPhone}
+        enable={enable}
+        disable={disable}
+        visible={visible}
       >
-        {appBar}
         <div
-          id={`${id}-content`}
-          className={cn(
-            block("content"),
-            {
-              [APP_BAR_OFFSET_CLASSNAME]: isPhone,
-              [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone && prominent,
-              [APP_BAR_OFFSET_DENSE_CLASSNAME]: !isPhone,
-              [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]: !isPhone && prominent,
-            },
-            contentClassName
-          )}
+          id={`${id}-phone`}
+          className={cn(block({ emulated: !isPhone }), className)}
         >
-          {children}
+          {appBar}
+          <div
+            id={`${id}-content`}
+            className={cn(
+              block("content"),
+              {
+                [APP_BAR_OFFSET_CLASSNAME]: isPhone,
+                [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone && prominent,
+                [APP_BAR_OFFSET_DENSE_CLASSNAME]: !isPhone,
+                [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]:
+                  !isPhone && prominent,
+              },
+              contentClassName
+            )}
+          >
+            {children}
+          </div>
         </div>
-      </div>
+      </ConditionalFullPageDialog>
     </PhoneContext.Provider>
   );
 };

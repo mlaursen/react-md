@@ -11,6 +11,7 @@ const demos = [
     name: "Text Examples",
     description: `\`react-md\` provides 13 different typography styles by
 default.`,
+    phoneFullPage: true,
     children: <TextExamples />,
   },
   {

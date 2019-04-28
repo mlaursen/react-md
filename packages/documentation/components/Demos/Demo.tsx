@@ -1,28 +1,42 @@
-import React, { FunctionComponent, ReactNode, Fragment } from "react";
-import cn from "classnames";
+import React, { Fragment, FunctionComponent, ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
-import { CodeSVGIcon } from "@react-md/material-icons";
+import { useAppSizeContext } from "@react-md/sizing";
+import { useToggle } from "@react-md/utils";
 
-import AppBarAction from "components/AppBarAction";
+import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 import GithubLink from "components/GithubLink";
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
 import { GITHUB_DEMO_URL } from "constants/index";
-
 import { toTitle } from "utils/toTitle";
 
 import "./demo.scss";
-import FullPageDemo from "./FullPageDemo";
+import CodePreview from "./CodePreview";
 import Sandbox from "./Sandbox";
 import getSandboxer from "./sandboxes";
-import CodePreview from "./CodePreview";
 
 export interface DemoProps {
   id: string;
   name: string;
   description: string;
+
+  /**
+   * Boolean if the demo should require a full page modal to display.
+   */
   fullPage?: boolean;
+
+  /**
+   * Boolean if the demo should require a full page modal to display only
+   * for phones.
+   */
+  phoneFullPage?: boolean;
+
+  /**
+   * Boolean if the demo should require a full page modal to display only
+   * for mobile devices. This will include both phones and tablets.
+   */
+  mobileFullPage?: boolean;
   index: number;
   fileName?: string;
   packageName: string;
@@ -30,10 +44,11 @@ export interface DemoProps {
   /**
    * This should be the demo content to display.
    */
-  children: ReactNode;
+  children: ReactElement;
 }
 
-type WithDefaultProps = DemoProps & Required<Pick<DemoProps, "fullPage">>;
+type WithDefaultProps = DemoProps &
+  Required<Pick<DemoProps, "fullPage" | "phoneFullPage" | "mobileFullPage">>;
 
 const Demo: FunctionComponent<DemoProps> = props => {
   const {
@@ -41,6 +56,8 @@ const Demo: FunctionComponent<DemoProps> = props => {
     name,
     description,
     fullPage,
+    phoneFullPage,
+    mobileFullPage,
     children,
     index,
     packageName,
@@ -56,8 +73,17 @@ const Demo: FunctionComponent<DemoProps> = props => {
     fileName = `${fileName}.tsx`;
   }
 
+  const { isPhone, isTablet } = useAppSizeContext();
+  let dialogDisabled = !fullPage;
+  if (phoneFullPage) {
+    dialogDisabled = !isPhone;
+  } else if (mobileFullPage) {
+    dialogDisabled = !isPhone && !isTablet;
+  }
+
   const sandboxDescription = `This is the ${name} example from react-md`;
   const getSandbox = getSandboxer(title, name);
+  const { toggled, enable, disable } = useToggle();
   return (
     <Fragment>
       {index > 0 && <Divider key="divider" className="demo__divider" />}
@@ -86,11 +112,15 @@ const Demo: FunctionComponent<DemoProps> = props => {
         </AppBar>
         <div id={`${id}-code-preview`} />
         <div id={`${id}-preview`} className="demo__preview">
-          {fullPage ? (
-            <FullPageDemo id={`${id}-preview`}>{children}</FullPageDemo>
-          ) : (
-            children
-          )}
+          <ConditionalFullPageDialog
+            id={`${id}-preview`}
+            disabled={dialogDisabled}
+            visible={toggled}
+            enable={enable}
+            disable={disable}
+          >
+            {children}
+          </ConditionalFullPageDialog>
         </div>
       </section>
     </Fragment>
@@ -99,6 +129,8 @@ const Demo: FunctionComponent<DemoProps> = props => {
 
 Demo.defaultProps = {
   fullPage: false,
+  phoneFullPage: false,
+  mobileFullPage: false,
 };
 
 export default Demo;

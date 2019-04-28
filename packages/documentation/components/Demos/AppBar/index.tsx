@@ -21,26 +21,31 @@ const demos = [
   {
     name: "Simple Usage",
     description: simpleUsage,
+    phoneFullPage: true,
     children: <SimpleUsage />,
   },
   {
     name: "Different Sizes",
     description: differentSizes,
+    phoneFullPage: true,
     children: <DifferentSizes />,
   },
   {
     name: "Auto Dense",
     description: autoDense,
+    phoneFullPage: true,
     children: <AutoDense />,
   },
   {
     name: "Fixed with Offset",
     description: fixedWithOffset,
+    phoneFullPage: true,
     children: <FixedWithOffset />,
   },
   {
     name: "Animating App Bar",
     description: animatingAppBar,
+    phoneFullPage: true,
     children: <AnimatingAppBar />,
   },
 ];
