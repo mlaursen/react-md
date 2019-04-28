@@ -28,6 +28,9 @@
     "selection"
   ],
   "license": "MIT",
+  "dependencies": {
+    "@react-md/utils": "^2.0.0-alpha.1"
+  },
   "peerDependencies": {
     "react": ">= 16.8"
   },
