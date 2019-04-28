@@ -18,7 +18,7 @@ const Analytics: FunctionComponent = () => {
 
   return (
     <Fragment>
-      <script src={GA_CODE} async />
+      <script src={GA_SRC} async />
       <script dangerouslySetInnerHTML={html} />
     </Fragment>
   );
