@@ -5,7 +5,7 @@ import "./all-elevations.scss";
 
 const AllElevations: FunctionComponent = () => (
   <ul className="elevations-container">
-    {Array.from(new Array(24)).map((_, elevation) => (
+    {Array.from(new Array(25)).map((_, elevation) => (
       <li
         key={elevation}
         className={`elevation-container elevation-container--${elevation}`}

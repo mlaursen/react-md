@@ -21,7 +21,8 @@
         "markup",
         "bash",
         "diff",
-        "git"
+        "git",
+        "json"
       ],
       "plugins": [],
       "css": true

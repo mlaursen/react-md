@@ -8,7 +8,7 @@ import "./non-interactable.scss";
 
 const NonInteractable: FunctionComponent = () => (
   <div className="simple-list-examples">
-    <Container title="Non-interactable">
+    <Container>
       <List>
         {people.slice(0, 10).map(name => (
           <SimpleListItem key={name} className="li li--dotted li--margin">

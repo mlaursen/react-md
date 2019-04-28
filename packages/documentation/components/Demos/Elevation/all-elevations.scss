@@ -20,7 +20,7 @@
   position: relative;
   width: 18rem;
 
-  @for $i from 0 to 24 {
+  @for $i from 0 through 24 {
     &--#{$i} {
       @include rmd-elevation($i);
     }

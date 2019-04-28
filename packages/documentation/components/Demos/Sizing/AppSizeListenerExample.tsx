@@ -8,7 +8,7 @@ const CurrentSize = () => {
   return (
     <TextContainer>
       <Text type="headline-6">The current app size is:</Text>
-      <CodeBlock>{JSON.stringify(context, null, 2)}</CodeBlock>
+      <CodeBlock language="json">{JSON.stringify(context, null, 2)}</CodeBlock>
     </TextContainer>
   );
 };

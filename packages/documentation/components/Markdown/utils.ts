@@ -12,6 +12,7 @@ import {
 export function getLanguage(language: string) {
   switch (language) {
     case "":
+    case "markdown":
       return "markup";
     case "sh":
       return "shell";

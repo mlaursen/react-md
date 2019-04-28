@@ -5,6 +5,7 @@
 @import '@react-md/elevation/dist/mixins';
 
 $list-horizontal-margin: 0.5rem;
+$total-list-horizontal-margin: $list-horizontal-margin * 2;
 
 .color-palette {
   align-items: flex-start;
@@ -16,12 +17,15 @@ $list-horizontal-margin: 0.5rem;
     @include rmd-list-unstyled;
     @include rmd-elevation(2);
     @include rmd-theme(background-color, surface);
+    @include rmd-sizing-tablet-media {
+      width: calc(50% - #{$total-list-horizontal-margin});
+    }
     @include rmd-sizing-large-desktop-media {
-      width: calc((100% / 3) - #{$list-horizontal-margin * 2});
+      width: calc((100% / 3) - #{$total-list-horizontal-margin});
     }
 
     margin: 1rem $list-horizontal-margin;
-    width: calc(50% - #{$list-horizontal-margin * 2});
+    width: calc(100% - #{$total-list-horizontal-margin});
   }
 
   &__primary-color {

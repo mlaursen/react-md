@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { CSSTransition } from "react-transition-group";
-import { bem } from "@react-md/theme";
 
 export interface CrossFadeProps
   extends Partial<CSSTransition.CSSTransitionProps> {}
@@ -8,17 +7,15 @@ export interface CrossFadeProps
 type DefaultProps = Required<
   Pick<
     CrossFadeProps,
+    | "in"
+    | "appear"
     | "timeout"
     | "classNames"
-    | "appear"
     | "mountOnEnter"
     | "unmountOnExit"
-    | "in"
   >
 >;
 type WithDefaultProps = CrossFadeProps & DefaultProps;
-
-const block = bem("rmd-cross-fade");
 
 /**
  * This is a very simpel wrapper for the CSSTransition component from
@@ -35,15 +32,14 @@ const CrossFade: FunctionComponent<CrossFadeProps> = providedProps => {
 
 const defaultProps: DefaultProps = {
   in: true,
+  appear: true,
   timeout: { enter: 300, exit: 0 },
   classNames: {
-    appear: block(),
-    appearActive: block({ active: true }),
-    enter: block(),
-    enterActive: block({ active: true }),
-    enterDone: "",
+    appear: "rmd-cross-fade",
+    appearActive: "rmd-cross-fade--active",
+    enter: "rmd-cross-fade",
+    enterActive: "rmd-cross-fade--active",
   },
-  appear: true,
   mountOnEnter: true,
   unmountOnExit: true,
 };
