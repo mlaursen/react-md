@@ -66,7 +66,6 @@
 
   line-height: $rmd-list-line-height;
   padding: rmd-list-theme-var(vertical-padding) rmd-list-theme-var(horizontal-padding);
-  word-break: break-word;
 
   &--horizontal {
     display: flex;
