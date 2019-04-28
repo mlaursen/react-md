@@ -8,11 +8,14 @@ import simpleExample from "./SimpleExample.md";
 import FullPageExample from "./FullPageExample";
 import fullPageExample from "./FullPageExample.md";
 
-import AlertDialogs from "./AlertDialogs";
-import alertDialogs from "./AlertDialogs.md";
-
 import SimpleListExample from "./SimpleListExample";
 import simpleListExample from "./SimpleListExample.md";
+
+import AlertDialogsAndModals from "./AlertDialogsAndModals";
+import alertDialogsAndModals from "./AlertDialogsAndModals.md";
+
+import NestedDialogs from "./NestedDialogs";
+import nestedDialogs from "./NestedDialogs.md";
 
 const demos = [
   {
@@ -26,14 +29,19 @@ const demos = [
     children: <FullPageExample />,
   },
   {
-    name: "Alert Dialogs",
-    description: alertDialogs,
-    children: <AlertDialogs />,
-  },
-  {
     name: "Simple List Example",
     description: simpleListExample,
     children: <SimpleListExample />,
+  },
+  {
+    name: "Alert Dialogs and Modals",
+    description: alertDialogsAndModals,
+    children: <AlertDialogsAndModals />,
+  },
+  {
+    name: "Nested Dialogs",
+    description: nestedDialogs,
+    children: <NestedDialogs />,
   },
 ];
 

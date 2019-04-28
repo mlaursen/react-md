@@ -1,26 +1,25 @@
 import React, {
-  FunctionComponent,
   CSSProperties,
-  HTMLAttributes,
-  Fragment,
-  ReactNode,
   forwardRef,
+  Fragment,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
   useCallback,
 } from "react";
 import cn from "classnames";
+import { CSSTransition } from "react-transition-group";
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { CSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, RequireAtLeastOne } from "@react-md/utils";
-import { useScrollLock, FocusContainer } from "@react-md/wia-aria";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransitionProps } from "@react-md/transition";
+import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
+import { FocusContainer, useScrollLock } from "@react-md/wia-aria";
 
-// used for the overlay close handler when the modal prop is enabled
-const noop = () => {};
+import useNestedDialogFixes from "./useNestedDialogFixes";
 
 export interface DialogProps
   extends CSSTransitionProps,
@@ -46,7 +45,7 @@ export interface DialogProps
 
   /**
    * An id pointing to an element that is a label for the dialog. Either this or the
-   * `aria-label` prop are required * for accessibility.
+   * `aria-label` prop are required for accessibility.
    */
   "aria-labelledby"?: string;
 
@@ -115,7 +114,13 @@ export interface DialogProps
    * within the page, you should set this prop to `"none"` and add custom styles to position it
    * instead.
    */
-  type?: "full-page" | "center" | "none";
+  type?: "full-page" | "centered" | "none";
+
+  /**
+   * Either the "first" or "last" string to focus the first or last focusable element within the
+   * container or a query selector string to find a focusable element within the container.
+   */
+  defaultFocus?: "first" | "last" | string;
 
   /**
    * Boolean if the ability to close the dialog via the escape key should be disabled. You should
@@ -127,10 +132,11 @@ export interface DialogProps
   disableEscapeClose?: boolean;
 
   /**
-   * Either the "first" or "last" string to focus the first or last focusable element within the
-   * container or a query selector string to find a focusable element within the container.
+   * The Dialog component will attempt to automatically fix nested dialogs behind the scenes using
+   * the `NestedDialogContextProvider` component. This prop will disable that feature if it does
+   * not seem to be working as expected.
    */
-  defaultFocus?: "first" | "last" | string;
+  disableNestedDialogFixes?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -148,6 +154,7 @@ type DefaultProps = Required<
     | "unmountOnExit"
     | "forceContainer"
     | "disableEscapeClose"
+    | "disableNestedDialogFixes"
     | "portal"
   >
 >;
@@ -155,7 +162,10 @@ type WithDefaultProps = DialogProps & DefaultProps & WithRef;
 type StrictDialogProps = DialogProps &
   RequireAtLeastOne<DialogProps, "aria-label" | "aria-labelledby">;
 
+// used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
+const noop = () => {};
 const block = bem("rmd-dialog");
+const overlayBlock = bem("rmd-dialog-overlay");
 
 const Dialog: FunctionComponent<
   StrictDialogProps & WithRef
@@ -188,13 +198,24 @@ const Dialog: FunctionComponent<
     modal,
     type,
     defaultFocus,
-    disableEscapeClose,
+    disableEscapeClose: propDisableEscapeClose,
+    disableNestedDialogFixes,
     onKeyDown,
     ...props
   } = providedProps as WithDefaultProps;
+  const { id } = props;
   const isFullPage = type === "full-page";
-  const isCentered = type === "center";
-  const overlay = typeof propOverlay === "boolean" || !isFullPage;
+  const isCentered = type === "centered";
+
+  const { disableOverlay, disableEscapeClose } = useNestedDialogFixes({
+    id,
+    visible,
+    disabled: disableNestedDialogFixes,
+    disableEscapeClose: propDisableEscapeClose,
+  });
+
+  useScrollLock(visible);
+
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (onKeyDown) {
@@ -205,23 +226,21 @@ const Dialog: FunctionComponent<
         onRequestClose();
       }
     },
-    [onKeyDown]
+    [onKeyDown, disableEscapeClose, modal]
   );
 
-  useScrollLock(visible);
-
   let overlayEl: ReactNode = null;
-  if (overlay) {
+  if (typeof propOverlay === "boolean" ? propOverlay : !isFullPage) {
     overlayEl = (
       <Overlay
-        id={`${props.id}-overlay`}
+        id={`${id}-overlay`}
         style={overlayStyle}
-        className={overlayClassName}
+        className={cn(
+          overlayBlock({ "no-pointer": modal, hidden: disableOverlay }),
+          overlayClassName
+        )}
         visible={visible}
         onRequestClose={modal ? noop : onRequestClose}
-        portal={portal}
-        portalInto={portalInto}
-        portalIntoId={portalIntoId}
       />
     );
   }
@@ -248,6 +267,7 @@ const Dialog: FunctionComponent<
     // used to apply flex center to the dialog and add some margin
     dialog = (
       <span
+        id={`${id}-container`}
         style={containerStyle}
         className={cn("rmd-dialog-container", containerClassName)}
       >
@@ -287,7 +307,7 @@ const Dialog: FunctionComponent<
 
 const defaultProps: DefaultProps = {
   role: "dialog",
-  type: "center",
+  type: "centered",
   tabIndex: -1,
   portal: true,
   modal: false,
@@ -308,6 +328,7 @@ const defaultProps: DefaultProps = {
   defaultFocus: "first",
   forceContainer: false,
   disableEscapeClose: false,
+  disableNestedDialogFixes: false,
 };
 
 Dialog.defaultProps = defaultProps;
@@ -325,7 +346,7 @@ if (process.env.NODE_ENV !== "production") {
       id: PropTypes.string.isRequired,
       role: PropTypes.oneOf(["dialog", "alertdialog"]),
       className: PropTypes.string,
-      type: PropTypes.oneOf(["none", "center", "full-page"]),
+      type: PropTypes.oneOf(["none", "centered", "full-page"]),
       tabIndex: PropTypes.number,
       modal: PropTypes.bool,
       visible: PropTypes.bool.isRequired,
@@ -372,6 +393,7 @@ if (process.env.NODE_ENV !== "production") {
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
       disableEscapeClose: PropTypes.bool,
+      disableNestedDialogFixes: PropTypes.bool,
       defaultFocus: PropTypes.oneOfType([
         PropTypes.oneOf(["first", "last"]),
         PropTypes.string,

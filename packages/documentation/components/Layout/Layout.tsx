@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { NestedDialogContextProvider } from "@react-md/dialog";
 import { AppSizeListener, AppSizeListenerProps } from "@react-md/sizing";
 import { StatesConfig } from "@react-md/states";
 
@@ -15,9 +16,11 @@ const Layout: FunctionComponent<LayoutProps> = ({
   defaultSize,
 }) => (
   <AppSizeListener defaultSize={defaultSize}>
-    <StatesConfig>
-      <Combined title={title}>{children}</Combined>
-    </StatesConfig>
+    <NestedDialogContextProvider>
+      <StatesConfig>
+        <Combined title={title}>{children}</Combined>
+      </StatesConfig>
+    </NestedDialogContextProvider>
   </AppSizeListener>
 );
 

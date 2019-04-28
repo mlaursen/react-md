@@ -3,3 +3,4 @@ export { default as DialogHeader } from "./DialogHeader";
 export { default as DialogTitle } from "./DialogTitle";
 export { default as DialogContent } from "./DialogContent";
 export { default as DialogFooter } from "./DialogFooter";
+export { NestedDialogContextProvider } from "./NestedDialogContext";

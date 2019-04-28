@@ -32,6 +32,8 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-dialog-theme-values, dialog);
 }
 
+/// Creates the styles for the base dialog element.
+/// @access private
 @mixin rmd-dialog {
   @include rmd-elevation($rmd-dialog-elevation);
   @include rmd-theme(background-color, surface);
@@ -42,17 +44,18 @@
   flex-direction: column;
 
   &--centered {
+    @include rmd-dialog-theme(min-width);
+
     max-height: 100%;
     max-width: 100%;
-    min-width: $rmd-dialog-min-width;
     pointer-events: auto;
   }
 
   &--full-page {
+    // this is applied here since there is no longer a container element for full page dialogs.
     @include rmd-utils-full-screen;
     @include rmd-utils-scroll;
-
-    z-index: $rmd-dialog-z-index;
+    @include rmd-dialog-theme(z-index);
   }
 
   &--enter {
@@ -80,6 +83,26 @@
   }
 }
 
+/// Creates the styles for the `DialogHeader` component.
+/// @access private
+@mixin rmd-dialog-header {
+  flex: 0 0 auto;
+  padding: $rmd-dialog-header-padding;
+  padding-bottom: $rmd-dialog-header-padding-bottom;
+}
+
+/// Creates the minimal required styles for the `DialogTitle` component.
+/// @access private
+@mixin rmd-dialog-title {
+  @include rmd-typography(headline-4);
+
+  margin: 0;
+}
+
+/// Creates the styles for the `DialogContent` component. It is set up so that it will grow to fill
+/// the remaining space within the `Dialog` and the `DialogHeader` and `DialogFooter` components
+/// will be fixed to the top and bottom edges respectively. It will also include scrolling by default.
+/// @access private
 @mixin rmd-dialog-content {
   @include rmd-utils-scroll;
 
@@ -90,12 +113,9 @@
   }
 }
 
-@mixin rmd-dialog-header {
-  flex: 0 0 auto;
-  padding: $rmd-dialog-header-padding;
-  padding-bottom: $rmd-dialog-header-padding-bottom;
-}
-
+/// Creates the styles for the `DialogFooter` component. It has styles built-in to position the actions
+/// in different locations.
+/// @access private
 @mixin rmd-dialog-footer {
   flex: 0 0 auto;
   padding: $rmd-dialog-footer-padding;
@@ -121,12 +141,6 @@
   }
 }
 
-@mixin rmd-dialog-title {
-  @include rmd-typography(headline-4);
-
-  margin: 0;
-}
-
 /// When the dialog is not set to be full page, the dialog gets wrapped in this
 /// container component so that it can be centered within the page using flexbox.
 //
@@ -137,18 +151,44 @@
 /// @access private
 @mixin rmd-dialog-container {
   @include rmd-utils-full-screen;
+  @include rmd-dialog-theme(z-index);
 
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: $rmd-dialog-vertical-margin $rmd-dialog-horizontal-margin;
+  margin: rmd-dialog-theme-var(vertical-margin) rmd-dialog-theme-var(horizontal-margin);
   pointer-events: none;
-  z-index: $rmd-dialog-z-index;
 }
 
+/// Creates the styles for the dialog's overlay. This really requires the base styles and
+/// component from the overlay package and adds a few changes to help with nested dialogs.
+/// @access private
+@mixin rmd-dialog-overlay {
+  // update the z-index to be the same as the dialog so that the last defined
+  // dialog with overlay with cover all the others.
+  @include rmd-dialog-theme(z-index);
+
+  &--no-pointer {
+    // want to remove the click cursor for modals to help show that you can't click the
+    // overlay anymore.
+    cursor: auto;
+  }
+
+  &--hidden {
+    // when there are nested dialogs, want to make sure that only the last overlay is
+    // visible, otherwise the screen will get continually darker with all the overlays.
+    opacity: 0;
+  }
+}
+
+/// Creates all the styles for the dialog package.
 @mixin react-md-dialog {
   .rmd-dialog-container {
     @include rmd-dialog-container;
+  }
+
+  .rmd-dialog-overlay {
+    @include rmd-dialog-overlay;
   }
 
   .rmd-dialog {

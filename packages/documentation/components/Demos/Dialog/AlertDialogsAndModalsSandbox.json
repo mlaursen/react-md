@@ -1,0 +1,56 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Dialog Example - Alert Dialogs And Modals</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/dialog/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';\n@import '@react-md/theme/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Dialog Example - Alert Dialogs And Modals",
+      "description": "Example from https://react-md.dev/packages/dialog/demos#alert-dialogs-and-modals",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/dialog": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FunctionComponent, Fragment, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Dialog, DialogContent, DialogFooter } from \"@react-md/dialog\";\nimport { Text } from \"@react-md/typography\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport \"./alert-dialogs-and-modals.scss\";\n\nconst DRAFT = `This is some initial text to show in the draft area.\nWhen you click on \"Reset\", a dialog will ask you if you want to discard the\ndraft. When you click on \"Submit\", a modal confirmation dialog will ask you\nif you really want to submit this.\n`.replace(/\\r?\\n/g, \" \");\n\nconst AlertDialogsAndModals: FunctionComponent = () => {\n  const [state, setState] = useState({ visible: false, modal: false });\n  const hide = () => setState(prevState => ({ ...prevState, visible: false }));\n  const show = (event: React.MouseEvent<HTMLButtonElement>) => {\n    setState({\n      visible: true,\n      modal: event.currentTarget.id === \"draft-submit\",\n    });\n  };\n\n  const { visible, modal } = state;\n\n  return (\n    <Fragment>\n      <form\n        id=\"draft-form\"\n        onSubmit={e => {\n          e.preventDefault();\n        }}\n      >\n        <textarea\n          id=\"draft-area\"\n          className=\"dialog-draft\"\n          defaultValue={DRAFT}\n        />\n        <DialogFooter>\n          <Button\n            id=\"draft-discard\"\n            onClick={show}\n            type=\"reset\"\n            theme=\"warning\"\n          >\n            Reset\n          </Button>\n          <Button id=\"draft-submit\" onClick={show} type=\"submit\">\n            Submit\n          </Button>\n        </DialogFooter>\n      </form>\n      <Dialog\n        id=\"draft-dialog\"\n        role=\"alertdialog\"\n        modal={modal}\n        visible={visible}\n        onRequestClose={hide}\n        aria-labelledby=\"dialog-title\"\n      >\n        <DialogContent>\n          <Text id=\"dialog-title\" type=\"subtitle-1\" noMargin color=\"secondary\">\n            {!modal ? \"Discard draft?\" : \"Are you sure?\"}\n          </Text>\n        </DialogContent>\n        <DialogFooter>\n          <Button id=\"dialog-cancel\" onClick={hide}>\n            Cancel\n          </Button>\n          <Button id=\"dialog-discard\" onClick={hide}>\n            {!modal ? \"Discard\" : \"Submit\"}\n          </Button>\n        </DialogFooter>\n      </Dialog>\n    </Fragment>\n  );\n};\n\nexport default AlertDialogsAndModals;\n",
+    "isBinary": false
+  },
+  "src/alert-dialogs-and-modals.scss": {
+    "content": "@import '@react-md/typography/dist/mixins';\n\n.dialog-draft {\n  @include rmd-typography(body-1);\n\n  border: 0;\n  height: 15rem;\n  resize: none;\n  width: 100%;\n}\n",
+    "isBinary": false
+  }
+}

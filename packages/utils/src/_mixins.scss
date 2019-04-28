@@ -220,6 +220,11 @@
     @include react-md-app-bar;
   }
 
+  @if mixin-exists(react-md-overlay) {
+    @include react-md-overlay;
+  }
+
+  // has to come after overlays
   @if mixin-exists(react-md-dialog) {
     @include react-md-dialog;
   }
@@ -242,10 +247,6 @@
 
   @if mixin-exists(react-md-media) {
     @include react-md-media;
-  }
-
-  @if mixin-exists(react-md-overlay) {
-    @include react-md-overlay;
   }
 
   @if mixin-exists(react-md-progress) {
