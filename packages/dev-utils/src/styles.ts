@@ -10,7 +10,15 @@ import {
   HackedVariable,
   HackedVariablePrimitive,
 } from "./sassdoc/variables";
-import { copyFiles, format, getPackageName, glob, list, log } from "./utils";
+import {
+  copyFiles,
+  format,
+  getPackageName,
+  glob,
+  list,
+  log,
+  time,
+} from "./utils";
 
 /**
  * Attempts to run the styles "build" for the current project this is being run in.
@@ -170,8 +178,41 @@ const colors = [
   "blue-grey",
 ];
 
-const accents = [100, 200, 400, 700];
+// only doing 400 for now...
+const accents = [100, 200, 400, 700].slice(2, 3);
 const colorsWithoutAccent = ["brown", "grey", "blue-grey"];
+
+function createThemeOptions(theme: string) {
+  const [primary, secondary, accent, type] = theme.split("-");
+  const options = {
+    fileName: `react-md.${theme}`,
+    data: `@import '@react-md/theme/dist/color-palette';
+
+$rmd-theme-primary: $rmd-${primary.replace("_", "-")}-500;
+$rmd-theme-secondary: $rmd-${secondary.replace("_", "-")}-a-${accent};
+$rmd-theme-light: ${type === "light"};
+
+@import 'src/styles';
+`,
+  };
+
+  return options;
+}
+
+function compileThemes(
+  production: boolean,
+  options: { fileName: string; data: string }[]
+) {
+  const type = production ? "production" : "development";
+  const message = `Compiling all the themes for ${type}... (${
+    options.length
+  } themes)`;
+
+  log(message, true);
+  return Promise.all(
+    options.map(options => compileScss({ production, ...options }))
+  );
+}
 
 /**
  * Generates all the theme styles for the base "react-md" package. It will create
@@ -200,28 +241,7 @@ async function generateThemeStyles() {
     )
   );
 
-  log(`Generating the ${themes.length} themes for react-md...`);
-  await Promise.all(
-    flatten(
-      themes.map(theme => {
-        const [primary, secondary, accent, type] = theme.split("-");
-        const options = {
-          fileName: theme,
-          data: `@import '@react-md/theme/dist/color-palette';
-
-$rmd-theme-primary: $rmd-${primary.replace("_", "-")}-500;
-$rmd-theme-secondary: $rmd-${secondary.replace("_", "-")}-a-${accent};
-$rmd-theme-light: ${type === "light"};
-
-@import 'src/styles';
-`,
-        };
-
-        return [
-          compile({ production: false, ...options }),
-          compile({ production: true, ...options }),
-        ];
-      })
-    )
-  );
+  const allOptions = themes.map(theme => createThemeOptions(theme));
+  await time(() => compileThemes(false, allOptions), "development themes");
+  await time(() => compileThemes(true, allOptions), "production themes");
 }
