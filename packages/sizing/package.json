@@ -1,6 +1,6 @@
 {
   "name": "@react-md/sizing",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "A package for determining the device's size with media queries and hooks or specific element resize events with a ResizeObserver.",
   "scripts": {
     "build": "dev-utils build",
@@ -35,7 +35,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/utils": "^2.0.0-alpha.0",
+    "@react-md/utils": "^2.0.0-alpha.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {

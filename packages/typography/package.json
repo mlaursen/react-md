@@ -1,6 +1,6 @@
 {
   "name": "@react-md/typography",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "The base package for including typography for react-md.",
   "scripts": {
     "build": "dev-utils build",
@@ -29,8 +29,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.0.0-alpha.0",
-    "@react-md/utils": "^2.0.0-alpha.0",
+    "@react-md/theme": "^2.0.0-alpha.1",
+    "@react-md/utils": "^2.0.0-alpha.1",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

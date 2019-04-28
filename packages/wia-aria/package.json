@@ -1,6 +1,6 @@
 {
   "name": "@react-md/wia-aria",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "A package for determining which element on the page is the current keyboard focus/selection.",
   "scripts": {
     "build": "dev-utils build",
