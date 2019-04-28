@@ -86,6 +86,8 @@
 /// Creates the styles for the `DialogHeader` component.
 /// @access private
 @mixin rmd-dialog-header {
+  align-items: center;
+  display: flex;
   flex: 0 0 auto;
   padding: $rmd-dialog-header-padding;
   padding-bottom: $rmd-dialog-header-padding-bottom;

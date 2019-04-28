@@ -280,6 +280,10 @@
 
     align-items: center;
     display: flex;
+    // since app bars can appear a lot in full page dialogs, setting these flex values
+    // allows it be be a direct replacement of the `DialogHeader` component without all
+    // the offsets and additional styles needed for fixed app bars.
+    flex: 0 0 auto;
     width: 100%;
 
     &--dense {

@@ -2,8 +2,6 @@
 @import '@react-md/utils/dist/mixins';
 
 .nested-dialogs-content {
-  @include rmd-app-bar-theme(margin-top, height);
-
   align-items: center;
   display: flex;
   flex-direction: column;

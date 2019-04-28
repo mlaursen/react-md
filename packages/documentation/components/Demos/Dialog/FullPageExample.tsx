@@ -165,7 +165,7 @@ const FullPageExample: FunctionComponent = () => {
         onRequestClose={hide}
         aria-labelledby="dialog-title"
       >
-        <AppBar fixed>
+        <AppBar>
           <AppBarNav onClick={hide} aria-label="Close">
             <ArrowBackSVGIcon />
           </AppBarNav>
@@ -173,13 +173,15 @@ const FullPageExample: FunctionComponent = () => {
             {`Preview of ${filename}`}
           </AppBarTitle>
         </AppBar>
-        <MediaContainer className="dialog-image-full-preview">
-          <img
-            src={`https://picsum.photos/id/${imageId}/${width}/${height}`}
-            alt=""
-            role="presentation"
-          />
-        </MediaContainer>
+        <DialogContent>
+          <MediaContainer className="dialog-image-full-preview">
+            <img
+              src={`https://picsum.photos/id/${imageId}/${width}/${height}`}
+              alt=""
+              role="presentation"
+            />
+          </MediaContainer>
+        </DialogContent>
       </Dialog>
     </Fragment>
   );

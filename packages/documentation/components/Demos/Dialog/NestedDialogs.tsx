@@ -29,7 +29,7 @@ const NestedDialogs: FunctionComponent = () => {
         aria-labelledby={`${dialogId}-title`}
         type="full-page"
       >
-        <AppBar theme="default" fixed>
+        <AppBar theme="default">
           <AppBarNav aria-label="Close" onClick={disable}>
             <KeyboardArrowLeftSVGIcon />
           </AppBarNav>
