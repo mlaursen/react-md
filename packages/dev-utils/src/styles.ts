@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import { flatten, flattenDeep } from "lodash";
+import { flattenDeep } from "lodash";
 import path from "path";
 import { compileScss, postcss } from "./compileScss";
 import { cssDist, dist, scssVariables, src, stylesScss } from "./paths";
@@ -17,6 +17,7 @@ import {
   glob,
   list,
   log,
+  printSizes,
   time,
 } from "./utils";
 
@@ -39,12 +40,9 @@ export default async function styles() {
   await copyFiles(scssFiles, dist);
   await createScssVariables();
   const packageName = await getPackageName();
-  if (packageName === "react-md") {
-    await generateThemeStyles();
-  }
-
   const found = scssFiles.find(name => /styles\.scss$/.test(name));
-  if (!found) {
+  if (!found || packageName === "react-md") {
+    // want to use the generated themes for the base react-md package instead
     return;
   }
 
@@ -156,32 +154,6 @@ export default ${JSON.stringify(createVariableMap(variables))};
   log();
 }
 
-const colors = [
-  "red",
-  "pink",
-  "purple",
-  "deep-purple",
-  "indigo",
-  "blue",
-  "light-blue",
-  "cyan",
-  "teal",
-  "green",
-  "light-green",
-  "lime",
-  "yellow",
-  "amber",
-  "orange",
-  "deep-orange",
-  "brown",
-  "grey",
-  "blue-grey",
-];
-
-// only doing 400 for now...
-const accents = [100, 200, 400, 700].slice(2, 3);
-const colorsWithoutAccent = ["brown", "grey", "blue-grey"];
-
 function createThemeOptions(theme: string) {
   const [primary, secondary, accent, type] = theme.split("-");
   const options = {
@@ -199,49 +171,41 @@ $rmd-theme-light: ${type === "light"};
   return options;
 }
 
-function compileThemes(
-  production: boolean,
-  options: { fileName: string; data: string }[]
-) {
-  const type = production ? "production" : "development";
-  const message = `Compiling all the themes for ${type}... (${
-    options.length
-  } themes)`;
-
-  log(message, true);
-  return Promise.all(
-    options.map(options => compileScss({ production, ...options }))
-  );
-}
-
 /**
  * Generates all the theme styles for the base "react-md" package. It will create
  * a development and production version of each color and theme as well as a light
  * and dark version.
  */
-async function generateThemeStyles() {
-  const themes = flattenDeep<string>(
-    colors.map(primaryColor =>
-      colors.map(accentColor => {
-        if (
-          accentColor === primaryColor ||
-          colorsWithoutAccent.includes(accentColor)
-        ) {
-          return [];
-        }
+export async function generateThemeStyles() {
+  const packageName = await getPackageName();
+  if (packageName !== "react-md") {
+    return;
+  }
 
-        return accents.map(accent => {
-          const name = `${primaryColor.replace("-", "_")}-${accentColor.replace(
-            "-",
-            "_"
-          )}-${accent}`;
-          return [`${name}-light`, `${name}-dark`];
-        });
-      })
-    )
+  const themes = [
+    "indigo-pink-200-light",
+    "indigo-pink-200-dark",
+    "purple-pink-200-light",
+    "purple-pink-200-dark",
+    "teal-pink-200-light",
+    "teal-pink-200-dark",
+    "light_blue-deep_orange-200-light",
+    "light_blue-deep_orange-700-dark",
+  ];
+
+  log(`Generating the default ${themes.length} themes for production...`, true);
+
+  await time(
+    () =>
+      Promise.all(
+        themes.map(theme =>
+          compile({ production: true, ...createThemeOptions(theme) })
+        )
+      ),
+    "generating themes"
   );
 
-  const allOptions = themes.map(theme => createThemeOptions(theme));
-  await time(() => compileThemes(false, allOptions), "development themes");
-  await time(() => compileThemes(true, allOptions), "production themes");
+  const themeFiles = await glob("dist/css/*.min.css");
+  printSizes(themeFiles, "", true);
+  log("", true);
 }

@@ -220,7 +220,7 @@ export async function time(fn: () => Promise<any>, command: string) {
   const startTime = now();
   await fn();
 
-  log(`Completed "${command}" in ${prettyMS(now() - startTime)}`);
+  log(`Completed "${command}" in ${prettyMS(now() - startTime)}`, true);
 }
 
 /**
@@ -255,8 +255,13 @@ export function list(things: (string | boolean | null | undefined)[]) {
  * Creates a string of the provided file path as well as the gzipped
  * file size of the file path.
  */
-export function getFileSize(filePath: string) {
-  return `${filePath} ${filesize(gzipSize.sync(filePath))}`;
+export function getFileSize(filePath: string, noPath: boolean = false) {
+  const size = filesize(gzipSize.sync(filePath));
+  if (noPath) {
+    return size;
+  }
+
+  return `${filePath} ${size}`;
 }
 
 /**
@@ -280,7 +285,7 @@ export function printSizes(
       `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`,
     forceLog
   );
-  log(list(filePaths.map(getFileSize)), forceLog);
+  log(list(filePaths.map(fp => getFileSize(fp))), forceLog);
 }
 
 /**

@@ -1,6 +1,6 @@
 import runClean from "./clean";
 import scripts, { buildUMD } from "./scripts";
-import styles, { createScssVariables } from "./styles";
+import styles, { createScssVariables, generateThemeStyles } from "./styles";
 import { log, printMinifiedSizes, time } from "./utils";
 
 export interface BuildConfig {
@@ -8,6 +8,7 @@ export interface BuildConfig {
   clean: boolean;
   umdOnly: boolean;
   stylesOnly: boolean;
+  themesOnly: boolean;
   scriptsOnly: boolean;
   variablesOnly: boolean;
 }
@@ -17,6 +18,7 @@ const DEFAULT_CONFIG: BuildConfig = {
   clean: false,
   umdOnly: false,
   stylesOnly: false,
+  themesOnly: false,
   scriptsOnly: false,
   variablesOnly: false,
 };
@@ -30,11 +32,17 @@ async function runBuild({
   clean,
   umdOnly,
   stylesOnly,
+  themesOnly,
   scriptsOnly,
   variablesOnly,
 }: BuildConfig) {
   if (clean) {
     await time(runClean, "clean");
+  }
+
+  if (themesOnly) {
+    await time(generateThemeStyles, "generateThemeStyles");
+    return;
   }
 
   if (variablesOnly) {
