@@ -1,7 +1,7 @@
-import styles, { createScssVariables } from "./styles";
-import scripts, { buildUMD } from "./scripts";
-import { time, printMinifiedSizes, log } from "./utils";
 import runClean from "./clean";
+import scripts, { buildUMD } from "./scripts";
+import styles, { createScssVariables } from "./styles";
+import { log, printMinifiedSizes, time } from "./utils";
 
 export interface BuildConfig {
   umd: boolean;
