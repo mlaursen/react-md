@@ -26,6 +26,7 @@ import {
 import LinkUnstyled from "components/LinkUnstyled";
 
 import "./navigation-tree.scss";
+import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 
 /**
  * A custom tree-item renderer that can also create dividers and subheader
@@ -52,6 +53,7 @@ const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
   return (
     <TreeItem
       {...props}
+      expanderIcon={<KeyboardArrowDownSVGIcon />}
       leftIcon={leftIcon}
       href={href}
       target={target}
