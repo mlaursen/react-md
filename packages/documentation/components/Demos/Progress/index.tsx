@@ -11,6 +11,9 @@ import simpleDeterminateExamples from "./SimpleDeterminateExamples.md";
 import WithSuspense from "./WithSuspense";
 import withSuspense from "./WithSuspense.md";
 
+import WithinButtons from "./WithinButtons";
+import withinButtons from "./WithinButtons.md";
+
 const demos = [
   {
     name: "Simple Indeterminate Examples",
@@ -26,6 +29,11 @@ const demos = [
     name: "With Suspense",
     description: withSuspense,
     children: <WithSuspense />,
+  },
+  {
+    name: "Within Buttons",
+    description: withinButtons,
+    children: <WithinButtons />,
   },
 ];
 

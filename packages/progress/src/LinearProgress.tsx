@@ -107,7 +107,7 @@ const LinearProgress: FunctionComponent<
   const determinate = typeof progress === "number";
   const indeterminate = !determinate;
   return (
-    <div
+    <span
       {...props}
       style={style}
       role="progressbar"
@@ -145,7 +145,7 @@ const LinearProgress: FunctionComponent<
           barClassName
         )}
       />
-    </div>
+    </span>
   );
 };
 

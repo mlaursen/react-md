@@ -47,6 +47,7 @@ export default {
     "40%": { bottom: "-8%", top: "107%" },
     "100%": { bottom: "-8%", top: "107%" },
   },
+  "rmd-circular-progress-size": "3rem",
   "rmd-progress-circle-stroke-width": 6,
   "rmd-progress-circle-dasharray": 187,
   "rmd-progress-circle-transition-duration": "2.4s",
@@ -67,5 +68,6 @@ export default {
     color: "#9c27b0",
     "background-color": "#ba68c8",
     "linear-size": "4px",
+    "circular-size": "3rem",
   },
 };

@@ -1,0 +1,33 @@
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/progress/dist/mixins';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+
+.async-button {
+  @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));
+
+  // just to make the demos look a bit nicer
+  margin: 1rem;
+  // this makes it so the linear progress doesn't expand past the button bounds
+  overflow: hidden;
+
+  &__overlay {
+    // you'll really want this to be the `background` value or whatever the current
+    // background is instead. You'll probably also want to add additional styles for
+    // maintaining the "containted" styles since the contained button turns into
+    // an "unstyled" button when disabled
+    @include rmd-theme(background-color, surface);
+    @include rmd-utils-full-screen(absolute);
+
+    align-items: center;
+    border-radius: inherit;
+    box-shadow: inherit;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+
+    &--linear {
+      top: auto;
+    }
+  }
+}

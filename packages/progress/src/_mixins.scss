@@ -217,13 +217,23 @@
 /// @access private
 @mixin rmd-circular-progress {
   .rmd-circular-progress {
-    display: inline-block;
+    @include rmd-progress-theme(height, circular-size);
+    @include rmd-progress-theme(width, circular-size);
+
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
 
     &--centered {
-      @include rmd-utils-block-centered;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     &__svg {
+      height: inherit;
+      width: inherit;
+
       &--animate {
         @include rmd-transition(standard);
 

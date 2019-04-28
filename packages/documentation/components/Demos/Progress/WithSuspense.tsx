@@ -50,17 +50,21 @@ const WithSuspense: FunctionComponent = () => {
     stateRef.current = state;
   });
 
+  const reset = useCallback(() => {
+    setState(State.READY);
+  }, []);
+  const complete = useCallback(() => {
+    setState(State.COMPELTED);
+  }, []);
+
   const handleClick = useCallback(() => {
     switch (stateRef.current) {
       case State.READY:
         setState(State.LOADING);
         break;
       case State.COMPELTED:
-        setState(State.READY);
+        reset();
     }
-  }, []);
-  const complete = useCallback(() => {
-    setState(State.COMPELTED);
   }, []);
 
   const loading = state === State.LOADING;
@@ -77,6 +81,9 @@ const WithSuspense: FunctionComponent = () => {
       appBar={<WithSuspenseAppBar />}
       className={block()}
       prominent
+      disableAppBar
+      disableContent
+      onPhoneClose={reset}
     >
       <div
         id="suspense-main-content"

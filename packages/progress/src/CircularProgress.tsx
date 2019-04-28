@@ -39,13 +39,6 @@ export interface CircularProgressProps
   circleClassName?: string;
 
   /**
-   * The current size of the circular progress. This will be used to create an inline
-   * style of `height` and `width` for the surrounding div so that the svg is the
-   * correct size.
-   */
-  size?: number;
-
-  /**
    * The radius for the circle. It is generally recommended to have the radius be
    * 1/2 of the viewbox and minus a few more pixels so that there is some surrounding
    * padding. You probably shouldn't really be changing this prop though.
@@ -91,7 +84,6 @@ type DefaultProps = Required<
     CircularProgressProps,
     | "min"
     | "max"
-    | "size"
     | "radius"
     | "center"
     | "viewBox"
@@ -110,7 +102,6 @@ const CircularProgress: FunctionComponent<
 > = providedProps => {
   const {
     id,
-    style: propStyle,
     className,
     svgStyle: propSvgStyle,
     svgClassName,
@@ -120,7 +111,6 @@ const CircularProgress: FunctionComponent<
     forwardedRef,
     min,
     max,
-    size,
     radius,
     center,
     viewBox,
@@ -130,15 +120,6 @@ const CircularProgress: FunctionComponent<
     maxRotation,
     ...props
   } = providedProps as WithDefaultProps;
-
-  const style = useMemo(
-    () => ({
-      ...propStyle,
-      height: size,
-      width: size,
-    }),
-    [size]
-  );
 
   const progress = getProgress(min, max, value);
   const svgStyle = useMemo(() => {
@@ -174,13 +155,12 @@ const CircularProgress: FunctionComponent<
   const determinate = typeof progress === "number";
   const indeterminate = !determinate;
   return (
-    <div
+    <span
       {...props}
       role="progressbar"
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      style={style}
       className={cn(block({ centered }), className)}
       ref={forwardedRef}
     >
@@ -211,14 +191,13 @@ const CircularProgress: FunctionComponent<
           cy={center}
         />
       </svg>
-    </div>
+    </span>
   );
 };
 
 const defaultProps: DefaultProps = {
   min: 0,
   max: 100,
-  size: 48,
   dashoffset: 187,
   viewBox: "0 0 66 66",
   radius: 30,
@@ -249,7 +228,6 @@ if (process.env.NODE_ENV !== "production") {
       svgClassName: PropTypes.string,
       circleStyle: PropTypes.object,
       circleClassName: PropTypes.string,
-      size: PropTypes.number,
       radius: PropTypes.number,
       center: PropTypes.number,
       maxRotation: PropTypes.number,

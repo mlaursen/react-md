@@ -1,0 +1,75 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Progress Example - Within Buttons</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <StatesConfig>\n    <Demo />\n  </StatesConfig>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import '@react-md/button/dist/mixins';\n@import '@react-md/icon/dist/mixins';\n@import '@react-md/progress/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/typography/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n@import '@react-md/states/dist/mixins';;\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Progress Example - Within Buttons",
+      "description": "Example from https://react-md.dev/packages/progress/demos#within-buttons",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/icon": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/progress": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "@react-md/states": "next",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "react-scripts": "latest",
+        "node-sass": "latest",
+        "typescript": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/jest": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { Fragment, FunctionComponent, ReactNode } from \"react\";\nimport { Text } from \"@react-md/typography\";\n\nimport AsyncButton, { AsyncButtonProps } from \"./AsyncButton\";\nimport Container from \"./Container\";\nimport useTemporaryToggle from \"./useTemporaryToggle\";\n\ninterface ExampleProps extends Pick<AsyncButtonProps, \"id\" | \"asyncType\"> {\n  children: ReactNode;\n}\n\nconst Example: FunctionComponent<ExampleProps> = ({ children, ...props }) => {\n  const { toggled, toggle } = useTemporaryToggle();\n\n  return (\n    <Container>\n      <Text type=\"headline-6\" noMargin>\n        {children}\n      </Text>\n      <AsyncButton {...props} onClick={toggle} loading={toggled} />\n      <AsyncButton\n        {...props}\n        themeType=\"outline\"\n        onClick={toggle}\n        loading={toggled}\n      />\n      <AsyncButton\n        {...props}\n        themeType=\"contained\"\n        onClick={toggle}\n        loading={toggled}\n      />\n    </Container>\n  );\n};\n\nconst WithinButtons: FunctionComponent = () => (\n  <Fragment>\n    <Example id=\"async-button-1\" asyncType=\"icon-before\">\n      Circular Before\n    </Example>\n    <Example id=\"async-button-2\" asyncType=\"icon-after\">\n      Circular After\n    </Example>\n    <Example id=\"async-button-3\" asyncType=\"circular-overlay\">\n      Circular Overlay\n    </Example>\n    <Example id=\"async-button-4\" asyncType=\"linear-overlay\">\n      Linear Overlay\n    </Example>\n  </Fragment>\n);\n\nexport default WithinButtons;\n",
+    "isBinary": false
+  },
+  "src/AsyncButton.tsx": {
+    "content": "import React, { FunctionComponent, Fragment, ReactNode } from \"react\";\nimport { Button, ButtonProps } from \"@react-md/button\";\nimport {\n  getProgressA11y,\n  CircularProgress,\n  LinearProgress,\n} from \"@react-md/progress\";\nimport { bem } from \"@react-md/theme\";\n\nimport \"./async-button.scss\";\nimport { TextIconSpacing } from \"@react-md/icon\";\nimport { CloudDownloadSVGIcon } from \"@react-md/material-icons\";\n\nexport interface AsyncButtonProps extends ButtonProps {\n  id: string;\n  loading?: boolean;\n  asyncType:\n    | \"circular-overlay\"\n    | \"linear-overlay\"\n    | \"icon-before\"\n    | \"icon-after\";\n}\n\ntype DefaultProps = Required<Pick<AsyncButtonProps, \"loading\">>;\ntype WithDefaultProps = AsyncButtonProps & DefaultProps;\n\nconst block = bem(\"async-button\");\n\nconst AsyncButton: FunctionComponent<AsyncButtonProps> = providedProps => {\n  const {\n    id,\n    disabled,\n    loading,\n    asyncType,\n    ...props\n  } = providedProps as WithDefaultProps;\n\n  const progressId = `${id}-progress`;\n  let children: ReactNode = null;\n  switch (asyncType) {\n    case \"icon-before\":\n    case \"icon-after\":\n      children = (\n        <TextIconSpacing\n          iconAfter={asyncType === \"icon-after\"}\n          icon={\n            loading ? (\n              <CircularProgress id={progressId} centered={false} />\n            ) : (\n              <CloudDownloadSVGIcon />\n            )\n          }\n        >\n          Download\n        </TextIconSpacing>\n      );\n      break;\n    case \"circular-overlay\":\n    case \"linear-overlay\":\n      const linear = asyncType === \"linear-overlay\";\n      children = (\n        <Fragment>\n          <TextIconSpacing icon={<CloudDownloadSVGIcon />}>\n            {loading ? \"Loading...\" : \"Download\"}\n          </TextIconSpacing>\n          {loading && (\n            <span className={block(\"overlay\", { linear })}>\n              {linear ? (\n                <LinearProgress id={progressId} />\n              ) : (\n                <CircularProgress id={progressId} />\n              )}\n            </span>\n          )}\n        </Fragment>\n      );\n  }\n  return (\n    <Button\n      {...props}\n      id={id}\n      disabled={disabled || loading}\n      className={block()}\n      {...getProgressA11y(progressId, loading)}\n    >\n      {children}\n    </Button>\n  );\n};\n\nconst defaultProps: DefaultProps = {\n  loading: false,\n};\n\nAsyncButton.defaultProps = defaultProps;\n\nexport default AsyncButton;\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FunctionComponent, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/theme\";\n\nimport \"./container.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  inline?: boolean;\n}\n\nconst block = bem(\"progress-container\");\nconst Container: FunctionComponent<ContainerProps> = ({\n  className,\n  children,\n  inline,\n  ...props\n}) => {\n  return (\n    <div {...props} className={cn(block({ inline }), className)}>\n      {children}\n    </div>\n  );\n};\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/async-button.scss": {
+    "content": "@import '@react-md/icon/dist/mixins';\n@import '@react-md/progress/dist/mixins';\n@import '@react-md/theme/dist/mixins';\n@import '@react-md/utils/dist/mixins';\n\n.async-button {\n  @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));\n\n  // just to make the demos look a bit nicer\n  margin: 1rem;\n  // this makes it so the linear progress doesn't expand past the button bounds\n  overflow: hidden;\n\n  &__overlay {\n    // you'll really want this to be the `background` value or whatever the current\n    // background is instead. You'll probably also want to add additional styles for\n    // maintaining the \"containted\" styles since the contained button turns into\n    // an \"unstyled\" button when disabled\n    @include rmd-theme(background-color, surface);\n    @include rmd-utils-full-screen(absolute);\n\n    align-items: center;\n    border-radius: inherit;\n    box-shadow: inherit;\n    display: flex;\n    justify-content: center;\n    z-index: 1;\n\n    &--linear {\n      top: auto;\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/container.scss": {
+    "content": ".progress-container {\n  margin: 1rem;\n\n  &--inline {\n    display: inline-block;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/useTemporaryToggle.ts": {
+    "content": "import { useEffect } from \"react\";\nimport { useToggle } from \"@react-md/utils\";\n\nconst TEN_SECONDS = 10000;\n\nexport default function useTemporaryToggle(duration: number = TEN_SECONDS) {\n  const { toggled, toggle, disable } = useToggle();\n  useEffect(() => {\n    let timeout: number | undefined = window.setTimeout(() => {\n      timeout = undefined;\n      disable();\n    }, duration);\n\n    return () => window.clearTimeout(timeout);\n  }, [toggled]);\n\n  return { toggle, toggled, disable };\n}\n",
+    "isBinary": false
+  }
+}

@@ -101,6 +101,8 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Progress/SimpleDeterminateExamplesSandbox.json")),
   "Progress/SimpleIndeterminateExamples": () =>
     resolve(import("./Progress/SimpleIndeterminateExamplesSandbox.json")),
+  "Progress/WithinButtons": () =>
+    resolve(import("./Progress/WithinButtonsSandbox.json")),
   "Progress/WithSuspense": () =>
     resolve(import("./Progress/WithSuspenseSandbox.json")),
   "Sheet/PositionExamples": () =>

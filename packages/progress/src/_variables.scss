@@ -199,6 +199,10 @@ $rmd-linear-progress-vertical-reverse-short-styles: (
   ),
 ) !default;
 
+/// The size for the circular progress svg.
+/// @type Number
+$rmd-circular-progress-size: 3rem !default;
+
 /// The stroke width for the circular svg. I wouldn't change this value unless you
 /// also update the `viewbox` for the `CircularProgress` component.
 /// @type Number
@@ -269,4 +273,5 @@ $rmd-progress-theme-values: (
   color: $rmd-progress-color,
   background-color: $rmd-progress-background-color,
   linear-size: $rmd-linear-progress-size,
+  circular-size: $rmd-circular-progress-size,
 ) !default;

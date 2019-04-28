@@ -14,5 +14,5 @@ export default function useTemporaryToggle(duration: number = TEN_SECONDS) {
     return () => window.clearTimeout(timeout);
   }, [toggled]);
 
-  return { toggle, toggled };
+  return { toggle, toggled, disable };
 }

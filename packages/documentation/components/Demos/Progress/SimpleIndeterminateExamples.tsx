@@ -12,15 +12,20 @@ import "./simple-examples.scss";
 import useTemporaryToggle from "./useTemporaryToggle";
 
 const SimpleIndeterminateExamples: FunctionComponent = () => {
-  const { toggled: linearVisible, toggle: toggleLinear } = useTemporaryToggle();
+  const {
+    toggled: linearVisible,
+    toggle: toggleLinear,
+    disable: disableLinear,
+  } = useTemporaryToggle();
   const {
     toggled: circularVisible,
     toggle: toggleCircular,
+    disable: disableCircular,
   } = useTemporaryToggle();
 
   return (
     <Fragment>
-      <Phone id="simple-linear" title="Linear">
+      <Phone id="simple-linear" title="Linear" onPhoneClose={disableLinear}>
         {linearVisible && <LinearProgress id="simple-linear-progress" />}
         <Button
           id="show-linear-progress"
@@ -33,7 +38,11 @@ const SimpleIndeterminateExamples: FunctionComponent = () => {
           Toggle Progress
         </Button>
       </Phone>
-      <Phone id="simple-circular" title="Circular">
+      <Phone
+        id="simple-circular"
+        title="Circular"
+        onPhoneClose={disableCircular}
+      >
         {circularVisible && <CircularProgress id="simple-circular-progress" />}
         <Button
           id="show-circular-progress"

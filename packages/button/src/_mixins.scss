@@ -105,90 +105,93 @@
   padding: 0;
 }
 
+/// Creates all the styles for a button. This should be used within a class or selector.
+/// @access private
 @mixin rmd-button {
-  .rmd-button {
-    @if $rmd-button-text-icon-inherit-color {
-      @include rmd-icon-theme-update-var(color, currentColor);
-    }
-    @include rmd-button-base;
-    @include rmd-states-surface;
+  @if $rmd-button-text-icon-inherit-color {
+    @include rmd-icon-theme-update-var(color, currentColor);
+  }
+  @include rmd-button-base;
+  @include rmd-states-surface;
 
-    &--text {
-      @include rmd-button-text;
-    }
+  &--text {
+    @include rmd-button-text;
+  }
 
-    &--icon {
-      @include rmd-button-icon;
-    }
+  &--icon {
+    @include rmd-button-icon;
+  }
 
-    &--outline {
-      box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)
-        rmd-button-theme-var(outline);
-    }
+  &--outline {
+    box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)
+      rmd-button-theme-var(outline);
+  }
 
-    &--contained {
-      @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
-      @include rmd-elevation-transition(
-        $rmd-button-contained-resting-elevation,
-        $rmd-button-contained-pressed-elevation,
-        '&#{$rmd-states-pressed-class-name}',
-        false,
-        $rmd-button-contained-elevation-transition-time
-      );
-      // don't want the normal pressed colors to appear since we have an elevation change
-      // instead
-      @include rmd-states-theme-update-var(background-color, transparent);
-    }
+  &--contained {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
+    @include rmd-elevation-transition(
+      $rmd-button-contained-resting-elevation,
+      $rmd-button-contained-pressed-elevation,
+      '&#{$rmd-states-pressed-class-name}',
+      false,
+      $rmd-button-contained-elevation-transition-time
+    );
+    // don't want the normal pressed colors to appear since we have an elevation change
+    // instead
+    @include rmd-states-theme-update-var(background-color, transparent);
+  }
 
-    &--disabled {
-      @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
-      @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
-    }
+  &--disabled {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
+  }
 
-    &--primary {
-      @include rmd-button-theme-update-var(background-color, rmd-theme-var(primary));
-      @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));
-    }
+  &--primary {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(primary));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));
+  }
 
-    &--text-primary {
-      @include rmd-button-theme-update-var(color, rmd-theme-var(primary));
-      @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));
-    }
+  &--text-primary {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(primary));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));
+  }
 
-    &--secondary {
-      @include rmd-button-theme-update-var(background-color, rmd-theme-var(secondary));
-      @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));
-    }
+  &--secondary {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(secondary));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));
+  }
 
-    &--text-secondary {
-      @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));
-      @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));
-    }
+  &--text-secondary {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));
+  }
 
-    &--warning {
-      @include rmd-button-theme-update-var(background-color, rmd-theme-var(warning));
-      @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));
-    }
+  &--warning {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(warning));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));
+  }
 
-    &--text-warning {
-      @include rmd-button-theme-update-var(color, rmd-theme-var(warning));
-      @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));
-    }
+  &--text-warning {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(warning));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));
+  }
 
-    &--error {
-      @include rmd-button-theme-update-var(background-color, rmd-theme-var(error));
-      @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));
-    }
+  &--error {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(error));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));
+  }
 
-    &--text-error {
-      @include rmd-button-theme-update-var(color, rmd-theme-var(error));
-      @include rmd-button-theme-update-var(outline, rmd-theme-var(error));
-    }
+  &--text-error {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(error));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(error));
   }
 }
 
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
 @mixin react-md-button {
   @include rmd-theme-create-root-theme($rmd-button-theme-values, button);
 
-  @include rmd-button;
+  .rmd-button {
+    @include rmd-button;
+  }
 }

@@ -1,0 +1,18 @@
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/progress/dist/mixins';
+
+.determinate-example-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.determinate-example-linear {
+  margin: 1rem 0;
+}
+
+.determinate-example-circular {
+  margin-left: 1.5rem;
+}

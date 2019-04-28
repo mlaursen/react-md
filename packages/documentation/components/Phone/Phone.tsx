@@ -1,29 +1,74 @@
-import React, { FunctionComponent, ReactNode, useMemo } from "react";
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useMemo,
+  useCallback,
+} from "react";
 import cn from "classnames";
 import {
-  APP_BAR_OFFSET_CLASSNAME,
   APP_BAR_OFFSET_DENSE_CLASSNAME,
-  APP_BAR_OFFSET_PROMINENT_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
 import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
 
-import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
+import ConditionalFullPageDialog, {
+  ConditionalFullPageDialogProps,
+} from "components/ConditionalFullPageDialog";
 
 import "./phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
 
-export interface PhoneProps {
+export interface PhoneProps
+  extends Pick<
+    ConditionalFullPageDialogProps,
+    "disableAppBar" | "disableContent"
+  > {
+  /**
+   * An id for the phone. This is required for accessibility and quickly linking to things.
+   */
   id: string;
+
+  /**
+   * An optional app bar to use within the phone. This should normally contain the `ClosePhone`
+   * component so that it can be hidden on mobile devices when the full page dialog is used.
+   */
   appBar?: ReactNode;
+
+  /**
+   * The title to use for the phone. This will be passed down into the phone context so it can
+   * be grabbed anywhere.
+   */
   title?: ReactNode;
+
+  /**
+   * The content to display. This will conditionally render in a full page dialog.
+   */
   children: ReactNode;
+
+  /**
+   * A class name to apply to the fake phone's container element.
+   */
   className?: string;
+
+  /**
+   * A class name to apply to the fake phone's content element.
+   */
   contentClassName?: string;
+
+  /**
+   * Boolean if the phone's app bar should be prominent. This is used to add the required offset class names
+   * to the content element.
+   */
   prominent?: boolean;
+
+  /**
+   * An optional function to call when the dialog is closed. This is useful if the demo should be reset
+   * when the full page dialog is closed.
+   */
+  onPhoneClose?: () => void;
 }
 type DefaultProps = Required<Pick<PhoneProps, "appBar" | "title">>;
 type WithDefaultProps = PhoneProps & DefaultProps;
@@ -39,20 +84,30 @@ const Phone: FunctionComponent<PhoneProps> = props => {
     className,
     contentClassName,
     prominent,
+    disableAppBar,
+    disableContent,
+    onPhoneClose,
   } = props as WithDefaultProps;
   const { isPhone } = useAppSizeContext();
   const { toggled: visible, enable, disable } = useToggle();
-  if (visible && !isPhone) {
+  const closePhone = useCallback(() => {
     disable();
+    if (onPhoneClose) {
+      onPhoneClose();
+    }
+  }, [disable, onPhoneClose]);
+
+  if (visible && !isPhone) {
+    closePhone();
   }
 
   const value = useMemo(
     () => ({
       id,
       title,
-      closePhone: disable,
+      closePhone,
     }),
-    [id, title, disable]
+    [id, title, closePhone]
   );
 
   return (
@@ -61,8 +116,10 @@ const Phone: FunctionComponent<PhoneProps> = props => {
         id={id}
         disabled={!isPhone}
         enable={enable}
-        disable={disable}
+        disable={closePhone}
         visible={visible}
+        disableAppBar={disableAppBar}
+        disableContent={disableContent}
       >
         <div
           id={`${id}-phone`}
@@ -74,8 +131,6 @@ const Phone: FunctionComponent<PhoneProps> = props => {
             className={cn(
               block("content"),
               {
-                [APP_BAR_OFFSET_CLASSNAME]: isPhone,
-                [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone && prominent,
                 [APP_BAR_OFFSET_DENSE_CLASSNAME]: !isPhone,
                 [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]:
                   !isPhone && prominent,

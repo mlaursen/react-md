@@ -158,10 +158,12 @@
 
 /// An extremely simple mixin that will allow any element to be fixed to the entire viewport
 /// size.
-@mixin rmd-utils-full-screen {
+/// @param {String} position [fixed] - The positioning that should be applied. This should be
+/// one of the values for the `position` attribute.
+@mixin rmd-utils-full-screen($position: fixed) {
   bottom: 0;
   left: 0;
-  position: fixed;
+  position: $position;
   right: 0;
   top: 0;
 }
