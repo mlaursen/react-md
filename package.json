@@ -19,7 +19,7 @@
     "lint": "npm-run-all -p lint-scripts lint-styles",
     "test": "jest --config jest.config.js",
     "format": "prettier --write packages/*/src/**/*.{ts,tsx,scss}",
-    "prepublishOnly": "npm-run-all clean build-dist lint test",
+    "prepublishOnly": "npm-run-all clean dev-utils force-install build-dist lint test",
     "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore documentation -- yarn build --styles-only",
     "clean-packages": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation --stream",
     "clean-dev-utils": "cd packages/dev-utils && yarn clean",
