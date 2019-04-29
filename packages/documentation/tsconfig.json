@@ -27,8 +27,6 @@
     "alwaysStrict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "resolveJsonModule": true,
     "rootDir": ".",
     "baseUrl": ".",

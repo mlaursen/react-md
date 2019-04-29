@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 
 const SimpleExamples: FunctionComponent = () => {
-  return null;
+  return <span />;
 };
 
 export default SimpleExamples;

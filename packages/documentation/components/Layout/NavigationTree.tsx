@@ -1,32 +1,29 @@
-import React, { FunctionComponent, useRef, useEffect, memo } from "react";
-import { SingletonRouter, withRouter } from "next/router";
+import React, { FunctionComponent, memo, useEffect, useRef } from "react";
 import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
+import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import {
-  FlattenedTreeSort,
+  AnyRecord,
+  findAllParentIds,
+  FlattenedTreeData,
   Tree,
   TreeItem,
   TreeItemRenderer,
   useFlattenedTree,
   useTreeItemExpansion,
-  useTreeItemSelect,
-  findAllParentIds,
-  FlattenedTreeData,
-  AnyRecord,
 } from "@react-md/tree";
+import { SingletonRouter, withRouter } from "next/router";
 
-import {
-  RoutesTreeData,
-  RoutesTree,
-  routesTree,
-  RouteDivider,
-  RouteSubheader,
-  RouteLink,
-} from "constants/routesTree";
 import LinkUnstyled from "components/LinkUnstyled";
+import {
+  RouteDivider,
+  RouteLink,
+  routesTree,
+  RoutesTreeData,
+  RouteSubheader,
+} from "constants/routesTree";
 
 import "./navigation-tree.scss";
-import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 
 /**
  * A custom tree-item renderer that can also create dividers and subheader
@@ -35,7 +32,7 @@ import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
   props,
   item,
-  treeProps
+  _treeProps
 ) => {
   if ((item as RouteDivider).divider) {
     return <Divider key={props.key} />;

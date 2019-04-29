@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent } from "react";
 import cn from "classnames";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
 import { Omit } from "@react-md/utils";

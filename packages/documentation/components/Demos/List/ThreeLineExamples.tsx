@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { Avatar } from "@react-md/avatar";
 import { List, ListItem } from "@react-md/list";
 import { StarSVGIcon } from "@react-md/material-icons";
 import Container from "./Container";
@@ -27,7 +26,7 @@ const inbox = [
 const ThreeLineExamples: FunctionComponent = () => (
   <Container>
     <List>
-      {inbox.map(({ from, subject, message }, i) => (
+      {inbox.map(({ subject, message }, i) => (
         <ListItem
           id={`three-line-item-${i}`}
           key={i}

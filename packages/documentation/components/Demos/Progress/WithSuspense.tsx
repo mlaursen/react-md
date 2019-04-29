@@ -10,9 +10,8 @@ import React, {
 } from "react";
 import { Button } from "@react-md/button";
 import { RefreshSVGIcon, CloudDownloadSVGIcon } from "@react-md/material-icons";
-import { getProgressA11y, LinearProgress } from "@react-md/progress";
+import { getProgressA11y } from "@react-md/progress";
 import { bem } from "@react-md/theme";
-import { Text, TextContainer } from "@react-md/typography";
 
 import Phone from "components/Phone";
 
@@ -25,8 +24,7 @@ const block = bem("progress-suspense");
 
 function fakeImport(): Promise<{ default: FunctionComponent }> {
   return new Promise(resolve => {
-    let timeout: number | undefined = window.setTimeout(() => {
-      timeout = undefined;
+    window.setTimeout(() => {
       resolve({ default: WithSuspenseFiles });
     }, 5000);
   });

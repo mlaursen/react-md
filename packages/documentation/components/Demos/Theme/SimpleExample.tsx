@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 

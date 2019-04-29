@@ -19,4 +19,5 @@ install:
 script:
   - yarn build
   - yarn lint
+  - yarn typecheck
   - yarn test --runInBand

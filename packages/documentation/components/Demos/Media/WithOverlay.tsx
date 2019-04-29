@@ -4,7 +4,6 @@ import {
   MediaOverlay,
   MediaOverlayPosition,
 } from "@react-md/media";
-import { Link } from "@react-md/link";
 import { Text } from "@react-md/typography";
 
 const positions: MediaOverlayPosition[] = [

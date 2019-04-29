@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
-import { Avatar } from "@react-md/avatar";
 import {
+  BuildSVGIcon,
+  ColorLensSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
-  ColorLensSVGIcon,
-  BuildSVGIcon,
 } from "@react-md/material-icons";
-import { FlattenedTree, TreeDataList } from "@react-md/tree";
+import { FlattenedTree } from "@react-md/tree";
+
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";

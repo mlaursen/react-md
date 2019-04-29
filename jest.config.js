@@ -14,4 +14,9 @@ module.exports = {
   roots: packages.map(name => `<rootDir>/packages/${name}/src`),
   // fixes not being able to see console.log in tests...
   verbose: false,
+  globals: {
+    'ts-jest': {
+      tsConfig: './tsconfig.test.json',
+    },
+  },
 };

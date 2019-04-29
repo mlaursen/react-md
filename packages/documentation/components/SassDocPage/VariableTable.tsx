@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
-import { FormattedVariableSassDoc } from "types/formattedSassDoc";
+
+import { CodeBlock } from "components/Code";
 import { Markdown } from "components/Markdown";
-import { Code, CodeBlock } from "components/Code";
+import { FormattedVariableSassDoc } from "types/formattedSassDoc";
 
 export interface VariableTableProps {
   variables: FormattedVariableSassDoc[];

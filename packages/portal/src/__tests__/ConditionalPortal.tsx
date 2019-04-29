@@ -1,6 +1,5 @@
-import React, { createRef, FunctionComponent, Fragment } from "react";
+import React from "react";
 import { cleanup, render } from "react-testing-library";
-
 import ConditionalPortal from "../ConditionalPortal";
 
 afterEach(cleanup);

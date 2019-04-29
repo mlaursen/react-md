@@ -1,15 +1,7 @@
-import React, { FunctionComponent, Fragment, useState } from "react";
-import { Button } from "@react-md/button";
-import {
-  Dialog,
-  DialogHeader,
-  DialogTitle,
-  DialogContent,
-  DialogFooter,
-} from "@react-md/dialog";
-import { Text } from "@react-md/typography";
-import { useToggle } from "@react-md/utils";
+import React, { Fragment, FunctionComponent, useState } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
+import { Button } from "@react-md/button";
+import { Dialog, DialogContent } from "@react-md/dialog";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
 
@@ -146,7 +138,7 @@ const FullPageExample: FunctionComponent = () => {
   };
   return (
     <Fragment>
-      {previews.map(({ src, id }, i) => (
+      {previews.map(({ src, id }) => (
         <MediaContainer key={id}>
           <Button
             id={`image-preview-${id}`}

@@ -3,7 +3,6 @@ import React, {
   FunctionComponent,
   useCallback,
   useEffect,
-  useState,
   useRef,
 } from "react";
 import cn from "classnames";
@@ -14,7 +13,6 @@ import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import Link from "components/Link";
-
 import "./table-of-contents.scss";
 
 export interface Heading {

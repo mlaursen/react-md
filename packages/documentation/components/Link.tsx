@@ -1,6 +1,5 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import Router from "next/router";
 import { Link as RMDLink } from "@react-md/link";
 import { Omit } from "@react-md/utils";
 

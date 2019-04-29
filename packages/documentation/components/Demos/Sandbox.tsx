@@ -12,26 +12,14 @@ export interface SandboxProps
   id: string;
 }
 
-const Sandbox: FunctionComponent<SandboxProps> = ({
-  id,
-  title,
-  description,
-  packageName,
-  getSandbox,
-}) => {
+const Sandbox: FunctionComponent<SandboxProps> = ({ id, getSandbox }) => {
   const { toggled: loading, enable, disable } = useToggle();
 
   return (
     <Fragment>
       <Portal>
         {loading && (
-          <SandboxDefineForm
-            title={title}
-            description={description}
-            packageName={packageName}
-            getSandbox={getSandbox}
-            onCreated={disable}
-          />
+          <SandboxDefineForm getSandbox={getSandbox} onCreated={disable} />
         )}
       </Portal>
       <AppBarAction

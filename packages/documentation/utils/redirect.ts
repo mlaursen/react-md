@@ -20,7 +20,7 @@ export default function redirect(
     const indexPath = concat ? `${pathname}/${to}` : to;
 
     if (res) {
-      res.writeHead(302, {
+      res.writeHead(statusCode, {
         Location: indexPath,
       });
       res.end();

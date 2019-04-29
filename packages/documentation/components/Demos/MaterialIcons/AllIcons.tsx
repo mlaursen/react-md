@@ -1,11 +1,9 @@
-import React, { FunctionComponent } from "react";
-import { SimpleListItem } from "@react-md/list";
-import scssVariables from "@react-md/list/dist/scssVariables";
+import React from "react";
 import * as MaterialIcons from "@react-md/material-icons";
-import { unitToNumber } from "@react-md/utils";
+
+import Code from "components/Code/Code";
 
 import "./all-icons.scss";
-import Code from "components/Code/Code";
 
 const allIcons = Object.entries(MaterialIcons).filter(([name]) =>
   name.endsWith("SVGIcon")

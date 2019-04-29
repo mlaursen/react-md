@@ -6,8 +6,6 @@ import { List, ListItem, ListSubheader } from "@react-md/list";
 import { SVGIconProps } from "@react-md/icon";
 import { Tooltipped } from "@react-md/tooltip";
 
-import people from "constants/people";
-
 import "./two-line-examples.scss";
 import Container from "./Container";
 

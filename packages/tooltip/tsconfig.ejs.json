@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./es",
+    "rootDir": "src",
+    "incremental": true,
+    "tsBuildInfoFile": "../../.tscache/tooltip.module",
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
+  ]
+}

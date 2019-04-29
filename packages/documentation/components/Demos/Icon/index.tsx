@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import Head from "next/head";
 
 import DemoPage from "../DemoPage";

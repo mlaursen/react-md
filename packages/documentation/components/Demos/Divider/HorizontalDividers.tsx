@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FunctionComponent } from "react";
 import { Divider } from "@react-md/divider";
 import { Text, TextContainer } from "@react-md/typography";
 

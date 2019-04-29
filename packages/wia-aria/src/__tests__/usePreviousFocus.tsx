@@ -187,9 +187,7 @@ describe("usePreviousFocus", () => {
   });
 
   it("should do nothing if disabled", () => {
-    const { rerender, queryByText } = render(
-      <TestComponent mounted={false} disabled />
-    );
+    const { rerender } = render(<TestComponent mounted={false} disabled />);
     expect(requestAnimationFrame).not.toBeCalled();
 
     rerender(<TestComponent mounted disabled />);

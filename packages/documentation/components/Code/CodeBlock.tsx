@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useMemo,
 } from "react";
+import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 
 import { highlightCode } from "components/Markdown/utils";
@@ -45,7 +46,10 @@ const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
   }, [propChildren, highlight, language]);
 
   return (
-    <pre ref={forwardedRef} className={`code code--block language-${language}`}>
+    <pre
+      ref={forwardedRef}
+      className={cn(`code code--block language-${language}`, className)}
+    >
       {children}
     </pre>
   );

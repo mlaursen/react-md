@@ -1,7 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "target": "es5",
     "module": "commonjs"
-  }
+  },
+  "include": [
+    "packages/*/src/**/__tests__"
+  ]
 }

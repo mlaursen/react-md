@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { Text } from "@react-md/typography";
 
 import "./home.scss";
 import Banner from "./Banner";

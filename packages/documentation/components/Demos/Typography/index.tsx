@@ -1,22 +1,23 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 
 import DemoPage from "../DemoPage";
 
 import TextExamples from "./TextExamples";
-import textDescription from "./TextExamples.md";
+import textExamples from "./TextExamples.md";
+
 import TextContainerExamples from "./TextContainerExamples";
+import textContainerExamples from "./TextContainerExamples.md";
 
 const demos = [
   {
     name: "Text Examples",
-    description: `\`react-md\` provides 13 different typography styles by
-default.`,
+    description: textExamples,
     phoneFullPage: true,
     children: <TextExamples />,
   },
   {
     name: "Text Container Examples",
-    description: "",
+    description: textContainerExamples,
     fullPage: true,
     children: <TextContainerExamples />,
   },

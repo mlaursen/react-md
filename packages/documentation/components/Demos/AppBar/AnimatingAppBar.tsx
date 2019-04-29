@@ -1,24 +1,24 @@
 import React, {
   FunctionComponent,
-  useState,
   useCallback,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from "react";
-import cn from "classnames";
 import {
   AppBar,
-  AppBarTitle,
   AppBarAction,
   AppBarNav,
+  AppBarTitle,
 } from "@react-md/app-bar";
 import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
-import { MoreVertSVGIcon, MenuSVGIcon } from "@react-md/material-icons";
+import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
 
 import people from "constants/people";
+
 import "./animating-app-bar.scss";
 
 const COLORS = Object.keys(avatarVariables["rmd-avatar-colors"]);

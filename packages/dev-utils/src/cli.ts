@@ -35,7 +35,7 @@ commander
     "Only compiles the typescript files to ES Modules, CommonJS, and UMD."
   )
   .option("--umd-only", "Only compiles the UMD build.")
-  .option("--no-umd", "Excludes the UMD build for this project")
+  .option("--umd", "Updates the build process to include the UMD build.")
   .option(
     "--variables-only",
     "Only creates updates the `src/scssVariables.ts` file"

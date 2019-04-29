@@ -57,6 +57,7 @@ const LinkButton: FunctionComponent<LinkButtonProps> = providedProps => {
           })}
         >
           {tooltip}
+          {ripples}
           {children}
         </LinkUnstyled>
       )}

@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  useCallback,
-  useState,
-} from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -12,7 +7,6 @@ import {
   getProgressA11y,
   LinearProgress,
 } from "@react-md/progress";
-import { useToggle } from "@react-md/utils";
 
 import "./simple-determinate-example.scss";
 import { useDownloadInterval } from "./useDownloadInterval";

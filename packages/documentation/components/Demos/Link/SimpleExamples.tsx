@@ -1,9 +1,7 @@
 import React, { FunctionComponent, Fragment } from "react";
 import { Link } from "@react-md/link";
-import { TextIconSpacing } from "@react-md/icon";
 import { Text } from "@react-md/typography";
 
-import GithubSVGIcon from "icons/GithubSVGIcon";
 import Code from "components/Code/Code";
 
 const SimpleExamples: FunctionComponent = () => (

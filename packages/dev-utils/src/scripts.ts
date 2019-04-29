@@ -35,6 +35,11 @@ export default async function scripts(umd: boolean) {
     return;
   }
 
+  const packageName = await getPackageName();
+  await fs.writeJson("tsconfig.json", createTsConfig("", packageName), {
+    spaces: 2,
+  });
+
   if (tsFiles.find(name => name.includes("scssVariables"))) {
     await tscVariables();
   }
@@ -52,7 +57,6 @@ export default async function scripts(umd: boolean) {
   log(list(tsFiles));
   log();
 
-  const packageName = await getPackageName();
   await tsc(false, packageName);
   await tsc(true, packageName);
   await definitions();
@@ -69,11 +73,7 @@ async function tscVariables() {
   });
 
   log("Compiling scssVariables...");
-  exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
-  // const generated = await glob(`${commonjs ? lib : es}/**/*`);
-  // log("Created:");
-  // log(list(generated));
-  // log();
+  exec(`npx tsc -p ${tsConfig}`);
 }
 
 async function tsc(commonjs: boolean, packageName: string) {
@@ -89,7 +89,7 @@ async function tsc(commonjs: boolean, packageName: string) {
   log(
     `Compiling typescript files for ${commonjs ? "Common JS" : "ES Modules"}...`
   );
-  exec(`${rootNodeModules}/typescript/bin/tsc -p ${tsConfig}`);
+  exec(`npx tsc -p ${tsConfig}`);
   const generated = await glob(`${commonjs ? lib : es}/**/*`);
   log("Created:");
   log(list(generated));
@@ -168,7 +168,7 @@ async function createTempRollupFile(tempRollupIndexPath: string) {
 function rollup(production: boolean) {
   const env = production ? "production" : "development";
   log(`Creating the ${env} UMD bundle...`);
-  exec(`${rootNodeModules}/rollup/bin/rollup -c`, {
+  exec(`npx rollup -c`, {
     env: {
       NODE_ENV: env,
     },

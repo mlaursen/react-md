@@ -10,7 +10,6 @@ const addEventListener = jest.fn();
 const removeListener = jest.fn();
 const removeEventListener = jest.fn();
 const dispatchEvent = jest.fn();
-let matchMedia: jest.SpyInstance<MediaQueryList, [string]>;
 
 beforeAll(() => {
   // matchMedia doesn't exist in tests, but maybe one day it'll be supported
@@ -31,7 +30,6 @@ beforeAll(() => {
 
 beforeEach(() => {
   jest.clearAllMocks();
-  matchMedia = jest.spyOn(window, "matchMedia");
 });
 afterEach(cleanup);
 

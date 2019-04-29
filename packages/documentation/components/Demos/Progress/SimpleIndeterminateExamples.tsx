@@ -1,11 +1,10 @@
-import React, { FunctionComponent, Fragment, useEffect } from "react";
+import React, { FunctionComponent, Fragment } from "react";
 import { Button } from "@react-md/button";
 import {
   LinearProgress,
   CircularProgress,
   getProgressA11y,
 } from "@react-md/progress";
-import { useToggle } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import "./simple-examples.scss";

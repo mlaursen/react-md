@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
+import { Code } from "components/Code";
 
-import { Code, CodeBlock } from "components/Code";
 import Card from "./Card";
-import CardText from "./CardText";
 import CardFooter from "./CardFooter";
+import CardText from "./CardText";
 import { Component as SVG } from "./getting-started.svg";
 
 const GettingStarted: FunctionComponent = () => (

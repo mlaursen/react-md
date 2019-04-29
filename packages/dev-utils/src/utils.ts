@@ -160,7 +160,7 @@ export async function geScopedPackageNames({
     .map(name => (prefixed ? `@react-md/${name}` : name));
 }
 
-export type TsConfigType = "commonjs" | "module" | "test" | "variables";
+export type TsConfigType = "commonjs" | "module" | "variables" | "";
 
 /**
  * I dislike maintaining multiple config files, so each time I try to build
@@ -172,9 +172,9 @@ export function createTsConfig(
   tsConfigType: TsConfigType,
   packageName: string
 ) {
+  const isBase = tsConfigType === "";
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
-  const isTest = tsConfigType === "test";
   const isVariables = tsConfigType === "variables";
 
   let outDir: undefined | string;
@@ -186,27 +186,31 @@ export function createTsConfig(
     outDir = `./${dist}`;
   }
 
-  let extendsPrefix = "base";
-  if (isVariables) {
-    extendsPrefix = "commonjs";
-  } else if (!isESModule) {
-    extendsPrefix = tsConfigType;
+  let extendsPrefix = ".base";
+  if (isVariables || isCommonJS) {
+    extendsPrefix = ".cjs";
+  } else if (isBase) {
+    extendsPrefix = ".check";
   }
 
   return {
-    extends: `../../tsconfig.${extendsPrefix}.json`,
+    extends: `../../tsconfig${extendsPrefix}.json`,
     compilerOptions: {
-      outDir,
+      outDir: isBase ? undefined : outDir,
       rootDir: src,
-      tsBuildInfoFile: `../../.tscache/${packageName}.${tsConfigType}`,
-      declaration: isESModule || isVariables,
+      noEmit: isBase || undefined,
+      incremental: (!isBase && !isVariables) || undefined,
+      tsBuildInfoFile: isBase
+        ? undefined
+        : `../../.tscache/${packageName}.${tsConfigType}`,
+      declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
-      target: isESModule ? undefined : "es5",
+      target: isBase || isESModule ? undefined : "es5",
     },
     include: [isVariables ? path.join(src, "scssVariables.ts") : src],
     exclude: [
-      !isTest && "**/__tests__/*",
-      !isVariables && !isTest && "**/scssVariables.ts",
+      !isBase && "**/__tests__/*",
+      !isVariables && !isBase && "**/scssVariables.ts",
     ].filter(Boolean),
   };
 }

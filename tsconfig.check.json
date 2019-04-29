@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": [
+    "packages/*/src/**/*"
+  ],
+  "exclude": [
+    "packages/dev-utils"
+  ]
+}

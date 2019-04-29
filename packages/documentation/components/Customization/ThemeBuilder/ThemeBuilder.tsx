@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 
 const ThemeBuilder: FunctionComponent = () => {
-  return null;
+  return <span />;
 };
 
 export default ThemeBuilder;

@@ -1,17 +1,11 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.check.json",
   "compilerOptions": {
-    "outDir": "./es",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/app-bar.module",
-    "declaration": true,
-    "declarationDir": "types"
+    "noEmit": true
   },
   "include": [
     "src"
   ],
-  "exclude": [
-    "**/__tests__/*",
-    "**/scssVariables.ts"
-  ]
+  "exclude": []
 }

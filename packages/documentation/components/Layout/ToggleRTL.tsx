@@ -1,13 +1,13 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import {
   FormatAlignLeftSVGIcon,
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
-import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
+
 import AppBarAction from "components/AppBarAction";
 
-const ToggleRTL: FunctionComponent = props => {
+const ToggleRTL: FunctionComponent = () => {
   const { toggled, toggle } = useToggle();
 
   useEffect(() => {

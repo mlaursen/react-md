@@ -8,7 +8,7 @@ import PhoneAppBar from "./PhoneAppBar";
 import SearchAction from "./SearchAction";
 
 const DefaultPhoneAppBar: FunctionComponent = () => {
-  const { id, title } = usePhoneContext();
+  const { title } = usePhoneContext();
   return (
     <PhoneAppBar>
       <AppBar component="div" theme="clear">

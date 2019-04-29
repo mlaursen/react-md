@@ -81,7 +81,6 @@ const Demo: FunctionComponent<DemoProps> = props => {
     dialogDisabled = !isPhone && !isTablet;
   }
 
-  const sandboxDescription = `This is the ${name} example from react-md`;
   const getSandbox = getSandboxer(title, name);
   const { toggled, enable, disable } = useToggle();
   return (
@@ -101,13 +100,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
         </Markdown>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
           <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
-          <Sandbox
-            id={`${id}-sandbox`}
-            title={name}
-            description={sandboxDescription}
-            packageName={packageName}
-            getSandbox={getSandbox}
-          />
+          <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox} />
           <GithubLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div id={`${id}-code-preview`} />

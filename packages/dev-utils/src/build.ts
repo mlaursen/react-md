@@ -1,3 +1,5 @@
+import { defaults, pick } from "lodash";
+
 import runClean from "./clean";
 import scripts, { buildUMD } from "./scripts";
 import styles, { createScssVariables, generateThemeStyles } from "./styles";
@@ -14,7 +16,7 @@ export interface BuildConfig {
 }
 
 const DEFAULT_CONFIG: BuildConfig = {
-  umd: true,
+  umd: false,
   clean: false,
   umdOnly: false,
   stylesOnly: false,
@@ -23,8 +25,22 @@ const DEFAULT_CONFIG: BuildConfig = {
   variablesOnly: false,
 };
 
-export default async function build(config: BuildConfig = DEFAULT_CONFIG) {
-  time(() => runBuild(config), "build");
+export default async function build(
+  config: Partial<BuildConfig> = DEFAULT_CONFIG
+) {
+  const buildConfig = defaults(
+    pick(config, [
+      "umd",
+      "clean",
+      "umdOnly",
+      "stylesOnly",
+      "themesOnly",
+      "variablesOnly",
+    ]),
+    DEFAULT_CONFIG
+  );
+
+  time(() => runBuild(buildConfig), "build");
 }
 
 async function runBuild({

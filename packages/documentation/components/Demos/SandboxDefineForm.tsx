@@ -6,17 +6,11 @@ import { CODE_SANDBOX_DEFINE_API } from "constants/index";
 
 export interface SandboxDefineFormProps {
   onCreated: () => void;
-  title: string;
-  description: string;
-  packageName: string;
   getSandbox: () => Promise<IFiles>;
 }
 
 const SandboxDefineForm: FunctionComponent<SandboxDefineFormProps> = ({
   onCreated,
-  title,
-  description,
-  packageName,
   getSandbox,
 }) => {
   const [parameters, setParameters] = useState("");

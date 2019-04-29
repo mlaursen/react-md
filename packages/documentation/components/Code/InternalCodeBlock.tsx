@@ -1,14 +1,6 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  ReactNode,
-  useMemo,
-  forwardRef,
-} from "react";
+import React, { forwardRef, Fragment, FunctionComponent } from "react";
 import Head from "next/head";
 import { WithForwardedRef } from "@react-md/utils";
-
-import { highlightCode } from "components/Markdown/utils";
 
 import CodeBlock, { CodeBlockProps } from "./CodeBlock";
 

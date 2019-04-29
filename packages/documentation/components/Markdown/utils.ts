@@ -43,7 +43,7 @@ export function highlightCode(code: string, lang: string = "") {
  */
 const renderer = new marked.Renderer();
 
-renderer.code = (rawCode, language, escaped) => {
+renderer.code = (rawCode, language) => {
   language = getLanguage(language);
   const code = highlightCode(rawCode, language);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
@@ -67,7 +67,7 @@ renderer.code = (rawCode, language, escaped) => {
 
 renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
 
-renderer.heading = (text, level, raw, slugger) => {
+renderer.heading = (text, level, _raw, slugger) => {
   const id = slugger.slug(text);
   const className = cn(
     `rmd-typography rmd-typography--headline-${level} heading`,

@@ -13,7 +13,7 @@ export interface SassDocPageProps {
 }
 
 const SassDocPage: FunctionComponent<SassDocPageProps> = ({ sassdoc }) => {
-  const { variables, functions, mixins } = sassdoc;
+  const { variables /*functions, mixins*/ } = sassdoc;
   return (
     <Fragment>
       <Heading id="sassdoc-variables" level={2}>
@@ -21,7 +21,7 @@ const SassDocPage: FunctionComponent<SassDocPageProps> = ({ sassdoc }) => {
       </Heading>
       <VariableTable variables={variables} />
       {variables.map(variable => {
-        const { name, value, compiledValue, description, type } = variable;
+        const { name, /*value,*/ compiledValue, description, type } = variable;
         console.log("variable:", variable);
         return (
           <div key={name}>

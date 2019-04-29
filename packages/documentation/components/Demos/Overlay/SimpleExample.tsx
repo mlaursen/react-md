@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, Fragment } from "react";
+import React, { FunctionComponent, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";

@@ -2,7 +2,6 @@ import React, { FunctionComponent, Fragment, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
-import { useToggle } from "@react-md/utils";
 
 import "./alert-dialogs-and-modals.scss";
 

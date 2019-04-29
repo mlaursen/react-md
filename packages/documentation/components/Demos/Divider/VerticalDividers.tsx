@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
 import { VerticalDivider } from "@react-md/divider";
-import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
 import "./vertical-dividers.scss";

@@ -7,7 +7,6 @@ import {
   NestedDialogContextProvider,
 } from "@react-md/dialog";
 import { KeyboardArrowLeftSVGIcon } from "@react-md/material-icons";
-import { TextContainer } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import "./nested-dialogs.scss";

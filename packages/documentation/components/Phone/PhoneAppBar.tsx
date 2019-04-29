@@ -1,22 +1,11 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent } from "react";
 import cn from "classnames";
-import {
-  AppBar,
-  AppBarNav,
-  AppBarTitle,
-  AppBarAction,
-  AppBarProps,
-} from "@react-md/app-bar";
-import {
-  KeyboardArrowLeftSVGIcon,
-  SearchSVGIcon,
-  MoreVertSVGIcon,
-} from "@react-md/material-icons";
+import { AppBar, AppBarProps } from "@react-md/app-bar";
 import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 
-import StatusBar from "./StatusBar";
 import { usePhoneContext } from "./context";
+import StatusBar from "./StatusBar";
 
 const block = bem("phone");
 
