@@ -139,7 +139,7 @@ export function useMeasure({
     };
   });
 
-  return useCallback<ResizeObserverCallback>(entries => {
+  return useCallback((entries: ResizeObserverEntry[]) => {
     const { onResize, disableHeight, disableWidth } = options.current;
     for (const entry of entries) {
       if (!entry) {
