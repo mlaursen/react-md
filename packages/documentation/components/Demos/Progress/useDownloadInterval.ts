@@ -1,7 +1,5 @@
 import { useState, useCallback } from "react";
-import { useToggle } from "@react-md/utils";
-
-import useInterval from "hooks/useInterval";
+import { useToggle, useInterval } from "@react-md/utils";
 
 /*
  * A reusable hook to handle the progress examples for both the linear and circular

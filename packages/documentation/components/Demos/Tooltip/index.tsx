@@ -7,7 +7,7 @@ import simpleExamples from "./SimpleExamples.md";
 
 const demos = [
   {
-    name: "Simple Example",
+    name: "Simple Examples",
     description: simpleExamples,
     children: <SimpleExamples />,
   },

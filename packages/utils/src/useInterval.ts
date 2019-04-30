@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Simple hook to use an interval with auto setup and teardown.
@@ -13,14 +13,23 @@ export default function useInterval(
   cb: () => void,
   enabled: boolean
 ) {
+  const ref = useRef(cb);
+  useEffect(() => {
+    ref.current = cb;
+  });
+
   useEffect(() => {
     if (!enabled) {
       return;
     }
 
-    const interval = window.setInterval(cb, delay);
+    const callback = () => {
+      ref.current();
+    };
+
+    const interval = window.setInterval(callback, delay);
     return () => {
       window.clearInterval(interval);
     };
-  }, [delay, cb, enabled]);
+  }, [delay, enabled]);
 }

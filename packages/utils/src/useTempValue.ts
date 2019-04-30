@@ -24,8 +24,7 @@ export default function useTempValue<T>(
   resetTime: number = 500
 ): TempValue<T> {
   const valueRef = useRef(defaultValue);
-  const timeout = useRef<number | undefined>(undefined);
-
+  const timeout = useRef<number>();
   const resetValue = useCallback(() => {
     window.clearTimeout(timeout.current);
     valueRef.current = defaultValue;
