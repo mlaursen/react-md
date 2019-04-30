@@ -4,7 +4,6 @@ import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import { SVGIconProps } from "@react-md/icon";
-import { Tooltipped } from "@react-md/tooltip";
 
 import "./two-line-examples.scss";
 import Container from "./Container";
@@ -20,15 +19,6 @@ const formatShort = (d: Date) =>
     day: "2-digit",
     year: "numeric",
   });
-const formatLong = (d: Date) =>
-  d.toLocaleString(undefined, {
-    month: "long",
-    weekday: "short",
-    day: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
 const Folder: FunctionComponent<AvatarProps> = props => (
   <Avatar {...props}>
@@ -39,24 +29,13 @@ const Folder: FunctionComponent<AvatarProps> = props => (
 const InfoIcon: FunctionComponent<
   SVGIconProps & { id: string; date: Date }
 > = ({ id, className, date, ...props }) => (
-  <Tooltipped
+  <span
     id={`${id}-info`}
-    tooltip={`Last Accessed: ${formatLong(date)}`}
-    portal
-    lineWrap
-    className="two-line-list-example__tooltip"
+    tabIndex={0}
+    className={cn("two-line-list-example__icon", className)}
   >
-    {({ tooltip, containerProps }) => (
-      <span
-        {...containerProps}
-        tabIndex={0}
-        className={cn("two-line-list-example__icon", className)}
-      >
-        <InfoOutlineSVGIcon {...props} />
-        {tooltip}
-      </span>
-    )}
-  </Tooltipped>
+    <InfoOutlineSVGIcon {...props} />
+  </span>
 );
 
 const TwoLineExamples: FunctionComponent = () => (

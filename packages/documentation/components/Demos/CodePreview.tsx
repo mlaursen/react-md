@@ -6,14 +6,13 @@ import React, {
   useRef,
 } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
+import { Button } from "@react-md/button";
 import { CodeSVGIcon } from "@react-md/material-icons";
 import { Portal } from "@react-md/portal";
 import { Collapse } from "@react-md/transition";
 import { useToggle } from "@react-md/utils";
 
-import AppBarAction from "components/AppBarAction";
-import Button from "components/Button";
 import { CodeBlock } from "components/Code";
 
 export interface CodePreviewProps {
@@ -101,7 +100,6 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
             <footer className="demo__code-preview__footer">
               <Button
                 id={`${demoId}-hide-code`}
-                tooltip="Hide the code for this example"
                 buttonType="icon"
                 theme="clear"
                 onClick={enable}
@@ -112,13 +110,7 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
           </div>
         </Collapse>
       </Portal>
-      <AppBarAction
-        id={`${demoId}-show-code`}
-        first
-        tooltip="Show the code for this example"
-        onClick={toggle}
-        ref={ref}
-      >
+      <AppBarAction id={`${demoId}-show-code`} first onClick={toggle} ref={ref}>
         <CodeSVGIcon />
       </AppBarAction>
     </Fragment>

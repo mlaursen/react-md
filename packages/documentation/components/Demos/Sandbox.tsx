@@ -1,8 +1,8 @@
 import React, { Fragment, FunctionComponent } from "react";
+import { AppBarAction } from "@react-md/app-bar";
 import { Portal } from "@react-md/portal";
 import { Omit, useToggle } from "@react-md/utils";
 
-import AppBarAction from "components/AppBarAction";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
 
 import SandboxDefineForm, { SandboxDefineFormProps } from "./SandboxDefineForm";
@@ -22,12 +22,7 @@ const Sandbox: FunctionComponent<SandboxProps> = ({ id, getSandbox }) => {
           <SandboxDefineForm getSandbox={getSandbox} onCreated={disable} />
         )}
       </Portal>
-      <AppBarAction
-        id={id}
-        tooltip="Create a code sandbox for this example to live demo."
-        onClick={enable}
-        disabled={loading}
-      >
+      <AppBarAction id={id} onClick={enable} disabled={loading}>
         <CodeSandboxSVGIcon />
       </AppBarAction>
     </Fragment>

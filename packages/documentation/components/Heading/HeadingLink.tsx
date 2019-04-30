@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useCallback } from "react";
-import { Tooltipped } from "@react-md/tooltip";
 import LinkUnstyled from "components/LinkUnstyled";
 
 export interface HeadingLinkProps {
@@ -25,21 +24,14 @@ const HeadingLink: FunctionComponent<HeadingLinkProps> = ({ idRef }) => {
   );
 
   return (
-    <Tooltipped
+    <LinkUnstyled
       id={`${idRef}-link`}
-      tooltip="Create a direct link to this part of the page and copy the url into your clipboard."
+      href={`#${idRef}`}
+      className="heading__link"
       onClick={handleClick}
     >
-      {({ tooltip, containerProps }) => (
-        <LinkUnstyled
-          href={`#${idRef}`}
-          className="heading__link"
-          {...containerProps}
-        >
-          #{tooltip}
-        </LinkUnstyled>
-      )}
-    </Tooltipped>
+      #
+    </LinkUnstyled>
   );
 };
 

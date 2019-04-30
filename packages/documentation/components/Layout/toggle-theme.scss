@@ -1,12 +1,22 @@
 @import '@react-md/theme/dist/color-palette';
 @import '@react-md/transition/dist/mixins';
+@import '@react-md/states/dist/mixins';
 
 // need extra precedence since the app bar has inherit colors which we want
 // for all other actions except this one.
-.toggle-theme.toggle-theme {
-  &--on:not(:hover),
-  &--off:hover {
+.rmd-app-bar .toggle-theme {
+  &--on {
     color: $rmd-yellow-500;
+  }
+
+  @include rmd-states-mouse-only {
+    &--on {
+      color: inherit;
+    }
+
+    &--off:hover {
+      color: $rmd-yellow-500;
+    }
   }
 }
 

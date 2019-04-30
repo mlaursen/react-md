@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useEffect } from "react";
+import { AppBarAction } from "@react-md/app-bar";
 import {
   FormatAlignLeftSVGIcon,
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { useToggle } from "@react-md/utils";
-
-import AppBarAction from "components/AppBarAction";
 
 const ToggleRTL: FunctionComponent = () => {
   const { toggled, toggle } = useToggle();
@@ -20,12 +19,7 @@ const ToggleRTL: FunctionComponent = () => {
   }, [toggled]);
 
   return (
-    <AppBarAction
-      id="toggle-rtl"
-      tooltip="Toggle left-to-right/right-to-left"
-      onClick={toggle}
-      last
-    >
+    <AppBarAction id="toggle-rtl" onClick={toggle} last>
       {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
     </AppBarAction>
   );

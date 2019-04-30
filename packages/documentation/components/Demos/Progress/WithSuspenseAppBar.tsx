@@ -1,9 +1,9 @@
 import React from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
+import { Button } from "@react-md/button";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
 import { bem } from "@react-md/theme";
 
-import Button from "components/Button";
 import {
   ClosePhone,
   OptionsAction,
