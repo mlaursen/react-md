@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/button.variables",
+    "tsBuildInfoFile": "../../.tscache/button.var",
     "declaration": true,
     "target": "es5"
   },

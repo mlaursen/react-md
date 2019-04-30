@@ -3,11 +3,13 @@ import { defaults, pick } from "lodash";
 import runClean from "./clean";
 import scripts, { buildUMD } from "./scripts";
 import styles, { createScssVariables, generateThemeStyles } from "./styles";
-import { log, printMinifiedSizes, time } from "./utils";
+import { log, printMinifiedSizes, time, createTsConfigFiles } from "./utils";
 
 export interface BuildConfig {
   umd: boolean;
   clean: boolean;
+  update: boolean;
+  updateOnly: boolean;
   umdOnly: boolean;
   stylesOnly: boolean;
   themesOnly: boolean;
@@ -18,6 +20,8 @@ export interface BuildConfig {
 const DEFAULT_CONFIG: BuildConfig = {
   umd: false,
   clean: false,
+  update: false,
+  updateOnly: false,
   umdOnly: false,
   stylesOnly: false,
   themesOnly: false,
@@ -32,6 +36,8 @@ export default async function build(
     pick(config, [
       "umd",
       "clean",
+      "update",
+      "updateOnly",
       "umdOnly",
       "stylesOnly",
       "themesOnly",
@@ -47,6 +53,8 @@ async function runBuild({
   umd,
   clean,
   umdOnly,
+  update,
+  updateOnly,
   stylesOnly,
   themesOnly,
   scriptsOnly,
@@ -57,13 +65,21 @@ async function runBuild({
   }
 
   if (themesOnly) {
-    await time(generateThemeStyles, "generateThemeStyles");
+    await time(generateThemeStyles, "generate theme styles");
     return;
   }
 
   if (variablesOnly) {
-    await time(createScssVariables, "createScssVariables");
+    await time(createScssVariables, "create scss variables");
     return;
+  }
+
+  if (update || updateOnly) {
+    await time(createTsConfigFiles, "create tsconfig files");
+
+    if (updateOnly) {
+      return;
+    }
   }
 
   if ((!umdOnly && !scriptsOnly) || stylesOnly) {

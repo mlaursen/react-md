@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/button.module",
+    "tsBuildInfoFile": "../../.tscache/button.esm",
     "declaration": true,
     "declarationDir": "types"
   },

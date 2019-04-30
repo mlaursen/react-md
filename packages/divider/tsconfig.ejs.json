@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/divider.module",
+    "tsBuildInfoFile": "../../.tscache/divider.esm",
     "declaration": true,
     "declarationDir": "types"
   },

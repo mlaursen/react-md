@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/tooltip.commonjs",
+    "tsBuildInfoFile": "../../.tscache/tooltip.cjs",
     "target": "es5"
   },
   "include": [

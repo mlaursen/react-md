@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/link.variables",
+    "tsBuildInfoFile": "../../.tscache/link.var",
     "declaration": true,
     "target": "es5"
   },

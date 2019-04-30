@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/app-bar.module",
+    "tsBuildInfoFile": "../../.tscache/app-bar.esm",
     "declaration": true,
     "declarationDir": "types"
   },

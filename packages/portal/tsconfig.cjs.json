@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/portal.commonjs",
+    "tsBuildInfoFile": "../../.tscache/portal.cjs",
     "target": "es5"
   },
   "include": [

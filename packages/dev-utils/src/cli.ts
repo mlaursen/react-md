@@ -45,6 +45,8 @@ commander
     "Always logs the gzip size instead of requiring the verbose flag to be enabled."
   )
   .option("--themes-only", "Only build the react-md theme files.")
+  .option("--update", "Update all the shared files.")
+  .option("--update-only", "Update all the shared files only.")
   .option("--verbose")
   .action((_, program: BuildConfig) => {
     build(program);

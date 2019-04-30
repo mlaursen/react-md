@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/dialog.commonjs",
+    "tsBuildInfoFile": "../../.tscache/dialog.cjs",
     "target": "es5"
   },
   "include": [

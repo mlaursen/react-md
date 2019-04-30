@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/tooltip.module",
+    "tsBuildInfoFile": "../../.tscache/tooltip.esm",
     "declaration": true,
     "declarationDir": "types"
   },

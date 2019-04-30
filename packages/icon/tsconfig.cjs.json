@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/icon.commonjs",
+    "tsBuildInfoFile": "../../.tscache/icon.cjs",
     "target": "es5"
   },
   "include": [

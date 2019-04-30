@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/sizing.module",
+    "tsBuildInfoFile": "../../.tscache/sizing.esm",
     "declaration": true,
     "declarationDir": "types"
   },

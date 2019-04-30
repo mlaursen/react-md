@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/avatar.variables",
+    "tsBuildInfoFile": "../../.tscache/avatar.var",
     "declaration": true,
     "target": "es5"
   },

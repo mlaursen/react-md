@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/states.variables",
+    "tsBuildInfoFile": "../../.tscache/states.var",
     "declaration": true,
     "target": "es5"
   },

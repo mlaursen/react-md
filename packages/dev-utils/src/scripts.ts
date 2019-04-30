@@ -1,27 +1,25 @@
 import fs from "fs-extra";
-import path from "path";
 import { camelCase, upperFirst } from "lodash";
-
+import path from "path";
 import {
-  src,
   es,
   lib,
-  types,
   rollupConfig,
-  tsConfigRollup,
+  src,
+  tempRollupIndex,
   tsConfigCommonJS,
   tsConfigESModule,
-  tempRollupIndex,
-  rootNodeModules,
-  umdDist,
+  tsConfigRollup,
   tsConfigVariables,
+  types,
+  umdDist,
 } from "./paths";
 import {
-  glob,
-  createTsConfig,
-  getPackageName,
-  exec,
   copyFiles,
+  createTsConfig,
+  exec,
+  getPackageName,
+  glob,
   list,
   log,
 } from "./utils";
@@ -35,13 +33,8 @@ export default async function scripts(umd: boolean) {
     return;
   }
 
-  const packageName = await getPackageName();
-  await fs.writeJson("tsconfig.json", createTsConfig("", packageName), {
-    spaces: 2,
-  });
-
   if (tsFiles.find(name => name.includes("scssVariables"))) {
-    await tscVariables();
+    tscVariables();
   }
 
   if (tsFiles.length === 1 && tsFiles[0].includes("scssVariables")) {
@@ -57,35 +50,21 @@ export default async function scripts(umd: boolean) {
   log(list(tsFiles));
   log();
 
-  await tsc(false, packageName);
-  await tsc(true, packageName);
+  await tsc(false);
+  await tsc(true);
   await definitions();
   if (umd) {
     await buildUMD();
   }
 }
 
-async function tscVariables() {
-  const packageName = await getPackageName();
-  const tsConfig = tsConfigVariables;
-  await fs.writeJson(tsConfig, createTsConfig("variables", packageName), {
-    spaces: 2,
-  });
-
+function tscVariables() {
   log("Compiling scssVariables...");
-  exec(`npx tsc -p ${tsConfig}`);
+  exec(`npx tsc -p ${tsConfigVariables}`);
 }
 
-async function tsc(commonjs: boolean, packageName: string) {
-  // I am lazy for updating and maintaining each package, so just overwrite the
-  // tsconfig with the "real" config each time
+async function tsc(commonjs: boolean) {
   const tsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
-  await fs.writeJson(
-    tsConfig,
-    createTsConfig(commonjs ? "commonjs" : "module", packageName),
-    { spaces: 2 }
-  );
-
   log(
     `Compiling typescript files for ${commonjs ? "Common JS" : "ES Modules"}...`
   );

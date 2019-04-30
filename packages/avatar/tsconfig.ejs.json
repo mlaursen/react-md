@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/avatar.module",
+    "tsBuildInfoFile": "../../.tscache/avatar.esm",
     "declaration": true,
     "declarationDir": "types"
   },

@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/overlay.commonjs",
+    "tsBuildInfoFile": "../../.tscache/overlay.cjs",
     "target": "es5"
   },
   "include": [

@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/states.module",
+    "tsBuildInfoFile": "../../.tscache/states.esm",
     "declaration": true,
     "declarationDir": "types"
   },

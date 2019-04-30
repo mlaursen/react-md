@@ -9,7 +9,18 @@ import gzipSize from "gzip-size";
 import filesize from "filesize";
 import prettier from "prettier";
 
-import { packageJson, types, dist, src, es, lib, packagesRoot } from "./paths";
+import {
+  packageJson,
+  types,
+  dist,
+  src,
+  es,
+  lib,
+  packagesRoot,
+  tsConfigESModule,
+  tsConfigCommonJS,
+  tsConfigVariables,
+} from "./paths";
 
 const readDir = promisify(fs.readdir);
 const prettierConfig = prettier.resolveConfig.sync(
@@ -177,13 +188,17 @@ export function createTsConfig(
   const isESModule = tsConfigType === "module";
   const isVariables = tsConfigType === "variables";
 
+  let cacheExtension = "";
   let outDir: undefined | string;
-  if (isESModule) {
+  if (isESModule || isBase) {
     outDir = `./${es}`;
+    cacheExtension = ".esm";
   } else if (isCommonJS) {
     outDir = `./${lib}`;
+    cacheExtension = ".cjs";
   } else if (isVariables) {
     outDir = `./${dist}`;
+    cacheExtension = ".var";
   }
 
   let extendsPrefix = ".base";
@@ -202,7 +217,7 @@ export function createTsConfig(
       incremental: (!isBase && !isVariables) || undefined,
       tsBuildInfoFile: isBase
         ? undefined
-        : `../../.tscache/${packageName}.${tsConfigType}`,
+        : `../../.tscache/${packageName}${cacheExtension}`,
       declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
       target: isBase || isESModule ? undefined : "es5",
@@ -212,6 +227,66 @@ export function createTsConfig(
       !isBase && "**/__tests__/*",
       !isVariables && !isBase && "**/scssVariables.ts",
     ].filter(Boolean),
+  };
+}
+
+export async function createTsConfigFiles() {
+  const { found, variables, variablesOnly } = await checkForTypescriptFiles();
+  if (!found) {
+    return;
+  }
+
+  const packageName = await getPackageName();
+  if (!variablesOnly) {
+    log("Creating the base `tsconfig.json` file...");
+    await fs.writeJson("tsconfig.json", createTsConfig("", packageName), {
+      spaces: 2,
+    });
+
+    log("Creating the `tsconfig.ejs.json` file...");
+    await fs.writeJson(
+      tsConfigESModule,
+      createTsConfig("module", packageName),
+      {
+        spaces: 2,
+      }
+    );
+
+    log("Creating the `tsconfig.cjs.json` file...");
+    await fs.writeJson(
+      tsConfigCommonJS,
+      createTsConfig("commonjs", packageName),
+      {
+        spaces: 2,
+      }
+    );
+  }
+
+  if (variables) {
+    log("Creating the `tsconfig.variables.json` file...");
+    await fs.writeJson(
+      tsConfigVariables,
+      createTsConfig("variables", packageName),
+      {
+        spaces: 2,
+      }
+    );
+  }
+}
+
+export async function checkForTypescriptFiles() {
+  const allTsFiles = await glob(`${src}/**/*.+(ts|tsx)`);
+  const filtered = allTsFiles.filter(
+    filePath => !filePath.includes("__tests__")
+  );
+  const variables = filtered.some(filePath =>
+    filePath.includes("scssVariables")
+  );
+
+  return {
+    found: filtered.length > 0,
+    variables,
+    variablesOnly: filtered.length === 1 && variables,
   };
 }
 

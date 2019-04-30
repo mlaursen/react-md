@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/transition.variables",
+    "tsBuildInfoFile": "../../.tscache/transition.var",
     "declaration": true,
     "target": "es5"
   },

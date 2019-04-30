@@ -4,7 +4,7 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/wia-aria.module",
+    "tsBuildInfoFile": "../../.tscache/wia-aria.esm",
     "declaration": true,
     "declarationDir": "types"
   },

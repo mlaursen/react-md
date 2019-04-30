@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/app-bar.variables",
+    "tsBuildInfoFile": "../../.tscache/app-bar.var",
     "declaration": true,
     "target": "es5"
   },

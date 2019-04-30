@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../.tscache/overlay.variables",
+    "tsBuildInfoFile": "../../.tscache/overlay.var",
     "declaration": true,
     "target": "es5"
   },
