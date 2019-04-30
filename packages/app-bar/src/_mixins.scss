@@ -86,12 +86,10 @@
 /// - `--primary`
 /// - `--secondary`
 /// - `--default`
-/// - `--child-inherit`
 ///
 /// The primary and secondary suffixes will use the theme variables for generating the correct theme background color and
 /// text color on top of the theme color. The default suffix is used to create a third theme type with any colors that are
-/// provided. Finally, the `--child-inherit` suffix will allow child `AppBarNav`, `AppBarTitle`, and `AppBarAction` components
-/// to inherit text color instead of using the default color.
+/// provided.
 ///
 /// @example scss - Simple Example
 ///   $rmd-theme-primary: $rmd-blue-500;
@@ -134,14 +132,6 @@
     );
     @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(default-color));
   }
-
-  &--child-inherit {
-    .rmd-app-bar__nav,
-    .rmd-app-bar__title,
-    .rmd-app-bar__action {
-      color: inherit;
-    }
-  }
 }
 
 /// Creates the styles for the `AppBarNav` component. The base classes for buttons next to be applied
@@ -168,6 +158,10 @@
     )
   );
   flex-shrink: 0;
+
+  &--inherit {
+    color: inherit;
+  }
 }
 
 /// Creates the styles for the `AppBarTitle` component.
@@ -189,6 +183,10 @@
 
   &--keyline {
     @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline, auto);
+  }
+
+  &--inherit {
+    color: inherit;
   }
 }
 
@@ -218,6 +216,10 @@
 
   &--first {
     @include rmd-app-bar-action-position(true);
+  }
+
+  &--inherit {
+    color: inherit;
   }
 }
 

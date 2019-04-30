@@ -30,5 +30,13 @@ describe("AppBarTitle", () => {
     expect(title.className).toBe(
       "rmd-app-bar__title rmd-app-bar__title--keyline custom-class names"
     );
+
+    rerender(
+      <AppBarTitle keyline inheritColor className="custom-class names" />
+    );
+    title = container.querySelector("h6") as HTMLHeadingElement;
+    expect(title.className).toBe(
+      "rmd-app-bar__title rmd-app-bar__title--keyline rmd-app-bar__title--inherit custom-class names"
+    );
   });
 });

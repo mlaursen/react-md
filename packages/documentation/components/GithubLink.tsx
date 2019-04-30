@@ -8,18 +8,23 @@ import GithubSVGIcon from "icons/GithubSVGIcon";
 import LinkButton, { LinkButtonProps } from "./LinkButton";
 
 import "./github-link.scss";
+import { bem } from "@react-md/theme";
 export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
   href?: string;
   suffix?: string;
+  inherit?: boolean;
 }
 
 type WithDefaultProps = GithubLinkProps & { href: string };
+
+const block = bem("github-link");
 
 const GithubLink: FunctionComponent<GithubLinkProps> = providedProps => {
   const {
     className,
     href,
     suffix,
+    inherit,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -27,7 +32,7 @@ const GithubLink: FunctionComponent<GithubLinkProps> = providedProps => {
     <LinkButton
       {...props}
       href={`${href}${suffix}`}
-      className={cn("github-link", className)}
+      className={cn(block({ inherit }), className)}
     >
       <GithubSVGIcon />
     </LinkButton>
@@ -39,7 +44,7 @@ GithubLink.defaultProps = {
   target: "_blank",
   theme: "clear",
   buttonType: "icon",
-  tooltip: "Open in GitHub",
+  inherit: false,
 };
 
 export default GithubLink;

@@ -7,6 +7,7 @@ import React, {
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
+import { InheritContext } from "./useInheritContext";
 
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
@@ -114,25 +115,26 @@ const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
       : theme !== "clear" && theme !== "default";
 
   return (
-    <Component
-      {...props}
-      className={cn(
-        block({
-          "child-inherit": inherit,
-          [theme]: theme !== "clear",
-          dense: dense && !prominent,
-          prominent,
-          "prominent-dense": dense && prominent,
-          fixed,
-          [fixedPosition]: fixed,
-          "fixed-elevation": fixed && fixedElevation,
-        }),
-        className
-      )}
-      ref={forwardedRef}
-    >
-      {children}
-    </Component>
+    <InheritContext.Provider value={inherit}>
+      <Component
+        {...props}
+        className={cn(
+          block({
+            [theme]: theme !== "clear",
+            dense: dense && !prominent,
+            prominent,
+            "prominent-dense": dense && prominent,
+            fixed,
+            [fixedPosition]: fixed,
+            "fixed-elevation": fixed && fixedElevation,
+          }),
+          className
+        )}
+        ref={forwardedRef}
+      >
+        {children}
+      </Component>
+    </InheritContext.Provider>
   );
 };
 

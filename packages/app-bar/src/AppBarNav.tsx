@@ -1,11 +1,16 @@
 import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface AppBarNavProps extends ButtonProps {}
+import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+
+export interface AppBarNavProps extends ButtonProps, AppBarColorInherit {}
 
 type WithRef = WithForwardedRef<HTMLButtonElement>;
+
+const block = bem("rmd-app-bar");
 
 /**
  * This component is really just a simple wrapper for the `Button` component that adds some
@@ -21,12 +26,18 @@ const AppBarNav: FunctionComponent<AppBarNavProps & WithRef> = ({
   className,
   forwardedRef,
   children,
+  inheritColor,
   ...props
 }) => (
   <Button
     {...props}
     ref={forwardedRef}
-    className={cn("rmd-app-bar__nav", className)}
+    className={cn(
+      block("nav", {
+        inherit: useInheritContext(inheritColor),
+      }),
+      className
+    )}
   >
     {children}
   </Button>

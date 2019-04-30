@@ -3,7 +3,11 @@ import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface AppBarTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+
+export interface AppBarTitleProps
+  extends HTMLAttributes<HTMLHeadingElement>,
+    AppBarColorInherit {
   /**
    * Boolean if the title should be placed at the `$rmd-app-bar-title-keyline`.
    */
@@ -29,13 +33,20 @@ const AppBarTitle: FunctionComponent<
     className,
     forwardedRef,
     children,
+    inheritColor,
     ...props
   } = providedProps as WithDefaultProps;
 
   return (
     <h6
       {...props}
-      className={cn(block("title", { keyline }), className)}
+      className={cn(
+        block("title", {
+          keyline,
+          inherit: useInheritContext(inheritColor),
+        }),
+        className
+      )}
       ref={forwardedRef}
     >
       {children}

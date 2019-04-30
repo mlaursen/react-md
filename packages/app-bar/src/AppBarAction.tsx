@@ -3,8 +3,9 @@ import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
+import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
 
-export interface AppBarActionProps extends ButtonProps {
+export interface AppBarActionProps extends ButtonProps, AppBarColorInherit {
   /**
    * Boolean if this is the first action within the app bar. This is really just used to
    * automatically right-align all the actions by applying `margin-left: auto` to this action.
@@ -43,6 +44,7 @@ const AppBarAction: FunctionComponent<
     last,
     children,
     forwardedRef,
+    inheritColor,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -50,7 +52,14 @@ const AppBarAction: FunctionComponent<
     <Button
       {...props}
       ref={forwardedRef}
-      className={cn(block("action", { first, last }), className)}
+      className={cn(
+        block("action", {
+          first,
+          last,
+          inherit: useInheritContext(inheritColor),
+        }),
+        className
+      )}
     >
       {children}
     </Button>

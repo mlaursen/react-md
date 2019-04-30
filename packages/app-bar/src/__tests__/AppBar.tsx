@@ -29,30 +29,6 @@ describe("AppBar", () => {
     expect(appBar.classList.contains("rmd-app-bar--primary")).toBe(true);
   });
 
-  it("should apply the child-inherit class name when the theme is not clear or default when undefined", () => {
-    const { container, rerender } = render(<AppBar />);
-    const getClassList = () =>
-      (container.querySelector("header") as HTMLDivElement).classList;
-    let classList = getClassList();
-    expect(classList.contains("rmd-app-bar--child-inherit")).toBe(true);
-
-    rerender(<AppBar theme="primary" />);
-    classList = getClassList();
-    expect(classList.contains("rmd-app-bar--child-inherit")).toBe(true);
-
-    rerender(<AppBar theme="secondary" />);
-    classList = getClassList();
-    expect(classList.contains("rmd-app-bar--child-inherit")).toBe(true);
-
-    rerender(<AppBar theme="clear" />);
-    classList = getClassList();
-    expect(classList.contains("rmd-app-bar--child-inherit")).toBe(false);
-
-    rerender(<AppBar theme="default" />);
-    classList = getClassList();
-    expect(classList.contains("rmd-app-bar--child-inherit")).toBe(false);
-  });
-
   it("should apply the correct theme class name", () => {
     const { container, rerender } = render(<AppBar />);
     const getAppBar = () => container.querySelector("header") as HTMLDivElement;

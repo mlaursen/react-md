@@ -26,7 +26,7 @@ const Header: FunctionComponent<Props> = ({ title, toggle, isDesktop }) => (
     )}
     <AppBarTitle keyline={isDesktop}>{title}</AppBarTitle>
     <ToggleTheme />
-    <GithubLink id="main-github-link" />
+    <GithubLink id="main-github-link" inherit />
     <ToggleRTL />
   </AppBar>
 );

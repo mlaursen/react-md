@@ -1,3 +1,4 @@
+import './app.css';
 import React from 'react';
 import NextApp, { Container } from 'next/app';
 import Head from 'next/head';
@@ -8,8 +9,6 @@ import { parse } from 'url';
 import Layout from 'components/Layout';
 import smoothScroll from 'utils/smoothScroll';
 import { toBreadcrumbPageTitle } from 'utils/toTitle';
-
-import './app.css';
 
 export default class App extends NextApp {
   static async getInitialProps({ Component, /* router, */ ctx }) {
