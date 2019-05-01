@@ -17,7 +17,7 @@ install:
   - yarn install --force
 
 script:
-  - yarn typecheck
   - yarn build
+  - yarn typecheck
   - yarn lint
   - yarn test --runInBand
