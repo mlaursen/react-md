@@ -7,7 +7,12 @@ import React, {
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
-import { InheritContext } from "./useInheritContext";
+import {
+  useInheritContext,
+  useParentContext,
+  InheritContext,
+  ParentContext,
+} from "./useInheritContext";
 
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
@@ -109,32 +114,41 @@ const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  const inherit =
-    typeof inheritColor === "boolean"
-      ? inheritColor
-      : theme !== "clear" && theme !== "default";
+  const parentContext = useParentContext();
+  const inheritContext = useInheritContext(undefined);
+
+  let inherit: boolean;
+  if (typeof inheritColor === "boolean") {
+    inherit = inheritColor;
+  } else if (parentContext) {
+    inherit = inheritContext;
+  } else {
+    inherit = theme !== "clear" && theme !== "default";
+  }
 
   return (
-    <InheritContext.Provider value={inherit}>
-      <Component
-        {...props}
-        className={cn(
-          block({
-            [theme]: theme !== "clear",
-            dense: dense && !prominent,
-            prominent,
-            "prominent-dense": dense && prominent,
-            fixed,
-            [fixedPosition]: fixed,
-            "fixed-elevation": fixed && fixedElevation,
-          }),
-          className
-        )}
-        ref={forwardedRef}
-      >
-        {children}
-      </Component>
-    </InheritContext.Provider>
+    <ParentContext.Provider value={true}>
+      <InheritContext.Provider value={inherit}>
+        <Component
+          {...props}
+          className={cn(
+            block({
+              [theme]: theme !== "clear",
+              dense: dense && !prominent,
+              prominent,
+              "prominent-dense": dense && prominent,
+              fixed,
+              [fixedPosition]: fixed,
+              "fixed-elevation": fixed && fixedElevation,
+            }),
+            className
+          )}
+          ref={forwardedRef}
+        >
+          {children}
+        </Component>
+      </InheritContext.Provider>
+    </ParentContext.Provider>
   );
 };
 

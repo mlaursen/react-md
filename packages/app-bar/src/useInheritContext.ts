@@ -1,5 +1,9 @@
 import { createContext, useContext } from "react";
 
+/**
+ * Boolean if the child components should inherit the color of the app bar.
+ * @private
+ */
 export const InheritContext = createContext(false);
 
 export interface AppBarColorInherit {
@@ -18,8 +22,26 @@ export interface AppBarColorInherit {
  *
  * @param inheritColor The prop inheritColor for the component
  * @return true if the color should be inherited.
+ * @private
  */
 export function useInheritContext(inheritColor: boolean | undefined) {
   const inheritContext = useContext(InheritContext);
   return typeof inheritColor === "boolean" ? inheritColor : inheritContext;
+}
+
+/**
+ * Boolean if there is a parent app bar. The theme colors will be inherited from the parent
+ * app bar instead of the current app bar for these cases since nested app bars usually happen
+ * with prominent toolbars and the root app bar defines the theme.
+ *
+ * @private
+ */
+export const ParentContext = createContext(false);
+
+/**
+ *
+ * @private
+ */
+export function useParentContext() {
+  return useContext(ParentContext);
 }

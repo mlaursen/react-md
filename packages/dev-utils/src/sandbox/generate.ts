@@ -149,7 +149,7 @@ function createDemoStyles(dependencies: string[]) {
     .map(name => `@import '${name}/dist/mixins';`)
     .join("\n");
 
-  return `${imports};
+  return `${imports}
 
 @include react-md-utils;
 `;
