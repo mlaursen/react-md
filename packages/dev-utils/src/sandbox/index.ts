@@ -7,15 +7,19 @@ import { glob, isVerbose, list, log, time, toTitle } from "../utils";
 import { DEMOS_FOLDER } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
-import generate, { createSandboxesLookup } from "./generate";
+import generate, {
+  createSandboxesLookup,
+  getSandboxFileName,
+} from "./generate";
 
 export interface ResolveConfig {
   components: string[];
   lookupsOnly: boolean;
+  empty: boolean;
 }
 
-async function createSandboxJsonFiles(components: string[]) {
-  if (!isVerbose() && !components.length) {
+async function createSandboxJsonFiles(components: string[], empty: boolean) {
+  if (!isVerbose() && !components.length && !empty) {
     log(
       `Starting to traverse all the demo files to resolve their imports so
 that a code sandbox and inline-code blocks can be shown.
@@ -29,22 +33,6 @@ behind the scenes so there is _some_ sense of progress...
       true
     );
   }
-
-  const tsconfig = await fs.readJson(
-    path.join(documentationRoot, "tsconfig.json")
-  );
-
-  // this isn't entirely correct, but not sure how to really do this.
-  const compilerOptions = tsconfig.compilerOptions as CompilerOptions;
-  delete compilerOptions.moduleResolution;
-
-  log("Using the following compiler options:");
-  log(JSON.stringify(compilerOptions, null, 2));
-  log();
-
-  const aliases = Object.keys(compilerOptions.paths).map(name =>
-    name.replace("/*", "")
-  );
 
   const matcher = components.length
     ? `+(${components.map(name => toTitle(name)).join("|")})`
@@ -67,10 +55,23 @@ behind the scenes so there is _some_ sense of progress...
   log(list(demoIndexes));
   log();
 
+  const tsconfig = await fs.readJson(
+    path.join(documentationRoot, "tsconfig.json")
+  );
+
+  // this isn't entirely correct, but not sure how to really do this.
+  const compilerOptions = tsconfig.compilerOptions as CompilerOptions;
+  delete compilerOptions.moduleResolution;
+
+  log("Using the following compiler options:");
+  log(JSON.stringify(compilerOptions, null, 2));
+  log();
+
+  const aliases = Object.keys(compilerOptions.paths).map(name =>
+    name.replace("/*", "")
+  );
   const demos = (await Promise.all(
-    demoIndexes.map(demoIndexPath =>
-      extractDemoFiles(demoIndexPath, aliases, compilerOptions)
-    )
+    demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath, aliases))
   )).reduce((list, sublist) => [...list, ...sublist], []);
 
   demos.sort();
@@ -79,8 +80,22 @@ behind the scenes so there is _some_ sense of progress...
   log(list(demos));
   log();
 
+  if (empty) {
+    const paths = demos.map(getSandboxFileName);
+    const missing = paths.filter(p => !fs.existsSync(p));
+    if (missing.length) {
+      log("Creating empty sandbox files:", true);
+      log(list(missing), true);
+      log("", true);
+
+      await Promise.all(paths.map(p => fs.writeJson(p, {})));
+    }
+
+    return;
+  }
+
   log("Starting to extract all the imports for each demo...");
-  const demoObjects = await Promise.all(
+  await Promise.all(
     demos.map(demoPath => {
       const [demoName, packageName] = demoPath.split("/").reverse();
       const debugName = `${packageName}/${demoName}`;
@@ -123,9 +138,12 @@ behind the scenes so there is _some_ sense of progress...
  * This will take a long time...
  */
 export default async function sandbox(config: ResolveConfig) {
-  const { components, lookupsOnly } = config;
+  const { components, lookupsOnly, empty } = config;
   if (!lookupsOnly) {
-    await time(() => createSandboxJsonFiles(components), "creating sandboxes");
+    await time(
+      () => createSandboxJsonFiles(components, empty),
+      "creating sandboxes"
+    );
   }
 
   time(createSandboxesLookup, "sandbox lookups");

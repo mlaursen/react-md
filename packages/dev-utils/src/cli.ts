@@ -79,10 +79,18 @@ commander
     "--lookups-only",
     "This will only the command to update the sandboxes.ts file in the demos folder."
   )
+  .option(
+    // want this option so that the Json files don't need to be stored in git and the app can
+    // run immediately for new users
+    "--empty",
+    "Creates an empty version of all the sandboxes that do not exist yet."
+  )
   .option("--verbose")
-  .action((components: string[], { lookupsOnly = false }: any) => {
-    sandbox({ lookupsOnly, components });
-  });
+  .action(
+    (components: string[], { lookupsOnly = false, empty = false }: any) => {
+      sandbox({ lookupsOnly, components, empty });
+    }
+  );
 
 commander
   .command("sassdoc")

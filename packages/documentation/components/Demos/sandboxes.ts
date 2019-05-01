@@ -38,8 +38,6 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Button/TextButtonsWithIconsSandbox.json")),
   "Dialog/AlertDialogsAndModals": () =>
     resolve(import("./Dialog/AlertDialogsAndModalsSandbox.json")),
-  "Dialog/AlertDialogs": () =>
-    resolve(import("./Dialog/AlertDialogsSandbox.json")),
   "Dialog/FullPageExample": () =>
     resolve(import("./Dialog/FullPageExampleSandbox.json")),
   "Dialog/NestedDialogs": () =>

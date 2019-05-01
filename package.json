@@ -13,7 +13,7 @@
     "dev-utils": "lerna run build --scope @react-md/dev-utils",
     "clean-build": "npm-run-all clean dev-utils build-dist",
     "build-dist": "lerna run build --ignore @react-md/dev-utils --ignore documentation",
-    "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md",
+    "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --",
     "typecheck": "npm-run-all typecheck:packages typecheck:documentation",
     "typecheck:packages": "tsc --noEmit -p tsconfig.check.json",
     "typecheck:documentation": "tsc --noEmit -p packages/documentation/tsconfig.json",

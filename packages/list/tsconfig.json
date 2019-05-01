@@ -1,11 +1,18 @@
 {
-  "extends": "../../tsconfig.check.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "outDir": "./es",
     "rootDir": "src",
-    "noEmit": true
+    "incremental": true,
+    "tsBuildInfoFile": "../../.tscache/list.ejs",
+    "declaration": true,
+    "declarationDir": "types"
   },
   "include": [
     "src"
   ],
-  "exclude": []
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
+  ]
 }

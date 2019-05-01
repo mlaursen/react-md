@@ -155,6 +155,10 @@ function createDemoStyles(dependencies: string[]) {
 `;
 }
 
+export function getSandboxFileName(demoPath: string) {
+  return demoPath.replace(".tsx", "Sandbox.json");
+}
+
 export default async function generate({
   demoPath,
   demoName,
@@ -163,7 +167,7 @@ export default async function generate({
   aliases,
   aliased,
 }: GenerateSandboxConfig) {
-  const sandboxPath = demoPath.replace(".tsx", "Sandbox.json");
+  const sandboxPath = getSandboxFileName(demoPath);
   log("Creaing sandbox at:");
   log(list([sandboxPath]));
 

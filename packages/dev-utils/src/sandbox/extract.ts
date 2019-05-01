@@ -189,8 +189,7 @@ export function resolveModuleNames(
  */
 export async function extractDemoFiles(
   demoIndexPath: string,
-  aliases: string[],
-  compilerOptions: CompilerOptions
+  aliases: string[]
 ) {
   // package name is always the folder right before the index.tsx
   const name = demoIndexPath.split(path.sep).reverse()[1];

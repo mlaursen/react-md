@@ -171,7 +171,7 @@ export async function geScopedPackageNames({
     .map(name => (prefixed ? `@react-md/${name}` : name));
 }
 
-export type TsConfigType = "commonjs" | "module" | "variables" | "";
+export type TsConfigType = "commonjs" | "module" | "variables" | "check";
 
 /**
  * I dislike maintaining multiple config files, so each time I try to build
@@ -183,16 +183,16 @@ export function createTsConfig(
   tsConfigType: TsConfigType,
   packageName: string
 ) {
-  const isBase = tsConfigType === "";
+  const isCheck = tsConfigType === "check";
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isVariables = tsConfigType === "variables";
 
   let cacheExtension = "";
   let outDir: undefined | string;
-  if (isESModule || isBase) {
+  if (isESModule) {
     outDir = `./${es}`;
-    cacheExtension = ".esm";
+    cacheExtension = ".ejs";
   } else if (isCommonJS) {
     outDir = `./${lib}`;
     cacheExtension = ".cjs";
@@ -204,29 +204,31 @@ export function createTsConfig(
   let extendsPrefix = ".base";
   if (isVariables || isCommonJS) {
     extendsPrefix = ".cjs";
-  } else if (isBase) {
+  } else if (isCheck) {
     extendsPrefix = ".check";
   }
+
+  const exclude = [
+    !isCheck && "**/__tests__/*",
+    !isVariables && !isCheck && "**/scssVariables.ts",
+  ].filter(Boolean);
 
   return {
     extends: `../../tsconfig${extendsPrefix}.json`,
     compilerOptions: {
-      outDir: isBase ? undefined : outDir,
+      outDir: isCheck ? undefined : outDir,
       rootDir: src,
-      noEmit: isBase || undefined,
-      incremental: (!isBase && !isVariables) || undefined,
-      tsBuildInfoFile: isBase
+      noEmit: isCheck || undefined,
+      incremental: (!isCheck && !isVariables) || undefined,
+      tsBuildInfoFile: isCheck
         ? undefined
         : `../../.tscache/${packageName}${cacheExtension}`,
       declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
-      target: isBase || isESModule ? undefined : "es5",
+      target: isCheck || isESModule ? undefined : "es5",
     },
     include: [isVariables ? path.join(src, "scssVariables.ts") : src],
-    exclude: [
-      !isBase && "**/__tests__/*",
-      !isVariables && !isBase && "**/scssVariables.ts",
-    ].filter(Boolean),
+    exclude: exclude.length ? exclude : undefined,
   };
 }
 
@@ -237,28 +239,20 @@ export async function createTsConfigFiles() {
   }
 
   const packageName = await getPackageName();
+  const config = { spaces: 2 };
   if (!variablesOnly) {
-    log("Creating the base `tsconfig.json` file...");
-    await fs.writeJson("tsconfig.json", createTsConfig("", packageName), {
-      spaces: 2,
-    });
-
-    log("Creating the `tsconfig.ejs.json` file...");
+    log("Creating `tsconfig.json`...");
     await fs.writeJson(
       tsConfigESModule,
       createTsConfig("module", packageName),
-      {
-        spaces: 2,
-      }
+      config
     );
 
-    log("Creating the `tsconfig.cjs.json` file...");
+    log("Creating `tsconfig.cjs.json`...");
     await fs.writeJson(
       tsConfigCommonJS,
       createTsConfig("commonjs", packageName),
-      {
-        spaces: 2,
-      }
+      config
     );
   }
 
@@ -267,9 +261,7 @@ export async function createTsConfigFiles() {
     await fs.writeJson(
       tsConfigVariables,
       createTsConfig("variables", packageName),
-      {
-        spaces: 2,
-      }
+      config
     );
   }
 }
