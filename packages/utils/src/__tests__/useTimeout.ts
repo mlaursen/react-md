@@ -1,5 +1,5 @@
+import { act, renderHook } from "react-hooks-testing-library";
 import { mocked } from "ts-jest/utils";
-import { cleanup, renderHook, act } from "react-hooks-testing-library";
 
 import useTimeout from "../useTimeout";
 
@@ -9,9 +9,8 @@ const setTimeout = mocked(window.setTimeout);
 const clearTimeout = mocked(window.clearTimeout);
 
 afterEach(() => {
-  jest.clearAllTimers();
   jest.clearAllMocks();
-  cleanup();
+  jest.clearAllTimers();
 });
 
 describe("useTimeout", () => {
@@ -29,16 +28,15 @@ describe("useTimeout", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
 
-    // each useEffect calls one setTimeout
-    expect(setTimeout).toBeCalledTimes(1);
     expect(cb).not.toBeCalled();
+    expect(setTimeout).not.toBeCalled();
     expect(clearTimeout).not.toBeCalled();
 
     act(() => {
       result.current.start();
     });
 
-    expect(setTimeout).toBeCalledTimes(3);
+    expect(setTimeout).toBeCalledTimes(1);
     expect(setTimeout).toBeCalledWith(expect.any(Function), 300);
     expect(clearTimeout).not.toBeCalled();
     expect(cb).not.toBeCalled();
@@ -112,7 +110,7 @@ describe("useTimeout", () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(setTimeout).toBeCalledTimes(4);
+    expect(setTimeout).toBeCalledTimes(1);
   });
 
   it("should be able to start the timer immediately", () => {

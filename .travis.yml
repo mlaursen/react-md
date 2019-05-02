@@ -18,6 +18,7 @@ install:
 
 script:
   - yarn build
+  - yarn workspace documentation sandbox --empty
   - yarn typecheck
   - yarn lint
   - yarn test --runInBand

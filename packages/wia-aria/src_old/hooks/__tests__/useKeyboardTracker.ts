@@ -1,4 +1,5 @@
-import { cleanup, renderHook, act } from "react-hooks-testing-library";
+import { renderHook, act } from "react-hooks-testing-library";
+
 import useKeyboardTrackerState, {
   useKeyboardTrackerEnabler,
   useKeyboardTrackerDisabler,
@@ -41,7 +42,6 @@ beforeEach(() => {
 
 afterEach(() => {
   removeFakeElements();
-  cleanup();
 });
 
 describe("useKeyboardTrackerEnabler", () => {

@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
-import { renderHook, cleanup } from "react-hooks-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+
 import {
   useCollapseState,
   unmountOnExit,
@@ -7,8 +8,6 @@ import {
   getElementSizing,
   createTransitionStyle,
 } from "../useCollapseTransition";
-
-afterEach(cleanup);
 
 describe("useCollapseState", () => {
   it("should retrun the correct defaults when starting collapsed", () => {

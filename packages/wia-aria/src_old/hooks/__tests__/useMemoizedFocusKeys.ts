@@ -1,9 +1,8 @@
-import { cleanup, renderHook } from "react-hooks-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+
 import useMemoizedFocusKeys from "../useMemoizedFocusKeys";
 
 describe("useMemoizedFocusKeys", () => {
-  afterEach(cleanup);
-
   it("should return the correct list of keys", () => {
     let value;
     renderHook(

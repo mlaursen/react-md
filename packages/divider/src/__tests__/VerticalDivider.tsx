@@ -1,6 +1,6 @@
 import React from "react";
-import { cleanup, render, act } from "react-testing-library";
 import { renderHook } from "react-hooks-testing-library";
+import { cleanup, render, act } from "react-testing-library";
 
 import VerticalDivider, { useVerticalDividerHeight } from "../VerticalDivider";
 

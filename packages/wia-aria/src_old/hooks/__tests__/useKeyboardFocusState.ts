@@ -1,4 +1,5 @@
-import { act, cleanup, renderHook } from "react-hooks-testing-library";
+import { act, renderHook } from "react-hooks-testing-library";
+
 import { KeyboardFocusedId } from "../../types.d";
 import useKeyboardFocusState, {
   disableKeyboardMode,
@@ -90,7 +91,6 @@ describe("useKeyboardFocusState", () => {
   });
 
   describe("useKeyboardFocusState", () => {
-    afterEach(cleanup);
     it("should return the correct values", () => {
       let value;
       renderHook(() => {

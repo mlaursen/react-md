@@ -1,6 +1,6 @@
 import React, { MutableRefObject, FunctionComponent } from "react";
-import { render } from "react-testing-library";
-import { cleanup, renderHook } from "react-hooks-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+import { render, cleanup } from "react-testing-library";
 
 import { useInheritContext, InheritContext } from "../useInheritContext";
 

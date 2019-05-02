@@ -1,6 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from "react";
-import { cleanup, fireEvent, render } from "react-testing-library";
 import { act, renderHook } from "react-hooks-testing-library";
+import { cleanup, fireEvent, render } from "react-testing-library";
 
 import useSearchEventHandler, {
   SearchEffectOptions,

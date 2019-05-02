@@ -1,7 +1,7 @@
-import { cleanup, renderHook } from "react-hooks-testing-library";
+import { renderHook } from "react-hooks-testing-library";
 
-import useScrollLock, { disable, enable } from "../useScrollLock";
 import { DATA_RMD_NOSCROLL } from "../constants";
+import useScrollLock, { disable, enable } from "../useScrollLock";
 
 describe("useScrollLock", () => {
   describe("enable", () => {
@@ -70,7 +70,6 @@ describe("useScrollLock", () => {
 
     afterEach(() => {
       disable(document.body);
-      cleanup();
     });
 
     it("should apply the correct styles when enabled", () => {

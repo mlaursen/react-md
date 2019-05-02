@@ -1,7 +1,7 @@
-import { renderHook, cleanup, act } from "react-hooks-testing-library";
+import { act, renderHook } from "react-hooks-testing-library";
+
 import useToggle from "../useToggle";
 
-afterEach(cleanup);
 describe("useToggle", () => {
   it("should default to setting toggled to false", () => {
     const { result } = renderHook(() => useToggle());

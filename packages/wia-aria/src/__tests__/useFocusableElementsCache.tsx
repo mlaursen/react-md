@@ -1,7 +1,7 @@
 import React from "react";
-import { mocked } from "ts-jest/utils";
-import { cleanup, render } from "react-testing-library";
 import { renderHook } from "react-hooks-testing-library";
+import { cleanup, render } from "react-testing-library";
+import { mocked } from "ts-jest/utils";
 
 import getFocusableElements_ from "../getFocusableElements";
 import useFocusableElementsCache from "../useFocusableElementsCache";

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { StaticRouter, Link as ReactRouterLink } from "react-router-dom";
+import React from "react";
 import { Link as ReachLink } from "@reach/router";
-import * as renderer from "react-test-renderer";
+import { Link as ReactRouterLink, StaticRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
 
 import Link from "../Link";
 

@@ -1,7 +1,6 @@
-import { renderHook, cleanup } from "react-hooks-testing-library";
-import usePreviousFocus from "../usePreviousFocus";
+import { renderHook } from "react-hooks-testing-library";
 
-afterEach(cleanup);
+import usePreviousFocus from "../usePreviousFocus";
 
 describe("usePreviousFocus", () => {
   it("should return null when save is set to false", () => {

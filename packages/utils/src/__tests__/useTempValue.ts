@@ -1,5 +1,6 @@
+import { act, renderHook } from "react-hooks-testing-library";
 import { mocked } from "ts-jest/utils";
-import { act, cleanup, renderHook } from "react-hooks-testing-library";
+
 import useTempValue from "../useTempValue";
 
 jest.useFakeTimers();
@@ -11,8 +12,6 @@ describe("useTempValue", () => {
     jest.clearAllTimers();
     jest.clearAllMocks();
   });
-
-  afterEach(cleanup);
 
   it("should return the correct object", () => {
     const { result } = renderHook(() => useTempValue(null));

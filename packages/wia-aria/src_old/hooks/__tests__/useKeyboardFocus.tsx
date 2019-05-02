@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { render, fireEvent } from "react-testing-library";
-import { cleanup, renderHook } from "react-hooks-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+import { render, fireEvent, cleanup } from "react-testing-library";
 
 import { useKeyboardFocusEventHandler } from "../useKeyboardFocus";
 

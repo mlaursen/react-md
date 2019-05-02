@@ -1,4 +1,5 @@
-import { act, cleanup, renderHook } from "react-hooks-testing-library";
+import { act, renderHook } from "react-hooks-testing-library";
+
 import {
   getResizeObserverTarget,
   isSizeChange,
@@ -151,8 +152,6 @@ describe("isSizeChange", () => {
 });
 
 describe("useMeasure", () => {
-  afterEach(cleanup);
-
   it("should trigger the onResize argument after an element changed sizes", () => {
     const onResize = jest.fn();
     const { result } = renderHook(() => useMeasure({ onResize }));

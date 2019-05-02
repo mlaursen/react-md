@@ -1,6 +1,6 @@
 import React from "react";
-import { cleanup, renderHook } from "react-hooks-testing-library";
-import { fireEvent, render } from "react-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+import { cleanup, fireEvent, render } from "react-testing-library";
 
 import {
   CREATE,
