@@ -1,3 +1,19 @@
+## May 2019
+
+### v1.10.2 Released
+
+##### Changelog
+
+- Updated the `handleWindowClickListeners` to work with Sentry. ([@jacksonStone] - [issues-829])
+
+### Deployed v2 Documentation Site
+
+If you want to start seeing the progress for v2 as well as demos and some example usage,
+you can visit the new documentation site at https://react-md.dev.
+
+Unfortunately there is still a bit of work to go, but you can view some more detailed
+information in the main stickied issue [issues-826].
+
 ## April 2019
 
 ### v1.10.1 Released
