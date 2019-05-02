@@ -24,6 +24,9 @@ export default function handleWindowClickListeners(cb, enabled = false) {
     }
   }
 
-  const listener = window[`${enabled ? 'add' : 'remove'}EventListener`];
-  listener('click', cb);
+  if (enabled) {
+    window.addEventListener('click', cb);
+  } else {
+    window.removeEventListener('click', cb);
+  }
 }
