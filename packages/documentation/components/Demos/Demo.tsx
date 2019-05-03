@@ -1,6 +1,7 @@
 import React, { Fragment, FunctionComponent, ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
+import { useAppSizeContext } from "@react-md/sizing";
 import { useToggle } from "@react-md/utils";
 
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
@@ -14,7 +15,6 @@ import "./demo.scss";
 import CodePreview from "./CodePreview";
 import Sandbox from "./Sandbox";
 import getSandboxer from "./sandboxes";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 export interface DemoProps {
   id: string;

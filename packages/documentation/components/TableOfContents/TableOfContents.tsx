@@ -1,15 +1,14 @@
 import React, { Fragment, FunctionComponent, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
+import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import "./table-of-contents.scss";
-
 import List from "./List";
 import Toggle from "./Toggle";
 import usePageHeadings from "./usePageHeadings";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 export interface TableOfContentsProps {
   pathname: string;

@@ -8,7 +8,7 @@ export * from "./MediaOnly";
 export { default as useMediaQuery } from "./useMediaQuery";
 export { default as useOrientation } from "./useOrientation";
 export { default as useWidthMediaQuery } from "./useWidthMediaQuery";
-export { default as useAppSize, AppSize } from "./useAppSize";
+export { default as useAppSize } from "./useAppSize";
 export {
   default as useResizeObserver,
   ResizeObserverChangeEventHandler,
