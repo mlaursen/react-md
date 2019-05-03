@@ -9,7 +9,6 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
-import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
 
@@ -20,6 +19,7 @@ import ConditionalFullPageDialog, {
 import "./phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
+import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 export interface PhoneProps
   extends Pick<

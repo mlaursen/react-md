@@ -5,8 +5,10 @@ import { StatesConfig } from "@react-md/states";
 
 import Combined from "./Combined";
 import "./layout.scss";
+import { DefaultSize } from "./useAppSizeContext";
 
-export interface LayoutProps extends AppSizeListenerProps {
+export interface LayoutProps
+  extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
   title: string;
 }
 
@@ -18,7 +20,9 @@ const Layout: FunctionComponent<LayoutProps> = ({
   <AppSizeListener defaultSize={defaultSize}>
     <NestedDialogContextProvider>
       <StatesConfig>
-        <Combined title={title}>{children}</Combined>
+        <DefaultSize.Provider value={defaultSize}>
+          <Combined title={title}>{children}</Combined>
+        </DefaultSize.Provider>
       </StatesConfig>
     </NestedDialogContextProvider>
   </AppSizeListener>

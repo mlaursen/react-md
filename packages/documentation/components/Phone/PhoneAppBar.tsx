@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
-import { useAppSizeContext } from "@react-md/sizing";
 import { bem } from "@react-md/theme";
 
 import { usePhoneContext } from "./context";
 import StatusBar from "./StatusBar";
+import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 const block = bem("phone");
 

@@ -36,6 +36,7 @@ $toc-width: 15rem;
   }
   @include rmd-elevation(2);
 
+  max-height: calc(100% - #{$rmd-app-bar-height + $page-margin + $page-margin});
   position: fixed;
   right: $rmd-app-bar-lr-margin;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
