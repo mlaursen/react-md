@@ -17,13 +17,18 @@ import {
 import { bem } from "@react-md/theme";
 import { CSSTransitionProps } from "@react-md/transition";
 import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
-import { FocusContainer, useScrollLock } from "@react-md/wia-aria";
+import {
+  FocusContainer,
+  useScrollLock,
+  FocusContainerOptionsProps,
+} from "@react-md/wia-aria";
 
 import useNestedDialogFixes from "./useNestedDialogFixes";
 
 export interface DialogProps
   extends CSSTransitionProps,
     RenderConditionalPortalProps,
+    FocusContainerOptionsProps,
     HTMLAttributes<HTMLDivElement> {
   /**
    * An id required for a11y for the dialog.
@@ -111,16 +116,23 @@ export interface DialogProps
 
   /**
    * The display type for the modal. If you would like to position the modal in different locations
-   * within the page, you should set this prop to `"none"` and add custom styles to position it
+   * within the page, you should set this prop to `"custom"` and add custom styles to position it
    * instead.
    */
-  type?: "full-page" | "centered" | "none";
+  type?: "full-page" | "centered" | "custom";
 
   /**
    * Either the "first" or "last" string to focus the first or last focusable element within the
    * container or a query selector string to find a focusable element within the container.
    */
   defaultFocus?: "first" | "last" | string;
+
+  /**
+   * Boolean if the dialog should no longer add scroll locking to the page when visible. You
+   * normally want this prop to stay `false`, but it is useful when using custom dialogs that
+   * are more for popovers and don't require full user attention.
+   */
+  disableScrollLock?: boolean;
 
   /**
    * Boolean if the ability to close the dialog via the escape key should be disabled. You should
@@ -130,6 +142,13 @@ export interface DialogProps
    * the escape keypress no longer closes the dialog.
    */
   disableEscapeClose?: boolean;
+
+  /**
+   * Boolean if the dialog's focus container logic should be disabled. This should normally be kept
+   * at the default of `false` unless implementing a custom dialog that does not require consistent
+   * user focus.
+   */
+  disableFocusContainer?: boolean;
 
   /**
    * The Dialog component will attempt to automatically fix nested dialogs behind the scenes using
@@ -153,7 +172,9 @@ type DefaultProps = Required<
     | "mountOnEnter"
     | "unmountOnExit"
     | "forceContainer"
+    | "disableScrollLock"
     | "disableEscapeClose"
+    | "disableFocusContainer"
     | "disableNestedDialogFixes"
     | "portal"
   >
@@ -198,7 +219,9 @@ const Dialog: FunctionComponent<
     modal,
     type,
     defaultFocus,
+    disableScrollLock,
     disableEscapeClose: propDisableEscapeClose,
+    disableFocusContainer,
     disableNestedDialogFixes,
     onKeyDown,
     ...props
@@ -214,7 +237,7 @@ const Dialog: FunctionComponent<
     disableEscapeClose: propDisableEscapeClose,
   });
 
-  useScrollLock(visible);
+  useScrollLock(visible && !disableScrollLock);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -249,6 +272,7 @@ const Dialog: FunctionComponent<
     <FocusContainer
       {...props}
       aria-modal
+      disabled={disableFocusContainer}
       onKeyDown={handleKeyDown}
       className={cn(
         block({
@@ -327,7 +351,9 @@ const defaultProps: DefaultProps = {
   },
   defaultFocus: "first",
   forceContainer: false,
+  disableScrollLock: false,
   disableEscapeClose: false,
+  disableFocusContainer: false,
   disableNestedDialogFixes: false,
 };
 
@@ -345,8 +371,10 @@ if (process.env.NODE_ENV !== "production") {
     Dialog.propTypes = {
       id: PropTypes.string.isRequired,
       role: PropTypes.oneOf(["dialog", "alertdialog"]),
+      "aria-label": PropTypes.string,
+      "aria-labelledby": PropTypes.string,
       className: PropTypes.string,
-      type: PropTypes.oneOf(["none", "centered", "full-page"]),
+      type: PropTypes.oneOf(["custom", "centered", "full-page"]),
       tabIndex: PropTypes.number,
       modal: PropTypes.bool,
       visible: PropTypes.bool.isRequired,
@@ -390,14 +418,14 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.string,
         PropTypes.object,
       ]),
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
-      disableEscapeClose: PropTypes.bool,
-      disableNestedDialogFixes: PropTypes.bool,
       defaultFocus: PropTypes.oneOfType([
         PropTypes.oneOf(["first", "last"]),
         PropTypes.string,
       ]),
+      disableScrollLock: PropTypes.bool,
+      disableEscapeClose: PropTypes.bool,
+      disableFocusContainer: PropTypes.bool,
+      disableNestedDialogFixes: PropTypes.bool,
     };
   }
 }

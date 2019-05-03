@@ -33,12 +33,11 @@ export default function useKeyboardClickPolyfill<
     }
 
     const { currentTarget } = event;
+    const { tagName } = currentTarget;
     const isEnter = event.key === "Enter";
     const isSpace =
-      !disableSpacebarClick &&
-      currentTarget.tagName !== "A" &&
-      event.key === " ";
-    if (!isSpace && !isEnter) {
+      !disableSpacebarClick && tagName !== "A" && event.key === " ";
+    if ((!isSpace && !isEnter) || tagName === "BUTTON") {
       return;
     }
 

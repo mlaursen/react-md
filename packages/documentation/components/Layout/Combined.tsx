@@ -8,6 +8,7 @@ import { useScrollLock } from "@react-md/wia-aria";
 
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
+import TableOfContents from "components/TableOfContents";
 
 export interface CombinedProps {
   title: string;
@@ -34,7 +35,7 @@ const Combined: FunctionComponent<CombinedProps> = ({
   }, [isDesktop, isTablet, isPhone]);
 
   useEffect(() => {
-    if (visible && isPhone) {
+    if (visible && !isDesktop) {
       setVisible(false);
     }
   }, [router.pathname]);
@@ -66,6 +67,7 @@ const Combined: FunctionComponent<CombinedProps> = ({
           "layout__main--desktop": isDesktop,
         })}
       >
+        <TableOfContents pathname={router.pathname} />
         {children}
       </main>
     </Fragment>

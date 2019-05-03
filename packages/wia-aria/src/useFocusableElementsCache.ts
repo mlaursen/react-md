@@ -23,6 +23,10 @@ export default function useFocusableElementsCache(
     }
 
     const elements = getFocusableElements(instance);
+    if (elements.length === 0 && instance.getAttribute("tabindex") !== null) {
+      elements.push(instance);
+    }
+
     if (!elements.length) {
       throw new Error("There are no focusable elements");
     }

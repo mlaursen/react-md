@@ -54,6 +54,7 @@ const lightVariables = Object.keys({
 
 const LIGHT_THEMES = {
   ...lightVariables,
+  "rmd-theme-on-surface": "#00#",
   "code-bg": "var(--code-bg-light)",
   "strong-color": "var(--strong-color)",
 };

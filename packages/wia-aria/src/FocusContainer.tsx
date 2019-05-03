@@ -13,14 +13,7 @@ import useFocusOnMount from "./useFocusOnMount";
 import useFocusableElementsCache from "./useFocusableElementsCache";
 import handleTabFocusWrap from "./handleTabFocusWrap";
 
-export interface FocusContainerProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * Boolean if the focus behavior should be disabled. This should really be
-   * used if you are using nested focus containers for temporary material (such as
-   * dialogs or menus).
-   */
-  disabled?: boolean;
-
+export interface FocusContainerOptionsProps {
   /**
    * By default, the focus container will try to maintain a cache of the focusable
    * elements that is updated only when this component re-renders. If the children
@@ -70,6 +63,17 @@ export interface FocusContainerProps extends HTMLAttributes<HTMLElement> {
    * that finds a specific HTMLElement to focus.
    */
   unmountFocusFallback?: FocusFallback;
+}
+
+export interface FocusContainerProps
+  extends FocusContainerOptionsProps,
+    HTMLAttributes<HTMLElement> {
+  /**
+   * Boolean if the focus behavior should be disabled. This should really be
+   * used if you are using nested focus containers for temporary material (such as
+   * dialogs or menus).
+   */
+  disabled?: boolean;
 
   /**
    * The component to render the focus container as. This should really not be used as
@@ -121,8 +125,8 @@ const FocusContainer: FunctionComponent<
   );
 
   const focusables = useFocusableElementsCache(ref);
-  usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
-  useFocusOnMount(ref, defaultFocus, disableFocusOnMount);
+  usePreviousFocus(disabled || disableFocusOnUnmount, unmountFocusFallback);
+  useFocusOnMount(ref, defaultFocus, disabled || disableFocusOnMount);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -130,11 +134,15 @@ const FocusContainer: FunctionComponent<
         onKeyDown(event);
       }
 
+      if (disabled) {
+        return;
+      }
+
       if (handleTabFocusWrap(event, focusables, disableFocusCache)) {
         return;
       }
     },
-    [onKeyDown]
+    [onKeyDown, disabled]
   );
 
   return (
