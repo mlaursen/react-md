@@ -48,19 +48,6 @@ $rmd-button-icon-border-radius: 50% !default;
 /// @type Number
 $rmd-button-icon-size: 3rem !default; // 48dp
 
-/// The background color to apply when a button is hovered. This will be applied in the `::after`
-/// pseudo element so it is recommended to be either black or white with an opacity applied.
-///
-/// @type Color
-$rmd-button-hover-background-color: rgba(
-  if(rmd-theme-contrast-tone($rmd-theme-background) == 'light', $rmd-white-base, $rmd-black-base),
-  0.2
-) !default;
-
-/// The transition duration for the hover background color to be applied.
-/// @type Number
-$rmd-button-background-color-transition-time: 0.15s !default;
-
 /// The base box-shadow width to apply to buttons
 /// @type Number
 $rmd-button-outline-width: 1px !default;

@@ -43,3 +43,39 @@
     transition: transform 0.3s, opacity 0.3s;
   }
 }
+
+.light-theme {
+  @include rmd-theme-update-var(background, $rmd-theme-light-background);
+  @include rmd-theme-update-var(surface, $rmd-theme-light-surface);
+  @include rmd-theme-update-var(on-surface, $rmd-black-base);
+  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    $rmd-theme-secondary-text-on-light-color
+  );
+  @include rmd-theme-update-var(text-hint-on-background, $rmd-theme-hint-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-disabled-on-background,
+    $rmd-theme-disabled-text-on-light-color
+  );
+  @include rmd-theme-update-var(text-icon-on-background, $rmd-theme-icon-on-light-color);
+
+  @include rmd-app-bar-theme-update-var(
+    default-background-color,
+    $rmd-app-bar-default-light-theme-background-color
+  );
+  @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-light-theme-color);
+
+  @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-light);
+
+  @include rmd-states-theme-update-var(hover-color, $rmd-states-light-theme-hover-color);
+  @include rmd-states-theme-update-var(focus-color, $rmd-states-light-theme-focus-color);
+  @include rmd-states-theme-update-var(pressed-color, $rmd-states-light-theme-pressed-color);
+  @include rmd-states-theme-update-var(selected-color, $rmd-states-light-theme-selected-color);
+  @include rmd-states-theme-update-var(
+    ripple-background-color,
+    $rmd-states-light-theme-ripple-background-color
+  );
+
+  --code-bg: var(--code-bg-light);
+}

@@ -1,6 +1,6 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
-  "rmd-tooltip-background-color": "#232f34",
+  "rmd-tooltip-background-color": "#616161",
   "rmd-tooltip-color": "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",
   "rmd-tooltip-enter-duration": "0.15s",
   "rmd-tooltip-exit-duration": "0.15s",
@@ -20,7 +20,7 @@ export default {
   "rmd-tooltip-transition-distance": "0.5rem",
   "rmd-tooltip-position-values": ["above", "below", "left", "right"],
   "rmd-tooltip-theme-values": {
-    "background-color": "#232f34",
+    "background-color": "#616161",
     color: "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",
     "transition-distance": "0.5rem",
     "z-index": 100,

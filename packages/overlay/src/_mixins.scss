@@ -44,7 +44,8 @@
   transition: opacity $rmd-overlay-transition-duration;
 
   &--active {
-    opacity: 1;
+    @include rmd-overlay-theme(opacity, active-opacity);
+
     pointer-events: auto;
   }
 }

@@ -4,13 +4,13 @@
 
 // need extra precedence since the app bar has inherit colors which we want
 // for all other actions except this one.
-.rmd-app-bar .toggle-theme {
+.toggle-theme {
   &--on {
     color: $rmd-yellow-500;
   }
 
   @include rmd-states-mouse-only {
-    &--on {
+    &--on:hover {
       color: inherit;
     }
 

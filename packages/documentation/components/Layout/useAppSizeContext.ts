@@ -47,6 +47,10 @@ export default function useAppSizeContext() {
     });
 
     return () => {
+      if (process.env.NODE_ENV === "development") {
+        // always force re-renering in dev mode because of hot-reloading
+        listener = false;
+      }
       window.cancelAnimationFrame(frame);
     };
   }, []);

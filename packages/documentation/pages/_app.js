@@ -12,10 +12,9 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
 } from '@react-md/sizing';
-import { parse } from 'url';
 
 import Layout from 'components/Layout';
-import smoothScroll from 'utils/smoothScroll';
+import { smoothScroll, getScrollPosition } from 'utils/smoothScroll';
 import { toBreadcrumbPageTitle } from 'utils/toTitle';
 
 export default class App extends NextApp {
@@ -76,17 +75,17 @@ export default class App extends NextApp {
   initialPageScroll = true;
 
   componentDidMount() {
-    this.smoothScroll(window.location.pathname);
+    this.smoothScroll(window.location.href);
 
     Router.events.on('hashChangeStart', this.beforeChange);
     Router.events.on('hashChangeComplete', this.smoothScroll);
-    Router.events.on('routeChangeComplete', this.smoothScroll);
+    Router.events.on('routeChangeComplete', this.handleRouteChange);
   }
 
   componentWillUnmount() {
     Router.events.off('hashChangeStart', this.beforeChange);
     Router.events.off('hashChangeComplete', this.smoothScroll);
-    Router.events.off('routeChangeComplete', this.smoothScroll);
+    Router.events.off('routeChangeComplete', this.handleRouteChange);
   }
 
   beforeChange = () => {
@@ -94,31 +93,35 @@ export default class App extends NextApp {
     this.y = window.scrollY;
   };
 
+  handleRouteChange = url => {
+    this.smoothScroll(url);
+    if (
+      process.env.NODE_ENV === 'production' &&
+      typeof window.ga === 'function'
+    ) {
+      window.ga('send', 'pageview', url);
+    }
+  };
+
   smoothScroll = url => {
     if (this.initialPageScroll) {
       this.initialPageScroll = false;
+
       return;
     }
 
-    const { hash } = parse(url);
-    if (!hash) {
+    const position = getScrollPosition(url);
+    if (position === 0) {
       window.scrollTo(0, 0);
-      return;
+    } else {
+      // this is kind of hacky and I'm not sure how to fix it. When markdown
+      // links are clicked, the native scroll behavior is still used for some
+      // reason from the next/router and there are no options to disable it. So
+      // we have to scroll back to the original position, then scroll to the
+      // correct position with the header offset.
+      window.scrollTo(this.x, this.y);
+      smoothScroll(position);
     }
-
-    const element = document.getElementById(hash.substring(1));
-    const header = document.getElementById('main-app-bar');
-    if (!element || !header) {
-      return;
-    }
-
-    // this is kind of hacky and I'm not sure how to fix it. When markdown
-    // links are clicked, the native scroll behavior is still used for some
-    // reason from the next/router and there are no options to disable it. So
-    // we have to scroll back to the original position, then scroll to the
-    // correct position with the header offset.
-    window.scrollTo(this.x, this.y);
-    smoothScroll(element.offsetTop - header.offsetHeight);
   };
 
   getTitle(pageTitle) {

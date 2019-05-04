@@ -9,8 +9,6 @@ export default {
   "rmd-button-text-icon-size": "1.125rem",
   "rmd-button-icon-border-radius": "50%",
   "rmd-button-icon-size": "3rem",
-  "rmd-button-hover-background-color": "rgba(0, 0, 0, 0.2)",
-  "rmd-button-background-color-transition-time": "0.15s",
   "rmd-button-outline-width": "1px",
   "rmd-button-box-shadow": "inset 0 0 0",
   "rmd-button-outline-color": "#999",

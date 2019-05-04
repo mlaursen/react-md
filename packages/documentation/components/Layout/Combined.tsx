@@ -1,7 +1,10 @@
 import React, { Fragment, FunctionComponent, useEffect } from "react";
 import cn from "classnames";
 import { SingletonRouter, withRouter } from "next/router";
+import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
+import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
+import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
 import { useScrollLock } from "@react-md/wia-aria";
 
@@ -15,12 +18,15 @@ export interface CombinedProps {
   router: SingletonRouter;
 }
 
+const block = bem("layout");
+
 const Combined: FunctionComponent<CombinedProps> = ({
   title,
   children,
   router,
 }) => {
-  const { isPhone, isTablet, isDesktop } = useAppSizeContext();
+  const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
+  const isLandscapeTablet = isLandscape && isTablet;
   const {
     toggled: visible,
     disable,
@@ -35,37 +41,53 @@ const Combined: FunctionComponent<CombinedProps> = ({
   }, [isDesktop, isTablet, isPhone]);
 
   useEffect(() => {
-    if (visible && !isDesktop) {
+    if (visible && !inline) {
       setVisible(false);
     }
   }, [router.pathname]);
 
   useScrollLock(visible && isPhone);
+  const inline = isDesktop || isLandscapeTablet;
 
   return (
     <Fragment>
-      <Header title={title} toggle={toggle} isDesktop={isDesktop} />
+      <Header
+        title={title}
+        toggle={toggle}
+        isDesktop={isDesktop}
+        isSheetVisible={visible}
+      />
       <Sheet
         id="main-navigation"
         visible={visible}
         onRequestClose={disable}
         position="left"
-        overlay={!isDesktop}
-        inline={isDesktop}
-        className={cn("layout__nav", {
-          "layout__nav--desktop": isDesktop,
-        })}
+        overlay={!inline}
+        inline={inline}
+        className={cn(block("nav", { inline }))}
         component="nav"
         mountOnEnter={false}
         unmountOnExit={false}
       >
+        {isLandscapeTablet && (
+          <AppBar theme="clear" className={block("nav-header")}>
+            <AppBarTitle id="main-navigation-title" className={block("title")}>
+              {title}
+            </AppBarTitle>
+            <AppBarAction first onClick={toggle}>
+              <ArrowBackSVGIcon />
+            </AppBarAction>
+          </AppBar>
+        )}
         <NavigationTree />
       </Sheet>
       <main
         id="main-content"
-        className={cn("layout__main", {
-          "layout__main--desktop": isDesktop,
-        })}
+        className={cn(
+          block("main", {
+            offset: inline && visible,
+          })
+        )}
       >
         <TableOfContents pathname={router.pathname} />
         {children}

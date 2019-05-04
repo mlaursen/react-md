@@ -5,6 +5,7 @@ export default {
   "rmd-overlay-color": "rgba(0, 0, 0, 0.4)",
   "rmd-overlay-theme-values": {
     "background-color": "rgba(0, 0, 0, 0.4)",
+    "active-opacity": 1,
     "z-index": 16,
   },
 };

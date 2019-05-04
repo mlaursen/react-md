@@ -24,5 +24,6 @@ $rmd-overlay-color: rgba($rmd-black-base, 0.4) !default;
 /// @type Map
 $rmd-overlay-theme-values: (
   background-color: $rmd-overlay-color,
+  active-opacity: 1,
   z-index: $rmd-overlay-z-index,
 ) !default;

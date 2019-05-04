@@ -4,20 +4,29 @@
 @import '@react-md/sheet/dist/mixins';
 @import '@react-md/list/dist/mixins';
 @import '@react-md/icon/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
+@import '@react-md/divider/dist/mixins';
 
 .layout {
-  &__app-bar--desktop {
-    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
-    @include rmd-icon-dense-theme;
+  &__app-bar {
+    @include rmd-sizing-desktop-media {
+      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+      @include rmd-icon-dense-theme;
+    }
   }
 
   &__main {
+    @include rmd-sizing-desktop-media {
+      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+    }
     @include rmd-app-bar-offset();
+
     display: block;
     height: 100%;
 
-    &--desktop {
-      @include rmd-app-bar-offset($height-type: dense-height);
+    &--offset {
+      @include rmd-app-bar-offset;
       @include rmd-utils-rtl {
         @include rmd-sheet-theme(margin-right, large-width);
 
@@ -28,16 +37,26 @@
     }
   }
 
-  &__nav--desktop {
-    @include rmd-list-dense-theme;
-    @include rmd-list-item-dense-theme;
-    @include rmd-icon-dense-theme;
+  &__title {
+    @include rmd-typography-text-overflow-ellipsis;
+  }
 
-    position: fixed;
-    z-index: 10;
-
-    &.rmd-sheet {
-      @include rmd-app-bar-offset(top, dense-height);
+  &__nav {
+    @include rmd-sizing-desktop-media {
+      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+      @include rmd-app-bar-theme(top, height);
+      @include rmd-list-dense-theme;
+      @include rmd-list-item-dense-theme;
+      @include rmd-icon-dense-theme;
     }
+
+    &--inline {
+      position: fixed;
+      z-index: 10;
+    }
+  }
+
+  &__nav-header {
+    @include rmd-divider-border(bottom);
   }
 }

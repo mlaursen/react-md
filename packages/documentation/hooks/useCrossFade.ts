@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import cn from "classnames";
+import { smoothScroll, getScrollPosition } from "utils/smoothScroll";
 
 // this is kind of hacky and I'm not sure of a better way to do this yet,
 // but we don't want the cross-fade to be triggered on first page load only
@@ -25,11 +26,17 @@ export default function useCrossFade(baseClassName?: string) {
     let timeout: number | undefined;
     let frame: number | undefined = window.requestAnimationFrame(() => {
       frame = undefined;
+      window.scrollTo(0, 0);
       setClassName(cn("cross-fade cross-fade--active", baseClassName));
 
       timeout = window.setTimeout(() => {
         timeout = undefined;
         setClassName(baseClassName);
+
+        const position = getScrollPosition(window.location.href);
+        if (position > 0) {
+          smoothScroll(position);
+        }
       }, 300);
     });
 

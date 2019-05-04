@@ -1,34 +1,73 @@
-## Super Quick Start
-
-If you want to get started out immediately, you can use [create-react-app] and
-the react-md react-scripts fork.
-
-```sh
-$ npx create-react-app my-app --scripts-version=@react-md/react-scripts
-$ cd my-app
-$ npm start
-```
-
-> npx comes with npm 5.2+ and higher, if you have an older version you will need
-> to install `create-react-app` globally instead
-
-or with [yarn]:
-
-```sh
-$ yarn create react-app my-app --scripts-version=@react-md/react-scripts
-$ cd my-app
-$ yarn start
-```
-
-> You can also add the `--typescript` flag to either command above to bootstrap
-> with [Typescript] support.
-
 ## Quick Start
 
 If you have an existing app that you'd like to migrate `react-md` into, here are
-the quick steps.
+the quick steps. If you use [create-react-app], I recommend checking out
+[this documentation](/getting-started/updating-create-react-app) instead.
 
-#### Install packages:
+#### Using convenience react-md package
+
+There is a base `react-md` package that combines all the packages within
+react-md as one import for convenience. To use this package, follow these steps:
+
+##### Install:
+
+```sh
+$ npm install --save react-md
+```
+
+##### Include styles:
+
+```scss
+// src/app.scss
+
+@import "react-md";
+
+@include react-md-utils;
+```
+
+> This requires your `SASS_PATH=node_modules` or the `includePaths` value to be
+> set. See the
+> [Updating sass include paths](/getting-started/installation#updating-sass-include-paths)
+> documentation for more info.
+
+##### Include fonts and optional material-icons font icons:
+
+```diff
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
++   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <title>React App</title>
+```
+
+##### Use components:
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+import { Button, Text, TextContainer } from "react-md";"
+
+import "./app.scss"
+
+const App = () => (
+  <TextContainer>
+    <Text type="headline-1">Example</Text>
+    <Button id="example-button">Button</Button>
+  </TextContainer>
+);
+
+render(<App />, document.getElementById("root"));
+```
+
+#### Using scoped packages
+
+If you don't want to have to use the entire `react-md` library for your app, you
+can also use the scoped packages that are provided. The steps are almost the
+same as the convenience `react-md` package, but there are a few more steps.
+
+##### Install:
 
 ```sh
 $ npm install --save @react-md/theme \
@@ -39,7 +78,7 @@ $ npm install --save @react-md/theme \
 # include any other react-md packages you'd like
 ```
 
-#### Include react-md styles:
+##### Include styles:
 
 ```scss
 // src/app.scss
@@ -60,7 +99,7 @@ $ npm install --save @react-md/theme \
 > [updating sass include paths](/getting-started/installation#updating-sass-include-paths)
 > for more info.
 
-#### Include Font and optional material-icons font icons:
+##### Include font and optional material-icons font icons:
 
 ```diff
 <!DOCTYPE html>
@@ -72,7 +111,7 @@ $ npm install --save @react-md/theme \
     <title>React App</title>
 ```
 
-#### Use components:
+##### Use components:
 
 ```tsx
 // src/index.tsx

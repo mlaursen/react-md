@@ -62,6 +62,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
         visible={visible}
         onRequestClose={hide}
         className={block()}
+        overlayClassName={block("overlay")}
         classNames={CLASSNAMES}
         disableScrollLock={!isPhone}
         disableFocusOnMount

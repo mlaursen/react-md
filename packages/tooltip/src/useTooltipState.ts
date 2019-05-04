@@ -178,7 +178,11 @@ interface TooltipOptions {
  * - top or bottom only (to start)
  * -
  *
- * Update base tooltip color to be: #616161e6 (current was for a specific branding)
+ * Tooltipped:
+ * - tooltips always visible by default
+ * - rendered in Fragment with tooltip as second child with fixed positioning
+ * - when portaled, another new span will be created with no idea that will be used for the styling/updates
+ * - children prop - function or single element. Single element will close props in
  */
 export function useTooltipState({ showDelay }: TooltipOptions) {
   const contextDelay = useTooltipDelayContext();
