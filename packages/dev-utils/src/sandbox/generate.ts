@@ -13,6 +13,7 @@ import {
   NON_STYLEABLE_RMD_PACKAGES,
 } from "./constants";
 import { isSvg } from "./matchers";
+import { getFileSource } from "./formatters";
 
 function toUrlId(s: string) {
   return s
@@ -236,7 +237,12 @@ export default async function generate({
         path.join(documentationRoot, filePath),
         "utf8"
       );
-      if (!isSvg(content)) {
+
+      if (/\.tsx?$/.test(filePath)) {
+        content = getFileSource(content);
+      }
+
+      if (!isSvg(filePath)) {
         content = content.replace(aliasRegExp, "./");
       }
 

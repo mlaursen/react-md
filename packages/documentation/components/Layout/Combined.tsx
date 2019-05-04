@@ -1,11 +1,11 @@
 import React, { Fragment, FunctionComponent, useEffect } from "react";
 import cn from "classnames";
 import { SingletonRouter, withRouter } from "next/router";
-import { useAppSizeContext } from "@react-md/sizing";
 import { Sheet } from "@react-md/sheet";
 import { useToggle } from "@react-md/utils";
 import { useScrollLock } from "@react-md/wia-aria";
 
+import useAppSizeContext from "./useAppSizeContext";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
 import TableOfContents from "components/TableOfContents";
@@ -67,8 +67,8 @@ const Combined: FunctionComponent<CombinedProps> = ({
           "layout__main--desktop": isDesktop,
         })}
       >
-        {children}
         <TableOfContents pathname={router.pathname} />
+        {children}
       </main>
     </Fragment>
   );

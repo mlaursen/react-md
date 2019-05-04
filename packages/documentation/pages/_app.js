@@ -4,6 +4,14 @@ import NextApp, { Container } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
+import {
+  DEFAULT_APP_SIZE,
+  DEFAULT_PHONE_MAX_WIDTH,
+  DEFAULT_TABLET_MAX_WIDTH,
+  DEFAULT_TABLET_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+} from '@react-md/sizing';
 import { parse } from 'url';
 
 import Layout from 'components/Layout';
@@ -31,6 +39,32 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape: true,
       };
+    } else if (typeof window !== 'undefined') {
+      const matchesPhone = window.matchMedia(
+        `screen and (max-width: ${DEFAULT_PHONE_MAX_WIDTH})`
+      ).matches;
+      const matchesTablet = window.matchMedia(
+        `screen and (min-width: ${DEFAULT_TABLET_MIN_WIDTH}) and (max-width: ${DEFAULT_TABLET_MAX_WIDTH})`
+      ).matches;
+      const isDesktop = window.matchMedia(
+        `screen and (min-width: ${DEFAULT_DESKTOP_MIN_WIDTH})`
+      ).matches;
+      const isLargeDesktop = window.matchMedia(
+        `screen and (min-width: ${DEFAULT_DESKTOP_LARGE_MIN_WIDTH})`
+      ).matches;
+
+      const isTablet = !isDesktop && matchesTablet;
+      const isPhone = !isTablet && !isDesktop && matchesPhone;
+      const isLandscape = window.innerWidth > window.innerHeight;
+      defaultSize = {
+        isPhone,
+        isTablet,
+        isDesktop,
+        isLargeDesktop,
+        isLandscape,
+      };
+    } else {
+      defaultSize = DEFAULT_APP_SIZE;
     }
 
     return {

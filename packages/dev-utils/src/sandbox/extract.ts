@@ -16,6 +16,7 @@ import {
   getModuleName,
   getRelativeFolder,
   getAliasedRelativeFolder,
+  getFileSource,
 } from "./formatters";
 import {
   isAliased,
@@ -78,9 +79,17 @@ const {
   getCurrentDirectory,
   getDirectories,
   fileExists,
-  readFile,
   useCaseSensitiveFileNames,
 } = sys;
+
+const readFile: typeof sys.readFile = (path, encoding) => {
+  const source = sys.readFile(path, encoding);
+  if (typeof source === "undefined") {
+    return source;
+  }
+
+  return getFileSource(source);
+};
 
 function getSourceFile(fileName: string, language: ScriptTarget) {
   const source = readFile(fileName);

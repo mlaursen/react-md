@@ -21,6 +21,18 @@ export function getModuleName(filePath: string, scss: boolean = false) {
 }
 
 /**
+ * This function is used to apply transformations to the source contents
+ * to work within sandboxes. So this is normally used to simplify the examples
+ * or remove code that's only needed for the documentation site.
+ */
+export function getFileSource(source: string) {
+  return source.replace(
+    /import useAppSizeContext.+;/g,
+    'import { useAppSizeContext } from "@react-md/sizing";'
+  );
+}
+
+/**
  * Returns a filtered list of modules that are considered relative imports
  * so that additional custom resolution can be done.
  */
