@@ -25,6 +25,15 @@ export default class Paper extends PureComponent {
     ]).isRequired,
 
     /**
+     * An optional ref callback to get reference to the top-most element of the rendered component.
+     * Just like other refs, this will provide null when it unmounts.
+     *
+     * This is helpful if you'd like access the DOM node for a parent Component without needing to use
+     * `ReactDOM.findDOMNode`.
+     */
+    componentRef: PropTypes.func,
+
+    /**
      * An optional className to apply.
      */
     className: PropTypes.string,
@@ -53,11 +62,12 @@ export default class Paper extends PureComponent {
   };
 
   render() {
-    const { component: Component, zDepth, className, raiseOnHover, ...props } = this.props;
+    const { component: Component, componentRef, zDepth, className, raiseOnHover, ...props } = this.props;
 
     return (
       <Component
         {...props}
+        ref={componentRef}
         className={cn(`md-paper md-paper--${zDepth}`, {
           'md-paper--0-hover': zDepth === 0 && raiseOnHover,
         }, className)}

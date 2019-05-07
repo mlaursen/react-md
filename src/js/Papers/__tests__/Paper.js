@@ -20,4 +20,17 @@ describe('Paper', () => {
     expect(paperNode.style.background).toBe(props.style.background);
     expect(paperNode.className).toContain(props.className);
   });
+
+  it('should provide reference to component', () => {
+    let componentRef;
+    const props = {
+      component: 'p',
+      componentRef: (ref) => { componentRef = ref; },
+      zDepth: 2,
+    };
+    renderIntoDocument(<Paper {...props} />);
+
+    expect(componentRef.nodeName).toBe('P');
+    expect(componentRef.classList.contains('md-paper--2')).toBe(true);
+  });
 });

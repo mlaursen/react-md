@@ -16,6 +16,7 @@ export interface TabsContainerProps extends Props {
   slideClassName?: string;
   children?: React.ReactElement<Tabs>,
   component?: React.ReactType;
+  componentRef?: (ref: React.ReactHTMLElement<any> | null) => null;
   panelComponent?: React.ReactType;
   headerComponent?: React.ReactType;
   toolbar?: React.ReactElement<any>;
