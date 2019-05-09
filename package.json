@@ -83,7 +83,7 @@
     "gzip-size": "^4.0.0",
     "intl": "^1.2.5",
     "jest-cli": "^21.2.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.1",
     "postcss": "^6.0.13",
     "pretty-bytes": "^4.0.2",
