@@ -6,7 +6,7 @@ export interface PaperProps extends Props {
   [key: string]: any;
 
   component?: React.ReactType;
-  componentRef?: (ref: React.ReactHTMLElement<any> | null) => null;
+  componentRef?: React.Ref<any>;
   children?: React.ReactNode;
   zDepth?: number;
   raiseOnHover?: boolean;

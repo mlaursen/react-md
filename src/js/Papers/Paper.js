@@ -31,7 +31,10 @@ export default class Paper extends PureComponent {
      * This is helpful if you'd like access the DOM node for a parent Component without needing to use
      * `ReactDOM.findDOMNode`.
      */
-    componentRef: PropTypes.func,
+    componentRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
 
     /**
      * An optional className to apply.

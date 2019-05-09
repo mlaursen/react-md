@@ -126,7 +126,10 @@ export default class TabsContainer extends PureComponent {
      * This is helpful if you'd like access the DOM node for a parent Component without needing to use
      * `ReactDOM.findDOMNode`.
      */
-    componentRef: PropTypes.func,
+    componentRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
 
     /**
      * The component to render each `TabPanel` as.
@@ -261,7 +264,13 @@ export default class TabsContainer extends PureComponent {
     const { componentRef } = this.props;
     this._container = findDOMNode(container);
     if (componentRef) {
-      componentRef(this._container);
+      const refType = typeof componentRef;
+      if (refType === 'function') {
+        componentRef(this._container);
+      }
+      else if (refType === 'object') {
+        componentRef.current = this._container;
+      }
     }
   };
 
