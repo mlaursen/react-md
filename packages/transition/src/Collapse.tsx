@@ -9,7 +9,7 @@ import {
   CollapseOptions,
   useCollapseTransition,
   useCollapsibleElement,
-} from "./hooks/useCollapseTransition";
+} from "./useCollapseTransition";
 
 export interface CollapseChildrenProps {
   /**

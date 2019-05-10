@@ -13,6 +13,7 @@
 
 $page-margin: 1rem;
 $toc-width: 15rem;
+$toc-z-index: 9;
 
 .table-of-contents-toggle {
   $button-size: 2rem;
@@ -23,7 +24,7 @@ $toc-width: 15rem;
 
   position: fixed;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference});
-  z-index: $rmd-dialog-z-index;
+  z-index: $toc-z-index + 1;
 
   &[disabled] {
     @include rmd-theme(color, on-surface);
@@ -44,7 +45,7 @@ $toc-width: 15rem;
   top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
   transform-origin: 98% ($rmd-icon-size / 2);
   width: calc(100% - #{$rmd-app-bar-lr-margin * 2});
-  z-index: $rmd-dialog-z-index - 1;
+  z-index: $toc-z-index;
 
   @media (min-width: 40rem) {
     max-width: 20rem;
@@ -59,7 +60,7 @@ $toc-width: 15rem;
       @include rmd-overlay-theme-update-var(active-opacity, 0);
     }
 
-    z-index: $rmd-dialog-z-index - 1;
+    z-index: $toc-z-index;
   }
 
   &--enter {

@@ -46,11 +46,6 @@ export interface StatesConfigContextType {
    * through javascript or some other means.
    */
   disableProgrammaticRipple: boolean;
-
-  /**
-   * The user's current interaction mode with your app.
-   */
-  mode: UserInteractionMode;
 }
 
 export const StatesConfigContext = createContext<StatesConfigContextType>({
@@ -58,7 +53,6 @@ export const StatesConfigContext = createContext<StatesConfigContextType>({
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,
   disableProgrammaticRipple: false,
-  mode: "keyboard",
 });
 
 /**
@@ -76,10 +70,7 @@ export interface StatesConfigProps extends Partial<StatesConfigContextType> {
   disableModeDetection?: boolean;
 }
 
-type DefaultProps = Omit<StatesConfigContextType, "mode"> & {
-  disableModeDetection: boolean;
-};
-type WithDefaultProps = StatesConfigProps & DefaultProps;
+type WithDefaultProps = StatesConfigProps & StatesConfigContextType;
 
 /**
  * The `StatesConfig` component is a top-level context provider for the states
@@ -99,18 +90,8 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
     children,
   } = props as WithDefaultProps;
 
-  let mode: UserInteractionMode;
-  if (disableModeDetection) {
-    const context = useStatesConfigContext();
-    mode = context.mode;
-  } else {
-    const mode = useModeDetection();
-    useModeClassName(mode);
-  }
-
   const value = useMemo(
     () => ({
-      mode,
       rippleTimeout,
       rippleClassNames,
       disableRipple,
@@ -126,12 +107,11 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
   );
 };
 
-const defaultProps: DefaultProps = {
+const defaultProps: StatesConfigContextType = {
   rippleTimeout: RIPPLE_TIMEOUT,
   rippleClassNames: RIPPLE_CLASS_NAMES,
   disableRipple: false,
   disableProgrammaticRipple: false,
-  disableModeDetection: false,
 };
 
 StatesConfig.defaultProps = defaultProps;

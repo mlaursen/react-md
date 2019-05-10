@@ -2,7 +2,7 @@
 // since they currently aren't exported
 export type TransitionEnterHandler = (
   node: HTMLElement,
-  isAppearing: boolean
+  appearing: boolean
 ) => void;
 export type TransitionExitHandler = (node: HTMLElement) => void;
 

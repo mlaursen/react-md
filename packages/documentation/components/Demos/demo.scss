@@ -16,10 +16,6 @@
     margin-top: 6rem;
   }
 
-  &__title {
-    overflow-wrap: break-word;
-  }
-
   &__description {
     @include rmd-typography(subtitle-1);
     @include rmd-typography-theme(max-width, line-width);

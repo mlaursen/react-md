@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import cn from "classnames";
-import { Maybe, Omit } from "@react-md/utils";
+import { Maybe } from "@react-md/utils";
 
 import { MergableRippleHandlers, RipplesOptions } from "./ripples/types.d";
 import useRipples from "./ripples/useRipples";
@@ -12,7 +12,7 @@ import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
 import usePressedStates from "./usePressedStates";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
-  extends Omit<Partial<StatesConfigContextType>, "mode">,
+  extends Partial<StatesConfigContextType>,
     RipplesOptions<E> {
   /**
    * An optional className to merge with the different interaction states.

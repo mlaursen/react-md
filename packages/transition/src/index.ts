@@ -5,10 +5,7 @@ export { default as CrossFade } from "./CrossFade";
 export * from "./CrossFade";
 
 export {
-  default as useRelativePositioningStyle,
-} from "./hooks/useRelativePositioningStyle";
-export {
   useCollapseTransition,
   useCollapsibleElement,
-} from "./hooks/useCollapseTransition";
+} from "./useCollapseTransition";
 export * from "./types.d";

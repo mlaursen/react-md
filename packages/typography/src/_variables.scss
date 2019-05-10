@@ -90,7 +90,6 @@ $rmd-typography-text-container-breakpoint: 37.5rem !default;
 /// @type Map
 $rmd-typography-base: (
   font-family: $rmd-typography-font-family,
-  overflow-wrap: break-word,
   -moz-osx-font-smoothing: grayscale,
   -webkit-font-smoothing: antialiased,
 );

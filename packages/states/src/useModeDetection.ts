@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useToggle } from "@react-md/utils";
 
 /**
  * This is the current mode for how your user is interacting with your app. This
@@ -11,6 +12,9 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  * This is a small hook that is used to determine if the app is currently
  * being used by a touch device or not. All this really does is switch
  * between mousemove and touchstart events to determine which mode you are in.
+ * This also tracks the `contextmenu` appearance since long touchs can trigger
+ * the context menu on mobile devices. When the context menu appears after a touch,
+ * the mode will still be considered "touch" instead of swapping to mouse.
  *
  * @param touchTimeout - This is the amount of time that can occur between a
  * touchstart and mousemove event but still be considered part of a "touch"
@@ -19,20 +23,23 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  * decreasing this value until it does.
  * @return true if the app is in touch mode.
  */
-export function useTouchDetection(touchTimeout: number = 500) {
+export function useTouchDetection(touchTimeout: number = 1200) {
   const [lastTouchTime, setTouchTime] = useState(0);
   const touchRef = useRef(lastTouchTime);
+  const contextMenuRef = useRef(false);
   useEffect(() => {
     touchRef.current = lastTouchTime;
   });
 
   const updateTouchTime = useCallback(() => {
     setTouchTime(Date.now());
+    contextMenuRef.current = false;
   }, []);
 
   const resetTouchTime = useCallback(() => {
     const lastTouchTime = touchRef.current;
-    if (Date.now() - lastTouchTime < touchTimeout) {
+    if (contextMenuRef.current || Date.now() - lastTouchTime < touchTimeout) {
+      contextMenuRef.current = false;
       return;
     }
 
@@ -48,12 +55,20 @@ export function useTouchDetection(touchTimeout: number = 500) {
   }, []);
 
   useEffect(() => {
-    if (lastTouchTime !== 0) {
-      window.addEventListener("mousemove", resetTouchTime, true);
+    if (lastTouchTime === 0) {
+      contextMenuRef.current = false;
+      return;
     }
 
+    const updateContextMenu = () => {
+      contextMenuRef.current = true;
+    };
+
+    window.addEventListener("mousemove", resetTouchTime, true);
+    window.addEventListener("contextmenu", updateContextMenu, true);
     return () => {
       window.removeEventListener("mousemove", resetTouchTime, true);
+      window.removeEventListener("contextmenu", updateContextMenu, true);
     };
   }, [lastTouchTime]);
 
@@ -67,23 +82,7 @@ export function useTouchDetection(touchTimeout: number = 500) {
  * @return true if the app is in keyboard mode
  */
 export function useKeyboardDetection() {
-  const [enabled, setEnabled] = useState(false);
-  const ref = useRef(enabled);
-  useEffect(() => {
-    ref.current = enabled;
-  });
-
-  const enable = useCallback(() => {
-    if (!ref.current) {
-      setEnabled(true);
-    }
-  }, []);
-
-  const disable = useCallback(() => {
-    if (ref.current) {
-      setEnabled(false);
-    }
-  }, []);
+  const { toggled: enabled, enable, disable } = useToggle();
 
   useEffect(() => {
     if (enabled) {
