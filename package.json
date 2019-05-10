@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "1.10.2",
+  "version": "1.11.0",
   "description": "React material design components",
   "main": "./lib",
   "module": "./es",

@@ -1,5 +1,12 @@
 ## May 2019
 
+### v1.11.0 Released
+
+##### Changelog
+
+- Updated the `Paper` and `TabsContainer` components to have a `componentRef` to access the inner
+  DOM node. ([@gamtiq] - [pull-830])
+
 ### v1.10.2 Released
 
 ##### Changelog
