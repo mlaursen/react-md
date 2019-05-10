@@ -3,7 +3,7 @@
 set -e
 
 tar_name=react-md.tar.bz2
-ssh_alias=react-md
+ssh_alias=mlaursen
 server_location=/var/www/react-md/master
 
 yarn && yarn build

@@ -267,8 +267,7 @@ export default class TabsContainer extends PureComponent {
       const refType = typeof componentRef;
       if (refType === 'function') {
         componentRef(this._container);
-      }
-      else if (refType === 'object') {
+      } else if (refType === 'object') {
         componentRef.current = this._container;
       }
     }
