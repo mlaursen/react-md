@@ -1,7 +1,4 @@
 language: node_js
-before_install:
-  - rvm install 2.2
-  - gem install scss_lint
 node_js:
   - "6"
 env:

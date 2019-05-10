@@ -16,9 +16,7 @@
   "types": "./index.d.ts",
   "scripts": {
     "lint:fix": "eslint -c .eslintrc --fix src",
-    "lint:styles": "scss-lint src/scss",
-    "lint:scripts": "eslint -c .eslintrc src",
-    "lint": "npm-run-all -p lint:styles lint:scripts",
+    "lint": "eslint -c .eslintrc src",
     "test": "npm run test:tsc && cross-env BABEL_ENV=test jest",
     "test:tsc": "npm run tsd && tsc index.d.ts",
     "test:watch": "cross-env BABEL_ENV=test jest --watch",
