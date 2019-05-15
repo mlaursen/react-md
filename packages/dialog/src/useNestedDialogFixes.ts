@@ -14,6 +14,10 @@ interface Options {
  * of the dialog ids that are current visible. If there is more than 1 dialog visible
  * and the dialog is not at the top of the stack, the overlay and escape keypress will
  * be disabled.
+ *
+ * NOTE: This will not work if you nest dialogs together and have them become visible at
+ * the same time because the ids will get added from child -> parent instead of parent -> child.
+ * This flow shouldn't really happen though so it isn't planned on being fixed.
  */
 export default function useNestedDialogFixes({
   id,

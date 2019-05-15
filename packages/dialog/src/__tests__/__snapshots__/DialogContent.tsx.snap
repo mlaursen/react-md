@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogContent should render correctly (with snapshots) 1`] = `
+<div
+  className="rmd-dialog__content rmd-dialog__content--padded"
+  id="content-1"
+>
+  Some dialog content
+</div>
+`;
+
+exports[`DialogContent should render correctly (with snapshots) 2`] = `
+<div
+  className="rmd-dialog__content"
+  id="content-2"
+>
+  Some dialog content
+</div>
+`;

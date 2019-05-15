@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogHeader should render correctly (with snapshots) 1`] = `
+<header
+  className="rmd-dialog__header"
+>
+  Content
+</header>
+`;
+
+exports[`DialogHeader should render correctly (with snapshots) 2`] = `
+<header
+  className="rmd-dialog__header"
+  id="dialog-header"
+>
+  Content
+</header>
+`;
+
+exports[`DialogHeader should render correctly (with snapshots) 3`] = `
+<header
+  className="rmd-dialog__header"
+  id="dialog-header"
+>
+  <button
+    id="dialog-close"
+    type="button"
+  >
+    Close
+  </button>
+  <h2
+    className="rmd-dialog__title"
+    id="dialog-title"
+  >
+    Title
+  </h2>
+</header>
+`;

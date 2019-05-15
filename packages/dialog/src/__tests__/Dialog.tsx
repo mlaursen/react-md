@@ -1,0 +1,108 @@
+import React, { Fragment } from "react";
+import { cleanup, render, wait, fireEvent } from "react-testing-library";
+import { create } from "react-test-renderer";
+
+import Dialog from "../Dialog";
+import DialogContent from "../DialogContent";
+
+afterEach(cleanup);
+
+describe("Dialog", () => {
+  it("should render correctly (with snapshots)", () => {
+    const props = {
+      id: "dialog-1",
+      "aria-label": "Dialog",
+      visible: false,
+      onRequestClose: jest.fn(),
+    };
+
+    const { baseElement, rerender } = render(<Dialog {...props} />);
+    expect(baseElement).toMatchSnapshot();
+
+    rerender(<Dialog {...props} visible />);
+    expect(baseElement).toMatchSnapshot();
+
+    rerender(<Dialog {...props} />);
+    expect(baseElement).toMatchSnapshot();
+
+    // testing full page
+    rerender(<Dialog {...props} type="full-page" visible />);
+    expect(baseElement).toMatchSnapshot();
+
+    rerender(<Dialog {...props} type="full-page" />);
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  describe("a11y", () => {
+    const props = {
+      id: "dialog-id",
+      "aria-label": "Dialog",
+      onRequestClose: jest.fn(),
+      children: (
+        <DialogContent>
+          <button id="button-1" type="button">
+            Button 1
+          </button>
+          <button id="button-2" type="button">
+            Button 2
+          </button>
+        </DialogContent>
+      ),
+    };
+
+    const getDialog = () =>
+      document.getElementById("dialog-id") as HTMLDivElement;
+    const getButton1 = () =>
+      document.getElementById("button-1") as HTMLButtonElement;
+    const getButton2 = () =>
+      document.getElementById("button-2") as HTMLButtonElement;
+
+    it("should automatically focus the first focusable element in the dialog on mount and focus the previous element on unmount", async () => {
+      const { baseElement, rerender } = render(
+        <Fragment>
+          <button id="main-button" type="button" autoFocus>
+            Button
+          </button>
+          <Dialog {...props} visible={false} />
+        </Fragment>
+      );
+      const mainButton = document.getElementById("main-button");
+      expect(document.activeElement).toBe(mainButton);
+
+      rerender(
+        <Fragment>
+          <button id="main-button" type="button" autoFocus>
+            Button
+          </button>
+          <Dialog {...props} visible />
+        </Fragment>
+      );
+
+      await wait(() => {
+        if (document.activeElement === mainButton) {
+          throw new Error();
+        }
+      });
+
+      expect(document.activeElement).toBe(getButton1());
+
+      rerender(
+        <Fragment>
+          <button id="main-button" type="button" autoFocus>
+            Button
+          </button>
+          <Dialog {...props} visible={false} />
+        </Fragment>
+      );
+
+      await wait(() => {
+        // the document.body will be focused immediately after unmount, and then an animation frame
+        // will focus the main button
+        if (getDialog() || document.activeElement === document.body) {
+          throw new Error();
+        }
+      });
+      expect(document.activeElement).toBe(mainButton);
+    });
+  });
+});
