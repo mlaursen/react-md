@@ -1,26 +1,7 @@
 import { FunctionComponent, useEffect, useRef } from "react";
-import { delegateEvent } from "@react-md/utils";
+import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
-export interface ResizeListenerProps {
-  /**
-   * A function to call when the app is resized.
-   */
-  onResize: EventListener;
-
-  /**
-   * Any event listener options to use when attaching the event.
-   */
-  options?: AddEventListenerOptions;
-
-  /**
-   * Boolean if the resize event handler should be called immediately
-   * once the component is mounted. The default behavior will be to only
-   * call the `onResize` event immediately client side and can never be
-   * invoked server side since it relise on the `window` to dispatch a
-   * `UIEvent`.
-   * */
-  immediate?: boolean;
-}
+export interface ResizeListenerProps extends ResizeListenerOptions {}
 
 type DefaultProps = Required<Pick<ResizeListenerProps, "immediate">>;
 type WithDefaultProps = ResizeListenerProps & DefaultProps;
@@ -35,27 +16,7 @@ type WithDefaultProps = ResizeListenerProps & DefaultProps;
 const ResizeListener: FunctionComponent<ResizeListenerProps> = props => {
   const { onResize, options, immediate } = props as WithDefaultProps;
 
-  // creating a ref so the event handler doesn't need to be updated each rerener
-  // if using an arrow function for the resize handler
-  const resizeRef = useRef(onResize);
-  useEffect(() => {
-    resizeRef.current = onResize;
-  });
-
-  useEffect(() => {
-    const eventHandler = delegateEvent("resize", window, true, options);
-    const handler = (event: Event) => resizeRef.current(event);
-    eventHandler.add(handler);
-
-    if (immediate && typeof window !== "undefined") {
-      window.dispatchEvent(new UIEvent("resize"));
-    }
-
-    return () => {
-      eventHandler.remove(handler);
-    };
-  }, [options]);
-
+  useResizeListener({ onResize, options, immediate });
   return null;
 };
 

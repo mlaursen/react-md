@@ -14,3 +14,4 @@ export {
   default as useResizeObserver,
   ResizeObserverChangeEventHandler,
 } from "./useResizeObserver";
+export { default as useResizeListener } from "./useResizeListener";
