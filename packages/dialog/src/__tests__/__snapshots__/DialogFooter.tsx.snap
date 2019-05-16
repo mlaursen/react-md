@@ -2,7 +2,7 @@
 
 exports[`DialogFooter should render correctly (with snapshots) 1`] = `
 <footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  className="rmd-dialog__footer"
   id="dialog-footer"
 >
   <button
@@ -42,7 +42,7 @@ exports[`DialogFooter should render correctly (with snapshots) 2`] = `
 
 exports[`DialogFooter should render correctly (with snapshots) 3`] = `
 <footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
   id="dialog-footer"
 >
   <button
@@ -122,7 +122,7 @@ exports[`DialogFooter should render correctly (with snapshots) 6`] = `
 
 exports[`DialogFooter should render correctly (with snapshots) 7`] = `
 <footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
   id="dialog-footer"
 >
   <button
@@ -162,7 +162,7 @@ exports[`DialogFooter should render correctly (with snapshots) 8`] = `
 
 exports[`DialogFooter should render correctly (with snapshots) 9`] = `
 <footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-start"
   id="dialog-footer"
 >
   <button
@@ -202,7 +202,7 @@ exports[`DialogFooter should render correctly (with snapshots) 10`] = `
 
 exports[`DialogFooter should render correctly (with snapshots) 11`] = `
 <footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-end"
   id="dialog-footer"
 >
   <button

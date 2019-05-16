@@ -1,20 +1,13 @@
-import React, {
-  Reducer,
-  CSSProperties,
-  ReducerAction,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  MutableRefObject,
-} from "react";
-import { useStatesConfigContext } from "@react-md/states";
-import { useToggle, useTimeout } from "@react-md/utils";
-import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
 import {
-  useTooltipDelayActions,
-  useTooltipDelayContext,
-} from "./useTooltipDelay";
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
+import { useTimeout, useToggle } from "@react-md/utils";
+import { useTooltipDelayActions } from "./useTooltipDelay";
 
 type Position = "top" | "right" | "bottom" | "left";
 
@@ -184,8 +177,8 @@ interface TooltipOptions {
  * - when portaled, another new span will be created with no idea that will be used for the styling/updates
  * - children prop - function or single element. Single element will close props in
  */
-export function useTooltipState({ showDelay }: TooltipOptions) {
-  const contextDelay = useTooltipDelayContext();
-  const delay = typeof showDelay === "number" ? showDelay : contextDelay;
-  const { startShowTimer, hide, visible } = useTooltipVisibility(delay);
+export function useTooltipState(_options: TooltipOptions) {
+  // const contextDelay = useTooltipDelayContext();
+  // const delay = typeof showDelay === "number" ? showDelay : contextDelay;
+  // const { startShowTimer, hide, visible } = useTooltipVisibility(delay);
 }

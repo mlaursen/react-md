@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FocusContainer should render correctly (with snapshots) 1`] = `
+<div>
+  <div>
+    <a
+      href="#"
+    >
+      Link
+    </a>
+  </div>
+</div>
+`;
+
+exports[`FocusContainer should render correctly (with snapshots) 2`] = `
+<div>
+  <span>
+    <button
+      id="button-1"
+      type="button"
+    >
+      Button
+    </button>
+  </span>
+</div>
+`;

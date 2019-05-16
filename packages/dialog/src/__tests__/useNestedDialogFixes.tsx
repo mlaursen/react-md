@@ -1,8 +1,4 @@
-import React, {
-  ReactElement,
-  FunctionComponent,
-  MutableRefObject,
-} from "react";
+import React, { FunctionComponent, MutableRefObject } from "react";
 import { cleanup, render } from "react-testing-library";
 import { renderHook } from "react-hooks-testing-library";
 

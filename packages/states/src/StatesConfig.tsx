@@ -9,13 +9,8 @@ import {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/transition";
-import { Omit } from "@react-md/utils";
+
 import { RIPPLE_CLASS_NAMES, RIPPLE_TIMEOUT } from "./ripples/contants";
-import {
-  useModeClassName,
-  useModeDetection,
-  UserInteractionMode,
-} from "./useModeDetection";
 
 /**
  * Contains all the values in the `StatesConfig` component.
@@ -67,7 +62,6 @@ export function useStatesConfigContext() {
 
 export interface StatesConfigProps extends Partial<StatesConfigContextType> {
   children?: ReactNode;
-  disableModeDetection?: boolean;
 }
 
 type WithDefaultProps = StatesConfigProps & StatesConfigContextType;
@@ -86,7 +80,6 @@ const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
     rippleClassNames,
     disableRipple,
     disableProgrammaticRipple,
-    disableModeDetection,
     children,
   } = props as WithDefaultProps;
 

@@ -59,7 +59,7 @@ describe("DialogFooter", () => {
     aligns.forEach(align => {
       expect(
         create(
-          <DialogFooter id="dialog-footer">
+          <DialogFooter id="dialog-footer" align={align}>
             <button id="close-dialog" type="button">
               Close
             </button>

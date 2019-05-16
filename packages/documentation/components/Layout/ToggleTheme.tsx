@@ -8,13 +8,13 @@ import React, {
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
+import { useInteractionModeContext } from "@react-md/states";
 import { useToggle } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import * as storage from "utils/storage";
 
 import "./toggle-theme.scss";
-import { useStatesConfigContext } from "@react-md/states";
 
 const THEME_TRANSITION_DURATION = 150;
 
@@ -71,7 +71,7 @@ const ToggleTheme: FunctionComponent = () => {
     icon = <LightbulbSVGIcon />;
   }
 
-  const isMouseMode = useStatesConfigContext().mode === "mouse";
+  const isMouseMode = useInteractionModeContext() === "mouse";
 
   return (
     <AppBarAction

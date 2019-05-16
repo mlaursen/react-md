@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useRef } from "react";
+import { FunctionComponent } from "react";
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
 export interface ResizeListenerProps extends ResizeListenerOptions {}

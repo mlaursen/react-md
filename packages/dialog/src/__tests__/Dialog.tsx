@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import { cleanup, render, wait, fireEvent } from "react-testing-library";
-import { create } from "react-test-renderer";
+import { cleanup, render, wait } from "react-testing-library";
 
 import Dialog from "../Dialog";
 import DialogContent from "../DialogContent";
@@ -54,11 +53,9 @@ describe("Dialog", () => {
       document.getElementById("dialog-id") as HTMLDivElement;
     const getButton1 = () =>
       document.getElementById("button-1") as HTMLButtonElement;
-    const getButton2 = () =>
-      document.getElementById("button-2") as HTMLButtonElement;
 
     it("should automatically focus the first focusable element in the dialog on mount and focus the previous element on unmount", async () => {
-      const { baseElement, rerender } = render(
+      const { rerender } = render(
         <Fragment>
           <button id="main-button" type="button" autoFocus>
             Button
