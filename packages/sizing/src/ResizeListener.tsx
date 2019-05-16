@@ -1,7 +1,10 @@
 import { FunctionComponent } from "react";
+import { Omit } from "@react-md/utils";
+
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
-export interface ResizeListenerProps extends ResizeListenerOptions {}
+export interface ResizeListenerProps
+  extends Omit<ResizeListenerOptions, "enabled"> {}
 
 type DefaultProps = Required<Pick<ResizeListenerProps, "immediate">>;
 type WithDefaultProps = ResizeListenerProps & DefaultProps;
@@ -16,7 +19,7 @@ type WithDefaultProps = ResizeListenerProps & DefaultProps;
 const ResizeListener: FunctionComponent<ResizeListenerProps> = props => {
   const { onResize, options, immediate } = props as WithDefaultProps;
 
-  useResizeListener({ onResize, options, immediate });
+  useResizeListener({ onResize, options, immediate, enabled: true });
   return null;
 };
 

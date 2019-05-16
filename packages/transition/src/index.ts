@@ -8,4 +8,5 @@ export {
   useCollapseTransition,
   useCollapsibleElement,
 } from "./useCollapseTransition";
+export { default as useFixedPositioning } from "./useFixedPositioning";
 export * from "./types.d";

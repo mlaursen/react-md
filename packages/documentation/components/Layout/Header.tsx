@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import cn from "classnames";
 import { AppBar, AppBarTitle, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
+import { Tooltipped } from "@react-md/tooltip";
 import { bem } from "@react-md/theme";
 
 import ToggleRTL from "./ToggleRTL";
@@ -41,7 +42,9 @@ const Header: FunctionComponent<Props> = ({
       {title}
     </AppBarTitle>
     <ToggleTheme />
-    <GithubLink id="main-github-link" inherit />
+    <Tooltipped id="main-github-link" tooltip="View GitHub">
+      <GithubLink inherit />
+    </Tooltipped>
     <ToggleRTL />
   </AppBar>
 );

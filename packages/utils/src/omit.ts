@@ -1,4 +1,4 @@
-import { Omit } from "./types.d";
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * I really don't know how to typedef this. It just creates

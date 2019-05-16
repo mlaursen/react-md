@@ -7,12 +7,21 @@
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/sizing/dist/mixins';
 @import '@react-md/divider/dist/mixins';
+@import '@react-md/tooltip/dist/mixins';
+
+:root {
+  @include rmd-sizing-desktop-media {
+    @include rmd-icon-dense-theme;
+    @include rmd-list-dense-theme;
+    @include rmd-list-item-dense-theme;
+    @include rmd-tooltip-dense;
+  }
+}
 
 .layout {
   &__app-bar {
     @include rmd-sizing-desktop-media {
       @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
-      @include rmd-icon-dense-theme;
     }
   }
 
@@ -45,9 +54,6 @@
     @include rmd-sizing-desktop-media {
       @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
       @include rmd-app-bar-theme(top, height);
-      @include rmd-list-dense-theme;
-      @include rmd-list-item-dense-theme;
-      @include rmd-icon-dense-theme;
     }
 
     &--inline {

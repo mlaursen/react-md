@@ -39,6 +39,7 @@
   @include rmd-tooltip-theme(background-color);
   @include rmd-tooltip-theme(color);
   @include rmd-tooltip-theme(font-size);
+  @include rmd-tooltip-theme(line-height);
   @include rmd-tooltip-theme(min-height);
   @include rmd-tooltip-theme(padding-left, horizontal-padding);
   @include rmd-tooltip-theme(padding-right, horizontal-padding);
@@ -47,10 +48,9 @@
   align-items: center;
   border-radius: $rmd-tooltip-border-radius;
   display: flex;
-  line-height: $rmd-tooltip-line-height;
   opacity: 0;
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   text-transform: none;
   user-select: none;
   white-space: nowrap;
@@ -104,23 +104,18 @@
 
 /// Creates the dense tooltip style overrides.
 @mixin rmd-tooltip-dense {
-  @include rmd-tooltip-theme(font-size, dense-font-size);
-  @include rmd-tooltip-theme(min-height, dense-min-height);
-  @include rmd-tooltip-theme(padding-left, dense-horizontal-padding);
-  @include rmd-tooltip-theme(padding-right, dense-horizontal-padding);
-
-  @each $position in $rmd-tooltip-position-values {
-    &.rmd-tooltip--#{$position} {
-      $inversed-position: rmd-tooltip-inverse-position($position);
-      $inversed-property: rmd-tooltip-position-to-property($inversed-position);
-      #{$inversed-property}: calc(100% + #{rmd-tooltip-theme-var(dense-spacing)});
-    }
-  }
-
-  &-line-wrap {
-    @include rmd-tooltip-theme(padding-bottom, dense-vertical-padding);
-    @include rmd-tooltip-theme(padding-top, dense-vertical-padding);
-  }
+  @include rmd-tooltip-theme-update-var(font-size, rmd-tooltip-theme-var(dense-font-size));
+  @include rmd-tooltip-theme-update-var(line-height, rmd-tooltip-theme-var(dense-line-height));
+  @include rmd-tooltip-theme-update-var(min-height, rmd-tooltip-theme-var(dense-min-height));
+  @include rmd-tooltip-theme-update-var(
+    horizontal-padding,
+    rmd-tooltip-theme-var(dense-horizontal-padding)
+  );
+  @include rmd-tooltip-theme-update-var(
+    vertical-padding,
+    rmd-tooltip-theme-var(dense-vertical-padding)
+  );
+  @include rmd-tooltip-theme-update-var(spacing, rmd-tooltip-theme-var(dense-spacing));
 }
 
 /// Creates all the styles for a tooltip element. This should be used within a
@@ -136,8 +131,17 @@
     @include rmd-tooltip-dense;
   }
 
+  &--above {
+    transform: translateY(calc(-1 * #{rmd-tooltip-theme-var(transition-distance)}));
+  }
+
+  &--below {
+    transform: translateY(#{rmd-tooltip-theme-var(transition-distance)});
+  }
+
   &--visible {
     opacity: 1;
+    transform: none;
   }
 
   &--enter {
@@ -156,53 +160,47 @@
     opacity: 0;
   }
 
-  &--left {
-    @include rmd-tooltip-position(left);
-  }
+  // &--left {
+  //   @include rmd-tooltip-position(left);
+  // }
 
-  &--above {
-    @include rmd-tooltip-position(above);
-  }
+  // &--above {
+  //   @include rmd-tooltip-position(above);
+  // }
 
-  &--right {
-    @include rmd-tooltip-position(right);
-  }
+  // &--right {
+  //   @include rmd-tooltip-position(right);
+  // }
 
-  &--below {
-    @include rmd-tooltip-position(below);
-  }
+  // &--below {
+  //   @include rmd-tooltip-position(below);
+  // }
 
-  &--portal {
-    // reset everything since it is now handled by inline styles
-    bottom: auto;
-    left: auto;
-    right: auto;
-    top: auto;
+  // &--portal {
+  // $distance: rmd-tooltip-theme-var(transition-distance);
+  // // have to use calc to negate the value of a css variable
+  // $negative-distance: calc(-1 * #{$distance});
 
-    $distance: rmd-tooltip-theme-var(transition-distance);
-    // have to use calc to negate the value of a css variable
-    $negative-distance: calc(-1 * #{$distance});
+  // &.rmd-tooltip--above {
+  //   transform: translateY($negative-distance);
+  // }
 
-    &.rmd-tooltip--above {
-      transform: translateY($negative-distance);
-    }
+  // &.rmd-tooltip--below {
+  //   transform: translateY($distance);
+  // }
 
-    &.rmd-tooltip--below {
-      transform: translateY($distance);
-    }
+  // &.rmd-tooltip--left {
+  //   transform: translateX($distance);
+  // }
 
-    &.rmd-tooltip--left {
-      transform: translateX($distance);
-    }
+  // &.rmd-tooltip--right {
+  //   transform: translateX($negative-distance);
+  // }
 
-    &.rmd-tooltip--right {
-      transform: translateX($negative-distance);
-    }
-
-    &.rmd-tooltip--visible {
-      transform: none;
-    }
-  }
+  // &.rmd-tooltip--visible {
+  //   transform: none;
+  // }
+  // }
 }
 
 /// Creates all the styles and theme for the tooltip package.

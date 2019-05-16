@@ -9,7 +9,6 @@ export interface WithForwardedRef<E = HTMLElement> {
 }
 
 export type Maybe<T, NotFound = null> = T | NotFound;
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * This type allows you to require at least one of the provided keys. This is super helpful

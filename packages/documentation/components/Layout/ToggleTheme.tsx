@@ -9,6 +9,7 @@ import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { useInteractionModeContext } from "@react-md/states";
+import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
@@ -74,20 +75,21 @@ const ToggleTheme: FunctionComponent = () => {
   const isMouseMode = useInteractionModeContext() === "mouse";
 
   return (
-    <AppBarAction
-      id="toggle-theme"
-      first
-      onClick={() => setLightTheme(prevDark => !prevDark)}
-      onMouseEnter={isMouseMode ? enable : undefined}
-      onMouseLeave={isMouseMode ? disable : undefined}
-      className={cn("toggle-theme", {
-        "toggle-theme--on": isLight,
-        "toggle-theme--off": !isLight,
-      })}
-      inheritColor={!isLight}
-    >
-      {icon}
-    </AppBarAction>
+    <Tooltipped id="toggle-theme" tooltip="Toggle Light/Dark Theme">
+      <AppBarAction
+        first
+        onClick={() => setLightTheme(prevDark => !prevDark)}
+        onMouseEnter={isMouseMode ? enable : undefined}
+        onMouseLeave={isMouseMode ? disable : undefined}
+        className={cn("toggle-theme", {
+          "toggle-theme--on": isLight,
+          "toggle-theme--off": !isLight,
+        })}
+        inheritColor={!isLight}
+      >
+        {icon}
+      </AppBarAction>
+    </Tooltipped>
   );
 };
 

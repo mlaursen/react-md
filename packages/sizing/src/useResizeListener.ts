@@ -46,9 +46,9 @@ export default function useResizeListener({
 }: ResizeListenerOptions) {
   // creating a ref so the event handler doesn't need to be updated each re-render
   // if using an arrow function for the resize handler
-  const resizeRef = useRef(onResize);
+  const callback = useRef(onResize);
   useEffect(() => {
-    resizeRef.current = onResize;
+    callback.current = onResize;
   });
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function useResizeListener({
     }
 
     const eventHandler = delegateEvent("resize", window, true, options);
-    const handler = (event: Event) => resizeRef.current(event);
+    const handler = (event: Event) => callback.current(event);
     eventHandler.add(handler);
 
     if (immediate && typeof window !== "undefined") {

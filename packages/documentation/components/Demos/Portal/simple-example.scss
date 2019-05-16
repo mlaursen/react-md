@@ -19,5 +19,6 @@
   @include rmd-elevation(4);
   @include rmd-theme(background-color, surface);
 
+  position: fixed;
   z-index: $rmd-overlay-z-index + 1;
 }

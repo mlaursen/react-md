@@ -4,6 +4,7 @@ import {
   FormatAlignLeftSVGIcon,
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
+import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
 
 const ToggleRTL: FunctionComponent = () => {
@@ -19,9 +20,11 @@ const ToggleRTL: FunctionComponent = () => {
   }, [toggled]);
 
   return (
-    <AppBarAction id="toggle-rtl" onClick={toggle} last>
-      {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
-    </AppBarAction>
+    <Tooltipped id="toggle-rtl" tooltip="Toggle RTL" onClick={toggle}>
+      <AppBarAction last>
+        {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
+      </AppBarAction>
+    </Tooltipped>
   );
 };
 

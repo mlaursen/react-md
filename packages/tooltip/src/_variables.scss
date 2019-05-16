@@ -69,6 +69,10 @@ $rmd-tooltip-spacing: 1.5rem !default;
 /// @type Number
 $rmd-tooltip-dense-font-size: 0.625rem !default;
 
+/// The line height to use for dense tooltips.
+/// @type Number
+$rmd-tooltip-dense-line-height: 0.825rem !default;
+
 /// The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
 /// based on line wrapping. You will need to add additional padding in these cases though.
 ///
@@ -112,11 +116,13 @@ $rmd-tooltip-theme-values: (
   spacing: $rmd-tooltip-spacing,
   min-height: $rmd-tooltip-min-height,
   font-size: $rmd-tooltip-font-size,
+  line-height: $rmd-tooltip-line-height,
   horizontal-padding: $rmd-tooltip-horizontal-padding,
   vertical-padding: $rmd-tooltip-line-wrap-vertical-padding,
   dense-spacing: $rmd-tooltip-dense-spacing,
   dense-min-height: $rmd-tooltip-dense-min-height,
   dense-font-size: $rmd-tooltip-dense-font-size,
+  dense-line-height: $rmd-tooltip-dense-line-height,
   dense-horizontal-padding: $rmd-tooltip-dense-horizontal-padding,
   dense-vertical-padding: $rmd-tooltip-dense-line-wrap-vertical-padding,
 );

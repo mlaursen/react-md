@@ -11,23 +11,40 @@ import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
-import { positionRelativeTo, useToggle } from "@react-md/utils";
+import {
+  getFixedPosition,
+  useToggle,
+  useScrollListener,
+} from "@react-md/utils";
 
 import "./simple-example.scss";
+
+const ScrollListener: FunctionComponent<{ onScroll: EventListener }> = ({
+  onScroll,
+}) => {
+  useScrollListener({ enabled: true, onScroll });
+
+  return null;
+};
 
 const SimpleExample: FunctionComponent = () => {
   const { toggled, toggle, disable } = useToggle();
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
+
+  const updatePosition = useCallback(() => {
+    setStyle(
+      getFixedPosition({
+        container: buttonRef.current,
+        element: listRef.current,
+      }).style
+    );
+  }, []);
   const listRefCB = useCallback((list: HTMLUListElement | null) => {
     listRef.current = list;
-    const button = buttonRef.current;
-    if (!list || !button) {
-      return;
-    }
 
-    setStyle(positionRelativeTo(button, list));
+    updatePosition();
   }, []);
 
   return (
@@ -65,6 +82,7 @@ const SimpleExample: FunctionComponent = () => {
             }
           }}
         >
+          <ScrollListener onScroll={updatePosition} />
           {Array.from(new Array(6)).map((_, i) => (
             <ListItem id={`menu-item-${i}`} key={i} role="menuitem">
               {`Option ${i + 1}`}

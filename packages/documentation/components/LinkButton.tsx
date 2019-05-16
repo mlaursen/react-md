@@ -15,7 +15,6 @@ export interface LinkButtonProps
 
 const LinkButton: FunctionComponent<LinkButtonProps> = providedProps => {
   const {
-    id,
     className: propClassName,
     theme,
     buttonType,
