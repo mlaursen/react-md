@@ -15,7 +15,6 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { ResizeListener } from "@react-md/sizing";
 import { useInteractionModeContext } from "@react-md/states";
 import { useFixedPositioning } from "@react-md/transition";
 import {
@@ -388,6 +387,12 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     disable();
   }, []);
 
+  const disableAndReset = () => {
+    stopMouseTimer();
+    stopTouchTimer();
+    disable();
+  };
+
   const {
     style,
     onEnter,
@@ -398,17 +403,21 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     fixedTo: () => document.getElementById(id),
     vhMargin,
     vwMargin,
+    onResize: disableAndReset,
+    onScroll: disableAndReset,
     getOptions: node => {
       let varSpacing;
       if (!disableAutoSpacing) {
-        varSpacing = window
-          .getComputedStyle(node)
-          .getPropertyValue("--rmd-tooltip-spacing");
+        varSpacing = unitToNumber(
+          window
+            .getComputedStyle(node)
+            .getPropertyValue("--rmd-tooltip-spacing")
+        );
       }
 
       let currentSpacing = 0;
       if (varSpacing) {
-        currentSpacing = unitToNumber(varSpacing);
+        currentSpacing = varSpacing;
       } else {
         currentSpacing = unitToNumber(dense ? denseSpacing : spacing);
       }
@@ -452,14 +461,6 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
         visible={visible}
       >
         {tooltipChildren}
-        <ResizeListener
-          immediate={false}
-          onResize={() => {
-            stopMouseTimer();
-            stopTouchTimer();
-            disable();
-          }}
-        />
       </Tooltip>
     </ConditionalPortal>
   );
@@ -525,7 +526,7 @@ const defaultProps: DefaultProps = {
   portal: true,
   lineWrap: true,
   focusDelay: 1000,
-  hoverDelay: 100,
+  hoverDelay: 1000,
   touchTimeout: 1000,
   mountOnEnter: false,
   unmountOnExit: false,

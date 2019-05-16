@@ -1,6 +1,12 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
-import { FixedPositionOptions, getFixedPosition, Omit } from "@react-md/utils";
+import { useResizeListener } from "@react-md/sizing";
+import {
+  FixedPositionOptions,
+  getFixedPosition,
+  Omit,
+  useScrollListener,
+} from "@react-md/utils";
 
 type FixedToFunction = () => HTMLElement | null;
 type FixedTo = string | HTMLElement | null | FixedToFunction;
@@ -12,8 +18,32 @@ type OptionalFixedPositionOptions = Omit<
 interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
     Pick<TransitionProps, "onEnter" | "onEntering" | "onEntered" | "onExited"> {
+  /**
+   * The element that the transitioning node should be fixed to.
+   */
   fixedTo: FixedTo;
+
+  /**
+   * An optional function to call to dynamically get the options when the node
+   * has been added to the DOM. This is helpful if you need to check sizes or other
+   * things once the DOM node has been added for initial positioning or other things
+   * like that. The returned options will override the existing options
+   */
   getOptions?: (node: HTMLElement) => OptionalFixedPositionOptions;
+
+  /**
+   * An optional function to call when the element is in the DOM and a window resize
+   * event has occurred. The main use-case for this is hiding the fixed element when
+   * the page is resized.
+   */
+  onResize?: (event: Event) => void;
+
+  /**
+   * An optional function to call when the element is in the DOM and a window scroll
+   * event has occurred. The main use-case for this is hiding the fixed element when
+   * the an element or the entire page has a scroll event.
+   */
+  onScroll?: (event: Event) => void;
 }
 
 function getFixedTo(fixedTo: FixedTo) {
@@ -54,6 +84,8 @@ export default function useFixedPositioning({
   onExited,
   fixedTo,
   getOptions,
+  onResize,
+  onScroll,
   ...remainingOptions
 }: FixedPositioningOptions) {
   const [style, setStyle] = useState<CSSProperties | undefined>();
@@ -142,18 +174,26 @@ export default function useFixedPositioning({
     element.current = null;
   }, []);
 
-  useEffect(() => {
-    if (!element.current) {
-      return;
-    }
+  useResizeListener({
+    enabled: !!element.current,
+    onResize: event => {
+      if (onResize) {
+        onResize(event);
+      }
 
-    window.addEventListener("scroll", updateStyle, true);
-    window.addEventListener("resize", updateStyle, true);
-    return () => {
-      window.removeEventListener("scroll", updateStyle, true);
-      window.removeEventListener("resize", updateStyle, true);
-    };
-  }, [element.current]);
+      updateStyle();
+    },
+  });
+  useScrollListener({
+    enabled: !!element.current,
+    onScroll: event => {
+      if (onScroll) {
+        onScroll(event);
+      }
+
+      updateStyle();
+    },
+  });
 
   return {
     style,

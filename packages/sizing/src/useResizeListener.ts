@@ -10,7 +10,7 @@ export interface ResizeListenerOptions {
   /**
    * Any event listener options to use when attaching the event.
    */
-  options?: AddEventListenerOptions;
+  options?: boolean | AddEventListenerOptions;
 
   /**
    * Boolean if the resize event handler should be called immediately

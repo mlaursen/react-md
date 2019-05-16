@@ -16,7 +16,7 @@ describe("useCollapseState", () => {
         collapsed: true,
         minHeight: 0,
         minPaddingTop: 1,
-        minPaddingBottom: 1,
+        minPaddingBottom: 2,
       })
     );
 
@@ -36,7 +36,7 @@ describe("useCollapseState", () => {
         collapsed: false,
         minHeight: 0,
         minPaddingTop: 1,
-        minPaddingBottom: 1,
+        minPaddingBottom: 2,
       })
     );
 

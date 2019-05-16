@@ -187,15 +187,19 @@ function getYPosition(
   return { top, bottom, actualY };
 }
 
+export interface FixedStyleObject {
+  left?: number;
+  top?: number;
+  right?: number;
+  bottom?: number;
+}
+
+export type FixedStyle = FixedStyleObject | undefined;
+
 export interface FixedPositionResult {
   actualX: HorizontalPosition;
   actualY: VerticalPosition;
-  style?: {
-    left?: number;
-    top?: number;
-    right?: number;
-    bottom?: number;
-  };
+  style?: FixedStyleObject;
 }
 
 /**
