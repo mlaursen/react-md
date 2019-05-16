@@ -11,18 +11,16 @@ import {
 
 describe("useCollapseState", () => {
   it("should retrun the correct defaults when starting collapsed", () => {
-    let value;
-    renderHook(
-      () =>
-        (value = useCollapseState({
-          collapsed: true,
-          minHeight: 0,
-          minPaddingTop: 1,
-          minPaddingBottom: 2,
-        }))
+    const { result } = renderHook(() =>
+      useCollapseState({
+        collapsed: true,
+        minHeight: 0,
+        minPaddingTop: 1,
+        minPaddingBottom: 1,
+      })
     );
 
-    expect(value).toEqual({
+    expect(result.current).toEqual({
       entering: false,
       leaving: false,
       maxHeight: 0,
@@ -33,18 +31,16 @@ describe("useCollapseState", () => {
   });
 
   it("should return the correct defaults when starting expanded", () => {
-    let value;
-    renderHook(
-      () =>
-        (value = useCollapseState({
-          collapsed: false,
-          minHeight: 0,
-          minPaddingTop: 1,
-          minPaddingBottom: 2,
-        }))
+    const { result } = renderHook(() =>
+      useCollapseState({
+        collapsed: false,
+        minHeight: 0,
+        minPaddingTop: 1,
+        minPaddingBottom: 1,
+      })
     );
 
-    expect(value).toEqual({
+    expect(result.current).toEqual({
       entering: false,
       leaving: false,
       maxHeight: undefined,
