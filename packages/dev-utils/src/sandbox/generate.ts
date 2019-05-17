@@ -31,13 +31,15 @@ function toTitle(s: string) {
 }
 
 function toDependencyJson(dependencies: string[]) {
-  return dependencies.reduce(
-    (json, dependency) => ({
-      ...json,
-      [dependency]: dependency.startsWith("@react-md") ? "next" : "latest",
-    }),
-    {}
-  );
+  return dependencies
+    .filter(n => !n.startsWith(path.sep))
+    .reduce(
+      (json, dependency) => ({
+        ...json,
+        [dependency]: dependency.startsWith("@react-md") ? "next" : "latest",
+      }),
+      {}
+    );
 }
 
 export async function createSandboxesLookup() {
