@@ -11,8 +11,9 @@ import {
 } from "@react-md/states";
 import { WithForwardedRef, Omit } from "@react-md/utils";
 
-import { ButtonThemeProps } from "./types.d";
-import buttonThemeClassNames from "./buttonThemeClassNames";
+import buttonThemeClassNames, {
+  ButtonThemeProps,
+} from "./buttonThemeClassNames";
 
 /**
  * This interface includes all the props that the `Button` component accepts so the main

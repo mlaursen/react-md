@@ -168,7 +168,6 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     disableAutoSpacing,
     ...props
   } = providedProps as WithDefaultProps;
-  const { dense } = props;
   const { hide, visible, position, handlers } = useTooltipState({
     position: propPosition,
     positionThreshold,
@@ -210,7 +209,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
       if (varSpacing) {
         currentSpacing = varSpacing;
       } else {
-        currentSpacing = unitToNumber(dense ? denseSpacing : spacing);
+        currentSpacing = unitToNumber(props.dense ? denseSpacing : spacing);
       }
 
       return {
