@@ -137,6 +137,7 @@ type DefaultProps = Required<
     | "hoverDelay"
     | "touchTimeout"
     | "positionThreshold"
+    | "enableHoverMode"
   >
 >;
 type WithDefaultProps = TooltippedProps & DefaultProps;
@@ -166,6 +167,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onFocus,
     onKeyDown,
     disableAutoSpacing,
+    enableHoverMode,
     ...props
   } = providedProps as WithDefaultProps;
   const { hide, visible, position, handlers } = useTooltipState({
@@ -173,6 +175,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     positionThreshold,
     hoverDelay,
     focusDelay,
+    enableHoverMode,
     touchTimeout,
     onMouseEnter,
     onMouseLeave,
@@ -310,6 +313,7 @@ const defaultProps: DefaultProps = {
   touchTimeout: DEFAULT_DELAY,
   mountOnEnter: true,
   unmountOnExit: true,
+  enableHoverMode: false,
 };
 
 Tooltipped.defaultProps = defaultProps;

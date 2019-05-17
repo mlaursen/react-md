@@ -11,6 +11,10 @@ import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
 import { getViewportSize, useTimeout, useToggle } from "@react-md/utils";
 import { TooltipPosition, TooltipProps } from "./Tooltip";
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
+import {
+  useTooltipDelayContext,
+  useTooltipDelayActions,
+} from "./useTooltipDelay";
 
 type TooltipInitiated = UserInteractionMode | "window";
 
@@ -54,7 +58,9 @@ type MergableMouseHandlers = Pick<
   "onMouseEnter" | "onMouseLeave"
 >;
 
-interface MouseOptions extends MergableMouseHandlers, HandlersBaseOptions {}
+interface MouseOptions extends MergableMouseHandlers, HandlersBaseOptions {
+  enableHoverMode: boolean;
+}
 
 /**
  * This handles creating and returning the required mouse event listeners
@@ -71,6 +77,7 @@ export function useMouseState({
   delay,
   onMouseEnter,
   onMouseLeave,
+  enableHoverMode,
   setEstimatedPosition,
 }: MouseOptions) {
   const handlers = useRef({ onMouseEnter, onMouseLeave });
@@ -78,11 +85,20 @@ export function useMouseState({
     handlers.current = { onMouseEnter, onMouseLeave };
   });
 
-  const { start, stop } = useTimeout(() => {
-    if (initiated.current === "mouse") {
-      showTooltip();
-    }
-  }, delay);
+  const currentDelay = useTooltipDelayContext();
+  const actions = useTooltipDelayActions();
+  const { start, stop } = useTimeout(
+    () => {
+      if (initiated.current === "mouse") {
+        showTooltip();
+
+        if (enableHoverMode) {
+          actions.enable();
+        }
+      }
+    },
+    enableHoverMode ? delay : currentDelay
+  );
 
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -115,8 +131,11 @@ export function useMouseState({
 
       stop();
       hideTooltip();
+      if (enableHoverMode) {
+        actions.startTimer();
+      }
     },
-    []
+    [enableHoverMode]
   );
 
   return {
@@ -457,6 +476,14 @@ export interface TooltipStateOptions
    * touching the container element on mobile devices.
    */
   touchTimeout?: number;
+
+  /**
+   * Boolean if the hover mode functionality should be disabled. The hover mode makes it so that
+   * when there is a `TooltipConfigProvider` in the tree, once a tooltip is shown via mouse,
+   * all other elements within the page tha thave tooltips will become visible immediately on
+   * mouse enter instead of waiting for the provided delay.
+   */
+  enableHoverMode?: boolean;
 }
 
 /**
@@ -485,6 +512,7 @@ export default function useTooltipState({
   hoverDelay = DEFAULT_DELAY,
   touchTimeout = DEFAULT_DELAY,
   focusDelay = DEFAULT_DELAY,
+  enableHoverMode = false,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
@@ -515,6 +543,7 @@ export default function useTooltipState({
     showTooltip,
     hideTooltip,
     delay: hoverDelay,
+    enableHoverMode,
     initiated,
     setInitiated,
     onMouseEnter,

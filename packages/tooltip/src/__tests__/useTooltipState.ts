@@ -21,6 +21,7 @@ describe("useMouseState", () => {
         initiated: { current: null },
         setInitiated: jest.fn(),
         delay: 1000,
+        enableHoverMode: false,
         setEstimatedPosition: jest.fn(),
       })
     );

@@ -34,9 +34,6 @@ export function useTooltipDelayState(
     }
   }, [defaultDelay]);
   const { start, stop } = useTimeout(disable, delayTimeout);
-  const startTimer = useCallback(() => {
-    start();
-  }, []);
   const enable = useCallback(() => {
     stop();
     if (delayRef.current !== 0) {
@@ -48,7 +45,7 @@ export function useTooltipDelayState(
     delay,
     enable,
     disable,
-    startTimer,
+    startTimer: start,
   };
 }
 
@@ -97,7 +94,7 @@ export const TooltipDelayConfig: FunctionComponent<
 };
 
 const defaultProps: DefaultProps = {
-  delayTimeout: 5000,
+  delayTimeout: 3000,
   defaultDelay: 1000,
 };
 
