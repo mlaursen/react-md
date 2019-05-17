@@ -17,7 +17,7 @@ import { WithForwardedRef } from "@react-md/utils";
 
 import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
 
-type TooltipPosition = "above" | "below";
+export type TooltipPosition = "above" | "below";
 
 /**
  * The base props for the `Tooltip` component. This can be extended when creating custom tooltip implementations.

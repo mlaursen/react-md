@@ -19,3 +19,4 @@ export const TOOLTIP_TRANSITION_TIMEOUT: TransitionTimeout = {
 };
 
 export const DEFAULT_DELAY = 1000;
+export const DEFAULT_THRESHOLD = 0.75;

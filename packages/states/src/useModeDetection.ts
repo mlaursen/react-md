@@ -22,6 +22,7 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  * touch mode isn't updating as you would expect, you can try increasing or
  * decreasing this value until it does.
  * @return true if the app is in touch mode.
+ * @private
  */
 export function useTouchDetection(touchTimeout: number = 1200) {
   const [lastTouchTime, setTouchTime] = useState(0);
@@ -80,6 +81,7 @@ export function useTouchDetection(touchTimeout: number = 1200) {
  * by a keyboard.
  *
  * @return true if the app is in keyboard mode
+ * @private
  */
 export function useKeyboardDetection() {
   const { toggled: enabled, enable, disable } = useToggle();
@@ -113,6 +115,12 @@ export function useKeyboardDetection() {
   return enabled;
 }
 
+/**
+ * This hook combines the touch and keyboard detection hooks and returns a string
+ * of the current interaction mode of the app/user.
+ *
+ * @private
+ */
 export function useModeDetection(): UserInteractionMode {
   const touch = useTouchDetection();
   const keyboard = useKeyboardDetection();
@@ -126,6 +134,12 @@ export function useModeDetection(): UserInteractionMode {
   return "mouse";
 }
 
+/**
+ * This hook will apply the current mode class name to the `document.body` so that the
+ * specific mode style mixins work as expected.
+ *
+ * @private
+ */
 export function useModeClassName(mode: UserInteractionMode) {
   useEffect(() => {
     const className = `rmd-states--${mode}`;

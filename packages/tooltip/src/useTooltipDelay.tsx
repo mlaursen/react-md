@@ -11,13 +11,6 @@ import React, {
 } from "react";
 import { useTimeout } from "@react-md/utils";
 
-// enabled when first tooltip is visible
-// starts timer when tooltip switches to invisible
-// stops timer when another tooltip becomes visible
-// repeat
-//
-// disabled when timer finishes
-
 /**
  * This is a private hook that is used to cache and update the tooltip
  * delay context state when needed.
@@ -58,12 +51,6 @@ export function useTooltipDelayState(
     startTimer,
   };
 }
-
-// interface TooltipDelayContextType {
-//   enable: () => void;
-//   disable: () => void;
-//   startTimer: () => void;
-// }
 
 const DelayContext = createContext(1000);
 const DelayActionsContext = createContext({

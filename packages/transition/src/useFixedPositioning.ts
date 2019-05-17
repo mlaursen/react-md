@@ -6,6 +6,8 @@ import {
   getFixedPosition,
   Omit,
   useScrollListener,
+  HorizontalPosition,
+  VerticalPosition,
 } from "@react-md/utils";
 
 type FixedToFunction = () => HTMLElement | null;
@@ -14,6 +16,13 @@ type OptionalFixedPositionOptions = Omit<
   FixedPositionOptions,
   "container" | "element"
 >;
+
+interface Position {
+  x: HorizontalPosition;
+  y: VerticalPosition;
+}
+
+type PositionChange = (wanted: Position, actual: Position) => void;
 
 interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
@@ -44,6 +53,13 @@ interface FixedPositioningOptions
    * the an element or the entire page has a scroll event.
    */
   onScroll?: (event: Event) => void;
+
+  /**
+   * An optional function to call when the providex `xPosition` and `yPosition` are not
+   * the same as the "calculated" position after tyring to make the element fixed
+   * within the viewport.
+   */
+  onPositionChange?: PositionChange;
 }
 
 function getFixedTo(fixedTo: FixedTo) {
@@ -118,17 +134,31 @@ export default function useFixedPositioning({
       return;
     }
 
-    const { fixedTo, getOptions, ...remaining } = options.current;
+    const {
+      fixedTo,
+      getOptions,
+      onPositionChange,
+      ...remaining
+    } = options.current;
     const opts = {
       ...remaining,
       ...(typeof getOptions === "function" ? getOptions(node) : undefined),
     };
 
-    const { style } = getFixedPosition({
+    const { style, actualX, actualY } = getFixedPosition({
       container: getFixedTo(fixedTo),
       element: node,
       ...opts,
     });
+
+    const wanted = {
+      x: opts.xPosition || "center",
+      y: opts.yPosition || "below",
+    };
+    const actual = { x: actualX, y: actualY };
+    if (onPositionChange && (wanted.x !== actual.x || wanted.y !== actual.y)) {
+      onPositionChange(wanted, actual);
+    }
 
     setStyle(style);
   }, []);
