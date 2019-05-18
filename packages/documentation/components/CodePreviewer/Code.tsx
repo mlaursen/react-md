@@ -29,7 +29,11 @@ const Code: FunctionComponent<CodeProps> = ({ files, fileId, offset }) => {
   }
 
   return (
-    <CodeBlock language={language} className={block("code", { offset })}>
+    <CodeBlock
+      language={language}
+      className={block("code", { offset })}
+      lineNumbers
+    >
       {contents}
     </CodeBlock>
   );

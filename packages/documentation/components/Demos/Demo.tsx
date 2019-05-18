@@ -4,7 +4,6 @@ import { Divider } from "@react-md/divider";
 import { useToggle } from "@react-md/utils";
 
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
-import GithubLink from "components/GithubLink";
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
 import { GITHUB_DEMO_URL } from "constants/index";
@@ -15,6 +14,7 @@ import CodePreview from "./CodePreview";
 import Sandbox from "./Sandbox";
 import getSandboxer from "./sandboxes";
 import useAppSizeContext from "components/Layout/useAppSizeContext";
+import GithubDemoLink from "./GithubDemoLink";
 
 export interface DemoProps {
   id: string;
@@ -96,7 +96,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
           <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
           <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox} />
-          <GithubLink id={`${id}-github`} href={fileName} />
+          <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div id={`${id}-code-preview`} />
         <div id={`${id}-preview`} className="demo__preview">

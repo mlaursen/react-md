@@ -3,6 +3,8 @@
 .github-link {
   @include rmd-theme(color, text-icon-on-background);
 
+  flex-shrink: 0;
+
   &--inherit {
     color: inherit;
   }

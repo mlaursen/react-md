@@ -1,6 +1,7 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
+import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
@@ -28,9 +29,11 @@ const CodePreview: FunctionComponent<CodePreviewProps> = ({
 
   return (
     <Fragment>
-      <AppBarAction id={`${demoId}-show-code`} first onClick={show}>
-        <CodeSVGIcon />
-      </AppBarAction>
+      <Tooltipped id={`${demoId}-show-code`} tooltip="Show Code">
+        <AppBarAction first onClick={show}>
+          <CodeSVGIcon />
+        </AppBarAction>
+      </Tooltipped>
       <CodePreviewer
         projectName={demoTitle}
         getFiles={getSandbox}

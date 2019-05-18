@@ -1,6 +1,7 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import { Portal } from "@react-md/portal";
+import { Tooltipped } from "@react-md/tooltip";
 import { Omit, useToggle } from "@react-md/utils";
 
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
@@ -22,9 +23,11 @@ const Sandbox: FunctionComponent<SandboxProps> = ({ id, getSandbox }) => {
           <SandboxDefineForm getSandbox={getSandbox} onCreated={disable} />
         )}
       </Portal>
-      <AppBarAction id={id} onClick={enable} disabled={loading}>
-        <CodeSandboxSVGIcon />
-      </AppBarAction>
+      <Tooltipped id={id} tooltip="Open Code Sandbox">
+        <AppBarAction onClick={enable} disabled={loading}>
+          <CodeSandboxSVGIcon />
+        </AppBarAction>
+      </Tooltipped>
     </Fragment>
   );
 };
