@@ -30,12 +30,10 @@ export default function findSizingContainer(el: HTMLElement | null) {
     const content = el.querySelector(data) as HTMLElement;
     if (content) {
       return content;
-    } else if (process.env.NODE_ENV === "development") {
-      /* tslint:disable no-console */
-      console.error(
-        "Unable to find a child element for sizing using the `data-query-selector`"
+    } else if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        "Unable to find a child element using the `data-sizing-selector`"
       );
-      console.error(new Error().stack);
     }
   }
 

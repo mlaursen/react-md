@@ -1,6 +1,6 @@
-import getElementRect from "./getElementRect";
-import findSizingContainer from "./findSizingContainer";
 import getViewportSize from "./getViewportSize";
+import findSizingContainer from "./findSizingContainer";
+import getElementRect, { Coords } from "./getElementRect";
 
 /**
  * Above:
@@ -36,6 +36,13 @@ export type HorizontalPosition =
   | "inner-left"
   | "inner-right";
 
+/**
+ * A "simple" version of all the positioning options. These are generally used
+ * across all of react-md as it'll use the "center" version of the opposite type
+ * when creating a fixed position.
+ */
+export type SimplePosition = "above" | "below" | "left" | "right";
+
 export interface FixedPositionOptions {
   /**
    * The container element that the `element` should be fixed to.
@@ -46,6 +53,16 @@ export interface FixedPositionOptions {
    * The element that is fixed to a `container` element.
    */
   element: HTMLElement | null;
+
+  /**
+   * The horizontal position that the `element` should be fixed to the `container`.
+   */
+  x?: HorizontalPosition;
+
+  /**
+   * The veritcal position that the `element` should be fixed to the `container`.
+   */
+  y?: VerticalPosition;
 
   /**
    * The viewwidth margin to apply so that the element doesn't need to be directly
@@ -63,162 +80,81 @@ export interface FixedPositionOptions {
    * The container width margin to apply so that the element doesn't need to be directly
    * on the container's edge.
    */
-  cwMargin?: number;
+  xMargin?: number;
 
   /**
    * The container height margin to apply so that the element doesn't need to be directly
    * on the container's edge
    */
-  chMargin?: number;
+  yMargin?: number;
 
   /**
-   * The horizontal position that the `element` should be fixed to the `container`.
+   * Boolean if the auto-swapping behavior should be disabled. It's normally recommended
+   * to not disable this since it'll allow elements to appear off screen.
    */
-  xPosition?: HorizontalPosition;
-
-  /**
-   * The veritcal position that the `element` should be fixed to the `container`.
-   */
-  yPosition?: VerticalPosition;
+  disableSwapping?: boolean;
 }
-
-function fixInitialX(
-  containerWidth: number,
-  elementWidth: number,
-  position: HorizontalPosition,
-  left: number,
-  margin: number
-) {
-  switch (position) {
-    case "left":
-      return left - elementWidth - margin;
-    case "inner-left":
-      return left + margin;
-    case "right":
-      return left + containerWidth + margin;
-    case "inner-right":
-      return left + containerWidth - elementWidth - margin;
-    case "center":
-      // no margin application here
-      return left + containerWidth * 0.5 - elementWidth * 0.5;
-    default:
-      return left;
-  }
-}
-
-function fixInitialY(
-  containerHeight: number,
-  elementHeight: number,
-  position: VerticalPosition,
-  top: number,
-  margin: number
-) {
-  switch (position) {
-    case "below":
-      return top + containerHeight + margin;
-    case "bottom":
-      return top + containerHeight - elementHeight - margin;
-    case "above":
-      return top - elementHeight - margin;
-    case "top":
-      return top + margin;
-    case "center":
-      // no margin application here
-      return top + containerHeight * 0.5 - elementHeight * 0.5;
-    default:
-      return top;
-  }
-}
-
-function getXPosition(
-  _contanerWidth: number,
-  elementWidth: number,
-  viewportMargin: number,
-  _containerMargin: number,
-  currentLeft: number,
-  position: HorizontalPosition
-) {
-  let actualX = position;
-  let left: number | undefined = currentLeft;
-  let right: number | undefined;
-  const vw = getViewportSize("width");
-  if (vw - viewportMargin * 2 < elementWidth) {
-    // if it's too big for the viewport, just make it span the entire viewport width
-    // with the margin
-    left = viewportMargin;
-    right = viewportMargin;
-  } else if (currentLeft < viewportMargin) {
-    left = viewportMargin;
-  } else if (currentLeft + elementWidth > vw - viewportMargin) {
-    actualX = position === "left" ? "right" : "left";
-    left = undefined;
-    right = viewportMargin;
-  }
-
-  return {
-    actualX,
-    left,
-    right,
-  };
-}
-
-function getYPosition(
-  elementHeight: number,
-  viewportMargin: number,
-  containerMargin: number,
-  currentTop: number,
-  initialTop: number,
-  position: VerticalPosition
-) {
-  let actualY = position;
-  let top: number | undefined = currentTop;
-  let bottom: number | undefined;
-  const vh = getViewportSize("height");
-  if (vh - viewportMargin * 2 < elementHeight) {
-    top = viewportMargin;
-    bottom = viewportMargin;
-  } else if (currentTop < viewportMargin) {
-    top = viewportMargin;
-  } else if (currentTop + elementHeight > vh - viewportMargin) {
-    actualY = position === "below" ? "above" : "below";
-    top = initialTop - (containerMargin + elementHeight);
-  }
-
-  return { top, bottom, actualY };
-}
-
-export interface FixedStyleObject {
-  left?: number;
-  top?: number;
-  right?: number;
-  bottom?: number;
-}
-
-export type FixedStyle = FixedStyleObject | undefined;
 
 export interface FixedPositionResult {
   actualX: HorizontalPosition;
   actualY: VerticalPosition;
-  style?: FixedStyleObject;
+  style?: Coords;
+}
+
+function createStyleWithoutElement(
+  containerRect: ClientRect | DOMRect,
+  x: HorizontalPosition,
+  y: VerticalPosition
+) {
+  let actualX = x;
+  let actualY = y;
+  const {
+    height,
+    width,
+    left: containerLeft,
+    top: containerTop,
+    right,
+  } = containerRect;
+
+  let left = containerLeft;
+  let top = containerTop;
+  if (x === "right" || x === "inner-right") {
+    left = left + width;
+  } else if (x === "center") {
+    left = left + width / 2;
+  }
+
+  if (y === "below" || y === "bottom") {
+    top = top + height;
+  } else if (y === "center") {
+    top = top + height / 2;
+  }
+
+  return {
+    actualX,
+    actualY,
+    style: {
+      left,
+      top,
+    },
+  };
 }
 
 /**
- * NOTE: I simplified this for the first release and only have very basic top/bottom positioning
- * logic built in.. This is pretty tough.
- *
  * One of the most complicated functions in this project that will attempt to position
  * an element relative to another container element while still being visible within
  * the viewport. Below is the logical flow for attempting to fix the element to the container:
  *
  * No Container:
- * If there is no container element, return an empty object since nothing can be calculated
- * without the container element.
+ * If there is no container element, return an the provided x and y positions and no styles since
+ * there's nothing we can use to calculate the position.
  *
  * No Element:
- * If the container was provided but the element to position does not exist, return an object
+ * If the container was provided but the element to position does not exist, return an style object
  * containing the `left` and `top` values for the container and apply as many of the positioning
  * options as possible so that the styles are "as close as possible" before the fixed element
- * is added to the dom.
+ * is added to the dom. This will also return the provided x and y positions since nothing
+ * could be swapped around yet.
  *
  * Container and Element:
  * If both the container and fixed element were provided, apply all the positioning options
@@ -235,86 +171,122 @@ export interface FixedPositionResult {
 export default function getFixedPosition({
   container,
   element,
-  yPosition = "below",
-  xPosition = "center",
+  x = "center",
+  y = "below",
   vwMargin = 16,
   vhMargin = 16,
-  cwMargin = 0,
-  chMargin = 0,
+  xMargin = 0,
+  yMargin = 0,
+  disableSwapping = false,
 }: FixedPositionOptions): FixedPositionResult {
   container = findSizingContainer(container);
-  let actualX = xPosition;
-  let actualY = yPosition;
   if (!container) {
     return {
-      actualX,
-      actualY,
+      actualX: x,
+      actualY: y,
     };
   }
 
-  const {
-    height: containerHeight,
-    width: containerWidth,
-    left: containerLeft,
-    top: containerTop,
-  } = container.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const initialResult = createStyleWithoutElement(containerRect, x, y);
+  if (!element) {
+    return initialResult;
+  }
 
-  const initialX = containerLeft;
-  const initialY = containerTop;
-  let { height: elementHeight, width: elementWidth } = getElementRect(
-    element,
-    Math.max(initialX, vwMargin),
-    Math.max(initialY, vhMargin)
-  );
-  const fixedX = fixInitialX(
-    containerWidth,
-    elementWidth,
-    xPosition,
-    initialX,
-    cwMargin
-  );
-  const fixedY = fixInitialY(
-    containerHeight,
-    elementHeight,
-    yPosition,
-    initialY,
-    cwMargin
-  );
+  const vh = getViewportSize("height");
+  const vw = getViewportSize("width");
+  const maxHeight = vh - vhMargin * 2;
+  const maxWidth = vw - vwMargin * 2;
+  const { height: containerHeight, width: containerWidth } = containerRect;
 
-  ({ height: elementHeight, width: elementWidth } = getElementRect(
-    element,
-    Math.max(fixedX, vwMargin),
-    Math.max(fixedY, vhMargin)
-  ));
+  let isTooTall = false;
+  let isTooWide = false;
+  let actualX = x;
+  let actualY = y;
 
-  let top: number | undefined;
-  let left: number | undefined;
+  let { height, width } = getElementRect(element);
+
+  let left: number | undefined = containerRect.left;
+  let top: number | undefined = containerRect.top;
   let right: number | undefined;
   let bottom: number | undefined;
-  ({ left, right, actualX } = getXPosition(
-    containerWidth,
-    elementWidth,
-    vwMargin,
-    cwMargin,
-    fixedX,
-    xPosition
-  ));
-  ({ top, bottom, actualY } = getYPosition(
-    elementHeight,
-    vhMargin,
-    chMargin,
-    fixedY,
-    containerTop,
-    yPosition
-  ));
+
+  if (width > maxWidth) {
+    isTooWide = true;
+    left = vwMargin;
+    right = vwMargin;
+    ({ height, width } = getElementRect(element, { left, right }));
+  } else {
+    switch (x) {
+      case "left":
+        left = containerRect.left - width - xMargin;
+        if (!disableSwapping && left < vwMargin) {
+          actualX = "right";
+          left = Math.min(
+            containerRect.left + containerWidth + xMargin,
+            vw - vwMargin
+          );
+        }
+        break;
+      case "inner-left":
+        // don't need to do anything since this is the container left
+        break;
+      case "center":
+        left = Math.max(vwMargin, left + containerWidth / 2 - width / 2);
+        if (left + width > vw - vwMargin) {
+          left = undefined;
+          right = vwMargin;
+        }
+
+        break;
+      case "right":
+        left = left + containerWidth + xMargin;
+        if (!disableSwapping && left + width > vw - vwMargin) {
+          actualX = "left";
+          left = Math.max(vwMargin, containerRect.left - width - xMargin);
+        }
+        break;
+      case "inner-right":
+        left = Math.max(vwMargin, left + containerWidth - width);
+        break;
+    }
+  }
+
+  if (height > maxHeight) {
+    isTooTall = true;
+    top = vhMargin;
+    bottom = vhMargin;
+  } else {
+    switch (y) {
+      case "above":
+        top = Math.max(vhMargin, top - height - yMargin);
+        break;
+      case "top":
+        // don't need to do anything since this is the container top
+        break;
+      case "center":
+        top = Math.max(vhMargin, top + containerHeight / 2 - height / 2);
+        break;
+      case "below":
+        top = top + containerHeight + yMargin;
+        if (!disableSwapping && top + height > vh - vhMargin) {
+          actualY = "above";
+          top = Math.max(vhMargin, containerRect.top - height - yMargin);
+        }
+        break;
+      case "bottom":
+        top = top + containerHeight - height;
+        break;
+    }
+  }
 
   return {
     actualX,
     actualY,
     style: {
       left,
-      right,
       top,
+      right,
       bottom,
     },
   };
