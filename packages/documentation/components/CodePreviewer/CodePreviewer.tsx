@@ -2,6 +2,8 @@ import React, { FunctionComponent, useState, useEffect } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { DialogProps } from "@react-md/dialog/types/Dialog";
+import { useAppSizeContext } from "@react-md/sizing";
+import { useToggle } from "@react-md/utils";
 import { bem } from "@react-md/theme";
 
 import "./styles.scss";
@@ -9,8 +11,6 @@ import useFiles from "./useFiles";
 import Header from "./Header";
 import FileTree from "./FileTree";
 import Code from "./Code";
-import { useAppSizeContext } from "@react-md/sizing";
-import { useToggle } from "@react-md/utils";
 
 export interface CodePreviewerProps
   extends Pick<DialogProps, "visible" | "onRequestClose"> {

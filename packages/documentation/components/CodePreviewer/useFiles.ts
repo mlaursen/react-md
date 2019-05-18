@@ -1,6 +1,5 @@
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useState, useEffect } from "react";
-import { FlattenedFileTree } from "./useFileTreeBuilder";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { FlattenedTree } from "@react-md/tree";
 
 export interface FileTreeData {
