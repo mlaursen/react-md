@@ -5,6 +5,7 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
+  useMemo,
 } from "react";
 import cn from "classnames";
 import {
@@ -12,13 +13,17 @@ import {
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import { useFixedPositioning } from "@react-md/transition";
-import { Omit, unitToNumber } from "@react-md/utils";
-import Tooltip, { TooltipProps } from "./Tooltip";
-import useTooltipState, {
-  MergableHandlers,
-  TooltipStateOptions,
-} from "./useTooltipState";
+import {
+  Omit,
+  unitToNumber,
+  HorizontalPosition,
+  VerticalPosition,
+} from "@react-md/utils";
+
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
+import { MergableHandlers } from "./useHandlers";
+import useTooltipState, { TooltipStateOptions } from "./useTooltipState";
+import Tooltip, { TooltipProps } from "./Tooltip";
 
 interface TooltippedProvidedProps extends MergableHandlers {
   id: string;
@@ -44,7 +49,8 @@ const MERGABLE_PROPS: (keyof MergableHandlers)[] = [
 
 export interface TooltippedProps
   extends RenderConditionalPortalProps,
-    TooltipStateOptions,
+    Omit<TooltipStateOptions, "defaultPosition">,
+    Partial<Pick<TooltipStateOptions, "defaultPosition">>,
     Pick<
       TooltipProps,
       "dense" | "lineWrap" | "mountOnEnter" | "unmountOnExit"
@@ -101,6 +107,12 @@ export interface TooltippedProps
   disableAutoSpacing?: boolean;
 
   /**
+   * Boolean if the auto-swapping behavior should be disabled. When this value is `undefined`, it'll be treated as `true` when
+   * the `position` prop is defined, otherwise `false`.
+   */
+  disableSwapping?: boolean;
+
+  /**
    * This is the viewwidth margin to use in the positioning calculation. This is just used so that the tooltip
    * can be placed with some spacing between the left and right edges of the viewport if desired.
    */
@@ -143,6 +155,7 @@ type DefaultProps = Required<
     | "focusDelay"
     | "hoverDelay"
     | "touchTimeout"
+    | "defaultPosition"
     | "positionThreshold"
   >
 >;
@@ -177,10 +190,14 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onHide,
     disableHoverMode,
     "aria-describedby": describedBy,
+    defaultPosition,
+    disableSwapping,
     ...props
   } = providedProps as WithDefaultProps;
+  const { dense } = props;
   const { hide, visible, position, handlers } = useTooltipState({
     position: propPosition,
+    defaultPosition,
     positionThreshold,
     hoverDelay,
     focusDelay,
@@ -196,6 +213,23 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onHide,
   });
 
+  const currentSpacing = useMemo(
+    () => unitToNumber(dense ? denseSpacing : spacing),
+    [spacing, denseSpacing, dense]
+  );
+  let getOptions;
+  if (!disableAutoSpacing) {
+    getOptions = (node: HTMLElement) => {
+      const spacing = unitToNumber(
+        window.getComputedStyle(node).getPropertyValue("--rmd-tooltip-spacing")
+      );
+
+      return { xMargin: spacing, yMargin: spacing };
+    };
+  }
+
+  const isHorizontal = position === "left" || position === "right";
+
   const {
     style,
     onEnter,
@@ -203,33 +237,18 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onEntered,
     onExited,
   } = useFixedPositioning({
+    x: isHorizontal ? (position as HorizontalPosition) : "center",
+    y: isHorizontal ? "center" : (position as VerticalPosition),
+    disableSwapping:
+      typeof disableSwapping === "boolean" ? disableSwapping : !!propPosition,
     fixedTo: () => document.getElementById(id),
     vhMargin,
     vwMargin,
+    yMargin: currentSpacing,
+    xMargin: currentSpacing,
     onResize: hide,
     onScroll: hide,
-    getOptions: node => {
-      let varSpacing;
-      if (!disableAutoSpacing) {
-        varSpacing = unitToNumber(
-          window
-            .getComputedStyle(node)
-            .getPropertyValue("--rmd-tooltip-spacing")
-        );
-      }
-
-      let currentSpacing = 0;
-      if (varSpacing) {
-        currentSpacing = varSpacing;
-      } else {
-        currentSpacing = unitToNumber(props.dense ? denseSpacing : spacing);
-      }
-
-      return {
-        chMargin: currentSpacing,
-        cwMargin: currentSpacing,
-      };
-    },
+    getOptions,
   });
 
   if (!tooltipChildren) {
@@ -323,6 +342,7 @@ const defaultProps: DefaultProps = {
   touchTimeout: DEFAULT_DELAY,
   mountOnEnter: false,
   unmountOnExit: false,
+  defaultPosition: "below",
 };
 
 Tooltipped.defaultProps = defaultProps;

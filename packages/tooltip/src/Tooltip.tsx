@@ -13,11 +13,9 @@ import {
   TransitionProps,
 } from "@react-md/transition";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef, SimplePosition } from "@react-md/utils";
 
 import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
-
-export type TooltipPosition = "above" | "below";
 
 /**
  * The base props for the `Tooltip` component. This can be extended when creating custom tooltip implementations.
@@ -92,7 +90,7 @@ export interface TooltipProps
    * This is the position that the tooltip should appear related to its container element as well as
    * updating the animation direction.
    */
-  position?: TooltipPosition;
+  position?: SimplePosition;
 
   /**
    * Boolean if the tooltip is visible. This value changing will trigger the different animations.
@@ -224,7 +222,7 @@ if (process.env.NODE_ENV !== "production") {
       onExit: PropTypes.func,
       onExiting: PropTypes.func,
       onExited: PropTypes.func,
-      position: PropTypes.oneOf(["above", "below"]),
+      position: PropTypes.oneOf(["above", "below", "left", "right"]),
       visible: PropTypes.bool.isRequired,
     };
   }

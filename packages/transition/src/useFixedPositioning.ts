@@ -2,12 +2,12 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
 import { useResizeListener } from "@react-md/sizing";
 import {
-  FixedPositionOptions,
   getFixedPosition,
-  Omit,
   useScrollListener,
+  Omit,
   HorizontalPosition,
   VerticalPosition,
+  FixedPositionOptions,
 } from "@react-md/utils";
 
 type FixedToFunction = () => HTMLElement | null;
@@ -140,10 +140,13 @@ export default function useFixedPositioning({
       onPositionChange,
       ...remaining
     } = options.current;
+    const overrides = typeof getOptions === "function" ? getOptions(node) : {};
     const opts = {
       ...remaining,
-      ...(typeof getOptions === "function" ? getOptions(node) : undefined),
+      ...overrides,
     };
+    opts.x = opts.x || "center";
+    opts.y = opts.y || "below";
 
     const { style, actualX, actualY } = getFixedPosition({
       container: getFixedTo(fixedTo),
@@ -151,10 +154,7 @@ export default function useFixedPositioning({
       ...opts,
     });
 
-    const wanted = {
-      x: opts.xPosition || "center",
-      y: opts.yPosition || "below",
-    };
+    const wanted = { x: opts.x, y: opts.y };
     const actual = { x: actualX, y: actualY };
     if (onPositionChange && (wanted.x !== actual.x || wanted.y !== actual.y)) {
       onPositionChange(wanted, actual);

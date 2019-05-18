@@ -2,6 +2,7 @@
 export default {
   "rmd-tooltip-background-color": "#616161",
   "rmd-tooltip-color": "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",
+  "rmd-tooltip-max-width": "15rem",
   "rmd-tooltip-enter-duration": "0.15s",
   "rmd-tooltip-exit-duration": "0.15s",
   "rmd-tooltip-z-index": 100,
@@ -27,6 +28,7 @@ export default {
     "z-index": 100,
     spacing: "1.5rem",
     "min-height": "2rem",
+    "max-width": "15rem",
     "font-size": "1rem",
     "line-height": "1.5rem",
     "horizontal-padding": "1rem",
