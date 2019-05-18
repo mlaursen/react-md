@@ -5,4 +5,6 @@ export { default as Tooltipped } from "./Tooltipped";
 export * from "./Tooltipped";
 
 export { default as useTooltipState } from "./useTooltipState";
-export * from "./useTooltipDelay";
+
+export { default as TooltipHoverModeConfig } from "./TooltipHoverModeConfig";
+export { useTooltipHoverModeState } from "./useTooltipHoverMode";

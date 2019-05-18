@@ -6,6 +6,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
+import cn from "classnames";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
@@ -65,6 +66,12 @@ export interface TooltippedProps
    * An optional id for the tooltip. When this is omitted, it will be set as `${id}-tooltip`.
    */
   tooltipId?: string;
+
+  /**
+   * An optional additional `aria-describedby` id or ids to merge with the tooltip id. This is really
+   * used for things like notifications or when multiple elements describe your tooltipped element..
+   */
+  "aria-describedby"?: string;
 
   /**
    * An optional className for the tooltip
@@ -137,7 +144,6 @@ type DefaultProps = Required<
     | "hoverDelay"
     | "touchTimeout"
     | "positionThreshold"
-    | "enableHoverMode"
   >
 >;
 type WithDefaultProps = TooltippedProps & DefaultProps;
@@ -167,7 +173,10 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onFocus,
     onKeyDown,
     disableAutoSpacing,
-    enableHoverMode,
+    onShow,
+    onHide,
+    disableHoverMode,
+    "aria-describedby": describedBy,
     ...props
   } = providedProps as WithDefaultProps;
   const { hide, visible, position, handlers } = useTooltipState({
@@ -175,7 +184,6 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     positionThreshold,
     hoverDelay,
     focusDelay,
-    enableHoverMode,
     touchTimeout,
     onMouseEnter,
     onMouseLeave,
@@ -184,6 +192,8 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onContextMenu,
     onFocus,
     onKeyDown,
+    onShow,
+    onHide,
   });
 
   const {
@@ -224,11 +234,11 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
 
   if (!tooltipChildren) {
     if (typeof children === "function") {
-      return children({ id, tooltip: null });
+      return children({ id, tooltip: null, "aria-describedby": describedBy });
     }
 
     const child = Children.only(children);
-    return cloneElement(child, { id });
+    return cloneElement(child, { id, "aria-describedby": describedBy });
   }
 
   let { tooltipId } = props;
@@ -260,7 +270,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
 
   const config = {
     id,
-    "aria-describedby": tooltipId,
+    "aria-describedby": cn(tooltipId, describedBy),
     ...handlers,
   };
 
@@ -311,9 +321,8 @@ const defaultProps: DefaultProps = {
   focusDelay: DEFAULT_DELAY,
   hoverDelay: DEFAULT_DELAY,
   touchTimeout: DEFAULT_DELAY,
-  mountOnEnter: true,
-  unmountOnExit: true,
-  enableHoverMode: false,
+  mountOnEnter: false,
+  unmountOnExit: false,
 };
 
 Tooltipped.defaultProps = defaultProps;

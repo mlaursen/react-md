@@ -9,14 +9,16 @@ import {
 import { useInteractionModeContext } from "@react-md/states";
 import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
 import { getViewportSize, useTimeout, useToggle } from "@react-md/utils";
-import { TooltipPosition, TooltipProps } from "./Tooltip";
+
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
 import {
-  useTooltipDelayContext,
-  useTooltipDelayActions,
-} from "./useTooltipDelay";
+  useTooltipHoverModeDelay,
+  useTooltipHoverModeActions,
+  useTooltipHoverModeEnabled,
+} from "./useTooltipHoverMode";
+import { TooltipPosition, TooltipProps } from "./Tooltip";
 
-type TooltipInitiated = UserInteractionMode | "window";
+type TooltipInitiated = UserInteractionMode | null;
 
 interface HandlersBaseOptions {
   mode: UserInteractionMode;
@@ -38,7 +40,7 @@ interface HandlersBaseOptions {
    * window was blurred. Check out the keyboard `onFocus` comment for more info about
    * this flow.
    */
-  initiated: MutableRefObject<TooltipInitiated | null>;
+  initiated: MutableRefObject<TooltipInitiated>;
 
   /**
    * A small callback that will set the current initiation type for the tooltip.
@@ -59,7 +61,7 @@ type MergableMouseHandlers = Pick<
 >;
 
 interface MouseOptions extends MergableMouseHandlers, HandlersBaseOptions {
-  enableHoverMode: boolean;
+  disableHoverMode?: boolean;
 }
 
 /**
@@ -74,31 +76,38 @@ export function useMouseState({
   hideTooltip,
   initiated,
   setInitiated,
-  delay,
+  delay: propDelay,
   onMouseEnter,
   onMouseLeave,
-  enableHoverMode,
   setEstimatedPosition,
+  disableHoverMode,
 }: MouseOptions) {
   const handlers = useRef({ onMouseEnter, onMouseLeave });
   useEffect(() => {
     handlers.current = { onMouseEnter, onMouseLeave };
   });
 
-  const currentDelay = useTooltipDelayContext();
-  const actions = useTooltipDelayActions();
-  const { start, stop } = useTimeout(
-    () => {
-      if (initiated.current === "mouse") {
-        showTooltip();
+  let isHoverModeable = useTooltipHoverModeEnabled();
+  if (typeof disableHoverMode === "boolean") {
+    isHoverModeable = !disableHoverMode;
+  }
 
-        if (enableHoverMode) {
-          actions.enable();
-        }
+  let delay = useTooltipHoverModeDelay();
+  if (!isHoverModeable) {
+    delay = propDelay;
+  }
+
+  const hoverModeActions = useTooltipHoverModeActions();
+
+  const { start, stop } = useTimeout(() => {
+    if (initiated.current === "mouse") {
+      showTooltip();
+
+      if (isHoverModeable) {
+        hoverModeActions.enable();
       }
-    },
-    enableHoverMode ? delay : currentDelay
-  );
+    }
+  }, delay);
 
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -131,11 +140,11 @@ export function useMouseState({
 
       stop();
       hideTooltip();
-      if (enableHoverMode) {
-        actions.startTimer();
+      if (isHoverModeable) {
+        hoverModeActions.startDisableTimer();
       }
     },
-    [enableHoverMode]
+    [isHoverModeable]
   );
 
   return {
@@ -151,7 +160,7 @@ export function useMouseState({
 
 type MergableKeyboardHandlers = Pick<
   HTMLAttributes<HTMLElement>,
-  "onFocus" | "onKeyDown"
+  "onFocus" | "onBlur" | "onKeyDown"
 >;
 
 interface KeyboardOptions
@@ -172,13 +181,16 @@ export function useKeyboardState({
   initiated,
   setInitiated,
   onFocus,
+  onBlur,
   onKeyDown,
   setEstimatedPosition,
 }: KeyboardOptions) {
-  const handlers = useRef({ onFocus, onKeyDown });
+  const handlers = useRef({ onFocus, onBlur, onKeyDown });
   useEffect(() => {
-    handlers.current = { onFocus, onKeyDown };
+    handlers.current = { onFocus, onBlur, onKeyDown };
   });
+
+  const isWindowBlurred = useRef(false);
 
   const { start, stop } = useTimeout(() => {
     if (initiated.current === "keyboard") {
@@ -195,14 +207,24 @@ export function useKeyboardState({
     // if the entire browser window was blurred, we don't want to show the tooltip
     // on the next focus event since it is confusing to see a tooltip appear again
     // after re-focusing a window.
-    if (initiated.current === "window") {
-      initiated.current = null;
+    if (isWindowBlurred.current) {
+      isWindowBlurred.current = false;
       return;
     }
 
     setInitiated("keyboard");
     setEstimatedPosition(event.currentTarget);
     start();
+  }, []);
+
+  const handleBlur = useCallback((event: React.FocusEvent<HTMLElement>) => {
+    const { onBlur } = handlers.current;
+    if (onBlur) {
+      onBlur(event);
+    }
+
+    stop();
+    hideTooltip();
   }, []);
 
   const handleKeyDown = useCallback(
@@ -212,18 +234,43 @@ export function useKeyboardState({
         onKeyDown(event);
       }
 
-      stop();
       if (initiated.current === "keyboard" && event.key === "Escape") {
+        stop();
         hideTooltip();
       }
     },
     []
   );
 
+  useEffect(() => {
+    if (mode !== "keyboard") {
+      return;
+    }
+
+    // whenever the browser loses focus, need to ensure that when the browser is re-focused
+    // the last focused element (that had a tooltip) does not make the tooltip appear
+    const handleWindowBlur = (event: Event) => {
+      if (document.hidden) {
+        isWindowBlurred.current = true;
+        hideTooltip();
+      } else {
+        window.requestAnimationFrame(() => {
+          isWindowBlurred.current = false;
+        });
+      }
+    };
+
+    window.addEventListener("visibilitychange", handleWindowBlur);
+    return () => {
+      window.removeEventListener("visibilitychange", handleWindowBlur);
+    };
+  }, [mode, hideTooltip]);
+
   return {
     stopKeyboardTimer: stop,
     keyboardHandlers: {
       onFocus: mode === "keyboard" ? handleFocus : onFocus,
+      onBlur: mode === "keyboard" ? handleBlur : onBlur,
       onKeyDown: mode === "keyboard" ? handleKeyDown : onKeyDown,
     },
   };
@@ -277,7 +324,9 @@ export function useTouchState({
   }, delay);
 
   useEffect(() => {
-    if (!visible || mode !== "touch") {
+    if (!visible) {
+      return;
+    } else if (mode !== "touch") {
       touched.current = false;
       return;
     }
@@ -363,7 +412,7 @@ export function useTouchState({
 }
 
 interface OtherInteractionsHideOptions
-  extends Pick<HandlersBaseOptions, "hideTooltip" | "setInitiated"> {
+  extends Pick<HandlersBaseOptions, "hideTooltip"> {
   visible: boolean;
 }
 
@@ -381,26 +430,15 @@ interface OtherInteractionsHideOptions
 export function useOtherInteractionDisable({
   visible,
   hideTooltip,
-  setInitiated,
 }: OtherInteractionsHideOptions) {
   useEffect(() => {
     if (!visible) {
       return;
     }
 
-    const handleWindowBlur = (event: FocusEvent) => {
-      if (event.target === window) {
-        setInitiated("window");
-      }
-
-      hideTooltip();
-    };
-
     window.addEventListener("click", hideTooltip, true);
-    window.addEventListener("blur", handleWindowBlur);
     return () => {
       window.removeEventListener("click", hideTooltip, true);
-      window.removeEventListener("blur", handleWindowBlur);
     };
   }, [visible, hideTooltip]);
 }
@@ -446,13 +484,66 @@ export function useTooltipPosition({
   };
 }
 
+interface VisibilityChangeOptions {
+  /**
+   * An optional function to call after the tooltip becomes visible. You will be provided
+   * the user interaction mode that caused the tooltip to become visible.
+   */
+  onShow?: (mode: UserInteractionMode) => void;
+
+  /**
+   * An optional function to call after the tooltip becomes visible.
+   */
+  onHide?: () => void;
+
+  mode: TooltipInitiated;
+  visible: boolean;
+}
+
+/**
+ * This hook will call the `onShow` and `onHide` functions as needed based on the current interaction
+ * mode and the visibility of the tooltip.
+ *
+ * @private
+ */
+export function useVisiblityChange({
+  onShow,
+  onHide,
+  visible,
+  mode,
+}: VisibilityChangeOptions) {
+  const handlers = useRef({ onShow, onHide });
+  useEffect(() => {
+    handlers.current = { onShow, onHide };
+  });
+
+  useEffect(() => {
+    if (!visible || mode === null) {
+      return;
+    }
+
+    const { onShow } = handlers.current;
+    if (onShow) {
+      onShow(mode);
+    }
+
+    return () => {
+      const { onHide } = handlers.current;
+      if (onHide) {
+        onHide();
+      }
+    };
+  }, [visible]);
+}
+
 export type MergableHandlers = MergableMouseHandlers &
   MergableKeyboardHandlers &
   MergableTouchHandlers;
 
 export interface TooltipStateOptions
   extends MergableHandlers,
-    Pick<TooltipProps, "position"> {
+    Pick<TooltipProps, "position">,
+    Pick<VisibilityChangeOptions, "onShow" | "onHide"> {
   /**
    * The threshold multiplier to apply to the entire viewheight to determine if the tooltip should be placed above or below
    * the container element.
@@ -478,12 +569,11 @@ export interface TooltipStateOptions
   touchTimeout?: number;
 
   /**
-   * Boolean if the hover mode functionality should be disabled. The hover mode makes it so that
-   * when there is a `TooltipConfigProvider` in the tree, once a tooltip is shown via mouse,
-   * all other elements within the page tha thave tooltips will become visible immediately on
-   * mouse enter instead of waiting for the provided delay.
+   * Bolean if the hover mode functionality should be disabled. When this is `undefined`, it will default to `false` if there is
+   * no `ToolipHoverModeConfig` parent component of the current tooltip, otherwise it will be `true`. When this value is a boolean,
+   * it will always be used instead.
    */
-  enableHoverMode?: boolean;
+  disableHoverMode?: boolean;
 }
 
 /**
@@ -512,16 +602,19 @@ export default function useTooltipState({
   hoverDelay = DEFAULT_DELAY,
   touchTimeout = DEFAULT_DELAY,
   focusDelay = DEFAULT_DELAY,
-  enableHoverMode = false,
+  disableHoverMode,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
   onTouchMove,
   onFocus,
+  onBlur,
   onKeyDown,
+  onShow,
+  onHide,
 }: TooltipStateOptions) {
   const mode = useInteractionModeContext();
-  const initiated = useRef<TooltipInitiated | null>(null);
+  const initiated = useRef<TooltipInitiated>(null);
   const setInitiated = useCallback((initiatedBy: TooltipInitiated) => {
     initiated.current = initiatedBy;
   }, []);
@@ -531,6 +624,13 @@ export default function useTooltipState({
     initiated.current = null;
     hide();
   }, []);
+
+  useVisiblityChange({
+    visible,
+    onShow,
+    onHide,
+    mode: initiated.current,
+  });
 
   const { position, setEstimatedPosition } = useTooltipPosition({
     position: propPosition,
@@ -543,7 +643,7 @@ export default function useTooltipState({
     showTooltip,
     hideTooltip,
     delay: hoverDelay,
-    enableHoverMode,
+    disableHoverMode,
     initiated,
     setInitiated,
     onMouseEnter,
@@ -559,6 +659,7 @@ export default function useTooltipState({
     initiated,
     setInitiated,
     onFocus,
+    onBlur,
     onKeyDown,
     setEstimatedPosition,
   });
@@ -583,11 +684,7 @@ export default function useTooltipState({
     hide();
   }, []);
 
-  useOtherInteractionDisable({
-    visible,
-    hideTooltip: hideAndReset,
-    setInitiated,
-  });
+  useOtherInteractionDisable({ visible, hideTooltip: hideAndReset });
 
   return {
     hide,

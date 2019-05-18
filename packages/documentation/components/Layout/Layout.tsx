@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
 import { AppSizeListener, AppSizeListenerProps } from "@react-md/sizing";
 import { StatesConfig, InteractionModeListener } from "@react-md/states";
-import { TooltipDelayConfig } from "@react-md/tooltip";
+import { TooltipHoverModeConfig } from "@react-md/tooltip";
 
 import Combined from "./Combined";
 import "./layout.scss";
@@ -22,11 +22,11 @@ const Layout: FunctionComponent<LayoutProps> = ({
     <NestedDialogContextProvider>
       <InteractionModeListener>
         <StatesConfig>
-          <TooltipDelayConfig>
+          <TooltipHoverModeConfig>
             <DefaultSize.Provider value={defaultSize}>
               <Combined title={title}>{children}</Combined>
             </DefaultSize.Provider>
-          </TooltipDelayConfig>
+          </TooltipHoverModeConfig>
         </StatesConfig>
       </InteractionModeListener>
     </NestedDialogContextProvider>
