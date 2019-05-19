@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from "react";
 
+import PageMeta from "components/PageMeta";
+
 import "./home.scss";
 import Banner from "./Banner";
 import Goals from "./Goals";
@@ -8,6 +10,7 @@ import LibraryWarning from "./LibraryWarning";
 
 const Home: FunctionComponent = () => (
   <div className="home">
+    <PageMeta />
     <Banner />
     <Goals />
     <JumpStart />
