@@ -28,8 +28,9 @@ export default class MyDocument extends Document {
             href="/static/favicon.ico"
           />
           <link
+            key="roboto-font"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700"
+            href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
           />
         </Head>
         <body>
