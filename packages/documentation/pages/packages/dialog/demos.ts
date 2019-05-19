@@ -1,3 +1,1 @@
-import Dialog from "components/Demos/Dialog";
-
-export default Dialog;
+export { default } from "components/Demos/Dialog";

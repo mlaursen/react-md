@@ -1,3 +1,1 @@
-import Sizing from "components/Demos/Sizing";
-
-export default Sizing;
+export { default } from "components/Demos/Sizing";

@@ -1,3 +1,1 @@
-import Progress from "components/Demos/Progress";
-
-export default Progress;
+export { default } from "components/Demos/Progress";

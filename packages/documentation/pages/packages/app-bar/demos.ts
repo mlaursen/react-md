@@ -1,3 +1,1 @@
-import AppBarDemos from "components/Demos/AppBar";
-
-export default AppBarDemos;
+export { default } from "components/Demos/AppBar";

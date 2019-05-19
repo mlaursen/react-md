@@ -1,3 +1,1 @@
-import Icon from "components/Demos/Icon";
-
-export default Icon;
+export { default } from "components/Demos/Icon";

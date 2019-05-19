@@ -1,3 +1,1 @@
-import Elevation from "components/Demos/Elevation";
-
-export default Elevation;
+export { default } from "components/Demos/Elevation";

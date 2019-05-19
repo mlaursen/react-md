@@ -1,3 +1,1 @@
-import Theme from "components/Demos/Theme";
-
-export default Theme;
+export { default } from "components/Demos/Theme";

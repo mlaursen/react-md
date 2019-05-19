@@ -1,3 +1,1 @@
-import ColorPalette from "components/Customization/ColorPalette";
-
-export default ColorPalette;
+export { default } from "components/Customization/ColorPalette";

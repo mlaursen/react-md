@@ -1,3 +1,1 @@
-import List from "components/Demos/List";
-
-export default List;
+export { default } from "components/Demos/List";

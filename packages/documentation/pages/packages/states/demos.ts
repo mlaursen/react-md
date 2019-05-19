@@ -1,3 +1,1 @@
-import States from "components/Demos/States";
-
-export default States;
+export { default } from "components/Demos/States";

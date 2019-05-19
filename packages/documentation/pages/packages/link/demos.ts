@@ -1,3 +1,1 @@
-import Link from "components/Demos/Link";
-
-export default Link;
+export { default } from "components/Demos/Link";

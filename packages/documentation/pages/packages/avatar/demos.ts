@@ -1,3 +1,1 @@
-import Avatar from "components/Demos/Avatar";
-
-export default Avatar;
+export { default } from "components/Demos/Avatar";

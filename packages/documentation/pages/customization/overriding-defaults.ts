@@ -1,3 +1,1 @@
-import OverridingDefaults from "components/Customization/OverridingDefaults";
-
-export default OverridingDefaults;
+export { default } from "components/Customization/OverridingDefaults";

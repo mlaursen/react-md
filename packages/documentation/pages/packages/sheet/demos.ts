@@ -1,3 +1,1 @@
-import Sheet from "components/Demos/Sheet";
-
-export default Sheet;
+export { default } from "components/Demos/Sheet";
