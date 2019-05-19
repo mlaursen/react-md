@@ -1,13 +1,10 @@
 import React, { FunctionComponent } from "react";
-import {
-  AppBar,
-  AppBarNav,
-  AppBarTitle,
-  AppBarAction,
-} from "@react-md/app-bar";
+import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { MenuSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
-import { Tooltipped } from "@react-md/tooltip";
 import { bem } from "@react-md/theme";
+
+import AppBarNav from "components/AppBarNav";
+import AppBarAction from "components/AppBarAction";
 
 export interface HeaderProps {
   inline: boolean;
@@ -30,18 +27,26 @@ const Header: FunctionComponent<HeaderProps> = ({
 }) => (
   <AppBar theme="default">
     {!isDesktop && (
-      <Tooltipped id="code-previewer-tree-toggle" tooltip="Show Files">
-        <AppBarNav onClick={toggleSheet} disabled={!inline && isSheetVisible}>
-          <MenuSVGIcon />
-        </AppBarNav>
-      </Tooltipped>
+      <AppBarNav
+        id="code-previewer-tree-toggle"
+        tooltip="Show Files"
+        onClick={toggleSheet}
+        disabled={!inline && isSheetVisible}
+      >
+        <MenuSVGIcon />
+      </AppBarNav>
     )}
     <AppBarTitle className={block("title")}>{projectName}</AppBarTitle>
-    <Tooltipped id="close-code-previewer" tooltip="Close">
-      <AppBarAction onClick={onRequestClose} first last inheritColor>
-        <CloseSVGIcon />
-      </AppBarAction>
-    </Tooltipped>
+    <AppBarAction
+      id="close-code-previewer"
+      tooltip="Close"
+      onClick={onRequestClose}
+      first
+      last
+      inheritColor
+    >
+      <CloseSVGIcon />
+    </AppBarAction>
   </AppBar>
 );
 

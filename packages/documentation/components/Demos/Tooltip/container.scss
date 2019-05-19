@@ -1,0 +1,13 @@
+.tooltip-example-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  &--stacked {
+    flex-direction: column;
+  }
+
+  > * {
+    margin: 1rem;
+  }
+}

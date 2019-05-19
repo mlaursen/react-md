@@ -77,6 +77,7 @@ const ToggleTheme: FunctionComponent = () => {
   return (
     <Tooltipped id="toggle-theme" tooltip="Toggle Light/Dark Theme">
       <AppBarAction
+        aria-label="Toggle Theme"
         first
         onClick={() => setLightTheme(prevDark => !prevDark)}
         onMouseEnter={isMouseMode ? enable : undefined}

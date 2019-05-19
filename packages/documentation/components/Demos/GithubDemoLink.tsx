@@ -12,7 +12,7 @@ const GithubDemoLink: FunctionComponent<GithubDemoLinkProps> = ({
   id,
   href,
 }) => (
-  <Tooltipped id={id} tooltip="View on GitHub">
+  <Tooltipped id={id} tooltip="View source GitHub">
     <GithubLink href={href} />
   </Tooltipped>
 );

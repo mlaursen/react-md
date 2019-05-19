@@ -20,8 +20,8 @@ const ToggleRTL: FunctionComponent = () => {
   }, [toggled]);
 
   return (
-    <Tooltipped id="toggle-rtl" tooltip="Toggle RTL">
-      <AppBarAction last onClick={toggle}>
+    <Tooltipped id="toggle-rtl" tooltip="Toggle right to left">
+      <AppBarAction last onClick={toggle} aria-label="Toggle right to left">
         {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
       </AppBarAction>
     </Tooltipped>

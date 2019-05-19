@@ -1,0 +1,5 @@
+@import '@react-md/typography/dist/mixins';
+
+.large-tooltips-link {
+  @include rmd-typography-text-overflow-ellipsis;
+}

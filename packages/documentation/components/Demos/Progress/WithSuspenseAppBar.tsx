@@ -17,7 +17,7 @@ const WithSuspenseAppBar = () => (
   <PhoneAppBar prominent theme="primary">
     <AppBar component="div" theme="clear">
       <ClosePhone />
-      <AppBarAction first id="with-suspense-share">
+      <AppBarAction first id="with-suspense-share" aria-label="Share">
         <ShareSVGIcon />
       </AppBarAction>
       <SearchAction first={false} />
@@ -28,6 +28,7 @@ const WithSuspenseAppBar = () => (
     </AppBar>
     <Button
       id="with-suspense-add"
+      aria-label="Add"
       themeType="contained"
       buttonType="icon"
       theme="clear"

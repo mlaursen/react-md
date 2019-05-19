@@ -173,6 +173,7 @@ export default async function generate({
   const sandboxPath = getSandboxFileName(demoPath);
   log("Creaing sandbox at:");
   log(list([sandboxPath]));
+  log();
 
   const homepage = (await fs.readJson(path.join(projectRoot, "package.json")))
     .homepage as string;

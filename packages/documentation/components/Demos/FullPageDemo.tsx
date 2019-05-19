@@ -4,13 +4,15 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
-import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, LaunchSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
+
+import AppBarAction from "components/AppBarAction";
 
 export interface FullPageDemoProps {
   id: string;
@@ -55,7 +57,12 @@ const FullPageDemo: FunctionComponent<FullPageDemoProps> = ({
             <AppBarTitle keyline id={`${id}-dialog-title`}>
               {title}
             </AppBarTitle>
-            <AppBarAction first aria-label="Close" onClick={disable}>
+            <AppBarAction
+              id={`${id}-dialog-close`}
+              first
+              aria-label="Close"
+              onClick={disable}
+            >
               <CloseSVGIcon />
             </AppBarAction>
           </AppBar>

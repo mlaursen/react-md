@@ -4,8 +4,7 @@ import { Omit } from "@react-md/utils";
 
 import { GITHUB_URL } from "constants/index";
 import GithubSVGIcon from "icons/GithubSVGIcon";
-
-import LinkButton, { LinkButtonProps } from "./LinkButton";
+import LinkButton, { LinkButtonProps } from "components/LinkButton";
 
 import "./github-link.scss";
 import { bem } from "@react-md/theme";
@@ -39,6 +38,7 @@ const GithubLink: FunctionComponent<GithubLinkProps> = providedProps => {
   );
 };
 GithubLink.defaultProps = {
+  "aria-label": "GitHub",
   href: GITHUB_URL,
   suffix: "",
   target: "_blank",

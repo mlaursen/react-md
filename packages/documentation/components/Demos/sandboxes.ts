@@ -123,6 +123,15 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./States/SetupExampleSandbox.json")),
   "Theme/SimpleExample": () =>
     resolve(import("./Theme/SimpleExampleSandbox.json")),
+  "Tooltip/AutoPositioningTooltips": () =>
+    resolve(import("./Tooltip/AutoPositioningTooltipsSandbox.json")),
+  "Tooltip/CommonPatterns": () =>
+    resolve(import("./Tooltip/CommonPatternsSandbox.json")),
+  "Tooltip/DenseTooltips": () =>
+    resolve(import("./Tooltip/DenseTooltipsSandbox.json")),
+  "Tooltip/HoverMode": () => resolve(import("./Tooltip/HoverModeSandbox.json")),
+  "Tooltip/LargeTooltips": () =>
+    resolve(import("./Tooltip/LargeTooltipsSandbox.json")),
   "Tooltip/SimpleExamples": () =>
     resolve(import("./Tooltip/SimpleExamplesSandbox.json")),
   "Typography/TextContainerExamples": () =>

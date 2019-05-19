@@ -205,11 +205,14 @@ export async function extractDemoFiles(
   log(`Finding all the demos for ${name} package...`);
 
   const contents = await fs.readFile(demoIndexPath, "utf8");
-  const demos = (contents.match(/from "(.\/[A-z]+)"/g) || []).map(demoName =>
-    path.join(
-      getRelativeFolder(demoIndexPath),
-      `${demoName.replace(/from /, "").replace(/"/g, "")}.tsx`
-    )
+  // want to exclude files that have a comment after them (normally do // SANDBOX_IGNORE),
+  // but just makes sure the line ends with ;
+  const demos = (contents.match(/from "(.\/[A-z]+)"(?=;\r?\n)/g) || []).map(
+    demoName =>
+      path.join(
+        getRelativeFolder(demoIndexPath),
+        `${demoName.replace(/from /, "").replace(/"/g, "")}.tsx`
+      )
   );
 
   if (!demos.length) {

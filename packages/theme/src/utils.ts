@@ -66,10 +66,17 @@ export function createCSSVariablesStyle(
 export function useDocumentCSSVariables(variables: CSSVariable[]) {
   useEffect(() => {
     const { style } = document.documentElement;
-    fixVariables(variables).forEach(({ name, value }) => {
+    const fixedVariables = fixVariables(variables);
+    fixedVariables.forEach(({ name, value }) => {
       style.setProperty(name, value);
     });
-  });
+
+    return () => {
+      fixedVariables.forEach(({ name }) => {
+        style.setProperty(name, "");
+      });
+    };
+  }, [variables]);
 }
 
 type ScssVariableMap = {

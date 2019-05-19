@@ -4,37 +4,37 @@ import { Tooltipped } from "@react-md/tooltip";
 
 import Container from "./Container";
 
-const SimpleExamples: FunctionComponent = () => (
+const AutoPositioningTooltips: FunctionComponent = () => (
   <Container stacked>
     <Tooltipped
-      id="tooltipped-top"
+      id="auto-positioning-above"
       tooltip="This is a tooltip"
-      position="above"
+      defaultPosition="above"
     >
-      <Button themeType="outline">top</Button>
+      <Button themeType="outline">Above</Button>
     </Tooltipped>
     <Tooltipped
-      id="tooltipped-right"
+      id="auto-positioning-right"
       tooltip="This is a tooltip"
-      position="right"
+      defaultPosition="right"
     >
       <Button themeType="outline">Right</Button>
     </Tooltipped>
     <Tooltipped
-      id="tooltipped-bottom"
+      id="auto-positioning-bottom"
       tooltip="This is a tooltip"
-      position="below"
+      defaultPosition="below"
     >
-      <Button themeType="outline">Bottom</Button>
+      <Button themeType="outline">Below</Button>
     </Tooltipped>
     <Tooltipped
-      id="tooltipped-left"
+      id="auto-positioning-left"
       tooltip="This is a tooltip"
-      position="left"
+      defaultPosition="left"
     >
       <Button themeType="outline">Left</Button>
     </Tooltipped>
   </Container>
 );
 
-export default SimpleExamples;
+export default AutoPositioningTooltips;

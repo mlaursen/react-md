@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from "react";
-import { Button } from "@react-md/button";
 import { ViewHeadlineSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
-import { Tooltipped } from "@react-md/tooltip";
+
+import Button from "components/Button";
 
 export interface ToggleProps {
   onClick: HTMLAttributes<HTMLButtonElement>["onClick"];
@@ -20,22 +20,22 @@ const Toggle: FunctionComponent<ToggleProps> = ({
   }
 
   return (
-    <Tooltipped id="table-of-contents-toggle" tooltip={tooltip}>
-      <Button
-        theme="clear"
-        buttonType="icon"
-        className="table-of-contents-toggle"
-        aria-labelledby="table-of-contents-title"
-        onClick={onClick}
-        disabled={isLargeDesktop}
-      >
-        {!isLargeDesktop && isDialogVisible ? (
-          <CloseSVGIcon />
-        ) : (
-          <ViewHeadlineSVGIcon />
-        )}
-      </Button>
-    </Tooltipped>
+    <Button
+      id="table-of-contents-toggle"
+      tooltip={tooltip}
+      theme="clear"
+      buttonType="icon"
+      className="table-of-contents-toggle"
+      aria-labelledby="table-of-contents-title"
+      onClick={onClick}
+      disabled={isLargeDesktop}
+    >
+      {!isLargeDesktop && isDialogVisible ? (
+        <CloseSVGIcon />
+      ) : (
+        <ViewHeadlineSVGIcon />
+      )}
+    </Button>
   );
 };
 

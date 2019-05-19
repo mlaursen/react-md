@@ -20,6 +20,7 @@ const CustomButtonTheme: FunctionComponent = () => (
       buttonType="icon"
       themeType="outline"
       theme="primary"
+      aria-label="Close"
     >
       <CloseSVGIcon />
     </Button>
@@ -28,6 +29,7 @@ const CustomButtonTheme: FunctionComponent = () => (
     </Button>
     <Button
       id="custom-themed-button-4"
+      aria-label="Chat"
       buttonType="icon"
       themeType="outline"
       theme="warning"
