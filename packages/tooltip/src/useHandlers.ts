@@ -257,7 +257,7 @@ export function useKeyboardState({
 
     // whenever the browser loses focus, need to ensure that when the browser is re-focused
     // the last focused element (that had a tooltip) does not make the tooltip appear
-    const handleWindowBlur = (event: Event) => {
+    const handleWindowBlur = () => {
       if (document.hidden) {
         isWindowBlurred.current = true;
         hideTooltip();

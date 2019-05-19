@@ -1,15 +1,13 @@
-import React, {
+import {
   createContext,
-  ReactNode,
-  FunctionComponent,
-  useState,
-  useMemo,
-  useRef,
   useCallback,
-  useEffect,
   useContext,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import { useTimeout } from "@react-md/utils";
+
 import { DEFAULT_DELAY } from "./constants";
 
 interface TooltipHoverModeState {

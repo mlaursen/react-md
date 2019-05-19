@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useInteractionModeContext } from "@react-md/states";
-import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
-import { getViewportSize, SimplePosition, useToggle } from "@react-md/utils";
+import { SimplePosition, useToggle } from "@react-md/utils";
 
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
 import { TooltipProps } from "./Tooltip";

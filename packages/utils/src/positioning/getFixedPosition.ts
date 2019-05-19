@@ -1,6 +1,6 @@
-import getViewportSize from "./getViewportSize";
 import findSizingContainer from "./findSizingContainer";
 import getElementRect, { Coords } from "./getElementRect";
+import getViewportSize from "./getViewportSize";
 
 /**
  * Above:
@@ -106,14 +106,11 @@ function createStyleWithoutElement(
   x: HorizontalPosition,
   y: VerticalPosition
 ) {
-  let actualX = x;
-  let actualY = y;
   const {
     height,
     width,
     left: containerLeft,
     top: containerTop,
-    right,
   } = containerRect;
 
   let left = containerLeft;
@@ -131,8 +128,8 @@ function createStyleWithoutElement(
   }
 
   return {
-    actualX,
-    actualY,
+    actualX: x,
+    actualY: y,
     style: {
       left,
       top,
@@ -199,8 +196,6 @@ export default function getFixedPosition({
   const maxWidth = vw - vwMargin * 2;
   const { height: containerHeight, width: containerWidth } = containerRect;
 
-  let isTooTall = false;
-  let isTooWide = false;
   let actualX = x;
   let actualY = y;
 
@@ -212,7 +207,6 @@ export default function getFixedPosition({
   let bottom: number | undefined;
 
   if (width > maxWidth) {
-    isTooWide = true;
     left = vwMargin;
     right = vwMargin;
     ({ height, width } = getElementRect(element, { left, right }));
@@ -253,7 +247,6 @@ export default function getFixedPosition({
   }
 
   if (height > maxHeight) {
-    isTooTall = true;
     top = vhMargin;
     bottom = vhMargin;
   } else {
