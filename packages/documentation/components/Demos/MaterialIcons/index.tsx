@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
+
+import GoogleFont from "components/GoogleFont";
 
 import DemoPage from "../DemoPage";
 
@@ -21,4 +23,9 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="material-icons" />;
+export default () => (
+  <Fragment>
+    <GoogleFont font="Material Icons" />
+    <DemoPage demos={demos} packageName="material-icons" />
+  </Fragment>
+);

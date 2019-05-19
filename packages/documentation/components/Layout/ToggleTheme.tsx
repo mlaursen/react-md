@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FunctionComponent, useEffect, useRef } from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
@@ -13,9 +7,9 @@ import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
-import * as storage from "utils/storage";
 
 import "./toggle-theme.scss";
+import { useThemeContext, useThemeToggle } from "./ThemeContext";
 
 const THEME_TRANSITION_DURATION = 150;
 
@@ -26,10 +20,6 @@ function useThemeTransition(isLight: boolean) {
     const root = document.documentElement as HTMLElement;
     if (isFirstRender.current) {
       isFirstRender.current = false;
-
-      if (isLight) {
-        root.classList.add("light-theme");
-      }
       return;
     }
 
@@ -53,21 +43,14 @@ function useThemeTransition(isLight: boolean) {
   }, [isLight]);
 }
 
-function useThemeStorage(isLight: boolean) {
-  useEffect(() => {
-    storage.setItem("isLight", isLight.toString());
-  }, [isLight]);
-}
-
 const ToggleTheme: FunctionComponent = () => {
-  const [isLight, setLightTheme] = useState(
-    () => storage.getItem("isLight") === "true"
-  );
-
+  const theme = useThemeContext();
+  const isLight = theme === "light";
+  const toggleTheme = useThemeToggle();
   useThemeTransition(isLight);
-  useThemeStorage(isLight);
+
   const { toggled, enable, disable } = useToggle();
-  let icon: ReactNode = <LightbulbOutlineSVGIcon />;
+  let icon = <LightbulbOutlineSVGIcon />;
   if (toggled !== isLight) {
     icon = <LightbulbSVGIcon />;
   }
@@ -79,7 +62,7 @@ const ToggleTheme: FunctionComponent = () => {
       <AppBarAction
         aria-label="Toggle Theme"
         first
-        onClick={() => setLightTheme(prevDark => !prevDark)}
+        onClick={toggleTheme}
         onMouseEnter={isMouseMode ? enable : undefined}
         onMouseLeave={isMouseMode ? disable : undefined}
         className={cn("toggle-theme", {

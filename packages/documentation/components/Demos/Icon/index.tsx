@@ -8,6 +8,7 @@ import simpleExamples from "./SimpleExamples.md";
 
 import IconSpacing from "./IconSpacing";
 import iconSpacing from "./IconSpacing.md";
+import GoogleFont from "components/GoogleFont";
 
 const demos = [
   {
@@ -31,6 +32,7 @@ export default () => (
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
       />
     </Head>
+    <GoogleFont font="Material Icons" />
     <DemoPage demos={demos} packageName="icon" />
   </Fragment>
 );

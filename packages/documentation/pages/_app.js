@@ -12,8 +12,11 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
 } from '@react-md/sizing';
+import Cookie from 'js-cookie';
 
 import Layout from 'components/Layout';
+import GoogleFont from 'components/GoogleFont';
+import { ThemeContextProvider } from 'components/Layout/ThemeContext';
 import { smoothScroll, getScrollPosition } from 'utils/smoothScroll';
 import { toBreadcrumbPageTitle } from 'utils/toTitle';
 
@@ -25,8 +28,10 @@ export default class App extends NextApp {
     }
 
     let defaultSize;
+    let defaultTheme;
     if (ctx && ctx.req) {
-      const md = new MobileDetect(ctx.req.headers['user-agent']);
+      const { req } = ctx;
+      const md = new MobileDetect(req.headers['user-agent']);
       const isTablet = !!md.tablet();
       const isPhone = !isTablet && !!md.mobile();
       const isDesktop = !isPhone && !isTablet;
@@ -38,6 +43,7 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape: true,
       };
+      defaultTheme = req.cookies.theme || 'dark';
     } else if (typeof window !== 'undefined') {
       const matchesPhone = window.matchMedia(
         `screen and (max-width: ${DEFAULT_PHONE_MAX_WIDTH})`
@@ -62,13 +68,13 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape,
       };
-    } else {
-      defaultSize = DEFAULT_APP_SIZE;
+      defaultTheme = Cookie.get('theme');
     }
 
     return {
       componentProps,
-      defaultSize,
+      defaultSize: defaultSize || DEFAULT_APP_SIZE,
+      defaultTheme: defaultTheme || 'dark',
     };
   }
 
@@ -135,6 +141,7 @@ export default class App extends NextApp {
       componentProps,
       defaultSize,
       router: { pathname },
+      defaultTheme,
     } = this.props;
     const { statusCode } = componentProps;
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
@@ -142,12 +149,15 @@ export default class App extends NextApp {
 
     return (
       <Container>
+        <GoogleFont font="Roboto:400,500,700" />
         <Head>
           <title>{pageTitle}</title>
         </Head>
-        <Layout title={title} defaultSize={defaultSize} pathname={pathname}>
-          <Component {...componentProps} />
-        </Layout>
+        <ThemeContextProvider defaultTheme={defaultTheme}>
+          <Layout title={title} defaultSize={defaultSize} pathname={pathname}>
+            <Component {...componentProps} />
+          </Layout>
+        </ThemeContextProvider>
       </Container>
     );
   }

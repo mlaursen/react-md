@@ -8,8 +8,9 @@ import React, {
   useRef,
 } from "react";
 import cn from "classnames";
-import Head from "next/head";
 import Router from "next/router";
+
+import GoogleFont from "components/GoogleFont";
 
 import "./markdown.scss";
 import { markdownToHTML } from "./utils";
@@ -85,13 +86,7 @@ const Markdown: FunctionComponent<MarkdownProps> = ({
   const ref = useLinkUpdates(html);
   return (
     <Fragment>
-      <Head>
-        <link
-          key="source-code-pro"
-          href="https://fonts.googleapis.com/css?family=Source+Code+Pro"
-          rel="stylesheet"
-        />
-      </Head>
+      <GoogleFont font="Source Code Pro" />
       <div
         {...props}
         ref={ref}

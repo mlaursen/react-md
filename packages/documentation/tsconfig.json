@@ -48,5 +48,6 @@
     "pages",
     "types",
     "utils"
-  ]
+  ],
+  "exclude": ["server/**/*.ts"]
 }

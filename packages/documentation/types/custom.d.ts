@@ -15,6 +15,11 @@ declare module "*.md" {
   export default content;
 }
 
+declare module "*.png" {
+  const content: string;
+  export default content;
+}
+
 declare module "highlight.js/lib/highlight" {
   import * as hljs from "highlight.js";
 
