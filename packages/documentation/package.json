@@ -16,7 +16,7 @@
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
     "build-client": "next build",
-    "start": "NODE_ENV=production node .next/server",
+    "start": "node .next/server",
     "start-dev": "nodemon",
     "start-prod": "npm-run-all build start"
   },

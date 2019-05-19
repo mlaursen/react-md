@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Sheet } from "@react-md/sheet";
+import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import { Tree, useTreeItemExpansion, useFlattenedTree } from "@react-md/tree";
 import { bem } from "@react-md/theme";
 
@@ -44,6 +45,7 @@ const FileTree: FunctionComponent<FileTreeProps> = ({
         onItemSelect={onItemSelect}
         selectedIds={[selectedId]}
         {...useTreeItemExpansion(["src"])}
+        expanderIcon={<KeyboardArrowDownSVGIcon />}
       />
     </Sheet>
   );

@@ -12,7 +12,7 @@ const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
-const PUBLIC = path.join(__dirname, "..", "public");
+const PUBLIC = path.join(process.cwd(), "public");
 
 nextApp.prepare().then(() => {
   const app = express();

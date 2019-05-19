@@ -52,5 +52,5 @@ tar cjf $next_tar_name packages/documentation/.next
 scp $dist_tar_name react-md:~/react-md
 scp $next_tar_name react-md:~/react-md
 
-ssh $server_alias "cd react-md && git pull && rm -r packages/documentation/.next && find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) | xargs rm -r && tar xjf $dist_tar_name && tar xjf $next_tar_name && yarn && git clean -f && cd packages/documentation && pm2 restart documentation"
+ssh $server_alias "cd react-md && git pull && rm -r packages/documentation/.next && find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) | xargs rm -r && tar xjf $dist_tar_name && tar xjf $next_tar_name && yarn && git clean -f && cd && pm2 restart ecosystem.config.js"
 git clean -f

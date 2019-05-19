@@ -26,7 +26,7 @@ const Toggle: FunctionComponent<ToggleProps> = ({
       theme="clear"
       buttonType="icon"
       className="table-of-contents-toggle"
-      aria-labelledby="table-of-contents-title"
+      aria-label="Table of Contents"
       onClick={onClick}
       disabled={isLargeDesktop}
     >
