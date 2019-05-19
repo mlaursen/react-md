@@ -15,6 +15,7 @@ import Sandbox from "./Sandbox";
 import getSandboxer from "./sandboxes";
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 import GithubDemoLink from "./GithubDemoLink";
+import { ClosePhone } from "components/Phone";
 
 export interface DemoProps {
   id: string;
@@ -25,6 +26,8 @@ export interface DemoProps {
    * Boolean if the demo should require a full page modal to display.
    */
   fullPage?: boolean;
+  disableFullPageAppBar?: boolean;
+  disableFullPageContent?: boolean;
 
   /**
    * Boolean if the demo should require a full page modal to display only
@@ -61,6 +64,8 @@ const Demo: FunctionComponent<DemoProps> = props => {
     children,
     index,
     packageName,
+    disableFullPageAppBar,
+    disableFullPageContent,
   } = props as WithDefaultProps;
 
   const title = toTitle(packageName, "");
@@ -106,8 +111,15 @@ const Demo: FunctionComponent<DemoProps> = props => {
             visible={toggled}
             enable={enable}
             disable={disable}
+            disableAppBar={disableFullPageAppBar}
+            disableContent={disableFullPageContent}
           >
-            {children}
+            <Fragment>
+              {children}
+              {toggled && true && (
+                <ClosePhone id={id} floating onClick={disable} />
+              )}
+            </Fragment>
           </ConditionalFullPageDialog>
         </div>
       </section>
@@ -119,6 +131,8 @@ Demo.defaultProps = {
   fullPage: false,
   phoneFullPage: false,
   mobileFullPage: false,
+  disableFullPageAppBar: false,
+  disableFullPageContent: false,
 };
 
 export default Demo;

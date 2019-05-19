@@ -1,5 +1,4 @@
 import React, {
-  createElement,
   forwardRef,
   FunctionComponent,
   HTMLAttributes,
@@ -77,7 +76,7 @@ export interface LinkWithComponentProps extends LinkProps {
 
 type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
 type DefaultProps = Required<
-  Pick<LinkProps, "flexCentered" | "preventMaliciousTarget">
+  Pick<LinkProps, "flexCentered" | "preventMaliciousTarget" | "component">
 >;
 type WithDefaultProps = LinkProps & DefaultProps & WithRef;
 
@@ -94,7 +93,7 @@ const Link: FunctionComponent<
 > = providedProps => {
   const {
     className: propClassName,
-    component,
+    component: Component,
     href: propHref,
     children,
     rel: propRel,
@@ -116,22 +115,21 @@ const Link: FunctionComponent<
     rel = "noopener noreferrer";
   }
 
-  if (component) {
-    return createElement(
-      component,
-      { ...props, rel, href, className, ref: forwardedRef },
-      children
-    );
-  }
-
   return (
-    <a className={className} {...props} href={href} rel={rel}>
+    <Component
+      className={className}
+      {...props}
+      href={href}
+      rel={rel}
+      ref={forwardedRef}
+    >
       {children}
-    </a>
+    </Component>
   );
 };
 
 const defaultProps: DefaultProps = {
+  component: "a",
   preventMaliciousTarget: true,
   flexCentered: false,
 };
@@ -150,7 +148,7 @@ if (process.env.NODE_ENV !== "production") {
     Link.propTypes = {
       className: PropTypes.string,
       href: PropTypes.string,
-      component: PropTypes.func,
+      component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
       target: PropTypes.string,
       rel: PropTypes.string,
       preventMaliciousTarget: PropTypes.bool,

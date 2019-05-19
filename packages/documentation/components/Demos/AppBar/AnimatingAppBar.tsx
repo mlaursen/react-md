@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -16,6 +10,7 @@ import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
+import { PassiveEvents } from "@react-md/utils";
 
 import people from "constants/people";
 
@@ -39,23 +34,40 @@ const SCROLL_MULTIPLIER = 0.314;
 
 const AnimatingAppBar: FunctionComponent = () => {
   const [height, setHeight] = useState(`${HEIGHT}px`);
-  const ref = useRef(height);
+  const heightRef = useRef(height);
   useEffect(() => {
-    ref.current = height;
+    heightRef.current = height;
   });
 
-  // could also throttle this for a _bit_ more performance
-  const handleScroll = useCallback((event: React.UIEvent<HTMLDivElement>) => {
-    const height = ref.current;
-    const { scrollTop } = event.currentTarget;
-    const remaining = Math.min(
-      Math.max(HEIGHT - scrollTop * SCROLL_MULTIPLIER, 0),
-      HEIGHT
-    );
-    const nextHeight = `${remaining}px`;
-    if (height !== nextHeight) {
-      setHeight(nextHeight);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const div = ref.current;
+    if (!div) {
+      return;
     }
+
+    const handleScroll = () => {
+      const height = heightRef.current;
+      const { scrollTop } = div;
+      const remaining = Math.min(
+        Math.max(HEIGHT - scrollTop * SCROLL_MULTIPLIER, 0),
+        HEIGHT
+      );
+      const nextHeight = `${remaining}px`;
+      if (height !== nextHeight) {
+        setHeight(nextHeight);
+      }
+    };
+
+    div.addEventListener(
+      "scroll",
+      handleScroll,
+      PassiveEvents.isSupported ? { passive: true } : false
+    );
+
+    return () => {
+      div.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -82,7 +94,7 @@ const AnimatingAppBar: FunctionComponent = () => {
               <MoreVertSVGIcon />
             </AppBarAction>
           </AppBar>
-          <div className="animating-app-bar__content" onScroll={handleScroll}>
+          <div className="animating-app-bar__content" ref={ref}>
             <List>
               {transformedPeople.map(({ id, name, avatar, color }, i) => (
                 <ListItem

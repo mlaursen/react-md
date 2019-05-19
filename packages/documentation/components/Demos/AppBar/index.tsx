@@ -46,6 +46,8 @@ const demos = [
     name: "Animating App Bar",
     description: animatingAppBar,
     phoneFullPage: true,
+    disableFullPageAppBar: true,
+    disableFullPageContent: true,
     children: <AnimatingAppBar />,
   },
 ];

@@ -44,7 +44,7 @@ const FileTree: FunctionComponent<FileTreeProps> = ({
         data={data}
         onItemSelect={onItemSelect}
         selectedIds={[selectedId]}
-        {...useTreeItemExpansion(["src"])}
+        {...useTreeItemExpansion(["src", "public"])}
         expanderIcon={<KeyboardArrowDownSVGIcon />}
       />
     </Sheet>

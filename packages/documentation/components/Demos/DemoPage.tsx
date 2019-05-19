@@ -14,6 +14,8 @@ export interface DemoPageProps {
     | "name"
     | "description"
     | "fullPage"
+    | "disableFullPageAppBar"
+    | "disableFullPageContent"
     | "phoneFullPage"
     | "mobileFullPage"
     | "fileName"

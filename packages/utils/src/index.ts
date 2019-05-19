@@ -1,6 +1,9 @@
 export * from "./delegateEvent";
 export * from "./touches";
 
+import * as PassiveEvents from "./passiveEvents";
+export { PassiveEvents };
+
 export * from "./omit";
 
 export * from "./positioning";

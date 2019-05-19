@@ -41,4 +41,20 @@
     height: 35rem;
     padding-top: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));
   }
+
+  // when it's in the mobile full page view, reset some of the styles again
+  .rmd-dialog--full-page & {
+    height: 100%;
+    margin: 0;
+    max-width: none;
+    position: static;
+
+    &__bar {
+      position: fixed;
+    }
+
+    &__content {
+      height: 100%;
+    }
+  }
 }

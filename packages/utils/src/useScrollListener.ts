@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { delegateEvent } from "./delegateEvent";
+import { isSupported } from "./passiveEvents";
 
 export interface Options {
   /**
@@ -31,7 +32,7 @@ export default function useScrollListener({
   enabled,
   onScroll,
   element,
-  options = true,
+  options = isSupported ? { passive: true, capture: true } : true,
 }: Options) {
   // creating a ref so the event handler doesn't need to be updated each re-render
   // if using an arrow function for the resize handler

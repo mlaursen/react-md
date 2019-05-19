@@ -22,6 +22,9 @@ import hoverMode from "./HoverMode.md";
 import CommonPatterns from "./CommonPatterns";
 import commonPatterns from "./CommonPatterns.md";
 
+import AdvancedAPIAndGotchas from "./AdvancedAPIAndGotchas";
+import advancedAPIAndGotchas from "./AdvancedAPIAndGotchas.md";
+
 const demos = [
   {
     name: "Simple Examples",
@@ -56,6 +59,11 @@ const demos = [
     name: "Common Patterns",
     description: commonPatterns,
     children: <CommonPatterns />,
+  },
+  {
+    name: "Advanced API and Gotchas",
+    description: advancedAPIAndGotchas,
+    children: <AdvancedAPIAndGotchas />,
   },
 ].map(({ children, ...demo }) => ({
   ...demo,

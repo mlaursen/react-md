@@ -30,8 +30,31 @@ const List: FunctionComponent<ListProps> = ({
     [onRequestClose, isLargeDesktop]
   );
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLElement>) => {
+      const target = event.target as HTMLAnchorElement;
+      const { hash } = window.location;
+      if (!target || event.key !== "Tab" || event.shiftKey || !hash) {
+        return;
+      }
+
+      const links = Array.from(event.currentTarget.querySelectorAll("a"));
+      const [lastLink] = links.reverse();
+      const toFocus = document.querySelector<HTMLElement>(`${hash}-link`);
+      if (target === lastLink && toFocus) {
+        event.preventDefault();
+        toFocus.focus();
+      }
+    },
+    []
+  );
+
   return (
-    <ul className={block("list")} onClick={handleClick}>
+    <ul
+      className={block("list")}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+    >
       {headings.map(({ id, title }, i) => (
         <li key={i} className={block("item")}>
           <Link href={`#${id}`} className={block("link")}>

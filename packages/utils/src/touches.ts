@@ -1,4 +1,4 @@
-import isPassiveEventsSupported from "./isPassiveEventsSupported";
+import { isSupported } from "./passiveEvents";
 
 export type TouchTypes = "start" | "end" | "cancel" | "move";
 
@@ -38,7 +38,7 @@ export function setTouchEvent(
   el[`${add ? "add" : "remove"}EventListener`](
     `touch${eventType}`,
     callback,
-    isPassiveEventsSupported ? { passive: true, capture, ...options } : capture
+    isSupported ? { passive: true, capture, ...options } : capture
   );
 }
 

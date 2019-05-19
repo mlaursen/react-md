@@ -281,6 +281,7 @@ const Dialog: FunctionComponent<
         }),
         className
       )}
+      ref={forwardedRef}
     >
       {children}
     </FocusContainer>

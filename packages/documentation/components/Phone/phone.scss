@@ -71,4 +71,13 @@ $fixed-classes: (
 
     height: 100%;
   }
+
+  &__close {
+    &--floating {
+      bottom: 1rem;
+      margin: 0;
+      position: fixed;
+      right: 1rem;
+    }
+  }
 }

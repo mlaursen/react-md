@@ -1,11 +1,11 @@
 const noop = () => undefined;
-let cached = false;
+let isSupported = false;
 
 /**
  * Checks if the browser supports passive events. This shouldn't really be used
  * outside of this file, but you can always check again if needed.
  */
-export function supports() {
+export function update() {
   if (typeof window === "undefined") {
     return false;
   }
@@ -19,10 +19,11 @@ export function supports() {
 
   window.addEventListener("testSupportsPassive", noop, opts);
   window.removeEventListener("testSupportsPassive", noop, opts);
-  cached = isPassiveEventsSupported;
+  isSupported = isPassiveEventsSupported;
   return isPassiveEventsSupported;
 }
 
-supports();
+// invoke immediately
+update();
 
-export default cached;
+export { isSupported };
