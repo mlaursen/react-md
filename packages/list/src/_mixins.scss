@@ -54,7 +54,6 @@
     horizontal-padding,
     rmd-list-theme-var(dense-horizontal-padding)
   );
-  @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
 }
 
 /// Creates the styles for a list in react-md.
@@ -87,6 +86,7 @@
 }
 
 @mixin rmd-list-item-dense-theme {
+  @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(dense-item-height));
   @include rmd-list-theme-update-var(
     item-medium-height,
     rmd-list-theme-var(dense-item-medium-height)

@@ -1,3 +1,4 @@
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
 .app-bar-container {
@@ -7,5 +8,10 @@
 
   > .rmd-app-bar {
     margin: 2rem auto;
+  }
+
+  @include rmd-sizing-phone-media {
+    margin: 0;
+    max-width: none;
   }
 }

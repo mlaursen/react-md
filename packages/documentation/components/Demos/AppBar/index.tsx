@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./index.scss";
 import DemoPage from "../DemoPage";
 
 import SimpleUsage from "./SimpleUsage";
@@ -22,24 +23,36 @@ const demos = [
     name: "Simple Usage",
     description: simpleUsage,
     phoneFullPage: true,
+    fullPageFAB: true,
+    disableFullPageAppBar: true,
+    disableFullPageContent: true,
     children: <SimpleUsage />,
   },
   {
     name: "Different Sizes",
     description: differentSizes,
     phoneFullPage: true,
+    fullPageFAB: true,
+    disableFullPageAppBar: true,
+    disableFullPageContent: true,
     children: <DifferentSizes />,
   },
   {
     name: "Auto Dense",
     description: autoDense,
     phoneFullPage: true,
+    fullPageFAB: true,
+    disableFullPageAppBar: true,
+    disableFullPageContent: true,
     children: <AutoDense />,
   },
   {
     name: "Fixed with Offset",
     description: fixedWithOffset,
     phoneFullPage: true,
+    fullPageFAB: true,
+    disableFullPageAppBar: true,
+    disableFullPageContent: true,
     children: <FixedWithOffset />,
   },
   {
@@ -53,4 +66,6 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="app-bar" />;
+export default () => (
+  <DemoPage demos={demos} packageName="app-bar" className="app-bar-demos" />
+);

@@ -1,5 +1,6 @@
 @import '@react-md/sizing/dist/mixins';
 @import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 
 .markdown {
   &__p {
@@ -7,5 +8,12 @@
     @include rmd-sizing-desktop-media {
       @include rmd-typography(body-2);
     }
+  }
+}
+
+.markdown-container {
+  ul,
+  ol {
+    @include rmd-utils-scroll;
   }
 }

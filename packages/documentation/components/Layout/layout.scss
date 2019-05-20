@@ -11,24 +11,16 @@
 
 :root {
   @include rmd-sizing-desktop-media {
+    @include rmd-app-bar-dense-theme;
     @include rmd-icon-dense-theme;
     @include rmd-list-dense-theme;
     @include rmd-list-item-dense-theme;
-    @include rmd-tooltip-dense;
+    @include rmd-tooltip-dense-theme;
   }
 }
 
 .layout {
-  &__app-bar {
-    @include rmd-sizing-desktop-media {
-      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
-    }
-  }
-
   &__main {
-    @include rmd-sizing-desktop-media {
-      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
-    }
     @include rmd-app-bar-offset();
 
     display: block;
@@ -52,7 +44,6 @@
 
   &__nav {
     @include rmd-sizing-desktop-media {
-      @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
       @include rmd-app-bar-theme(top, height);
     }
 

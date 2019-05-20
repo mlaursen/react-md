@@ -271,6 +271,16 @@
   }
 }
 
+/// This mixin allows you to quickly apply the dense theme for app bars. This should normally
+/// be used within a media query.
+@mixin rmd-app-bar-dense-theme {
+  @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+  @include rmd-app-bar-theme-update-var(
+    prominent-height,
+    rmd-app-bar-theme-var(prominent-dense-height)
+  );
+}
+
 /// Creates all the styles for the app bar package.
 @mixin react-md-app-bar {
   @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);

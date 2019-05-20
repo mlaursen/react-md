@@ -1,6 +1,7 @@
 @import '@react-md/utils/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/app-bar/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 
 .fixed-with-offset {
@@ -19,10 +20,6 @@
 
   .rmd-app-bar--prominent {
     @include rmd-app-bar-theme(padding-bottom, height);
-  }
-
-  .rmd-app-bar--prominent {
-    @include rmd-app-bar-theme(padding-bottom, dense-height);
   }
 
   &__title {
@@ -44,5 +41,11 @@
 
   + .fixed-with-offset {
     margin-top: 3rem;
+  }
+
+  @include rmd-sizing-phone-media {
+    margin: 0;
+    margin-bottom: 2rem;
+    max-width: none;
   }
 }

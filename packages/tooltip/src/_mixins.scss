@@ -64,7 +64,7 @@
 }
 
 /// Creates the dense tooltip style overrides.
-@mixin rmd-tooltip-dense {
+@mixin rmd-tooltip-dense-theme {
   @include rmd-tooltip-theme-update-var(font-size, rmd-tooltip-theme-var(dense-font-size));
   @include rmd-tooltip-theme-update-var(line-height, rmd-tooltip-theme-var(dense-line-height));
   @include rmd-tooltip-theme-update-var(min-height, rmd-tooltip-theme-var(dense-min-height));
@@ -89,7 +89,7 @@
   }
 
   &--dense {
-    @include rmd-tooltip-dense;
+    @include rmd-tooltip-dense-theme;
   }
 
   &--above {
