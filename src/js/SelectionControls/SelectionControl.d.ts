@@ -3,6 +3,8 @@ import { IdPropType, Props } from '../index';
 
 type Types = 'checkbox' | 'radio' | 'switch';
 
+export type ClassNameType = string | ((props: SelectionControlProps, selectionControl: React.ComponentClass<SelectionControlProps>) => string);
+
 export interface BaseSelectionControlProps extends Props {
   id: IdPropType;
   name: number | string;
@@ -15,6 +17,10 @@ export interface BaseSelectionControlProps extends Props {
   inline?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: IdPropType;
+  controlClassName: ClassNameType;
+  inputClassName: ClassNameType;
+  labelClassName: ClassNameType;
+  labelTextClassName: ClassNameType;
 }
 
 export interface SelectionControlProps extends BaseSelectionControlProps {

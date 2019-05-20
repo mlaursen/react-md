@@ -32,17 +32,42 @@ describe('SelectionControl', () => {
     expect(control.hasClass(props.className)).toBe(true);
   });
 
+  it('should correctly apply classes returned by className function', () => {
+    const checkedClass = 'test-checked';
+    const uncheckedClass = 'test-unchecked';
+    const props = {
+      ...PROPS,
+      className: (propSet) => (propSet.checked ? checkedClass : uncheckedClass),
+      labelClassName: 'test-label-class',
+      labelTextClassName: (propSet, control) => `test-${control.props.label}`,
+    };
+
+    const control = shallow(<SelectionControl {...props} />);
+    expect(control.hasClass('md-selection-control-container')).toBe(true);
+    expect(control.hasClass(checkedClass)).toBe(false);
+    expect(control.hasClass(uncheckedClass)).toBe(true);
+
+    expect(control.find('label').hasClass(props.labelClassName)).toBe(true);
+    expect(control.find(`#${props.id}-label`).hasClass(`test-${props.label}`)).toBe(true);
+
+    control.setProps({ checked: true });
+    expect(control.hasClass('md-selection-control-container')).toBe(true);
+    expect(control.hasClass(checkedClass)).toBe(true);
+    expect(control.hasClass(uncheckedClass)).toBe(false);
+  });
+
   it('renders an input tag with the correct props', () => {
-    const props = { ...PROPS, value: 'hello!' };
+    const props = { ...PROPS, value: 'hello!', inputClassName: 'test-input-class' };
     const control = mount(<SelectionControl {...props} />);
     let input = control.find('input');
     expect(input.length).toBe(1);
+    expect(input.hasClass('md-selection-control-input')).toBe(true);
+    expect(input.hasClass(props.inputClassName)).toBe(true);
     input = input.instance();
     expect(input.id).toBe(props.id);
     expect(input.type).toBe(props.type);
     expect(input.name).toBe(props.name);
     expect(input.checked).toBe(false);
-    expect(input.className).toBe('md-selection-control-input');
     expect(input.value).toBe(props.value);
     expect(input.getAttribute('aria-hidden')).toBe('true');
   });
