@@ -4,7 +4,6 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/tooltip.ejs",
     "declaration": true,
     "declarationDir": "types"
   },

@@ -4,7 +4,6 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/app-bar.cjs",
     "target": "es5"
   },
   "include": [

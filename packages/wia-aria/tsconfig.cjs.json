@@ -4,7 +4,6 @@
     "outDir": "./lib",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/wia-aria.cjs",
     "target": "es5"
   },
   "include": [

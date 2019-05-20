@@ -220,9 +220,6 @@ export function createTsConfig(
       rootDir: src,
       noEmit: isCheck || undefined,
       incremental: (!isCheck && !isVariables) || undefined,
-      tsBuildInfoFile: isCheck
-        ? undefined
-        : `../../.tscache/${packageName}${cacheExtension}`,
       declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
       target: isCheck || isESModule ? undefined : "es5",

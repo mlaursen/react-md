@@ -4,7 +4,6 @@
     "outDir": "./es",
     "rootDir": "src",
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/sizing.ejs",
     "declaration": true,
     "declarationDir": "types"
   },

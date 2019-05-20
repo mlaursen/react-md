@@ -1,7 +1,6 @@
 # Caches and modules
 .jest-cache
 .sass-cache
-.tscache
 node_modules
 
 # Compiled files
@@ -13,6 +12,7 @@ node_modules
 /packages/material-icons/bin
 /packages/material-icons/temp
 !/packages/documentation/types
+*.tsbuildinfo
 
 # Testing
 coverage

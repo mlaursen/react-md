@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "tsBuildInfoFile": "../../.tscache/dev-utils",
     "outDir": "./bin",
     "target": "es5",
     "module": "commonjs",
