@@ -1,6 +1,7 @@
 export * from "@react-md/app-bar";
 export * from "@react-md/avatar";
 export * from "@react-md/button";
+export * from "@react-md/card";
 export * from "@react-md/dialog";
 export * from "@react-md/divider";
 export * from "@react-md/icon";
