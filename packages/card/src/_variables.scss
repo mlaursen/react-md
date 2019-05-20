@@ -1,0 +1,75 @@
+////
+/// @group card
+////
+
+@import '@react-md/theme/dist/functions';
+
+/// The base background color to apply to cards.
+/// @type Color
+$rmd-card-background-color: rmd-theme-var(surface) !default;
+
+/// The base primary text color to apply to cards.
+/// @type Color
+$rmd-card-color: rmd-theme-var(on-surface) !default;
+
+/// The base secondary text color to apply to cards. The `CardSubtitle` and
+/// `CardContent` components will use this color by default unless the
+/// `disableSecondaryColor` prop is enabled.
+/// @type Color
+$rmd-card-secondary-color: if(
+  rmd-theme-tone($rmd-theme-surface) == light,
+  rmd-theme-var(text-primary-on-light),
+  rmd-theme-var(text-primary-on-dark)
+) !default;
+
+/// The elevation to use for cards that are not raiseable.
+/// @type Number
+$rmd-card-elevation: 2 !default;
+
+/// The starting elevation for a raiseable card.
+/// @type Number
+$rmd-card-base-elevation: 1 !default;
+
+/// The ending elevation for a raiseable card.
+/// @type Number
+$rmd-card-raised-elevation: 8 !default;
+
+/// The border radius to apply to cards.
+/// @type Number
+$rmd-card-border-radius: 0.25rem !default;
+
+/// The amount of padding to apply to the `CardHeader` component.
+/// @type Number
+$rmd-card-header-padding: 1rem !default;
+
+/// Any extra amount of padding to apply to the top of the `cardHeader` component.
+/// This is really just added since it looks a bit nicer to have extra padding top.
+/// @type Number.
+$rmd-card-header-padding-top: 1.5rem !default;
+
+/// The amount of spacing to use between the main content in the header and the
+/// `beforeChildren` and `afterChildren` props. This really gets used with the
+/// `TextIconSpacing` component from the @react-md/icon package
+/// @type Number
+$rmd-card-header-spacing: 1rem !default;
+
+/// The amount of padding to apply to the `CardContent` component.
+/// @type Number
+$rmd-card-content-padding: 1rem !default;
+
+/// When the `CardContent` component is the last child in the `Card`, it normally looks
+/// a bit nicer to apply a bit more padding to it. So this is the extra `padding-bottom`
+/// that will be applied in that case.
+/// @type Number
+$rmd-card-content-padding-extra: 1.5rem !default;
+
+/// The amount of padding to apply to the `CardActions` component.
+/// @type Number
+$rmd-card-actions-padding: 0.5rem !default;
+
+/// @type Map
+$rmd-card-theme-values: (
+  background-color: $rmd-card-background-color,
+  color: $rmd-card-color,
+  secondary-color: $rmd-card-secondary-color,
+) !default;

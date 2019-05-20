@@ -1,10 +1,12 @@
 import { parse } from "url";
 
+const behavior = process.env.NODE_ENV === "development" ? "auto" : "smooth";
+
 export function smoothScroll(
   top: number,
   element: HTMLElement | Window = window
 ) {
-  element.scroll({ top, behavior: "smooth" });
+  element.scroll({ top, behavior });
 }
 
 export function getScrollPosition(pathname: string) {

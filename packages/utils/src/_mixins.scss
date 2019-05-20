@@ -231,6 +231,10 @@
     @include react-md-dialog;
   }
 
+  @if mixin-exists(react-md-card) {
+    @include react-md-card;
+  }
+
   @if mixin-exists(react-md-divider) {
     @include react-md-divider;
   }

@@ -36,6 +36,12 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Button/TextButtonsSandbox.json")),
   "Button/TextButtonsWithIcons": () =>
     resolve(import("./Button/TextButtonsWithIconsSandbox.json")),
+  "Card/ExpandableCards": () =>
+    resolve(import("./Card/ExpandableCardsSandbox.json")),
+  "Card/SimpleExample": () =>
+    resolve(import("./Card/SimpleExampleSandbox.json")),
+  "Card/WithActions": () => resolve(import("./Card/WithActionsSandbox.json")),
+  "Card/WithMedia": () => resolve(import("./Card/WithMediaSandbox.json")),
   "Dialog/AlertDialogsAndModals": () =>
     resolve(import("./Dialog/AlertDialogsAndModalsSandbox.json")),
   "Dialog/FullPageExample": () =>

@@ -1,0 +1,188 @@
+////
+/// @group button
+////
+
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/states/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/theme/dist/variables';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+@import 'functions';
+@import 'variables';
+
+/// Creates the styles for one of the card's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-card-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-card-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-card-theme-values` map when `null`.
+@mixin rmd-card-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-card-theme-values, card);
+}
+
+/// Updates one of the card's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The card theme style type to update. This should be one
+///   of the `$rmd-card-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-card-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-card-theme-values, card);
+}
+
+/// Creates all the styles for the `Card` component only. You'll need to use this within a
+/// selector.
+@mixin rmd-card {
+  @include rmd-theme-update-var(background, #{rmd-card-theme-var(background-color)});
+  @include rmd-theme-update-var(text-primary-on-background, #{rmd-card-theme-var(color)});
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    #{rmd-card-theme-var(secondary-color)}
+  );
+  @include rmd-states-mouse-only {
+    &--raiseable {
+      @include rmd-elevation-transition(
+        $rmd-card-base-elevation,
+        $rmd-card-raised-elevation,
+        '&:hover'
+      );
+    }
+  }
+  @include rmd-elevation($rmd-card-elevation);
+  @include rmd-theme(background-color, surface);
+  @include rmd-theme(color, text-primary-on-background);
+
+  border-radius: $rmd-card-border-radius;
+  display: inline-block;
+
+  &--full-width {
+    display: block;
+    width: 100%;
+  }
+}
+
+/// Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.
+@mixin rmd-card-header {
+  @include rmd-icon-theme-update-var(text-spacing, $rmd-card-header-spacing);
+
+  display: flex;
+  padding: $rmd-card-header-padding;
+  padding-top: $rmd-card-header-padding-top;
+
+  &--top {
+    align-items: flex-start;
+  }
+
+  &--center {
+    align-items: center;
+  }
+
+  &--bottom {
+    align-items: flex-end;
+  }
+}
+
+/// Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.
+@mixin rmd-card-title {
+  @include rmd-typography(headline-5);
+
+  margin-bottom: 0;
+  margin-top: 0;
+
+  &--small {
+    @include rmd-typography-value(subtitle-1, line-height, font-size, letter-spacing);
+  }
+}
+
+/// Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.
+@mixin rmd-card-subtitle {
+  @include rmd-typography(subtitle-2);
+
+  margin-bottom: 0;
+  margin-top: 0;
+
+  &--secondary {
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+}
+
+/// Creates all the styles for the `CardContent` component. You'll need to use this within a selector.
+@mixin rmd-card-content {
+  &--secondary {
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+
+  &--remove-margin p {
+    margin-top: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &--padded {
+    padding: $rmd-card-content-padding;
+  }
+
+  &--extra-padding:last-child {
+    padding-bottom: $rmd-card-content-padding-extra;
+  }
+}
+
+/// Creates all the styles for the `CardActions` component. You'll need to use this within a selector.
+@mixin rmd-card-actions {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: $rmd-card-actions-padding;
+
+  &--start {
+    justify-content: flex-start;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+/// Creates all the styles for the @react-md/card package.
+@mixin react-md-card {
+  @include rmd-theme-create-root-theme($rmd-card-theme-values, card);
+
+  .rmd-card {
+    @include rmd-card;
+
+    &__header {
+      @include rmd-card-header;
+    }
+
+    &__header-addon {
+      flex-shrink: 0;
+    }
+
+    &__header-content {
+      flex-grow: 1;
+    }
+
+    &__title {
+      @include rmd-card-title;
+    }
+
+    &__subtitle {
+      @include rmd-card-subtitle;
+    }
+
+    &__content {
+      @include rmd-card-content;
+    }
+
+    &__actions {
+      @include rmd-card-actions;
+    }
+  }
+}

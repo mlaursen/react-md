@@ -20,6 +20,11 @@ export interface MediaContainerProps extends HTMLAttributes<HTMLDivElement> {
    * Boolean if any media element children should be updated to be responsive.
    */
   auto?: boolean;
+
+  /**
+   * Boolean if the media container should have a `width: 100%;` applied.
+   */
+  fullWidth?: boolean;
 }
 
 export interface MediaContainerWithAspectRatioProps
@@ -29,7 +34,7 @@ export interface MediaContainerWithAspectRatioProps
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<MediaContainerProps, "auto">>;
+type DefaultProps = Required<Pick<MediaContainerProps, "auto" | "fullWidth">>;
 
 const block = bem("rmd-media-container");
 
@@ -40,7 +45,16 @@ const block = bem("rmd-media-container");
  */
 const MediaContainer: FunctionComponent<
   (MediaContainerProps | MediaContainerWithAspectRatioProps) & WithRef
-> = ({ className, height, width, children, forwardedRef, auto, ...props }) => {
+> = ({
+  className,
+  height,
+  width,
+  children,
+  forwardedRef,
+  auto,
+  fullWidth,
+  ...props
+}) => {
   const aspectRatio =
     height && width ? `rmd-media-container--${width}-${height}` : "";
 
@@ -49,7 +63,11 @@ const MediaContainer: FunctionComponent<
       {...props}
       ref={forwardedRef}
       className={cn(
-        block({ auto, "aspect-ratio": aspectRatio }),
+        block({
+          auto,
+          "aspect-ratio": aspectRatio,
+          "full-width": fullWidth,
+        }),
         aspectRatio,
         className
       )}
@@ -61,6 +79,7 @@ const MediaContainer: FunctionComponent<
 
 const defaultProps: DefaultProps = {
   auto: true,
+  fullWidth: false,
 };
 
 MediaContainer.defaultProps = defaultProps;

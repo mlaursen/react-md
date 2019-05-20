@@ -38,9 +38,6 @@
   }
 
   &__card {
-    @include rmd-elevation(4);
-    @include rmd-theme(background-color, surface);
-    @include rmd-theme(color, on-surface);
     @include rmd-sizing-tablet-media {
       width: calc(50% - 2rem);
     }
@@ -52,27 +49,11 @@
     align-self: flex-start;
     margin: 1rem;
     min-width: 20rem;
-    text-decoration: none;
+    // text-decoration: none;
     width: calc(100% - 2rem);
   }
 
-  &__card-title {
-    margin: 1em;
-  }
-
-  &__card-svg {
-    height: auto;
-    width: 100%;
-  }
-
-  &__card-text {
-    padding: 0 1rem;
-  }
-
-  &__card-footer {
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
+  &__code-block {
+    margin-bottom: 0;
   }
 }

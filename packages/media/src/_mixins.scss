@@ -13,7 +13,6 @@
   height: 0;
   overflow: hidden;
   padding: 0;
-  position: relative;
 }
 
 /// Creates the styles for a responsive media item that should have a specific
@@ -115,6 +114,7 @@
 @mixin react-md-media {
   .rmd-media-container {
     display: inline-block;
+    position: relative;
 
     @each $selector in $rmd-media-selectors {
       &--auto #{$selector} {
@@ -137,6 +137,11 @@
 
         padding-bottom: percentage($height / $width);
       }
+    }
+
+    &--full-width {
+      display: block;
+      width: 100%;
     }
   }
 

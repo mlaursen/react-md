@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.cjs.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "../../.tscache/button.var",
+    "declaration": true,
+    "target": "es5"
+  },
+  "include": [
+    "src/scssVariables.ts"
+  ],
+  "exclude": [
+    "**/__tests__/*"
+  ]
+}

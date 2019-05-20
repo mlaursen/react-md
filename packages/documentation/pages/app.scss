@@ -2,6 +2,7 @@
 @import '@react-md/app-bar/dist/mixins';
 @import '@react-md/avatar/dist/mixins';
 @import '@react-md/button/dist/mixins';
+@import '@react-md/card/dist/mixins';
 @import '@react-md/dialog/dist/mixins';
 @import '@react-md/divider/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
@@ -76,6 +77,8 @@
     ripple-background-color,
     $rmd-states-light-theme-ripple-background-color
   );
+  @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-light-color);
+  @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-light-color);
 
   --code-bg: var(--code-bg-light);
 }

@@ -7,6 +7,19 @@
 @import '@react-md/utils/dist/mixins';
 
 .code-previewer {
+  @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);
+  @include rmd-sheet-theme-update-var(background-color, $rmd-theme-dark-surface);
+  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-dark-color);
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    $rmd-theme-secondary-text-on-dark-color
+  );
+  @include rmd-app-bar-theme-update-var(
+    default-background-color,
+    $rmd-app-bar-default-dark-theme-background-color
+  );
+  @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-dark-theme-color);
+
   @include rmd-sizing-desktop-media {
     @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
     @include rmd-list-theme-update-var(item-height, 1.5rem);

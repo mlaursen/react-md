@@ -28,6 +28,7 @@ export interface DemoProps {
   fullPage?: boolean;
   disableFullPageAppBar?: boolean;
   disableFullPageContent?: boolean;
+  fullPageFAB?: boolean;
 
   /**
    * Boolean if the demo should require a full page modal to display only
@@ -51,7 +52,12 @@ export interface DemoProps {
 }
 
 type WithDefaultProps = DemoProps &
-  Required<Pick<DemoProps, "fullPage" | "phoneFullPage" | "mobileFullPage">>;
+  Required<
+    Pick<
+      DemoProps,
+      "fullPage" | "phoneFullPage" | "mobileFullPage" | "fullPageFAB"
+    >
+  >;
 
 const Demo: FunctionComponent<DemoProps> = props => {
   const {
@@ -64,6 +70,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
     children,
     index,
     packageName,
+    fullPageFAB,
     disableFullPageAppBar,
     disableFullPageContent,
   } = props as WithDefaultProps;
@@ -116,7 +123,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
           >
             <Fragment>
               {children}
-              {toggled && true && (
+              {toggled && fullPageFAB && (
                 <ClosePhone id={id} floating onClick={disable} />
               )}
             </Fragment>
@@ -133,6 +140,7 @@ Demo.defaultProps = {
   mobileFullPage: false,
   disableFullPageAppBar: false,
   disableFullPageContent: false,
+  fullPageFAB: false,
 };
 
 export default Demo;
