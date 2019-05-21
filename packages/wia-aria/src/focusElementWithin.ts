@@ -11,14 +11,17 @@ export type Focus = "first" | "last" | string;
  * @param focus Either the "first" or "last" string to focus the first or last
  * focusable element within the container or a query selector string to find a
  * focusable element within the container.
+ * @param progamatic Boolean if programatically focusable elements should be included
+ * as well.
  */
 export default function focusElementWithin(
   container: HTMLElement | Document,
   focus: Focus,
+  programatic: boolean = false,
   elements?: HTMLElement[]
 ) {
   if (!elements || !elements.length) {
-    elements = getFocusableElements(container);
+    elements = getFocusableElements(container, programatic);
   }
 
   let el: HTMLElement | null;

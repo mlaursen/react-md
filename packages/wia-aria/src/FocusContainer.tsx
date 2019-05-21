@@ -73,7 +73,7 @@ export interface FocusContainerProps
    * used if you are using nested focus containers for temporary material (such as
    * dialogs or menus).
    */
-  disabled?: boolean;
+  disableTabFocusWrap?: boolean;
 
   /**
    * The component to render the focus container as. This should really not be used as
@@ -88,7 +88,7 @@ type WithRef = WithForwardedRef<HTMLElement>;
 type DefaultProps = Required<
   Pick<
     FocusContainerProps,
-    | "disabled"
+    | "disableTabFocusWrap"
     | "disableFocusCache"
     | "disableFocusOnMount"
     | "disableFocusOnUnmount"
@@ -102,7 +102,7 @@ const FocusContainer: FunctionComponent<
   FocusContainerProps & WithRef
 > = providedProps => {
   const {
-    disabled,
+    disableTabFocusWrap,
     disableFocusCache,
     disableFocusOnMount,
     disableFocusOnUnmount,
@@ -125,8 +125,8 @@ const FocusContainer: FunctionComponent<
   );
 
   const focusables = useFocusableElementsCache(ref);
-  usePreviousFocus(disabled || disableFocusOnUnmount, unmountFocusFallback);
-  useFocusOnMount(ref, defaultFocus, disabled || disableFocusOnMount);
+  usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
+  useFocusOnMount(ref, defaultFocus, false, disableFocusOnMount);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -134,7 +134,7 @@ const FocusContainer: FunctionComponent<
         onKeyDown(event);
       }
 
-      if (disabled) {
+      if (disableTabFocusWrap) {
         return;
       }
 
@@ -142,7 +142,7 @@ const FocusContainer: FunctionComponent<
         return;
       }
     },
-    [onKeyDown, disabled]
+    [onKeyDown, disableTabFocusWrap]
   );
 
   return (
@@ -153,10 +153,10 @@ const FocusContainer: FunctionComponent<
 };
 
 const defaultProps: DefaultProps = {
-  disabled: false,
   disableFocusCache: false,
   disableFocusOnMount: false,
   disableFocusOnUnmount: false,
+  disableTabFocusWrap: false,
   defaultFocus: "first",
   component: "div",
 };

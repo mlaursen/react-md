@@ -6,9 +6,13 @@ import useFocusOnMount from "../useFocusOnMount";
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 const cancelAnimationFrame = jest.spyOn(window, "cancelAnimationFrame");
 
-const Test = ({ disabled = false, defaultFocus = "first" }) => {
+const Test = ({
+  disabled = false,
+  defaultFocus = "first",
+  programatic = false,
+}) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  useFocusOnMount(ref, defaultFocus, disabled);
+  useFocusOnMount(ref, defaultFocus, programatic, disabled);
   return (
     <div ref={ref}>
       <button type="button" data-testid="button-1">

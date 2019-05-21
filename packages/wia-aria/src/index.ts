@@ -10,6 +10,7 @@ export {
 
 export { default as getFocusableElements } from "./getFocusableElements";
 export { default as focusElementWithin } from "./focusElementWithin";
+export { default as useKeyboardMovement } from "./useKeyboardMovement";
 
 import * as WiaAriaConstants from "./constants";
 export { WiaAriaConstants };

@@ -56,16 +56,18 @@ describe("FocusContainer", () => {
     expect(document.activeElement).toBe(getMainButton());
   });
 
-  it("should not focus any elements while the disabled prop is true", () => {
+  it("should not focus any elements while the disableFocusOnMount and disableFocusOnUnmount props are true", () => {
     const getMainButton = () => document.getElementById("main-button");
 
-    const { rerender } = render(<Test visible={false} disabled />);
+    const { rerender } = render(
+      <Test visible={false} disableFocusOnMount disableFocusOnUnmount />
+    );
     expect(document.activeElement).toBe(getMainButton());
 
-    rerender(<Test visible disabled />);
+    rerender(<Test visible disableFocusOnMount disableFocusOnUnmount />);
     expect(document.activeElement).toBe(getMainButton());
 
-    rerender(<Test visible={false} disabled />);
+    rerender(<Test visible={false} disableTabFocusWrap />);
     expect(document.activeElement).toBe(getMainButton());
   });
 

@@ -1,4 +1,94 @@
-import transformKeys from "../transformKeys";
+import { cleanup } from "react-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+import {
+  getKeyboardEventType,
+  transformKeys,
+  useMemoizedFocusKeys,
+} from "../useFocusKeys";
+
+describe("getKeyboardEventType", () => {
+  const letterAEvent = {
+    key: "A",
+    altKey: false,
+    metaKey: false,
+    shiftKey: false,
+  } as KeyboardEvent;
+  const letterBEvent = {
+    key: "B",
+    altKey: false,
+    metaKey: true,
+    shiftKey: false,
+  } as KeyboardEvent;
+  const letterCEvent = {
+    key: "C",
+    altKey: true,
+    metaKey: false,
+    shiftKey: true,
+  } as KeyboardEvent;
+  const tabEvent = {
+    key: "Tab",
+    altKey: true,
+    metaKey: true,
+    shiftKey: true,
+  } as KeyboardEvent;
+
+  it("should return null if the event does not have a corresponding IKeyboardFocusKeyEvent", () => {
+    expect(getKeyboardEventType(letterAEvent, [])).toBeNull();
+    expect(getKeyboardEventType(letterBEvent, [])).toBeNull();
+    expect(getKeyboardEventType(letterCEvent, [])).toBeNull();
+    expect(getKeyboardEventType(tabEvent, [])).toBeNull();
+
+    expect(
+      getKeyboardEventType(letterAEvent, [
+        {
+          key: "A",
+          type: "increment",
+          altKey: false,
+          metaKey: false,
+          shiftKey: true,
+        },
+      ])
+    ).toBeNull();
+
+    expect(
+      getKeyboardEventType(letterBEvent, [
+        {
+          key: "B",
+          type: "increment",
+          altKey: false,
+          metaKey: true,
+          shiftKey: true,
+        },
+      ])
+    ).toBeNull();
+  });
+
+  it("should return the type when the key, metaKey, altKey, and shiftKey match up", () => {
+    expect(
+      getKeyboardEventType(letterAEvent, [
+        {
+          key: "A",
+          type: "increment",
+          altKey: false,
+          metaKey: false,
+          shiftKey: false,
+        },
+      ])
+    ).toBe("increment");
+
+    expect(
+      getKeyboardEventType(letterBEvent, [
+        {
+          key: "B",
+          type: "increment",
+          altKey: false,
+          metaKey: true,
+          shiftKey: false,
+        },
+      ])
+    ).toBe("increment");
+  });
+});
 
 describe("transformKeys", () => {
   it("should create a list of key objects that have the shiftKey, metaKey, altKey, key, and type properties defined", () => {
@@ -158,5 +248,51 @@ describe("transformKeys", () => {
     ];
 
     expect(transformKeys(keys, "decrement")).toEqual(expected);
+  });
+});
+
+describe("useMemoizedFocusKeys", () => {
+  it("should return the correct list of keys", () => {
+    let value;
+    renderHook(
+      () =>
+        (value = useMemoizedFocusKeys({
+          incrementKeys: ["ArrowDown"],
+          decrementKeys: ["ArrowUp"],
+          jumpToFirstKeys: ["Home"],
+          jumpToLastKeys: ["End"],
+        }))
+    );
+
+    expect(value).toEqual([
+      {
+        key: "ArrowDown",
+        type: "increment",
+        altKey: false,
+        metaKey: false,
+        shiftKey: false,
+      },
+      {
+        key: "ArrowUp",
+        type: "decrement",
+        altKey: false,
+        metaKey: false,
+        shiftKey: false,
+      },
+      {
+        key: "Home",
+        type: "first",
+        altKey: false,
+        metaKey: false,
+        shiftKey: false,
+      },
+      {
+        key: "End",
+        type: "last",
+        altKey: false,
+        metaKey: false,
+        shiftKey: false,
+      },
+    ]);
   });
 });

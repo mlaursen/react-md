@@ -16,12 +16,15 @@ import getInstance, { RefOrInstance } from "./getInstance";
  * @param defaultFoucs The element to focus within the containing element once it
  * has been mounted. This can either be "first" or "last" to focus the first or last
  * focusable elements or a query selector string to find an element to focus.
+ * @param programatic Boolean if programatically focusable elements should be included
+ * instead of only tab focusable.
  * @param disabled Boolean if the focus behavior should be disabled.
  */
 export default function useFocusOnMount(
   refOrInstance: RefOrInstance,
   defaultFocus: Focus,
-  disabled: boolean
+  programatic: boolean = false,
+  disabled: boolean = false
 ) {
   useEffect(() => {
     if (disabled) {
@@ -35,7 +38,7 @@ export default function useFocusOnMount(
       }
 
       instance.focus();
-      focusElementWithin(instance, defaultFocus);
+      focusElementWithin(instance, defaultFocus, programatic);
     });
 
     return () => {

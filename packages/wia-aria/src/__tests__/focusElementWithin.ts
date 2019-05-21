@@ -45,13 +45,13 @@ describe("focusElementWithin", () => {
     focusElementWithin(ELEMENT, "first");
     focusElementWithin(ELEMENT, "last");
     focusElementWithin(ELEMENT, ".element");
-    expect(getFocusableElements).toBeCalledWith(ELEMENT);
+    expect(getFocusableElements).toBeCalledWith(ELEMENT, false);
     expect(getFocusableElements).toBeCalledTimes(3);
 
     getFocusableElements.mockClear();
-    focusElementWithin(ELEMENT, "first", [element1]);
-    focusElementWithin(ELEMENT, "last", [element1]);
-    focusElementWithin(ELEMENT, ".element", [element1]);
+    focusElementWithin(ELEMENT, "first", false, [element1]);
+    focusElementWithin(ELEMENT, "last", false, [element1]);
+    focusElementWithin(ELEMENT, ".element", false, [element1]);
     expect(getFocusableElements).not.toBeCalled();
 
     querySelector.mockRestore();
@@ -65,7 +65,7 @@ describe("focusElementWithin", () => {
     expect(focus3).not.toBeCalled();
 
     focus1.mockClear();
-    focusElementWithin(ELEMENT, "first", elements);
+    focusElementWithin(ELEMENT, "first", false, elements);
     expect(focus1).toBeCalled();
     expect(focus2).not.toBeCalled();
     expect(focus3).not.toBeCalled();
@@ -79,7 +79,7 @@ describe("focusElementWithin", () => {
     expect(focus3).toBeCalled();
 
     focus3.mockClear();
-    focusElementWithin(ELEMENT, "last", elements);
+    focusElementWithin(ELEMENT, "last", false, elements);
     expect(focus1).not.toBeCalled();
     expect(focus2).not.toBeCalled();
     expect(focus3).toBeCalled();
@@ -103,7 +103,7 @@ describe("focusElementWithin", () => {
     expect(focus3).not.toBeCalled();
 
     focus1.mockClear();
-    focusElementWithin(ELEMENT, ".query", elements);
+    focusElementWithin(ELEMENT, ".query", false, elements);
     expect(focus1).toBeCalled();
     expect(focus2).not.toBeCalled();
     expect(focus3).not.toBeCalled();
@@ -115,7 +115,7 @@ describe("focusElementWithin", () => {
     expect(focus3).not.toBeCalled();
 
     focus2.mockClear();
-    focusElementWithin(ELEMENT, ".query", elements);
+    focusElementWithin(ELEMENT, ".query", false, elements);
     expect(focus1).not.toBeCalled();
     expect(focus2).toBeCalled();
     expect(focus3).not.toBeCalled();
@@ -127,7 +127,7 @@ describe("focusElementWithin", () => {
     expect(focus3).toBeCalled();
 
     focus3.mockClear();
-    focusElementWithin(ELEMENT, ".query", elements);
+    focusElementWithin(ELEMENT, ".query", false, elements);
     expect(focus1).not.toBeCalled();
     expect(focus2).not.toBeCalled();
     expect(focus3).toBeCalled();

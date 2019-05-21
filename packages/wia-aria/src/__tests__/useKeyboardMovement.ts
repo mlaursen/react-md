@@ -1,4 +1,9 @@
-import loop from "../loop";
+import { cleanup } from "react-testing-library";
+import { renderHook } from "react-hooks-testing-library";
+
+import useKeyboardMovement, { loop } from "../useKeyboardMovement";
+
+afterEach(cleanup);
 
 describe("incrementLoop", () => {
   it("should increase the number by 1 when the number is less than or equal to the max number", () => {
@@ -23,5 +28,12 @@ describe("incrementLoop", () => {
     expect(loop(0, 100, false)).toBe(100);
     expect(loop(0, 1, false)).toBe(1);
     expect(loop(0, 20, false)).toBe(20);
+  });
+});
+
+describe("useKeyboardMovement", () => {
+  it("should actually have tests at some point", () => {
+    const { result } = renderHook(() => useKeyboardMovement({}));
+    expect(result.current).toBeInstanceOf(Function);
   });
 });

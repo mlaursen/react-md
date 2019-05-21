@@ -17,14 +17,14 @@ type OptionalFixedPositionOptions = Omit<
   "container" | "element"
 >;
 
-interface Position {
+export interface PositionAnchor {
   x: HorizontalPosition;
   y: VerticalPosition;
 }
 
-type PositionChange = (wanted: Position, actual: Position) => void;
+type PositionChange = (wanted: PositionAnchor, actual: PositionAnchor) => void;
 
-interface FixedPositioningOptions
+export interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
     Pick<TransitionProps, "onEnter" | "onEntering" | "onEntered" | "onExited"> {
   /**
@@ -60,6 +60,12 @@ interface FixedPositioningOptions
    * within the viewport.
    */
   onPositionChange?: PositionChange;
+
+  /**
+   * Boolean if the style object should also return the correct `transform-origin` value
+   * in the style object.
+   */
+  transformOrigin?: boolean;
 }
 
 function getFixedTo(fixedTo: FixedTo) {
@@ -80,6 +86,40 @@ function getFixedTo(fixedTo: FixedTo) {
     default:
       return fixedTo as HTMLElement;
   }
+}
+
+function getTransformOrigin(anchor: PositionAnchor) {
+  let x = "0";
+  switch (anchor.x) {
+    case "left":
+    case "inner-left":
+      x = "0";
+      break;
+    case "center":
+      x = "50%";
+      break;
+    case "right":
+    case "inner-right":
+      x = "100%";
+      break;
+  }
+
+  let y = "0";
+  switch (anchor.y) {
+    case "above":
+    case "top":
+      y = "100%";
+      break;
+    case "center":
+      y = "50%";
+      break;
+    case "below":
+    case "bottom":
+      y = "0";
+      break;
+  }
+
+  return `${x} ${y}`;
 }
 
 /**
@@ -138,15 +178,16 @@ export default function useFixedPositioning({
       fixedTo,
       getOptions,
       onPositionChange,
+      transformOrigin,
       ...remaining
     } = options.current;
     const overrides = typeof getOptions === "function" ? getOptions(node) : {};
     const opts = {
       ...remaining,
       ...overrides,
+      x: overrides.x || remaining.x || "center",
+      y: overrides.y || remaining.y || "below",
     };
-    opts.x = opts.x || "center";
-    opts.y = opts.y || "below";
 
     const { style, actualX, actualY } = getFixedPosition({
       container: getFixedTo(fixedTo),
@@ -160,7 +201,11 @@ export default function useFixedPositioning({
       onPositionChange(wanted, actual);
     }
 
-    setStyle(style);
+    setStyle({
+      ...style,
+      position: "fixed",
+      transformOrigin: transformOrigin ? getTransformOrigin(opts) : undefined,
+    });
   }, []);
 
   const updateNodeAndStyle = useCallback((node: HTMLElement) => {
