@@ -5,7 +5,10 @@ type Types = 'checkbox' | 'radio' | 'switch';
 
 export type ClassNameType = string | ((props: SelectionControlProps, selectionControl: React.ComponentClass<SelectionControlProps>) => string);
 
-export interface BaseSelectionControlProps extends Props {
+declare const {className, ...controlProps}: Props;
+type ControlProps = typeof controlProps;
+
+export interface BaseSelectionControlProps extends ControlProps {
   id: IdPropType;
   name: number | string;
   label?: React.ReactNode;
@@ -17,10 +20,11 @@ export interface BaseSelectionControlProps extends Props {
   inline?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: IdPropType;
-  controlClassName: ClassNameType;
-  inputClassName: ClassNameType;
-  labelClassName: ClassNameType;
-  labelTextClassName: ClassNameType;
+  className?: ClassNameType;
+  controlClassName?: ClassNameType;
+  inputClassName?: ClassNameType;
+  labelClassName?: ClassNameType;
+  labelTextClassName?: ClassNameType;
 }
 
 export interface SelectionControlProps extends BaseSelectionControlProps {
