@@ -84,22 +84,34 @@ Please see the list of [examples](examples/) for how you can get a project start
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md@1.11.0/dist/react-md.deep_purple-pink.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/react-md@1.12.0/dist/react-md.deep_purple-pink.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700"
+    />
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md@1.11.0/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.12.0/dist/react-md.min.js"></script>
     <script>
-    var MyAwesomeComponent = React.createClass({
-      render: function()  {
-        return React.createElement(ReactMD.Button, { label: 'Hello, World!', flat: true });
-      }
-    });
+      var MyAwesomeComponent = React.createClass({
+        render: function() {
+          return React.createElement(ReactMD.Button, {
+            label: 'Hello, World!',
+            flat: true,
+          });
+        },
+      });
 
-    ReactDOM.render(React.createElement(MyAwesomeComponent), document.getElementById('app'));
+      ReactDOM.render(
+        React.createElement(MyAwesomeComponent),
+        document.getElementById('app'),
+      );
     </script>
   </body>
 </html>

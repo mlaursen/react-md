@@ -1,5 +1,11 @@
 ## May 2019
 
+### v1.12.0 Released
+
+##### Changelog
+
+- Added additional class name props to the `SelectionControl` components. ([@gamtiq] - pull-831)
+
 ### v1.11.0 Released
 
 ##### Changelog
