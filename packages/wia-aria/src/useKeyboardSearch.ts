@@ -64,14 +64,14 @@ export default function useKeyboardSearch<E extends HTMLElement = HTMLElement>({
   resetTime = 500,
   onFocusChange = ({ element }) => element.focus(),
 }: KeyboardSearchOptions<E>) {
-  const { value, setValue, resetValue } = useTempValue("", resetTime);
-  const config = useRef({ onKeyDown, getValues, resetTime, onFocusChange });
+  const { value, setValue } = useTempValue("", resetTime);
+  const config = useRef({ onKeyDown, getValues, onFocusChange });
   useEffect(() => {
-    config.current = { onKeyDown, getValues, resetTime, onFocusChange };
+    config.current = { onKeyDown, getValues, onFocusChange };
   });
 
   return useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown, getValues, resetTime, onFocusChange } = config.current;
+    const { onKeyDown, getValues, onFocusChange } = config.current;
     if (onKeyDown) {
       onKeyDown(event);
     }

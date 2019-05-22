@@ -255,6 +255,10 @@
     @include react-md-media;
   }
 
+  @if mixin-exists(react-md-menu) {
+    @include react-md-menu;
+  }
+
   @if mixin-exists(react-md-progress) {
     @include react-md-progress;
   }

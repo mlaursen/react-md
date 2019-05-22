@@ -21,13 +21,13 @@ export default function useKeyboardClickPolyfill<
   disabled: boolean = false,
   disableSpacebarClick = false
 ) {
-  const ref = useRef(onKeyDown);
+  const ref = useRef({ onKeyDown, disableSpacebarClick });
   useEffect(() => {
-    ref.current = onKeyDown;
+    ref.current = { onKeyDown, disableSpacebarClick };
   });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const onKeyDown = ref.current;
+    const { onKeyDown, disableSpacebarClick } = ref.current;
     if (onKeyDown) {
       onKeyDown(event);
     }

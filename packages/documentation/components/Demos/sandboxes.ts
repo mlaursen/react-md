@@ -91,6 +91,10 @@ const sandboxes: SandboxesRecord = {
   "Media/SimpleResponsiveMedia": () =>
     resolve(import("./Media/SimpleResponsiveMediaSandbox.json")),
   "Media/WithOverlay": () => resolve(import("./Media/WithOverlaySandbox.json")),
+  "Menu/AccessibilityExample": () =>
+    resolve(import("./Menu/AccessibilityExampleSandbox.json")),
+  "Menu/SimpleExamples": () =>
+    resolve(import("./Menu/SimpleExamplesSandbox.json")),
   "Overlay/CustomTheme": () =>
     resolve(import("./Overlay/CustomThemeSandbox.json")),
   "Overlay/FixingOverflowIssues": () =>

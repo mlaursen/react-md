@@ -1,0 +1,30 @@
+////
+/// @group card
+////
+
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/list/dist/functions';
+
+$rmd-menu-background-color: rmd-theme-var(surface) !default;
+$rmd-menu-color: rmd-theme-var(on-surface) !default;
+$rmd-menu-z-index: 11 !default;
+$rmd-menu-elevation: 8 !default;
+$rmd-menu-min-width: 7rem !default;
+
+$rmd-menu-vertical-padding: $rmd-list-vertical-padding !default;
+$rmd-menu-horizontal-padding: $rmd-list-horizontal-padding !default;
+
+$rmd-menu-dense-vertical-padding: $rmd-list-dense-vertical-padding !default;
+$rmd-menu-dense-horizontal-padding: $rmd-list-dense-horizontal-padding !default;
+
+$rmd-menu-enter-duration: 0.2s !default;
+$rmd-menu-leave-duration: 0.15s !default;
+
+$rmd-menu-theme-values: (
+  background-color: $rmd-menu-background-color,
+  color: $rmd-menu-color,
+  min-width: $rmd-menu-min-width,
+  vertical-padding: $rmd-menu-vertical-padding,
+  horizontal-padding: $rmd-menu-horizontal-padding,
+  z-index: $rmd-menu-z-index,
+) !default;

@@ -1,4 +1,5 @@
 import { RippleEvent, RippleType, RippleState } from "./types.d";
+import { findSizingContainer } from "@react-md/utils";
 
 /**
  * Checks if the ripple event should be ignored since it was bubbled
@@ -142,7 +143,8 @@ export function getOrigin(
 export function createRippleState(
   event: RippleEvent<HTMLElement>
 ): RippleState {
-  const element = event.currentTarget;
+  const element =
+    findSizingContainer(event.currentTarget) || event.currentTarget;
   const { offsetWidth, offsetHeight } = element;
   const type = getType(event);
   const { x, y } = getOrigin(event, element);

@@ -255,7 +255,9 @@ export default function getFixedPosition({
         top = Math.max(vhMargin, top - height - yMargin);
         break;
       case "top":
-        // don't need to do anything since this is the container top
+        if (!disableSwapping && top + height > vh - vhMargin) {
+          top = Math.max(vhMargin, containerRect.bottom - height);
+        }
         break;
       case "center":
         top = Math.max(vhMargin, top + containerHeight / 2 - height / 2);

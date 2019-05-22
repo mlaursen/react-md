@@ -108,14 +108,14 @@ function getTransformOrigin(anchor: PositionAnchor) {
   switch (anchor.y) {
     case "above":
     case "top":
-      y = "100%";
+      y = "0";
       break;
     case "center":
       y = "50%";
       break;
     case "below":
     case "bottom":
-      y = "0";
+      y = "100%";
       break;
   }
 

@@ -206,6 +206,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("list"),
     createPackageRoute("material-icons", { sassdoc: false }),
     createPackageRoute("media"),
+    createPackageRoute("menu"),
     createPackageRoute("overlay"),
     createPackageRoute("portal"),
     createPackageRoute("progress"),

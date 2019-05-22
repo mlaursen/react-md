@@ -127,7 +127,9 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
     forceIconWrap,
     children: propChildren,
   } = props as WithDefaultProps;
-  let children = propChildren;
+  const stringifiedChildren =
+    typeof propChildren === "number" ? `${propChildren}` : propChildren;
+  let children = stringifiedChildren;
   if (primaryText || secondaryText || textChildren) {
     children = (
       <ListItemText
@@ -170,7 +172,7 @@ const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
   return (
     <Fragment>
       {children}
-      {(primaryText && propChildren) || null}
+      {(primaryText && stringifiedChildren) || null}
     </Fragment>
   );
 };

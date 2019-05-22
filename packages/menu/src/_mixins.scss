@@ -1,0 +1,83 @@
+////
+/// @group menu
+////
+
+@import '@react-md/elevation/dist/mixins';
+@import '@react-md/theme/dist/variables';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+@import 'functions';
+@import 'variables';
+
+/// Creates the styles for one of the menu's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-menu-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-menu-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-menu-theme-values` map when `null`.
+@mixin rmd-menu-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-menu-theme-values, menu);
+}
+
+/// Updates one of the menu's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The menu theme style type to update. This should be one
+///   of the `$rmd-menu-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-menu-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-menu-theme-values, menu);
+}
+
+@mixin rmd-menu {
+  @include rmd-elevation($rmd-menu-elevation);
+  @include rmd-menu-theme(background-color);
+  @include rmd-menu-theme(color);
+  @include rmd-menu-theme(min-width);
+  @include rmd-menu-theme(z-index);
+
+  padding: rmd-menu-theme-var(vertical-padding) rmd-menu-theme-var(horizontal-padding);
+
+  &--horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  &--enter {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  &--enter-active {
+    @include rmd-transition(deceleration);
+
+    opacity: 1;
+    transform: scale(1);
+    transition: transform $rmd-menu-enter-duration, opacity $rmd-menu-enter-duration;
+  }
+
+  &--exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &--exit-active {
+    @include rmd-transition(deceleration);
+
+    opacity: 0;
+    transform: scale(0);
+    transition: transform $rmd-menu-leave-duration, opacity $rmd-menu-leave-duration;
+  }
+}
+
+/// Creates all the styles for the @react-md/menu package.
+@mixin react-md-menu {
+  @include rmd-theme-create-root-theme($rmd-menu-theme-values, menu);
+
+  .rmd-menu {
+    @include rmd-menu;
+  }
+}

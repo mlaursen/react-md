@@ -252,19 +252,19 @@ describe("transformKeys", () => {
 });
 
 describe("useMemoizedFocusKeys", () => {
+  afterEach(cleanup);
+
   it("should return the correct list of keys", () => {
-    let value;
-    renderHook(
-      () =>
-        (value = useMemoizedFocusKeys({
-          incrementKeys: ["ArrowDown"],
-          decrementKeys: ["ArrowUp"],
-          jumpToFirstKeys: ["Home"],
-          jumpToLastKeys: ["End"],
-        }))
+    const { result } = renderHook(() =>
+      useMemoizedFocusKeys({
+        incrementKeys: ["ArrowDown"],
+        decrementKeys: ["ArrowUp"],
+        jumpToFirstKeys: ["Home"],
+        jumpToLastKeys: ["End"],
+      })
     );
 
-    expect(value).toEqual([
+    expect(result.current).toEqual([
       {
         key: "ArrowDown",
         type: "increment",
