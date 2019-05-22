@@ -272,7 +272,9 @@ const Dialog: FunctionComponent<
     <FocusContainer
       {...props}
       aria-modal
-      disabled={disableFocusContainer}
+      disableTabFocusWrap={disableFocusContainer}
+      disableFocusOnMount={disableFocusContainer}
+      disableFocusOnUnmount={disableFocusContainer}
       onKeyDown={handleKeyDown}
       className={cn(
         block({
