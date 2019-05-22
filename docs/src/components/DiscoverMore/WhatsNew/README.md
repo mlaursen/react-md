@@ -4,7 +4,7 @@
 
 ##### Changelog
 
-- Added additional class name props to the `SelectionControl` components. ([@gamtiq] - pull-831)
+- Added additional class name props to the `SelectionControl` components. ([@gamtiq] - [pull-831])
 
 ### v1.11.0 Released
 
