@@ -1,4 +1,5 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, HTMLAttributes } from "react";
+import { Item } from "./defaultItemRenderer";
 
 type FocusType = "first" | "last";
 
@@ -7,16 +8,26 @@ interface State {
   defaultFocus: FocusType;
 }
 
+interface Options
+  extends Pick<HTMLAttributes<HTMLElement>, "onClick" | "onKeyDown"> {
+  items: Item[];
+  onItemClick?: (item: Item, event: React.MouseEvent<HTMLElement>) => void;
+  onVisibilityChange?: (visible: boolean) => void;
+}
+
 /**
  * This hook is used to add the base functionality for showing and hiding a menu.
  *
  * @param onKeyDown An optional keydown event handler to merge into the control's
  * keydown event handler.
  */
-export default function useMenuState(
-  onKeyDown?: React.KeyboardEventHandler<HTMLElement>,
-  onVisibilityChange?: (visible: boolean) => void
-) {
+export default function useMenuState({
+  onClick,
+  onKeyDown,
+  items,
+  onItemClick,
+  onVisibilityChange,
+}: Options) {
   const [{ visible, defaultFocus }, setState] = useState<State>({
     visible: false,
     defaultFocus: "first",
@@ -69,14 +80,48 @@ export default function useMenuState(
       const { key } = event;
       switch (key) {
         case "ArrowUp":
+          event.preventDefault();
           showDefaultFocus("last");
           break;
         case "ArrowDown":
+          event.preventDefault();
           showDefaultFocus("first");
           break;
       }
     },
     [onKeyDown]
+  );
+
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+
+      show();
+    },
+    [onClick]
+  );
+
+  const onMenuClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (!onItemClick || !event.target) {
+        return;
+      }
+
+      const target = event.target as HTMLElement;
+      const { currentTarget } = event;
+
+      const menuItems = Array.from(
+        currentTarget.querySelectorAll('[role="menuitem"]')
+      );
+      const item = target.closest('[role="menuitem"]');
+      const index = menuItems.findIndex(it => it === item);
+      if (index !== -1) {
+        onItemClick(items[index], event);
+      }
+    },
+    [onItemClick, items]
   );
 
   return {
@@ -86,5 +131,7 @@ export default function useMenuState(
     visible,
     defaultFocus,
     onKeyDown: handleKeyDown,
+    onClick: handleClick,
+    onMenuClick,
   };
 }

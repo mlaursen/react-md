@@ -33,13 +33,12 @@
 }
 
 @mixin rmd-menu {
+  @include rmd-utils-hide-focus-outline;
   @include rmd-elevation($rmd-menu-elevation);
   @include rmd-menu-theme(background-color);
   @include rmd-menu-theme(color);
   @include rmd-menu-theme(min-width);
   @include rmd-menu-theme(z-index);
-
-  padding: rmd-menu-theme-var(vertical-padding) rmd-menu-theme-var(horizontal-padding);
 
   &--horizontal {
     display: flex;

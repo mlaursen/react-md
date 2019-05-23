@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { DropdownMenu } from "@react-md/menu";
 
 import Container from "./Container";
-import { HomeSVGIcon } from "@react-md/material-icons";
+import { HomeSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
 
 const items = [
   "Item 1",
@@ -23,7 +23,16 @@ const SimpleExamples: FunctionComponent = () => {
         menuLabelledby="dropdown-menu-1"
         items={items}
       >
-        Button
+        Options...
+      </DropdownMenu>
+      <DropdownMenu
+        id="dropdown-menu-2"
+        menuLabelledby="dropdown-menu-2"
+        items={items}
+        buttonType="icon"
+        aria-label="Options..."
+      >
+        <MoreVertSVGIcon />
       </DropdownMenu>
     </Container>
   );

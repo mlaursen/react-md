@@ -93,6 +93,8 @@ const sandboxes: SandboxesRecord = {
   "Media/WithOverlay": () => resolve(import("./Media/WithOverlaySandbox.json")),
   "Menu/AccessibilityExample": () =>
     resolve(import("./Menu/AccessibilityExampleSandbox.json")),
+  "Menu/AddingEventHandlers": () =>
+    resolve(import("./Menu/AddingEventHandlersSandbox.json")),
   "Menu/SimpleExamples": () =>
     resolve(import("./Menu/SimpleExamplesSandbox.json")),
   "Overlay/CustomTheme": () =>

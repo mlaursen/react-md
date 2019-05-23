@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 /**
  * This can either be a query selector string, a specific HTMLElement, or a function
@@ -36,25 +36,16 @@ export default function usePreviousFocus(
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null
 ) {
-  // this is a bit overkill, but want to be able to set the defaultValue
-  // on mount before a window paint and needs to support ssr
-  const defaultValue = useMemo(() => {
-    if (previousElement || typeof document === "undefined") {
-      return previousElement;
-    }
-
-    return document.activeElement as HTMLElement;
-  }, []);
-  const previousFocus = useRef<HTMLElement | null>(defaultValue);
-
   useEffect(() => {
     if (disabled) {
       return;
     }
 
+    const element = previousElement || (document.activeElement as HTMLElement);
+
     return () => {
       window.requestAnimationFrame(() => {
-        let el = previousFocus.current;
+        let el: HTMLElement | null = element;
         if (!el || !document.contains(el)) {
           switch (typeof fallback) {
             case "string":

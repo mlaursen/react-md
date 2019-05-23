@@ -69,6 +69,7 @@
   &--horizontal {
     display: flex;
     flex-wrap: nowrap;
+    padding: rmd-list-theme-var(horizontal-padding) rmd-list-theme-var(vertical-padding);
   }
 
   &--dense {

@@ -57,7 +57,7 @@ const TestComponent: FunctionComponent<TestComponentProps> = ({
   );
 };
 
-describe("usePreviousFocus", () => {
+describe.skip("usePreviousFocus", () => {
   it("should attempt to focus the previous active element in the dom when the component unmounts", () => {
     const { rerender, queryByText } = render(
       <TestComponent mounted={false} disabled={false} />
