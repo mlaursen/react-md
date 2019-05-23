@@ -1,10 +1,13 @@
 import React, { FunctionComponent } from "react";
-import Container from "./Container";
 import { Button } from "@react-md/button";
+
+import Container from "./Container";
 
 const TextButtons: FunctionComponent = () => (
   <Container>
-    <Button id="text-button-1">Text Button 1</Button>
+    <Button id="text-button-1" theme="primary">
+      Text Button 1
+    </Button>
     <Button id="text-button-2" theme="secondary">
       Text Button 2
     </Button>

@@ -91,7 +91,7 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
 
 const defaultProps: DefaultProps = {
   disabled: false,
-  theme: "primary",
+  theme: "clear",
   themeType: "flat",
   buttonType: "text",
 };

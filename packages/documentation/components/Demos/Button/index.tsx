@@ -1,5 +1,6 @@
 import React from "react";
 
+import description from "./README.md";
 import DemoPage from "../DemoPage";
 
 import TextButtons from "./TextButtons";

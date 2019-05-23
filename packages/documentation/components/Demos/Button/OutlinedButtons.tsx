@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
-import Container from "./Container";
 import { Button } from "@react-md/button";
+
+import Container from "./Container";
 
 const OutlinedButtons: FunctionComponent = () => (
   <Container>
-    <Button id="outlined-button-1" themeType="outline">
+    <Button id="outlined-button-1" theme="primary" themeType="outline">
       Outlined Button 1
     </Button>
     <Button id="outlined-button-2" theme="secondary" themeType="outline">
