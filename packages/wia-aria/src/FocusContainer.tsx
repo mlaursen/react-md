@@ -1,7 +1,7 @@
 import React, {
   FunctionComponent,
   forwardRef,
-  ReactType,
+  ElementType,
   HTMLAttributes,
   useCallback,
   useRef,
@@ -81,7 +81,7 @@ export interface FocusContainerProps
    * must either be a element string (`"div"`, `"span"`, etc) or a custom component
    * that has forwarded the ref to the DOM node.
    */
-  component?: ReactType;
+  component?: ElementType;
 }
 
 type WithRef = WithForwardedRef<HTMLElement>;

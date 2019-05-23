@@ -1,6 +1,6 @@
 import React, {
+  ElementType,
   forwardRef,
-  createElement,
   FunctionComponent,
   HTMLAttributes,
 } from "react";
@@ -48,11 +48,15 @@ const Divider: FunctionComponent<DividerProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  return createElement(vertical ? "div" : "hr", {
-    ...props,
-    ref: forwardedRef,
-    className: cn(block({ inset, vertical }), className),
-  });
+  const Component = (vertical ? "div" : "hr") as ElementType;
+
+  return (
+    <Component
+      {...props}
+      ref={forwardedRef}
+      className={cn(block({ inset: !vertical && inset, vertical }), className)}
+    />
+  );
 };
 
 const defaultProps: DefaultProps = {

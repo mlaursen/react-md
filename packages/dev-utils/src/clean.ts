@@ -1,13 +1,11 @@
 import fs from "fs-extra";
 import { es, lib, dist, types } from "./paths";
-import { time, list, log } from "./utils";
+import { time, list, log, glob, clean } from "./utils";
 
-export default function clean(others: string[] = []) {
-  const toRemove = [es, lib, dist, types, ...others];
-  return time(() => {
-    log("Cleaning the following directories/files:");
-    log(list(toRemove));
-    log();
-    return Promise.all(toRemove.map(path => fs.remove(path)));
+export default function packageClean(others: string[] = []) {
+  return time(async () => {
+    const builds = await glob("*.tsbuildinfo");
+    const toRemove = [es, lib, dist, types, ...builds, ...others];
+    return clean(toRemove);
   }, "clean");
 }

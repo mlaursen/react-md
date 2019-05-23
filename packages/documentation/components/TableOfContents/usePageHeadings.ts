@@ -29,6 +29,10 @@ export default function usePageHeadings(pathname: string, disabled: boolean) {
       if (pathname.includes("/installation")) {
         // remove the first title from the list
         nextHeadings.splice(0, 1);
+      } else if (nextHeadings[0].id === "demo-page-title") {
+        // don't want to include the root level demo page title since the TOC
+        // is more for demos
+        nextHeadings.splice(0, 1);
       }
 
       setHeadings(

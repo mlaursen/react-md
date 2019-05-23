@@ -259,6 +259,7 @@ export default function useFixedPositioning({
       updateStyle();
     },
   });
+
   useScrollListener({
     enabled: !!element.current,
     onScroll: event => {

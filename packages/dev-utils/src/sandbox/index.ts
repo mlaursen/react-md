@@ -3,19 +3,21 @@ import path from "path";
 import { CompilerOptions } from "typescript";
 
 import { documentationRoot } from "../paths";
-import { glob, isVerbose, list, log, time, toTitle } from "../utils";
+import { glob, isVerbose, list, log, time, toTitle, clean } from "../utils";
 import { DEMOS_FOLDER } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
 import generate, {
   createSandboxesLookup,
   getSandboxFileName,
+  findGeneratedSandboxes,
 } from "./generate";
 
 export interface ResolveConfig {
   components: string[];
   lookupsOnly: boolean;
   empty: boolean;
+  clean: boolean;
 }
 
 async function createSandboxJsonFiles(components: string[], empty: boolean) {
@@ -138,7 +140,20 @@ behind the scenes so there is _some_ sense of progress...
  * This will take a long time...
  */
 export default async function sandbox(config: ResolveConfig) {
-  const { components, lookupsOnly, empty } = config;
+  const { components, lookupsOnly, empty, clean: cleanSandboxes } = config;
+  if (cleanSandboxes) {
+    await time(async () => {
+      const sandboxes = await findGeneratedSandboxes();
+      let filtered = sandboxes;
+      if (components.length) {
+        const regexp = new RegExp(components.join("|"), "i");
+        filtered = sandboxes.filter(pathname => regexp.test(pathname));
+      }
+
+      return clean(filtered);
+    }, "clean sandboxes");
+  }
+
   if (!lookupsOnly) {
     await time(
       () => createSandboxJsonFiles(components, empty),

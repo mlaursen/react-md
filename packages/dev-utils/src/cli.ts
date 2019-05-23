@@ -76,6 +76,10 @@ commander
       "so that dynamic code sandboxes and inline code can be used."
   )
   .option(
+    "--clean",
+    "This will clean all the sandboxes before running the sandbox command"
+  )
+  .option(
     "--lookups-only",
     "This will only the command to update the sandboxes.ts file in the demos folder."
   )
@@ -87,8 +91,11 @@ commander
   )
   .option("--verbose")
   .action(
-    (components: string[], { lookupsOnly = false, empty = false }: any) => {
-      sandbox({ lookupsOnly, components, empty });
+    (
+      components: string[],
+      { lookupsOnly = false, empty = false, clean = false }: any
+    ) => {
+      sandbox({ lookupsOnly, components, empty, clean });
     }
   );
 

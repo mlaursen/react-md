@@ -42,9 +42,13 @@ function toDependencyJson(dependencies: string[]) {
     );
 }
 
+export function findGeneratedSandboxes() {
+  return glob(`${DEMOS_FOLDER}/*/*Sandbox.json`);
+}
+
 export async function createSandboxesLookup() {
   log("Generating the main sandbox lookup file...");
-  const sandboxes = await glob(`${DEMOS_FOLDER}/*/*Sandbox.json`);
+  const sandboxes = await findGeneratedSandboxes();
   log("Found the following sandboxes to add:");
   log(list(sandboxes));
   log();

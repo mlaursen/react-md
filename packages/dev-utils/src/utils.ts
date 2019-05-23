@@ -386,3 +386,14 @@ export function format(code: string, parser?: prettier.BuiltInParserName) {
     parser: parser || prettierConfig.parser || "babel",
   });
 }
+
+/**
+ * Cleans and removes all the files provided.
+ */
+export function clean(files: string[]) {
+  log("Cleaning the following directories/files:");
+  log(list(files));
+  log();
+
+  return Promise.all(files.map(path => fs.remove(path)));
+}

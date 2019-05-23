@@ -16,6 +16,7 @@ import getSandboxer from "./sandboxes";
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 import GithubDemoLink from "./GithubDemoLink";
 import { ClosePhone } from "components/Phone";
+import { bem } from "@react-md/theme";
 
 export interface DemoProps {
   id: string;
@@ -59,6 +60,8 @@ type WithDefaultProps = DemoProps &
     >
   >;
 
+const block = bem("demo");
+
 const Demo: FunctionComponent<DemoProps> = props => {
   const {
     id,
@@ -97,12 +100,12 @@ const Demo: FunctionComponent<DemoProps> = props => {
   const { toggled, enable, disable } = useToggle();
   return (
     <Fragment>
-      {index > 0 && <Divider key="divider" className="demo__divider" />}
-      <section id={id} className="demo">
+      {index > 0 && <Divider key="divider" className={block("divider")} />}
+      <section id={id} className={block()}>
         <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
           {name}
         </Heading>
-        <Markdown id={`${id}-description`} className="demo__description">
+        <Markdown id={`${id}-description`} className={block("description")}>
           {description}
         </Markdown>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
@@ -111,7 +114,7 @@ const Demo: FunctionComponent<DemoProps> = props => {
           <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div id={`${id}-code-preview`} />
-        <div id={`${id}-preview`} className="demo__preview">
+        <div id={`${id}-preview`} className={block("preview")}>
           <ConditionalFullPageDialog
             id={`${id}-preview`}
             disabled={dialogDisabled}

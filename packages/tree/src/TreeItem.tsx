@@ -4,7 +4,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  ReactType,
+  ElementType,
 } from "react";
 import cn from "classnames";
 import {
@@ -32,7 +32,7 @@ export interface TreeItemProps
   liStyle?: CSSProperties;
   liClassName?: string;
   children?: ReactNode;
-  contentComponent?: ReactType;
+  contentComponent?: ElementType;
   isLink?: boolean;
 }
 
@@ -111,7 +111,7 @@ const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
     disableSpacebarClick: isLink,
   });
 
-  const Content = contentComponent as ReactType;
+  const Content = contentComponent as ElementType;
   const a11y = {
     "aria-expanded": renderChildItems ? expanded : undefined,
     "aria-level": depth + 1,

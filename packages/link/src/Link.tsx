@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   FunctionComponent,
   HTMLAttributes,
-  ReactType,
+  ElementType,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
@@ -15,7 +15,7 @@ export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
    * [@reach/router](https://github.com/reach/router). This will call `createElement` with
    * this value and provide all props and class name.
    */
-  component?: ReactType;
+  component?: ElementType;
 
   /**
    * An optional href to apply to the link. If this value is set to the empty string and the
@@ -71,10 +71,10 @@ export interface LinkWithComponentProps extends LinkProps {
    * all valid props from that component should also be allowed.
    */
   [key: string]: any;
-  component: ReactType;
+  component: ElementType;
 }
 
-type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
+type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
 type DefaultProps = Required<
   Pick<LinkProps, "flexCentered" | "preventMaliciousTarget" | "component">
 >;
@@ -158,6 +158,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export default forwardRef<
-  HTMLAnchorElement | ReactType,
+  HTMLAnchorElement | ElementType,
   LinkProps | LinkWithComponentProps
 >((props, ref) => <Link {...props} forwardedRef={ref} />);

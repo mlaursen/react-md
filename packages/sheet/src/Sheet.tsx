@@ -5,7 +5,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  ReactType,
+  ElementType,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -119,7 +119,7 @@ export interface SheetProps
    *
    * where `"div"` and `"nav"` will be the most used.
    */
-  component?: ReactType;
+  component?: ElementType;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;

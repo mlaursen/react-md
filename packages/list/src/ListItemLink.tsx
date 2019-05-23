@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   FunctionComponent,
   HTMLAttributes,
-  ReactType,
+  ElementType,
 } from "react";
 import cn from "classnames";
 import {
@@ -32,7 +32,7 @@ export interface ListItemLinkProps
    * [@reach/router](https://github.com/reach/router). This will call `createElement` with
    * this value and provide all props and class name.
    */
-  component?: ReactType;
+  component?: ElementType;
 
   /**
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
@@ -41,7 +41,7 @@ export interface ListItemLinkProps
   [key: string]: any;
 }
 
-type WithRef = WithForwardedRef<HTMLAnchorElement | ReactType>;
+type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
 type DefaultProps = Required<Pick<ListItemLinkProps, "height" | "component">>;
 type WithDefaultProps = ListItemLinkProps & DefaultProps & WithRef;
 
@@ -151,6 +151,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLAnchorElement | ReactType, ListItemLinkProps>(
+export default forwardRef<HTMLAnchorElement | ElementType, ListItemLinkProps>(
   (props, ref) => <ListItemLink {...props} forwardedRef={ref} />
 );

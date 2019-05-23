@@ -1,6 +1,6 @@
 import React, {
   FunctionComponent,
-  ReactType,
+  ElementType,
   useCallback,
   useState,
 } from "react";
@@ -22,7 +22,7 @@ export interface ResizeObserverProps {
    * the parent element for size changes. You really only want to change this up if trying to listen
    * to table resize events and not using the `target` prop.
    */
-  component?: ReactType;
+  component?: ElementType;
 
   /**
    * Boolean if the resize observer should stop tracking height changes. This will only

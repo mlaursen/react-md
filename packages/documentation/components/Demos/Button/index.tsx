@@ -53,4 +53,11 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="button" />;
+export default () => (
+  <DemoPage
+    demos={demos}
+    packageName="button"
+    description={description}
+    fonts={["Material Icons"]}
+  />
+);

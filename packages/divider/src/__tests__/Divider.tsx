@@ -25,7 +25,7 @@ describe("Divider", () => {
     expect(container.querySelector(".rmd-divider")).not.toBeNull();
   });
 
-  it("should correctly applt the inset and vertical class names", () => {
+  it("should correctly apply the inset and vertical class names", () => {
     const { container, rerender } = render(<Divider />);
     const getClassName = () =>
       (container.querySelector(".rmd-divider") as HTMLElement).className;
@@ -42,13 +42,9 @@ describe("Divider", () => {
     expect(getClassName()).toBe("rmd-divider rmd-divider--inset");
 
     rerender(<Divider inset vertical />);
-    expect(getClassName()).toBe(
-      "rmd-divider rmd-divider--inset rmd-divider--vertical"
-    );
+    expect(getClassName()).toBe("rmd-divider rmd-divider--vertical");
 
     rerender(<Divider inset vertical className="my-divider" />);
-    expect(getClassName()).toBe(
-      "rmd-divider rmd-divider--inset rmd-divider--vertical my-divider"
-    );
+    expect(getClassName()).toBe("rmd-divider rmd-divider--vertical my-divider");
   });
 });

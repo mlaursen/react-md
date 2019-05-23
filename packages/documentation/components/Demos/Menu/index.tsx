@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import DemoPage from "../DemoPage";
 
@@ -7,7 +7,6 @@ import simpleExamples from "./SimpleExamples.md";
 
 import AccessibilityExample from "./AccessibilityExample";
 import accessibilityExample from "./AccessibilityExample.md";
-import GoogleFont from "components/GoogleFont";
 
 const demos = [
   {
@@ -23,8 +22,5 @@ const demos = [
 ];
 
 export default () => (
-  <Fragment>
-    <GoogleFont font="Material Icons" />
-    <DemoPage demos={demos} packageName="menu" />
-  </Fragment>
+  <DemoPage demos={demos} packageName="menu" fonts={["Material Icons"]} />
 );

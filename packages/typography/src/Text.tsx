@@ -4,7 +4,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactElement,
-  ReactType,
+  ElementType,
   ReactNode,
 } from "react";
 import cn from "classnames";
@@ -94,7 +94,7 @@ export interface TextProps extends HTMLAttributes<TextElement> {
    * - `"button"     -> <button>`
    *
    */
-  component?: ReactType | null;
+  component?: ElementType | null;
 
   /**
    * One of the material design typography text styles. This is used to generate a className
@@ -143,7 +143,10 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   weight?: TextWeight;
 }
 
-function getComponent(component: ReactType | null, type: TextTypes): ReactType {
+function getComponent(
+  component: ElementType | null,
+  type: TextTypes
+): ElementType {
   if (component) {
     return component;
   }

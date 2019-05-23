@@ -1,6 +1,6 @@
 import React, {
   FunctionComponent,
-  ReactType,
+  ElementType,
   HTMLAttributes,
   forwardRef,
 } from "react";
@@ -26,7 +26,7 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
    * it is possible since it leads to bad practice and props might not get passed as one would
    * expect.
    */
-  component?: ReactType;
+  component?: ElementType;
 
   /**
    * Boolean if the `AppBar` should be fixed to the top or bottom of the page.

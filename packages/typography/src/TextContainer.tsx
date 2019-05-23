@@ -3,7 +3,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactElement,
-  ReactType,
+  ElementType,
   ReactNode,
 } from "react";
 import cn from "classnames";
@@ -42,7 +42,7 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The component to render as. By default this will just be a div, but anything can be provided.
    */
-  component?: ReactType;
+  component?: ElementType;
 
   /**
    * Either a child render function or a react node. If this is not the child render function, a
@@ -51,7 +51,7 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode | TextContainerRenderFunction;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement | ReactType>;
+type WithRef = WithForwardedRef<HTMLDivElement | ElementType>;
 type DefaultProps = Required<Pick<TextContainerProps, "size" | "component">>;
 type WithDefaultProps = TextContainerProps & DefaultProps & WithRef;
 
@@ -111,6 +111,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement | ReactType, TextContainerProps>(
+export default forwardRef<HTMLDivElement | ElementType, TextContainerProps>(
   (props, ref) => <TextContainer {...props} forwardedRef={ref} />
 );
