@@ -3,8 +3,14 @@ import { ButtonProps } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
 import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
 
-import defaultItemRenderer, { Item } from "./defaultItemRenderer";
-import defaultMenuRenderer, { MenuPositionProps } from "./defaultMenuRenderer";
+import defaultItemRenderer, {
+  Item,
+  MenuItemRenderer,
+} from "./defaultItemRenderer";
+import defaultMenuRenderer, {
+  MenuPositionProps,
+  MenuRenderer,
+} from "./defaultMenuRenderer";
 import MenuButton, { MenuButtonProps } from "./MenuButton";
 import useMenuState from "./useMenuState";
 
@@ -35,7 +41,7 @@ export interface DropdownMenuProps
    * component with the base required props and a generated id from the button
    * id.
    */
-  menuRenderer?: typeof defaultMenuRenderer;
+  menuRenderer?: MenuRenderer;
 
   /**
    * A list of menu items to render. Each item will be passed to the `menuItemRenderer`
@@ -46,7 +52,7 @@ export interface DropdownMenuProps
   /**
    * A function to call for each `item` in the `items` list to render a ReactElement.
    */
-  itemRenderer?: typeof defaultItemRenderer;
+  itemRenderer?: MenuItemRenderer;
 
   /**
    * An optional click handler that will be called any time an item has been clicked.
@@ -93,7 +99,14 @@ const DropdownMenu: FunctionComponent<
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
-  const { visible, hide, onClick, onKeyDown, onMenuClick } = useMenuState({
+  const {
+    visible,
+    hide,
+    onClick,
+    onKeyDown,
+    onMenuClick,
+    defaultFocus,
+  } = useMenuState({
     items,
     onClick: propOnclick,
     onKeyDown: propOnKeyDown,
@@ -124,8 +137,10 @@ const DropdownMenu: FunctionComponent<
         onPageScroll,
         horizontal,
         visible,
+        defaultFocus,
         onClick: onMenuClick,
         onRequestClose: hide,
+        items,
         children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
       })}
     </Fragment>

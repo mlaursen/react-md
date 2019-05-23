@@ -154,18 +154,6 @@ const Menu: FunctionComponent<StrictMenuProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  const { style, ...transitionHandlers } = useFixedPositioning({
-    fixedTo: () => document.getElementById(controlId),
-    onScroll: onPageScroll || onRequestClose,
-    onResize: onResize || onRequestClose,
-    ...anchor,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-    transformOrigin: true,
-  });
-
   const menu = useRef<HTMLDivElement | null>(null);
   const ref = useCallback(
     (instance: HTMLDivElement | null) => {
@@ -174,6 +162,31 @@ const Menu: FunctionComponent<StrictMenuProps & WithRef> = providedProps => {
     },
     [forwardedRef]
   );
+
+  const handleScroll = useCallback(
+    (event: Event) => {
+      if (
+        !menu.current ||
+        !event.target ||
+        !menu.current.contains(event.target as HTMLElement)
+      ) {
+        onRequestClose();
+      }
+    },
+    [onRequestClose]
+  );
+
+  const { style, ...transitionHandlers } = useFixedPositioning({
+    fixedTo: () => document.getElementById(controlId),
+    onScroll: onPageScroll || handleScroll,
+    onResize: onResize || onRequestClose,
+    ...anchor,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExited,
+    transformOrigin: true,
+  });
 
   useEffect(() => {
     if (!visible) {

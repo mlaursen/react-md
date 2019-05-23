@@ -34,3 +34,5 @@ export default function defaultItemRenderer(item: Item, key: string) {
   const itemProps = item as MenuItemProps;
   return <MenuItem {...itemProps} key={key} />;
 }
+
+export type MenuItemRenderer = typeof defaultItemRenderer;

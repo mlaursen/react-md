@@ -44,7 +44,7 @@ export type KeyboardFocusKeyType =
   | "last"
   | "custom";
 
-interface KeyboardMovementOptions<E extends HTMLElement>
+export interface KeyboardMovementOptions<E extends HTMLElement>
   extends KeyboardFocusKeys,
     Pick<KeyboardSearchOptions<E>, "onKeyDown" | "onFocusChange"> {
   search?:
