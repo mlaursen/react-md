@@ -32,26 +32,11 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-states-theme-values, states);
 }
 
-/// This is a mixin that is used to be able to create a "surface" for a psuedo
-/// element. It applies some base styling so that it will fill the entire
-/// container element and not have pointer-events attached.
-@mixin rmd-states-psuedo-surface {
-  border-radius: inherit;
-  bottom: 0;
-  content: '';
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 0;
-}
-
 /// Generates all the base styles for an interaction "surface". This should
-/// normally be applied to a `::before` or `::after` psuedo element.
+/// normally be applied to a `::before` or `::after` pseudo element.
 @mixin rmd-states-surface-base {
   @include rmd-transition(standard);
-  @include rmd-states-psuedo-surface;
+  @include rmd-utils-pseudo-element;
   @include rmd-states-theme(background-color);
 
   transition: background-color $rmd-transition-standard-time;

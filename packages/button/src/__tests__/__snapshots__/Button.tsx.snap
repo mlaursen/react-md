@@ -4,6 +4,7 @@ exports[`Button should render correctly based on the theme props 1`] = `
 <button
   class="rmd-button rmd-button--text"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -16,6 +17,7 @@ exports[`Button should render correctly based on the theme props 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -28,6 +30,7 @@ exports[`Button should render correctly based on the theme props 3`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--outline"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -40,6 +43,7 @@ exports[`Button should render correctly based on the theme props 4`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--text-primary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -52,6 +56,7 @@ exports[`Button should render correctly based on the theme props 5`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -64,6 +69,7 @@ exports[`Button should render correctly based on the theme props 6`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -76,6 +82,7 @@ exports[`Button should render correctly based on the theme props 7`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--text-secondary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -88,6 +95,7 @@ exports[`Button should render correctly based on the theme props 8`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -100,6 +108,7 @@ exports[`Button should render correctly based on the theme props 9`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -112,6 +121,7 @@ exports[`Button should render correctly based on the theme props 10`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--text-warning"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -124,6 +134,7 @@ exports[`Button should render correctly based on the theme props 11`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -136,6 +147,7 @@ exports[`Button should render correctly based on the theme props 12`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -148,6 +160,7 @@ exports[`Button should render correctly based on the theme props 13`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--text-error"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -160,6 +173,7 @@ exports[`Button should render correctly based on the theme props 14`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -172,6 +186,7 @@ exports[`Button should render correctly based on the theme props 15`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
   id="button-example"
+  type="button"
 >
   Button Text
   <span
@@ -184,6 +199,7 @@ exports[`Button should render correctly based on the theme props 16`] = `
 <button
   class="rmd-button rmd-button--icon"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -196,6 +212,7 @@ exports[`Button should render correctly based on the theme props 17`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -208,6 +225,7 @@ exports[`Button should render correctly based on the theme props 18`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--outline"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -220,6 +238,7 @@ exports[`Button should render correctly based on the theme props 19`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--text-primary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -232,6 +251,7 @@ exports[`Button should render correctly based on the theme props 20`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -244,6 +264,7 @@ exports[`Button should render correctly based on the theme props 21`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -256,6 +277,7 @@ exports[`Button should render correctly based on the theme props 22`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--text-secondary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -268,6 +290,7 @@ exports[`Button should render correctly based on the theme props 23`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -280,6 +303,7 @@ exports[`Button should render correctly based on the theme props 24`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -292,6 +316,7 @@ exports[`Button should render correctly based on the theme props 25`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--text-warning"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -304,6 +329,7 @@ exports[`Button should render correctly based on the theme props 26`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -316,6 +342,7 @@ exports[`Button should render correctly based on the theme props 27`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -328,6 +355,7 @@ exports[`Button should render correctly based on the theme props 28`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--text-error"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -340,6 +368,7 @@ exports[`Button should render correctly based on the theme props 29`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
   id="button-example"
+  type="button"
 >
   <i />
   <span
@@ -352,6 +381,7 @@ exports[`Button should render correctly based on the theme props 30`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
   id="button-example"
+  type="button"
 >
   <i />
   <span

@@ -168,6 +168,21 @@
   top: 0;
 }
 
+/// Creates the styles to apply to a pseudo element (`::before` or `::after`) so that
+/// it spans the entire size of the container element. This is really useful for
+/// focus effects or other interaction states. This relies on the parent to have
+/// `position: relative;` to work.
+///
+/// @type {Number} z-index [0] - The z-index to use.
+@mixin rmd-utils-pseudo-element($z-index: 0) {
+  @include rmd-utils-full-screen(absolute);
+
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+  z-index: $z-index;
+}
+
 /// This is a small utility function that helps set up your react-md app.
 ///
 /// This will:

@@ -1,6 +1,7 @@
 @import '@react-md/elevation/dist/mixins';
 
 .list-container {
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

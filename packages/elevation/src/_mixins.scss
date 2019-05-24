@@ -4,6 +4,7 @@
 
 @import '@react-md/theme/dist/functions';
 @import '@react-md/transition/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import 'functions';
 @import 'variables';
 
@@ -45,18 +46,10 @@
 /// @access private
 @mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time, $z-index: 0) {
   @include rmd-transition(standard);
+  @include rmd-utils-pseudo-element($z-index);
 
-  border-radius: inherit;
-  bottom: 0;
   box-shadow: $shadow;
-  content: '';
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
   transition: opacity $duration;
-  z-index: $z-index;
 }
 
 /// A mixin that allows you to animate box shadow performantly.

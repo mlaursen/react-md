@@ -42,7 +42,7 @@ export interface ButtonProps
 
 type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
-  Pick<ButtonProps, "disabled" | "theme" | "themeType" | "buttonType">
+  Pick<ButtonProps, "disabled" | "theme" | "themeType" | "buttonType" | "type">
 >;
 type ButtonWithDefaultProps = ButtonProps & DefaultProps & WithRef;
 
@@ -90,6 +90,7 @@ const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  type: "button",
   disabled: false,
   theme: "clear",
   themeType: "flat",
