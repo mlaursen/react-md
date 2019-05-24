@@ -13,6 +13,7 @@ const items = [
   { children: "Item 2" },
   { role: "separator", inset: true },
   { rightIcon: <HomeSVGIcon />, children: "Home" },
+  <span>Custom Span</span>,
 ];
 
 const SimpleExamples: FunctionComponent = () => {

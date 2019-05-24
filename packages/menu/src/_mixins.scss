@@ -34,6 +34,7 @@
 
 @mixin rmd-menu {
   @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll;
   @include rmd-elevation($rmd-menu-elevation);
   @include rmd-menu-theme(background-color);
   @include rmd-menu-theme(color);

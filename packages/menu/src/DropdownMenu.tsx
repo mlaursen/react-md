@@ -58,7 +58,11 @@ export interface DropdownMenuProps
    * An optional click handler that will be called any time an item has been clicked.
    * This is really just useful if you'd like to centralize your click event handlers.
    */
-  onItemClick?: (item: Item, event: React.MouseEvent<HTMLElement>) => void;
+  onItemClick?: (
+    item: Item,
+    itemElement: HTMLLIElement,
+    event: React.MouseEvent<HTMLElement>
+  ) => void;
 
   /**
    * An optional function to call when the visibility of the menu changes.
@@ -126,23 +130,25 @@ const DropdownMenu: FunctionComponent<
       >
         {children}
       </MenuButton>
-      {menuRenderer({
-        // cheating a bit here. Not sure how to type it otherwise
-        "aria-label": menuLabel as string,
-        "aria-labelledby": menuLabelledby,
-        id: `${id}-menu`,
-        controlId: id,
-        anchor,
-        onResize,
-        onPageScroll,
-        horizontal,
-        visible,
-        defaultFocus,
-        onClick: onMenuClick,
-        onRequestClose: hide,
-        items,
-        children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
-      })}
+      {menuRenderer(
+        {
+          // cheating a bit here. Not sure how to type it otherwise
+          "aria-label": menuLabel as string,
+          "aria-labelledby": menuLabelledby,
+          id: `${id}-menu`,
+          controlId: id,
+          anchor,
+          onResize,
+          onPageScroll,
+          horizontal,
+          visible,
+          defaultFocus,
+          onClick: onMenuClick,
+          onRequestClose: hide,
+          children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
+        },
+        items
+      )}
     </Fragment>
   );
 };

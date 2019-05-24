@@ -11,7 +11,11 @@ interface State {
 interface Options
   extends Pick<HTMLAttributes<HTMLElement>, "onClick" | "onKeyDown"> {
   items: Item[];
-  onItemClick?: (item: Item, event: React.MouseEvent<HTMLElement>) => void;
+  onItemClick?: (
+    item: Item,
+    itemElement: HTMLLIElement,
+    event: React.MouseEvent<HTMLElement>
+  ) => void;
   onVisibilityChange?: (visible: boolean) => void;
 }
 
@@ -115,10 +119,10 @@ export default function useMenuState({
       const menuItems = Array.from(
         currentTarget.querySelectorAll('[role="menuitem"]')
       );
-      const item = target.closest('[role="menuitem"]');
+      const item = target.closest('[role="menuitem"]') as HTMLLIElement;
       const index = menuItems.findIndex(it => it === item);
       if (index !== -1) {
-        onItemClick(items[index], event);
+        onItemClick(items[index], item, event);
       }
     },
     [onItemClick, items]

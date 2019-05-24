@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { List } from "@react-md/list";
 import Menu, { MenuProps } from "./Menu";
 import { RequireAtLeastOne } from "@react-md/utils";
@@ -24,17 +24,19 @@ type RequiredMenuProps = Required<
 
 export interface InjectedMenuProps
   extends MenuPositionProps,
-    RequiredMenuProps {
-  items: Item[];
-}
+    RequiredMenuProps {}
 
 type LabelRequired = RequireAtLeastOne<
   MenuProps,
   "aria-label" | "aria-labelledby"
 >;
 
+export type MenuRenderer = (
+  props: InjectedMenuProps & LabelRequired,
+  items: Item[]
+) => ReactNode;
+
 export default function defaultMenuRenderer({
-  items,
   horizontal,
   children,
   ...props
@@ -45,5 +47,3 @@ export default function defaultMenuRenderer({
     </Menu>
   );
 }
-
-export type MenuRenderer = typeof defaultMenuRenderer;

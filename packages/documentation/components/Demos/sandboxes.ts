@@ -95,6 +95,8 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Menu/AccessibilityExampleSandbox.json")),
   "Menu/AddingEventHandlers": () =>
     resolve(import("./Menu/AddingEventHandlersSandbox.json")),
+  "Menu/CustomRenderers": () =>
+    resolve(import("./Menu/CustomRenderersSandbox.json")),
   "Menu/SimpleExamples": () =>
     resolve(import("./Menu/SimpleExamplesSandbox.json")),
   "Overlay/CustomTheme": () =>

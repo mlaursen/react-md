@@ -74,6 +74,7 @@ renderer.heading = (text, level, _raw, slugger) => {
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
     heading__toc: text.includes("Table of Contents"),
+    "rmd-typography--no-margin": text.includes("<!-- no-margin -->"),
   });
 
   return `<h${level} id="${id}" class="${className}">

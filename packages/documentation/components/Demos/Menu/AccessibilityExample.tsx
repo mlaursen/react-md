@@ -23,6 +23,7 @@ const AccessibilityExample: FunctionComponent = () => {
       >
         Options...
       </DropdownMenu>
+      {/* need to look into fixing this keyboard flow */}
       <Dialog
         id="confirmation-dialog"
         aria-labelledby="cofirmation-dialog-title"

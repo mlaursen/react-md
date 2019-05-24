@@ -11,6 +11,9 @@ import addingEventHandlers from "./AddingEventHandlers.md";
 import AccessibilityExample from "./AccessibilityExample";
 import accessibilityExample from "./AccessibilityExample.md";
 
+import CustomRenderers from "./CustomRenderers";
+import customRenderers from "./CustomRenderers.md";
+
 const demos = [
   {
     name: "Simple Examples",
@@ -26,6 +29,11 @@ const demos = [
     name: "Accessibility Example",
     description: accessibilityExample,
     children: <AccessibilityExample />,
+  },
+  {
+    name: "Custom Renderers",
+    description: customRenderers,
+    children: <CustomRenderers />,
   },
 ];
 
