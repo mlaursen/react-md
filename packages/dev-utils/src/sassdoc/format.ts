@@ -112,7 +112,7 @@ function hackedVariableToString(value: HackedVariableValue) {
     .join(",\n")}
   )`,
     "scss"
-  );
+  ).replace(/;\r?\n$/, "");
 
   return formatted.substring(prefix.length);
 }

@@ -150,7 +150,16 @@ const transforms: Transform[] = [
   // create links to github issues/PRs with #ISSUE_NUMBER
   // the regex below tries to make sure that hex codes aren't switched to links
   md =>
-    md.replace(/(#)(\d+)(?=\r?\n| (?!!))/g, `[$1$2](${GITHUB_URL}/issues/$2)`),
+    md.replace(
+      /(: )?(#)(\d+)(?=\r?\n| (?!!))/g,
+      (match, invalid, _hash, ticket) => {
+        if (invalid) {
+          return match;
+        }
+
+        return `[#${ticket}](${GITHUB_URL}/issues/${ticket})`;
+      }
+    ),
   // create github commit links for git sha's of length 7 (should be first 7 of sha)
   md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
 ];

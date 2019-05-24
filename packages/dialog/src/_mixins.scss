@@ -145,7 +145,7 @@
 
 /// When the dialog is not set to be full page, the dialog gets wrapped in this
 /// container component so that it can be centered within the page using flexbox.
-//
+///
 /// In the past versions, I did some old-school centering logic with `left`, `top`, and
 /// `transform`, but unfortunately this adds text blur in some browsers and made the
 /// transitions harder to customize since you would always need to apply the transforms

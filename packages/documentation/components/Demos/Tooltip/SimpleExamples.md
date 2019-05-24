@@ -4,7 +4,7 @@ buttons. The tooltips within `react-md` have been developed to follow the
 [tooltip role](https://www.w3.org/TR/wai-aria-practices/#tooltip) even though it
 is still a work in progress. This means that the `id` prop will be required for
 the tooltip's container element as well as the tooltip so that an
-`aria-labelledby` attribute can be correctly applied.
+`aria-describedby` attribute can be correctly applied.
 
 Once a tooltip becomes visible, it will automatically hide when:
 
