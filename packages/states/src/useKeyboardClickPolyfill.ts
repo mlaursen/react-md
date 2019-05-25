@@ -32,21 +32,31 @@ export default function useKeyboardClickPolyfill<
       onKeyDown(event);
     }
 
-    const { currentTarget } = event;
-    const { tagName } = currentTarget;
-    const isEnter = event.key === "Enter";
-    const isSpace =
-      !disableSpacebarClick && tagName !== "A" && event.key === " ";
-    if ((!isSpace && !isEnter) || tagName === "BUTTON") {
+    const {
+      key,
+      currentTarget: { tagName },
+    } = event;
+    const isSpace = key === " ";
+    if (
+      (key !== "Enter" && !isSpace) ||
+      // buttons should not be touched as they work out of the box
+      tagName === "BUTTON" ||
+      // links should not trigger a click on space
+      (tagName === "A" && isSpace) ||
+      (isSpace && disableSpacebarClick)
+    ) {
       return;
     }
 
     if (isSpace) {
-      // prevent page from scrolling
+      // prevent default behavior of page scrolling
       event.preventDefault();
     }
 
-    currentTarget.click();
+    // don't want parent keydown events to be triggered since this should now
+    // be a "click" event instead.
+    event.stopPropagation();
+    event.currentTarget.click();
   }, []);
 
   return disabled ? onKeyDown : handleKeyDown;
