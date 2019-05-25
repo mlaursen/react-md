@@ -44,31 +44,29 @@ export default function usePreviousFocus(
     const element = previousElement || (document.activeElement as HTMLElement);
 
     return () => {
-      window.requestAnimationFrame(() => {
-        let el: HTMLElement | null = element;
-        if (!el || !document.contains(el)) {
-          switch (typeof fallback) {
-            case "string":
-              el = document.querySelector<HTMLElement>(fallback);
-              break;
-            case "function":
-              el = fallback();
-              break;
-            case "undefined":
-              return;
-            default:
-              el = fallback;
-          }
+      let el: HTMLElement | null = element;
+      if (!el || !document.contains(el)) {
+        switch (typeof fallback) {
+          case "string":
+            el = document.querySelector<HTMLElement>(fallback);
+            break;
+          case "function":
+            el = fallback();
+            break;
+          case "undefined":
+            return;
+          default:
+            el = fallback;
         }
+      }
 
-        if (el && !document.contains(el)) {
-          el = null;
-        }
+      if (el && !document.contains(el)) {
+        el = null;
+      }
 
-        if (el) {
-          el.focus();
-        }
-      });
+      if (el) {
+        el.focus();
+      }
     };
   }, []);
 }
