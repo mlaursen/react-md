@@ -16,11 +16,6 @@ import useVisiblityChange, {
   VisibilityChangeOptions,
 } from "./useVisibilityChange";
 
-interface OtherInteractionsHideOptions {
-  hideTooltip: () => void;
-  visible: boolean;
-}
-
 /**
  * When the tooltip becomes visible, the tooltip should be hidden if any element
  * within the page is clicked, or the browser is blurred. This hook will just
@@ -32,17 +27,19 @@ interface OtherInteractionsHideOptions {
  * appear again after `x`ms which is not wanted. The user will need to manually
  * re-focus the tooltippable element to show a tooltip again.
  */
-export function useOtherInteractionDisable({
-  visible,
-  hideTooltip,
-}: OtherInteractionsHideOptions) {
+export function useOtherInteractionDisable(
+  initiated: TooltipInitiated,
+  hideTooltip: () => void
+) {
   useEffect(() => {
-    if (!visible) {
+    if (!initiated) {
       return;
     }
 
+    window.addEventListener("mousedown", hideTooltip, true);
     window.addEventListener("click", hideTooltip, true);
     return () => {
+      window.removeEventListener("mousedown", hideTooltip, true);
       window.removeEventListener("click", hideTooltip, true);
     };
   }, [visible, hideTooltip]);
@@ -198,7 +195,7 @@ export default function useTooltipState({
     hide();
   }, []);
 
-  useOtherInteractionDisable({ visible, hideTooltip: hideAndReset });
+  useOtherInteractionDisable(initiated.current, hideAndReset);
 
   return {
     hide,
