@@ -1,5 +1,4 @@
 import { useState, useCallback, useRef, HTMLAttributes } from "react";
-import { Item } from "./defaultItemRenderer";
 
 type FocusType = "first" | "last";
 
@@ -10,12 +9,6 @@ interface State {
 
 interface Options
   extends Pick<HTMLAttributes<HTMLElement>, "onClick" | "onKeyDown"> {
-  items: Item[];
-  onItemClick?: (
-    item: Item,
-    itemElement: HTMLLIElement,
-    event: React.MouseEvent<HTMLElement>
-  ) => void;
   onVisibilityChange?: (visible: boolean) => void;
 }
 
@@ -28,8 +21,6 @@ interface Options
 export default function useMenuState({
   onClick,
   onKeyDown,
-  items,
-  onItemClick,
   onVisibilityChange,
 }: Options) {
   const [{ visible, defaultFocus }, setState] = useState<State>({
@@ -107,27 +98,6 @@ export default function useMenuState({
     [onClick]
   );
 
-  const onMenuClick = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
-      if (!onItemClick || !event.target) {
-        return;
-      }
-
-      const target = event.target as HTMLElement;
-      const { currentTarget } = event;
-
-      const menuItems = Array.from(
-        currentTarget.querySelectorAll('[role="menuitem"]')
-      );
-      const item = target.closest('[role="menuitem"]') as HTMLLIElement;
-      const index = menuItems.findIndex(it => it === item);
-      if (index !== -1) {
-        onItemClick(items[index], item, event);
-      }
-    },
-    [onItemClick, items]
-  );
-
   return {
     show,
     hide,
@@ -136,6 +106,5 @@ export default function useMenuState({
     defaultFocus,
     onKeyDown: handleKeyDown,
     onClick: handleClick,
-    onMenuClick,
   };
 }

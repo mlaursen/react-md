@@ -79,7 +79,9 @@ type DefaultProps = Required<
 >;
 type StrictProps = DropdownMenuProps &
   RequireAtLeastOne<DropdownMenuProps, "menuLabel" | "menuLabelledby">;
-type WithDefaultProps = StrictProps & DefaultProps & WithRef;
+type WithDefaultProps = StrictProps &
+  DefaultProps &
+  WithRef & { menuLabel: string };
 
 const DropdownMenu: FunctionComponent<
   StrictProps & WithRef
@@ -103,19 +105,10 @@ const DropdownMenu: FunctionComponent<
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
-  const {
-    visible,
-    hide,
-    onClick,
-    onKeyDown,
-    onMenuClick,
-    defaultFocus,
-  } = useMenuState({
-    items,
+  const { visible, hide, onClick, onKeyDown, defaultFocus } = useMenuState({
     onClick: propOnclick,
     onKeyDown: propOnKeyDown,
     onVisibilityChange,
-    onItemClick,
   });
 
   return (
@@ -132,8 +125,7 @@ const DropdownMenu: FunctionComponent<
       </MenuButton>
       {menuRenderer(
         {
-          // cheating a bit here. Not sure how to type it otherwise
-          "aria-label": menuLabel as string,
+          "aria-label": menuLabel,
           "aria-labelledby": menuLabelledby,
           id: `${id}-menu`,
           controlId: id,
@@ -143,7 +135,6 @@ const DropdownMenu: FunctionComponent<
           horizontal,
           visible,
           defaultFocus,
-          onClick: onMenuClick,
           onRequestClose: hide,
           children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
         },

@@ -27,24 +27,12 @@ easiest way to add an event handler. An example would be:
 +]
 ```
 
-###### Using `onItemClick`
+###### Using custom `MenuItem`<!-- no-margin -->
 
-The `DropdownMenu` has a prop named `onItemClick` that will be triggered each
-time an item is clicked in the menu. You will be provided:
-
-```ts
-declare function onItemClick(
-  item: Item,
-  itemElement: HTMLLIElement,
-  event: React.MouseEvent
-): void;
-```
-
-So the first argument will be the item within the `items` list, the
-`itemElement` will be the `<li>` that was clicked, and finally the `event` will
-be the click event that triggered this callback. This one is pretty nice since
-it'll allow you to only provide one click handler to manage all the items in the
-dropdown menu.
-
-> You could also use a custom `itemRenderer` to add event listeners, but these
-> two cases above are generally the easiest ones to use.
+The easiest option will probably be to create custom `MenuItem` components that
+have their own click handlers attached. This will also make it so you can have
+reusable `MenuItem`s if they need to appear in multiple menus or need to make
+them have additional functionality (like connecting to redux actions). You'll
+just want to import the `MenuItem` component and add it to the `items` list like
+normal. The default item renderer will automatically clone each item with a
+unique key as well, so you won't need to manually define keys yourself.

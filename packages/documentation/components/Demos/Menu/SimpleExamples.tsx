@@ -1,8 +1,12 @@
 import React, { FunctionComponent } from "react";
-import { DropdownMenu } from "@react-md/menu";
+import { DropdownMenu, MenuItem } from "@react-md/menu";
 
 import Container from "./Container";
-import { HomeSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
+import {
+  HomeSVGIcon,
+  MoreVertSVGIcon,
+  InfoOutlineSVGIcon,
+} from "@react-md/material-icons";
 
 const items = [
   "Item 1",
@@ -13,7 +17,8 @@ const items = [
   { children: "Item 2" },
   { role: "separator", inset: true },
   { rightIcon: <HomeSVGIcon />, children: "Home" },
-  <span>Custom Span</span>,
+  { leftIcon: <InfoOutlineSVGIcon />, children: <span>Custom content</span> },
+  <MenuItem>Custom item</MenuItem>,
 ];
 
 const SimpleExamples: FunctionComponent = () => {

@@ -1,8 +1,9 @@
 import React, { ReactNode } from "react";
 import { List } from "@react-md/list";
-import Menu, { MenuProps } from "./Menu";
 import { RequireAtLeastOne } from "@react-md/utils";
+
 import { Item } from "./defaultItemRenderer";
+import Menu, { MenuProps } from "./Menu";
 
 export type MenuPositionProps = Pick<
   MenuProps,
@@ -16,7 +17,6 @@ type RequiredMenuProps = Required<
     | "visible"
     | "onRequestClose"
     | "controlId"
-    | "onClick"
     | "children"
     | "defaultFocus"
   >

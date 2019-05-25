@@ -39,11 +39,19 @@ $rmd-menu-enter-duration: 0.2s !default;
 /// @type Number
 $rmd-menu-leave-duration: 0.15s !default;
 
+/// The amount of spacing to use between icons and text within menu items. This
+/// really overwrites the additional spacing provided in the base `list` package
+/// since menu items are normally more dense and don't need to align with specific
+/// "keylines" in your app.
+/// @type Number
+$rmd-menu-icon-spacing: 1rem !default;
+
 /// All the menu theme values.
 /// @type Map
 $rmd-menu-theme-values: (
   background-color: $rmd-menu-background-color,
   color: $rmd-menu-color,
   min-width: $rmd-menu-min-width,
+  icon-spacing: $rmd-menu-icon-spacing,
   z-index: $rmd-menu-z-index,
 ) !default;

@@ -1,4 +1,5 @@
-import React, { ReactNode, isValidElement } from "react";
+import React, { cloneElement, isValidElement, ReactNode } from "react";
+
 import MenuItem, { MenuItemProps } from "./MenuItem";
 import MenuItemSeparator, { MenuItemSeparatorProps } from "./MenuItemSeparator";
 
@@ -17,13 +18,10 @@ export default function defaultItemRenderer(item: Item, key: string) {
   }
 
   const type = typeof item;
-  if (
-    isValidElement(item) ||
-    type === "number" ||
-    type === "string" ||
-    type === "boolean"
-  ) {
+  if (type === "number" || type === "string" || type === "boolean") {
     return <MenuItem key={key}>{item}</MenuItem>;
+  } else if (isValidElement(item)) {
+    return cloneElement(item, { key });
   }
 
   const separatorProps = item as MenuItemSeparatorProps;

@@ -2,7 +2,6 @@ import React, { FunctionComponent, forwardRef } from "react";
 import cn from "classnames";
 import { ListItem, ListItemProps } from "@react-md/list";
 import { WithForwardedRef } from "@react-md/utils";
-import { bem } from "@react-md/theme";
 
 export interface MenuItemProps extends ListItemProps {
   /**
@@ -27,8 +26,6 @@ type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<Pick<MenuItemProps, "role" | "tabIndex">>;
 type WithDefaultProps = MenuItemProps & DefaultProps & WithRef;
 
-const block = bem("rmd-menu");
-
 const MenuItem: FunctionComponent<MenuItemProps & WithRef> = providedProps => {
   const {
     className,
@@ -41,7 +38,7 @@ const MenuItem: FunctionComponent<MenuItemProps & WithRef> = providedProps => {
     <ListItem
       {...props}
       ref={forwardedRef}
-      className={cn(block("item"), className)}
+      className={cn("rmd-menu-item", className)}
     >
       {children}
     </ListItem>

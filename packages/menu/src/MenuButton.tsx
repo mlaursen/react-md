@@ -2,7 +2,6 @@ import React, { forwardRef, FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { FontIcon, IconRotator, TextIconSpacing } from "@react-md/icon";
-import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface MenuButtonProps extends ButtonProps {
@@ -45,8 +44,6 @@ type DefaultProps = Required<
   >
 >;
 
-const block = bem("rmd-menu-button");
-
 const MenuButton: FunctionComponent<MenuButtonProps & WithRef> = ({
   className,
   visible,
@@ -73,7 +70,7 @@ const MenuButton: FunctionComponent<MenuButtonProps & WithRef> = ({
       {...props}
       aria-expanded={visible ? "true" : undefined}
       ref={forwardedRef}
-      className={cn(block(), className)}
+      className={cn("rmd-menu-button", className)}
     >
       {children}
     </Button>

@@ -197,7 +197,6 @@ const Menu: FunctionComponent<StrictMenuProps & WithRef> = providedProps => {
       const target = event.target as HTMLElement | null;
       if (!target || !menu.current || !menu.current.contains(target)) {
         onRequestClose();
-        return;
       }
     };
 

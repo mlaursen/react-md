@@ -3,6 +3,7 @@
 ////
 
 @import '@react-md/elevation/dist/mixins';
+@import '@react-md/icon/dist/mixins';
 @import '@react-md/theme/dist/variables';
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/theme/dist/mixins';
@@ -79,5 +80,9 @@
 
   .rmd-menu {
     @include rmd-menu;
+  }
+
+  .rmd-menu-item {
+    @include rmd-icon-theme-update-var(text-spacing, #{rmd-menu-theme-var(icon-spacing)});
   }
 }

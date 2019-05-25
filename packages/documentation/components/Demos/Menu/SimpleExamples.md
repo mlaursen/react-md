@@ -13,6 +13,7 @@ you must supply a list of items to the dropdown menu which will be rendered in
 - if it is the string "separator", render a `MenuItemSeparator`
 - if it is an object that has `role="separator"`, render a `MenuItemSeparator`
   and pass the object as props.
-- if it is a string, number, or a valid element, render it as the children of
-  the `MenuItem` component.
+- if it is a string, number, render it as the children of the `MenuItem`
+  component.
+- if it is a valid React element, **return it instead**.
 - if it is an object, render it as the props for the `MenuItem`
