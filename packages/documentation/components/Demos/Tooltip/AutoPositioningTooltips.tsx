@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 
 import Container from "./Container";
 
-const AutoPositioningTooltips: FunctionComponent = () => (
+const AutoPositioningTooltips: FC = () => (
   <Container stacked>
     <Tooltipped
       id="auto-positioning-above"

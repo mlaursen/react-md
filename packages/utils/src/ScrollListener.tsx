@@ -1,11 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 
 import { Omit } from "./omit";
 import useScrollListener, { Options } from "./useScrollListener";
 
 export interface ScrollListenerProps extends Omit<Options, "enabled"> {}
 
-const ScrollListener: FunctionComponent<ScrollListenerProps> = props => {
+const ScrollListener: FC<ScrollListenerProps> = props => {
   useScrollListener(props);
   return null;
 };

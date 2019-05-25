@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
@@ -43,7 +43,7 @@ function useThemeTransition(isLight: boolean) {
   }, [isLight]);
 }
 
-const ToggleTheme: FunctionComponent = () => {
+const ToggleTheme: FC = () => {
   const theme = useThemeContext();
   const isLight = theme === "light";
   const toggleTheme = useThemeToggle();

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import {
   Card,
@@ -10,7 +10,7 @@ import {
 import { Text } from "@react-md/typography";
 import Container from "./Container";
 
-const WithActions: FunctionComponent = () => (
+const WithActions: FC = () => (
   <Container>
     <Card raiseable>
       <CardHeader>

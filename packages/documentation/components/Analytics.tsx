@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 
 const GA_CODE = process.env.GA_CODE || "UA-76079335-2";
 const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;
@@ -11,7 +11,7 @@ gtag('js', new Date());
 gtag('config', '${GA_CODE}');`,
 };
 
-const Analytics: FunctionComponent = () => {
+const Analytics: FC = () => {
   if (process.env.NODE_ENV !== "production") {
     return null;
   }

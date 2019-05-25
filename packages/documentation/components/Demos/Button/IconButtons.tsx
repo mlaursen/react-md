@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Container from "./Container";
 import { Button } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
 import { FavoriteSVGIcon, DeleteSVGIcon } from "@react-md/material-icons";
 
-const IconButtons: FunctionComponent = () => (
+const IconButtons: FC = () => (
   <Container>
     <Button id="icon-button-1" buttonType="icon">
       <FontIcon>favorite</FontIcon>

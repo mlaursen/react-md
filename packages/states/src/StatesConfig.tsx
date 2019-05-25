@@ -1,6 +1,6 @@
 import React, {
   createContext,
-  FunctionComponent,
+  FC,
   ReactNode,
   useContext,
   useMemo,
@@ -74,7 +74,7 @@ type WithDefaultProps = StatesConfigProps & StatesConfigContextType;
  * - disabling or enabling the ripple effects
  * - disabling or enabling the fix for color pollution
  */
-const StatesConfig: FunctionComponent<StatesConfigProps> = props => {
+const StatesConfig: FC<StatesConfigProps> = props => {
   const {
     rippleTimeout,
     rippleClassNames,

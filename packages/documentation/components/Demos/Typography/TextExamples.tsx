@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text, TextContainer } from "@react-md/typography";
 
-const TextExamples: FunctionComponent = () => (
+const TextExamples: FC = () => (
   <TextContainer>
     <Text type="headline-1">Headline 1</Text>
     <Text type="headline-2">Headline 2</Text>

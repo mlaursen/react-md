@@ -1,9 +1,9 @@
-import React, { FunctionComponent, Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 import Code from "components/Code/Code";
 
-const AddingOnClick: FunctionComponent = () => {
+const AddingOnClick: FC = () => {
   const [value, setValue] = useState("None");
 
   const onClick = (event: React.MouseEvent) => {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -57,9 +57,7 @@ type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
 
 const block = bem("rmd-list-item");
 
-const SimpleListItem: FunctionComponent<
-  SimpleListItemProps & WithRef
-> = providedProps => {
+const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
   const {
     className,
     textClassName,

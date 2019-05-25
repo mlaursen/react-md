@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -32,7 +32,7 @@ const HEIGHT = 96;
 // and just looked "decent"
 const SCROLL_MULTIPLIER = 0.314;
 
-const AnimatingAppBar: FunctionComponent = () => {
+const AnimatingAppBar: FC = () => {
   const [height, setHeight] = useState(`${HEIGHT}px`);
   const heightRef = useRef(height);
   useEffect(() => {

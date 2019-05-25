@@ -2,7 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   Fragment,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactNode,
   ElementType,
@@ -144,7 +144,7 @@ type SheetWithDefaultProps = SheetProps & DefaultProps & WithRef;
 
 const block = bem("rmd-sheet");
 
-const Sheet: FunctionComponent<SheetProps & WithRef> = providedProps => {
+const Sheet: FC<SheetProps & WithRef> = providedProps => {
   const {
     inline,
     overlay,

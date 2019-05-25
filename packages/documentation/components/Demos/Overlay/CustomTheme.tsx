@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { List, ListItem } from "@react-md/list";
@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 
 import "./custom-theme.scss";
 
-const CustomTheme: FunctionComponent = () => {
+const CustomTheme: FC = () => {
   const { toggled, toggle, disable } = useToggle();
   return (
     <Fragment>

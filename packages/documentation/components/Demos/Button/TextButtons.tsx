@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 
 import Container from "./Container";
 
-const TextButtons: FunctionComponent = () => (
+const TextButtons: FC = () => (
   <Container>
     <Button id="text-button-1" theme="primary">
       Text Button 1

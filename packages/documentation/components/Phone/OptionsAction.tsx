@@ -1,13 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
 
 import { usePhoneContext } from "./context";
 
-const OptionsAction: FunctionComponent<AppBarActionProps> = ({
-  children,
-  ...props
-}) => {
+const OptionsAction: FC<AppBarActionProps> = ({ children, ...props }) => {
   const { id } = usePhoneContext();
   return (
     <AppBarAction {...props} id={`${id}-options`}>

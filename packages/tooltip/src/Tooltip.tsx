@@ -1,6 +1,6 @@
 import React, {
   forwardRef,
-  FunctionComponent,
+  FC,
   ReactNode,
   CSSProperties,
   HTMLAttributes,
@@ -114,7 +114,7 @@ const block = bem("rmd-tooltip");
  * when the visibility changes. If this component is used, you will need to manually add all the
  * event listeners and triggers to change the `visible` prop.
  */
-const Tooltip: FunctionComponent<TooltipProps & WithRef> = providedProps => {
+const Tooltip: FC<TooltipProps & WithRef> = providedProps => {
   const {
     className,
     classNames,

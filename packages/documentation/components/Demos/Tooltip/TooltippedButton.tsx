@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { ButtonProps, Button } from "@react-md/button";
 import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
 
@@ -8,7 +8,7 @@ interface TooltippedButtonProps
   id: string;
 }
 
-const TooltippedButton: FunctionComponent<TooltippedButtonProps> = ({
+const TooltippedButton: FC<TooltippedButtonProps> = ({
   id,
   tooltip,
   onMouseEnter,

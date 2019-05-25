@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { MarkdownPage } from "components/Markdown";
 
-const CreatingDynamicThemes: FunctionComponent = () => (
+const CreatingDynamicThemes: FC = () => (
   <MarkdownPage>## Creating Dynamic Themes</MarkdownPage>
 );
 

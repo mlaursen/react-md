@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
+import React, { forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -18,9 +18,7 @@ type WithDefaultProps = CardTitleProps & WithRef;
 
 const block = bem("rmd-card");
 
-const CardTitle: FunctionComponent<
-  CardTitleProps & WithRef
-> = providedProps => {
+const CardTitle: FC<CardTitleProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,

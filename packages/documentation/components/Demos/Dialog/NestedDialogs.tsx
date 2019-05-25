@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import {
@@ -13,7 +13,7 @@ import "./nested-dialogs.scss";
 import LoremIpsum from "./LoremIpsum";
 import NestedDemo from "./NestedDemo";
 
-const NestedDialogs: FunctionComponent = () => {
+const NestedDialogs: FC = () => {
   const { toggled: visible, enable, disable } = useToggle();
   const dialogId = "nested-demo-dialog-full-page";
   return (

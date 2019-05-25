@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment, FunctionComponent } from "react";
+import React, { forwardRef, Fragment, FC } from "react";
 import { ButtonProps } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
 import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
@@ -83,9 +83,7 @@ type WithDefaultProps = StrictProps &
   DefaultProps &
   WithRef & { menuLabel: string };
 
-const DropdownMenu: FunctionComponent<
-  StrictProps & WithRef
-> = providedProps => {
+const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
   const {
     onClick: propOnclick,
     onKeyDown: propOnKeyDown,

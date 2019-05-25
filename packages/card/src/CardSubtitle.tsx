@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
+import React, { forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -20,7 +20,7 @@ type DefaultProps = Required<Pick<CardSubtitleProps, "disableSecondaryColor">>;
  * A subtitle for the `Card`. This is usually used with the `CardHeader` component
  * after the `CardTitle`.
  */
-const CardSubtitle: FunctionComponent<CardSubtitleProps & WithRef> = ({
+const CardSubtitle: FC<CardSubtitleProps & WithRef> = ({
   className,
   forwardedRef,
   children,

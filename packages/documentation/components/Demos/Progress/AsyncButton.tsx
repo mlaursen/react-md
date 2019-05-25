@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, ReactNode } from "react";
+import React, { FC, Fragment, ReactNode } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 import {
   getProgressA11y,
@@ -26,7 +26,7 @@ type WithDefaultProps = AsyncButtonProps & DefaultProps;
 
 const block = bem("async-button");
 
-const AsyncButton: FunctionComponent<AsyncButtonProps> = providedProps => {
+const AsyncButton: FC<AsyncButtonProps> = providedProps => {
   const {
     id,
     disabled,

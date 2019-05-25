@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Code from "components/Code/Code";
 
 import "./all-elevations.scss";
 
-const AllElevations: FunctionComponent = () => (
+const AllElevations: FC = () => (
   <ul className="elevations-container">
     {Array.from(new Array(25)).map((_, elevation) => (
       <li

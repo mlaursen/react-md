@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -14,7 +14,7 @@ const block = bem("rmd-dialog");
  * so that when the `DialogContent` component is used, the header will be "fixed" to the
  * top of the dialog while the content scrolls. It also applies some minimal padding.
  */
-const DialogHeader: FunctionComponent<DialogHeaderProps & WithRef> = ({
+const DialogHeader: FC<DialogHeaderProps & WithRef> = ({
   children,
   className,
   forwardedRef,

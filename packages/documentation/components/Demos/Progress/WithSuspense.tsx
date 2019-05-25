@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   lazy,
   Suspense,
   useState,
@@ -22,7 +22,7 @@ import WithSuspenseFiles from "./WithSuspenseFiles";
 
 const block = bem("progress-suspense");
 
-function fakeImport(): Promise<{ default: FunctionComponent }> {
+function fakeImport(): Promise<{ default: FC }> {
   return new Promise(resolve => {
     window.setTimeout(() => {
       resolve({ default: WithSuspenseFiles });
@@ -36,7 +36,7 @@ enum State {
   COMPELTED,
 }
 
-const WithSuspense: FunctionComponent = () => {
+const WithSuspense: FC = () => {
   const [state, setState] = useState(State.READY);
   const stateRef = useRef(state);
   const key = useRef(Date.now());

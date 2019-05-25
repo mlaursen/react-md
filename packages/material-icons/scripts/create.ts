@@ -53,11 +53,11 @@ function createIconFile(componentName, children, iconType) {
   return prettier.format(
     `/* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 
-const ${componentName}${iconType}Icon: FunctionComponent<${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
+const ${componentName}${iconType}Icon: FC<${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
 
 export default ${componentName}${iconType}Icon;
 

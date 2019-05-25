@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { DropdownMenu, MenuItem } from "@react-md/menu";
 
 import Container from "./Container";
@@ -21,7 +21,7 @@ const items = [
   <MenuItem>Custom item</MenuItem>,
 ];
 
-const SimpleExamples: FunctionComponent = () => {
+const SimpleExamples: FC = () => {
   return (
     <Container>
       <DropdownMenu

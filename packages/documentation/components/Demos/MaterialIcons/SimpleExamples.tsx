@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text } from "@react-md/typography";
 import {
   AccessAlarmFontIcon,
@@ -13,7 +13,7 @@ import {
 
 import "./simple-examples.scss";
 
-const SimpleExamples: FunctionComponent = () => (
+const SimpleExamples: FC = () => (
   <div className="material-icons-container">
     <Text type="headline-4">Font Icon Versions</Text>
     <AccessAlarmFontIcon />

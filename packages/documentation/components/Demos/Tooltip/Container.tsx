@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 
 import "./container.scss";
@@ -10,7 +10,7 @@ interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 
 const block = bem("tooltip-example-container");
 
-const Container: FunctionComponent<ContainerProps> = ({
+const Container: FC<ContainerProps> = ({
   className,
   children,
   stacked,

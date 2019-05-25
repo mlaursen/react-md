@@ -1,7 +1,7 @@
 import React, {
   CSSProperties,
   forwardRef,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactNode,
   ElementType,
@@ -45,7 +45,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = TreeItemProps & DefaultProps & WithRef;
 
-const TreeItem: FunctionComponent<TreeItemProps & WithRef> = providedProps => {
+const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
   const {
     id,
     depth,

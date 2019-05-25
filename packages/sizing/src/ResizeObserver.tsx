@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ElementType,
-  useCallback,
-  useState,
-} from "react";
+import React, { FC, ElementType, useCallback, useState } from "react";
 import useResizeObserver, {
   ResizeObserverChangeEventHandler,
   ResizeObserverTargetFinder,
@@ -65,9 +60,7 @@ type WithDefaultProps = ResizeObserverProps & DefaultProps;
  * This is a bit different than a normal `ResizeListener` since it does not rely on entire
  * page size changes.
  */
-const ResizeObserver: FunctionComponent<
-  ResizeObserverProps
-> = providedProps => {
+const ResizeObserver: FC<ResizeObserverProps> = providedProps => {
   const {
     disableHeight,
     disableWidth,

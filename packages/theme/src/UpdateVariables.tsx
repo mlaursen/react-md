@@ -1,4 +1,4 @@
-import { FunctionComponent, CSSProperties, ReactElement } from "react";
+import { FC, CSSProperties, ReactElement } from "react";
 
 import {
   CSSVariable,
@@ -40,7 +40,7 @@ export interface UpdateVariablesProps {
  * This component is used to update css variables either at the root html or provide a style
  * object to the children render function that can be applied to an element to update the values.
  */
-const UpdateVariables: FunctionComponent<UpdateVariablesProps> = ({
+const UpdateVariables: FC<UpdateVariablesProps> = ({
   variables,
   style,
   children,

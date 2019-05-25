@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment, FunctionComponent } from "react";
+import React, { forwardRef, Fragment, FC } from "react";
 import { WithForwardedRef } from "@react-md/utils";
 
 import GoogleFont from "components/GoogleFont";
@@ -6,7 +6,7 @@ import CodeBlock, { CodeBlockProps } from "./CodeBlock";
 
 type WithRef = WithForwardedRef<HTMLPreElement>;
 
-const InternalCodeBlock: FunctionComponent<CodeBlockProps & WithRef> = ({
+const InternalCodeBlock: FC<CodeBlockProps & WithRef> = ({
   forwardedRef,
   ...props
 }) => {

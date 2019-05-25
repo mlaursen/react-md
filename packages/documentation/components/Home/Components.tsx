@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   Card,
   CardHeader,
@@ -18,7 +18,7 @@ import LinkButton from "components/LinkButton";
 
 const block = bem("home");
 
-const Components: FunctionComponent = () => (
+const Components: FC = () => (
   <Card className={block("card")}>
     <CardHeader>
       <CardTitle>Components and Styles</CardTitle>

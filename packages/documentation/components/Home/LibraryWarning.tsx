@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { TextContainer } from "@react-md/typography";
 import Blockquote from "components/Blockquote";
 
-const LibraryWarning: FunctionComponent = () => (
+const LibraryWarning: FC = () => (
   <TextContainer className="home__goals">
     <Blockquote>
       Before choosing this library, please note that there is only one active

@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   forwardRef,
   ElementType,
   HTMLAttributes,
@@ -98,9 +98,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = FocusContainerProps & DefaultProps & WithRef;
 
-const FocusContainer: FunctionComponent<
-  FocusContainerProps & WithRef
-> = providedProps => {
+const FocusContainer: FC<FocusContainerProps & WithRef> = providedProps => {
   const {
     disableTabFocusWrap,
     disableFocusCache,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";
 import {
@@ -12,7 +12,7 @@ import {
 
 import Container from "./Container";
 
-const WithinLists: FunctionComponent = () => (
+const WithinLists: FC = () => (
   <Container>
     <List>
       <ListItem id="list1-item-0">First Item</ListItem>

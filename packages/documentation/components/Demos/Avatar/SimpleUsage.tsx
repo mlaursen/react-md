@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import { FontIcon } from "@react-md/icon";
 import { NoteSVGIcon } from "@react-md/material-icons";
 
 import Container from "./Container";
 
-const SimpleUsage: FunctionComponent = () => (
+const SimpleUsage: FC = () => (
   <Container>
     <Avatar
       src="https://picsum.photos/40/40?image=153"

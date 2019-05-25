@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -94,7 +94,7 @@ const ProminentAppBar = () => (
   </AppBar>
 );
 
-const DifferentSizes: FunctionComponent = () => (
+const DifferentSizes: FC = () => (
   <Container>
     <DenseAppBar />
     <NormalAppBar />

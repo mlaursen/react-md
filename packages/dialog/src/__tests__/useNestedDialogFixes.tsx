@@ -1,4 +1,4 @@
-import React, { FunctionComponent, MutableRefObject } from "react";
+import React, { FC, MutableRefObject } from "react";
 import { cleanup, render } from "react-testing-library";
 import { renderHook } from "react-hooks-testing-library";
 
@@ -42,7 +42,7 @@ describe("useNestedDialogFixes", () => {
     >;
 
     const firstResult: Result = { current: undefined };
-    const First: FunctionComponent = () => {
+    const First: FC = () => {
       firstResult.current = useNestedDialogFixes({
         id: "dialog-1",
         visible: true,
@@ -54,7 +54,7 @@ describe("useNestedDialogFixes", () => {
     };
 
     const secondResult: Result = { current: undefined };
-    const Second: FunctionComponent = () => {
+    const Second: FC = () => {
       secondResult.current = useNestedDialogFixes({
         id: "dialog-2",
         visible: true,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 
@@ -10,7 +10,7 @@ const block = bem("rmd-card");
  *
  * @private
  */
-const CardHeaderAddon: FunctionComponent<HTMLAttributes<HTMLSpanElement>> = ({
+const CardHeaderAddon: FC<HTMLAttributes<HTMLSpanElement>> = ({
   className,
   children,
   ...props

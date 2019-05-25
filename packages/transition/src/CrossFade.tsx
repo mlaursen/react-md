@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { CSSTransition } from "react-transition-group";
 
 export interface CrossFadeProps
@@ -25,7 +25,7 @@ type WithDefaultProps = CrossFadeProps & DefaultProps;
  * mounts, but you can set the `in` prop manually to dynamically trigger
  * the animation instead.
  */
-const CrossFade: FunctionComponent<CrossFadeProps> = providedProps => {
+const CrossFade: FC<CrossFadeProps> = providedProps => {
   const { children, ...props } = providedProps as WithDefaultProps;
   return <CSSTransition {...props}>{children}</CSSTransition>;
 };

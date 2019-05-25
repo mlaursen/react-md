@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { MediaContainer } from "@react-md/media";
 import { bem } from "@react-md/theme";
 import { Text, TextContainer } from "@react-md/typography";
@@ -11,7 +11,7 @@ import { HomeSVGIcon } from "@react-md/material-icons";
 
 const block = bem("not-found");
 
-const NotFoundPage: FunctionComponent = () => {
+const NotFoundPage: FC = () => {
   return (
     <MediaContainer className={block()} height={9} width={16}>
       <NotFoundSVG />

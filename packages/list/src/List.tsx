@@ -1,9 +1,4 @@
-import React, {
-  createElement,
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-} from "react";
+import React, { createElement, forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -38,7 +33,7 @@ const block = bem("rmd-list");
 /**
  * Creates an unordered or ordered list.
  */
-const List: FunctionComponent<ListProps & WithRef> = providedProps => {
+const List: FC<ListProps & WithRef> = providedProps => {
   const {
     dense,
     horizontal,

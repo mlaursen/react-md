@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useCallback } from "react";
+import React, { FC, useState, useCallback } from "react";
 import { TextIconSpacing } from "@react-md/icon";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
@@ -17,7 +17,7 @@ const values = [
 
 type SelectedIndex = 0 | 1 | 2;
 
-const CustomPortalContainer: FunctionComponent = () => {
+const CustomPortalContainer: FC = () => {
   const [selected, setSelected] = useState<SelectedIndex>(0);
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

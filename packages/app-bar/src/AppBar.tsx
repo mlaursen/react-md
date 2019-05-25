@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ElementType,
-  HTMLAttributes,
-  forwardRef,
-} from "react";
+import React, { FC, ElementType, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
@@ -98,7 +93,7 @@ const block = bem("rmd-app-bar");
  * TODO: Add links to offset class names and mixins once I figure out how to generate my documentation
  * site from Typedoc.
  */
-const AppBar: FunctionComponent<AppBarProps & WithRef> = providedProps => {
+const AppBar: FC<AppBarProps & WithRef> = providedProps => {
   const {
     component: Component,
     className,

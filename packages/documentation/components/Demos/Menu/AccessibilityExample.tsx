@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   Dialog,
   DialogHeader,
@@ -11,7 +11,7 @@ import Container from "./Container";
 import { useToggle } from "@react-md/utils";
 import { Button } from "@react-md/button";
 
-const AccessibilityExample: FunctionComponent = () => {
+const AccessibilityExample: FC = () => {
   const { toggled: visible, enable: show, disable: hide } = useToggle();
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Link } from "@react-md/link";
 import { TextIconSpacing } from "@react-md/icon";
 
@@ -6,7 +6,7 @@ import TwitterIcon from "icons/TwitterIcon";
 
 import "./with-icons.scss";
 
-const WithIcons: FunctionComponent = () => (
+const WithIcons: FC = () => (
   <div className="link-container">
     <Link href="https://twitter.com" flexCentered>
       <TextIconSpacing icon={<TwitterIcon role="presentation" />}>

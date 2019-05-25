@@ -1,8 +1,8 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { Text } from "@react-md/typography";
 
-const Blockquote: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({
+const Blockquote: FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props

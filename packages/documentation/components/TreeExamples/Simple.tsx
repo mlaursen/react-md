@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   Tree,
   TreeData,
@@ -27,7 +27,7 @@ const data: TreeDataList = Array.from(new Array(10)).map((_, i) =>
   createItem(i, 0, "")
 );
 
-const Simple: FunctionComponent = () => {
+const Simple: FC = () => {
   const { selectedIds, onItemSelect } = useTreeItemSelect([
     "simple-tree-item-0",
   ]);

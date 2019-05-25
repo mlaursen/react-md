@@ -1,6 +1,6 @@
 import React, {
   forwardRef,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactElement,
   ElementType,
@@ -55,9 +55,7 @@ type WithRef = WithForwardedRef<HTMLDivElement | ElementType>;
 type DefaultProps = Required<Pick<TextContainerProps, "size" | "component">>;
 type WithDefaultProps = TextContainerProps & DefaultProps & WithRef;
 
-const TextContainer: FunctionComponent<
-  TextContainerProps & WithRef
-> = providedProps => {
+const TextContainer: FC<TextContainerProps & WithRef> = providedProps => {
   const {
     className: propClassName,
     component: Component,

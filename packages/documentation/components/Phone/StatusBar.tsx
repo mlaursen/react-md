@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 import { AppBar } from "@react-md/app-bar";
 import {
@@ -14,7 +14,7 @@ export interface StatusBarProps {
 
 const block = bem("phone");
 
-const StatusBar: FunctionComponent<StatusBarProps> = ({ id, isPhone }) => {
+const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
   if (isPhone) {
     return null;
   }

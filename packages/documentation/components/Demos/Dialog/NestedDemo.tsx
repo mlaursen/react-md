@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -18,7 +18,7 @@ interface NestedDemoProps {
  * This demo will recursively call itself until there have been 3 dialogs created
  * and then stop.
  */
-const NestedDemo: FunctionComponent<NestedDemoProps> = ({ depth }) => {
+const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
   if (depth >= 3) {
     return null;
   }

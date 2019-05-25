@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, Fragment } from "react";
+import React, { FC, HTMLAttributes, Fragment } from "react";
 import cn from "classnames";
 import {
   useInteractionStates,
@@ -12,7 +12,7 @@ interface CustomButtonProps
   extends HTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions, "handlers"> {}
 
-const CustomButton: FunctionComponent<CustomButtonProps> = ({
+const CustomButton: FC<CustomButtonProps> = ({
   disabled,
   disableRipple,
   disableSpacebarClick,
@@ -60,7 +60,7 @@ const CustomButton: FunctionComponent<CustomButtonProps> = ({
   );
 };
 
-const CustomComponent: FunctionComponent = () => {
+const CustomComponent: FC = () => {
   return (
     <Fragment>
       <CustomButton id="custom-button-1">Hello</CustomButton>

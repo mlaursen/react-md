@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  CSSProperties,
-  useMemo,
-} from "react";
+import React, { FC, HTMLAttributes, CSSProperties, useMemo } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef, Omit } from "@react-md/utils";
@@ -61,9 +56,7 @@ type WithDefaultProps = LinearProgressProps & DefaultProps & WithRef;
 
 const block = bem("rmd-linear-progress");
 
-const LinearProgress: FunctionComponent<
-  LinearProgressProps & WithRef
-> = providedProps => {
+const LinearProgress: FC<LinearProgressProps & WithRef> = providedProps => {
   const {
     style: propStyle,
     className,

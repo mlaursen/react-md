@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import cn from "classnames";
 
 export interface CodeProps {
@@ -7,11 +7,7 @@ export interface CodeProps {
   inline?: boolean;
 }
 
-const Code: FunctionComponent<CodeProps> = ({
-  children,
-  inline,
-  className,
-}) => (
+const Code: FC<CodeProps> = ({ children, inline, className }) => (
   <code className={cn("code", { "code--inline": inline }, className)}>
     {children}
   </code>

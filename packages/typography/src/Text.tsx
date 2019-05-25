@@ -1,7 +1,7 @@
 import React, {
   createElement,
   forwardRef,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactElement,
   ElementType,
@@ -223,7 +223,7 @@ const block = bem("rmd-typography");
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
  * `component` will be used instead.
  */
-const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
+const Text: FC<TextProps & WithRef> = providedProps => {
   const {
     className: propClassName,
     children,

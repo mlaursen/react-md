@@ -1,11 +1,11 @@
-import React, { Fragment, FunctionComponent, useState } from "react";
+import React, { Fragment, FC, useState } from "react";
 import { ResizeListener } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
 
-const ResizeListenerExample: FunctionComponent = () => {
+const ResizeListenerExample: FC = () => {
   const [size, setSize] = useState(() => {
     if (typeof window !== "undefined") {
       return window.innerWidth;

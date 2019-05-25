@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
@@ -9,7 +9,7 @@ export interface SandboxDefineFormProps {
   getSandbox: () => Promise<IFiles>;
 }
 
-const SandboxDefineForm: FunctionComponent<SandboxDefineFormProps> = ({
+const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
   onCreated,
   getSandbox,
 }) => {

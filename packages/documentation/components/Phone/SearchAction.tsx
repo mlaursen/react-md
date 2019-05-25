@@ -1,13 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { SearchSVGIcon } from "@react-md/material-icons";
 
 import { usePhoneContext } from "./context";
 
-const SearchAction: FunctionComponent<AppBarActionProps> = ({
-  children,
-  ...props
-}) => {
+const SearchAction: FC<AppBarActionProps> = ({ children, ...props }) => {
   const { id } = usePhoneContext();
   return (
     <AppBarAction {...props} id={`${id}-search`}>

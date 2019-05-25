@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Container from "./Container";
 import { Button } from "@react-md/button";
 
-const ContainedButtons: FunctionComponent = () => (
+const ContainedButtons: FC = () => (
   <Container>
     <Button id="contained-button-1" themeType="contained">
       Contained Button 1

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef, HTMLAttributes } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -13,7 +13,7 @@ const block = bem("rmd-dialog");
  * This component adds some base styles to an `<h2>` element for a title within
  * a `Dialog`.
  */
-const DialogTitle: FunctionComponent<DialogTitleProps & WithRef> = ({
+const DialogTitle: FC<DialogTitleProps & WithRef> = ({
   children,
   className,
   forwardedRef,

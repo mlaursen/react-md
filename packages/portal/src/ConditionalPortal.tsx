@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from "react";
+import React, { FC, ReactElement } from "react";
 
 import Portal from "./Portal";
 import { PortalInto } from "./getContainer";
@@ -35,7 +35,7 @@ export interface ConditionalPortalProps extends RenderConditionalPortalProps {
  * This is a very simple component that is used in other places within react-md to conditionally
  * render the children within a portal or not based on general portal config props.
  */
-const ConditionalPortal: FunctionComponent<ConditionalPortalProps> = ({
+const ConditionalPortal: FC<ConditionalPortalProps> = ({
   portal,
   portalInto,
   portalIntoId,

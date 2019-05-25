@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { forwardRef, FC, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -54,9 +49,7 @@ const block = bem("rmd-icon");
  * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
  * and `forceFontSize` props to fix the sizing issues.
  */
-const FontIcon: FunctionComponent<
-  FontIconProps & WithForwardedRef
-> = providedProps => {
+const FontIcon: FC<FontIconProps & WithForwardedRef> = providedProps => {
   const {
     className,
     iconClassName,

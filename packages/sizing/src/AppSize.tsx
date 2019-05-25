@@ -1,6 +1,6 @@
 import React, {
   createContext,
-  FunctionComponent,
+  FC,
   ReactNode,
   useContext,
   useEffect,
@@ -72,9 +72,7 @@ type WithDefaultProps = AppSizeListenerProps & DefaultProps;
  * This component should be mounted near the top of your app as it will keep track
  * of the current app size based on the provided breakpoint widths.
  */
-export const AppSizeListener: FunctionComponent<
-  AppSizeListenerProps
-> = providedProps => {
+export const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
   const {
     children,
     onChange,

@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, useState } from "react";
+import React, { Fragment, FC, useState } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -118,7 +118,7 @@ const previews = validIds.map(id => ({
   id,
 }));
 
-const FullPageExample: FunctionComponent = () => {
+const FullPageExample: FC = () => {
   const [state, setState] = useState({ imageId: 277, visible: false });
   const show = (event: React.MouseEvent<HTMLButtonElement>) => {
     const [index] = event.currentTarget.id.split("-").reverse();

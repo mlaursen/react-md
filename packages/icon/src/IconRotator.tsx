@@ -3,7 +3,7 @@ import React, {
   isValidElement,
   forwardRef,
   Children,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactNode,
   CSSProperties,
@@ -63,9 +63,7 @@ const block = bem("rmd-icon-rotator");
  * The `IconRotator` is a simple component that is used to rotate an icon from a one degrees
  * to another.
  */
-const IconRotator: FunctionComponent<
-  IconRotatorProps & WithRef
-> = providedProps => {
+const IconRotator: FC<IconRotatorProps & WithRef> = providedProps => {
   const {
     style,
     className: propClassName,

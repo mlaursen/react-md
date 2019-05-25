@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text, TextContainer } from "@react-md/typography";
 
-const LoremIpsum: FunctionComponent = () => (
+const LoremIpsum: FC = () => (
   <TextContainer>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum sodales

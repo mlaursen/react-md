@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { TextContainer } from "@react-md/typography";
 
 import Heading from "components/Heading";
 
-const InProgress: FunctionComponent<{ title: string }> = ({ title }) => (
+const InProgress: FC<{ title: string }> = ({ title }) => (
   <TextContainer>
     <Heading id={title.toLowerCase()} level={2}>
       {title}

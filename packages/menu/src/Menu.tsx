@@ -1,6 +1,6 @@
 import React, {
   forwardRef,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   useCallback,
   useEffect,
@@ -123,7 +123,7 @@ type StrictMenuProps = MenuProps &
 
 const block = bem("rmd-menu");
 
-const Menu: FunctionComponent<StrictMenuProps & WithRef> = providedProps => {
+const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
   const {
     controlId,
     className,

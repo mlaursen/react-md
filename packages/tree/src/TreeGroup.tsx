@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { Collapse, CollapseProps } from "@react-md/transition";
 import { List, ListProps } from "@react-md/list";
@@ -13,7 +13,7 @@ export interface TreeGroupProps
  * prop is `true`. It uses the `Collapse` component behind the scenes to animate in-and-out of view
  * and will fully unrender when the `expanded` prop is `false`.
  */
-const TreeGroup: FunctionComponent<TreeGroupProps> = ({
+const TreeGroup: FC<TreeGroupProps> = ({
   style,
   className,
   collapsed,

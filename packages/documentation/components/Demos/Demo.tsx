@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from "react";
+import React, { Fragment, FC, ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
 import { useToggle } from "@react-md/utils";
@@ -62,7 +62,7 @@ type WithDefaultProps = DemoProps &
 
 const block = bem("demo");
 
-const Demo: FunctionComponent<DemoProps> = props => {
+const Demo: FC<DemoProps> = props => {
   const {
     id,
     name,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 
 import useCrossFade from "hooks/useCrossFade";
@@ -31,7 +31,7 @@ export interface DemoPageProps {
 type DefaultProps = Required<Pick<DemoPageProps, "fonts">>;
 type WithDefaultProps = DemoPageProps & DefaultProps;
 
-const DemoPage: FunctionComponent<DemoPageProps> = props => {
+const DemoPage: FC<DemoPageProps> = props => {
   const {
     demos,
     description,

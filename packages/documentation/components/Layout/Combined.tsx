@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, useEffect } from "react";
+import React, { Fragment, FC, useEffect } from "react";
 import cn from "classnames";
 import { SingletonRouter, withRouter } from "next/router";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
@@ -20,11 +20,7 @@ export interface CombinedProps {
 
 const block = bem("layout");
 
-const Combined: FunctionComponent<CombinedProps> = ({
-  title,
-  children,
-  router,
-}) => {
+const Combined: FC<CombinedProps> = ({ title, children, router }) => {
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
   const {

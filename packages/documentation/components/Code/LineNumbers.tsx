@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 
 export interface LineNumbersProps {
@@ -8,10 +8,7 @@ export interface LineNumbersProps {
 
 const block = bem("code");
 
-const LineNumbers: FunctionComponent<LineNumbersProps> = ({
-  code,
-  enabled,
-}) => {
+const LineNumbers: FC<LineNumbersProps> = ({ code, enabled }) => {
   if (!enabled) {
     return null;
   }

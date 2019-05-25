@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef, HTMLAttributes } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -27,7 +27,7 @@ const block = bem("rmd-card");
  * other card parts. It adds some general styles and elevation to help show
  * prominence.
  */
-const Card: FunctionComponent<CardProps & WithRef> = providedProps => {
+const Card: FC<CardProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,

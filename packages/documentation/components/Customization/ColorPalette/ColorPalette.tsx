@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { bem } from "@react-md/theme";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
@@ -39,7 +39,7 @@ const colorMap = uniqueColors.reduce<ColorMap>((map, color) => {
 
 const block = bem("color-palette");
 
-const ColorPalette: FunctionComponent = () => {
+const ColorPalette: FC = () => {
   return (
     <Fragment>
       <About />

@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";
@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 
 import "./simple-list-example.scss";
 
-const SimpleExample: FunctionComponent = () => {
+const SimpleExample: FC = () => {
   const { toggled, enable, disable } = useToggle();
   return (
     <Fragment>

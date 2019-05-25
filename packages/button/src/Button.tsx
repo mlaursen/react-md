@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes,
-} from "react";
+import React, { forwardRef, FC, ReactNode, HTMLAttributes } from "react";
 
 import {
   InteractionStatesOptions,
@@ -46,7 +41,7 @@ type DefaultProps = Required<
 >;
 type ButtonWithDefaultProps = ButtonProps & DefaultProps & WithRef;
 
-const Button: FunctionComponent<ButtonProps & WithRef> = providedProps => {
+const Button: FC<ButtonProps & WithRef> = providedProps => {
   const {
     theme,
     themeType,

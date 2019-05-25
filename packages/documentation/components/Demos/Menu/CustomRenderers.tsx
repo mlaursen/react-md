@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 
@@ -11,7 +11,7 @@ const items = Array.from(new Array(1000), (_, i) => ({
   children: `Item ${i + 1}`,
 }));
 
-const CustomRenderers: FunctionComponent = () => (
+const CustomRenderers: FC = () => (
   <Fragment>
     <NonVirtualizedMenu items={items} />
     <VirtualizedMenu items={items} />

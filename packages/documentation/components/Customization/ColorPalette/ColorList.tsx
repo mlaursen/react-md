@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 import Color, { ColorValue } from "./Color";
 
@@ -9,10 +9,7 @@ interface ColorListProps {
 
 const block = bem("color-palette");
 
-const ColorList: FunctionComponent<ColorListProps> = ({
-  baseColor,
-  colors,
-}) => {
+const ColorList: FC<ColorListProps> = ({ baseColor, colors }) => {
   const baseName = `rmd-${baseColor}-500`;
   const baseValue = (colors.find(c => c.name === baseName) || colors[6]).value;
   return (

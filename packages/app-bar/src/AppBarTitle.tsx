@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
+import React, { forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -25,9 +25,7 @@ const block = bem("rmd-app-bar");
  * is not using the `AppBarNav` component, you can enable the `keyline` prop
  * to ensure that your title aligns with the keyline of your navigation element.
  */
-const AppBarTitle: FunctionComponent<
-  AppBarTitleProps & WithRef
-> = providedProps => {
+const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
   const {
     keyline,
     className,

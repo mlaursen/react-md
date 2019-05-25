@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 
@@ -11,7 +11,7 @@ export interface ListItemTextProps {
 
 const block = bem("rmd-list-item");
 
-const ListItemText: FunctionComponent<ListItemTextProps> = ({
+const ListItemText: FC<ListItemTextProps> = ({
   className,
   secondaryTextClassName,
   secondaryText,

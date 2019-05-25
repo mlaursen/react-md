@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  FunctionComponent,
-  ReactNode,
-  useContext,
-} from "react";
+import React, { createContext, FC, ReactNode, useContext } from "react";
 
 type MenuOrientation = "horizontal" | "vertical";
 const Orientation = createContext<MenuOrientation>("vertical");
@@ -17,8 +12,9 @@ interface OrientationProviderProps {
   children: ReactNode;
 }
 
-export const OrientationProvider: FunctionComponent<
-  OrientationProviderProps
-> = ({ orientation, children }) => (
+export const OrientationProvider: FC<OrientationProviderProps> = ({
+  orientation,
+  children,
+}) => (
   <Orientation.Provider value={orientation}>{children}</Orientation.Provider>
 );

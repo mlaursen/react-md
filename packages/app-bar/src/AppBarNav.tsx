@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef } from "react";
+import React, { FC, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { bem } from "@react-md/theme";
@@ -22,7 +22,7 @@ const block = bem("rmd-app-bar");
  * This component is generally really only used when you want to have a temporary navigation
  * element like a hamburger menu.
  */
-const AppBarNav: FunctionComponent<AppBarNavProps & WithRef> = ({
+const AppBarNav: FC<AppBarNavProps & WithRef> = ({
   className,
   forwardedRef,
   children,

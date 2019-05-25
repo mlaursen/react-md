@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -21,9 +21,7 @@ const block = bem("rmd-card");
  * This component is generally used to hold the main actions for the `Card`.
  * It's a good place to add additional buttons or expansion toggles.
  */
-const CardActions: FunctionComponent<
-  CardActionsProps & WithRef
-> = providedProps => {
+const CardActions: FC<CardActionsProps & WithRef> = providedProps => {
   const {
     className,
     align,

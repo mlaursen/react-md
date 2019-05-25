@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
 import "./simple-example.scss";
 
-const SimpleExample: FunctionComponent = () => (
+const SimpleExample: FC = () => (
   <div className="custom-theme-example">
     <Text>This is a new surface and defining some new theme colors.</Text>
     <Text className="custom-theme-example__existing-primary" type="subtitle-1">

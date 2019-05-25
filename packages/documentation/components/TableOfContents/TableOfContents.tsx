@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, useEffect } from "react";
+import React, { Fragment, FC, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
@@ -23,9 +23,7 @@ const CLASSNAMES = {
   exitActive: "table-of-contents--exit-active",
 };
 
-const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
-  pathname,
-}) => {
+const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
   const { isPhone, isLargeDesktop } = useAppSizeContext();
   const { toggled: visible, enable: show, disable: hide, toggle } = useToggle(
     isLargeDesktop

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Container from "./Container";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
@@ -10,7 +10,7 @@ import {
 
 import "./custom-button-theme.scss";
 
-const CustomButtonTheme: FunctionComponent = () => (
+const CustomButtonTheme: FC = () => (
   <Container className="custom-button-themes">
     <Button id="custom-themed-button-1" themeType="outline" theme="secondary">
       Custom

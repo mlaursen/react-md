@@ -1,9 +1,9 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
 
-const SimpleExample: FunctionComponent = () => {
+const SimpleExample: FC = () => {
   const { toggled, toggle, disable } = useToggle();
   return (
     <Fragment>

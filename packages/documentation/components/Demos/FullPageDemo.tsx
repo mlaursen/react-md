@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-} from "react";
+import React, { Fragment, FC, ReactElement, ReactNode } from "react";
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -23,7 +18,7 @@ export interface FullPageDemoProps {
   disableContent?: boolean;
 }
 
-const FullPageDemo: FunctionComponent<FullPageDemoProps> = ({
+const FullPageDemo: FC<FullPageDemoProps> = ({
   id,
   title,
   children,

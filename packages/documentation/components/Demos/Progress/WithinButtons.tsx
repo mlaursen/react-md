@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactNode } from "react";
+import React, { Fragment, FC, ReactNode } from "react";
 import { Text } from "@react-md/typography";
 
 import AsyncButton, { AsyncButtonProps } from "./AsyncButton";
@@ -9,7 +9,7 @@ interface ExampleProps extends Pick<AsyncButtonProps, "id" | "asyncType"> {
   children: ReactNode;
 }
 
-const Example: FunctionComponent<ExampleProps> = ({ children, ...props }) => {
+const Example: FC<ExampleProps> = ({ children, ...props }) => {
   const { toggled, toggle } = useTemporaryToggle();
 
   return (
@@ -34,7 +34,7 @@ const Example: FunctionComponent<ExampleProps> = ({ children, ...props }) => {
   );
 };
 
-const WithinButtons: FunctionComponent = () => (
+const WithinButtons: FC = () => (
   <Fragment>
     <Example id="async-button-1" asyncType="icon-before">
       Circular Before

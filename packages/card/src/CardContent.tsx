@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -48,9 +48,7 @@ const block = bem("rmd-card");
  * The main content for the `Card`. This adds some additional padding and removes
  * margin from `<p>` tags by default.
  */
-const CardContent: FunctionComponent<
-  CardContentProps & WithRef
-> = providedProps => {
+const CardContent: FC<CardContentProps & WithRef> = providedProps => {
   const {
     disablePadding,
     disableExtraPadding,

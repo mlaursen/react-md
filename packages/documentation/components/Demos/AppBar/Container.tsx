@@ -1,9 +1,9 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 
 import "./container.scss";
 
-const Container: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({
+const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   className,
   ...props

@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent } from "react";
+import React, { forwardRef, FC } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -31,7 +31,7 @@ type DefaultProps = Required<
 >;
 type ListItemWithDefaultProps = ListItemProps & DefaultProps & WithRef;
 
-const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
+const ListItem: FC<ListItemProps & WithRef> = providedProps => {
   const {
     className: propClassName,
     textClassName,

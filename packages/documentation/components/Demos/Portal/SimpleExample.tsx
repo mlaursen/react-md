@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  FunctionComponent,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, { CSSProperties, FC, useCallback, useRef, useState } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { List, ListItem } from "@react-md/list";
@@ -19,15 +13,13 @@ import {
 
 import "./simple-example.scss";
 
-const ScrollListener: FunctionComponent<{ onScroll: EventListener }> = ({
-  onScroll,
-}) => {
+const ScrollListener: FC<{ onScroll: EventListener }> = ({ onScroll }) => {
   useScrollListener({ enabled: true, onScroll });
 
   return null;
 };
 
-const SimpleExample: FunctionComponent = () => {
+const SimpleExample: FC = () => {
   const { toggled, toggle, disable } = useToggle();
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);

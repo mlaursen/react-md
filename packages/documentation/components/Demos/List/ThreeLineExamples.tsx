@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { List, ListItem } from "@react-md/list";
 import { StarSVGIcon } from "@react-md/material-icons";
 import Container from "./Container";
@@ -23,7 +23,7 @@ const inbox = [
   },
 ];
 
-const ThreeLineExamples: FunctionComponent = () => (
+const ThreeLineExamples: FC = () => (
   <Container>
     <List>
       {inbox.map(({ subject, message }, i) => (

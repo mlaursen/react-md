@@ -1,7 +1,7 @@
 import {
   createContext,
   useContext,
-  FunctionComponent,
+  FC,
   useState,
   useCallback,
   useRef,
@@ -23,9 +23,10 @@ interface ThemeContextProviderProps {
   defaultTheme?: "light" | "dark";
 }
 
-export const ThemeContextProvider: FunctionComponent<
-  ThemeContextProviderProps
-> = ({ children, defaultTheme }) => {
+export const ThemeContextProvider: FC<ThemeContextProviderProps> = ({
+  children,
+  defaultTheme,
+}) => {
   const [theme, setTheme] = useState(defaultTheme || "dark");
   const prevTheme = useRef(theme);
   const toggleTheme = useCallback(

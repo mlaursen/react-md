@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import cn from "classnames";
 import {
   AppBar,
@@ -24,7 +24,7 @@ interface ExampleProps {
   prominent?: boolean;
 }
 
-const Example: FunctionComponent<ExampleProps> = ({ dense, prominent }) => {
+const Example: FC<ExampleProps> = ({ dense, prominent }) => {
   const id = `fixed-with-offset${dense ? "-dense" : ""}${
     prominent ? "-prominent" : ""
   }`;
@@ -101,7 +101,7 @@ const Example: FunctionComponent<ExampleProps> = ({ dense, prominent }) => {
   );
 };
 
-const FixedWithOffset: FunctionComponent = () => (
+const FixedWithOffset: FC = () => (
   <Fragment>
     <Example />
     <Example dense />

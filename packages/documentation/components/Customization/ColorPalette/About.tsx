@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text, TextContainer } from "@react-md/typography";
 
 import Heading from "components/Heading";
@@ -6,7 +6,7 @@ import useCrossFade from "hooks/useCrossFade";
 import { Link } from "@react-md/link";
 import { Code, CodeBlock } from "components/Code";
 
-const About: FunctionComponent = () => (
+const About: FC = () => (
   <TextContainer className={useCrossFade()}>
     <Heading id="color-palette" level={2}>
       Color Palette

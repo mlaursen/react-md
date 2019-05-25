@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { act, renderHook } from "react-hooks-testing-library";
 import { cleanup, render } from "react-testing-library";
 import { mocked } from "ts-jest/utils";
@@ -21,11 +21,7 @@ interface TestProps {
   defaultRunning?: boolean;
 }
 
-const Test: FunctionComponent<TestProps> = ({
-  cb,
-  delay = 300,
-  defaultRunning = false,
-}) => {
+const Test: FC<TestProps> = ({ cb, delay = 300, defaultRunning = false }) => {
   useInterval(cb, delay, defaultRunning);
   return null;
 };

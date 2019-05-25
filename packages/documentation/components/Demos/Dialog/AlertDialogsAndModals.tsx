@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
@@ -11,7 +11,7 @@ draft. When you click on "Submit", a modal confirmation dialog will ask you
 if you really want to submit this.
 `.replace(/\r?\n/g, " ");
 
-const AlertDialogsAndModals: FunctionComponent = () => {
+const AlertDialogsAndModals: FC = () => {
   const [state, setState] = useState({ visible: false, modal: false });
   const hide = () => setState(prevState => ({ ...prevState, visible: false }));
   const show = (event: React.MouseEvent<HTMLButtonElement>) => {

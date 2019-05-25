@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { AppBar, AppBarTitle, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
@@ -18,12 +18,7 @@ interface Props {
 
 const block = bem("layout");
 
-const Header: FunctionComponent<Props> = ({
-  title,
-  toggle,
-  isDesktop,
-  isSheetVisible,
-}) => (
+const Header: FC<Props> = ({ title, toggle, isDesktop, isSheetVisible }) => (
   <AppBar
     id="main-app-bar"
     fixed

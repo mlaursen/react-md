@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, ReactNode } from "react";
+import React, { forwardRef, FC, ReactNode } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { FontIcon, IconRotator, TextIconSpacing } from "@react-md/icon";
@@ -44,7 +44,7 @@ type DefaultProps = Required<
   >
 >;
 
-const MenuButton: FunctionComponent<MenuButtonProps & WithRef> = ({
+const MenuButton: FC<MenuButtonProps & WithRef> = ({
   className,
   visible,
   children: propChildren,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
@@ -20,15 +20,18 @@ const formatShort = (d: Date) =>
     year: "numeric",
   });
 
-const Folder: FunctionComponent<AvatarProps> = props => (
+const Folder: FC<AvatarProps> = props => (
   <Avatar {...props}>
     <FolderSVGIcon />
   </Avatar>
 );
 
-const InfoIcon: FunctionComponent<
-  SVGIconProps & { id: string; date: Date }
-> = ({ id, className, date, ...props }) => (
+const InfoIcon: FC<SVGIconProps & { id: string; date: Date }> = ({
+  id,
+  className,
+  date,
+  ...props
+}) => (
   <span
     id={`${id}-info`}
     tabIndex={0}
@@ -38,7 +41,7 @@ const InfoIcon: FunctionComponent<
   </span>
 );
 
-const TwoLineExamples: FunctionComponent = () => (
+const TwoLineExamples: FC = () => (
   <Container>
     <List className="two-line-list-example">
       <ListSubheader>Folders</ListSubheader>

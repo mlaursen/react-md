@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { Portal } from "@react-md/portal";
 import { Omit, useToggle } from "@react-md/utils";
 
@@ -12,7 +12,7 @@ export interface SandboxProps
   id: string;
 }
 
-const Sandbox: FunctionComponent<SandboxProps> = ({ id, getSandbox }) => {
+const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
   const { toggled: loading, enable, disable } = useToggle();
 
   return (

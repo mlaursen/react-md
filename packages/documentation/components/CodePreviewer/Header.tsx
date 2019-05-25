@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { MenuSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 import { bem } from "@react-md/theme";
@@ -17,7 +17,7 @@ export interface HeaderProps {
 
 const block = bem("code-previewer");
 
-const Header: FunctionComponent<HeaderProps> = ({
+const Header: FC<HeaderProps> = ({
   inline,
   isDesktop,
   toggleSheet,

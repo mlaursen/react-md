@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { TextContainer } from "@react-md/typography";
 import useCrossFade from "hooks/useCrossFade";
@@ -9,7 +9,7 @@ export interface MarkdownPageProps extends MarkdownProps {
   containerClassName?: string;
 }
 
-const MarkdownPage: FunctionComponent<MarkdownPageProps> = ({
+const MarkdownPage: FC<MarkdownPageProps> = ({
   containerClassName,
   children,
   ...props

@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { MediaContainer } from "@react-md/media";
 
-const ForcedAspectRatio: FunctionComponent = () => (
+const ForcedAspectRatio: FC = () => (
   <div className="forced-aspect-ratio">
     <MediaContainer height={9} width={16} className="responsive-item">
       <img

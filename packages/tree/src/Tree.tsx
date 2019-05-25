@@ -1,6 +1,6 @@
 import React, {
   forwardRef,
-  FunctionComponent,
+  FC,
   // HTMLAttributes,
   ReactNode,
   // useEffect,
@@ -48,7 +48,7 @@ type DefaultProps = Required<
 type WithDefaultProps = TreeProps & DefaultProps & WithRef;
 type RequiredTreeProps = TreeWithLabel | TreeWithLabelledBy;
 
-const Tree: FunctionComponent<RequiredTreeProps & WithRef> = providedProps => {
+const Tree: FC<RequiredTreeProps & WithRef> = providedProps => {
   const {
     className,
     onKeyDown,

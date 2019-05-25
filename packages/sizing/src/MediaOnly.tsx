@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { useAppSizeContext } from "./AppSize";
 
 export interface MediaOnlyProps {
@@ -21,7 +21,7 @@ type WithDefaultProps = MediaOnlyProps & DefaultProps;
  * in mobile mode via the `AppSizeContext`. A mobile view will be true for both phones
  * and tablets.
  */
-export const MobileOnly: FunctionComponent<MediaOnlyProps> = props => {
+export const MobileOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
   const { isPhone, isTablet } = useAppSizeContext();
   if (isPhone || isTablet) {
@@ -35,7 +35,7 @@ export const MobileOnly: FunctionComponent<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is considered
  * in phone mode via the `AppSizeContext`.
  */
-export const PhoneOnly: FunctionComponent<MediaOnlyProps> = props => {
+export const PhoneOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
   const { isPhone } = useAppSizeContext();
   if (isPhone) {
@@ -49,7 +49,7 @@ export const PhoneOnly: FunctionComponent<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is considered
  * in tablet mode via the `AppSizeContext`.
  */
-export const TabletOnly: FunctionComponent<MediaOnlyProps> = props => {
+export const TabletOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
   const { isTablet } = useAppSizeContext();
   if (isTablet) {
@@ -63,7 +63,7 @@ export const TabletOnly: FunctionComponent<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is considered
  * in desktop mode via the `AppSizeContext`.
  */
-export const DesktopOnly: FunctionComponent<MediaOnlyProps> = props => {
+export const DesktopOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
   const { isDesktop } = useAppSizeContext();
   if (isDesktop) {

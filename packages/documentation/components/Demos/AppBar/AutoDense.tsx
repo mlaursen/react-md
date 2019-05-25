@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 
 import "./auto-dense.scss";
 import Container from "./Container";
 
-const AutoDense: FunctionComponent = () => (
+const AutoDense: FC = () => (
   <Container className="auto-dense">
     <AppBar id="auto-dense-app-bar">
       <AppBarNav id="auto-dense-app-bar-nav" aria-label="Navigation">

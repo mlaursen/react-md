@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   Divider,
   DividerProps,
@@ -19,7 +19,7 @@ export interface MenuItemSeparatorProps
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-const MenuItemSeparator: FunctionComponent<MenuItemSeparatorProps> = ({
+const MenuItemSeparator: FC<MenuItemSeparatorProps> = ({
   "aria-orientation": propOrientation,
   maxHeight,
   ...props

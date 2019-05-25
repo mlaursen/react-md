@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Ref } from "react";
+import React, { FC, Ref } from "react";
 import { renderHook } from "react-hooks-testing-library";
 import { cleanup, fireEvent, render } from "react-testing-library";
 
@@ -11,7 +11,7 @@ interface Props {
   liRef?: Ref<HTMLLIElement>;
 }
 
-const Test: FunctionComponent<Props> = ({
+const Test: FC<Props> = ({
   disabled,
   onKeyDown,
   disableSpacebarClick,
@@ -100,10 +100,7 @@ describe("useKeyboardClickPolyfill", () => {
       aRef?: Ref<HTMLAnchorElement>;
       disableSpacebarClick?: boolean;
     }
-    const TestTwo: FunctionComponent<TestTwoProps> = ({
-      aRef,
-      disableSpacebarClick,
-    }) => {
+    const TestTwo: FC<TestTwoProps> = ({ aRef, disableSpacebarClick }) => {
       const handleKeyDown = useKeyboardClickPolyfill(
         undefined,
         false,

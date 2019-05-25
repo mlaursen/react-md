@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import {
   MediaContainer,
   MediaOverlay,
@@ -16,7 +16,7 @@ const positions: MediaOverlayPosition[] = [
   "absolute-center",
 ];
 
-const WithOverlay: FunctionComponent = () => (
+const WithOverlay: FC = () => (
   <Fragment>
     {positions.map((position, i) => (
       <MediaContainer

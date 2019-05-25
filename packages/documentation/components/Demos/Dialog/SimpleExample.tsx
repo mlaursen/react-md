@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -10,7 +10,7 @@ import {
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-const SimpleExample: FunctionComponent = () => {
+const SimpleExample: FC = () => {
   const { toggled: visible, enable, disable } = useToggle();
   return (
     <Fragment>

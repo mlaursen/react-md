@@ -1,10 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const InvertColorsOffFontIcon: FunctionComponent<FontIconProps> = props => (
+const InvertColorsOffFontIcon: FC<FontIconProps> = props => (
   <FontIcon {...props}>invert_colors_off</FontIcon>
 );
 

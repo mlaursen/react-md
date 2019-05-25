@@ -1,10 +1,10 @@
 /* tslint:disable */
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ReportProblemFontIcon: FunctionComponent<FontIconProps> = props => (
+const ReportProblemFontIcon: FC<FontIconProps> = props => (
   <FontIcon {...props}>report_problem</FontIcon>
 );
 

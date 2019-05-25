@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Card, CardContent, CardTitle } from "@react-md/card";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
 import Container from "./Container";
 
-const WithMedia: FunctionComponent = () => (
+const WithMedia: FC = () => (
   <Container>
     <Card>
       <MediaContainer fullWidth>

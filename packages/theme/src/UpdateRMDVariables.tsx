@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 
 import UpdateVariables, { UpdateVariablesProps } from "./UpdateVariables";
 import {
@@ -8,7 +8,7 @@ import {
   toCSSVariableName,
 } from "./utils";
 
-const UpdateRMDVariables: FunctionComponent<UpdateVariablesProps> = ({
+const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
   variables: propVariables,
   ...props
 }) => {

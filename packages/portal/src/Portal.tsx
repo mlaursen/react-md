@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import getContainer, { PortalInto } from "./getContainer";
@@ -30,7 +30,7 @@ export interface PortalProps {
  * that `null` is always returned for server side rendering as well as a "nice" way to choose specific
  * portal targets or just falling back to the `document.body`.
  */
-const Portal: FunctionComponent<PortalProps> = ({ into, intoId, children }) => {
+const Portal: FC<PortalProps> = ({ into, intoId, children }) => {
   const [container, setContainer] = useState<HTMLElement | null>(null);
   // setting the container via useEffect instead of immediately in the render
   // just so that it doesn't throw an error immediately if the dom hasn't fully

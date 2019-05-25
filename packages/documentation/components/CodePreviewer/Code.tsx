@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { FlattenedFileTree } from "./useFiles";
 import { bem } from "@react-md/theme";
 import CodeBlock from "components/Code/CodeBlock";
@@ -11,7 +11,7 @@ export interface CodeProps {
 
 const block = bem("code-previewer");
 
-const Code: FunctionComponent<CodeProps> = ({ files, fileId, offset }) => {
+const Code: FC<CodeProps> = ({ files, fileId, offset }) => {
   let contents = "";
   let language = "markdown";
   if (fileId && files[fileId] && files[fileId].content) {

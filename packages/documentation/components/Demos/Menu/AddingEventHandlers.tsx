@@ -1,10 +1,10 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { Divider } from "@react-md/divider";
 
 import CustomMenuItems from "./CustomMenuItems";
 import AddingOnClick from "./AddingOnClick";
 
-const AddingEventHandlers: FunctionComponent = () => (
+const AddingEventHandlers: FC = () => (
   <Fragment>
     <AddingOnClick />
     <Divider />

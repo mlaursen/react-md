@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 
@@ -9,7 +9,7 @@ interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const block = bem("progress-container");
-const Container: FunctionComponent<ContainerProps> = ({
+const Container: FC<ContainerProps> = ({
   className,
   children,
   inline,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
 import { Omit } from "@react-md/utils";
@@ -12,7 +12,7 @@ export interface HeadingProps extends Omit<TextProps, "type"> {
   level: Level;
 }
 
-const Heading: FunctionComponent<HeadingProps> = ({
+const Heading: FC<HeadingProps> = ({
   id,
   level,
   children,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
@@ -16,7 +16,7 @@ const transformedPeople = people.map((name, i) => ({
   color: COLORS[i % COLORS.length],
 }));
 
-const ColorExamples: FunctionComponent = () => (
+const ColorExamples: FC = () => (
   <Fragment>
     <Container>
       {COLORS.map(color => (

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Text } from "@react-md/typography";
 import { SimplePosition } from "@react-md/utils";
 
@@ -7,7 +7,7 @@ import TooltippedButton from "./TooltippedButton";
 
 const positions: SimplePosition[] = ["above", "right", "below", "left"];
 
-const DenseTooltips: FunctionComponent = () => {
+const DenseTooltips: FC = () => {
   return (
     <Fragment>
       <Text type="headline-6" margin="none">

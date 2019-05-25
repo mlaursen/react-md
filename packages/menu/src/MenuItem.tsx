@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef } from "react";
+import React, { FC, forwardRef } from "react";
 import cn from "classnames";
 import { ListItem, ListItemProps } from "@react-md/list";
 import { WithForwardedRef } from "@react-md/utils";
@@ -26,7 +26,7 @@ type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<Pick<MenuItemProps, "role" | "tabIndex">>;
 type WithDefaultProps = MenuItemProps & DefaultProps & WithRef;
 
-const MenuItem: FunctionComponent<MenuItemProps & WithRef> = providedProps => {
+const MenuItem: FC<MenuItemProps & WithRef> = providedProps => {
   const {
     className,
     children,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 import { Text } from "@react-md/typography";
@@ -6,7 +6,7 @@ import CodeBlock from "components/Code/CodeBlock";
 
 const BrokenButton = () => <Button>No go</Button>;
 
-const AdvancedAPIGotchas: FunctionComponent = () => (
+const AdvancedAPIGotchas: FC = () => (
   <Fragment>
     <Text type="headline-6">Broken Tooltip</Text>
     <Tooltipped id="broken-tooltip" tooltip="I will never appear :(">

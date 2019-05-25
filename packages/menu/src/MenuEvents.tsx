@@ -1,4 +1,4 @@
-import { FunctionComponent, MutableRefObject } from "react";
+import { FC, MutableRefObject } from "react";
 import { usePreviousFocus, useFocusOnMount } from "@react-md/wia-aria";
 
 export interface MenuEventsProps {
@@ -11,10 +11,7 @@ export interface MenuEventsProps {
  * initial focus on mount and re-focusing a previous element on unmount.
  * @private
  */
-const MenuEvents: FunctionComponent<MenuEventsProps> = ({
-  menuRef,
-  defaultFocus,
-}) => {
+const MenuEvents: FC<MenuEventsProps> = ({ menuRef, defaultFocus }) => {
   usePreviousFocus(false);
   useFocusOnMount(menuRef, defaultFocus, true);
   return null;

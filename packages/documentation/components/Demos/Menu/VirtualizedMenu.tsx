@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, useState, ReactNode } from "react";
+import React, { FC, Fragment, useState, ReactNode } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
 import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import scssVariables from "@react-md/list/dist/scssVariables";
@@ -14,7 +14,7 @@ const desktopHeight = unitToNumber(
 );
 
 type Item = { leftAvatar: ReactNode; children: string };
-const VirtualizedMenu: FunctionComponent<{ items: Item[] }> = ({ items }) => {
+const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   const { isDesktop } = useAppSize();
   const [value, setValue] = useState("None");
 

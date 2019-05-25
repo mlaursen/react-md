@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import { withRouter, SingletonRouter } from "next/router";
 
@@ -19,7 +19,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = PageMetaProps & DefaultProps;
 
-const PageMeta: FunctionComponent<PageMetaProps> = props => {
+const PageMeta: FC<PageMetaProps> = props => {
   const { title, description, image, router } = props as WithDefaultProps;
 
   return (

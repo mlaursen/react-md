@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 
 import "./custom-interactions.scss";
 
-const CustomInteractions: FunctionComponent = () => (
+const CustomInteractions: FC = () => (
   <Button
     id="custom-state-button"
     enablePressedAndRipple

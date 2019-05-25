@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -25,9 +25,7 @@ const block = bem("rmd-dialog");
  * since it is set up so only the content will scroll while the header and footer will
  * be "fixed".
  */
-const DialogContent: FunctionComponent<
-  DialogContentProps & WithRef
-> = providedProps => {
+const DialogContent: FC<DialogContentProps & WithRef> = providedProps => {
   const {
     children,
     className,

@@ -1,15 +1,10 @@
-import React, {
-  FunctionComponent,
-  useState,
-  Fragment,
-  useCallback,
-} from "react";
+import React, { FC, useState, Fragment, useCallback } from "react";
 import { Sheet, SheetPosition } from "@react-md/sheet";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { useToggle } from "@react-md/utils";
 
-const PositionExamples: FunctionComponent = () => {
+const PositionExamples: FC = () => {
   const [position, setPosition] = useState<SheetPosition>("bottom");
   const { toggled, disable, toggle } = useToggle();
 

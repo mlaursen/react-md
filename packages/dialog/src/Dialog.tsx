@@ -2,7 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   Fragment,
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   ReactNode,
   useCallback,
@@ -188,9 +188,7 @@ const noop = () => {};
 const block = bem("rmd-dialog");
 const overlayBlock = bem("rmd-dialog-overlay");
 
-const Dialog: FunctionComponent<
-  StrictDialogProps & WithRef
-> = providedProps => {
+const Dialog: FC<StrictDialogProps & WithRef> = providedProps => {
   const {
     children,
     forwardedRef,

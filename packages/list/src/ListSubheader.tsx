@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -16,9 +16,7 @@ type WithDefaultProps = ListSubheaderProps & DefaultProps & WithRef;
 
 const block = bem("rmd-list-subheader");
 
-const ListSubheader: FunctionComponent<
-  ListSubheaderProps & WithRef
-> = providedProps => {
+const ListSubheader: FC<ListSubheaderProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,

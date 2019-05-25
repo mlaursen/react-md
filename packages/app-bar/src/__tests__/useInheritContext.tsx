@@ -1,4 +1,4 @@
-import React, { MutableRefObject, FunctionComponent } from "react";
+import React, { MutableRefObject, FC } from "react";
 import { renderHook } from "react-hooks-testing-library";
 import { render, cleanup } from "react-testing-library";
 
@@ -17,7 +17,7 @@ describe("useInheritContext", () => {
       current: undefined,
     };
 
-    const Context: FunctionComponent = ({ children }) => (
+    const Context: FC = ({ children }) => (
       <InheritContext.Provider value={true}>{children}</InheritContext.Provider>
     );
 

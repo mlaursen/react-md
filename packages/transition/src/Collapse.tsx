@@ -1,6 +1,6 @@
 import {
   CSSProperties,
-  FunctionComponent,
+  FC,
   isValidElement,
   ReactElement,
   RefObject,
@@ -52,7 +52,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = CollapseProps & DefaultProps;
 
-const Collapse: FunctionComponent<CollapseProps> = providedProps => {
+const Collapse: FC<CollapseProps> = providedProps => {
   const { children, ...props } = providedProps as WithDefaultProps;
   if (isValidElement(children)) {
     return useCollapsibleElement(children, props);

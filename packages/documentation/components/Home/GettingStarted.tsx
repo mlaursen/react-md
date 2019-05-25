@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   Card,
   CardHeader,
@@ -18,7 +18,7 @@ import { Component as SVG } from "./getting-started.svg";
 
 const block = bem("home");
 
-const GettingStarted: FunctionComponent = () => (
+const GettingStarted: FC = () => (
   <Card className={block("card")}>
     <CardHeader>
       <CardTitle>Getting Started</CardTitle>

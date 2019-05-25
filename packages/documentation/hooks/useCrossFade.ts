@@ -10,8 +10,7 @@ let rendered = false;
 
 export default function useCrossFade(baseClassName?: string) {
   if (typeof window === "undefined") {
-    // never trigger this server side
-    return baseClassName;
+    // never trigger this server side return baseClassName;
   }
   if (!rendered) {
     rendered = true;

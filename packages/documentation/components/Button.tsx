@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { Button as RMDButton, ButtonProps } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 
@@ -7,7 +7,7 @@ interface Props extends ButtonProps {
   tooltip?: ReactNode;
 }
 
-const Button: FunctionComponent<Props> = ({
+const Button: FC<Props> = ({
   id,
   tooltip,
   onMouseEnter,

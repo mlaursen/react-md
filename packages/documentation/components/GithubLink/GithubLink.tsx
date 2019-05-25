@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { Omit } from "@react-md/utils";
 
@@ -18,7 +18,7 @@ type WithDefaultProps = GithubLinkProps & { href: string };
 
 const block = bem("github-link");
 
-const GithubLink: FunctionComponent<GithubLinkProps> = providedProps => {
+const GithubLink: FC<GithubLinkProps> = providedProps => {
   const {
     className,
     href,

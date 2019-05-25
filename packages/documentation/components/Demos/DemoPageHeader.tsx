@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 
 import Heading from "components/Heading";
@@ -13,10 +13,7 @@ interface DemoPageHeaderProps {
 
 const block = bem("demo");
 
-const DemoPageHeader: FunctionComponent<DemoPageHeaderProps> = ({
-  children,
-  packageName,
-}) => {
+const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
   if (!children) {
     return null;
   }

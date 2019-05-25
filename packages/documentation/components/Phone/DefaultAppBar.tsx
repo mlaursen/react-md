@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { AppBarTitle, AppBar } from "@react-md/app-bar";
 
 import ClosePhone from "./ClosePhone";
@@ -7,7 +7,7 @@ import OptionsAction from "./OptionsAction";
 import PhoneAppBar from "./PhoneAppBar";
 import SearchAction from "./SearchAction";
 
-const DefaultPhoneAppBar: FunctionComponent = () => {
+const DefaultPhoneAppBar: FC = () => {
   const { title } = usePhoneContext();
   return (
     <PhoneAppBar>

@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { Text, TextContainer } from "@react-md/typography";
 
-const HorizontalDividers: FunctionComponent = () => (
+const HorizontalDividers: FC = () => (
   <TextContainer>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis nunc

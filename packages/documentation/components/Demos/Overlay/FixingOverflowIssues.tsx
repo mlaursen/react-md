@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/utils";
 
 import "./fixing-overflow-issues.scss";
 
-const FixingOverflowIssues: FunctionComponent = () => {
+const FixingOverflowIssues: FC = () => {
   const { toggled: visible, disable, toggle } = useToggle();
   const { toggled: portal, setToggled: setPortal } = useToggle();
   return (

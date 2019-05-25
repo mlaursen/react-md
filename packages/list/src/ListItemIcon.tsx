@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
@@ -15,7 +15,7 @@ export interface ListItemIconProps extends TextIconSpacingProps {
 
 const base = bem("rmd-list-item");
 
-const ListItemIcon: FunctionComponent<ListItemIconProps> = ({
+const ListItemIcon: FC<ListItemIconProps> = ({
   className,
   avatar,
   before,

@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   HTMLAttributes,
   forwardRef,
   CSSProperties,
@@ -97,9 +97,7 @@ type WithDefaultProps = CircularProgressProps & DefaultProps & WithRef;
 
 const block = bem("rmd-circular-progress");
 
-const CircularProgress: FunctionComponent<
-  CircularProgressProps & WithRef
-> = providedProps => {
+const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
   const {
     id,
     className,

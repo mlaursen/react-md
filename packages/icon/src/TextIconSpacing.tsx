@@ -3,7 +3,7 @@ import React, {
   isValidElement,
   Fragment,
   Children,
-  FunctionComponent,
+  FC,
   ReactNode,
   ReactElement,
 } from "react";
@@ -68,7 +68,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = TextIconSpacingProps & DefaultProps;
 
-const TextIconSpacing: FunctionComponent<TextIconSpacingProps> = props => {
+const TextIconSpacing: FC<TextIconSpacingProps> = props => {
   const {
     icon: propIcon,
     iconAfter,

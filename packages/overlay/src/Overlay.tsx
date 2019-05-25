@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, FunctionComponent, forwardRef } from "react";
+import React, { HTMLAttributes, FC, forwardRef } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
@@ -41,7 +41,7 @@ const block = bem("rmd-overlay");
  * an enter and exit animation. If there are overflow issues or you need to portal the overlay to a
  * different area within your app, you should use the `OverlayPortal` component instead.
  */
-const Overlay: FunctionComponent<OverlayProps & WithRef> = providedProps => {
+const Overlay: FC<OverlayProps & WithRef> = providedProps => {
   const {
     className,
     visible,

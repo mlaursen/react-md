@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -11,11 +11,11 @@ import {
 import "./simple-determinate-example.scss";
 import { useDownloadInterval } from "./useDownloadInterval";
 
-const Container: FunctionComponent = ({ children }) => (
+const Container: FC = ({ children }) => (
   <div className="determinate-example-container">{children}</div>
 );
 
-const SimpleDeterminateExamples: FunctionComponent = () => {
+const SimpleDeterminateExamples: FC = () => {
   const {
     value: value1,
     running: running1,

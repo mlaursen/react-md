@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef } from "react";
+import React, { FC, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
@@ -35,9 +35,7 @@ const block = bem("rmd-app-bar");
  * It also will automatically add spacing either before or after this button when the `first`
  * or `last` props are provided.
  */
-const AppBarAction: FunctionComponent<
-  AppBarActionProps & WithRef
-> = providedProps => {
+const AppBarAction: FC<AppBarActionProps & WithRef> = providedProps => {
   const {
     className,
     first,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { useInteractionStates } from "@react-md/states";
@@ -13,7 +13,7 @@ export interface LinkButtonProps
   tooltipClassName?: string;
 }
 
-const LinkButton: FunctionComponent<LinkButtonProps> = providedProps => {
+const LinkButton: FC<LinkButtonProps> = providedProps => {
   const {
     className: propClassName,
     theme,

@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  useCallback,
-  useState,
-} from "react";
+import React, { FC, HTMLAttributes, useCallback, useState } from "react";
 import Divider from "./Divider";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
@@ -64,9 +59,7 @@ export function useVerticalDividerHeight(maxHeight: number) {
  * be set to `auto` (which computes to 0 most of the time) when it is not set on a parent
  * element.
  */
-const VerticalDivider: FunctionComponent<
-  VerticalDividerProps
-> = providedProps => {
+const VerticalDivider: FC<VerticalDividerProps> = providedProps => {
   const { style, maxHeight, ...props } = providedProps as WithDefaultProps;
 
   const { ref, height } = useVerticalDividerHeight(maxHeight);

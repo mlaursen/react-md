@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, createRef } from "react";
+import React, { FC, HTMLAttributes, createRef } from "react";
 import { renderHook } from "react-hooks-testing-library";
 import { fireEvent, render, cleanup } from "react-testing-library";
 
@@ -19,7 +19,7 @@ export interface Props
   pressedRef?: { current: boolean | null };
   disableSpacebarClick?: boolean;
 }
-const Test: FunctionComponent<Props> = ({
+const Test: FC<Props> = ({
   onKeyDown,
   onKeyUp,
   onMouseDown,

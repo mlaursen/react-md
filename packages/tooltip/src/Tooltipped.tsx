@@ -2,7 +2,7 @@ import React, {
   Children,
   cloneElement,
   Fragment,
-  FunctionComponent,
+  FC,
   ReactElement,
   ReactNode,
   useMemo,
@@ -161,7 +161,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = TooltippedProps & DefaultProps;
 
-const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
+const Tooltipped: FC<TooltippedProps> = providedProps => {
   const {
     id,
     children,

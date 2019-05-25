@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import { CodeBlock } from "components/Code";
 import { Markdown } from "components/Markdown";
@@ -8,9 +8,7 @@ export interface VariableTableProps {
   variables: FormattedVariableSassDoc[];
 }
 
-const VariableTable: FunctionComponent<VariableTableProps> = ({
-  variables,
-}) => {
+const VariableTable: FC<VariableTableProps> = ({ variables }) => {
   return (
     <div className="table-container">
       <table id="sassdoc-variables" className="table">

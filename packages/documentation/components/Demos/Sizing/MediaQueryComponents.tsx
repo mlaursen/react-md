@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import {
   MobileOnly,
   PhoneOnly,
@@ -10,7 +10,7 @@ import { Divider } from "@react-md/divider";
 
 import "./media-query-components.scss";
 
-const MediaQueryComponents: FunctionComponent = () => (
+const MediaQueryComponents: FC = () => (
   <Fragment>
     <TextContainer>
       <MobileOnly>

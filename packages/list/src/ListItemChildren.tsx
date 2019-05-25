@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, Fragment } from "react";
+import React, { FC, ReactNode, Fragment } from "react";
 
 import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
 import ListItemText from "./ListItemText";
@@ -107,7 +107,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = ListItemChildrenProps & DefaultProps;
 
-const ListItemChildren: FunctionComponent<ListItemChildrenProps> = props => {
+const ListItemChildren: FC<ListItemChildrenProps> = props => {
   const {
     textClassName,
     secondaryTextClassName,

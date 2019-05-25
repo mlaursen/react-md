@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import {
   Card,
@@ -10,7 +10,7 @@ import {
 import { Text } from "@react-md/typography";
 import Container from "./Container";
 
-const SimpleExample: FunctionComponent = () => (
+const SimpleExample: FC = () => (
   <Container>
     <Card>
       <CardHeader>

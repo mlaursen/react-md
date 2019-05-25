@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { render } from "react-dom";
 import { act } from "react-dom/test-utils";
 
@@ -203,9 +203,7 @@ describe("utils", () => {
       style.getPropertyValue = (name: string) => style[name];
     });
 
-    const Test: FunctionComponent<{ variables: CSSVariable[] }> = ({
-      variables,
-    }) => {
+    const Test: FC<{ variables: CSSVariable[] }> = ({ variables }) => {
       useDocumentCSSVariables(variables);
       return null;
     };

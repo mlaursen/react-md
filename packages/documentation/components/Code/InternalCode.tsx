@@ -1,8 +1,8 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import Code, { CodeProps } from "./Code";
 import GoogleFont from "components/GoogleFont";
 
-const InternalCode: FunctionComponent<CodeProps> = props => (
+const InternalCode: FC<CodeProps> = props => (
   <Fragment>
     <GoogleFont font="Source Code Pro" />
     <Code {...props} />

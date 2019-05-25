@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 
 import GoogleFont from "components/GoogleFont";
@@ -7,7 +7,7 @@ export interface DemoPageFontProps {
   font: string;
 }
 
-const DemoPageFont: FunctionComponent<DemoPageFontProps> = ({ font }) => {
+const DemoPageFont: FC<DemoPageFontProps> = ({ font }) => {
   if (font === "Font Awesome") {
     return (
       <Head>

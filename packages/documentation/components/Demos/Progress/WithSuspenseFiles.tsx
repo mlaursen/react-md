@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@react-md/material-icons";
 import { CrossFade } from "@react-md/transition";
 
-const WithSuspenseFiles: FunctionComponent = () => (
+const WithSuspenseFiles: FC = () => (
   <CrossFade>
     <List>
       <ListItem

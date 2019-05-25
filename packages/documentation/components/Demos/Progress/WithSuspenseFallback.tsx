@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { LinearProgress } from "@react-md/progress";
 import { Text } from "@react-md/typography";
 import { bem } from "@react-md/theme";
@@ -9,9 +9,7 @@ interface WithSuspenseFallbackProps {
 
 const block = bem("progress-suspense");
 
-const WithSuspenseFallback: FunctionComponent<WithSuspenseFallbackProps> = ({
-  complete,
-}) => {
+const WithSuspenseFallback: FC<WithSuspenseFallbackProps> = ({ complete }) => {
   // trigger the complete action when this component unmounts
   useEffect(() => () => complete(), []);
 

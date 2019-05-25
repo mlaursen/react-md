@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Tooltipped } from "@react-md/tooltip";
 
 import GithubLink from "components/GithubLink";
@@ -8,10 +8,7 @@ export interface GithubDemoLinkProps {
   href: string;
 }
 
-const GithubDemoLink: FunctionComponent<GithubDemoLinkProps> = ({
-  id,
-  href,
-}) => (
+const GithubDemoLink: FC<GithubDemoLinkProps> = ({ id, href }) => (
   <Tooltipped id={id} tooltip="View source GitHub">
     <GithubLink href={href} />
   </Tooltipped>

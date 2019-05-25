@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import cn from "classnames";
 import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import {
@@ -15,7 +15,7 @@ interface Props extends AppBarNavProps {
   floating?: boolean;
 }
 
-const ClosePhone: FunctionComponent<Props> = ({
+const ClosePhone: FC<Props> = ({
   children,
   onClick,
   floating,

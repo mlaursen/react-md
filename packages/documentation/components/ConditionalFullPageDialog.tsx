@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-} from "react";
+import React, { Fragment, FC, ReactElement, ReactNode } from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -31,7 +26,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = ConditionalFullPageDialogProps & DefaultProps;
 
-const ConditionalFullPageDialog: FunctionComponent<
+const ConditionalFullPageDialog: FC<
   ConditionalFullPageDialogProps
 > = providedProps => {
   const {

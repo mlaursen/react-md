@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
 
@@ -14,12 +14,7 @@ interface ColorProps extends ColorValue {
 
 const block = bem("color-palette");
 
-const Color: FunctionComponent<ColorProps> = ({
-  name,
-  value,
-  primary,
-  secondary,
-}) => {
+const Color: FC<ColorProps> = ({ name, value, primary, secondary }) => {
   const withoutRMD = name.replace("rmd-", "");
   let hexValue = value;
   if (hexValue.length === 4) {

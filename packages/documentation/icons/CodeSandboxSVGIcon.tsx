@@ -1,12 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { SVGIconProps } from "@react-md/icon";
 import { Component as CodeSandboxIcon } from "./codesandbox.svg";
 
-const CodeSandboxSVGIcon: FunctionComponent<SVGIconProps> = ({
-  className,
-  ...props
-}) => (
+const CodeSandboxSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
   <CodeSandboxIcon
     {...props}
     className={cn("rmd-icon rmd-icon--svg", className)}

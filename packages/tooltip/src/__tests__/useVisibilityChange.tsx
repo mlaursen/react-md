@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { render, cleanup } from "react-testing-library";
 
 import useVisiblityChange from "../useVisibilityChange";
@@ -11,7 +11,7 @@ interface Props {
   visible: boolean;
   mode: TooltipInitiated;
 }
-const Test: FunctionComponent<Props> = ({ visible, mode }) => {
+const Test: FC<Props> = ({ visible, mode }) => {
   useVisiblityChange({
     mode,
     visible,

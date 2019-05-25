@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import {
   CSSTransitionClassNames,
@@ -18,7 +18,7 @@ export interface RippleContainerProps {
   classNames?: CSSTransitionClassNames;
 }
 
-const RippleContainer: FunctionComponent<RippleContainerProps> = ({
+const RippleContainer: FC<RippleContainerProps> = ({
   ripples,
   className,
   rippleClassName,

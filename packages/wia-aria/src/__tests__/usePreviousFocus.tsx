@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { cleanup, render } from "react-testing-library";
 
 import usePreviousFocus, { FocusFallback } from "../usePreviousFocus";
@@ -21,7 +21,7 @@ interface TestProps {
   previousElement?: HTMLElement | null;
 }
 
-const Test: FunctionComponent<TestProps> = ({
+const Test: FC<TestProps> = ({
   disabled,
   fallback,
   previousElement = null,
@@ -40,7 +40,7 @@ interface TestComponentProps extends TestProps {
   buttonMounted?: boolean;
 }
 
-const TestComponent: FunctionComponent<TestComponentProps> = ({
+const TestComponent: FC<TestComponentProps> = ({
   mounted,
   buttonMounted = true,
   ...props

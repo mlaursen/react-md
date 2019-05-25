@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";
@@ -14,7 +14,7 @@ import people from "constants/people";
 
 import Container from "./Container";
 
-const SingleLineExamples: FunctionComponent = () => (
+const SingleLineExamples: FC = () => (
   <Container>
     <List>
       {people.slice(0, 5).map((name, i) => (

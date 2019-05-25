@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import {
   AppBar,
   AppBarNav,
@@ -16,7 +16,7 @@ import Container from "./Container";
 
 const themes: AppBarTheme[] = ["primary", "secondary", "default", "clear"];
 
-const SimpleUsage: FunctionComponent = () => (
+const SimpleUsage: FC = () => (
   <Container>
     {themes.map((theme, i) => (
       <AppBar id={`simple-usage-app-bar-${i}`} theme={theme} key={theme}>

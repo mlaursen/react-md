@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Collapse } from "@react-md/transition";
 import { Card, CardHeader, CardTitle, CardSubtitle } from "@react-md/card";
 import { Avatar } from "@react-md/avatar";
@@ -15,7 +15,7 @@ import { MediaContainer } from "@react-md/media";
 
 import Container from "./Container";
 
-const ExpandableCards: FunctionComponent = () => {
+const ExpandableCards: FC = () => {
   const { toggled: expanded, toggle } = useToggle();
   return (
     <Container centered>

@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text, TextContainer } from "@react-md/typography";
 
 import Link from "components/Link";
 import { Code } from "components/Code";
 
-const Goals: FunctionComponent = () => (
+const Goals: FC = () => (
   <TextContainer className="home__goals">
     <Text type="headline-6" component="p">
       This project's goal is to create extremely customizable and fully

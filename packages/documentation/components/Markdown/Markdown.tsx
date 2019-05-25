@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   useState,
   useEffect,
   useMemo,
@@ -77,11 +77,7 @@ export interface MarkdownProps extends HTMLAttributes<HTMLDivElement> {
   children: ResolveMarkdown | string;
 }
 
-const Markdown: FunctionComponent<MarkdownProps> = ({
-  className,
-  children,
-  ...props
-}) => {
+const Markdown: FC<MarkdownProps> = ({ className, children, ...props }) => {
   const html = useHTML(children);
   const ref = useLinkUpdates(html);
   return (

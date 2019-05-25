@@ -1,6 +1,6 @@
 import React, {
   createContext,
-  FunctionComponent,
+  FC,
   useCallback,
   useContext,
   useMemo,
@@ -28,9 +28,7 @@ const { Provider } = context;
  *
  * This should be added to the root of your app if you would like to enable this feature.
  */
-export const NestedDialogContextProvider: FunctionComponent = ({
-  children,
-}) => {
+export const NestedDialogContextProvider: FC = ({ children }) => {
   const [stack, setStack] = useState<string[]>([]);
   const add = useCallback((dialogId: string) => {
     setStack(prevStack => {

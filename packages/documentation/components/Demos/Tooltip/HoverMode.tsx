@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { TooltipHoverModeConfig, Tooltipped } from "@react-md/tooltip";
 import { Button } from "@react-md/button";
 
 import Container from "./Container";
 
-const HoverMode: FunctionComponent = () => (
+const HoverMode: FC = () => (
   <TooltipHoverModeConfig>
     <Container>
       {Array.from(new Array(8)).map((_, i) => (

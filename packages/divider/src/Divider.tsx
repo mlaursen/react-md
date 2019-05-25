@@ -1,9 +1,4 @@
-import React, {
-  ElementType,
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-} from "react";
+import React, { ElementType, forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -39,7 +34,7 @@ type WithDefaultProps = DividerProps & DefaultProps & WithRef;
 
 const block = bem("rmd-divider");
 
-const Divider: FunctionComponent<DividerProps & WithRef> = providedProps => {
+const Divider: FC<DividerProps & WithRef> = providedProps => {
   const {
     inset,
     vertical,

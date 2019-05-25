@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { bem } from "@react-md/theme";
 
 import Link from "components/Link";
@@ -12,11 +12,7 @@ export interface ListProps {
 
 const block = bem("table-of-contents");
 
-const List: FunctionComponent<ListProps> = ({
-  headings,
-  isLargeDesktop,
-  onRequestClose,
-}) => {
+const List: FC<ListProps> = ({ headings, isLargeDesktop, onRequestClose }) => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLUListElement>) => {
       if (

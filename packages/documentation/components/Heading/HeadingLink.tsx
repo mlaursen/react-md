@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import LinkUnstyled from "components/LinkUnstyled";
 
 export interface HeadingLinkProps {
   idRef: string;
 }
 
-const HeadingLink: FunctionComponent<HeadingLinkProps> = ({ idRef }) => {
+const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       const area = document.createElement("textarea");

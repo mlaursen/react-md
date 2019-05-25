@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import {
   LinearProgress,
@@ -10,7 +10,7 @@ import Phone from "components/Phone";
 import "./simple-examples.scss";
 import useTemporaryToggle from "./useTemporaryToggle";
 
-const SimpleIndeterminateExamples: FunctionComponent = () => {
+const SimpleIndeterminateExamples: FC = () => {
   const {
     toggled: linearVisible,
     toggle: toggleLinear,

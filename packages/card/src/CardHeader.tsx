@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  forwardRef,
-  ReactNode,
-} from "react";
+import React, { FC, HTMLAttributes, forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/theme";
@@ -57,9 +52,7 @@ const block = bem("rmd-card");
  * components. There is also additional functionality built in to render items
  * before or after the main children with some additional spacing.
  */
-const CardHeader: FunctionComponent<
-  CardHeaderProps & WithRef
-> = providedProps => {
+const CardHeader: FC<CardHeaderProps & WithRef> = providedProps => {
   const {
     align,
     className,

@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ElementType,
-} from "react";
+import React, { forwardRef, FC, HTMLAttributes, ElementType } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -88,7 +83,7 @@ const block = bem("rmd-link");
  * routing library like `react-router` or `reach-router` by providing the `Link` as the
  * `linkComponent` prop.
  */
-const Link: FunctionComponent<
+const Link: FC<
   (LinkProps | LinkWithComponentProps) & WithRef
 > = providedProps => {
   const {

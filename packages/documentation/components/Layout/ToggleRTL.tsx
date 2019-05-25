@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import {
   FormatAlignLeftSVGIcon,
@@ -7,7 +7,7 @@ import {
 import { Tooltipped } from "@react-md/tooltip";
 import { useToggle } from "@react-md/utils";
 
-const ToggleRTL: FunctionComponent = () => {
+const ToggleRTL: FC = () => {
   const { toggled, toggle } = useToggle();
 
   useEffect(() => {

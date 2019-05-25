@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { Text } from "@react-md/typography";
 
 import { CodeBlock } from "components/Code";
@@ -12,7 +12,7 @@ export interface SassDocPageProps {
   sassdoc: PackageSassDoc;
 }
 
-const SassDocPage: FunctionComponent<SassDocPageProps> = ({ sassdoc }) => {
+const SassDocPage: FC<SassDocPageProps> = ({ sassdoc }) => {
   const { variables /*functions, mixins*/ } = sassdoc;
   return (
     <Fragment>

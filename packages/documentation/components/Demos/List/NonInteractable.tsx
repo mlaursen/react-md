@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { List, SimpleListItem } from "@react-md/list";
 
 import people from "constants/people";
@@ -6,7 +6,7 @@ import people from "constants/people";
 import Container from "./Container";
 import "./non-interactable.scss";
 
-const NonInteractable: FunctionComponent = () => (
+const NonInteractable: FC = () => (
   <div className="simple-list-examples">
     <Container>
       <List>

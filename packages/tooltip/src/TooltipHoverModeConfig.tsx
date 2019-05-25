@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, useMemo } from "react";
+import React, { ReactNode, FC, useMemo } from "react";
 import { DEFAULT_DELAY } from "./constants";
 import {
   HoverModeDelay,
@@ -25,9 +25,7 @@ type WithDefaultProps = TooltipHoverModeConfigProps & DefaultProps;
  * all other tooltips will become visible immediately until 3 seconds
  * have passed.
  */
-const TooltipHoverModeConfig: FunctionComponent<
-  TooltipHoverModeConfigProps
-> = props => {
+const TooltipHoverModeConfig: FC<TooltipHoverModeConfigProps> = props => {
   const {
     defaultDelay,
     delayTimeout,

@@ -1,11 +1,11 @@
-import React, { FunctionComponent, memo } from "react";
+import React, { FC, memo } from "react";
 import Head from "next/head";
 
 export interface GoogleFontProps {
   font: string;
 }
 
-const GoogleFont: FunctionComponent<GoogleFontProps> = ({ font }) => {
+const GoogleFont: FC<GoogleFontProps> = ({ font }) => {
   const name = font.split(" ").join("+");
 
   return (

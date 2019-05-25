@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import {
   AppBarAction as RMDAppBarAction,
   AppBarActionProps,
@@ -10,7 +10,7 @@ interface Props extends AppBarActionProps {
   tooltip?: ReactNode;
 }
 
-const AppBarAction: FunctionComponent<Props> = ({
+const AppBarAction: FC<Props> = ({
   id,
   tooltip,
   onMouseEnter,

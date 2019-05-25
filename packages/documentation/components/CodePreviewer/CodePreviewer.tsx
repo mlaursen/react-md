@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { DialogProps } from "@react-md/dialog/types/Dialog";
@@ -20,7 +20,7 @@ export interface CodePreviewerProps
 
 const block = bem("code-previewer");
 
-const CodePreviewer: FunctionComponent<CodePreviewerProps> = ({
+const CodePreviewer: FC<CodePreviewerProps> = ({
   visible,
   onRequestClose,
   projectName,

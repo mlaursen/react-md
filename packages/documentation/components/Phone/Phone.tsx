@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { FC, ReactNode, useMemo, useCallback } from "react";
 import cn from "classnames";
 import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
@@ -75,7 +70,7 @@ type WithDefaultProps = PhoneProps & DefaultProps;
 
 const block = bem("phone");
 
-const Phone: FunctionComponent<PhoneProps> = props => {
+const Phone: FC<PhoneProps> = props => {
   const {
     id,
     title,

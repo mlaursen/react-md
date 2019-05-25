@@ -96,7 +96,7 @@ return an object containing:
   to the DOM element so all the interaction states can happen.
 
 ```tsx
-import React, { HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import { render } from "react-dom";
 import {
   StatesConfig,
@@ -106,7 +106,7 @@ import {
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> &
   InteractionStatesOptions<HTMLButtonElement>;
-const Button: FunctionComponent<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   className: propClassName,
   disabled,
   disableRipple,

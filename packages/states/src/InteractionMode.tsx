@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  FunctionComponent,
-  ReactNode,
-} from "react";
+import React, { createContext, useContext, FC, ReactNode } from "react";
 import {
   useModeClassName,
   useModeDetection,
@@ -24,7 +19,7 @@ export function useInteractionModeContext() {
  * A component that should be mounted once in your app near the top of the tree to
  * determine the current interaction mode for your app.
  */
-export const InteractionModeListener: FunctionComponent<{
+export const InteractionModeListener: FC<{
   children: ReactNode;
 }> = ({ children }) => {
   if (useContext(ParentContext)) {

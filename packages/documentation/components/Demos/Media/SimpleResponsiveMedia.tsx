@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { MediaContainer } from "@react-md/media";
 
 import "./simple-responsive-media.scss";
@@ -9,7 +9,7 @@ const images = [
   "/100/110?image=233",
 ];
 
-const SimpleResponsiveImages: FunctionComponent = () => (
+const SimpleResponsiveImages: FC = () => (
   <Fragment>
     {images.map((image, i) => (
       <MediaContainer key={i} className="responsive-item">

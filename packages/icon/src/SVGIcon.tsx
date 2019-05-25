@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { forwardRef, FC, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -139,7 +134,7 @@ const block = bem("rmd-icon");
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
  */
-const SVGIcon: FunctionComponent<
+const SVGIcon: FC<
   SVGIconProps & WithForwardedRef<SVGSVGElement>
 > = providedProps => {
   const {

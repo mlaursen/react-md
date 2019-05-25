@@ -97,6 +97,12 @@ const sandboxes: SandboxesRecord = {
     resolve(import("./Menu/AddingEventHandlersSandbox.json")),
   "Menu/CustomRenderers": () =>
     resolve(import("./Menu/CustomRenderersSandbox.json")),
+  "Menu/FixingOverflowIssues": () =>
+    resolve(import("./Menu/FixingOverflowIssuesSandbox.json")),
+  "Menu/LowerLevelComponents": () =>
+    resolve(import("./Menu/LowerLevelComponentsSandbox.json")),
+  "Menu/MenuPositioning": () =>
+    resolve(import("./Menu/MenuPositioningSandbox.json")),
   "Menu/SimpleExamples": () =>
     resolve(import("./Menu/SimpleExamplesSandbox.json")),
   "Overlay/CustomTheme": () =>

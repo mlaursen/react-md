@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ElementType,
-} from "react";
+import React, { forwardRef, FC, HTMLAttributes, ElementType } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
@@ -45,9 +40,7 @@ type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
 type DefaultProps = Required<Pick<ListItemLinkProps, "height" | "component">>;
 type WithDefaultProps = ListItemLinkProps & DefaultProps & WithRef;
 
-const ListItemLink: FunctionComponent<
-  ListItemLinkProps & WithRef
-> = providedProps => {
+const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
   const {
     textClassName,
     secondaryTextClassName,

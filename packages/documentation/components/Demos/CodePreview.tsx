@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FC } from "react";
 import { CodeSVGIcon } from "@react-md/material-icons";
 import { useToggle } from "@react-md/utils";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
@@ -19,7 +19,7 @@ export interface CodeFile {
   content: string;
 }
 
-const CodePreview: FunctionComponent<CodePreviewProps> = ({
+const CodePreview: FC<CodePreviewProps> = ({
   demoId,
   demoTitle,
   getSandbox,

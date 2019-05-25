@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import React, { FC, useCallback, useEffect, useRef } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
@@ -23,7 +18,7 @@ export interface RippleProps {
   ripple: RippleState;
 }
 
-const Ripple: FunctionComponent<RippleProps> = props => {
+const Ripple: FC<RippleProps> = props => {
   const {
     className,
     classNames: propClassNames,

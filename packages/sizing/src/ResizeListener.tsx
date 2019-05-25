@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Omit } from "@react-md/utils";
 
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
@@ -16,7 +16,7 @@ type WithDefaultProps = ResizeListenerProps & DefaultProps;
  * This component only works for entire app resize events. If you are looking for
  * specific element resize events, check out the `ResizeObserver` component instead.
  */
-const ResizeListener: FunctionComponent<ResizeListenerProps> = props => {
+const ResizeListener: FC<ResizeListenerProps> = props => {
   const { onResize, options, immediate } = props as WithDefaultProps;
 
   useResizeListener({ onResize, options, immediate, enabled: true });

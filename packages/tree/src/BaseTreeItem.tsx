@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLAttributes } from "react";
+import React, { forwardRef, FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 
@@ -19,9 +19,7 @@ type WithDefaultProps = BaseTreeItemProps & DefaultProps & WithRef;
  * If you want to render the treeitem as a link, please use the `TreeLinkItem` component instead
  * of this one.
  */
-const BaseTreeItem: FunctionComponent<
-  BaseTreeItemProps & WithRef
-> = providedProps => {
+const BaseTreeItem: FC<BaseTreeItemProps & WithRef> = providedProps => {
   const {
     className,
     children,

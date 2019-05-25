@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, FC, useEffect, useRef, useState } from "react";
 import { Button } from "@react-md/button";
 import {
   ResizeObserver,
@@ -88,7 +82,7 @@ function useRandomStyle(enabled: boolean) {
   return { style, containerRef };
 }
 
-const SimpleExample: FunctionComponent = () => {
+const SimpleExample: FC = () => {
   const { toggled: enabled, toggle } = useToggle(false);
   const { style, containerRef } = useRandomStyle(enabled);
   const { height, width, onResize } = useSize();

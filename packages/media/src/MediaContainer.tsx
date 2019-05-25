@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -43,7 +43,7 @@ const block = bem("rmd-media-container");
  * within your app. This component also allows for focing a specific aspect ratio
  * for these elements with both the `height` and `width` props are provided.
  */
-const MediaContainer: FunctionComponent<
+const MediaContainer: FC<
   (MediaContainerProps | MediaContainerWithAspectRatioProps) & WithRef
 > = ({
   className,

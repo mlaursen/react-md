@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Sheet } from "@react-md/sheet";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import { Tree, useTreeItemExpansion, useFlattenedTree } from "@react-md/tree";
@@ -17,7 +17,7 @@ export interface FileTreeProps {
 
 const block = bem("code-previewer");
 
-const FileTree: FunctionComponent<FileTreeProps> = ({
+const FileTree: FC<FileTreeProps> = ({
   files,
   inline,
   visible,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { FontIcon, TextIconSpacing } from "@react-md/icon";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@react-md/material-icons";
 import Container from "./Container";
 
-const TextButtonsWithIcons: FunctionComponent = () => (
+const TextButtonsWithIcons: FC = () => (
   <Container>
     <Button id="combined-button-1">
       <TextIconSpacing icon={<FontIcon>favorite</FontIcon>}>

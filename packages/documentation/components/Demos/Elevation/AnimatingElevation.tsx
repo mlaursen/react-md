@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import "./animating-elevation.scss";
 
-const AnimatingElevation: FunctionComponent = () => (
+const AnimatingElevation: FC = () => (
   <div className="animating-elevation-container">
     <button
       id="animating-elevation-1"

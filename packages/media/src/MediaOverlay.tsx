@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 
@@ -32,9 +32,7 @@ type WithDefaultProps = MediaOverlayProps & DefaultProps & WithRef;
  * items within the `MediaContainer` component. You will need to apply most of
  * your own styles as this is really just used for positioning.
  */
-const MediaOverlay: FunctionComponent<
-  MediaOverlayProps & WithRef
-> = providedProps => {
+const MediaOverlay: FC<MediaOverlayProps & WithRef> = providedProps => {
   const {
     className,
     children,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from "react";
+import React, { FC, HTMLAttributes, ReactNode } from "react";
 import { ViewHeadlineSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import Button from "components/Button";
@@ -9,7 +9,7 @@ export interface ToggleProps {
   isDialogVisible: boolean;
 }
 
-const Toggle: FunctionComponent<ToggleProps> = ({
+const Toggle: FC<ToggleProps> = ({
   onClick,
   isLargeDesktop,
   isDialogVisible,

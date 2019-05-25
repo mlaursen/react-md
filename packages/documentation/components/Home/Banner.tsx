@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { Text } from "@react-md/typography";
 import Logo from "./Logo";
 
-const Banner: FunctionComponent = () => (
+const Banner: FC = () => (
   <div className="home__banner">
     <Text type="headline-2" className="home__title">
       react-md

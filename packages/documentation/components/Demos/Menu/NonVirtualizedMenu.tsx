@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactNode, useState } from "react";
+import React, { Fragment, FC, ReactNode, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
@@ -6,9 +6,7 @@ import Code from "components/Code/Code";
 
 type Item = { leftAvatar: ReactNode; children: string };
 
-const NonVirtualizedMenu: FunctionComponent<{ items: Item[] }> = ({
-  items,
-}) => {
+const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   const [value, setValue] = useState("None");
   return (
     <Fragment>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef, HTMLAttributes } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -23,9 +23,7 @@ type WithDefaultProps = DialogFooterProps & DefaultProps & WithRef;
 
 const block = bem("rmd-dialog");
 
-const DialogFooter: FunctionComponent<
-  DialogFooterProps & WithRef
-> = providedProps => {
+const DialogFooter: FC<DialogFooterProps & WithRef> = providedProps => {
   const {
     children,
     className,

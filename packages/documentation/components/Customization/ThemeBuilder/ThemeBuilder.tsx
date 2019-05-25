@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
-const ThemeBuilder: FunctionComponent = () => {
+const ThemeBuilder: FC = () => {
   return <span />;
 };
 

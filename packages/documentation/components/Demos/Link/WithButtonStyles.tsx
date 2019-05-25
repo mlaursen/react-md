@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";
 
 import "./with-button-styles.scss";
 
-const LinkStyledButton: FunctionComponent<ButtonThemeProps & LinkProps> = ({
+const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
   className,
   theme,
   themeType,
@@ -34,7 +34,7 @@ LinkStyledButton.defaultProps = {
   buttonType: "text",
 };
 
-const WithButtonStyles: FunctionComponent = () => (
+const WithButtonStyles: FC = () => (
   <div className="link-button-styles">
     <LinkStyledButton href="https://react-md.dev">
       https://react-md.dev

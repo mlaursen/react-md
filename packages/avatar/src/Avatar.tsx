@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
@@ -44,7 +44,7 @@ const block = bem("rmd-avatar");
  * the avatar is not an image, different themes can be applied to make the avatar
  * more unique.
  */
-const Avatar: FunctionComponent<AvatarProps & WithRef> = providedProps => {
+const Avatar: FC<AvatarProps & WithRef> = providedProps => {
   const {
     className,
     children,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { TextIconSpacing } from "@react-md/icon";
@@ -9,7 +9,7 @@ import "./icon-spacing.scss";
 
 const CustomIcon = () => <HomeSVGIcon />;
 
-const IconSpacing: FunctionComponent = () => (
+const IconSpacing: FC = () => (
   <Fragment>
     <Text type="headline-5">Within buttons</Text>
     <Button id="icon-button-1" className="icon-spacing-button">

@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  FunctionComponent,
-  ReactNode,
-  useMemo,
-} from "react";
+import React, { forwardRef, FC, ReactNode, useMemo } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 
@@ -29,7 +24,7 @@ type WithDefaultProps = CodeBlockProps & DefaultProps & WithRef;
 
 const block = bem("code");
 
-const CodeBlock: FunctionComponent<CodeBlockProps & WithRef> = props => {
+const CodeBlock: FC<CodeBlockProps & WithRef> = props => {
   const {
     className,
     language,

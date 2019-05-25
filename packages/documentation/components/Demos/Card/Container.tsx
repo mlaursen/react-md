@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 import "./container.scss";
 import { bem } from "@react-md/theme";
@@ -9,7 +9,7 @@ interface Props {
 
 const block = bem("card-container");
 
-const Container: FunctionComponent<Props> = ({ children, centered }) => (
+const Container: FC<Props> = ({ children, centered }) => (
   <div className={block({ centered })}>{children}</div>
 );
 

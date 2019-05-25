@@ -1,10 +1,10 @@
-import React, { FunctionComponent, Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import { Link } from "@react-md/link";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-const SimpleExamples: FunctionComponent = () => (
+const SimpleExamples: FC = () => (
   <Fragment>
     <ul>
       <li>
