@@ -28,7 +28,13 @@ const TYPESCRIPT_PACKAGES = PACKAGES.filter(
     'Starting tsc in build watcher mode for the following packages...'
   );
   console.log(watchablePackages.map(p => `- ${p}`).join('\n'));
-  const args = ['tsc', '-b', '-w', ...watchablePackages];
+  const args = [
+    'tsc',
+    '-b',
+    '-w',
+    ...watchablePackages,
+    ...watchablePackages.map(pkg => `${pkg}/tsconfig.cjs.json`),
+  ];
   processes.push(spawn('npx', args, { stdio: 'inherit' }));
 })();
 
