@@ -195,7 +195,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { dense } = props;
-  const { hide, visible, position, handlers } = useTooltipState({
+  const { hide, visible, position, handlers, portalProps } = useTooltipState({
     position: propPosition,
     defaultPosition,
     positionThreshold,
@@ -211,6 +211,9 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
     onKeyDown,
     onShow,
     onHide,
+    portal,
+    portalInto,
+    portalIntoId,
   });
 
   const currentSpacing = useMemo(
@@ -266,11 +269,7 @@ const Tooltipped: FunctionComponent<TooltippedProps> = providedProps => {
   }
 
   const tooltip = (
-    <ConditionalPortal
-      portal={portal}
-      portalInto={portalInto}
-      portalIntoId={portalIntoId}
-    >
+    <ConditionalPortal {...portalProps}>
       <Tooltip
         id={tooltipId}
         {...props}

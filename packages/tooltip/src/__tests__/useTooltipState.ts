@@ -21,10 +21,8 @@ describe("useOtherInteractionDisable", () => {
     removeEventListener.mockRestore();
   });
 
-  it("should attach a click and blur event listener when visible", () => {
-    renderHook(() =>
-      useOtherInteractionDisable({ visible: true, hideTooltip })
-    );
+  it("should attach a click and blur initiated value is not null", () => {
+    renderHook(() => useOtherInteractionDisable("mouse", hideTooltip));
 
     expect(addEventListener).toBeCalledWith(
       "click",
@@ -33,10 +31,8 @@ describe("useOtherInteractionDisable", () => {
     );
   });
 
-  it("should do nothing if not visible", () => {
-    renderHook(() =>
-      useOtherInteractionDisable({ visible: false, hideTooltip })
-    );
+  it("should do nothing the initiated value is null", () => {
+    renderHook(() => useOtherInteractionDisable(null, hideTooltip));
 
     expect(addEventListener).not.toBeCalledWith(
       "click",
