@@ -10,9 +10,9 @@ exports[`IconRotator should be able to work out of the box with SVGIcon and Font
 
 exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 2`] = `
 <svg
+  aria-hidden="true"
   class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -32,9 +32,9 @@ exports[`IconRotator should be able to work out of the box with SVGIcon and Font
 
 exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 4`] = `
 <svg
+  aria-hidden="true"
   class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -83,9 +83,9 @@ exports[`IconRotator should wrap the children with a span instead of cloning in 
   className="rmd-icon-rotator rmd-icon-rotator--animate"
 >
   <svg
+    aria-hidden="true"
     className="rmd-icon rmd-icon--svg"
     focusable="false"
-    role="img"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >

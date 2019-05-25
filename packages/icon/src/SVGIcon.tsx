@@ -10,13 +10,6 @@ import { WithForwardedRef } from "@react-md/utils";
 
 export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
   /**
-   * The role to apply to the SVG. When using icons, it is generally recommended to leave it as
-   * the default `img` so that it is insured as a graphic, but can also be switched
-   * to `presentation`.
-   */
-  role?: string;
-
-  /**
    * An optional list of ids to use to label the SVG icon with. This is helpful to add when you
    * use the `title` and `desc` props as this is used to create ids for those two props. This is
    * super beneficial to screen readers.
@@ -102,7 +95,7 @@ export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
 
 type WithRef = WithForwardedRef<SVGSVGElement>;
 type DefaultProps = Required<
-  Pick<SVGIconProps, "role" | "focusable" | "xmlns" | "viewBox" | "dense">
+  Pick<SVGIconProps, "focusable" | "xmlns" | "viewBox" | "dense">
 >;
 type WithDefaultProps = SVGIconProps & DefaultProps & WithRef;
 
@@ -152,6 +145,7 @@ const SVGIcon: FunctionComponent<
   const {
     className,
     use,
+    "aria-hidden": hidden,
     "aria-labelledby": ariaLabelledBy,
     title: propTitle,
     desc: propDesc,
@@ -182,9 +176,20 @@ const SVGIcon: FunctionComponent<
     desc = <desc id={descId}>{desc}</desc>;
   }
 
+  let ariaHidden = hidden;
+  if (
+    typeof hidden === "undefined" &&
+    !propTitle &&
+    !ariaLabelledBy &&
+    !labelledBy
+  ) {
+    ariaHidden = "true";
+  }
+
   return (
     <svg
       {...props}
+      aria-hidden={ariaHidden}
       ref={forwardedRef}
       aria-labelledby={ariaLabelledBy || labelledBy}
       className={cn(block({ svg: true, dense }), className)}
@@ -197,7 +202,6 @@ const SVGIcon: FunctionComponent<
 };
 
 const defaultProps: DefaultProps = {
-  role: "img",
   focusable: "false",
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",

@@ -5,7 +5,6 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
   aria-labelledby="custom-icon-title"
   class="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -25,7 +24,6 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
   aria-labelledby="custom-icon-title custom-icon-desc"
   class="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -44,7 +42,6 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
 <svg
   class="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -59,7 +56,6 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
   aria-labelledby="custom-icon-title"
   class="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 />
@@ -70,7 +66,6 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
   aria-labelledby="custom-icon-title custom-item-desc"
   class="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 />
@@ -78,9 +73,9 @@ exports[`SVGIcon should render correctly when the use title, desc, use, and aria
 
 exports[`SVGIcon should render correctly with the dense prop 1`] = `
 <svg
+  aria-hidden="true"
   className="rmd-icon rmd-icon--svg rmd-icon--dense"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -92,9 +87,9 @@ exports[`SVGIcon should render correctly with the dense prop 1`] = `
 
 exports[`SVGIcon should use render correctly with a <path> child 1`] = `
 <svg
+  aria-hidden="true"
   className="rmd-icon rmd-icon--svg"
   focusable="false"
-  role="img"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
