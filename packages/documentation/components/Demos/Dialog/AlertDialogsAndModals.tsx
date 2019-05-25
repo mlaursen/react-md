@@ -59,7 +59,12 @@ const AlertDialogsAndModals: FunctionComponent = () => {
         aria-labelledby="dialog-title"
       >
         <DialogContent>
-          <Text id="dialog-title" type="subtitle-1" noMargin color="secondary">
+          <Text
+            id="dialog-title"
+            type="subtitle-1"
+            margin="none"
+            color="secondary"
+          >
             {!modal ? "Discard draft?" : "Are you sure?"}
           </Text>
         </DialogContent>

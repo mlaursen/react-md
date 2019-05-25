@@ -14,7 +14,7 @@ const Example: FunctionComponent<ExampleProps> = ({ children, ...props }) => {
 
   return (
     <Container>
-      <Text type="headline-6" noMargin>
+      <Text type="headline-6" margin="none">
         {children}
       </Text>
       <AsyncButton {...props} onClick={toggle} loading={toggled} />

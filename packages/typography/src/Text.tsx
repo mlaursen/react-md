@@ -109,13 +109,6 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   children?: ReactNode | TextRenderFunction;
 
   /**
-   * Boolean if the browser default margin's should be removed. This is generally disabled
-   * by default since it is helpful to have the default margins in place when using this
-   * component to create text pages.
-   */
-  noMargin?: boolean;
-
-  /**
    * An optional text alignment to apply.
    */
   align?: TextAlign;
@@ -141,6 +134,17 @@ export interface TextProps extends HTMLAttributes<TextElement> {
    * An optional font-weight to apply.
    */
   weight?: TextWeight;
+
+  /**
+   * Since the typography within react-md tries to not modify base elements, the default
+   * margin applied to heading tags (h1-h6) and paragraph (p) might have large margin that
+   * you don't want applied when using this component. You can disable:
+   * - only the top margin by setting this prop to `"bottom"`
+   * - only the bottom margin by setting this prop to `"top"`
+   * - top and bottom margin by setting this prop to `"none"`
+   * - or keep the initial behavior: `"initial"`
+   */
+  margin?: "initial" | "none" | "top" | "bottom";
 }
 
 function getComponent(
@@ -184,7 +188,7 @@ type DefaultProps = Required<
     TextProps,
     | "type"
     | "component"
-    | "noMargin"
+    | "margin"
     | "align"
     | "color"
     | "decoration"
@@ -226,19 +230,21 @@ const Text: FunctionComponent<TextProps & WithRef> = providedProps => {
     type,
     component,
     forwardedRef,
-    noMargin,
     align,
     color,
     decoration,
     transform,
     weight,
+    margin,
     ...props
   } = providedProps as WithDefaultProps;
 
   const className = cn(
     block({
       [type]: true,
-      "no-margin": noMargin,
+      "no-margin": margin === "none",
+      "no-margin-top": margin === "bottom",
+      "no-margin-bottom": margin === "top",
       [align]: align,
       [decoration]: decoration && decoration !== "overline",
       [color]: color,
@@ -268,7 +274,7 @@ const defaultProps: DefaultProps = {
   weight: "",
   type: "body-1",
   component: null,
-  noMargin: false,
+  margin: "initial",
 };
 
 Text.defaultProps = defaultProps;
@@ -332,6 +338,7 @@ if (process.env.NODE_ENV !== "production") {
         "theme-warning",
         "theme-error",
       ]),
+      margin: PropTypes.oneOf(["initial", "none", "top", "bottom"]),
     };
   }
 }

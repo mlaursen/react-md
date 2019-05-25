@@ -26,7 +26,7 @@ const SassDocPage: FunctionComponent<SassDocPageProps> = ({ sassdoc }) => {
         return (
           <div key={name}>
             <Text>{type}</Text>
-            <Heading id={`variable-${name}`} level={6} noMargin>
+            <Heading id={`variable-${name}`} level={6} margin="none">
               <CodeBlock language="scss">{compiledValue}</CodeBlock>
             </Heading>
             <Markdown>{description}</Markdown>

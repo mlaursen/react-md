@@ -10,7 +10,7 @@ const positions: SimplePosition[] = ["above", "right", "below", "left"];
 const DenseTooltips: FunctionComponent = () => {
   return (
     <Fragment>
-      <Text type="headline-6" noMargin>
+      <Text type="headline-6" margin="none">
         Normal
       </Text>
       <Container>
@@ -25,7 +25,7 @@ const DenseTooltips: FunctionComponent = () => {
           </TooltippedButton>
         ))}
       </Container>
-      <Text type="headline-6" noMargin>
+      <Text type="headline-6" margin="top">
         Dense
       </Text>
       <Container>

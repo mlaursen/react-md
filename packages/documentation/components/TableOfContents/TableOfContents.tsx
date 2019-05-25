@@ -69,7 +69,7 @@ const TableOfContents: FunctionComponent<TableOfContentsProps> = ({
         disableFocusContainer
       >
         <DialogHeader className={block("header")}>
-          <Text id="table-of-contents-title" type="headline-6" noMargin>
+          <Text id="table-of-contents-title" type="headline-6" margin="none">
             Table of Contents
           </Text>
         </DialogHeader>

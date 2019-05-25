@@ -34,7 +34,7 @@ const WithOverlay: FunctionComponent = () => (
         <MediaOverlay id={`overlay-container-overlay-${i}`} position={position}>
           <Text
             type="headline-5"
-            noMargin
+            margin="none"
             align={
               ["left", "right", "center"].includes(position)
                 ? "center"

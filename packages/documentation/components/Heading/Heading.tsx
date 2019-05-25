@@ -10,7 +10,6 @@ export type Level = 1 | 2 | 3 | 4 | 5 | 6;
 export interface HeadingProps extends Omit<TextProps, "type"> {
   id: string;
   level: Level;
-  noMarginTop?: boolean;
 }
 
 const Heading: FunctionComponent<HeadingProps> = ({
@@ -18,18 +17,13 @@ const Heading: FunctionComponent<HeadingProps> = ({
   level,
   children,
   className,
-  noMarginTop,
   ...props
 }) => (
   <Text
     id={id}
     {...props}
     type={`headline-${level}` as TextTypes}
-    className={cn(
-      "heading",
-      { "heading--no-margin-top": noMarginTop },
-      className
-    )}
+    className={cn("heading", className)}
   >
     <HeadingLink idRef={id} />
     {children}

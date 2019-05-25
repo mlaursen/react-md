@@ -102,7 +102,11 @@ const Demo: FunctionComponent<DemoProps> = props => {
     <Fragment>
       {index > 0 && <Divider key="divider" className={block("divider")} />}
       <section id={id} className={block()}>
-        <Heading level={2} id={`${id}-title`} noMarginTop={index > 0}>
+        <Heading
+          level={2}
+          id={`${id}-title`}
+          margin={index > 0 ? "bottom" : "initial"}
+        >
           {name}
         </Heading>
         <Markdown id={`${id}-description`} className={block("description")}>

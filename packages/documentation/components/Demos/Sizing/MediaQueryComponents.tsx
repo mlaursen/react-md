@@ -28,7 +28,7 @@ const MediaQueryComponents: FunctionComponent = () => (
     </TextContainer>
     <Divider />
     <div className="mq-example">
-      <Text noMargin>
+      <Text margin="none">
         This section will gain different styles as the viewport increases. I
         highly recommend opening the dev tools and seeing how the different
         styles get applied and when some are completely removed to get a better

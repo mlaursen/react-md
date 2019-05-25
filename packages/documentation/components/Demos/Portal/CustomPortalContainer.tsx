@@ -78,7 +78,7 @@ const CustomPortalContainer: FunctionComponent = () => {
         <label htmlFor="use-into-callback">into function</label>
       </TextIconSpacing>
       <Portal {...values[selected]}>
-        <Text type="subtitle-1" noMargin>
+        <Text type="subtitle-1" margin="none">
           Portal content!
         </Text>
       </Portal>

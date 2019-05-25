@@ -27,7 +27,7 @@ const SimpleExample: FunctionComponent = () => {
           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
         </DialogHeader>
         <DialogContent>
-          <Text noMargin>This is some text in a dialog.</Text>
+          <Text margin="none">This is some text in a dialog.</Text>
         </DialogContent>
         <DialogFooter>
           <Button id="dialog-close" onClick={disable}>

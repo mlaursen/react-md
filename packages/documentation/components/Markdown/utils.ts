@@ -69,12 +69,13 @@ renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
 
 renderer.heading = (text, level, _raw, slugger) => {
   // if it is over 60 characters, it is probably not really a title
-  const isValidHeading = text.length <= 60;
+  const isNoMargin = text.includes("<!-- no-margin -->");
+  const isValidHeading = text.length <= 60 && !isNoMargin;
   const id = slugger.slug(text);
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
     heading__toc: text.includes("Table of Contents"),
-    "rmd-typography--no-margin": text.includes("<!-- no-margin -->"),
+    "rmd-typography--no-margin": isNoMargin,
   });
 
   return `<h${level} id="${id}" class="${className}">
