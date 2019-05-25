@@ -33,6 +33,7 @@ type ListItemWithDefaultProps = ListItemProps & DefaultProps & WithRef;
 
 const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
   const {
+    className: propClassName,
     textClassName,
     secondaryTextClassName,
     textChildren,
@@ -66,6 +67,7 @@ const ListItem: FunctionComponent<ListItemProps & WithRef> = providedProps => {
   } = providedProps as ListItemWithDefaultProps;
 
   const { ripples, className, handlers } = useInteractionStates({
+    className: propClassName,
     handlers: props,
     disabled: props.disabled,
     disableRipple,
