@@ -7,6 +7,9 @@ export * from "./Menu";
 export { default as MenuItem } from "./MenuItem";
 export * from "./MenuItem";
 
+export { default as MenuItemLink } from "./MenuItemLink";
+export * from "./MenuItemLink";
+
 export { default as MenuItemSeparator } from "./MenuItemSeparator";
 export * from "./MenuItemSeparator";
 

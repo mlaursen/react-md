@@ -13,7 +13,7 @@ const GoogleFont: FC<GoogleFontProps> = ({ font }) => {
       <link
         key={name}
         rel="stylesheet"
-        href={`https://fonts.googleapis.com/css?family=${name}`}
+        href={`https://fonts.googleapis.com/css?family=${name}&display=swap`}
       />
     </Head>
   );

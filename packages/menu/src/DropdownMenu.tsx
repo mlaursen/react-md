@@ -1,7 +1,7 @@
 import React, { forwardRef, Fragment, FC } from "react";
-import { ButtonProps } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
-import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
+import { RenderConditionalPortalProps } from "@react-md/portal";
+import { RequireAtLeastOne, WithForwardedRef, Omit } from "@react-md/utils";
 
 import defaultItemRenderer, {
   Item,
@@ -15,9 +15,9 @@ import MenuButton, { MenuButtonProps } from "./MenuButton";
 import useMenuState from "./useMenuState";
 
 export interface DropdownMenuProps
-  extends ButtonProps,
+  extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
     MenuPositionProps,
-    Pick<MenuButtonProps, "dropdownIcon" | "disableDropdownIcon"> {
+    RenderConditionalPortalProps {
   /**
    * The id to use for the menu button and used to create the id for the menu.
    * The menu's id will just be `${id}-menu`.
@@ -32,9 +32,11 @@ export interface DropdownMenuProps
 
   /**
    * The id for an element to label the menu. Either this or the `menuLabel`
-   * props * are required for a11y.
+   * props are required for a11y. This will be defaulted to the `id` of the
+   * menu button for convenience since it _should_ normally label the menu but
+   * should be changed if it does not.
    */
-  menuLabelledby?: string;
+  menuLabelledBy?: string;
 
   /**
    * A custom menu renderer to use. This defaults to just rendering the `Menu`
@@ -55,16 +57,6 @@ export interface DropdownMenuProps
   itemRenderer?: MenuItemRenderer;
 
   /**
-   * An optional click handler that will be called any time an item has been clicked.
-   * This is really just useful if you'd like to centralize your click event handlers.
-   */
-  onItemClick?: (
-    item: Item,
-    itemElement: HTMLLIElement,
-    event: React.MouseEvent<HTMLElement>
-  ) => void;
-
-  /**
    * An optional function to call when the visibility of the menu changes.
    */
   onVisibilityChange?: (visible: boolean) => void;
@@ -77,13 +69,11 @@ type DefaultProps = Required<
     "menuRenderer" | "itemRenderer" | "dropdownIcon" | "disableDropdownIcon"
   >
 >;
-type StrictProps = DropdownMenuProps &
-  RequireAtLeastOne<DropdownMenuProps, "menuLabel" | "menuLabelledby">;
-type WithDefaultProps = StrictProps &
+type WithDefaultProps = DropdownMenuProps &
   DefaultProps &
-  WithRef & { menuLabel: string };
+  WithRef & { menuLabelledBy: string };
 
-const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
+const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
   const {
     onClick: propOnclick,
     onKeyDown: propOnKeyDown,
@@ -93,13 +83,16 @@ const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
     onResize,
     onPageScroll,
     menuLabel,
-    menuLabelledby,
+    menuLabelledBy,
     menuRenderer,
     items,
     itemRenderer,
     horizontal,
-    onItemClick,
     onVisibilityChange,
+    portal,
+    portalInto,
+    portalIntoId,
+    positionOptions,
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
@@ -108,6 +101,11 @@ const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
     onKeyDown: propOnKeyDown,
     onVisibilityChange,
   });
+
+  let labelledBy = menuLabelledBy;
+  if (!menuLabel && !menuLabelledBy) {
+    labelledBy = id;
+  }
 
   return (
     <Fragment>
@@ -124,10 +122,11 @@ const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
       {menuRenderer(
         {
           "aria-label": menuLabel,
-          "aria-labelledby": menuLabelledby,
+          "aria-labelledby": labelledBy,
           id: `${id}-menu`,
           controlId: id,
           anchor,
+          positionOptions,
           onResize,
           onPageScroll,
           horizontal,
@@ -135,6 +134,9 @@ const DropdownMenu: FC<StrictProps & WithRef> = providedProps => {
           defaultFocus,
           onRequestClose: hide,
           children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
+          portal,
+          portalInto,
+          portalIntoId,
         },
         items
       )}
@@ -151,6 +153,6 @@ const defaultProps: DefaultProps = {
 
 DropdownMenu.defaultProps = defaultProps;
 
-export default forwardRef<HTMLButtonElement, StrictProps>((props, ref) => (
-  <DropdownMenu {...props} forwardedRef={ref} />
-));
+export default forwardRef<HTMLButtonElement, DropdownMenuProps>(
+  (props, ref) => <DropdownMenu {...props} forwardedRef={ref} />
+);

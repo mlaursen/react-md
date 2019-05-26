@@ -1,6 +1,7 @@
 import React, { cloneElement, isValidElement, ReactNode } from "react";
 
 import MenuItem, { MenuItemProps } from "./MenuItem";
+import MenuItemLink, { MenuItemLinkProps } from "./MenuItemLink";
 import MenuItemSeparator, { MenuItemSeparatorProps } from "./MenuItemSeparator";
 
 export type Item =
@@ -29,8 +30,13 @@ export default function defaultItemRenderer(item: Item, key: string) {
     return <MenuItemSeparator {...separatorProps} key={key} />;
   }
 
+  const linkProps = item as MenuItemLinkProps;
+  if (linkProps.to || linkProps.href || linkProps.component) {
+    return <MenuItemLink key={key} {...linkProps} />;
+  }
+
   const itemProps = item as MenuItemProps;
-  return <MenuItem {...itemProps} key={key} />;
+  return <MenuItem key={key} {...itemProps} />;
 }
 
 export type MenuItemRenderer = typeof defaultItemRenderer;

@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { TextContainer } from "@react-md/typography";
-import useCrossFade from "hooks/useCrossFade";
 
 import Markdown, { MarkdownProps } from "./Markdown";
 
@@ -14,9 +13,7 @@ const MarkdownPage: FC<MarkdownPageProps> = ({
   children,
   ...props
 }) => (
-  <TextContainer
-    className={cn("markdown-page", useCrossFade(containerClassName))}
-  >
+  <TextContainer className={cn("markdown-page", containerClassName)}>
     <Markdown {...props}>{children}</Markdown>
   </TextContainer>
 );

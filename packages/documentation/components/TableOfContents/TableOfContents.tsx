@@ -46,11 +46,13 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
 
   return (
     <Fragment>
-      <Toggle
-        onClick={toggle}
-        isLargeDesktop={isLargeDesktop}
-        isDialogVisible={visible}
-      />
+      {!isPhone && (
+        <Toggle
+          onClick={toggle}
+          isLargeDesktop={isLargeDesktop}
+          isDialogVisible={visible}
+        />
+      )}
       <Dialog
         id="table-of-contents"
         aria-labelledby="table-of-contents-title"

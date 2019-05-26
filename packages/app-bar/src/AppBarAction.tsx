@@ -4,22 +4,13 @@ import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
 import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+import useActionClassName, {
+  AppBarActionClassNameProps,
+} from "./useActionClassName";
 
-export interface AppBarActionProps extends ButtonProps, AppBarColorInherit {
-  /**
-   * Boolean if this is the first action within the app bar. This is really just used to
-   * automatically right-align all the actions by applying `margin-left: auto` to this action.
-   */
-  first?: boolean;
-
-  /**
-   * Boolean if this is the last action within the app bar's row. This will just apply the
-   * `$rmd-app-bar-lr-margin` as `margin-right`.
-   *
-   * NOTE: This should not be used when using an overflow menu.
-   */
-  last?: boolean;
-}
+export interface AppBarActionProps
+  extends ButtonProps,
+    AppBarActionClassNameProps {}
 
 type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
@@ -50,14 +41,7 @@ const AppBarAction: FC<AppBarActionProps & WithRef> = providedProps => {
     <Button
       {...props}
       ref={forwardedRef}
-      className={cn(
-        block("action", {
-          first,
-          last,
-          inherit: useInheritContext(inheritColor),
-        }),
-        className
-      )}
+      className={useActionClassName({ first, last, inheritColor, className })}
     >
       {children}
     </Button>

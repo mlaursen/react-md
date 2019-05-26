@@ -1,10 +1,17 @@
 import React, { forwardRef, FC, ReactNode } from "react";
 import cn from "classnames";
+import {
+  AppBarActionClassNameProps,
+  useActionClassName,
+} from "@react-md/app-bar";
 import { Button, ButtonProps } from "@react-md/button";
 import { FontIcon, IconRotator, TextIconSpacing } from "@react-md/icon";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface MenuButtonProps extends ButtonProps {
+export interface MenuButtonProps
+  extends ButtonProps,
+    AppBarActionClassNameProps {
   /**
    * An id for the button. This is required so that the `Menu` can be positioned
    * relative to this component.
@@ -34,15 +41,29 @@ export interface MenuButtonProps extends ButtonProps {
    * be removed for icon buttons.
    */
   disableDropdownIcon?: boolean;
+
+  /**
+   * Boolean if the menu button should be rendered as an `AppBarAction` button instead of a default
+   * button. This will also be considered `true` if the `first`, `last`, or `inheritColor` props are
+   * `true`.
+   */
+  asAppBarAction?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<
     MenuButtonProps,
-    "aria-haspopup" | "dropdownIcon" | "disableDropdownIcon"
+    | "aria-haspopup"
+    | "dropdownIcon"
+    | "disableDropdownIcon"
+    | "first"
+    | "last"
+    | "asAppBarAction"
   >
 >;
+
+const block = bem("rmd-menu-button");
 
 const MenuButton: FC<MenuButtonProps & WithRef> = ({
   className,
@@ -51,13 +72,21 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
   forwardedRef,
   dropdownIcon,
   disableDropdownIcon,
+  first,
+  last,
+  inheritColor,
+  asAppBarAction,
   ...props
 }) => {
   let children = propChildren;
   if (props.buttonType !== "icon" && !disableDropdownIcon) {
     children = (
       <TextIconSpacing
-        icon={<IconRotator rotated={visible}>{dropdownIcon}</IconRotator>}
+        icon={
+          <IconRotator rotated={visible} className={block("icon")}>
+            {dropdownIcon}
+          </IconRotator>
+        }
         iconAfter
       >
         {children}
@@ -65,12 +94,20 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
     );
   }
 
+  const actionClassName = useActionClassName({ first, last, inheritColor });
+
   return (
     <Button
       {...props}
       aria-expanded={visible ? "true" : undefined}
       ref={forwardedRef}
-      className={cn("rmd-menu-button", className)}
+      className={cn(
+        block(),
+        {
+          [actionClassName]: first || last || inheritColor || asAppBarAction,
+        },
+        className
+      )}
     >
       {children}
     </Button>
@@ -81,6 +118,9 @@ const defaultProps: DefaultProps = {
   "aria-haspopup": "menu",
   dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
+  first: false,
+  last: false,
+  asAppBarAction: false,
 };
 
 MenuButton.defaultProps = defaultProps;

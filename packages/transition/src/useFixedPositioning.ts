@@ -8,6 +8,7 @@ import {
   HorizontalPosition,
   VerticalPosition,
   FixedPositionOptions,
+  PositionAnchor,
 } from "@react-md/utils";
 
 type FixedToFunction = () => HTMLElement | null;
@@ -16,11 +17,6 @@ type OptionalFixedPositionOptions = Omit<
   FixedPositionOptions,
   "container" | "element"
 >;
-
-export interface PositionAnchor {
-  x: HorizontalPosition;
-  y: VerticalPosition;
-}
 
 type PositionChange = (wanted: PositionAnchor, actual: PositionAnchor) => void;
 
@@ -88,40 +84,6 @@ function getFixedTo(fixedTo: FixedTo) {
   }
 }
 
-function getTransformOrigin(anchor: PositionAnchor) {
-  let x = "0";
-  switch (anchor.x) {
-    case "left":
-    case "inner-left":
-      x = "0";
-      break;
-    case "center":
-      x = "50%";
-      break;
-    case "right":
-    case "inner-right":
-      x = "100%";
-      break;
-  }
-
-  let y = "0";
-  switch (anchor.y) {
-    case "above":
-    case "top":
-      y = "0";
-      break;
-    case "center":
-      y = "50%";
-      break;
-    case "below":
-    case "bottom":
-      y = "100%";
-      break;
-  }
-
-  return `${x} ${y}`;
-}
-
 /**
  * This hook is used to automatically handle fixed positioning when an element is used alongside a
  * `Transition` from `react-transition-group`. This will provide merged `onEnter`, `onEntering`,
@@ -178,15 +140,18 @@ export default function useFixedPositioning({
       fixedTo,
       getOptions,
       onPositionChange,
-      transformOrigin,
+      anchor: currentAnchor = {},
       ...remaining
     } = options.current;
+    const anchor = {
+      x: currentAnchor.x || "center",
+      y: currentAnchor.y || "below",
+    };
     const overrides = typeof getOptions === "function" ? getOptions(node) : {};
     const opts = {
       ...remaining,
       ...overrides,
-      x: overrides.x || remaining.x || "center",
-      y: overrides.y || remaining.y || "below",
+      anchor,
     };
 
     const { style, actualX, actualY } = getFixedPosition({
@@ -195,17 +160,12 @@ export default function useFixedPositioning({
       ...opts,
     });
 
-    const wanted = { x: opts.x, y: opts.y };
     const actual = { x: actualX, y: actualY };
-    if (onPositionChange && (wanted.x !== actual.x || wanted.y !== actual.y)) {
-      onPositionChange(wanted, actual);
+    if (onPositionChange && (anchor.x !== actual.x || anchor.y !== actual.y)) {
+      onPositionChange(anchor, actual);
     }
 
-    setStyle({
-      ...style,
-      position: "fixed",
-      transformOrigin: transformOrigin ? getTransformOrigin(opts) : undefined,
-    });
+    setStyle(style);
   }, []);
 
   const updateNodeAndStyle = useCallback((node: HTMLElement) => {

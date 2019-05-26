@@ -99,7 +99,10 @@ behind the scenes so there is _some_ sense of progress...
   log("Starting to extract all the imports for each demo...");
   await Promise.all(
     demos.map(demoPath => {
-      const [demoName, packageName] = demoPath.split("/").reverse();
+      const [demoName, packageName] = demoPath
+        .replace(`${path.sep}index.ts`, "")
+        .split(path.sep)
+        .reverse();
       const debugName = `${packageName}/${demoName}`;
       log("===================================================");
       log(`Extracting from: ${debugName}`);

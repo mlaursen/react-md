@@ -31,6 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@react-md/app-bar": "^2.0.0-alpha.1",
     "@react-md/button": "^2.0.0-alpha.1",
     "@react-md/divider": "^2.0.0-alpha.1",
     "@react-md/elevation": "^2.0.0-alpha.1",

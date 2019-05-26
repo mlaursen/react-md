@@ -7,6 +7,8 @@
 .toggle-theme {
   &--on {
     color: $rmd-yellow-500;
+    // only needed for the menu-item implementation
+    fill: currentColor;
   }
 
   @include rmd-states-mouse-only {

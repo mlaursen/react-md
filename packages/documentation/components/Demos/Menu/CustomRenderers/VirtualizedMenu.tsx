@@ -25,6 +25,7 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       {...items[index]}
       aria-setsize={items.length}
       aria-posinset={index + 1}
+      onClick={() => setValue(items[index].children)}
     />
   );
 
@@ -44,6 +45,7 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
           rowHeight={height}
           tabIndex={null}
           width={200}
+          className="rmd-list"
         />
       </Menu>
     );
@@ -56,15 +58,9 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       </Text>
       <DropdownMenu
         id="virtualized-example"
-        menuLabelledby="virtualized-example"
         items={items}
         menuRenderer={menuRenderer}
         theme="secondary"
-        onItemClick={(_item, item) => {
-          const position = item.getAttribute("aria-posinset") || "";
-          const index = parseInt(position, 10) - 1;
-          setValue(items[index].children);
-        }}
       >
         Virtualized
       </DropdownMenu>

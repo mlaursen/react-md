@@ -62,6 +62,16 @@ export default function useMenuState({
   }, []);
 
   /**
+   * Toggles the visibility of the menu.
+   */
+  const toggle = useCallback(() => {
+    setState(({ visible, defaultFocus }) => ({
+      visible: !visible,
+      defaultFocus,
+    }));
+  }, []);
+
+  /**
    * A keydown event handler that should be provided to the control element.
    * This will ensure that the up and down arrow keys can open the menu as
    * well as focusing the first and last menu item as needed.
@@ -93,7 +103,7 @@ export default function useMenuState({
         onClick(event);
       }
 
-      show();
+      toggle();
     },
     [onClick]
   );
@@ -101,10 +111,11 @@ export default function useMenuState({
   return {
     show,
     hide,
+    toggle,
     showDefaultFocus,
     visible,
     defaultFocus,
-    onKeyDown: handleKeyDown,
     onClick: handleClick,
+    onKeyDown: handleKeyDown,
   };
 }

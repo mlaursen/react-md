@@ -29,10 +29,11 @@ easiest way to add an event handler. An example would be:
 
 ###### Using custom `MenuItem`<!-- no-margin -->
 
-The easiest option will probably be to create custom `MenuItem` components that
-have their own click handlers attached. This will also make it so you can have
-reusable `MenuItem`s if they need to appear in multiple menus or need to make
-them have additional functionality (like connecting to redux actions). You'll
-just want to import the `MenuItem` component and add it to the `items` list like
-normal. The default item renderer will automatically clone each item with a
-unique key as well, so you won't need to manually define keys yourself.
+The most "resuable" option will be to create custom `MenuItem` and/or
+`MenuItemLink` components that have their own click handlers attached. This will
+also make it so you can have reusable `MenuItem`s if they need to appear in
+multiple menus or need to make them have additional functionality (like
+connecting to redux actions). You'll just want to import the `MenuItem`
+component and add it to the `items` list like normal. The default item renderer
+will automatically clone each item with a unique key as well, so you won't need
+to manually define keys yourself.

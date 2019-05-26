@@ -114,8 +114,10 @@ chokidar
     console.log('Watching documentation base styles changes...');
   });
 
+const IS_FULL_SANDBOX = process.argv.includes('--sandbox');
+
 chokidar
-  .watch(`${DOC_COMPONENTS}/Demos/*/index.ts`)
+  .watch(`${DOC_COMPONENTS}/Demos/*/index.tsx`)
   .on('change', file => {
     const [packageName, demo] = file
       .substring(file.indexOf('Demos/') + 'Demos/'.length)
@@ -125,12 +127,20 @@ chokidar
       const demoName = demo.replace(/\.tsx?$/, '');
       console.log(`Creating a new sandbox for ${packageName}'s ${demoName}`);
 
-      const args = ['sandbox', packageName];
+      const args = [
+        'sandbox',
+        packageName,
+        !IS_FULL_SANDBOX && '--empty',
+      ].filter(Boolean);
       spawnSync('yarn', args, { stdio: 'inherit', cwd: docsRoot });
     }
   })
   .on('ready', () => {
-    console.log('Watching documentation demos...');
+    console.log(
+      `Watching documentation demos with ${
+        IS_FULL_SANDBOX ? 'full' : 'empty'
+      } sandboxes when the demo index.tsx file is changed...`
+    );
   });
 
 process.on('exit', () => {

@@ -4,10 +4,11 @@ import { RequireAtLeastOne } from "@react-md/utils";
 
 import { Item } from "./defaultItemRenderer";
 import Menu, { MenuProps } from "./Menu";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 
 export type MenuPositionProps = Pick<
   MenuProps,
-  "anchor" | "onResize" | "onPageScroll" | "horizontal"
+  "anchor" | "onResize" | "onPageScroll" | "horizontal" | "positionOptions"
 >;
 
 type RequiredMenuProps = Required<
@@ -24,7 +25,8 @@ type RequiredMenuProps = Required<
 
 export interface InjectedMenuProps
   extends MenuPositionProps,
-    RequiredMenuProps {}
+    RequiredMenuProps,
+    RenderConditionalPortalProps {}
 
 type LabelRequired = RequireAtLeastOne<
   MenuProps,
@@ -36,6 +38,10 @@ export type MenuRenderer = (
   items: Item[]
 ) => ReactNode;
 
+/**
+ * The default menu renderer that will just render the `Menu` component along with
+ * a `List` by passing all props down to the main `Menu` component.
+ */
 export default function defaultMenuRenderer({
   horizontal,
   children,

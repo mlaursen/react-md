@@ -1,28 +1,19 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import {
   FormatAlignLeftSVGIcon,
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { useToggle } from "@react-md/utils";
+import useRTLToggle from "./useRTLToggle";
 
 const ToggleRTL: FC = () => {
-  const { toggled, toggle } = useToggle();
-
-  useEffect(() => {
-    const html = document.querySelector("html") as HTMLElement;
-    if (toggled) {
-      html.setAttribute("dir", "rtl");
-    } else {
-      html.setAttribute("dir", "ltr");
-    }
-  }, [toggled]);
+  const { isRTL, toggleRTL } = useRTLToggle();
 
   return (
     <Tooltipped id="toggle-rtl" tooltip="Toggle right to left">
-      <AppBarAction last onClick={toggle} aria-label="Toggle right to left">
-        {toggled ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
+      <AppBarAction last onClick={toggleRTL} aria-label="Toggle right to left">
+        {isRTL ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
       </AppBarAction>
     </Tooltipped>
   );

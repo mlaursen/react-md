@@ -163,7 +163,7 @@ function createDemoStyles(dependencies: string[]) {
 }
 
 export function getSandboxFileName(demoPath: string) {
-  return demoPath.replace(".tsx", "Sandbox.json");
+  return demoPath.replace(/\/index\.ts|\.tsx$/, "Sandbox.json");
 }
 
 export default async function generate({

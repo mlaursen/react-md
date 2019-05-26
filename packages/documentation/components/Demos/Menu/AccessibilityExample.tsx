@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import {
   Dialog,
   DialogHeader,
@@ -10,20 +10,20 @@ import { DropdownMenu } from "@react-md/menu";
 import Container from "./Container";
 import { useToggle } from "@react-md/utils";
 import { Button } from "@react-md/button";
+import people from "constants/people";
 
 const AccessibilityExample: FC = () => {
   const { toggled: visible, enable: show, disable: hide } = useToggle();
+  const items = useMemo(
+    () => people.map(name => ({ children: name, onClick: show })),
+    []
+  );
+
   return (
     <Container>
-      <DropdownMenu
-        id="accessibility-menu-1"
-        menuLabelledby="accessibility-menu-1"
-        items={["Share", "Open", "Rename", "Make a copy", "Move To"]}
-        onItemClick={show}
-      >
-        Options...
+      <DropdownMenu id="accessibility-menu-1" items={items}>
+        Dropdown
       </DropdownMenu>
-      {/* need to look into fixing this keyboard flow */}
       <Dialog
         id="confirmation-dialog"
         aria-labelledby="cofirmation-dialog-title"

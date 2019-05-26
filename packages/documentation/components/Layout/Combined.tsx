@@ -20,7 +20,11 @@ export interface CombinedProps {
 
 const block = bem("layout");
 
-const Combined: FC<CombinedProps> = ({ title, children, router }) => {
+const Combined: FC<CombinedProps> = ({
+  title: propTitle,
+  children,
+  router,
+}) => {
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
   const {
@@ -44,12 +48,23 @@ const Combined: FC<CombinedProps> = ({ title, children, router }) => {
 
   useScrollLock(visible && isPhone);
   const inline = isDesktop || isLandscapeTablet;
+  let title = propTitle;
+  if (propTitle.includes(" - ")) {
+    title = title.substring(title.indexOf(" - ") + 3);
+    if (isPhone && !router.pathname.includes("/packages/")) {
+      const i = title.lastIndexOf("- ");
+      if (i !== -1) {
+        title = title.substring(i + 2);
+      }
+    }
+  }
 
   return (
     <Fragment>
       <Header
         title={title}
         toggle={toggle}
+        isPhone={isPhone}
         isDesktop={isDesktop}
         isSheetVisible={visible}
       />

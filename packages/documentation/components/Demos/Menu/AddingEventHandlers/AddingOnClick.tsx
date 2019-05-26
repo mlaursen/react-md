@@ -1,6 +1,7 @@
 import React, { FC, Fragment, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
+
 import Code from "components/Code/Code";
 
 const AddingOnClick: FC = () => {
@@ -19,7 +20,6 @@ const AddingOnClick: FC = () => {
       </Text>
       <DropdownMenu
         id="event-handler-menu-1"
-        menuLabelledby="event-handler-menu-1"
         items={[
           {
             onClick,

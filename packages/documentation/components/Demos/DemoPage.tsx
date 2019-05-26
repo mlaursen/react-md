@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
 
-import useCrossFade from "hooks/useCrossFade";
 import { toId } from "utils/toTitle";
 
 import Demo, { DemoProps } from "./Demo";
@@ -36,10 +35,10 @@ const DemoPage: FC<DemoPageProps> = props => {
     demos,
     description,
     packageName,
-    className: propClassName,
+    className,
     fonts,
   } = props as WithDefaultProps;
-  const className = useCrossFade(propClassName);
+
   return (
     <div id="demo-page-container" className={cn("demo-page", className)}>
       {fonts.map(font => (

@@ -28,11 +28,10 @@ const CustomMenuItems: FC = () => {
         Custom <Code>MenuItem</Code>
       </Text>
       <Text>
-        Last clicked valie: <Code>{value}</Code>
+        Last clicked value: <Code>{value}</Code>
       </Text>
       <DropdownMenu
         id="custom-menu-items"
-        menuLabelledby="custom-menu-items"
         items={[<Share onClick={onClick} />, <New onClick={onClick} />]}
       >
         Options

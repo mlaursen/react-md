@@ -12,6 +12,7 @@ import {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
 } from '@react-md/sizing';
+import { CrossFade } from '@react-md/transition';
 import Cookie from 'js-cookie';
 
 import Layout from 'components/Layout';
@@ -80,8 +81,16 @@ export default class App extends NextApp {
 
   initialPageScroll = true;
 
+  /**
+   * This is kind of a hack here as this is used to be able to add the cross fade animation
+   * only after the first render. This makes it so that server side rendering and initial
+   * page render won't cause the animation, but all other pathname changes will (using `key={pathname}`)
+   */
+  rendered = false;
+
   componentDidMount() {
     this.smoothScroll(window.location.href);
+    this.rendered = true;
 
     Router.events.on('hashChangeStart', this.beforeChange);
     Router.events.on('hashChangeComplete', this.smoothScroll);
@@ -130,11 +139,6 @@ export default class App extends NextApp {
     }
   };
 
-  getTitle(pageTitle) {
-    const i = pageTitle.lastIndexOf('- ');
-    return i > -1 ? pageTitle.substring(i + 2) : pageTitle;
-  }
-
   render() {
     const {
       Component,
@@ -145,17 +149,23 @@ export default class App extends NextApp {
     } = this.props;
     const { statusCode } = componentProps;
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
-    const title = this.getTitle(pageTitle);
 
     return (
       <Container>
         <GoogleFont font="Roboto:400,500,700" />
+        <GoogleFont font="Source Code Pro" />
         <Head>
           <title>{pageTitle}</title>
         </Head>
         <ThemeContextProvider defaultTheme={defaultTheme}>
-          <Layout title={title} defaultSize={defaultSize} pathname={pathname}>
-            <Component {...componentProps} />
+          <Layout
+            defaultSize={defaultSize}
+            pathname={pathname}
+            title={pageTitle}
+          >
+            <CrossFade appear={this.rendered} key={pathname}>
+              <Component {...componentProps} />
+            </CrossFade>
           </Layout>
         </ThemeContextProvider>
       </Container>

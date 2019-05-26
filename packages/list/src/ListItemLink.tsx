@@ -16,12 +16,6 @@ export interface ListItemLinkProps
     Pick<SimpleListItemProps, "threeLines" | "height">,
     InteractionStatesOptions<HTMLAnchorElement> {
   /**
-   * An id for the link. This is really just required since this component
-   * needs the keyboard focus only states enabled.
-   */
-  id: string;
-
-  /**
    * An optional component to render as. This should really only be used if you are using a
    * router library like [react-router](https://github.com/ReactTraining/react-router) or
    * [@reach/router](https://github.com/reach/router). This will call `createElement` with
@@ -42,6 +36,7 @@ type WithDefaultProps = ListItemLinkProps & DefaultProps & WithRef;
 
 const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
   const {
+    className: propClassName,
     textClassName,
     secondaryTextClassName,
     textChildren,
@@ -71,6 +66,7 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
 
   const height = getListItemHeight(providedProps);
   const { ripples, className, handlers } = useInteractionStates({
+    className: propClassName,
     handlers: props,
     disableRipple,
     disableProgrammaticRipple,
@@ -132,7 +128,6 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     ListItemLink.propTypes = {
-      id: PropTypes.string.isRequired,
       height: PropTypes.oneOf([
         "auto",
         "normal",

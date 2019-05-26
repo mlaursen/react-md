@@ -37,6 +37,7 @@ const GithubLink: FC<GithubLinkProps> = providedProps => {
     </LinkButton>
   );
 };
+
 GithubLink.defaultProps = {
   "aria-label": "GitHub",
   href: GITHUB_URL,

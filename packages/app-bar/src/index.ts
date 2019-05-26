@@ -11,3 +11,6 @@ export { default as AppBarAction } from "./AppBarAction";
 export * from "./AppBarAction";
 
 export * from "./constants";
+
+export { default as useActionClassName } from "./useActionClassName";
+export * from "./useActionClassName";

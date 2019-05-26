@@ -78,27 +78,13 @@
   @include rmd-icon-theme(width, size);
 }
 
-/// Creates the styles that should be applied to an icon that is placed before text.
+/// Creates the styles that should be applied to an icon that is placed before or after text
+/// by applying the spacing to the provided `$property` value. This will automatically be
+/// swapped when the language changes to right-to-left.
 ///
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
-@mixin rmd-icon-spacing-before-text($spacing: $rmd-icon-spacing-with-text) {
-  @include rmd-utils-rtl {
-    @include rmd-icon-theme(margin-left, text-spacing, $spacing);
-    margin-right: 0;
-  }
-
-  @include rmd-icon-theme(margin-right, text-spacing, $spacing);
-}
-
-/// Creates the styles that should be applied to an icon that is placed after text.
-///
-/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
-@mixin rmd-icon-spacing-after-text($spacing: $rmd-icon-spacing-with-text) {
-  @include rmd-utils-rtl {
-    @include rmd-icon-theme(margin-right, text-spacing, $spacing);
-    margin-left: 0;
-  }
-  @include rmd-icon-theme(margin-left, text-spacing, $spacing);
+@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
+  @include rmd-utils-rtl-auto($property, $spacing, 0);
 }
 
 /// A mixin to create the styles to space an icon before or after text with the provided selectors and
@@ -123,13 +109,13 @@
 ) {
   @if $before-selector != null {
     #{$before-selector} {
-      @include rmd-icon-spacing-before-text($spacing);
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-right);
     }
   }
 
   @if $after-selector != null {
     #{$after-selector} {
-      @include rmd-icon-spacing-after-text($spacing);
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-left);
     }
   }
 }

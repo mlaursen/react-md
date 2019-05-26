@@ -13,12 +13,14 @@ import {
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import { bem } from "@react-md/theme";
+import { CSSTransitionProps, useFixedPositioning } from "@react-md/transition";
 import {
-  CSSTransitionProps,
+  applyRef,
+  RequireAtLeastOne,
   PositionAnchor,
-  useFixedPositioning,
-} from "@react-md/transition";
-import { applyRef, RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
+  WithForwardedRef,
+  FixedPositionOptions,
+} from "@react-md/utils";
 import { useKeyboardMovement } from "@react-md/wia-aria";
 
 import MenuEvents from "./MenuEvents";
@@ -77,6 +79,15 @@ export interface MenuProps
    * originate from a coordinate.
    */
   anchor?: PositionAnchor;
+
+  /**
+   * Optional options to pass down to the `useFixedPositionin` hook styles to change how the
+   * menu is fixed to the `MenuButton`.
+   */
+  positionOptions?: Pick<
+    FixedPositionOptions,
+    "vwMargin" | "vhMargin" | "xMargin" | "yMargin" | "disableSwapping"
+  >;
 
   /**
    * Boolean if the menu should be rendered horizontally instead of vertically.
@@ -151,6 +162,7 @@ const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
     onKeyDown,
     defaultFocus,
     horizontal,
+    positionOptions,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -177,10 +189,11 @@ const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
   );
 
   const { style, ...transitionHandlers } = useFixedPositioning({
+    ...positionOptions,
     fixedTo: () => document.getElementById(controlId),
     onScroll: onPageScroll || handleScroll,
     onResize: onResize || onRequestClose,
-    ...anchor,
+    anchor,
     onEnter,
     onEntering,
     onEntered,
@@ -193,9 +206,15 @@ const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
       return;
     }
 
+    const contains = (
+      element: HTMLElement | null,
+      target: HTMLElement | null
+    ) => element && target && element.contains(target);
+
     const handleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
-      if (!target || !menu.current || !menu.current.contains(target)) {
+      const control = document.getElementById(controlId);
+      if (!contains(control, target) && !contains(menu.current, target)) {
         onRequestClose();
       }
     };
@@ -204,7 +223,7 @@ const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
     return () => {
       window.removeEventListener("click", handleClick, true);
     };
-  });
+  }, [visible, controlId]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -225,8 +244,10 @@ const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
         onKeyDown(event);
       }
 
-      if (event.key === "Escape") {
+      if (event.key === "Escape" || event.key === "Tab") {
         onRequestClose();
+        // prevent parent key listeners as well.
+        event.stopPropagation();
       }
     },
   });
