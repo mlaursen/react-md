@@ -195,7 +195,7 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { dense } = props;
-  const { hide, visible, position, handlers, portalProps } = useTooltipState({
+  const { hide, visible, position, handlers } = useTooltipState({
     position: propPosition,
     defaultPosition,
     positionThreshold,
@@ -211,9 +211,6 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
     onKeyDown,
     onShow,
     onHide,
-    portal,
-    portalInto,
-    portalIntoId,
   });
 
   const currentSpacing = useMemo(
@@ -271,7 +268,11 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
   }
 
   const tooltip = (
-    <ConditionalPortal {...portalProps}>
+    <ConditionalPortal
+      portal={portal}
+      portalInto={portalInto}
+      portalIntoId={portalIntoId}
+    >
       <Tooltip
         id={tooltipId}
         {...props}
@@ -336,7 +337,7 @@ const defaultProps: DefaultProps = {
   disableAutoSpacing: false,
   vhMargin: 16,
   vwMargin: 16,
-  portal: true,
+  portal: false,
   lineWrap: true,
   focusDelay: DEFAULT_DELAY,
   hoverDelay: DEFAULT_DELAY,

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useInteractionModeContext } from "@react-md/states";
 import { SimplePosition, useToggle } from "@react-md/utils";
 
@@ -15,7 +15,6 @@ import usePosition from "./usePosition";
 import useVisiblityChange, {
   VisibilityChangeOptions,
 } from "./useVisibilityChange";
-import { RenderConditionalPortalProps } from "@react-md/portal";
 
 /**
  * When the tooltip becomes visible, the tooltip should be hidden if any element
@@ -46,44 +45,10 @@ export function useOtherInteractionDisable(
   }, [initiated, hideTooltip]);
 }
 
-/**
- * There has to be a better way to do this... So right now the positining seems to be off
- * if the element isn't portalled, but it's bad for SSR by defaulting to having a portalled
- * element. This will allow the tooltips to be rendered inline with the element until
- * the tooltip starts becoming "initiated". When that happens, it'll enable the portal so
- * the tooltip can be positionined correctly....
- */
-export function usePortalProps(
-  initiated: TooltipInitiated,
-  { portal, portalInto, portalIntoId }: RenderConditionalPortalProps
-) {
-  const [portalProps, setPortalProps] = useState<
-    RenderConditionalPortalProps
-  >();
-
-  useEffect(() => {
-    if (!initiated) {
-      return;
-    } else if (
-      portalProps &&
-      portalProps.portal === portal &&
-      portalProps.portalInto === portalInto &&
-      portalProps.portalIntoId === portalIntoId
-    ) {
-      return;
-    }
-
-    setPortalProps({ portal, portalInto, portalIntoId });
-  }, [initiated, portal, portalInto, portalIntoId]);
-
-  return portalProps;
-}
-
 export interface TooltipStateOptions
   extends MergableHandlers,
     Pick<TooltipProps, "position">,
-    Pick<VisibilityChangeOptions, "onShow" | "onHide">,
-    RenderConditionalPortalProps {
+    Pick<VisibilityChangeOptions, "onShow" | "onHide"> {
   /**
    * The threshold multiplier to apply to the entire viewheight to determine if the tooltip should be placed above or below
    * the container element.
@@ -158,9 +123,6 @@ export default function useTooltipState({
   onKeyDown,
   onShow,
   onHide,
-  portal,
-  portalInto,
-  portalIntoId,
 }: TooltipStateOptions) {
   const mode = useInteractionModeContext();
   const initiated = useRef<TooltipInitiated>(null);
@@ -234,17 +196,11 @@ export default function useTooltipState({
   }, []);
 
   useOtherInteractionDisable(initiated.current, hideAndReset);
-  const portalProps = usePortalProps(initiated.current, {
-    portal,
-    portalInto,
-    portalIntoId,
-  });
 
   return {
     hide,
     visible,
     position,
-    portalProps,
     handlers: {
       ...mouseHandlers,
       ...keyboardHandlers,

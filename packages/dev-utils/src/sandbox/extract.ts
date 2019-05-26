@@ -212,7 +212,7 @@ export async function extractDemoFiles(
       demoName = demoName.replace(/from /, "").replace(/"/g, "");
       let fullPath = path.join(getRelativeFolder(demoIndexPath), demoName);
       if (fs.existsSync(fullPath)) {
-        fullPath = `${fullPath}/index.ts`;
+        fullPath = `${fullPath}/${demoName}.tsx`;
       } else {
         fullPath = `${fullPath}.tsx`;
       }

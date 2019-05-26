@@ -19,3 +19,10 @@ export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
   Exclude<keyof T, Keys>
 > &
   { [K in Keys]-?: Required<Pick<T, K>> }[Keys];
+
+interface LabelA11y {
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+}
+export type LabelRequiredForA11y<T extends LabelA11y> = T &
+  RequireAtLeastOne<T, "aria-label" | "aria-labelledby">;

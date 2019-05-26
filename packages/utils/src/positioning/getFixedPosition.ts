@@ -188,8 +188,6 @@ function getTransformOrigin(anchor: PositionAnchor) {
 }
 
 interface AdjustPositionOptions {
-  currentLeft: number;
-  currentTop: number;
   containerLeft: number;
   containerTop: number;
   containerWidth: number;
@@ -210,7 +208,6 @@ interface AdjustPositionOptions {
  * and tries swapping sides if possible. This is basically the inverse of `fixRightPosition`
  */
 function fixLeftPosition({
-  currentLeft,
   containerLeft,
   containerWidth,
   elementWidth,
@@ -219,7 +216,7 @@ function fixLeftPosition({
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = currentLeft - elementWidth - xMargin;
+  let left = containerLeft - elementWidth - xMargin;
   let actualX: HorizontalPosition = "left";
   if (left < vwMargin) {
     const nextLeft = containerLeft + containerWidth + xMargin;
@@ -235,7 +232,6 @@ function fixLeftPosition({
 }
 
 function fixRightPosition({
-  currentLeft,
   containerLeft,
   containerWidth,
   elementWidth,
@@ -245,7 +241,7 @@ function fixRightPosition({
   disableSwapping,
 }: AdjustPositionOptions) {
   let actualX: HorizontalPosition = "right";
-  let left = currentLeft + containerWidth + xMargin;
+  let left = containerLeft + containerWidth + xMargin;
   const screenRight = vw - vwMargin;
   if (left + elementWidth > screenRight) {
     const nextLeft = containerLeft - containerWidth - xMargin;
@@ -261,7 +257,6 @@ function fixRightPosition({
 }
 
 function fixInnerLeftPosition({
-  currentLeft,
   containerLeft,
   containerWidth,
   elementWidth,
@@ -269,7 +264,7 @@ function fixInnerLeftPosition({
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = currentLeft;
+  let left = containerLeft;
   let actualX: HorizontalPosition = "inner-left";
   const screenRight = vw - vwMargin;
   if (left - elementWidth < vwMargin) {
@@ -286,7 +281,6 @@ function fixInnerLeftPosition({
 }
 
 function fixInnerRightPosition({
-  currentLeft,
   containerLeft,
   containerWidth,
   elementWidth,
@@ -294,7 +288,7 @@ function fixInnerRightPosition({
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = currentLeft + containerWidth - elementWidth;
+  let left = containerLeft + containerWidth - elementWidth;
   let actualX: HorizontalPosition = "inner-right";
   if (left < vwMargin) {
     if (disableSwapping || containerLeft + elementWidth > vw - vwMargin) {
@@ -308,8 +302,25 @@ function fixInnerRightPosition({
   return { actualX, left };
 }
 
+function fixHorizontalCenterPosition({
+  containerLeft,
+  containerWidth,
+  elementWidth,
+  xMargin,
+  vw,
+  vwMargin,
+  disableSwapping,
+}: AdjustPositionOptions) {
+  let left = containerLeft + containerWidth / 2 - elementWidth / 2;
+  const screenRight = vw - vwMargin;
+  if (left + elementWidth > screenRight) {
+    left = screenRight - elementWidth;
+  }
+
+  return left;
+}
+
 function fixAbovePosition({
-  currentTop,
   containerTop,
   containerHeight,
   elementHeight,
@@ -318,11 +329,11 @@ function fixAbovePosition({
   vhMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let top = currentTop - elementHeight - yMargin;
+  let top = containerTop - elementHeight - yMargin;
   let actualY: VerticalPosition = "above";
-  if (!disableSwapping && top < vhMargin) {
+  if (top < vhMargin) {
     const nextTop = containerTop + containerHeight + yMargin;
-    if (nextTop + elementHeight > vh - vhMargin) {
+    if (disableSwapping || nextTop + elementHeight > vh - vhMargin) {
       top = vhMargin;
     } else {
       top = nextTop;
@@ -334,7 +345,6 @@ function fixAbovePosition({
 }
 
 function fixBelowPosition({
-  currentTop,
   containerTop,
   containerHeight,
   elementHeight,
@@ -343,12 +353,12 @@ function fixBelowPosition({
   vhMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let top = currentTop + containerHeight + yMargin;
+  let top = containerTop + containerHeight + yMargin;
   let actualY: VerticalPosition = "below";
   const maxTop = vh - vhMargin;
-  if (!disableSwapping && top + elementHeight > maxTop) {
+  if (top + elementHeight > maxTop) {
     const nextTop = containerTop - elementHeight - yMargin;
-    if (nextTop < vhMargin) {
+    if (disableSwapping || nextTop < vhMargin) {
       top = vhMargin;
     } else {
       top = nextTop;
@@ -357,6 +367,76 @@ function fixBelowPosition({
   }
 
   return { actualY, top };
+}
+
+function fixTopPosition({
+  containerTop,
+  containerHeight,
+  elementHeight,
+  yMargin,
+  vh,
+  vhMargin,
+  disableSwapping,
+}: AdjustPositionOptions) {
+  let actualY: VerticalPosition = "top";
+  let top = containerTop;
+  const screenBottom = vh - vhMargin;
+  if (top + elementHeight > screenBottom) {
+    const nextTop = containerTop + containerHeight - elementHeight;
+    if (disableSwapping || nextTop < vhMargin) {
+      top = screenBottom - elementHeight;
+    } else {
+      actualY = "bottom";
+      top = nextTop;
+    }
+  }
+
+  return { actualY, top };
+}
+
+function fixBottomPosition({
+  containerTop,
+  containerHeight,
+  elementHeight,
+  yMargin,
+  vh,
+  vhMargin,
+  disableSwapping,
+}: AdjustPositionOptions) {
+  let actualY: VerticalPosition = "bottom";
+  let top = containerTop + containerHeight - elementHeight;
+  const screenBottom = vh - vhMargin;
+  if (top + elementHeight > screenBottom) {
+    if (disableSwapping || containerTop < vhMargin) {
+      top = vhMargin;
+    } else {
+      actualY = "top";
+      top = containerTop;
+    }
+  }
+
+  return { actualY, top };
+}
+
+function fixVerticalCenter({
+  containerTop,
+  containerHeight,
+  elementHeight,
+  yMargin,
+  vh,
+  vhMargin,
+  disableSwapping,
+}: AdjustPositionOptions) {
+  const halvedHeight = elementHeight / 2;
+  let top = containerTop + containerHeight / 2 - halvedHeight;
+  const screenBottom = vh - vhMargin;
+  if (top + halvedHeight > screenBottom) {
+    top = screenBottom - halvedHeight;
+  } else if (top - halvedHeight < vhMargin) {
+    top = vhMargin;
+  }
+
+  return top;
 }
 
 /**
@@ -431,14 +511,12 @@ export default function getFixedPosition({
 
   let { height, width } = getElementRect(element);
 
-  let left: number | undefined = containerRect.left;
-  let top: number | undefined = containerRect.top;
+  let left: number | undefined;
+  let top: number | undefined;
   let right: number | undefined;
   let bottom: number | undefined;
 
   const adjustConfig = {
-    currentLeft: left,
-    currentTop: top,
     containerLeft: containerRect.left,
     containerTop: containerRect.top,
     containerWidth,
@@ -457,7 +535,6 @@ export default function getFixedPosition({
     left = vwMargin;
     right = vwMargin;
     actualX = "center";
-    ({ height, width } = getElementRect(element, { left, right }));
   } else {
     switch (anchor.x) {
       case "left":
@@ -473,12 +550,7 @@ export default function getFixedPosition({
         ({ actualX, left } = fixInnerRightPosition(adjustConfig));
         break;
       case "center":
-        left = Math.max(vwMargin, left + containerWidth / 2 - width / 2);
-        if (left + width > vw - vwMargin) {
-          left = undefined;
-          right = vwMargin;
-        }
-
+        left = fixHorizontalCenterPosition(adjustConfig);
         break;
     }
   }
@@ -496,20 +568,13 @@ export default function getFixedPosition({
         ({ actualY, top } = fixBelowPosition(adjustConfig));
         break;
       case "top":
-        if (!disableSwapping && top + height > vh - vhMargin) {
-          actualY = "bottom";
-          top = Math.max(vhMargin, containerRect.bottom - height);
-        }
+        ({ actualY, top } = fixTopPosition(adjustConfig));
         break;
       case "center":
-        top = Math.max(vhMargin, top + containerHeight / 2 - height / 2);
+        top = fixVerticalCenter(adjustConfig);
         break;
       case "bottom":
-        top = top + containerHeight - height;
-        if (!disableSwapping && vwMargin > top) {
-          actualY = "bottom";
-          top = containerRect.top;
-        }
+        ({ actualY, top } = fixBottomPosition(adjustConfig));
         break;
     }
   }

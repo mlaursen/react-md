@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { List } from "@react-md/list";
-import { RequireAtLeastOne } from "@react-md/utils";
+import { LabelRequiredForA11y } from "@react-md/utils";
 
 import { Item } from "./defaultItemRenderer";
 import Menu, { MenuProps } from "./Menu";
@@ -26,15 +26,13 @@ type RequiredMenuProps = Required<
 export interface InjectedMenuProps
   extends MenuPositionProps,
     RequiredMenuProps,
-    RenderConditionalPortalProps {}
-
-type LabelRequired = RequireAtLeastOne<
-  MenuProps,
-  "aria-label" | "aria-labelledby"
->;
+    RenderConditionalPortalProps {
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+}
 
 export type MenuRenderer = (
-  props: InjectedMenuProps & LabelRequired,
+  props: LabelRequiredForA11y<InjectedMenuProps>,
   items: Item[]
 ) => ReactNode;
 
@@ -46,7 +44,7 @@ export default function defaultMenuRenderer({
   horizontal,
   children,
   ...props
-}: InjectedMenuProps & LabelRequired) {
+}: LabelRequiredForA11y<InjectedMenuProps>) {
   return (
     <Menu {...props} horizontal={horizontal}>
       <List horizontal={horizontal}>{children}</List>

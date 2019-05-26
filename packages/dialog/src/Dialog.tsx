@@ -16,7 +16,7 @@ import {
 } from "@react-md/portal";
 import { bem } from "@react-md/theme";
 import { CSSTransitionProps } from "@react-md/transition";
-import { RequireAtLeastOne, WithForwardedRef } from "@react-md/utils";
+import { LabelRequiredForA11y, WithForwardedRef } from "@react-md/utils";
 import {
   FocusContainer,
   useScrollLock,
@@ -180,15 +180,15 @@ type DefaultProps = Required<
   >
 >;
 type WithDefaultProps = DialogProps & DefaultProps & WithRef;
-type StrictDialogProps = DialogProps &
-  RequireAtLeastOne<DialogProps, "aria-label" | "aria-labelledby">;
 
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
 const noop = () => {};
 const block = bem("rmd-dialog");
 const overlayBlock = bem("rmd-dialog-overlay");
 
-const Dialog: FC<StrictDialogProps & WithRef> = providedProps => {
+const Dialog: FC<
+  LabelRequiredForA11y<DialogProps> & WithRef
+> = providedProps => {
   const {
     children,
     forwardedRef,
@@ -431,6 +431,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, StrictDialogProps>((props, ref) => (
-  <Dialog {...props} forwardedRef={ref} />
-));
+export default forwardRef<HTMLDivElement, LabelRequiredForA11y<DialogProps>>(
+  (props, ref) => <Dialog {...props} forwardedRef={ref} />
+);

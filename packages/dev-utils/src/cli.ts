@@ -79,6 +79,7 @@ commander
     "--clean",
     "This will clean all the sandboxes before running the sandbox command"
   )
+  .option("--clean-only", "This will only clean all the existing Sandbox files")
   .option(
     "--lookups-only",
     "This will only the command to update the sandboxes.ts file in the demos folder."
@@ -93,9 +94,14 @@ commander
   .action(
     (
       components: string[],
-      { lookupsOnly = false, empty = false, clean = false }: any
+      {
+        lookupsOnly = false,
+        empty = false,
+        clean = false,
+        cleanOnly = false,
+      }: any
     ) => {
-      sandbox({ lookupsOnly, components, empty, clean });
+      sandbox({ lookupsOnly, components, empty, clean, cleanOnly });
     }
   );
 

@@ -38,7 +38,7 @@ export default function useActionClassName({
   last,
   inheritColor,
   className,
-}: AppBarActionClassNameProps) {
+}: AppBarActionClassNameProps = {}) {
   return cn(
     block("action", {
       first,

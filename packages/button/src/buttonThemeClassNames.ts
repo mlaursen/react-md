@@ -78,7 +78,7 @@ export default function buttonThemeClassNames(props: ButtonThemeProps): string {
   const {
     buttonType = "text",
     themeType = "flat",
-    theme = "primary",
+    theme = "clear",
     disabled,
     className,
   } = props;

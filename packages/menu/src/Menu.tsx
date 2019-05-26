@@ -16,10 +16,10 @@ import { bem } from "@react-md/theme";
 import { CSSTransitionProps, useFixedPositioning } from "@react-md/transition";
 import {
   applyRef,
-  RequireAtLeastOne,
   PositionAnchor,
   WithForwardedRef,
   FixedPositionOptions,
+  LabelRequiredForA11y,
 } from "@react-md/utils";
 import { useKeyboardMovement } from "@react-md/wia-aria";
 
@@ -129,12 +129,10 @@ type DefaultProps = Required<
   >
 >;
 type WithDefaultProps = MenuProps & DefaultProps & WithRef;
-type StrictMenuProps = MenuProps &
-  RequireAtLeastOne<MenuProps, "aria-label" | "aria-labelledby">;
 
 const block = bem("rmd-menu");
 
-const Menu: FC<StrictMenuProps & WithRef> = providedProps => {
+const Menu: FC<LabelRequiredForA11y<MenuProps> & WithRef> = providedProps => {
   const {
     controlId,
     className,
@@ -316,6 +314,6 @@ const defaultProps: DefaultProps = {
 
 Menu.defaultProps = defaultProps;
 
-export default forwardRef<HTMLDivElement, StrictMenuProps>((props, ref) => (
-  <Menu {...props} forwardedRef={ref} />
-));
+export default forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
+  (props, ref) => <Menu {...props} forwardedRef={ref} />
+);
