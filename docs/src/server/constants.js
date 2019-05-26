@@ -19,4 +19,4 @@ export const SASSDOC_DATABASE = path.join(DBS_PATH, 'sassdocs.json');
 export const SASSDOC_LINKS_DATABASE = path.join(DBS_PATH, 'sassdocLinks.json');
 export const EXAMPLES_LINKS_DATABASE = path.join(DBS_PATH, 'examplesLinks.json');
 
-export const BASE_SOURCE_PATH = `${GITHUB_URL}/blob/release/${Version.replace(/([0-9]\.[0-9]\.)([0-9A-z]|-)+/, '$1x')}`;
+export const BASE_SOURCE_PATH = `${GITHUB_URL}/blob/v${Version}`;
