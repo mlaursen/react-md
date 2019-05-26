@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * This can either be a query selector string, a specific HTMLElement, or a function
@@ -36,16 +36,64 @@ export default function usePreviousFocus(
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null
 ) {
+  const ref = useRef({ fallback, previousElement });
+  useEffect(() => {
+    ref.current = { fallback, previousElement };
+  });
+
   useEffect(() => {
     if (disabled) {
       return;
     }
 
-    const element = previousElement || (document.activeElement as HTMLElement);
+    const element =
+      ref.current.previousElement || (document.activeElement as HTMLElement);
+
+    // i'll need to think of a better way to handle this flow. There's just a weird one where if going
+    // from a menu to a dialog, we get lost without specifying a fallback. So if we are in a menu,
+    // try to find the correspnding menu button for this flow to fallback to.
+    const menu = element.closest('[role="menu"]');
+    let menuButton: HTMLElement | null = null;
+    if (menu) {
+      // first try to get the button by using the menu's id minus the trailing -menu since that's the
+      // normal pattern within react-md.
+      menuButton = document.getElementById(menu.id.replace(/-menu$/, ""));
+      if (!menuButton) {
+        // if no menu button, try to see if the `aria-labelledby` points to the button... but since the
+        // `aria-labelledby` is a space-deliminated string of ids, have to check each one
+        const labelledBy = menu.getAttribute("aria-labelledby") || "";
+        const query = labelledBy
+          .split(" ")
+          .map(id => `#${id}[tabindex]`)
+          .join(",");
+
+        menuButton = query ? document.querySelector<HTMLElement>(query) : null;
+      }
+    }
 
     return () => {
+      const { previousElement, fallback } = ref.current;
+      if (
+        menu &&
+        menuButton &&
+        !previousElement &&
+        !fallback &&
+        !document.contains(element) &&
+        document.contains(menuButton)
+      ) {
+        menuButton.focus();
+        return;
+      }
+
       let el: HTMLElement | null = element;
-      if (!el || !document.contains(el)) {
+      if (!document.contains(el)) {
+        el =
+          previousElement && document.contains(previousElement)
+            ? previousElement
+            : null;
+      }
+
+      if (!el) {
         switch (typeof fallback) {
           case "string":
             el = document.querySelector<HTMLElement>(fallback);
