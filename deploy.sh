@@ -48,13 +48,13 @@ if [[ $build_dist -eq 1 ]]; then
   yarn build
 fi
 
+if [[ $build_sandbox -eq 1 ]]; then
+  yarn sanbox --clean
+fi
+
 if [[ $build_next -eq 1 ]]; then
   rm -r packages/documentation/.next
   yarn workspace documentation build
-fi
-
-if [[ $build_sandbox -eq 1 ]]; then
-  yarn sanbox --clean
 fi
 
 find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) \
