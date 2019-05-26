@@ -219,7 +219,7 @@ function fixLeftPosition({
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = containerLeft - elementWidth - xMargin;
+  let left = currentLeft - elementWidth - xMargin;
   let actualX: HorizontalPosition = "left";
   if (left < vwMargin) {
     const nextLeft = containerLeft + containerWidth + xMargin;
@@ -265,7 +265,6 @@ function fixInnerLeftPosition({
   containerLeft,
   containerWidth,
   elementWidth,
-  xMargin,
   vw,
   vwMargin,
   disableSwapping,
@@ -291,7 +290,6 @@ function fixInnerRightPosition({
   containerLeft,
   containerWidth,
   elementWidth,
-  xMargin,
   vw,
   vwMargin,
   disableSwapping,
@@ -345,7 +343,7 @@ function fixBelowPosition({
   vhMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let top = containerTop + containerHeight + yMargin;
+  let top = currentTop + containerHeight + yMargin;
   let actualY: VerticalPosition = "below";
   const maxTop = vh - vhMargin;
   if (!disableSwapping && top + elementHeight > maxTop) {

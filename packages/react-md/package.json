@@ -39,6 +39,7 @@
     "@react-md/link": "^2.0.0-alpha.1",
     "@react-md/list": "^2.0.0-alpha.1",
     "@react-md/media": "^2.0.0-alpha.1",
+    "@react-md/menu": "^2.0.0-alpha.1",
     "@react-md/overlay": "^2.0.0-alpha.1",
     "@react-md/portal": "^2.0.0-alpha.1",
     "@react-md/progress": "^2.0.0-alpha.1",

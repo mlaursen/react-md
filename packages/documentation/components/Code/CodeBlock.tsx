@@ -1,12 +1,12 @@
 import React, { forwardRef, FC, ReactNode, useMemo } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 import { highlightCode } from "components/Markdown/utils";
 
 import Code from "./Code";
 import LineNumbers from "./LineNumbers";
-import { bem } from "@react-md/theme";
 
 export interface CodeBlockProps {
   className?: string;

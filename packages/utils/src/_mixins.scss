@@ -173,7 +173,7 @@
 /// focus effects or other interaction states. This relies on the parent to have
 /// `position: relative;` to work.
 ///
-/// @type {Number} z-index [0] - The z-index to use.
+/// @param {Number} z-index [0] - The z-index to use.
 @mixin rmd-utils-pseudo-element($z-index: 0) {
   @include rmd-utils-full-screen(absolute);
 

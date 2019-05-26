@@ -240,8 +240,10 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
     onEntered,
     onExited,
   } = useFixedPositioning({
-    x: isHorizontal ? (position as HorizontalPosition) : "center",
-    y: isHorizontal ? "center" : (position as VerticalPosition),
+    anchor: {
+      x: isHorizontal ? (position as HorizontalPosition) : "center",
+      y: isHorizontal ? "center" : (position as VerticalPosition),
+    },
     disableSwapping:
       typeof disableSwapping === "boolean" ? disableSwapping : !!propPosition,
     fixedTo: () => document.getElementById(id),

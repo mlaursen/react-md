@@ -1,9 +1,7 @@
 import React, { FC, forwardRef } from "react";
-import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { WithForwardedRef } from "@react-md/utils";
-import { bem } from "@react-md/theme";
-import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+
 import useActionClassName, {
   AppBarActionClassNameProps,
 } from "./useActionClassName";
@@ -17,8 +15,6 @@ type DefaultProps = Required<
   Pick<AppBarActionProps, "first" | "last" | "buttonType" | "theme">
 >;
 type WithDefaultProps = AppBarActionProps & DefaultProps & WithRef;
-
-const block = bem("rmd-app-bar");
 
 /**
  * This component is really just a simple wrapper for the `Button` component that adds a few

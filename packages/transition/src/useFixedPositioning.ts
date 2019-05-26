@@ -1,15 +1,13 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
-import { TransitionProps } from "react-transition-group/Transition";
 import { useResizeListener } from "@react-md/sizing";
 import {
-  getFixedPosition,
-  useScrollListener,
-  Omit,
-  HorizontalPosition,
-  VerticalPosition,
   FixedPositionOptions,
+  getFixedPosition,
+  Omit,
   PositionAnchor,
+  useScrollListener,
 } from "@react-md/utils";
+import { TransitionProps } from "react-transition-group/Transition";
 
 type FixedToFunction = () => HTMLElement | null;
 type FixedTo = string | HTMLElement | null | FixedToFunction;

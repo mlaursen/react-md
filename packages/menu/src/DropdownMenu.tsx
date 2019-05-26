@@ -1,7 +1,7 @@
-import React, { forwardRef, Fragment, FC } from "react";
+import React, { FC, forwardRef, Fragment } from "react";
 import { FontIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
-import { RequireAtLeastOne, WithForwardedRef, Omit } from "@react-md/utils";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
 import defaultItemRenderer, {
   Item,
@@ -11,6 +11,7 @@ import defaultMenuRenderer, {
   MenuPositionProps,
   MenuRenderer,
 } from "./defaultMenuRenderer";
+
 import MenuButton, { MenuButtonProps } from "./MenuButton";
 import useMenuState from "./useMenuState";
 

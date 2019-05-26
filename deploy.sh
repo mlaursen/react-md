@@ -7,12 +7,22 @@ for arg in "$@"; do
       build_next=1
       shift
       ;;
+    -bns|-bsn|-nsb|-nbs|-snb|-sbn)
+      build_dist=1
+      build_next=1
+      build_sandbox=1
+      shift
+      ;;
     -b)
       build_dist=1
       shift
       ;;
     -n)
       build_next=1
+      shift
+      ;;
+    -s)
+      build_sandbox=1
       shift
       ;;
     *)
@@ -41,6 +51,10 @@ fi
 if [[ $build_next -eq 1 ]]; then
   rm -r packages/documentation/.next
   yarn workspace documentation build
+fi
+
+if [[ $build_sandbox -eq 1 ]]; then
+  yarn sanbox --clean
 fi
 
 find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) \

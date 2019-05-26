@@ -101,7 +101,7 @@ renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 type Transform = (markdown: string) => string;
 const joinedNames = PACKAGE_NAMES.join("|");
 const allNames = `${joinedNames}|react-md`;
-const whitespace = "(?=\r?\n| |.)";
+const whitespace = "(?=\r?\n| |[^/])";
 
 const getVersion = (name: string) => {
   let version = VERSION;
