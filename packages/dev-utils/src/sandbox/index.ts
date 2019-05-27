@@ -4,7 +4,7 @@ import { CompilerOptions } from "typescript";
 
 import { documentationRoot } from "../paths";
 import { glob, isVerbose, list, log, time, toTitle, clean } from "../utils";
-import { DEMOS_FOLDER } from "./constants";
+import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
 import generate, {
@@ -84,6 +84,7 @@ behind the scenes so there is _some_ sense of progress...
   log(list(demos));
   log();
 
+  await fs.ensureDir(SANDBOXES_PATH);
   if (empty) {
     const paths = demos.map(getSandboxFileName);
     const missing = paths.filter(p => !fs.existsSync(p));
