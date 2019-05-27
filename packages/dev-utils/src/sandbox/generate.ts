@@ -198,11 +198,17 @@ export default async function generate({
 
   const files = (await Promise.all(
     [demoPath, ...aliased].map(async filePath => {
-      const fileName = `src/${
-        filePath === demoPath
-          ? "Demo.tsx"
-          : filePath.substring(filePath.lastIndexOf("/") + 1)
-      }`;
+      let pathname = filePath;
+      if (filePath === demoPath) {
+        pathname = "Demo.tsx";
+      } else if (pathname.includes("Demos")) {
+        pathname = filePath.substring(filePath.lastIndexOf("/") + 1);
+      } else {
+        const regexp = new RegExp(`^(${aliases.join("|")})${path.sep}`);
+        pathname = filePath.replace(regexp, "");
+      }
+
+      const fileName = `src/${pathname}`;
 
       let content = await fs.readFile(
         path.join(documentationRoot, filePath),
@@ -218,10 +224,10 @@ export default async function generate({
       }
 
       if (demoPath === filePath) {
-        content = content.replace(
-          new RegExp(demoName.replace(".tsx", ""), "g"),
-          "Demo"
-        );
+        const name = demoName.replace(".tsx", "");
+        content = content
+          .replace(`${name}: FC`, "Demo: FC")
+          .replace(`default ${name};`, "default Demo;");
       }
 
       return {

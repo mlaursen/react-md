@@ -5,9 +5,9 @@ import {
   KeyboardArrowLeftSVGIcon,
   CloseSVGIcon,
 } from "@react-md/material-icons";
+import { bem } from "@react-md/theme";
 
 import { usePhoneContext } from "./context";
-import { bem } from "@react-md/theme";
 
 const block = bem("phone");
 
