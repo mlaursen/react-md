@@ -185,6 +185,10 @@
     @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline, auto);
   }
 
+  &--no-wrap {
+    @include rmd-typography-text-overflow-ellipsis;
+  }
+
   &--inherit {
     color: inherit;
   }

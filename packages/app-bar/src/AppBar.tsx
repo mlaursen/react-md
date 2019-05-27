@@ -95,7 +95,7 @@ const block = bem("rmd-app-bar");
  */
 const AppBar: FC<AppBarProps & WithRef> = providedProps => {
   const {
-    component: Component,
+    component: propComponent,
     className,
     forwardedRef,
     children,
@@ -104,10 +104,11 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
     fixed,
     fixedPosition,
     fixedElevation,
-    theme,
+    theme: propTheme,
     inheritColor,
     ...props
   } = providedProps as WithDefaultProps;
+  let { theme, component: Component } = providedProps as WithDefaultProps;
 
   const parentContext = useParentContext();
   const inheritContext = useInheritContext(undefined);
@@ -117,6 +118,8 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
     inherit = inheritColor;
   } else if (parentContext) {
     inherit = inheritContext;
+    theme = "clear";
+    Component = "div";
   } else {
     inherit = theme !== "clear" && theme !== "default";
   }

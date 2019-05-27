@@ -306,10 +306,8 @@ function fixHorizontalCenterPosition({
   containerLeft,
   containerWidth,
   elementWidth,
-  xMargin,
   vw,
   vwMargin,
-  disableSwapping,
 }: AdjustPositionOptions) {
   let left = containerLeft + containerWidth / 2 - elementWidth / 2;
   const screenRight = vw - vwMargin;
@@ -373,7 +371,6 @@ function fixTopPosition({
   containerTop,
   containerHeight,
   elementHeight,
-  yMargin,
   vh,
   vhMargin,
   disableSwapping,
@@ -398,7 +395,6 @@ function fixBottomPosition({
   containerTop,
   containerHeight,
   elementHeight,
-  yMargin,
   vh,
   vhMargin,
   disableSwapping,
@@ -422,10 +418,8 @@ function fixVerticalCenter({
   containerTop,
   containerHeight,
   elementHeight,
-  yMargin,
   vh,
   vhMargin,
-  disableSwapping,
 }: AdjustPositionOptions) {
   const halvedHeight = elementHeight / 2;
   let top = containerTop + containerHeight / 2 - halvedHeight;

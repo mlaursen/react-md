@@ -12,10 +12,17 @@ export interface AppBarTitleProps
    * Boolean if the title should be placed at the `$rmd-app-bar-title-keyline`.
    */
   keyline?: boolean;
+
+  /**
+   * Boolean if the title should not automatically try to wrap the content and span two
+   * lines if it is too big. This will automatically add trailing ellipsis for the
+   * text overflow as well.
+   */
+  noWrap?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLHeadingElement>;
-type DefaultProps = Required<Pick<AppBarTitleProps, "keyline">>;
+type DefaultProps = Required<Pick<AppBarTitleProps, "keyline" | "noWrap">>;
 type WithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
 
 const block = bem("rmd-app-bar");
@@ -32,6 +39,7 @@ const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
     forwardedRef,
     children,
     inheritColor,
+    noWrap,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -40,6 +48,7 @@ const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
       {...props}
       className={cn(
         block("title", {
+          "no-wrap": noWrap,
           keyline,
           inherit: useInheritContext(inheritColor),
         }),
@@ -53,6 +62,7 @@ const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  noWrap: false,
   keyline: false,
 };
 
@@ -71,6 +81,7 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       children: PropTypes.node,
       keyline: PropTypes.bool,
+      noWrap: PropTypes.bool,
     };
   }
 }
