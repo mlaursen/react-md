@@ -1,22 +1,24 @@
-import React, { Fragment, FC, ReactElement } from "react";
+import React, { FC, Fragment, ReactElement } from "react";
+import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
+import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
+
+import { GITHUB_DEMO_URL } from "constants/index";
+import getSandbox from "utils/getSandbox";
+import { toTitle } from "utils/toTitle";
 
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 import Heading from "components/Heading";
+import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { Markdown } from "components/Markdown";
-import { GITHUB_DEMO_URL } from "constants/index";
-import { toTitle } from "utils/toTitle";
+import { ClosePhone } from "components/Phone";
 
 import "./demo.scss";
 import CodePreview from "./CodePreview";
-import Sandbox from "./Sandbox";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 import GithubDemoLink from "./GithubDemoLink";
-import { ClosePhone } from "components/Phone";
-import { bem } from "@react-md/theme";
-import getSandbox from "utils/getSandbox";
+import Sandbox from "./Sandbox";
 
 export interface DemoProps {
   id: string;
@@ -30,6 +32,7 @@ export interface DemoProps {
   disableFullPageAppBar?: boolean;
   disableFullPageContent?: boolean;
   fullPageFAB?: boolean;
+  disableCard?: boolean;
 
   /**
    * Boolean if the demo should require a full page modal to display only
@@ -56,7 +59,11 @@ type WithDefaultProps = DemoProps &
   Required<
     Pick<
       DemoProps,
-      "fullPage" | "phoneFullPage" | "mobileFullPage" | "fullPageFAB"
+      | "fullPage"
+      | "phoneFullPage"
+      | "mobileFullPage"
+      | "fullPageFAB"
+      | "disableCard"
     >
   >;
 
@@ -74,6 +81,7 @@ const Demo: FC<DemoProps> = props => {
     index,
     packageName,
     fullPageFAB,
+    disableCard,
     disableFullPageAppBar,
     disableFullPageContent,
   } = props as WithDefaultProps;
@@ -117,7 +125,10 @@ const Demo: FC<DemoProps> = props => {
           <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div id={`${id}-code-preview`} />
-        <div id={`${id}-preview`} className={block("preview")}>
+        <div
+          id={`${id}-preview`}
+          className={cn(!disableCard && block("preview"))}
+        >
           <ConditionalFullPageDialog
             id={`${id}-preview`}
             disabled={dialogDisabled}
@@ -147,6 +158,7 @@ Demo.defaultProps = {
   disableFullPageAppBar: false,
   disableFullPageContent: false,
   fullPageFAB: false,
+  disableCard: false,
 };
 
 export default Demo;

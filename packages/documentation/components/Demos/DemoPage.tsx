@@ -21,13 +21,15 @@ export interface DemoPageProps {
     | "disableFullPageContent"
     | "phoneFullPage"
     | "mobileFullPage"
+    | "disableCard"
     | "fileName"
     | "children"
   >[];
   fonts?: string[];
+  disableCards?: boolean;
 }
 
-type DefaultProps = Required<Pick<DemoPageProps, "fonts">>;
+type DefaultProps = Required<Pick<DemoPageProps, "fonts" | "disableCards">>;
 type WithDefaultProps = DemoPageProps & DefaultProps;
 
 const DemoPage: FC<DemoPageProps> = props => {
@@ -37,6 +39,7 @@ const DemoPage: FC<DemoPageProps> = props => {
     packageName,
     className,
     fonts,
+    disableCards,
   } = props as WithDefaultProps;
 
   return (
@@ -55,6 +58,11 @@ const DemoPage: FC<DemoPageProps> = props => {
             name={name}
             index={index}
             packageName={packageName}
+            disableCard={
+              typeof props.disableCard !== "undefined"
+                ? props.disableCard
+                : disableCards
+            }
           />
         );
       })}
@@ -64,6 +72,7 @@ const DemoPage: FC<DemoPageProps> = props => {
 
 DemoPage.defaultProps = {
   fonts: [],
+  disableCards: false,
 };
 
 export default DemoPage;

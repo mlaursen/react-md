@@ -49,6 +49,7 @@
   @include rmd-utils-pseudo-element($z-index);
 
   box-shadow: $shadow;
+  opacity: 0;
   transition: opacity $duration;
 }
 

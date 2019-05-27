@@ -41,4 +41,4 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="card" />;
+export default () => <DemoPage demos={demos} packageName="card" disableCards />;
