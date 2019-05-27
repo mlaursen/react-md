@@ -1,4 +1,7 @@
-export const DEMOS_FOLDER = "components/Demos/";
+import path from "path";
+
+export const DEMOS_FOLDER = path.join("components", "Demos");
+export const SANDBOXES_PATH = path.join("constants", "sandboxes");
 
 /**
  * These packages will always be required for a sandbox since they are the base
@@ -100,4 +103,18 @@ export const DEMO_TS_CONFIG = `{
     "src"
   ]
 }
+`;
+
+export const SANDBOXES_FILE = `/** this is a generated file from \`dev-utils sandbox\` */
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
+
+const resolve = (importer: Promise<any>) => importer.then(content => content.default as IFiles);
+
+export type GetSandbox = () => Promise<IFiles>;
+export type PackageName = {{PACKAGE_UNION}};
+export type Sandboxes = Record<PackageName, Record<string, GetSandbox>>;
+
+const sandboxes: Sandboxes = {{SANDBOXES_JSON}};
+
+export default sandboxes;
 `;

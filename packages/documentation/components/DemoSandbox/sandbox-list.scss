@@ -1,0 +1,23 @@
+@import '@react-md/sizing/dist/mixins';
+
+$card-margin: 0.5rem;
+$doubled-card-margin: $card-margin * 2;
+
+.sandbox-list {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+
+  &__card {
+    @include rmd-sizing-tablet-media {
+      width: calc(50% - #{$doubled-card-margin});
+    }
+    @media screen and (min-width: 82.5em) {
+      width: calc(33% - #{$doubled-card-margin});
+    }
+
+    margin: $card-margin;
+    width: calc(100% - #{$doubled-card-margin});
+  }
+}

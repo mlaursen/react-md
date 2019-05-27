@@ -37,7 +37,7 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
     }
   }, [isLargeDesktop]);
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname.startsWith("/sandbox");
   const headings = usePageHeadings(pathname, isHome);
 
   if (isHome) {

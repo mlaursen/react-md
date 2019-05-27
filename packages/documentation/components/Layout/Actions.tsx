@@ -1,9 +1,9 @@
 import React, { FC, Fragment } from "react";
+
 import ToggleTheme from "./ToggleTheme";
-import { Tooltipped } from "@react-md/tooltip";
-import GithubLink from "components/GithubLink";
 import ToggleRTL from "./ToggleRTL";
 import ActionMenu from "./ActionMenu";
+import GithubLink from "./GithubLink";
 
 export interface ActionsProps {
   isPhone: boolean;
@@ -17,9 +17,7 @@ const Actions: FC<ActionsProps> = ({ isPhone }) => {
   return (
     <Fragment>
       <ToggleTheme />
-      <Tooltipped id="main-github-link" tooltip="View GitHub">
-        <GithubLink inherit />
-      </Tooltipped>
+      <GithubLink />
       <ToggleRTL />
     </Fragment>
   );

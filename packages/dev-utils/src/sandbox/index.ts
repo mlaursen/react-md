@@ -18,6 +18,7 @@ export interface ResolveConfig {
   lookupsOnly: boolean;
   empty: boolean;
   clean: boolean;
+  cleanOnly: boolean;
 }
 
 async function createSandboxJsonFiles(components: string[], empty: boolean) {
@@ -40,7 +41,7 @@ behind the scenes so there is _some_ sense of progress...
     ? `+(${components.map(name => toTitle(name)).join("|")})`
     : "*";
 
-  const globString = `${DEMOS_FOLDER}${matcher}/index.tsx`;
+  const globString = `${DEMOS_FOLDER}/${matcher}/index.tsx`;
   log("Using the following glob string...");
   log(list([globString]));
   log();
@@ -72,6 +73,7 @@ behind the scenes so there is _some_ sense of progress...
   const aliases = Object.keys(compilerOptions.paths).map(name =>
     name.replace("/*", "")
   );
+  aliases.push("_variables.scss");
   const demos = (await Promise.all(
     demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath, aliases))
   )).reduce((list, sublist) => [...list, ...sublist], []);
@@ -143,8 +145,14 @@ behind the scenes so there is _some_ sense of progress...
  * This will take a long time...
  */
 export default async function sandbox(config: ResolveConfig) {
-  const { components, lookupsOnly, empty, clean: cleanSandboxes } = config;
-  if (cleanSandboxes) {
+  const {
+    components,
+    lookupsOnly,
+    empty,
+    clean: cleanSandboxes,
+    cleanOnly,
+  } = config;
+  if (cleanSandboxes || cleanOnly) {
     await time(async () => {
       const sandboxes = await findGeneratedSandboxes();
       let filtered = sandboxes;
@@ -157,7 +165,7 @@ export default async function sandbox(config: ResolveConfig) {
     }, "clean sandboxes");
   }
 
-  if (!lookupsOnly) {
+  if (!lookupsOnly && !cleanOnly) {
     await time(
       () => createSandboxJsonFiles(components, empty),
       "creating sandboxes"

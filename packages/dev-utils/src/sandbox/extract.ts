@@ -166,6 +166,7 @@ export function resolveModuleNames(
       imports.add(importName);
       if (/Code\.tsx/.test(importName)) {
         imports.add(importName.replace("Code.tsx", "code.scss"));
+        imports.add("_variables.scss");
       }
       return;
     } else if (isRaw(name)) {

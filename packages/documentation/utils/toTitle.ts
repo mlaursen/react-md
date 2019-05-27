@@ -2,9 +2,13 @@ export function upperFirst(s: string) {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
-export function toTitle(s: string, joinWith: string = " ") {
+export function toTitle(
+  s: string,
+  joinWith: string = " ",
+  capitals: boolean = false
+) {
   return s
-    .split("-")
+    .split(capitals ? /(?=[A-Z])/ : "-")
     .map(upperFirst)
     .join(joinWith);
 }

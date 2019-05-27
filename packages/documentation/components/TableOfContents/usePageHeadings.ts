@@ -26,6 +26,11 @@ export default function usePageHeadings(pathname: string, disabled: boolean) {
       const nextHeadings = Array.from(
         document.querySelectorAll<HTMLElement>(".heading")
       );
+      if (!nextHeadings.length) {
+        setHeadings([]);
+        return;
+      }
+
       if (pathname.includes("/installation")) {
         // remove the first title from the list
         nextHeadings.splice(0, 1);

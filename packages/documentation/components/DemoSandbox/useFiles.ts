@@ -1,32 +1,17 @@
-import { useState, useEffect } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { FlattenedTree } from "@react-md/tree";
+import { useMemo } from "react";
+import { FlattenedTree, useFlattenedTree } from "@react-md/tree";
 
 export interface FileTreeData {
   children: string;
   content?: string;
 }
-
 export type FlattenedFileTree = FlattenedTree<FileTreeData>;
 
-export default function useFiles(
-  visible: boolean,
-  getFiles: () => Promise<IFiles>
-): FlattenedFileTree {
-  const [files, setFiles] = useState<FlattenedFileTree>({});
-  useEffect(() => {
-    if (!visible) {
-      return;
-    }
-
-    let cancelled = false;
-    (async function load() {
-      const files = await getFiles();
-      if (cancelled) {
-        return;
-      }
-
-      const fileTree = Object.entries(files).reduce<FlattenedFileTree>(
+export default function useFiles(sandbox: IFiles) {
+  const files = useMemo(
+    () =>
+      Object.entries(sandbox).reduce<FlattenedFileTree>(
         (tree, [filePath, { content }]) => {
           const parts = filePath.split("/");
           let parentId = null;
@@ -53,14 +38,9 @@ export default function useFiles(
           return tree;
         },
         {}
-      );
-      setFiles(fileTree);
-    })();
+      ),
+    [sandbox]
+  );
 
-    return () => {
-      cancelled = true;
-    };
-  }, [visible]);
-
-  return files;
+  return useFlattenedTree(files, null);
 }

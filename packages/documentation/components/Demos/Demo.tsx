@@ -12,11 +12,11 @@ import { toTitle } from "utils/toTitle";
 import "./demo.scss";
 import CodePreview from "./CodePreview";
 import Sandbox from "./Sandbox";
-import getSandboxer from "./sandboxes";
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 import GithubDemoLink from "./GithubDemoLink";
 import { ClosePhone } from "components/Phone";
 import { bem } from "@react-md/theme";
+import getSandbox from "utils/getSandbox";
 
 export interface DemoProps {
   id: string;
@@ -96,7 +96,6 @@ const Demo: FC<DemoProps> = props => {
     dialogDisabled = !isPhone && !isTablet;
   }
 
-  const getSandbox = getSandboxer(title, name);
   const { toggled, enable, disable } = useToggle();
   return (
     <Fragment>
@@ -113,8 +112,8 @@ const Demo: FC<DemoProps> = props => {
           {description}
         </Markdown>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
-          <CodePreview demoId={id} demoTitle={name} getSandbox={getSandbox} />
-          <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox} />
+          <CodePreview demoId={id} demoTitle={name} folder={title} />
+          <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox(title, name)} />
           <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div id={`${id}-code-preview`} />

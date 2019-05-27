@@ -11,6 +11,8 @@ import {
   DEMO_INDEX,
   DEMO_INDEX_HTML,
   NON_STYLEABLE_RMD_PACKAGES,
+  SANDBOXES_FILE,
+  SANDBOXES_PATH,
 } from "./constants";
 import { isSvg } from "./matchers";
 import { getFileSource } from "./formatters";
@@ -42,8 +44,10 @@ function toDependencyJson(dependencies: string[]) {
     );
 }
 
-export function findGeneratedSandboxes() {
-  return glob(`${DEMOS_FOLDER}/*/*Sandbox.json`);
+export async function findGeneratedSandboxes() {
+  const newSandboxes = await glob(`${SANDBOXES_PATH}/**/*.json`);
+  const oldSandboxes = await glob("components/Demos/**/*Sandbox.json");
+  return [...newSandboxes, ...oldSandboxes];
 }
 
 export async function createSandboxesLookup() {
@@ -53,13 +57,19 @@ export async function createSandboxesLookup() {
   log(list(sandboxes));
   log();
 
-  const lookups = sandboxes.reduce((collected, sandboxPath) => {
-    const [fileName, packageName] = sandboxPath.split("/").reverse();
-    const demoName = fileName.replace("Sandbox.json", "");
-    const key = `${packageName}/${demoName}`;
-    collected[key] = `() => resolve(import('./${packageName}/${fileName}'))`;
+  const packages = new Set<string>();
+  const lookups = sandboxes.reduce((lookups, pathname) => {
+    const [pkg, fileName] = pathname
+      .substring(pathname.lastIndexOf("/") + 1)
+      .split("-");
 
-    return collected;
+    packages.add(`"${pkg}"`);
+    lookups[pkg] = lookups[pkg] || {};
+    lookups[pkg][
+      fileName.replace(".json", "")
+    ] = `() => resolve(import('./${pkg}-${fileName}'))`;
+
+    return lookups;
   }, {});
 
   const stringified = JSON.stringify(lookups, null, 2).replace(
@@ -67,69 +77,14 @@ export async function createSandboxesLookup() {
     "$1"
   );
 
-  const code = `/** this is a generated file from \`dev-utils sandbox\` */
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
-
-import { upperFirst, toTitle } from "utils/toTitle";
-
-interface SandboxesRecord {
-  [key: string]: () => Promise<IFiles>;
-}
-
-const resolve = (importer: Promise<any>) => importer.then(content => content.default as IFiles);
-
-const sandboxes: SandboxesRecord = ${stringified};
-
-const dummy = () => Promise.resolve<IFiles>({
-  "package.json": {
-    isBinary: false,
-    content: JSON.stringify({
-      dependencies: {
-        react: "latest",
-        "react-dom": "latest",
-      },
-    }),
-  },
-  "src/index.tsx": { content: "", isBinary: false },
-  "src/Demo.tsx": { content: "", isBinary: false },
-});
-
-export default function getSandboxer(packageName: string, demoName: string) {
-  packageName = packageName.replace(/ /g, "");
-  demoName = demoName.split(" ").map(upperFirst).join("");
-  const sandboxer = sandboxes[\`\${packageName}/\${demoName}\`];
-  if (!sandboxer) {
-    const msgStart = \`Unable to find a sandbox import for \\\`\${demoName}\\\`\`;
-    let message = msgStart;
-    if (typeof window !== "undefined") {
-      const { pathname } = window.location;
-      const expected = toTitle(pathname.replace(/.+\\/([a-z-]+)\\/.+$/, "$1"));
-      if (expected !== packageName) {
-        message = \`\${message}.
-
-Got \\\`\${packageName}\\\` as the current package name, but based on the url it
-should probably be \\\`\${expected}\\\`. Make sure the \\\`index.tsx\\\` file has the
-correct \\\`pakageName\\\` prop set on the \\\`DemosPage\\\` component.\`;
-      }
-    }
-
-    if (message === msgStart) {
-      message = \`\${message} in the \\\`\${packageName}\\\` demo section.\`;
-    }
-
-    message = \`$\{message}
-Please run the \\\`sandbox\\\` command again in the documentation package to generate the sandbox.\`;
-
-    console.error(message);
-    return dummy;
-  }
-
-  return sandboxer;
-}
-`;
+  const code = SANDBOXES_FILE.replace(
+    "{{SANDBOXES_JSON}}",
+    stringified
+  ).replace("{{PACKAGE_UNION}}", Array.from(packages).join(" | "));
 
   const formatted = format(code, "typescript");
-  await fs.writeFile(path.join(DEMOS_FOLDER, "sandboxes.ts"), formatted);
+  await fs.ensureDir(SANDBOXES_PATH);
+  await fs.writeFile(path.join(SANDBOXES_PATH, "index.ts"), formatted);
 }
 
 interface GenerateSandboxConfig {
@@ -163,7 +118,16 @@ function createDemoStyles(dependencies: string[]) {
 }
 
 export function getSandboxFileName(demoPath: string) {
-  return demoPath.replace(/\/index\.ts|\.tsx$/, "Sandbox.json");
+  let fileName = "";
+  const i = demoPath.indexOf(`${path.sep}.${path.sep}`);
+  if (i !== -1) {
+    fileName = `${demoPath.substring(0, i)}.json`;
+  } else {
+    fileName = demoPath.replace(/\.tsx$/, ".json");
+  }
+
+  const [name, pkg] = fileName.split(path.sep).reverse();
+  return `${SANDBOXES_PATH}/${pkg}-${name}`;
 }
 
 export default async function generate({
@@ -251,6 +215,13 @@ export default async function generate({
 
       if (!isSvg(filePath)) {
         content = content.replace(aliasRegExp, "./");
+      }
+
+      if (demoPath === filePath) {
+        content = content.replace(
+          new RegExp(demoName.replace(".tsx", ""), "g"),
+          "Demo"
+        );
       }
 
       return {

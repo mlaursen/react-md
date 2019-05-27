@@ -1,50 +1,39 @@
-import React, { Fragment, FC } from "react";
+import React, { FC } from "react";
+import qs from "qs";
+import { useActionClassName } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
-import { useToggle } from "@react-md/utils";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import { Tooltipped } from "@react-md/tooltip";
+import { withRouter, SingletonRouter } from "next/router";
 
-import CodePreviewer from "components/CodePreviewer";
-
-import "./code-preview.scss";
-import AppBarAction from "components/AppBarAction";
+import LinkButton from "components/LinkButton";
 
 export interface CodePreviewProps {
   demoId: string;
   demoTitle: string;
-  getSandbox: () => Promise<IFiles>;
-}
-
-export interface CodeFile {
-  fileName: string;
-  content: string;
+  folder: string;
+  router: SingletonRouter;
 }
 
 const CodePreview: FC<CodePreviewProps> = ({
   demoId,
   demoTitle,
-  getSandbox,
-}) => {
-  const { toggled: visible, enable: show, disable: hide } = useToggle(false);
+  folder,
+  router,
+}) => (
+  <Tooltipped id={`${demoId}-show-code`} tooltip="Show Code">
+    <LinkButton
+      buttonType="icon"
+      aria-label="Show Code"
+      href={`/sandbox?${qs.stringify({
+        pkg: folder,
+        name: demoTitle,
+        from: `${router.pathname}#${demoId}-title`,
+      })}`}
+      className={useActionClassName({ first: true })}
+    >
+      <CodeSVGIcon />
+    </LinkButton>
+  </Tooltipped>
+);
 
-  return (
-    <Fragment>
-      <AppBarAction
-        id={`${demoId}-show-code`}
-        tooltip="Show Code"
-        aria-label="Show Code"
-        first
-        onClick={show}
-      >
-        <CodeSVGIcon />
-      </AppBarAction>
-      <CodePreviewer
-        projectName={demoTitle}
-        getFiles={getSandbox}
-        visible={visible}
-        onRequestClose={hide}
-      />
-    </Fragment>
-  );
-};
-
-export default CodePreview;
+export default withRouter(CodePreview);

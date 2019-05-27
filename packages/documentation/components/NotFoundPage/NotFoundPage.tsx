@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { MediaContainer } from "@react-md/media";
 import { bem } from "@react-md/theme";
 import { Text, TextContainer } from "@react-md/typography";
@@ -11,9 +12,13 @@ import { HomeSVGIcon } from "@react-md/material-icons";
 
 const block = bem("not-found");
 
-const NotFoundPage: FC = () => {
+interface Props {
+  className?: string;
+}
+
+const NotFoundPage: FC<Props> = ({ className }) => {
   return (
-    <MediaContainer className={block()} height={9} width={16}>
+    <MediaContainer className={cn(block(), className)} height={9} width={16}>
       <NotFoundSVG />
       <Text type="headline-2" className={block("uhh")}>
         Uhhh...
@@ -32,9 +37,7 @@ const NotFoundPage: FC = () => {
         theme="secondary"
         themeType="contained"
       >
-        <TextIconSpacing icon={<HomeSVGIcon role="presentation" />}>
-          Home
-        </TextIconSpacing>
+        <TextIconSpacing icon={<HomeSVGIcon />}>Home</TextIconSpacing>
       </LinkButton>
     </MediaContainer>
   );

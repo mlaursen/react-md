@@ -31,7 +31,7 @@ const DenseAppBar = () => (
 );
 
 const NormalAppBar = () => (
-  <AppBar component="div">
+  <AppBar>
     <AppBarNav aria-label="Navigation" id="normal-nav">
       <MenuSVGIcon />
     </AppBarNav>
@@ -47,7 +47,7 @@ const NormalAppBar = () => (
 
 const DenseProminentAppBar = () => (
   <AppBar dense prominent>
-    <AppBar component="div" dense>
+    <AppBar dense>
       <AppBarNav aria-label="Navigation" id="dense-prominent-nav">
         <MenuSVGIcon />
       </AppBarNav>
@@ -59,7 +59,7 @@ const DenseProminentAppBar = () => (
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar component="div" dense>
+    <AppBar dense>
       <AppBarTitle keyline>And Prominent!</AppBarTitle>
       <AppBarAction first buttonType="text" id="dense-prominent-new">
         <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
@@ -72,7 +72,7 @@ const DenseProminentAppBar = () => (
 
 const ProminentAppBar = () => (
   <AppBar prominent>
-    <AppBar component="div">
+    <AppBar>
       <AppBarNav aria-label="Navigation">
         <MenuSVGIcon />
       </AppBarNav>
@@ -83,7 +83,7 @@ const ProminentAppBar = () => (
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar component="div">
+    <AppBar>
       <AppBarTitle keyline>Only Prominent</AppBarTitle>
       <AppBarAction first buttonType="text" id="prominent-new">
         <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>

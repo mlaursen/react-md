@@ -1,19 +1,23 @@
 import React, { Fragment, FC } from "react";
 import { Portal } from "@react-md/portal";
-import { Omit, useToggle } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
 
-import SandboxDefineForm, { SandboxDefineFormProps } from "./SandboxDefineForm";
+import SandboxDefineForm from "./SandboxDefineForm";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
-export interface SandboxProps
-  extends Omit<SandboxDefineFormProps, "onCreated"> {
+export interface SandboxProps {
   id: string;
+  getSandbox: null | (() => Promise<IFiles>);
 }
 
 const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
   const { toggled: loading, enable, disable } = useToggle();
+  if (!getSandbox) {
+    return null;
+  }
 
   return (
     <Fragment>

@@ -1,31 +1,32 @@
 import React, { FC } from "react";
-import { Sheet } from "@react-md/sheet";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
-import { Tree, useTreeItemExpansion, useFlattenedTree } from "@react-md/tree";
+import { Sheet } from "@react-md/sheet";
 import { bem } from "@react-md/theme";
+import { Tree, useTreeItemExpansion } from "@react-md/tree";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import useFiles from "./useFiles";
 
-import { FlattenedFileTree } from "./useFiles";
-
-export interface FileTreeProps {
-  files: FlattenedFileTree;
+export interface SandboxFileTreeProps {
+  fileName: string;
   inline: boolean;
   visible: boolean;
+  sandbox: IFiles | null;
+  onFileChange: (fileName: string) => void;
   onRequestClose: () => void;
-  selectedId: string;
-  onItemSelect: (itemId: string) => void;
 }
 
-const block = bem("code-previewer");
+const block = bem("sandbox-modal");
+const EMPTY = {};
 
-const FileTree: FC<FileTreeProps> = ({
-  files,
+const SandboxFileTree: FC<SandboxFileTreeProps> = ({
   inline,
   visible,
+  fileName,
+  sandbox,
+  onFileChange,
   onRequestClose,
-  selectedId,
-  onItemSelect,
 }) => {
-  const data = useFlattenedTree(files, null);
+  const data = useFiles(sandbox || EMPTY);
   return (
     <Sheet
       id="code-previewer-file-sheet"
@@ -42,8 +43,8 @@ const FileTree: FC<FileTreeProps> = ({
         id="code-previewer-files"
         aria-label="Files"
         data={data}
-        onItemSelect={onItemSelect}
-        selectedIds={[selectedId]}
+        onItemSelect={onFileChange}
+        selectedIds={[fileName]}
         {...useTreeItemExpansion(["src", "public"])}
         expanderIcon={<KeyboardArrowDownSVGIcon />}
       />
@@ -51,4 +52,4 @@ const FileTree: FC<FileTreeProps> = ({
   );
 };
 
-export default FileTree;
+export default SandboxFileTree;

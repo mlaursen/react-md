@@ -18,7 +18,7 @@ const AutoDense: FC = () => (
       className="auto-dense__prominent"
       prominent
     >
-      <AppBar component="div">
+      <AppBar>
         <AppBarNav
           id="auto-prominent-dense-app-bar-nav"
           aria-label="Navigation"

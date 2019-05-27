@@ -11,16 +11,26 @@ import { DefaultSize } from "./useAppSizeContext";
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
   title: string;
+  pathname: string;
 }
 
-const Layout: FC<LayoutProps> = ({ children, title, defaultSize }) => (
+const Layout: FC<LayoutProps> = ({
+  children,
+  title,
+  pathname,
+  defaultSize,
+}) => (
   <AppSizeListener defaultSize={defaultSize}>
     <NestedDialogContextProvider>
       <InteractionModeListener>
         <StatesConfig>
           <TooltipHoverModeConfig>
             <DefaultSize.Provider value={defaultSize}>
-              <Combined title={title}>{children}</Combined>
+              {pathname.startsWith("/code") ? (
+                children
+              ) : (
+                <Combined title={title}>{children}</Combined>
+              )}
             </DefaultSize.Provider>
           </TooltipHoverModeConfig>
         </StatesConfig>
