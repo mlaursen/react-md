@@ -1,13 +1,15 @@
-import React, { forwardRef, FC, ReactNode } from "react";
+import React, { FC, forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import {
   AppBarActionClassNameProps,
   useActionClassName,
 } from "@react-md/app-bar";
 import { Button, ButtonProps } from "@react-md/button";
-import { FontIcon, IconRotator, TextIconSpacing } from "@react-md/icon";
+import { FontIcon } from "@react-md/icon";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
+
+import ToggleChildren from "./ToggleChildren";
 
 export interface MenuButtonProps
   extends ButtonProps,
@@ -65,10 +67,15 @@ type DefaultProps = Required<
 
 const block = bem("rmd-menu-button");
 
+/**
+ * This component is an extension of the `Button` component that will:
+ * - apply the required a11y prosp for a menu button
+ * - dynamically add a dropdown icon after the button contents
+ */
 const MenuButton: FC<MenuButtonProps & WithRef> = ({
   className,
   visible,
-  children: propChildren,
+  children,
   forwardedRef,
   dropdownIcon,
   disableDropdownIcon,
@@ -78,24 +85,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
   asAppBarAction,
   ...props
 }) => {
-  let children = propChildren;
-  if (props.buttonType !== "icon" && !disableDropdownIcon) {
-    children = (
-      <TextIconSpacing
-        icon={
-          <IconRotator rotated={visible} className={block("icon")}>
-            {dropdownIcon}
-          </IconRotator>
-        }
-        iconAfter
-      >
-        {children}
-      </TextIconSpacing>
-    );
-  }
-
   const actionClassName = useActionClassName({ first, last, inheritColor });
-
   return (
     <Button
       {...props}
@@ -109,7 +99,13 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
         className
       )}
     >
-      {children}
+      <ToggleChildren
+        visible={visible}
+        dropdownIcon={dropdownIcon}
+        disableDropdownIcon={disableDropdownIcon || props.buttonType === "icon"}
+      >
+        {children}
+      </ToggleChildren>
     </Button>
   );
 };
@@ -124,6 +120,28 @@ const defaultProps: DefaultProps = {
 };
 
 MenuButton.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  MenuButton.displayName = "MenuButton";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    MenuButton.propTypes = {
+      "aria-haspopup": PropTypes.oneOf(["menu", "true", true]),
+      id: PropTypes.string.isRequired,
+      visible: PropTypes.bool.isRequired,
+      dropdownIcon: PropTypes.node,
+      disableDropdownIcon: PropTypes.bool,
+      first: PropTypes.bool,
+      last: PropTypes.bool,
+      asAppBarAction: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLButtonElement, MenuButtonProps>((props, ref) => (
   <MenuButton {...props} forwardedRef={ref} />

@@ -14,7 +14,7 @@ export interface MenuItemProps extends ListItemProps {
    * The current role for the menu item. This will eventually be updated for some
    * of the other `menuitem*` widgets.
    */
-  role?: "menuitem";
+  role?: "menuitem" | "button";
 
   /**
    * The tab index for the menu item. This should always stay at `-1`.

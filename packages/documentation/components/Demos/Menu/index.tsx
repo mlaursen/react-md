@@ -17,6 +17,9 @@ import fixingOverflowIssues from "./FixingOverflowIssues.md";
 import AccessibilityExample from "./AccessibilityExample";
 import accessibilityExample from "./AccessibilityExample.md";
 
+import HorizontalMenu from "./HorizontalMenu";
+import horizontalMenu from "./HorizontalMenu.md";
+
 import CustomRenderers from "./CustomRenderers";
 import customRenderers from "./CustomRenderers.md";
 
@@ -45,6 +48,11 @@ const demos = [
     name: "Accessibility Example",
     description: accessibilityExample,
     children: <AccessibilityExample />,
+  },
+  {
+    name: "Horizontal Menu",
+    description: horizontalMenu,
+    children: <HorizontalMenu />,
   },
   {
     name: "Custom Renderers",

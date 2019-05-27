@@ -8,7 +8,11 @@ import { RenderConditionalPortalProps } from "@react-md/portal";
 
 export type MenuPositionProps = Pick<
   MenuProps,
-  "anchor" | "onResize" | "onPageScroll" | "horizontal" | "positionOptions"
+  | "anchor"
+  | "horizontal"
+  | "positionOptions"
+  | "disableCloseOnScroll"
+  | "disableCloseOnResize"
 >;
 
 type RequiredMenuProps = Required<
@@ -29,6 +33,7 @@ export interface InjectedMenuProps
     RenderConditionalPortalProps {
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 }
 
 export type MenuRenderer = (

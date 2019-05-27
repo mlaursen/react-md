@@ -13,11 +13,10 @@ import defaultMenuRenderer, {
 } from "./defaultMenuRenderer";
 
 import MenuButton, { MenuButtonProps } from "./MenuButton";
-import useMenuState from "./useMenuState";
+import useButtonVisibility from "./useButtonVisibility";
 
-export interface DropdownMenuProps
-  extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
-    MenuPositionProps,
+export interface BaseDropdownMenuProps
+  extends MenuPositionProps,
     RenderConditionalPortalProps {
   /**
    * The id to use for the menu button and used to create the id for the menu.
@@ -58,16 +57,29 @@ export interface DropdownMenuProps
   itemRenderer?: MenuItemRenderer;
 
   /**
+   * Boolean if the menu should be visible immediately once this component mounts.
+   */
+  defaultVisible?: boolean;
+
+  /**
    * An optional function to call when the visibility of the menu changes.
    */
   onVisibilityChange?: (visible: boolean) => void;
 }
 
+export interface DropdownMenuProps
+  extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
+    BaseDropdownMenuProps {}
+
 type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<
     DropdownMenuProps,
-    "menuRenderer" | "itemRenderer" | "dropdownIcon" | "disableDropdownIcon"
+    | "menuRenderer"
+    | "itemRenderer"
+    | "dropdownIcon"
+    | "disableDropdownIcon"
+    | "defaultVisible"
   >
 >;
 type WithDefaultProps = DropdownMenuProps &
@@ -76,13 +88,11 @@ type WithDefaultProps = DropdownMenuProps &
 
 const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
   const {
-    onClick: propOnclick,
+    onClick: propOnClick,
     onKeyDown: propOnKeyDown,
     children,
     forwardedRef,
     anchor,
-    onResize,
-    onPageScroll,
     menuLabel,
     menuLabelledBy,
     menuRenderer,
@@ -94,12 +104,22 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
     portalInto,
     portalIntoId,
     positionOptions,
+    defaultVisible,
+    disableCloseOnScroll,
+    disableCloseOnResize,
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
-  const { visible, hide, onClick, onKeyDown, defaultFocus } = useMenuState({
-    onClick: propOnclick,
+  const {
+    visible,
+    defaultFocus,
+    onClick,
+    onKeyDown,
+    hide,
+  } = useButtonVisibility({
+    onClick: propOnClick,
     onKeyDown: propOnKeyDown,
+    defaultVisible,
     onVisibilityChange,
   });
 
@@ -128,8 +148,8 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
           controlId: id,
           anchor,
           positionOptions,
-          onResize,
-          onPageScroll,
+          disableCloseOnScroll,
+          disableCloseOnResize,
           horizontal,
           visible,
           defaultFocus,
@@ -146,6 +166,7 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  defaultVisible: false,
   menuRenderer: defaultMenuRenderer,
   itemRenderer: defaultItemRenderer,
   dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
@@ -153,6 +174,37 @@ const defaultProps: DefaultProps = {
 };
 
 DropdownMenu.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  DropdownMenu.displayName = "DropdownMenu";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    DropdownMenu.propTypes = {
+      id: PropTypes.string.isRequired,
+      defaultVisible: PropTypes.bool,
+      menuLabel: PropTypes.string,
+      menuLabelledBy: PropTypes.string,
+      menuRenderer: PropTypes.func,
+      items: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+          PropTypes.node,
+          PropTypes.object,
+        ])
+      ).isRequired,
+      itemRenderer: PropTypes.func,
+      dropdownIcon: PropTypes.node,
+      disableDropdownIcon: PropTypes.bool,
+      onVisibilityChange: PropTypes.func,
+    };
+  }
+}
 
 export default forwardRef<HTMLButtonElement, DropdownMenuProps>(
   (props, ref) => <DropdownMenu {...props} forwardedRef={ref} />

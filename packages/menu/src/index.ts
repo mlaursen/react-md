@@ -18,5 +18,3 @@ export * from "./DropdownMenu";
 
 export { InjectedMenuProps, MenuRenderer } from "./defaultMenuRenderer";
 export { Item, MenuItemRenderer } from "./defaultItemRenderer";
-
-export { default as useMenuState } from "./useMenuState";

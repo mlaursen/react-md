@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  FC,
-  HTMLAttributes,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
@@ -15,16 +8,15 @@ import {
 import { bem } from "@react-md/theme";
 import { CSSTransitionProps, useFixedPositioning } from "@react-md/transition";
 import {
-  applyRef,
-  PositionAnchor,
-  WithForwardedRef,
   FixedPositionOptions,
   LabelRequiredForA11y,
+  PositionAnchor,
+  WithForwardedRef,
 } from "@react-md/utils";
-import { useKeyboardMovement } from "@react-md/wia-aria";
 
 import MenuEvents from "./MenuEvents";
 import { OrientationProvider } from "./Orientation";
+import useMenu from "./useMenu";
 
 export interface MenuProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -76,7 +68,19 @@ export interface MenuProps
   /**
    * The positioning anchor for the menu relative to the button/control that owns the menu.
    * This is used for the positioning logic as well as modifying the animationg slightly to
-   * originate from a coordinate.
+   * originate from a coordinate. When this is omitted, it will default to:
+   *
+   * ```ts
+   * const verticalAnchor = {
+   *   x: "inner-right",
+   *   y: "top",
+   * };
+   *
+   * const horizontalAnchor = {
+   *   x: "center",
+   *   y: "center",
+   * };
+   * ```
    */
   anchor?: PositionAnchor;
 
@@ -101,16 +105,18 @@ export interface MenuProps
   defaultFocus?: "first" | "last" | string;
 
   /**
-   * An optional function to call when the page is resized while the menu is visible.
-   * The default behavior is to close the menu.
+   * Boolean if the menu should not be closed when the page is scrolled. Instead,
+   * it'll automatically update its position within the viewport. You normally don't
+   * want to enable this prop as the menu won't close if the menu control element
+   * is no longer in the viewport.
    */
-  onResize?: () => void;
+  disableCloseOnScroll?: boolean;
 
   /**
-   * An optional function to call when the page is scrolled while the menu is visible.
-   * The default behavior is to close the menu.
+   * Boolean if the menu should no longer close when the page is resized. Instead,
+   * it'll automatically update its position within the viewport.
    */
-  onPageScroll?: () => void;
+  disableCloseOnResize?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -124,14 +130,29 @@ type DefaultProps = Required<
     | "timeout"
     | "mountOnEnter"
     | "unmountOnExit"
-    | "anchor"
     | "defaultFocus"
+    | "disableCloseOnScroll"
+    | "disableCloseOnResize"
   >
 >;
 type WithDefaultProps = MenuProps & DefaultProps & WithRef;
 
 const block = bem("rmd-menu");
+const VERTICAL_ANCHOR: PositionAnchor = {
+  x: "inner-right",
+  y: "top",
+};
 
+const HORIZONTAL_ANCHOR: PositionAnchor = {
+  x: "center",
+  y: "center",
+};
+
+/**
+ * The `Menu` component is a fully controlled component that will animate
+ * in and out based on the `visible` prop as well as handle keyboard focus,
+ * closing when needed, etc.
+ */
 const Menu: FC<LabelRequiredForA11y<MenuProps> & WithRef> = providedProps => {
   const {
     controlId,
@@ -153,101 +174,44 @@ const Menu: FC<LabelRequiredForA11y<MenuProps> & WithRef> = providedProps => {
     onExited,
     timeout,
     classNames,
-    anchor,
-    onPageScroll,
-    onResize,
-    onClick,
-    onKeyDown,
+    anchor: propAnchor,
+    onClick: propOnClick,
+    onKeyDown: propOnKeyDown,
+    disableCloseOnScroll,
+    disableCloseOnResize,
     defaultFocus,
     horizontal,
     positionOptions,
     ...props
   } = providedProps as WithDefaultProps;
 
-  const menu = useRef<HTMLDivElement | null>(null);
-  const ref = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, forwardedRef);
-      menu.current = instance;
-    },
-    [forwardedRef]
-  );
+  let anchor = propAnchor;
+  if (!anchor) {
+    anchor = horizontal ? HORIZONTAL_ANCHOR : VERTICAL_ANCHOR;
+  }
 
-  const handleScroll = useCallback(
-    (event: Event) => {
-      if (
-        !menu.current ||
-        !event.target ||
-        !menu.current.contains(event.target as HTMLElement)
-      ) {
-        onRequestClose();
-      }
-    },
-    [onRequestClose]
-  );
+  const { ref, menuRef, onScroll, onClick, onKeyDown } = useMenu({
+    ref: forwardedRef,
+    visible,
+    controlId,
+    horizontal,
+    onClick: propOnClick,
+    onKeyDown: propOnKeyDown,
+    onRequestClose,
+    disableCloseOnScroll,
+  });
 
   const { style, ...transitionHandlers } = useFixedPositioning({
     ...positionOptions,
     fixedTo: () => document.getElementById(controlId),
-    onScroll: onPageScroll || handleScroll,
-    onResize: onResize || onRequestClose,
+    onScroll,
+    onResize: disableCloseOnResize ? undefined : onRequestClose,
     anchor,
     onEnter,
     onEntering,
     onEntered,
     onExited,
     transformOrigin: true,
-  });
-
-  useEffect(() => {
-    if (!visible) {
-      return;
-    }
-
-    const contains = (
-      element: HTMLElement | null,
-      target: HTMLElement | null
-    ) => element && target && element.contains(target);
-
-    const handleClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const control = document.getElementById(controlId);
-      if (!contains(control, target) && !contains(menu.current, target)) {
-        onRequestClose();
-      }
-    };
-
-    window.addEventListener("click", handleClick, true);
-    return () => {
-      window.removeEventListener("click", handleClick, true);
-    };
-  }, [visible, controlId]);
-
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
-      if (onClick) {
-        onClick(event);
-      }
-
-      if (event.currentTarget !== event.target) {
-        onRequestClose();
-      }
-    },
-    [onClick, onRequestClose]
-  );
-
-  const handleKeyDown = useKeyboardMovement<HTMLDivElement>({
-    onKeyDown: event => {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-
-      if (event.key === "Escape" || event.key === "Tab") {
-        onRequestClose();
-        // prevent parent key listeners as well.
-        event.stopPropagation();
-      }
-    },
   });
 
   const orientation = horizontal ? "horizontal" : "vertical";
@@ -275,11 +239,11 @@ const Menu: FC<LabelRequiredForA11y<MenuProps> & WithRef> = providedProps => {
             style={style}
             ref={ref}
             className={cn(block({ horizontal }), className)}
-            onClick={handleClick}
-            onKeyDown={handleKeyDown}
+            onClick={onClick}
+            onKeyDown={onKeyDown}
           >
             {children}
-            <MenuEvents menuRef={menu} defaultFocus={defaultFocus} />
+            <MenuEvents menuRef={menuRef} defaultFocus={defaultFocus} />
           </div>
         </OrientationProvider>
       </CSSTransition>
@@ -305,14 +269,86 @@ const defaultProps: DefaultProps = {
     enter: 200,
     exit: 150,
   },
-  anchor: {
-    x: "inner-right",
-    y: "top",
-  },
   horizontal: false,
+  disableCloseOnScroll: false,
+  disableCloseOnResize: false,
 };
 
 Menu.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  Menu.displayName = "Menu";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Menu.propTypes = {
+      id: PropTypes.string.isRequired,
+      controlId: PropTypes.string.isRequired,
+      visible: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired,
+      "aria-label": PropTypes.string,
+      "aria-labelledby": PropTypes.string,
+      tabIndex: PropTypes.number,
+      anchor: PropTypes.shape({
+        x: PropTypes.oneOf([
+          "inner-left",
+          "inner-right",
+          "center",
+          "left",
+          "right",
+        ]),
+        y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
+      }),
+      positionOptions: PropTypes.shape({
+        xMargin: PropTypes.number,
+        yMargin: PropTypes.number,
+        vwMargin: PropTypes.number,
+        vhMargin: PropTypes.number,
+        disableSwapping: PropTypes.bool,
+      }),
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      defaultFocus: PropTypes.oneOf(["first", "last"]),
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+        }),
+      ]),
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      horizontal: PropTypes.bool,
+      disableCloseOnScroll: PropTypes.bool,
+      disableCloseOnResize: PropTypes.bool,
+      // @ts-ignore
+      _a11yValidator: (props, _propName, component) => {
+        const label = props["aria-label"];
+        const labelledBy = props["aria-labelledby"];
+        if (label || labelledBy) {
+          return null;
+        }
+
+        return new Error(
+          `Either the \`aria-label\` or \`aria-labelledby\` props are required for accessibility in the ${component} component, but neither were provided.`
+        );
+      },
+    };
+  }
+}
 
 export default forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
   (props, ref) => <Menu {...props} forwardedRef={ref} />

@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Omit } from "@react-md/utils";
+import { Omit, useRefCache } from "@react-md/utils";
 import { useMemoizedFocusKeys, getKeyboardEventType } from "./useFocusKeys";
 import getFocusableElements from "./getFocusableElements";
 import useKeyboardSearch, { KeyboardSearchOptions } from "./useKeyboardSearch";
@@ -79,46 +79,44 @@ export default function useKeyboardMovement<
     onFocusChange,
     ...(typeof search !== "boolean" ? search : undefined),
   });
-  const onKeyDown = search ? searchKeyDown : propOnKeyDown;
+  const cache = useRefCache(search ? searchKeyDown : propOnKeyDown);
 
-  return useCallback(
-    (event: React.KeyboardEvent<E>) => {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
+  return useCallback((event: React.KeyboardEvent<E>) => {
+    const onKeyDown = cache.current;
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
 
-      const target = event.target as HTMLElement;
-      const container = event.currentTarget;
-      const type = getKeyboardEventType(event, keys);
-      if (!container || !type || !target) {
-        return;
-      }
+    const target = event.target as HTMLElement;
+    const container = event.currentTarget;
+    const type = getKeyboardEventType(event, keys);
+    if (!container || !type || !target) {
+      return;
+    }
 
-      // implementing custom behavior, so need to stop native behavior
-      event.preventDefault();
-      const focusables = getFocusableElements(container, true);
-      const lastIndex = Math.max(0, focusables.length - 1);
-      let index = 0;
-      if (type === "first") {
-        index = 0;
-      } else if (type === "last") {
-        index = lastIndex;
-      } else {
-        const currentIndex = focusables.findIndex(
-          el => el === document.activeElement
-        );
-        index = loop(currentIndex, lastIndex, type === "increment");
-      }
+    // implementing custom behavior, so need to stop native behavior
+    event.preventDefault();
+    const focusables = getFocusableElements(container, true);
+    const lastIndex = Math.max(0, focusables.length - 1);
+    let index = 0;
+    if (type === "first") {
+      index = 0;
+    } else if (type === "last") {
+      index = lastIndex;
+    } else {
+      const currentIndex = focusables.findIndex(
+        el => el === document.activeElement
+      );
+      index = loop(currentIndex, lastIndex, type === "increment");
+    }
 
-      const element = focusables[index];
-      if (element) {
-        onFocusChange({
-          element,
-          focusables,
-          index,
-        });
-      }
-    },
-    [onKeyDown]
-  );
+    const element = focusables[index];
+    if (element) {
+      onFocusChange({
+        element,
+        focusables,
+        index,
+      });
+    }
+  }, []);
 }

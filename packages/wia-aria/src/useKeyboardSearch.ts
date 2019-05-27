@@ -1,5 +1,5 @@
-import { useCallback, useRef, useEffect } from "react";
-import { useTempValue } from "@react-md/utils";
+import { useCallback } from "react";
+import { useTempValue, useRefCache } from "@react-md/utils";
 import getFocusableElements from "./getFocusableElements";
 import extractTextContent from "./extractTextContent";
 import findMatchIndex from "./findMatchIndex";
@@ -65,13 +65,10 @@ export default function useKeyboardSearch<E extends HTMLElement = HTMLElement>({
   onFocusChange = ({ element }) => element.focus(),
 }: KeyboardSearchOptions<E>) {
   const { value, setValue } = useTempValue("", resetTime);
-  const config = useRef({ onKeyDown, getValues, onFocusChange });
-  useEffect(() => {
-    config.current = { onKeyDown, getValues, onFocusChange };
-  });
+  const cache = useRefCache({ onKeyDown, getValues, onFocusChange });
 
   return useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown, getValues, onFocusChange } = config.current;
+    const { onKeyDown, getValues, onFocusChange } = cache.current;
     if (onKeyDown) {
       onKeyDown(event);
     }
