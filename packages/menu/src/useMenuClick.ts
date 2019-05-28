@@ -22,7 +22,11 @@ export default function useMenuClick({
       onClick(event);
     }
 
-    if (event.currentTarget !== event.target) {
+    const target = event.target as HTMLElement;
+    if (
+      !target ||
+      (event.currentTarget !== target && !target.closest("[aria-haspopup]"))
+    ) {
       onRequestClose();
     }
   }, []);

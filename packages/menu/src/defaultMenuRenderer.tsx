@@ -33,6 +33,7 @@ export interface InjectedMenuProps
     RenderConditionalPortalProps {
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 }
 

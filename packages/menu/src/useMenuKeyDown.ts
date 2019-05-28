@@ -25,9 +25,6 @@ export default function useMenuKeyDown({
 
       if (event.key === "Escape" || event.key === "Tab") {
         onRequestClose();
-
-        // prevent parent key listeners as well.
-        event.stopPropagation();
       }
     },
     incrementKeys: [horizontal ? "ArrowRight" : "ArrowDown"],

@@ -84,7 +84,7 @@ describe("useButtonVisibility", () => {
       current: undefined,
     };
     const { rerender } = render(<Test result={result} onClick={onClick1} />);
-    let button = document.getElementById("test-button") as HTMLButtonElement;
+    const button = document.getElementById("test-button") as HTMLButtonElement;
     fireEvent.click(button);
     expect(onClick1).toBeCalledTimes(1);
 
@@ -124,7 +124,7 @@ describe("useButtonVisibility", () => {
     const { rerender } = render(
       <Test result={result} onKeyDown={onKeyDown1} />
     );
-    let button = document.getElementById("test-button") as HTMLButtonElement;
+    const button = document.getElementById("test-button") as HTMLButtonElement;
     fireEvent.keyDown(button);
     expect(onKeyDown1).toBeCalledTimes(1);
 

@@ -20,6 +20,9 @@ import accessibilityExample from "./AccessibilityExample.md";
 import HorizontalMenu from "./HorizontalMenu";
 import horizontalMenu from "./HorizontalMenu.md";
 
+import NestedDropdownMenus from "./NestedDropdownMenus";
+import nestedDropdownMenus from "./NestedDropdownMenus.md";
+
 import CustomRenderers from "./CustomRenderers";
 import customRenderers from "./CustomRenderers.md";
 
@@ -53,6 +56,11 @@ const demos = [
     name: "Horizontal Menu",
     description: horizontalMenu,
     children: <HorizontalMenu />,
+  },
+  {
+    name: "Nested Dropdown Menus",
+    description: nestedDropdownMenus,
+    children: <NestedDropdownMenus />,
   },
   {
     name: "Custom Renderers",

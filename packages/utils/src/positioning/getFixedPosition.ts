@@ -503,7 +503,7 @@ export default function getFixedPosition({
   let actualX = anchor.x;
   let actualY = anchor.y;
 
-  let { height, width } = getElementRect(element);
+  const { height, width } = getElementRect(element);
 
   let left: number | undefined;
   let top: number | undefined;

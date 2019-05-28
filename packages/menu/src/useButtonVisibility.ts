@@ -17,32 +17,32 @@ export interface ButtonVisibilityOptions extends VisibilityOptions {
  * @private
  */
 export default function useButtonVisibility({
-  onClick,
-  onKeyDown,
+  onClick: propOnClick,
+  onKeyDown: propOnKeyDown,
   defaultVisible,
   defaultFocus: propDefaultFocus,
   onVisibilityChange,
 }: ButtonVisibilityOptions = {}) {
-  const handlers = useRefCache({ onClick, onKeyDown });
+  const handlers = useRefCache({
+    onClick: propOnClick,
+    onKeyDown: propOnKeyDown,
+  });
   const { visible, defaultFocus, hide, showWithFocus, toggle } = useVisibility({
     defaultVisible,
     defaultFocus: propDefaultFocus,
     onVisibilityChange,
   });
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      const { onClick } = handlers.current;
-      if (onClick) {
-        onClick(event);
-      }
+  const onClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { onClick } = handlers.current;
+    if (onClick) {
+      onClick(event);
+    }
 
-      toggle();
-    },
-    []
-  );
+    toggle();
+  }, []);
 
-  const handleKeyDown = useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLButtonElement>) => {
       const { onKeyDown } = handlers.current;
       if (onKeyDown) {
@@ -67,7 +67,7 @@ export default function useButtonVisibility({
     visible,
     defaultFocus,
     hide,
-    onClick: handleClick,
-    onKeyDown: handleKeyDown,
+    onClick,
+    onKeyDown,
   };
 }
