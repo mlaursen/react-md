@@ -17,7 +17,7 @@ const PACKAGES = fs
   .filter(n => !/documentation|dev-utils/.test(n));
 
 const TYPESCRIPT_PACKAGES = PACKAGES.filter(
-  n => !/elevation|react-md|documentation|material-icons|dev-utils/.test(n)
+  n => !/elevation|react-md|material-icons/.test(n)
 );
 
 (function tsc() {

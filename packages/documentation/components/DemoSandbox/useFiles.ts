@@ -63,7 +63,7 @@ export default function useFiles(sandbox: IFiles) {
 
           return tree;
         },
-        BASE_TREE
+        { ...BASE_TREE }
       ),
     [sandbox]
   );

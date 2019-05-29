@@ -213,6 +213,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("sheet"),
     createPackageRoute("sizing"),
     createPackageRoute("states"),
+    createPackageRoute("table"),
     createPackageRoute("theme"),
     createPackageRoute("tooltip"),
     createPackageRoute("transition"),

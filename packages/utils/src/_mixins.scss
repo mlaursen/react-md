@@ -286,6 +286,10 @@
     @include react-md-states;
   }
 
+  @if mixin-exists(react-md-table) {
+    @include react-md-table;
+  }
+
   @if mixin-exists(react-md-theme) {
     @include react-md-theme;
   }

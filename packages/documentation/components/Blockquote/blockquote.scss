@@ -11,6 +11,7 @@
   @include rmd-typography(subtitle-1);
   @include rmd-utils-rtl-auto(border-left, $border-style);
 
+  font-style: italic;
   margin: 1em 0;
   padding: 0.5em 1em;
   position: relative;
