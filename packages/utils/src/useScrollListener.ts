@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { delegateEvent } from "./delegateEvent";
 import { isSupported } from "./passiveEvents";
 
-export interface Options {
+export interface Options<E extends HTMLElement = HTMLElement> {
   /**
    * A function that is called whenever the scroll event is triggered.
    */
@@ -25,15 +25,15 @@ export interface Options {
    * The element that should gain the focus event. When this is omitted, it
    * will default to the entire `window`.
    */
-  element?: HTMLElement;
+  element?: E | null;
 }
 
-export default function useScrollListener({
+export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   enabled,
   onScroll,
   element,
   options = isSupported ? { passive: true, capture: true } : true,
-}: Options) {
+}: Options<E>) {
   // creating a ref so the event handler doesn't need to be updated each re-render
   // if using an arrow function for the resize handler
   const callback = useRef(onScroll);
