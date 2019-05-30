@@ -1,15 +1,9 @@
-import React, {
-  FC,
-  TableHTMLAttributes,
-  forwardRef,
-  useCallback,
-  useState,
-  CSSProperties,
-} from "react";
+import React, { FC, forwardRef, TableHTMLAttributes } from "react";
 import cn from "classnames";
-import { WithForwardedRef, getFixedPosition, applyRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
-import { TableConfigProvider, TableConfig } from "./TableConfigContext";
+import { WithForwardedRef } from "@react-md/utils";
+
+import { TableConfig, TableConfigProvider } from "./TableConfigContext";
 
 export interface TableProps
   extends TableHTMLAttributes<HTMLTableElement>,

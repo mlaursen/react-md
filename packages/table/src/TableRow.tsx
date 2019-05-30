@@ -2,6 +2,7 @@ import React, { FC, ThHTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
+
 import { useTableConfigContext } from "./TableConfigContext";
 
 export interface TableRowProps extends ThHTMLAttributes<HTMLTableRowElement> {

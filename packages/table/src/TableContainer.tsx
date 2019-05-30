@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 import { bem } from "@react-md/theme";
-import { FixedContextProvider } from "./FixedContext";
+// import { FixedContextProvider } from "./FixedContext";
 
 export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {
   // fixedHeader?: boolean;
@@ -25,19 +25,14 @@ const TableContainer: FC<TableContainerProps & WithRef> = providedProps => {
     children,
     // fixedHeader,
     // fixedFooter,
-    role: propRole,
+    // role: propRole,
     ...props
   } = providedProps as WithDefaultProps;
 
-  let role = propRole;
+  // let role = propRole;
 
   return (
-    <div
-      {...props}
-      role={role}
-      className={cn(block(), className)}
-      ref={forwardedRef}
-    >
+    <div {...props} className={cn(block(), className)} ref={forwardedRef}>
       {children}
     </div>
   );

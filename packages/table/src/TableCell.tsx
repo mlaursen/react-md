@@ -1,14 +1,15 @@
 import React, {
   FC,
-  ThHTMLAttributes,
   forwardRef,
   TdHTMLAttributes,
+  ThHTMLAttributes,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
-import { useTableConfigContext } from "./TableConfigContext";
+
 import { useHeaderContext } from "./HeaderContext";
+import { useTableConfigContext } from "./TableConfigContext";
 
 type Attributes =
   | TdHTMLAttributes<HTMLTableDataCellElement>
