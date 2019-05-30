@@ -21,18 +21,26 @@ const TYPESCRIPT_PACKAGES = PACKAGES.filter(
 );
 
 (function tsc() {
-  const watchablePackages = TYPESCRIPT_PACKAGES.map(n =>
-    path.join('packages', n)
-  );
+  let packages = TYPESCRIPT_PACKAGES;
+  if (process.argv.includes('--filter')) {
+    const i = process.argv.indexOf('--filter');
+    const args = process.argv.slice(i + 1);
+    const end = args.findIndex(a => a.startsWith('--'));
+    const filters = args.slice(0, end === -1 ? args.length : end);
+    const regex = new RegExp(filters.join('|'));
+    packages = packages.filter(n => regex.test(n));
+  }
+  const watchablePackages = packages.map(n => path.join('packages', n));
   console.log(
     'Starting tsc in build watcher mode for the following packages...'
   );
   console.log(watchablePackages.map(p => `- ${p}`).join('\n'));
+
   const args = [
     'tsc',
     '-b',
     '-w',
-    ...watchablePackages,
+    ...watchablePackages.map(pkg => `${pkg}/tsconfig.ejs.json`),
     ...watchablePackages.map(pkg => `${pkg}/tsconfig.cjs.json`),
   ];
   processes.push(spawn('npx', args, { stdio: 'inherit' }));

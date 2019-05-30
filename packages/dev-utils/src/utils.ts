@@ -183,7 +183,6 @@ export function createTsConfig(
   tsConfigType: TsConfigType,
   packageName: string
 ) {
-  const isCheck = tsConfigType === "check";
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isVariables = tsConfigType === "variables";
@@ -204,25 +203,22 @@ export function createTsConfig(
   let extendsPrefix = ".base";
   if (isVariables || isCommonJS) {
     extendsPrefix = ".cjs";
-  } else if (isCheck) {
-    extendsPrefix = ".check";
   }
 
   const exclude = [
-    !isCheck && "**/__tests__/*",
-    !isVariables && !isCheck && "**/scssVariables.ts",
+    "**/__tests__/*",
+    !isVariables && "**/scssVariables.ts",
   ].filter(Boolean);
 
   return {
     extends: `../../tsconfig${extendsPrefix}.json`,
     compilerOptions: {
-      outDir: isCheck ? undefined : outDir,
+      outDir,
       rootDir: src,
-      noEmit: isCheck || undefined,
-      incremental: (!isCheck && !isVariables) || undefined,
+      incremental: !isVariables || undefined,
       declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
-      target: isCheck || isESModule ? undefined : "es5",
+      target: isESModule ? undefined : "es5",
     },
     include: [isVariables ? path.join(src, "scssVariables.ts") : src],
     exclude: exclude.length ? exclude : undefined,
@@ -238,14 +234,14 @@ export async function createTsConfigFiles() {
   const packageName = await getPackageName();
   const config = { spaces: 2 };
   if (!variablesOnly) {
-    log("Creating `tsconfig.json`...");
+    log(`Creating \`${tsConfigESModule}\`...`);
     await fs.writeJson(
       tsConfigESModule,
       createTsConfig("module", packageName),
       config
     );
 
-    log("Creating `tsconfig.cjs.json`...");
+    log(`Creating \`${tsConfigCommonJS}\`...`);
     await fs.writeJson(
       tsConfigCommonJS,
       createTsConfig("commonjs", packageName),
@@ -254,7 +250,7 @@ export async function createTsConfigFiles() {
   }
 
   if (variables) {
-    log("Creating the `tsconfig.variables.json` file...");
+    log(`Creating the \`${tsConfigVariables}\` file...`);
     await fs.writeJson(
       tsConfigVariables,
       createTsConfig("variables", packageName),
