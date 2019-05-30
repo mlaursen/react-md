@@ -1,9 +1,10 @@
 import fs from "fs-extra";
 import path from "path";
 import { CompilerOptions } from "typescript";
+import log from "loglevel";
 
 import { documentationRoot } from "../paths";
-import { glob, isVerbose, list, log, time, toTitle, clean } from "../utils";
+import { glob, list, time, toTitle, clean } from "../utils";
 import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
@@ -22,41 +23,26 @@ export interface ResolveConfig {
 }
 
 async function createSandboxJsonFiles(components: string[], empty: boolean) {
-  if (!isVerbose() && !components.length && !empty) {
-    log(
-      `Starting to traverse all the demo files to resolve their imports so
-that a code sandbox and inline-code blocks can be shown.
-
-This will take a *very* long time especially when specific package filters
-have not been used.
-
-You can also enable the \`--verbose\` flag to list everything that is going on
-behind the scenes so there is _some_ sense of progress...
-`,
-      true
-    );
-  }
-
   const matcher = components.length
     ? `+(${components.map(name => toTitle(name)).join("|")})`
     : "*";
 
   const globString = `${DEMOS_FOLDER}/${matcher}/index.tsx`;
-  log("Using the following glob string...");
-  log(list([globString]));
-  log();
+  log.debug("Using the following glob string...");
+  log.debug(list([globString]));
+  log.debug();
 
   const demoIndexes = await glob(globString);
   if (!demoIndexes.length) {
-    log("No demo indexes found!");
-    log();
+    log.warn("No demo indexes found!");
+    log.warn();
     process.exit(1);
     return;
   }
 
-  log("Found the following demos index files:");
-  log(list(demoIndexes));
-  log();
+  log.debug("Found the following demos index files:");
+  log.debug(list(demoIndexes));
+  log.debug();
 
   const tsconfig = await fs.readJson(
     path.join(documentationRoot, "tsconfig.json")
@@ -66,12 +52,12 @@ behind the scenes so there is _some_ sense of progress...
   const compilerOptions = tsconfig.compilerOptions as CompilerOptions;
   delete compilerOptions.moduleResolution;
 
-  log("Using the following compiler options:");
-  log(JSON.stringify(compilerOptions, null, 2));
-  log();
+  log.debug("Using the following compiler options:");
+  log.debug(JSON.stringify(compilerOptions, null, 2));
+  log.debug();
 
   const aliases = Object.keys(compilerOptions.paths).map(name =>
-    name.replace("/*", "")
+    name.includes("@react-md") ? name : name.replace("/*", "")
   );
   aliases.push("_variables.scss");
   const demos = (await Promise.all(
@@ -80,18 +66,18 @@ behind the scenes so there is _some_ sense of progress...
 
   demos.sort();
 
-  log("Found all the following demo files:");
-  log(list(demos));
-  log();
+  log.debug("Found all the following demo files:");
+  log.debug(list(demos));
+  log.debug();
 
   await fs.ensureDir(SANDBOXES_PATH);
   if (empty) {
     const paths = demos.map(getSandboxFileName);
     const missing = paths.filter(p => !fs.existsSync(p));
     if (missing.length) {
-      log("Creating empty sandbox files:", true);
-      log(list(missing), true);
-      log("", true);
+      log.debug("Creating empty sandbox files:", true);
+      log.debug(list(missing), true);
+      log.debug("", true);
 
       await Promise.all(paths.map(p => fs.writeJson(p, {})));
     }
@@ -99,7 +85,7 @@ behind the scenes so there is _some_ sense of progress...
     return;
   }
 
-  log("Starting to extract all the imports for each demo...");
+  log.info("Starting to extract all the imports for each demo...");
   await Promise.all(
     demos.map(demoPath => {
       const [demoName, packageName] = demoPath
@@ -107,8 +93,8 @@ behind the scenes so there is _some_ sense of progress...
         .split(path.sep)
         .reverse();
       const debugName = `${packageName}/${demoName}`;
-      log("===================================================");
-      log(`Extracting from: ${debugName}`);
+      log.info(debugName);
+      log.info("Extracting dependencies...");
       const allImports = extractImports(
         demoPath,
         aliases,
@@ -119,12 +105,14 @@ behind the scenes so there is _some_ sense of progress...
       const aliased = getAliasedImports(allImports, aliases);
       const dependencies = allImports.filter(name => !aliased.includes(name));
 
-      log("Found the following dependencies:");
-      log(list(dependencies));
-      log();
-      log("and the following aliased imports:");
-      log(list(aliased));
-      log();
+      log.debug("Found the following dependencies:");
+      log.debug(list(dependencies));
+      log.debug("");
+      log.debug("and the following aliased imports:");
+      log.debug(list(aliased));
+      log.debug("");
+      log.info("Generating the sandbox json file...");
+      log.info("");
 
       return generate({
         demoPath,

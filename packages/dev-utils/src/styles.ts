@@ -1,6 +1,8 @@
 import fs from "fs-extra";
 import { flattenDeep } from "lodash";
 import path from "path";
+import log from "loglevel";
+
 import { compileScss, postcss } from "./compileScss";
 import { cssDist, dist, scssVariables, src, stylesScss } from "./paths";
 import getPackageVariables from "./sassdoc/getPackageVariables";
@@ -16,7 +18,6 @@ import {
   getPackageName,
   glob,
   list,
-  log,
   printSizes,
   time,
 } from "./utils";
@@ -67,16 +68,17 @@ async function compile(options: CompileOptions) {
   const srcFile = path.join(src, stylesScss);
   const outFile = path.join(cssDist, fileName);
   const sourceMapFile = `${outFile}.map`;
+  log.info("Compiling the main css bundle.");
 
   await fs.ensureDir(cssDist);
   if (!production) {
-    log("Compiling a development css bundle along with a sourcemap to:");
-    log(list([outFile, sourceMapFile]));
-    log();
+    log.debug("Compiling a development css bundle along with a sourcemap to:");
+    log.debug(list([outFile, sourceMapFile]));
+    log.debug("");
   } else {
-    log("Compiling a production css bundle to:");
-    log(list([outFile]));
-    log();
+    log.debug("Compiling a production css bundle to:");
+    log.debug(list([outFile]));
+    log.debug("");
   }
 
   const unmodifiedCSS = compileScss({
@@ -121,10 +123,10 @@ function createVariableMap(variables: HackedVar[]) {
 export async function createScssVariables() {
   const fileName = path.join(src, scssVariables);
 
-  log(
+  log.debug(
     "Attempting to find all scss variables in the this project along with their default values."
   );
-  log();
+  log.debug("");
   const packageName = await getPackageName();
   const unformattedVariables = await getPackageVariables();
   const variables = getHackedScssVariableValues(
@@ -133,15 +135,9 @@ export async function createScssVariables() {
   );
 
   if (!variables.length) {
-    log("No variables found");
+    log.warn(`No SCSS variables found in ${packageName}`);
     return;
   }
-
-  log(
-    "Creating a typescript file to be compiled that contains a list of " +
-      "all the scss variables in this project along with their default values."
-  );
-  log();
 
   const contents = format(
     `/** this is an auto-generated file from @react-md/dev-utils */
@@ -149,9 +145,9 @@ export default ${JSON.stringify(createVariableMap(variables))};
 `
   );
   await fs.writeFile(fileName, contents);
-  log(`Created ${fileName} with ${variables.length} variables defined.`);
-  log(list(variables.map(({ name, value }) => `$${name}: ${value}`)));
-  log();
+  log.info(`Created ${fileName} with ${variables.length} variables defined.`);
+  log.debug(list(variables.map(({ name, value }) => `$${name}: ${value}`)));
+  log.debug();
 }
 
 function createThemeOptions(theme: string) {
@@ -193,7 +189,7 @@ export async function generateThemeStyles() {
     "light_blue-deep_orange-700-dark",
   ];
 
-  log(`Generating the default ${themes.length} themes for production...`, true);
+  log.info(`Generating the default ${themes.length} themes for production...`);
 
   await time(
     () =>
@@ -206,6 +202,5 @@ export async function generateThemeStyles() {
   );
 
   const themeFiles = await glob("dist/css/*.min.css");
-  printSizes(themeFiles, "", true);
-  log("", true);
+  printSizes(themeFiles);
 }

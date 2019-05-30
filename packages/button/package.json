@@ -4,8 +4,7 @@
   "description": "This package is used to create buttons with the material design spec. There is built-in support to be able to render accessible clickable divs that look like buttons, or even apply button styles to any element.",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

@@ -17,8 +17,8 @@ install:
   - yarn install --force
 
 script:
-  - yarn build
-  - yarn workspace documentation sandbox --empty
+  - yarn build --silent
+  - yarn workspace documentation sandbox --empty --silent
   - yarn typecheck
   - yarn lint
   - yarn test --runInBand

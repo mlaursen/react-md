@@ -4,8 +4,7 @@
   "description": "This package is used for including responsive media (images, videos, etc) within your app.",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

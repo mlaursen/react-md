@@ -1,8 +1,9 @@
 import fs from "fs-extra";
 import path from "path";
+import log from "loglevel";
 
 import { documentationRoot, projectRoot } from "../paths";
-import { format, glob, list, log } from "../utils";
+import { format, glob, list } from "../utils";
 
 import {
   ALWAYS_REQUIRED_DEPENDENCIES,
@@ -51,11 +52,11 @@ export async function findGeneratedSandboxes() {
 }
 
 export async function createSandboxesLookup() {
-  log("Generating the main sandbox lookup file...");
+  log.info("Generating the main sandbox lookup file...");
   const sandboxes = await findGeneratedSandboxes();
-  log("Found the following sandboxes to add:");
-  log(list(sandboxes));
-  log();
+  log.debug("Found the following sandboxes to add:");
+  log.debug(list(sandboxes));
+  log.debug();
 
   const packages = new Set<string>();
   const lookups = sandboxes.reduce((lookups, pathname) => {
@@ -139,9 +140,9 @@ export default async function generate({
   aliased,
 }: GenerateSandboxConfig) {
   const sandboxPath = getSandboxFileName(demoPath);
-  log("Creaing sandbox at:");
-  log(list([sandboxPath]));
-  log();
+  log.debug("Creating sandbox at:");
+  log.debug(list([sandboxPath]));
+  log.debug();
 
   const homepage = (await fs.readJson(path.join(projectRoot, "package.json")))
     .homepage as string;
@@ -240,11 +241,11 @@ export default async function generate({
   )).reduce((json, value) => {
     const key = Object.keys(value)[0];
     if (json[key]) {
-      console.error(
+      log.error(
         "Sandbox rules need to be updated. Found multiple files with the same name."
       );
-      console.error("Current file path: ", demoPath);
-      console.error();
+      log.error("Current file path: ", demoPath);
+      log.error();
       process.exit(1);
     }
 

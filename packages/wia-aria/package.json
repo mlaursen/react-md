@@ -4,8 +4,7 @@
   "description": "A package for determining which element on the page is the current keyboard focus/selection.",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

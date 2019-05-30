@@ -10,8 +10,10 @@ import {
   ScriptTarget,
   sys,
 } from "typescript";
+import log from "loglevel";
+
 import { documentationRoot } from "../paths";
-import { list, log } from "../utils";
+import { list } from "../utils";
 import {
   getModuleName,
   getRelativeFolder,
@@ -203,7 +205,7 @@ export async function extractDemoFiles(
 ) {
   // package name is always the folder right before the index.tsx
   const name = demoIndexPath.split(path.sep).reverse()[1];
-  log(`Finding all the demos for ${name} package...`);
+  log.debug(`Finding all the demos for ${name} package...`);
 
   const contents = await fs.readFile(demoIndexPath, "utf8");
   // want to exclude files that have a comment after them (normally do // SANDBOX_IGNORE),

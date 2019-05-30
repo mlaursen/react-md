@@ -1,13 +1,14 @@
 import fs from "fs-extra";
 import path from "path";
 import { FunctionSassDoc, MixinSassDoc, parse, VariableSassDoc } from "sassdoc";
+import log from "loglevel";
+
 import { documentationRoot, tempStylesFolder, devUtils, src } from "../paths";
 import {
   copyFiles,
   geScopedPackageNames,
   glob,
   list,
-  log,
   time,
   toTitle,
   format,
@@ -27,21 +28,20 @@ const types = [sassdocTypes, customTypes];
 async function run(clean: boolean) {
   const packages = await geScopedPackageNames({ filter: "scss" });
   const pattern = `../+(${packages.join("|")})/src/*.scss`;
-  log("Using the following glob pattern for finding sassdoc:");
-  log(list([pattern]));
-  log();
+  log.debug("Using the following glob pattern for finding sassdoc:");
+  log.debug(list([pattern]));
+  log.debug();
 
   const files = await glob(pattern);
 
-  log("Moving all the found files into the temp styles folder...");
+  log.info("Moving all the found files into the temp styles folder...");
   await fs.remove(tempStylesFolder);
   await fs.ensureDir(tempStylesFolder);
   await copyFiles(files, tempStylesFolder, {
-    noLog: true,
     replace: src => src.replace("../", "@react-md/").replace("src", "dist"),
   });
 
-  log("Compiling the sassdocs...");
+  log.info("Compiling the sassdocs...");
   const allSassDocs = await parse(tempStylesFolder);
   const references: SassDocReference[] = allSassDocs.map(
     ({ access, context: { name, type }, group }) => ({
@@ -53,7 +53,7 @@ async function run(clean: boolean) {
   );
   const sassdocs = allSassDocs.filter(({ access }) => access !== "private");
 
-  log("Building the public sassdoc records...");
+  log.info("Building the public sassdoc records...");
   const combined = sassdocs.reduce<PackageSassDocRecord>((result, sassdoc) => {
     const [name] = sassdoc.group;
     if (!result[name]) {
@@ -107,7 +107,7 @@ async function run(clean: boolean) {
         .substring(name.indexOf("sassdoc/") + "sassdoc/".length),
   });
 
-  log("Generating SassDoc files...");
+  log.info("Generating SassDoc files...");
   await Promise.all(
     Object.entries(combined).map(([name, formatted]) => {
       const fileName = `${toTitle(name)}SassDoc`;
@@ -129,11 +129,11 @@ export default ${fileName};
   );
 
   if (clean) {
-    log("Cleaning up the temp styles folder...");
+    log.info("Cleaning up the temp styles folder...");
     await fs.remove(tempStylesFolder);
   }
 
-  log();
+  log.info("");
 }
 
 export default async function sassdoc(clean: boolean) {

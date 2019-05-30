@@ -4,8 +4,7 @@
   "description": "A package for making temporary sheets of material (normally for navigation or details).",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

@@ -1,7 +1,9 @@
 import fs from "fs-extra";
 import path from "path";
+import log from "loglevel";
+
 import { documentationRoot, packagesRoot, projectRoot } from "./paths";
-import { glob, log, time, format } from "./utils";
+import { glob, time, format } from "./utils";
 
 export default async function copyReadmes() {
   time(() => run(), "readmes");
@@ -22,7 +24,7 @@ async function copy(readme: string) {
   const dest = path.join(dir, "README.md");
   const i = projectRoot.length + 1;
 
-  log(`- ${src.substring(i)} -> ${dest.substring(i)}`);
+  log.debug(`- ${src.substring(i)} -> ${dest.substring(i)}`);
   await fs.copy(src, dest);
   return dest;
 }
@@ -80,15 +82,12 @@ async function update(readme: string) {
 }
 
 async function run() {
-  log("Finding and copying readmes...");
-  const readmes = await glob(
-    "!(dev-utils|documentation|react-md|forms)/README.md",
-    {
-      cwd: packagesRoot,
-    }
-  );
+  log.info("Finding and copying readmes...");
+  const readmes = await glob("!(dev-utils|documentation|react-md)/README.md", {
+    cwd: packagesRoot,
+  });
 
   const moved = await Promise.all(readmes.map(copy));
-  log();
+  log.info();
   await Promise.all(moved.map(update));
 }

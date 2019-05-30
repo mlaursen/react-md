@@ -9,8 +9,7 @@
     "build-cli": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
     "watch": "npm-run-all -p \"compile -- -w\" watcher",
-    "build": "dev-utils build",
-    "test": "dev-utils test"
+    "build": "dev-utils build"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

@@ -8,6 +8,7 @@ import prettyMS from "pretty-ms";
 import gzipSize from "gzip-size";
 import filesize from "filesize";
 import prettier from "prettier";
+import log from "loglevel";
 
 import {
   packageJson,
@@ -29,27 +30,6 @@ const prettierConfig = prettier.resolveConfig.sync(
 
 export const glob = promisify(nodeGlob);
 
-/**
- * Checks if the script is being run in verbose mode. This normally
- * allows for additional logging.
- */
-export function isVerbose() {
-  return process.argv.includes("--verbose");
-}
-
-/**
- * Logs a message to the terminal only when in verbose mode or if forced.
- * This is preferred instead of console.log for these scripts to keep
- * console clean until debugging is needed.
- */
-export function log(message?: string | null, force: boolean = false) {
-  if (message === null || (!force && !isVerbose())) {
-    return;
-  }
-
-  console.log(message || "");
-}
-
 export function upperFirst(s: string) {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
@@ -68,7 +48,6 @@ export function toTitle(s: string, joinWith: string = "") {
 
 export interface CopyFilesOptions {
   message?: string | null;
-  noLog?: boolean;
   prefix?: string;
   replace?: (src: string) => string;
 }
@@ -81,31 +60,21 @@ export async function copyFiles(
   dest: string,
   options: CopyFilesOptions = {}
 ): Promise<any> {
-  const {
-    message,
-    prefix = `src${path.sep}`,
-    replace,
-    noLog = false,
-  } = options;
-  if (!noLog) {
-    log(message === null ? null : message || "Copying the following files:");
+  const { message, prefix = `src${path.sep}`, replace } = options;
+  if (message !== null) {
+    log.debug(message || "Copying the following files:");
   }
 
   await Promise.all(
     files.map(src => {
       const destSrc = replace ? replace(src) : src.substring(prefix.length);
       const currDest = path.join(dest, destSrc);
-      if (!noLog) {
-        log(`- ${src} -> ${currDest}`);
-      }
+      log.debug(`- ${src} -> ${currDest}`);
 
       return fs.copy(src, currDest);
     })
   );
-
-  if (!noLog) {
-    log();
-  }
+  log.info("");
 }
 
 export interface PackageJson {
@@ -234,14 +203,14 @@ export async function createTsConfigFiles() {
   const packageName = await getPackageName();
   const config = { spaces: 2 };
   if (!variablesOnly) {
-    log(`Creating \`${tsConfigESModule}\`...`);
+    log.info(`Creating \`${tsConfigESModule}\`...`);
     await fs.writeJson(
       tsConfigESModule,
       createTsConfig("module", packageName),
       config
     );
 
-    log(`Creating \`${tsConfigCommonJS}\`...`);
+    log.info(`Creating \`${tsConfigCommonJS}\`...`);
     await fs.writeJson(
       tsConfigCommonJS,
       createTsConfig("commonjs", packageName),
@@ -250,7 +219,7 @@ export async function createTsConfigFiles() {
   }
 
   if (variables) {
-    log(`Creating the \`${tsConfigVariables}\` file...`);
+    log.info(`Creating the \`${tsConfigVariables}\` file...`);
     await fs.writeJson(
       tsConfigVariables,
       createTsConfig("variables", packageName),
@@ -280,11 +249,11 @@ export async function checkForTypescriptFiles() {
  * mode for any logging though.
  */
 export async function time(fn: () => Promise<any>, command: string) {
-  log(`Running "${command}"...`);
+  log.debug(`Running "${command}"...`);
   const startTime = now();
   await fn();
 
-  log(`Completed "${command}" in ${prettyMS(now() - startTime)}`, true);
+  log.info(`Completed "${command}" in ${prettyMS(now() - startTime)}`);
 }
 
 /**
@@ -333,8 +302,9 @@ export function getFileSize(filePath: string, noPath: boolean = false) {
  */
 export function printSizes(
   filePaths: string | string[],
-  message?: string,
-  forceLog: boolean = false
+  message: string = `The gzipped file size${
+    filePaths.length > 1 ? "s are" : " is"
+  }:`
 ) {
   if (typeof filePaths === "string") {
     filePaths = [filePaths];
@@ -344,28 +314,21 @@ export function printSizes(
     return;
   }
 
-  log(
-    message ||
-      `The gzipped file size${filePaths.length > 1 ? "s are" : " is"}:`,
-    forceLog
-  );
-  log(list(filePaths.map(fp => getFileSize(fp))), forceLog);
+  log.debug(message);
+  log.debug(list(filePaths.map(fp => getFileSize(fp))));
 }
 
 /**
  * A nice util that will list all the filesizes for the `*.min` files
  * within a package.
  */
-export async function printMinifiedSizes(
-  exclude?: RegExp,
-  forceLog: boolean = false
-) {
+export async function printMinifiedSizes(exclude?: RegExp) {
   let minified = await glob(`${dist}/**/*.min*`);
   if (exclude) {
     minified = minified.filter(name => !exclude.test(name));
   }
 
-  printSizes(minified, "", forceLog);
+  printSizes(minified);
 }
 
 /**
@@ -387,9 +350,9 @@ export function format(code: string, parser?: prettier.BuiltInParserName) {
  * Cleans and removes all the files provided.
  */
 export function clean(files: string[]) {
-  log("Cleaning the following directories/files:");
-  log(list(files));
-  log();
+  log.info("Cleaning the following directories and files:");
+  log.info(list(files));
+  log.info("");
 
   return Promise.all(files.map(path => fs.remove(path)));
 }

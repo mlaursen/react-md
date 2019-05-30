@@ -7,9 +7,10 @@ import sorting from "postcss-sorting";
 import cssnano from "cssnano";
 import combineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import combineMediaQueries from "css-mqpacker";
+import log from "loglevel";
 
 import { rootNodeModules, src } from "./paths";
-import { log, list } from "./utils";
+import { list } from "./utils";
 
 export interface CompileOptions extends nodeSass.SyncOptions {
   customIncludePaths?: string[];
@@ -43,8 +44,8 @@ export async function postcss(
   css: string,
   { production, srcFile, outFile }: PostCSSOptions
 ) {
-  log("Running postcss with the following plugins:");
-  log(
+  log.debug("Running postcss with the following plugins:");
+  log.debug(
     list(
       [
         "postcss-preset-env",
@@ -56,7 +57,7 @@ export async function postcss(
       ].filter(Boolean)
     )
   );
-  log();
+  log.debug("");
 
   const result = await nodePostcss(
     [
@@ -92,10 +93,10 @@ export function checkForInvalidCSS(css: string) {
   console.error(
     "There is invalid compiled css in this bundle. Please check the scss files"
   );
-  console.error("to try to fix these issues.");
-  console.error(list(matches.slice(0, matches.length - 1)));
-  console.error();
-  console.error(matchContext[0].trim());
-  console.error();
+  log.error("to try to fix these issues.");
+  log.error(list(matches.slice(0, matches.length - 1)));
+  log.error("");
+  log.error(matchContext[0].trim());
+  log.error("");
   process.exit(1);
 }

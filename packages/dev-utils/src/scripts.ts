@@ -1,6 +1,8 @@
 import fs from "fs-extra";
 import { camelCase, upperFirst } from "lodash";
 import path from "path";
+import log from "loglevel";
+
 import {
   es,
   lib,
@@ -21,7 +23,6 @@ import {
   getPackageName,
   glob,
   list,
-  log,
 } from "./utils";
 
 export default async function scripts(umd: boolean) {
@@ -38,17 +39,17 @@ export default async function scripts(umd: boolean) {
   }
 
   if (tsFiles.length === 1 && tsFiles[0].includes("scssVariables")) {
-    log(
+    log.debug(
       "Skipping typescript compilation since this package only contains a " +
         "`scssVariables.ts` file."
     );
-    log();
+    log.debug();
     return;
   }
 
-  log("Found typescript files:");
-  log(list(tsFiles));
-  log();
+  log.debug("Found typescript files:");
+  log.debug(list(tsFiles));
+  log.debug();
 
   await tsc(false);
   await tsc(true);
@@ -59,20 +60,20 @@ export default async function scripts(umd: boolean) {
 }
 
 function tscVariables() {
-  log("Compiling scssVariables...");
+  log.info("Compiling scssVariables...");
   exec(`npx tsc -p ${tsConfigVariables}`);
 }
 
 async function tsc(commonjs: boolean) {
   const tsConfig = commonjs ? tsConfigCommonJS : tsConfigESModule;
-  log(
+  log.info(
     `Compiling typescript files for ${commonjs ? "Common JS" : "ES Modules"}...`
   );
   exec(`npx tsc -p ${tsConfig}`);
   const generated = await glob(`${commonjs ? lib : es}/**/*`);
-  log("Created:");
-  log(list(generated));
-  log();
+  log.debug("Created:");
+  log.debug(list(generated));
+  log.debug();
 }
 
 async function definitions() {
@@ -82,9 +83,9 @@ async function definitions() {
   }
 
   const defs = await glob(`${types}/**/*.d.ts`);
-  log("Created the following defintiion files:");
-  log(list(defs));
-  log();
+  log.debug("Created the following defintiion files:");
+  log.debug(list(defs));
+  log.debug();
 }
 
 // it seems to break when extending the base config for some reason
@@ -146,13 +147,13 @@ async function createTempRollupFile(tempRollupIndexPath: string) {
 
 function rollup(production: boolean) {
   const env = production ? "production" : "development";
-  log(`Creating the ${env} UMD bundle...`);
+  log.info(`Creating the ${env} UMD bundle...`);
   exec(`npx rollup -c`, {
     env: {
       NODE_ENV: env,
     },
   });
-  log();
+  log.info("");
 }
 
 function createRollupConfig(packageName: string, umdName: string) {

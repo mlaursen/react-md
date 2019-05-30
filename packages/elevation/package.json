@@ -4,8 +4,7 @@
   "description": "This is a small package for react-md that can create the elevation styles in the material design spec.",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/scssVariables.js",
   "module": "./es/scssVariables.js",

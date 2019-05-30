@@ -1,9 +1,10 @@
 import { defaults, pick } from "lodash";
+import log from "loglevel";
 
 import runClean from "./clean";
 import scripts, { buildUMD } from "./scripts";
 import styles, { createScssVariables, generateThemeStyles } from "./styles";
-import { log, printMinifiedSizes, time, createTsConfigFiles } from "./utils";
+import { printMinifiedSizes, time, createTsConfigFiles } from "./utils";
 
 export interface BuildConfig {
   umd: boolean;
@@ -87,7 +88,7 @@ async function runBuild({
   }
 
   if (!umdOnly && !scriptsOnly && !stylesOnly) {
-    log();
+    log.info();
   }
 
   if (umdOnly) {
@@ -105,7 +106,5 @@ async function runBuild({
     exclude = /\.js/;
   }
 
-  log();
-  await printMinifiedSizes(exclude, process.argv.includes("--gzip-size"));
-  log();
+  await printMinifiedSizes(exclude);
 }

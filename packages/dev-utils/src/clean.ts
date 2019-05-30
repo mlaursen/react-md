@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import { es, lib, dist, types } from "./paths";
-import { time, list, log, glob, clean } from "./utils";
+import { time, list, glob, clean } from "./utils";
 
 export default function packageClean(others: string[] = []) {
   return time(async () => {

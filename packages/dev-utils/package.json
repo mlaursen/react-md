@@ -26,6 +26,7 @@
     "gzip-size": "^5.1.0",
     "jest": "^24.7.1",
     "lodash": "^4.17.11",
+    "loglevel": "^1.6.1",
     "markdown-toc": "^1.2.0",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
@@ -48,6 +49,7 @@
     "typescript": "^3.4.5"
   },
   "devDependencies": {
+    "@types/loglevel": "^1.5.4",
     "chokidar-cli": "^1.2.2"
   }
 }

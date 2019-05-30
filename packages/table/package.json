@@ -4,8 +4,7 @@
   "description": "Create responsive data tables and accessible fixed tables",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

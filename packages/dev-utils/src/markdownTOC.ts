@@ -1,6 +1,7 @@
 import fs from "fs-extra";
 import toc from "markdown-toc";
-import { glob, log, time, list, format } from "./utils";
+import log from "loglevel";
+import { glob, time, list, format } from "./utils";
 
 export default async function markdownTOC(globString: string) {
   time(() => doWork(globString), "toc");
@@ -10,14 +11,14 @@ const START_TOKEN = "<!-- toc -->";
 const STOP_TOKEN = "<!-- tocstop -->";
 
 async function doWork(globString: string) {
-  log("Searching for markdown pages using:");
-  log(` - "${globString}"`);
-  log();
+  log.debug("Searching for markdown pages using:");
+  log.debug(` - "${globString}"`);
+  log.debug();
   const files = await glob(globString);
 
-  log("Found the following markdown files:");
-  log(list(files));
-  log();
+  log.info("Adding a table of contents to the following files:");
+  log.info(list(files));
+  log.info();
 
   const markdowns = await Promise.all(
     files.map(async filePath => {
@@ -43,12 +44,12 @@ async function doWork(globString: string) {
       process.exit(1);
     }
 
-    log(`Updating "${filePath}" to include a table of contents...`);
-    log();
+    log.debug(`Updating "${filePath}" to include a table of contents...`);
+    log.debug();
     const { content } = toc(markdown, {
       filter: s => !s.includes("Table of Contents"),
     });
-    log(content);
+    log.debug(content);
 
     const updated = format(
       `${start > 0 ? markdown.substring(0, start) : ""}${START_TOKEN}

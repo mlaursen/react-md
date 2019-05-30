@@ -4,8 +4,7 @@
   "description": "Create menus that auto-position themselves within the viewport and adhere to the accessibility guidelines",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

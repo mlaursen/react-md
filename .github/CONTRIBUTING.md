@@ -6,46 +6,48 @@ The following is a set of guidelines for contributing to `react-md` and its
 packages. These are mostly guidelines, not rules. Use your best judgment, and
 feel free to propose changes to this document in a pull request.
 
+## Table of Contents
+
 <!-- toc -->
 
 - [I don't want to read the whole thing I just want to ask a question!](#i-dont-want-to-read-the-whole-thing-i-just-want-to-ask-a-question)
 - [Did you find a bug?](#did-you-find-a-bug)
 - [Do you have a new feature request?](#do-you-have-a-new-feature-request)
 - [Do you want to fix a bug or add a new feature?](#do-you-want-to-fix-a-bug-or-add-a-new-feature)
-  - [Quick Start](#quick-start)
-  - [Initial Setup](#initial-setup)
-  - [Documentation Server](#documentation-server)
-    - [File Structure](#file-structure)
-      - [nextjs pages](#nextjs-pages)
-      - [Creating a new Demo](#creating-a-new-demo)
-  - [Running Tests](#running-tests)
-    - [What types of tests should be written?](#what-types-of-tests-should-be-written)
-  - [Linting](#linting)
-  - [Formatting](#formatting)
-  - [Scripts](#scripts)
-    - [start](#start)
-    - [dev](#dev)
-    - [force-install](#force-install)
-    - [setup](#setup)
-    - [dev-utils](#dev-utils)
-    - [clean-build](#clean-build)
-    - [build-dist](#build-dist)
-    - [build](#build)
-    - [typecheck-packages](#typecheck-packages)
-    - [typecheck-documentation](#typecheck-documentation)
-    - [typecheck](#typecheck)
-    - [lint-scripts](#lint-scripts)
-    - [lint-styles](#lint-styles)
-    - [lint](#lint)
-    - [format](#format)
-    - [sandbox](#sandbox)
-    - [update-vars](#update-vars)
-    - [cli](#cli)
-    - [clean-packages](#clean-packages)
-    - [clean-dev-utils](#clean-dev-utils)
-    - [clean](#clean)
-    - [watch](#watch)
-  - [Watcher Configuration](#watcher-configuration)
+- [Quick Start](#quick-start)
+- [Initial Setup](#initial-setup)
+- [Documentation Server](#documentation-server)
+  - [File Structure](#file-structure)
+  - [nextjs pages](#nextjs-pages)
+  - [Creating a new Demo](#creating-a-new-demo)
+- [Running Tests](#running-tests)
+  - [What types of tests should be written?](#what-types-of-tests-should-be-written)
+- [Linting](#linting)
+- [Formatting](#formatting)
+- [Scripts](#scripts)
+  - [start](#start)
+  - [dev](#dev)
+  - [force-install](#force-install)
+  - [setup](#setup)
+  - [dev-utils](#dev-utils)
+  - [clean-build](#clean-build)
+  - [build-dist](#build-dist)
+  - [build](#build)
+  - [typecheck-packages](#typecheck-packages)
+  - [typecheck-documentation](#typecheck-documentation)
+  - [typecheck](#typecheck)
+  - [lint-scripts](#lint-scripts)
+  - [lint-styles](#lint-styles)
+  - [lint](#lint)
+  - [format](#format)
+  - [sandbox](#sandbox)
+  - [update-vars](#update-vars)
+  - [cli](#cli)
+  - [clean-packages](#clean-packages)
+  - [clean-dev-utils](#clean-dev-utils)
+  - [clean](#clean)
+  - [watch](#watch)
+- [Watcher Configuration](#watcher-configuration)
 
 <!-- tocstop -->
 
@@ -98,10 +100,11 @@ allowed features will be limited to:
 ## Do you want to fix a bug or add a new feature?
 
 Before you start working on a bug or feature, please make sure that there has
-already been an issue filed and the fix/feature has been approved by the main
-developer.
+already been an issue filed and the fix/feature has been approved as a valid bug
+or feature. From there, you'll want to follow the steps below which will outline
+initial setup and other information.
 
-### Quick Start
+## Quick Start
 
 If you just want to get quickly started and run the documentation server, you
 can run the following commands:
@@ -120,7 +123,7 @@ package in `react-md` by default.
 If this is your first time contributing, I really recommend reading the next few
 points for more information before getting started.
 
-### Initial Setup
+## Initial Setup
 
 To get started, you'll first want to fork the [react-md repo] and then clone
 your forked repository locally. Once the project has been cloned, you'll want to
@@ -175,7 +178,7 @@ Using `yarn start` will only start up the documentation server while `yarn dev`
 will also start up the main [watcher](#watch) script to recompile packages
 automatically when they have been changed.
 
-### Documentation Server
+## Documentation Server
 
 The documentation server is built using [nextjs] to provide server side
 rendering and runs using a custom typescript server. The app will be available
@@ -191,7 +194,7 @@ stylesheets (`.css` or `.scss`), so you might notice some weird issues while
 running the app in development mode. If you see any weird styling issues, you'll
 just need to refresh the page for the styles to work.
 
-#### File Structure
+### File Structure
 
 The documentation folder will contain the following folders:
 
@@ -211,7 +214,7 @@ The documentation folder will contain the following folders:
 - `utils`- General utils used for the documentation site. This include things
   like a simple number generator or some string utils
 
-##### nextjs pages
+### nextjs pages
 
 If you haven't used `nextjs` before, the way it works is that every file found
 in the `pages` directory will be turned into a route in the website. So if we
@@ -234,7 +237,7 @@ this is how the demo pages for each package is created. All that exists at
 export { default } from "components/Demos/Avatar";
 ```
 
-##### Creating a new Demo
+### Creating a new Demo
 
 This will be where all the package demos are stored and where 90% of the
 contributions and development will be. You'll find a all the packages within
@@ -274,32 +277,27 @@ menu custom renderers as an example:
 ├── CustomRenderers.md
 ```
 
-### Running Tests
+## Running Tests
 
 Tests are being run with [jest] and using the [react-testing-library] to test
 React components. There are also some tests written using [enzyme], but it is
 preferred to use `react-testing-library`.
 
-You can run tests at the root level or in a specific package:
+You can run tests at the root level to test all packages:
 
 ```sh
 mlaursen @ ~/code/react-md
 $ yarn test
 ```
 
-```sh
-mlaursen @ ~/code/react-md/packages/button
-$ yarn test
-```
-
 The test command also supports the `--watch` flag so you can continually run
 tests while developing.
 
-#### What types of tests should be written?
+### What types of tests should be written?
 
 TODO:
 
-### Linting
+## Linting
 
 This project is currently being linted with [tslint] but hopefully will be able
 to switch over to [eslint] once the Typescript linting is fully available. There
@@ -308,98 +306,98 @@ run pre-push.
 
 All the `.scss` files are being linted with [sass-lint].
 
-### Formatting
+## Formatting
 
 This project is currently formatted using [prettier], so it is recommended to
 add support in your IDE to automatically format as needed. Otherwise, all files
 will automatically be formatted pre-commit.
 
-### Scripts
+## Scripts
 
-##### start
+### start
 
 This will start the documentation server in development mode. You are required
 to install dependencies and have an initial build before running this command or
 else it will crash.
 
-##### dev
+### dev
 
 This will run the [watch](#watch) command as well as the [start](#start) command
 in parallel.
 
-##### force-install
+### force-install
 
 This is just a wrapper for `yarn --force` that can be used with `npm-run-all` in
 some other scripts. You probably won't ever need to us this.
 
-##### setup
+### setup
 
 This command will run the basic setup by running the `dev-utils` build, force
 installing, and then running the main `build`. This is a nice shortcut for
 initial clone. You'll still need to run `yarn` initially to install some
 dependencies.
 
-##### dev-utils
+### dev-utils
 
 This is just a wrapper for running the `build` command in the `dev-utils`
 package from the root level.
 
-##### clean-build
+### clean-build
 
 This command will first clean every package and then run the build command. This
 is normally used before publishing so that any temporary files aren't included
 in the publish. This will take a long time (15+ minutes) as the
 [build-dist](#build-dist) command is expensive.
 
-##### build-dist
+### build-dist
 
 This will build all the packages which should be run right before publishing.
 This is a bit different than the main `build` command as this will also create
 the `UMD` bundles and build the base `react-md` package. This normally takes
 around 10-15 minutes to complete, so I wouldn't recommend running this often.
 
-##### build
+### build
 
 This is the main build command that will build the modules and commonjs builds
 for all `@react-md` packages.
 
-##### typecheck-packages
+### typecheck-packages
 
 This will run the `tsc` command to ensure there are no unused variables in all
 the `@react-md` scoped packages.
 
-##### typecheck-documentation
+### typecheck-documentation
 
 This will run the `tsc` command to ensure there are no unused variables in all
 the documentation.
 
-##### typecheck
+### typecheck
 
 This script will run both the `typecheck-packages` and `typecheck-documentation`
 commands which just updates the `tsconfig` definitions to make sure there are no
 unused variables in typescript files.
 
-##### lint-scripts
+### lint-scripts
 
 This will run `tslint` on all the scoped `@react-md` packages.
 
-##### lint-styles
+### lint-styles
 
 This will run `sass-lint` against all the `.scss` files in the scoped
 `@react-md` packages.
 
-##### lint
+### lint
 
 This will just run both the `lint-styles` and `lint-scripts` commands in
 parallel.
 
-##### format
+### format
 
 This command will manually run prettier on all files that should be formatted.
 You probably don't really need to run this command as the `pre-commit` hook
 should automatically format files already.
 
-##### sandbox
+### sandbox
 
 This is a wrapper for the `sandbox` command in the documentation package. This
 is used to generate empty or full "sandboxes" of all the demos. Run:
@@ -410,31 +408,31 @@ $ yarn sandbox --help
 
 For a list of available commands.
 
-##### update-vars
+### update-vars
 
 This is a simple wrapper that will run the `build` command on all packages but
 only updating the generated `scssVariables.ts` file.
 
-##### cli
+### cli
 
 This is really just a wrapper for the `dev-utils` that can be run at the root
 level. This isn't extremely helpful out of the box other than documentation
 purposes since the `dev-utils` script normally assumes it's in one of the
 packages when being run.
 
-##### clean-packages
+### clean-packages
 
 This command will run clean in each scoped `@react-md` package.
 
-##### clean-dev-utils
+### clean-dev-utils
 
 This command will run clean in the `dev-utils` package.
 
-##### clean
+### clean
 
 This will run both the `clean-packages` and `clean-dev-utils` command.
 
-##### watch
+### watch
 
 This will run the main `watcher.js` script that will:
 
@@ -450,7 +448,7 @@ This will run the main `watcher.js` script that will:
 
 See the watcher configuration for some more details.
 
-### Watcher Configuration
+## Watcher Configuration
 
 The watcher script will default to watching all `@react-md/` packages by
 default. Unfortunately, this might require a pretty beefy computer to run and
@@ -476,7 +474,7 @@ $ yarn watch --filter ignore-all
 [yarn]: https://yarnpkg.com
 [typescript]: https://www.typescriptlang.org/
 [codesandbox]: https://codesandbox.io
-[offical slack channel]: https://react-md.slack.com
+[official slack channel]: https://react-md.slack.com
 [email template]: mailto:mlaursen03@gmail.com?subject=react-md%20Slack%20invite
 [material design]: https://material.io/develop/web
 [react-md repo]: https://github.com/mlaursen/react-md

@@ -4,8 +4,7 @@
   "description": "This package is for including icons within react-md. There is included support for both font icons and SVG icons.  There is also a helper component for applying spacing between icons and text.",
   "scripts": {
     "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
+    "clean": "dev-utils clean"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",
