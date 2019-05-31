@@ -473,20 +473,25 @@ export default class Slider extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     const { active, manualIncrement } = this.state;
-    let fn = window[`${active ? 'add' : 'remove'}EventListener`];
     if (active !== prevState.active) {
-      fn('click', this._blurOnOutsideClick);
-
       if (active) {
+        window.addEventListener('click', this._blurOnOutsideClick);
         this._focusThumb();
+      } else {
+        window.removeEventListener('click', this._blurOnOutsideClick);
       }
     }
 
     const addDrag = active && !manualIncrement;
-    fn = window[`${addDrag ? 'add' : 'remove'}EventListener`];
+   
     if (this._dragAdded !== addDrag) {
-      fn('mousemove', this._handleDragMove);
-      fn('mouseup', this._handleDragEnd);
+      if (addDrag) {
+        window.addEventListener('mousemove', this._handleDragMove);
+        window.addEventListener('mouseup', this._handleDragEnd);
+      } else {
+        window.removeEventListener('mousemove', this._handleDragMove);
+        window.removeEventListener('mouseup', this._handleDragEnd);
+      }
       setTouchEvent(addDrag, window, 'move', this._handleDragMove);
       setTouchEvent(addDrag, window, 'end', this._handleDragEnd);
 
@@ -495,10 +500,9 @@ export default class Slider extends PureComponent {
   }
 
   componentWillUnmount() {
-    const rm = window.removeEventListener;
-    rm('click', this._blurOnOutsideClick);
-    rm('mousemove', this._handleMouseMove);
-    rm('mouseup', this._handleMouseUp);
+    window.removeEventListener('click', this._blurOnOutsideClick);
+    window.removeEventListener('mousemove', this._handleMouseMove);
+    window.removeEventListener('mouseup', this._handleMouseUp);
     removeTouchEvent(window, 'move', this._handleDragMove);
     removeTouchEvent(window, 'end', this._handleDragEnd);
 
