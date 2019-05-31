@@ -483,7 +483,6 @@ export default class Slider extends PureComponent {
     }
 
     const addDrag = active && !manualIncrement;
-   
     if (this._dragAdded !== addDrag) {
       if (addDrag) {
         window.addEventListener('mousemove', this._handleDragMove);
