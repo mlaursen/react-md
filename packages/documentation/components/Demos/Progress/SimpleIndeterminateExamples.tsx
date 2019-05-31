@@ -30,6 +30,7 @@ const SimpleIndeterminateExamples: FC = () => {
           id="show-linear-progress"
           {...getProgressA11y("simple-linear-progress", circularVisible)}
           onClick={toggleLinear}
+          theme="primary"
           themeType="contained"
           className="centered-progress-toggle"
           disabled={linearVisible}
@@ -47,6 +48,7 @@ const SimpleIndeterminateExamples: FC = () => {
           id="show-circular-progress"
           {...getProgressA11y("simple-circular-progress", circularVisible)}
           onClick={toggleCircular}
+          theme="primary"
           themeType="contained"
           className="centered-progress-toggle"
           disabled={circularVisible}

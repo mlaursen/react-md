@@ -33,6 +33,7 @@ const SimpleDeterminateExamples: FC = () => {
         <Button
           id="determinate-linear-example-toggle"
           onClick={start1}
+          theme="primary"
           themeType="outline"
           disabled={running1}
           {...getProgressA11y("determinate-circular-progress", running1)}
@@ -51,6 +52,7 @@ const SimpleDeterminateExamples: FC = () => {
         <Button
           id="determinate-example-toggle"
           onClick={start2}
+          theme="primary"
           themeType="outline"
           disabled={running2}
           {...getProgressA11y("determinate-circular-progress", running2)}

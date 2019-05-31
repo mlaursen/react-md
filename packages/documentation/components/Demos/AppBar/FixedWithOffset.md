@@ -8,7 +8,7 @@ size:
 - `APP_BAR_OFFSET_CLASS_NAME`
 - `APP_BAR_OFFSET_DENSE_CLASS_NAME`
 - `APP_BAR_OFFSET_PROMINENT_CLASS_NAME`
-- `APP_BAR_OFFSET_PROMINENT_DENSECLASS_NAME`
+- `APP_BAR_OFFSET_PROMINENT_DENSE_CLASS_NAME`
 
 An alternative is to also use the
 [rmd-app-bar-offset mixin](sassdoc#mixin-rmd-app-bar-offset) which will apply

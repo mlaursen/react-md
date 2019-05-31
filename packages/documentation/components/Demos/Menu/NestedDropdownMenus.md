@@ -21,10 +21,10 @@ few small changes:
 4. **To fix a Safari bug, the nested menus will be portalled**.
 
 The nested menus will be portalled out of the menu due to a weird visual bug
-that ocurrs within Safari. For some reason, if you have `overflow` set along
+that occurs within Safari. For some reason, if you have `overflow` set along
 with a parent that has `position` set to something other than static, the
 `position: fixed` element will not be visible. To work around this, the nested
-menus portal out of the parent menu so they can be displayed. Funilly enough, it
+menus portal out of the parent menu so they can be displayed. Funnily enough, it
 _is_ still rendered and you can click it, but you just can't see anything.
 
 The example below will create an infinitely generating dropdown menu example

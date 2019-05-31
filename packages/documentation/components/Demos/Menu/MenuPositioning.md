@@ -1,6 +1,6 @@
 If you haven't noticed before, but the `DropdownMenu` component will
 automatically try to position itself within the viewport using the
-`useFixedPositioning` hook. . The default behavior is to "anchor" itself to the
+`useFixedPositioning` hook. The default behavior is to "anchor" itself to the
 top-right of the `MenuButton` and animate downwards. If there isn't enough room
 within the viewport to render the entire menu, it'll swap the horizontal and
 vertical positions as needed. There's a great write up on the

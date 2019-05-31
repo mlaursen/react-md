@@ -29,7 +29,7 @@ easiest way to add an event handler. An example would be:
 
 ###### Using custom `MenuItem`<!-- no-margin -->
 
-The most "resuable" option will be to create custom `MenuItem` and/or
+The most "reusable" option will be to create custom `MenuItem` and/or
 `MenuItemLink` components that have their own click handlers attached. This will
 also make it so you can have reusable `MenuItem`s if they need to appear in
 multiple menus or need to make them have additional functionality (like

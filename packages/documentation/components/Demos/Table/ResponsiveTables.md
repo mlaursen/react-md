@@ -23,5 +23,5 @@ depending on the screen size. The `grow` prop will make the column fill all the
 remaining space in the table and ensuring all the other columns are as small as
 possible.
 
-> The `fullWidth` and `grow` versions won't really be noticable until on a large
-> desktop screen.
+> The `fullWidth` and `grow` versions won't really be noticeable until on a
+> large desktop screen.

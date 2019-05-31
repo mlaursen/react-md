@@ -1,4 +1,4 @@
-An alert dialog variant should be used when assestive technologies should
+An alert dialog variant should be used when assistive technologies should
 immediately bring the user's attention to the dialog. This pattern is normally
 used for confirmation dialogs. To create an alert dialog, the only change
 required is to add a new prop: `role="alertdialog"`.

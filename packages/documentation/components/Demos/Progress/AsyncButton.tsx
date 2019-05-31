@@ -82,6 +82,7 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
       disabled={disabled || loading}
       className={block()}
       {...getProgressA11y(progressId, loading)}
+      theme="primary"
     >
       {children}
     </Button>

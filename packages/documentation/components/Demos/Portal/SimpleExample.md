@@ -1,6 +1,6 @@
 A really good example for portals is the
 [fixing overflow issues](/packages/overlay/demos#fixing-overflow-issues) example
-in the overlay package. I'll add another example blow for using the porta, but
+in the overlay package. I'll add another example blow for using the portal, but
 the fix is really only valid on iOS devices.
 
 This example will implement an example of a dropdown menu from the #menu

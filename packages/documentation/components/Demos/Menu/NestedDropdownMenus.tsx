@@ -38,6 +38,7 @@ const NestedDropdownMenus: FC = () => {
         <TextIconSpacing
           icon={
             <input
+              id="nested-menu-portal"
               type="checkbox"
               onChange={event => setPortal(event.currentTarget.checked)}
               checked={portal}

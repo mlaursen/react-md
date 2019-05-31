@@ -50,7 +50,12 @@ const ConditionalFullPageDialog: FC<
         This example requires a more screen real estate than what is available
         so you will need to open it in a full page dialog.
       </Text>
-      <Button id={`${id}-dialog-toggle`} themeType="contained" onClick={enable}>
+      <Button
+        id={`${id}-dialog-toggle`}
+        themeType="contained"
+        onClick={enable}
+        theme="primary"
+      >
         <TextIconSpacing icon={<LaunchSVGIcon />}>Launch</TextIconSpacing>
       </Button>
       <Dialog
