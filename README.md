@@ -86,7 +86,7 @@ Please see the list of [examples](examples/) for how you can get a project start
   <head>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@1.12.0/dist/react-md.deep_purple-pink.min.css"
+      href="https://unpkg.com/react-md@1.12.1/dist/react-md.deep_purple-pink.min.css"
     />
     <link
       rel="stylesheet"
@@ -97,7 +97,7 @@ Please see the list of [examples](examples/) for how you can get a project start
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md@1.12.0/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.12.1/dist/react-md.min.js"></script>
     <script>
       var MyAwesomeComponent = React.createClass({
         render: function() {
@@ -139,7 +139,8 @@ $ gem install scss_lint
 I have an issue (#274) open about switching over to the node port, but it hasn't really been worked on because I don't like
 the little amount of features that have been ported over so far.
 
-Otherwise this _should_ work on most systems with node >= 6.
+**You will need to use node@8 for both the base react-md package and documentation server at this time**. I am hoping to fix
+it at some point, but it might not be fixed until v2 of react-md.
 
 ### Minimal Setup
 

@@ -1,5 +1,11 @@
 ## May 2019
 
+### v1.12.1 Released
+
+##### Changelog
+
+- Fixed an issue with `Slider` component causing errors with Sentry. ([@oramirez1] - [issues-832])
+
 ### v1.12.0 Released
 
 ##### Changelog
