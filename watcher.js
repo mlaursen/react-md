@@ -31,19 +31,33 @@ const TYPESCRIPT_PACKAGES = PACKAGES.filter(
     packages = packages.filter(n => regex.test(n));
   }
   const watchablePackages = packages.map(n => path.join('packages', n));
-  console.log(
-    'Starting tsc in build watcher mode for the following packages...'
-  );
+  console.log('Starting tsc in lazy mode for the following packages...');
   console.log(watchablePackages.map(p => `- ${p}`).join('\n'));
+  console.log('\n');
 
-  const args = [
-    'tsc',
-    '-b',
-    '-w',
-    ...watchablePackages.map(pkg => `${pkg}/tsconfig.ejs.json`),
-    ...watchablePackages.map(pkg => `${pkg}/tsconfig.cjs.json`),
+  const paths = [
+    ...watchablePackages.map(p => `${p}/src/**/*.ts`),
+    ...watchablePackages.map(p => `${p}/src/**/*.tsx`),
   ];
-  processes.push(spawn('npx', args, { stdio: 'inherit' }));
+
+  const watcher = chokidar.watch(paths, { ignored: /tests/ });
+  const started = [];
+  watcher.on('change', filePath => {
+    const [, pkg] = filePath.split(path.sep);
+    if (started.includes(pkg)) {
+      watcher.unwatch(filePath);
+      return;
+    }
+
+    started.push(pkg);
+    console.log(`Starting tsc watcher for \`@react-md/${pkg}\`...`);
+
+    const args = ['tsc', '-w', '-p', `packages/${pkg}/tsconfig.ejs.json`];
+    const args2 = args.slice();
+    args2[3] = args2[3].replace('.ejs', '.cjs');
+    processes.push(spawn('npx', args, { stdio: 'inherit' }));
+    processes.push(spawn('npx', args2, { stdio: 'inherit' }));
+  });
 })();
 
 function copyFile(filePath, destPath, log) {

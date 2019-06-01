@@ -28,7 +28,7 @@
     "clean-packages": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation",
     "clean-dev-utils": "lerna run clean --scope @react-md/dev-utils",
     "clean": "npm-run-all clean-packages clean-dev-utils",
-    "watch": "node watcher.js"
+    "watch": "nodemon watcher.js --watch watcher.js"
   },
   "engines": {
     "node": ">= 10"
