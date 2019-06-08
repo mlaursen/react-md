@@ -16,6 +16,10 @@
     @include rmd-list-dense-theme;
     @include rmd-list-item-dense-theme;
     @include rmd-tooltip-dense-theme;
+
+    .material-icons {
+      @include rmd-icon-theme(font-size, size);
+    }
   }
 }
 

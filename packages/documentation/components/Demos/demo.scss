@@ -35,7 +35,8 @@
 
   &__preview {
     @include rmd-elevation(2);
-    @include rmd-theme(background-color, surface);
+    @include rmd-theme(background-color, background);
+    @include rmd-theme-update-var(background, rmd-theme-var(surface));
 
     padding: 2rem;
   }

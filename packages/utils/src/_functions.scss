@@ -84,3 +84,11 @@
 
   @return '#{$prefix}#{$next-position}';
 }
+
+/// This function can be used to negate the value of a css variable. It just really
+/// wraps the variable with `cacl(-1 * #{$variable})`.
+///
+/// @param {String} css-variable - The css variable string to negate.
+@function rmd-utils-negate-var($css-variable) {
+  @return calc(-1 * #{$css-variable});
+}

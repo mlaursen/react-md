@@ -93,19 +93,19 @@
   }
 
   &--above {
-    transform: translateY(calc(-1 * #{rmd-tooltip-theme-var(transition-distance)}));
+    transform: translateY(rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance)));
   }
 
   &--below {
-    transform: translateY(#{rmd-tooltip-theme-var(transition-distance)});
+    transform: translateY(rmd-tooltip-theme-var(transition-distance));
   }
 
   &--left {
-    transform: translateX(calc(-1 * #{rmd-tooltip-theme-var(transition-distance)}));
+    transform: translateX(rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance)));
   }
 
   &--right {
-    transform: translateX(calc(#{rmd-tooltip-theme-var(transition-distance)}));
+    transform: translateX(rmd-tooltip-theme-var(transition-distance));
   }
 
   &--visible {
