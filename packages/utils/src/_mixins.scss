@@ -258,6 +258,10 @@
     @include react-md-icon;
   }
 
+  @if mixin-exists(react-md-form) {
+    @include react-md-form;
+  }
+
   @if mixin-exists(react-md-link) {
     @include react-md-link;
   }

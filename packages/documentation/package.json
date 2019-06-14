@@ -32,6 +32,7 @@
     "@react-md/divider": "^2.0.0-alpha.1",
     "@react-md/elevation": "^2.0.0-alpha.1",
     "@react-md/icon": "^2.0.0-alpha.1",
+    "@react-md/form": "^2.0.0-alpha.0",
     "@react-md/link": "^2.0.0-alpha.1",
     "@react-md/list": "^2.0.0-alpha.1",
     "@react-md/material-icons": "^2.0.0-alpha.1",

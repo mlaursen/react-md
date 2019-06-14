@@ -1,0 +1,471 @@
+////
+/// @group form
+////
+
+@import '@react-md/button/dist/mixins';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+@import '@react-md/utils/dist/mixins';
+@import 'variables';
+@import 'functions';
+
+/// Creates the styles for one of the form's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-form-theme-values` value to.
+/// @param {String} theme-style [property] - One of the keys of `rmd-form-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-form-theme-values` map when `null`.
+@mixin rmd-form-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-form-theme-values, form);
+}
+
+/// Updates one of the form's theme variables with the new value for the section
+/// of your app.
+///
+/// @example scss - Example SCSS USage
+///   .bigger-form-section {
+///     @include rmd-form-theme-update-var(size, 4rem);
+///   }
+///
+///
+/// @example scss - Updating the base form size with a media query
+///   @media (min-width: 75rem)  {
+///     @include rmd-form-theme-update-var(size, rmd-form-theme(dense-size));
+///   }
+///
+/// @param {String} theme-style - The form theme style type to update. This should be one
+///   of the `$rmd-form-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-form-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-form-theme-values, form);
+}
+
+/// Creates the base styles for a `<label>` element as well as all the different
+/// states a label can be in.
+@mixin rmd-label {
+  @include rmd-typography(body-1);
+  @include rmd-transition(standard);
+  @include rmd-form-theme(font-size, label-font-size);
+
+  $transitions: color, font-size, transform, top;
+
+  transition-duration: $rmd-transition-standard-time;
+  transition-property: $transitions;
+  will-change: $transitions;
+
+  &--active {
+    @include rmd-form-theme(color, active-color);
+  }
+
+  &--error {
+    @include rmd-form-theme(color, error-color);
+  }
+
+  &--disabled {
+    @include rmd-form-theme(color, disabled-color);
+  }
+
+  &--floating {
+    @include rmd-utils-rtl {
+      left: auto;
+      right: 0;
+      transform: translate(rmd-utils-negate-var(rmd-form-theme-var(offset)), -50%);
+    }
+
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(#{rmd-form-theme-var(offset)}, -50%);
+  }
+
+  &--floating-active {
+    @include rmd-form-theme(font-size, label-floating-font-size);
+    @include rmd-utils-rtl {
+      transform: translate(rmd-utils-negate-var(rmd-form-theme-var(offset)), 0);
+    }
+
+    top: 0;
+    transform: translate(#{rmd-form-theme-var(offset)}, 0);
+    z-index: 1;
+  }
+
+  &--floating-inactive {
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+
+  &--floating-active-outline {
+    @include rmd-theme(background-color, background);
+    @include rmd-utils-rtl {
+      left: rmd-utils-negate-var(rmd-form-theme-var(label-padding));
+      transform: translate(rmd-utils-negate-var(rmd-form-theme-var(offset)), -50%);
+    }
+
+    left: rmd-utils-negate-var(rmd-form-theme-var(label-padding));
+    padding: 0 rmd-form-theme-var(label-padding);
+    transform: translate(#{rmd-form-theme-var(offset)}, -50%);
+  }
+}
+
+///
+/// @access private
+@mixin rmd-form-toggle-container {
+  align-items: center;
+  display: flex;
+
+  &--inline {
+    display: inline-flex;
+  }
+
+  &--stacked {
+    flex-direction: column;
+  }
+}
+
+/// Creates the styles for a form input that should be hidden from view. This
+/// should normally be applied to checkbox or radio input types.
+@mixin rmd-form-toggle-hidden {
+  @include rmd-utils-hide-focus-outline;
+
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &:checked + .rmd-form-toggle__icon::before {
+    opacity: 0;
+  }
+
+  &:checked + .rmd-form-toggle__icon::after {
+    opacity: 1;
+  }
+}
+
+@mixin rmd-form-toggle-dense-theme {
+  @include rmd-form-theme-update-var(toggle-inset, #{rmd-form-theme-var(toggle-dense-inset)});
+}
+
+@mixin rmd-form-toggle {
+  @include rmd-button-theme(height, icon-size);
+  @include rmd-button-theme(width, icon-size);
+  @include rmd-states-surface;
+  @include rmd-states-keyboard-only {
+    &--focused {
+      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+
+      &:hover {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+      }
+    }
+  }
+
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+
+  &--disabled {
+    @include rmd-states-theme-update-var(hover-color, tranparent);
+  }
+}
+
+@mixin rmd-form-toggle-icon {
+  @include rmd-theme(color, warning);
+  @include rmd-icon-theme(height, size);
+  @include rmd-icon-theme(width, size);
+
+  .rmd-icon {
+    color: inherit;
+    fill: currentColor;
+    height: inherit;
+    width: inherit;
+  }
+
+  pointer-events: none;
+  position: absolute;
+
+  &::before,
+  &::after {
+    @include rmd-transition(standard);
+    @include rmd-form-theme(bottom, toggle-inset);
+    @include rmd-form-theme(left, toggle-inset);
+    @include rmd-form-theme(right, toggle-inset);
+    @include rmd-form-theme(top, toggle-inset);
+
+    content: '';
+    position: absolute;
+    transition: opacity $rmd-transition-standard-time;
+  }
+
+  &::before {
+    @include rmd-theme(background-color, background);
+
+    opacity: 1;
+    z-index: 3;
+  }
+
+  &::after {
+    opacity: 0;
+    z-index: 0;
+  }
+
+  &--circle::before,
+  &--circle::after {
+    border-radius: 50%;
+  }
+
+  &--disabled {
+    @include rmd-theme(color, text-disabled-on-background);
+  }
+
+  &--dense {
+    @include rmd-form-theme(bottom, toggle-dense-inset);
+    @include rmd-form-theme(left, toggle-dense-inset);
+    @include rmd-form-theme(right, toggle-dense-inset);
+    @include rmd-form-theme(top, toggle-dense-inset);
+  }
+}
+
+@mixin rmd-form-placeholder {
+  &:placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin rmd-text-field-container {
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  &--inline {
+    display: inline-flex;
+  }
+
+  &--filled {
+    @include rmd-states-surface;
+    @include rmd-form-theme(background-color, filled-color);
+  }
+
+  &--outline {
+    @include rmd-transition(standard);
+    @include rmd-form-theme(border-color);
+    @include rmd-form-theme(border-radius);
+    @include rmd-form-theme(border-width);
+    @include rmd-form-theme-update-var(offset, rmd-form-theme-var(outline-horizontal-padding));
+
+    border-style: solid;
+    transition: border-color $rmd-transition-standard-time;
+
+    &:hover {
+      @include rmd-form-theme(border-color, border-hover-color);
+    }
+
+    &:disabled {
+      @include rmd-form-theme(bordered-color, disabled-color);
+    }
+
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-utils-pseudo-element;
+
+      box-shadow: 0 0 0 #{rmd-form-theme-var(border-width-active)} #{rmd-form-theme-var(
+          active-color
+        )};
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      transition: opacity $rmd-transition-standard-time;
+    }
+  }
+
+  &--outline-active::after {
+    opacity: 1;
+  }
+
+  &--underline {
+    @include rmd-transition(standard);
+    @include rmd-form-theme(border-top-left-radius, border-radius);
+    @include rmd-form-theme(border-top-right-radius, border-radius);
+    @include rmd-form-theme(border-bottom-width, border-width);
+    @include rmd-form-theme(border-bottom-color, border-color);
+    @include rmd-form-theme-update-var(offset, rmd-form-theme-var(underline-horizontal-padding));
+
+    border-bottom-style: solid;
+    transition: border-bottom-color $rmd-transition-standard-time;
+
+    &:hover {
+      @include rmd-form-theme(border-bottom-color, border-hover-color);
+    }
+
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-form-theme(background-color, active-color);
+      @include rmd-form-theme(height, border-width-active);
+
+      content: '';
+      max-width: 0;
+      position: absolute;
+      top: 100%;
+      transition: max-width $rmd-transition-standard-time;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  &--underline-left::after {
+    @include rmd-utils-rtl {
+      left: auto;
+      margin-left: auto;
+      margin-right: 0;
+      right: 0;
+    }
+
+    left: 0;
+    margin-right: auto;
+  }
+
+  &--underline-right::after {
+    margin-left: auto;
+    right: 0;
+  }
+
+  &--underline-active::after {
+    max-width: 100%;
+  }
+}
+
+@mixin rmd-text-field {
+  @include rmd-transition(standard);
+  @include rmd-typography(body-1);
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-form-placeholder {
+    @include rmd-transition(standard);
+    @include rmd-typography(body-1);
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+
+  background-color: transparent;
+  border-width: 0;
+  color: inherit;
+  flex-grow: 1;
+  flex-shrink: 1;
+  transition-duration: $rmd-transition-standard-time;
+  transition-property: border-color;
+
+  &[disabled] {
+    @include rmd-theme(color, text-disabled-on-background);
+
+    @include rmd-form-placeholder {
+      @include rmd-theme(color, text-disabled-on-background);
+    }
+  }
+
+  &--outline {
+    @include rmd-form-theme(padding-left, outline-horizontal-padding);
+    @include rmd-form-theme(padding-right, outline-horizontal-padding);
+
+    padding-bottom: $rmd-form-outline-padding-bottom;
+    padding-top: $rmd-form-outline-padding-top;
+  }
+
+  &--underline {
+    @include rmd-form-theme(padding-left, underline-horizontal-padding);
+    @include rmd-form-theme(padding-right, underline-horizontal-padding);
+
+    padding-bottom: $rmd-form-underline-padding-bottom;
+    padding-top: $rmd-form-underline-padding-top;
+  }
+
+  &--area {
+    // only show the scrollbars when needed
+    overflow: auto;
+  }
+
+  &--unresizable {
+    height: 100%;
+    resize: none;
+    width: 100%;
+  }
+
+  &--floating {
+    @include rmd-form-placeholder {
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &:focus {
+      @include rmd-form-placeholder {
+        @include rmd-theme(color, text-secondary-on-background);
+      }
+    }
+  }
+}
+
+/// Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables
+/// to be enabled to generate any styles.
+@mixin react-md-form {
+  @include rmd-theme-create-root-theme($rmd-form-theme-values, form);
+
+  .rmd-form-label {
+    @include rmd-label;
+  }
+
+  .rmd-form-toggle-container {
+    @include rmd-form-toggle-container;
+  }
+
+  .rmd-form-toggle {
+    @include rmd-form-toggle;
+
+    &__input {
+      @include rmd-form-toggle-hidden;
+    }
+
+    &__icon {
+      @include rmd-form-toggle-icon;
+    }
+  }
+
+  .rmd-text-field-container {
+    @include rmd-text-field-container;
+  }
+
+  .rmd-text-field {
+    @include rmd-text-field;
+  }
+}

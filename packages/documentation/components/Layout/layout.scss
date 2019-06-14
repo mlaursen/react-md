@@ -1,17 +1,19 @@
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/mixins';
 @import '@react-md/app-bar/dist/mixins';
-@import '@react-md/sheet/dist/mixins';
-@import '@react-md/list/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
 @import '@react-md/divider/dist/mixins';
+@import '@react-md/form/dist/mixins';
+@import '@react-md/icon/dist/mixins';
+@import '@react-md/list/dist/mixins';
+@import '@react-md/sheet/dist/mixins';
+@import '@react-md/sizing/dist/mixins';
+@import '@react-md/theme/dist/mixins';
 @import '@react-md/tooltip/dist/mixins';
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 
 :root {
   @include rmd-sizing-desktop-media {
     @include rmd-app-bar-dense-theme;
+    @include rmd-form-toggle-dense-theme;
     @include rmd-icon-dense-theme;
     @include rmd-list-dense-theme;
     @include rmd-list-item-dense-theme;

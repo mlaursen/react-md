@@ -6,6 +6,7 @@
 @import '@react-md/dialog/dist/mixins';
 @import '@react-md/divider/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
+@import '@react-md/form/dist/mixins';
 @import '@react-md/icon/dist/mixins';
 @import '@react-md/link/dist/mixins';
 @import '@react-md/list/dist/mixins';
@@ -81,6 +82,10 @@
   );
   @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-light-color);
   @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-light-color);
+
+  @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-light);
+  @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-light);
+  @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-light);
 
   --code-bg: var(--code-bg-light);
 }

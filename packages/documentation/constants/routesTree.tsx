@@ -202,6 +202,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("divider"),
     createPackageRoute("elevation", { api: false }),
     createPackageRoute("icon"),
+    createPackageRoute("form"),
     createPackageRoute("link"),
     createPackageRoute("list"),
     createPackageRoute("material-icons", { sassdoc: false }),
