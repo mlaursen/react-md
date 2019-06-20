@@ -163,7 +163,7 @@ export default class FontIcon extends PureComponent {
     }), className);
 
     return (
-      <i {...props} style={styles} className={classes}>
+      <i {...props} style={styles} className={classes} aria-hidden="true">
         {children}
       </i>
     );
