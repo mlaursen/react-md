@@ -6,9 +6,9 @@ import React, {
   useState,
   useMemo,
   CSSProperties,
+  forwardRef,
 } from "react";
 import cn from "classnames";
-import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef, useRefCache, useToggle } from "@react-md/utils";
 import TextFieldContainer, {
@@ -27,8 +27,7 @@ export interface TextFieldProps
   defaultValue?: string;
   label?: ReactNode;
   type?: string;
-  leftChildren?: ReactNode;
-  rightChildren?: ReactNode;
+  children?: ReactNode;
 }
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
@@ -88,6 +87,8 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       error={error}
       active={focused}
       underlineDirection={underlineDirection}
+      leftChildren={leftChildren}
+      rightChildren={rightChildren}
     >
       <Label
         htmlFor={id}
@@ -100,26 +101,15 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       >
         {label}
       </Label>
-      <TextIconSpacing icon={leftChildren}>
-        <TextIconSpacing icon={rightChildren} iconAfter>
-          <input
-            {...props}
-            autoComplete="new-password"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onChange={onChange}
-            ref={forwardedRef}
-            className={cn(
-              block({
-                outline,
-                underline: underline || filled,
-                floating: !unstyled,
-              }),
-              className
-            )}
-          />
-        </TextIconSpacing>
-      </TextIconSpacing>
+      <input
+        {...props}
+        autoComplete="new-password"
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+        ref={forwardedRef}
+        className={cn(block({ floating: !unstyled }), className)}
+      />
     </TextFieldContainer>
   );
 };
@@ -135,4 +125,6 @@ const defaultProps: DefaultProps = {
 
 TextField.defaultProps = defaultProps;
 
-export default TextField;
+export default forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
+  <TextField {...props} forwardedRef={ref} />
+));

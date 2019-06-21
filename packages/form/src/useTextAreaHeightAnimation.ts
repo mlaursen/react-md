@@ -1,66 +1,93 @@
-import { useState, useRef, CSSProperties, useCallback, useEffect } from "react";
-import { useRefCache } from "@react-md/utils";
-
-type ChangeEventHandler = React.ChangeEventHandler<HTMLTextAreaElement>;
+import {
+  useState,
+  useRef,
+  CSSProperties,
+  useCallback,
+  useEffect,
+  Ref,
+} from "react";
+import { useRefCache, applyRef } from "@react-md/utils";
 
 interface Options {
-  defaultStyle?: CSSProperties;
-  onChange?: ChangeEventHandler;
+  propStyle?: CSSProperties;
+  defaultValue: string;
+  rows: number;
+  maxRows: number;
+  disabled?: boolean;
+  ref?: Ref<HTMLTextAreaElement>;
 }
 
+const toFloat = (x: string | null) => parseFloat(x || "");
+
 export default function useTextAreaHeightAnimation({
-  defaultStyle,
-  onChange: propOnChange,
+  ref,
+  rows,
+  maxRows,
+  propStyle,
+  defaultValue,
+  disabled,
 }: Options) {
-  const [style, setStyle] = useState(defaultStyle);
-  const cache = useRefCache({ style, propOnChange });
-
-  const onChange = useCallback<ChangeEventHandler>(event => {
-    const { style: prevStyle, propOnChange } = cache.current;
-    if (propOnChange) {
-      propOnChange(event);
-    }
-
-    const area = event.currentTarget;
-    const container = area.closest(
-      ".rmd-text-field-container"
-    ) as HTMLDivElement | null;
-    if (!container) {
+  const maskRef = useRef<HTMLTextAreaElement | null>(null);
+  const [containerStyle, setStyle] = useState(propStyle);
+  const cache = useRefCache({
+    propStyle,
+    rows,
+    maxRows,
+    disabled,
+    containerStyle,
+  });
+  const update = useCallback((value: string) => {
+    const {
+      rows,
+      maxRows,
+      propStyle,
+      containerStyle,
+      disabled,
+    } = cache.current;
+    const mask = maskRef.current;
+    const container = mask && (mask.parentElement as HTMLDivElement | null);
+    if (!mask || !container || disabled) {
       return;
     }
 
-    const containerStyle = window.getComputedStyle(container);
-    const borderHeight =
-      parseInt(containerStyle.borderTopWidth || "", 10) +
-      parseInt(containerStyle.borderBottomWidth || "", 10);
+    const { borderTopWidth, borderBottomWidth } = window.getComputedStyle(
+      container
+    );
+    const maskStyle = window.getComputedStyle(mask);
+    const lineHeight = toFloat(maskStyle.lineHeight);
 
-    const cloned = area.cloneNode() as HTMLTextAreaElement;
-    cloned.style.height = "auto";
-    cloned.removeAttribute("id");
-    cloned.removeAttribute("name");
+    const containerOffset =
+      toFloat(borderTopWidth) +
+      toFloat(borderBottomWidth) +
+      toFloat(maskStyle.marginTop);
 
-    container.appendChild(cloned);
-    const { scrollHeight } = cloned;
-    container.removeChild(cloned);
-
-    const height = borderHeight + scrollHeight;
-    if (!prevStyle || prevStyle.height !== height) {
-      console.log("height:", height);
-      console.log("scrollHeight:", scrollHeight);
-      console.log("borderHeight:", borderHeight);
-      console.log("prevStyle:", prevStyle);
-      // console.log("prevStyle:", prevStyle);
-      // console.log("height:", height);
-      setStyle({ ...prevStyle, height });
+    mask.value = value;
+    let height = mask.scrollHeight + containerOffset;
+    if (maxRows > 0) {
+      height = Math.min(height, lineHeight * maxRows + containerOffset);
     }
 
-    // const style = window.getComputedStyle(cloned);
-    // console.log("style.height:", style.height);
-    // clv
+    height = Math.max(height, lineHeight * rows);
+    if (!containerStyle || containerStyle.height !== height) {
+      setStyle({ height, ...propStyle });
+    }
   }, []);
 
+  const refCB = useCallback(
+    (instance: HTMLTextAreaElement | null) => {
+      applyRef(instance, ref);
+
+      if (instance) {
+        update(instance.value);
+      }
+    },
+    [ref]
+  );
+
   return {
-    style,
-    onChange,
+    containerStyle: disabled ? propStyle : containerStyle,
+    maskRef,
+    areaRef: disabled ? ref : refCB,
+    update,
   };
 }

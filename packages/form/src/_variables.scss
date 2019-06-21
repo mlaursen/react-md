@@ -9,7 +9,14 @@
 
 /// The color to use when a form contains an error.
 /// @type Color
-$rmd-form-error-color: rmd-theme-var(error) !default;
+$rmd-form-error-color: $rmd-theme-error !default;
+
+$rmd-form-error-hover-color: rmd-theme-get-swatch(
+  $rmd-form-error-color,
+  100,
+  true,
+  darken($rmd-theme-error, 20%)
+) !default;
 
 /// The color to use when a form element (text, checkbox, radio, etc) is
 /// currently active by the user(normally focus).
@@ -32,13 +39,11 @@ $rmd-form-filled-background-color: if(
   $rmd-form-filled-background-color-dark
 ) !default;
 
-$rmd-form-underline-horizontal-padding: 0.75rem !default;
-$rmd-form-underline-padding-top: 1.25rem !default;
-$rmd-form-underline-padding-bottom: 0.375rem !default;
-
 $rmd-form-outline-horizontal-padding: 1rem !default;
-$rmd-form-outline-padding-top: 0.75rem !default;
-$rmd-form-outline-padding-bottom: 0.875rem !default;
+$rmd-form-outline-vertical-padding: 0.875rem !default;
+
+$rmd-form-underline-horizontal-padding: 0.75rem !default;
+$rmd-form-underline-vertical-padding: 0.375rem !default;
 
 $rmd-form-border-color-light: rgba($rmd-black-base, 0.5) !default;
 $rmd-form-border-color-dark: rgba($rmd-white-base, 0.5) !default;
@@ -60,16 +65,21 @@ $rmd-form-border-radius: 0.25rem !default;
 $rmd-form-border-width: 1px !default;
 $rmd-form-border-width-active: 2px !default;
 
-$rmd-form-label-font-size: 1rem !default;
-$rmd-form-label-floating-font-size: 0.75rem !default;
+$rmd-form-label-font-size: 1em !default;
+$rmd-form-label-floating-font-size: 0.75em !default;
 $rmd-form-label-floating-outline-padding: 0.25rem !default;
+$rmd-form-label-floating-top: 1.6rem !default;
 
 $rmd-form-toggle-inset: 0.3125rem !default;
 $rmd-form-toggle-dense-inset: 0.25rem !default;
 
+$rmd-form-textarea-min-height: 1.5em !default;
+$rmd-form-textarea-margin-top: 0px !default; //sass-lint:disable-line zero-unit
+$rmd-form-textarea-underline-margin-top: 1.5rem !default;
+
 $rmd-form-theme-values: (
-  offset: null,
   error-color: $rmd-form-error-color,
+  error-hover-color: $rmd-form-error-hover-color,
   active-color: $rmd-form-active-color,
   disabled-color: $rmd-form-disabled-color,
   placeholder-color: $rmd-form-placeholder-color,
@@ -84,8 +94,14 @@ $rmd-form-theme-values: (
   label-font-size: $rmd-form-label-font-size,
   label-floating-font-size: $rmd-form-label-floating-font-size,
   label-padding: $rmd-form-label-floating-outline-padding,
+  label-floating-top: $rmd-form-label-floating-top,
+  offset: 0px,
+  horizontal-padding: 0px,
+  vertical-padding: 0px,
   underline-horizontal-padding: $rmd-form-underline-horizontal-padding,
   outline-horizontal-padding: $rmd-form-outline-horizontal-padding,
   toggle-inset: $rmd-form-toggle-inset,
   toggle-dense-inset: $rmd-form-toggle-dense-inset,
+  textarea-min-height: $rmd-form-textarea-min-height,
+  textarea-margin-top: $rmd-form-textarea-margin-top,
 ) !default;

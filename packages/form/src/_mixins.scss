@@ -3,6 +3,7 @@
 ////
 
 @import '@react-md/button/dist/mixins';
+@import '@react-md/icon/dist/mixins';
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/transition/dist/mixins';
@@ -43,6 +44,11 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-form-theme-values, form);
 }
 
+@mixin rmd-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /// Creates the base styles for a `<label>` element as well as all the different
 /// states a label can be in.
 @mixin rmd-label {
@@ -50,8 +56,9 @@
   @include rmd-transition(standard);
   @include rmd-form-theme(font-size, label-font-size);
 
-  $transitions: color, font-size, transform, top;
+  $transitions: background-color, color, font-size, transform, top;
 
+  display: inline-flex;
   transition-duration: $rmd-transition-standard-time;
   transition-property: $transitions;
   will-change: $transitions;
@@ -69,6 +76,7 @@
   }
 
   &--floating {
+    @include rmd-form-theme(top, label-floating-top);
     @include rmd-utils-rtl {
       left: auto;
       right: 0;
@@ -77,8 +85,11 @@
 
     left: 0;
     position: absolute;
-    top: 50%;
-    transform: translate(#{rmd-form-theme-var(offset)}, -50%);
+    transform: translate(rmd-form-theme-var(offset), -50%);
+  }
+
+  &--floating-surface {
+    @include rmd-utils-rtl-auto(right, rmd-form-theme-var(offset), 0);
   }
 
   &--floating-active {
@@ -88,7 +99,7 @@
     }
 
     top: 0;
-    transform: translate(#{rmd-form-theme-var(offset)}, 0);
+    transform: translate(rmd-form-theme-var(offset), 0);
     z-index: 1;
   }
 
@@ -99,14 +110,17 @@
   &--floating-active-outline {
     @include rmd-theme(background-color, background);
     @include rmd-utils-rtl {
-      left: rmd-utils-negate-var(rmd-form-theme-var(label-padding));
       transform: translate(rmd-utils-negate-var(rmd-form-theme-var(offset)), -50%);
     }
 
     left: rmd-utils-negate-var(rmd-form-theme-var(label-padding));
     padding: 0 rmd-form-theme-var(label-padding);
-    transform: translate(#{rmd-form-theme-var(offset)}, -50%);
+    transform: translate(rmd-form-theme-var(offset), -50%);
   }
+
+  // .rmd-text-field-addon + &--floating {
+  //   @include rmd-form-update-theme-var(offset);
+  // }
 }
 
 ///
@@ -160,7 +174,7 @@
 }
 
 @mixin rmd-form-toggle-dense-theme {
-  @include rmd-form-theme-update-var(toggle-inset, #{rmd-form-theme-var(toggle-dense-inset)});
+  @include rmd-form-theme-update-var(toggle-inset, rmd-form-theme-var(toggle-dense-inset));
 }
 
 @mixin rmd-form-toggle {
@@ -268,9 +282,20 @@
 }
 
 @mixin rmd-text-field-container {
+  @include rmd-transition(standard);
+  @include rmd-form-theme-update-var(offset, rmd-form-theme-var(horizontal-padding));
+
   align-items: center;
   display: flex;
   position: relative;
+  transition: border-color $rmd-transition-standard-time, height $rmd-transition-standard-time;
+
+  &::after {
+    // don't want pointer events since it'll make resizing textareas
+    // harder
+    pointer-events: none;
+    position: absolute;
+  }
 
   &--inline {
     display: inline-flex;
@@ -282,14 +307,13 @@
   }
 
   &--outline {
-    @include rmd-transition(standard);
     @include rmd-form-theme(border-color);
     @include rmd-form-theme(border-radius);
     @include rmd-form-theme(border-width);
-    @include rmd-form-theme-update-var(offset, rmd-form-theme-var(outline-horizontal-padding));
+    @include rmd-form-theme-update-var(horizontal-padding, $rmd-form-outline-horizontal-padding);
+    @include rmd-form-theme-update-var(vertical-padding, $rmd-form-outline-vertical-padding);
 
     border-style: solid;
-    transition: border-color $rmd-transition-standard-time;
 
     &:hover {
       @include rmd-form-theme(border-color, border-hover-color);
@@ -303,12 +327,8 @@
       @include rmd-transition(standard);
       @include rmd-utils-pseudo-element;
 
-      box-shadow: 0 0 0 #{rmd-form-theme-var(border-width-active)} #{rmd-form-theme-var(
-          active-color
-        )};
+      box-shadow: 0 0 0 rmd-form-theme-var(border-width-active) rmd-form-theme-var(active-color);
       opacity: 0;
-      pointer-events: none;
-      position: absolute;
       transition: opacity $rmd-transition-standard-time;
     }
   }
@@ -323,10 +343,11 @@
     @include rmd-form-theme(border-top-right-radius, border-radius);
     @include rmd-form-theme(border-bottom-width, border-width);
     @include rmd-form-theme(border-bottom-color, border-color);
-    @include rmd-form-theme-update-var(offset, rmd-form-theme-var(underline-horizontal-padding));
+    @include rmd-form-theme-update-var(horizontal-padding, $rmd-form-underline-horizontal-padding);
+    @include rmd-form-theme-update-var(vertical-padding, $rmd-form-underline-vertical-padding);
 
     border-bottom-style: solid;
-    transition: border-bottom-color $rmd-transition-standard-time;
+    padding-top: 1em;
 
     &:hover {
       @include rmd-form-theme(border-bottom-color, border-hover-color);
@@ -339,7 +360,6 @@
 
       content: '';
       max-width: 0;
-      position: absolute;
       top: 100%;
       transition: max-width $rmd-transition-standard-time;
       width: 100%;
@@ -367,23 +387,45 @@
   &--underline-active::after {
     max-width: 100%;
   }
+
+  &--error {
+    $error-color: rmd-form-theme-var(error-color);
+
+    @include rmd-form-theme-update-var(active-color, $error-color);
+    @include rmd-form-theme-update-var(border-color, $error-color);
+    @include rmd-form-theme-update-var(border-hover-color, rmd-form-theme-var(error-hover-color));
+    @include rmd-icon-theme-update-var(color, $error-color);
+  }
+
+  &--offset-left {
+    $offset: calc(
+      #{rmd-form-theme-var(underline-horizontal-padding)} + #{rmd-icon-theme-var(size)} + #{rmd-icon-theme-var(
+          text-spacing
+        )}
+    );
+    @include rmd-form-theme-update-var(horizontal-padding, $offset);
+  }
 }
 
 @mixin rmd-text-field {
   @include rmd-transition(standard);
-  @include rmd-typography(body-1);
+  @include rmd-typography(body-1, font-size);
   @include rmd-utils-hide-focus-outline;
   @include rmd-form-placeholder {
     @include rmd-transition(standard);
-    @include rmd-typography(body-1);
     @include rmd-theme(color, text-secondary-on-background);
-  }
 
+    // want to gain the same font styles as the input/textarea itself,
+    // just apply different colors as needed instead
+    font: inherit;
+  }
   background-color: transparent;
   border-width: 0;
   color: inherit;
   flex-grow: 1;
   flex-shrink: 1;
+  font-size: 1em;
+  padding: rmd-form-theme-var(vertical-padding) rmd-form-theme-var(horizontal-padding);
   transition-duration: $rmd-transition-standard-time;
   transition-property: border-color;
 
@@ -395,31 +437,46 @@
     }
   }
 
-  &--outline {
-    @include rmd-form-theme(padding-left, outline-horizontal-padding);
-    @include rmd-form-theme(padding-right, outline-horizontal-padding);
-
-    padding-bottom: $rmd-form-outline-padding-bottom;
-    padding-top: $rmd-form-outline-padding-top;
+  &--unresizable {
+    height: calc(100% - #{rmd-form-theme-var(textarea-margin-top)});
+    resize: none;
+    width: 100%;
   }
 
-  &--underline {
-    @include rmd-form-theme(padding-left, underline-horizontal-padding);
-    @include rmd-form-theme(padding-right, underline-horizontal-padding);
+  &--resize-h {
+    resize: horizontal;
+  }
 
-    padding-bottom: $rmd-form-underline-padding-bottom;
-    padding-top: $rmd-form-underline-padding-top;
+  &--resize-v {
+    resize: vertical;
+  }
+
+  &--mask {
+    height: auto;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
   }
 
   &--area {
+    @include rmd-form-theme(min-height, textarea-min-height);
+    @include rmd-form-theme(margin-top, textarea-margin-top);
+
     // only show the scrollbars when needed
     overflow: auto;
   }
 
-  &--unresizable {
-    height: 100%;
-    resize: none;
-    width: 100%;
+  &--area-underline {
+    @include rmd-form-theme-update-var(
+      textarea-margin-top,
+      $rmd-form-textarea-underline-margin-top
+    );
+
+    padding-top: 0;
   }
 
   &--floating {
@@ -440,6 +497,10 @@
 /// to be enabled to generate any styles.
 @mixin react-md-form {
   @include rmd-theme-create-root-theme($rmd-form-theme-values, form);
+
+  .rmd-form {
+    @include rmd-form;
+  }
 
   .rmd-form-label {
     @include rmd-label;
@@ -467,5 +528,29 @@
 
   .rmd-text-field {
     @include rmd-text-field;
+  }
+
+  .rmd-password {
+    &__toggle {
+      @include rmd-button-theme-update-var(icon-size, 1.5rem);
+      @include rmd-icon-theme-update-var(size, 1.25rem);
+      @include rmd-utils-rtl-auto(margin-right, $rmd-form-underline-horizontal-padding);
+
+      margin-top: 1em;
+    }
+  }
+
+  .rmd-text-field-addon {
+    display: inline-flex;
+    pointer-events: none;
+    position: absolute;
+
+    &--first {
+      @include rmd-utils-rtl-auto(left, 0.5rem);
+    }
+
+    &--last {
+      @include rmd-utils-rtl-auto(right, 0.5rem);
+    }
   }
 }

@@ -47,6 +47,8 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
    */
   floatingInactive?: boolean;
 
+  floatingSurface?: boolean;
+
   /**
    * Boolean if the label is a floating label and currently used alongside an outlined `<input>`/`<textarea>`
    * component. This will update the position and background color of the label so it covers the
@@ -65,6 +67,7 @@ type DefaultProps = Required<
     | "floating"
     | "floatingActive"
     | "floatingInactive"
+    | "floatingSurface"
     | "floatingActiveOutline"
   >
 >;
@@ -83,9 +86,13 @@ const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
     floating,
     floatingActive,
     floatingInactive,
+    floatingSurface,
     floatingActiveOutline,
     ...props
   } = providedProps as WithDefaultProps;
+  if (!children) {
+    return null;
+  }
 
   return (
     <label
@@ -97,8 +104,9 @@ const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
           active,
           disabled,
           floating,
+          "floating-surface": floatingSurface,
           "floating-active": floatingActive,
-          "floating-inactive": floatingInactive,
+          "floating-inactive": !error && floatingInactive,
           "floating-active-outline": floatingActiveOutline,
         }),
         className
@@ -114,6 +122,7 @@ const defaultProps: DefaultProps = {
   active: false,
   disabled: false,
   floating: false,
+  floatingSurface: false,
   floatingActive: false,
   floatingInactive: false,
   floatingActiveOutline: false,

@@ -21,4 +21,6 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="avatar" />;
+export default () => (
+  <DemoPage demos={demos} packageName="avatar" fonts={["Material Icons"]} />
+);
