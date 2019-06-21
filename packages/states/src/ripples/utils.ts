@@ -46,7 +46,7 @@ export function getType(
  * - it was a touchstart event
  */
 export function isRippleable(
-  event: Pick<RippleEvent<HTMLElement>, "button" | "key" | "type">,
+  event: RippleEvent<HTMLElement>,
   disableSpacebarClick: boolean
 ) {
   switch (event.type) {
@@ -57,7 +57,11 @@ export function isRippleable(
       );
     case "keydown":
       return (
-        (!disableSpacebarClick && event.key === " ") || event.key === "Enter"
+        (!disableSpacebarClick && event.key === " ") ||
+        (event.key === "Enter" &&
+          !/checkbox|radio/i.test(
+            event.currentTarget.getAttribute("type") || ""
+          ))
       );
     case "touchstart":
     case "click":

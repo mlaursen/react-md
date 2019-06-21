@@ -65,17 +65,29 @@ describe("getType", () => {
 });
 
 describe("isRippleable", () => {
+  const target = document.createElement("div");
+  const targets = { target, currentTarget: target };
+  const mouseDownEvent = {
+    ...targets,
+    type: "mousedown",
+    button: 0,
+  };
+  const keyDownEvent = {
+    ...targets,
+    type: "keydown",
+    key: " ",
+  };
   it("should return true for a left mousedown click", () => {
-    expect(isRippleable({ type: "mousedown", button: 0 }, false)).toBe(true);
-    expect(isRippleable({ type: "mousedown", button: 0 }, true)).toBe(true);
+    expect(isRippleable(mouseDownEvent, false)).toBe(true);
+    expect(isRippleable(mouseDownEvent, true)).toBe(true);
   });
 
   it("should return false for a mousedown event if the app is in touch mode", () => {
     const spy = jest.spyOn(document, "querySelector");
     spy.mockImplementation(() => document.createElement("span"));
 
-    expect(isRippleable({ type: "mousedown", button: 0 }, false)).toBe(false);
-    expect(isRippleable({ type: "mousedown", button: 0 }, true)).toBe(false);
+    expect(isRippleable(mouseDownEvent, false)).toBe(false);
+    expect(isRippleable(mouseDownEvent, true)).toBe(false);
     expect(spy).toBeCalledWith(".rmd-states--touch");
     expect(spy).toBeCalledTimes(2);
 
@@ -83,20 +95,20 @@ describe("isRippleable", () => {
   });
 
   it("should return false if the mousedown button is not hte left mouse button", () => {
-    expect(isRippleable({ type: "mousedown", button: 1 }, false)).toBe(false);
-    expect(isRippleable({ type: "mousedown", button: 1 }, true)).toBe(false);
-    expect(isRippleable({ type: "mousedown", button: 2 }, false)).toBe(false);
-    expect(isRippleable({ type: "mousedown", button: 2 }, true)).toBe(false);
+    expect(isRippleable({ ...mouseDownEvent, button: 1 }, false)).toBe(false);
+    expect(isRippleable({ ...mouseDownEvent, button: 1 }, true)).toBe(false);
+    expect(isRippleable({ ...mouseDownEvent, button: 2 }, false)).toBe(false);
+    expect(isRippleable({ ...mouseDownEvent, button: 2 }, true)).toBe(false);
   });
 
   it("should return true if the keydown event was for the Enter key", () => {
-    expect(isRippleable({ type: "keydown", key: "Enter" }, false)).toBe(true);
-    expect(isRippleable({ type: "keydown", key: "Enter" }, true)).toBe(true);
+    expect(isRippleable({ ...keyDownEvent, key: "Enter" }, false)).toBe(true);
+    expect(isRippleable({ ...keyDownEvent, key: "Enter" }, true)).toBe(true);
   });
 
   it("should return true for a space keydown event based on the disableSpacebarClick value", () => {
-    expect(isRippleable({ type: "keydown", key: " " }, false)).toBe(true);
-    expect(isRippleable({ type: "keydown", key: " " }, true)).toBe(false);
+    expect(isRippleable({ ...keyDownEvent, key: " " }, false)).toBe(true);
+    expect(isRippleable({ ...keyDownEvent, key: " " }, true)).toBe(false);
   });
 
   it("should return false for all other keydown keys", () => {
@@ -134,15 +146,15 @@ describe("isRippleable", () => {
     ];
 
     keys.forEach(key => {
-      expect(isRippleable({ type: "keydown", key }, false)).toBe(false);
-      expect(isRippleable({ type: "keydown", key }, true)).toBe(false);
+      expect(isRippleable({ ...keyDownEvent, key }, false)).toBe(false);
+      expect(isRippleable({ ...keyDownEvent, key }, true)).toBe(false);
     });
   });
 
   it("should always return true for a touchstart event", () => {
     // don't know how to provide the touches as a TouchList
-    expect(isRippleable({ type: "touchstart" }, false)).toBe(true);
-    expect(isRippleable({ type: "touchstart" }, true)).toBe(true);
+    expect(isRippleable({ type: "touchstart", ...targets }, false)).toBe(true);
+    expect(isRippleable({ type: "touchstart", ...targets }, true)).toBe(true);
   });
 
   it("should return false for all other event types", () => {
@@ -162,8 +174,8 @@ describe("isRippleable", () => {
     ];
 
     types.forEach(type => {
-      expect(isRippleable({ type }, false)).toBe(false);
-      expect(isRippleable({ type }, true)).toBe(false);
+      expect(isRippleable({ ...targets, type }, false)).toBe(false);
+      expect(isRippleable({ ...targets, type }, true)).toBe(false);
     });
   });
 });

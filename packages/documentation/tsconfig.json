@@ -13,7 +13,6 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@react-md/*": ["../*/src"],
       "constants/*": ["constants/*"],
       "components/*": ["components/*"],
       "hooks/*": ["hooks/*"],

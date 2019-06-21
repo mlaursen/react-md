@@ -4,6 +4,7 @@
     "outDir": "./bin",
     "target": "es5",
     "module": "commonjs",
+    "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

@@ -80,11 +80,14 @@
 
 /// Applies one of the provided material design styles to an element.
 /// @param {String} style - One of the typography styles from `$rmd-typography-styles`.
-@mixin rmd-typography($style) {
+/// @param {List} omit - A list of keys to omit
+@mixin rmd-typography($style, $omit: ()) {
   $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);
 
   @each $key, $value in $style-props {
-    #{$key}: $value;
+    @if not index($omit, $key) {
+      #{$key}: $value;
+    }
   }
 }
 

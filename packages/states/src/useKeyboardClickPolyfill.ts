@@ -30,18 +30,20 @@ export default function useKeyboardClickPolyfill<
       onKeyDown(event);
     }
 
-    const {
-      key,
-      currentTarget: { tagName },
-    } = event;
-    const isSpace = key === " ";
+    const isSpace = event.key === " ";
+    const isEnter = event.key === "Enter";
+    const { currentTarget } = event;
+    const { tagName } = currentTarget;
+    const type = currentTarget.getAttribute("type") || "";
     if (
-      (key !== "Enter" && !isSpace) ||
-      // buttons should not be touched as they work out of the box
-      tagName === "BUTTON" ||
-      // links should not trigger a click on space
-      (tagName === "A" && isSpace) ||
-      (isSpace && disableSpacebarClick)
+      (!isSpace && !isEnter) ||
+      (isSpace && disableSpacebarClick) ||
+      // buttons and textareas shouldn't be polyfilled
+      /BUTTON|TEXTAREA/.test(tagName) ||
+      // checkboxes and radios submit forms on enter instead of clicking the element
+      (isEnter && /checkbox|radio/i.test(type)) ||
+      // native links don't click on space
+      (isSpace && tagName === "A")
     ) {
       return;
     }
