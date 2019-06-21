@@ -1,13 +1,14 @@
-import React, { FC, useCallback, useEffect, useRef } from "react";
+import React, { FC, useCallback } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/transition";
+import { useRefCache } from "@react-md/utils";
 
-import { RippleState } from "./types.d";
 import { useStatesConfigContext } from "../StatesConfig";
+import { RippleState } from "./types.d";
 
 export interface RippleProps {
   className?: string;
@@ -42,11 +43,8 @@ const Ripple: FC<RippleProps> = props => {
       classNames = context.rippleClassNames;
     }
   }
-  const ref = useRef({ ripple, entered, exited });
-  useEffect(() => {
-    ref.current = { ripple, entered, exited };
-  });
 
+  const ref = useRefCache({ ripple, entered, exited });
   const onEntered = useCallback(() => {
     const { ripple, entered } = ref.current;
     entered(ripple);

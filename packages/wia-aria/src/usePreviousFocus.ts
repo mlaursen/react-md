@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useRefCache } from "@react-md/utils";
 
 /**
  * This can either be a query selector string, a specific HTMLElement, or a function
@@ -36,10 +37,7 @@ export default function usePreviousFocus(
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null
 ) {
-  const ref = useRef({ fallback, previousElement });
-  useEffect(() => {
-    ref.current = { fallback, previousElement };
-  });
+  const ref = useRefCache({ fallback, previousElement });
 
   useEffect(() => {
     if (disabled) {

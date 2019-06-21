@@ -1,4 +1,6 @@
-import { useCallback, useRef, useEffect } from "react";
+import { useCallback } from "react";
+import { useRefCache } from "@react-md/utils";
+
 import { MergableRippleHandlers, RippleEvent } from "./types.d";
 
 interface Options<E extends HTMLElement> {
@@ -28,10 +30,7 @@ export default function useRippleHandlers<E extends HTMLElement>({
   disableProgrammaticRipple = false,
 }: Options<E>) {
   const disabled = propDisabled || disableRipple;
-  const ref = useRef({ ...handlers, disableProgrammaticRipple });
-  useEffect(() => {
-    ref.current = { ...handlers, disableProgrammaticRipple };
-  });
+  const ref = useRefCache({ ...handlers, disableProgrammaticRipple });
 
   const onKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
     const { onKeyDown: callback } = ref.current;

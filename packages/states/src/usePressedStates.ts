@@ -1,4 +1,6 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useCallback, useState } from "react";
+import { useRefCache } from "@react-md/utils";
+
 import { MergableRippleHandlers } from "./ripples/types.d";
 
 interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
@@ -22,13 +24,7 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   disableSpacebarClick = false,
 }: PressedStatesOptions<E> = {}) {
   const [pressed, setPressed] = useState(false);
-  const ref = useRef({ ...handlers, pressed });
-  useEffect(() => {
-    ref.current = {
-      ...handlers,
-      pressed,
-    };
-  });
+  const ref = useRefCache({ ...handlers, pressed });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
     const { onKeyDown, pressed } = ref.current;

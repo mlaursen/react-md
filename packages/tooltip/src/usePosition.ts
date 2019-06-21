@@ -1,5 +1,5 @@
-import { SimplePosition, getViewportSize } from "@react-md/utils";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useCallback, useState } from "react";
+import { getViewportSize, SimplePosition, useRefCache } from "@react-md/utils";
 
 interface PositionOptions {
   position?: SimplePosition;
@@ -25,10 +25,7 @@ export default function usePosition({
   threshold,
 }: PositionOptions): PositionResult {
   const [position, setPosition] = useState(defaultPosition);
-  const prevPosition = useRef(position);
-  useEffect(() => {
-    prevPosition.current = position;
-  });
+  const prevPosition = useRefCache(position);
 
   /**
    * This will only be used when the `determinedPosition` is undefined. When the container element

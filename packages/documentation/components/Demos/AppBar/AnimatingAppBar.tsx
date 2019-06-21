@@ -10,7 +10,7 @@ import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables } from "@react-md/theme";
-import { PassiveEvents } from "@react-md/utils";
+import { PassiveEvents, useRefCache } from "@react-md/utils";
 
 import people from "constants/people";
 
@@ -34,10 +34,7 @@ const SCROLL_MULTIPLIER = 0.314;
 
 const AnimatingAppBar: FC = () => {
   const [height, setHeight] = useState(`${HEIGHT}px`);
-  const heightRef = useRef(height);
-  useEffect(() => {
-    heightRef.current = height;
-  });
+  const heightRef = useRefCache(height);
 
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {

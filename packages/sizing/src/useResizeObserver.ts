@@ -1,5 +1,6 @@
 import { useCallback, useRef, useEffect, useMemo } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { useRefCache } from "@react-md/utils";
 
 // these are copied from the ResizeObserverPolyfill type definitions since the type definition
 // file doesn't seem to be importing the polyfill which causes compilation errors in other packages.
@@ -116,18 +117,7 @@ export function useMeasure({
   defaultSize = null,
 }: MeasureOptions) {
   const prevSize = useRef<ElementSize | null>(defaultSize);
-  const options = useRef({
-    disableHeight,
-    disableWidth,
-    onResize,
-  });
-  useEffect(() => {
-    options.current = {
-      disableHeight,
-      disableWidth,
-      onResize,
-    };
-  });
+  const options = useRefCache({ disableHeight, disableWidth, onResize });
 
   return useCallback((entries: ResizeObserverEntry[]) => {
     const { onResize, disableHeight, disableWidth } = options.current;

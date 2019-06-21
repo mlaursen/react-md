@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
+import { useRefCache } from "@react-md/utils";
 
 import { TooltipInitiated } from "./useHandlers";
 
@@ -31,10 +32,7 @@ export default function useVisiblityChange({
   visible,
   mode,
 }: VisibilityChangeOptions) {
-  const handlers = useRef({ onShow, onHide });
-  useEffect(() => {
-    handlers.current = { onShow, onHide };
-  });
+  const handlers = useRefCache({ onShow, onHide });
 
   useEffect(() => {
     if (!visible || mode === null) {

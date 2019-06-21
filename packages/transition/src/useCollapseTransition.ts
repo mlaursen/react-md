@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import cn from "classnames";
+import { useRefCache } from "@react-md/utils";
 
 export interface CollapseOptions {
   /**
@@ -342,8 +343,7 @@ export function useCollapseTransition<E extends HTMLElement>(
   }
 
   const transition = useRef<number | undefined>(undefined);
-  const callbacks = useRef({ onExpanded, onCollapsed });
-  callbacks.current = { onExpanded, onCollapsed };
+  const callbacks = useRefCache({ onExpanded, onCollapsed });
   useEffect(() => {
     if (!entering && !leaving) {
       return;

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { useToggle } from "@react-md/utils";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useRefCache, useToggle } from "@react-md/utils";
 
 /**
  * This is the current mode for how your user is interacting with your app. This
@@ -26,11 +26,8 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  */
 export function useTouchDetection(touchTimeout: number = 1200) {
   const [lastTouchTime, setTouchTime] = useState(0);
-  const touchRef = useRef(lastTouchTime);
+  const touchRef = useRefCache(lastTouchTime);
   const contextMenuRef = useRef(false);
-  useEffect(() => {
-    touchRef.current = lastTouchTime;
-  });
 
   const updateTouchTime = useCallback(() => {
     setTouchTime(Date.now());

@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { delegateEvent } from "./delegateEvent";
 import { isSupported } from "./passiveEvents";
+import useRefCache from "./useRefCache";
 
 export interface Options<E extends HTMLElement = HTMLElement> {
   /**
@@ -34,12 +35,7 @@ export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   element,
   options = isSupported ? { passive: true, capture: true } : true,
 }: Options<E>) {
-  // creating a ref so the event handler doesn't need to be updated each re-render
-  // if using an arrow function for the resize handler
-  const callback = useRef(onScroll);
-  useEffect(() => {
-    callback.current = onScroll;
-  });
+  const callback = useRefCache(onScroll);
 
   useEffect(() => {
     if (!enabled) {

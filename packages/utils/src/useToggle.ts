@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useCallback, useState } from "react";
+import useRefCache from "./useRefCache";
 
 /**
  * This hooks provides an easy way to toggle a boolean flag for React components.
@@ -10,18 +11,15 @@ import { useState, useRef, useCallback, useEffect } from "react";
  */
 export default function useToggle(defaultToggled: boolean = false) {
   const [toggled, setToggled] = useState(defaultToggled);
-  const toggledRef = useRef(toggled);
-  useEffect(() => {
-    toggledRef.current = toggled;
-  });
+  const previous = useRefCache(toggled);
 
   const enable = useCallback(() => {
-    if (!toggledRef.current) {
+    if (!previous.current) {
       setToggled(true);
     }
   }, []);
   const disable = useCallback(() => {
-    if (toggledRef.current) {
+    if (previous.current) {
       setToggled(false);
     }
   }, []);

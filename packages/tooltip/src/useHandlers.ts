@@ -1,17 +1,18 @@
-import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
 import {
-  MutableRefObject,
   HTMLAttributes,
-  useRef,
-  useEffect,
+  MutableRefObject,
   useCallback,
+  useEffect,
+  useRef,
 } from "react";
+import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
+import { useRefCache, useTimeout } from "@react-md/utils";
+
 import {
-  useTooltipHoverModeEnabled,
-  useTooltipHoverModeDelay,
   useTooltipHoverModeActions,
+  useTooltipHoverModeDelay,
+  useTooltipHoverModeEnabled,
 } from "./useTooltipHoverMode";
-import { useTimeout } from "@react-md/utils";
 
 export type TooltipInitiated = UserInteractionMode | null;
 
@@ -99,10 +100,7 @@ export function useMouseState({
   setEstimatedPosition,
   disableHoverMode,
 }: MouseOptions) {
-  const handlers = useRef({ onMouseEnter, onMouseLeave });
-  useEffect(() => {
-    handlers.current = { onMouseEnter, onMouseLeave };
-  });
+  const handlers = useRefCache({ onMouseEnter, onMouseLeave });
 
   let isHoverModeable = useTooltipHoverModeEnabled();
   if (typeof disableHoverMode === "boolean") {
@@ -193,11 +191,7 @@ export function useKeyboardState({
   onKeyDown,
   setEstimatedPosition,
 }: KeyboardOptions) {
-  const handlers = useRef({ onFocus, onBlur, onKeyDown });
-  useEffect(() => {
-    handlers.current = { onFocus, onBlur, onKeyDown };
-  });
-
+  const handlers = useRefCache({ onFocus, onBlur, onKeyDown });
   const isWindowBlurred = useRef(false);
 
   const { start, stop } = useTimeout(() => {
@@ -312,10 +306,7 @@ export function useTouchState({
   setEstimatedPosition,
 }: TouchOptions) {
   const touched = useRef(false);
-  const handlers = useRef({ onTouchStart, onTouchMove, onContextMenu });
-  useEffect(() => {
-    handlers.current = { onTouchStart, onTouchMove, onContextMenu };
-  });
+  const handlers = useRefCache({ onTouchStart, onTouchMove, onContextMenu });
 
   const { start, stop } = useTimeout(() => {
     touched.current = false;

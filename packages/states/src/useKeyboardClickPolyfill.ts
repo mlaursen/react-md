@@ -1,4 +1,5 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useCallback } from "react";
+import { useRefCache } from "@react-md/utils";
 
 /**
  * This small utility function will create an onKeyDown handler that
@@ -21,10 +22,7 @@ export default function useKeyboardClickPolyfill<
   disabled: boolean = false,
   disableSpacebarClick = false
 ) {
-  const ref = useRef({ onKeyDown, disableSpacebarClick });
-  useEffect(() => {
-    ref.current = { onKeyDown, disableSpacebarClick };
-  });
+  const ref = useRefCache({ onKeyDown, disableSpacebarClick });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
     const { onKeyDown, disableSpacebarClick } = ref.current;

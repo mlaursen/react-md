@@ -1,6 +1,7 @@
-import { Reducer, useCallback, useEffect, useReducer, useRef } from "react";
-import { RipplesState, RippleState, RippleEvent } from "./types.d";
-import { isRippleable, isBubbled, createRippleState, getType } from "./utils";
+import { Reducer, useCallback, useReducer } from "react";
+import { useRefCache } from "@react-md/utils";
+import { RippleEvent, RipplesState, RippleState } from "./types.d";
+import { createRippleState, getType, isBubbled, isRippleable } from "./utils";
 
 export const CREATE = "CREATE";
 export const CANCEL = "CANCEL";
@@ -189,11 +190,7 @@ export function useRippleTransition<E extends HTMLElement = HTMLElement>(
   disableSpacebarClick: boolean = false
 ) {
   const [state, dispatch] = useReducer<RippleStateReducer<E>>(reducer, []);
-  const spacebarRef = useRef(disableSpacebarClick);
-  useEffect(() => {
-    spacebarRef.current = disableSpacebarClick;
-  });
-
+  const spacebarRef = useRefCache(disableSpacebarClick);
   const create = useCallback((event: RippleEvent<E>) => {
     const disableSpacebarClick = spacebarRef.current;
     dispatch(createRippleAction(event, disableSpacebarClick));

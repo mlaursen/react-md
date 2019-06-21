@@ -1,5 +1,5 @@
-import { useRef, useEffect } from "react";
-import { delegateEvent } from "@react-md/utils";
+import { useEffect } from "react";
+import { delegateEvent, useRefCache } from "@react-md/utils";
 
 export interface ResizeListenerOptions {
   /**
@@ -44,13 +44,7 @@ export default function useResizeListener({
   immediate,
   enabled,
 }: ResizeListenerOptions) {
-  // creating a ref so the event handler doesn't need to be updated each re-render
-  // if using an arrow function for the resize handler
-  const callback = useRef(onResize);
-  useEffect(() => {
-    callback.current = onResize;
-  });
-
+  const callback = useRefCache(onResize);
   useEffect(() => {
     if (!enabled) {
       return;

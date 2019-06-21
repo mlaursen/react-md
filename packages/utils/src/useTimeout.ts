@@ -1,4 +1,5 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import useRefCache from "./useRefCache";
 import useToggle from "./useToggle";
 
 /**
@@ -16,11 +17,7 @@ export default function useTimeout(
   delay: number,
   defaultStarted: boolean = false
 ) {
-  const cbRef = useRef(cb);
-  useEffect(() => {
-    cbRef.current = cb;
-  });
-
+  const cbRef = useRefCache(cb);
   const timeoutRef = useRef<number>();
   const clearTimeout = useCallback(() => {
     window.clearTimeout(timeoutRef.current);

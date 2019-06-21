@@ -6,6 +6,7 @@ import {
   Omit,
   PositionAnchor,
   useScrollListener,
+  useRefCache,
 } from "@react-md/utils";
 import { TransitionProps } from "react-transition-group/Transition";
 
@@ -105,26 +106,8 @@ export default function useFixedPositioning({
   ...remainingOptions
 }: FixedPositioningOptions) {
   const [style, setStyle] = useState<CSSProperties | undefined>();
-  const handlers = useRef({ onEnter, onEntering, onEntered, onExited });
-  const options = useRef({
-    fixedTo,
-    getOptions,
-    ...remainingOptions,
-  });
-  useEffect(() => {
-    handlers.current = {
-      onEnter,
-      onEntering,
-      onEntered,
-      onExited,
-    };
-
-    options.current = {
-      fixedTo,
-      getOptions,
-      ...remainingOptions,
-    };
-  });
+  const handlers = useRefCache({ onEnter, onEntering, onEntered, onExited });
+  const options = useRefCache({ fixedTo, getOptions, ...remainingOptions });
 
   const element = useRef<HTMLElement | null>(null);
 

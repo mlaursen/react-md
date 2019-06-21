@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-
+import { useEffect } from "react";
+import useRefCache from "./useRefCache";
 import useToggle from "./useToggle";
 
 /**
@@ -16,10 +16,7 @@ export default function useInterval(
   delay: number,
   defaultRunning: boolean = false
 ) {
-  const ref = useRef(callback);
-  useEffect(() => {
-    ref.current = callback;
-  });
+  const ref = useRefCache(callback);
 
   const { toggled: running, enable: start, disable: stop } = useToggle(
     defaultRunning

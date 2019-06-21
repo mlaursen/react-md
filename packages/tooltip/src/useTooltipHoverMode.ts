@@ -1,12 +1,5 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useTimeout } from "@react-md/utils";
+import { createContext, useCallback, useContext, useState } from "react";
+import { useRefCache, useTimeout } from "@react-md/utils";
 
 import { DEFAULT_DELAY } from "./constants";
 
@@ -44,10 +37,7 @@ export function useTooltipHoverModeState(
   delayTimeout: number
 ): TooltipHoverModeState {
   const [delay, setDelay] = useState(defaultDelay);
-  const delayRef = useRef(delay);
-  useEffect(() => {
-    delayRef.current = delay;
-  });
+  const delayRef = useRefCache(delay);
 
   const disable = useCallback(() => {
     if (delayRef.current === 0) {
