@@ -1,21 +1,21 @@
 import React, {
+  CSSProperties,
   FC,
   forwardRef,
   ReactNode,
   TextareaHTMLAttributes,
-  useCallback,
-  useRef,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, applyRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
-import Label from "./Label";
+import FloatingLabel from "./FloatingLabel";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
 import useFocusState from "./useFocusState";
 import useTextAreaHeightAnimation from "./useTextAreaHeightAnimation";
+import useValuedState from "./useValuedState";
 
 export interface TextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -50,6 +50,9 @@ export interface TextAreaProps
    * The max number of lines that an animatiable textarea
    */
   maxRows?: number;
+
+  areaStyle?: CSSProperties;
+  areaClassName?: string;
 }
 
 type WithRef = WithForwardedRef<HTMLTextAreaElement>;
@@ -71,9 +74,10 @@ const block = bem("rmd-text-field");
 
 const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
   const {
-    containerStyle: propContainerStyle,
-    containerClassName,
+    style: propStyle,
     className,
+    areaStyle,
+    areaClassName,
     forwardedRef,
     resize,
     label,
@@ -98,13 +102,8 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
   const underline = theme === "underline";
   const unstyled = theme === "none";
   const growable = resize === "auto";
-  const {
-    containerStyle,
-    maskRef,
-    areaRef,
-    update,
-  } = useTextAreaHeightAnimation({
-    propStyle: propContainerStyle,
+  const { style, maskRef, areaRef, update } = useTextAreaHeightAnimation({
+    style: propStyle,
     ref: forwardedRef,
     rows,
     maxRows,
@@ -112,11 +111,12 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     disabled: resize !== "auto",
   });
 
-  const { focused, valued, onBlur, onFocus, onChange } = useFocusState({
-    id,
-    defaultValue,
+  const { focused, onBlur, onFocus } = useFocusState({
     onBlur: propOnBlur,
     onFocus: propOnFocus,
+  });
+  const { valued, onChange } = useValuedState({
+    defaultValue,
     onChange: evt => {
       const event = evt as React.ChangeEvent<HTMLTextAreaElement>;
       if (propOnChange) {
@@ -140,8 +140,8 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
 
   return (
     <TextFieldContainer
-      style={containerStyle}
-      className={containerClassName}
+      style={style}
+      className={className}
       inline={inline}
       theme={theme}
       error={error}
@@ -149,26 +149,23 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
       growable={growable}
       underlineDirection={underlineDirection}
     >
-      <Label
+      <FloatingLabel
         htmlFor={id}
         error={error}
-        active={!unstyled && focused}
-        floating={!unstyled}
-        floatingSurface={!unstyled && !outline}
-        floatingActive={!unstyled && (focused || valued)}
-        floatingInactive={!unstyled && !focused && valued}
-        floatingActiveOutline={outline && (focused || valued)}
+        active={focused}
+        covering={!outline}
+        valued={valued}
       >
         {label}
-      </Label>
+      </FloatingLabel>
       {growable && (
         <textarea
           aria-hidden
           readOnly
           tabIndex={-1}
           ref={maskRef}
-          style={props.style}
-          className={cn(mergedClassName, "rmd-text-field--mask", className)}
+          style={areaStyle}
+          className={cn(mergedClassName, "rmd-text-field--mask", areaClassName)}
         />
       )}
       <textarea
@@ -177,7 +174,8 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
-        className={cn(mergedClassName, className)}
+        style={areaStyle}
+        className={cn(mergedClassName, areaClassName)}
       />
     </TextFieldContainer>
   );

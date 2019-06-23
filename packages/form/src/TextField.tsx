@@ -10,24 +10,82 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, useRefCache, useToggle } from "@react-md/utils";
+import {
+  WithForwardedRef,
+  useRefCache,
+  useToggle,
+  Omit,
+} from "@react-md/utils";
+
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import Label from "./Label";
+import FloatingLabel from "./FloatingLabel";
 import useFocusState from "./useFocusState";
+import useValuedState from "./useValuedState";
+
+/**
+ * These are all the "supported" input types for react-md so that they at least
+ * render reasonably well by default. There is no built-in validation or anything
+ * adding onto existing browser functionality for these types.
+ */
+export type SupportedInputTypes =
+  | "text"
+  | "password"
+  | "number"
+  | "tel"
+  | "email"
+  | "date"
+  | "time"
+  | "datetime-local"
+  | "month"
+  | "week"
+  | "url"
+  | "range"
+  | "color";
 
 export interface TextFieldProps
-  extends InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "type">,
     TextFieldContainerOptions {
   /**
    * The id for the text field. This is required for accessibility.
    */
   id: string;
+
+  /**
+   * The default value for the text field which will make it uncontrolled.
+   * If you manually change the `defaultValue` prop, the input's value **will
+   * not change** unless you provide a different `key` as well. Use the `value`
+   * prop instead for a controlled input.
+   */
   defaultValue?: string;
+
+  /**
+   * An optional floating label to use for the text field. This should really only be
+   * used when the `theme` prop is not set to `"none"`. This will be wrapped in
+   * the `<Label>` component itself and automatically apply the `htmlFor` prop for this
+   * text field.
+   */
   label?: ReactNode;
-  type?: string;
-  children?: ReactNode;
+
+  /**
+   * The type for the text field. `react-md`'s `TextField` supports rendering
+   * most of the input types, but will have no built-in validation or additional
+   * functionality included.
+   */
+  type?: SupportedInputTypes;
+
+  /**
+   * An optional style to apply to the input itself. The `style` prop will be applied to the
+   * container `<div>` instead.
+   */
+  inputStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the input itself. The `className` prop will be applied to the
+   * container `<div>` instead.
+   */
+  inputClassName?: string;
 }
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
@@ -45,12 +103,22 @@ type DefaultProps = Required<
 type WithDefaultProps = TextFieldProps & DefaultProps & WithRef;
 
 const block = bem("rmd-text-field");
+const SPECIAL_TYPES = [
+  "date",
+  "time",
+  "datetime-local",
+  "month",
+  "week",
+  "range",
+  "color",
+];
 
 const TextField: FC<TextFieldProps & WithRef> = providedProps => {
   const {
-    containerStyle,
-    containerClassName,
+    style,
     className,
+    inputStyle,
+    inputClassName,
     forwardedRef,
     theme,
     error,
@@ -64,24 +132,26 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     rightChildren,
     ...props
   } = providedProps as WithDefaultProps;
-  const { id, defaultValue } = props;
+  const { id, defaultValue, disabled, type } = props;
 
   const filled = theme === "filled";
   const outline = theme === "outline";
   const underline = theme === "underline";
   const unstyled = theme === "none";
-  const { focused, valued, onBlur, onFocus, onChange } = useFocusState({
-    id,
-    defaultValue,
+  const isSpecialType = SPECIAL_TYPES.includes(type);
+  const { focused, onBlur, onFocus } = useFocusState({
     onBlur: propOnBlur,
     onFocus: propOnFocus,
+  });
+  const { valued, onChange } = useValuedState({
+    defaultValue,
     onChange: propOnChange,
   });
 
   return (
     <TextFieldContainer
-      style={containerStyle}
-      className={containerClassName}
+      style={style}
+      className={className}
       inline={inline}
       theme={theme}
       error={error}
@@ -90,17 +160,15 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       leftChildren={leftChildren}
       rightChildren={rightChildren}
     >
-      <Label
+      <FloatingLabel
         htmlFor={id}
         error={error}
-        active={!unstyled && focused}
-        floating={!unstyled}
-        floatingActive={!unstyled && (focused || valued)}
-        floatingInactive={!unstyled && !focused && valued}
-        floatingActiveOutline={outline && (focused || valued)}
+        active={focused}
+        valued={valued || isSpecialType}
+        disabled={disabled}
       >
         {label}
-      </Label>
+      </FloatingLabel>
       <input
         {...props}
         autoComplete="new-password"
@@ -108,7 +176,15 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         onBlur={onBlur}
         onChange={onChange}
         ref={forwardedRef}
-        className={cn(block({ floating: !unstyled }), className)}
+        style={inputStyle}
+        className={cn(
+          block({
+            floating: !unstyled,
+            secondary: !disabled && !focused && !valued && isSpecialType,
+            "no-v-padding": type === "color",
+          }),
+          inputClassName
+        )}
       />
     </TextFieldContainer>
   );

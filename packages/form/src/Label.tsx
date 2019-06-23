@@ -27,53 +27,13 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
    * components.
    */
   active?: boolean;
-
-  /**
-   * Boolean if is a floating label. This will update the styles to make the label `position: absolute`
-   * and change when any of the other `floating` props are toggled.
-   */
-  floating?: boolean;
-
-  /**
-   * Boolean if the label is a floating label and currently active. This is really used to apply
-   * a smaller text size ans shift the label above the `<input>`/`<textarea>` when is is not blank
-   * or currently in focus.
-   */
-  floatingActive?: boolean;
-
-  /**
-   * Boolean if the label is a floating label and currently not focused. This will update
-   * the label to gain the normal label text color.
-   */
-  floatingInactive?: boolean;
-
-  floatingSurface?: boolean;
-
-  /**
-   * Boolean if the label is a floating label and currently used alongside an outlined `<input>`/`<textarea>`
-   * component. This will update the position and background color of the label so it covers the
-   * top border.
-   */
-  floatingActiveOutline?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLLabelElement>;
-type DefaultProps = Required<
-  Pick<
-    LabelProps,
-    | "error"
-    | "active"
-    | "disabled"
-    | "floating"
-    | "floatingActive"
-    | "floatingInactive"
-    | "floatingSurface"
-    | "floatingActiveOutline"
-  >
->;
+type DefaultProps = Required<Pick<LabelProps, "error" | "active" | "disabled">>;
 type WithDefaultProps = LabelProps & DefaultProps & WithRef;
 
-const block = bem("rmd-form-label");
+const block = bem("rmd-label");
 
 const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
   const {
@@ -83,11 +43,6 @@ const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
     error,
     active,
     disabled,
-    floating,
-    floatingActive,
-    floatingInactive,
-    floatingSurface,
-    floatingActiveOutline,
     ...props
   } = providedProps as WithDefaultProps;
   if (!children) {
@@ -103,11 +58,6 @@ const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
           error,
           active,
           disabled,
-          floating,
-          "floating-surface": floatingSurface,
-          "floating-active": floatingActive,
-          "floating-inactive": !error && floatingInactive,
-          "floating-active-outline": floatingActiveOutline,
         }),
         className
       )}
@@ -121,11 +71,6 @@ const defaultProps: DefaultProps = {
   error: false,
   active: false,
   disabled: false,
-  floating: false,
-  floatingSurface: false,
-  floatingActive: false,
-  floatingInactive: false,
-  floatingActiveOutline: false,
 };
 
 Label.defaultProps = defaultProps;
@@ -143,10 +88,7 @@ if (process.env.NODE_ENV !== "production") {
       htmlFor: PropTypes.string.isRequired,
       error: PropTypes.bool,
       active: PropTypes.bool,
-      floating: PropTypes.bool,
-      floatingActive: PropTypes.bool,
-      floatingInactive: PropTypes.bool,
-      floatingActiveOutline: PropTypes.bool,
+      disabled: PropTypes.bool,
     };
   }
 }

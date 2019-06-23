@@ -11,6 +11,9 @@
 /// @type Color
 $rmd-form-error-color: $rmd-theme-error !default;
 
+/// This is the color that is used when a text field/textarea is errored
+/// and the user hovers over it.
+/// @type Color
 $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
   100,
@@ -30,6 +33,28 @@ $rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
 /// The default color to use for placeholder text within text fields.
 /// @type Color
 $rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
+
+/// The font size to use for a `<label>` by default.
+/// @type Number
+$rmd-label-font-size: 1em !default;
+
+/// The font size to use for a floating label that is currently fixed above a text
+/// field/textarea.
+/// @type Number
+$rmd-label-floating-font-size: 0.75em !default;
+
+/// The amount of horizontal padding to use for a floating label use with an outlined
+/// text field/textarea.
+/// @type Number
+$rmd-label-padding: 0.25rem !default;
+
+/// The `top` position to use for a floating label.
+/// @type Number
+$rmd-label-floating-top: 1.6rem !default;
+
+$rmd-form-toggle-border-radius: 50% !default;
+$rmd-form-toggle-inset: 0.3125rem !default;
+$rmd-form-toggle-dense-inset: 0.25rem !default;
 
 $rmd-form-filled-background-color-light: #dcdcdc !default;
 $rmd-form-filled-background-color-dark: $rmd-grey-700 !default;
@@ -65,14 +90,6 @@ $rmd-form-border-radius: 0.25rem !default;
 $rmd-form-border-width: 1px !default;
 $rmd-form-border-width-active: 2px !default;
 
-$rmd-form-label-font-size: 1em !default;
-$rmd-form-label-floating-font-size: 0.75em !default;
-$rmd-form-label-floating-outline-padding: 0.25rem !default;
-$rmd-form-label-floating-top: 1.6rem !default;
-
-$rmd-form-toggle-inset: 0.3125rem !default;
-$rmd-form-toggle-dense-inset: 0.25rem !default;
-
 $rmd-form-textarea-min-height: 1.5em !default;
 $rmd-form-textarea-margin-top: 0px !default; //sass-lint:disable-line zero-unit
 $rmd-form-textarea-underline-margin-top: 1.5rem !default;
@@ -83,6 +100,7 @@ $rmd-form-theme-values: (
   active-color: $rmd-form-active-color,
   disabled-color: $rmd-form-disabled-color,
   placeholder-color: $rmd-form-placeholder-color,
+  label-floating-top: $rmd-label-floating-top,
   filled-color: $rmd-form-filled-background-color,
   filled-light-color: $rmd-form-filled-background-color-dark,
   filled-dark-color: $rmd-form-filled-background-color-dark,
@@ -91,10 +109,6 @@ $rmd-form-theme-values: (
   border-width: $rmd-form-border-width,
   border-width-active: $rmd-form-border-width-active,
   border-radius: $rmd-form-border-radius,
-  label-font-size: $rmd-form-label-font-size,
-  label-floating-font-size: $rmd-form-label-floating-font-size,
-  label-padding: $rmd-form-label-floating-outline-padding,
-  label-floating-top: $rmd-form-label-floating-top,
   offset: 0px,
   horizontal-padding: 0px,
   vertical-padding: 0px,

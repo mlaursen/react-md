@@ -1,22 +1,26 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import { FontIcon } from "@react-md/icon";
-import InputToggle, { InputToggleProps } from "./InputToggle";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
-export interface CheckboxProps extends InputToggleProps {}
-type DefaultProps = Required<Pick<CheckboxProps, "icon">>;
+import InputToggle, { InputToggleProps } from "./InputToggle";
 
 /**
  * The `Checkbox` component is just a wrapper for the `InputToggle` that
- * defaults to resonable defaults for a checkbox toggle.
+ * defaults to reasonable defaults for a checkbox input.
  */
-const Checkbox: FC<CheckboxProps> = ({ type, ...props }) => (
-  <InputToggle {...props} type="checkbox" />
-);
+const Checkbox: FC<InputToggleProps & WithForwardedRef<HTMLInputElement>> = ({
+  forwardedRef,
+  ...props
+}) => <InputToggle {...props} ref={forwardedRef} type="checkbox" />;
 
-const defaultProps: DefaultProps = {
-  icon: <FontIcon>check_box_outline</FontIcon>,
+Checkbox.defaultProps = {
+  icon: <FontIcon aria-hidden>check_box_outline</FontIcon>,
 };
 
-Checkbox.defaultProps = defaultProps;
+if (process.env.NODE_ENV !== "production") {
+  Checkbox.displayName = "Checkbox";
+}
 
-export default Checkbox;
+export default forwardRef<HTMLInputElement, InputToggleProps>((props, ref) => (
+  <Checkbox {...props} forwardedRef={ref} />
+));

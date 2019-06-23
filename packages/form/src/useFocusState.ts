@@ -1,30 +1,21 @@
 import { useCallback, HTMLAttributes } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
-interface FocusState {
-  id: string;
-  defaultValue: string;
-}
+type InputOrTextElement = HTMLInputElement | HTMLTextAreaElement;
+interface Options
+  extends Pick<HTMLAttributes<InputOrTextElement>, "onBlur" | "onFocus"> {}
 
-type TextElement = HTMLInputElement | HTMLTextAreaElement;
-
-type FocusStateOptions = FocusState &
-  Pick<HTMLAttributes<TextElement>, "onBlur" | "onFocus" | "onChange">;
-
-export default function useFocusState({
-  id,
-  defaultValue,
-  onFocus,
-  onBlur,
-  onChange,
-}: FocusStateOptions) {
-  const handlers = useRefCache({ onFocus, onBlur, onChange });
+/**
+ * @private
+ */
+export default function useFocusState({ onFocus, onBlur }: Options) {
+  const handlers = useRefCache({ onFocus, onBlur });
   const {
     toggled: focused,
     enable: setFocused,
     disable: setBlurred,
   } = useToggle();
-  const handleFocus = useCallback<React.FocusEventHandler<TextElement>>(
+  const handleFocus = useCallback<React.FocusEventHandler<InputOrTextElement>>(
     event => {
       const { onFocus } = handlers.current;
       if (onFocus) {
@@ -45,30 +36,9 @@ export default function useFocusState({
     setBlurred();
   }, []);
 
-  const { toggled: valued, enable, disable } = useToggle(
-    defaultValue.length > 0
-  );
-  const handleChange = useCallback<React.ChangeEventHandler<TextElement>>(
-    event => {
-      const { onChange } = handlers.current;
-      if (onChange) {
-        onChange(event);
-      }
-
-      if (event.currentTarget.value.length > 0) {
-        enable();
-      } else {
-        disable();
-      }
-    },
-    []
-  );
-
   return {
     focused,
-    valued,
     onBlur: handleBlur,
     onFocus: handleFocus,
-    onChange: handleChange,
   };
 }

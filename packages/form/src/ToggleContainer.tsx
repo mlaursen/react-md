@@ -4,30 +4,51 @@ import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface ToggleContainerProps extends HTMLAttributes<HTMLDivElement> {
-  inline?: boolean;
+  /**
+   * Boolean if the input toggle should be rendered as `flex` instead of
+   * `inline-flex`.
+   */
+  fullWidth?: boolean;
+
+  /**
+   * Boolean if the label should be stacked above/below the input toggle instead
+   * of being rendered on the same line.
+   */
   stacked?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<ToggleContainerProps, "inline" | "stacked">>;
+type DefaultProps = Required<
+  Pick<ToggleContainerProps, "fullWidth" | "stacked">
+>;
 type WithDefaultProps = ToggleContainerProps & DefaultProps & WithRef;
 
 const block = bem("rmd-form-toggle-container");
 
+/**
+ * @private
+ */
 const ToggleContainer: FC<ToggleContainerProps & WithRef> = providedProps => {
   const {
     className,
-    inline,
+    fullWidth,
     stacked,
     forwardedRef,
     children,
     ...props
   } = providedProps as WithDefaultProps;
+
   return (
     <div
       {...props}
       ref={forwardedRef}
-      className={cn(block({ stacked, inline }), className)}
+      className={cn(
+        block({
+          stacked,
+          "full-width": fullWidth,
+        }),
+        className
+      )}
     >
       {children}
     </div>
@@ -35,7 +56,7 @@ const ToggleContainer: FC<ToggleContainerProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  inline: false,
+  fullWidth: false,
   stacked: false,
 };
 

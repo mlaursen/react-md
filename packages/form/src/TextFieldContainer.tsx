@@ -11,8 +11,6 @@ import { WithForwardedRef, Omit } from "@react-md/utils";
 import TextFieldAddon from "./TextFieldAddon";
 
 export interface TextFieldContainerOptions {
-  containerStyle?: CSSProperties;
-  containerClassName?: string;
   theme?: "none" | "underline" | "outline" | "filled";
   inline?: boolean;
   error?: boolean;
@@ -24,8 +22,8 @@ export interface TextFieldContainerOptions {
 }
 
 export interface TextFieldContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    Omit<TextFieldContainerOptions, "containerStyle" | "containerClassName"> {}
+  extends TextFieldContainerOptions,
+    HTMLAttributes<HTMLDivElement> {}
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<

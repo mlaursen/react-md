@@ -54,6 +54,21 @@ const defaultProps: DefaultProps = {
 
 Form.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  Form.displayName = "Form";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Form.propTypes = {
+      disableNoDefault: PropTypes.bool,
+    };
+  }
+}
+
 export default forwardRef<HTMLFormElement, FormProps>((props, ref) => (
   <Form {...props} forwardedRef={ref} />
 ));

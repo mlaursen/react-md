@@ -1,18 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import { FontIcon } from "@react-md/icon";
+import { Omit, WithForwardedRef } from "@react-md/utils";
+
 import InputToggle, { InputToggleProps } from "./InputToggle";
 
-export interface RadioProps extends InputToggleProps {}
-type DefaultProps = Required<Pick<RadioProps, "icon">>;
+type DefaultProps = Required<Pick<InputToggleProps, "icon">>;
 
-const Radio: FC<RadioProps> = ({ type, ...props }) => (
-  <InputToggle {...props} type="radio" />
-);
+/**
+ * The `Radio` component is just a wrapper for the `InputToggle` that
+ * defaults to reasonable defaults for a radio input.
+ */
+const Radio: FC<InputToggleProps & WithForwardedRef<HTMLInputElement>> = ({
+  forwardedRef,
+  ...props
+}) => <InputToggle {...props} ref={forwardedRef} type="radio" />;
 
 const defaultProps: DefaultProps = {
-  icon: <FontIcon>radio_button_checked</FontIcon>,
+  icon: <FontIcon aria-hidden>radio_button_checked</FontIcon>,
 };
 
 Radio.defaultProps = defaultProps;
 
-export default Radio;
+if (process.env.NODE_ENV !== "production") {
+  Radio.displayName = "Radio";
+}
+
+export default forwardRef<HTMLInputElement, InputToggleProps>((props, ref) => (
+  <Radio {...props} forwardedRef={ref} />
+));

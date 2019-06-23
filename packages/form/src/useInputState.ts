@@ -7,6 +7,9 @@ type ChangeEventHandler = React.ChangeEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
+/**
+ *
+ */
 export default function useInputState(
   defaultValue: InputDefaultValue,
   propOnChange: ChangeEventHandler

@@ -19,9 +19,6 @@ export * from "./TextField";
 export { default as TextArea } from "./TextArea";
 export * from "./TextArea";
 
-export { default as ToggleContainer } from "./ToggleContainer";
-export * from "./ToggleContainer";
-
 export { default as Form } from "./Form";
 export * from "./Form";
 

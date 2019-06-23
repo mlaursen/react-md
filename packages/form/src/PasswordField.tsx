@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useState, forwardRef, useCallback } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useState,
+  forwardRef,
+  useCallback,
+  CSSProperties,
+} from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
@@ -10,6 +17,8 @@ import TextField, { TextFieldProps } from "./TextField";
 export interface PasswordFieldProps
   extends Omit<TextFieldProps, "type" | "rightChildren"> {
   visibilityIcon?: ReactNode;
+  visibilityStyle?: CSSProperties;
+  visibilityClassName?: string;
   disableVisibility?: boolean;
 }
 
@@ -27,6 +36,8 @@ const PasswordField: FC<PasswordFieldProps & WithRef> = providedProps => {
     forwardedRef,
     visibilityIcon,
     disableVisibility,
+    visibilityStyle,
+    visibilityClassName,
     ...props
   } = providedProps as WithDefaultProps;
   const [type, setType] = useState<"password" | "text">("password");
@@ -37,18 +48,21 @@ const PasswordField: FC<PasswordFieldProps & WithRef> = providedProps => {
   return (
     <TextField
       {...props}
-      className={cn(block(), className)}
+      className={cn(block({ offset: !disableVisibility }), className)}
       ref={forwardedRef}
       type={type}
       rightChildren={
-        <Button
-          id={`${props.id}-password-toggle`}
-          buttonType="icon"
-          onClick={toggle}
-          className={block("toggle")}
-        >
-          {visibilityIcon}
-        </Button>
+        !disableVisibility && (
+          <Button
+            id={`${props.id}-password-toggle`}
+            buttonType="icon"
+            onClick={toggle}
+            style={visibilityStyle}
+            className={cn(block("toggle"), visibilityClassName)}
+          >
+            {visibilityIcon}
+          </Button>
+        )
       }
     />
   );
