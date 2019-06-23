@@ -1,5 +1,5 @@
-export { default as InputToggle } from "./InputToggle";
-export * from "./InputToggle";
+export { default as Label } from "./Label";
+export * from "./Label";
 
 export { default as Checkbox } from "./Checkbox";
 export * from "./Checkbox";
@@ -7,8 +7,13 @@ export * from "./Checkbox";
 export { default as Radio } from "./Radio";
 export * from "./Radio";
 
-export { default as Label } from "./Label";
-export * from "./Label";
+export { default as InputToggle } from "./InputToggle";
+export * from "./InputToggle";
+
+export { default as Switch } from "./Switch";
+export * from "./Switch";
+
+export { default as useInputToggle } from "./useInputToggle";
 
 export { default as TextFieldContainer } from "./TextFieldContainer";
 export * from "./TextFieldContainer";

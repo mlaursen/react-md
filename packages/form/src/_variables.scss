@@ -56,6 +56,14 @@ $rmd-form-toggle-border-radius: 50% !default;
 $rmd-form-toggle-inset: 0.3125rem !default;
 $rmd-form-toggle-dense-inset: 0.25rem !default;
 
+$rmd-switch-track-height: 1rem !default;
+$rmd-switch-track-width: 2.25rem !default;
+$rmd-switch-track-background-color: rgba($rmd-black-base, 0.38) !default;
+$rmd-switch-track-border-radius: 0.5rem !default;
+
+$rmd-switch-ball-size: 1.25rem !default;
+$rmd-switch-ball-border-radius: 50% !default;
+
 $rmd-form-filled-background-color-light: #dcdcdc !default;
 $rmd-form-filled-background-color-dark: $rmd-grey-700 !default;
 $rmd-form-filled-background-color: if(
@@ -116,6 +124,7 @@ $rmd-form-theme-values: (
   outline-horizontal-padding: $rmd-form-outline-horizontal-padding,
   toggle-inset: $rmd-form-toggle-inset,
   toggle-dense-inset: $rmd-form-toggle-dense-inset,
+  track-background-color: $rmd-switch-track-background-color,
   textarea-min-height: $rmd-form-textarea-min-height,
   textarea-margin-top: $rmd-form-textarea-margin-top,
 ) !default;

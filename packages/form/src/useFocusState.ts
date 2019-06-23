@@ -1,9 +1,10 @@
 import { useCallback, HTMLAttributes } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
-type InputOrTextElement = HTMLInputElement | HTMLTextAreaElement;
+type FocusElement = HTMLInputElement | HTMLTextAreaElement | HTMLLabelElement;
+
 interface Options
-  extends Pick<HTMLAttributes<InputOrTextElement>, "onBlur" | "onFocus"> {}
+  extends Pick<HTMLAttributes<FocusElement>, "onBlur" | "onFocus"> {}
 
 /**
  * @private
@@ -15,7 +16,7 @@ export default function useFocusState({ onFocus, onBlur }: Options) {
     enable: setFocused,
     disable: setBlurred,
   } = useToggle();
-  const handleFocus = useCallback<React.FocusEventHandler<InputOrTextElement>>(
+  const handleFocus = useCallback<React.FocusEventHandler<FocusElement>>(
     event => {
       const { onFocus } = handlers.current;
       if (onFocus) {

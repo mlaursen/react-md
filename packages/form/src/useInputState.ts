@@ -1,4 +1,4 @@
-import { useState, HTMLAttributes, useCallback, useRef } from "react";
+import { useCallback, useState } from "react";
 import { useRefCache } from "@react-md/utils";
 
 export type InputDefaultValue = string | (() => string);

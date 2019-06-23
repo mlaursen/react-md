@@ -1,11 +1,11 @@
 import React, { FC, Fragment } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
-import { Checkbox, Radio, InputToggle } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Checkbox, Radio, InputToggle, Form } from "@react-md/form";
 import {
   CheckBoxSVGIcon,
   RadioButtonCheckedSVGIcon,
 } from "@react-md/material-icons";
+import { Text } from "@react-md/typography";
 
 const CheckboxAndRadioExamples: FC = () => (
   <Fragment>
@@ -32,7 +32,7 @@ const CheckboxAndRadioExamples: FC = () => (
       label="Radio 3"
       icon={<RadioButtonCheckedSVGIcon />}
     />
-    <form onSubmit={event => event.preventDefault()}>
+    <Form name="form1" id="form-1">
       <Text type="headline-5">Example Form</Text>
       {Array.from(new Array(5), (_, i) => (
         <Checkbox
@@ -50,7 +50,6 @@ const CheckboxAndRadioExamples: FC = () => (
           id={`example-form-radios-${i}`}
           name="example-form-radios"
           label={`Radio ${i + 1}`}
-          inline
           icon={<RadioButtonCheckedSVGIcon />}
         />
       ))}
@@ -73,7 +72,7 @@ const CheckboxAndRadioExamples: FC = () => (
           Submit
         </AppBarAction>
       </AppBar>
-    </form>
+    </Form>
   </Fragment>
 );
 

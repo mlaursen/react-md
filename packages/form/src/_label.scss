@@ -1,0 +1,29 @@
+////
+/// @group form-label
+////
+
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/transition/dist/mixins';
+
+/// Creates the base styles for a `<label>` element as well as all the different
+/// states a label can be in.
+@mixin rmd-label {
+  @include rmd-typography(body-1);
+  @include rmd-transition(standard);
+
+  display: inline-flex;
+  font-size: $rmd-label-font-size;
+  transition: color $rmd-transition-standard-time;
+
+  &--active {
+    @include rmd-form-theme(color, active-color);
+  }
+
+  &--error {
+    @include rmd-form-theme(color, error-color);
+  }
+
+  &--disabled {
+    @include rmd-form-theme(color, disabled-color);
+  }
+}

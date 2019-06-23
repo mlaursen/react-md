@@ -1,25 +1,18 @@
 import React, {
   CSSProperties,
   FC,
+  forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  useCallback,
-  forwardRef,
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import {
-  useInteractionStates,
-  StatesConfigContextType,
   InteractionStatesOptions,
+  useInteractionStates,
 } from "@react-md/states";
 import { bem } from "@react-md/theme";
-import {
-  useRefCache,
-  useToggle,
-  WithForwardedRef,
-  Omit,
-} from "@react-md/utils";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
 import Label from "./Label";
 import ToggleContainer from "./ToggleContainer";
@@ -33,10 +26,15 @@ import useFocusState from "./useFocusState";
  */
 export interface InputToggleProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "readOnly">,
-    StatesConfigContextType,
-    Pick<InteractionStatesOptions, "disablePressedFallback"> {
+    Pick<
+      InteractionStatesOptions,
+      | "rippleTimeout"
+      | "disableRipple"
+      | "disableProgrammaticRipple"
+      | "disablePressedFallback"
+      | "rippleClassNames"
+    > {
   /**
-   *
    * The id for the radio or checkbox. This is required for a11y and will
    * be used as the `for` attribute if the `label` prop is provided.
    */
@@ -105,7 +103,15 @@ export interface InputToggleProps
 type Props = InputToggleProps & { type: "radio" | "checkbox" };
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
-  Pick<Props, "error" | "disabled" | "fullWidth" | "stacked" | "iconAfter">
+  Pick<
+    Props,
+    | "error"
+    | "disabled"
+    | "fullWidth"
+    | "stacked"
+    | "iconAfter"
+    | "defaultChecked"
+  >
 >;
 type WithDefaultProps = Props & DefaultProps & WithRef;
 
@@ -212,9 +218,37 @@ const defaultProps: DefaultProps = {
   stacked: false,
   disabled: false,
   iconAfter: false,
+  defaultChecked: false,
 };
 
 InputToggle.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  InputToggle.displayName = "InputToggle";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    InputToggle.propTypes = {
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.node,
+      iconStyle: PropTypes.object,
+      iconClassName: PropTypes.string,
+      toggleStyle: PropTypes.object,
+      toggleClassName: PropTypes.string,
+      error: PropTypes.bool,
+      label: PropTypes.node,
+      fullWidth: PropTypes.bool,
+      stacked: PropTypes.bool,
+      disabled: PropTypes.bool,
+      iconAfter: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLInputElement, Props>((props, ref) => (
   <InputToggle {...props} forwardedRef={ref} />

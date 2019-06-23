@@ -1,16 +1,8 @@
-import {
-  useState,
-  useRef,
-  CSSProperties,
-  useCallback,
-  useEffect,
-  Ref,
-} from "react";
+import { useState, useRef, CSSProperties, useCallback, Ref } from "react";
 import { useRefCache, applyRef } from "@react-md/utils";
 
 interface Options {
   style?: CSSProperties;
-  defaultValue: string;
   rows: number;
   maxRows: number;
   disabled?: boolean;
@@ -28,7 +20,6 @@ export default function useTextAreaHeightAnimation({
   rows,
   maxRows,
   style: propStyle,
-  defaultValue,
   disabled,
 }: Options) {
   const maskRef = useRef<HTMLTextAreaElement | null>(null);

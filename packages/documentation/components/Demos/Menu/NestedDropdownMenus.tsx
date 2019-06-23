@@ -1,12 +1,11 @@
 import React, { FC, Fragment } from "react";
+import { Checkbox } from "@react-md/form";
 import {
   DropdownMenu,
   DropdownMenuItem,
   MenuItemSeparator,
 } from "@react-md/menu";
-import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
-import { TextIconSpacing } from "@react-md/icon";
 
 const InfiniteNestedMenus: FC<{
   depth: number;
@@ -34,21 +33,13 @@ const NestedDropdownMenus: FC = () => {
 
   return (
     <Fragment>
-      <Text>
-        <TextIconSpacing
-          icon={
-            <input
-              id="nested-menu-portal"
-              type="checkbox"
-              onChange={event => setPortal(event.currentTarget.checked)}
-              checked={portal}
-            />
-          }
-          iconAfter
-        >
-          <label htmlFor="nested-menu-portal">Enable portal?</label>
-        </TextIconSpacing>
-      </Text>
+      <Checkbox
+        id="nested-menu-portal"
+        name="portal"
+        label="Enable Portal?"
+        checked={portal}
+        onChange={event => setPortal(event.currentTarget.checked)}
+      />
       <DropdownMenu
         id="simple-nested-menus-example"
         portal={portal}

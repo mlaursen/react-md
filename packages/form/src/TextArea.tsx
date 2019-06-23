@@ -107,7 +107,6 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     ref: forwardedRef,
     rows,
     maxRows,
-    defaultValue,
     disabled: resize !== "auto",
   });
 

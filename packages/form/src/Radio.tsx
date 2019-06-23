@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from "react";
 import { FontIcon } from "@react-md/icon";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
 

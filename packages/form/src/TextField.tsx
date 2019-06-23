@@ -2,20 +2,12 @@ import React, {
   FC,
   InputHTMLAttributes,
   ReactNode,
-  useCallback,
-  useState,
-  useMemo,
   CSSProperties,
   forwardRef,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
-import {
-  WithForwardedRef,
-  useRefCache,
-  useToggle,
-  Omit,
-} from "@react-md/utils";
+import { WithForwardedRef, Omit } from "@react-md/utils";
 
 import TextFieldContainer, {
   TextFieldContainerOptions,
@@ -134,9 +126,6 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
   } = providedProps as WithDefaultProps;
   const { id, defaultValue, disabled, type } = props;
 
-  const filled = theme === "filled";
-  const outline = theme === "outline";
-  const underline = theme === "underline";
   const unstyled = theme === "none";
   const isSpecialType = SPECIAL_TYPES.includes(type);
   const { focused, onBlur, onFocus } = useFocusState({

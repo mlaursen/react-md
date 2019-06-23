@@ -1,13 +1,8 @@
-import React, {
-  FC,
-  HTMLAttributes,
-  forwardRef,
-  CSSProperties,
-  ReactNode,
-} from "react";
+import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, Omit } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
+
 import TextFieldAddon from "./TextFieldAddon";
 
 export interface TextFieldContainerOptions {
