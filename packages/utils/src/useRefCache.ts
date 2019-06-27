@@ -9,7 +9,7 @@ import { useRef, useEffect } from "react";
  * callbacks that *shouldn't* be triggered each render. But that might
  * just be a programming error instead).
  *
- * @param cacheable - The cacheable thing.
+ * @param cacheable The cacheable thing that gets updated after each render.
  * @return a mutable ref object containing the current cache.
  */
 export default function useRefCache<T>(cacheable: T) {

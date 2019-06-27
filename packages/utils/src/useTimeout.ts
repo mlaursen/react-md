@@ -6,7 +6,7 @@ import useToggle from "./useToggle";
  * Simple hook to use an timeout with auto setup and teardown.
  *
  * @param cb The callback function to call
- * @param delay The time in muilliseconds the timer should delay between executions
+ * @param delay The time in milliseconds the timer should delay between executions
  * of the callback function
  * @param defaultStarted Boolean if the timeout should be started immediately.
  * @return an object containing a function to reset the timer without disabling it

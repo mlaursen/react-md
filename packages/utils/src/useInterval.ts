@@ -6,7 +6,7 @@ import useToggle from "./useToggle";
  * Simple hook to use an interval with auto setup and teardown.
  *
  * @param callback The callback function to call
- * @param delay The time in muilliseconds the timer should delay between executions
+ * @param delay The time in milliseconds the timer should delay between executions
  * of the callback function
  * @param defaultRunning Boolean if the interval should be started immediately
  * @return an object containing functions to start and stop the interval
