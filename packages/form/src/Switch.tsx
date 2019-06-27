@@ -82,12 +82,7 @@ type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
   Pick<
     SwitchProps,
-    | "error"
-    | "disabled"
-    | "fullWidth"
-    | "stacked"
-    | "iconAfter"
-    | "defaultChecked"
+    "error" | "disabled" | "fullWidth" | "stacked" | "iconAfter"
   >
 >;
 type WithDefaultProps = SwitchProps & DefaultProps & WithRef;
@@ -117,7 +112,7 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
   return (
     <ToggleContainer
       style={style}
-      className={className}
+      className={cn("rmd-switch-container", className)}
       fullWidth={fullWidth}
       stacked={stacked}
     >
@@ -139,6 +134,7 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
           <label
             htmlFor={id}
             aria-hidden
+            style={ballStyle}
             className={cn(block("ball"), ballClassName)}
           />
         </span>
@@ -153,7 +149,6 @@ const defaultProps: DefaultProps = {
   stacked: false,
   fullWidth: false,
   iconAfter: false,
-  defaultChecked: false,
 };
 
 Switch.defaultProps = defaultProps;
@@ -177,7 +172,6 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       fullWidth: PropTypes.bool,
       disabled: PropTypes.bool,
-      defaultChecked: PropTypes.bool,
     };
   }
 }

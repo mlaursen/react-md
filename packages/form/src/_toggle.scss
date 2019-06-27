@@ -96,9 +96,9 @@
 /// Creates the styles for the checkbox and radio input types' icon
 /// @access private
 @mixin rmd-form-toggle-icon {
-  @include rmd-theme(color, warning);
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
+  @include rmd-form-theme(color, active-color);
 
   .rmd-icon {
     color: inherit;
@@ -110,34 +110,36 @@
   pointer-events: none;
   position: absolute;
 
-  &::before,
-  &::after {
-    @include rmd-transition(standard);
-    @include rmd-form-theme(bottom, toggle-inset);
-    @include rmd-form-theme(left, toggle-inset);
-    @include rmd-form-theme(right, toggle-inset);
-    @include rmd-form-theme(top, toggle-inset);
+  &--overlay {
+    &::before,
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-form-theme(bottom, toggle-inset);
+      @include rmd-form-theme(left, toggle-inset);
+      @include rmd-form-theme(right, toggle-inset);
+      @include rmd-form-theme(top, toggle-inset);
 
-    content: '';
-    position: absolute;
-    transition: opacity $rmd-transition-standard-time;
-  }
+      content: '';
+      position: absolute;
+      transition: opacity $rmd-transition-standard-time;
+    }
 
-  &::before {
-    @include rmd-theme(background-color, background);
+    &::before {
+      @include rmd-theme(background-color, background);
 
-    opacity: 1;
-    z-index: 3;
-  }
+      opacity: 1;
+      z-index: 3;
+    }
 
-  &::after {
-    opacity: 0;
-    z-index: 0;
+    &::after {
+      opacity: 0;
+      z-index: 0;
+    }
   }
 
   &--circle::before,
   &--circle::after {
-    border-radius: 50%;
+    border-radius: $rmd-form-toggle-border-radius;
   }
 
   &--disabled {
@@ -184,6 +186,10 @@
     @include rmd-states-theme-update-var(hover-color, transparent);
 
     cursor: auto;
+
+    &::after {
+      @include rmd-form-theme(background-color, disabled-color);
+    }
   }
 
   @include rmd-states-keyboard-only {
@@ -204,7 +210,12 @@
   }
 
   &:checked + .rmd-switch__ball {
-    transform: translateX(calc(100% - #{$rmd-switch-ball-size}));
+    $offset: $rmd-switch-ball-size + $rmd-switch-ball-offset;
+
+    @include rmd-utils-rtl {
+      transform: translateX(-$offset);
+    }
+    transform: translateX($offset);
 
     &::after {
       @include rmd-form-theme(background-color, active-color);
@@ -212,7 +223,7 @@
   }
 
   &:checked:disabled + .rmd-switch__ball::after {
-    @include rmd-form-theme(background-color, disabled-color);
+    background-color: $rmd-switch-ball-disabled-color;
   }
 }
 
@@ -220,10 +231,14 @@
 @mixin rmd-switch-ball {
   @include rmd-utils-hide-focus-outline;
   @include rmd-transition(standard);
+  @include rmd-utils-rtl {
+    left: auto;
+    right: calc(-50% + #{$rmd-switch-ball-offset});
+  }
 
   border-radius: $rmd-switch-ball-border-radius;
   height: $rmd-switch-ball-size * 2;
-  left: calc(-50% + 0.25rem);
+  left: calc(-50% + #{$rmd-switch-ball-offset});
   position: absolute;
   top: calc(-50% - #{$rmd-switch-ball-size - $rmd-switch-track-height});
   transition-duration: $rmd-transition-standard-time;
@@ -255,4 +270,8 @@
     width: $rmd-switch-ball-size;
     z-index: 1;
   }
+}
+
+@mixin rmd-switch-container {
+  padding: 0.5rem ($rmd-switch-ball-size / 2);
 }

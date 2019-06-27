@@ -6,7 +6,6 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { TextIconSpacing } from "@react-md/icon";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -73,6 +72,14 @@ export interface InputToggleProps
   toggleClassName?: string;
 
   /**
+   * Boolean if the icon's overlay should be disabled. The way the Checkbox and Radio input
+   * elements work is by applying different opacity to the `::before` and `::after` pseudo
+   * selectors and animating it. If you want to use a custom icon that is not a material-icon
+   * checkbox outline or radio button, you should probably enable this prop.
+   */
+  disableIconOverlay?: boolean;
+
+  /**
    * Boolean if the input toggle is currently errored. This will update the label and the
    * input to gain error colors.
    */
@@ -110,7 +117,7 @@ type DefaultProps = Required<
     | "fullWidth"
     | "stacked"
     | "iconAfter"
-    | "defaultChecked"
+    | "disableIconOverlay"
   >
 >;
 type WithDefaultProps = Props & DefaultProps & WithRef;
@@ -134,6 +141,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     stacked,
     label,
     iconAfter,
+    disableIconOverlay,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -160,6 +168,12 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     onBlur: propOnBlur,
   });
 
+  const labelEl = (
+    <Label htmlFor={id} error={error} disabled={disabled}>
+      {label}
+    </Label>
+  );
+
   return (
     <ToggleContainer
       style={style}
@@ -167,47 +181,41 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
       fullWidth={fullWidth}
       stacked={stacked}
     >
-      <TextIconSpacing
-        icon={
-          <Label htmlFor={id} error={error} disabled={disabled}>
-            {label}
-          </Label>
-        }
-        iconAfter={!iconAfter}
+      {iconAfter && labelEl}
+      <span
+        style={toggleStyle}
+        className={cn(
+          block({
+            focused,
+            disabled,
+          }),
+          toggleClassName
+        )}
       >
+        <input
+          {...props}
+          {...handlers}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          ref={forwardedRef}
+          className={block("input")}
+        />
         <span
-          style={toggleStyle}
+          style={iconStyle}
           className={cn(
-            block({
-              focused,
+            block("icon", {
+              circle: !disableIconOverlay && type === "radio",
               disabled,
+              overlay: !disableIconOverlay,
             }),
-            toggleClassName
+            iconClassName
           )}
         >
-          <input
-            {...props}
-            {...handlers}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            ref={forwardedRef}
-            className={block("input")}
-          />
-          <span
-            style={iconStyle}
-            className={cn(
-              block("icon", {
-                circle: type === "radio",
-                disabled,
-              }),
-              iconClassName
-            )}
-          >
-            {icon}
-          </span>
-          {ripples}
+          {icon}
         </span>
-      </TextIconSpacing>
+        {ripples}
+      </span>
+      {!iconAfter && labelEl}
     </ToggleContainer>
   );
 };
@@ -218,7 +226,7 @@ const defaultProps: DefaultProps = {
   stacked: false,
   disabled: false,
   iconAfter: false,
-  defaultChecked: false,
+  disableIconOverlay: false,
 };
 
 InputToggle.defaultProps = defaultProps;
@@ -246,6 +254,7 @@ if (process.env.NODE_ENV !== "production") {
       stacked: PropTypes.bool,
       disabled: PropTypes.bool,
       iconAfter: PropTypes.bool,
+      disableIconOverlay: PropTypes.bool,
     };
   }
 }

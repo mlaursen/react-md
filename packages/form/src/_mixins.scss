@@ -32,6 +32,10 @@
     }
   }
 
+  .rmd-switch-container {
+    @include rmd-switch-container;
+  }
+
   .rmd-switch {
     @include rmd-switch;
 

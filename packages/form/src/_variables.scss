@@ -18,13 +18,13 @@ $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
   100,
   true,
-  darken($rmd-theme-error, 20%)
+  darken($rmd-form-error-color, 20%)
 ) !default;
 
 /// The color to use when a form element (text, checkbox, radio, etc) is
 /// currently active by the user(normally focus).
 /// @type Color
-$rmd-form-active-color: $rmd-blue-500 !default;
+$rmd-form-active-color: rmd-theme-var(secondary) !default;
 
 /// The color to use when a form element is disabled.
 /// @type Color
@@ -55,6 +55,7 @@ $rmd-label-floating-top: 1.6rem !default;
 $rmd-form-toggle-border-radius: 50% !default;
 $rmd-form-toggle-inset: 0.3125rem !default;
 $rmd-form-toggle-dense-inset: 0.25rem !default;
+$rmd-form-toggle-color: $rmd-deep-orange-a-200 !default;
 
 $rmd-switch-track-height: 1rem !default;
 $rmd-switch-track-width: 2.25rem !default;
@@ -63,6 +64,13 @@ $rmd-switch-track-border-radius: 0.5rem !default;
 
 $rmd-switch-ball-size: 1.25rem !default;
 $rmd-switch-ball-border-radius: 50% !default;
+$rmd-switch-ball-offset: 0.25rem !default;
+$rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
+  $rmd-theme-secondary,
+  200,
+  false,
+  lighten($rmd-theme-secondary, 12%)
+) !default;
 
 $rmd-form-filled-background-color-light: #dcdcdc !default;
 $rmd-form-filled-background-color-dark: $rmd-grey-700 !default;
@@ -105,6 +113,7 @@ $rmd-form-textarea-underline-margin-top: 1.5rem !default;
 $rmd-form-theme-values: (
   error-color: $rmd-form-error-color,
   error-hover-color: $rmd-form-error-hover-color,
+  toggle-color: $rmd-form-toggle-color,
   active-color: $rmd-form-active-color,
   disabled-color: $rmd-form-disabled-color,
   placeholder-color: $rmd-form-placeholder-color,
