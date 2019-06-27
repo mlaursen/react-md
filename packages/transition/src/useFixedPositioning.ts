@@ -10,14 +10,20 @@ import {
   useScrollListener,
 } from "@react-md/utils";
 
-type FixedToFunction = () => HTMLElement | null;
-type FixedTo = string | HTMLElement | null | FixedToFunction;
-type OptionalFixedPositionOptions = Omit<
+export type FixedToFunction = () => HTMLElement | null;
+export type FixedTo = string | HTMLElement | null | FixedToFunction;
+export type OptionalFixedPositionOptions = Omit<
   FixedPositionOptions,
   "container" | "element"
 >;
+export type GetFixedPositionOptions = (
+  node: HTMLElement
+) => OptionalFixedPositionOptions;
 
-type PositionChange = (wanted: PositionAnchor, actual: PositionAnchor) => void;
+export type PositionChange = (
+  wanted: PositionAnchor,
+  actual: PositionAnchor
+) => void;
 
 export interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
@@ -33,7 +39,7 @@ export interface FixedPositioningOptions
    * things once the DOM node has been added for initial positioning or other things
    * like that. The returned options will override the existing options
    */
-  getOptions?: (node: HTMLElement) => OptionalFixedPositionOptions;
+  getOptions?: GetFixedPositionOptions;
 
   /**
    * An optional function to call when the element is in the DOM and a window resize
@@ -45,22 +51,16 @@ export interface FixedPositioningOptions
   /**
    * An optional function to call when the element is in the DOM and a window scroll
    * event has occurred. The main use-case for this is hiding the fixed element when
-   * the an element or the entire page has a scroll event.
+   * the element or the entire page has a scroll event.
    */
   onScroll?: (event: Event) => void;
 
   /**
-   * An optional function to call when the providex `xPosition` and `yPosition` are not
-   * the same as the "calculated" position after tyring to make the element fixed
+   * An optional function to call when the provide `xPosition` and `yPosition` are not
+   * the same as the "calculated" position after trying to make the element fixed
    * within the viewport.
    */
   onPositionChange?: PositionChange;
-
-  /**
-   * Boolean if the style object should also return the correct `transform-origin` value
-   * in the style object.
-   */
-  transformOrigin?: boolean;
 }
 
 function getFixedTo(fixedTo: FixedTo) {
@@ -89,7 +89,7 @@ function getFixedTo(fixedTo: FixedTo) {
  * `onEntered`, and `onExited` handlers to pass down as well as the current style object to apply
  * to the element.
  *
- * Until the element has been removed from the DOM and is visible, the positiong will automatically
+ * Until the element has been removed from the DOM and is visible, the position will automatically
  * update when the user scrolls or resizes the screen.
  *
  * > It is recommended to start the exit animation when that happens though.

@@ -1,9 +1,7 @@
 import React, {
   FC,
-  lazy,
   Suspense,
   useState,
-  useMemo,
   useRef,
   useEffect,
   useCallback,
@@ -14,6 +12,7 @@ import { getProgressA11y } from "@react-md/progress";
 import { bem } from "@react-md/theme";
 
 import Phone from "components/Phone";
+import useFakeLazyImport from "hooks/useFakeLazyImport";
 
 import "./with-suspense.scss";
 import WithSuspenseAppBar from "./WithSuspenseAppBar";
@@ -21,14 +20,6 @@ import WithSuspenseFallback from "./WithSuspenseFallback";
 import WithSuspenseFiles from "./WithSuspenseFiles";
 
 const block = bem("progress-suspense");
-
-function fakeImport(): Promise<{ default: FC }> {
-  return new Promise(resolve => {
-    window.setTimeout(() => {
-      resolve({ default: WithSuspenseFiles });
-    }, 5000);
-  });
-}
 
 enum State {
   READY,
@@ -68,11 +59,7 @@ const WithSuspense: FC = () => {
   const loading = state === State.LOADING;
   const completed = state === State.COMPELTED;
 
-  // you should probably never do this... but this is a way to make it so that
-  // the lazy loaded component can be re-loaded infinitely after resetting the
-  // demo. Without this, the lazy implementation will immediately resolve the
-  // fake import and not show any progress
-  const LazyComponent = useMemo(() => lazy(() => fakeImport()), [key.current]);
+  const LazyComponent = useFakeLazyImport(WithSuspenseFiles, key.current);
   return (
     <Phone
       id="with-suspense"
