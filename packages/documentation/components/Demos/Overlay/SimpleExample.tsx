@@ -7,7 +7,12 @@ const SimpleExample: FC = () => {
   const { toggled, toggle, disable } = useToggle();
   return (
     <Fragment>
-      <Button id="simple-overlay-button" onClick={toggle} themeType="contained">
+      <Button
+        id="simple-overlay-button"
+        onClick={toggle}
+        theme="primary"
+        themeType="contained"
+      >
         Show Overlay
       </Button>
       <Overlay id="simple-overlay" visible={toggled} onRequestClose={disable} />

@@ -4,6 +4,7 @@ import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
 
+export type RadioProps = InputToggleProps;
 type DefaultProps = Required<Pick<InputToggleProps, "icon">>;
 
 /**

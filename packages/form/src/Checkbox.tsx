@@ -4,6 +4,8 @@ import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
 
+export type CheckboxProps = InputToggleProps;
+
 /**
  * The `Checkbox` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a checkbox input.

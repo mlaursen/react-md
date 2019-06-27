@@ -38,14 +38,19 @@
   @include rmd-transition(standard);
   @include rmd-utils-full-screen;
 
-  cursor: pointer;
   opacity: 0;
   pointer-events: none;
   transition: opacity $rmd-overlay-transition-duration;
 
   &--active {
     @include rmd-overlay-theme(opacity, active-opacity);
+  }
 
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &--visible {
     pointer-events: auto;
   }
 }

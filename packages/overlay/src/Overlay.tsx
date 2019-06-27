@@ -23,13 +23,32 @@ export interface OverlayProps
    * the overlay can hide the overlay.
    */
   onRequestClose: () => void;
+
+  /**
+   * Boolean if the overlay should still be "hidden" from the user while visible. This will just make it
+   * so the opacity stays at 0. This is really just helpful if you'd like to create a simple close on
+   * outside click feature since you can hook into the `onRequestClose` prop since the overlay will be clicked.
+   */
+  hidden?: boolean;
+
+  /**
+   * Boolean if the overlay should gain the pointer cursor while it's visible. You normally want this enabled
+   * by default except when used as a modal's overlay.
+   */
+  clickable?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLSpanElement>;
 type DefaultProps = Required<
   Pick<
     OverlayProps,
-    "timeout" | "mountOnEnter" | "unmountOnExit" | "tabIndex" | "classNames"
+    | "timeout"
+    | "mountOnEnter"
+    | "unmountOnExit"
+    | "tabIndex"
+    | "classNames"
+    | "hidden"
+    | "clickable"
   >
 >;
 type WithDefaultProps = OverlayProps & DefaultProps & WithRef;
@@ -45,6 +64,8 @@ const Overlay: FC<OverlayProps & WithRef> = providedProps => {
   const {
     className,
     visible,
+    hidden,
+    clickable,
     timeout,
     children,
     mountOnEnter,
@@ -73,8 +94,8 @@ const Overlay: FC<OverlayProps & WithRef> = providedProps => {
       <CSSTransition
         appear
         in={visible}
-        classNames={classNames}
-        timeout={timeout}
+        classNames={hidden ? "" : classNames}
+        timeout={hidden ? 0 : timeout}
         mountOnEnter={mountOnEnter}
         unmountOnExit={unmountOnExit}
         onEnter={onEnter}
@@ -93,7 +114,9 @@ const Overlay: FC<OverlayProps & WithRef> = providedProps => {
                 // have to manually set the active state here since react-transition-group doesn't
                 // clone in the transition `classNames` and if the overlay re-renders while the
                 // animation has finished, the active className will disappear
-                active: state === "entered",
+                active: !hidden && state === "entered",
+                visible,
+                clickable,
               }),
               className
             )}
@@ -110,6 +133,8 @@ const Overlay: FC<OverlayProps & WithRef> = providedProps => {
 const defaultProps: DefaultProps = {
   tabIndex: -1,
   timeout: 150,
+  hidden: false,
+  clickable: true,
   mountOnEnter: true,
   unmountOnExit: true,
   classNames: {
