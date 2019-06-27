@@ -53,7 +53,11 @@ export interface FixedPositioningOptions
    * event has occurred. The main use-case for this is hiding the fixed element when
    * the element or the entire page has a scroll event.
    */
-  onScroll?: (event: Event) => void;
+  onScroll?: (
+    event: Event,
+    element: HTMLElement | null,
+    fixedTo: HTMLElement | null
+  ) => void;
 
   /**
    * An optional function to call when the provide `xPosition` and `yPosition` are not
@@ -205,7 +209,7 @@ export default function useFixedPositioning({
     enabled: !!element.current,
     onScroll: event => {
       if (onScroll) {
-        onScroll(event);
+        onScroll(event, element.current, getFixedTo(fixedTo));
       }
 
       updateStyle();

@@ -1,34 +1,28 @@
-import React, { Fragment, FC } from "react";
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
+import React, { FC, Fragment } from "react";
+import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { TextIconSpacing } from "@react-md/icon";
+import { useInputToggle } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
+
+import Checkbox from "components/Checkbox";
 
 import "./fixing-overflow-issues.scss";
 
 const FixingOverflowIssues: FC = () => {
   const { toggled: visible, disable, toggle } = useToggle();
-  const { toggled: portal, setToggled: setPortal } = useToggle();
+  const [portal, handlePortalChange] = useInputToggle(false);
   return (
     <Fragment>
       <AppBar theme="default">
-        <AppBarTitle>
-          <TextIconSpacing
-            icon={
-              <input
-                id="enable-portal"
-                type="checkbox"
-                checked={portal}
-                onChange={event => setPortal(event.currentTarget.checked)}
-              />
-            }
-            iconAfter
-          >
-            <label htmlFor="enable-portal">Enable Portal</label>
-          </TextIconSpacing>
-        </AppBarTitle>
+        <Checkbox
+          id="enable-portal"
+          name="portalOptions"
+          checked={portal}
+          onChange={handlePortalChange}
+          label="Enable Portal"
+        />
       </AppBar>
       <div className="overlay-overflow-container">
         <Text>

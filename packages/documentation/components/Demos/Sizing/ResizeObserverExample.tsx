@@ -27,9 +27,7 @@ function useSize() {
 
   const onResize: ResizeObserverChangeEventHandler = event => {
     const { height, width } = event;
-    if (size.height !== height || size.width !== width) {
-      setSize({ height: event.height, width: event.width });
-    }
+    setSize({ height, width });
   };
 
   const { height, width } = size;
@@ -92,6 +90,7 @@ const SimpleExample: FC = () => {
       <Button
         id="start-resizing"
         onClick={toggle}
+        theme="primary"
         themeType="contained"
         className={block("toggle")}
       >

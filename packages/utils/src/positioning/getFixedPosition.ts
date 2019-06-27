@@ -261,14 +261,15 @@ function fixInnerLeftPosition({
   containerWidth,
   elementWidth,
   vw,
+  xMargin,
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = containerLeft;
+  let left = containerLeft + xMargin;
   let actualX: HorizontalPosition = "inner-left";
   const screenRight = vw - vwMargin;
   if (left - elementWidth < vwMargin) {
-    const nextLeft = containerLeft + containerWidth - elementWidth;
+    const nextLeft = containerLeft + containerWidth - elementWidth - xMargin;
     if (disableSwapping || nextLeft > screenRight) {
       left = vwMargin;
     } else {
@@ -285,16 +286,17 @@ function fixInnerRightPosition({
   containerWidth,
   elementWidth,
   vw,
+  xMargin,
   vwMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
-  let left = containerLeft + containerWidth - elementWidth;
+  let left = containerLeft + containerWidth - elementWidth - xMargin;
   let actualX: HorizontalPosition = "inner-right";
   if (left < vwMargin) {
     if (disableSwapping || containerLeft + elementWidth > vw - vwMargin) {
       left = vwMargin;
     } else {
-      left = containerLeft;
+      left = containerLeft + xMargin;
       actualX = "left";
     }
   }
@@ -372,14 +374,15 @@ function fixTopPosition({
   containerHeight,
   elementHeight,
   vh,
+  yMargin,
   vhMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
   let actualY: VerticalPosition = "top";
-  let top = containerTop;
+  let top = containerTop + yMargin;
   const screenBottom = vh - vhMargin;
   if (top + elementHeight > screenBottom) {
-    const nextTop = containerTop + containerHeight - elementHeight;
+    const nextTop = containerTop + containerHeight - elementHeight - yMargin;
     if (disableSwapping || nextTop < vhMargin) {
       top = screenBottom - elementHeight;
     } else {
@@ -396,18 +399,19 @@ function fixBottomPosition({
   containerHeight,
   elementHeight,
   vh,
+  yMargin,
   vhMargin,
   disableSwapping,
 }: AdjustPositionOptions) {
   let actualY: VerticalPosition = "bottom";
-  let top = containerTop + containerHeight - elementHeight;
+  let top = containerTop + containerHeight - elementHeight - yMargin;
   const screenBottom = vh - vhMargin;
   if (top + elementHeight > screenBottom) {
     if (disableSwapping || containerTop < vhMargin) {
       top = vhMargin;
     } else {
       actualY = "top";
-      top = containerTop;
+      top = containerTop + yMargin;
     }
   }
 

@@ -87,6 +87,12 @@ export interface DialogProps
   overlayClassName?: string;
 
   /**
+   * Boolean if the overlay should be "hidden" from the user once it's visible be keeping the
+   * opacity set to `0`. This is really only used for custom dialogs like the `FixedDialog`.
+   */
+  overlayHidden?: boolean;
+
+  /**
    * An optional style to apply to the dialog container when the `type` is set to `"centered"` or
    * when the `forceContainer` prop is enabled. You probably don't want to use this prop in most
    * cases.
@@ -177,6 +183,7 @@ type DefaultProps = Required<
     | "disableFocusContainer"
     | "disableNestedDialogFixes"
     | "portal"
+    | "overlayHidden"
   >
 >;
 type WithDefaultProps = DialogProps & DefaultProps & WithRef;
@@ -184,7 +191,6 @@ type WithDefaultProps = DialogProps & DefaultProps & WithRef;
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
 const noop = () => {};
 const block = bem("rmd-dialog");
-const overlayBlock = bem("rmd-dialog-overlay");
 
 const Dialog: FC<
   LabelRequiredForA11y<DialogProps> & WithRef
@@ -199,6 +205,7 @@ const Dialog: FC<
     overlay: propOverlay,
     overlayStyle,
     overlayClassName,
+    overlayHidden,
     visible,
     onRequestClose,
     portal,
@@ -220,6 +227,8 @@ const Dialog: FC<
     disableScrollLock,
     disableEscapeClose: propDisableEscapeClose,
     disableFocusContainer,
+    disableFocusOnMount,
+    disableFocusOnUnmount,
     disableNestedDialogFixes,
     onKeyDown,
     ...props
@@ -243,7 +252,7 @@ const Dialog: FC<
         onKeyDown(event);
       }
 
-      if (!disableEscapeClose && !modal && event.key === "Escape") {
+      if (!disableEscapeClose && event.key === "Escape") {
         onRequestClose();
       }
     },
@@ -256,11 +265,10 @@ const Dialog: FC<
       <Overlay
         id={`${id}-overlay`}
         style={overlayStyle}
-        className={cn(
-          overlayBlock({ "no-pointer": modal, hidden: disableOverlay }),
-          overlayClassName
-        )}
+        className={cn("rmd-dialog-overlay", overlayClassName)}
+        hidden={overlayHidden || disableOverlay}
         visible={visible}
+        clickable={!modal}
         onRequestClose={modal ? noop : onRequestClose}
       />
     );
@@ -271,8 +279,8 @@ const Dialog: FC<
       {...props}
       aria-modal
       disableTabFocusWrap={disableFocusContainer}
-      disableFocusOnMount={disableFocusContainer}
-      disableFocusOnUnmount={disableFocusContainer}
+      disableFocusOnMount={disableFocusContainer || disableFocusOnMount}
+      disableFocusOnUnmount={disableFocusContainer || disableFocusOnUnmount}
       onKeyDown={handleKeyDown}
       className={cn(
         block({
@@ -336,6 +344,7 @@ const defaultProps: DefaultProps = {
   tabIndex: -1,
   portal: true,
   modal: false,
+  overlayHidden: false,
   mountOnEnter: true,
   unmountOnExit: true,
   timeout: {
@@ -383,6 +392,7 @@ if (process.env.NODE_ENV !== "production") {
       overlay: PropTypes.bool,
       overlayStyle: PropTypes.object,
       overlayClassName: PropTypes.string,
+      overlayHidden: PropTypes.bool,
       containerStyle: PropTypes.object,
       containerClassName: PropTypes.string,
       forceContainer: PropTypes.bool,

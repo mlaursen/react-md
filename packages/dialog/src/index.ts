@@ -3,4 +3,5 @@ export { default as DialogHeader } from "./DialogHeader";
 export { default as DialogTitle } from "./DialogTitle";
 export { default as DialogContent } from "./DialogContent";
 export { default as DialogFooter } from "./DialogFooter";
+export { default as FixedDialog } from "./FixedDialog";
 export { NestedDialogContextProvider } from "./NestedDialogContext";

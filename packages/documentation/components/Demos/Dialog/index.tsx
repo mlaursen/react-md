@@ -14,6 +14,9 @@ import simpleListExample from "./SimpleListExample.md";
 import AlertDialogsAndModals from "./AlertDialogsAndModals";
 import alertDialogsAndModals from "./AlertDialogsAndModals.md";
 
+import FixedDialogExample from "./FixedDialogExample";
+import fixedDialogExample from "./FixedDialogExample.md";
+
 import NestedDialogs from "./NestedDialogs";
 import nestedDialogs from "./NestedDialogs.md";
 
@@ -37,6 +40,11 @@ const demos = [
     name: "Alert Dialogs and Modals",
     description: alertDialogsAndModals,
     children: <AlertDialogsAndModals />,
+  },
+  {
+    name: "Fixed Dialog Eample",
+    description: fixedDialogExample,
+    children: <FixedDialogExample />,
   },
   {
     name: "Nested Dialogs",

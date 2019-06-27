@@ -161,6 +161,38 @@ const defaultProps: DefaultProps = {
 
 FocusContainer.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  FocusContainer.displayName = "FocusContainer";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    FocusContainer.propTypes = {
+      disableFocusCache: PropTypes.bool,
+      disableFocusOnMount: PropTypes.bool,
+      disableFocusOnUnmount: PropTypes.bool,
+      disableTabFocusWrap: PropTypes.bool,
+      defaultFocus: PropTypes.oneOfType([
+        PropTypes.oneOf(["first", "last"]),
+        PropTypes.string,
+      ]),
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      unmountFocusFallback: PropTypes.oneOfType([
+        PropTypes.instanceOf(HTMLElement),
+        PropTypes.string,
+        PropTypes.func,
+      ]),
+    };
+  }
+}
+
 export default forwardRef<HTMLDivElement, FocusContainerProps>((props, ref) => (
   <FocusContainer {...props} forwardedRef={ref} />
 ));

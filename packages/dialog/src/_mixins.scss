@@ -70,16 +70,44 @@
   }
 
   &--exit {
+    @include rmd-transition(acceleration);
+
     opacity: 1;
     transform: translateY(0);
+    transition: transform $rmd-dialog-leave-duration, opacity $rmd-dialog-leave-duration;
   }
 
   &--exit-active {
-    @include rmd-transition(acceleration);
-
     opacity: 0;
     transform: translateY($rmd-dialog-transition-distance);
+  }
+
+  &--fixed {
+    @include rmd-dialog-theme(z-index);
+  }
+
+  &--fixed-enter {
+    transform: scale(0);
+  }
+
+  &--fixed-enter-active {
+    @include rmd-transition(deceleration);
+
+    transform: scale(1);
+    transition: transform $rmd-dialog-enter-duration;
+  }
+
+  &--fixed-exit {
+    @include rmd-transition(deceleration);
+
+    opacity: 1;
+    transform: scale(1);
     transition: transform $rmd-dialog-leave-duration, opacity $rmd-dialog-leave-duration;
+  }
+
+  &--fixed-exit-active {
+    opacity: 0;
+    transform: scale(0);
   }
 }
 
@@ -169,22 +197,12 @@
   // update the z-index to be the same as the dialog so that the last defined
   // dialog with overlay with cover all the others.
   @include rmd-dialog-theme(z-index);
-
-  &--no-pointer {
-    // want to remove the click cursor for modals to help show that you can't click the
-    // overlay anymore.
-    cursor: auto;
-  }
-
-  &--hidden {
-    // when there are nested dialogs, want to make sure that only the last overlay is
-    // visible, otherwise the screen will get continually darker with all the overlays.
-    opacity: 0;
-  }
 }
 
 /// Creates all the styles for the dialog package.
 @mixin react-md-dialog {
+  @include rmd-theme-create-root-theme($rmd-dialog-theme-values, dialog);
+
   .rmd-dialog-container {
     @include rmd-dialog-container;
   }

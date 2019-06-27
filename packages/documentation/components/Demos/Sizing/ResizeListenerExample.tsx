@@ -1,9 +1,10 @@
 import React, { Fragment, FC, useState } from "react";
+import { useInputToggle } from "@react-md/form";
 import { ResizeListener } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
-import { useToggle } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
+import Checkbox from "components/Checkbox";
 
 const ResizeListenerExample: FC = () => {
   const [size, setSize] = useState(() => {
@@ -14,26 +15,26 @@ const ResizeListenerExample: FC = () => {
     return 0;
   });
 
-  const { toggled, toggle } = useToggle(true);
-  const { toggled: immediate, toggle: toggleImmediate } = useToggle(true);
+  const [enabled, handleEnabledChange] = useInputToggle(true);
+  const [immediate, handleImmediateChange] = useInputToggle(true);
 
   return (
     <Fragment>
-      <label htmlFor="toggle-resize-listener">Enable Listener:</label>
-      <input
+      <Checkbox
+        id="resize-enabled"
+        name="resizeOptions"
+        checked={enabled}
+        onChange={handleEnabledChange}
+        label="Enable Listener"
+      />
+      <Checkbox
         id="toggle-resize-listener"
-        type="checkbox"
-        checked={toggled}
-        onChange={toggle}
-      />
-      <label htmlFor="toggle-resize-listener">Invoke on mount:</label>
-      <input
-        id="toggle-resize-invocation"
-        type="checkbox"
+        name="resizeOptions"
         checked={immediate}
-        onChange={toggleImmediate}
+        onChange={handleImmediateChange}
+        label="Invoke on mount"
       />
-      {toggled && (
+      {enabled && (
         <ResizeListener
           immediate={immediate}
           onResize={() => setSize(window.innerWidth)}

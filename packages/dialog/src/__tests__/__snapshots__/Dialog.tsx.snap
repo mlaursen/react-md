@@ -13,7 +13,7 @@ exports[`Dialog should render correctly (with snapshots) 2`] = `
 >
   <div />
   <span
-    class="rmd-overlay rmd-dialog-overlay rmd-overlay--active"
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-overlay--active"
     id="dialog-1-overlay"
     tabindex="-1"
   />
@@ -39,7 +39,7 @@ exports[`Dialog should render correctly (with snapshots) 3`] = `
 >
   <div />
   <span
-    class="rmd-overlay rmd-dialog-overlay"
+    class="rmd-overlay rmd-overlay--clickable rmd-dialog-overlay"
     id="dialog-1-overlay"
     tabindex="-1"
   />

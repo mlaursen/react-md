@@ -1,9 +1,9 @@
-import React, { FC, Component, Fragment, forwardRef } from "react";
-import { useToggle } from "@react-md/utils";
+import React, { Component, forwardRef, Fragment } from "react";
 import { Button } from "@react-md/button";
-import { Text, TextProps, TextElement } from "@react-md/typography";
-import { Collapse } from "@react-md/transition";
 import { Divider } from "@react-md/divider";
+import { Collapse } from "@react-md/transition";
+import { Text, TextElement, TextProps } from "@react-md/typography";
+
 import Code from "components/Code/Code";
 
 /**
