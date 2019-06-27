@@ -14,7 +14,7 @@ const CustomCheckbox: FC<InputToggleProps> = ({
   defaultChecked = false,
   ...props
 }) => {
-  const { checked, onChange } = useInputToggle(defaultChecked, props.onChange);
+  const [checked, onChange] = useInputToggle(defaultChecked, props.onChange);
 
   return (
     <Checkbox

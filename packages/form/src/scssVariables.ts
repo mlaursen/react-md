@@ -2,7 +2,7 @@
 export default {
   "rmd-form-error-color": "#f44336",
   "rmd-form-error-hover-color": "#ff8a80",
-  "rmd-form-active-color": "#2196f3",
+  "rmd-form-active-color": "var(--rmd-theme-secondary, #f50057)",
   "rmd-form-disabled-color":
     "var(--rmd-theme-text-disabled-on-background, #9e9e9e)",
   "rmd-form-placeholder-color":
