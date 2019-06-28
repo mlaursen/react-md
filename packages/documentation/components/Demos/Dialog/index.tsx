@@ -42,7 +42,7 @@ const demos = [
     children: <AlertDialogsAndModals />,
   },
   {
-    name: "Fixed Dialog Eample",
+    name: "Fixed Dialog Example",
     description: fixedDialogExample,
     children: <FixedDialogExample />,
   },

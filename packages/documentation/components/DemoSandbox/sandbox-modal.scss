@@ -1,12 +1,20 @@
+@import 'variables';
 @import '@react-md/app-bar/dist/mixins';
+@import '@react-md/button/dist/mixins';
 @import '@react-md/elevation/dist/mixins';
 @import '@react-md/sizing/dist/mixins';
 @import '@react-md/sheet/dist/mixins';
+@import '@react-md/theme/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/utils/dist/mixins';
 
 .sandbox-modal {
   @include rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);
+
+  .light-theme & {
+    @include rmd-theme-dark;
+    @include rmd-button-theme-update-var(color, rmd-app-bar-theme-var(default-color));
+  }
 
   &__code {
     flex-grow: 1;

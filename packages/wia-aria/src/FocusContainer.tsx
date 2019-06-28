@@ -185,9 +185,9 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       unmountFocusFallback: PropTypes.oneOfType([
-        PropTypes.instanceOf(HTMLElement),
         PropTypes.string,
         PropTypes.func,
+        PropTypes.object,
       ]),
     };
   }

@@ -142,7 +142,7 @@ if (process.env.NODE_ENV !== "production") {
       fixedTo: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
-        PropTypes.instanceOf(HTMLElement),
+        PropTypes.object,
       ]),
       options: PropTypes.shape({
         vwMargin: PropTypes.number,
@@ -152,7 +152,7 @@ if (process.env.NODE_ENV !== "production") {
         disableSwapping: PropTypes.bool,
         transformOrigin: PropTypes.bool,
       }),
-      getOptions: PropTypes.funcm,
+      getOptions: PropTypes.func,
     };
   }
 }

@@ -6,6 +6,8 @@
 @import '@react-md/theme/dist/functions';
 @import '@react-md/theme/dist/variables';
 
+/// The background color to use for the sheet.
+/// @type Color
 $rmd-sheet-background-color: rmd-theme-var(surface) !default;
 
 /// The elevation to use for sheets that are displayed "inline" with other content. This _should__ most likely

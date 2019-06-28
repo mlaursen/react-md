@@ -1,5 +1,6 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
+  "rmd-sheet-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-sheet-elevation": 2,
   "rmd-sheet-fixed-elevation": 16,
   "rmd-sheet-z-index": 17,

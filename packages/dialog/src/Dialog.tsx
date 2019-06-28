@@ -164,6 +164,7 @@ export interface DialogProps
   disableNestedDialogFixes?: boolean;
 }
 
+type StrictProps = LabelRequiredForA11y<DialogProps>;
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<
   Pick<
@@ -186,15 +187,13 @@ type DefaultProps = Required<
     | "overlayHidden"
   >
 >;
-type WithDefaultProps = DialogProps & DefaultProps & WithRef;
+type WithDefaultProps = StrictProps & DefaultProps & WithRef;
 
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
 const noop = () => {};
 const block = bem("rmd-dialog");
 
-const Dialog: FC<
-  LabelRequiredForA11y<DialogProps> & WithRef
-> = providedProps => {
+const Dialog: FC<StrictProps & WithRef> = providedProps => {
   const {
     children,
     forwardedRef,
@@ -441,6 +440,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, LabelRequiredForA11y<DialogProps>>(
-  (props, ref) => <Dialog {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLDivElement, StrictProps>((props, ref) => (
+  <Dialog {...props} forwardedRef={ref} />
+));

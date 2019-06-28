@@ -50,6 +50,135 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-theme-values, theme);
 }
 
+/// This mixin can be used to apply the light theme by updating **every** color theme variable across
+/// all react-md packages.
+///
+/// Note: You'll still need to ensure that all the package's mixins were imported to get this to work.
+@mixin rmd-theme-light {
+  @include rmd-theme-update-var(background, $rmd-theme-light-background);
+  @include rmd-theme-update-var(surface, $rmd-theme-light-surface);
+  @include rmd-theme-update-var(on-surface, $rmd-black-base);
+  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    $rmd-theme-secondary-text-on-light-color
+  );
+  @include rmd-theme-update-var(text-hint-on-background, $rmd-theme-hint-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-disabled-on-background,
+    $rmd-theme-disabled-text-on-light-color
+  );
+  @include rmd-theme-update-var(text-icon-on-background, $rmd-theme-icon-on-light-color);
+
+  @if mixin-exists(rmd-app-bar-theme-update-var) {
+    @include rmd-app-bar-theme-update-var(
+      default-background-color,
+      $rmd-app-bar-default-light-theme-background-color
+    );
+    @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-light-theme-color);
+  }
+
+  @if mixin-exists(rmd-card-theme-update-var) {
+    @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-light-color);
+    @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-light-color);
+  }
+
+  @if mixin-exists(rmd-divider-theme-update-var) {
+    @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-light);
+  }
+
+  @if mixin-exists(rmd-form-theme-update-var) {
+    @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-light);
+    @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-light);
+    @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-light);
+  }
+
+  @if mixin-exists(rmd-sheet-theme-update-var) {
+    @include rmd-sheet-theme-update-var(background-color, $rmd-theme-light-surface);
+  }
+
+  @if mixin-exists(rmd-states-theme-update-var) {
+    @include rmd-states-theme-update-var(hover-color, $rmd-states-light-theme-hover-color);
+    @include rmd-states-theme-update-var(focus-color, $rmd-states-light-theme-focus-color);
+    @include rmd-states-theme-update-var(pressed-color, $rmd-states-light-theme-pressed-color);
+    @include rmd-states-theme-update-var(selected-color, $rmd-states-light-theme-selected-color);
+    @include rmd-states-theme-update-var(
+      ripple-background-color,
+      $rmd-states-light-theme-ripple-background-color
+    );
+  }
+}
+
+/// This mixin can be used to apply the dark theme by updating **every** color theme variable across
+/// all react-md packages.
+///
+/// This is really great to use within a media query for browsers that now support the
+/// `prefers-color-scheme` so that if the user has the dark theme enabled, they'll automatically gain
+/// the dark theme while using your app as well.
+///
+/// @example scss- Media Query Example
+///   @media (prefers-color-scheme: dark) {
+///     :root {
+///       @include rmd-theme-dark;
+///     }
+///   }
+///
+/// Note: You'll still need to ensure that all the package's mixins were imported to get this to work.
+@mixin rmd-theme-dark {
+  @include rmd-theme-update-var(background, $rmd-theme-dark-background);
+  @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);
+  @include rmd-theme-update-var(on-surface, $rmd-black-base);
+  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-dark-color);
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    $rmd-theme-secondary-text-on-dark-color
+  );
+  @include rmd-theme-update-var(text-hint-on-background, $rmd-theme-hint-text-on-dark-color);
+  @include rmd-theme-update-var(
+    text-disabled-on-background,
+    $rmd-theme-disabled-text-on-dark-color
+  );
+  @include rmd-theme-update-var(text-icon-on-background, $rmd-theme-icon-on-dark-color);
+
+  @if mixin-exists(rmd-app-bar-theme-update-var) {
+    @include rmd-app-bar-theme-update-var(
+      default-background-color,
+      $rmd-app-bar-default-dark-theme-background-color
+    );
+    @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-dark-theme-color);
+  }
+
+  @if mixin-exists(rmd-card-theme-update-var) {
+    @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-dark-color);
+    @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-dark-color);
+  }
+
+  @if mixin-exists(rmd-divider-theme-update-var) {
+    @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-dark);
+  }
+
+  @if mixin-exists(rmd-form-theme-update-var) {
+    @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-dark);
+    @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-dark);
+    @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-dark);
+  }
+
+  @if mixin-exists(rmd-sheet-theme-update-var) {
+    @include rmd-sheet-theme-update-var(background-color, $rmd-theme-dark-surface);
+  }
+
+  @if mixin-exists(rmd-states-theme-update-var) {
+    @include rmd-states-theme-update-var(hover-color, $rmd-states-dark-theme-hover-color);
+    @include rmd-states-theme-update-var(focus-color, $rmd-states-dark-theme-focus-color);
+    @include rmd-states-theme-update-var(pressed-color, $rmd-states-dark-theme-pressed-color);
+    @include rmd-states-theme-update-var(selected-color, $rmd-states-dark-theme-selected-color);
+    @include rmd-states-theme-update-var(
+      ripple-background-color,
+      $rmd-states-dark-theme-ripple-background-color
+    );
+  }
+}
+
 /// Creates all the styles for a theme in react-md. This will start by creating CSS Variables
 /// for each theme variable and then create class names for each variable.
 ///

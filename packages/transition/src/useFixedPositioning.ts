@@ -25,6 +25,12 @@ export type PositionChange = (
   actual: PositionAnchor
 ) => void;
 
+export type OnFixedPositionScroll = (
+  event: Event,
+  element: HTMLElement | null,
+  fixedTo: HTMLElement | null
+) => void;
+
 export interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
     Pick<TransitionProps, "onEnter" | "onEntering" | "onEntered" | "onExited"> {
@@ -53,11 +59,7 @@ export interface FixedPositioningOptions
    * event has occurred. The main use-case for this is hiding the fixed element when
    * the element or the entire page has a scroll event.
    */
-  onScroll?: (
-    event: Event,
-    element: HTMLElement | null,
-    fixedTo: HTMLElement | null
-  ) => void;
+  onScroll?: OnFixedPositionScroll;
 
   /**
    * An optional function to call when the provide `xPosition` and `yPosition` are not
