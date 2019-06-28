@@ -31,23 +31,6 @@
 @import 'components/Heading/heading';
 @import 'components/Blockquote/blockquote';
 
-.page-container {
-  padding: 0 4rem;
-}
-
-.cross-fade {
-  opacity: 0;
-  transform: translateY(-1rem);
-
-  &--active {
-    @include rmd-transition(deceleration);
-
-    opacity: 1;
-    transform: none;
-    transition: transform 0.3s, opacity 0.3s;
-  }
-}
-
 .light-theme {
   @include rmd-theme-update-var(background, $rmd-theme-light-background);
   @include rmd-theme-update-var(surface, $rmd-theme-light-surface);

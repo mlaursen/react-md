@@ -161,5 +161,7 @@ export default async function sandbox(config: ResolveConfig) {
     );
   }
 
-  time(createSandboxesLookup, "sandbox lookups");
+  if (!cleanOnly) {
+    time(createSandboxesLookup, "sandbox lookups");
+  }
 }
