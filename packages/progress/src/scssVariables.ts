@@ -69,5 +69,6 @@ export default {
     "background-color": "#ba68c8",
     "linear-size": "4px",
     "circular-size": "3rem",
+    "circular-width": 6,
   },
 };

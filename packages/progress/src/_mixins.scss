@@ -247,11 +247,11 @@
 
     &__circle {
       @include rmd-progress-theme(stroke, color);
+      @include rmd-progress-theme(stroke-width, circular-width);
 
       fill: none;
       stroke-dasharray: $rmd-progress-circle-dasharray;
       stroke-linecap: round;
-      stroke-width: $rmd-progress-circle-stroke-width;
 
       &--animate {
         @include rmd-transition(standard);
