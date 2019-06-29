@@ -3,7 +3,7 @@ import {
   Checkbox,
   Form,
   InputToggleProps,
-  useInputToggle,
+  useCheckboxState,
 } from "@react-md/form";
 import {
   FavoriteBorderFontIcon,
@@ -14,7 +14,7 @@ const CustomCheckbox: FC<InputToggleProps> = ({
   defaultChecked = false,
   ...props
 }) => {
-  const [checked, onChange] = useInputToggle(defaultChecked, props.onChange);
+  const [checked, onChange] = useCheckboxState(defaultChecked, props.onChange);
 
   return (
     <Checkbox

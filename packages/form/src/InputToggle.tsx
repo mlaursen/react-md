@@ -105,6 +105,11 @@ export interface InputToggleProps
    * Boolean if the input toggle should appear after the label instead of before.
    */
   iconAfter?: boolean;
+
+  /**
+   * Optional content to render after the icon element.
+   */
+  children?: ReactNode;
 }
 
 type Props = InputToggleProps & { type: "radio" | "checkbox" };
@@ -146,6 +151,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     disableProgrammaticRipple,
     rippleTimeout,
     rippleClassNames,
+    children,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, type, disabled } = props;
@@ -214,6 +220,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
           {icon}
         </span>
         {ripples}
+        {children}
       </span>
       {!iconAfter && labelEl}
     </ToggleContainer>

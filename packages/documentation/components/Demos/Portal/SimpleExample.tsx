@@ -5,19 +5,9 @@ import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
-import {
-  getFixedPosition,
-  useToggle,
-  useScrollListener,
-} from "@react-md/utils";
+import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 
 import "./simple-example.scss";
-
-const ScrollListener: FC<{ onScroll: EventListener }> = ({ onScroll }) => {
-  useScrollListener({ enabled: true, onScroll });
-
-  return null;
-};
 
 const SimpleExample: FC = () => {
   const { toggled, toggle, disable } = useToggle();

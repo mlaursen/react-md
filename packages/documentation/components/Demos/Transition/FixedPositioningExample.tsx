@@ -1,21 +1,15 @@
-import React, {
-  FC,
-  Fragment,
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-} from "react";
-import { Button } from "@react-md/button";
+import React, { FC, Fragment, useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { Button } from "@react-md/button";
+import { Form, useCheckboxState } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
-import { Text } from "@react-md/typography";
 import { useFixedPositioning } from "@react-md/transition";
-import { useInputToggle, Form } from "@react-md/form";
+import { Text } from "@react-md/typography";
 import {
-  useToggle,
   HorizontalPosition,
+  useToggle,
   VerticalPosition,
+  PositionAnchor,
 } from "@react-md/utils";
 
 import Checkbox from "components/Checkbox";
@@ -38,28 +32,28 @@ const verticals: VerticalPosition[] = [
   "bottom",
 ];
 
+const anchors = horizontals.reduce<Record<string, PositionAnchor>>(
+  (value, x) => {
+    verticals.forEach(y => {
+      value[`${x} ${y}`] = { x, y };
+    });
+
+    return value;
+  },
+  {}
+);
+
 const FixedPositioningExample: FC = () => {
   const { toggled: visible, toggle, disable: hide, enable: show } = useToggle();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const [disableSwapping, handleSwapCange] = useInputToggle(false);
-  const [transformOrigin, handleOriginChange] = useInputToggle(false);
-  const [hideOnScroll, handleScrollChange] = useInputToggle(true);
-  const [hideOnResize, handleScrollResize] = useInputToggle(true);
-  const [x, setX] = useState<HorizontalPosition>("center");
-  const [y, setY] = useState<VerticalPosition>("below");
-
-  const handleXChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setX(event.currentTarget.value as HorizontalPosition);
-    },
-    []
-  );
-  const handleYChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setY(event.currentTarget.value as VerticalPosition);
-    },
-    []
-  );
+  const [disableSwapping, handleSwapCange] = useCheckboxState(false);
+  const [transformOrigin, handleOriginChange] = useCheckboxState(false);
+  const [hideOnScroll, handleScrollChange] = useCheckboxState(true);
+  const [hideOnResize, handleScrollResize] = useCheckboxState(true);
+  const [anchor, setAnchor] = useState<PositionAnchor>({
+    x: "center",
+    y: "below",
+  });
 
   useEffect(() => {
     if (!visible) {
@@ -75,7 +69,7 @@ const FixedPositioningExample: FC = () => {
     return () => {
       window.cancelAnimationFrame(frame);
     };
-  }, [x, y]);
+  }, [anchor]);
 
   const {
     style,
@@ -85,7 +79,7 @@ const FixedPositioningExample: FC = () => {
     onExited,
   } = useFixedPositioning({
     fixedTo: buttonRef.current,
-    anchor: { x, y },
+    anchor,
     transformOrigin,
     disableSwapping,
     onScroll: hideOnScroll ? hide : undefined,
@@ -128,30 +122,21 @@ const FixedPositioningExample: FC = () => {
           fullWidth
         />
         <fieldset>
-          <legend>Horizontal Anchor</legend>
-          {horizontals.map(x => (
+          <Text component="legend">Anchor</Text>
+          {Object.entries(anchors).map(([value, currentAnchor]) => (
             <Radio
-              id={`fixed-x-${x}`}
-              defaultChecked={x === "center"}
-              name="anchorX"
-              label={x}
-              value={x}
+              key={value}
+              id={`fixed-anchor-${value}`}
+              name="anchor"
+              value={value}
+              label={value}
               fullWidth
-              onChange={handleXChange}
-            />
-          ))}
-        </fieldset>
-        <fieldset>
-          <legend>Vertical Anchor</legend>
-          {verticals.map(y => (
-            <Radio
-              id={`fixed-x-${y}`}
-              defaultChecked={y === "below"}
-              name="anchorY"
-              label={y}
-              value={y}
-              fullWidth
-              onChange={handleYChange}
+              checked={
+                anchor.x === currentAnchor.x && anchor.y === currentAnchor.y
+              }
+              onChange={() => {
+                setAnchor(currentAnchor);
+              }}
             />
           ))}
         </fieldset>

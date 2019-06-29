@@ -13,7 +13,8 @@ export * from "./InputToggle";
 export { default as Switch } from "./Switch";
 export * from "./Switch";
 
-export { default as useInputToggle } from "./useInputToggle";
+export { default as useCheckboxState } from "./useCheckboxState";
+export { default as useRadioState } from "./useRadioState";
 
 export { default as TextFieldContainer } from "./TextFieldContainer";
 export * from "./TextFieldContainer";

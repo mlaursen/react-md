@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { useInputToggle } from "@react-md/form";
+import { useCheckboxState } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
@@ -12,7 +12,7 @@ import "./fixing-overflow-issues.scss";
 
 const FixingOverflowIssues: FC = () => {
   const { toggled: visible, disable, toggle } = useToggle();
-  const [portal, handlePortalChange] = useInputToggle(false);
+  const [portal, handlePortalChange] = useCheckboxState(false);
   return (
     <Fragment>
       <AppBar theme="default">

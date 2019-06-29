@@ -5,8 +5,7 @@ type ChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>;
 type SetChecked = Dispatch<SetStateAction<boolean>>;
 
 /**
- * A small hook that can be used for controlling the state of a checkbox or radio
- * component.
+ * A small hook that can be used for controlling the state of a single Checkbox component.
  *
  * @param defaultChecked Boolean if the input should be checked by default. Changing
  * this value will not update the state after initial render.
@@ -15,15 +14,15 @@ type SetChecked = Dispatch<SetStateAction<boolean>>;
  * @return a list containing the checked state, a change event handler, and then a manual
  * set checked action.
  */
-export default function useInputToggle(
-  defaultChecked: boolean,
+export default function useCheckboxState(
+  defaultChecked: boolean | (() => boolean),
   onChange?: ChangeEventHandler
 ): [boolean, ChangeEventHandler, SetChecked] {
   const [checked, setChecked] = useState(defaultChecked);
-  const mergable = useRefCache(onChange);
+  const handler = useRefCache(onChange);
 
   const handleChange = useCallback<ChangeEventHandler>(event => {
-    const propOnChange = mergable.current;
+    const propOnChange = handler.current;
     if (propOnChange) {
       propOnChange(event);
     }

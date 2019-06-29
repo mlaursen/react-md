@@ -76,6 +76,11 @@ export interface SwitchProps
    * Boolean if the input toggle should appear after the label instead of before.
    */
   iconAfter?: boolean;
+
+  /**
+   * Any optional children that should be displayed within the switch's ball.
+   */
+  children?: ReactNode;
 }
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
@@ -105,6 +110,7 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
     iconAfter,
     onFocus: propOnFocus,
     onBlur: propOnBlur,
+    children,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, disabled } = props;
@@ -136,7 +142,9 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
             aria-hidden
             style={ballStyle}
             className={cn(block("ball"), ballClassName)}
-          />
+          >
+            {children}
+          </label>
         </span>
       </TextIconSpacing>
     </ToggleContainer>

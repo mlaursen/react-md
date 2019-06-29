@@ -1,5 +1,5 @@
 import React, { Fragment, FC, useState } from "react";
-import { useInputToggle } from "@react-md/form";
+import { useCheckboxState } from "@react-md/form";
 import { ResizeListener } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
 
@@ -15,8 +15,8 @@ const ResizeListenerExample: FC = () => {
     return 0;
   });
 
-  const [enabled, handleEnabledChange] = useInputToggle(true);
-  const [immediate, handleImmediateChange] = useInputToggle(true);
+  const [enabled, handleEnabledChange] = useCheckboxState(true);
+  const [immediate, handleImmediateChange] = useCheckboxState(true);
 
   return (
     <Fragment>

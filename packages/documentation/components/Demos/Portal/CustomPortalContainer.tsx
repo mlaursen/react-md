@@ -1,83 +1,55 @@
-import React, { FC, useState, useCallback } from "react";
-import { TextIconSpacing } from "@react-md/icon";
+import React, { FC } from "react";
+import { useRadioState } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
+
 import Code from "components/Code/Code";
+import Radio from "components/Radio";
 
 import "./custom-portal-container.scss";
 
 const values = [
   { intoId: "example-portal-container-1" },
-  { into: ".portal-container-example .custom-portal-container:nth-of-type(2)" },
+  { into: "#example-portal-container-2" },
   {
     into: () =>
       document.getElementById("example-portal-container-3") as HTMLDivElement,
   },
 ];
 
-type SelectedIndex = 0 | 1 | 2;
-
 const CustomPortalContainer: FC = () => {
-  const [selected, setSelected] = useState<SelectedIndex>(0);
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { id } = event.target;
-      let index: SelectedIndex = 0;
-      if (id === "use-into-query") {
-        index = 1;
-      } else if (id === "use-into-callback") {
-        index = 2;
-      }
-      setSelected(index);
-    },
-    []
-  );
+  const [selected, handleChange] = useRadioState<"0" | "1" | "2">("0");
 
   return (
     <div className="portal-container-example">
-      <TextIconSpacing
-        icon={
-          <input
-            id="use-into-id"
-            name="portal-props"
-            type="radio"
-            checked={selected === 0}
-            onChange={handleChange}
-          />
-        }
-        iconAfter
-      >
-        <label htmlFor="use-into-id">into id</label>
-      </TextIconSpacing>
-      <TextIconSpacing
-        icon={
-          <input
-            id="use-into-query"
-            name="portal-props"
-            type="radio"
-            checked={selected === 1}
-            onChange={handleChange}
-          />
-        }
-        iconAfter
-      >
-        <label htmlFor="use-into-query">into query</label>
-      </TextIconSpacing>
-      <TextIconSpacing
-        icon={
-          <input
-            id="use-into-callback"
-            name="portal-props"
-            type="radio"
-            checked={selected === 2}
-            onChange={handleChange}
-          />
-        }
-        iconAfter
-      >
-        <label htmlFor="use-into-callback">into function</label>
-      </TextIconSpacing>
-      <Portal {...values[selected]}>
+      <Radio
+        id="use-into-id"
+        label="Use intoId"
+        name="portalInto"
+        value="0"
+        checked={selected === "0"}
+        onChange={handleChange}
+        fullWidth
+      />
+      <Radio
+        id="use-into-query"
+        label="Use into query"
+        name="portalInto"
+        value="1"
+        checked={selected === "1"}
+        onChange={handleChange}
+        fullWidth
+      />
+      <Radio
+        id="use-into-function"
+        label="Use into function"
+        name="portalInto"
+        value="2"
+        checked={selected === "2"}
+        onChange={handleChange}
+        fullWidth
+      />
+      <Portal {...values[parseInt(selected, 10)]}>
         <Text type="subtitle-1" margin="none">
           Portal content!
         </Text>

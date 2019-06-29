@@ -1,6 +1,6 @@
 import React, { FC, Fragment, Suspense, useState } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
-import { Switch, useInputToggle } from "@react-md/form";
+import { Switch, useCheckboxState } from "@react-md/form";
 import { CircularProgress } from "@react-md/progress";
 import { CrossFade } from "@react-md/transition";
 
@@ -25,7 +25,7 @@ const CurrentPage: FC<CurrentPageProps> = ({ page }) => {
 };
 
 const AsyncPageTransitions: FC = () => {
-  const [checked, onChange] = useInputToggle(false);
+  const [checked, onChange] = useCheckboxState(false);
   const [page, setPage] = useState<0 | 1 | 2 | 3>(0);
   const Content = useFakeLazyImport<CurrentPageProps>(
     CurrentPage,
