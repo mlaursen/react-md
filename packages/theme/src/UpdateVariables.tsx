@@ -1,4 +1,4 @@
-import { FC, CSSProperties, ReactElement } from "react";
+import { FC, CSSProperties, ReactElement, Children, cloneElement } from "react";
 
 import {
   CSSVariable,
@@ -6,9 +6,12 @@ import {
   createCSSVariablesStyle,
 } from "./utils";
 
-export type VariableChildrenRenderer = (props: {
-  style: CSSProperties | undefined;
-}) => ReactElement<any>;
+interface Styleable {
+  style?: CSSProperties;
+}
+export type StyleableChild = ReactElement<Styleable>;
+
+export type VariableChildrenRenderer = (props: Styleable) => StyleableChild;
 
 export interface UpdateVariablesProps {
   /**
@@ -24,7 +27,13 @@ export interface UpdateVariablesProps {
    * If no children are applied or it is a react element, the css variables will be applied
    * to the root html tag instead
    */
-  children?: ReactElement<any> | VariableChildrenRenderer;
+  children?: StyleableChild | VariableChildrenRenderer;
+
+  /**
+   * Boolean if the style with the updated css variables should be cloned as a prop into the
+   * child element.
+   */
+  clone?: boolean;
 
   /**
    * A list of variables to set/update. If the variable names are not prefixed with `--`, it
@@ -41,12 +50,20 @@ export interface UpdateVariablesProps {
  * object to the children render function that can be applied to an element to update the values.
  */
 const UpdateVariables: FC<UpdateVariablesProps> = ({
-  variables,
   style,
   children,
+  clone,
+  variables,
 }) => {
   if (typeof children === "function") {
     return (children as VariableChildrenRenderer)({
+      style: createCSSVariablesStyle(variables, style),
+    });
+  } else if (clone) {
+    // can "safely" typecast this since it'll throw an error if they don't provide
+    // children anyways
+    const child = Children.only(children as StyleableChild);
+    return cloneElement(child, {
       style: createCSSVariablesStyle(variables, style),
     });
   }
@@ -55,7 +72,7 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
   // of the UpdateVariables is setting the values
   useDocumentCSSVariables(variables);
 
-  return (children as ReactElement<any>) || null;
+  return (children as StyleableChild) || null;
 };
 
 export default UpdateVariables;

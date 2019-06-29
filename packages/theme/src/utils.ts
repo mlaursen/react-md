@@ -105,31 +105,34 @@ function tryImport(packageName: string) {
     .catch(() => []);
 }
 
-export async function resolveVariables(
-  setRMDVariables: Dispatch<SetStateAction<CSSVariable[]>>
-) {
+export async function resolveVariables() {
   const variables = await Promise.all([
     tryImport("app-bar"),
     tryImport("avatar"),
     tryImport("button"),
+    tryImport("card"),
+    tryImport("dialog"),
     tryImport("divider"),
     tryImport("elevation"),
+    tryImport("form"),
     tryImport("icon"),
     tryImport("link"),
     tryImport("list"),
+    tryImport("media"),
+    tryImport("menu"),
     tryImport("overlay"),
-    tryImport("portal"),
+    tryImport("progress"),
     tryImport("sheet"),
+    tryImport("sizing"),
     tryImport("states"),
+    tryImport("table"),
     tryImport("theme"),
     tryImport("tooltip"),
     tryImport("transition"),
+    tryImport("tree"),
     tryImport("typography"),
     tryImport("utils"),
-    tryImport("wia-aria"),
   ]);
 
-  setRMDVariables(
-    variables.reduce((list, pkgVars) => [...list, ...pkgVars], [])
-  );
+  return variables.reduce((list, pkgVars) => [...list, ...pkgVars], []);
 }

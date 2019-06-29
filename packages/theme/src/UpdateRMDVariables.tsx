@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  useEffect,
+  useState,
+  MutableRefObject,
+  useRef,
+} from "react";
 
 import UpdateVariables, { UpdateVariablesProps } from "./UpdateVariables";
 import {
@@ -8,28 +14,54 @@ import {
   toCSSVariableName,
 } from "./utils";
 
+const RMD_PREFIX = "--rmd-";
+const loaded: MutableRefObject<CSSVariable[]> = { current: [] };
+
 const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
-  variables: propVariables,
+  variables,
   ...props
 }) => {
   if (process.env.NODE_ENV !== "production") {
-    const renderRef = useRef(false);
-    const [rmdVariables, setRMDVariables] = useState<CSSVariable[]>([]);
-    if (!renderRef.current) {
-      renderRef.current = true;
-
-      resolveVariables(setRMDVariables);
+    // when not in prod, try to "verify" that the user provided a valid react-md css variable
+    // to update. This will try to import all packages that have a scssVariables file and extract
+    // their theme variables.
+    const [rmdVariables, setRMDVariables] = useState(loaded.current);
+    if (loaded.current.length && !rmdVariables.length) {
+      setRMDVariables(loaded.current);
     }
 
+    useEffect(() => {
+      if (loaded.current.length) {
+        return;
+      }
+
+      let cancelled = false;
+      (async function() {
+        const variables = await resolveVariables();
+        loaded.current = variables;
+        if (!cancelled) {
+          setRMDVariables(variables);
+        }
+      })();
+
+      return () => {
+        cancelled = true;
+      };
+    });
+
+    const warned = useRef<string[]>([]);
     useEffect(() => {
       if (!rmdVariables.length) {
         return;
       }
 
-      propVariables.forEach(cssVar => {
+      variables.forEach(cssVar => {
         const { name: varName } = cssVar;
         const name = toCSSVariableName(varName, "--rmd-");
-        if (!rmdVariables.find(v => v.name === name)) {
+        if (
+          !rmdVariables.find(v => v.name === name) &&
+          !warned.current.includes(name)
+        ) {
           console.error(`Found an invalid react-md css variable passed to the \`UpdateRMDVariables\` component:
   - provided name: \`${varName}\`
   - lookup name: \`${name}\`
@@ -37,13 +69,23 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
           console.error(
             "Check the spelling of the variable or that is is really an exposed react-md theme css variable."
           );
+          console.error(
+            "Here is a list of all the found css variables from react-md:"
+          );
+          console.table(rmdVariables);
+
+          warned.current.push(name);
         }
       });
-    }, [rmdVariables, propVariables]);
+    }, [rmdVariables, variables]);
   }
-  const variables = fixVariables(propVariables, "--rmd-");
 
-  return <UpdateVariables {...props} variables={variables} />;
+  return (
+    <UpdateVariables
+      {...props}
+      variables={fixVariables(variables, RMD_PREFIX)}
+    />
+  );
 };
 
 export default UpdateRMDVariables;
