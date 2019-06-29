@@ -23,14 +23,15 @@ const CheckboxAndRadioExamples: FC = () => (
       icon={<CheckBoxSVGIcon />}
       label="Checkbox 3"
     />
-    <Radio id="radio-1" name="radios" label="Radio 1" />
-    <Radio id="radio-2" name="radios" label="Radio 2" />
+    <Radio id="radio-1" name="radios" label="Radio 1" value="a" />
+    <Radio id="radio-2" name="radios" label="Radio 2" value="b" />
     <InputToggle
       id="radio-3"
       type="radio"
       name="radios"
       label="Radio 3"
       icon={<RadioButtonCheckedSVGIcon />}
+      value="c"
     />
     <Form name="form1" id="form-1">
       <Text type="headline-5">Example Form</Text>
@@ -51,6 +52,7 @@ const CheckboxAndRadioExamples: FC = () => (
           name="example-form-radios"
           label={`Radio ${i + 1}`}
           icon={<RadioButtonCheckedSVGIcon />}
+          value={i}
         />
       ))}
       <AppBar component="footer" theme="clear">

@@ -10,7 +10,7 @@ export type CheckboxProps = InputToggleProps;
  * The `Checkbox` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a checkbox input.
  */
-const Checkbox: FC<InputToggleProps & WithForwardedRef<HTMLInputElement>> = ({
+const Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({
   forwardedRef,
   ...props
 }) => <InputToggle {...props} ref={forwardedRef} type="checkbox" />;
@@ -23,6 +23,6 @@ if (process.env.NODE_ENV !== "production") {
   Checkbox.displayName = "Checkbox";
 }
 
-export default forwardRef<HTMLInputElement, InputToggleProps>((props, ref) => (
+export default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (
   <Checkbox {...props} forwardedRef={ref} />
 ));
