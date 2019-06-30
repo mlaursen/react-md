@@ -227,7 +227,7 @@ async function copyStyles(files: string[]) {
         .replace(/dist\//g, `${scssDist}/`);
 
       const fileName = pathname.replace(src, scssDist);
-      log.info(`- ${pathname} -> ${fileName}`);
+      log.debug(`- ${pathname} -> ${fileName}`);
       return fs.writeFile(fileName, webpackImports, "utf8");
     })
   );

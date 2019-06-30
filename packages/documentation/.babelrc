@@ -22,7 +22,8 @@
         "bash",
         "diff",
         "git",
-        "json"
+        "json",
+        "properties"
       ],
       "plugins": [],
       "css": true

@@ -6,14 +6,11 @@
     "build": "dev-utils build",
     "clean": "dev-utils clean"
   },
-  "main": "./lib/scssVariables.js",
-  "module": "./es/scssVariables.js",
-  "types": "./types/scssVariables.d.ts",
+  "main": "./dist/scssVariables.js",
+  "module": "./dist/scssVariables.js",
+  "types": "./dist/scssVariables.d.ts",
   "files": [
-    "es/*",
-    "lib/*",
     "src/*",
-    "types/*",
     "dist/*"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",

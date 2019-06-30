@@ -6,7 +6,7 @@ import { FavoriteSVGIcon, DeleteSVGIcon } from "@react-md/material-icons";
 
 const IconButtons: FC = () => (
   <Container>
-    <Button id="icon-button-1" buttonType="icon">
+    <Button id="icon-button-1" buttonType="icon" theme="primary">
       <FontIcon>favorite</FontIcon>
     </Button>
     <Button
@@ -44,7 +44,12 @@ const IconButtons: FC = () => (
     >
       <FontIcon>add</FontIcon>
     </Button>
-    <Button id="icon-button-7" buttonType="icon" themeType="outline">
+    <Button
+      id="icon-button-7"
+      buttonType="icon"
+      theme="primary"
+      themeType="outline"
+    >
       <FontIcon>favorite</FontIcon>
     </Button>
     <Button

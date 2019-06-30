@@ -37,14 +37,9 @@ const SCSS_IMPORT = /@import '(.+)';/g;
  * in the file.
  */
 function getScssImports(filePath: string) {
-  const imports = new Set<string>();
   const contents = fs.readFileSync(filePath, "utf8");
   const matches = contents.match(SCSS_IMPORT) || [];
-  matches.forEach(match => {
-    imports.add(getModuleName(match, true));
-  });
-
-  return imports;
+  return matches.map(match => getModuleName(match, true));
 }
 
 /**
@@ -168,7 +163,7 @@ export function resolveModuleNames(
       imports.add(importName);
       if (/Code\.tsx/.test(importName)) {
         imports.add(importName.replace("Code.tsx", "code.scss"));
-        imports.add("_variables.scss");
+        imports.add(importName.replace("Code.tsx", "index.ts"));
       }
       return;
     } else if (isRaw(name)) {
@@ -241,12 +236,17 @@ export function extractImports(
   aliases: string[],
   compilerOptions: CompilerOptions
 ): string[] {
-  let imports: Set<string>;
-  if (isStyle(filePath)) {
-    imports = getScssImports(filePath);
-  } else {
-    imports = parseTypescript(filePath, aliases, compilerOptions);
-  }
+  const imports = parseTypescript(filePath, aliases, compilerOptions);
+  imports.forEach(fileName => {
+    if (isStyle(fileName)) {
+      const scssImports = getScssImports(fileName).filter(
+        n => !n.includes("@import")
+      );
+      scssImports.forEach(name => {
+        imports.add(name);
+      });
+    }
+  });
 
   return Array.from(imports);
 }

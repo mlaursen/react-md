@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 
 export const DEMOS_FOLDER = path.join("components", "Demos");
@@ -33,24 +34,24 @@ export const ALWAYS_REQUIRED_DEV_DEPENDENCIES = [
  * to the base index.scss for this list.
  */
 export const NON_STYLEABLE_RMD_PACKAGES = [
-  "@react-md/elevation",
   "@react-md/material-icons",
   "@react-md/portal",
-  "@react-md/sizing",
   "@react-md/wia-aria",
 ];
 
 export const DEMO_INDEX = `import React from "react";
 import { render } from "react-dom";
-import { StatesConfig } from "@react-md/states";
+import { StatesConfig, InteractionModeListener } from "@react-md/states";
 
 import "./styles.scss";
 import Demo from "./Demo";
 
 const App = () => (
-  <StatesConfig>
-    <Demo />
-  </StatesConfig>
+  <InteractionModeListener>
+    <StatesConfig>
+      <Demo />
+    </StatesConfig>
+  </InteractionModeListener>
 );
 
 render(<App />, document.getElementById("root"));
@@ -104,6 +105,12 @@ export const DEMO_TS_CONFIG = `{
   ]
 }
 `;
+
+export const CODE_INDEX_FILE = `import "./code.scss";
+export { default } from "./Code";
+`;
+
+export const VARIABLES_SCSS_FILE = fs.readFileSync("_variables.scss", "utf8");
 
 export const SANDBOXES_FILE = `/** this is a generated file from \`dev-utils sandbox\` */
 import { IFiles } from "codesandbox-import-utils/lib/api/define";

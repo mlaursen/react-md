@@ -24,8 +24,16 @@ const CodePreview: FC<CodePreviewProps> = ({
   let content = "";
   let language = "markdown";
   if (sandbox && sandbox[fileName]) {
-    language = fileName.substring(fileName.lastIndexOf(".") + 1);
+    if (fileName.endsWith(".env")) {
+      language = "properties";
+    } else {
+      language = fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
     ({ content } = sandbox[fileName]);
+    if (typeof content !== "string") {
+      content = `${JSON.stringify(content, null, 2)}\n`;
+    }
   }
 
   const code = useRef<HTMLPreElement | null>(null);

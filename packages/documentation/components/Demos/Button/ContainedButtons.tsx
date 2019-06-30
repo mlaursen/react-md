@@ -4,7 +4,7 @@ import { Button } from "@react-md/button";
 
 const ContainedButtons: FC = () => (
   <Container>
-    <Button id="contained-button-1" themeType="contained">
+    <Button id="contained-button-1" theme="primary" themeType="contained">
       Contained Button 1
     </Button>
     <Button id="contained-button-2" theme="secondary" themeType="contained">

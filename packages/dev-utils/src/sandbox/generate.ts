@@ -14,6 +14,8 @@ import {
   NON_STYLEABLE_RMD_PACKAGES,
   SANDBOXES_FILE,
   SANDBOXES_PATH,
+  CODE_INDEX_FILE,
+  VARIABLES_SCSS_FILE,
 } from "./constants";
 import { isSvg } from "./matchers";
 import { getFileSource } from "./formatters";
@@ -34,15 +36,16 @@ function toTitle(s: string) {
 }
 
 function toDependencyJson(dependencies: string[]) {
-  return dependencies
-    .filter(n => !n.startsWith(path.sep))
-    .reduce(
-      (json, dependency) => ({
-        ...json,
-        [dependency]: dependency.startsWith("@react-md") ? "next" : "latest",
-      }),
-      {}
-    );
+  const filtered = dependencies.filter(n => !n.startsWith(path.sep));
+  filtered.sort();
+
+  return filtered.reduce(
+    (json, dependency) => ({
+      ...json,
+      [dependency]: dependency.startsWith("@react-md") ? "next" : "latest",
+    }),
+    {}
+  );
 }
 
 export async function findGeneratedSandboxes() {
@@ -108,11 +111,11 @@ function createDemoStyles(dependencies: string[]) {
     ...ALWAYS_REQUIRED_DEPENDENCIES.filter(
       name => !dependencies.includes(name)
     ),
-  ]
-    .map(name => `@import '~${name}/${scssDist}/mixins';`)
-    .join("\n");
+  ].map(name => `@import '~${name}/${scssDist}/mixins';`);
+  imports.sort();
 
-  return `${imports}
+  return `@import 'variables';
+${imports.join("\n")}
 
 @include react-md-utils;
 `;
@@ -187,12 +190,16 @@ export default async function generate({
       content: createDemoStyles(dependencies),
       isBinary: false,
     },
+    "src/_variables.scss": {
+      content: VARIABLES_SCSS_FILE,
+      isBinary: false,
+    },
     "package.json": {
       content: packageJson,
       isBinary: false,
     },
     ".env": {
-      content: "SASS_PATH=node_modules:src",
+      content: "SASS_PATH=node_modules:src\n",
       isBinary: false,
     },
   };
@@ -211,10 +218,15 @@ export default async function generate({
 
       const fileName = `src/${pathname}`;
 
-      let content = await fs.readFile(
-        path.join(documentationRoot, filePath),
-        "utf8"
-      );
+      let content: string;
+      if (filePath.endsWith("Code/index.ts")) {
+        content = CODE_INDEX_FILE;
+      } else {
+        content = await fs.readFile(
+          path.join(documentationRoot, filePath),
+          "utf8"
+        );
+      }
 
       if (/\.tsx?$/.test(filePath)) {
         content = getFileSource(content);
@@ -222,6 +234,10 @@ export default async function generate({
 
       if (!isSvg(filePath)) {
         content = content.replace(aliasRegExp, "./");
+      }
+
+      if (filePath.endsWith("code.scss")) {
+        content = content.replace(/'variables'/, "'../variables'");
       }
 
       if (demoPath === filePath) {
@@ -245,6 +261,9 @@ export default async function generate({
         "Sandbox rules need to be updated. Found multiple files with the same name."
       );
       log.error("Current file path: ", demoPath);
+      log.error("Current file name: ", key);
+      log.error("Current files:");
+      log.error(list(Object.keys(json)));
       log.error();
       process.exit(1);
     }
