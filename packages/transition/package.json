@@ -1,6 +1,6 @@
 {
   "name": "@react-md/transition",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "A package for working with react-md to use some simple transitions.",
   "scripts": {
     "build": "dev-utils build",
