@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, Dispatch, SetStateAction } from "react";
+import { CSSProperties, useEffect } from "react";
 
 export type CSSVariableValue = string | null;
 export interface CSSVariable {

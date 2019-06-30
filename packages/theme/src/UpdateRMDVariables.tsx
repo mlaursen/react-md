@@ -36,7 +36,7 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
       }
 
       let cancelled = false;
-      (async function() {
+      (async function load() {
         const variables = await resolveVariables();
         loaded.current = variables;
         if (!cancelled) {

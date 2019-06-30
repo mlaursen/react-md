@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
+import { usePrevious } from "@react-md/utils";
 
 export type FocusType = "first" | "last";
 
@@ -29,13 +30,11 @@ export default function useVisibility({
     visible: defaultVisible,
     defaultFocus: defaultFocusValue,
   });
-  const prevVisible = useRef(visible);
-  if (prevVisible.current !== visible) {
+  const prevVisible = usePrevious(visible);
+  if (prevVisible !== visible) {
     if (onVisibilityChange) {
       onVisibilityChange(visible);
     }
-
-    prevVisible.current = visible;
   }
 
   /**

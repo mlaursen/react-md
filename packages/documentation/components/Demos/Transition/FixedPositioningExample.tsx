@@ -95,7 +95,6 @@ const FixedPositioningExample: FC = () => {
           label="Disable Swapping"
           checked={disableSwapping}
           onChange={handleSwapCange}
-          fullWidth
         />
         <Checkbox
           id="fixed-origin"
@@ -103,7 +102,6 @@ const FixedPositioningExample: FC = () => {
           label="Transform Origin"
           checked={transformOrigin}
           onChange={handleOriginChange}
-          fullWidth
         />
         <Checkbox
           id="fixed-hide-on-scroll"
@@ -111,7 +109,6 @@ const FixedPositioningExample: FC = () => {
           label="Hide on scroll"
           checked={hideOnScroll}
           onChange={handleScrollChange}
-          fullWidth
         />
         <Checkbox
           id="fixed-hide-on-resize"
@@ -119,7 +116,6 @@ const FixedPositioningExample: FC = () => {
           label="Hide on resize"
           checked={hideOnResize}
           onChange={handleScrollResize}
-          fullWidth
         />
         <fieldset>
           <Text component="legend">Anchor</Text>
@@ -130,7 +126,6 @@ const FixedPositioningExample: FC = () => {
               name="anchor"
               value={value}
               label={value}
-              fullWidth
               checked={
                 anchor.x === currentAnchor.x && anchor.y === currentAnchor.y
               }

@@ -119,6 +119,7 @@ export interface MenuProps
   disableCloseOnResize?: boolean;
 }
 
+type StrictProps = LabelRequiredForA11y<MenuProps>;
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<
   Pick<
@@ -153,7 +154,7 @@ const HORIZONTAL_ANCHOR: PositionAnchor = {
  * in and out based on the `visible` prop as well as handle keyboard focus,
  * closing when needed, etc.
  */
-const Menu: FC<LabelRequiredForA11y<MenuProps> & WithRef> = providedProps => {
+const Menu: FC<StrictProps & WithRef> = providedProps => {
   const {
     controlId,
     className,
@@ -350,6 +351,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
-  (props, ref) => <Menu {...props} forwardedRef={ref} />
-);
+export default forwardRef<HTMLDivElement, StrictProps>((props, ref) => (
+  <Menu {...props} forwardedRef={ref} />
+));

@@ -29,7 +29,6 @@ const CustomPortalContainer: FC = () => {
         value="0"
         checked={selected === "0"}
         onChange={handleChange}
-        fullWidth
       />
       <Radio
         id="use-into-query"
@@ -38,7 +37,6 @@ const CustomPortalContainer: FC = () => {
         value="1"
         checked={selected === "1"}
         onChange={handleChange}
-        fullWidth
       />
       <Radio
         id="use-into-function"
@@ -47,7 +45,6 @@ const CustomPortalContainer: FC = () => {
         value="2"
         checked={selected === "2"}
         onChange={handleChange}
-        fullWidth
       />
       <Portal {...values[parseInt(selected, 10)]}>
         <Text type="subtitle-1" margin="none">
