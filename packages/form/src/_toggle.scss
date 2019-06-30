@@ -12,10 +12,10 @@
 /// @access private
 @mixin rmd-form-toggle-container {
   align-items: center;
-  display: inline-flex;
+  display: flex;
 
-  &--full-width {
-    display: flex;
+  &--inline {
+    display: inline-flex;
   }
 
   &--stacked {
@@ -236,8 +236,11 @@
     right: calc(-50% + #{$rmd-switch-ball-offset});
   }
 
+  align-items: center;
   border-radius: $rmd-switch-ball-border-radius;
+  display: flex;
   height: $rmd-switch-ball-size * 2;
+  justify-content: center;
   left: calc(-50% + #{$rmd-switch-ball-offset});
   position: absolute;
   top: calc(-50% - #{$rmd-switch-ball-size - $rmd-switch-track-height});

@@ -56,9 +56,9 @@ export interface SwitchProps
   error?: boolean;
 
   /**
-   * Boolean if the container element should be rendered as `flex` instead of `inline-flex`.
+   * Boolean if the container element should be rendered as `inline-flex` instead of `flex`.
    */
-  fullWidth?: boolean;
+  inline?: boolean;
 
   /**
    * Boolean if the label should be stacked above/below the input toggle instead of inline.
@@ -73,6 +73,24 @@ export interface SwitchProps
   label?: ReactNode;
 
   /**
+   * An optional style to apply to the `<label>` when the `label` prop is used.
+   */
+  labelStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the `<label>` when the `label` prop is used.
+   */
+  labelClassName?: string;
+
+  /**
+   * An optional boolean if the label should gain the disabled style. When this is `undefined`,
+   * the `disabled` prop will be used instead. This is really just useful when you want to disable
+   * the switch from being toggled while some async action is being called, but not changing styles
+   * during the wait.
+   */
+  labelDisabled?: boolean;
+
+  /**
    * Boolean if the input toggle should appear after the label instead of before.
    */
   iconAfter?: boolean;
@@ -85,10 +103,7 @@ export interface SwitchProps
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
-  Pick<
-    SwitchProps,
-    "error" | "disabled" | "fullWidth" | "stacked" | "iconAfter"
-  >
+  Pick<SwitchProps, "error" | "disabled" | "inline" | "stacked" | "iconAfter">
 >;
 type WithDefaultProps = SwitchProps & DefaultProps & WithRef;
 
@@ -104,9 +119,12 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
     trackClassName,
     forwardedRef,
     error,
-    fullWidth,
+    inline,
     stacked,
     label,
+    labelStyle,
+    labelClassName,
+    labelDisabled,
     iconAfter,
     onFocus: propOnFocus,
     onBlur: propOnBlur,
@@ -119,12 +137,20 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
     <ToggleContainer
       style={style}
       className={cn("rmd-switch-container", className)}
-      fullWidth={fullWidth}
+      inline={inline}
       stacked={stacked}
     >
       <TextIconSpacing
         icon={
-          <Label htmlFor={id} error={error} disabled={disabled}>
+          <Label
+            style={labelStyle}
+            className={labelClassName}
+            htmlFor={id}
+            error={error}
+            disabled={
+              typeof labelDisabled === "boolean" ? labelDisabled : disabled
+            }
+          >
             {label}
           </Label>
         }
@@ -155,7 +181,7 @@ const defaultProps: DefaultProps = {
   error: false,
   disabled: false,
   stacked: false,
-  fullWidth: false,
+  inline: false,
   iconAfter: false,
 };
 
@@ -178,7 +204,7 @@ if (process.env.NODE_ENV !== "production") {
       trackClassName: PropTypes.string,
       label: PropTypes.node,
       error: PropTypes.bool,
-      fullWidth: PropTypes.bool,
+      inline: PropTypes.bool,
       disabled: PropTypes.bool,
     };
   }

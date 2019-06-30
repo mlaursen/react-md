@@ -110,6 +110,8 @@ $rmd-form-textarea-min-height: 1.5em !default;
 $rmd-form-textarea-margin-top: 0px !default; //sass-lint:disable-line zero-unit
 $rmd-form-textarea-underline-margin-top: 1.5rem !default;
 
+///
+/// @type Map
 $rmd-form-theme-values: (
   error-color: $rmd-form-error-color,
   error-hover-color: $rmd-form-error-hover-color,

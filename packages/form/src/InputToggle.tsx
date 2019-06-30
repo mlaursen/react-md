@@ -86,9 +86,9 @@ export interface InputToggleProps
   error?: boolean;
 
   /**
-   * Boolean if the container element should be rendered as `flex` instead of `inline-flex`.
+   * Boolean if the container element should be rendered as `inline-flex` instead of `flex`.
    */
-  fullWidth?: boolean;
+  inline?: boolean;
 
   /**
    * Boolean if the label should be stacked above/below the input toggle instead of inline.
@@ -100,6 +100,24 @@ export interface InputToggleProps
    * an `aria-label` or `aria-labelledby` for a11y.
    */
   label?: ReactNode;
+
+  /**
+   * An optional style to apply to the `<label>` when the `label` prop is used.
+   */
+  labelStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the `<label>` when the `label` prop is used.
+   */
+  labelClassName?: string;
+
+  /**
+   * An optional boolean if the label should gain the disabled style. When this is `undefined`,
+   * the `disabled` prop will be used instead. This is really just useful when you want to disable
+   * the switch from being toggled while some async action is being called, but not changing styles
+   * during the wait.
+   */
+  labelDisabled?: boolean;
 
   /**
    * Boolean if the input toggle should appear after the label instead of before.
@@ -119,7 +137,7 @@ type DefaultProps = Required<
     Props,
     | "error"
     | "disabled"
-    | "fullWidth"
+    | "inline"
     | "stacked"
     | "iconAfter"
     | "disableIconOverlay"
@@ -142,9 +160,12 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     onFocus: propOnFocus,
     onBlur: propOnBlur,
     error,
-    fullWidth,
+    inline,
     stacked,
     label,
+    labelStyle,
+    labelClassName,
+    labelDisabled,
     iconAfter,
     disableIconOverlay,
     disableRipple,
@@ -175,7 +196,13 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
   });
 
   const labelEl = (
-    <Label htmlFor={id} error={error} disabled={disabled}>
+    <Label
+      style={labelStyle}
+      className={labelClassName}
+      htmlFor={id}
+      error={error}
+      disabled={typeof labelDisabled === "boolean" ? labelDisabled : disabled}
+    >
       {label}
     </Label>
   );
@@ -184,7 +211,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     <ToggleContainer
       style={style}
       className={className}
-      fullWidth={fullWidth}
+      inline={inline}
       stacked={stacked}
     >
       {iconAfter && labelEl}
@@ -229,7 +256,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
 
 const defaultProps: DefaultProps = {
   error: false,
-  fullWidth: false,
+  inline: false,
   stacked: false,
   disabled: false,
   iconAfter: false,
@@ -257,7 +284,7 @@ if (process.env.NODE_ENV !== "production") {
       toggleClassName: PropTypes.string,
       error: PropTypes.bool,
       label: PropTypes.node,
-      fullWidth: PropTypes.bool,
+      inline: PropTypes.bool,
       stacked: PropTypes.bool,
       disabled: PropTypes.bool,
       iconAfter: PropTypes.bool,
