@@ -1,6 +1,6 @@
 {
   "name": "@react-md/utils",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.3",
   "description": "General utils for react-md.",
   "scripts": {
     "build": "dev-utils build",
