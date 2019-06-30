@@ -1,12 +1,9 @@
-const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const root = path.resolve(process.cwd(), '..', '..');
-const nodeModules = 'node_modules';
 const withCustomConfig = (nextConfig = {}) => ({
   ...nextConfig,
   poweredByHeader: false,
@@ -32,7 +29,6 @@ module.exports = withTypescript(
         withSass({
           sassLoaderOptions: {
             sourceMap: !isProduction,
-            includePaths: [path.join(root, nodeModules)],
           },
           postcssLoaderOptions: {
             ident: 'postcss',

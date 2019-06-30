@@ -1,6 +1,6 @@
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
 
 .mq-example {
   @include rmd-sizing-phone-media {

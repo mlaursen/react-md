@@ -1,7 +1,7 @@
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/list/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/list/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 .elevations-container {
   @include rmd-list-unstyled;

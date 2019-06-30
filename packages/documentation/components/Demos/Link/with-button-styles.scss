@@ -1,4 +1,4 @@
-@import '@react-md/button/dist/mixins';
+@import '~@react-md/button/dist/scss/mixins';
 
 .link-styled-button {
   @include rmd-button-theme(color);

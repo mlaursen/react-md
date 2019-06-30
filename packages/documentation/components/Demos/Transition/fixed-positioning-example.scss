@@ -1,7 +1,7 @@
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/overlay/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/transition/dist/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/overlay/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/transition/dist/scss/mixins';
 
 .fixed-position-form {
   margin-bottom: 5rem;

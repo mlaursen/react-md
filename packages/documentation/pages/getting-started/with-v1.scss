@@ -1,4 +1,4 @@
-@import '@react-md/sizing/dist/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
 
 .with-v1 {
   @include rmd-sizing-desktop-media {

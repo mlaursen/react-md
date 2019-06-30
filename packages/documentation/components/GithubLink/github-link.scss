@@ -1,4 +1,4 @@
-@import '@react-md/theme/dist/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
 
 .github-link {
   @include rmd-theme(color, text-icon-on-background);

@@ -4,8 +4,7 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all copy-readmes base-styles \"sandbox --empty\"",
-    "base-styles": "dev-utils doc-styles",
+    "prebuild": "npm-run-all copy-readmes \"sandbox --empty\"",
     "typecheck": "tsc --noEmit",
     "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
     "copy-readmes": "dev-utils readmes",

@@ -8,7 +8,6 @@ import clean from "./clean";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
 import sandbox from "./sandbox";
-import docStyles from "./docStyles";
 import sassdoc from "./sassdoc";
 
 const argv = process.argv.slice(2);
@@ -68,8 +67,6 @@ createCommand("toc [glob]").action((glob: string) => {
 });
 
 createCommand("readmes").action(() => copyReadmes());
-
-createCommand("doc-styles").action(() => docStyles());
 
 createCommand("sandbox [components...]")
   .description(

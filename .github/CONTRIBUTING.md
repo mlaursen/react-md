@@ -63,7 +63,7 @@ Slack channel] where someone will hopefully answer your question for you.
 >
 > Note: this invite site is running on a heroku free tier plan, so if you try to
 > get an invite near the end of the month, this site might be down. If you need
-> to join immediately, you can send an email to mlaursen0@gmail.com with a
+> to join immediately, you can send an email to mlaursen03@gmail.com with a
 > subject of "react-md Slack invite". You can also use this [email template].
 
 ## Did you find a bug?

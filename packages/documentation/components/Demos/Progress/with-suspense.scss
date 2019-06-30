@@ -1,7 +1,7 @@
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/button/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/button/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .progress-suspense {
   &__hello {

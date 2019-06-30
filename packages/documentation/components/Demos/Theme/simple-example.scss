@@ -1,6 +1,4 @@
-@import 'variables';
-@import '@react-md/divider/dist/mixins';
-@import '@react-md/theme/dist/mixins';
+@import 'mixins';
 
 .custom-theme-example {
   @include rmd-theme-update-var(background, $rmd-white-base);

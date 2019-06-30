@@ -1,7 +1,7 @@
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/button/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/theme/dist/mixins';
+@import '~@react-md/theme/dist/scss/color-palette';
+@import '~@react-md/button/dist/scss/mixins';
+@import '~@react-md/icon/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
 
 .custom-button-themes {
   @include rmd-button-theme-update-var(outline-width, 4px);

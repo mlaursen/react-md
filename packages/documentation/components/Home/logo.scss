@@ -1,6 +1,6 @@
-@import '@react-md/utils/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 .react-md-logo {
   &--primary {

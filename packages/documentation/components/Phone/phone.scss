@@ -1,9 +1,9 @@
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/icon/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 $phone-height: 35.5rem;
 $phone-width: 20rem;

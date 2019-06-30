@@ -1,8 +1,8 @@
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/transition/dist/variables';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/icon/dist/scss/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/transition/dist/scss/variables';
+@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .heading {
   @include rmd-sizing-tablet-media {

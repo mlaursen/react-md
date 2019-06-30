@@ -1,5 +1,5 @@
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .app-bar-container {
   @include rmd-utils-block-centered;

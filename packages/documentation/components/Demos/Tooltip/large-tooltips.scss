@@ -1,4 +1,4 @@
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 .large-tooltips-link {
   @include rmd-typography-text-overflow-ellipsis;

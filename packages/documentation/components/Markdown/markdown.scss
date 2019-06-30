@@ -1,6 +1,6 @@
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .markdown {
   &__p {

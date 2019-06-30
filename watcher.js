@@ -82,13 +82,18 @@ function copyFile(filePath, destPath, log) {
   fs.copyFileSync(filePath, dest);
 }
 
-function compileBaseStyles() {
-  spawnSync('yarn', ['base-styles'], { stdio: 'inherit', cwd: docsRoot });
-}
-
 const copyScssFile = f => {
   copyFile(f, 'dist', startLoggingScss);
-  compileBaseStyles();
+  const contents = fs.readFileSync(f, 'utf8');
+  const withWebpackImports = contents
+    .replace(/('|")@react-md/g, '$1~@react-md')
+    .replace(/dist\//g, 'dist/scss/');
+
+  const dest = f.replace('src', 'dist/scss');
+  if (startLoggingScss) {
+    console.log(`${f} -> ${dest}`);
+  }
+  fs.writeFile(dest, withWebpackImports, 'utf8');
 };
 
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
@@ -123,19 +128,6 @@ chokidar
   });
 
 const DOC_COMPONENTS = 'packages/documentation/components';
-chokidar
-  .watch([
-    'packages/documentation/_variables.scss',
-    'packages/documentation/pages/app.scss',
-    `${DOC_COMPONENTS}/blockquote.scss`,
-    `${DOC_COMPONENTS}/Code/code.scss`,
-    `${DOC_COMPONENTS}/Heading/heading.scss`,
-  ])
-  .on('change', () => compileBaseStyles())
-  .on('ready', () => {
-    console.log('Watching documentation base styles changes...');
-  });
-
 const IS_FULL_SANDBOX = process.argv.includes('--sandbox');
 
 chokidar

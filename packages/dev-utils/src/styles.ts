@@ -4,7 +4,14 @@ import path from "path";
 import log from "loglevel";
 
 import { compileScss, postcss } from "./compileScss";
-import { cssDist, dist, scssVariables, src, stylesScss } from "./paths";
+import {
+  cssDist,
+  dist,
+  scssVariables,
+  src,
+  stylesScss,
+  scssDist,
+} from "./paths";
 import getPackageVariables from "./sassdoc/getPackageVariables";
 import {
   getHackedScssVariableValues,
@@ -38,7 +45,7 @@ export default async function styles() {
     return;
   }
 
-  await copyFiles(scssFiles, dist);
+  await copyStyles(scssFiles);
   await createScssVariables();
   const packageName = await getPackageName();
   const found = scssFiles.find(name => /styles\.scss$/.test(name));
@@ -203,4 +210,26 @@ export async function generateThemeStyles() {
 
   const themeFiles = await glob("dist/css/*.min.css");
   printSizes(themeFiles);
+}
+
+async function copyStyles(files: string[]) {
+  log.debug(
+    "Copying the scss files for both webpack imports and includePaths options"
+  );
+
+  await copyFiles(files, dist);
+  await fs.ensureDir(scssDist);
+  await Promise.all(
+    files.map(async pathname => {
+      const contents = fs.readFileSync(pathname, "utf8");
+      const webpackImports = contents
+        .replace(/('|")@react-md/g, "$1~@react-md")
+        .replace(/dist\//g, `${scssDist}/`);
+
+      const fileName = pathname.replace(src, scssDist);
+      log.info(`- ${pathname} -> ${fileName}`);
+      return fs.writeFile(fileName, webpackImports, "utf8");
+    })
+  );
+  log.info("");
 }

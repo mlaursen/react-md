@@ -1,5 +1,5 @@
-@import '@react-md/list/dist/mixins';
-@import '@react-md/dialog/dist/variables';
+@import '~@react-md/list/dist/scss/mixins';
+@import '~@react-md/dialog/dist/scss/variables';
 
 .simple-dialog-list {
   @include rmd-list-theme-update-var(item-horizontal-padding, $rmd-dialog-header-padding);

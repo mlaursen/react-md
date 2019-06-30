@@ -1,8 +1,8 @@
-@import '@react-md/utils/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 .fixed-with-offset {
   @include rmd-elevation(6);

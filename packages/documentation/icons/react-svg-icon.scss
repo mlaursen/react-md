@@ -1,7 +1,7 @@
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
+@import '~@react-md/icon/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
 
 // have to do some hacks since the logo is badly formatted with a lot of extra whitespace
 // around the icon

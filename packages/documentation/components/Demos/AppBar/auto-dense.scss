@@ -1,5 +1,5 @@
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
+@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/sizing/dist/scss/mixins';
 
 .auto-dense {
   @include rmd-sizing-desktop-media {

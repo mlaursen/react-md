@@ -6,6 +6,7 @@ export const lib = "lib";
 export const types = "types";
 export const dist = "dist";
 export const cssDist = path.join(dist, "css");
+export const scssDist = path.join(dist, "scss");
 export const umdDist = path.join(dist, "umd");
 export const nodeModules = "node_modules";
 export const packages = "packages";

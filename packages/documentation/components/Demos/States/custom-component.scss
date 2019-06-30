@@ -1,7 +1,7 @@
-@import '@react-md/button/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
+@import '~@react-md/button/dist/scss/mixins';
+@import '~@react-md/states/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
 
 .custom-states-component {
   @include rmd-button-unstyled;

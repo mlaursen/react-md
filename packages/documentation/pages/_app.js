@@ -1,4 +1,4 @@
-import './app.css';
+import './app.scss';
 import React from 'react';
 import NextApp, { Container } from 'next/app';
 import Head from 'next/head';

@@ -1,5 +1,5 @@
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .avatar-color-list {
   @include rmd-elevation(4);

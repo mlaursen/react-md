@@ -1,8 +1,4 @@
-@import 'variables';
-@import '@react-md/divider/dist/functions';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import 'mixins';
 
 .blockquote {
   $border-style: 0.25em solid rmd-divider-theme-var(background-color);

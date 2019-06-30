@@ -1,12 +1,4 @@
-@import 'variables';
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/button/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/sizing/dist/mixins';
-@import '@react-md/sheet/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import 'mixins';
 
 .sandbox-modal {
   @include rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);

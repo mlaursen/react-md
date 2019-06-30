@@ -1,8 +1,8 @@
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/button/dist/mixins';
+@import '~@react-md/theme/dist/scss/color-palette';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/button/dist/scss/mixins';
 
 .animating-elevation {
   @include rmd-theme(color, on-surface);

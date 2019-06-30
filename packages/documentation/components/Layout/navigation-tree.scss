@@ -1,8 +1,8 @@
-@import '@react-md/app-bar/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/sheet/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/elevation/dist/mixins';
+@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/sheet/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
 
 .layout__nav {
   // @include rmd-elevation(2);

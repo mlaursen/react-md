@@ -1,5 +1,5 @@
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/states/dist/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/states/dist/scss/mixins';
 
 .custom-state-button {
   @include rmd-elevation-transition(8, 12, '&#{$rmd-states-pressed-class-name}', false);

@@ -1,4 +1,4 @@
-@import '@react-md/utils/dist/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .centered-progress-toggle {
   @include rmd-utils-absolute-centered;

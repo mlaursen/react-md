@@ -1,8 +1,8 @@
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/overlay/dist/variables';
-@import '@react-md/utils/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/overlay/dist/mixins';
+@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/overlay/dist/scss/variables';
+@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/theme/dist/scss/mixins';
+@import '~@react-md/overlay/dist/scss/mixins';
 
 .portal-container {
   @include rmd-utils-scroll;
