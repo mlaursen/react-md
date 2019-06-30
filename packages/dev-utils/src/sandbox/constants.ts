@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { documentationRoot } from "../paths";
 
 export const DEMOS_FOLDER = path.join("components", "Demos");
 export const SANDBOXES_PATH = path.join("constants", "sandboxes");
@@ -111,10 +110,12 @@ export const CODE_INDEX_FILE = `import "./code.scss";
 export { default } from "./Code";
 `;
 
-export const VARIABLES_SCSS_FILE = fs.readFileSync(
-  path.join(documentationRoot, "_variables.scss"),
-  "utf8"
-);
+export const VARIABLES_SCSS_FILE = `@import '~@react-md/theme/dist/scss/color-palette';
+
+$rmd-theme-light: true;
+$rmd-theme-primary: $rmd-teal-500;
+$rmd-theme-secondary: $rmd-pink-a-200;
+`;
 
 export const SANDBOXES_FILE = `/** this is a generated file from \`dev-utils sandbox\` */
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
