@@ -17,7 +17,14 @@
     "dist/*"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "repository": "https://github.com/mlaursen/react-md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/media"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
   "keywords": [
     "react-md",
     "material design",
