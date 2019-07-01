@@ -14,11 +14,11 @@ $rmd-button-text-icon-inherit-color: true !default;
 
 /// The border radius to apply to text buttons.
 /// @type Number
-$rmd-button-text-border-radius: 0.5rem !default; // 8dp
+$rmd-button-text-border-radius: 0.5rem !default;
 
 /// The amount of left and right padding to apply to text buttons.
 /// @type Number
-$rmd-button-text-horizontal-padding: 1rem !default; // 16dp
+$rmd-button-text-horizontal-padding: 1rem !default;
 
 /// The amount of top and bottom padding to apply to text buttons. Since buttons
 /// are now displayed as inline-flex, it is generally recommended to keep this value
@@ -29,16 +29,16 @@ $rmd-button-text-vertical-padding: 0 !default;
 
 /// The height for text buttons.
 /// @type Number
-$rmd-button-text-height: 2.25rem !default; // 36dp
+$rmd-button-text-height: 2.25rem !default;
 
 /// The min width for text buttons.
 /// @type Number
-$rmd-button-text-min-width: 4rem !default; // 64dp
+$rmd-button-text-min-width: 4rem !default;
 
 /// The text button's icon size. This is smaller than the normal icon size by default since buttons
 /// have additional padding. You can set this to `null` if you want consistent icon sizes.
 /// @type Number
-$rmd-button-text-icon-size: 1.125rem !default; // 18dp
+$rmd-button-text-icon-size: 1.125rem !default;
 
 /// The border radius to apply to all icon buttons.
 /// @type Number
@@ -46,7 +46,7 @@ $rmd-button-icon-border-radius: 50% !default;
 
 /// The height and width to apply to an icon button.
 /// @type Number
-$rmd-button-icon-size: 3rem !default; // 48dp
+$rmd-button-icon-size: 3rem !default;
 
 /// The base box-shadow width to apply to buttons
 /// @type Number

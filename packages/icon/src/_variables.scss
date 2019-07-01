@@ -10,13 +10,13 @@ $rmd-icon-color: rmd-theme-var(text-icon-on-background) !default;
 
 /// The base icon size to use.
 /// @type Number
-$rmd-icon-size: 1.5rem !default; // 24dp
+$rmd-icon-size: 1.5rem !default;
 
 /// The dense icon size to use. If you do not want to include the dense icon spec, disable the
 /// `$rmd-icon-include-dense` variable.
 /// @type Number
 /// @see rmd-icon-include-dense
-$rmd-icon-dense-size: 1.25rem !default; // 20dp
+$rmd-icon-dense-size: 1.25rem !default;
 
 /// Boolean if the dense spec for icons should be included. This will just generate `.md-icon--font-dense` and `.md-icon--svg-dense` class names
 /// that can be applied.
@@ -40,7 +40,7 @@ $rmd-icon-use-svg-icons: true !default;
 
 /// The amount of spacing to apply between an icon and text within the `TextIconSpacing` component.
 /// @type Number
-$rmd-icon-spacing-with-text: 0.5rem !default; // 8dp
+$rmd-icon-spacing-with-text: 0.5rem !default;
 
 /// The transition time for the icon rotator to fully rotate.
 /// @type Number
