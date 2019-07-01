@@ -115,11 +115,12 @@
 /// Creates the styles for the `DialogHeader` component.
 /// @access private
 @mixin rmd-dialog-header {
+  @include rmd-dialog-theme(padding, header-padding);
+  @include rmd-dialog-theme(padding-bottom, header-padding-bottom);
+
   align-items: center;
   display: flex;
   flex: 0 0 auto;
-  padding: $rmd-dialog-header-padding;
-  padding-bottom: $rmd-dialog-header-padding-bottom;
 }
 
 /// Creates the minimal required styles for the `DialogTitle` component.
@@ -140,7 +141,7 @@
   flex: 1 1 auto;
 
   &--padded {
-    padding: $rmd-dialog-content-padding;
+    @include rmd-dialog-theme(padding, content-padding);
   }
 }
 
@@ -148,8 +149,9 @@
 /// in different locations.
 /// @access private
 @mixin rmd-dialog-footer {
+  @include rmd-dialog-theme(padding, footer-padding);
+
   flex: 0 0 auto;
-  padding: $rmd-dialog-footer-padding;
 
   &--flex {
     display: flex;

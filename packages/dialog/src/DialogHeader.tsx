@@ -19,17 +19,15 @@ const DialogHeader: FC<DialogHeaderProps & WithRef> = ({
   className,
   forwardedRef,
   ...props
-}) => {
-  return (
-    <header
-      {...props}
-      className={cn(block("header"), className)}
-      ref={forwardedRef}
-    >
-      {children}
-    </header>
-  );
-};
+}) => (
+  <header
+    {...props}
+    className={cn(block("header"), className)}
+    ref={forwardedRef}
+  >
+    {children}
+  </header>
+);
 
 if (process.env.NODE_ENV !== "production") {
   DialogHeader.displayName = "DialogHeader";

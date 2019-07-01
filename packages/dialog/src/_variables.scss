@@ -73,5 +73,9 @@ $rmd-dialog-theme-values: (
   horizontal-margin: $rmd-dialog-horizontal-margin,
   vertical-margin: $rmd-dialog-vertical-margin,
   min-width: $rmd-dialog-min-width,
+  header-padding: $rmd-dialog-header-padding,
+  header-padding-bottom: $rmd-dialog-header-padding-bottom,
+  content-padding: $rmd-dialog-content-padding,
+  footer-padding: $rmd-dialog-footer-padding,
   z-index: $rmd-dialog-z-index,
 ) !default;

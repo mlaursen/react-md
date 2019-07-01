@@ -18,13 +18,11 @@ const DialogTitle: FC<DialogTitleProps & WithRef> = ({
   className,
   forwardedRef,
   ...props
-}) => {
-  return (
-    <h2 {...props} className={cn(block("title"), className)} ref={forwardedRef}>
-      {children}
-    </h2>
-  );
-};
+}) => (
+  <h2 {...props} className={cn(block("title"), className)} ref={forwardedRef}>
+    {children}
+  </h2>
+);
 
 if (process.env.NODE_ENV !== "production") {
   DialogTitle.displayName = "DialogTitle";

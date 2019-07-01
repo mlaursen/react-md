@@ -1,11 +1,10 @@
 import React, {
   CSSProperties,
+  FC,
   forwardRef,
   Fragment,
-  FC,
   HTMLAttributes,
   ReactNode,
-  useCallback,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -19,8 +18,9 @@ import { CSSTransitionProps } from "@react-md/transition";
 import { LabelRequiredForA11y, WithForwardedRef } from "@react-md/utils";
 import {
   FocusContainer,
-  useScrollLock,
   FocusContainerOptionsProps,
+  useCloseOnEscape,
+  useScrollLock,
 } from "@react-md/wia-aria";
 
 import useNestedDialogFixes from "./useNestedDialogFixes";
@@ -245,19 +245,6 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
 
   useScrollLock(visible && !disableScrollLock);
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-
-      if (!disableEscapeClose && event.key === "Escape") {
-        onRequestClose();
-      }
-    },
-    [onKeyDown, disableEscapeClose, modal]
-  );
-
   let overlayEl: ReactNode = null;
   if (typeof propOverlay === "boolean" ? propOverlay : !isFullPage) {
     overlayEl = (
@@ -269,6 +256,9 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
         visible={visible}
         clickable={!modal}
         onRequestClose={modal ? noop : onRequestClose}
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       />
     );
   }
@@ -280,7 +270,11 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
       disableTabFocusWrap={disableFocusContainer}
       disableFocusOnMount={disableFocusContainer || disableFocusOnMount}
       disableFocusOnUnmount={disableFocusContainer || disableFocusOnUnmount}
-      onKeyDown={handleKeyDown}
+      onKeyDown={useCloseOnEscape(
+        onRequestClose,
+        disableEscapeClose,
+        onKeyDown
+      )}
       className={cn(
         block({
           centered: isCentered,

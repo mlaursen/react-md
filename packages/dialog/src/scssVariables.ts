@@ -16,6 +16,10 @@ export default {
     "horizontal-margin": "2.5rem",
     "vertical-margin": "1.5rem",
     "min-width": "17.5rem",
+    "header-padding": "1.5rem",
+    "header-padding-bottom": "1.25rem",
+    "content-padding": "1.5rem",
+    "footer-padding": "0.5rem",
     "z-index": 26,
   },
 };

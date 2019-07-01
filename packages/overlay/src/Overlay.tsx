@@ -178,8 +178,11 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       portalIntoId: PropTypes.string,
+      tabIndex: PropTypes.number,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
+      hidden: PropTypes.bool,
+      clickable: PropTypes.bool,
     };
   }
 }
