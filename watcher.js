@@ -93,7 +93,17 @@ const copyScssFile = f => {
   if (startLoggingScss) {
     console.log(`${f} -> ${dest}`);
   }
-  fs.writeFile(dest, withWebpackImports, 'utf8');
+
+  const folder = dest.substring(0, dest.lastIndexOf(path.sep));
+  if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder);
+  }
+
+  fs.writeFile(dest, withWebpackImports, error => {
+    if (error) {
+      console.error(error);
+    }
+  });
 };
 
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
