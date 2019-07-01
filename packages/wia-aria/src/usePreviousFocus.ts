@@ -49,7 +49,7 @@ export default function usePreviousFocus(
 
     // i'll need to think of a better way to handle this flow. There's just a weird one where if going
     // from a menu to a dialog, we get lost without specifying a fallback. So if we are in a menu,
-    // try to find the correspnding menu button for this flow to fallback to.
+    // try to find the corresponding menu button for this flow to fallback to.
     const menu = element.closest('[role="menu"]');
     let menuButton: HTMLElement | null = null;
     if (menu) {

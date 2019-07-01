@@ -8,7 +8,7 @@ const BASE_FOCUSABLE_QUERY = FOCUSABLE_ELEMENTS.reduce(
 );
 
 /**
- * A query selector to find elements that are programatically focusable.
+ * A query selector to find elements that are programmatically focusable.
  *
  * Example:
  * const focusableElements = document.querySelectorAll(PROGRAMATICALLY_FOCUSABLE);
@@ -32,7 +32,7 @@ export const TAB_FOCUSABLE = `${PROGRAMATICALLY_FOCUSABLE}:not([tabindex="-1"])`
 export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
 
 /**
- * I mispell this alot for some reason, so just using a constant to make sure
+ * I misspell this a lot for some reason, so just using a constant to make sure
  * it's spelled correctly.
  */
 export const ACTIVE_DESCENDANT = "aria-activedescendant";
