@@ -1,6 +1,6 @@
 {
   "name": "@react-md/dialog",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "This package is used to create accessible dialogs and modals.",
   "scripts": {
     "build": "dev-utils build",
@@ -38,15 +38,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/app-bar": "^2.0.0-alpha.4",
-    "@react-md/elevation": "^2.0.0-alpha.4",
-    "@react-md/overlay": "^2.0.0-alpha.4",
-    "@react-md/portal": "^2.0.0-alpha.4",
-    "@react-md/theme": "^2.0.0-alpha.3",
-    "@react-md/transition": "^2.0.0-alpha.4",
-    "@react-md/typography": "^2.0.0-alpha.3",
-    "@react-md/utils": "^2.0.0-alpha.3",
-    "@react-md/wia-aria": "^2.0.0-alpha.3",
+    "@react-md/app-bar": "^2.0.0-alpha.5",
+    "@react-md/elevation": "^2.0.0-alpha.5",
+    "@react-md/overlay": "^2.0.0-alpha.5",
+    "@react-md/portal": "^2.0.0-alpha.5",
+    "@react-md/theme": "^2.0.0-alpha.5",
+    "@react-md/transition": "^2.0.0-alpha.5",
+    "@react-md/typography": "^2.0.0-alpha.5",
+    "@react-md/utils": "^2.0.0-alpha.5",
+    "@react-md/wia-aria": "^2.0.0-alpha.5",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.0.0"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/table",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "Create responsive data tables and accessible fixed tables",
   "scripts": {
     "build": "dev-utils build",
@@ -37,12 +37,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/divider": "^2.0.0-alpha.3",
-    "@react-md/states": "^2.0.0-alpha.4",
-    "@react-md/theme": "^2.0.0-alpha.3",
-    "@react-md/transition": "^2.0.0-alpha.4",
-    "@react-md/typography": "^2.0.0-alpha.3",
-    "@react-md/utils": "^2.0.0-alpha.3",
+    "@react-md/divider": "^2.0.0-alpha.5",
+    "@react-md/states": "^2.0.0-alpha.5",
+    "@react-md/theme": "^2.0.0-alpha.5",
+    "@react-md/transition": "^2.0.0-alpha.5",
+    "@react-md/typography": "^2.0.0-alpha.5",
+    "@react-md/utils": "^2.0.0-alpha.5",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

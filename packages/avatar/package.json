@@ -1,6 +1,6 @@
 {
   "name": "@react-md/avatar",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.5",
   "description": "This package is used to avatars which are used to symbolize people or objects.",
   "scripts": {
     "build": "dev-utils build",
@@ -36,9 +36,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/icon": "^2.0.0-alpha.3",
-    "@react-md/theme": "^2.0.0-alpha.3",
-    "@react-md/utils": "^2.0.0-alpha.3",
+    "@react-md/icon": "^2.0.0-alpha.5",
+    "@react-md/theme": "^2.0.0-alpha.5",
+    "@react-md/utils": "^2.0.0-alpha.5",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
