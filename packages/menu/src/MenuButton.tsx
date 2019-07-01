@@ -112,7 +112,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
 
 const defaultProps: DefaultProps = {
   "aria-haspopup": "menu",
-  dropdownIcon: <FontIcon aria-hidden>arrow_drop_down</FontIcon>,
+  dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
   first: false,
   last: false,

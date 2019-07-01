@@ -11,6 +11,3 @@ to disable this behavior and implement your own icon swapping instead by either:
 - handling icon swaps all in CSS
 - make your checkboxes fully controlled
 - make your entire radio group fully controlled
-
-> If you decide to use a font icon instead, make sure to add `aria-hidden` so
-> that it is not read by screen readers as these icons are just presentational.

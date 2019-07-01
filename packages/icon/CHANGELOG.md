@@ -1,7 +1,8 @@
 # v2.0.0-alpha.0
 
-TODO: Add links to external documentation site once I get something up and
-rolling.
+## Breaking Changes
+
+- all icons were updated to have `aria-hidden="true"` by default.
 
 ## Theming
 

@@ -16,7 +16,7 @@ const Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({
 }) => <InputToggle {...props} ref={forwardedRef} type="checkbox" />;
 
 Checkbox.defaultProps = {
-  icon: <FontIcon aria-hidden>check_box_outline</FontIcon>,
+  icon: <FontIcon>check_box_outline</FontIcon>,
 };
 
 if (process.env.NODE_ENV !== "production") {

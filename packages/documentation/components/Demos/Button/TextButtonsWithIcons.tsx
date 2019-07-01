@@ -12,7 +12,7 @@ import Container from "./Container";
 const TextButtonsWithIcons: FC = () => (
   <Container>
     <Button id="combined-button-1">
-      <TextIconSpacing icon={<FontIcon aria-hidden>favorite</FontIcon>}>
+      <TextIconSpacing icon={<FontIcon>favorite</FontIcon>}>
         Favorite
       </TextIconSpacing>
     </Button>

@@ -21,9 +21,7 @@ const CustomCheckbox: FC<InputToggleProps> = ({
       {...props}
       checked={checked}
       onChange={onChange}
-      icon={
-        checked ? <FavoriteSVGIcon /> : <FavoriteBorderFontIcon aria-hidden />
-      }
+      icon={checked ? <FavoriteSVGIcon /> : <FavoriteBorderFontIcon />}
       disableIconOverlay
     />
   );

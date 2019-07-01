@@ -169,7 +169,7 @@ const defaultProps: DefaultProps = {
   defaultVisible: false,
   menuRenderer: defaultMenuRenderer,
   itemRenderer: defaultItemRenderer,
-  dropdownIcon: <FontIcon aria-hidden>arrow_drop_down</FontIcon>,
+  dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
 };
 

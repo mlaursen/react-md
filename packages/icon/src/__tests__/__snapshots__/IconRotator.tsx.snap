@@ -2,6 +2,7 @@
 
 exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 1`] = `
 <i
+  aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
 >
   home
@@ -24,6 +25,7 @@ exports[`IconRotator should be able to work out of the box with SVGIcon and Font
 
 exports[`IconRotator should be able to work out of the box with SVGIcon and FontIcon 3`] = `
 <i
+  aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
 >
   home
@@ -71,6 +73,7 @@ exports[`IconRotator should wrap the children with a span instead of cloning in 
   className="rmd-icon-rotator rmd-icon-rotator--animate"
 >
   <i
+    aria-hidden="true"
     className="rmd-icon rmd-icon--font material-icons"
   >
     home

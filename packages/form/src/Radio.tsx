@@ -22,7 +22,7 @@ const Radio: FC<RadioProps & WithForwardedRef<HTMLInputElement>> = ({
 }) => <InputToggle {...props} ref={forwardedRef} type="radio" />;
 
 const defaultProps: DefaultProps = {
-  icon: <FontIcon aria-hidden>radio_button_checked</FontIcon>,
+  icon: <FontIcon>radio_button_checked</FontIcon>,
 };
 
 Radio.defaultProps = defaultProps;

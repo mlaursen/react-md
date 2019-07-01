@@ -34,7 +34,10 @@ export interface FontIconProps extends HTMLAttributes<HTMLElement> {
 }
 
 type DefaultProps = Required<
-  Pick<FontIconProps, "dense" | "iconClassName" | "forceSize" | "forceFontSize">
+  Pick<
+    FontIconProps,
+    "aria-hidden" | "dense" | "iconClassName" | "forceSize" | "forceFontSize"
+  >
 >;
 type WithDefaultProps = FontIconProps & DefaultProps & WithForwardedRef;
 
@@ -82,6 +85,7 @@ const FontIcon: FC<FontIconProps & WithForwardedRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  "aria-hidden": "true",
   dense: false,
   iconClassName: "material-icons",
   forceSize: false,
