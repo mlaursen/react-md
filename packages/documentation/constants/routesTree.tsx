@@ -196,6 +196,7 @@ createRoute("/packages", "Packages", {
   childRoutes: [
     createPackageRoute("app-bar"),
     createPackageRoute("avatar"),
+    createPackageRoute("badge"),
     createPackageRoute("button"),
     createPackageRoute("card"),
     createPackageRoute("dialog"),

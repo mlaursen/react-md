@@ -29,6 +29,7 @@
   "dependencies": {
     "@react-md/app-bar": "^2.0.0-alpha.5",
     "@react-md/avatar": "^2.0.0-alpha.5",
+    "@react-md/badge": "^2.0.0-alpha.5",
     "@react-md/button": "^2.0.0-alpha.5",
     "@react-md/card": "^2.0.0-alpha.5",
     "@react-md/dialog": "^2.0.0-alpha.5",

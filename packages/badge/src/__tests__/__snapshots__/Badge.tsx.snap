@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge should correctly merge className and themes 1`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--primary"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 2`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--primary custom-class-name"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 3`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--secondary"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 4`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--secondary custom-class-name"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 5`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--default"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 6`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--default custom-class-name"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 7`] = `
+<div>
+  <span
+    class="rmd-badge"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should correctly merge className and themes 8`] = `
+<div>
+  <span
+    class="rmd-badge custom-class-name"
+    data-testid="badge"
+    id="badge"
+  >
+    3
+  </span>
+</div>
+`;
+
+exports[`Badge should render as null by default 1`] = `<div />`;
+
+exports[`Badge should render as null when the children is 0, "0", or null 1`] = `<div />`;
+
+exports[`Badge should render as null when the children is 0, "0", or null 2`] = `
+<div>
+  <span
+    class="rmd-badge rmd-badge--default"
+    id="badge"
+  >
+    0
+  </span>
+</div>
+`;

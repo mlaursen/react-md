@@ -228,6 +228,10 @@
     @include react-md-avatar;
   }
 
+  @if mixin-exists(react-md-badge) {
+    @include react-md-badge;
+  }
+
   @if mixin-exists(react-md-button) {
     @include react-md-button;
   }
