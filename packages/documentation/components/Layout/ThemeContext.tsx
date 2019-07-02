@@ -1,11 +1,11 @@
 import {
   createContext,
-  useContext,
   FC,
-  useState,
   useCallback,
-  useRef,
+  useContext,
   useEffect,
+  useRef,
+  useState,
 } from "react";
 import Cookie from "js-cookie";
 
@@ -60,16 +60,14 @@ export const ThemeContextProvider: FC<ThemeContextProviderProps> = ({
   defaultTheme,
 }) => {
   const [theme, setTheme] = useState(defaultTheme || "dark");
-  const prevTheme = useRef(theme);
   const toggleTheme = useCallback(
     () => setTheme(prevTheme => (prevTheme === "dark" ? "light" : "dark")),
     []
   );
 
-  if (theme !== prevTheme.current) {
-    prevTheme.current = theme;
+  useEffect(() => {
     Cookie.set("theme", theme);
-  }
+  }, [theme]);
   useThemeTransition(theme === "light");
 
   return (
