@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+import Cookie from 'js-cookie';
 
 import Analytics from 'components/Analytics';
 
@@ -10,6 +11,8 @@ export default class MyDocument extends Document {
     let theme = 'dark';
     if (ctx && ctx.req) {
       ({ theme = 'dark' } = ctx.req.cookies);
+    } else if (typeof window !== 'undefined') {
+      theme = Cookie.get('theme');
     }
 
     return {
