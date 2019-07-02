@@ -110,7 +110,9 @@ $rmd-form-textarea-min-height: 1.5em !default;
 $rmd-form-textarea-margin-top: 0px !default; //sass-lint:disable-line zero-unit
 $rmd-form-textarea-underline-margin-top: 1.5rem !default;
 
-///
+/// A Map of all the "themeable" parts of the form package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-form-theme-values: (
   error-color: $rmd-form-error-color,

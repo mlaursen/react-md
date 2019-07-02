@@ -57,7 +57,9 @@ $rmd-cross-fade-translate-distance: -1rem !default;
 /// @type Number
 $rmd-cross-fade-transition-duration: 0.3s !default;
 
-/// A Map of all the available transitions for react-md.
+/// A Map of all the "themeable" parts of the transition package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-transition-theme-values: (
   sharp: $rmd-transition-sharp,

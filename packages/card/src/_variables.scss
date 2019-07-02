@@ -67,6 +67,9 @@ $rmd-card-content-padding-extra: 1.5rem !default;
 /// @type Number
 $rmd-card-actions-padding: 0.5rem !default;
 
+/// A Map of all the "themeable" parts of the card package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-card-theme-values: (
   background-color: $rmd-card-background-color,

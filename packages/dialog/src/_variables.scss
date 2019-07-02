@@ -67,7 +67,9 @@ $rmd-dialog-leave-duration: 0.15s !default;
 /// @type Number
 $rmd-dialog-min-width: 17.5rem !default;
 
-/// The theme values for a dialog. These aren't really used yet.
+/// A Map of all the "themeable" parts of the dialog package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-dialog-theme-values: (
   horizontal-margin: $rmd-dialog-horizontal-margin,

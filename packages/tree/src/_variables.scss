@@ -26,6 +26,9 @@ $rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !def
 /// @type Number
 $rmd-tree-item-padding-base: $rmd-list-item-text-keyline !default;
 
+/// A Map of all the "themeable" parts of the tree package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-tree-theme-values: (
   incrementor: $rmd-tree-item-padding-incrementor,

@@ -19,6 +19,9 @@ $rmd-table-data-cell-font-size: 0.875rem !default;
 
 $rmd-table-row-hover-color: rgba($rmd-black-base, 0.12) !default;
 
+/// A Map of all the "themeable" parts of the table package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-table-theme-values: (
   fixed-background-color: $rmd-table-fixed-background-color,

@@ -110,7 +110,9 @@ $rmd-tooltip-transition-distance: 0.5rem !default;
 /// @type List
 $rmd-tooltip-position-values: above below left right;
 
-/// A Map containing all the styles for the tooltip theme.
+/// A Map of all the "themeable" parts of the overlay package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-tooltip-theme-values: (
   background-color: $rmd-tooltip-background-color,

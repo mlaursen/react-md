@@ -46,7 +46,9 @@ $rmd-menu-leave-duration: 0.15s !default;
 /// @type Number
 $rmd-menu-icon-spacing: 1rem !default;
 
-/// All the menu theme values.
+/// A Map of all the "themeable" parts of the menu package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
 /// @type Map
 $rmd-menu-theme-values: (
   background-color: $rmd-menu-background-color,
