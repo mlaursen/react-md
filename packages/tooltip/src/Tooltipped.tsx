@@ -1,6 +1,7 @@
 import React, {
   Children,
   cloneElement,
+  CSSProperties,
   Fragment,
   FC,
   ReactElement,
@@ -78,6 +79,11 @@ export interface TooltippedProps
    * used for things like notifications or when multiple elements describe your tooltipped element..
    */
   "aria-describedby"?: string;
+
+  /**
+   * An optional style for the tooltip.
+   */
+  style?: CSSProperties;
 
   /**
    * An optional className for the tooltip
