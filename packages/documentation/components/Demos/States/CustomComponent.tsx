@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, Fragment } from "react";
+import React, { FC, Fragment, ButtonHTMLAttributes } from "react";
 import cn from "classnames";
 import {
   useInteractionStates,
@@ -9,7 +9,7 @@ import { Omit } from "@react-md/utils";
 import "./custom-component.scss";
 
 interface CustomButtonProps
-  extends HTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions, "handlers"> {}
 
 const CustomButton: FC<CustomButtonProps> = ({

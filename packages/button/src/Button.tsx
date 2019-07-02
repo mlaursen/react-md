@@ -1,5 +1,4 @@
-import React, { forwardRef, FC, ReactNode, HTMLAttributes } from "react";
-
+import React, { forwardRef, FC, ReactNode, ButtonHTMLAttributes } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -17,7 +16,7 @@ import buttonThemeClassNames, {
  */
 export interface ButtonProps
   extends ButtonThemeProps,
-    HTMLAttributes<HTMLButtonElement>,
+    ButtonHTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
   /**
    * The button's type attribute. This is set to "button" by default so that forms are not
