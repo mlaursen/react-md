@@ -39,7 +39,7 @@ export interface TextAreaProps
   /**
    *
    */
-  resize?: "auto" | "horizontal" | "vertical" | "both";
+  resize?: "auto" | "horizontal" | "vertical" | "both" | "none";
 
   /**
    *
@@ -132,7 +132,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     outline,
     underline: underline || filled,
     floating: !unstyled && label,
-    unresizable: growable,
+    unresizable: growable || resize === "none",
     "resize-h": resize === "horizontal",
     "resize-v": resize === "vertical",
   });

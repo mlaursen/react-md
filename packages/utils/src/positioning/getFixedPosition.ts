@@ -268,7 +268,7 @@ function fixInnerLeftPosition({
   let left = containerLeft + xMargin;
   let actualX: HorizontalPosition = "inner-left";
   const screenRight = vw - vwMargin;
-  if (left - elementWidth < vwMargin) {
+  if (left < vwMargin) {
     const nextLeft = containerLeft + containerWidth - elementWidth - xMargin;
     if (disableSwapping || nextLeft > screenRight) {
       left = vwMargin;
