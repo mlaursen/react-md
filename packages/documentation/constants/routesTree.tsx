@@ -199,6 +199,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("badge"),
     createPackageRoute("button"),
     createPackageRoute("card"),
+    createPackageRoute("chip"),
     createPackageRoute("dialog"),
     createPackageRoute("divider"),
     createPackageRoute("elevation", { api: false }),

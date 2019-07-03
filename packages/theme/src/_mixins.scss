@@ -83,6 +83,19 @@
     @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-light-color);
   }
 
+  @if mixin-exists(rmd-chip-theme-update-var) {
+    @include rmd-chip-theme-update-var(
+      solid-background-color,
+      $rmd-chip-solid-light-background-color
+    );
+    @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-light-color);
+    @include rmd-chip-theme-update-var(
+      outline-background-color,
+      $rmd-chip-outline-light-background-color
+    );
+    @include rmd-chip-theme-update-var(outline-color, $rmd-chip-outline-light-color);
+  }
+
   @if mixin-exists(rmd-divider-theme-update-var) {
     @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-light);
   }
@@ -151,6 +164,19 @@
   @if mixin-exists(rmd-card-theme-update-var) {
     @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-dark-color);
     @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-dark-color);
+  }
+
+  @if mixin-exists(rmd-chip-theme-update-var) {
+    @include rmd-chip-theme-update-var(
+      solid-background-color,
+      $rmd-chip-solid-dark-background-color
+    );
+    @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-dark-color);
+    @include rmd-chip-theme-update-var(
+      outline-background-color,
+      $rmd-chip-outline-dark-background-color
+    );
+    @include rmd-chip-theme-update-var(outline-color, $rmd-chip-outline-dark-color);
   }
 
   @if mixin-exists(rmd-divider-theme-update-var) {

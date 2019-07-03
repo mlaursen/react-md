@@ -1,0 +1,40 @@
+@import '~@react-md/avatar/dist/scss/mixins';
+@import '~@react-md/divider/dist/scss/mixins';
+
+.expandable-chip-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.expandable-chip-row {
+  @include rmd-divider-border(bottom);
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.expandable-chip-inline {
+  @include rmd-avatar-theme-update-var(size, 1.125rem);
+
+  flex-shrink: 0;
+  margin: 0 1rem;
+}
+
+.expandable-chip-field {
+  flex-shrink: 1;
+
+  .rmd-text-field {
+    width: 100%;
+  }
+}
+
+.expandable-chip-area {
+  height: 100%;
+  padding: 1rem;
+  width: 100%;
+}
+
+.expandable-chip-item-selected {
+  background-color: $rmd-grey-900;
+}

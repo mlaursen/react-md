@@ -254,6 +254,10 @@
     @include react-md-card;
   }
 
+  @if mixin-exists(react-md-chip) {
+    @include react-md-chip;
+  }
+
   @if mixin-exists(react-md-divider) {
     @include react-md-divider;
   }
