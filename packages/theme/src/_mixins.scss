@@ -101,9 +101,9 @@
   }
 
   @if mixin-exists(rmd-form-theme-update-var) {
-    @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-light);
-    @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-light);
-    @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-light);
+    // @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-light);
+    // @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-light);
+    // @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-light);
   }
 
   @if mixin-exists(rmd-sheet-theme-update-var) {

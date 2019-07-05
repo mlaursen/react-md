@@ -28,3 +28,29 @@ more customization information, but an example usage is shown below.
 <!-- INCLUDING_STYLES -->
 
 ## Usage
+
+Text fields:
+
+- "blocked" (unstyled)
+- underlined
+- outlined
+- filled
+
+- left icon
+- right icon
+- password toggle
+- NOTE: Try to see if it can work nicely with LastPass
+
+- helper text
+- error text
+
+Components Missing:
+
+- Select (Native and ListItem Wrapper)
+- FileInput
+
+Things missing:
+
+- error shake?
+- dense spec (52px (with label), 40px (without))
+- prefix and suffix text

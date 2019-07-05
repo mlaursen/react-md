@@ -1,0 +1,58 @@
+/// The `top` position to use for a floating label.
+/// @type Number
+$rmd-label-floating-top: 1.6rem !default;
+
+// $rmd-form-filled-background-color-light: #dcdcdc !default;
+// $rmd-form-filled-background-color-dark: $rmd-grey-700 !default;
+// $rmd-form-filled-background-color: if(
+//   $rmd-theme-light,
+//   $rmd-form-filled-background-color-light,
+//   $rmd-form-filled-background-color-dark
+// ) !default;
+
+// $rmd-form-outline-horizontal-padding: 1rem !default;
+// $rmd-form-outline-vertical-padding: 0.875rem !default;
+
+// $rmd-form-underline-horizontal-padding: 0.75rem !default;
+// $rmd-form-underline-vertical-padding: 0.375rem !default;
+
+// $rmd-form-border-color-light: rgba($rmd-black-base, 0.5) !default;
+// $rmd-form-border-color-dark: rgba($rmd-white-base, 0.5) !default;
+// $rmd-form-border-color: if(
+//   $rmd-theme-light,
+//   $rmd-form-border-color-light,
+//   $rmd-form-border-color-dark
+// ) !default;
+
+// $rmd-form-border-hover-color-light: rgba($rmd-black-base, 0.87) !default;
+// $rmd-form-border-hover-color-dark: rgba($rmd-white-base, 0.87) !default;
+// $rmd-form-border-hover-color: if(
+//   $rmd-theme-light,
+//   $rmd-form-border-hover-color-light,
+//   $rmd-form-border-hover-color-dark
+// ) !default;
+
+// $rmd-form-border-radius: 0.25rem !default;
+// $rmd-form-border-width: 1px !default;
+// $rmd-form-border-width-active: 2px !default;
+
+// $rmd-form-textarea-min-height: 1.5em !default;
+// $rmd-form-textarea-margin-top: 0px !default; //sass-lint:disable-line zero-unit
+// $rmd-form-textarea-underline-margin-top: 1.5rem !default;
+// placeholder-color: $rmd-form-placeholder-color,
+// label-floating-top: $rmd-label-floating-top,
+// filled-color: $rmd-form-filled-background-color,
+// filled-light-color: $rmd-form-filled-background-color-dark,
+// filled-dark-color: $rmd-form-filled-background-color-dark,
+// border-color: $rmd-form-border-color,
+// border-hover-color: $rmd-form-border-hover-color,
+// border-width: $rmd-form-border-width,
+// border-width-active: $rmd-form-border-width-active,
+// border-radius: $rmd-form-border-radius,
+// offset: 0px,
+// horizontal-padding: 0px,
+// vertical-padding: 0px,
+// underline-horizontal-padding: $rmd-form-underline-horizontal-padding,
+// outline-horizontal-padding: $rmd-form-outline-horizontal-padding,
+// textarea-min-height: $rmd-form-textarea-min-height,
+// textarea-margin-top: $rmd-form-textarea-margin-top,,
