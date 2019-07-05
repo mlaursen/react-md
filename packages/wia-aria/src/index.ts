@@ -4,9 +4,7 @@ export * from "./FocusContainer";
 export { default as useScrollLock } from "./useScrollLock";
 export { default as useFocusOnMount } from "./useFocusOnMount";
 export { default as usePreviousFocus } from "./usePreviousFocus";
-export {
-  default as useFocusableElementsCache,
-} from "./useFocusableElementsCache";
+export { default as useTabFocusWrap } from "./useTabFocusWrap";
 
 export { default as getFocusableElements } from "./getFocusableElements";
 export { default as focusElementWithin } from "./focusElementWithin";

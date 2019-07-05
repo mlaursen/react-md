@@ -10,8 +10,7 @@ import { WithForwardedRef, applyRef } from "@react-md/utils";
 
 import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
 import useFocusOnMount from "./useFocusOnMount";
-import useFocusableElementsCache from "./useFocusableElementsCache";
-import handleTabFocusWrap from "./handleTabFocusWrap";
+import useTabFocusWrap from "./useTabFocusWrap";
 
 export interface FocusContainerOptionsProps {
   /**
@@ -122,26 +121,13 @@ const FocusContainer: FC<FocusContainerProps & WithRef> = providedProps => {
     [forwardedRef]
   );
 
-  const focusables = useFocusableElementsCache(ref);
   usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
   useFocusOnMount(ref, defaultFocus, false, disableFocusOnMount);
-
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-
-      if (disableTabFocusWrap) {
-        return;
-      }
-
-      if (handleTabFocusWrap(event, focusables, disableFocusCache)) {
-        return;
-      }
-    },
-    [onKeyDown, disableTabFocusWrap]
-  );
+  const handleKeyDown = useTabFocusWrap({
+    disabled: disableTabFocusWrap,
+    disableFocusCache,
+    onKeyDown,
+  });
 
   return (
     <Component {...props} onKeyDown={handleKeyDown} ref={refHandler}>
