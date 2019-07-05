@@ -113,27 +113,29 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
 
   let handlers: Maybe<MergableRippleHandlers<E>> = null;
   let ripples: ReactNode = null;
+  const ripplesResult = useRipples({
+    ...options,
+    disableSpacebarClick,
+    disableRipple,
+    disableProgrammaticRipple,
+    rippleTimeout,
+    rippleClassName,
+    rippleContainerClassName,
+  });
+
   if (!disableRipple) {
-    ({ ripples, handlers } = useRipples({
-      ...options,
-      disableSpacebarClick,
-      disableRipple,
-      disableProgrammaticRipple,
-      rippleTimeout,
-      rippleClassName,
-      rippleContainerClassName,
-    }));
+    ({ ripples, handlers } = ripplesResult);
   }
 
-  if (enablePressedAndRipple || (disableRipple && !disablePressedFallback)) {
-    const result = usePressedStates({
-      ...options,
-      handlers: handlers || options.handlers,
-      disableSpacebarClick,
-    });
+  const pressedResult = usePressedStates({
+    ...options,
+    handlers: handlers || options.handlers,
+    disableSpacebarClick,
+  });
 
-    ({ handlers } = result);
-    className = cn(className, { "rmd-states--pressed": result.pressed });
+  if (enablePressedAndRipple || (disableRipple && !disablePressedFallback)) {
+    ({ handlers } = pressedResult);
+    className = cn(className, { "rmd-states--pressed": pressedResult.pressed });
   }
 
   handlers = handlers || options.handlers || ({} as MergableRippleHandlers<E>);
