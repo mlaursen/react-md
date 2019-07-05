@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
@@ -7,7 +9,6 @@ import {
   QuerySize,
 } from "./constants";
 import useWidthMediaQuery from "./useWidthMediaQuery";
-import { useMemo } from "react";
 
 /**
  * The current size for your application. This should work both server side

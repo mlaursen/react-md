@@ -13,16 +13,16 @@ implementations if the need arises in your app.
 This package also exposes some mixins that allow you to apply styles at specific
 breakpoints as well:
 
-- `rmd-sizing-phone-media`
-- `rmd-sizing-tablet-only-media`
-- `rmd-sizing-tablet-media`
-- `rmd-sizing-desktop-media`
-- `rmd-sizing-large-desktop-media`
+- `rmd-utils-phone-media`
+- `rmd-utils-tablet-only-media`
+- `rmd-utils-tablet-media`
+- `rmd-utils-desktop-media`
+- `rmd-utils-large-desktop-media`
 
-The `rmd-sizing-phone-media` and `rmd-sizing-tablet-only-media` will be the only
+The `rmd-utils-phone-media` and `rmd-utils-tablet-only-media` will be the only
 mixins that allow for the breakpoints to prevent styles in large screen sizes
-while the `rmd-sizing-tablet-media`, `rmd-sizing-desktop-media` and
-`rmd-sizing-large-desktop-media` will work by using the `min-width` of the
+while the `rmd-utils-tablet-media`, `rmd-utils-desktop-media` and
+`rmd-utils-large-desktop-media` will work by using the `min-width` of the
 specific media matcher.
 
 The example below will showcase the `*Only` components and render text when the

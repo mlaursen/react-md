@@ -1,11 +1,10 @@
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
 .markdown {
   &__p {
     @include rmd-typography(body-1);
-    @include rmd-sizing-desktop-media {
+    @include rmd-utils-desktop-media {
       @include rmd-typography(body-2);
     }
   }

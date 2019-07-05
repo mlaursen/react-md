@@ -123,7 +123,6 @@ export async function resolveVariables() {
     tryImport("overlay"),
     tryImport("progress"),
     tryImport("sheet"),
-    tryImport("sizing"),
     tryImport("states"),
     tryImport("table"),
     tryImport("theme"),

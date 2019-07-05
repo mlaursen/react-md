@@ -137,7 +137,7 @@ function createDelegatedEventHandler(
  * @return The delegated event handler that allows you to add or remove `EventListener`s to
  * that event.
  */
-export function delegateEvent(
+export default function delegateEvent(
   eventType: string,
   eventTarget: DelegatedEventTarget = window,
   throttle: boolean = eventType === "resize" || eventType === "scroll",

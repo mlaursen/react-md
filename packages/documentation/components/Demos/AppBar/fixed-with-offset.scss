@@ -1,12 +1,15 @@
 @import '~@react-md/utils/dist/scss/mixins';
 @import '~@react-md/elevation/dist/scss/mixins';
 @import '~@react-md/app-bar/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 
 .fixed-with-offset {
   @include rmd-elevation(6);
   @include rmd-utils-block-centered;
+  @include rmd-utils-phone-media {
+    margin: 2rem 0.5rem;
+    max-width: none;
+  }
 
   max-width: 20rem;
   position: relative;
@@ -41,11 +44,5 @@
 
   + .fixed-with-offset {
     margin-top: 3rem;
-  }
-
-  @include rmd-sizing-phone-media {
-    margin: 0;
-    margin-bottom: 2rem;
-    max-width: none;
   }
 }

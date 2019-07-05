@@ -5,15 +5,15 @@ default, but it can be used in two different ways:
 1. Using the `rmd-tooltip-dense` mixin along with a media query
 2. Providing the `dense` prop to the tooltip.
 
-My recommended way is using the media query approach along with the #sizing
+My recommended way is using the media query approach along with the #utils
 package:
 
 ```scss
-@import "@react-md/sizing/dist/mixins";
 @import "@react-md/tooltip/dist/mixins";
+@import "@react-md/utils/dist/mixins";
 
 :root {
-  @rmd-sizing-desktop-media {
+  @rmd-utils-desktop-media {
     @include rmd-tooltip-dense;
   }
 }

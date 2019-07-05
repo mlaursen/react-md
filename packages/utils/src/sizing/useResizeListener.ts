@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import { delegateEvent, useRefCache } from "@react-md/utils";
+
+import delegateEvent from "../events/delegateEvent";
+import useRefCache from "../useRefCache";
 
 export interface ResizeListenerOptions {
   /**

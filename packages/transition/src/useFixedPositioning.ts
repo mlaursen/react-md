@@ -1,12 +1,12 @@
 import { CSSProperties, useCallback, useRef, useState } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
-import { useResizeListener } from "@react-md/sizing";
 import {
   FixedPositionOptions,
-  getFixedPosition,
   Omit,
   PositionAnchor,
+  getFixedPosition,
   useRefCache,
+  useResizeListener,
   useScrollListener,
 } from "@react-md/utils";
 

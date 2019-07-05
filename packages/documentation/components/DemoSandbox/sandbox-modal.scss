@@ -40,7 +40,7 @@
 
   &__breadcrumbs {
     @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
-    @include rmd-sizing-phone-media {
+    @include rmd-utils-phone-media {
       @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline);
     }
     @include rmd-theme(color, text-secondary-on-dark);

@@ -1,19 +1,19 @@
 @import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 @import '~@react-md/elevation/dist/scss/mixins';
 
 .mq-example {
-  @include rmd-sizing-phone-media {
+  @include rmd-utils-phone-media {
     // only applied **up** to the phone max width
     border: 1px solid rmd-theme-var(error);
   }
 
-  @include rmd-sizing-tablet-only-media {
+  @include rmd-utils-tablet-only-media {
     // only applied between the phone max width + 1 and the tablet max width
     border: 4px solid rmd-theme-var(warning);
   }
 
-  @include rmd-sizing-tablet-media {
+  @include rmd-utils-tablet-media {
     // everything tablet sized and up will gain an elevation of 4
     @include rmd-elevation(4);
 
@@ -22,12 +22,12 @@
     padding: 2rem;
   }
 
-  @include rmd-sizing-desktop-media {
+  @include rmd-utils-desktop-media {
     // add a primary border ond desktops
     border: 2px solid rmd-theme-var(primary);
   }
 
-  @include rmd-sizing-large-desktop-media {
+  @include rmd-utils-large-desktop-media {
     // increase the box-shadow on large screens
     @include rmd-elevation(8);
   }

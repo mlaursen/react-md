@@ -4,14 +4,13 @@
 @import '~@react-md/icon/dist/scss/mixins';
 @import '~@react-md/list/dist/scss/mixins';
 @import '~@react-md/sheet/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/theme/dist/scss/mixins';
 @import '~@react-md/tooltip/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
 :root {
-  @include rmd-sizing-desktop-media {
+  @include rmd-utils-desktop-media {
     @include rmd-app-bar-dense-theme;
     @include rmd-form-toggle-dense-theme;
     @include rmd-icon-dense-theme;
@@ -49,7 +48,7 @@
   }
 
   &__nav {
-    @include rmd-sizing-desktop-media {
+    @include rmd-utils-desktop-media {
       @include rmd-app-bar-theme(top, height);
     }
 

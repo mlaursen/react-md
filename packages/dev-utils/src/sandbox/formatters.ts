@@ -28,7 +28,7 @@ export function getModuleName(filePath: string, scss: boolean = false) {
 export function getFileSource(source: string) {
   return source.replace(
     /import useAppSizeContext.+;/g,
-    'import { useAppSizeContext } from "@react-md/sizing";'
+    'import { useAppSizeContext } from "@react-md/utils";'
   );
 }
 

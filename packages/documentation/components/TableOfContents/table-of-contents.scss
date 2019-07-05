@@ -9,7 +9,6 @@
 @import '~@react-md/link/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/overlay/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
 
 $page-margin: 1rem;
 $toc-width: 15rem;
@@ -56,7 +55,7 @@ $toc-z-index: 9;
   }
 
   &__overlay {
-    @include rmd-sizing-tablet-only-media {
+    @include rmd-utils-tablet-only-media {
       @include rmd-overlay-theme-update-var(active-opacity, 0);
     }
 

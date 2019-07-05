@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import useRefCache from "../useRefCache";
 
-import { delegateEvent } from "./delegateEvent";
+import delegateEvent from "./delegateEvent";
 import { isSupported } from "./passiveEvents";
 
 export interface Options<E extends HTMLElement = HTMLElement> {
@@ -31,6 +31,10 @@ export interface Options<E extends HTMLElement = HTMLElement> {
   element?: E | null;
 }
 
+/**
+ * This hook will create a performant scroll listener by enabling passive events if it's
+ * supported by the browser and delegating the event as needed.
+ */
 export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   enabled,
   onScroll,

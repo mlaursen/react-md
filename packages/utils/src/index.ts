@@ -1,4 +1,5 @@
 export * from "./events";
+export * from "./sizing";
 export * from "./positioning";
 export * from "./wia-aria";
 

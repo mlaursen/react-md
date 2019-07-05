@@ -1,12 +1,12 @@
 import React, { FC, Fragment } from "react";
+import { Divider } from "@react-md/divider";
+import { TextContainer, Text } from "@react-md/typography";
 import {
   MobileOnly,
   PhoneOnly,
   TabletOnly,
   DesktopOnly,
-} from "@react-md/sizing";
-import { TextContainer, Text } from "@react-md/typography";
-import { Divider } from "@react-md/divider";
+} from "@react-md/utils";
 
 import "./media-query-components.scss";
 

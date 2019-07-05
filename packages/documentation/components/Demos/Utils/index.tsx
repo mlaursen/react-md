@@ -37,4 +37,4 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="sizing" />;
+export default () => <DemoPage demos={demos} packageName="utils" />;

@@ -1,7 +1,7 @@
-@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .with-v1 {
-  @include rmd-sizing-desktop-media {
+  @include rmd-utils-desktop-media {
     pre {
       margin-left: -10rem;
       margin-right: -10rem;

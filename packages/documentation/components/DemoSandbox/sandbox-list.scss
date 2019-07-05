@@ -1,4 +1,4 @@
-@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 $card-margin: 0.5rem;
 $doubled-card-margin: $card-margin * 2;
@@ -10,9 +10,10 @@ $doubled-card-margin: $card-margin * 2;
   margin: 1rem;
 
   &__card {
-    @include rmd-sizing-tablet-media {
+    @include rmd-utils-tablet-media {
       width: calc(50% - #{$doubled-card-margin});
     }
+
     @media screen and (min-width: 82.5em) {
       width: calc(33% - #{$doubled-card-margin});
     }

@@ -14,7 +14,6 @@ export * from "@react-md/overlay";
 export * from "@react-md/portal";
 export * from "@react-md/progress";
 export * from "@react-md/sheet";
-export * from "@react-md/sizing";
 export * from "@react-md/states";
 export * from "@react-md/table";
 export * from "@react-md/theme";

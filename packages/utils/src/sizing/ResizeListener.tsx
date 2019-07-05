@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Omit } from "@react-md/utils";
 
+import { Omit } from "../omit";
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
 export interface ResizeListenerProps

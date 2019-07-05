@@ -2,7 +2,35 @@
 
 This package is mostly for internal react-md work, but it also exposes a few
 help SCSS mixins for handling right-to-left languages, fixing scroll momentum in
-iOS, and custom focus styles.
+iOS, determining the app size, performant resize/scroll listeners, general
+accessibility helpers/components, and custom focus styles.
+
+Exported components:
+
+- `AppSizeListener`
+- `ResizeListener`
+- `ResizeObserver`
+- `ScrollListener`
+- `MobileOnly`
+- `PhoneOnly`
+- `TabletOnly`
+- `DesktopOnly`
+- `FocusContainer`
+
+Export hooks:
+
+- `useAppSize`
+- `useMediaQuery`
+- `useOrientation`
+- `useResizeListener`
+- `useResizeObserver`
+- `useCloseOnEscape`
+- `useFocusOnMount`
+- `useKeyboardMovement`
+- `useKeyboardSearch`
+- `usePreviousFocus`
+- `useScrollLock`
+- `useTabFocusWrap`
 
 ## Installation
 

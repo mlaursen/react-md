@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect } from "react";
 import {
   AppSize,
   useAppSizeContext as useAppSizeContextRMD,
-} from "@react-md/sizing";
-import { useToggle } from "@react-md/utils";
+  useToggle,
+} from "@react-md/utils";
 
 export const DefaultSize = createContext<AppSize>({
   isPhone: false,

@@ -1,7 +1,7 @@
 import React, { Fragment, FC, useState } from "react";
 import { useCheckboxState } from "@react-md/form";
-import { ResizeListener } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
+import { ResizeListener } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
 import Checkbox from "components/Checkbox";

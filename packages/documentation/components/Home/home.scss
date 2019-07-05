@@ -2,7 +2,6 @@
 @import '~@react-md/theme/dist/scss/mixins';
 @import '~@react-md/transition/dist/scss/mixins';
 @import '~@react-md/transition/dist/scss/variables';
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
@@ -38,11 +37,11 @@
   }
 
   &__card {
-    @include rmd-sizing-tablet-media {
+    @include rmd-utils-tablet-media {
       width: calc(50% - 2rem);
     }
 
-    @include rmd-sizing-desktop-media {
+    @include rmd-utils-desktop-media {
       width: calc(#{100% / 3} - 2rem);
     }
 

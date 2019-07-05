@@ -4,6 +4,8 @@ import NextApp, { Container } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
+import Cookie from 'js-cookie';
+import { CrossFade } from '@react-md/transition';
 import {
   DEFAULT_APP_SIZE,
   DEFAULT_PHONE_MAX_WIDTH,
@@ -11,9 +13,7 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-} from '@react-md/sizing';
-import { CrossFade } from '@react-md/transition';
-import Cookie from 'js-cookie';
+} from '@react-md/utils';
 
 import Layout from 'components/Layout';
 import GoogleFont from 'components/GoogleFont';

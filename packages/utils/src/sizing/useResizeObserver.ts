@@ -1,6 +1,7 @@
 import { useCallback, useRef, useEffect, useMemo } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
-import { useRefCache } from "@react-md/utils";
+
+import useRefCache from "../useRefCache";
 
 // these are copied from the ResizeObserverPolyfill type definitions since the type definition
 // file doesn't seem to be importing the polyfill which causes compilation errors in other packages.

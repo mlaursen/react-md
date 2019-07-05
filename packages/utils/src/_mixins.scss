@@ -183,6 +183,49 @@
   z-index: $z-index;
 }
 
+/// Creates a media query so that only phones will be targeted with the
+/// styles. This media query **will stop** at the phone's max width
+/// instead of being a `min-width` query since it would be better to just
+/// apply the phone styles as a base and use the tablet or desktop min-width
+/// queries for additional overrides.
+@mixin rmd-utils-phone-media {
+  @media screen and (max-width: #{$rmd-utils-phone-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so devices targeted at the min-width of a tablet and
+/// above will gain these styles.
+@mixin rmd-utils-tablet-media {
+  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes between the min and max width of a
+/// tablet will only gain these styles.
+@mixin rmd-utils-tablet-only-media {
+  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) and (max-width: #{$rmd-utils-tablet-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least the min width
+/// for a desktop will gain these styles.
+@mixin rmd-utils-desktop-media {
+  @media screen and (min-width: #{$rmd-utils-desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least the min width
+/// for a large desktop will gain these styles.
+@mixin rmd-utils-large-desktop-media {
+  @media screen and (min-width: #{$rmd-utils-large-desktop-min-width}) {
+    @content;
+  }
+}
+
 /// This is a small utility function that helps set up your react-md app.
 ///
 /// This will:

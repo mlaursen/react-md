@@ -1,17 +1,13 @@
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
 .app-bar-container {
   @include rmd-utils-block-centered;
-
-  max-width: 40rem;
-
-  > .rmd-app-bar {
-    margin: 2rem auto;
-  }
-
-  @include rmd-sizing-phone-media {
-    margin: 0;
+  @include rmd-utils-phone-media {
+    margin: 2rem 0.5rem;
     max-width: none;
   }
+
+  display: grid;
+  grid-row-gap: 2rem;
+  max-width: 40rem;
 }

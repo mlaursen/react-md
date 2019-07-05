@@ -2,9 +2,8 @@ import React, { FC, Fragment, useState, ReactNode } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
 import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import scssVariables from "@react-md/list/dist/scssVariables";
-import { useAppSize } from "@react-md/sizing";
 import { Text } from "@react-md/typography";
-import { unitToNumber } from "@react-md/utils";
+import { unitToNumber, useAppSize } from "@react-md/utils";
 
 import Code from "components/Code/Code";
 

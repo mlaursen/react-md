@@ -1,11 +1,10 @@
 @import '~@react-md/icon/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/transition/dist/scss/variables';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
 .heading {
-  @include rmd-sizing-tablet-media {
+  @include rmd-utils-tablet-media {
     margin-left: -1em;
     padding-left: 1em;
   }
@@ -23,7 +22,7 @@
   &__link {
     @include rmd-icon-theme(color);
     @include rmd-utils-hide-focus-outline;
-    @include rmd-sizing-desktop-media {
+    @include rmd-utils-desktop-media {
       display: block;
     }
 

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { AppSizeListener, useAppSizeContext } from "@react-md/sizing";
 import { TextContainer, Text } from "@react-md/typography";
+import { AppSizeListener, useAppSizeContext } from "@react-md/utils";
+
 import CodeBlock from "components/Code/CodeBlock";
 
 const CurrentSize = () => {

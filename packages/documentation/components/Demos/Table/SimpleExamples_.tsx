@@ -8,10 +8,10 @@ import {
   TableBody,
 } from "@react-md/table";
 import {
+  useScrollListener,
   ResizeObserver,
   ResizeObserverChangeEventHandler,
-} from "@react-md/sizing";
-import { useScrollListener } from "@react-md/utils";
+} from "@react-md/utils";
 
 const rows = [
   [

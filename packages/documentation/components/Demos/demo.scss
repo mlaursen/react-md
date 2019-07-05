@@ -2,10 +2,10 @@
 @import '~@react-md/divider/dist/scss/mixins';
 @import '~@react-md/theme/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
 
 .demo {
-  @include rmd-sizing-tablet-media {
+  @include rmd-utils-tablet-media {
     padding: 0 6rem;
   }
 

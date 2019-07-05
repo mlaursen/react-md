@@ -21,3 +21,23 @@ $rmd-utils-swappable-position-prefixes: border margin padding;
 /// this to true.
 /// @type Boolean
 $rmd-utils-skip-validation: false !default;
+
+/// The max width for a phone when in portrait or landscape mode.
+/// @type Number
+$rmd-utils-phone-max-width: 47.9375em !default;
+
+/// The min width for a tablet in portrait or landscape mode.
+/// @type Number
+$rmd-utils-tablet-min-width: 48em !default;
+
+/// The max width for a tablet in portrait or landscape mode.
+/// @type Number
+$rmd-utils-tablet-max-width: 64em !default;
+
+/// The min width for a desktop screen.
+/// @type Number
+$rmd-utils-desktop-min-width: 64.0625em !default;
+
+/// The min width for a large desktop screen.
+/// @type Number
+$rmd-utils-large-desktop-min-width: 80em !default;

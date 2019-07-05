@@ -1,5 +1,4 @@
 @import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/sizing/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/functions';
 @import '~@react-md/list/dist/scss/mixins';
 @import '~@react-md/elevation/dist/scss/mixins';
@@ -17,10 +16,10 @@ $total-list-horizontal-margin: $list-horizontal-margin * 2;
     @include rmd-list-unstyled;
     @include rmd-elevation(2);
     @include rmd-theme(background-color, surface);
-    @include rmd-sizing-tablet-media {
+    @include rmd-utils-tablet-media {
       width: calc(50% - #{$total-list-horizontal-margin});
     }
-    @include rmd-sizing-large-desktop-media {
+    @include rmd-utils-large-desktop-media {
       width: calc((100% / 3) - #{$total-list-horizontal-margin});
     }
 

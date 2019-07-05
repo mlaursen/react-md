@@ -30,7 +30,7 @@
   }
 
   &__message {
-    @include rmd-sizing-phone-media {
+    @include rmd-utils-phone-media {
       top: 50%;
     }
 
@@ -41,7 +41,7 @@
   }
 
   &__home {
-    @include rmd-sizing-phone-media {
+    @include rmd-utils-phone-media {
       top: 90%;
     }
 

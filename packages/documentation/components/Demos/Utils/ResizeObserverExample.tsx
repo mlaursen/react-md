@@ -1,11 +1,11 @@
 import React, { Fragment, FC, useEffect, useRef, useState } from "react";
 import { Button } from "@react-md/button";
+import { bem } from "@react-md/theme";
 import {
   ResizeObserver,
   ResizeObserverChangeEventHandler,
-} from "@react-md/sizing";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
+  useToggle,
+} from "@react-md/utils";
 
 import { randomInt } from "utils/random";
 
