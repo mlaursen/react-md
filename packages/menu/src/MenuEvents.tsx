@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from "react";
-import { usePreviousFocus, useFocusOnMount } from "@react-md/wia-aria";
+import { usePreviousFocus, useFocusOnMount } from "@react-md/utils";
 
 export interface MenuEventsProps {
   menuRef: MutableRefObject<HTMLDivElement | null>;

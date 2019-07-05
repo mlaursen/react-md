@@ -36,7 +36,6 @@ export const ALWAYS_REQUIRED_DEV_DEPENDENCIES = [
 export const NON_STYLEABLE_RMD_PACKAGES = [
   "@react-md/material-icons",
   "@react-md/portal",
-  "@react-md/wia-aria",
 ];
 
 export const DEMO_INDEX = `import React from "react";

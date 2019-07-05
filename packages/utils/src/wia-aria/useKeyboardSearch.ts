@@ -1,5 +1,8 @@
 import { useCallback } from "react";
-import { useTempValue, useRefCache } from "@react-md/utils";
+
+import useTempValue from "../useTempValue";
+import useRefCache from "../useRefCache";
+
 import getFocusableElements from "./getFocusableElements";
 import extractTextContent from "./extractTextContent";
 import findMatchIndex from "./findMatchIndex";

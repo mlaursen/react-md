@@ -1,5 +1,8 @@
 import React, { useCallback } from "react";
-import { Omit, useRefCache } from "@react-md/utils";
+
+import { Omit } from "../omit";
+import useRefCache from "../useRefCache";
+
 import { useMemoizedFocusKeys, getKeyboardEventType } from "./useFocusKeys";
 import getFocusableElements from "./getFocusableElements";
 import useKeyboardSearch, { KeyboardSearchOptions } from "./useKeyboardSearch";

@@ -15,13 +15,14 @@ import {
 } from "@react-md/portal";
 import { bem } from "@react-md/theme";
 import { CSSTransitionProps } from "@react-md/transition";
-import { LabelRequiredForA11y, WithForwardedRef } from "@react-md/utils";
 import {
+  LabelRequiredForA11y,
+  WithForwardedRef,
   FocusContainer,
   FocusContainerOptionsProps,
   useCloseOnEscape,
   useScrollLock,
-} from "@react-md/wia-aria";
+} from "@react-md/utils";
 
 import useNestedDialogFixes from "./useNestedDialogFixes";
 

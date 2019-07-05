@@ -1,7 +1,10 @@
 import { renderHook } from "react-hooks-testing-library";
 
-import { DATA_RMD_NOSCROLL } from "../constants";
-import useScrollLock, { disable, enable } from "../useScrollLock";
+import useScrollLock, {
+  disable,
+  enable,
+  DATA_RMD_NOSCROLL,
+} from "../useScrollLock";
 
 describe("useScrollLock", () => {
   describe("enable", () => {

@@ -6,7 +6,9 @@ import React, {
   useCallback,
   useRef,
 } from "react";
-import { WithForwardedRef, applyRef } from "@react-md/utils";
+
+import applyRef from "../applyRef";
+import { WithForwardedRef } from "../types.d";
 
 import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
 import useFocusOnMount from "./useFocusOnMount";

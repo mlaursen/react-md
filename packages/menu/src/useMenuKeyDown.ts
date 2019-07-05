@@ -1,4 +1,4 @@
-import { useKeyboardMovement } from "@react-md/wia-aria";
+import { useKeyboardMovement } from "@react-md/utils";
 
 interface MenuKeyDownOptions {
   horizontal: boolean;

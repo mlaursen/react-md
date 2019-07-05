@@ -5,8 +5,7 @@ import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
-import { useScrollLock } from "@react-md/wia-aria";
+import { useToggle, useScrollLock } from "@react-md/utils";
 
 import useAppSizeContext from "./useAppSizeContext";
 import Header from "./Header";

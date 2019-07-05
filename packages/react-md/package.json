@@ -61,8 +61,7 @@
     "@react-md/transition": "^2.0.0-alpha.5",
     "@react-md/tree": "^2.0.0-alpha.5",
     "@react-md/typography": "^2.0.0-alpha.5",
-    "@react-md/utils": "^2.0.0-alpha.5",
-    "@react-md/wia-aria": "^2.0.0-alpha.5"
+    "@react-md/utils": "^2.0.0-alpha.5"
   },
   "peerDependencies": {
     "react": ">= 16.8"

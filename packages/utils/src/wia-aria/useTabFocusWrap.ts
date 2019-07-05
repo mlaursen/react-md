@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useRef } from "react";
-import { useRefCache } from "@react-md/utils";
+
+import useRefCache from "../useRefCache";
 import getFocusableElements from "./getFocusableElements";
 
 interface Options<E extends HTMLElement> {

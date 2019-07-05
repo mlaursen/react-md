@@ -23,4 +23,3 @@ export * from "@react-md/transition";
 export * from "@react-md/tree";
 export * from "@react-md/typography";
 export * from "@react-md/utils";
-export * from "@react-md/wia-aria";

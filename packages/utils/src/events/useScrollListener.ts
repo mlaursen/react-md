@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+
+import useRefCache from "../useRefCache";
+
 import { delegateEvent } from "./delegateEvent";
 import { isSupported } from "./passiveEvents";
-import useRefCache from "./useRefCache";
 
 export interface Options<E extends HTMLElement = HTMLElement> {
   /**

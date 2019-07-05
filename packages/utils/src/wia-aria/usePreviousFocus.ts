@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { useRefCache } from "@react-md/utils";
+
+import useRefCache from "../useRefCache";
 
 /**
  * This can either be a query selector string, a specific HTMLElement, or a function

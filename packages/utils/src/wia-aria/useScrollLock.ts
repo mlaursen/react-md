@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { DATA_RMD_NOSCROLL } from "./constants";
+
+/**
+ * This is used with the `useScrollLock` effect to determine if the styles were
+ * applied by scroll locking or not in the cleanup stage.
+ */
+export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
 
 /**
  * This will enable scroll locking for the provided element. Scroll locking works

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import { useRefCache } from "@react-md/utils";
+
+import useRefCache from "../useRefCache";
 
 type KeyboardEventHandler = React.KeyboardEventHandler<HTMLDivElement>;
 

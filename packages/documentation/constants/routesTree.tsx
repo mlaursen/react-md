@@ -223,7 +223,6 @@ createRoute("/packages", "Packages", {
     createPackageRoute("tree"),
     createPackageRoute("typography"),
     createPackageRoute("utils"),
-    createPackageRoute("wia-aria"),
   ],
 });
 createDivider(0);

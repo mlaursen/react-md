@@ -14,7 +14,7 @@ import { WithForwardedRef } from "@react-md/utils";
 //   KeyboardFocusChangeEvent,
 //   useKeyboardFocusEventHandler,
 //   useSearchEventHandler,
-// } from "@react-md/wia-aria";
+// } from "@react-md/utils";
 
 import TreeItem from "./TreeItem";
 import { TreeDataList, TreeElement, TreeProps } from "./types.d";
