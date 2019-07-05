@@ -53,5 +53,5 @@ export default function useNestedDialogFixes({
       disableOverlay,
       disableEscapeClose,
     };
-  }, [disabled, visible, stack]);
+  }, [id, propDisableEscapeClose, disabled, visible, stack]);
 }
