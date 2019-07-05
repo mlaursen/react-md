@@ -1,3 +1,4 @@
+@import '~@react-md/button/dist/scss/mixins';
 @import '~@react-md/icon/dist/scss/mixins';
 @import '~@react-md/progress/dist/scss/mixins';
 @import '~@react-md/theme/dist/scss/mixins';
@@ -10,6 +11,11 @@
   margin: 1rem;
   // this makes it so the linear progress doesn't expand past the button bounds
   overflow: hidden;
+
+  &--loading {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
+  }
 
   &__overlay {
     // you'll really want this to be the `background` value or whatever the current

@@ -4,6 +4,10 @@ import { CircularProgress } from "@react-md/progress";
 import { useTimeout } from "@react-md/utils";
 import { UpdateRMDVariables } from "@react-md/theme";
 
+// this is used while the loading state is enabled to "disable" the switch toggle.
+// If we disable the entire switch, keyboard focus is lost which is not desired.
+const noop = () => {};
+
 const AsyncSwitch: FC<SwitchProps> = ({ onChange, ...props }) => {
   const [loading, setLoading] = useState(false);
   const { start } = useTimeout(() => setLoading(false), 4000);
@@ -18,13 +22,15 @@ const AsyncSwitch: FC<SwitchProps> = ({ onChange, ...props }) => {
 
   return (
     <UpdateRMDVariables
-      variables={[{ name: "progress-circular-width", value: "12" }]}
+      variables={[
+        { name: "progress-circular-width", value: "12" },
+        { name: "progress-circular-size", value: "1.25rem" },
+      ]}
     >
       <Switch
         {...props}
-        disabled={loading}
         labelDisabled={false}
-        onChange={handleChange}
+        onChange={loading ? noop : handleChange}
         checked={checked}
       >
         {loading && (
@@ -32,8 +38,6 @@ const AsyncSwitch: FC<SwitchProps> = ({ onChange, ...props }) => {
             id={`${props.id}-loading`}
             style={{
               borderRadius: "inherit",
-              height: "1.25rem",
-              width: "1.25rem",
               zIndex: 3,
               backgroundColor: "#fff",
               padding: 2,

@@ -26,14 +26,19 @@ type WithDefaultProps = AsyncButtonProps & DefaultProps;
 
 const block = bem("async-button");
 
+// this is used while the loading state is enabled to "disable" the button.
+// If we disable the entire button, keyboard focus is lost which is not desired.
+const noop = () => {};
+
 const AsyncButton: FC<AsyncButtonProps> = providedProps => {
   const {
     id,
-    disabled,
     loading,
     asyncType,
+    onClick,
     ...props
   } = providedProps as WithDefaultProps;
+  const { themeType } = props;
 
   const progressId = `${id}-progress`;
   let children: ReactNode = null;
@@ -79,10 +84,11 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
     <Button
       {...props}
       id={id}
-      disabled={disabled || loading}
-      className={block()}
+      className={block({ loading })}
       {...getProgressA11y(progressId, loading)}
-      theme="primary"
+      theme={loading ? "clear" : "primary"}
+      onClick={loading ? noop : onClick}
+      themeType={loading && themeType === "contained" ? "flat" : themeType}
     >
       {children}
     </Button>
