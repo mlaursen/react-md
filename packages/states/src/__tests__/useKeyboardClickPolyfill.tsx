@@ -17,11 +17,11 @@ const Test: FC<Props> = ({
   disableSpacebarClick,
   liRef,
 }) => {
-  const handleKeyDown = useKeyboardClickPolyfill(
+  const handleKeyDown = useKeyboardClickPolyfill({
     onKeyDown,
     disabled,
-    disableSpacebarClick
-  );
+    disableSpacebarClick,
+  });
 
   return (
     <li ref={liRef} role="treeitem" tabIndex={-1} onKeyDown={handleKeyDown}>
@@ -40,12 +40,14 @@ describe("useKeyboardClickPolyfill", () => {
 
   it("should return the provided onKeyDown handler if disabled", () => {
     let { result } = renderHook(() =>
-      useKeyboardClickPolyfill(undefined, true)
+      useKeyboardClickPolyfill({ disabled: true })
     );
     expect(result.current).toBeUndefined();
 
     const onKeyDown = jest.fn();
-    ({ result } = renderHook(() => useKeyboardClickPolyfill(onKeyDown, true)));
+    ({ result } = renderHook(() =>
+      useKeyboardClickPolyfill({ onKeyDown, disabled: true })
+    ));
     expect(result.current).toBe(onKeyDown);
   });
 
@@ -101,11 +103,10 @@ describe("useKeyboardClickPolyfill", () => {
       disableSpacebarClick?: boolean;
     }
     const TestTwo: FC<TestTwoProps> = ({ aRef, disableSpacebarClick }) => {
-      const handleKeyDown = useKeyboardClickPolyfill(
-        undefined,
-        false,
-        disableSpacebarClick
-      );
+      const handleKeyDown = useKeyboardClickPolyfill({
+        disabled: false,
+        disableSpacebarClick,
+      });
 
       return (
         <a ref={aRef} href="#" onKeyDown={handleKeyDown}>

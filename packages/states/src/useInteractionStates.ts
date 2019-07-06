@@ -20,6 +20,13 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
   className?: string;
 
   /**
+   * Boolean if the enter keyboard click polyfill should be completely disabled. This is generally
+   * used if the keyboard functionality is already built-in to the element like buttons
+   * or labels.
+   */
+  disableEnterClick?: boolean;
+
+  /**
    * Boolean if the spacebar should not trigger a click event when using the user
    * pressed spacebar on a focusable element. You _normally_ want the spacebar to
    * also trigger a click event , but there are a few cases where it should not
@@ -83,6 +90,7 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
     disableSpacebarClick = false,
     disablePressedFallback = false,
     enablePressedAndRipple = false,
+    disableEnterClick = false,
   } = options;
 
   let {
@@ -140,11 +148,12 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
 
   handlers = handlers || options.handlers || ({} as MergableRippleHandlers<E>);
 
-  handlers.onKeyDown = useKeyboardClickPolyfill(
-    handlers.onKeyDown,
+  handlers.onKeyDown = useKeyboardClickPolyfill({
     disabled,
-    disableSpacebarClick
-  );
+    disableEnterClick,
+    disableSpacebarClick,
+    onKeyDown: handlers.onKeyDown,
+  });
 
   return {
     ripples,

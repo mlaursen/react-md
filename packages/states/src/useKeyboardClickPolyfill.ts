@@ -1,27 +1,46 @@
 import { useCallback } from "react";
 import { useRefCache } from "@react-md/utils";
 
+interface Options<E extends HTMLElement> {
+  /**
+   * Boolean if the keyboard click handler should be disabled. This will make
+   * it so the return value is just the provided `onKeyDown` handler or
+   * undefined if it was omitted
+   */
+  disabled?: boolean;
+
+  /**
+   * Boolean if the element does not need the Enter key polyfilled. This should
+   * normally be set to `true` for `<label>` elements.
+   */
+  disableEnterClick?: boolean;
+
+  /**
+   * Boolean if the user should not be able to click the element with the
+   * space key. This should normally only be set to `true` for link elements.
+   */
+  disableSpacebarClick?: boolean;
+
+  /**
+   * An optional onKeyDown event handler that should be merged with the
+   * keyboard click polyfill
+   */
+  onKeyDown?: React.KeyboardEventHandler<E>;
+}
+
 /**
  * This small utility function will create an onKeyDown handler that
  * allows the user to "click" an element with the keyboard via Enter
  * or Space.
- *
- * @param onKeyDown - An optional onKeyDown event handler that should
- * be merged with the keyboard click polyfill.
- * @param disabled - Boolean if the keyboard click handler should be
- * disabled. This will make it so the return value is just the provided
- * `onKeyDown` handler or undefined if it was omitted.
- * @param disableSpacebarClick - Boolean if the user should not be able
- * to click the element with the space key. This should normally only
- * be set to `true` for link elements.
  */
 export default function useKeyboardClickPolyfill<
   E extends HTMLElement = HTMLElement
->(
-  onKeyDown?: React.KeyboardEventHandler<E>,
-  disabled: boolean = false,
-  disableSpacebarClick = false
-) {
+>({
+  onKeyDown,
+  disabled = false,
+  disableEnterClick = false,
+  disableSpacebarClick = false,
+}: Options<E> = {}) {
   const ref = useRefCache({ onKeyDown, disableSpacebarClick });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
@@ -34,14 +53,12 @@ export default function useKeyboardClickPolyfill<
     const isEnter = event.key === "Enter";
     const { currentTarget } = event;
     const { tagName } = currentTarget;
-    const type = currentTarget.getAttribute("type") || "";
     if (
       (!isSpace && !isEnter) ||
       (isSpace && disableSpacebarClick) ||
-      // buttons and textareas shouldn't be polyfilled
-      /BUTTON|TEXTAREA/.test(tagName) ||
-      // checkboxes and radios submit forms on enter instead of clicking the element
-      (isEnter && /checkbox|radio/i.test(type)) ||
+      (isEnter && disableEnterClick) ||
+      // buttons and textareas, and inputs shouldn't be polyfilled
+      /BUTTON|TEXTAREA|INPUT/.test(tagName) ||
       // native links don't click on space
       (isSpace && tagName === "A")
     ) {
