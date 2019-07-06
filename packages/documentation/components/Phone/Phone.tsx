@@ -10,11 +10,11 @@ import { useToggle } from "@react-md/utils";
 import ConditionalFullPageDialog, {
   ConditionalFullPageDialogProps,
 } from "components/ConditionalFullPageDialog";
+import useAppSizeContext from "components/Layout/useAppSizeContext";
 
-import "./phone.scss";
+import "./Phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 export interface PhoneProps
   extends Pick<

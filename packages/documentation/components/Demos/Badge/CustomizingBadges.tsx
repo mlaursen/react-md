@@ -5,7 +5,7 @@ import { NotificationsSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 import { COPYRIGHT } from "constants/unicode";
 
-import "./customizing-badges.scss";
+import "./CustomizingBadges.scss";
 
 const CustomizingBadges: FC = () => (
   <Fragment>

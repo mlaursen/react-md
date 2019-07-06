@@ -7,7 +7,7 @@ import { HorizontalPosition, VerticalPosition } from "@react-md/utils";
 
 import Code from "components/Code/Code";
 
-import "./menu-positioning.scss";
+import "./MenuPositioning.scss";
 
 const items = ["Item 1", "Item 2", "Item 3"];
 

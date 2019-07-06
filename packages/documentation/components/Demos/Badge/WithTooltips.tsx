@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import TooltippedBadgedButton from "./TooltippedBadgedButton";
 
-import "./simple-examples.scss";
+import "./SimpleExamples.scss";
 
 const WithTooltips: FC = () => (
   <Fragment>

@@ -14,7 +14,7 @@ import { bem } from "@react-md/theme";
 import Phone from "components/Phone";
 import useFakeLazyImport from "hooks/useFakeLazyImport";
 
-import "./with-suspense.scss";
+import "./WithSuspense.scss";
 import WithSuspenseAppBar from "./WithSuspenseAppBar";
 import WithSuspenseFallback from "./WithSuspenseFallback";
 import WithSuspenseFiles from "./WithSuspenseFiles";

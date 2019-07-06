@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Button } from "@react-md/button";
 
-import "./custom-interactions.scss";
+import "./CustomInteractions.scss";
 
 const CustomInteractions: FC = () => (
   <Button

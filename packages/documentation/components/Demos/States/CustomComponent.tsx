@@ -6,7 +6,7 @@ import {
 } from "@react-md/states";
 import { Omit } from "@react-md/utils";
 
-import "./custom-component.scss";
+import "./CustomComponent.scss";
 
 interface CustomButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

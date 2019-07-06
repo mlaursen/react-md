@@ -12,7 +12,7 @@ import Router from "next/router";
 
 import GoogleFont from "components/GoogleFont";
 
-import "./markdown.scss";
+import "./Markdown.scss";
 import { markdownToHTML } from "./utils";
 
 function useMarkdownResolver(markdown: MarkdownProps["children"]) {

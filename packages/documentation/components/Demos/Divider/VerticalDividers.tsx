@@ -3,7 +3,7 @@ import { AppBar } from "@react-md/app-bar";
 import { VerticalDivider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
-import "./vertical-dividers.scss";
+import "./VerticalDividers.scss";
 
 const VerticalDividers: FC = () => (
   <AppBar theme="default">

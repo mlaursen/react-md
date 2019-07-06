@@ -15,7 +15,7 @@ import {
 import Checkbox from "components/Checkbox";
 import Radio from "components/Radio";
 
-import "./fixed-positioning-example.scss";
+import "./FixedPositioningExample.scss";
 
 const horizontals: HorizontalPosition[] = [
   "left",

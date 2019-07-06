@@ -8,7 +8,7 @@ import {
   ChatSVGIcon,
 } from "@react-md/material-icons";
 
-import "./custom-button-theme.scss";
+import "./CustomButtonTheme.scss";
 
 const CustomButtonTheme: FC = () => (
   <Container className="custom-button-themes">

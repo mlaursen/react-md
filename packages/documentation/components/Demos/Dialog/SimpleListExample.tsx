@@ -4,7 +4,7 @@ import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";
 import { useToggle } from "@react-md/utils";
 
-import "./simple-list-example.scss";
+import "./SimpleListExample.scss";
 
 const SimpleExample: FC = () => {
   const { toggled, enable, disable } = useToggle();

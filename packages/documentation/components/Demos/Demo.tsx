@@ -15,7 +15,7 @@ import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { Markdown } from "components/Markdown";
 import { ClosePhone } from "components/Phone";
 
-import "./demo.scss";
+import "./Demo.scss";
 import CodePreview from "./CodePreview";
 import GithubDemoLink from "./GithubDemoLink";
 import Sandbox from "./Sandbox";

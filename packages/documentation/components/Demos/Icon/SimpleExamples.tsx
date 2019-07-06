@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import { FontIcon, SVGIcon } from "@react-md/icon";
 import { Text } from "@react-md/typography";
 
-import "./simple-examples.scss";
+import "./SimpleExamples.scss";
 
 const SimpleExamples: FC = () => (
   <Fragment>

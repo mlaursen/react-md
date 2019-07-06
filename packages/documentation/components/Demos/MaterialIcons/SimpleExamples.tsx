@@ -11,7 +11,7 @@ import {
   HomeSVGIcon,
 } from "@react-md/material-icons";
 
-import "./simple-examples.scss";
+import "./SimpleExamples.scss";
 
 const SimpleExamples: FC = () => (
   <div className="material-icons-container">

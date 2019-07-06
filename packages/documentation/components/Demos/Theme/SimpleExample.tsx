@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
-import "./simple-example.scss";
+import "./SimpleExample.scss";
 
 const SimpleExample: FC = () => (
   <div className="custom-theme-example">

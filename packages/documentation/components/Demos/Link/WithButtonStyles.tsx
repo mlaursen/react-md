@@ -3,7 +3,7 @@ import cn from "classnames";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";
 
-import "./with-button-styles.scss";
+import "./WithButtonStyles.scss";
 
 const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
   className,

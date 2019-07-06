@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 
-import "./logo.scss";
+import "./Logo.scss";
 import { Component as ReactMDLogo } from "./logo.svg";
 
 const Logo: FC<HTMLAttributes<SVGSVGElement>> = ({ className }) => (

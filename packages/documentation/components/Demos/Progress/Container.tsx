@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 
-import "./container.scss";
+import "./Container.scss";
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   inline?: boolean;

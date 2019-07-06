@@ -17,7 +17,7 @@ import {
 } from "@react-md/material-icons";
 import { Text, TextContainer } from "@react-md/typography";
 
-import "./fixed-with-offset.scss";
+import "./FixedWithOffset.scss";
 
 interface ExampleProps {
   dense?: boolean;

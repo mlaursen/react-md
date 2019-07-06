@@ -6,7 +6,7 @@ import { Text } from "@react-md/typography";
 import Code from "components/Code/Code";
 import Radio from "components/Radio";
 
-import "./custom-portal-container.scss";
+import "./CustomPortalContainer.scss";
 
 const values = [
   { intoId: "example-portal-container-1" },

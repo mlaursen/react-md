@@ -8,7 +8,7 @@ import {
   LinearProgress,
 } from "@react-md/progress";
 
-import "./simple-determinate-example.scss";
+import "./SimpleDeterminateExample.scss";
 import { useDownloadInterval } from "./useDownloadInterval";
 
 const Container: FC = ({ children }) => (

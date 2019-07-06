@@ -6,7 +6,7 @@ import { List, ListItem } from "@react-md/list";
 import people from "constants/people";
 
 import Container from "./Container";
-import "./color-examples.scss";
+import "./ColorExamples.scss";
 
 const COLORS = Object.keys(scssVariables["rmd-avatar-colors"]);
 const transformedPeople = people.map((name, i) => ({

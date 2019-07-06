@@ -5,7 +5,7 @@ import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import { SVGIconProps } from "@react-md/icon";
 
-import "./two-line-examples.scss";
+import "./TwoLineExamples.scss";
 import Container from "./Container";
 
 const lastAccessedPhotos = new Date(2019, 0, 4);

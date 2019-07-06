@@ -9,7 +9,7 @@ import {
 
 import { randomInt } from "utils/random";
 
-import "./resize-observer-example.scss";
+import "./ResizeObserverExample.scss";
 
 const block = bem("simple-resize");
 const DEFAULT_HEIGHT = 100;

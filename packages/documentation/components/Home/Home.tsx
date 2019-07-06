@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import PageMeta from "components/PageMeta";
 
-import "./home.scss";
+import "./Home.scss";
 import Banner from "./Banner";
 import Goals from "./Goals";
 import JumpStart from "./JumpStart";

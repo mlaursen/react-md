@@ -5,7 +5,7 @@ import { TextIconSpacing } from "@react-md/icon";
 import { Text } from "@react-md/typography";
 import { HomeSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
-import "./icon-spacing.scss";
+import "./IconSpacing.scss";
 
 const CustomIcon = () => <HomeSVGIcon />;
 

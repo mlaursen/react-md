@@ -4,7 +4,7 @@ import { Overlay } from "@react-md/overlay";
 import { List, ListItem } from "@react-md/list";
 import { useToggle } from "@react-md/utils";
 
-import "./custom-theme.scss";
+import "./CustomTheme.scss";
 
 const CustomTheme: FC = () => {
   const { toggled, toggle, disable } = useToggle();

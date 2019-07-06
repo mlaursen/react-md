@@ -4,7 +4,7 @@ import { TextIconSpacing } from "@react-md/icon";
 
 import TwitterIcon from "icons/TwitterIcon";
 
-import "./with-icons.scss";
+import "./WithIcons.scss";
 
 const WithIcons: FC = () => (
   <div className="link-container">

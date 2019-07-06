@@ -4,7 +4,7 @@ import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-import "./table-of-contents.scss";
+import "./TableOfContents.scss";
 
 import List from "./List";
 import Toggle from "./Toggle";

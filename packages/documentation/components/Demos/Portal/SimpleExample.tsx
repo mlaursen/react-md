@@ -7,7 +7,7 @@ import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 
-import "./simple-example.scss";
+import "./SimpleExample.scss";
 
 const SimpleExample: FC = () => {
   const { toggled, toggle, disable } = useToggle();

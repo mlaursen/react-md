@@ -5,7 +5,7 @@ import { TooltipHoverModeConfig } from "@react-md/tooltip";
 import { AppSizeListener, AppSizeListenerProps } from "@react-md/utils";
 
 import Combined from "./Combined";
-import "./layout.scss";
+import "./Layout.scss";
 import { DefaultSize } from "./useAppSizeContext";
 
 export interface LayoutProps

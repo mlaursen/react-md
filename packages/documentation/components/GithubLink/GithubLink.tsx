@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/theme";
 import { Omit } from "@react-md/utils";
 
 import { GITHUB_URL } from "constants/index";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 import LinkButton, { LinkButtonProps } from "components/LinkButton";
 
-import "./github-link.scss";
-import { bem } from "@react-md/theme";
+import "./GithubLink.scss";
+
 export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
   href?: string;
   suffix?: string;

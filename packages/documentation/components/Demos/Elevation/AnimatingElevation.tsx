@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import "./animating-elevation.scss";
+import "./AnimatingElevation.scss";
 
 const AnimatingElevation: FC = () => (
   <div className="animating-elevation-container">

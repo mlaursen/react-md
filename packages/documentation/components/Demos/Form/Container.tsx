@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import "./container.scss";
+import "./Container.scss";
 
 const Container: FC = ({ children }) => (
   <div className="form-container">{children}</div>

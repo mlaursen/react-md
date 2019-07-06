@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { BadgedButton, BadgeTheme } from "@react-md/badge";
 
-import "./simple-examples.scss";
+import "./SimpleExamples.scss";
 
 const themes: BadgeTheme[] = ["primary", "secondary", "default", "clear"];
 

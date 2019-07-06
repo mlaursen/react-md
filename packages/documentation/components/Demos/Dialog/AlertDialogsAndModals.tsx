@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
 
-import "./alert-dialogs-and-modals.scss";
+import "./AlertDialogsAndModals.scss";
 
 const DRAFT = `This is some initial text to show in the draft area.
 When you click on "Reset", a dialog will ask you if you want to discard the

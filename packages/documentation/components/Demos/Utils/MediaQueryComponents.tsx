@@ -8,7 +8,7 @@ import {
   DesktopOnly,
 } from "@react-md/utils";
 
-import "./media-query-components.scss";
+import "./MediaQueryComponents.scss";
 
 const MediaQueryComponents: FC = () => (
   <Fragment>

@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { MediaContainer } from "@react-md/media";
 
-import "./simple-responsive-media.scss";
+import "./SimpleResponsiveMedia.scss";
 const images = [
   "/200/300?image=30",
   "/300/200?image=3",

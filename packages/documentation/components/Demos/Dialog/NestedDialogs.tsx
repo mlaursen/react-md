@@ -9,7 +9,7 @@ import {
 import { KeyboardArrowLeftSVGIcon } from "@react-md/material-icons";
 import { useToggle } from "@react-md/utils";
 
-import "./nested-dialogs.scss";
+import "./NestedDialogs.scss";
 import LoremIpsum from "./LoremIpsum";
 import NestedDemo from "./NestedDemo";
 

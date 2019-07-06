@@ -23,7 +23,7 @@ import {
   RouteSubheader,
 } from "constants/routesTree";
 
-import "./navigation-tree.scss";
+import "./NavigationTree.scss";
 
 /**
  * A custom tree-item renderer that can also create dividers and subheader

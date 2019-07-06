@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import { BadgedButton } from "@react-md/badge";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
 
-import "./simple-examples.scss";
+import "./SimpleExamples.scss";
 
 const SimpleExamples: FC = () => (
   <Fragment>

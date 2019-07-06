@@ -3,7 +3,7 @@ import cn from "classnames";
 import { SVGIconProps } from "@react-md/icon";
 import { Component as ReactLogo } from "./reactLogo.svg";
 
-import "./react-svg-icon.scss";
+import "./ReactSVGIcon.scss";
 
 const ReactSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
   <ReactLogo

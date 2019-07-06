@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import { useThemeContext, useThemeToggle } from "./ThemeContext";
-import "./toggle-theme.scss";
+import "./ToggleTheme.scss";
 
 const block = bem("toggle-theme");
 

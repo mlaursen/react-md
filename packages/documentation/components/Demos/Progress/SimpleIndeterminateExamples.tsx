@@ -7,7 +7,8 @@ import {
 } from "@react-md/progress";
 
 import Phone from "components/Phone";
-import "./simple-examples.scss";
+
+import "./SimpleExamples.scss";
 import useTemporaryToggle from "./useTemporaryToggle";
 
 const SimpleIndeterminateExamples: FC = () => {

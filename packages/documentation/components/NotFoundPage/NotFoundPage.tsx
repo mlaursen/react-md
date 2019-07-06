@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import cn from "classnames";
+import { TextIconSpacing } from "@react-md/icon";
+import { HomeSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
 import { bem } from "@react-md/theme";
 import { Text, TextContainer } from "@react-md/typography";
 
-import "./not-found-page.scss";
-import { Component as NotFoundSVG } from "./404.svg";
 import LinkButton from "components/LinkButton";
-import { TextIconSpacing } from "@react-md/icon";
-import { HomeSVGIcon } from "@react-md/material-icons";
+
+import "./NotFoundPage.scss";
+import { Component as NotFoundSVG } from "./404.svg";
 
 const block = bem("not-found");
 

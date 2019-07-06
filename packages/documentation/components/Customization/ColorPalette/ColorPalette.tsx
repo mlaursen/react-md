@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import { bem } from "@react-md/theme";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
-import "./color-palette.scss";
+import "./ColorPalette.scss";
 import About from "./About";
 import Color, { ColorValue } from "./Color";
 import ColorList from "./ColorList";

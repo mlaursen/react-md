@@ -1,5 +1,7 @@
 import React, { FC, Fragment, ReactNode } from "react";
 import { Button, ButtonProps } from "@react-md/button";
+import { TextIconSpacing } from "@react-md/icon";
+import { CloudDownloadSVGIcon } from "@react-md/material-icons";
 import {
   getProgressA11y,
   CircularProgress,
@@ -7,9 +9,7 @@ import {
 } from "@react-md/progress";
 import { bem } from "@react-md/theme";
 
-import "./async-button.scss";
-import { TextIconSpacing } from "@react-md/icon";
-import { CloudDownloadSVGIcon } from "@react-md/material-icons";
+import "./AsyncButton.scss";
 
 export interface AsyncButtonProps extends ButtonProps {
   id: string;

@@ -9,7 +9,7 @@ import {
 import { DropdownMenu } from "@react-md/menu";
 import { useToggle } from "@react-md/utils";
 
-import "./fixing-overflow-issues.scss";
+import "./FixingOverflowIssues.scss";
 import InaccessibleMenu from "./InaccessibleMenu";
 
 const ITEMS = Array.from(new Array(20), (_, i) => `Item ${i + 1}`);

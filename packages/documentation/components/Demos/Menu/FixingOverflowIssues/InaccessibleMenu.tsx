@@ -5,7 +5,7 @@ import { useToggle } from "@react-md/utils";
 import { List } from "@react-md/list";
 import { MenuItem } from "@react-md/menu";
 
-import "./inaccessible-menu.scss";
+import "./InaccessibleMenu.scss";
 import { TextIconSpacing, IconRotator } from "@react-md/icon";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 

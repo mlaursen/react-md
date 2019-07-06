@@ -6,7 +6,7 @@ import { bem } from "@react-md/theme";
 
 import { toTitle } from "utils/toTitle";
 
-import "./sandbox-modal.scss";
+import "./SandboxModal.scss";
 import SandboxNavigation from "./SandboxNavigation";
 import CodePreview from "./CodePreview";
 import SandboxFileTree from "./SandboxFileTree";

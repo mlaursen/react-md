@@ -14,7 +14,7 @@ import { PassiveEvents, useRefCache } from "@react-md/utils";
 
 import people from "constants/people";
 
-import "./animating-app-bar.scss";
+import "./AnimatingAppBar.scss";
 
 const COLORS = Object.keys(avatarVariables["rmd-avatar-colors"]);
 

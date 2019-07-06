@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 
-import "./auto-dense.scss";
+import "./AutoDense.scss";
 import Container from "./Container";
 
 const AutoDense: FC = () => (

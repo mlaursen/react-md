@@ -4,7 +4,7 @@ import { List, SimpleListItem } from "@react-md/list";
 import people from "constants/people";
 
 import Container from "./Container";
-import "./non-interactable.scss";
+import "./NonInteractable.scss";
 
 const NonInteractable: FC = () => (
   <div className="simple-list-examples">

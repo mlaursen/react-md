@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/utils";
 
 import Phone from "components/Phone";
 
-import "./expandable-chips.scss";
+import "./ExpandableChips.scss";
 
 const PERSONAL_EMAIL = "jjeckhart@email.com";
 const WORK_EMAIL = "jjeckhart@workemail.com";

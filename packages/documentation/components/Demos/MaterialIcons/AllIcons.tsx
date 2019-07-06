@@ -4,7 +4,7 @@ import { Tooltipped } from "@react-md/tooltip";
 
 import Code from "components/Code/Code";
 
-import "./all-icons.scss";
+import "./AllIcons.scss";
 
 const allIcons = Object.entries(MaterialIcons).filter(([name]) =>
   name.endsWith("SVGIcon")

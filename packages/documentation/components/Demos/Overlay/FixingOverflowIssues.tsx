@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/utils";
 
 import Checkbox from "components/Checkbox";
 
-import "./fixing-overflow-issues.scss";
+import "./FixingOverflowIssues.scss";
 
 const FixingOverflowIssues: FC = () => {
   const { toggled: visible, disable, toggle } = useToggle();

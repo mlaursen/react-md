@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from "@react-md/dialog";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
 
-import "./full-page-example.scss";
+import "./FullPageExample.scss";
 
 // just grabbed some "large" images from https://picsum.photos/list
 interface FullImageData {

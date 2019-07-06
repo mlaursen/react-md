@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-
-import "./container.scss";
 import { bem } from "@react-md/theme";
+
+import "./Container.scss";
 
 interface Props {
   centered?: boolean;
