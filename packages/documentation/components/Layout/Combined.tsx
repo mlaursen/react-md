@@ -1,4 +1,4 @@
-import React, { Fragment, FC, useEffect } from "react";
+import React, { Fragment, FC, useEffect, useRef } from "react";
 import cn from "classnames";
 import { SingletonRouter, withRouter } from "next/router";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
@@ -11,6 +11,7 @@ import useAppSizeContext from "./useAppSizeContext";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
 import TableOfContents from "components/TableOfContents";
+import { useInteractionModeContext } from "@react-md/states";
 
 export interface CombinedProps {
   title: string;
@@ -58,6 +59,18 @@ const Combined: FC<CombinedProps> = ({
     }
   }
 
+  // this makes it so that the SkipToMainContent button can still
+  // focus the `<main>` element, but the `<main>` will no longer be
+  // focused if the user clicks inside. This is super nice since one
+  // of my bigger patterns is to click somewhere then press tab to
+  // focus a specific element. Without this fix, the first element in
+  // the `<main>` tag would be focused instead of the closest focusable
+  // element to the click area.
+  let mainTabIndex: number;
+  if (useInteractionModeContext() === "keyboard") {
+    mainTabIndex = -1;
+  }
+
   return (
     <Fragment>
       <Header
@@ -98,7 +111,7 @@ const Combined: FC<CombinedProps> = ({
             offset: inline && visible,
           })
         )}
-        tabIndex={-1}
+        tabIndex={mainTabIndex}
       >
         <TableOfContents pathname={router.pathname} />
         {children}
