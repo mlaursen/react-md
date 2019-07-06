@@ -223,7 +223,6 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
     onExited,
     modal,
     type,
-    defaultFocus,
     disableScrollLock,
     disableEscapeClose: propDisableEscapeClose,
     disableFocusContainer,
