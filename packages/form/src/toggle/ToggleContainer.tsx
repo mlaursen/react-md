@@ -54,6 +54,22 @@ const defaultProps: DefaultProps = {
 
 ToggleContainer.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  ToggleContainer.displayName = "ToggleContainer";
+
+  let PropTypes = null;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    ToggleContainer.propTypes = {
+      inline: PropTypes.bool,
+      stacked: PropTypes.bool,
+    };
+  }
+}
+
 export default forwardRef<HTMLDivElement, ToggleContainerProps>(
   (props, ref) => <ToggleContainer {...props} forwardedRef={ref} />
 );
