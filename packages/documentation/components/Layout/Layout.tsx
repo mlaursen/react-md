@@ -7,6 +7,7 @@ import { AppSizeListener, AppSizeListenerProps } from "@react-md/utils";
 import Combined from "./Combined";
 import "./Layout.scss";
 import { DefaultSize } from "./useAppSizeContext";
+import SkipToMainContent from "./SkipToMainContent";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -26,6 +27,7 @@ const Layout: FC<LayoutProps> = ({
         <StatesConfig>
           <TooltipHoverModeConfig>
             <DefaultSize.Provider value={defaultSize}>
+              <SkipToMainContent />
               {pathname.startsWith("/code") ? (
                 children
               ) : (

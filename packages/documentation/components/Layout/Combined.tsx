@@ -98,6 +98,7 @@ const Combined: FC<CombinedProps> = ({
             offset: inline && visible,
           })
         )}
+        tabIndex={-1}
       >
         <TableOfContents pathname={router.pathname} />
         {children}

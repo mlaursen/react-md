@@ -1,0 +1,21 @@
+@import 'mixins';
+
+.skip-to-main-content {
+  @include rmd-typography(headline-6);
+  @include rmd-utils-sr-only(true, null);
+  @include rmd-utils-hide-focus-outline;
+
+  // sass-lint:disable no-important
+  color: rmd-theme-var(on-primary) !important;
+  left: 50%;
+  position: fixed;
+  top: 0.25rem;
+  transform: translateX(-50%);
+  z-index: 10000;
+
+  &:focus,
+  &:active {
+    border: 0.25rem dashed $rmd-black-base;
+    padding: 0 0.5rem;
+  }
+}

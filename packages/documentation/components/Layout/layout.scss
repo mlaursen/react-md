@@ -26,7 +26,16 @@
 
 .layout {
   &__main {
-    @include rmd-app-bar-offset();
+    @include rmd-app-bar-offset;
+    @include rmd-states-keyboard-only {
+      @include rmd-elevation-shadow-transition(none, inset 0 0 0 4px $rmd-blue-500, '&:focus');
+
+      &::before {
+        @include rmd-app-bar-theme(top, height);
+
+        position: fixed;
+      }
+    }
 
     display: block;
     height: 100%;
@@ -40,6 +49,16 @@
       }
 
       @include rmd-sheet-theme(margin-left, large-width);
+
+      &::before {
+        @include rmd-utils-rtl {
+          @include rmd-sheet-theme(margin-right, large-width);
+
+          margin-left: auto;
+        }
+
+        @include rmd-sheet-theme(margin-left, large-width);
+      }
     }
   }
 

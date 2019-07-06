@@ -6,18 +6,25 @@ import { Omit } from "@react-md/utils";
 import useLinkPrefetch from "hooks/useLinkPrefetch";
 
 export interface LinkProps extends Omit<NextLinkProps, "children"> {
+  id?: string;
   className?: string;
   children: ReactNode;
   href: string;
 }
 
-const Link: FC<LinkProps> = ({ children, className, prefetch, ...props }) => {
+const Link: FC<LinkProps> = ({
+  id,
+  children,
+  className,
+  prefetch,
+  ...props
+}) => {
   const { href } = props;
   const handlers = useLinkPrefetch({ href, disabled: !prefetch });
 
   return (
     <NextLink {...props}>
-      <RMDLink {...handlers} className={className}>
+      <RMDLink id={id} {...handlers} className={className}>
         {children}
       </RMDLink>
     </NextLink>
