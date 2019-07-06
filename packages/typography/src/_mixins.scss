@@ -4,7 +4,7 @@
 
 @import '@react-md/theme/dist/helpers';
 @import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/functions';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 @import 'functions';
 
@@ -258,6 +258,10 @@
 
   .rmd-text-container {
     @include rmd-text-container;
+  }
+
+  .rmd-sr-only {
+    @include rmd-utils-sr-only(true);
   }
 }
 
