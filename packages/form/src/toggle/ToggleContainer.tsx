@@ -21,7 +21,7 @@ type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<Pick<ToggleContainerProps, "inline" | "stacked">>;
 type WithDefaultProps = ToggleContainerProps & DefaultProps & WithRef;
 
-const block = bem("rmd-form-toggle-container");
+const block = bem("rmd-toggle-container");
 
 /**
  * @private

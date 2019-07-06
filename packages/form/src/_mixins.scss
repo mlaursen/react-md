@@ -2,88 +2,21 @@
 /// @group form
 ////
 
-@import 'theme';
-@import 'label';
-@import 'toggle';
-@import 'text-field';
+@import 'variables';
+@import './file-input/mixins';
+@import './label/mixins';
+@import './select/mixins';
+@import './toggle/mixins';
+@import './text/mixins';
 
 /// Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables
 /// to be enabled to generate any styles.
 @mixin react-md-form {
   @include rmd-theme-create-root-theme($rmd-form-theme-values, form);
 
-  .rmd-label {
-    @include rmd-label;
-  }
-
-  .rmd-form-toggle-container {
-    @include rmd-form-toggle-container;
-  }
-
-  .rmd-form-toggle {
-    @include rmd-form-toggle;
-
-    &__input {
-      @include rmd-form-toggle-hidden;
-    }
-
-    &__icon {
-      @include rmd-form-toggle-icon;
-    }
-  }
-
-  .rmd-switch-container {
-    @include rmd-switch-container;
-  }
-
-  .rmd-switch {
-    @include rmd-switch;
-
-    &__input {
-      @include rmd-switch-input;
-    }
-
-    &__ball {
-      @include rmd-switch-ball;
-    }
-  }
-
-  .rmd-floating-label {
-    @include rmd-floating-label;
-  }
-
-  .rmd-text-field-container {
-    @include rmd-text-field-container;
-  }
-
-  .rmd-text-field {
-    @include rmd-text-field;
-  }
-
-  .rmd-password {
-    &--offset {
-      @include rmd-utils-rtl-auto(padding-right, 2rem);
-    }
-
-    &__toggle {
-      @include rmd-button-theme-update-var(icon-size, 1.5rem);
-      @include rmd-icon-theme-update-var(size, 1.25rem);
-
-      pointer-events: auto;
-    }
-  }
-
-  .rmd-text-field-addon {
-    display: inline-flex;
-    pointer-events: none;
-    position: absolute;
-
-    &--first {
-      @include rmd-utils-rtl-auto(left, 0.5rem);
-    }
-
-    &--last {
-      @include rmd-utils-rtl-auto(right, 0.5rem);
-    }
-  }
+  @include react-md-file-input;
+  @include react-md-label;
+  @include react-md-select;
+  @include react-md-toggle;
+  @include react-md-text;
 }

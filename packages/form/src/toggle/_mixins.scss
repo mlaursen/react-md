@@ -6,11 +6,12 @@
 @import '@react-md/states/dist/mixins';
 @import '@react-md/theme/dist/mixins';
 @import '@react-md/utils/dist/mixins';
-@import 'theme';
+@import '../variables';
+@import '../functions';
 
 /// Creates the minimal styles for a toggle container.
 /// @access private
-@mixin rmd-form-toggle-container {
+@mixin rmd-toggle-container {
   align-items: center;
   display: flex;
 
@@ -26,7 +27,7 @@
 /// Creates all the styles for creating the icon container for the checkbox and radio input
 /// types.
 /// @access private
-@mixin rmd-form-toggle {
+@mixin rmd-toggle {
   @include rmd-button-theme(height, icon-size);
   @include rmd-button-theme(width, icon-size);
   @include rmd-states-surface;
@@ -41,7 +42,7 @@
   }
 
   align-items: center;
-  border-radius: 50%;
+  border-radius: $rmd-toggle-border-radius;
   display: inline-flex;
   justify-content: center;
   position: relative;
@@ -53,7 +54,7 @@
 
 /// Creates styles to apply to the "hidden" input for checkboxes and radios.
 /// @access private
-@mixin rmd-form-input-hidden {
+@mixin rmd-input-hidden {
   @include rmd-utils-hide-focus-outline;
 
   bottom: 0;
@@ -81,21 +82,21 @@
 /// Creates the styles for a form input that should be hidden from view. This
 /// should normally be applied to checkbox or radio input types.
 /// @access private
-@mixin rmd-form-toggle-hidden {
-  @include rmd-form-input-hidden;
+@mixin rmd-toggle-hidden {
+  @include rmd-input-hidden;
 
-  &:checked + .rmd-form-toggle__icon::before {
+  &:checked + .rmd-toggle__icon::before {
     opacity: 0;
   }
 
-  &:checked + .rmd-form-toggle__icon::after {
+  &:checked + .rmd-toggle__icon::after {
     opacity: 1;
   }
 }
 
 /// Creates the styles for the checkbox and radio input types' icon
 /// @access private
-@mixin rmd-form-toggle-icon {
+@mixin rmd-toggle-icon {
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
   @include rmd-form-theme(color, active-color);
@@ -139,7 +140,7 @@
 
   &--circle::before,
   &--circle::after {
-    border-radius: $rmd-form-toggle-border-radius;
+    border-radius: $rmd-toggle-border-radius;
   }
 
   &--disabled {
@@ -156,7 +157,7 @@
 
 /// Updates the checkbox and radio components to have a dense theme by updating the toggle-inset
 /// css variable to be the dense version. This should generally be used within media queries.
-@mixin rmd-form-toggle-dense-theme {
+@mixin rmd-toggle-dense-theme {
   @include rmd-form-theme-update-var(toggle-inset, rmd-form-theme-var(toggle-dense-inset));
 }
 
@@ -180,7 +181,7 @@
 ///
 /// @access private
 @mixin rmd-switch-input {
-  @include rmd-form-input-hidden;
+  @include rmd-input-hidden;
 
   &:disabled + .rmd-switch__ball {
     @include rmd-states-theme-update-var(hover-color, transparent);
@@ -275,6 +276,43 @@
   }
 }
 
+/// @access private
 @mixin rmd-switch-container {
-  padding: 0.5rem ($rmd-switch-ball-size / 2);
+  padding: $rmd-switch-container-vertical-padding $rmd-switch-container-horizontal-padding;
+}
+
+/// Creates all the styles for the toggle components in the form package.
+/// @access private
+@mixin react-md-toggle {
+  .rmd-toggle-container {
+    @include rmd-toggle-container;
+  }
+
+  .rmd-toggle {
+    @include rmd-toggle;
+
+    &__input {
+      @include rmd-toggle-hidden;
+    }
+
+    &__icon {
+      @include rmd-toggle-icon;
+    }
+  }
+
+  .rmd-switch-container {
+    @include rmd-switch-container;
+  }
+
+  .rmd-switch {
+    @include rmd-switch;
+
+    &__input {
+      @include rmd-switch-input;
+    }
+
+    &__ball {
+      @include rmd-switch-ball;
+    }
+  }
 }

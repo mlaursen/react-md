@@ -1,0 +1,78 @@
+////
+/// @group form-toggle
+////
+
+@import '@react-md/theme/dist/color-palette';
+@import '@react-md/theme/dist/functions';
+
+/// The amount of horizontal padding to use for a floating label use with an outlined
+/// text field/textarea.
+/// @type Number
+$rmd-label-padding: 0.25rem !default;
+
+/// The border radius for the checkbox and radio components.
+/// @type Number
+$rmd-toggle-border-radius: 50% !default;
+
+/// This is how much the background layer should be inset relative to the checkbox/radio's
+/// icon element. This is used to animate changes in the checked state by covering part of
+/// the icon.
+/// @type Number
+$rmd-toggle-inset: 0.3125rem !default;
+
+/// The amount of offset to apply when using the dense theme.
+/// @type Number
+/// @see rmd-toggle-inset
+$rmd-toggle-dense-inset: 0.25rem !default;
+
+/// The height for a switch's track. The track is the background that the ball animates
+/// left and right on.
+/// @type Number
+$rmd-switch-track-height: 1rem !default;
+
+/// The width for a switch's track. The track is the background that the ball animates
+/// left and right on.
+/// @type Number
+$rmd-switch-track-width: 2.25rem !default;
+
+/// The background color for a switch's track. This is the element that the ball animates
+/// left and right on.
+/// @type Color
+$rmd-switch-track-background-color: rgba($rmd-black-base, 0.38) !default;
+
+/// The border radius to apply to the switch's track. This is the element that the ball
+/// animates left and right on.
+/// @type Number
+$rmd-switch-track-border-radius: 0.5rem !default;
+
+/// The size of the switch's ball.
+/// @type Number
+$rmd-switch-ball-size: 1.25rem !default;
+
+/// The border radius for the switch's ball.
+/// @type Number
+$rmd-switch-ball-border-radius: 50% !default;
+
+/// The amount of offset that should be applied to the ball relative to its track. This
+/// is really used so the ball can overlap the track a bit to look a bit nicer.
+/// @type Number
+$rmd-switch-ball-offset: 0.25rem !default;
+
+/// The vertical padding for the switch container. This should generally be large enough
+/// so that the ball does not overlap any other elements.
+/// @type Number
+$rmd-switch-container-vertical-padding: 0.5rem !default;
+
+/// The horizontal padding for the switch container. This should generally be large
+/// enough so that the ball does not overlap the label or other elements.
+/// @type Number
+$rmd-switch-container-horizontal-padding: $rmd-switch-ball-size / 2 !default;
+
+/// The color to use for the switch's ball when it is toggled on and disabled.
+/// @type Color
+$rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
+  $rmd-theme-secondary,
+  200,
+  false,
+  lighten($rmd-theme-secondary, 12%)
+) !default;

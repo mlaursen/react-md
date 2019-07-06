@@ -7,6 +7,9 @@
 @import '@react-md/theme/dist/functions';
 @import '@react-md/typography/dist/variables';
 
+@import './label/variables';
+@import './toggle/variables';
+
 /// The color to use when a form contains an error.
 /// @type Color
 $rmd-form-error-color: $rmd-theme-error !default;
@@ -34,77 +37,6 @@ $rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
 /// @type Color
 $rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
 
-/// The font size to use for a `<label>` by default.
-/// @type Number
-$rmd-label-font-size: 1em !default;
-
-/// The font size to use for a floating label that is currently fixed above a text
-/// field/textarea.
-/// @type Number
-$rmd-label-floating-font-size: 0.75em !default;
-
-/// The amount of horizontal padding to use for a floating label use with an outlined
-/// text field/textarea.
-/// @type Number
-$rmd-label-padding: 0.25rem !default;
-
-/// The border radius for the checkbox and radio components.
-/// @type Number
-$rmd-form-toggle-border-radius: 50% !default;
-
-/// This is how much the background layer should be inset relative to the checkbox/radio's
-/// icon element. This is used to animate changes in the checked state by covering part of
-/// the icon.
-/// @type Number
-$rmd-form-toggle-inset: 0.3125rem !default;
-
-/// The amount of offset to apply when using the dense theme.
-/// @type Number
-/// @see rmd-form-toggle-inset
-$rmd-form-toggle-dense-inset: 0.25rem !default;
-
-/// The height for a switch's track. The track is the background that the ball animates
-/// left and right on.
-/// @type Number
-$rmd-switch-track-height: 1rem !default;
-
-/// The width for a switch's track. The track is the background that the ball animates
-/// left and right on.
-/// @type Number
-$rmd-switch-track-width: 2.25rem !default;
-
-/// The background color for a switch's track. This is the element that the ball animates
-/// left and right on.
-/// @type Color
-$rmd-switch-track-background-color: rgba($rmd-black-base, 0.38) !default;
-
-/// The border radius to apply to the switch's track. This is the element that the ball
-/// animates left and right on.
-/// @type Number
-$rmd-switch-track-border-radius: 0.5rem !default;
-
-/// The size of the switch's ball.
-/// @type Number
-$rmd-switch-ball-size: 1.25rem !default;
-
-/// The border radius for the switch's ball.
-/// @type Number
-$rmd-switch-ball-border-radius: 50% !default;
-
-/// The amount of offset that should be applied to the ball relative to its track. This
-/// is really used so the ball can overlap the track a bit to look a bit nicer.
-/// @type Number
-$rmd-switch-ball-offset: 0.25rem !default;
-
-/// The color to use for the switch's ball when it is toggled on and disabled.
-/// @type Color
-$rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
-  $rmd-theme-secondary,
-  200,
-  false,
-  lighten($rmd-theme-secondary, 12%)
-) !default;
-
 /// A Map of all the "themeable" parts of the form package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.
@@ -114,7 +46,7 @@ $rmd-form-theme-values: (
   error-hover-color: $rmd-form-error-hover-color,
   active-color: $rmd-form-active-color,
   disabled-color: $rmd-form-disabled-color,
-  toggle-inset: $rmd-form-toggle-inset,
-  toggle-dense-inset: $rmd-form-toggle-dense-inset,
+  toggle-inset: $rmd-toggle-inset,
+  toggle-dense-inset: $rmd-toggle-dense-inset,
   track-background-color: $rmd-switch-track-background-color,
 ) !default;

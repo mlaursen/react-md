@@ -4,6 +4,8 @@
 
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/transition/dist/mixins';
+@import '../variables';
+@import '../functions';
 
 /// Creates the base styles for a `<label>` element as well as all the different
 /// states a label can be in.
@@ -25,5 +27,12 @@
 
   &--disabled {
     @include rmd-form-theme(color, disabled-color);
+  }
+}
+
+/// @access private
+@mixin react-md-label {
+  .rmd-label {
+    @include rmd-label;
   }
 }

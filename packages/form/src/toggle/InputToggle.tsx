@@ -13,9 +13,10 @@ import {
 import { bem } from "@react-md/theme";
 import { Omit, WithForwardedRef } from "@react-md/utils";
 
-import Label from "./Label";
+import useFocusState from "../useFocusState";
+import Label from "../label/Label";
+
 import ToggleContainer from "./ToggleContainer";
-import useFocusState from "./useFocusState";
 
 /**
  * The props for a checkbox or radio input element.
@@ -145,7 +146,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = Props & DefaultProps & WithRef;
 
-const block = bem("rmd-form-toggle");
+const block = bem("rmd-toggle");
 
 const InputToggle: FC<Props & WithRef> = providedProps => {
   const {

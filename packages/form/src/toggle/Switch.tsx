@@ -10,7 +10,7 @@ import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef, Omit } from "@react-md/utils";
 
-import Label from "./Label";
+import Label from "../label/Label";
 import ToggleContainer from "./ToggleContainer";
 
 export interface SwitchProps

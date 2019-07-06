@@ -217,8 +217,22 @@ async function copyStyles(files: string[]) {
     "Copying the scss files for both webpack imports and includePaths options"
   );
 
+  const packageName = await getPackageName();
+
   await copyFiles(files, dist);
   await fs.ensureDir(scssDist);
+  if (packageName === "form") {
+    // the form package puts the styles into different folders, so make sure all of them are
+    // created in the dist folder as well.
+    await Promise.all([
+      fs.ensureDir(path.join(scssDist, "file-input")),
+      fs.ensureDir(path.join(scssDist, "label")),
+      fs.ensureDir(path.join(scssDist, "select")),
+      fs.ensureDir(path.join(scssDist, "text")),
+      fs.ensureDir(path.join(scssDist, "toggle")),
+    ]);
+  }
+
   await Promise.all(
     files.map(async pathname => {
       const contents = fs.readFileSync(pathname, "utf8");
