@@ -14,7 +14,7 @@ export interface SrOnlyProps extends TextProps {
   focusable?: boolean;
 }
 
-type DefaultProps = Required<Pick<SrOnlyProps, "focusable">>;
+type DefaultProps = Required<Pick<SrOnlyProps, "component" | "focusable">>;
 type WithRef = WithForwardedRef<TextElement>;
 type WithDefaultProps = SrOnlyProps & DefaultProps & WithRef;
 
@@ -52,6 +52,7 @@ const SrOnly: FC<SrOnlyProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  component: "span",
   focusable: false,
 };
 
