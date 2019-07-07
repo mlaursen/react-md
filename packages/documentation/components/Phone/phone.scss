@@ -18,6 +18,7 @@ $fixed-classes: (
     @include rmd-elevation(4);
     @include rmd-utils-block-centered(1rem);
     @include rmd-theme(background-color, background);
+    @include rmd-icon-theme-update-var(size, $rmd-icon-size);
     @include rmd-app-bar-theme-update-var(
       dense-height,
       calc(#{rmd-app-bar-theme-var(height)} + #{rmd-icon-theme-var(size)})

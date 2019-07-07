@@ -7,7 +7,9 @@
 @import '@react-md/theme/dist/functions';
 @import '@react-md/typography/dist/variables';
 
+@import './file-input/variables';
 @import './label/variables';
+@import './text-field/variables';
 @import './toggle/variables';
 
 /// The color to use when a form contains an error.
@@ -37,6 +39,8 @@ $rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
 /// @type Color
 $rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
 
+// sass-lint:disable zero-unit
+
 /// A Map of all the "themeable" parts of the form package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.
@@ -49,4 +53,17 @@ $rmd-form-theme-values: (
   toggle-inset: $rmd-toggle-inset,
   toggle-dense-inset: $rmd-toggle-dense-inset,
   track-background-color: $rmd-switch-track-background-color,
+  floating-top: $rmd-label-floating-top,
+  floating-dense-top: $rmd-label-floating-dense-top,
+  text-padding-left: 0px,
+  text-padding-right: 0px,
+  text-offset: 0px,
+  text-active-color: $rmd-text-field-active-color,
+  text-border-color: $rmd-text-field-border-color,
+  text-border-hover-color: $rmd-text-field-border-hover-color,
+  text-height: $rmd-text-field-height,
+  text-label-height: $rmd-text-field-label-height,
+  text-label-dense-height: $rmd-text-field-label-dense-height,
+  text-placeholder-height: $rmd-text-field-height,
+  text-placeholder-dense-height: $rmd-text-field-dense-height,
 ) !default;

@@ -1,0 +1,15 @@
+@import '~@react-md/form/dist/scss/mixins';
+@import '~@react-md/icon/dist/scss/mixins';
+@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/utils/dist/scss/mixins';
+
+.simple-text-fields-form {
+  align-items: center;
+  display: grid;
+  grid-row-gap: 1rem;
+
+  &--phone {
+    grid-template-columns: calc(#{rmd-icon-theme-var(size)} + 1rem) 1fr;
+    margin: 1rem;
+  }
+}

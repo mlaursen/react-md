@@ -101,9 +101,11 @@
   }
 
   @if mixin-exists(rmd-form-theme-update-var) {
-    // @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-light);
-    // @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-light);
-    // @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-light);
+    @include rmd-form-theme-update-var(text-border-color, $rmd-text-field-light-border-color);
+    @include rmd-form-theme-update-var(
+      text-border-hover-color,
+      $rmd-text-field-light-border-hover-color
+    );
   }
 
   @if mixin-exists(rmd-sheet-theme-update-var) {
@@ -184,9 +186,11 @@
   }
 
   @if mixin-exists(rmd-form-theme-update-var) {
-    // @include rmd-form-theme-update-var(filled-color, $rmd-form-filled-background-color-dark);
-    // @include rmd-form-theme-update-var(border-color, $rmd-form-border-color-dark);
-    // @include rmd-form-theme-update-var(border-hover-color, $rmd-form-border-hover-color-dark);
+    @include rmd-form-theme-update-var(text-border-color, $rmd-text-field-dark-border-color);
+    @include rmd-form-theme-update-var(
+      text-border-hover-color,
+      $rmd-text-field-dark-border-hover-color
+    );
   }
 
   @if mixin-exists(rmd-sheet-theme-update-var) {

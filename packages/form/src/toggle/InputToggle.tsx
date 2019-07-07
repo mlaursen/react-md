@@ -191,7 +191,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     rippleTimeout,
     rippleClassNames,
   });
-  const { focused, onBlur, onFocus } = useFocusState({
+  const [focused, onFocus, onBlur] = useFocusState({
     onFocus: propOnFocus,
     onBlur: propOnBlur,
   });

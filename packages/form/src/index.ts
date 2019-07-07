@@ -7,6 +7,9 @@ export * from "./file-input/FileInput";
 export { default as Label } from "./label/Label";
 export * from "./label/Label";
 
+export { default as TextField } from "./text-field/TextField";
+export * from "./text-field/TextField";
+
 export { default as Checkbox } from "./toggle/Checkbox";
 export * from "./toggle/Checkbox";
 

@@ -228,7 +228,7 @@ async function copyStyles(files: string[]) {
       fs.ensureDir(path.join(scssDist, "file-input")),
       fs.ensureDir(path.join(scssDist, "label")),
       fs.ensureDir(path.join(scssDist, "select")),
-      fs.ensureDir(path.join(scssDist, "text")),
+      fs.ensureDir(path.join(scssDist, "text-field")),
       fs.ensureDir(path.join(scssDist, "toggle")),
     ]);
   }

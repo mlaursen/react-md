@@ -2,8 +2,10 @@
 /// @group form-label
 ////
 
+@import '@react-md/icon/dist/mixins';
 @import '@react-md/typography/dist/mixins';
 @import '@react-md/transition/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import '../variables';
 @import '../functions';
 
@@ -31,8 +33,58 @@
 }
 
 /// @access private
+@mixin rmd-floating-label {
+  @include rmd-form-theme-update-var(active-color, rmd-form-theme-var(text-active-color));
+  @include rmd-utils-rtl {
+    left: auto;
+    right: 0;
+    transform: translate(
+      rmd-utils-negate-var(rmd-form-theme-var(text-padding-left)),
+      rmd-form-theme-var(floating-top)
+    );
+  }
+
+  $transitions: background-color, color, font-size, transform;
+
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(rmd-form-theme-var(text-padding-left), rmd-form-theme-var(floating-top));
+  transition-property: $transitions;
+  will-change: $transitions;
+
+  &--dense {
+    @include rmd-form-theme-update-var(floating-top, rmd-form-theme-var(floating-dense-top));
+  }
+
+  &--active {
+    font-size: $rmd-label-floating-font-size;
+    transform: translate(0, 0);
+    z-index: 1;
+  }
+
+  &--inactive {
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+
+  &--outline-active {
+    @include rmd-theme(background-color, background);
+    @include rmd-utils-rtl {
+      transform: translate($rmd-label-floating-padding - $rmd-text-field-outline-padding, -50%);
+    }
+
+    padding: 0 $rmd-label-floating-padding;
+    transform: translate($rmd-text-field-outline-padding - $rmd-label-floating-padding, -50%);
+  }
+}
+
+/// @access private
 @mixin react-md-label {
   .rmd-label {
     @include rmd-label;
+  }
+
+  .rmd-floating-label {
+    @include rmd-floating-label;
   }
 }
