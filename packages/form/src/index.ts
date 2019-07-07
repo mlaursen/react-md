@@ -1,6 +1,9 @@
 export { default as Form } from "./Form";
 export * from "./Form";
 
+export { default as FileInput } from "./file-input/FileInput";
+export * from "./file-input/FileInput";
+
 export { default as Label } from "./label/Label";
 export * from "./label/Label";
 

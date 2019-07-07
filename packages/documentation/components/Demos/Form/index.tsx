@@ -12,6 +12,9 @@ import customCheckboxes from "./CustomCheckboxes.md";
 import SwitchExamples from "./SwitchExamples";
 import switchExamples from "./SwitchExamples.md";
 
+import SimpleFileInputs from "./SimpleFileInputs";
+import simpleFileInputs from "./SimpleFileInputs.md";
+
 const demos = [
   {
     name: "Checkbox and Radio Examples",
@@ -27,6 +30,11 @@ const demos = [
     name: "Switch Examples",
     description: switchExamples,
     children: <SwitchExamples />,
+  },
+  {
+    name: "Simple File Inputs",
+    description: simpleFileInputs,
+    children: <SimpleFileInputs />,
   },
 ];
 

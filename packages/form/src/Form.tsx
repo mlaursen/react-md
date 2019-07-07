@@ -5,11 +5,11 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
    * Boolean if the form should no longer prevent default submit behavior.
    */
-  disableNoDefault?: boolean;
+  disablePreventDefault?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLFormElement>;
-type DefaultProps = Required<Pick<FormProps, "disableNoDefault">>;
+type DefaultProps = Required<Pick<FormProps, "disablePreventDefault">>;
 type WithDefaultProps = FormProps & DefaultProps & WithRef;
 
 /**
@@ -21,16 +21,16 @@ const Form: FC<FormProps & WithRef> = providedProps => {
   const {
     children,
     forwardedRef,
-    disableNoDefault,
+    disablePreventDefault,
     onSubmit,
     ...props
   } = providedProps as WithDefaultProps;
 
-  const config = useRefCache({ onSubmit, disableNoDefault });
+  const config = useRefCache({ onSubmit, disablePreventDefault });
   const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
     event => {
-      const { onSubmit, disableNoDefault } = config.current;
-      if (!disableNoDefault) {
+      const { onSubmit, disablePreventDefault } = config.current;
+      if (!disablePreventDefault) {
         event.preventDefault();
       }
 
@@ -49,7 +49,7 @@ const Form: FC<FormProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  disableNoDefault: false,
+  disablePreventDefault: false,
 };
 
 Form.defaultProps = defaultProps;
@@ -64,7 +64,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Form.propTypes = {
-      disableNoDefault: PropTypes.bool,
+      disablePreventDefault: PropTypes.bool,
     };
   }
 }

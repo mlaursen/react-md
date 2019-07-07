@@ -76,9 +76,9 @@ const block = bem("rmd-button");
  */
 export default function buttonThemeClassNames(props: ButtonThemeProps): string {
   const {
-    buttonType = "text",
-    themeType = "flat",
     theme = "clear",
+    themeType = "flat",
+    buttonType = "text",
     disabled,
     className,
   } = props;

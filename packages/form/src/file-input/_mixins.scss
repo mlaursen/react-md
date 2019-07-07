@@ -3,4 +3,13 @@
 ////
 
 @mixin react-md-file-input {
+  .rmd-file-input {
+    &__hidden {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      width: 0;
+    }
+  }
 }
