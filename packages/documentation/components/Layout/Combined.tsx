@@ -1,9 +1,10 @@
-import React, { Fragment, FC, useEffect, useRef } from "react";
+import React, { Fragment, FC, useEffect } from "react";
 import cn from "classnames";
 import { SingletonRouter, withRouter } from "next/router";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
+import { useInteractionModeContext } from "@react-md/states";
 import { bem } from "@react-md/theme";
 import { useToggle, useScrollLock } from "@react-md/utils";
 
@@ -11,7 +12,6 @@ import useAppSizeContext from "./useAppSizeContext";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
 import TableOfContents from "components/TableOfContents";
-import { useInteractionModeContext } from "@react-md/states";
 
 export interface CombinedProps {
   title: string;
@@ -66,7 +66,7 @@ const Combined: FC<CombinedProps> = ({
   // focus a specific element. Without this fix, the first element in
   // the `<main>` tag would be focused instead of the closest focusable
   // element to the click area.
-  let mainTabIndex: number;
+  let mainTabIndex: number | undefined;
   if (useInteractionModeContext() === "keyboard") {
     mainTabIndex = -1;
   }

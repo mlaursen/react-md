@@ -152,6 +152,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { id, value, defaultValue, disabled } = props;
+  const underline = theme === "underline" || theme === "filled";
   const outline = theme === "outline";
 
   const [focused, onFocus, onBlur] = useFocusState({
@@ -190,6 +191,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         dense={dense}
         disabled={disabled}
         outline={outline}
+        underline={underline}
         leftChildren={!!leftAddon}
         rightChildren={!!rightAddon}
       >
@@ -203,7 +205,8 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         onChange={onChange}
         className={cn(
           block({
-            "full-height": true,
+            "label-underline": label && underline,
+            "placeholder-underline": !label && underline,
             floating: label && theme !== "none",
           }),
           inputClassName

@@ -1,4 +1,6 @@
 import React, { FC, Fragment } from "react";
+import { Button } from "@react-md/button";
+import { Divider } from "@react-md/divider";
 import { TextField, Form } from "@react-md/form";
 import {
   FavoriteSVGIcon,
@@ -9,60 +11,18 @@ import {
   EmailSVGIcon,
   ClearSVGIcon,
 } from "@react-md/material-icons";
-import { SrOnly } from "@react-md/typography";
+import { SrOnly, Text } from "@react-md/typography";
 
 import "./SimpleTextFields.scss";
 import Phone from "components/Phone";
-import { Button } from "@react-md/button";
-import { Divider } from "@react-md/divider";
 
 const SimpleTextFields: FC = () => {
   return (
     <Fragment>
       <Form className="simple-text-fields-form">
-        <TextField
-          id="outline-field-1"
-          theme="outline"
-          label="Label"
-          placeholder="Placeholder"
-        />
-        <TextField
-          id="outline-field-2"
-          theme="outline"
-          label="Label"
-          placeholder="Placeholder"
-          dense
-        />
-        <TextField
-          id="outline-field-3"
-          theme="outline"
-          placeholder="Placeholder"
-        />
-        <TextField
-          id="outline-field-4"
-          theme="outline"
-          placeholder="Placeholder"
-          dense
-        />
-        <TextField
-          id="outline-field-5"
-          theme="outline"
-          label="Label"
-          placeholder="Placeholder"
-          leftAddon={<FavoriteSVGIcon />}
-        />
-        <TextField
-          id="outline-field-6"
-          theme="outline"
-          label="Label"
-          placeholder="Placeholder"
-          rightAddon={
-            <Button id="field6-clear" buttonType="icon" aria-label="Clear">
-              <ClearSVGIcon />
-            </Button>
-          }
-        />
-        <Divider />
+        <Text type="headline-4" margin="none">
+          Underlined:
+        </Text>
         <TextField
           id="underline-field-1"
           theme="underline"
@@ -105,7 +65,30 @@ const SimpleTextFields: FC = () => {
             </Button>
           }
         />
+        <TextField
+          id="underline-field-7"
+          theme="underline"
+          label="Label"
+          dense
+          placeholder="Placeholder"
+          leftAddon={<FavoriteSVGIcon />}
+        />
+        <TextField
+          id="underline-field-8"
+          theme="underline"
+          label="Label"
+          dense
+          placeholder="Placeholder"
+          rightAddon={
+            <Button id="field6-clear" buttonType="icon" aria-label="Clear">
+              <ClearSVGIcon />
+            </Button>
+          }
+        />
         <Divider />
+        <Text type="headline-4" margin="none">
+          Filled:
+        </Text>
         <TextField
           id="filled-field-1"
           theme="filled"
@@ -148,6 +131,52 @@ const SimpleTextFields: FC = () => {
             </Button>
           }
         />
+        <Divider />
+        <Text type="headline-4" margin="none">
+          Outlined:
+        </Text>
+        <TextField
+          id="outline-field-1"
+          theme="outline"
+          label="Label"
+          placeholder="Placeholder"
+        />
+        <TextField
+          id="outline-field-2"
+          theme="outline"
+          label="Label"
+          placeholder="Placeholder"
+          dense
+        />
+        <TextField
+          id="outline-field-3"
+          theme="outline"
+          placeholder="Placeholder"
+        />
+        <TextField
+          id="outline-field-4"
+          theme="outline"
+          placeholder="Placeholder"
+          dense
+        />
+        <TextField
+          id="outline-field-5"
+          theme="outline"
+          label="Label"
+          placeholder="Placeholder"
+          leftAddon={<FavoriteSVGIcon />}
+        />
+        <TextField
+          id="outline-field-6"
+          theme="outline"
+          label="Label"
+          placeholder="Placeholder"
+          rightAddon={
+            <Button id="field6-clear" buttonType="icon" aria-label="Clear">
+              <ClearSVGIcon />
+            </Button>
+          }
+        />
       </Form>
       <Phone id="text-field-form">
         <Form className="simple-text-fields-form simple-text-fields-form--phone">
@@ -157,7 +186,6 @@ const SimpleTextFields: FC = () => {
             name="name"
             label="Name"
             placeholder="John Snow"
-            style={{ marginTop: 0 }}
           />
           <PhoneSVGIcon />
           <TextField
@@ -168,7 +196,6 @@ const SimpleTextFields: FC = () => {
             placeholder="123-4567"
             pattern="\d{3}-\d{4}"
             maxLength={8}
-            style={{ marginTop: 0 }}
           />
           <LocationOnSVGIcon
             style={{ alignSelf: "flex-start", marginTop: "1rem" }}
@@ -180,13 +207,13 @@ const SimpleTextFields: FC = () => {
               name="address"
               label="Address"
               placeholder="Some place street"
-              style={{ marginTop: 0 }}
             />
             <TextField
               id="contact-city"
               name="city"
               label="City"
               placeholder="Denver"
+              style={{ marginTop: "1rem" }}
             />
             <TextField
               id="contact-state"
@@ -194,7 +221,11 @@ const SimpleTextFields: FC = () => {
               label="State"
               placeholder="Denver"
               rightAddon={<ArrowDropDownSVGIcon />}
-              style={{ width: "calc(50% - .5rem)", marginRight: ".5rem" }}
+              style={{
+                width: "calc(50% - .5rem)",
+                marginRight: ".5rem",
+                marginTop: "1rem",
+              }}
               inline
             />
             <TextField
@@ -204,7 +235,11 @@ const SimpleTextFields: FC = () => {
               placeholder="12345"
               pattern="\d{5}"
               maxLength={5}
-              style={{ width: "calc(50% - .5rem)", marginLeft: ".5rem" }}
+              style={{
+                width: "calc(50% - .5rem)",
+                marginLeft: ".5rem",
+                marginTop: "1rem",
+              }}
               inline
             />
           </fieldset>
@@ -214,7 +249,6 @@ const SimpleTextFields: FC = () => {
             name="email"
             label="Email"
             placeholder="jsnow@email.com"
-            style={{ marginTop: 0 }}
           />
         </Form>
       </Phone>

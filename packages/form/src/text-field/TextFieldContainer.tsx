@@ -138,15 +138,20 @@ const TextFieldContainer: FC<
           "outline-right": outline && rightAddon,
           underline: isUnderlined,
           "underline-active": isUnderlined && active,
-          "underline-error": isUnderlined && active && !error,
           [`underline-${underlineDirection}`]: isUnderlined,
+          "underline-left-addon": isUnderlined && leftAddon,
+          "underline-right-addon": isUnderlined && rightAddon,
         }),
         className
       )}
     >
-      <TextFieldAddon first>{leftAddon}</TextFieldAddon>
+      <TextFieldAddon first underline={isUnderlined}>
+        {leftAddon}
+      </TextFieldAddon>
       {children}
-      <TextFieldAddon first={false}>{rightAddon}</TextFieldAddon>
+      <TextFieldAddon first={false} underline={isUnderlined}>
+        {rightAddon}
+      </TextFieldAddon>
     </div>
   );
 };

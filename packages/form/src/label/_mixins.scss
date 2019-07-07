@@ -67,6 +67,14 @@
     @include rmd-theme(color, text-secondary-on-background);
   }
 
+  &--underline-left-offset {
+    @include rmd-utils-rtl {
+      transform: translate(-$rmd-label-floating-underline-offset, 0);
+    }
+
+    transform: translate($rmd-label-floating-underline-offset, 0);
+  }
+
   &--outline-active {
     @include rmd-theme(background-color, background);
     @include rmd-utils-rtl {

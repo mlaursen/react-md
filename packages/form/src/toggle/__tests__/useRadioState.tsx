@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  MutableRefObject,
-  Dispatch,
-  SetStateAction,
-  Fragment,
-} from "react";
+import React, { FC, Fragment } from "react";
 import { cleanup, render, fireEvent } from "react-testing-library";
 
 import useRadioState from "../useRadioState";
@@ -17,7 +11,7 @@ interface Props {
 }
 
 const Test: FC<Props> = ({ onChange, defaultValue }) => {
-  const [value, handleChange, setValue] = useRadioState(defaultValue, onChange);
+  const [value, handleChange] = useRadioState(defaultValue, onChange);
 
   return (
     <Fragment>

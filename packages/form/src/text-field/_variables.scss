@@ -78,12 +78,33 @@ $rmd-text-field-dense-height: 2.5rem !default;
 /// The amount of padding to apply to the left and right of the text field
 /// when it has the outline theme applied.
 /// @type Number
-$rmd-text-field-outline-padding: 0.75rem !default;
+$rmd-text-field-outline-padding: 1rem !default;
 
-/// The amount of margin to apply to the top of outlined text fields so that
-/// the floating label does not cover other elements on the page.
+/// The amount of padding to apply to the top of an underlined or filled text field.
+/// This is used to push the input down a little bit to look nice with the floating
+/// label.
 /// @type Number
-$rmd-text-field-outline-margin: 1rem !default;
+$rmd-text-field-underline-label-padding-top: 1rem !default;
+
+/// The amount of padding to apply to the top of an underlined or filled text field.
+/// This is used to push the input down a little bit to look nice with the floating
+/// label.
+/// @type Number
+$rmd-text-field-underline-placeholder-padding-top: 0.75rem !default;
+
+// sass-lint:disable zero-unit
+// have to specifically set to `0px` since it's used as css variables. Setting
+// to `0` without any units will break everything.
+
+/// The amount of padding to apply to the left and right of the text field
+/// when it has the underline theme applied.
+/// @type Number
+$rmd-text-field-underline-padding: 0px !default;
+
+/// The amount of padding to apply to the left and right of the text field
+/// when it has the filled theme applied.
+/// @type Number
+$rmd-text-field-filled-padding: 0.75rem !default;
 
 /// This is used to decrease the size of the button that appears in text fields since
 /// you don't need as much clickable space in here and it would take up a lot of room.

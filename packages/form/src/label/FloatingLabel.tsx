@@ -19,6 +19,7 @@ export interface FloatingLabelProps extends LabelProps {
 
   dense?: boolean;
   outline?: boolean;
+  underline?: boolean;
   leftChildren?: boolean;
   rightChildren?: boolean;
 }
@@ -41,6 +42,7 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,
+    underline,
     outline,
     valued,
     dense,
@@ -64,8 +66,9 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
           inactive: valued && !active,
           covering,
           "outline-active": isActive && outline,
-          "left-offset": !isActive && leftChildren,
-          "right-offset": !isActive && rightChildren,
+          "underline-left-offset": isActive && underline && leftChildren,
+          // "left-offset": !isActive && leftChildren,
+          // "right-offset": !isActive && rightChildren,
         }),
         className
       )}

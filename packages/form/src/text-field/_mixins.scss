@@ -20,6 +20,10 @@
   position: relative;
   transition: border-color $rmd-transition-standard-time;
 
+  &:hover {
+    @include rmd-form-theme(border-color, text-border-hover-color);
+  }
+
   &--inline {
     display: inline-flex;
   }
@@ -39,6 +43,65 @@
     @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-dense-height));
   }
 
+  &--underline {
+    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
+    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-underline-padding);
+    @include rmd-form-theme(border-color, text-border-color);
+
+    border-bottom-style: solid;
+    border-bottom-width: $rmd-text-field-border-width;
+
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-form-theme(background-color, text-active-color);
+
+      bottom: -$rmd-text-field-border-width;
+      content: '';
+      height: $rmd-text-field-border-width-active;
+      left: 0;
+      position: absolute;
+      right: 0;
+      transform: scale(0);
+      transition: transform $rmd-transition-standard-time;
+      z-index: 1;
+    }
+  }
+
+  &--underline-left::after {
+    transform-origin: left;
+  }
+
+  &--underline-center::after {
+    transform-origin: center;
+  }
+
+  &--underline-right::after {
+    transform-origin: right;
+  }
+
+  &--underline-active::after {
+    transform: scale(1);
+  }
+
+  &--underline-left-addon {
+    $underline-offset: calc(
+      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-padding} + 1rem
+    );
+
+    @include rmd-form-theme-update-var(text-padding-left, $underline-offset);
+  }
+
+  &--filled {
+    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
+  }
+
+  &--filled-left {
+    // $filled-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-filled-padding + 1rem});
+
+    // @include rmd-form-theme-update-var(text-padding-left, $filled-offset);
+  }
+
   &--outline {
     @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-outline-padding);
     @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-outline-padding);
@@ -47,10 +110,6 @@
     border-radius: $rmd-text-field-border-radius;
     border-style: solid;
     border-width: $rmd-text-field-border-width;
-
-    &:hover {
-      @include rmd-form-theme(border-color, text-border-hover-color);
-    }
 
     &::after {
       @include rmd-transition(standard);
@@ -138,8 +197,14 @@
   @include rmd-form-theme(padding-right, text-padding-right);
   @include rmd-text-field-base;
 
-  &--full-height {
-    height: 100%;
+  height: 100%;
+
+  &--label-underline {
+    padding-top: $rmd-text-field-underline-label-padding-top;
+  }
+
+  &--placeholder-underline {
+    padding-top: $rmd-text-field-underline-placeholder-padding-top;
   }
 
   &--floating {
@@ -168,9 +233,17 @@
     pointer-events: none;
   }
 
+  &--first-offset {
+    @include rmd-utils-rtl-auto(left, 0.5rem);
+  }
+
   &--last {
     @include rmd-utils-rtl-auto(right, $rmd-text-field-button-offset);
     @include rmd-button-theme-update-var(icon-size, $rmd-text-field-button-size);
+  }
+
+  &--underline-offset {
+    top: 1.5rem;
   }
 }
 

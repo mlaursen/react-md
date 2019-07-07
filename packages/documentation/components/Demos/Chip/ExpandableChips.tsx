@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
-import { Label, TextArea, TextField } from "@react-md/form";
+import { Label, TextField } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { Menu, MenuItem } from "@react-md/menu";
 import { useToggle } from "@react-md/utils";
@@ -83,15 +83,15 @@ const ExpandableChips: FC = () => {
           defaultValue="Re: Vacation Request"
         />
       </div>
-      <TextArea
-        id="message-email"
-        placeholder="Message"
-        theme="none"
-        resize="none"
-        className="expandable-chip-area"
-      />
     </Phone>
   );
 };
+// <TextArea
+//   id="message-email"
+//   placeholder="Message"
+//   theme="none"
+//   resize="none"
+//   className="expandable-chip-area"
+// />
 
 export default ExpandableChips;
