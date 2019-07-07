@@ -6,6 +6,7 @@
 @import '~@react-md/sheet/dist/scss/mixins';
 @import '~@react-md/theme/dist/scss/mixins';
 @import '~@react-md/tooltip/dist/scss/mixins';
+@import '~@react-md/transition/dist/scss/mixins';
 @import '~@react-md/typography/dist/scss/mixins';
 @import '~@react-md/utils/dist/scss/mixins';
 
@@ -28,7 +29,7 @@
   &__main {
     @include rmd-app-bar-offset;
     @include rmd-states-keyboard-only {
-      @include rmd-elevation-shadow-transition(none, inset 0 0 0 4px $rmd-blue-500, '&:focus');
+      @include rmd-transition-shadow-transition(none, inset 0 0 0 4px $rmd-blue-500, '&:focus');
 
       &::before {
         @include rmd-app-bar-theme(top, height);

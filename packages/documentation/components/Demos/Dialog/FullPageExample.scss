@@ -7,7 +7,7 @@
     $start-shadow: none;
     $end-shadow: inset 0 0 0 2px $rmd-black-base;
 
-    @include rmd-elevation-shadow-transition($start-shadow, $end-shadow, '&:focus', false);
+    @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus', false);
   }
 
   border-radius: 0;

@@ -27,98 +27,6 @@
   box-shadow: rmd-elevation($z-value, $color, $opacity-boost);
 }
 
-/// This is really just used internally to apply a base box shadow and position relative
-/// so that the pseudo element with the end box shadow can be shown.
-/// @param {String} shadow - The box shadow to apply.
-/// @access private
-@mixin rmd-elevation-parent-shadow($shadow) {
-  box-shadow: $shadow;
-  position: relative;
-}
-
-/// This includes the base styles for animating the pseudo element's shadow.
-/// This should really only be used internally.
-///
-/// @param {String} shadow - The box shadow to apply.
-/// @param {Number|String} duration - The transition duration for the shadow opacity change.
-/// @param {Number} z-index [0] - The z-index to apply. This is set to 0 by default so that
-/// it can be shown more easily if there are child elements with position absolute.
-/// @access private
-@mixin rmd-elevation-pseudo-shadow($shadow, $duration: $rmd-transition-standard-time, $z-index: 0) {
-  @include rmd-transition(standard);
-  @include rmd-utils-pseudo-element($z-index);
-
-  box-shadow: $shadow;
-  opacity: 0;
-  transition: opacity $duration;
-}
-
-/// A mixin that allows you to animate box shadow performantly.
-///
-/// @example scss - Simple Usage
-///   @import '@react-md/theme/dist/color-palette';
-///
-///   .my-class {
-///     $start-shadow: inset 0 0 1px $rmd-blue-500;
-///     $end-shadow: inset 0 0 4px $rmd-blue-500;
-///
-///     @include rmd-elevation-shadow-transition($start-shadow, $end-shadow, ('&:focus' '&:hover'));
-///   }
-///
-/// @example scss - Merging with elevation
-///   @import '@react-md/theme/dist/color-palette';
-///
-///   .my-class {
-///     $start-shadow: rmd-elevation(2);
-///     $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;
-///
-///     @include rmd-elevation-shadow-transition($start-shadow, $end-shadow, '&:focus');
-///   }
-///
-/// @param {String} start-shadow - The starting box-shadow to use.
-/// @param {String} end-shadow - The ending box-shadow to use.
-/// @param {String|List} active-selectors - Either a single string or a list of strings that is used
-///   to determine when the `$end-shadow` should be used.
-/// @param {Boolean} before [true] - Boolean if the `::before` or `::after` pseudo selector should be
-///   used as the `end-shadow` target.
-/// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration
-/// @param {Number} pseudo-z-index [0] - The z-index to apply. This is set to 0 by default so that
-/// it can be shown more easily if there are child elements with position absolute
-@mixin rmd-elevation-shadow-transition(
-  $start-shadow,
-  $end-shadow,
-  $active-selectors,
-  $before: true,
-  $duration: $rmd-transition-standard-time,
-  $pseudo-z-index: 0
-) {
-  @include rmd-elevation-parent-shadow($start-shadow);
-
-  $shadow-target: if($before, '&::before', '&::after');
-
-  #{$shadow-target} {
-    @include rmd-elevation-pseudo-shadow($end-shadow, $duration, $pseudo-z-index);
-  }
-
-  // remove the leading '&'
-  $suffix: str-slice($shadow-target, 2);
-  $active-string: '';
-  @if type-of($active-selectors) == string {
-    $active-string: $active-selectors + $suffix;
-  } @else if type-of($active-selectors) == list {
-    @for $i from 1 to length($active-selectors) + 1 {
-      $selector: nth($active-selectors, $i);
-
-      $prefix: $active-string + if($i > 1, ', ', '');
-      $active-string: $prefix + $selector + $suffix;
-    }
-  }
-
-  #{$active-string} {
-    opacity: 1;
-  }
-}
-
 /// This mixin is used to create performant box-shadow transitions between different elevations. What
 /// this does behind the scenes is update the element to have `position: relative` along with a pseudo
 /// `::before` or `::after` tag that has the new box shadow with an initial opacity set to 0. When the
@@ -152,7 +60,7 @@
   );
   $end-shadow: if($end == none or $end == 0, none, rmd-elevation($end, $color, $opacity-boost));
 
-  @include rmd-elevation-shadow-transition(
+  @include rmd-transition-shadow-transition(
     $start-shadow,
     $end-shadow,
     $active-selectors,
