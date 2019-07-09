@@ -7,25 +7,17 @@ import Label, { LabelProps } from "./Label";
 
 export interface FloatingLabelProps extends LabelProps {
   /**
-   * Boolean if the floating label should gain the covering state that will inherit the background
-   * color so that it can cover content below it.
-   */
-  covering?: boolean;
-
-  /**
    * Boolean if the text input or textarea currently have a value.
    */
   valued: boolean;
 
   dense?: boolean;
-  outline?: boolean;
-  underline?: boolean;
   leftChildren?: boolean;
   rightChildren?: boolean;
 }
 
 type DefaultProps = Required<
-  Pick<FloatingLabelProps, "error" | "active" | "disabled" | "covering">
+  Pick<FloatingLabelProps, "error" | "active" | "disabled">
 >;
 type WithRef = WithForwardedRef<HTMLLabelElement>;
 type WithDefaultProps = FloatingLabelProps & DefaultProps & WithRef;
@@ -42,11 +34,8 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,
-    underline,
-    outline,
     valued,
     dense,
-    covering,
     leftChildren,
     rightChildren,
     ...props
@@ -64,11 +53,6 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
           dense,
           active: isActive,
           inactive: valued && !active,
-          covering,
-          "outline-active": isActive && outline,
-          "underline-left-offset": isActive && underline && leftChildren,
-          // "left-offset": !isActive && leftChildren,
-          // "right-offset": !isActive && rightChildren,
         }),
         className
       )}
@@ -80,7 +64,6 @@ const defaultProps: DefaultProps = {
   error: false,
   active: false,
   disabled: false,
-  covering: false,
 };
 
 FloatingLabel.defaultProps = defaultProps;
@@ -98,7 +81,6 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       active: PropTypes.bool,
       disabled: PropTypes.bool,
-      covering: PropTypes.bool,
       valued: PropTypes.bool.isRequired,
     };
   }

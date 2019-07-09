@@ -44,8 +44,10 @@
   }
 
   &--underline {
-    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
-    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-underline-padding);
+    @if $rmd-text-field-underline-padding {
+      @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
+      @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-underline-padding);
+    }
     @include rmd-form-theme(border-color, text-border-color);
 
     border-bottom-style: solid;
@@ -67,6 +69,17 @@
     }
   }
 
+  &--filled {
+    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(label-left-offset, $rmd-text-field-filled-padding);
+    @include rmd-form-theme(background-color, text-filled-color);
+    @include rmd-states-surface;
+
+    border-top-left-radius: $rmd-text-field-filled-border-radius;
+    border-top-right-radius: $rmd-text-field-filled-border-radius;
+  }
+
   &--underline-left::after {
     transform-origin: left;
   }
@@ -84,27 +97,28 @@
   }
 
   &--underline-left-addon {
-    $underline-offset: calc(
-      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-padding} + 1rem
+    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';
+    @if $rmd-text-field-underline-padding {
+      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
+    }
+
+    @include rmd-form-theme-update-var(text-padding-left, calc(#{$calc-string}));
+    @include rmd-form-theme-update-var(
+      label-left-offset,
+      $rmd-text-field-underline-label-left-offset
     );
-
-    @include rmd-form-theme-update-var(text-padding-left, $underline-offset);
-  }
-
-  &--filled {
-    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-filled-padding);
-    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
-  }
-
-  &--filled-left {
-    // $filled-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-filled-padding + 1rem});
-
-    // @include rmd-form-theme-update-var(text-padding-left, $filled-offset);
   }
 
   &--outline {
     @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-outline-padding);
     @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-outline-padding);
+    @include rmd-form-theme-update-var(
+      label-left-offset,
+      $rmd-text-field-outline-padding - $rmd-label-floating-padding
+    );
+    @include rmd-form-theme-update-var(label-top-offset, -50%);
+    @include rmd-form-theme-update-var(label-active-padding, 0 $rmd-label-floating-padding);
+    @include rmd-form-theme-update-var(label-active-background-color, rmd-theme-var(background));
     @include rmd-form-theme(border-color, text-border-color);
 
     border-radius: $rmd-text-field-border-radius;

@@ -10,6 +10,8 @@
     "skipLibCheck": true,
     "target": "esnext",
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {

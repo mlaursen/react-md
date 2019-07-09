@@ -106,6 +106,10 @@
       text-border-hover-color,
       $rmd-text-field-light-border-hover-color
     );
+    @include rmd-form-theme-update-var(
+      text-filled-color,
+      $rmd-text-field-filled-light-background-color
+    );
   }
 
   @if mixin-exists(rmd-sheet-theme-update-var) {
@@ -190,6 +194,10 @@
     @include rmd-form-theme-update-var(
       text-border-hover-color,
       $rmd-text-field-dark-border-hover-color
+    );
+    @include rmd-form-theme-update-var(
+      text-filled-color,
+      $rmd-text-field-filled-dark-background-color
     );
   }
 

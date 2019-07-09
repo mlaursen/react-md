@@ -153,7 +153,6 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
   } = providedProps as WithDefaultProps;
   const { id, value, defaultValue, disabled } = props;
   const underline = theme === "underline" || theme === "filled";
-  const outline = theme === "outline";
 
   const [focused, onFocus, onBlur] = useFocusState({
     onBlur: propOnBlur,
@@ -190,8 +189,6 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         valued={valued}
         dense={dense}
         disabled={disabled}
-        outline={outline}
-        underline={underline}
         leftChildren={!!leftAddon}
         rightChildren={!!rightAddon}
       >

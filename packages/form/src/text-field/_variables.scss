@@ -86,25 +86,47 @@ $rmd-text-field-outline-padding: 1rem !default;
 /// @type Number
 $rmd-text-field-underline-label-padding-top: 1rem !default;
 
+/// The amount of offset to apply to the floating label for an underlined or filled
+/// text field when there is an icon to the left of the input.
+/// @type Number
+$rmd-text-field-underline-label-left-offset: $rmd-icon-spacing-with-text !default;
+
 /// The amount of padding to apply to the top of an underlined or filled text field.
 /// This is used to push the input down a little bit to look nice with the floating
 /// label.
 /// @type Number
 $rmd-text-field-underline-placeholder-padding-top: 0.75rem !default;
 
-// sass-lint:disable zero-unit
-// have to specifically set to `0px` since it's used as css variables. Setting
-// to `0` without any units will break everything.
-
 /// The amount of padding to apply to the left and right of the text field
 /// when it has the underline theme applied.
 /// @type Number
-$rmd-text-field-underline-padding: 0px !default;
+$rmd-text-field-underline-padding: null !default;
 
 /// The amount of padding to apply to the left and right of the text field
 /// when it has the filled theme applied.
 /// @type Number
 $rmd-text-field-filled-padding: 0.75rem !default;
+
+/// The background color to use for filled text fields when using the light theme.
+/// @type Color
+$rmd-text-field-filled-light-background-color: $rmd-grey-100 !default;
+
+/// The background color to use for filled text fields when using the dark theme.
+/// @type Color
+$rmd-text-field-filled-dark-background-color: $rmd-grey-700 !default;
+
+/// The default background color for filled text fields.
+/// @type Color
+$rmd-text-field-filled-background-color: if(
+  $rmd-theme-light,
+  $rmd-text-field-filled-light-background-color,
+  $rmd-text-field-filled-dark-background-color
+) !default;
+
+/// The border radius to apply to the top left and top right of the filled text
+/// field.
+/// @type Number
+$rmd-text-field-filled-border-radius: 0.25rem !default;
 
 /// This is used to decrease the size of the button that appears in text fields since
 /// you don't need as much clickable space in here and it would take up a lot of room.
@@ -116,4 +138,5 @@ $rmd-text-field-button-size: $rmd-icon-size !default;
 /// The amount of offset the button should be from the right of the field (or left in
 /// RTL languages.) This is normally the clear/reset button that appears in text
 /// fields or the password visibility toggle button.
+/// @type Number
 $rmd-text-field-button-offset: 0.5rem !default;

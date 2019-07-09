@@ -131,6 +131,26 @@ const SimpleTextFields: FC = () => {
             </Button>
           }
         />
+        <TextField
+          id="filled-field-7"
+          theme="filled"
+          label="Label"
+          dense
+          placeholder="Placeholder"
+          leftAddon={<FavoriteSVGIcon />}
+        />
+        <TextField
+          id="filled-field-8"
+          theme="filled"
+          label="Label"
+          dense
+          placeholder="Placeholder"
+          rightAddon={
+            <Button id="field6-clear" buttonType="icon" aria-label="Clear">
+              <ClearSVGIcon />
+            </Button>
+          }
+        />
         <Divider />
         <Text type="headline-4" margin="none">
           Outlined:
@@ -170,6 +190,26 @@ const SimpleTextFields: FC = () => {
           id="outline-field-6"
           theme="outline"
           label="Label"
+          placeholder="Placeholder"
+          rightAddon={
+            <Button id="field6-clear" buttonType="icon" aria-label="Clear">
+              <ClearSVGIcon />
+            </Button>
+          }
+        />
+        <TextField
+          id="outline-field-7"
+          theme="outline"
+          label="Label"
+          dense
+          placeholder="Placeholder"
+          leftAddon={<FavoriteSVGIcon />}
+        />
+        <TextField
+          id="outline-field-8"
+          theme="outline"
+          label="Label"
+          dense
           placeholder="Placeholder"
           rightAddon={
             <Button id="field6-clear" buttonType="icon" aria-label="Clear">
