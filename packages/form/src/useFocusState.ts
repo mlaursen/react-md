@@ -1,7 +1,11 @@
 import { useCallback, HTMLAttributes } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
-type FocusElement = HTMLInputElement | HTMLTextAreaElement | HTMLLabelElement;
+type FocusElement =
+  | HTMLInputElement
+  | HTMLTextAreaElement
+  | HTMLLabelElement
+  | HTMLSelectElement;
 type BlurEventHandler = React.FocusEventHandler<FocusElement>;
 type FocusEventHandler = React.FocusEventHandler<FocusElement>;
 

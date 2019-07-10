@@ -1,13 +1,12 @@
 import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
-import { TextField, Form } from "@react-md/form";
+import { TextField, Form, NativeSelect } from "@react-md/form";
 import {
   FavoriteSVGIcon,
   PersonSVGIcon,
   PhoneSVGIcon,
   LocationOnSVGIcon,
-  ArrowDropDownSVGIcon,
   EmailSVGIcon,
   ClearSVGIcon,
 } from "@react-md/material-icons";
@@ -15,6 +14,7 @@ import { SrOnly, Text } from "@react-md/typography";
 
 import "./SimpleTextFields.scss";
 import Phone from "components/Phone";
+import states from "constants/states";
 
 const SimpleTextFields: FC = () => {
   return (
@@ -255,19 +255,25 @@ const SimpleTextFields: FC = () => {
               placeholder="Denver"
               style={{ marginTop: "1rem" }}
             />
-            <TextField
+            <NativeSelect
               id="contact-state"
+              defaultValue=""
               name="state"
+              inline
               label="State"
-              placeholder="Denver"
-              rightAddon={<ArrowDropDownSVGIcon />}
               style={{
                 width: "calc(50% - .5rem)",
                 marginRight: ".5rem",
                 marginTop: "1rem",
               }}
-              inline
-            />
+            >
+              <option value="" disabled hidden />
+              {states.map(({ name, abbreviation }) => (
+                <option key={abbreviation} value={abbreviation}>
+                  {name}
+                </option>
+              ))}
+            </NativeSelect>
             <TextField
               id="contact-zip"
               name="zip"

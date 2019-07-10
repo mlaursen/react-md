@@ -1,4 +1,4 @@
-const people: ReadonlyArray<string> = [
+export default [
   "Jasmine Robinson",
   "Devonte Craig",
   "Dean Reid",
@@ -39,5 +39,4 @@ const people: ReadonlyArray<string> = [
   "Antonio Walton",
   "Tyson Scott",
   "Harley Moss",
-];
-export default people;
+] as const;

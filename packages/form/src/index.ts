@@ -7,6 +7,8 @@ export * from "./file-input/FileInput";
 export { default as Label } from "./label/Label";
 export * from "./label/Label";
 
+export { default as NativeSelect } from "./select/NativeSelect";
+
 export { default as TextField } from "./text-field/TextField";
 export * from "./text-field/TextField";
 

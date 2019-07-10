@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
-type TextElement = HTMLInputElement | HTMLTextAreaElement;
+type TextElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 type ChangeEventHandler = React.ChangeEventHandler<TextElement>;
 
 interface Options {

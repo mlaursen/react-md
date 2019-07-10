@@ -1,66 +1,42 @@
 import React, {
   CSSProperties,
   FC,
-  InputHTMLAttributes,
   ReactNode,
   Ref,
-  forwardRef,
+  SelectHTMLAttributes,
 } from "react";
 import cn from "classnames";
+import { FontIcon } from "@react-md/icon";
 import { bem } from "@react-md/theme";
-import { WithForwardedRef, Omit } from "@react-md/utils";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
-import FloatingLabel from "../label/FloatingLabel";
 import TextFieldContainer, {
   TextFieldContainerOptions,
-} from "./TextFieldContainer";
+} from "../text-field/TextFieldContainer";
+import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
-import useValuedState from "./useValuedState";
+import useValuedState from "../text-field/useValuedState";
 
-/**
- * These are all the "supported" input types for react-md so that they at least
- * render reasonably well by default. There is no built-in validation or anything
- * adding onto existing browser functionality for these types.
- */
-export type SupportedInputTypes =
-  | "text"
-  | "password"
-  | "number"
-  | "tel"
-  | "email"
-  | "date"
-  | "time"
-  | "datetime-local"
-  | "month"
-  | "week"
-  | "url"
-  | "range"
-  | "color";
+type SelectAttributes = Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  "placeholder" | "multiple"
+>;
 
-type TextFieldAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
-
-export interface TextFieldProps
-  extends TextFieldAttributes,
+export interface NativeSelectProps
+  extends SelectAttributes,
     TextFieldContainerOptions {
   /**
-   * The id for the text field. This is required for accessibility.
+   * The id for the select. This is required for accessibility.
    */
   id: string;
 
   /**
-   * The value to use for the text field. This will make the component controlled
-   * and require the `onChange` prop to be provided as well otherwise this will
-   * act as a read only text field.
+   * An optional ref to apply to the text field's container div element. The default ref is
+   * forwarded on to the `input` element.
    */
-  value?: string;
+  containerRef?: Ref<HTMLDivElement>;
 
-  /**
-   * The default value for the text field which will make it uncontrolled.
-   * If you manually change the `defaultValue` prop, the input's value **will
-   * not change** unless you provide a different `key` as well. Use the `value`
-   * prop instead for a controlled input.
-   */
-  defaultValue?: string;
+  icon?: ReactNode;
 
   /**
    * An optional floating label to use for the text field. This should really only be
@@ -81,62 +57,59 @@ export interface TextFieldProps
   labelClassName?: string;
 
   /**
-   * The type for the text field. `react-md`'s `TextField` supports rendering
-   * most of the input types, but will have no built-in validation or additional
-   * functionality included.
-   */
-  type?: SupportedInputTypes;
-
-  /**
-   * An optional style to apply to the input itself. The `style` prop will be applied to the
+   * An optional style to apply to the select itself. The `style` prop will be applied to the
    * container `<div>` instead.
    */
-  inputStyle?: CSSProperties;
+  selectStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the input itself. The `className` prop will be applied to the
+   * An optional className to apply to the select itself. The `className` prop will be applied to the
    * container `<div>` instead.
    */
-  inputClassName?: string;
+  selectClassName?: string;
 
   /**
-   * An optional ref to apply to the text field's container div element. The default ref is
-   * forwarded on to the `input` element.
+   * The value to use for the text field. This will make the component controlled
+   * and require the `onChange` prop to be provided as well otherwise this will
+   * act as a read only text field.
    */
-  containerRef?: Ref<HTMLDivElement>;
+  value?: string;
+
+  /**
+   * The default value for the text field which will make it uncontrolled.
+   * If you manually change the `defaultValue` prop, the input's value **will
+   * not change** unless you provide a different `key` as well. Use the `value`
+   * prop instead for a controlled input.
+   */
+  defaultValue?: string;
 }
-
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
   Pick<
-    TextFieldProps,
-    | "type"
+    NativeSelectProps,
     | "theme"
     | "error"
     | "dense"
     | "inline"
     | "disabled"
     | "underlineDirection"
+    | "icon"
   >
 >;
-type WithDefaultProps = TextFieldProps & DefaultProps & WithRef;
+type WithDefaultProps = NativeSelectProps & DefaultProps & WithRef;
 
-const block = bem("rmd-text-field");
+const block = bem("rmd-native-select");
 
-/**
- * The text field is a wrapper of the `<input type="text" />` component
- * with some nice default themes. It can also be used to render other
- * text input types with _some_ support.
- */
-const TextField: FC<TextFieldProps & WithRef> = providedProps => {
+const NativeSelect: FC<NativeSelectProps> = providedProps => {
   const {
     style,
     className,
-    inputStyle,
-    inputClassName,
-    label,
     labelStyle,
     labelClassName,
+    selectStyle,
+    selectClassName,
+    icon,
+    label,
     theme,
     error,
     dense,
@@ -149,6 +122,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     leftAddon,
     rightAddon,
     underlineDirection,
+    children,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, value, defaultValue, disabled } = props;
@@ -185,9 +159,9 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         className={labelClassName}
         htmlFor={id}
         error={error}
-        active={focused}
-        floating={focused || valued}
+        active={valued && focused}
         valued={valued}
+        floating={valued}
         dense={dense}
         disabled={disabled}
         leftChildren={!!leftAddon}
@@ -195,39 +169,43 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       >
         {label}
       </FloatingLabel>
-      <input
+      <select
         {...props}
-        ref={forwardedRef}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
+        style={selectStyle}
         className={cn(
           block({
+            icon,
             "label-underline": label && underline,
             "placeholder-underline": !label && underline,
             floating: label && theme !== "none",
           }),
-          inputClassName
+          selectClassName
         )}
-      />
+      >
+        {children}
+      </select>
+      {icon}
     </TextFieldContainer>
   );
 };
 
 const defaultProps: DefaultProps = {
-  type: "text",
   theme: "outline",
   dense: false,
   inline: false,
   error: false,
   disabled: false,
   underlineDirection: "left",
+  icon: <FontIcon>arrow_drop_down</FontIcon>,
 };
 
-TextField.defaultProps = defaultProps;
+NativeSelect.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
-  TextField.displayName = "TextField";
+  NativeSelect.displayName = "NativeSelect";
 
   let PropTypes;
   try {
@@ -235,15 +213,10 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 
   if (PropTypes) {
-    TextField.propTypes = {
+    NativeSelect.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
-      inputStyle: PropTypes.object,
-      inputClassName: PropTypes.string,
-      labelStyle: PropTypes.object,
-      labelClassName: PropTypes.string,
-      label: PropTypes.node,
       value: PropTypes.string,
       defaultValue: PropTypes.string,
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),
@@ -251,7 +224,6 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
-      placeholder: PropTypes.string,
       underlineDirection: PropTypes.oneOf(["left", "right"]),
       leftAddon: PropTypes.node,
       rightAddon: PropTypes.node,
@@ -259,6 +231,4 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
-  <TextField {...props} forwardedRef={ref} />
-));
+export default NativeSelect;

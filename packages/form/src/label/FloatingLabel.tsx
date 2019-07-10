@@ -12,6 +12,7 @@ export interface FloatingLabelProps extends LabelProps {
   valued: boolean;
 
   dense?: boolean;
+  floating?: boolean;
   leftChildren?: boolean;
   rightChildren?: boolean;
 }
@@ -34,15 +35,13 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,
-    valued,
     dense,
+    valued,
+    floating,
     leftChildren,
     rightChildren,
     ...props
   } = providedProps as WithDefaultProps;
-  const { active } = props;
-
-  const isActive = active || valued;
 
   return (
     <Label
@@ -51,8 +50,8 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
       className={cn(
         block({
           dense,
-          active: isActive,
-          inactive: valued && !active,
+          active: floating,
+          inactive: valued && !props.active,
         }),
         className
       )}

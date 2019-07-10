@@ -2,5 +2,15 @@
 /// @group form-select
 ////
 
+@import '../text-field/mixins';
+
 @mixin react-md-select {
+  .rmd-native-select {
+    @include rmd-text-field;
+
+    &--icon {
+      appearance: none;
+      padding-right: 0;
+    }
+  }
 }
