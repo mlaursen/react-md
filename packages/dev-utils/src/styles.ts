@@ -39,7 +39,7 @@ import {
  *
  * If the package does not have any styles, the logic is skipped.
  */
-export default async function styles() {
+export default async function styles(css: boolean) {
   const scssFiles = await glob("src/**/*.scss");
   if (!scssFiles.length) {
     return;
@@ -47,6 +47,10 @@ export default async function styles() {
 
   await copyStyles(scssFiles);
   await createScssVariables();
+  if (!css) {
+    return;
+  }
+
   const packageName = await getPackageName();
   const found = scssFiles.find(name => /styles\.scss$/.test(name));
   if (!found || packageName === "react-md") {
@@ -130,10 +134,7 @@ function createVariableMap(variables: HackedVar[]) {
 export async function createScssVariables() {
   const fileName = path.join(src, scssVariables);
 
-  log.debug(
-    "Attempting to find all scss variables in the this project along with their default values."
-  );
-  log.debug("");
+  log.info("Finding scss variables to compile their default values.");
   const packageName = await getPackageName();
   const unformattedVariables = await getPackageVariables();
   const variables = getHackedScssVariableValues(
@@ -213,8 +214,8 @@ export async function generateThemeStyles() {
 }
 
 async function copyStyles(files: string[]) {
-  log.debug(
-    "Copying the scss files for both webpack imports and includePaths options"
+  log.info(
+    "Copying the scss files for both webpack imports and includePaths options."
   );
 
   const packageName = await getPackageName();
@@ -245,5 +246,4 @@ async function copyStyles(files: string[]) {
       return fs.writeFile(fileName, webpackImports, "utf8");
     })
   );
-  log.info("");
 }

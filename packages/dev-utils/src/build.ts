@@ -7,6 +7,7 @@ import styles, { createScssVariables, generateThemeStyles } from "./styles";
 import { printMinifiedSizes, time, createTsConfigFiles } from "./utils";
 
 export interface BuildConfig {
+  css: boolean;
   umd: boolean;
   clean: boolean;
   update: boolean;
@@ -19,6 +20,7 @@ export interface BuildConfig {
 }
 
 const DEFAULT_CONFIG: BuildConfig = {
+  css: false,
   umd: false,
   clean: false,
   update: false,
@@ -35,6 +37,7 @@ export default async function build(
 ) {
   const buildConfig = defaults(
     pick(config, [
+      "css",
       "umd",
       "clean",
       "update",
@@ -51,6 +54,7 @@ export default async function build(
 }
 
 async function runBuild({
+  css,
   umd,
   clean,
   umdOnly,
@@ -84,11 +88,11 @@ async function runBuild({
   }
 
   if ((!umdOnly && !scriptsOnly) || stylesOnly) {
-    await time(styles, "styles");
+    await time(() => styles(css), "styles");
   }
 
   if (!umdOnly && !scriptsOnly && !stylesOnly) {
-    log.info();
+    log.debug();
   }
 
   if (umdOnly) {

@@ -74,7 +74,7 @@ export async function copyFiles(
       return fs.copy(src, currDest);
     })
   );
-  log.info("");
+  log.debug();
 }
 
 export interface PackageJson {

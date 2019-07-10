@@ -55,6 +55,10 @@ createCommand("build [options...]")
     "--gzip-size",
     "Always logs the gzip size instead of requiring the verbose flag to be enabled."
   )
+  .option(
+    "--css",
+    "Update the build to also compile the base .css files for a package."
+  )
   .option("--themes-only", "Only build the react-md theme files.")
   .option("--update", "Update all the shared files.")
   .option("--update-only", "Update all the shared files only.")
