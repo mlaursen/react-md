@@ -124,7 +124,6 @@ const Demo: FC<DemoProps> = props => {
           <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox(title, name)} />
           <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
-        <div id={`${id}-code-preview`} />
         <div
           id={`${id}-preview`}
           className={cn(!disableCard && block("preview"))}
