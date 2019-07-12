@@ -23,11 +23,6 @@ export interface SwitchProps
   id: string;
 
   /**
-   * The name for the radio or checkbox. This is required for a11y.
-   */
-  name: string;
-
-  /**
    * An optional style to apply to the switch's ball.
    */
   ballStyle?: CSSProperties;
@@ -189,6 +184,7 @@ Switch.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
   Switch.displayName = "Switch";
+
   let PropTypes = null;
   try {
     PropTypes = require("prop-types");
@@ -197,7 +193,6 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Switch.propTypes = {
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
       ballStyle: PropTypes.object,
       ballClassName: PropTypes.string,
       trackStyle: PropTypes.object,

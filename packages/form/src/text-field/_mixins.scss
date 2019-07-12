@@ -32,17 +32,6 @@
     @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-height));
   }
 
-  &--dense {
-    @include rmd-form-theme-update-var(
-      text-height,
-      rmd-form-theme-var(text-placeholder-dense-height)
-    );
-  }
-
-  &--dense-label {
-    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-dense-height));
-  }
-
   &--underline {
     @if $rmd-text-field-underline-padding {
       @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
@@ -67,6 +56,14 @@
       transition: transform $rmd-transition-standard-time;
       z-index: 1;
     }
+  }
+
+  &--underline-labelled {
+    @include rmd-form-theme-update-var(
+      text-padding-top,
+      $rmd-text-field-underline-label-padding-top
+    );
+    @include rmd-form-theme-update-var(addon-top, $rmd-text-field-addon-margin);
   }
 
   &--filled {
@@ -109,6 +106,15 @@
     );
   }
 
+  &--underline-right-addon {
+    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';
+    @if $rmd-text-field-underline-padding {
+      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
+    }
+
+    @include rmd-form-theme-update-var(text-padding-right, calc(#{$calc-string}));
+  }
+
   &--outline {
     @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-outline-padding);
     @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-outline-padding);
@@ -140,9 +146,35 @@
   }
 
   &--outline-left {
-    $outline-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-outline-padding * 2});
+    $outline-offset: calc(
+      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-outline-padding + $rmd-text-field-addon-margin}
+    );
 
     @include rmd-form-theme-update-var(text-padding-left, $outline-offset);
+  }
+
+  &--outline-right {
+    $outline-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2});
+
+    @include rmd-form-theme-update-var(text-padding-right, $outline-offset);
+  }
+
+  &--dense {
+    @include rmd-form-theme-update-var(
+      text-height,
+      rmd-form-theme-var(text-placeholder-dense-height)
+    );
+  }
+
+  &--dense-label {
+    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-dense-height));
+  }
+
+  &--dense-placeholder {
+    @include rmd-form-theme-update-var(
+      text-padding-top,
+      $rmd-text-field-underline-dense-padding-top
+    );
   }
 }
 
@@ -208,17 +240,10 @@
   }
   @include rmd-form-theme(padding-left, text-padding-left);
   @include rmd-form-theme(padding-right, text-padding-right);
+  @include rmd-form-theme(padding-top, text-padding-top);
   @include rmd-text-field-base;
 
   height: 100%;
-
-  &--label-underline {
-    padding-top: $rmd-text-field-underline-label-padding-top;
-  }
-
-  &--placeholder-underline {
-    padding-top: $rmd-text-field-underline-placeholder-padding-top;
-  }
 
   &--floating {
     @include rmd-text-field-placeholder {
@@ -236,28 +261,30 @@
 
 /// @access private
 @mixin rmd-text-field-addon {
+  @include rmd-icon-theme(height, size);
+  @include rmd-icon-theme(width, size);
+  @include rmd-form-theme(margin-top, addon-top);
+
   position: absolute;
 
-  &--first {
-    @include rmd-utils-rtl-auto(left, $rmd-text-field-outline-padding);
-    @include rmd-icon-theme(height, size);
-    @include rmd-icon-theme(width, size);
+  &:first-child {
+    @include rmd-utils-rtl-auto(left, rmd-form-theme-var(label-left-offset));
+  }
 
+  &:last-child {
+    @include rmd-utils-rtl-auto(right, $rmd-text-field-addon-margin);
+  }
+
+  &--presentational {
     pointer-events: none;
   }
+}
 
-  &--first-offset {
-    @include rmd-utils-rtl-auto(left, 0.5rem);
-  }
+/// @access private
+@mixin rmd-password-toggle {
+  @include rmd-utils-rtl-auto(right, 0.25rem);
 
-  &--last {
-    @include rmd-utils-rtl-auto(right, $rmd-text-field-button-offset);
-    @include rmd-button-theme-update-var(icon-size, $rmd-text-field-button-size);
-  }
-
-  &--underline-offset {
-    top: 1.5rem;
-  }
+  position: absolute;
 }
 
 /// @access private
@@ -272,5 +299,9 @@
 
   .rmd-text-field-addon {
     @include rmd-text-field-addon;
+  }
+
+  .rmd-password__toggle {
+    @include rmd-password-toggle;
   }
 }

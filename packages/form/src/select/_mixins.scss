@@ -4,13 +4,25 @@
 
 @import '../text-field/mixins';
 
+/// @access private
 @mixin react-md-select {
   .rmd-native-select {
     @include rmd-text-field;
 
     &--icon {
+      @include rmd-icon-theme(padding-right, size);
+
       appearance: none;
-      padding-right: 0;
+    }
+
+    &__icon {
+      @include rmd-utils-rtl-auto(right, 0);
+
+      // without this, the span will render with a height larger
+      // than the icon and be positioned weirdly
+      display: inline-flex;
+      pointer-events: none;
+      position: absolute;
     }
   }
 }

@@ -57,11 +57,6 @@ export interface FileInputProps
   id: string;
 
   /**
-   * The required name for the input.
-   */
-  name: string;
-
-  /**
    * The change event handler to attach to this input. This is required since there's
    * really no use in this component otherwise.
    */
@@ -266,7 +261,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     FileInput.propTypes = {
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
       onChange: PropTypes.func.isRequired,
       icon: PropTypes.node,
       iconAfter: PropTypes.bool,

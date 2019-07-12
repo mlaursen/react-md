@@ -91,11 +91,11 @@ $rmd-text-field-underline-label-padding-top: 1rem !default;
 /// @type Number
 $rmd-text-field-underline-label-left-offset: $rmd-icon-spacing-with-text !default;
 
-/// The amount of padding to apply to the top of an underlined or filled text field.
-/// This is used to push the input down a little bit to look nice with the floating
-/// label.
+/// The amount of padding to apply to the top of an underlined or filled text field
+/// when the dense theme is enabled. This is used to push the input down a little bit
+/// to look nice with the floating label.
 /// @type Number
-$rmd-text-field-underline-placeholder-padding-top: 0.75rem !default;
+$rmd-text-field-underline-dense-padding-top: 0.25rem !default;
 
 /// The amount of padding to apply to the left and right of the text field
 /// when it has the underline theme applied.
@@ -128,15 +128,6 @@ $rmd-text-field-filled-background-color: if(
 /// @type Number
 $rmd-text-field-filled-border-radius: 0.25rem !default;
 
-/// This is used to decrease the size of the button that appears in text fields since
-/// you don't need as much clickable space in here and it would take up a lot of room.
-/// This is normally the clear/reset button that appears in text fields or the password
-/// visibility toggle button.
+/// The amount of spacing between the left or right of the text field and the icon.
 /// @type Number
-$rmd-text-field-button-size: $rmd-icon-size !default;
-
-/// The amount of offset the button should be from the right of the field (or left in
-/// RTL languages.) This is normally the clear/reset button that appears in text
-/// fields or the password visibility toggle button.
-/// @type Number
-$rmd-text-field-button-offset: 0.5rem !default;
+$rmd-text-field-addon-margin: $rmd-icon-spacing-with-text !default;

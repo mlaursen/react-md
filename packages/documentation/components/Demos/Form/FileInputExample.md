@@ -9,5 +9,4 @@ styles.
 To use this component, you **must** provide:
 
 - an `id` for accessibility and making the button clickable
-- a `name` for the input
 - an `onChange` event handler

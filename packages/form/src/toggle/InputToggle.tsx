@@ -41,11 +41,6 @@ export interface InputToggleProps
   id: string;
 
   /**
-   * The name for the radio or checkbox. This is required for a11y.
-   */
-  name: string;
-
-  /**
    * The icon to use for either a radio or a checkbox.
    */
   icon?: ReactNode;
@@ -277,7 +272,6 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     InputToggle.propTypes = {
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
       icon: PropTypes.node,
       iconStyle: PropTypes.object,
       iconClassName: PropTypes.string,

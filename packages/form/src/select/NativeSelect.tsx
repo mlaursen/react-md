@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   Ref,
   SelectHTMLAttributes,
+  forwardRef,
 } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
@@ -19,12 +20,17 @@ import useValuedState from "../text-field/useValuedState";
 
 type SelectAttributes = Omit<
   SelectHTMLAttributes<HTMLSelectElement>,
-  "placeholder" | "multiple"
+  "multiple"
+>;
+
+type SupportedTextFieldContainerProps = Omit<
+  TextFieldContainerOptions,
+  "isRightAddon" | "rightChildren"
 >;
 
 export interface NativeSelectProps
   extends SelectAttributes,
-    TextFieldContainerOptions {
+    SupportedTextFieldContainerProps {
   /**
    * The id for the select. This is required for accessibility.
    */
@@ -36,6 +42,11 @@ export interface NativeSelectProps
    */
   containerRef?: Ref<HTMLDivElement>;
 
+  /**
+   * An optional icon to display to the right of the select. This should normally be a dropdown
+   * icon to replace the native select's dropdown icon. If this is set to `null`, the native select's
+   * dropdown icon will be displayed instead.
+   */
   icon?: ReactNode;
 
   /**
@@ -83,7 +94,7 @@ export interface NativeSelectProps
    */
   defaultValue?: string;
 }
-type WithRef = WithForwardedRef<HTMLInputElement>;
+type WithRef = WithForwardedRef<HTMLSelectElement>;
 type DefaultProps = Required<
   Pick<
     NativeSelectProps,
@@ -100,7 +111,12 @@ type WithDefaultProps = NativeSelectProps & DefaultProps & WithRef;
 
 const block = bem("rmd-native-select");
 
-const NativeSelect: FC<NativeSelectProps> = providedProps => {
+/**
+ * This component is used to render a native `<select>` element with the
+ * text field theme styles. This component is great to use for native behavior
+ * and full accessibility.
+ */
+const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
   const {
     style,
     className,
@@ -119,8 +135,8 @@ const NativeSelect: FC<NativeSelectProps> = providedProps => {
     onChange: propOnChange,
     containerRef,
     forwardedRef,
-    leftAddon,
-    rightAddon,
+    isLeftAddon,
+    leftChildren,
     underlineDirection,
     children,
     ...props
@@ -149,9 +165,9 @@ const NativeSelect: FC<NativeSelectProps> = providedProps => {
       active={focused}
       label={!!label}
       dense={dense}
-      leftAddon={leftAddon}
       inline={inline}
-      rightAddon={rightAddon}
+      isLeftAddon={isLeftAddon}
+      leftChildren={leftChildren}
       underlineDirection={underlineDirection}
     >
       <FloatingLabel
@@ -164,13 +180,13 @@ const NativeSelect: FC<NativeSelectProps> = providedProps => {
         floating={valued}
         dense={dense}
         disabled={disabled}
-        leftChildren={!!leftAddon}
-        rightChildren={!!rightAddon}
+        leftChildren={!!leftChildren}
       >
         {label}
       </FloatingLabel>
       <select
         {...props}
+        ref={forwardedRef}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
@@ -187,7 +203,7 @@ const NativeSelect: FC<NativeSelectProps> = providedProps => {
       >
         {children}
       </select>
-      {icon}
+      {icon && <span className={block("icon")}>{icon}</span>}
     </TextFieldContainer>
   );
 };
@@ -225,10 +241,12 @@ if (process.env.NODE_ENV !== "production") {
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
       underlineDirection: PropTypes.oneOf(["left", "right"]),
-      leftAddon: PropTypes.node,
-      rightAddon: PropTypes.node,
+      isLeftAddon: PropTypes.bool,
+      leftChildren: PropTypes.node,
     };
   }
 }
 
-export default NativeSelect;
+export default forwardRef<HTMLSelectElement, NativeSelectProps>(
+  (props, ref) => <NativeSelect {...props} forwardedRef={ref} />
+);

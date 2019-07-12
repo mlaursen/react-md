@@ -12,11 +12,14 @@ import customCheckboxes from "./CustomCheckboxes.md";
 import SwitchExamples from "./SwitchExamples";
 import switchExamples from "./SwitchExamples.md";
 
-import SimpleFileInputs from "./SimpleFileInputs";
-import simpleFileInputs from "./SimpleFileInputs.md";
+import FileInputExample from "./FileInputExample";
+import fileInputExample from "./FileInputExample.md";
 
-import SimpleTextFields from "./SimpleTextFields";
-import simpleTextFields from "./SimpleTextFields.md";
+import TextFieldExample from "./TextFieldExample";
+import textFieldExample from "./TextFieldExample.md";
+
+import ExampleForm from "./ExampleForm";
+import exampleForm from "./ExampleForm.md";
 
 const demos = [
   {
@@ -35,14 +38,19 @@ const demos = [
     children: <SwitchExamples />,
   },
   {
-    name: "Simple File Inputs",
-    description: simpleFileInputs,
-    children: <SimpleFileInputs />,
+    name: "File Input Example",
+    description: fileInputExample,
+    children: <FileInputExample />,
   },
   {
-    name: "Simple Text Fields",
-    description: simpleTextFields,
-    children: <SimpleTextFields />,
+    name: "Text Field Example",
+    description: textFieldExample,
+    children: <TextFieldExample />,
+  },
+  {
+    name: "Example Form",
+    description: exampleForm,
+    children: <ExampleForm />,
   },
 ];
 

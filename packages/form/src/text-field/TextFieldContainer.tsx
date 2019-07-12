@@ -54,13 +54,27 @@ export interface TextFieldContainerOptions {
    * be an icon. This element will not have pointer events so it can be "clicked through"
    * to focus the text field instead.
    */
-  leftAddon?: ReactNode;
+  leftChildren?: ReactNode;
+
+  /**
+   * Boolean if the left children should be wrapped in the `TextFieldAddon` component. This is
+   * enabled by default since this is _normally_ the behavior that is desired so that icons
+   * can be positioned correctly.
+   */
+  isLeftAddon?: boolean;
 
   /**
    * An optional addon to apply to the right of the text field. This should be a clickable
    * button such as a password field toggle or a reset button for the field.
    */
-  rightAddon?: ReactNode;
+  rightChildren?: ReactNode;
+
+  /**
+   * Boolean if the right children should be wrapped in the `TextFieldAddon` component. This is
+   * enabled by default since this is _normally_ the behavior that is desired so that icons
+   * can be positioned correctly.
+   */
+  isRightAddon?: boolean;
 }
 
 export interface TextFieldContainerProps
@@ -82,7 +96,12 @@ type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<
   Pick<
     TextFieldContainerProps,
-    "inline" | "theme" | "error" | "underlineDirection"
+    | "inline"
+    | "theme"
+    | "error"
+    | "underlineDirection"
+    | "isLeftAddon"
+    | "isRightAddon"
   >
 >;
 type WithDefaultProps = TextFieldContainerProps & DefaultProps & WithRef;
@@ -108,8 +127,10 @@ const TextFieldContainer: FC<
     active,
     label,
     dense,
-    leftAddon,
-    rightAddon,
+    isLeftAddon,
+    isRightAddon,
+    leftChildren,
+    rightChildren,
     underlineDirection,
     ...props
   } = providedProps as WithDefaultProps;
@@ -132,26 +153,32 @@ const TextFieldContainer: FC<
           label: label && !dense,
           dense: !label && dense,
           "dense-label": dense && label,
+          "dense-placeholder": dense && isUnderlined && !label,
           "outline-active": outline && active,
           "outline-error": outline && error,
-          "outline-left": outline && leftAddon,
-          "outline-right": outline && rightAddon,
+          "outline-left": outline && leftChildren,
+          "outline-right": outline && rightChildren,
           underline: isUnderlined,
+          "underline-labelled": label && isUnderlined,
           "underline-active": isUnderlined && active,
           [`underline-${underlineDirection}`]: isUnderlined,
-          "underline-left-addon": isUnderlined && leftAddon,
-          "underline-right-addon": isUnderlined && rightAddon,
+          "underline-left-addon": isUnderlined && leftChildren,
+          "underline-right-addon": isUnderlined && rightChildren,
         }),
         className
       )}
     >
-      <TextFieldAddon first underline={isUnderlined}>
-        {leftAddon}
-      </TextFieldAddon>
+      {isLeftAddon ? (
+        <TextFieldAddon>{leftChildren}</TextFieldAddon>
+      ) : (
+        leftChildren
+      )}
       {children}
-      <TextFieldAddon first={false} underline={isUnderlined}>
-        {rightAddon}
-      </TextFieldAddon>
+      {isRightAddon ? (
+        <TextFieldAddon>{rightChildren}</TextFieldAddon>
+      ) : (
+        rightChildren
+      )}
     </div>
   );
 };
@@ -160,6 +187,8 @@ const defaultProps: DefaultProps = {
   inline: false,
   theme: "none",
   error: false,
+  isLeftAddon: true,
+  isRightAddon: true,
   underlineDirection: "left",
 };
 
@@ -180,6 +209,10 @@ if (process.env.NODE_ENV !== "production") {
       active: PropTypes.bool,
       error: PropTypes.bool,
       underlineDirection: PropTypes.oneOf(["left", "right"]),
+      isLeftAddon: PropTypes.bool,
+      isRightAddon: PropTypes.bool,
+      leftChildren: PropTypes.node,
+      rightChildren: PropTypes.node,
     };
   }
 }

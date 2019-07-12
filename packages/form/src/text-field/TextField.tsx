@@ -33,9 +33,7 @@ export type SupportedInputTypes =
   | "datetime-local"
   | "month"
   | "week"
-  | "url"
-  | "range"
-  | "color";
+  | "url";
 
 type TextFieldAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
@@ -117,11 +115,15 @@ type DefaultProps = Required<
     | "inline"
     | "disabled"
     | "underlineDirection"
+    | "isLeftAddon"
+    | "isRightAddon"
   >
 >;
 type WithDefaultProps = TextFieldProps & DefaultProps & WithRef;
 
 const block = bem("rmd-text-field");
+
+const SPECIAL_TYPES = ["date", "time", "datetime-local", "month", "week"];
 
 /**
  * The text field is a wrapper of the `<input type="text" />` component
@@ -146,13 +148,14 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     onChange: propOnChange,
     containerRef,
     forwardedRef,
-    leftAddon,
-    rightAddon,
+    isLeftAddon,
+    isRightAddon,
+    leftChildren,
+    rightChildren,
     underlineDirection,
     ...props
   } = providedProps as WithDefaultProps;
-  const { id, value, defaultValue, disabled } = props;
-  const underline = theme === "underline" || theme === "filled";
+  const { id, value, defaultValue, disabled, type } = props;
 
   const [focused, onFocus, onBlur] = useFocusState({
     onBlur: propOnBlur,
@@ -175,9 +178,11 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       active={focused}
       label={!!label}
       dense={dense}
-      leftAddon={leftAddon}
       inline={inline}
-      rightAddon={rightAddon}
+      isLeftAddon={isLeftAddon}
+      isRightAddon={isRightAddon}
+      leftChildren={leftChildren}
+      rightChildren={rightChildren}
       underlineDirection={underlineDirection}
     >
       <FloatingLabel
@@ -186,12 +191,12 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         htmlFor={id}
         error={error}
         active={focused}
-        floating={focused || valued}
+        floating={focused || valued || SPECIAL_TYPES.includes(type)}
         valued={valued}
         dense={dense}
         disabled={disabled}
-        leftChildren={!!leftAddon}
-        rightChildren={!!rightAddon}
+        leftChildren={!!leftChildren}
+        rightChildren={!!rightChildren}
       >
         {label}
       </FloatingLabel>
@@ -203,8 +208,6 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         onChange={onChange}
         className={cn(
           block({
-            "label-underline": label && underline,
-            "placeholder-underline": !label && underline,
             floating: label && theme !== "none",
           }),
           inputClassName
@@ -221,6 +224,8 @@ const defaultProps: DefaultProps = {
   inline: false,
   error: false,
   disabled: false,
+  isLeftAddon: true,
+  isRightAddon: true,
   underlineDirection: "left",
 };
 
@@ -253,8 +258,10 @@ if (process.env.NODE_ENV !== "production") {
       disabled: PropTypes.bool,
       placeholder: PropTypes.string,
       underlineDirection: PropTypes.oneOf(["left", "right"]),
-      leftAddon: PropTypes.node,
-      rightAddon: PropTypes.node,
+      leftChildren: PropTypes.node,
+      rightChildren: PropTypes.node,
+      isLeftAddon: PropTypes.bool,
+      isRightAddon: PropTypes.bool,
     };
   }
 }

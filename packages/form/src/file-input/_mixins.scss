@@ -5,11 +5,12 @@
 @mixin react-md-file-input {
   .rmd-file-input {
     &__hidden {
-      height: 0;
+      height: 0.1px;
       opacity: 0;
       overflow: hidden;
       position: absolute;
-      width: 0;
+      width: 0.1px;
+      z-index: -1;
     }
   }
 }

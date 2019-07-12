@@ -2,6 +2,8 @@
 /// @group form
 ////
 
+@import '@react-md/typography/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import 'variables';
 @import './file-input/mixins';
 @import './label/mixins';
@@ -9,12 +11,30 @@
 @import './toggle/mixins';
 @import './text-field/mixins';
 
+/// Creates the base styles for a simple fieldset element.
+/// @access private
+@mixin rmd-fieldset {
+  &--unstyled {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__legend {
+    @include rmd-typography(body-1);
+
+    &--sr-only {
+      @include rmd-utils-sr-only;
+    }
+  }
+}
+
 /// Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables
 /// to be enabled to generate any styles.
 @mixin react-md-form {
   $omit: (
-    label-left-offset label-top-offset label-active-background-color label-active-padding
-      text-offset text-padding-left text-padding-right
+    addon-top label-left-offset label-top-offset label-active-background-color label-active-padding
+      text-offset text-padding-left text-padding-right text-padding-top
   );
   @include rmd-theme-create-root-theme($rmd-form-theme-values, form, $omit);
 
@@ -23,4 +43,8 @@
   @include react-md-select;
   @include react-md-toggle;
   @include react-md-text-field;
+
+  .rmd-fieldset {
+    @include rmd-fieldset;
+  }
 }
