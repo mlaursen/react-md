@@ -89,8 +89,11 @@
     opacity: 0;
   }
 
-  &:checked + .rmd-toggle__icon::after {
-    opacity: 1;
+  &:checked + .rmd-toggle__icon--indeterminate {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
   }
 }
 
@@ -112,34 +115,39 @@
   position: absolute;
 
   &--overlay {
-    &::before,
-    &::after {
+    &::before {
       @include rmd-transition(standard);
       @include rmd-form-theme(bottom, toggle-inset);
       @include rmd-form-theme(left, toggle-inset);
       @include rmd-form-theme(right, toggle-inset);
       @include rmd-form-theme(top, toggle-inset);
-
-      content: '';
-      position: absolute;
-      transition: opacity $rmd-transition-standard-time;
-    }
-
-    &::before {
       @include rmd-theme(background-color, background);
 
+      content: '';
       opacity: 1;
-      z-index: 3;
-    }
-
-    &::after {
-      opacity: 0;
-      z-index: 0;
+      position: absolute;
+      transition: opacity $rmd-transition-standard-time;
+      z-index: 1;
     }
   }
 
-  &--circle::before,
-  &--circle::after {
+  &--indeterminate::after {
+    @include rmd-transition(standard);
+    @include rmd-form-theme(background-color, active-color);
+    @include rmd-form-theme(left, toggle-inset);
+    @include rmd-form-theme(right, toggle-inset);
+    @include rmd-form-theme(height, indeterminate-height);
+
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity $rmd-transition-standard-time;
+    z-index: 2;
+  }
+
+  &--circle::before {
     border-radius: $rmd-toggle-border-radius;
   }
 
@@ -152,6 +160,7 @@
     @include rmd-form-theme(left, toggle-dense-inset);
     @include rmd-form-theme(right, toggle-dense-inset);
     @include rmd-form-theme(top, toggle-dense-inset);
+    @include rmd-form-theme(indeterminate-height, indeterminate-dense-height);
   }
 }
 
@@ -159,6 +168,10 @@
 /// css variable to be the dense version. This should generally be used within media queries.
 @mixin rmd-toggle-dense-theme {
   @include rmd-form-theme-update-var(toggle-inset, rmd-form-theme-var(toggle-dense-inset));
+  @include rmd-form-theme-update-var(
+    indeterminate-height,
+    rmd-form-theme-var(indeterminate-dense-height)
+  );
 }
 
 /// Creates the styles for the switch component
@@ -175,6 +188,13 @@
 
   &--disabled {
     @include rmd-form-theme-update-var(track-background-color, disabled-color);
+  }
+
+  &--async {
+    // make the progress bar a bit more prominent
+    @include rmd-progress-theme-update-var(circular-width, $rmd-switch-progress-width);
+    // shrink the progress bar to be the same size as the switch's ball
+    @include rmd-progress-theme-update-var(circular-size, $rmd-switch-ball-size);
   }
 }
 
@@ -313,6 +333,13 @@
 
     &__ball {
       @include rmd-switch-ball;
+    }
+
+    &__progress {
+      background-color: $rmd-switch-progress-background-color;
+      border-radius: inherit;
+      padding: $rmd-switch-progress-padding;
+      z-index: 2;
     }
   }
 }

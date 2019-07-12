@@ -85,7 +85,7 @@ const TextFieldExample: FC = () => {
           onChange={handleLabelChange}
         />
       </Fieldset>
-      <Divider />
+      <Divider className="text-field-example__divider" />
       <TextField
         id="configurable-text-field"
         label={label && "Label"}

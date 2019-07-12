@@ -126,7 +126,8 @@ export interface InputToggleProps
   children?: ReactNode;
 }
 
-type Props = InputToggleProps & { type: "radio" | "checkbox" };
+type Props = InputToggleProps &
+  ({ type: "radio" } | { type: "checkbox"; indeterminate?: boolean });
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
   Pick<
@@ -139,7 +140,8 @@ type DefaultProps = Required<
     | "disableIconOverlay"
   >
 >;
-type WithDefaultProps = Props & DefaultProps & WithRef;
+type WithDefaultProps = Props &
+  DefaultProps & { indeterminate?: boolean } & WithRef;
 
 const block = bem("rmd-toggle");
 
@@ -169,6 +171,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     rippleTimeout,
     rippleClassNames,
     children,
+    indeterminate,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, type, disabled } = props;
@@ -236,6 +239,7 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
               circle: !disableIconOverlay && type === "radio",
               disabled,
               overlay: !disableIconOverlay,
+              indeterminate,
             }),
             iconClassName
           )}

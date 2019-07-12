@@ -1,11 +1,9 @@
 import React, { FC, Fragment } from "react";
-import { AppBar, AppBarAction } from "@react-md/app-bar";
-import { Checkbox, Radio, InputToggle, Form } from "@react-md/form";
+import { Checkbox, Radio, InputToggle } from "@react-md/form";
 import {
   CheckBoxSVGIcon,
   RadioButtonCheckedSVGIcon,
 } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
 
 const CheckboxAndRadioExamples: FC = () => (
   <Fragment>
@@ -33,48 +31,6 @@ const CheckboxAndRadioExamples: FC = () => (
       icon={<RadioButtonCheckedSVGIcon />}
       value="c"
     />
-    <Form name="form1" id="form-1">
-      <Text type="headline-5">Example Form</Text>
-      {Array.from(new Array(5), (_, i) => (
-        <Checkbox
-          key={i}
-          id={`example-form-checkbox-${i}`}
-          name="example-form-checkboxes"
-          label={`Checkbox ${i + 1}`}
-          defaultChecked={i % 4 === 0}
-          icon={<CheckBoxSVGIcon />}
-        />
-      ))}
-      {Array.from(new Array(3), (_, i) => (
-        <Radio
-          key={i}
-          id={`example-form-radios-${i}`}
-          name="example-form-radios"
-          label={`Radio ${i + 1}`}
-          icon={<RadioButtonCheckedSVGIcon />}
-          value={i}
-        />
-      ))}
-      <AppBar component="footer" theme="clear">
-        <AppBarAction
-          id="reset-form-1"
-          first
-          type="reset"
-          theme="warning"
-          buttonType="text"
-        >
-          Reset
-        </AppBarAction>
-        <AppBarAction
-          id="submit-form-1"
-          type="submit"
-          theme="primary"
-          buttonType="text"
-        >
-          Submit
-        </AppBarAction>
-      </AppBar>
-    </Form>
   </Fragment>
 );
 

@@ -25,6 +25,16 @@ $rmd-toggle-inset: 0.3125rem !default;
 /// @see rmd-toggle-inset
 $rmd-toggle-dense-inset: 0.25rem !default;
 
+/// The height for the indeterminate checkbox state's line that covers
+/// the icon.
+/// @type Number
+$rmd-checkbox-indeterminate-height: 0.15rem !default;
+
+/// The height for the indeterminate checkbox state's line that covers
+/// the icon when the dense spec is enabled.
+/// @type Number
+$rmd-checkbox-indeterminate-dense-height: 0.125rem !default;
+
 /// The height for a switch's track. The track is the background that the ball animates
 /// left and right on.
 /// @type Number
@@ -76,3 +86,17 @@ $rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
   false,
   lighten($rmd-theme-secondary, 12%)
 ) !default;
+
+/// The width of the circular progress bar. This will make the progress bar more
+/// prominent than the normal circular progress.
+/// @type Number
+$rmd-switch-progress-width: 12 !default;
+
+/// The background color to use for the switch's ball while the the switch is loading.
+/// @type Color
+$rmd-switch-progress-background-color: $rmd-white-base !default;
+
+/// The amount of padding to apply to the async switch's progress bar. This will make
+/// it so there is some space between the switch's ball and the progress bar.
+/// @type Number
+$rmd-switch-progress-padding: 0.125rem !default;

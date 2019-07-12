@@ -45,6 +45,7 @@
   "dependencies": {
     "@react-md/button": "^2.0.0-alpha.5",
     "@react-md/icon": "^2.0.0-alpha.5",
+    "@react-md/progress": "^2.0.0-alpha.5",
     "@react-md/states": "^2.0.0-alpha.5",
     "@react-md/theme": "^2.0.0-alpha.5",
     "@react-md/transition": "^2.0.0-alpha.5",

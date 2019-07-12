@@ -9,8 +9,14 @@ import checkboxAndRadioExamples from "./CheckboxAndRadioExamples.md";
 import CustomCheckboxes from "./CustomCheckboxes";
 import customCheckboxes from "./CustomCheckboxes.md";
 
+import IndeterminateCheckboxes from "./IndeterminateCheckboxes";
+import indeterminateCheckboxes from "./IndeterminateCheckboxes.md";
+
 import SwitchExamples from "./SwitchExamples";
 import switchExamples from "./SwitchExamples.md";
+
+import AsyncSwitchExample from "./AsyncSwitchExample";
+import asyncSwitchExample from "./AsyncSwitchExample.md";
 
 import FileInputExample from "./FileInputExample";
 import fileInputExample from "./FileInputExample.md";
@@ -28,6 +34,11 @@ const demos = [
     children: <CheckboxAndRadioExamples />,
   },
   {
+    name: "Indeterminate Checkboxes",
+    description: indeterminateCheckboxes,
+    children: <IndeterminateCheckboxes />,
+  },
+  {
     name: "Custom Checkboxes",
     description: customCheckboxes,
     children: <CustomCheckboxes />,
@@ -36,6 +47,11 @@ const demos = [
     name: "Switch Examples",
     description: switchExamples,
     children: <SwitchExamples />,
+  },
+  {
+    name: "Async Switch Example",
+    description: asyncSwitchExample,
+    children: <AsyncSwitchExample />,
   },
   {
     name: "File Input Example",
