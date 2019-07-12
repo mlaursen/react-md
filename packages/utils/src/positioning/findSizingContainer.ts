@@ -13,7 +13,9 @@
  * @throws This error will be thrown if using the `data-query-selector` and the query
  *  selector does not return an element on the page.
  */
-export default function findSizingContainer(el: HTMLElement | null) {
+export default function findSizingContainer(
+  el: HTMLElement | null
+): HTMLElement | null {
   if (!el) {
     return null;
   } else if (/(tree|list)item/.test(el.getAttribute("role") || "")) {
@@ -22,6 +24,11 @@ export default function findSizingContainer(el: HTMLElement | null) {
     ) as HTMLElement;
     if (content) {
       return content;
+    }
+  } else if (el.getAttribute("type") === "file") {
+    const label = document.querySelector<HTMLLabelElement>(`[for="${el.id}"]`);
+    if (label) {
+      return label;
     }
   }
 

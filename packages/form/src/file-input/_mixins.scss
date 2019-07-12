@@ -2,15 +2,26 @@
 /// @group form-file-input
 ////
 
+@import '@react-md/states/dist/mixins';
+
+/// @access private
 @mixin react-md-file-input {
   .rmd-file-input {
-    &__hidden {
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
-      width: 0.1px;
-      z-index: -1;
+    @include rmd-states-keyboard-only {
+      &:focus + .rmd-file-input-label {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+      }
+
+      &:hover {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+      }
     }
+
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0.1px;
+    z-index: -1;
   }
 }

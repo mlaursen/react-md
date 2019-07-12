@@ -14,6 +14,7 @@ import { SrOnly, Text } from "@react-md/typography";
 import CodeBlock from "components/Code/CodeBlock";
 
 import "./FileInputExample.scss";
+import { Divider } from "@react-md/divider";
 
 const themes: ButtonTheme[] = [
   "primary",
@@ -80,6 +81,7 @@ const SimpleFileInputs: FC = () => {
           checked={isIcon}
           onChange={handleIconChange}
         />
+        <Divider />
         <FileInput
           id="configurable-file-input"
           onChange={onChange}

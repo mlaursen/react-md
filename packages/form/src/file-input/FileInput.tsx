@@ -2,11 +2,8 @@ import React, {
   FC,
   InputHTMLAttributes,
   Fragment,
-  HTMLAttributes,
   forwardRef,
   ReactNode,
-  useCallback,
-  useRef,
 } from "react";
 import cn from "classnames";
 import { FontIcon, TextIconSpacing } from "@react-md/icon";
@@ -14,42 +11,14 @@ import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";
 import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef, applyRef } from "@react-md/utils";
+import { Omit, WithForwardedRef } from "@react-md/utils";
 
 type InputAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  | "type"
-  | "defaultValue"
-  | "value"
-  | "onChange"
-  | "onKeyDown"
-  | "onKeyUp"
-  | "onMouseDown"
-  | "onMouseUp"
-  | "onMouseLeave"
-  | "onClick"
-  | "onTouchStart"
-  | "onTouchMove"
-  | "onTouchEnd"
+  "type" | "defaultValue" | "value"
 >;
 
-type LabelHandlers = Pick<
-  HTMLAttributes<HTMLLabelElement>,
-  | "onKeyDown"
-  | "onKeyUp"
-  | "onMouseDown"
-  | "onMouseUp"
-  | "onMouseLeave"
-  | "onClick"
-  | "onTouchStart"
-  | "onTouchMove"
-  | "onTouchEnd"
->;
-
-export interface FileInputProps
-  extends ButtonThemeProps,
-    InputAttributes,
-    LabelHandlers {
+export interface FileInputProps extends ButtonThemeProps, InputAttributes {
   /**
    * An id for the input. This is required for a11y since it also is applied as the
    * `htmlFor` prop for the label.
@@ -93,7 +62,6 @@ type DefaultProps = Required<
     FileInputProps,
     | "icon"
     | "iconAfter"
-    | "tabIndex"
     | "theme"
     | "themeType"
     | "buttonType"
@@ -135,43 +103,13 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
     onTouchMove,
     onTouchEnd,
     onChange,
-    tabIndex: propTabIndex,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, disabled } = props;
 
-  let tabIndex: number | undefined = propTabIndex;
-  if (disabled) {
-    tabIndex = undefined;
-  }
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const refHandler = useCallback(
-    (instance: HTMLInputElement | null) => {
-      applyRef(instance, forwardedRef);
-      inputRef.current = instance;
-    },
-    [forwardedRef]
-  );
-
   const { ripples, className, handlers } = useInteractionStates({
     handlers: {
-      onKeyDown: event => {
-        if (onKeyDown) {
-          onKeyDown(event);
-        }
-
-        if (!inputRef.current || event.key !== "Enter") {
-          return;
-        }
-
-        // swap focus over to the input element so the enter key will be pressed
-        // on it instead.
-        // TODO: Need to see if there's a better way to apply the button
-        // styles on the input or still have the input focusable for the states
-        // interactions
-        inputRef.current.focus();
-      },
+      onKeyDown,
       onKeyUp,
       onMouseDown,
       onMouseUp,
@@ -211,26 +149,24 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
 
   return (
     <Fragment>
+      <input
+        id={id}
+        {...props}
+        {...handlers}
+        ref={forwardedRef}
+        onChange={onChange}
+        value={disableRepeatableFiles ? undefined : ""}
+        type="file"
+        className={block()}
+      />
       <label
         htmlFor={id}
         style={style}
-        className={cn(block(), className)}
-        {...handlers}
-        tabIndex={tabIndex}
+        className={cn("rmd-file-input-label", className)}
       >
         {content}
         {ripples}
       </label>
-      <input
-        id={id}
-        {...props}
-        ref={refHandler}
-        onChange={onChange}
-        value={disableRepeatableFiles ? undefined : ""}
-        type="file"
-        className={block("hidden")}
-        tabIndex={-1}
-      />
     </Fragment>
   );
 };
@@ -242,7 +178,6 @@ const defaultProps: DefaultProps = {
   theme: "primary",
   themeType: "contained",
   buttonType: "icon",
-  tabIndex: 0,
   multiple: false,
   disableIconSpacing: false,
   disableRepeatableFiles: false,
@@ -266,7 +201,6 @@ if (process.env.NODE_ENV !== "production") {
       icon: PropTypes.node,
       iconAfter: PropTypes.bool,
       multiple: PropTypes.bool,
-      tabIndex: PropTypes.number,
       disableIconSpacing: PropTypes.bool,
       disableRepeatableFiles: PropTypes.bool,
       theme: PropTypes.oneOf([
