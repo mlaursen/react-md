@@ -212,8 +212,11 @@
     @include rmd-theme(color, text-secondary-on-background);
 
     // want to gain the same font styles as the input/textarea itself,
-    // just apply different colors as needed instead
-    font: inherit;
+    // just apply different colors as needed instead. Can't just do font: inherit
+    // since it'll break the styles in firefox.
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
   }
 
   background-color: transparent;
