@@ -37,7 +37,8 @@
 /// @access private
 @mixin rmd-dialog {
   @include rmd-elevation($rmd-dialog-elevation);
-  @include rmd-theme(background-color, surface);
+  @include rmd-theme-update-var(background, rmd-theme-var(surface));
+  @include rmd-theme(background-color, background);
   @include rmd-theme(color, text-primary-on-background);
   @include rmd-utils-hide-focus-outline;
 
