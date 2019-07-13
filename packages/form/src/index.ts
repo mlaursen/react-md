@@ -39,4 +39,4 @@ export { default as AsyncSwitch } from "./toggle/AsyncSwitch";
 export * from "./toggle/AsyncSwitch";
 
 export { default as useCheckboxState } from "./toggle/useCheckboxState";
-export { default as useRadioState } from "./toggle/useRadioState";
+export { default as useChoice } from "./useChoice";

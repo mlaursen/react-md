@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { cleanup, render, fireEvent } from "react-testing-library";
 
-import useRadioState from "../useRadioState";
+import useChoice from "../useChoice";
 
 afterEach(cleanup);
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Test: FC<Props> = ({ onChange, defaultValue }) => {
-  const [value, handleChange] = useRadioState(defaultValue, onChange);
+  const [value, handleChange] = useChoice(defaultValue, onChange);
 
   return (
     <Fragment>
@@ -46,7 +46,7 @@ const Test: FC<Props> = ({ onChange, defaultValue }) => {
   );
 };
 
-describe("useRadioState", () => {
+describe("useChoice", () => {
   it("should check the radio with the specified default value by default", () => {
     const { getByTestId } = render(<Test defaultValue="A" />);
 

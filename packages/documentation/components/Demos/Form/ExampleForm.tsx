@@ -5,7 +5,7 @@ import {
   Form,
   Fieldset,
   NativeSelect,
-  useRadioState,
+  useChoice,
   Radio,
 } from "@react-md/form";
 import {
@@ -26,7 +26,7 @@ const block = bem("example-form");
 const themes: TextFieldTheme[] = ["none", "underline", "filled", "outline"];
 
 const ExampleForm: FC = () => {
-  const [currentTheme, handleChange] = useRadioState<TextFieldTheme>("outline");
+  const [currentTheme, handleChange] = useChoice<TextFieldTheme>("outline");
   const isUnstyled = currentTheme === "none";
 
   return (

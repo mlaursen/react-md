@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useRadioState } from "@react-md/form";
+import { useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
 
@@ -18,7 +18,7 @@ const values = [
 ];
 
 const CustomPortalContainer: FC = () => {
-  const [selected, handleChange] = useRadioState<"0" | "1" | "2">("0");
+  const [selected, handleChange] = useChoice<"0" | "1" | "2">("0");
 
   return (
     <div className="portal-container-example">

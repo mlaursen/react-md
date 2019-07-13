@@ -17,4 +17,4 @@ There are also some hooks available for controlling the state of these
 components:
 
 - `useCheckboxState`
-- `useRadioState`
+- `useChoice`
