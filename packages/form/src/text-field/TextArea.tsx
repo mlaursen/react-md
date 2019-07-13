@@ -6,13 +6,15 @@ import React, {
   TextareaHTMLAttributes,
   forwardRef,
   useState,
+  useCallback,
+  useRef,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import { useResizeObserver, WithForwardedRef } from "@react-md/utils";
+import { useResizeObserver, WithForwardedRef, applyRef } from "@react-md/utils";
 
 import useFocusState from "../useFocusState";
 import useValuedState from "./useValuedState";
@@ -170,7 +172,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
   });
 
   const [height, setHeight] = useState<number>();
-  if (typeof height === "number" && resize !== "auto") {
+  if (resize !== "auto" && typeof height === "number") {
     setHeight(undefined);
   }
 
@@ -203,6 +205,8 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     }
   };
 
+  // the window can be resized while there is text inside the textarea so need to
+  // recalculate the height when the width changes as well.
   useResizeObserver({
     disableHeight: true,
     getTarget: mask,
@@ -243,10 +247,26 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     },
   });
 
+  const areaRef = useRef<HTMLTextAreaElement | null>(null);
+  const refHandler = useCallback((instance: HTMLTextAreaElement | null) => {
+    applyRef(instance, forwardedRef);
+    areaRef.current = instance;
+  }, []);
+
+  // the container element adds some padding so that the content can scroll and
+  // not be covered by the floating label. unfortunately, this means that the entire
+  // container is no longer clickable to focus the input. This is used to add that
+  // functionality back.
+  const handleClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    if (areaRef.current && event.target === event.currentTarget) {
+      areaRef.current.focus();
+    }
+  }, []);
+
   const area = (
     <textarea
       {...props}
-      ref={forwardedRef}
+      ref={refHandler}
       onFocus={onFocus}
       onBlur={onBlur}
       onChange={onChange}
@@ -305,7 +325,10 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
         height: height ? `calc(${PADDING_VARIABLES} + ${height}px)` : undefined,
       }}
       className={cn(
-        container({ animate: animate && resize === "auto" }),
+        container({
+          animate: animate && resize === "auto",
+          cursor: !disabled,
+        }),
         className
       )}
       ref={containerRef}
@@ -321,6 +344,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
       leftChildren={leftChildren}
       rightChildren={rightChildren}
       underlineDirection={underlineDirection}
+      onClick={!disabled ? handleClick : undefined}
     >
       <FloatingLabel
         style={labelStyle}

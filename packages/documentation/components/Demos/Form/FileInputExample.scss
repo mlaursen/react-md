@@ -1,5 +1,9 @@
 .file-input-example {
-  > * {
-    margin-top: 1rem;
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+
+  fieldset {
+    margin: 1rem;
   }
 }

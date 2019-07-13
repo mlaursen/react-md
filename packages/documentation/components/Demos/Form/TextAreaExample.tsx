@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -16,7 +16,14 @@ const MAX_ROWS = [-1, 4, 5, 6, 7, 8, 9, 10];
 const TextAreaExample: FC = () => {
   const [resize, handleResizeChange] = useChoice<TextAreaResize>("auto");
   const [animate, handleAnimateChange] = useCheckboxState(true);
-  const [maxRows, handleMaxRowChange] = useChoice("-1");
+  const [rows, handleRowChange] = useChoice("2");
+  const [maxRows, handleMaxRowChange, setMaxRows] = useChoice<string>("-1");
+  const rowsInt = parseInt(rows, 10);
+  const maxRowsInt = parseInt(maxRows, 10);
+  if (maxRowsInt !== -1 && maxRowsInt < rowsInt) {
+    const i = MAX_ROWS.find(value => value >= rowsInt) || -1;
+    setMaxRows(`${i}`);
+  }
 
   return (
     <TextFieldThemeConfig
@@ -25,7 +32,9 @@ const TextAreaExample: FC = () => {
         <TextArea
           id="configurable-textarea"
           {...props}
-          maxRows={parseInt(maxRows, 10)}
+          key={rows}
+          rows={rowsInt}
+          maxRows={maxRowsInt}
           resize={resize}
           animate={animate}
         />
@@ -55,6 +64,20 @@ const TextAreaExample: FC = () => {
           <option value="both">Both</option>
         </NativeSelect>
         <NativeSelect
+          id="textarea-rows"
+          label="Starting Rows"
+          name="rows"
+          value={rows}
+          onChange={handleRowChange}
+          className="text-field-theme-config__select"
+        >
+          {Array.from(new Array(6), (_, i) => (
+            <option key={i} value={i + 2}>
+              {i + 2}
+            </option>
+          ))}
+        </NativeSelect>
+        <NativeSelect
           id="textarea-max-rows"
           label="Max rows"
           name="maxRows"
@@ -63,7 +86,11 @@ const TextAreaExample: FC = () => {
           className="text-field-theme-config__select"
         >
           {MAX_ROWS.map(amount => (
-            <option key={amount} value={amount}>
+            <option
+              key={amount}
+              value={amount}
+              disabled={amount !== -1 && amount < rowsInt}
+            >
               {amount}
             </option>
           ))}

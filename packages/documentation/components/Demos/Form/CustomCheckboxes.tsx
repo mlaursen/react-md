@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Divider } from "@react-md/divider";
 import {
   Checkbox,
   Form,
@@ -9,6 +10,8 @@ import {
   FavoriteBorderFontIcon,
   FavoriteSVGIcon,
 } from "@react-md/material-icons";
+
+import "./CustomCheckboxes.scss";
 
 const CustomCheckbox: FC<InputToggleProps> = ({
   defaultChecked = false,
@@ -52,6 +55,19 @@ const CustomCheckboxes: FC = () => (
       label="Checkbox 4"
       disabled
       defaultChecked
+    />
+    <Divider />
+    <Checkbox
+      id="custom-checkbox-5"
+      label="Super Small"
+      name="custom-checkbox"
+      className="super-small-toggle"
+    />
+    <Checkbox
+      id="custom-checkbox-6"
+      label="Super Large"
+      name="custom-checkbox"
+      className="super-large-toggle"
     />
   </Form>
 );

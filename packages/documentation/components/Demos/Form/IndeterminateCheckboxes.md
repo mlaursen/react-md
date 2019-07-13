@@ -9,6 +9,6 @@ feature:
   `aria-controls` attribute
 
 > The `aria-controls` part is a bit iffy since
-> [it might not actually do anything for screen readers](https://www.heydonworks.com/article/aria-controls-is-poop).
+> [it might not actually do anything for screen readers](https://www.heydonworks.com/article/aria-controls-is-poop)
 > and [Lighthouse](https://developers.google.com/web/tools/lighthouse/) might
 > also flag it as an invalid `aria-` attribute.

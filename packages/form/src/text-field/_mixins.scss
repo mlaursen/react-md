@@ -321,6 +321,13 @@
     transition: height $rmd-transition-standard-time;
   }
 
+  &--cursor:hover {
+    // need to add this cursor back since the textarea container adds padding to itself
+    // instead of the textarea so it loses this cursor. the container element will still
+    // focus the textarea when clicked
+    cursor: text;
+  }
+
   &__inner {
     height: 100%;
     width: 100%;

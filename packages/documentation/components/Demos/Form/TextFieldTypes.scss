@@ -7,4 +7,8 @@
   .rmd-divider {
     @include grid-width;
   }
+
+  .rmd-floating-label {
+    text-transform: capitalize;
+  }
 }
