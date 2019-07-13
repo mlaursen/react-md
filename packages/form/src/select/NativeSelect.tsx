@@ -172,7 +172,7 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
     >
       <FloatingLabel
         style={labelStyle}
-        className={labelClassName}
+        className={cn(block("label"), labelClassName)}
         htmlFor={id}
         error={error}
         active={valued && focused}

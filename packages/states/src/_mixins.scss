@@ -102,7 +102,9 @@
 /// If you are using the ripple effect for pressed states, this will be ignored as a ripple element
 /// will be created instead to show the pressed state. When the ripple effect is disabled, pressing
 /// an element will just trigger a background opacity change like the over interaction states.
-@mixin rmd-states-surface {
+/// @param {Boolean} clickable [true] - Boolean if the surface element should gain the pointer cursor
+///   when hovered.
+@mixin rmd-states-surface($clickable: true) {
   @include rmd-utils-hide-focus-outline;
 
   &::before {
@@ -114,8 +116,10 @@
     @include rmd-states-theme-update-var(hover-color, transparent);
   }
 
-  &:not(:disabled):not([aria-disabled='true']):hover {
-    cursor: pointer;
+  @if $clickable {
+    &:not(:disabled):not([aria-disabled='true']):hover {
+      cursor: pointer;
+    }
   }
 
   &:hover {

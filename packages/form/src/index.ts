@@ -23,6 +23,9 @@ export * from "./text-field/TextFieldAddon";
 export { default as Password } from "./text-field/Password";
 export * from "./text-field/Password";
 
+export { default as TextArea } from "./text-field/TextArea";
+export * from "./text-field/TextArea";
+
 export { default as Checkbox } from "./toggle/Checkbox";
 export * from "./toggle/Checkbox";
 

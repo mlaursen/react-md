@@ -24,6 +24,12 @@ import fileInputExample from "./FileInputExample.md";
 import TextFieldExample from "./TextFieldExample";
 import textFieldExample from "./TextFieldExample.md";
 
+import TextFieldTypes from "./TextFieldTypes";
+import textFieldTypes from "./TextFieldTypes.md";
+
+import TextAreaExample from "./TextAreaExample";
+import textAreaExample from "./TextAreaExample.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -62,6 +68,16 @@ const demos = [
     name: "Text Field Example",
     description: textFieldExample,
     children: <TextFieldExample />,
+  },
+  {
+    name: "Text Field Types",
+    description: textFieldTypes,
+    children: <TextFieldTypes />,
+  },
+  {
+    name: "Text Area Example",
+    description: textAreaExample,
+    children: <TextAreaExample />,
   },
   {
     name: "Example Form",

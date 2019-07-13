@@ -2,10 +2,10 @@ import { useCallback } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
 type TextElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-type ChangeEventHandler = React.ChangeEventHandler<TextElement>;
+type ChangeEventHandler<T extends TextElement> = React.ChangeEventHandler<T>;
 
-interface Options {
-  onChange?: ChangeEventHandler;
+interface Options<T extends TextElement> {
+  onChange?: ChangeEventHandler<T>;
   value?: string | number;
   defaultValue?: string | number;
 }
@@ -16,11 +16,11 @@ interface Options {
  *
  * @private
  */
-export default function useValuedState({
+export default function useValuedState<T extends TextElement>({
   onChange,
   value,
   defaultValue,
-}: Options): [boolean, ChangeEventHandler | undefined] {
+}: Options<T>): [boolean, ChangeEventHandler<T> | undefined] {
   const handler = useRefCache(onChange);
   const { toggled: valued, enable, disable } = useToggle(() => {
     if (typeof value === "undefined") {
@@ -32,21 +32,18 @@ export default function useValuedState({
     return false;
   });
 
-  const handleChange = useCallback<React.ChangeEventHandler<TextElement>>(
-    event => {
-      const onChange = handler.current;
-      if (onChange) {
-        onChange(event);
-      }
+  const handleChange = useCallback<React.ChangeEventHandler<T>>(event => {
+    const onChange = handler.current;
+    if (onChange) {
+      onChange(event);
+    }
 
-      if (event.currentTarget.value.length > 0) {
-        enable();
-      } else {
-        disable();
-      }
-    },
-    []
-  );
+    if (event.currentTarget.value.length > 0) {
+      enable();
+    } else {
+      disable();
+    }
+  }, []);
 
   if (typeof value !== "undefined") {
     const isValued = typeof value === "number" || value.length > 0;

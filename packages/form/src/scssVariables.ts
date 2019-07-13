@@ -1,7 +1,7 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-form-error-color": "#f44336",
-  "rmd-form-error-hover-color": "#ff8a80",
+  "rmd-form-error-hover-color": "#d50000",
   "rmd-form-active-color": "var(--rmd-theme-secondary, #f50057)",
   "rmd-form-disabled-color":
     "var(--rmd-theme-text-disabled-on-background, #9e9e9e)",
@@ -9,7 +9,7 @@ export default {
     "var(--rmd-theme-text-secondary-on-background, #757575)",
   "rmd-form-theme-values": {
     "error-color": "#f44336",
-    "error-hover-color": "#ff8a80",
+    "error-hover-color": "#d50000",
     "active-color": "var(--rmd-theme-secondary, #f50057)",
     "disabled-color": "var(--rmd-theme-text-disabled-on-background, #9e9e9e)",
     "toggle-inset": "0.3125rem",
@@ -19,7 +19,8 @@ export default {
     "track-background-color": "rgba(0, 0, 0, 0.38)",
     "floating-top": "1rem",
     "floating-dense-top": "0.9rem",
-    "addon-top": "0px",
+    "addon-top": "auto",
+    "addon-margin-top": "0px",
     "label-left-offset": "0px",
     "label-top-offset": "0px",
     "label-active-padding": "0px",
@@ -37,6 +38,7 @@ export default {
     "text-label-dense-height": "3.25rem",
     "text-placeholder-height": "3rem",
     "text-placeholder-dense-height": "2.5rem",
+    "textarea-padding": "0.5rem",
   },
   "rmd-label-font-size": "1em",
   "rmd-label-floating-font-size": "0.75em",
@@ -68,6 +70,8 @@ export default {
   "rmd-text-field-filled-background-color": "#f5f5f5",
   "rmd-text-field-filled-border-radius": "0.25rem",
   "rmd-text-field-addon-margin": "0.5rem",
+  "rmd-textarea-vertical-padding": "0.5rem",
+  "rmd-textarea-addon-top": "1rem",
   "rmd-label-padding": "0.25rem",
   "rmd-toggle-border-radius": "50%",
   "rmd-toggle-inset": "0.3125rem",

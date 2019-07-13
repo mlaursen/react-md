@@ -51,7 +51,7 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
         block({
           dense,
           active: floating,
-          inactive: valued && !props.active,
+          inactive: valued && !props.active && !props.error && !props.disabled,
         }),
         className
       )}

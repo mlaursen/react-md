@@ -2,6 +2,7 @@
 /// @group form-text-field
 ////
 
+@import '@react-md/button/dist/mixins';
 @import '@react-md/icon/dist/mixins';
 @import '@react-md/transition/dist/mixins';
 @import '@react-md/typography/dist/mixins';
@@ -20,7 +21,7 @@
   position: relative;
   transition: border-color $rmd-transition-standard-time;
 
-  &:hover {
+  &--hoverable:hover {
     @include rmd-form-theme(border-color, text-border-hover-color);
   }
 
@@ -30,6 +31,20 @@
 
   &--label {
     @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-height));
+  }
+
+  &--error {
+    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(text-active-color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(text-border-color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(
+      text-border-hover-color,
+      rmd-form-theme-var(error-hover-color)
+    );
+  }
+
+  &--disabled {
+    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(disabled-color));
   }
 
   &--underline {
@@ -63,7 +78,7 @@
       text-padding-top,
       $rmd-text-field-underline-label-padding-top
     );
-    @include rmd-form-theme-update-var(addon-top, $rmd-text-field-addon-margin);
+    @include rmd-form-theme-update-var(addon-margin-top, $rmd-text-field-addon-margin);
   }
 
   &--filled {
@@ -71,7 +86,7 @@
     @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
     @include rmd-form-theme-update-var(label-left-offset, $rmd-text-field-filled-padding);
     @include rmd-form-theme(background-color, text-filled-color);
-    @include rmd-states-surface;
+    @include rmd-states-surface(false);
 
     border-top-left-radius: $rmd-text-field-filled-border-radius;
     border-top-right-radius: $rmd-text-field-filled-border-radius;
@@ -254,6 +269,12 @@
       transition: color $rmd-transition-standard-time;
     }
 
+    &[disabled] {
+      @include rmd-text-field-placeholder {
+        color: transparent;
+      }
+    }
+
     &:focus {
       @include rmd-text-field-placeholder {
         @include rmd-theme(color, text-secondary-on-background);
@@ -266,7 +287,8 @@
 @mixin rmd-text-field-addon {
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
-  @include rmd-form-theme(margin-top, addon-top);
+  @include rmd-form-theme(top, addon-top);
+  @include rmd-form-theme(margin-top, addon-margin-top);
 
   position: absolute;
 
@@ -284,10 +306,89 @@
 }
 
 /// @access private
-@mixin rmd-password-toggle {
-  @include rmd-utils-rtl-auto(right, 0.25rem);
+@mixin rmd-textarea-container {
+  @include rmd-form-theme-update-var(addon-top, $rmd-textarea-addon-top);
 
-  position: absolute;
+  $calc: #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(textarea-padding)};
+
+  height: auto;
+  max-width: 100%;
+  padding-top: calc(#{$calc});
+
+  &--animate {
+    @include rmd-transition(standard);
+
+    transition: height $rmd-transition-standard-time;
+  }
+
+  &__inner {
+    height: 100%;
+    width: 100%;
+
+    &--animate {
+      @include rmd-transition(standard);
+
+      transition: height $rmd-transition-standard-time;
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-textarea {
+  @include rmd-transition(standard);
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
+  @include rmd-form-theme(padding-left, text-padding-left);
+  @include rmd-form-theme(padding-right, text-padding-right);
+  @include rmd-form-theme(min-height, text-height);
+  @include rmd-text-field-base;
+
+  height: 100%;
+
+  &--floating {
+    @include rmd-text-field-placeholder {
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &:focus {
+      @include rmd-text-field-placeholder {
+        @include rmd-theme(color, text-secondary-on-background);
+      }
+    }
+  }
+
+  &--rh {
+    resize: horizontal;
+  }
+
+  &--rv {
+    resize: vertical;
+  }
+
+  &--rn {
+    overflow: hidden;
+    resize: none;
+  }
+
+  // only want the textarea to be scrollable if there's a limit on the rows
+  // since it'll flash the scrollbar on most OS during the height transition
+  &--scrollable {
+    overflow: auto;
+  }
+
+  &--mask {
+    height: auto;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+  }
 }
 
 /// @access private
@@ -304,7 +405,30 @@
     @include rmd-text-field-addon;
   }
 
-  .rmd-password__toggle {
-    @include rmd-password-toggle;
+  .rmd-password {
+    &--offset {
+      // don't want any padding since the input will gain the button margin instead
+      @include rmd-form-theme-update-var(text-padding-right, 0);
+    }
+
+    &__input {
+      &--offset {
+        @include rmd-utils-rtl-auto(margin-right, rmd-button-theme-var(icon-size));
+      }
+    }
+
+    &__toggle {
+      @include rmd-utils-rtl-auto(right, 0);
+
+      position: absolute;
+    }
+  }
+
+  .rmd-textarea-container {
+    @include rmd-textarea-container;
+  }
+
+  .rmd-textarea {
+    @include rmd-textarea;
   }
 }

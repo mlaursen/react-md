@@ -24,5 +24,12 @@
       pointer-events: none;
       position: absolute;
     }
+
+    &__label {
+      // it doesn't look like selects support the label attribute, so just
+      // make the labe not have pointer events so if you click on it, the
+      // select is clicked instead of the label.
+      pointer-events: none;
+    }
   }
 }

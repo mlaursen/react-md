@@ -21,7 +21,7 @@ $rmd-form-error-color: $rmd-theme-error !default;
 /// @type Color
 $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
-  100,
+  700,
   true,
   darken($rmd-form-error-color, 20%)
 ) !default;
@@ -57,7 +57,8 @@ $rmd-form-theme-values: (
   track-background-color: $rmd-switch-track-background-color,
   floating-top: $rmd-label-floating-top,
   floating-dense-top: $rmd-label-floating-dense-top,
-  addon-top: 0px,
+  addon-top: auto,
+  addon-margin-top: 0px,
   label-left-offset: 0px,
   label-top-offset: 0px,
   label-active-padding: 0px,
@@ -75,4 +76,5 @@ $rmd-form-theme-values: (
   text-label-dense-height: $rmd-text-field-label-dense-height,
   text-placeholder-height: $rmd-text-field-height,
   text-placeholder-dense-height: $rmd-text-field-dense-height,
+  textarea-padding: $rmd-textarea-vertical-padding,
 ) !default;

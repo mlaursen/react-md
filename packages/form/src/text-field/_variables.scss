@@ -131,3 +131,13 @@ $rmd-text-field-filled-border-radius: 0.25rem !default;
 /// The amount of spacing between the left or right of the text field and the icon.
 /// @type Number
 $rmd-text-field-addon-margin: $rmd-icon-spacing-with-text !default;
+
+/// An additional amount of padding to apply to textareas.
+/// @type Number
+$rmd-textarea-vertical-padding: 0.5rem !default;
+
+/// The amount to start offseting the textarea's left/right inline addon icons. If
+/// this value isn't set, the icons will be centered in the textarea's height and
+/// will continually be centered as the user types more and more text.
+/// @type Number
+$rmd-textarea-addon-top: 1rem !default;

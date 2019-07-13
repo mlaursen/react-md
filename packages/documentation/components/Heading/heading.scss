@@ -4,6 +4,13 @@
 @import '~@react-md/utils/dist/scss/mixins';
 
 .heading {
+  @include rmd-utils-phone-media {
+    // decrease font size and line-height so it can fit on mobile screens.
+    &.rmd-typography--headline-2 {
+      @include rmd-typography-value(headline-3, font-size, line-height);
+    }
+  }
+
   @include rmd-utils-tablet-media {
     margin-left: -1em;
     padding-left: 1em;

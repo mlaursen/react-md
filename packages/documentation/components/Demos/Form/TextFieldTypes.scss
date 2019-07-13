@@ -1,0 +1,10 @@
+@import 'mixins';
+
+.text-field-types {
+  @include grid(1, 2, 3, 4);
+
+  fieldset,
+  .rmd-divider {
+    @include grid-width;
+  }
+}

@@ -90,6 +90,11 @@ export interface TextFieldContainerProps
    * Boolean if there is a floating label with the text field.
    */
   label?: boolean;
+
+  /**
+   * Boolean if the text field is currently disabled.
+   */
+  disabled?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -99,6 +104,7 @@ type DefaultProps = Required<
     | "inline"
     | "theme"
     | "error"
+    | "disabled"
     | "underlineDirection"
     | "isLeftAddon"
     | "isRightAddon"
@@ -132,6 +138,7 @@ const TextFieldContainer: FC<
     leftChildren,
     rightChildren,
     underlineDirection,
+    disabled,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -150,6 +157,8 @@ const TextFieldContainer: FC<
           inline,
           filled,
           outline,
+          disabled,
+          hoverable: !disabled,
           label: label && !dense,
           dense: !label && dense,
           "dense-label": dense && label,
@@ -187,6 +196,7 @@ const defaultProps: DefaultProps = {
   inline: false,
   theme: "none",
   error: false,
+  disabled: false,
   isLeftAddon: true,
   isRightAddon: true,
   underlineDirection: "left",

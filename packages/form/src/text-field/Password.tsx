@@ -33,6 +33,11 @@ export interface PasswordProps
   visibilityClassName?: string;
 
   /**
+   * An optional `aria-label` to apply to the visibility toggle button.
+   */
+  visibilityLabel?: string;
+
+  /**
    * Boolean if the visibility toggle feature should be disabled.
    */
   disableVisibility?: boolean;
@@ -40,7 +45,10 @@ export interface PasswordProps
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
-  Pick<PasswordProps, "visibilityIcon" | "disableVisibility">
+  Pick<
+    PasswordProps,
+    "visibilityIcon" | "visibilityLabel" | "disableVisibility"
+  >
 >;
 type WithDefaultProps = PasswordProps & DefaultProps & WithRef;
 
@@ -54,11 +62,13 @@ const block = bem("rmd-password");
 const Password: FC<PasswordProps & WithRef> = providedProps => {
   const {
     className,
+    inputClassName,
     forwardedRef,
     visibilityIcon,
     disableVisibility,
     visibilityStyle,
     visibilityClassName,
+    visibilityLabel,
     ...props
   } = providedProps as WithDefaultProps;
   const [type, setType] = useState<"password" | "text">("password");
@@ -70,6 +80,10 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
     <TextField
       {...props}
       className={cn(block({ offset: !disableVisibility }), className)}
+      inputClassName={cn(
+        block("input", { offset: !disableVisibility }),
+        inputClassName
+      )}
       ref={forwardedRef}
       type={type}
       isRightAddon={false}
@@ -77,6 +91,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
         !disableVisibility && (
           <Button
             id={`${props.id}-password-toggle`}
+            aria-label={visibilityLabel}
             buttonType="icon"
             onClick={toggle}
             style={visibilityStyle}
@@ -92,6 +107,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
 
 const defaultProps: DefaultProps = {
   visibilityIcon: <FontIcon>remove_red_eye</FontIcon>,
+  visibilityLabel: "Temporarily show password",
   disableVisibility: false,
 };
 
@@ -111,6 +127,7 @@ if (process.env.NODE_ENV !== "production") {
       visibilityIcon: PropTypes.node,
       visibilityStyle: PropTypes.object,
       visibilityClassName: PropTypes.string,
+      visibilityLabel: PropTypes.string,
       disableVisibility: PropTypes.bool,
     };
   }

@@ -179,6 +179,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       label={!!label}
       dense={dense}
       inline={inline}
+      disabled={disabled}
       isLeftAddon={isLeftAddon}
       isRightAddon={isRightAddon}
       leftChildren={leftChildren}
@@ -206,6 +207,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
+        style={inputStyle}
         className={cn(
           block({
             floating: label && theme !== "none",

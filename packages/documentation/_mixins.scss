@@ -54,4 +54,14 @@
   grid-column-gap: var(--grid-gutter, 1rem);
   grid-row-gap: var(--grid-gutter, 1rem);
   grid-template-columns: repeat(var(--grid-cols, #{$phone-columns}), 1fr);
+
+  > * {
+    // this allows the children to shrink if needed so that they don't overflow
+    // the entire grid
+    min-width: 0;
+  }
+}
+
+@mixin grid-width {
+  grid-column: 1 / span var(--grid-cols);
 }
