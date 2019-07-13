@@ -154,8 +154,8 @@ export function useResizeObserverTarget(
 }
 
 export interface ResizeObserverOptions {
-  disableHeight: boolean;
-  disableWidth: boolean;
+  disableHeight?: boolean;
+  disableWidth?: boolean;
   onResize: ResizeObserverChangeEventHandler;
   getTarget: ResizeObserverTargetFinder;
 }
