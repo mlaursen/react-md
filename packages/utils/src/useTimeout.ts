@@ -2,6 +2,11 @@ import { useCallback, useEffect, useRef } from "react";
 import useRefCache from "./useRefCache";
 import useToggle from "./useToggle";
 
+type StartTimeout = () => void;
+type StopTimeout = () => void;
+type RestartTimeout = () => void;
+type ReturnValue = [StartTimeout, StopTimeout, RestartTimeout];
+
 /**
  * Simple hook to use an timeout with auto setup and teardown.
  *
@@ -16,13 +21,14 @@ export default function useTimeout(
   cb: () => void,
   delay: number,
   defaultStarted: boolean = false
-) {
+): ReturnValue {
   const cbRef = useRefCache(cb);
   const timeoutRef = useRef<number>();
   const clearTimeout = useCallback(() => {
     window.clearTimeout(timeoutRef.current);
     timeoutRef.current = undefined;
   }, []);
+
   const { toggled: enabled, enable: start, disable } = useToggle(
     defaultStarted
   );
@@ -31,32 +37,25 @@ export default function useTimeout(
     disable();
   }, []);
 
-  const { toggled, toggle } = useToggle();
   const restart = useCallback(() => {
-    if (!enabled) {
-      start();
-    } else {
-      toggle();
-    }
-  }, [enabled]);
+    stop();
+    start();
+  }, []);
+
   useEffect(() => {
-    if (!enabled && !toggled) {
+    if (!enabled) {
       return;
     }
 
-    const callback = () => {
+    timeoutRef.current = window.setTimeout(() => {
       cbRef.current();
       disable();
-    };
-    timeoutRef.current = window.setTimeout(callback, delay);
+    }, delay);
+
     return () => {
       clearTimeout();
     };
-  }, [toggled, enabled, delay, disable]);
+  }, [enabled, delay, disable]);
 
-  return {
-    start,
-    stop,
-    restart,
-  };
+  return [start, stop, restart];
 }

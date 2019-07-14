@@ -45,7 +45,7 @@ export function useTooltipHoverModeState(
     }
   }, [defaultDelay]);
 
-  const { start, stop } = useTimeout(disable, delayTimeout);
+  const [start, stop] = useTimeout(disable, delayTimeout);
   const enable = useCallback(() => {
     stop();
     if (delayRef.current !== 0) {

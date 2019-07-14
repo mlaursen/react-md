@@ -114,7 +114,7 @@ export function useMouseState({
 
   const hoverModeActions = useTooltipHoverModeActions();
 
-  const { start, stop } = useTimeout(() => {
+  const [start, stop] = useTimeout(() => {
     if (initiated.current === "mouse") {
       showTooltip();
 
@@ -194,7 +194,7 @@ export function useKeyboardState({
   const handlers = useRefCache({ onFocus, onBlur, onKeyDown });
   const isWindowBlurred = useRef(false);
 
-  const { start, stop } = useTimeout(() => {
+  const [start, stop] = useTimeout(() => {
     if (initiated.current === "keyboard") {
       showTooltip();
     }
@@ -308,7 +308,7 @@ export function useTouchState({
   const touched = useRef(false);
   const handlers = useRefCache({ onTouchStart, onTouchMove, onContextMenu });
 
-  const { start, stop } = useTimeout(() => {
+  const [start, stop] = useTimeout(() => {
     touched.current = false;
     hideTooltip();
   }, delay);

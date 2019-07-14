@@ -14,26 +14,17 @@ afterEach(() => {
 });
 
 describe("useTimeout", () => {
-  it("should return an object containing start, stop, and restart functions", () => {
-    const cb = jest.fn();
-    const { result } = renderHook(() => useTimeout(cb, 300));
-    expect(result.current).toEqual({
-      start: expect.any(Function),
-      stop: expect.any(Function),
-      restart: expect.any(Function),
-    });
-  });
-
   it("should automatically clear the timeout once completed", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
 
+    const [start] = result.current;
     expect(cb).not.toBeCalled();
     expect(setTimeout).not.toBeCalled();
     expect(clearTimeout).not.toBeCalled();
 
     act(() => {
-      result.current.start();
+      start();
     });
 
     expect(setTimeout).toBeCalledTimes(1);
@@ -52,8 +43,9 @@ describe("useTimeout", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
 
+    const [start, stop] = result.current;
     act(() => {
-      result.current.start();
+      start();
     });
 
     expect(cb).not.toBeCalled();
@@ -63,7 +55,7 @@ describe("useTimeout", () => {
     expect(cb).not.toBeCalled();
 
     act(() => {
-      result.current.stop();
+      stop();
     });
     expect(cb).not.toBeCalled();
 
@@ -77,8 +69,9 @@ describe("useTimeout", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
 
+    const [start, , restart] = result.current;
     act(() => {
-      result.current.start();
+      start();
     });
 
     expect(cb).not.toBeCalled();
@@ -88,7 +81,7 @@ describe("useTimeout", () => {
     expect(cb).not.toBeCalled();
 
     act(() => {
-      result.current.restart();
+      restart();
     });
     expect(cb).not.toBeCalled();
 
@@ -102,8 +95,9 @@ describe("useTimeout", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
 
+    const [, , restart] = result.current;
     act(() => {
-      result.current.restart();
+      restart();
     });
     expect(setTimeout).toBeCalledWith(expect.any(Function), 300);
 

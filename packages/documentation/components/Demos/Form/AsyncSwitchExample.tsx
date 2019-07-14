@@ -6,7 +6,7 @@ const AsyncSwitchExample: FC = () => {
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [fail, handleFailChange] = useCheckboxState(false);
-  const { start } = useTimeout(() => {
+  const [start] = useTimeout(() => {
     setLoading(false);
     if (fail) {
       setChecked(prevChecked => !prevChecked);
