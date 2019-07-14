@@ -7,7 +7,7 @@ import { useInterval } from "@react-md/utils";
  */
 export function useDownloadInterval(delay: number = 100) {
   const [value, setValue] = useState(0);
-  const { start, running } = useInterval(stop => {
+  const [running, start] = useInterval(stop => {
     const nextValue = Math.min(100, value + 1);
     if (value === nextValue) {
       stop();

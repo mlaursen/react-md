@@ -31,8 +31,9 @@ describe("useInterval", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useInterval(cb, 300));
 
+    const [running] = result.current;
     expect(cb).not.toBeCalled();
-    expect(result.current.running).toBe(false);
+    expect(running).toBe(false);
     expect(setInterval).not.toBeCalled();
     expect(clearInterval).not.toBeCalled();
   });
@@ -41,7 +42,8 @@ describe("useInterval", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useInterval(cb, 300, true));
 
-    expect(result.current.running).toBe(true);
+    const [running] = result.current;
+    expect(running).toBe(true);
     expect(cb).not.toBeCalled();
     expect(setInterval).toBeCalledWith(expect.any(Function), 300);
     expect(clearInterval).not.toBeCalled();
@@ -51,25 +53,29 @@ describe("useInterval", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useInterval(cb, 300));
 
+    let [running] = result.current;
+    const [, start, stop] = result.current;
     expect(setInterval).not.toBeCalled();
     expect(clearInterval).not.toBeCalled();
-    expect(result.current.running).toBe(false);
+    expect(running).toBe(false);
 
     act(() => {
-      result.current.start();
+      start();
     });
 
+    [running] = result.current;
     expect(setInterval).toBeCalledTimes(1);
     expect(clearInterval).not.toBeCalled();
-    expect(result.current.running).toBe(true);
+    expect(running).toBe(true);
 
     act(() => {
-      result.current.stop();
+      stop();
     });
 
+    [running] = result.current;
     expect(setInterval).toBeCalledTimes(1);
     expect(clearInterval).toBeCalledTimes(1);
-    expect(result.current.running).toBe(false);
+    expect(running).toBe(false);
   });
 
   it("should restart the interval if the delay changes", () => {

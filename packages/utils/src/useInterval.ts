@@ -2,6 +2,11 @@ import { useEffect } from "react";
 import useRefCache from "./useRefCache";
 import useToggle from "./useToggle";
 
+type Running = boolean;
+type StartInterval = () => void;
+type StopInterval = () => void;
+type ReturnValue = [Running, StartInterval, StopInterval];
+
 /**
  * Simple hook to use an interval with auto setup and teardown.
  *
@@ -15,7 +20,7 @@ export default function useInterval(
   callback: (stop: () => void) => void,
   delay: number,
   defaultRunning: boolean = false
-) {
+): ReturnValue {
   const ref = useRefCache(callback);
 
   const { toggled: running, enable: start, disable: stop } = useToggle(
@@ -27,19 +32,13 @@ export default function useInterval(
       return;
     }
 
-    const callback = () => {
+    const interval = window.setInterval(() => {
       ref.current(stop);
-    };
-
-    const interval = window.setInterval(callback, delay);
+    }, delay);
     return () => {
       window.clearInterval(interval);
     };
   }, [delay, running]);
 
-  return {
-    running,
-    start,
-    stop,
-  };
+  return [running, start, stop];
 }
