@@ -237,7 +237,6 @@
   background-color: transparent;
   border-width: 0;
   color: inherit;
-  flex: 1 1 auto;
   font-size: 1em;
   width: 100%;
 
@@ -261,6 +260,7 @@
   @include rmd-form-theme(padding-top, text-padding-top);
   @include rmd-text-field-base;
 
+  flex: 1 1 auto;
   height: 100%;
 
   &--floating {
@@ -352,6 +352,7 @@
   @include rmd-form-theme(min-height, text-height);
   @include rmd-text-field-base;
 
+  flex: 1 1 auto;
   height: 100%;
 
   &--floating {

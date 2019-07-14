@@ -1,9 +1,11 @@
 import React, { FC, useState } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
-import { Label, TextField } from "@react-md/form";
+import { Divider } from "@react-md/divider";
+import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { Menu, MenuItem } from "@react-md/menu";
+import { bem } from "@react-md/theme";
 import { useToggle } from "@react-md/utils";
 
 import Phone from "components/Phone";
@@ -16,20 +18,21 @@ const WORK_EMAIL = "jjeckhart@workemail.com";
 const getSrc = (isWork: boolean) =>
   `https://i.pravatar.cc/40?img=${isWork ? 4 : 3}`;
 
+const block = bem("expandable-chip-example");
+
 const ExpandableChips: FC = () => {
   const { toggled, enable, disable } = useToggle(false);
   const [isWork, setIsWork] = useState(false);
   return (
-    <Phone
-      id="expandable-chip-phone"
-      contentClassName="expandable-chip-content"
-    >
-      <div className="expandable-chip-row">
-        <Label htmlFor="to-email">To</Label>
+    <Phone id="expandable-chip-phone" contentClassName={block()}>
+      <div className={block("header")}>
+        <Label htmlFor="to-email" className={block("label")}>
+          To
+        </Label>
         <Chip
           id="expandable-chip"
           onClick={enable}
-          className="expandable-chip-inline"
+          className={block("chip")}
           leftIcon={<Avatar src={getSrc(isWork)} />}
         >
           Jonas Eckhart
@@ -47,17 +50,10 @@ const ExpandableChips: FC = () => {
         >
           <MenuItem
             id="selected-email-item"
-            className="expandable-chip-item-selected"
+            className={block("selection")}
             leftAvatar={<Avatar src={getSrc(isWork)} />}
             secondaryText={isWork ? WORK_EMAIL : PERSONAL_EMAIL}
-            rightIcon={
-              <AddCircleSVGIcon
-                style={{
-                  transform: "rotate(45deg)",
-                  WebkitTransform: "rotate(45deg)",
-                }}
-              />
-            }
+            rightIcon={<AddCircleSVGIcon className={block("remove")} />}
           >
             Jonas Eckhart
           </MenuItem>
@@ -69,29 +65,30 @@ const ExpandableChips: FC = () => {
             {isWork ? PERSONAL_EMAIL : WORK_EMAIL}
           </MenuItem>
         </Menu>
-        <TextField
-          id="to-email"
-          theme="none"
+        <input
+          id="email-to"
           type="email"
-          className="expandable-chip-field"
+          name="email"
+          placeholder="someone@email.com"
+          className={block("field", { email: true })}
         />
       </div>
-      <div className="expandable-chip-row">
-        <TextField
-          id="re-email"
-          theme="none"
-          defaultValue="Re: Vacation Request"
-        />
-      </div>
+      <Divider />
+      <input
+        id="email-title"
+        name="title"
+        type="text"
+        defaultValue="Re: Vacation Request"
+        className={block("field")}
+      />
+      <Divider />
+      <textarea
+        id="email-message"
+        placeholder="Message"
+        className={block("field", { area: true })}
+      />
     </Phone>
   );
 };
-// <TextArea
-//   id="message-email"
-//   placeholder="Message"
-//   theme="none"
-//   resize="none"
-//   className="expandable-chip-area"
-// />
 
 export default ExpandableChips;

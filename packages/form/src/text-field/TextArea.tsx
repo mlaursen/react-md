@@ -273,7 +273,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
       style={{ ...areaStyle, height }}
       className={cn(
         block({
-          scrollable,
+          scrollable: scrollable || resize === "none",
           floating: label && theme !== "none",
           rh: resize === "horizontal",
           rv: resize === "vertical",

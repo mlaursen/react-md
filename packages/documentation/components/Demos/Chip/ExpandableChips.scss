@@ -1,40 +1,56 @@
 @import '~@react-md/avatar/dist/scss/mixins';
 @import '~@react-md/divider/dist/scss/mixins';
+@import '~@react-md/form/dist/scss/mixins';
 
-.expandable-chip-content {
+.expandable-chip-example {
   display: flex;
   flex-direction: column;
-}
 
-.expandable-chip-row {
-  @include rmd-divider-border(bottom);
-  align-items: center;
-  display: flex;
-  overflow: hidden;
-  padding: 1rem;
-}
-
-.expandable-chip-inline {
-  @include rmd-avatar-theme-update-var(size, 1.125rem);
-
-  flex-shrink: 0;
-  margin: 0 1rem;
-}
-
-.expandable-chip-field {
-  flex-shrink: 1;
-
-  .rmd-text-field {
-    width: 100%;
+  &__header {
+    align-items: center;
+    display: flex;
   }
-}
 
-.expandable-chip-area {
-  height: 100%;
-  padding: 1rem;
-  width: 100%;
-}
+  &__label {
+    flex-shrink: 0;
+    padding: 0 1rem;
+  }
 
-.expandable-chip-item-selected {
-  background-color: $rmd-grey-900;
+  &__chip {
+    @include rmd-avatar-theme-update-var(size, 1.125rem);
+
+    flex-shrink: 0;
+  }
+
+  &__field {
+    @include rmd-text-field-base;
+    @include rmd-form-theme(height, text-height);
+
+    padding: 0 1rem;
+
+    &--email {
+      flex-shrink: 1;
+      text-overflow: ellipsis;
+    }
+
+    &--area {
+      flex: 1 1 auto;
+      padding: 1rem;
+      resize: none;
+    }
+  }
+
+  &__selection {
+    @include rmd-theme-update-var(
+      text-secondary-on-background,
+      $rmd-theme-secondary-text-on-dark-color
+    );
+
+    background-color: $rmd-grey-900;
+    color: $rmd-white-base;
+  }
+
+  &__remove {
+    transform: rotate(45deg);
+  }
 }
