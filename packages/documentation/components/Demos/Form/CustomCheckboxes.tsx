@@ -9,6 +9,7 @@ import {
 import {
   FavoriteBorderFontIcon,
   FavoriteSVGIcon,
+  CheckBoxSVGIcon,
 } from "@react-md/material-icons";
 
 import "./CustomCheckboxes.scss";

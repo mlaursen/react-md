@@ -5,7 +5,7 @@
 .super-small-toggle {
   @include rmd-button-theme-update-var(icon-size, 2rem);
   @include rmd-icon-theme-update-var(size, 1rem);
-  @include rmd-form-theme-update-var(toggle-inset, 0.2rem);
+  @include rmd-form-theme-update-var(toggle-inset, 0.25rem);
 }
 
 .super-large-toggle {

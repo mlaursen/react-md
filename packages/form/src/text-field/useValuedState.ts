@@ -2,12 +2,13 @@ import { useCallback } from "react";
 import { useToggle, useRefCache } from "@react-md/utils";
 
 type TextElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+type Value = string | number | (string | number)[];
 type ChangeEventHandler<T extends TextElement> = React.ChangeEventHandler<T>;
 
 interface Options<T extends TextElement> {
   onChange?: ChangeEventHandler<T>;
-  value?: string | number;
-  defaultValue?: string | number;
+  value?: Value;
+  defaultValue?: Value;
 }
 
 /**
@@ -29,6 +30,7 @@ export default function useValuedState<T extends TextElement>({
       );
     }
 
+    // this isn't used for controlled components
     return false;
   });
 

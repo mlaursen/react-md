@@ -3,9 +3,24 @@
 ////
 
 @import '../text-field/mixins';
+@import 'variables';
 
 /// @access private
 @mixin react-md-select {
+  .rmd-native-select-container {
+    &--multi {
+      @include rmd-form-theme(min-height, text-height);
+      @include rmd-form-theme-update-var(addon-top, $rmd-select-native-addon-top);
+
+      height: auto;
+    }
+
+    &--padded {
+      $calc: #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(text-padding-top)};
+      padding-top: calc(#{$calc});
+    }
+  }
+
   .rmd-native-select {
     @include rmd-text-field;
 
@@ -13,6 +28,10 @@
       @include rmd-icon-theme(padding-right, size);
 
       appearance: none;
+    }
+
+    &--multi {
+      padding-top: 0;
     }
 
     &__icon {

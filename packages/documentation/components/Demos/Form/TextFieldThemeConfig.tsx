@@ -1,15 +1,16 @@
 import React, { FC, ReactNode } from "react";
 import {
-  Checkbox,
   Fieldset,
   Form,
-  Radio,
   TextFieldProps,
   TextFieldTheme,
   useCheckboxState,
   useChoice,
 } from "@react-md/form";
 import { FavoriteSVGIcon, LocationOnSVGIcon } from "@react-md/material-icons";
+
+import Radio from "components/Radio";
+import Checkbox from "components/Checkbox";
 
 import "./TextFieldThemeConfig.scss";
 
@@ -23,6 +24,7 @@ type Config = Pick<
   | "label"
   | "theme"
   | "error"
+  | "inline"
   | "placeholder"
   | "readOnly"
   | "disabled"
@@ -32,6 +34,8 @@ export interface TextFieldThemeProps {
   idPrefix: string;
   renderField: (config: Config) => ReactNode;
   children?: ReactNode;
+  disableDense?: boolean;
+  disableRightIcon?: boolean;
 }
 
 /**
@@ -42,11 +46,14 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   idPrefix,
   children,
   renderField,
+  disableDense,
+  disableRightIcon,
 }) => {
   const [useLeft, handleLeftChange, setLeftIcon] = useCheckboxState(false);
   const [useRight, handleRightChange, setRightIcon] = useCheckboxState(false);
-  const [dense, handleDenseChange] = useCheckboxState(false);
+  const [dense, handleDenseChange, setDense] = useCheckboxState(false);
   const [label, handleLabelChange, setLabel] = useCheckboxState(true);
+  const [inline, handleInlineChange] = useCheckboxState(false);
   const [readOnly, handleReadOnlyChange, setReadOnly] = useCheckboxState(false);
   const [error, handleErrorChange, setError] = useCheckboxState(false);
   const [disabled, handleDisabledChange] = useCheckboxState(false);
@@ -73,6 +80,14 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
     setReadOnly(false);
   }
 
+  if (disableDense && disabled) {
+    setDense(false);
+  }
+
+  if (disableRightIcon && useRight) {
+    setRightIcon(false);
+  }
+
   return (
     <Form className="text-field-theme-config">
       <Fieldset legend="Text field theme" disableLegendSROnly>
@@ -97,20 +112,30 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
           checked={useLeft}
           onChange={handleLeftChange}
         />
-        <Checkbox
-          id={`${idPrefix}-right-icon`}
-          name="rightIcon"
-          label="Use right icon"
-          disabled={isUnstyled}
-          checked={useRight}
-          onChange={handleRightChange}
-        />
+        {
+          <Checkbox
+            id={`${idPrefix}-right-icon`}
+            name="rightIcon"
+            label="Use right icon"
+            disabled={isUnstyled || disableRightIcon}
+            checked={useRight}
+            onChange={handleRightChange}
+          />
+        }
         <Checkbox
           id={`${idPrefix}-dense`}
           name="dense"
           label="Use dense spec"
           checked={dense}
+          disabled={disableDense}
           onChange={handleDenseChange}
+        />
+        <Checkbox
+          id={`${idPrefix}-inline`}
+          name="inline"
+          label="Display inline"
+          checked={inline}
+          onChange={handleInlineChange}
         />
         <Checkbox
           id={`${idPrefix}-label`}
@@ -150,6 +175,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
           label: label && "Label",
           placeholder: "Placeholder",
           dense,
+          inline,
           theme: currentTheme,
           readOnly,
           disabled,

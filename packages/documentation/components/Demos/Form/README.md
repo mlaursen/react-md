@@ -7,6 +7,7 @@ This package exposes a few components to help render accessible forms:
 - `AsyncSwitch`
 - `FileInput`
 - `TextField`
+- `TextArea`
 - `Password`
 - `NativeSelect`
 - `Label`

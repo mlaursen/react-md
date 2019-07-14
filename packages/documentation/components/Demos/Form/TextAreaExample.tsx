@@ -32,7 +32,7 @@ const TextAreaExample: FC = () => {
         <TextArea
           id="configurable-textarea"
           {...props}
-          key={rows}
+          key={`${rows}-${resize}`}
           rows={rowsInt}
           maxRows={maxRowsInt}
           resize={resize}

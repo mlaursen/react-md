@@ -9,7 +9,7 @@ import React, {
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import TextFieldContainer, {
   TextFieldContainerOptions,
@@ -18,19 +18,9 @@ import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
 import useValuedState from "../text-field/useValuedState";
 
-type SelectAttributes = Omit<
-  SelectHTMLAttributes<HTMLSelectElement>,
-  "multiple"
->;
-
-type SupportedTextFieldContainerProps = Omit<
-  TextFieldContainerOptions,
-  "isRightAddon" | "rightChildren"
->;
-
 export interface NativeSelectProps
-  extends SelectAttributes,
-    SupportedTextFieldContainerProps {
+  extends SelectHTMLAttributes<HTMLSelectElement>,
+    TextFieldContainerOptions {
   /**
    * The id for the select. This is required for accessibility.
    */
@@ -83,16 +73,20 @@ export interface NativeSelectProps
    * The value to use for the text field. This will make the component controlled
    * and require the `onChange` prop to be provided as well otherwise this will
    * act as a read only text field.
+   *
+   * If the `multiple` prop is enabled, this **must** be a list of strings.
    */
-  value?: string;
+  value?: string | string[];
 
   /**
    * The default value for the text field which will make it uncontrolled.
    * If you manually change the `defaultValue` prop, the input's value **will
    * not change** unless you provide a different `key` as well. Use the `value`
    * prop instead for a controlled input.
+   *
+   * If the `multiple` prop is enabled, this **must** be a list of strings.
    */
-  defaultValue?: string;
+  defaultValue?: string | string[];
 }
 type WithRef = WithForwardedRef<HTMLSelectElement>;
 type DefaultProps = Required<
@@ -110,6 +104,7 @@ type DefaultProps = Required<
 type WithDefaultProps = NativeSelectProps & DefaultProps & WithRef;
 
 const block = bem("rmd-native-select");
+const container = bem("rmd-native-select-container");
 
 /**
  * This component is used to render a native `<select>` element with the
@@ -136,12 +131,14 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
     containerRef,
     forwardedRef,
     isLeftAddon,
+    isRightAddon,
     leftChildren,
+    rightChildren,
     underlineDirection,
     children,
     ...props
   } = providedProps as WithDefaultProps;
-  const { id, value, defaultValue, disabled } = props;
+  const { id, value, defaultValue, disabled, multiple } = props;
   const underline = theme === "underline" || theme === "filled";
 
   const [focused, onFocus, onBlur] = useFocusState({
@@ -158,7 +155,13 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
   return (
     <TextFieldContainer
       style={style}
-      className={className}
+      className={cn(
+        container({
+          multi: multiple,
+          padded: multiple && label,
+        }),
+        className
+      )}
       ref={containerRef}
       theme={theme}
       error={error}
@@ -166,8 +169,11 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
       label={!!label}
       dense={dense}
       inline={inline}
+      disabled={disabled}
       isLeftAddon={isLeftAddon}
+      isRightAddon={isRightAddon}
       leftChildren={leftChildren}
+      rightChildren={multiple && rightChildren}
       underlineDirection={underlineDirection}
     >
       <FloatingLabel
@@ -177,7 +183,7 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
         error={error}
         active={valued && focused}
         valued={valued}
-        floating={valued}
+        floating={valued || multiple}
         dense={dense}
         disabled={disabled}
         leftChildren={!!leftChildren}
@@ -194,6 +200,7 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
         className={cn(
           block({
             icon,
+            multi: multiple,
             "label-underline": label && underline,
             "placeholder-underline": !label && underline,
             floating: label && theme !== "none",
@@ -203,7 +210,7 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
       >
         {children}
       </select>
-      {icon && <span className={block("icon")}>{icon}</span>}
+      {!multiple && icon && <span className={block("icon")}>{icon}</span>}
     </TextFieldContainer>
   );
 };
@@ -234,7 +241,10 @@ if (process.env.NODE_ENV !== "production") {
       style: PropTypes.object,
       className: PropTypes.string,
       value: PropTypes.string,
-      defaultValue: PropTypes.string,
+      defaultValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]),
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),
       dense: PropTypes.bool,
       error: PropTypes.bool,
@@ -243,6 +253,8 @@ if (process.env.NODE_ENV !== "production") {
       underlineDirection: PropTypes.oneOf(["left", "right"]),
       isLeftAddon: PropTypes.bool,
       leftChildren: PropTypes.node,
+      multiple: PropTypes.bool,
+      size: PropTypes.number,
     };
   }
 }

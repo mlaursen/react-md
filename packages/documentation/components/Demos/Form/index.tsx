@@ -27,6 +27,9 @@ import textFieldExample from "./TextFieldExample.md";
 import TextFieldTypes from "./TextFieldTypes";
 import textFieldTypes from "./TextFieldTypes.md";
 
+import NativeSelectExample from "./NativeSelectExample";
+import nativeSelectExample from "./NativeSelectExample.md";
+
 import TextAreaExample from "./TextAreaExample";
 import textAreaExample from "./TextAreaExample.md";
 
@@ -73,6 +76,11 @@ const demos = [
     name: "Text Field Types",
     description: textFieldTypes,
     children: <TextFieldTypes />,
+  },
+  {
+    name: "Native Select Example",
+    description: nativeSelectExample,
+    children: <NativeSelectExample />,
   },
   {
     name: "Text Area Example",

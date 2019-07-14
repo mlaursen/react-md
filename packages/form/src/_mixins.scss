@@ -40,9 +40,10 @@
 
   @include react-md-file-input;
   @include react-md-label;
-  @include react-md-select;
   @include react-md-toggle;
   @include react-md-text-field;
+  // has to come after text field since it overrides some of the text-field-container styles
+  @include react-md-select;
 
   .rmd-fieldset {
     @include rmd-fieldset;

@@ -20,7 +20,7 @@ $ npm install --save @react-md/theme \
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/icon) for live examples and
+[full documentation](https://react-md.dev/packages/form) for live examples and
 more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
@@ -29,28 +29,14 @@ more customization information, but an example usage is shown below.
 
 ## Usage
 
-Text fields:
-
-- "blocked" (unstyled)
-- underlined
-- outlined
-- filled
-
-- left icon
-- right icon
-- password toggle
-- NOTE: Try to see if it can work nicely with LastPass
-
 - helper text
 - error text
 
 Components Missing:
 
-- Select (Native and ListItem Wrapper)
-- FileInput
+- Select (Non-Native)
 
 Things missing:
 
 - error shake?
-- dense spec (52px (with label), 40px (without))
 - prefix and suffix text

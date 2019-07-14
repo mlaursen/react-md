@@ -45,6 +45,8 @@ export default {
   "rmd-label-floating-padding": "0.25rem",
   "rmd-label-floating-top": "1rem",
   "rmd-label-floating-dense-top": "0.9rem",
+  "rmd-select-native-multiple-padding": "0.75rem",
+  "rmd-select-native-addon-top": "1rem",
   "rmd-text-field-active-color": "var(--rmd-theme-primary, #9c27b0)",
   "rmd-text-field-light-border-color": "rgba(0, 0, 0, 0.12)",
   "rmd-text-field-dark-border-color": "rgba(255, 255, 255, 0.5)",

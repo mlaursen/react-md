@@ -13,3 +13,7 @@ user to manually resize instead with one of:
 - `horizontal`
 - `vertical`
 - `both` (native behavior)
+
+> Note: When the `resize` prop is set to `"horizontal"` or `"both"`, the
+> `TextArea` will be forced to render inline so that it can be resized
+> horizontally.
