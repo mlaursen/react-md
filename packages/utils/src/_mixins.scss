@@ -184,7 +184,7 @@
 }
 
 /// Creates styles to make a screenreader only class visible while focused.
-/// @see https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+/// @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
 /// @access private
 @mixin rmd-utils-sr-only-focusable {
   &:active,
@@ -201,7 +201,7 @@
 
 /// Creates styles so that an element is visible only for screen readers.
 ///
-/// @see https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+/// @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
 /// @param {Boolean} focusable [false] - Boolean if the element should still be focusable
 /// and then be visible when focused.
 /// @param {String} focus-suffix ['&--focusable'] - The suffix to use for an element that
