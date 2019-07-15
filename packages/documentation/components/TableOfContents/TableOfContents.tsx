@@ -25,9 +25,7 @@ const CLASSNAMES = {
 
 const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
   const { isPhone, isLargeDesktop } = useAppSizeContext();
-  const { toggled: visible, enable: show, disable: hide, toggle } = useToggle(
-    isLargeDesktop
-  );
+  const [visible, show, hide, toggle] = useToggle(isLargeDesktop);
 
   useEffect(() => {
     if (isLargeDesktop) {

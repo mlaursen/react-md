@@ -16,7 +16,7 @@ import { MediaContainer } from "@react-md/media";
 import Container from "./Container";
 
 const ExpandableCards: FC = () => {
-  const { toggled: expanded, toggle } = useToggle();
+  const [expanded, , , toggle] = useToggle(false);
   return (
     <Container centered>
       <Card>

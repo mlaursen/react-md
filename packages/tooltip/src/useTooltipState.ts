@@ -130,7 +130,7 @@ export default function useTooltipState({
     initiated.current = initiatedBy;
   }, []);
 
-  const { toggled: visible, enable: showTooltip, disable: hide } = useToggle();
+  const [visible, showTooltip, hide] = useToggle(false);
   const hideTooltip = useCallback(() => {
     initiated.current = null;
     hide();

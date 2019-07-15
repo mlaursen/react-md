@@ -4,7 +4,7 @@ import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
 
 const SimpleExample: FC = () => {
-  const { toggled, toggle, disable } = useToggle();
+  const [toggled, , disable, toggle] = useToggle(false);
   return (
     <Fragment>
       <Button

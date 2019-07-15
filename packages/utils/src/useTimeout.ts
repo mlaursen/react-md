@@ -8,19 +8,20 @@ type RestartTimeout = () => void;
 type ReturnValue = [StartTimeout, StopTimeout, RestartTimeout];
 
 /**
- * Simple hook to use an timeout with auto setup and teardown.
+ * Simple hook to use an timeout with auto setup and teardown. The provided functions
+ * will be guaranteed to not change and are memoized.
  *
  * @param cb The callback function to call
  * @param delay The time in milliseconds the timer should delay between executions
  * of the callback function
  * @param defaultStarted Boolean if the timeout should be started immediately.
- * @return an object containing a function to reset the timer without disabling it
- * as well as another function to clear the timer immediately.
+ * @return a list containing a function to start the timeout, a function to stop
+ * the timeout, and a function to restart the timeout.
  */
 export default function useTimeout(
   cb: () => void,
   delay: number,
-  defaultStarted: boolean = false
+  defaultStarted: boolean | (() => boolean) = false
 ): ReturnValue {
   const cbRef = useRefCache(cb);
   const timeoutRef = useRef<number>();
@@ -29,9 +30,7 @@ export default function useTimeout(
     timeoutRef.current = undefined;
   }, []);
 
-  const { toggled: enabled, enable: start, disable } = useToggle(
-    defaultStarted
-  );
+  const [enabled, start, disable] = useToggle(defaultStarted);
   const stop = useCallback(() => {
     clearTimeout();
     disable();

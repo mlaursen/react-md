@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 
 const PositionExamples: FC = () => {
   const [position, setPosition] = useState<SheetPosition>("bottom");
-  const { toggled, disable, toggle } = useToggle();
+  const [toggled, , disable, toggle] = useToggle(false);
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

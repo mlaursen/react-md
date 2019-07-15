@@ -32,7 +32,7 @@ let listener = false;
 export default function useAppSizeContext() {
   const defaultSize = useContext(DefaultSize);
   const currentSize = useAppSizeContextRMD();
-  const { toggle, toggled } = useToggle(false);
+  const [toggled, , , toggle] = useToggle(false);
   useEffect(() => {
     if (typeof window === "undefined" || listener) {
       return;

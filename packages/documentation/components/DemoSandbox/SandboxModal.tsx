@@ -44,12 +44,9 @@ const SandboxModal: FC<SandboxModalProps> = ({
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
   const inline = isDesktop || isLandscapeTablet;
-  const {
-    toggled: isTreeVisible,
-    disable: hideTree,
-    enable: showTree,
-    setToggled: setTreeVisible,
-  } = useToggle(isDesktop);
+  const [isTreeVisible, showTree, hideTree, , setTreeVisible] = useToggle(
+    isDesktop
+  );
 
   useEffect(() => {
     if (isTreeVisible !== isDesktop) {

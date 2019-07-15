@@ -84,13 +84,13 @@ const Phone: FC<PhoneProps> = props => {
     onPhoneClose,
   } = props as WithDefaultProps;
   const { isPhone } = useAppSizeContext();
-  const { toggled: visible, enable, disable } = useToggle();
+  const [visible, enable, disable] = useToggle(false);
   const closePhone = useCallback(() => {
     disable();
     if (onPhoneClose) {
       onPhoneClose();
     }
-  }, [disable, onPhoneClose]);
+  }, [onPhoneClose]);
 
   if (visible && !isPhone) {
     closePhone();

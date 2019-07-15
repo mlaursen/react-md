@@ -14,7 +14,7 @@ export interface SandboxProps {
 }
 
 const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
-  const { toggled: loading, enable, disable } = useToggle();
+  const [loading, enable, disable] = useToggle(false);
   if (!getSandbox) {
     return null;
   }

@@ -16,7 +16,7 @@ import { FixedDialog, DialogContent } from "@react-md/dialog";
 
 const FixedDialogExample: FC = () => {
   const actionRef = useRef<HTMLButtonElement | null>(null);
-  const { toggled: visible, enable: show, disable: hide } = useToggle();
+  const [visible, show, hide] = useToggle(false);
   return (
     <AppBar>
       <AppBarNav aria-label="Nav">

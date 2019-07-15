@@ -7,7 +7,7 @@ import { useToggle } from "@react-md/utils";
 import "./SimpleListExample.scss";
 
 const SimpleExample: FC = () => {
-  const { toggled, enable, disable } = useToggle();
+  const [toggled, enable, disable] = useToggle(false);
   return (
     <Fragment>
       <Button id="dialog-toggle-1" onClick={enable}>

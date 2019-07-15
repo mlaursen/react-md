@@ -13,7 +13,7 @@ const block = bem("inaccessible-menu");
 
 // sorry -- too lazy to fully implement a11y and functionality just for a "broken" demo
 const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
-  const { toggled: visible, disable, toggle } = useToggle();
+  const [visible, , disable, toggle] = useToggle(false);
   const menu = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (!visible) {

@@ -13,7 +13,7 @@ import { Button } from "@react-md/button";
 import people from "constants/people";
 
 const AccessibilityExample: FC = () => {
-  const { toggled: visible, enable: show, disable: hide } = useToggle();
+  const [visible, show, hide] = useToggle(false);
   const items = useMemo(
     () => people.map(name => ({ children: name, onClick: show })),
     []

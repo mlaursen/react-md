@@ -11,7 +11,7 @@ import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 const SimpleExample: FC = () => {
-  const { toggled: visible, enable, disable } = useToggle();
+  const [visible, enable, disable] = useToggle(false);
   return (
     <Fragment>
       <Button id="simple-dialog-toggle" onClick={enable}>

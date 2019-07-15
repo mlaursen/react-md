@@ -17,7 +17,7 @@ const ToggleTheme: FC = () => {
   const isLight = theme === "light";
   const toggleTheme = useThemeToggle();
 
-  const { toggled, enable, disable } = useToggle();
+  const [toggled, enable, disable] = useToggle(false);
   let icon = <LightbulbOutlineSVGIcon />;
   if (toggled !== isLight) {
     icon = <LightbulbSVGIcon />;

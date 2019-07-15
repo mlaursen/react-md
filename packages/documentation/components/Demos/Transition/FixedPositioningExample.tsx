@@ -44,7 +44,7 @@ const anchors = horizontals.reduce<Record<string, PositionAnchor>>(
 );
 
 const FixedPositioningExample: FC = () => {
-  const { toggled: visible, toggle, disable: hide, enable: show } = useToggle();
+  const [visible, show, hide, toggle] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [disableSwapping, handleSwapCange] = useCheckboxState(false);
   const [transformOrigin, handleOriginChange] = useCheckboxState(false);

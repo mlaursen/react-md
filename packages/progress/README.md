@@ -44,12 +44,8 @@ import { CircularProgress, LinearProgress } from "@react-md/progress";
 import { useToggle } from "@react-md/utils";
 
 const App = () => {
-  const { toggled: loadingCircle, disable: stopLoadingCircle } = useToggle(
-    true
-  );
-  const { toggled: loadingLinear, disable: stopLoadingLinear } = useToggle(
-    true
-  );
+  const [loadingCircle, , stopLoadingCircle] = useToggle(true);
+  const [loadingLinear, , stopLoadingLinear] = useToggle(true);
 
   useEffect(() => {
     let circleTimeout = window.setTimeout(() => {

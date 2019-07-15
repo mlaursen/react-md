@@ -8,13 +8,15 @@ type StopInterval = () => void;
 type ReturnValue = [Running, StartInterval, StopInterval];
 
 /**
- * Simple hook to use an interval with auto setup and teardown.
+ * Simple hook to use an interval with auto setup and teardown. The provided functions
+ * will be guaranteed to not change and are memoized.
  *
  * @param callback The callback function to call
  * @param delay The time in milliseconds the timer should delay between executions
  * of the callback function
  * @param defaultRunning Boolean if the interval should be started immediately
- * @return an object containing functions to start and stop the interval
+ * @return a list containing a boolean if the interval is running, function to start
+ * the interval, and a function to stop the interval.
  */
 export default function useInterval(
   callback: (stop: () => void) => void,
@@ -23,9 +25,7 @@ export default function useInterval(
 ): ReturnValue {
   const ref = useRefCache(callback);
 
-  const { toggled: running, enable: start, disable: stop } = useToggle(
-    defaultRunning
-  );
+  const [running, start, stop] = useToggle(defaultRunning);
 
   useEffect(() => {
     if (!running) {

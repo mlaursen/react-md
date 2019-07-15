@@ -14,7 +14,7 @@ import LoremIpsum from "./LoremIpsum";
 import NestedDemo from "./NestedDemo";
 
 const NestedDialogs: FC = () => {
-  const { toggled: visible, enable, disable } = useToggle();
+  const [visible, enable, disable] = useToggle(false);
   const dialogId = "nested-demo-dialog-full-page";
   return (
     <NestedDialogContextProvider>

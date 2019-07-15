@@ -11,7 +11,7 @@ import Checkbox from "components/Checkbox";
 import "./FixingOverflowIssues.scss";
 
 const FixingOverflowIssues: FC = () => {
-  const { toggled: visible, disable, toggle } = useToggle();
+  const [visible, , disable, toggle] = useToggle(false);
   const [portal, handlePortalChange] = useCheckboxState(false);
   return (
     <Fragment>

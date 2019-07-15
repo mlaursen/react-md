@@ -1,11 +1,10 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, useState } from "react";
 import { Checkbox } from "@react-md/form";
 import {
   DropdownMenu,
   DropdownMenuItem,
   MenuItemSeparator,
 } from "@react-md/menu";
-import { useToggle } from "@react-md/utils";
 
 const InfiniteNestedMenus: FC<{
   depth: number;
@@ -29,7 +28,7 @@ const InfiniteNestedMenus: FC<{
 );
 
 const NestedDropdownMenus: FC = () => {
-  const { toggled: portal, setToggled: setPortal } = useToggle(true);
+  const [portal, setPortal] = useState(true);
 
   return (
     <Fragment>

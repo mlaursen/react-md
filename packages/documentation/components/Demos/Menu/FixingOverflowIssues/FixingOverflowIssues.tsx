@@ -15,7 +15,7 @@ import InaccessibleMenu from "./InaccessibleMenu";
 const ITEMS = Array.from(new Array(20), (_, i) => `Item ${i + 1}`);
 
 const FixingOverflowIssues: FC = () => {
-  const { toggled: visible, enable: show, disable: hide } = useToggle();
+  const [visible, show, hide] = useToggle(false);
   return (
     <Fragment>
       <Button

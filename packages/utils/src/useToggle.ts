@@ -1,17 +1,25 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import useRefCache from "./useRefCache";
 
-type DefaultToggled = boolean | (() => boolean);
+type Enable = () => void;
+type Disable = () => void;
+type Toggle = () => void;
+type SetToggle = Dispatch<SetStateAction<boolean>>;
+
+type ReturnValue = [boolean, Enable, Disable, Toggle, SetToggle];
 
 /**
  * This hooks provides an easy way to toggle a boolean flag for React components.
- * The main use case for this will be toggling the visibility of something.
+ * The main use case for this will be toggling the visibility of something. All the
+ * provided actions are guaranteed to never change.
  *
  * @param defaultToggled Boolean if the visibility should be enabled first render.
- * @return an object containing the toggle state, and memoized callback functions
- * to enable, disable, or toggle the flag.
+ * @return an array containing the toggled state, an enable function, a disable function,
+ * a toggle function, and then a manual set toggle function.
  */
-export default function useToggle(defaultToggled: DefaultToggled = false) {
+export default function useToggle(
+  defaultToggled: boolean | (() => boolean)
+): ReturnValue {
   const [toggled, setToggled] = useState(defaultToggled);
   const previous = useRefCache(toggled);
 
@@ -30,5 +38,5 @@ export default function useToggle(defaultToggled: DefaultToggled = false) {
     setToggled(prevVisible => !prevVisible);
   }, []);
 
-  return { toggled, enable, disable, toggle, setToggled };
+  return [toggled, enable, disable, toggle, setToggled];
 }

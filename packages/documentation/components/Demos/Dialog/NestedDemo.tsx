@@ -23,7 +23,7 @@ const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
     return null;
   }
 
-  const { toggled: visible, enable, disable } = useToggle();
+  const [visible, enable, disable] = useToggle(false);
   const depthPath = Array.from(new Array(depth + 1))
     .map((_, i) => i)
     .join("-");

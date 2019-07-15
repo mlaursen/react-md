@@ -10,7 +10,7 @@ export default function useRTLToggle() {
     const html = document.querySelector("html") as HTMLElement;
     return html.getAttribute("dir") === "rtl";
   }, []);
-  const { toggled: isRTL, toggle: toggleRTL } = useToggle(defaultToggled);
+  const [isRTL, , , toggleRTL] = useToggle(defaultToggled);
 
   useEffect(() => {
     const html = document.querySelector("html") as HTMLElement;

@@ -23,7 +23,7 @@ export default function useValuedState<T extends TextElement>({
   defaultValue,
 }: Options<T>): [boolean, ChangeEventHandler<T> | undefined] {
   const handler = useRefCache(onChange);
-  const { toggled: valued, enable, disable } = useToggle(() => {
+  const [valued, enable, disable] = useToggle(() => {
     if (typeof value === "undefined") {
       return (
         typeof defaultValue === "number" || (defaultValue || "").length > 0

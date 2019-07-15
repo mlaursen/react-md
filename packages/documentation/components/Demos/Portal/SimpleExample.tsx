@@ -10,7 +10,7 @@ import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 import "./SimpleExample.scss";
 
 const SimpleExample: FC = () => {
-  const { toggled, toggle, disable } = useToggle();
+  const [visible, , hide, toggle] = useToggle(false);
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -36,7 +36,7 @@ const SimpleExample: FC = () => {
         theme="secondary"
         themeType="outline"
         aria-haspopup="true"
-        aria-expanded={toggled}
+        aria-expanded={visible}
         onClick={toggle}
         ref={buttonRef}
       >
@@ -47,8 +47,8 @@ const SimpleExample: FC = () => {
       <Overlay
         id="portal-menu-overlay"
         className="portal-menu-overlay"
-        visible={toggled}
-        onRequestClose={disable}
+        visible={visible}
+        onRequestClose={hide}
       >
         <List
           role="menu"
@@ -60,7 +60,7 @@ const SimpleExample: FC = () => {
           className="portal-menu"
           onClick={event => {
             if (event.currentTarget !== event.target) {
-              disable();
+              hide();
             }
           }}
         >

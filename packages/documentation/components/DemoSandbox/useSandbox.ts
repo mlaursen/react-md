@@ -14,10 +14,10 @@ export default function useSandbox(
   { pkg, name, pathname }: SandboxQuery
 ) {
   const [sandbox, setSandbox] = useState(defaultSandbox);
-  const { toggled: loading, enable, disable } = useToggle();
+  const [loading, startLoading, stopLoading] = useToggle(false);
   useEffect(() => {
     if (!pkg || !name || !pathname.startsWith("/sandbox")) {
-      disable();
+      stopLoading();
       if (sandbox) {
         setSandbox(null);
       }
@@ -26,17 +26,17 @@ export default function useSandbox(
 
     let cancelled = false;
     (async function load() {
-      enable();
+      startLoading();
       const sandbox = await getSandboxByQuery({ pkg, name });
       if (!cancelled) {
         setSandbox(sandbox);
-        disable();
+        stopLoading();
       }
     })();
 
     return () => {
       cancelled = true;
-      disable();
+      stopLoading();
     };
   }, [pkg, name, pathname]);
 

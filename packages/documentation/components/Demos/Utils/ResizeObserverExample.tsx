@@ -81,7 +81,7 @@ function useRandomStyle(enabled: boolean) {
 }
 
 const SimpleExample: FC = () => {
-  const { toggled: enabled, toggle } = useToggle(false);
+  const [enabled, , , toggle] = useToggle(false);
   const { style, containerRef } = useRandomStyle(enabled);
   const { height, width, onResize } = useSize();
 

@@ -81,7 +81,7 @@ export function useTouchDetection(touchTimeout: number = 1200) {
  * @private
  */
 export function useKeyboardDetection() {
-  const { toggled: enabled, enable, disable } = useToggle();
+  const [enabled, enable, disable] = useToggle(false);
 
   useEffect(() => {
     if (enabled) {

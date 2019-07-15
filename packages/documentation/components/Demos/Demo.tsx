@@ -104,7 +104,7 @@ const Demo: FC<DemoProps> = props => {
     dialogDisabled = !isPhone && !isTablet;
   }
 
-  const { toggled, enable, disable } = useToggle();
+  const [toggled, enable, disable] = useToggle(false);
   return (
     <Fragment>
       {index > 0 && <Divider key="divider" className={block("divider")} />}

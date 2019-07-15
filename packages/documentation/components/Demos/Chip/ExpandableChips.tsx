@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Divider } from "@react-md/divider";
@@ -21,8 +21,8 @@ const getSrc = (isWork: boolean) =>
 const block = bem("expandable-chip-example");
 
 const ExpandableChips: FC = () => {
-  const { toggled, enable, disable } = useToggle(false);
-  const [isWork, setIsWork] = useState(false);
+  const [visible, showMenu, hideMenu] = useToggle(false);
+  const [isWork, , , toggleWork] = useToggle(false);
   return (
     <Phone id="expandable-chip-phone" contentClassName={block()}>
       <div className={block("header")}>
@@ -31,7 +31,7 @@ const ExpandableChips: FC = () => {
         </Label>
         <Chip
           id="expandable-chip"
-          onClick={enable}
+          onClick={showMenu}
           className={block("chip")}
           leftIcon={<Avatar src={getSrc(isWork)} />}
         >
@@ -41,8 +41,8 @@ const ExpandableChips: FC = () => {
           id="expandable-chip-menu"
           aria-labelledby="expandable-chip"
           controlId="expandable-chip"
-          visible={toggled}
-          onRequestClose={disable}
+          visible={visible}
+          onRequestClose={hideMenu}
           anchor={{
             x: "inner-left",
             y: "top",
@@ -60,7 +60,7 @@ const ExpandableChips: FC = () => {
           <MenuItem
             id="other-email-item"
             leftAvatar={<Avatar src={getSrc(!isWork)} />}
-            onClick={() => setIsWork(!isWork)}
+            onClick={toggleWork}
           >
             {isWork ? PERSONAL_EMAIL : WORK_EMAIL}
           </MenuItem>

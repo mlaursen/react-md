@@ -20,11 +20,7 @@ export default function useFocusState({
   onBlur,
 }: Options): [boolean, FocusEventHandler, BlurEventHandler] {
   const handlers = useRefCache({ onFocus, onBlur });
-  const {
-    toggled: focused,
-    enable: setFocused,
-    disable: setBlurred,
-  } = useToggle(false);
+  const [focused, setFocused, setBlurred] = useToggle(false);
 
   const handleFocus = useCallback<FocusEventHandler>(event => {
     const { onFocus } = handlers.current;

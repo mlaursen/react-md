@@ -27,12 +27,7 @@ const Combined: FC<CombinedProps> = ({
 }) => {
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
-  const {
-    toggled: visible,
-    disable,
-    toggle,
-    setToggled: setVisible,
-  } = useToggle(isDesktop);
+  const [visible, , disable, toggle, setVisible] = useToggle(isDesktop);
 
   useEffect(() => {
     if (visible !== isDesktop) {

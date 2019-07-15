@@ -26,7 +26,7 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
   disableAppBar,
   disableContent,
 }) => {
-  const { toggled, enable, disable } = useToggle();
+  const [visible, show, hide] = useToggle(false);
   if (disabled) {
     return children;
   }
@@ -37,14 +37,14 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
         This example requires a more screen real estate than what is available
         so you will need to open it in a full page dialog.
       </Text>
-      <Button id={`${id}-toggle`} themeType="contained" onClick={enable}>
+      <Button id={`${id}-toggle`} themeType="contained" onClick={show}>
         <TextIconSpacing icon={<LaunchSVGIcon />}>Launch</TextIconSpacing>
       </Button>
       <Dialog
         id={`${id}-dialog`}
         aria-labelledby={`${id}-dialog-title`}
-        visible={toggled}
-        onRequestClose={disable}
+        visible={visible}
+        onRequestClose={hide}
         type="full-page"
       >
         {!disableAppBar && (
@@ -56,7 +56,7 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
               id={`${id}-dialog-close`}
               first
               aria-label="Close"
-              onClick={disable}
+              onClick={hide}
             >
               <CloseSVGIcon />
             </AppBarAction>
