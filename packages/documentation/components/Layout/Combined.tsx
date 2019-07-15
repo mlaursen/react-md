@@ -97,7 +97,7 @@ const Combined: FC<CombinedProps> = ({
             <AppBarTitle id="main-navigation-title" className={block("title")}>
               {title}
             </AppBarTitle>
-            <AppBarAction first onClick={toggle}>
+            <AppBarAction first onClick={toggle} aria-label="Hide Navigation">
               <ArrowBackSVGIcon />
             </AppBarAction>
           </AppBar>

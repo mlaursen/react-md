@@ -33,6 +33,7 @@ const Header: FC<Props> = ({
         id="main-nav-toggle"
         onClick={toggle}
         disabled={isSheetVisible}
+        aria-label="Show Main Navigation"
       >
         <MenuSVGIcon />
       </AppBarNav>
