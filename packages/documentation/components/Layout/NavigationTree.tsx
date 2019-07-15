@@ -38,7 +38,7 @@ const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
     return <Divider key={props.key} />;
   }
 
-  const { leftIcon, href, target, children } = item as RouteLink;
+  const { leftIcon, href, rel, target, children } = item as RouteLink;
   if ((item as RouteSubheader).subheader) {
     return (
       <ListSubheader key={props.key} id={props.id} role="none">
@@ -53,6 +53,7 @@ const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
       expanderIcon={<KeyboardArrowDownSVGIcon />}
       leftIcon={leftIcon}
       href={href}
+      rel={rel}
       target={target}
       contentComponent={href ? LinkUnstyled : undefined}
     >
