@@ -16,6 +16,7 @@ export interface RouteLink {
   target?: string;
   href?: string;
   leftIcon?: ReactNode;
+  rel?: string;
 }
 
 export interface RouteSubheader extends RouteLink {
@@ -164,6 +165,7 @@ function createExternalRoute(
     parentId: null,
     children,
     href,
+    rel: "noopener noreferrer",
     target: "_blank",
     leftIcon: icon,
   };

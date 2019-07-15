@@ -36,7 +36,11 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
       href={href}
       as={as}
     >
-      <a {...props} {...handlers}>
+      <a
+        {...props}
+        {...handlers}
+        rel={href.startsWith("http:") ? "noopener noreferrer" : undefined}
+      >
         {children}
       </a>
     </Link>
