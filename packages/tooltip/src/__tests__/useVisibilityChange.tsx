@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { render, cleanup } from "react-testing-library";
+import { render, cleanup } from "@testing-library/react";
 
 import useVisiblityChange from "../useVisibilityChange";
 import { TooltipInitiated } from "../useHandlers";

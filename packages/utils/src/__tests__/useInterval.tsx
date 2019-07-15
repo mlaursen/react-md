@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { act, renderHook } from "react-hooks-testing-library";
-import { cleanup, render } from "react-testing-library";
+import { act, renderHook } from "@testing-library/react-hooks";
+import { cleanup, render } from "@testing-library/react";
 import { mocked } from "ts-jest/utils";
 
 import useInterval from "../useInterval";

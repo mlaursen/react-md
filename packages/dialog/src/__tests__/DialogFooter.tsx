@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "react-testing-library";
+import { cleanup, render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
 import DialogFooter, { DialogFooterProps } from "../DialogFooter";

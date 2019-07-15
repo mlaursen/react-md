@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, MutableRefObject, FC } from "react";
-import { cleanup, render, fireEvent, act } from "react-testing-library";
+import { cleanup, render, fireEvent, act } from "@testing-library/react";
 
 import useCheckboxState from "../useCheckboxState";
 

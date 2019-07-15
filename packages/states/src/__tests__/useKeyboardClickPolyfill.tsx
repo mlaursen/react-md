@@ -1,6 +1,6 @@
 import React, { FC, Ref } from "react";
-import { renderHook } from "react-hooks-testing-library";
-import { cleanup, fireEvent, render } from "react-testing-library";
+import { renderHook } from "@testing-library/react-hooks";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 
 import useKeyboardClickPolyfill from "../useKeyboardClickPolyfill";
 

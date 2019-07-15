@@ -1,6 +1,6 @@
 import React, { FC, MutableRefObject } from "react";
-import { cleanup, render } from "react-testing-library";
-import { renderHook } from "react-hooks-testing-library";
+import { cleanup, render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
 import useNestedDialogFixes from "../useNestedDialogFixes";
 import { NestedDialogContextProvider } from "../NestedDialogContext";

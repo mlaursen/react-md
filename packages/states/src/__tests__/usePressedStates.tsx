@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, createRef } from "react";
-import { renderHook } from "react-hooks-testing-library";
-import { fireEvent, render, cleanup } from "react-testing-library";
+import { renderHook } from "@testing-library/react-hooks";
+import { fireEvent, render, cleanup } from "@testing-library/react";
 
 import usePressedStates from "../usePressedStates";
 

@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { cleanup, render } from "react-testing-library";
+import { cleanup, render } from "@testing-library/react";
 
 import usePreviousFocus, { FocusFallback } from "../usePreviousFocus";
 

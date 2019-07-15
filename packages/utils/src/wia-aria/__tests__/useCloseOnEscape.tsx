@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { render, cleanup, fireEvent } from "react-testing-library";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import useCloseOnEscape from "../useCloseOnEscape";
 

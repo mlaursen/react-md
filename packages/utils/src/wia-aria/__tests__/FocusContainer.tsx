@@ -1,5 +1,5 @@
 import React, { Fragment, FC } from "react";
-import { cleanup, render } from "react-testing-library";
+import { cleanup, render } from "@testing-library/react";
 
 import FocusContainer, { FocusContainerProps } from "../FocusContainer";
 

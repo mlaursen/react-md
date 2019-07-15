@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "react-testing-library";
+import { cleanup, render } from "@testing-library/react";
 
 import { AppSizeListener, useAppSizeContext } from "../AppSize";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../constants";

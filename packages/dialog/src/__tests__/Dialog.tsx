@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { cleanup, render, wait } from "react-testing-library";
+import { cleanup, render, wait } from "@testing-library/react";
 
 import Dialog from "../Dialog";
 import DialogContent from "../DialogContent";

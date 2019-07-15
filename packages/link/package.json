@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@reach/router": "^1.2.1",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.1"
   },
   "peerDependencies": {
     "react": ">= 16.8"

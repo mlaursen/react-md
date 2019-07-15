@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { cleanup, render } from "react-testing-library";
+import { cleanup, render } from "@testing-library/react";
 
 import useFocusOnMount from "../useFocusOnMount";
 
