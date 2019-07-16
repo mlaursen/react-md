@@ -36,6 +36,7 @@ exports[`FileInput should apply styles correctly 1`] = `
     id="test-input"
     tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;
@@ -77,6 +78,7 @@ exports[`FileInput should render the form control props correctly 1`] = `
     name="images"
     tabindex="-1"
     type="file"
+    value=""
   />
 </div>
 `;

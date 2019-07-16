@@ -334,8 +334,8 @@ export default class SelectionControlGroup extends PureComponent {
     if (this.props.type === 'checkbox') {
       const { checked } = e.target;
       const currentValue = getField(this.props, this.state, 'value');
-      const existsIndex = currentValue.indexOf(value);
-      if (existsIndex === -1 && checked) {
+      const existsIndex = this._isChecked(currentValue, value, 'checkbox');
+      if (!existsIndex && checked) {
         value = `${currentValue ? `${currentValue},` : ''}${value}`;
       } else if (existsIndex > -1 && !checked) {
         value = currentValue.replace(new RegExp(`${value},?`), '');
