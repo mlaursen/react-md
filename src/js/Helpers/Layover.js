@@ -488,7 +488,16 @@ export default class Layover extends PureComponent {
     return animationPosition === Layover.Positions.BELOW && belowAnchor || anchor;
   }
 
-  _isCenteredDialog = () => this._dialog && this._dialog.classList.contains('md-dialog--centered');
+  /**
+   * One of the past versions of react-md introduced flex-positioned dialogs that
+   * no longer use a negative transform to center the dialogs. This function is
+   * normally called to update the position by re-adding the negative transform again
+   * back to the fixed element so it can be positioned correctly. So if this is
+   * a flex-positioned dialog, we don't need to do this hack.
+   */
+  _isCenteredDialog = () => this._dialog
+    && this._dialog.classList.contains('md-dialog--centered')
+    && window.getComputedStyle(this._dialog).transform !== 'none';
 
   _createStyles = (anchor, centered, child, rect) => {
     const { x, y } = anchor;
@@ -865,10 +874,6 @@ export default class Layover extends PureComponent {
       }
 
       if (this.props.simplified || !this._child || (!this._toggle && !this._contextRect)) {
-        return;
-      }
-
-      if (this._dialog && this._dialog.classList.contains('md-dialog--centered')) {
         return;
       }
 
