@@ -1,3 +1,12 @@
+## July 2019
+
+### v1.12.2 Release
+
+#### Changelog
+
+- Fixed an issue with the `SelectionControlGroup` incorrectly checking inputs with the same name. ([@tolads] - [pull-838])
+- Fixed a small `Layover` repositioning issue when placed within dialogs. [commit-acf8590]
+
 ## May 2019
 
 ### v1.12.1 Released
