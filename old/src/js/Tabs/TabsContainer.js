@@ -120,6 +120,18 @@ export default class TabsContainer extends PureComponent {
     ]).isRequired,
 
     /**
+     * An optional ref callback to get reference to the top-most element of the rendered container.
+     * Just like other refs, this will provide null when it unmounts.
+     *
+     * This is helpful if you'd like access the DOM node for a parent Component without needing to use
+     * `ReactDOM.findDOMNode`.
+     */
+    componentRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
+
+    /**
      * The component to render each `TabPanel` as.
      */
     panelComponent: PropTypes.oneOfType([
@@ -249,7 +261,16 @@ export default class TabsContainer extends PureComponent {
   };
 
   _setContainer = (container) => {
+    const { componentRef } = this.props;
     this._container = findDOMNode(container);
+    if (componentRef) {
+      const refType = typeof componentRef;
+      if (refType === 'function') {
+        componentRef(this._container);
+      } else if (refType === 'object') {
+        componentRef.current = this._container;
+      }
+    }
   };
 
   _resizePanel = () => {
@@ -291,6 +312,7 @@ export default class TabsContainer extends PureComponent {
       activeTabIndex: propActiveTabeIndex,
       onTabChange,
       defaultTabIndex,
+      componentRef,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

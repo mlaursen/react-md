@@ -1,3 +1,8 @@
+let serverUrl = '';
+if (process.env.NODE_ENV === 'production') {
+  serverUrl = PUBLIC_URL;
+}
+
 /**
  * Gets the fully resolved hostname for the current request.
  *
@@ -8,7 +13,7 @@
  * @return {String} the fully resolved hostname.
  */
 export default function getServerUrl(req) {
-  return `${req.protocol}://${req.get('host')}`;
+  return serverUrl || `${req.protocol}://${req.get('host')}`;
 }
 
 /**

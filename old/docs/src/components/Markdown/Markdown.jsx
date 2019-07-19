@@ -71,7 +71,7 @@ export class PureMarkdown extends PureComponent {
     const links = this.container.querySelectorAll('a.link,a.quick-link__link');
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
-      if (!link.href.match(/sassdoc/) && link.href.match(/^(https?:\/\/(localhost|react-md).*\/)|(\?tab=(1|2)#.*)/)) {
+      if (!link.href.match(/sassdoc/) && link.href.match(/^(https?:\/\/(localhost|react-md\.mlaursen).*\/)|(\?tab=(1|2)#.*)/)) {
         link.onclick = (e) => {
           e.preventDefault();
           const href = link.href.replace(window.location.origin, '');

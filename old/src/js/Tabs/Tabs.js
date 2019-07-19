@@ -162,6 +162,14 @@ export default class Tabs extends PureComponent {
     overflowMenuLabel: PropTypes.node.isRequired,
 
     /**
+     * This is the height for the active tab indicator underline. This should match the value of
+     * `$md-tab-indicator-height` set in SCSS.
+     *
+     * @see [$md-tab-indicator-height](/components/tabs?tab=2#variable-md-tab-indicator-height)
+     */
+    indicatorHeight: PropTypes.number,
+
+    /**
      * Boolean if the tabs are currently rendered on a mobile or tablet device. This is used to calculate
      * overflow/padding on the tabs.
      */
@@ -179,6 +187,7 @@ export default class Tabs extends PureComponent {
   static defaultProps = {
     component: 'ul',
     defaultTabIndex: 0,
+    indicatorHeight: 2,
     nextIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
     previousIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
     overflowMenuLabel: 'More',
@@ -424,6 +433,7 @@ export default class Tabs extends PureComponent {
       nextIcon,
       previousIcon,
       overflowMenuIcon,
+      indicatorHeight,
 
       // deprecated
       overflowMenuIconChildren,
@@ -534,7 +544,12 @@ export default class Tabs extends PureComponent {
         {children}
         {nextControl}
         {overflow}
-        <TabIndicator offset={indicatorOffset} width={indicatorWidth} visible={indicatorVisible} />
+        <TabIndicator
+          offset={indicatorOffset}
+          height={indicatorHeight}
+          width={indicatorWidth}
+          visible={indicatorVisible}
+        />
       </Component>
     );
   }

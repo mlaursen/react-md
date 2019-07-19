@@ -71,8 +71,60 @@ export default class SelectionControl extends PureComponent {
 
     /**
      * An optional className to apply to the selection control's container.
+     * When a function is specified as prop value its returned value will be used as className.
+     * The following parameters will be passed into the function:
+     * - component's props (by default value from state is used for `checked` prop)
+     * - reference to component
      */
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional className to apply to the selection control.
+     * When a function is specified as prop value its returned value will be used as className.
+     * The following parameters will be passed into the function:
+     * - component's props (by default value from state is used for `checked` prop)
+     * - reference to component
+     */
+    controlClassName: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional className to apply to the selection input element.
+     * The following parameters will be passed into the function:
+     * - component's props (by default value from state is used for `checked` prop)
+     * - reference to component
+     */
+    inputClassName: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional className to apply to the selection label element.
+     * The following parameters will be passed into the function:
+     * - component's props (by default value from state is used for `checked` prop)
+     * - reference to component
+     */
+    labelClassName: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional className to apply to the selection label's text element.
+     * The following parameters will be passed into the function:
+     * - component's props (by default value from state is used for `checked` prop)
+     * - reference to component
+     */
+    labelTextClassName: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
 
     /**
      * The type of selection control to render.
@@ -265,6 +317,12 @@ export default class SelectionControl extends PureComponent {
     this._container = container;
   };
 
+  _getClassName(className, props) {
+    return typeof className === 'function'
+      ? className(props, this)
+      : className;
+  }
+
   _getIcon = () => {
     const { checkedIcon, uncheckedIcon, type } = this.props;
     const checked = getField(this.props, this.state, 'checked');
@@ -312,6 +370,10 @@ export default class SelectionControl extends PureComponent {
       id,
       style,
       className,
+      controlClassName,
+      inputClassName,
+      labelClassName,
+      labelTextClassName,
       inline,
       type,
       name,
@@ -351,14 +413,22 @@ export default class SelectionControl extends PureComponent {
     } = this.props;
 
     const checked = getField(this.props, this.state, 'checked');
+    const getClassNameProps = Object.assign({}, this.props, { checked });
     const isSwitch = type === 'switch';
     const labelId = this.props.label && `${id}-label`;
-    const label = this.props.label && <span id={labelId}>{this.props.label}</span>;
+    const label = this.props.label
+      &&
+      <span
+        id={labelId}
+        className={this._getClassName(labelTextClassName, getClassNameProps)}
+      >{this.props.label}</span>;
 
+    const classValue = this._getClassName(controlClassName, getClassNameProps);
     let control;
     if (isSwitch) {
       control = (
         <SwitchTrack
+          className={classValue}
           disabled={disabled}
           checked={checked}
           aria-label={ariaLabel}
@@ -375,7 +445,7 @@ export default class SelectionControl extends PureComponent {
             disabled,
             hint: !checked,
             secondary: checked,
-          }))}
+          }), classValue)}
           aria-checked={checked}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy || labelId}
@@ -396,7 +466,7 @@ export default class SelectionControl extends PureComponent {
         className={cn('md-selection-control-container', {
           'md-selection-control-container--inline': inline,
           'md-switch-container': isSwitch,
-        }, className)}
+        }, this._getClassName(className, getClassNameProps))}
         onKeyDown={this._handleKeyDown}
       >
         <input
@@ -406,7 +476,8 @@ export default class SelectionControl extends PureComponent {
           checked={checked}
           onChange={this._handleChange}
           disabled={disabled}
-          className="md-selection-control-input"
+          className={cn('md-selection-control-input',
+            this._getClassName(inputClassName, getClassNameProps))}
           name={name}
           value={value}
           aria-hidden
@@ -415,7 +486,7 @@ export default class SelectionControl extends PureComponent {
           htmlFor={id}
           className={cn('md-selection-control-label', {
             'md-pointer--hover': !disabled,
-          }, themeColors({ disabled, text: !disabled }))}
+          }, themeColors({ disabled, text: !disabled }), this._getClassName(labelClassName, getClassNameProps))}
         >
           {labelBefore && label}
           {control}

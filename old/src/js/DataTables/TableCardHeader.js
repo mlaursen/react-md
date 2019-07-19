@@ -1,4 +1,4 @@
-import React, { PureComponent, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, isValidElement, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
@@ -94,10 +94,7 @@ export default class TableCardHeader extends PureComponent {
      * An additional children to display after the `title` or `leftChildren` prop.
      * This is _normally_ a list of icon button or menu button.
      */
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element),
-    ]),
+    children: PropTypes.node,
 
     /**
      * An optional button/menu button or a list of button/menu button to display in the
@@ -173,7 +170,7 @@ export default class TableCardHeader extends PureComponent {
     }
 
     return Children.map(Children.toArray(children), (child, i) => {
-      if (i === 0) {
+      if (i === 0 && isValidElement(child)) {
         return cloneElement(child, { className: cn('md-cell--right', child.props.className) });
       }
 

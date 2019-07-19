@@ -31,6 +31,7 @@ export interface TabsProps extends Props {
   previousIcon?: React.ReactElement<any>;
   overflowMenuIcon?: React.ReactElement<any>;
   overflowMenuLabel?: React.ReactNode;
+  indicatorHeight?: number;
 
   /**
    * @deprecated

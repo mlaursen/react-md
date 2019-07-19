@@ -20,6 +20,7 @@ export default class StateChip extends PureComponent {
     return (
       <Chip
         {...props}
+        className="state-chip"
         onClick={this.handleRemove}
         removable
         label={name}

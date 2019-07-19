@@ -5,6 +5,7 @@ import { Motion, spring } from 'react-motion';
 export default class TabIndicator extends PureComponent {
   static propTypes = {
     offset: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
     visible: PropTypes.bool,
   };
@@ -16,7 +17,7 @@ export default class TabIndicator extends PureComponent {
         style={{
           x: spring(this.props.offset),
           width: spring(this.props.width),
-          height: spring(visible ? 2 : 0),
+          height: spring(visible ? this.props.height : 0),
         }}
       >
         {({ x, height, width }) => {

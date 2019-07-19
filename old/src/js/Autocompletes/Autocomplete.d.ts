@@ -7,8 +7,6 @@ import {
 } from '../Helpers/Layover'
 import { BaseMenuProps } from '../Menus'
 
-type OnOffType = 'on' | 'off';
-
 type DataType = Array<React.ReactElement<any> | string | number | { [dataLabel: string]: string | number }>;
 
 export interface AutocompleteProps extends BaseMenuProps {
@@ -41,7 +39,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   focusInputOnAutocomplete?: boolean;
   onMenuOpen?: Function;
   onMenuClose?: Function;
-  autoComplete?: OnOffType;
+  autoComplete?: string;
   position?: LayoverPositions;
   simplifiedMenu?: boolean;
   toolbar?: boolean;

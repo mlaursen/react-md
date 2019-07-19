@@ -10,6 +10,7 @@ export interface SnackbarProps extends Props {
   onDismiss: Function;
   autohide?: boolean;
   autohideTimeout?: number;
+  autoFocusAction?: boolean;
   transitionName?: string;
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
