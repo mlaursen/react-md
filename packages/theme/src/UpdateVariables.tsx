@@ -59,7 +59,9 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
     return (children as VariableChildrenRenderer)({
       style: createCSSVariablesStyle(variables, style),
     });
-  } else if (clone) {
+  }
+
+  if (clone) {
     // can "safely" typecast this since it'll throw an error if they don't provide
     // children anyways
     const child = Children.only(children as StyleableChild);
@@ -74,5 +76,26 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
 
   return (children as StyleableChild) || null;
 };
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    UpdateVariables.propTypes = {
+      clone: PropTypes.bool,
+      style: PropTypes.object,
+      variables: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        })
+      ).isRequired,
+      children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    };
+  }
+}
 
 export default UpdateVariables;

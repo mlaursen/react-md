@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import Container from "./Container";
 import { Button } from "@react-md/button";
+
+import Container from "./Container";
 
 const ContainedButtons: FC = () => (
   <Container>

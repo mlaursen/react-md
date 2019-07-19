@@ -71,6 +71,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
     visibilityLabel,
     ...props
   } = providedProps as WithDefaultProps;
+  const { id } = props;
   const [type, setType] = useState<"password" | "text">("password");
   const toggle = useCallback(() => {
     setType(prevType => (prevType === "password" ? "text" : "password"));
@@ -90,7 +91,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
       rightChildren={
         !disableVisibility && (
           <Button
-            id={`${props.id}-password-toggle`}
+            id={`${id}-password-toggle`}
             aria-label={visibilityLabel}
             buttonType="icon"
             onClick={toggle}

@@ -1,86 +1,36 @@
 import React from "react";
-import { mount } from "enzyme";
+import { cleanup, render } from "@testing-library/react";
 
 import MediaOverlay from "../MediaOverlay";
 
+afterEach(cleanup);
+
 describe("MediaOverlay", () => {
   it("should apply the correct class names", () => {
-    const overlay = mount(<MediaOverlay />);
+    const { getByTestId, rerender } = render(
+      <MediaOverlay data-testid="div" />
+    );
+    const div = getByTestId("div");
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--bottom");
 
-    let div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
+    rerender(<MediaOverlay data-testid="div" position="top" />);
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--top");
 
-    overlay.setProps({ position: "top" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
+    rerender(<MediaOverlay data-testid="div" position="right" />);
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--right");
 
-    overlay.setProps({ position: "right" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
+    rerender(<MediaOverlay data-testid="div" position="left" />);
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--left");
 
-    overlay.setProps({ position: "left" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
+    rerender(<MediaOverlay data-testid="div" position="center" />);
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--center");
 
-    overlay.setProps({ position: "center" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
+    rerender(<MediaOverlay data-testid="div" position="middle" />);
+    expect(div.className).toBe("rmd-media-overlay rmd-media-overlay--middle");
 
-    overlay.setProps({ position: "middle" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(false);
-
-    overlay.setProps({ position: "absolute-center" });
-    div = overlay.find("div");
-    expect(div.hasClass("rmd-media-overlay")).toBe(true);
-    expect(div.hasClass("rmd-media-overlay--top")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--right")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--bottom")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--left")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--center")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--middle")).toBe(false);
-    expect(div.hasClass("rmd-media-overlay--absolute-center")).toBe(true);
+    rerender(<MediaOverlay data-testid="div" position="absolute-center" />);
+    expect(div.className).toBe(
+      "rmd-media-overlay rmd-media-overlay--absolute-center"
+    );
   });
 });

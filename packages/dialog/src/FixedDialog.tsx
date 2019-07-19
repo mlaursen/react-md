@@ -153,6 +153,39 @@ if (process.env.NODE_ENV !== "production") {
         transformOrigin: PropTypes.bool,
       }),
       getOptions: PropTypes.func,
+      onRequestClose: PropTypes.func.isRequired,
+      overlayHidden: PropTypes.bool,
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      disableScrollLock: PropTypes.bool,
+      anchor: PropTypes.shape({
+        x: PropTypes.oneOf([
+          "inner-left",
+          "inner-right",
+          "center",
+          "left",
+          "right",
+        ]),
+        y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
+      }),
     };
   }
 }

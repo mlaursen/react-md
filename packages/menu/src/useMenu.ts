@@ -1,9 +1,10 @@
-import { Ref } from "react";
-import useMenuRef from "./useMenuRef";
-import useCloseOnScroll from "./useCloseOnScroll";
+import { HTMLAttributes, MutableRefObject, Ref } from "react";
+
 import useCloseOnOutsideClick from "./useCloseOnOutsideClick";
+import useCloseOnScroll from "./useCloseOnScroll";
 import useMenuClick from "./useMenuClick";
 import useMenuKeyDown from "./useMenuKeyDown";
+import useMenuRef from "./useMenuRef";
 
 export interface MenuOptions {
   /**
@@ -58,6 +59,13 @@ export interface MenuOptions {
   disableCloseOnScroll?: boolean;
 }
 
+interface ReturnValue
+  extends Pick<HTMLAttributes<HTMLDivElement>, "onClick" | "onKeyDown"> {
+  ref: (instance: HTMLDivElement | null) => void;
+  menuRef: MutableRefObject<HTMLDivElement | null>;
+  onScroll?: (event: Event) => void;
+}
+
 /**
  * This hook is used to provide all the menu functionality within the `Menu` component.
  * It'll ensure that:
@@ -77,7 +85,7 @@ export default function useMenu({
   onKeyDown: propOnKeyDown,
   onRequestClose,
   disableCloseOnScroll = false,
-}: MenuOptions) {
+}: MenuOptions): ReturnValue {
   const { menu, ref } = useMenuRef(forwardedRef);
   const onScroll = useCloseOnScroll({
     menu,

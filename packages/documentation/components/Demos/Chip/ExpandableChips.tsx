@@ -15,7 +15,7 @@ import "./ExpandableChips.scss";
 const PERSONAL_EMAIL = "jjeckhart@email.com";
 const WORK_EMAIL = "jjeckhart@workemail.com";
 
-const getSrc = (isWork: boolean) =>
+const getSrc = (isWork: boolean): string =>
   `https://i.pravatar.cc/40?img=${isWork ? 4 : 3}`;
 
 const block = bem("expandable-chip-example");

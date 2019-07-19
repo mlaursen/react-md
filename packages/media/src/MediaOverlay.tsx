@@ -45,7 +45,10 @@ const MediaOverlay: FC<MediaOverlayProps & WithRef> = providedProps => {
     <div
       {...props}
       ref={forwardedRef}
-      className={cn(`rmd-media-overlay rmd-media-overlay--${position}`)}
+      className={cn(
+        `rmd-media-overlay rmd-media-overlay--${position}`,
+        className
+      )}
     >
       {children}
     </div>
@@ -68,6 +71,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     MediaOverlay.propTypes = {
+      className: PropTypes.string,
       position: PropTypes.oneOf([
         "top",
         "right",

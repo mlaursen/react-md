@@ -16,7 +16,7 @@ export default function useMenuKeyDown({
   onKeyDown,
   onRequestClose,
   horizontal,
-}: MenuKeyDownOptions) {
+}: MenuKeyDownOptions): React.KeyboardEventHandler<HTMLDivElement> {
   return useKeyboardMovement<HTMLDivElement>({
     onKeyDown(event) {
       if (onKeyDown) {

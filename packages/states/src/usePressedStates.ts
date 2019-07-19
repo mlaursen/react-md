@@ -8,6 +8,11 @@ interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
   disableSpacebarClick?: boolean;
 }
 
+interface ReturnValue<E extends HTMLElement> {
+  pressed: boolean;
+  handlers: MergableRippleHandlers<E>;
+}
+
 /**
  * This is a different version of the useRippleStates that will allow you to know
  * when a component is being pressed by the user. This is really just a fallback for
@@ -22,7 +27,7 @@ interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
 export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   handlers = {},
   disableSpacebarClick = false,
-}: PressedStatesOptions<E> = {}) {
+}: PressedStatesOptions<E> = {}): ReturnValue<E> {
   const [pressed, setPressed] = useState(false);
   const ref = useRefCache({ ...handlers, pressed });
 

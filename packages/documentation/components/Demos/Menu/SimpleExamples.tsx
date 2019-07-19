@@ -1,13 +1,13 @@
 import React, { FC } from "react";
+import {
+  ArrowDropDownSVGIcon,
+  HomeSVGIcon,
+  InfoOutlineSVGIcon,
+  MoreVertSVGIcon,
+} from "@react-md/material-icons";
 import { DropdownMenu, MenuItem, MenuItemLink } from "@react-md/menu";
 
 import Container from "./Container";
-import {
-  HomeSVGIcon,
-  MoreVertSVGIcon,
-  InfoOutlineSVGIcon,
-  ArrowDropDownSVGIcon,
-} from "@react-md/material-icons";
 
 const items = [
   "Item 1",

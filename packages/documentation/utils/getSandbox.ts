@@ -1,4 +1,6 @@
 import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
+
 import { upperFirst } from "./toTitle";
 
 export default function getSandbox(
@@ -20,7 +22,10 @@ interface Query {
   name?: string | string[];
 }
 
-export async function getSandboxByQuery({ pkg, name }: Query = {}) {
+export async function getSandboxByQuery({
+  pkg,
+  name,
+}: Query = {}): Promise<IFiles | null> {
   if (!name || !pkg) {
     return null;
   }

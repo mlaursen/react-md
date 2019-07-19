@@ -10,7 +10,10 @@ export interface Heading {
  * the route changes client side only. There might be a better way to handle this for
  * SSR, but it feels like it would be something I need to figure out pre-build time.
  */
-export default function usePageHeadings(pathname: string, disabled: boolean) {
+export default function usePageHeadings(
+  pathname: string,
+  disabled: boolean
+): Heading[] {
   const [headings, setHeadings] = useState<Heading[]>([]);
   useEffect(() => {
     if (disabled) {

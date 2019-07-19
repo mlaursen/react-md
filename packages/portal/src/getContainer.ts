@@ -17,7 +17,7 @@ export type PortalInto = (() => HTMLElement) | HTMLElement | string | null;
 export default function getContainer(
   into?: PortalInto | undefined,
   intoId?: string | undefined
-) {
+): HTMLElement | null {
   if (typeof document === "undefined") {
     return null;
   }

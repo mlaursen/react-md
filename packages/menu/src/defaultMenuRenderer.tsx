@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, ReactElement } from "react";
 import { List } from "@react-md/list";
 import { LabelRequiredForA11y } from "@react-md/utils";
 
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import { Item } from "./defaultItemRenderer";
 import Menu, { MenuProps } from "./Menu";
-import { RenderConditionalPortalProps } from "@react-md/portal";
 
 export type MenuPositionProps = Pick<
   MenuProps,
@@ -50,7 +50,7 @@ export default function defaultMenuRenderer({
   horizontal,
   children,
   ...props
-}: LabelRequiredForA11y<InjectedMenuProps>) {
+}: LabelRequiredForA11y<InjectedMenuProps>): ReactElement {
   return (
     <Menu {...props} horizontal={horizontal}>
       <List horizontal={horizontal}>{children}</List>

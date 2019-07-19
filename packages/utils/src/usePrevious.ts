@@ -7,6 +7,6 @@ import useRefCache from "./useRefCache";
  * @param value The value that should be tracked
  * @return the previous value of the provided value
  */
-export default function usePrevious<T>(value: T) {
+export default function usePrevious<T>(value: T): T {
   return useRefCache(value).current;
 }

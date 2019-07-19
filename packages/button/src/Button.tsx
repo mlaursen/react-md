@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { forwardRef, FC, ReactNode, ButtonHTMLAttributes } from "react";
 import {
   InteractionStatesOptions,
@@ -56,6 +57,7 @@ const Button: FC<ButtonProps & WithRef> = providedProps => {
     enablePressedAndRipple: propEnablePressedAndRipple,
     ...props
   } = providedProps as ButtonWithDefaultProps;
+  const { disabled } = props;
 
   const enablePressedAndRipple =
     typeof propEnablePressedAndRipple === "boolean"
@@ -65,7 +67,7 @@ const Button: FC<ButtonProps & WithRef> = providedProps => {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: buttonThemeClassNames(providedProps),
-    disabled: props.disabled,
+    disabled,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -103,6 +105,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Button.propTypes = {
+      type: PropTypes.oneOf(["button", "reset", "submit"]),
       className: PropTypes.string,
       theme: PropTypes.oneOf([
         "clear",

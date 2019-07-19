@@ -26,9 +26,9 @@ const NotFoundPage: FC<Props> = ({ className }) => {
       </Text>
       <TextContainer className={block("message")}>
         <Text type="headline-6">
-          Looks like this page can't be found. You can try using the navigation
-          tree to find a specific page or return the home page with the link
-          below.
+          Looks like this page can&apos;t be found. You can try using the
+          navigation tree to find a specific page or return the home page with
+          the link below.
         </Text>
       </TextContainer>
       <LinkButton

@@ -7,7 +7,7 @@ interface PositionOptions {
   threshold: number;
 }
 
-const NOOP = () => {};
+const NOOP = (): void => {};
 
 interface PositionResult {
   position: SimplePosition;
@@ -61,6 +61,7 @@ export default function usePosition({
           nextPosition = "left";
         }
         break;
+      // no default
     }
 
     if (prevPosition.current !== nextPosition) {

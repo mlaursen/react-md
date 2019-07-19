@@ -55,6 +55,12 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
   enablePressedAndRipple?: boolean;
 }
 
+interface ReturnValue<E extends HTMLElement> {
+  ripples: ReactNode;
+  className: string | undefined;
+  handlers: MergableRippleHandlers<E>;
+}
+
 /**
  * This is probably one of the most useful hook in react-md. Any functional component component that uses
  * this will gain all the different interaction states based on the states context or any custom overrides.
@@ -82,7 +88,7 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
  */
 export function useInteractionStates<E extends HTMLElement = HTMLElement>(
   options: InteractionStatesOptions<E> = {}
-) {
+): ReturnValue<E> {
   const {
     disabled,
     rippleClassName,
@@ -146,6 +152,7 @@ export function useInteractionStates<E extends HTMLElement = HTMLElement>(
     className = cn(className, { "rmd-states--pressed": pressedResult.pressed });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   handlers = handlers || options.handlers || ({} as MergableRippleHandlers<E>);
 
   handlers.onKeyDown = useKeyboardClickPolyfill({

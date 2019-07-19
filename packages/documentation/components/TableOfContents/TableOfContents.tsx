@@ -4,12 +4,13 @@ import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
+import useAppSizeContext from "components/Layout/useAppSizeContext";
+
 import "./TableOfContents.scss";
 
 import List from "./List";
 import Toggle from "./Toggle";
 import usePageHeadings from "./usePageHeadings";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 export interface TableOfContentsProps {
   pathname: string;

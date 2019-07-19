@@ -25,7 +25,7 @@ export default function useFocusOnMount(
   defaultFocus: Focus,
   programatic: boolean = false,
   disabled: boolean = false
-) {
+): void {
   useEffect(() => {
     if (disabled) {
       return;

@@ -3,14 +3,10 @@ import toc from "markdown-toc";
 import log from "loglevel";
 import { glob, time, list, format } from "./utils";
 
-export default async function markdownTOC(globString: string) {
-  time(() => doWork(globString), "toc");
-}
-
 const START_TOKEN = "<!-- toc -->";
 const STOP_TOKEN = "<!-- tocstop -->";
 
-async function doWork(globString: string) {
+async function doWork(globString: string): Promise<void> {
   log.debug("Searching for markdown pages using:");
   log.debug(` - "${globString}"`);
   log.debug();
@@ -35,6 +31,7 @@ async function doWork(globString: string) {
     }
 
     if (start === -1 || end === -1) {
+      /* eslint-disable no-console */
       console.error(
         "A markdown file does not have the required comments so a " +
           "table of contents can be generated. Update " +
@@ -65,4 +62,8 @@ ${markdown.substring(end + STOP_TOKEN.length)}
 
     await fs.writeFile(filePath, updated);
   });
+}
+
+export default async function markdownTOC(globString: string): Promise<void> {
+  time(() => doWork(globString), "toc");
 }

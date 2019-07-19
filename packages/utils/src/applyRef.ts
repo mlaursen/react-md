@@ -7,7 +7,7 @@ import { Ref } from "react";
  * @param instance - The DOM Node instance
  * @param ref - The prop ref
  */
-export default function applyRef<E>(instance: E | null, ref?: Ref<E>) {
+export default function applyRef<E>(instance: E | null, ref?: Ref<E>): void {
   if (!ref) {
     return;
   }

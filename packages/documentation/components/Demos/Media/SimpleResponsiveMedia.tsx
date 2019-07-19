@@ -1,7 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 import React, { FC, Fragment } from "react";
 import { MediaContainer } from "@react-md/media";
 
 import "./SimpleResponsiveMedia.scss";
+
 const images = [
   "/200/300?image=30",
   "/300/200?image=3",
@@ -16,7 +18,7 @@ const SimpleResponsiveImages: FC = () => (
         <img
           src={`https://picsum.photos${image}`}
           role="presentation"
-          alt="An image from https://picsum.photos"
+          alt="From https://picsum.photos"
         />
       </MediaContainer>
     ))}

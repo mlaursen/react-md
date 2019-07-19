@@ -52,6 +52,24 @@ const defaultProps: DefaultProps = {
 
 MenuItem.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  MenuItem.displayName = "MenuItem";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    MenuItem.propTypes = {
+      id: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      role: PropTypes.string,
+      tabIndex: PropTypes.number,
+    };
+  }
+}
+
 export default forwardRef<HTMLLIElement, MenuItemProps>((props, ref) => (
   <MenuItem {...props} forwardedRef={ref} />
 ));

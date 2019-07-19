@@ -22,7 +22,10 @@ export interface ResolveConfig {
   cleanOnly: boolean;
 }
 
-async function createSandboxJsonFiles(components: string[], empty: boolean) {
+async function createSandboxJsonFiles(
+  components: string[],
+  empty: boolean
+): Promise<void> {
   const matcher = components.length
     ? `+(${components.map(name => toTitle(name)).join("|")})`
     : "*";
@@ -133,7 +136,7 @@ async function createSandboxJsonFiles(components: string[], empty: boolean) {
  *
  * This will take a long time...
  */
-export default async function sandbox(config: ResolveConfig) {
+export default async function sandbox(config: ResolveConfig): Promise<void> {
   const {
     components,
     lookupsOnly,

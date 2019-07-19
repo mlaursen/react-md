@@ -56,7 +56,7 @@ export const StatesConfigContext = createContext<StatesConfigContextType>({
  * used anywhere else. It's mostly used to just use the context defaults when
  * the timeout or classNames are undefined.
  */
-export function useStatesConfigContext() {
+export function useStatesConfigContext(): StatesConfigContextType {
   return useContext(StatesConfigContext);
 }
 

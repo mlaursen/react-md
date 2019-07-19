@@ -1,4 +1,4 @@
-/* eslint-disable react/no-danger */
+/* eslint-disable react/no-danger, react/jsx-filename-extension, import/no-unresolved */
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import Cookie from 'js-cookie';
@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
     if (ctx && ctx.req) {
       ({ theme = 'dark' } = ctx.req.cookies);
     } else if (typeof window !== 'undefined') {
-      theme = Cookie.get('theme');
+      theme = Cookie.get('theme') || 'dark';
     }
 
     return {

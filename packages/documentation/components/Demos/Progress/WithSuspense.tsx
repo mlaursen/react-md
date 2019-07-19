@@ -53,6 +53,7 @@ const WithSuspense: FC = () => {
         break;
       case State.COMPELTED:
         reset();
+      // no default
     }
   }, []);
 

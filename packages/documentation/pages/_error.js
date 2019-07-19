@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types, import/no-unresolved, react/jsx-filename-extension */
 import React, { Component } from 'react';
 import Router from 'next/router';
 import { Button } from '@react-md/button';

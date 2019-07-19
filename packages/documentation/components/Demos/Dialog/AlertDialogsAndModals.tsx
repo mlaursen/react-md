@@ -13,8 +13,10 @@ if you really want to submit this.
 
 const AlertDialogsAndModals: FC = () => {
   const [state, setState] = useState({ visible: false, modal: false });
-  const hide = () => setState(prevState => ({ ...prevState, visible: false }));
-  const show = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const hide = (): void => {
+    setState(prevState => ({ ...prevState, visible: false }));
+  };
+  const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setState({
       visible: true,
       modal: event.currentTarget.id === "draft-submit",

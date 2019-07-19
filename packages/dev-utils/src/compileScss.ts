@@ -16,7 +16,10 @@ export interface CompileOptions extends nodeSass.SyncOptions {
   customIncludePaths?: string[];
 }
 
-export function compileScss(options: CompileOptions, exit: boolean = true) {
+export function compileScss(
+  options: CompileOptions,
+  exit: boolean = true
+): nodeSass.Result {
   try {
     const { includePaths = [src], customIncludePaths, ...opts } = options;
     return nodeSass.renderSync({
@@ -25,6 +28,7 @@ export function compileScss(options: CompileOptions, exit: boolean = true) {
     });
   } catch (e) {
     if (exit) {
+      /* eslint-disable no-console */
       console.error(e.formatted);
       console.error();
       process.exit(1);
@@ -40,10 +44,28 @@ export interface PostCSSOptions {
   outFile: string;
 }
 
+export function checkForInvalidCSS(css: string): void {
+  const matches = css.match(/.*rmd(-[a-z]+)+\(.*\n/);
+  if (!matches) {
+    return;
+  }
+
+  const matchContext = css.match(/(.*\n){0,3}.*rmd(-[a-z]+)+\(.*\n(.*\n){0,3}/);
+  log.error(
+    "There is invalid compiled css in this bundle. Please check the scss files"
+  );
+  log.error("to try to fix these issues.");
+  log.error(list(matches.slice(0, matches.length - 1)));
+  log.error("");
+  log.error(matchContext[0].trim());
+  log.error("");
+  process.exit(1);
+}
+
 export async function postcss(
   css: string,
   { production, srcFile, outFile }: PostCSSOptions
-) {
+): Promise<nodePostcss.Result> {
   log.debug("Running postcss with the following plugins:");
   log.debug(
     list(
@@ -81,22 +103,4 @@ export async function postcss(
   checkForInvalidCSS(result.css);
 
   return result;
-}
-
-export function checkForInvalidCSS(css: string) {
-  const matches = css.match(/.*rmd(-[a-z]+)+\(.*\n/);
-  if (!matches) {
-    return;
-  }
-
-  const matchContext = css.match(/(.*\n){0,3}.*rmd(-[a-z]+)+\(.*\n(.*\n){0,3}/);
-  console.error(
-    "There is invalid compiled css in this bundle. Please check the scss files"
-  );
-  log.error("to try to fix these issues.");
-  log.error(list(matches.slice(0, matches.length - 1)));
-  log.error("");
-  log.error(matchContext[0].trim());
-  log.error("");
-  process.exit(1);
 }

@@ -25,7 +25,7 @@ const sassdocTypes = path.join(sassdocDir, "sassdoc.d.ts");
 const customTypes = path.join(sassdocDir, "types.d.ts");
 const types = [sassdocTypes, customTypes];
 
-async function run(clean: boolean) {
+async function run(clean: boolean): Promise<void> {
   const packages = await geScopedPackageNames({ filter: "scss" });
   const pattern = `../+(${packages.join("|")})/src/*.scss`;
   log.debug("Using the following glob pattern for finding sassdoc:");
@@ -87,6 +87,7 @@ async function run(clean: boolean) {
         );
         break;
       default:
+        /* eslint-disable no-console */
         console.error(
           "Unsupported sassdoc type due to bad sassdoc comments or something else."
         );
@@ -136,6 +137,6 @@ export default ${fileName};
   log.info("");
 }
 
-export default async function sassdoc(clean: boolean) {
+export default async function sassdoc(clean: boolean): Promise<void> {
   time(() => run(clean), "sassdoc");
 }

@@ -19,7 +19,7 @@ export default function focusElementWithin(
   focus: Focus,
   programatic: boolean = false,
   elements?: HTMLElement[]
-) {
+): void {
   if (!elements || !elements.length) {
     elements = getFocusableElements(container, programatic);
   }
@@ -27,7 +27,7 @@ export default function focusElementWithin(
   let el: HTMLElement | null;
   switch (focus) {
     case "first":
-      el = elements[0];
+      [el] = elements;
       break;
     case "last":
       el = elements[elements.length - 1];

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { useRippleTransition } from "./reducer";
 import RippleContainer from "./RippleContainer";
-import { RipplesOptions } from "./types.d";
+import { RipplesOptions, MergableRippleHandlers } from "./types.d";
 import useRippleHandlers from "./useRippleHandlers";
+
+interface ReturnValue<E extends HTMLElement> {
+  handlers: MergableRippleHandlers<E>;
+  ripples: ReactNode;
+}
 
 /**
  * A hook that will return an object containing the ripples element
@@ -17,7 +22,7 @@ export default function useRipples<E extends HTMLElement = HTMLElement>({
   rippleClassName,
   disableSpacebarClick,
   ...options
-}: RipplesOptions<E>) {
+}: RipplesOptions<E>): ReturnValue<E> {
   const {
     create,
     state,

@@ -11,7 +11,7 @@ export default function getProgress(
   min: number,
   max: number,
   value?: number | undefined
-) {
+): number | undefined {
   if (min >= max) {
     throw new RangeError(
       "A progress range must have the min value less than the max value"
@@ -20,7 +20,9 @@ export default function getProgress(
 
   if (typeof value !== "number") {
     return undefined;
-  } else if (value > max || value < min) {
+  }
+
+  if (value > max || value < min) {
     throw new RangeError(
       "A progress value must be between the min and max values"
     );

@@ -67,10 +67,15 @@ export function useTooltipHoverModeState(
  */
 export const HoverModeDelay = createContext(DEFAULT_DELAY);
 
+interface HoverModeActionsContext {
+  enable: () => void;
+  startDisableTimer: () => void;
+}
+
 /**
  * Contains the actions to enable or start disabling the immediate mode for tooltips.
  */
-export const HoverModeActions = createContext({
+export const HoverModeActions = createContext<HoverModeActionsContext>({
   enable: () => {},
   startDisableTimer: () => {},
 });
@@ -87,7 +92,7 @@ export const HoverModeEnabled = createContext(false);
  * much outside of this package.
  * @private
  */
-export function useTooltipHoverModeDelay() {
+export function useTooltipHoverModeDelay(): number {
   return useContext(HoverModeDelay);
 }
 
@@ -96,13 +101,13 @@ export function useTooltipHoverModeDelay() {
  * to disable it.
  * @private
  */
-export function useTooltipHoverModeActions() {
+export function useTooltipHoverModeActions(): HoverModeActionsContext {
   return useContext(HoverModeActions);
 }
 
 /**
  * @private
  */
-export function useTooltipHoverModeEnabled() {
+export function useTooltipHoverModeEnabled(): boolean {
   return useContext(HoverModeEnabled);
 }

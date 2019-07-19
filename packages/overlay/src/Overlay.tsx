@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { HTMLAttributes, FC, forwardRef } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -101,7 +102,7 @@ const Overlay: FC<OverlayProps & WithRef> = providedProps => {
         onEnter={onEnter}
         onEntering={onEntering}
         onEntered={onEntered}
-        onExit={onExited}
+        onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
       >
@@ -149,18 +150,31 @@ Overlay.defaultProps = defaultProps;
 if (process.env.NODE_ENV !== "production") {
   Overlay.displayName = "Overlay";
 
-  let PropTypes: any = null;
+  let PropTypes;
   try {
     PropTypes = require("prop-types");
   } catch (e) {}
 
   if (PropTypes) {
     Overlay.propTypes = {
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
       timeout: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.shape({
           enter: PropTypes.number,
-          leave: PropTypes.number,
+          exit: PropTypes.number,
         }),
       ]),
       mountOnEnter: PropTypes.bool,

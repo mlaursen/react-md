@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC, useCallback } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";

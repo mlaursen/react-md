@@ -24,7 +24,7 @@ export interface AppBarColorInherit {
  * @return true if the color should be inherited.
  * @private
  */
-export function useInheritContext(inheritColor: boolean | undefined) {
+export function useInheritContext(inheritColor: boolean | undefined): boolean {
   const inheritContext = useContext(InheritContext);
   return typeof inheritColor === "boolean" ? inheritColor : inheritContext;
 }
@@ -42,6 +42,6 @@ export const ParentContext = createContext(false);
  *
  * @private
  */
-export function useParentContext() {
+export function useParentContext(): boolean {
   return useContext(ParentContext);
 }

@@ -9,14 +9,14 @@ import useMediaQuery from "./useMediaQuery";
 export const toWidthPart = (
   v: QuerySize | undefined,
   prefix: "min" | "max"
-) => {
+): string => {
   const type = typeof v;
   if (type === "undefined") {
     return "";
   }
 
-  v = type === "number" ? `${v}px` : v;
-  return `(${prefix}-width: ${v})`;
+  const value = type === "number" ? `${v}px` : v;
+  return `(${prefix}-width: ${value})`;
 };
 
 interface WidthMediaQuery {
@@ -40,7 +40,7 @@ type WidthMediaQuerys =
 export default function useWidthMediaQuery({
   min,
   max,
-}: WidthMediaQuery & WidthMediaQuerys) {
+}: WidthMediaQuery & WidthMediaQuerys): boolean {
   const query = useMemo(() => {
     const parts = [toWidthPart(min, "min"), toWidthPart(max, "max")]
       .filter(Boolean)

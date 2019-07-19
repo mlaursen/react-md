@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, {
   FC,
   useState,
@@ -6,6 +7,7 @@ import React, {
   HTMLAttributes,
   Fragment,
   useRef,
+  MutableRefObject,
 } from "react";
 import cn from "classnames";
 import Router from "next/router";
@@ -15,7 +17,7 @@ import GoogleFont from "components/GoogleFont";
 import "./Markdown.scss";
 import { markdownToHTML } from "./utils";
 
-function useMarkdownResolver(markdown: MarkdownProps["children"]) {
+function useMarkdownResolver(markdown: MarkdownProps["children"]): string {
   if (typeof markdown === "string") {
     return markdown;
   }
@@ -34,7 +36,11 @@ function useMarkdownResolver(markdown: MarkdownProps["children"]) {
   return resolved;
 }
 
-function useHTML(children: MarkdownChildren) {
+interface DangerHTML {
+  __html: string;
+}
+
+function useHTML(children: MarkdownChildren): DangerHTML {
   const markdown = useMarkdownResolver(children);
   const html = useMemo(
     () => ({
@@ -46,7 +52,9 @@ function useHTML(children: MarkdownChildren) {
   return html;
 }
 
-function useLinkUpdates({ __html: html }: { __html: string }) {
+function useLinkUpdates({
+  __html: html,
+}: DangerHTML): MutableRefObject<HTMLDivElement | null> {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) {

@@ -24,7 +24,7 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  * @return true if the app is in touch mode.
  * @private
  */
-export function useTouchDetection(touchTimeout: number = 1200) {
+export function useTouchDetection(touchTimeout: number = 1200): boolean {
   const [lastTouchTime, setTouchTime] = useState(0);
   const touchRef = useRefCache(lastTouchTime);
   const contextMenuRef = useRef(false);
@@ -58,7 +58,7 @@ export function useTouchDetection(touchTimeout: number = 1200) {
       return;
     }
 
-    const updateContextMenu = () => {
+    const updateContextMenu = (): void => {
       contextMenuRef.current = true;
     };
 
@@ -80,7 +80,7 @@ export function useTouchDetection(touchTimeout: number = 1200) {
  * @return true if the app is in keyboard mode
  * @private
  */
-export function useKeyboardDetection() {
+export function useKeyboardDetection(): boolean {
   const [enabled, enable, disable] = useToggle(false);
 
   useEffect(() => {
@@ -124,7 +124,8 @@ export function useModeDetection(): UserInteractionMode {
 
   if (touch) {
     return "touch";
-  } else if (keyboard) {
+  }
+  if (keyboard) {
     return "keyboard";
   }
 
@@ -137,7 +138,7 @@ export function useModeDetection(): UserInteractionMode {
  *
  * @private
  */
-export function useModeClassName(mode: UserInteractionMode) {
+export function useModeClassName(mode: UserInteractionMode): void {
   useEffect(() => {
     const className = `rmd-states--${mode}`;
     document.body.classList.add(className);

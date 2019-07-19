@@ -21,7 +21,7 @@ const colorKeys = Object.keys(scssVariables).filter(
 const uniqueColors = Array.from(
   new Set(
     colorKeys
-      .map(k => k.replace("rmd-", "").replace(/(-a)?\-\d+$/, ""))
+      .map(k => k.replace("rmd-", "").replace(/(-a)?-\d+$/, ""))
       .filter(k => !k.includes("-base"))
   )
 );

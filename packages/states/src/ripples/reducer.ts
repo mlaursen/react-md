@@ -86,10 +86,12 @@ function createRipple(
   state: RipplesState,
   event: RippleEvent<HTMLElement>,
   disableSpacebarClick: boolean
-) {
+): RipplesState {
   if (!isRippleable(event, disableSpacebarClick) || isBubbled(event)) {
     return state;
-  } else if (
+  }
+
+  if (
     state.find(r => r.holding) ||
     (getType(event) !== "touch" && state.find(r => r.type === "touch"))
   ) {
@@ -105,7 +107,7 @@ function createRipple(
   return [...state, ripple];
 }
 
-function enteredRipple(state: RipplesState, ripple: RippleState) {
+function enteredRipple(state: RipplesState, ripple: RippleState): RipplesState {
   const i = state.findIndex(r => r === ripple);
   if (i === -1 || ripple.exiting) {
     return state;
@@ -121,7 +123,7 @@ function enteredRipple(state: RipplesState, ripple: RippleState) {
   return nextState;
 }
 
-function releaseRipple(state: RipplesState) {
+function releaseRipple(state: RipplesState): RipplesState {
   const i = state.findIndex(r => r.holding && !r.exiting);
   if (i === -1) {
     return state;
@@ -138,7 +140,7 @@ function releaseRipple(state: RipplesState) {
   return nextState;
 }
 
-function removeRipple(state: RipplesState, ripple: RippleState) {
+function removeRipple(state: RipplesState, ripple: RippleState): RipplesState {
   const i = state.findIndex(r => r.startTime === ripple.startTime);
   if (i === -1) {
     return state;
@@ -149,7 +151,7 @@ function removeRipple(state: RipplesState, ripple: RippleState) {
   return nextState;
 }
 
-function cancelRipples(state: RipplesState, ease: boolean) {
+function cancelRipples(state: RipplesState, ease: boolean): RipplesState {
   if (ease) {
     return state.map(r => ({
       ...r,
@@ -165,7 +167,7 @@ function cancelRipples(state: RipplesState, ease: boolean) {
 export function reducer<E extends HTMLElement>(
   state: RipplesState = [],
   action: RippleStateAction<E>
-) {
+): RipplesState {
   switch (action.type) {
     case CREATE:
       return createRipple(state, action.event, action.disableSpacebarClick);
@@ -182,13 +184,22 @@ export function reducer<E extends HTMLElement>(
   }
 }
 
+interface ReturnValue<E extends HTMLElement> {
+  state: RipplesState;
+  create: (event: RippleEvent<E>) => void;
+  release: (event: RippleEvent<E>) => void;
+  entered: (ripple: RippleState) => void;
+  cancel: (ease?: boolean) => void;
+  remove: (ripple: RippleState) => void;
+}
+
 /**
  * This hook creates memoized callbacks for each part of the ripple transition
  * as well as returning the current list of ripples.
  */
 export function useRippleTransition<E extends HTMLElement = HTMLElement>(
   disableSpacebarClick: boolean = false
-) {
+): ReturnValue<E> {
   const [state, dispatch] = useReducer<RippleStateReducer<E>>(reducer, []);
   const spacebarRef = useRefCache(disableSpacebarClick);
   const create = useCallback((event: RippleEvent<E>) => {

@@ -30,13 +30,15 @@ type WithRef = WithForwardedRef<HTMLInputElement>;
 
 // this is used while the loading state is enabled to "disable" the switch toggle.
 // If we disable the entire switch, keyboard focus is lost which is not desired.
-const noop = () => {};
+const noop = (): void => {};
 
 /**
  * This component will create an async switch that will show a loading indicator
  * and prevent the switch from being toggled while the loading state is true.
  */
 const AsyncSwitch: FC<AsyncSwitchProps & WithRef> = ({
+  id,
+  disabled,
   className,
   progressStyle,
   progressClassName,
@@ -46,15 +48,17 @@ const AsyncSwitch: FC<AsyncSwitchProps & WithRef> = ({
 }) => (
   <Switch
     {...props}
+    id={id}
+    disabled={disabled}
     aria-busy={loading || undefined}
-    aria-describedby={loading ? `${props.id}-loading` : undefined}
+    aria-describedby={loading ? `${id}-loading` : undefined}
     className={cn("rmd-switch--async", className)}
-    labelDisabled={props.disabled || false}
+    labelDisabled={disabled || false}
     onChange={loading ? noop : onChange}
   >
     {loading && (
       <CircularProgress
-        id={`${props.id}-loading`}
+        id={`${id}-loading`}
         style={progressStyle}
         className={cn("rmd-switch__progress", progressClassName)}
         centered={false}
@@ -73,6 +77,10 @@ if (process.env.NODE_ENV === "production") {
 
   if (PropTypes) {
     AsyncSwitch.propTypes = {
+      id: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      onChange: PropTypes.func,
+      disabled: PropTypes.bool,
       loading: PropTypes.bool.isRequired,
       progressStyle: PropTypes.object,
       progressClassName: PropTypes.string,

@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 export default function isEmpty(
   children: ReactNode,
   disableNullOnZero: boolean
-) {
+): boolean {
   return (
     !disableNullOnZero &&
     (children === 0 || children === "0" || children === null)

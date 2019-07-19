@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   FC,
   useCallback,
@@ -9,19 +9,20 @@ import {
 } from "react";
 import Cookie from "js-cookie";
 
-const ThemeContext = createContext("dark");
+export type Theme = "light" | "dark";
+const ThemeContext = createContext<Theme>("dark");
 const ThemeToggle = createContext(() => {});
 
-export function useThemeContext() {
+export function useThemeContext(): Theme {
   return useContext(ThemeContext);
 }
 
-export function useThemeToggle() {
+export function useThemeToggle(): () => void {
   return useContext(ThemeToggle);
 }
 
 const THEME_TRANSITION_DURATION = 150;
-function useThemeTransition(isLight: boolean) {
+function useThemeTransition(isLight: boolean): void {
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function useThemeTransition(isLight: boolean) {
 
     root.classList.add("toggle-theme-transition");
     // force dom repaint
-    root.scrollTop;
+    root.scrollTop; // eslint-disable-line no-unused-expressions
     if (isLight) {
       root.classList.add("light-theme");
     } else {
@@ -52,14 +53,14 @@ function useThemeTransition(isLight: boolean) {
 }
 
 interface ThemeContextProviderProps {
-  defaultTheme?: "light" | "dark";
+  defaultTheme?: Theme;
 }
 
 export const ThemeContextProvider: FC<ThemeContextProviderProps> = ({
   children,
   defaultTheme,
 }) => {
-  const [theme, setTheme] = useState(defaultTheme || "dark");
+  const [theme, setTheme] = useState<Theme>(defaultTheme || "dark");
   const toggleTheme = useCallback(
     () => setTheme(prevTheme => (prevTheme === "dark" ? "light" : "dark")),
     []

@@ -28,6 +28,7 @@ export interface DelegatableEvent {
 }
 
 const delegatedEvents: DelegatableEvent[] = [];
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 /**
  * Creates the delegated event handler that will run all the callbacks once
@@ -53,7 +54,7 @@ function createEventHandler<K extends keyof WindowEventMap>(
     running = false;
   };
 
-  return function eventHandler(event: Event) {
+  return function eventHandler(event: WindowEventMap[K]) {
     if (!throttle) {
       runCallbacks(event);
       return;
@@ -67,6 +68,7 @@ function createEventHandler<K extends keyof WindowEventMap>(
     window.requestAnimationFrame(runCallbacks(event));
   };
 }
+/* eslint-enable @typescript-eslint/explicit-function-return-type */
 
 /**
  * Creates a throttled event handler for the provided event type and event target.
@@ -142,7 +144,7 @@ export default function delegateEvent(
   eventTarget: DelegatedEventTarget = window,
   throttle: boolean = eventType === "resize" || eventType === "scroll",
   options?: boolean | AddEventListenerOptions
-) {
+): DelegatedEventHandler {
   let index = delegatedEvents.findIndex(
     event =>
       event.type === eventType &&

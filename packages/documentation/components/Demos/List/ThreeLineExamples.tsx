@@ -1,6 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import React, { FC } from "react";
 import { List, ListItem } from "@react-md/list";
 import { StarSVGIcon } from "@react-md/material-icons";
+
 import Container from "./Container";
 
 const inbox = [

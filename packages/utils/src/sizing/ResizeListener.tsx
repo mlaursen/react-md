@@ -3,8 +3,7 @@ import { FC } from "react";
 import { Omit } from "../omit";
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
-export interface ResizeListenerProps
-  extends Omit<ResizeListenerOptions, "enabled"> {}
+export type ResizeListenerProps = Omit<ResizeListenerOptions, "enabled">;
 
 type DefaultProps = Required<Pick<ResizeListenerProps, "immediate">>;
 type WithDefaultProps = ResizeListenerProps & DefaultProps;

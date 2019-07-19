@@ -8,6 +8,7 @@ import {
   See,
   Throw,
   VariableSassDoc,
+  SassDocType,
 } from "sassdoc";
 import { compileScss } from "../compileScss";
 import { tempStylesFolder } from "../paths";
@@ -28,13 +29,24 @@ import {
   HackedVar,
 } from "./variables";
 
-function createReferenceLink(see: See, references: SassDocReference[]) {
+interface ReferenceLink {
+  name: string;
+  type: SassDocType;
+  description: string;
+  group: string;
+}
+
+function createReferenceLink(
+  see: See,
+  references: SassDocReference[]
+): ReferenceLink {
   const {
     description = "",
     context: { name, type },
   } = see;
   const link = references.find(r => r.name === name && r.type === type);
   if (!link) {
+    // eslint-disable-next-line no-console
     console.error(`Unable to find a sassdoc reference link for \`${name}\``);
     process.exit(1);
   } else if (link.private) {
@@ -77,6 +89,7 @@ function formatSassDoc(
 
   const type = item.type || item.context.type;
   if (!type) {
+    /* eslint-disable no-console */
     console.error(`${name} does not have a valid Sass Data Type.`);
     console.error();
     process.exit(1);
@@ -93,12 +106,14 @@ function formatSassDoc(
   };
 }
 
-function hackedVariableToString(value: HackedVariableValue) {
+function hackedVariableToString(value: HackedVariableValue): string {
   if (value === null) {
     return "null";
-  } else if (["number", "string", "boolean"].includes(typeof value)) {
+  }
+  if (["number", "string", "boolean"].includes(typeof value)) {
     return `${value}`;
-  } else if (value[0] === null || typeof value[0] !== "object") {
+  }
+  if (value[0] === null || typeof value[0] !== "object") {
     return format(
       `export default ${JSON.stringify(value as HackedVariablePrimitive[])}`
     ).substring("export defalt ".length);
@@ -167,7 +182,7 @@ function createParameterizedCode({
   name,
   code,
   parameters,
-}: ParameterizedCodeOptions) {
+}: ParameterizedCodeOptions): string {
   let params = "";
   if (parameters.length) {
     params = parameters
@@ -185,7 +200,7 @@ function createParameterizedCode({
   return `@${type} ${name}${params} {${code}}`;
 }
 
-function removeUncompilableCode(code: string) {
+function removeUncompilableCode(code: string): string {
   const startString = "// START_NO_COMPILE";
   const endString = "// END_NO_COMPILE";
   let startIndex = code.indexOf(startString);
@@ -203,11 +218,14 @@ function removeUncompilableCode(code: string) {
   return code;
 }
 
-function removeUncompilableCodeComments(code: string) {
+function removeUncompilableCodeComments(code: string): string {
   return code.replace(/\s*\/\/ (START|END)_NO_COMPILE\r?\n/g, "\n");
 }
 
-function compileExampleCode(example: Example, packages: string[]) {
+function compileExampleCode(
+  example: Example,
+  packages: string[]
+): string | null {
   if (example.type !== "scss") {
     return null;
   }
@@ -282,11 +300,19 @@ function formatExamples(
   return formattedExamples;
 }
 
+interface ParameterizedSassDocResult {
+  code: string;
+  oneLineCode: string;
+  throws: string[];
+  examples: FormattedSassDocExample[];
+  parameters: Parameter[];
+}
+
 function formatParameterizedSassDoc(
   item: FunctionSassDoc | MixinSassDoc,
   references: SassDocReference[],
   packages: string[]
-) {
+): ParameterizedSassDocResult {
   const {
     context: { type, name },
     throw: throws = [] as Throw,
@@ -343,9 +369,7 @@ export function formatFunctionSassDoc(
 ): FormattedFunctionSassDoc {
   if (!sassdoc.return) {
     console.error(
-      `${
-        sassdoc.context.name
-      } does not have a return declaration but it is a function.`
+      `${sassdoc.context.name} does not have a return declaration but it is a function.`
     );
     console.error();
     process.exit(1);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, HTMLAttributes } from "react";
 import { useInteractionModeContext } from "@react-md/states";
 import { SimplePosition, useToggle } from "@react-md/utils";
 
@@ -16,6 +16,23 @@ import useVisiblityChange, {
   VisibilityChangeOptions,
 } from "./useVisibilityChange";
 
+interface ReturnValue {
+  hide: () => void;
+  visible: boolean;
+  position: SimplePosition;
+  handlers: Pick<
+    HTMLAttributes<HTMLElement>,
+    | "onMouseEnter"
+    | "onMouseLeave"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onTouchStart"
+    | "onTouchMove"
+    | "onContextMenu"
+  >;
+}
+
 /**
  * When the tooltip becomes visible, the tooltip should be hidden if any element
  * within the page is clicked, or the browser is blurred. This hook will just
@@ -30,7 +47,7 @@ import useVisiblityChange, {
 export function useOtherInteractionDisable(
   initiated: TooltipInitiated,
   hideTooltip: () => void
-) {
+): void {
   useEffect(() => {
     if (!initiated) {
       return;
@@ -123,7 +140,7 @@ export default function useTooltipState({
   onKeyDown,
   onShow,
   onHide,
-}: TooltipStateOptions) {
+}: TooltipStateOptions): ReturnValue {
   const mode = useInteractionModeContext();
   const initiated = useRef<TooltipInitiated>(null);
   const setInitiated = useCallback((initiatedBy: TooltipInitiated) => {
@@ -149,7 +166,7 @@ export default function useTooltipState({
     threshold: positionThreshold,
   });
 
-  const { stopMouseTimer, mouseHandlers } = useMouseState({
+  const [stopMouseTimer, handleMouseEnter, handleMouseLeave] = useMouseState({
     mode,
     showTooltip,
     hideTooltip,
@@ -162,7 +179,12 @@ export default function useTooltipState({
     setEstimatedPosition,
   });
 
-  const { stopKeyboardTimer, keyboardHandlers } = useKeyboardState({
+  const [
+    stopKeyboardTimer,
+    handleFocus,
+    handleBlur,
+    handleKeyDown,
+  ] = useKeyboardState({
     mode,
     showTooltip,
     hideTooltip,
@@ -175,7 +197,12 @@ export default function useTooltipState({
     setEstimatedPosition,
   });
 
-  const { stopTouchTimer, touchHandlers } = useTouchState({
+  const [
+    stopTouchTimer,
+    handleTouchStart,
+    handleTouchMove,
+    handleContextMenu,
+  ] = useTouchState({
     mode,
     visible,
     showTooltip,
@@ -202,9 +229,14 @@ export default function useTooltipState({
     visible,
     position,
     handlers: {
-      ...mouseHandlers,
-      ...keyboardHandlers,
-      ...touchHandlers,
+      onMouseEnter: handleMouseEnter,
+      onMouseLeave: handleMouseLeave,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      onKeyDown: handleKeyDown,
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
+      onContextMenu: handleContextMenu,
     },
   };
 }

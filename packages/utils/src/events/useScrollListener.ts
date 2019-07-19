@@ -40,7 +40,7 @@ export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   onScroll,
   element,
   options = isSupported ? { passive: true, capture: true } : true,
-}: Options<E>) {
+}: Options<E>): void {
   const callback = useRefCache(onScroll);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function useScrollListener<E extends HTMLElement = HTMLElement>({
       true,
       options
     );
-    const handler = (event: Event) => callback.current(event);
+    const handler = (event: Event): void => callback.current(event);
     eventHandler.add(handler);
     return () => {
       eventHandler.remove(handler);

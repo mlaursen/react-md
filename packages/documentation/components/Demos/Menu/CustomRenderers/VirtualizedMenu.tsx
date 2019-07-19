@@ -12,7 +12,11 @@ const desktopHeight = unitToNumber(
   scssVariables["rmd-list-item-dense-large-height"]
 );
 
-type Item = { leftAvatar: ReactNode; children: string };
+interface Item {
+  leftAvatar: ReactNode;
+  children: string;
+}
+
 const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   const { isDesktop } = useAppSize();
   const [value, setValue] = useState("None");

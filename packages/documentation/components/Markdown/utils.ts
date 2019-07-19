@@ -9,7 +9,7 @@ import {
   VERSION,
 } from "constants/index";
 
-export function getLanguage(language: string) {
+export function getLanguage(language: string): string {
   switch (language) {
     case "":
     case "markdown":
@@ -21,12 +21,13 @@ export function getLanguage(language: string) {
   }
 }
 
-export function highlightCode(code: string, lang: string = "") {
+export function highlightCode(code: string, lang: string = ""): string {
   const language = getLanguage(lang);
   try {
     return Prism.highlight(code, Prism.languages[language], language);
   } catch (e) {
     if (process.env.NODE_ENV === "development") {
+      /* eslint-disable no-console */
       console.error(
         `Error trying to parse code with the following language: '${lang}' as '${language}'`
       );
@@ -74,6 +75,7 @@ renderer.heading = (text, level, _raw, slugger) => {
   const id = slugger.slug(text);
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
+    // eslint-disable-next-line @typescript-eslint/camelcase
     heading__toc: text.includes("Table of Contents"),
     "rmd-typography--no-margin": isNoMargin,
   });
@@ -103,7 +105,7 @@ const joinedNames = PACKAGE_NAMES.join("|");
 const allNames = `${joinedNames}|react-md`;
 const whitespace = "(?=\r?\n| |[^/])";
 
-const getVersion = (name: string) => {
+const getVersion = (name: string): string => {
   let version = VERSION;
   if (name !== "react-md") {
     const lookup = `@react-md/${name}`;
@@ -133,7 +135,7 @@ const transforms: Transform[] = [
   // #package-name -> [package-name page](/packages/package-name/page)
   md =>
     md.replace(
-      new RegExp(`#(${joinedNames})\/(demos|api|sassdoc)`, "g"),
+      new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
       "[$1 $2](/packages/$1/$2)"
     ),
   // #including-styles -> [including styles](/getting-started/installation#including-styles)
@@ -165,9 +167,9 @@ const transforms: Transform[] = [
   md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
 ];
 
-const transform = (markdown: string) =>
+const transform = (markdown: string): string =>
   transforms.reduce((updated, fn) => fn(updated), markdown);
 
-export function markdownToHTML(markdown: string) {
+export function markdownToHTML(markdown: string): string {
   return marked.parse(transform(markdown), { renderer });
 }

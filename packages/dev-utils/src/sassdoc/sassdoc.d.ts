@@ -38,7 +38,7 @@ declare module "sassdoc" {
     code: string;
   }
 
-  export type Group = Array<"undefined" | string>;
+  export type Group = ("undefined" | string)[];
 
   export type Ignore = string[];
 

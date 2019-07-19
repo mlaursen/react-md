@@ -69,6 +69,11 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     SrOnly.propTypes = {
       focusable: PropTypes.bool,
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
     };
   }
 }

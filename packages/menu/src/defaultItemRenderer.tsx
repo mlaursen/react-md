@@ -9,7 +9,10 @@ export type Item =
   | MenuItemProps
   | (MenuItemSeparatorProps & { role: "separator" });
 
-export default function defaultItemRenderer(item: Item, key: string) {
+export default function defaultItemRenderer(
+  item: Item,
+  key: string
+): ReactNode {
   if (item !== 0 && !item) {
     return null;
   }
@@ -21,7 +24,8 @@ export default function defaultItemRenderer(item: Item, key: string) {
   const type = typeof item;
   if (type === "number" || type === "string" || type === "boolean") {
     return <MenuItem key={key}>{item}</MenuItem>;
-  } else if (isValidElement(item)) {
+  }
+  if (isValidElement(item)) {
     return cloneElement(item, { key });
   }
 

@@ -7,14 +7,14 @@ const ForcedAspectRatio: FC = () => (
       <img
         src="https://picsum.photos/400/300?image=3"
         role="presentation"
-        alt="An image from https://picsum.photos"
+        alt="From https://picsum.photos"
       />
     </MediaContainer>
     <MediaContainer height={1} width={1} className="responsive-item">
       <img
         src="https://picsum.photos/400/300?image=623"
         role="presentation"
-        alt="An image from https://picsum.photos"
+        alt="From https://picsum.photos"
       />
     </MediaContainer>
     <MediaContainer height={9} width={16} className="responsive-item">
@@ -22,6 +22,7 @@ const ForcedAspectRatio: FC = () => (
         src="https://www.youtube.com/embed/kyAn3fSs8_A"
         allowFullScreen
         frameBorder="0"
+        title="YouTube Video"
       />
     </MediaContainer>
   </div>

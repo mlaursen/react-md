@@ -94,6 +94,7 @@ type DefaultProps = Required<
     | "disableFocusOnMount"
     | "disableFocusOnUnmount"
     | "defaultFocus"
+    | "unmountFocusFallback"
     | "component"
   >
 >;
@@ -143,6 +144,7 @@ const defaultProps: DefaultProps = {
   disableFocusOnMount: false,
   disableFocusOnUnmount: false,
   disableTabFocusWrap: false,
+  unmountFocusFallback: "",
   defaultFocus: "first",
   component: "div",
 };

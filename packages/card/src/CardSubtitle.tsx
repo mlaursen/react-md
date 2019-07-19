@@ -55,6 +55,8 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     CardSubtitle.propTypes = {
+      className: PropTypes.string,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       disableSecondaryColor: PropTypes.bool,
       children: PropTypes.node,
     };

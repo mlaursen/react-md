@@ -2,9 +2,10 @@ import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 import { Text } from "@react-md/typography";
+
 import CodeBlock from "components/Code/CodeBlock";
 
-const BrokenButton = () => <Button>No go</Button>;
+const BrokenButton: FC = () => <Button>No go</Button>;
 
 const AdvancedAPIGotchas: FC = () => (
   <Fragment>

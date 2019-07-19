@@ -1,16 +1,17 @@
 import React, { FC, useMemo } from "react";
+import { Button } from "@react-md/button";
 import {
   Dialog,
-  DialogHeader,
-  DialogTitle,
   DialogContent,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@react-md/dialog";
 import { DropdownMenu } from "@react-md/menu";
-import Container from "./Container";
 import { useToggle } from "@react-md/utils";
-import { Button } from "@react-md/button";
+
 import people from "constants/people";
+import Container from "./Container";
 
 const AccessibilityExample: FC = () => {
   const [visible, show, hide] = useToggle(false);

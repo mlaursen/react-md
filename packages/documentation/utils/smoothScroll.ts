@@ -5,11 +5,11 @@ const behavior = process.env.NODE_ENV === "development" ? "auto" : "smooth";
 export function smoothScroll(
   top: number,
   element: HTMLElement | Window = window
-) {
+): void {
   element.scroll({ top, behavior });
 }
 
-export function getScrollPosition(pathname: string) {
+export function getScrollPosition(pathname: string): number {
   const { hash } = parse(pathname);
   if (!hash) {
     return 0;

@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import { CSSTransition } from "react-transition-group";
 
-export interface CrossFadeProps
-  extends Partial<CSSTransition.CSSTransitionProps> {}
+export type CrossFadeProps = Partial<CSSTransition.CSSTransitionProps>;
 
 type DefaultProps = Required<
   Pick<

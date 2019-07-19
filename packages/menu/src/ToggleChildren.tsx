@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC, Fragment, ReactNode } from "react";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/theme";

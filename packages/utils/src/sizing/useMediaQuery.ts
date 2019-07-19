@@ -20,11 +20,13 @@ export default function useMediaQuery(
   query: string,
   defaultValue?: boolean,
   checkImmediately: boolean = typeof window !== "undefined"
-) {
+): boolean {
   const [matches, setMatches] = useState(() => {
     if (typeof defaultValue !== "undefined") {
       return defaultValue;
-    } else if (checkImmediately && typeof window !== "undefined") {
+    }
+
+    if (checkImmediately && typeof window !== "undefined") {
       return window.matchMedia(query).matches;
     }
 
@@ -37,7 +39,8 @@ export default function useMediaQuery(
     }
 
     const mq = window.matchMedia(query);
-    const updater = ({ matches }: MediaQueryListEvent) => setMatches(matches);
+    const updater = ({ matches }: MediaQueryListEvent): void =>
+      setMatches(matches);
     mq.addListener(updater);
 
     if (mq.matches !== matches) {

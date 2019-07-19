@@ -15,7 +15,7 @@ import {
 
 import Container from "./Container";
 
-const DenseAppBar = () => (
+const DenseAppBar: FC = () => (
   <AppBar dense>
     <AppBarNav aria-label="Navigation" id="dense-nav">
       <MenuSVGIcon />
@@ -30,7 +30,7 @@ const DenseAppBar = () => (
   </AppBar>
 );
 
-const NormalAppBar = () => (
+const NormalAppBar: FC = () => (
   <AppBar>
     <AppBarNav aria-label="Navigation" id="normal-nav">
       <MenuSVGIcon />
@@ -45,7 +45,7 @@ const NormalAppBar = () => (
   </AppBar>
 );
 
-const DenseProminentAppBar = () => (
+const DenseProminentAppBar: FC = () => (
   <AppBar dense prominent>
     <AppBar dense>
       <AppBarNav aria-label="Navigation" id="dense-prominent-nav">
@@ -70,7 +70,7 @@ const DenseProminentAppBar = () => (
   </AppBar>
 );
 
-const ProminentAppBar = () => (
+const ProminentAppBar: FC = () => (
   <AppBar prominent>
     <AppBar>
       <AppBarNav aria-label="Navigation">

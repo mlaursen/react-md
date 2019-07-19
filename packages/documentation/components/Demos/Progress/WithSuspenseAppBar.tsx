@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
@@ -13,7 +13,7 @@ import {
 
 const block = bem("progress-suspense");
 
-const WithSuspenseAppBar = () => (
+const WithSuspenseAppBar: FC = () => (
   <PhoneAppBar prominent theme="primary">
     <AppBar component="div" theme="clear">
       <ClosePhone />

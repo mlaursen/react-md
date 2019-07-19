@@ -1,85 +1,75 @@
-import * as React from "react";
-import { create } from "react-test-renderer";
-import { mount } from "enzyme";
+import React from "react";
+import { cleanup, render } from "@testing-library/react";
 
 import TextIconSpacing from "../TextIconSpacing";
 
+afterEach(cleanup);
+
 describe("TextIconSpacing", () => {
   it("should be able to render without any children or icon even though it's worthless", () => {
-    expect(create(<TextIconSpacing />).toJSON()).toMatchSnapshot();
+    const { container } = render(<TextIconSpacing />);
+    expect(container.firstChild).toBe(null);
   });
 
   it("should return the children if no icon prop is provided", () => {
-    const instance = mount(
+    const { container } = render(
       <TextIconSpacing>
         <span />
       </TextIconSpacing>
     );
-    expect(instance.render()).toMatchSnapshot();
-    expect(instance.find("span").length).toBe(1);
-    expect(instance.find("span").props().className).toBeUndefined();
+    expect(container).toMatchSnapshot();
   });
 
   it("should render the icon before the children by default", () => {
-    const instance = mount(
-      <TextIconSpacing icon={<i />}>
-        <span />
+    const { container, getByTestId } = render(
+      <TextIconSpacing icon={<i data-testid="icon" />}>
+        <span data-testid="span" />
       </TextIconSpacing>
     );
 
-    expect(
-      instance
-        .children()
-        .first()
-        .type()
-    ).toBe("i");
-    expect(
-      instance
-        .children()
-        .at(1)
-        .type()
-    ).toBe("span");
+    const icon = getByTestId("icon");
+    const span = getByTestId("span");
+    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toBe(icon);
+    expect(container.lastChild).toBe(span);
   });
 
   it("should render the icon after the children if the iconAfter prop is enabled", () => {
-    const instance = mount(
-      <TextIconSpacing icon={<i />} iconAfter>
-        <span />
+    const { container, getByTestId } = render(
+      <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
+        <span data-testid="span" />
       </TextIconSpacing>
     );
 
-    expect(
-      instance
-        .children()
-        .first()
-        .type()
-    ).toBe("span");
-    expect(
-      instance
-        .children()
-        .at(1)
-        .type()
-    ).toBe("i");
+    const icon = getByTestId("icon");
+    const span = getByTestId("span");
+    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toBe(span);
+    expect(container.lastChild).toBe(icon);
   });
 
   it("should clone the default class names into the icon element", () => {
-    const instance = mount(
-      <TextIconSpacing icon={<i />}>
+    const { rerender, getByTestId } = render(
+      <TextIconSpacing icon={<i data-testid="icon" />}>
         <span />
       </TextIconSpacing>
     );
 
-    expect(instance.find("i").hasClass("rmd-icon--before")).toBe(true);
-    expect(instance.find("i").hasClass("rmd-icon--after")).toBe(false);
+    let icon = getByTestId("icon");
+    expect(icon.className).toBe("rmd-icon--before");
 
-    instance.setProps({ iconAfter: true });
-    expect(instance.find("i").hasClass("rmd-icon--before")).toBe(false);
-    expect(instance.find("i").hasClass("rmd-icon--after")).toBe(true);
+    rerender(
+      <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
+        <span />
+      </TextIconSpacing>
+    );
+    icon = getByTestId("icon");
+    expect(icon.className).toBe("rmd-icon--after");
   });
 
   it("should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled", () => {
     // have to wrap the tests in divs since enzyme doesn't know how to render React.Fragment or arrays atm
-    const instance1 = mount(
+    const { container, rerender } = render(
       <div>
         <TextIconSpacing icon="Some text">
           <div />
@@ -87,20 +77,15 @@ describe("TextIconSpacing", () => {
       </div>
     );
 
-    expect(instance1.render()).toMatchSnapshot();
-    expect(instance1.find("span").hasClass("rmd-text-icon-spacing")).toBe(true);
-    expect(instance1.find("span").hasClass("rmd-icon--before")).toBe(true);
+    expect(container).toMatchSnapshot();
 
-    const instance2 = mount(
+    rerender(
       <div>
         <TextIconSpacing icon={<i />} forceIconWrap>
           <div />
         </TextIconSpacing>
       </div>
     );
-
-    expect(instance2.render()).toMatchSnapshot();
-    expect(instance2.find("span").hasClass("rmd-text-icon-spacing")).toBe(true);
-    expect(instance2.find("span").hasClass("rmd-icon--before")).toBe(true);
+    expect(container).toMatchSnapshot();
   });
 });

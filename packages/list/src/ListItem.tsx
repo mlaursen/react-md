@@ -5,9 +5,9 @@ import {
 } from "@react-md/states";
 import { WithForwardedRef } from "@react-md/utils";
 
-import getListItemHeight from "./getListItemHeight";
+import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
 import ListItemChildren from "./ListItemChildren";
-import SimpleListItem, { SimpleListItemProps } from "./SimpleListItem";
+import SimpleListItem from "./SimpleListItem";
 
 export interface ListItemProps
   extends SimpleListItemProps,
@@ -65,11 +65,12 @@ const ListItem: FC<ListItemProps & WithRef> = providedProps => {
     role,
     ...props
   } = providedProps as ListItemWithDefaultProps;
+  const { disabled } = props;
 
   const { ripples, className, handlers } = useInteractionStates({
     className: propClassName,
     handlers: props,
-    disabled: props.disabled,
+    disabled,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -149,6 +150,10 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
       rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      disabled: PropTypes.bool,
+      disableSpacebarClick: PropTypes.bool,
+      disablePressedFallback: PropTypes.bool,
+      textChildren: PropTypes.bool,
     };
   }
 }

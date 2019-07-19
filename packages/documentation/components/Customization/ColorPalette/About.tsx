@@ -26,8 +26,8 @@ const About: FC = () => (
       primarily only use 3 to 6 colors. Every color will be exported as a Sass
       variable so you can easily use them within your stylesheets, but they will
       also be included in the <Code>scssVariables</Code> bundle at{" "}
-      <Code>@react-md/theme/dist/scssVariables</Code> if you'd like to access
-      them in javascript.
+      <Code>@react-md/theme/dist/scssVariables</Code> if you&apos;d like to
+      access them in javascript.
     </Text>
     <Text>
       All the colors will be available below showing their Sass variable name as

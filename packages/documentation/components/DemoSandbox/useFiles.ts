@@ -1,6 +1,10 @@
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useMemo } from "react";
-import { FlattenedTree, useFlattenedTree } from "@react-md/tree";
+import {
+  FlattenedTree,
+  useFlattenedTree,
+  FlattenedTreeData,
+} from "@react-md/tree";
 
 export interface FileTreeData {
   children: string;
@@ -21,9 +25,10 @@ const BASE_TREE: FlattenedFileTree = {
   },
 };
 
-function addParentFolders(filePath: string, tree: FlattenedFileTree) {
+function addParentFolders(filePath: string, tree: FlattenedFileTree): void {
   let i = 0;
   let currentPath = filePath;
+  // eslint-disable-next-line no-cond-assign
   while ((i = currentPath.lastIndexOf("/")) !== -1) {
     currentPath = filePath.substring(0, i);
     const nextI = currentPath.lastIndexOf("/");
@@ -40,7 +45,9 @@ function addParentFolders(filePath: string, tree: FlattenedFileTree) {
   }
 }
 
-export default function useFiles(sandbox: IFiles) {
+export default function useFiles(
+  sandbox: IFiles
+): FlattenedTreeData<FileTreeData>[] {
   const files = useMemo(
     () =>
       Object.entries(sandbox).reduce<FlattenedFileTree>(

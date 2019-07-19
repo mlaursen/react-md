@@ -62,6 +62,7 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
           !rmdVariables.find(v => v.name === name) &&
           !warned.current.includes(name)
         ) {
+          /* eslint-disable no-console */
           console.error(`Found an invalid react-md css variable passed to the \`UpdateRMDVariables\` component:
   - provided name: \`${varName}\`
   - lookup name: \`${name}\`
@@ -87,5 +88,23 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
     />
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    UpdateRMDVariables.propTypes = {
+      variables: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        })
+      ).isRequired,
+    };
+  }
+}
 
 export default UpdateRMDVariables;

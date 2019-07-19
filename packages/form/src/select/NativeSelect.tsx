@@ -240,6 +240,7 @@ if (process.env.NODE_ENV !== "production") {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
+      icon: PropTypes.node,
       value: PropTypes.string,
       defaultValue: PropTypes.oneOfType([
         PropTypes.string,

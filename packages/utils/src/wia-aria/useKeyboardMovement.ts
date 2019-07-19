@@ -18,7 +18,7 @@ import useKeyboardSearch, { KeyboardSearchOptions } from "./useKeyboardSearch";
  * @param increment Boolean if it should be incremented or decremented
  * @private
  */
-export function loop(x: number, max: number, increment: boolean) {
+export function loop(x: number, max: number, increment: boolean): number {
   let next = x + (increment ? 1 : -1);
   if (next > max) {
     next = 0;
@@ -69,7 +69,7 @@ export default function useKeyboardMovement<
   jumpToFirstKeys = ["Home"],
   jumpToLastKeys = ["End"],
   search = true,
-}: KeyboardMovementOptions<E>) {
+}: KeyboardMovementOptions<E>): React.KeyboardEventHandler<E> {
   const keys = useMemoizedFocusKeys({
     incrementKeys,
     decrementKeys,

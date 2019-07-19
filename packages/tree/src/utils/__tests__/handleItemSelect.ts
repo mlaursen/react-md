@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 import handleItemSelect from "../handleItemSelect";
 
 const EMPTY_IDS: string[] = [];

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -288,6 +289,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Menu.propTypes = {
       id: PropTypes.string.isRequired,
+      role: PropTypes.string,
       controlId: PropTypes.string.isRequired,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,

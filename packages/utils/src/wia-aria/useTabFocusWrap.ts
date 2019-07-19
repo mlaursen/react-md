@@ -21,40 +21,43 @@ export default function useTabFocusWrap<E extends HTMLElement>({
   disabled = false,
   disableFocusCache = false,
   onKeyDown,
-}: Options<E>) {
+}: Options<E>): React.KeyboardEventHandler<E> | undefined {
   const focusables = useRef<HTMLElement[]>([]);
   const cache = useRefCache({ disableFocusCache, onKeyDown });
 
-  const handleKeyDown = useCallback<React.KeyboardEventHandler<E>>(event => {
-    const { onKeyDown, disableFocusCache } = cache.current;
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  const handleKeyDown = useCallback<React.KeyboardEventHandler<E>>(
+    (event): void => {
+      const { onKeyDown, disableFocusCache } = cache.current;
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-    if (event.key !== "Tab") {
-      return;
-    }
+      if (event.key !== "Tab") {
+        return;
+      }
 
-    if (disableFocusCache || !focusables.current.length) {
-      focusables.current = getFocusableElements(event.currentTarget);
-    }
+      if (disableFocusCache || !focusables.current.length) {
+        focusables.current = getFocusableElements(event.currentTarget);
+      }
 
-    const elements = focusables.current;
-    const l = elements.length;
-    if (l === 0) {
-      return;
-    }
+      const elements = focusables.current;
+      const l = elements.length;
+      if (l === 0) {
+        return;
+      }
 
-    if (l === 1) {
-      event.preventDefault();
-    } else if (elements[0] === event.target && event.shiftKey) {
-      event.preventDefault();
-      elements[l - 1].focus();
-    } else if (elements[l - 1] === event.target && !event.shiftKey) {
-      event.preventDefault();
-      elements[0].focus();
-    }
-  }, []);
+      if (l === 1) {
+        event.preventDefault();
+      } else if (elements[0] === event.target && event.shiftKey) {
+        event.preventDefault();
+        elements[l - 1].focus();
+      } else if (elements[l - 1] === event.target && !event.shiftKey) {
+        event.preventDefault();
+        elements[0].focus();
+      }
+    },
+    []
+  );
 
   return disabled ? onKeyDown : handleKeyDown;
 }

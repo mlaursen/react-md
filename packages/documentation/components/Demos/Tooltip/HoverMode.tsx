@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { FC } from "react";
 import { TooltipHoverModeConfig, Tooltipped } from "@react-md/tooltip";
 import { Button } from "@react-md/button";

@@ -1,11 +1,14 @@
 import { useCallback, HTMLAttributes, useState } from "react";
 import Router from "next/router";
 
+type MouseEventHandler = React.MouseEventHandler<HTMLAnchorElement>;
+type KeyboardEventHandler = React.KeyboardEventHandler<HTMLAnchorElement>;
+
 export function useLinkMousePrefetch(
   href: string,
   disabled: boolean = false,
-  onMouseEnter?: HTMLAttributes<HTMLAnchorElement>["onMouseEnter"]
-) {
+  onMouseEnter?: MouseEventHandler
+): MouseEventHandler {
   const [fetched, setFetched] = useState(false);
   return useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -31,8 +34,8 @@ export function useLinkMousePrefetch(
 export function useLinkKeyboardPrefetch(
   href: string,
   disabled: boolean = false,
-  onKeyUp?: HTMLAttributes<HTMLAnchorElement>["onKeyUp"]
-) {
+  onKeyUp?: KeyboardEventHandler
+): KeyboardEventHandler {
   const [fetched, setFetched] = useState(false);
   return useCallback(
     (event: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -65,12 +68,17 @@ export interface LinkPrefetchConfig
   disabled?: boolean;
 }
 
+interface ReturnValue {
+  onMouseEnter: MouseEventHandler;
+  onKeyUp: KeyboardEventHandler;
+}
+
 export default function useLinkPrefetch({
   href,
   disabled = false,
   onMouseEnter,
   onKeyUp,
-}: LinkPrefetchConfig) {
+}: LinkPrefetchConfig): ReturnValue {
   return {
     onMouseEnter: useLinkMousePrefetch(href, disabled, onMouseEnter),
     onKeyUp: useLinkKeyboardPrefetch(href, disabled, onKeyUp),

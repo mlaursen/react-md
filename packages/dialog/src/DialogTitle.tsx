@@ -3,7 +3,7 @@ import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface DialogTitleProps extends HTMLAttributes<HTMLHeadingElement> {}
+export type DialogTitleProps = HTMLAttributes<HTMLHeadingElement>;
 
 type WithRef = WithForwardedRef<HTMLHeadingElement>;
 
@@ -36,6 +36,7 @@ if (process.env.NODE_ENV !== "production") {
     DialogTitle.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
   }
 }

@@ -82,6 +82,12 @@ export type MergableHandlers = MergableMouseHandlers &
   MergableKeyboardHandlers &
   MergableTouchHandlers;
 
+type MouseResult = [
+  (() => void),
+  React.MouseEventHandler<HTMLElement> | undefined,
+  React.MouseEventHandler<HTMLElement> | undefined
+];
+
 /**
  * This handles creating and returning the required mouse event listeners
  * to show and hide tooltips as needed. If there were any mouse event listeners
@@ -99,7 +105,7 @@ export function useMouseState({
   onMouseLeave,
   setEstimatedPosition,
   disableHoverMode,
-}: MouseOptions) {
+}: MouseOptions): MouseResult {
   const handlers = useRefCache({ onMouseEnter, onMouseLeave });
 
   let isHoverModeable = useTooltipHoverModeEnabled();
@@ -162,16 +168,19 @@ export function useMouseState({
     [isHoverModeable]
   );
 
-  return {
-    stopMouseTimer: stop,
-    mouseHandlers: {
-      // the mouse flows should not be returned for the touch mode since
-      // the mouseenter event is still triggered after a touch
-      onMouseEnter: mode !== "touch" ? handleMouseEnter : onMouseEnter,
-      onMouseLeave: mode !== "touch" ? handleMouseLeave : onMouseLeave,
-    },
-  };
+  return [
+    stop,
+    mode !== "touch" ? handleMouseEnter : onMouseEnter,
+    mode !== "touch" ? handleMouseLeave : onMouseLeave,
+  ];
 }
+
+type KeyboardResult = [
+  (() => void),
+  React.FocusEventHandler<HTMLElement> | undefined,
+  React.FocusEventHandler<HTMLElement> | undefined,
+  React.KeyboardEventHandler<HTMLElement> | undefined
+];
 
 /**
  * This handles creating and returning the required keyboard event listeners
@@ -190,7 +199,7 @@ export function useKeyboardState({
   onBlur,
   onKeyDown,
   setEstimatedPosition,
-}: KeyboardOptions) {
+}: KeyboardOptions): KeyboardResult {
   const handlers = useRefCache({ onFocus, onBlur, onKeyDown });
   const isWindowBlurred = useRef(false);
 
@@ -251,7 +260,7 @@ export function useKeyboardState({
 
     // whenever the browser loses focus, need to ensure that when the browser is re-focused
     // the last focused element (that had a tooltip) does not make the tooltip appear
-    const handleWindowBlur = () => {
+    const handleWindowBlur = (): void => {
       if (document.hidden) {
         isWindowBlurred.current = true;
         hideTooltip();
@@ -268,15 +277,20 @@ export function useKeyboardState({
     };
   }, [mode, hideTooltip]);
 
-  return {
-    stopKeyboardTimer: stop,
-    keyboardHandlers: {
-      onFocus: mode === "keyboard" ? handleFocus : onFocus,
-      onBlur: mode === "keyboard" ? handleBlur : onBlur,
-      onKeyDown: mode === "keyboard" ? handleKeyDown : onKeyDown,
-    },
-  };
+  return [
+    stop,
+    mode === "keyboard" ? handleFocus : onFocus,
+    mode === "keyboard" ? handleBlur : onBlur,
+    mode === "keyboard" ? handleKeyDown : onKeyDown,
+  ];
 }
+
+type TouchResult = [
+  (() => void),
+  React.TouchEventHandler<HTMLElement>,
+  React.TouchEventHandler<HTMLElement>,
+  React.MouseEventHandler<HTMLElement> | undefined
+];
 
 /**
  * This handles creating and returning the required touch event listeners
@@ -304,7 +318,7 @@ export function useTouchState({
   onTouchMove,
   onContextMenu,
   setEstimatedPosition,
-}: TouchOptions) {
+}: TouchOptions): TouchResult {
   const touched = useRef(false);
   const handlers = useRefCache({ onTouchStart, onTouchMove, onContextMenu });
 
@@ -316,12 +330,14 @@ export function useTouchState({
   useEffect(() => {
     if (!visible) {
       return;
-    } else if (mode !== "touch") {
+    }
+
+    if (mode !== "touch") {
       touched.current = false;
       return;
     }
 
-    const cb = () => {
+    const cb = (): void => {
       start();
       window.removeEventListener("touchend", cb, true);
     };
@@ -391,12 +407,10 @@ export function useTouchState({
     []
   );
 
-  return {
-    stopTouchTimer: stop,
-    touchHandlers: {
-      onTouchStart: handleTouchStart,
-      onTouchMove: handleTouchMove,
-      onContextMenu: mode === "touch" ? handleContextMenu : onContextMenu,
-    },
-  };
+  return [
+    stop,
+    handleTouchStart,
+    handleTouchMove,
+    mode === "touch" ? handleContextMenu : onContextMenu,
+  ];
 }

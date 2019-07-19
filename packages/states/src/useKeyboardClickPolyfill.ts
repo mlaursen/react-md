@@ -40,7 +40,7 @@ export default function useKeyboardClickPolyfill<
   disabled = false,
   disableEnterClick = false,
   disableSpacebarClick = false,
-}: Options<E> = {}) {
+}: Options<E> = {}): React.KeyboardEventHandler<E> | undefined {
   const ref = useRefCache({ onKeyDown, disableSpacebarClick });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {

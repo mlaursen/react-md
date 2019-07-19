@@ -37,7 +37,7 @@ export default function usePreviousFocus(
   disabled: boolean,
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null
-) {
+): void {
   const ref = useRefCache({ fallback, previousElement });
 
   useEffect(() => {

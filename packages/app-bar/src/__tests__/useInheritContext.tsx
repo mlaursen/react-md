@@ -18,7 +18,7 @@ describe("useInheritContext", () => {
     };
 
     const Context: FC = ({ children }) => (
-      <InheritContext.Provider value={true}>{children}</InheritContext.Provider>
+      <InheritContext.Provider value>{children}</InheritContext.Provider>
     );
 
     const Test1 = () => {

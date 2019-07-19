@@ -2,10 +2,11 @@ import React, { FC, Fragment, useCallback } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { SingletonRouter, withRouter } from "next/router";
 
+import NotFoundPage from "components/NotFoundPage";
+
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";
-import NotFoundPage from "components/NotFoundPage";
 
 interface Query {
   pkg?: string;
@@ -93,7 +94,7 @@ interface WithRouterProps {
   sandbox: IFiles | null;
 }
 
-const toString = (q: string | string[] | undefined) => {
+const toString = (q: string | string[] | undefined): string => {
   if (!q) {
     return "";
   }

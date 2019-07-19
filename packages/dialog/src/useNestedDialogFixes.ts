@@ -1,10 +1,15 @@
-import { useNestedDialogContext } from "./NestedDialogContext";
 import { useEffect, useMemo } from "react";
+import { useNestedDialogContext } from "./NestedDialogContext";
 
 interface Options {
   id: string;
   visible: boolean;
   disabled: boolean;
+  disableEscapeClose: boolean;
+}
+
+interface ReturnValue {
+  disableOverlay: boolean;
   disableEscapeClose: boolean;
 }
 
@@ -24,7 +29,7 @@ export default function useNestedDialogFixes({
   visible,
   disabled,
   disableEscapeClose: propDisableEscapeClose,
-}: Options) {
+}: Options): ReturnValue {
   const { add, remove, stack } = useNestedDialogContext();
   useEffect(() => {
     if (disabled || !visible) {

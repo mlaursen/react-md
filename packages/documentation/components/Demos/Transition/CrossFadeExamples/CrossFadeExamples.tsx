@@ -2,9 +2,10 @@ import React, { FC, Fragment } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
+import Code from "components/Code/Code";
+
 import StaticPageTransition from "./StaticPageTransition";
 import AsyncPageTransitions from "./AsyncPageTransitions";
-import Code from "components/Code/Code";
 
 const CrossFadeExamples: FC = () => (
   <Fragment>

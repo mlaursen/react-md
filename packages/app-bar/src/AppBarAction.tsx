@@ -67,6 +67,14 @@ if (process.env.NODE_ENV !== "production") {
       children: PropTypes.node,
       first: PropTypes.bool,
       last: PropTypes.bool,
+      buttonType: PropTypes.oneOf(["text", "icon"]),
+      theme: PropTypes.oneOf([
+        "primary",
+        "secondary",
+        "warning",
+        "error",
+        "clear",
+      ]),
     };
   }
 }

@@ -6,9 +6,8 @@ import {
 } from "@react-md/states";
 import { WithForwardedRef } from "@react-md/utils";
 
-import getListItemHeight from "./getListItemHeight";
+import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
 import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
-import { SimpleListItemProps } from "./SimpleListItem";
 
 export interface ListItemLinkProps
   extends HTMLAttributes<HTMLAnchorElement>,
@@ -27,7 +26,7 @@ export interface ListItemLinkProps
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
    * all valid props from that component should also be allowed.
    */
-  [key: string]: any;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
@@ -128,6 +127,11 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     ListItemLink.propTypes = {
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
       height: PropTypes.oneOf([
         "auto",
         "normal",

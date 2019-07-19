@@ -17,7 +17,7 @@ export function findMatchInRange(
   values: string[],
   startIndex: number,
   endIndex: number
-) {
+): number {
   value = value.toUpperCase();
   for (let i = startIndex; i < endIndex; i += 1) {
     const content = values[i];
@@ -49,7 +49,7 @@ export default function findMatchIndex(
   values: string[],
   startIndex: number,
   isSelfMatchable: boolean = true
-) {
+): number {
   let index = findMatchInRange(value, values, startIndex + 1, values.length);
   if (index === -1) {
     const endIndex = startIndex + (isSelfMatchable ? 1 : 0);

@@ -32,7 +32,7 @@ const MenuPositioning: FC = () => (
   <Fragment>
     {horizontalPositions.map((x, i) => (
       <Fragment key={x}>
-        <Text type="headline-6" margin={i == 0 ? "none" : "top"}>
+        <Text type="headline-6" margin={i === 0 ? "none" : "top"}>
           Horizontal Position: <Code>{x}</Code>
         </Text>
         <div className="menu-positioning-container">

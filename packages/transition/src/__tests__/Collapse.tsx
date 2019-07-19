@@ -1,25 +1,27 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { cleanup, render } from "@testing-library/react";
 
 import Collapse from "../Collapse";
+
+afterEach(cleanup);
 
 describe("Collapse", () => {
   describe("rendering", () => {
     it("should render as null when collapsed by default", () => {
       const children = jest.fn();
-      const collapse = shallow(<Collapse collapsed>{children}</Collapse>);
-      expect(collapse.type()).toBe(null);
+      const { container } = render(<Collapse collapsed>{children}</Collapse>);
+      expect(container.firstChild).toBe(null);
     });
 
     it("should not call the children callback function when it is rendered as null", () => {
       const children = jest.fn();
-      mount(<Collapse collapsed>{children}</Collapse>);
+      render(<Collapse collapsed>{children}</Collapse>);
 
       expect(children).not.toBeCalled();
     });
 
     it("should not render as null if any of minHeight, minPaddingTop, or minPaddingBottom are greater than 0", () => {
-      const collapse = shallow(
+      const { container } = render(
         <Collapse
           collapsed
           minHeight={1}
@@ -30,20 +32,11 @@ describe("Collapse", () => {
         </Collapse>
       );
 
-      expect(collapse.type()).not.toBeNull();
-
-      collapse.setProps({ minPaddingTop: 0, minPaddingBottom: 0 });
-      expect(collapse.type()).not.toBeNull();
-
-      collapse.setProps({ minHeight: 0, minPaddingBottom: 1 });
-      expect(collapse.type()).not.toBeNull();
-
-      collapse.setProps({ minPaddingTop: 1, minPaddingBottom: 0 });
-      expect(collapse.type()).not.toBeNull();
+      expect(container).toMatchSnapshot();
     });
 
     it("should use the value of the isEmptyCollapsed prop over the values of minHeight, minPaddingTop, minPaddingBottom if it is defined", () => {
-      const collapse = shallow(
+      const { container, rerender } = render(
         <Collapse
           collapsed
           isEmptyCollapsed
@@ -55,15 +48,20 @@ describe("Collapse", () => {
         </Collapse>
       );
 
-      expect(collapse.type()).toBe(null);
+      expect(container.firstChild).toBe(null);
 
-      collapse.setProps({
-        minHeight: 0,
-        minPaddingTop: 0,
-        minPaddingBottom: 0,
-        isEmptyCollapsed: false,
-      });
-      expect(collapse.type()).not.toBe(null);
+      rerender(
+        <Collapse
+          collapsed
+          isEmptyCollapsed={false}
+          minHeight={0}
+          minPaddingTop={0}
+          minPaddingBottom={0}
+        >
+          {() => <div />}
+        </Collapse>
+      );
+      expect(container.firstChild).not.toBe(null);
     });
   });
 });

@@ -136,6 +136,10 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     BadgedButton.propTypes = {
       id: PropTypes.string,
+      "aria-label": PropTypes.string,
+      buttonType: PropTypes.oneOf(["text", "icon"]),
+      children: PropTypes.node,
+      disableNullOnZero: PropTypes.bool,
       badgeId: PropTypes.string,
       badgeRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       badgeStyle: PropTypes.object,

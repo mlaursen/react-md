@@ -244,6 +244,19 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     TextField.propTypes = {
       id: PropTypes.string.isRequired,
+      type: PropTypes.oneOf([
+        "text",
+        "password",
+        "number",
+        "tel",
+        "email",
+        "date",
+        "time",
+        "datetime-local",
+        "month",
+        "week",
+        "url",
+      ]),
       style: PropTypes.object,
       className: PropTypes.string,
       inputStyle: PropTypes.object,

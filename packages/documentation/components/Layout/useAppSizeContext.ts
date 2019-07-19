@@ -29,7 +29,7 @@ let listener = false;
  * - I might need to rethink the whole app size stuff for SSR since this
  *   is a terrible workaround
  */
-export default function useAppSizeContext() {
+export default function useAppSizeContext(): AppSize {
   const defaultSize = useContext(DefaultSize);
   const currentSize = useAppSizeContextRMD();
   const [toggled, , , toggle] = useToggle(false);

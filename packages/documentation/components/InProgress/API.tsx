@@ -1,7 +1,9 @@
 import React from "react";
-import InProgress from "./InProgress";
 import { TextContainer } from "@react-md/typography";
+
 import { Markdown } from "components/Markdown";
+
+import InProgress from "./InProgress";
 
 const description = `
 This one will probably take me awhile to finish unfortunately and would gladly

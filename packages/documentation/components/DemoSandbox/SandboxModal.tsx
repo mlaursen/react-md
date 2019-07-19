@@ -1,17 +1,17 @@
 import React, { FC, useEffect, useRef } from "react";
 import Head from "next/head";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
 import { bem } from "@react-md/theme";
+import { useToggle } from "@react-md/utils";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
+import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { toTitle } from "utils/toTitle";
 
 import "./SandboxModal.scss";
-import SandboxNavigation from "./SandboxNavigation";
 import CodePreview from "./CodePreview";
 import SandboxFileTree from "./SandboxFileTree";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
-import { useToggle } from "@react-md/utils";
+import SandboxNavigation from "./SandboxNavigation";
 
 interface SandboxModalProps {
   pkg: string;

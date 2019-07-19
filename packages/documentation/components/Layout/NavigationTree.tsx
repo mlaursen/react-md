@@ -1,4 +1,5 @@
 import React, { FC, memo, useEffect, useRef } from "react";
+import { SingletonRouter, withRouter } from "next/router";
 import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
@@ -11,8 +12,8 @@ import {
   TreeItemRenderer,
   useFlattenedTree,
   useTreeItemExpansion,
+  OnItemExpandedChange,
 } from "@react-md/tree";
-import { SingletonRouter, withRouter } from "next/router";
 
 import LinkUnstyled from "components/LinkUnstyled";
 import {
@@ -62,12 +63,17 @@ const itemRenderer: TreeItemRenderer<AnyRecord | RoutesTreeData> = (
   );
 };
 
-const onItemSelect = () => {};
+const onItemSelect = (): void => {};
+
+interface CustomExpansionReturnValue {
+  expandedIds: string[];
+  onItemExpandedChange: OnItemExpandedChange;
+}
 
 function useCustomItemExpansion(
   pathname: string,
   data: FlattenedTreeData<RoutesTreeData>[]
-) {
+): CustomExpansionReturnValue {
   const {
     expandedIds,
     onItemExpandedChange,

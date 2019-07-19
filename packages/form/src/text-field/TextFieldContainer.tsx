@@ -214,6 +214,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     TextFieldContainer.propTypes = {
+      disabled: PropTypes.bool,
       inline: PropTypes.bool,
       theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
       active: PropTypes.bool,

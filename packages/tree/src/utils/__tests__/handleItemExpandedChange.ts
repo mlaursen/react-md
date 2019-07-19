@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 import handleItemExpandedChange from "../handleItemExpandedChange";
 
 const EMPTY_IDS: string[] = [];

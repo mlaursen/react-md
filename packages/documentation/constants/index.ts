@@ -39,3 +39,6 @@ export const PACKAGE_NAMES = Object.keys(PACKAGES_RECORD).map(
 
 export const CODE_SANDBOX_DEFINE_API =
   "https://codesandbox.io/api/v1/sandboxes/define";
+
+export const GA_CODE = process.env.GA_CODE || "UA-76079335-2";
+export const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;

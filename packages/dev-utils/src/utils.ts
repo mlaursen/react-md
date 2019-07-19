@@ -30,7 +30,7 @@ const prettierConfig = prettier.resolveConfig.sync(
 
 export const glob = promisify(nodeGlob);
 
-export function upperFirst(s: string) {
+export function upperFirst(s: string): string {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
@@ -39,7 +39,7 @@ export function upperFirst(s: string) {
  * capitializing the first letter of each split, and then joining
  * back together.
  */
-export function toTitle(s: string, joinWith: string = "") {
+export function toTitle(s: string, joinWith: string = ""): string {
   return s
     .split("-")
     .map(upperFirst)
@@ -59,7 +59,7 @@ export async function copyFiles(
   files: string[],
   dest: string,
   options: CopyFilesOptions = {}
-): Promise<any> {
+): Promise<void> {
   const { message, prefix = `src${path.sep}`, replace } = options;
   if (message !== null) {
     log.debug(message || "Copying the following files:");
@@ -97,7 +97,9 @@ export function getPackageJson(): Promise<PackageJson> {
  * Gets the packge name for the current working directory of this script.
  * The package name can either be prefixed with @react-md or not.
  */
-export async function getPackageName(prefixed: boolean = false) {
+export async function getPackageName(
+  prefixed: boolean = false
+): Promise<string> {
   const packageJson = await getPackageJson();
   const { name } = packageJson;
 
@@ -119,7 +121,7 @@ interface ScopedPackageOptions {
 export async function geScopedPackageNames({
   prefixed = false,
   filter,
-}: ScopedPackageOptions = {}) {
+}: ScopedPackageOptions = {}): Promise<string[]> {
   const directories = await fs.readdir(packagesRoot);
   let customFilter: ScopedPackageFilter;
   if (filter === "ts") {
@@ -142,6 +144,20 @@ export async function geScopedPackageNames({
 
 export type TsConfigType = "commonjs" | "module" | "variables" | "check";
 
+interface TsConfigOptions {
+  extends: string;
+  compilerOptions: {
+    outDir: string;
+    rootDir: string;
+    incremental: boolean;
+    declaration: boolean;
+    declarationDir: string;
+    target: string;
+  };
+  include: string[];
+  exclude: string[] | undefined;
+}
+
 /**
  * I dislike maintaining multiple config files, so each time I try to build
  * a package, i'll re-create the tsconfig.json files required. These tsconfig
@@ -151,7 +167,7 @@ export type TsConfigType = "commonjs" | "module" | "variables" | "check";
 export function createTsConfig(
   tsConfigType: TsConfigType,
   packageName: string
-) {
+): TsConfigOptions {
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isVariables = tsConfigType === "variables";
@@ -194,7 +210,25 @@ export function createTsConfig(
   };
 }
 
-export async function createTsConfigFiles() {
+export async function checkForTypescriptFiles(): Promise<
+  TypescriptFilesResult
+> {
+  const allTsFiles = await glob(`${src}/**/*.+(ts|tsx)`);
+  const filtered = allTsFiles.filter(
+    filePath => !filePath.includes("__tests__")
+  );
+  const variables = filtered.some(filePath =>
+    filePath.includes("scssVariables")
+  );
+
+  return {
+    found: filtered.length > 0,
+    variables,
+    variablesOnly: filtered.length === 1 && variables,
+  };
+}
+
+export async function createTsConfigFiles(): Promise<void> {
   const { found, variables, variablesOnly } = await checkForTypescriptFiles();
   if (!found) {
     return;
@@ -228,27 +262,21 @@ export async function createTsConfigFiles() {
   }
 }
 
-export async function checkForTypescriptFiles() {
-  const allTsFiles = await glob(`${src}/**/*.+(ts|tsx)`);
-  const filtered = allTsFiles.filter(
-    filePath => !filePath.includes("__tests__")
-  );
-  const variables = filtered.some(filePath =>
-    filePath.includes("scssVariables")
-  );
-
-  return {
-    found: filtered.length > 0,
-    variables,
-    variablesOnly: filtered.length === 1 && variables,
-  };
+interface TypescriptFilesResult {
+  found: boolean;
+  variables: boolean;
+  variablesOnly: boolean;
 }
 
 /**
  * This will time any async function and log the duration. Requires verbose
  * mode for any logging though.
  */
-export async function time(fn: () => Promise<any>, command: string) {
+export async function time(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fn: () => Promise<any>,
+  command: string
+): Promise<void> {
   log.debug(`Running "${command}"...`);
   const startTime = now();
   await fn();
@@ -261,7 +289,7 @@ export async function time(fn: () => Promise<any>, command: string) {
  * IO can be shown, and the current environment varaibles are
  * passed down.
  */
-export function exec(command: string, options: ExecOptions = {}) {
+export function exec(command: string, options: ExecOptions = {}): void {
   execSync(command, {
     cwd: process.cwd(),
     stdio: "inherit",
@@ -277,7 +305,7 @@ export function exec(command: string, options: ExecOptions = {}) {
  * A simple function that will convert a list of things into a "prettified"
  * console.log-able version for debugging.
  */
-export function list(things: (string | boolean | null | undefined)[]) {
+export function list(things: (string | boolean | null | undefined)[]): string {
   return things
     .filter(Boolean)
     .map(thing => `- ${thing}`)
@@ -288,7 +316,7 @@ export function list(things: (string | boolean | null | undefined)[]) {
  * Creates a string of the provided file path as well as the gzipped
  * file size of the file path.
  */
-export function getFileSize(filePath: string, noPath: boolean = false) {
+export function getFileSize(filePath: string, noPath: boolean = false): string {
   const size = filesize(gzipSize.sync(filePath));
   if (noPath) {
     return size;
@@ -305,7 +333,7 @@ export function printSizes(
   message: string = `The gzipped file size${
     filePaths.length > 1 ? "s are" : " is"
   }:`
-) {
+): void {
   if (typeof filePaths === "string") {
     filePaths = [filePaths];
   }
@@ -322,7 +350,7 @@ export function printSizes(
  * A nice util that will list all the filesizes for the `*.min` files
  * within a package.
  */
-export async function printMinifiedSizes(exclude?: RegExp) {
+export async function printMinifiedSizes(exclude?: RegExp): Promise<void> {
   let minified = await glob(`${dist}/**/*.min*`);
   if (exclude) {
     minified = minified.filter(name => !exclude.test(name));
@@ -339,7 +367,10 @@ export async function printMinifiedSizes(exclude?: RegExp) {
  * @param parser An optional parser to apply when the file being formatted
  * is not typescript or javascript.
  */
-export function format(code: string, parser?: prettier.BuiltInParserName) {
+export function format(
+  code: string,
+  parser?: prettier.BuiltInParserName
+): string {
   return prettier.format(code, {
     ...prettierConfig,
     parser: parser || prettierConfig.parser || "babel",
@@ -349,7 +380,7 @@ export function format(code: string, parser?: prettier.BuiltInParserName) {
 /**
  * Cleans and removes all the files provided.
  */
-export function clean(files: string[]) {
+export function clean(files: string[]): Promise<void[]> {
   log.info("Cleaning the following directories and files:");
   log.info(list(files));
   log.info("");

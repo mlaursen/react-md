@@ -1,83 +1,122 @@
-import * as React from "react";
-import { create } from "react-test-renderer";
-import { mount } from "enzyme";
+import React, { FC } from "react";
+import cn from "classnames";
+import { cleanup, render } from "@testing-library/react";
 
 import IconRotator from "../IconRotator";
 import FontIcon from "../FontIcon";
 import SVGIcon from "../SVGIcon";
 
-const Icon = ({ className }: any) => (
-  <i className={`${className} custom-icon`} />
+afterEach(cleanup);
+
+const Icon: FC<{ className?: string }> = ({ className }) => (
+  <i data-testid="icon" className={cn("custom-icon", className)} />
 );
 
 describe("IconRotator", () => {
-  it("should default to cloning the icon rotator classNames into the child element", () => {
-    const icon = mount(
-      <IconRotator rotated={false}>
+  it("should default to cloning the icon rotator class names into the child element", () => {
+    const { container, getByTestId, rerender } = render(
+      <IconRotator data-testid="rotator" rotated={false}>
         <Icon />
       </IconRotator>
     );
+    const icon = getByTestId("icon");
+    expect(icon.className).toBe(
+      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate"
+    );
+    expect(container).toMatchSnapshot();
 
-    expect(icon.find("i").hasClass("custom-icon")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator--animate")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator--rotated")).toBe(false);
-    expect(icon.render()).toMatchSnapshot();
-
-    icon.setProps({ rotated: true });
-    expect(icon.find("i").hasClass("custom-icon")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator--animate")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon-rotator--rotated")).toBe(true);
-    expect(icon.render()).toMatchSnapshot();
+    rerender(
+      <IconRotator data-testid="rotator" rotated>
+        <Icon />
+      </IconRotator>
+    );
+    expect(icon.className).toBe(
+      "custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+    );
+    expect(container).toMatchSnapshot();
   });
 
-  it("should be able to work out of the box with SVGIcon and FontIcon", () => {
-    const fontRotator = mount(
+  it("should work automatically with the FontIcon component", () => {
+    const { container, rerender } = render(
       <IconRotator rotated={false}>
         <FontIcon>home</FontIcon>
       </IconRotator>
     );
-    const svgRotator = mount(
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated>
+        <FontIcon>home</FontIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should work automatically with the SVGIcon component", () => {
+    const { container, rerender } = render(
       <IconRotator rotated={false}>
         <SVGIcon>
           <path d="0i3odksf" />
         </SVGIcon>
       </IconRotator>
     );
+    expect(container).toMatchSnapshot();
 
-    expect(fontRotator.render()).toMatchSnapshot();
-    expect(svgRotator.render()).toMatchSnapshot();
-
-    fontRotator.setProps({ rotated: true });
-    svgRotator.setProps({ rotated: true });
-    expect(fontRotator.render()).toMatchSnapshot();
-    expect(svgRotator.render()).toMatchSnapshot();
+    rerender(
+      <IconRotator rotated>
+        <SVGIcon>
+          <path d="0i3odksf" />
+        </SVGIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
   });
 
-  it("should wrap the children with a span instead of cloning in the className when the forceIconWrap prop is enabled", () => {
-    expect(
-      create(
-        <IconRotator rotated={false} forceIconWrap>
-          <Icon />
-        </IconRotator>
-      ).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      create(
-        <IconRotator rotated={false} forceIconWrap>
-          <FontIcon>home</FontIcon>
-        </IconRotator>
-      ).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      create(
-        <IconRotator rotated={false} forceIconWrap>
-          <SVGIcon>
-            <path d="0i3odksf" />
-          </SVGIcon>
-        </IconRotator>
-      ).toJSON()
-    ).toMatchSnapshot();
+  it("should wrapp the children with a span if the forceIconWrap prop is enabled", () => {
+    const { container, rerender } = render(
+      <IconRotator rotated={false} forceIconWrap>
+        <Icon />
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated forceIconWrap>
+        <Icon />
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated={false} forceIconWrap>
+        <FontIcon>home</FontIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated forceIconWrap>
+        <FontIcon>home</FontIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated={false} forceIconWrap>
+        <SVGIcon>
+          <path d="0i3odksf" />
+        </SVGIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <IconRotator rotated forceIconWrap>
+        <SVGIcon>
+          <path d="0i3odksf" />
+        </SVGIcon>
+      </IconRotator>
+    );
+    expect(container).toMatchSnapshot();
   });
 });

@@ -85,7 +85,7 @@ const FontIcon: FC<FontIconProps & WithForwardedRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  "aria-hidden": "true",
+  "aria-hidden": true,
   dense: false,
   iconClassName: "material-icons",
   forceSize: false,
@@ -104,6 +104,10 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     FontIcon.propTypes = {
+      "aria-hidden": PropTypes.oneOfType([
+        PropTypes.oneOf(["true", "false"]),
+        PropTypes.bool,
+      ]),
       className: PropTypes.string,
       iconClassName: PropTypes.string,
       dense: PropTypes.bool,

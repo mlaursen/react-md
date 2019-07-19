@@ -1,6 +1,8 @@
 import React, { FC, Fragment } from "react";
-import Code, { CodeProps } from "./Code";
+
 import GoogleFont from "components/GoogleFont";
+
+import Code, { CodeProps } from "./Code";
 
 const InternalCode: FC<CodeProps> = props => (
   <Fragment>

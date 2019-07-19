@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { ReactNode } from "react";
 import {
   BuildSVGIcon,
@@ -49,7 +50,10 @@ export const routesTree: RoutesTree = {};
  * function. This is really used so that the parent pathnames can be prepended
  * the the provided child route's path.
  */
-function createChildRoute(childRoute: ChildRouteConfig, parentPath: string) {
+function createChildRoute(
+  childRoute: ChildRouteConfig,
+  parentPath: string
+): void {
   const { path, children, childRoutes } = childRoute;
   createRoute(path, children, { childRoutes, parentPath });
 }
@@ -63,7 +67,11 @@ function createChildRoute(childRoute: ChildRouteConfig, parentPath: string) {
  * This will render as an expandable tree item when there are no child routes,
  * otherwise it will render as a link tree item.
  */
-function createRoute(path: string, children: ReactNode, config: RouteConfig) {
+function createRoute(
+  path: string,
+  children: ReactNode,
+  config: RouteConfig
+): void {
   const { icon, childRoutes = [], parentPath = null } = config;
   const href = `${parentPath || ""}${path}`;
   routesTree[href] = {
@@ -84,7 +92,10 @@ interface PackageRouteConfig {
   sassdoc?: boolean;
 }
 
-function createPackageRoute(name: string, config: PackageRouteConfig = {}) {
+function createPackageRoute(
+  name: string,
+  config: PackageRouteConfig = {}
+): ChildRouteConfig {
   const { install = true, api = true, demos = true, sassdoc = true } = config;
 
   const childRoutes: ChildRouteConfig[] = [];
@@ -126,7 +137,7 @@ function createPackageRoute(name: string, config: PackageRouteConfig = {}) {
 /**
  * Creates a divider in the tree.
  */
-function createDivider(index: number, parentId: string | null = null) {
+function createDivider(index: number, parentId: string | null = null): void {
   const itemId = `divider-${index}`;
   routesTree[itemId] = {
     itemId,
@@ -142,7 +153,7 @@ function createSubheader(
   itemId: string,
   children: ReactNode,
   parentId: string | null = null
-) {
+): void {
   routesTree[itemId] = {
     itemId,
     parentId,
@@ -159,7 +170,7 @@ function createExternalRoute(
   href: string,
   children: ReactNode,
   icon?: ReactNode
-) {
+): void {
   routesTree[href] = {
     itemId: href,
     parentId: null,

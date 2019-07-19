@@ -276,6 +276,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     InputToggle.propTypes = {
       id: PropTypes.string.isRequired,
+      type: PropTypes.oneOf(["radio", "checkbox"]).isRequired,
       icon: PropTypes.node,
       iconStyle: PropTypes.object,
       iconClassName: PropTypes.string,

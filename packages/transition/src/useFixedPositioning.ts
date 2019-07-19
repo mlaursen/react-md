@@ -31,9 +31,14 @@ export type OnFixedPositionScroll = (
   fixedTo: HTMLElement | null
 ) => void;
 
+type TransitionHooks = Pick<
+  TransitionProps,
+  "onEnter" | "onEntering" | "onEntered" | "onExited"
+>;
+
 export interface FixedPositioningOptions
   extends OptionalFixedPositionOptions,
-    Pick<TransitionProps, "onEnter" | "onEntering" | "onEntered" | "onExited"> {
+    TransitionHooks {
   /**
    * The element that the transitioning node should be fixed to.
    */
@@ -69,7 +74,7 @@ export interface FixedPositioningOptions
   onPositionChange?: PositionChange;
 }
 
-function getFixedTo(fixedTo: FixedTo) {
+function getFixedTo(fixedTo: FixedTo): HTMLElement | null {
   if (!fixedTo) {
     return null;
   }
@@ -87,6 +92,10 @@ function getFixedTo(fixedTo: FixedTo) {
     default:
       return fixedTo as HTMLElement;
   }
+}
+
+interface ReturnValue extends Required<TransitionHooks> {
+  style?: CSSProperties;
 }
 
 /**
@@ -110,7 +119,7 @@ export default function useFixedPositioning({
   onResize,
   onScroll,
   ...remainingOptions
-}: FixedPositioningOptions) {
+}: FixedPositioningOptions): ReturnValue {
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const handlers = useRefCache({ onEnter, onEntering, onEntered, onExited });
   const options = useRefCache({ fixedTo, getOptions, ...remainingOptions });

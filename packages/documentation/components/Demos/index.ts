@@ -1,2 +1,1 @@
-import DemoPage from "./DemoPage";
-export default DemoPage;
+export { default } from "./DemoPage";

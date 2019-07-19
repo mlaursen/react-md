@@ -3,7 +3,7 @@ import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface DialogHeaderProps extends HTMLAttributes<HTMLDivElement> {}
+type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
 
@@ -41,6 +41,7 @@ if (process.env.NODE_ENV !== "production") {
     DialogHeader.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
   }
 }

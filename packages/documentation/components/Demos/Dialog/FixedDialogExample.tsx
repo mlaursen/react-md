@@ -1,18 +1,18 @@
 import React, { FC, useRef } from "react";
 import {
   AppBar,
-  AppBarNav,
   AppBarAction,
+  AppBarNav,
   AppBarTitle,
 } from "@react-md/app-bar";
+import { DialogContent, FixedDialog } from "@react-md/dialog";
 import {
-  MoreVertSVGIcon,
-  MenuSVGIcon,
   CloseSVGIcon,
+  MenuSVGIcon,
+  MoreVertSVGIcon,
 } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
-import { FixedDialog, DialogContent } from "@react-md/dialog";
 
 const FixedDialogExample: FC = () => {
   const actionRef = useRef<HTMLButtonElement | null>(null);
@@ -47,7 +47,7 @@ const FixedDialogExample: FC = () => {
           </AppBarAction>
         </AppBar>
         <DialogContent>
-          <Text>Here's some content.</Text>
+          <Text>Here&apos;s some content.</Text>
         </DialogContent>
       </FixedDialog>
     </AppBar>

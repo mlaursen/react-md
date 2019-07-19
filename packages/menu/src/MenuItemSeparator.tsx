@@ -1,10 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import {
   Divider,
   DividerProps,
   VerticalDivider,
   VerticalDividerProps,
+  DividerElement,
 } from "@react-md/divider";
+import { WithForwardedRef } from "@react-md/utils";
 
 import { useOrientation } from "./Orientation";
 
@@ -19,9 +21,12 @@ export interface MenuItemSeparatorProps
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-const MenuItemSeparator: FC<MenuItemSeparatorProps> = ({
+const MenuItemSeparator: FC<
+  MenuItemSeparatorProps & WithForwardedRef<DividerElement>
+> = ({
   "aria-orientation": propOrientation,
   maxHeight,
+  forwardedRef,
   ...props
 }) => {
   const menuOrientation = useOrientation();
@@ -30,7 +35,9 @@ const MenuItemSeparator: FC<MenuItemSeparatorProps> = ({
     return (
       <VerticalDivider
         {...props}
+        ref={forwardedRef}
         aria-orientation="vertical"
+        maxHeight={maxHeight}
         role="separator"
       />
     );
@@ -40,9 +47,30 @@ const MenuItemSeparator: FC<MenuItemSeparatorProps> = ({
     <Divider
       {...props}
       aria-orientation={orientation || menuOrientation}
+      ref={forwardedRef}
       role="separator"
     />
   );
 };
 
-export default MenuItemSeparator;
+if (process.env.NODE_ENV !== "production") {
+  MenuItemSeparator.displayName = "MenuItemSeparator";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    MenuItemSeparator.propTypes = {
+      "aria-orientation": PropTypes.oneOf(["horizontal", "vertical"]),
+      className: PropTypes.string,
+      maxHeight: PropTypes.number,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    };
+  }
+}
+
+export default forwardRef<DividerElement, MenuItemSeparatorProps>(
+  (props, ref) => <MenuItemSeparator {...props} forwardedRef={ref} />
+);

@@ -17,14 +17,12 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
 
   useEffect(() => {
     let cancelled = false;
-    async function load() {
+    (async function load(): Promise<void> {
       const files = await getSandbox();
       if (!cancelled) {
         setParameters(getParameters({ files }));
       }
-    }
-
-    load();
+    })();
 
     return () => {
       cancelled = true;

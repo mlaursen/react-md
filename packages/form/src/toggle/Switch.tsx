@@ -201,6 +201,8 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
+      stacked: PropTypes.bool,
+      iconAfter: PropTypes.bool,
     };
   }
 }

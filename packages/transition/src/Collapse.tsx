@@ -29,15 +29,15 @@ export interface CollapseChildrenProps {
    * A ref that **must** be applied to the child element. The value provided to this has
    * to be an html element so that the dynamic max-height style can be calculated.
    */
-  ref: RefObject<any>;
+  ref: RefObject<HTMLElement>;
 }
 
 export type CollapseChildrenRenderer = (
   props: CollapseChildrenProps
-) => ReactElement<any>;
+) => ReactElement;
 
 export interface CollapseProps extends CollapseOptions {
-  children: ReactElement<any> | CollapseChildrenRenderer;
+  children: ReactElement<HTMLElement> | CollapseChildrenRenderer;
 }
 
 type DefaultProps = Required<

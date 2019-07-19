@@ -21,7 +21,7 @@ const ExpandableCards: FC = () => {
     <Container centered>
       <Card>
         <MediaContainer fullWidth>
-          <img src="https://picsum.photos/300/200?image=1011" />
+          <img src="https://picsum.photos/300/200?image=1011" alt="" />
         </MediaContainer>
         <CardHeader
           beforeChildren={<Avatar src="https://picsum.photos/40?image=1011" />}

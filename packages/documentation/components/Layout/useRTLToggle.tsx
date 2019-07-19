@@ -1,7 +1,12 @@
 import { useEffect, useMemo } from "react";
 import { useToggle } from "@react-md/utils";
 
-export default function useRTLToggle() {
+interface ReturnValue {
+  isRTL: boolean;
+  toggleRTL: () => void;
+}
+
+export default function useRTLToggle(): ReturnValue {
   const defaultToggled = useMemo(() => {
     if (typeof document === "undefined") {
       return false;

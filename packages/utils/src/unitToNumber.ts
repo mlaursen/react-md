@@ -22,7 +22,9 @@ export default function unitToNumber(
   const parsed = parseFloat(unit);
   if (/px$/.test(unit)) {
     return parsed;
-  } else if (typeof document === "undefined") {
+  }
+
+  if (typeof document === "undefined") {
     return parsed * fontSizeFallback;
   }
 

@@ -12,7 +12,9 @@ export type RefOrInstance =
  * @param refOrInstance The ref or instance to get an HTMLElement from
  * @return The HTMLElement or null.
  */
-export default function getInstance(refOrInstance: RefOrInstance) {
+export default function getInstance(
+  refOrInstance: RefOrInstance
+): HTMLElement | null {
   let instance = null;
   if (refOrInstance) {
     if (refOrInstance instanceof HTMLElement) {

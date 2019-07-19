@@ -80,7 +80,7 @@ const TextIconSpacing: FC<TextIconSpacingProps> = props => {
   } = props as WithDefaultProps;
 
   if (!propIcon) {
-    return children as ReactElement<any>;
+    return children as ReactElement;
   }
 
   let iconEl = propIcon;
@@ -124,7 +124,7 @@ const TextIconSpacing: FC<TextIconSpacingProps> = props => {
     );
   }
 
-  return content as ReactElement<any>;
+  return content as ReactElement;
 };
 
 const defaultProps: DefaultProps = {

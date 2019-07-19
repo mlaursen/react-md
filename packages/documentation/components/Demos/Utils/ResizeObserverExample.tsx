@@ -1,4 +1,12 @@
-import React, { Fragment, FC, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  FC,
+  useEffect,
+  useRef,
+  useState,
+  CSSProperties,
+  MutableRefObject,
+} from "react";
 import { Button } from "@react-md/button";
 import { bem } from "@react-md/theme";
 import {
@@ -15,11 +23,17 @@ const block = bem("simple-resize");
 const DEFAULT_HEIGHT = 100;
 const DEFAULT_WIDTH = 150;
 
+interface Size {
+  height: number;
+  width: number;
+  onResize: ResizeObserverChangeEventHandler;
+}
+
 /**
  * This hook is used to handle the resize events from the `ResizeObserver`. This will update the
  * table values with the current `height` and `width` while the new sizes are animating.
  */
-function useSize() {
+function useSize(): Size {
   const [size, setSize] = useState({
     height: DEFAULT_HEIGHT,
     width: DEFAULT_WIDTH,
@@ -38,12 +52,17 @@ function useSize() {
   };
 }
 
+interface RandomStyleReturnValue {
+  style: CSSProperties;
+  containerRef: MutableRefObject<HTMLDivElement | null>;
+}
+
 /**
  * This hook will create a random style for the container element so that
  * the `maxHeight` and `maxWidth` can be animated. It'll stop and start
  * when the `enabled` value is toggled.
  */
-function useRandomStyle(enabled: boolean) {
+function useRandomStyle(enabled: boolean): RandomStyleReturnValue {
   const [style, setStyle] = useState({
     maxHeight: DEFAULT_HEIGHT,
     maxWidth: DEFAULT_WIDTH,
@@ -56,7 +75,7 @@ function useRandomStyle(enabled: boolean) {
       return;
     }
 
-    const randomize = () => {
+    const randomize = (): void => {
       const maxHeight = randomInt({ min: 100, max: 500 });
       const maxWidth = randomInt({
         min: 150,

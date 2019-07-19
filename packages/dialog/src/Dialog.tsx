@@ -191,7 +191,7 @@ type DefaultProps = Required<
 type WithDefaultProps = StrictProps & DefaultProps & WithRef;
 
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
-const noop = () => {};
+const noop = (): void => {};
 const block = bem("rmd-dialog");
 
 const Dialog: FC<StrictProps & WithRef> = providedProps => {
@@ -382,6 +382,8 @@ if (process.env.NODE_ENV !== "production") {
       modal: PropTypes.bool,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
       overlay: PropTypes.bool,
       overlayStyle: PropTypes.object,
       overlayClassName: PropTypes.string,

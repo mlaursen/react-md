@@ -66,7 +66,7 @@ export default function useKeyboardSearch<E extends HTMLElement = HTMLElement>({
   getValues = els => els.map(el => extractTextContent(el)),
   resetTime = 500,
   onFocusChange = ({ element }) => element.focus(),
-}: KeyboardSearchOptions<E>) {
+}: KeyboardSearchOptions<E>): React.KeyboardEventHandler<E> {
   const { value, setValue } = useTempValue("", resetTime);
   const cache = useRefCache({ onKeyDown, getValues, onFocusChange });
 

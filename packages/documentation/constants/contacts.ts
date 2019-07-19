@@ -1,6 +1,6 @@
 import people from "constants/people";
 
-const mod = (x: number) => Math.floor(x % 9);
+const mod = (x: number): number => Math.floor(x % 9);
 
 interface Contact {
   name: string;
@@ -8,7 +8,7 @@ interface Contact {
 }
 
 // you can ignore this as this is just a bad way of making fake phone numbers
-const contacts: ReadonlyArray<Contact> = people.map((person, i) => {
+const contacts: readonly Contact[] = people.map((person, i) => {
   const [firstName, lastName] = person.split(" ");
   const l1 = firstName.length;
   const l2 = lastName.length;

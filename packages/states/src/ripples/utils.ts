@@ -1,5 +1,5 @@
-import { RippleEvent, RippleType, RippleState } from "./types.d";
 import { findSizingContainer } from "@react-md/utils";
+import { RippleEvent, RippleType, RippleState } from "./types.d";
 
 /**
  * Checks if the ripple event should be ignored since it was bubbled
@@ -8,7 +8,7 @@ import { findSizingContainer } from "@react-md/utils";
  */
 export function isBubbled<E extends HTMLElement>(
   event: Pick<RippleEvent<E>, "currentTarget" | "target">
-) {
+): boolean {
   return Array.from(
     event.currentTarget.querySelectorAll('[role="treeitem"]')
   ).some(item => item.contains(event.target as HTMLElement));
@@ -48,7 +48,7 @@ export function getType(
 export function isRippleable(
   event: RippleEvent<HTMLElement>,
   disableSpacebarClick: boolean
-) {
+): boolean {
   switch (event.type) {
     case "mousedown":
       return (
@@ -71,7 +71,7 @@ export function isRippleable(
   }
 }
 
-function calcHypotenuse(a: number, b: number) {
+function calcHypotenuse(a: number, b: number): number {
   return Math.sqrt(a * a + b * b);
 }
 
@@ -87,13 +87,18 @@ function getRadius(
   y: number,
   offsetWidth: number,
   offsetHeight: number
-) {
+): number {
   return Math.max(
     calcHypotenuse(x, y),
     calcHypotenuse(offsetWidth - x, y),
     calcHypotenuse(offsetWidth - x, offsetHeight - y),
     calcHypotenuse(x, offsetHeight - y)
   );
+}
+
+interface Origin {
+  x: number;
+  y: number;
 }
 
 /**
@@ -106,7 +111,7 @@ function getRadius(
 export function getOrigin(
   event: Pick<RippleEvent<HTMLElement>, "pageX" | "pageY" | "touches" | "type">,
   element: HTMLElement
-) {
+): Origin {
   const type = getType(event);
   const { offsetWidth, offsetHeight } = element;
 

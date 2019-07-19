@@ -28,7 +28,7 @@ export interface ConditionalPortalProps extends RenderConditionalPortalProps {
   /**
    * This children to render.
    */
-  children: ReactElement<any> | null;
+  children: ReactElement | null;
 }
 
 /**

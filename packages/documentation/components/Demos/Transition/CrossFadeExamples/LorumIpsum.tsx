@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import { Text } from "@react-md/typography";
 
-export const Lorem1 = () => (
+export const Lorem1: FC = () => (
   <Text>
     Nunc dapibus nec neque vitae aliquam. Phasellus eu luctus tortor. Morbi et
     massa lectus. Nam nec posuere urna, nec tincidunt ligula. Vestibulum in urna
@@ -12,7 +12,7 @@ export const Lorem1 = () => (
   </Text>
 );
 
-export const Lorem2 = () => (
+export const Lorem2: FC = () => (
   <Text>
     Nullam consectetur rhoncus rhoncus. Nullam cursus porttitor lacus non
     facilisis. Donec tincidunt arcu sollicitudin neque iaculis sollicitudin.
@@ -23,7 +23,7 @@ export const Lorem2 = () => (
   </Text>
 );
 
-export const Lorem3 = () => (
+export const Lorem3: FC = () => (
   <Text>
     Donec lacinia velit ac est finibus malesuada. Mauris arcu dui, euismod quis
     erat et, iaculis molestie orci. Nullam efficitur felis non feugiat

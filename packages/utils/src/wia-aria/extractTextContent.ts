@@ -1,4 +1,4 @@
-const removeWhitespace = (s: string) => s.replace(/\s/g, "");
+const removeWhitespace = (s: string): string => s.replace(/\s/g, "");
 
 /**
  * The default function used to extract the text from nodes. This will just return the textContent
@@ -14,7 +14,7 @@ const removeWhitespace = (s: string) => s.replace(/\s/g, "");
 export default function extractTextContent(
   stringOrElement: HTMLElement | string,
   fontIconQuerySelector: string = ".rmd-icon--font"
-) {
+): string {
   if (typeof stringOrElement === "string") {
     return removeWhitespace(stringOrElement);
   }
@@ -27,11 +27,12 @@ export default function extractTextContent(
     if (fontIcons.some(i => !!i.textContent)) {
       const cloned = stringOrElement.cloneNode(true) as HTMLElement;
       let icon: HTMLElement | null;
-      while ((icon = cloned.querySelector(fontIconQuerySelector))) {
-        if (icon.parentNode) {
+      do {
+        icon = cloned.querySelector(fontIconQuerySelector);
+        if (icon && icon.parentNode) {
           icon.parentNode.removeChild(icon);
         }
-      }
+      } while (icon);
 
       return removeWhitespace(cloned.textContent || "");
     }

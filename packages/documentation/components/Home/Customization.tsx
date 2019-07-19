@@ -28,10 +28,10 @@ const GettingStarted: FC = () => (
     </MediaContainer>
     <CardContent disableSecondaryColor>
       <Text>
-        Now that you've gotten the hang of using components from{" "}
-        <Code>react-md</Code>, it's time to make your app feel unique! There's
-        no point in having every app look exactly the same especially when you
-        need to add your company's branding.
+        Now that you&apos;ve gotten the hang of using components from{" "}
+        <Code>react-md</Code>, it&apos;s time to make your app feel unique!
+        There&apos;s no point in having every app look exactly the same
+        especially when you need to add your company&apos;s branding.
       </Text>
     </CardContent>
     <Divider />

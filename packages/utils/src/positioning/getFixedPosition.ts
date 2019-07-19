@@ -105,55 +105,7 @@ export interface FixedPositionOptions {
   transformOrigin?: boolean;
 }
 
-export interface FixedPositionResult {
-  actualX: HorizontalPosition;
-  actualY: VerticalPosition;
-  style?: Coords & {
-    position: string;
-    transformOrigin?: string;
-  };
-}
-
-function createStyleWithoutElement(
-  containerRect: ClientRect | DOMRect,
-  anchor: PositionAnchor,
-  transformOrigin: boolean
-) {
-  const { x, y } = anchor;
-  const {
-    height,
-    width,
-    left: containerLeft,
-    top: containerTop,
-  } = containerRect;
-
-  let left = containerLeft;
-  let top = containerTop;
-  if (x === "right" || x === "inner-right") {
-    left = left + width;
-  } else if (x === "center") {
-    left = left + width / 2;
-  }
-
-  if (y === "below" || y === "bottom") {
-    top = top + height;
-  } else if (y === "center") {
-    top = top + height / 2;
-  }
-
-  return {
-    actualX: x,
-    actualY: y,
-    style: {
-      left,
-      top,
-      position: "fixed",
-      transformOrigin: transformOrigin ? getTransformOrigin(anchor) : undefined,
-    },
-  };
-}
-
-function getTransformOrigin(anchor: PositionAnchor) {
+function getTransformOrigin(anchor: PositionAnchor): string {
   let x = "0";
   switch (anchor.x) {
     case "right":
@@ -167,6 +119,8 @@ function getTransformOrigin(anchor: PositionAnchor) {
     case "inner-right":
       x = "100%";
       break;
+    default:
+      x = "0";
   }
 
   let y = "0";
@@ -182,9 +136,59 @@ function getTransformOrigin(anchor: PositionAnchor) {
     case "top":
       y = "0";
       break;
+    default:
+      y = "0";
   }
 
   return `${x} ${y}`;
+}
+
+export interface FixedPositionResult {
+  actualX: HorizontalPosition;
+  actualY: VerticalPosition;
+  style?: Coords & {
+    position: string;
+    transformOrigin?: string;
+  };
+}
+
+function createStyleWithoutElement(
+  containerRect: ClientRect | DOMRect,
+  anchor: PositionAnchor,
+  transformOrigin: boolean
+): FixedPositionResult {
+  const { x, y } = anchor;
+  const {
+    height,
+    width,
+    left: containerLeft,
+    top: containerTop,
+  } = containerRect;
+
+  let left = containerLeft;
+  let top = containerTop;
+  if (x === "right" || x === "inner-right") {
+    left += width;
+  } else if (x === "center") {
+    left += width / 2;
+  }
+
+  if (y === "below" || y === "bottom") {
+    top += height;
+  } else if (y === "center") {
+    top += height / 2;
+  }
+
+  return {
+    actualX: x,
+    actualY: y,
+    style: {
+      left,
+      top,
+      position: "fixed",
+      transformOrigin: transformOrigin ? getTransformOrigin(anchor) : undefined,
+    },
+  };
 }
 
 interface AdjustPositionOptions {
@@ -203,6 +207,16 @@ interface AdjustPositionOptions {
   disableSwapping: boolean;
 }
 
+interface HorizontalUpdate {
+  left: number;
+  actualX: HorizontalPosition;
+}
+
+interface VerticalUpdate {
+  top: number;
+  actualY: VerticalPosition;
+}
+
 /**
  * Tries to fix the "left" horizontal positoining by ensuring it can be within the viewport
  * and tries swapping sides if possible. This is basically the inverse of `fixRightPosition`
@@ -215,7 +229,7 @@ function fixLeftPosition({
   vw,
   vwMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): HorizontalUpdate {
   let left = containerLeft - elementWidth - xMargin;
   let actualX: HorizontalPosition = "left";
   if (left < vwMargin) {
@@ -239,7 +253,7 @@ function fixRightPosition({
   vw,
   vwMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): HorizontalUpdate {
   let actualX: HorizontalPosition = "right";
   let left = containerLeft + containerWidth + xMargin;
   const screenRight = vw - vwMargin;
@@ -264,7 +278,7 @@ function fixInnerLeftPosition({
   xMargin,
   vwMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): HorizontalUpdate {
   let left = containerLeft + xMargin;
   let actualX: HorizontalPosition = "inner-left";
   const screenRight = vw - vwMargin;
@@ -289,7 +303,7 @@ function fixInnerRightPosition({
   xMargin,
   vwMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): HorizontalUpdate {
   let left = containerLeft + containerWidth - elementWidth - xMargin;
   let actualX: HorizontalPosition = "inner-right";
   if (left < vwMargin) {
@@ -310,7 +324,7 @@ function fixHorizontalCenterPosition({
   elementWidth,
   vw,
   vwMargin,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): number {
   let left = containerLeft + containerWidth / 2 - elementWidth / 2;
   const screenRight = vw - vwMargin;
   if (left + elementWidth > screenRight) {
@@ -328,7 +342,7 @@ function fixAbovePosition({
   vh,
   vhMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): VerticalUpdate {
   let top = containerTop - elementHeight - yMargin;
   let actualY: VerticalPosition = "above";
   if (top < vhMargin) {
@@ -352,7 +366,7 @@ function fixBelowPosition({
   vh,
   vhMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): VerticalUpdate {
   let top = containerTop + containerHeight + yMargin;
   let actualY: VerticalPosition = "below";
   const maxTop = vh - vhMargin;
@@ -377,7 +391,7 @@ function fixTopPosition({
   yMargin,
   vhMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): VerticalUpdate {
   let actualY: VerticalPosition = "top";
   let top = containerTop + yMargin;
   const screenBottom = vh - vhMargin;
@@ -402,7 +416,7 @@ function fixBottomPosition({
   yMargin,
   vhMargin,
   disableSwapping,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): VerticalUpdate {
   let actualY: VerticalPosition = "bottom";
   let top = containerTop + containerHeight - elementHeight - yMargin;
   const screenBottom = vh - vhMargin;
@@ -424,7 +438,7 @@ function fixVerticalCenter({
   elementHeight,
   vh,
   vhMargin,
-}: AdjustPositionOptions) {
+}: AdjustPositionOptions): number {
   const halvedHeight = elementHeight / 2;
   let top = containerTop + containerHeight / 2 - halvedHeight;
   const screenBottom = vh - vhMargin;
@@ -550,6 +564,7 @@ export default function getFixedPosition({
       case "center":
         left = fixHorizontalCenterPosition(adjustConfig);
         break;
+      // no default
     }
   }
 
@@ -574,6 +589,7 @@ export default function getFixedPosition({
       case "bottom":
         ({ actualY, top } = fixBottomPosition(adjustConfig));
         break;
+      // no default
     }
   }
 

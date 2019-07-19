@@ -43,7 +43,7 @@ const AnimatingAppBar: FC = () => {
       return;
     }
 
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const height = heightRef.current;
       const { scrollTop } = div;
       const remaining = Math.min(

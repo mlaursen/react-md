@@ -21,7 +21,7 @@ export type TextContainerSize = "auto" | "mobile" | "desktop";
  */
 export type TextContainerRenderFunction = (props: {
   className: string;
-}) => ReactElement<any>;
+}) => ReactElement;
 
 /**
  * The base props for rendering the text component.

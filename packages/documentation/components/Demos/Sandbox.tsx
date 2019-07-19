@@ -1,4 +1,5 @@
 import React, { Fragment, FC } from "react";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Portal } from "@react-md/portal";
 import { useToggle } from "@react-md/utils";
 
@@ -6,7 +7,6 @@ import AppBarAction from "components/AppBarAction";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
 
 import SandboxDefineForm from "./SandboxDefineForm";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 export interface SandboxProps {
   id: string;

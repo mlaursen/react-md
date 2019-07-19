@@ -81,6 +81,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     List.propTypes = {
+      role: PropTypes.string,
       dense: PropTypes.bool,
       horizontal: PropTypes.bool,
       ordered: PropTypes.bool,

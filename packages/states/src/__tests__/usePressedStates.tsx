@@ -4,7 +4,7 @@ import { fireEvent, render, cleanup } from "@testing-library/react";
 
 import usePressedStates from "../usePressedStates";
 
-export interface Props
+interface Props
   extends Pick<
     HTMLAttributes<HTMLButtonElement>,
     | "onKeyDown"

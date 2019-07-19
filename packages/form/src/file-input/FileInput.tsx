@@ -212,6 +212,8 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       themeType: PropTypes.oneOf(["flat", "outline", "contained"]),
       buttonType: PropTypes.oneOf(["text", "icon"]),
+      disabled: PropTypes.bool,
+      children: PropTypes.node,
     };
   }
 }

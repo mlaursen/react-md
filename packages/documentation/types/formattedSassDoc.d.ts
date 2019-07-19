@@ -64,7 +64,7 @@ export interface ParameterizedSassDoc extends BaseFormattedSassDoc {
   throws: Throw;
 }
 
-export interface FormattedMixinSassDoc extends ParameterizedSassDoc {}
+export type FormattedMixinSassDoc = ParameterizedSassDoc;
 export interface FormattedFunctionSassDoc extends ParameterizedSassDoc {
   returns: Return;
 }

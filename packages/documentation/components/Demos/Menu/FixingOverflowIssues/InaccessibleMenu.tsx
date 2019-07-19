@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
 import React, { FC, useRef, useEffect } from "react";
 import { Button } from "@react-md/button";
 import { bem } from "@react-md/theme";
@@ -20,7 +21,7 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
       return;
     }
 
-    const closeOnOutsideClick = (event: MouseEvent) => {
+    const closeOnOutsideClick = (event: MouseEvent): void => {
       const target = event.target as HTMLElement;
       if (!target || !menu.current || !menu.current.contains(target)) {
         disable();

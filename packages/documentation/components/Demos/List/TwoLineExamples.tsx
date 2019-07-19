@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { FC } from "react";
 import cn from "classnames";
 import { Avatar, AvatarProps } from "@react-md/avatar";
@@ -13,7 +14,7 @@ const lastAccessedRecipes = new Date();
 lastAccessedRecipes.setDate(lastAccessedRecipes.getDate() - 2);
 const lastAccessedWork = new Date();
 
-const formatShort = (d: Date) =>
+const formatShort = (d: Date): string =>
   d.toLocaleString(undefined, {
     month: "short",
     day: "2-digit",

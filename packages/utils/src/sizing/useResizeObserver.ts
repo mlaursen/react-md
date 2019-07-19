@@ -62,7 +62,9 @@ export type ResizeObserverChangeEventHandler = (
  *
  * @private
  */
-export function getResizeObserverTarget(target: ResizeObserverTargetFinder) {
+export function getResizeObserverTarget(
+  target: ResizeObserverTargetFinder
+): HTMLElement | null {
   if (target === null) {
     return target;
   }
@@ -87,7 +89,7 @@ export function isSizeChange(
   nextSize: ElementSize,
   disableHeight: boolean,
   disableWidth: boolean
-) {
+): boolean {
   return (
     !prevSize ||
     (!disableWidth &&
@@ -116,7 +118,7 @@ export function useMeasure({
   disableWidth = false,
   onResize,
   defaultSize = null,
-}: MeasureOptions) {
+}: MeasureOptions): (entries: ResizeObserverEntry[]) => void {
   const prevSize = useRef<ElementSize | null>(defaultSize);
   const options = useRefCache({ disableHeight, disableWidth, onResize });
 
@@ -171,7 +173,7 @@ export default function useResizeObserver({
   disableWidth = false,
   onResize,
   getTarget,
-}: ResizeObserverOptions) {
+}: ResizeObserverOptions): void {
   const measure = useMeasure({ disableHeight, disableWidth, onResize });
   const observer = useMemo(() => new ResizeObserverPolyfill(measure), []);
   const target = useResizeObserverTarget(getTarget);

@@ -39,11 +39,13 @@ if (process.env.NODE_ENV !== "production") {
     Radio.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
+      icon: PropTypes.node,
       value: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.string),
         PropTypes.string,
         PropTypes.number,
       ]).isRequired,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
   }
 }

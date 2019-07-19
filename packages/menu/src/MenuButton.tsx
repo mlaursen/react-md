@@ -85,6 +85,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
   asAppBarAction,
   ...props
 }) => {
+  const { buttonType } = props;
   const actionClassName = useActionClassName({ first, last, inheritColor });
   return (
     <Button
@@ -102,7 +103,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
       <ToggleChildren
         visible={visible}
         dropdownIcon={dropdownIcon}
-        disableDropdownIcon={disableDropdownIcon || props.buttonType === "icon"}
+        disableDropdownIcon={disableDropdownIcon || buttonType === "icon"}
       >
         {children}
       </ToggleChildren>
@@ -136,8 +137,13 @@ if (process.env.NODE_ENV !== "production") {
       visible: PropTypes.bool.isRequired,
       dropdownIcon: PropTypes.node,
       disableDropdownIcon: PropTypes.bool,
+      className: PropTypes.string,
+      children: PropTypes.node,
+      buttonType: PropTypes.oneOf(["text", "icon"]),
       first: PropTypes.bool,
       last: PropTypes.bool,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      inheritColor: PropTypes.bool,
       asAppBarAction: PropTypes.bool,
     };
   }

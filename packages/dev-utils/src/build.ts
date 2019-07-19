@@ -32,27 +32,6 @@ const DEFAULT_CONFIG: BuildConfig = {
   variablesOnly: false,
 };
 
-export default async function build(
-  config: Partial<BuildConfig> = DEFAULT_CONFIG
-) {
-  const buildConfig = defaults(
-    pick(config, [
-      "css",
-      "umd",
-      "clean",
-      "update",
-      "updateOnly",
-      "umdOnly",
-      "stylesOnly",
-      "themesOnly",
-      "variablesOnly",
-    ]),
-    DEFAULT_CONFIG
-  );
-
-  time(() => runBuild(buildConfig), "build");
-}
-
 async function runBuild({
   css,
   umd,
@@ -64,7 +43,7 @@ async function runBuild({
   themesOnly,
   scriptsOnly,
   variablesOnly,
-}: BuildConfig) {
+}: BuildConfig): Promise<void> {
   if (clean) {
     await time(runClean, "clean");
   }
@@ -111,4 +90,25 @@ async function runBuild({
   }
 
   await printMinifiedSizes(exclude);
+}
+
+export default async function build(
+  config: Partial<BuildConfig> = DEFAULT_CONFIG
+): Promise<void> {
+  const buildConfig = defaults(
+    pick(config, [
+      "css",
+      "umd",
+      "clean",
+      "update",
+      "updateOnly",
+      "umdOnly",
+      "stylesOnly",
+      "themesOnly",
+      "variablesOnly",
+    ]),
+    DEFAULT_CONFIG
+  );
+
+  time(() => runBuild(buildConfig), "build");
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module "*.svg" {
   const Component: any;
   const content: any;

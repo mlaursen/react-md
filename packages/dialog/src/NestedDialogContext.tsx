@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {
   createContext,
   FC,
@@ -33,6 +34,7 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
   const add = useCallback((dialogId: string) => {
     setStack(prevStack => {
       if (process.env.NODE_ENV !== "production" && stack.includes(dialogId)) {
+        /* eslint-disable no-console */
         console.warn(
           "Tried to add a duplicate dialog id to the `NestedDialogContext`."
         );
@@ -61,6 +63,6 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
  *
  * @private
  */
-export function useNestedDialogContext() {
+export function useNestedDialogContext(): NestedDialogContext {
   return useContext(context);
 }

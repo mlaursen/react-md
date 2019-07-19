@@ -7,8 +7,10 @@ interface CloseOnOutsideClickOptions {
   onRequestClose: () => void;
 }
 
-const contains = (element: HTMLElement | null, target: HTMLElement | null) =>
-  element && target && element.contains(target);
+const contains = (
+  element: HTMLElement | null,
+  target: HTMLElement | null
+): boolean => !!(element && target && element.contains(target));
 
 /**
  * This hook will automatically close the menu when another element outside of
@@ -19,13 +21,13 @@ export default function useCloseOnOutsideClick({
   controlId,
   menu,
   onRequestClose,
-}: CloseOnOutsideClickOptions) {
+}: CloseOnOutsideClickOptions): void {
   useEffect(() => {
     if (!visible) {
       return;
     }
 
-    const handleClick = (event: MouseEvent) => {
+    const handleClick = (event: MouseEvent): void => {
       const target = event.target as HTMLElement | null;
       const control = document.getElementById(controlId);
 

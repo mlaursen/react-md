@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, react/no-array-index-key */
 import React, { FC, useCallback } from "react";
 import { bem } from "@react-md/theme";
 

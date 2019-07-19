@@ -23,14 +23,16 @@ export interface HackSCSSVariableOptions extends CompileOptions {
   importPath?: string;
 }
 
-function parseValue(value: HackedVariableValue) {
+function parseValue(value: HackedVariableValue): HackedVariableValue {
   if (value === "true" || value === "false") {
     return Boolean(value);
-  } else if (value === "null") {
+  }
+  if (value === "null") {
     return null;
-  } else if (typeof value === "string") {
+  }
+  if (typeof value === "string") {
     const parsed = parseFloat(value);
-    if (!isNaN(parsed) && parsed.toString().length === value.length) {
+    if (!Number.isNaN(parsed) && parsed.toString().length === value.length) {
       return parsed;
     }
   }
@@ -38,7 +40,7 @@ function parseValue(value: HackedVariableValue) {
   return value;
 }
 
-function matchParen(s: string, count: number = 0) {
+function matchParen(s: string, count: number = 0): string {
   const match = s.match(/\(|\)/);
   if (!match) {
     return s;
@@ -56,12 +58,13 @@ function matchParen(s: string, count: number = 0) {
   return s.substring(0, i) + matchParen(s.substring(i), count + 1);
 }
 
-function hackSCSSMapValues(mapValue: string) {
+function hackSCSSMapValues(mapValue: string): HackedVariable[] {
   let remaining = mapValue.substring(1, mapValue.length - 1);
   const values: HackedVariable[] = [];
   while (remaining.length) {
     const i = remaining.indexOf(": ");
     if (i === -1) {
+      /* eslint-disable no-console */
       console.error(
         "Unable to hack a css variable correctly since no valid key/value split was found."
       );
@@ -102,7 +105,7 @@ function hackSCSSMapValues(mapValue: string) {
   return values;
 }
 
-export function isVariableDerived(value: string) {
+export function isVariableDerived(value: string): boolean {
   return /\$?rmd|if/.test(value);
 }
 
@@ -173,7 +176,7 @@ export function hackSCSSVariableValue(
 export function getHackedScssVariableValues(
   variables: VariableSassDoc[],
   packageName: string
-) {
+): HackedVar[] {
   return variables.map(scssVariable =>
     hackSCSSVariableValue({ scssVariable, packageName })
   );

@@ -5,7 +5,7 @@ export interface Coords {
   left?: number;
 }
 
-function applyCoords(coord: number | undefined) {
+function applyCoords(coord: number | undefined): string {
   return typeof coord === "number" ? `${coord}px` : "";
 }
 

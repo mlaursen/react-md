@@ -4,7 +4,10 @@ import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-type Item = { leftAvatar: ReactNode; children: string };
+interface Item {
+  leftAvatar: ReactNode;
+  children: string;
+}
 
 const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   const [value, setValue] = useState("None");

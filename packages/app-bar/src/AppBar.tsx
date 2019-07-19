@@ -125,7 +125,7 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
   }
 
   return (
-    <ParentContext.Provider value={true}>
+    <ParentContext.Provider value>
       <InheritContext.Provider value={inherit}>
         <Component
           {...props}

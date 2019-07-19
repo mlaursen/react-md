@@ -9,8 +9,7 @@ type FocusElement =
 type BlurEventHandler = React.FocusEventHandler<FocusElement>;
 type FocusEventHandler = React.FocusEventHandler<FocusElement>;
 
-interface Options
-  extends Pick<HTMLAttributes<FocusElement>, "onBlur" | "onFocus"> {}
+type Options = Pick<HTMLAttributes<FocusElement>, "onBlur" | "onFocus">;
 
 /**
  * @private

@@ -4,7 +4,7 @@ import { AppSizeListener, useAppSizeContext } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
 
-const CurrentSize = () => {
+const CurrentSize: FC = () => {
   const context = useAppSizeContext();
   return (
     <TextContainer>

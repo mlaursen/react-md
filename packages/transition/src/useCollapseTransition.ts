@@ -8,6 +8,7 @@ import {
   useEffect,
   useRef,
   useState,
+  MutableRefObject,
 } from "react";
 import cn from "classnames";
 import { useRefCache } from "@react-md/utils";
@@ -166,7 +167,7 @@ export function unmountOnExit({
   minHeight,
   minPaddingTop,
   minPaddingBottom,
-}: EmptyCollapsedOptions) {
+}: EmptyCollapsedOptions): boolean {
   if (typeof isEmptyCollapsed === "boolean") {
     return isEmptyCollapsed;
   }
@@ -185,7 +186,7 @@ interface RenderedOptions extends EmptyCollapsedOptions {
  *
  * @private
  */
-export function isRendered(options: RenderedOptions) {
+export function isRendered(options: RenderedOptions): boolean {
   const { collapsed, entering, leaving } = options;
 
   return !collapsed || entering || leaving || !unmountOnExit(options);
@@ -256,7 +257,7 @@ export function createTransitionStyle({
   maxHeight,
   paddingTop,
   paddingBottom,
-}: TransitionStyleOptions) {
+}: TransitionStyleOptions): CSSProperties | undefined {
   if (
     typeof maxHeight === "undefined" &&
     typeof paddingTop === "undefined" &&
@@ -274,6 +275,15 @@ export function createTransitionStyle({
   };
 }
 
+interface CollapseTransitionResult<E extends HTMLElement> {
+  transitionProps: {
+    style?: CSSProperties;
+    className: string;
+    ref: MutableRefObject<E | null>;
+  };
+  rendered: boolean;
+}
+
 /**
  * Creates a collapse transition that will animate between expanded and collapsed
  * states.
@@ -286,7 +296,7 @@ export function createTransitionStyle({
  */
 export function useCollapseTransition<E extends HTMLElement>(
   options: CollapseOptions
-) {
+): CollapseTransitionResult<E> {
   const {
     collapsed,
     style,
@@ -399,6 +409,7 @@ export function useCollapseTransition<E extends HTMLElement>(
     paddingTop,
     paddingBottom,
   });
+
   return {
     transitionProps: {
       style: mergedStyle,
@@ -429,9 +440,9 @@ export function useCollapseTransition<E extends HTMLElement>(
  *
  */
 export function useCollapsibleElement(
-  element: ReactElement<any>,
+  element: ReactElement,
   options: CollapseOptions
-) {
+): ReactElement | null {
   const el = Children.only(element);
   const { transitionProps, rendered } = useCollapseTransition({
     ...options,

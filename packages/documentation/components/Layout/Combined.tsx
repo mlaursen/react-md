@@ -8,10 +8,11 @@ import { useInteractionModeContext } from "@react-md/states";
 import { bem } from "@react-md/theme";
 import { useToggle, useScrollLock } from "@react-md/utils";
 
+import TableOfContents from "components/TableOfContents";
+
 import useAppSizeContext from "./useAppSizeContext";
 import Header from "./Header";
 import NavigationTree from "./NavigationTree";
-import TableOfContents from "components/TableOfContents";
 
 export interface CombinedProps {
   title: string;
@@ -27,6 +28,7 @@ const Combined: FC<CombinedProps> = ({
 }) => {
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
+  const inline = isDesktop || isLandscapeTablet;
   const [visible, , disable, toggle, setVisible] = useToggle(isDesktop);
 
   useEffect(() => {
@@ -42,7 +44,6 @@ const Combined: FC<CombinedProps> = ({
   }, [router.pathname]);
 
   useScrollLock(visible && isPhone);
-  const inline = isDesktop || isLandscapeTablet;
   let title = propTitle;
   if (propTitle.includes(" - ")) {
     title = title.substring(title.indexOf(" - ") + 3);

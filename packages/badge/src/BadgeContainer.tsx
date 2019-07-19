@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef } from "@react-md/utils";
 
-export interface BadgeContainerProps extends HTMLAttributes<HTMLSpanElement> {}
+export type BadgeContainerProps = HTMLAttributes<HTMLSpanElement>;
 type WithRef = WithForwardedRef<HTMLSpanElement>;
 
 const block = bem("rmd-badge-container");

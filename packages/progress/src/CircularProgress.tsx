@@ -8,6 +8,7 @@ import React, {
 import cn from "classnames";
 import { bem } from "@react-md/theme";
 import { WithForwardedRef, Omit } from "@react-md/utils";
+
 import getProgress from "./getProgress";
 import { ProgressProps } from "./types.d";
 
@@ -99,7 +100,6 @@ const block = bem("rmd-circular-progress");
 
 const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
   const {
-    id,
     className,
     svgStyle: propSvgStyle,
     svgClassName,
@@ -228,6 +228,7 @@ if (process.env.NODE_ENV !== "production") {
       circleClassName: PropTypes.string,
       radius: PropTypes.number,
       center: PropTypes.number,
+      centered: PropTypes.bool,
       maxRotation: PropTypes.number,
       dashoffset: PropTypes.number,
       viewBox: PropTypes.string,

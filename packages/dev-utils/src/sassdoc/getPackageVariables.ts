@@ -2,7 +2,9 @@ import { parse, Item, VariableSassDoc } from "sassdoc";
 
 import { src } from "../paths";
 
-export default async function getPackageVariables(sassdoc?: Item[]) {
+export default async function getPackageVariables(
+  sassdoc?: Item[]
+): Promise<VariableSassDoc[]> {
   sassdoc = sassdoc || (await parse(src));
 
   return sassdoc.filter(

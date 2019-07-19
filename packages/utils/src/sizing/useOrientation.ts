@@ -11,11 +11,15 @@ import { useState, useEffect } from "react";
  * mount.
  * @return the orientation type value.
  */
-export default function useOrientation(defaultValue?: OrientationType) {
+export default function useOrientation(
+  defaultValue?: OrientationType
+): OrientationType {
   const [value, setValue] = useState<OrientationType>(() => {
     if (defaultValue) {
       return defaultValue;
-    } else if (typeof window !== "undefined") {
+    }
+
+    if (typeof window !== "undefined") {
       return window.screen.orientation.type;
     }
 
@@ -23,7 +27,7 @@ export default function useOrientation(defaultValue?: OrientationType) {
   });
 
   useEffect(() => {
-    const handler = () => {
+    const handler = (): void => {
       setValue(window.screen.orientation.type);
     };
     window.addEventListener("orientationchange", handler);

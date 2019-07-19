@@ -1,11 +1,12 @@
-const noop = () => undefined;
+/* eslint-disable import/no-mutable-exports, getter-return */
+const noop = (): void => {};
 let isSupported = false;
 
 /**
  * Checks if the browser supports passive events. This shouldn't really be used
  * outside of this file, but you can always check again if needed.
  */
-export function update() {
+export function update(): boolean {
   if (typeof window === "undefined") {
     return false;
   }

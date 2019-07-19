@@ -28,7 +28,7 @@ const block = bem("async-button");
 
 // this is used while the loading state is enabled to "disable" the button.
 // If we disable the entire button, keyboard focus is lost which is not desired.
-const noop = () => {};
+const noop = (): void => {};
 
 const AsyncButton: FC<AsyncButtonProps> = providedProps => {
   const {
@@ -41,6 +41,7 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
   const { themeType } = props;
 
   const progressId = `${id}-progress`;
+  const linear = asyncType === "linear-overlay";
   let children: ReactNode = null;
   switch (asyncType) {
     case "icon-before":
@@ -62,7 +63,6 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
       break;
     case "circular-overlay":
     case "linear-overlay":
-      const linear = asyncType === "linear-overlay";
       children = (
         <Fragment>
           <TextIconSpacing icon={<CloudDownloadSVGIcon />}>
@@ -79,6 +79,7 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
           )}
         </Fragment>
       );
+    // no default
   }
   return (
     <Button

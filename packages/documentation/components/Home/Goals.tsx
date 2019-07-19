@@ -7,10 +7,11 @@ import { Code } from "components/Code";
 const Goals: FC = () => (
   <TextContainer className="home__goals">
     <Text type="headline-6" component="p">
-      This project's goal is to create extremely customizable and fully
+      This project&apos;s goal is to create extremely customizable and fully
       accessible React components matching the guidelines from{" "}
       <Link href="https://www.w3.org">www.w3.org</Link> along with following
-      Google's <Link href="https://material.io/design/">Material Design</Link>{" "}
+      Google&apos;s{" "}
+      <Link href="https://material.io/design/">Material Design</Link>{" "}
       principles.
     </Text>
     <Text type="headline-6" component="p">

@@ -1,15 +1,17 @@
 type Block = string;
 type Element = string;
 interface Modifier {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
-function modify(base: string, modifier?: Modifier) {
+function modify(base: string, modifier?: Modifier): string {
   if (!modifier) {
     return base;
   }
 
   return Object.keys(modifier).reduce((s, mod) => {
+    // eslint-disable-next-line no-prototype-builtins
     if (modifier.hasOwnProperty(mod) && modifier[mod]) {
       s = `${s} ${base}--${mod}`;
     }
@@ -18,6 +20,11 @@ function modify(base: string, modifier?: Modifier) {
   }, base);
 }
 
+type BEMResult = (
+  elementOrModifier?: Element | Modifier,
+  modifier?: Modifier
+) => string;
+
 /**
  * Applies the BEM styled class name to an element.
  *
@@ -25,7 +32,7 @@ function modify(base: string, modifier?: Modifier) {
  * @param base The base class to use
  * @return a function to call that generates the full class name
  */
-export default function bem(base: Block) {
+export default function bem(base: Block): BEMResult {
   if (process.env.NODE_ENV !== "production") {
     if (!base) {
       throw new Error(
@@ -50,7 +57,7 @@ export default function bem(base: Block) {
   return function block(
     elementOrModifier?: Element | Modifier,
     modifier?: Modifier
-  ) {
+  ): string {
     if (process.env.NODE_ENV !== "production") {
       if (typeof elementOrModifier !== "string" && modifier) {
         throw new TypeError(
@@ -61,7 +68,9 @@ export default function bem(base: Block) {
 
     if (!elementOrModifier) {
       return base;
-    } else if (typeof elementOrModifier !== "string") {
+    }
+
+    if (typeof elementOrModifier !== "string") {
       return modify(base, elementOrModifier);
     }
 

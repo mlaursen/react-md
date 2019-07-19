@@ -7,7 +7,7 @@ import Code from "components/Code/Code";
 const AddingOnClick: FC = () => {
   const [value, setValue] = useState("None");
 
-  const onClick = (event: React.MouseEvent) => {
+  const onClick = (event: React.MouseEvent): void => {
     setValue(event.currentTarget.textContent || "");
   };
   return (

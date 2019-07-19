@@ -13,7 +13,7 @@ export interface RedirectConfig {
 export default function redirect(
   to: string,
   { concat = true, statusCode = 302 }: RedirectConfig = {}
-) {
+): NextFunctionComponent {
   const Redirect: NextFunctionComponent = () => null;
 
   Redirect.getInitialProps = ({ res, pathname }) => {

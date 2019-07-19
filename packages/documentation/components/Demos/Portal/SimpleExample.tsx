@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { CSSProperties, FC, useCallback, useRef, useState } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";

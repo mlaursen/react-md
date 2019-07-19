@@ -45,6 +45,8 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Checkbox.propTypes = {
       indeterminate: PropTypes.bool,
+      icon: PropTypes.node,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
   }
 }

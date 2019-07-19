@@ -15,7 +15,7 @@ export default function useCloseOnScroll({
   menu,
   disabled,
   onRequestClose,
-}: CloseOnScrollOptions) {
+}: CloseOnScrollOptions): ((event: Event) => void) | undefined {
   const cache = useRefCache({ menu, onRequestClose });
   const handleScroll = useCallback((event: Event) => {
     const { menu, onRequestClose } = cache.current;

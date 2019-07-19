@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { FC } from "react";
 import { bem } from "@react-md/theme";
 

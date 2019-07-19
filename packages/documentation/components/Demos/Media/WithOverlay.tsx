@@ -28,7 +28,7 @@ const WithOverlay: FC = () => (
       >
         <img
           src={`https://picsum.photos/800/800?image=43${i}`}
-          role="presentation"
+          alt=""
           aria-describedby={`overlay-container-overlay-${i}`}
         />
         <MediaOverlay id={`overlay-container-overlay-${i}`} position={position}>

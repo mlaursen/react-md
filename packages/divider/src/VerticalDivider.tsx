@@ -1,4 +1,13 @@
-import React, { FC, HTMLAttributes, useCallback, useState } from "react";
+import React, {
+  FC,
+  HTMLAttributes,
+  Ref,
+  forwardRef,
+  useCallback,
+  useState,
+} from "react";
+import { WithForwardedRef, applyRef } from "@react-md/utils";
+
 import Divider from "./Divider";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,8 +22,14 @@ export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   maxHeight?: number;
 }
 
+type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<Pick<VerticalDividerProps, "maxHeight">>;
-type WithDefaultProps = VerticalDividerProps & DefaultProps;
+type WithDefaultProps = VerticalDividerProps & DefaultProps & WithRef;
+
+interface VerticalDividerHeight {
+  ref: (instance: HTMLDivElement | null) => void;
+  height: number | undefined;
+}
 
 /**
  * This is a small hook that is used to automatically create a vertical divider based
@@ -24,7 +39,10 @@ type WithDefaultProps = VerticalDividerProps & DefaultProps;
  * 0 and 1, it will be used as a percentage. Otherwise the smaller value of parent element
  * height and this will be used.
  */
-export function useVerticalDividerHeight(maxHeight: number) {
+export function useVerticalDividerHeight(
+  maxHeight: number,
+  forwardedRef?: Ref<HTMLDivElement | null> | undefined
+): VerticalDividerHeight {
   if (process.env.NODE_ENV !== "production" && maxHeight < 0) {
     throw new Error(
       "The `maxHeight` for a vertical divider height must be greater than 0"
@@ -34,6 +52,7 @@ export function useVerticalDividerHeight(maxHeight: number) {
   const [height, setHeight] = useState<number | undefined>(undefined);
   const ref = useCallback(
     (instance: HTMLDivElement | null) => {
+      applyRef(instance, forwardedRef);
       if (!instance || !instance.parentElement) {
         return;
       }
@@ -59,16 +78,22 @@ export function useVerticalDividerHeight(maxHeight: number) {
  * be set to `auto` (which computes to 0 most of the time) when it is not set on a parent
  * element.
  */
-const VerticalDivider: FC<VerticalDividerProps> = providedProps => {
-  const { style, maxHeight, ...props } = providedProps as WithDefaultProps;
+const VerticalDivider: FC<VerticalDividerProps & WithRef> = providedProps => {
+  const {
+    style,
+    maxHeight,
+    forwardedRef,
+    ...props
+  } = providedProps as WithDefaultProps;
 
-  const { ref, height } = useVerticalDividerHeight(maxHeight);
+  const { ref, height } = useVerticalDividerHeight(maxHeight, forwardedRef);
   return <Divider {...props} style={{ ...style, height }} ref={ref} vertical />;
 };
 
 const defaultProps: DefaultProps = {
   maxHeight: 1,
 };
+
 VerticalDivider.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
@@ -82,14 +107,14 @@ if (process.env.NODE_ENV !== "production") {
       maxHeight: PropTypes.number,
       // @ts-ignore
       _validateMaxHeight: (
-        props: WithDefaultProps,
+        { maxHeight }: WithDefaultProps,
         _: string,
         componentName: string
       ) => {
-        if (props.maxHeight < 0) {
+        if (maxHeight < 0) {
           return new Error(
             `The maxHeight prop for \`${componentName}\` must be a number greater ` +
-              `than 0, but received \`${props.maxHeight}\`.`
+              `than 0, but received \`${maxHeight}\`.`
           );
         }
 
@@ -99,4 +124,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default VerticalDivider;
+export default forwardRef<HTMLDivElement, VerticalDividerProps>(
+  (props, ref) => <VerticalDivider {...props} forwardedRef={ref} />
+);

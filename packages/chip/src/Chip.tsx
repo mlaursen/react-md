@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { FC, HTMLAttributes, forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
@@ -49,11 +50,12 @@ const Chip: FC<ChipProps & WithRef> = providedProps => {
     enablePressedAndRipple,
     ...props
   } = providedProps as WithDefaultProps;
+  const { disabled } = props;
 
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
-    disabled: props.disabled,
+    disabled,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -94,6 +96,24 @@ const defaultProps: DefaultProps = {
 };
 
 Chip.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  Chip.displayName = "Chip";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Chip.propTypes = {
+      disabled: PropTypes.bool,
+      theme: PropTypes.oneOf(["outline", "solid"]),
+      type: PropTypes.string,
+      enablePressedAndRipple: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLButtonElement, ChipProps>((props, ref) => (
   <Chip {...props} forwardedRef={ref} />

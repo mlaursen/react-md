@@ -1,11 +1,18 @@
-import { useCallback } from "react";
+import { useCallback, HTMLAttributes } from "react";
 import { useRefCache } from "@react-md/utils";
-import useVisibility, { VisibilityOptions } from "./useVisibility";
+import useVisibility, { VisibilityOptions, FocusType } from "./useVisibility";
 
 export interface ItemVisibilityOptions extends VisibilityOptions {
   horizontal?: boolean;
   onClick?: React.MouseEventHandler<HTMLLIElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLLIElement>;
+}
+
+interface ReturnValue
+  extends Pick<HTMLAttributes<HTMLLIElement>, "onClick" | "onKeyDown"> {
+  visible: boolean;
+  defaultFocus: FocusType;
+  hide: () => void;
 }
 
 export default function useItemVisibility({
@@ -15,7 +22,7 @@ export default function useItemVisibility({
   defaultVisible,
   defaultFocus: propDefaultFocus,
   onVisibilityChange,
-}: ItemVisibilityOptions = {}) {
+}: ItemVisibilityOptions = {}): ReturnValue {
   const cache = useRefCache({
     horizontal,
     onClick: propOnClick,

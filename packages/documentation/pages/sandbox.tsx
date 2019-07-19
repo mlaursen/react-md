@@ -13,7 +13,7 @@ const Sandbox: NextFunctionComponent<SandboxProps> = ({ sandbox }) => (
   <DemoSandbox sandbox={sandbox} />
 );
 
-Sandbox.getInitialProps = async ({ query }) => {
+Sandbox.getInitialProps = async ({ query }): Promise<SandboxProps> => {
   const sandbox = await getSandboxByQuery(query);
 
   return { sandbox };

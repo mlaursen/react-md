@@ -7,7 +7,7 @@ import { HomeSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import "./IconSpacing.scss";
 
-const CustomIcon = () => <HomeSVGIcon />;
+const CustomIcon: FC = () => <HomeSVGIcon />;
 
 const IconSpacing: FC = () => (
   <Fragment>
@@ -67,12 +67,12 @@ const IconSpacing: FC = () => (
       </li>
       <li>
         <TextIconSpacing icon="*" forceIconWrap>
-          Using an asterisk "icon"
+          Using an asterisk &quot;icon&quot;
         </TextIconSpacing>
       </li>
       <li>
         <TextIconSpacing icon="*" forceIconWrap iconAfter>
-          Using an asterisk "icon"
+          Using an asterisk &quot;icon&quot;
         </TextIconSpacing>
       </li>
     </ul>

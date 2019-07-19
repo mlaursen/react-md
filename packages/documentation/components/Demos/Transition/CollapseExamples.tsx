@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp, react/no-multi-comp, react/destructuring-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-function-return-type */
 import React, { Component, forwardRef, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
@@ -40,7 +41,7 @@ interface State {
 }
 
 export default class CollapseExamples extends Component<any, State> {
-  constructor(props: any) {
+  public constructor(props: any) {
     super(props);
 
     this.state = {
@@ -89,7 +90,8 @@ export default class CollapseExamples extends Component<any, State> {
           {error ? "Fix" : "Toggle"}
         </Button>
         <Text>
-          This example will crash since the <Code>ref</Code> isn't passed on.
+          This example will crash since the <Code>ref</Code> isn&apos;t passed
+          on.
         </Text>
         {error ? (
           "Broken :("
@@ -104,7 +106,7 @@ export default class CollapseExamples extends Component<any, State> {
         </Button>
         <Text>
           This example will not animate since the <Code>style</Code> and{" "}
-          <Code>className</Code> props aren't passed on.
+          <Code>className</Code> props aren&apos;t passed on.
         </Text>
         <Collapse collapsed={collapsed4}>
           <SomewhatBroken />

@@ -1,49 +1,47 @@
 import React from "react";
-import { mount } from "enzyme";
+import { cleanup, render } from "@testing-library/react";
 
 import MediaContainer from "../MediaContainer";
 
+afterEach(cleanup);
+
 describe("MediaContainer", () => {
   it("should apply the correct class names", () => {
-    const container = mount(<MediaContainer />);
+    const { getByTestId, rerender } = render(
+      <MediaContainer data-testid="container" />
+    );
+    const container = getByTestId("container");
 
-    let div = container.find("div");
-    expect(div.hasClass("rmd-media-container")).toBe(true);
-    expect(div.hasClass("rmd-media-container--auto")).toBe(true);
-    expect(div.hasClass("rmd-media-container--aspect-ratio")).toBe(false);
+    expect(container.className).toBe(
+      "rmd-media-container rmd-media-container--auto"
+    );
 
-    container.setProps({ auto: false });
-    div = container.find("div");
-    expect(div.hasClass("rmd-media-container")).toBe(true);
-    expect(div.hasClass("rmd-media-container--auto")).toBe(false);
-    expect(div.hasClass("rmd-media-container--aspect-ratio")).toBe(false);
+    rerender(<MediaContainer data-testid="container" auto={false} />);
+    expect(container.className).toBe("rmd-media-container");
 
-    container.setProps({ auto: true, height: 9, width: 16 });
-    div = container.find("div");
-    expect(div.hasClass("rmd-media-container")).toBe(true);
-    expect(div.hasClass("rmd-media-container--auto")).toBe(true);
-    expect(div.hasClass("rmd-media-container--aspect-ratio")).toBe(true);
-    expect(div.hasClass("rmd-media-container--16-9")).toBe(true);
+    rerender(
+      <MediaContainer data-testid="container" auto height={9} width={16} />
+    );
+    expect(container.className).toBe(
+      "rmd-media-container rmd-media-container--auto rmd-media-container--aspect-ratio rmd-media-container--16-9"
+    );
 
-    container.setProps({ height: 1, width: 1 });
-    div = container.find("div");
-    expect(div.hasClass("rmd-media-container")).toBe(true);
-    expect(div.hasClass("rmd-media-container--auto")).toBe(true);
-    expect(div.hasClass("rmd-media-container--aspect-ratio")).toBe(true);
-    expect(div.hasClass("rmd-media-container--1-1")).toBe(true);
+    rerender(
+      <MediaContainer data-testid="container" auto height={1} width={1} />
+    );
+    expect(container.className).toBe(
+      "rmd-media-container rmd-media-container--auto rmd-media-container--aspect-ratio rmd-media-container--1-1"
+    );
 
-    container.setProps({
-      height: undefined,
-      width: undefined,
-      className: "this-is-a multiple-class-name test",
-    });
-    div = container.find("div");
-    expect(div.hasClass("rmd-media-container")).toBe(true);
-    expect(div.hasClass("rmd-media-container--auto")).toBe(true);
-    expect(div.hasClass("rmd-media-container--aspect-ratio")).toBe(false);
-    expect(div.hasClass("rmd-media-container--1-1")).toBe(false);
-    expect(div.hasClass("this-is-a")).toBe(true);
-    expect(div.hasClass("multiple-class-name")).toBe(true);
-    expect(div.hasClass("test")).toBe(true);
+    rerender(
+      <MediaContainer
+        data-testid="container"
+        auto
+        className="this-is-a-multiple-class name-test"
+      />
+    );
+    expect(container.className).toBe(
+      "rmd-media-container rmd-media-container--auto this-is-a-multiple-class name-test"
+    );
   });
 });

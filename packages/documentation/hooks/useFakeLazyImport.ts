@@ -1,4 +1,4 @@
-import { FC, useMemo, lazy } from "react";
+import { FC, useMemo, lazy, LazyExoticComponent } from "react";
 
 function fakeImport<P>(
   Component: FC<P>,
@@ -21,11 +21,11 @@ function fakeImport<P>(
  * demo. Without this, the lazy implementation will immediately resolve the
  * fake import and not show any progress
  */
-export default function useFakeLazyImport<P = any>(
+export default function useFakeLazyImport<P = {}>(
   Component: FC<P>,
   key: string | number | null = null,
   delay: number = 5000
-) {
+): LazyExoticComponent<FC<P>> {
   return useMemo(() => lazy(() => fakeImport(Component, delay)), [
     Component,
     key,

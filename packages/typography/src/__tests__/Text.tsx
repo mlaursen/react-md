@@ -1,11 +1,13 @@
-import * as React from "react";
-import { create } from "react-test-renderer";
+import React from "react";
+import cn from "classnames";
+import { cleanup, render } from "@testing-library/react";
 
 import Text, { TextTypes } from "../Text";
-import { mount } from "enzyme";
+
+afterEach(cleanup);
 
 describe("Text", () => {
-  it("should render correctly based on type prop", () => {
+  it("should render corrrrectly based on the type prop", () => {
     const tests: { type: TextTypes; expected: string }[] = [
       { type: "headline-1", expected: "h1" },
       { type: "headline-2", expected: "h2" },
@@ -22,67 +24,87 @@ describe("Text", () => {
     ];
 
     tests.forEach(({ type, expected }) => {
-      const text = mount(<Text type={type} />);
-      expect(text.find(expected).length).toBe(1);
-      expect(text.find(expected).hasClass("rmd-typography")).toBe(true);
-      expect(text.find(expected).hasClass(`rmd-typography--${type}`)).toBe(
-        true
+      const { getByTestId, unmount } = render(
+        <Text type={type} data-testid="text" />
       );
+      const text = getByTestId("text");
+      expect(text.tagName.toLowerCase()).toBe(expected);
+      expect(text.className).toBe(`rmd-typography rmd-typography--${type}`);
+      unmount();
     });
 
-    const text = mount(
+    const { getByTestId } = render(
       <table>
-        <Text type="caption" />
+        <Text type="caption" data-testid="text" />
       </table>
     );
-    expect(text.find("caption").length).toBe(1);
+    const text = getByTestId("text");
+    expect(text.tagName).toBe("CAPTION");
+    expect(text.className).toBe("rmd-typography rmd-typography--caption");
   });
 
-  it("should default to rendering as a paragraph tag with the body-1 styles", () => {
-    const text = mount(<Text />);
-
-    expect(text.find("p").length).toBe(1);
-    expect(text.find("p").hasClass("rmd-typography--body-1")).toBe(true);
+  it("should default to rendering as a <p> tag with the body-1 styles", () => {
+    const { getByTestId } = render(<Text data-testid="p" />);
+    const p = getByTestId("p");
+    expect(p.tagName).toBe("P");
+    expect(p.className).toBe("rmd-typography rmd-typography--body-1");
   });
 
   it("should be able to render as a string component prop", () => {
-    const component = "section";
-    const text = mount(<Text component={component} />);
-    expect(text.find(component).length).toBe(1);
+    const { getByTestId } = render(
+      <Text data-testid="text" component="section">
+        Hello, world!
+      </Text>
+    );
+    const text = getByTestId("text");
+
+    expect(text.tagName).toBe("SECTION");
+    expect(text).toMatchSnapshot();
   });
 
   it("should be able to render as a functional component", () => {
     const Component = ({ className, children }: any) => (
-      <section className={`${className} custom`}>{children}</section>
+      <section data-testid="text" className={`${className} custom`}>
+        {children}
+      </section>
     );
 
-    const text = mount(<Text component={Component}>Hello, world!</Text>);
-    expect(text.find(Component).length).toBe(1);
-    expect(text.render()).toMatchSnapshot();
+    const { getByTestId } = render(
+      <Text component={Component}>Hello, world!</Text>
+    );
+    const text = getByTestId("text");
+    expect(text.tagName).toBe("SECTION");
+    expect(text).toMatchSnapshot();
   });
 
   it("should be able to render as a class component", () => {
     class Component extends React.Component<any> {
       public render() {
         const { children, className } = this.props;
-        return <section className={`${className} custom`}>{children}</section>;
+        return (
+          <section data-testid="text" className={`${className} custom`}>
+            {children}
+          </section>
+        );
       }
     }
 
-    const text = mount(<Text component={Component}>Hello, world!</Text>);
-    expect(text.find(Component).length).toBe(1);
-    expect(text.render()).toMatchSnapshot();
+    const { getByTestId } = render(
+      <Text component={Component}>Hello, world!</Text>
+    );
+    const text = getByTestId("text");
+    expect(text.tagName).toBe("SECTION");
+    expect(text).toMatchSnapshot();
   });
 
   it("should be able to use a children render function", () => {
-    expect(
-      create(
-        <Text>
-          {({ className }) => (
-            <span className={`${className} span`}>Content</span>
-          )}
-        </Text>
-      ).toJSON()
-    ).toMatchSnapshot();
+    const { container } = render(
+      <Text>
+        {({ className }) => (
+          <span className={cn("span", className)}>Content</span>
+        )}
+      </Text>
+    );
+    expect(container).toMatchSnapshot();
   });
 });

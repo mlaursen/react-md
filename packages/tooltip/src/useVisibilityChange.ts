@@ -31,7 +31,7 @@ export default function useVisiblityChange({
   onHide,
   visible,
   mode,
-}: VisibilityChangeOptions) {
+}: VisibilityChangeOptions): void {
   const handlers = useRefCache({ onShow, onHide });
 
   useEffect(() => {

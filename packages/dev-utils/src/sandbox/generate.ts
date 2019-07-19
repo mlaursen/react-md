@@ -20,7 +20,7 @@ import {
 import { isSvg } from "./matchers";
 import { getFileSource } from "./formatters";
 
-function toUrlId(s: string) {
+function toUrlId(s: string): string {
   return s
     .split(/(?=[A-Z][a-z])/)
     .map(s => s.toLowerCase())
@@ -28,14 +28,14 @@ function toUrlId(s: string) {
     .replace(/\..+$/, "");
 }
 
-function toTitle(s: string) {
+function toTitle(s: string): string {
   return s
     .split(/(?=[A-Z][a-z])/)
     .join(" ")
     .replace(/\..+$/, "");
 }
 
-function toDependencyJson(dependencies: string[]) {
+function toDependencyJson(dependencies: string[]): Record<string, string> {
   const filtered = dependencies.filter(n => !n.startsWith(path.sep));
   filtered.sort();
 
@@ -48,13 +48,13 @@ function toDependencyJson(dependencies: string[]) {
   );
 }
 
-export async function findGeneratedSandboxes() {
+export async function findGeneratedSandboxes(): Promise<string[]> {
   const newSandboxes = await glob(`${SANDBOXES_PATH}/**/*.json`);
   const oldSandboxes = await glob("components/Demos/**/*Sandbox.json");
   return [...newSandboxes, ...oldSandboxes];
 }
 
-export async function createSandboxesLookup() {
+export async function createSandboxesLookup(): Promise<void> {
   log.info("Generating the main sandbox lookup file...");
   const sandboxes = await findGeneratedSandboxes();
   log.debug("Found the following sandboxes to add:");
@@ -100,7 +100,7 @@ interface GenerateSandboxConfig {
   packageName: string;
 }
 
-function createDemoStyles(dependencies: string[]) {
+function createDemoStyles(dependencies: string[]): string {
   const rmd = dependencies.filter(
     name =>
       name.startsWith("@react-md") && !NON_STYLEABLE_RMD_PACKAGES.includes(name)
@@ -121,7 +121,7 @@ ${imports.join("\n")}
 `;
 }
 
-export function getSandboxFileName(demoPath: string) {
+export function getSandboxFileName(demoPath: string): string {
   let fileName = "";
   const i = demoPath.indexOf(`${path.sep}.${path.sep}`);
   if (i !== -1) {
@@ -141,7 +141,7 @@ export default async function generate({
   packageName,
   aliases,
   aliased,
-}: GenerateSandboxConfig) {
+}: GenerateSandboxConfig): Promise<void> {
   const sandboxPath = getSandboxFileName(demoPath);
   log.debug("Creating sandbox at:");
   log.debug(list([sandboxPath]));
@@ -173,7 +173,7 @@ export default async function generate({
   };
 
   const aliasRegExp = new RegExp(
-    `(${aliases.join("|")}).*\/(?=[A-z]+(\.[a-z]+)?")`,
+    `(${aliases.join("|")}).*/(?=[A-z]+(.[a-z]+)?")`,
     "g"
   );
 

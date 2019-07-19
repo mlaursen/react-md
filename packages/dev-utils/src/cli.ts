@@ -2,8 +2,8 @@
 
 import commander from "commander";
 
-import { default as build, BuildConfig } from "./build";
 import loglevel from "loglevel";
+import build, { BuildConfig } from "./build";
 import clean from "./clean";
 import markdownTOC from "./markdownTOC";
 import copyReadmes from "./copyReadmes";
@@ -22,7 +22,7 @@ if (argv.includes(DEBUG)) {
   loglevel.setLevel("info");
 }
 
-const createCommand = (command: string) =>
+const createCommand = (command: string): commander.Command =>
   commander
     .command(command)
     .option(
@@ -95,12 +95,7 @@ createCommand("sandbox [components...]")
   .action(
     (
       components: string[],
-      {
-        lookupsOnly = false,
-        empty = false,
-        clean = false,
-        cleanOnly = false,
-      }: any
+      { lookupsOnly = false, empty = false, clean = false, cleanOnly = false }
     ) => {
       sandbox({ lookupsOnly, components, empty, clean, cleanOnly });
     }

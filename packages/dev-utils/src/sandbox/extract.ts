@@ -9,6 +9,7 @@ import {
   resolveModuleName,
   ScriptTarget,
   sys,
+  SourceFile,
 } from "typescript";
 import log from "loglevel";
 
@@ -32,46 +33,6 @@ import {
 
 const SCSS_IMPORT = /@import '(.+)';/g;
 
-/**
- * This is fairly simple and just matches for all the @import statements
- * in the file.
- */
-function getScssImports(filePath: string) {
-  const contents = fs.readFileSync(filePath, "utf8");
-  const matches = contents.match(SCSS_IMPORT) || [];
-  return matches.map(match => getModuleName(match, true));
-}
-
-/**
- * This took me forever to understand, so I'll describe what's going on here.
- * Since everything is written in typescript, we can use the typescript compiler
- * to find all the resolutions based on the provided file path.
- *
- * At the time of writing this, typescript's compiler does not have a built-in
- * way to inspect a file for the fully resolved file name so you have to create
- * your own compiler "host" (no idea what that's about) to manually track the
- * resolutions. The custom "host" I have created is _almost_ the same as the
- * built in default host, but it also manually tracks unique imports in an
- * imports set as well as resolves unknown file types.
- *
- * Once the createProgram function is called, typescript will do its thing and start
- * creating an AST and all this other stuff and update the imports set from the
- * custom compiler host with all the dependencies/imports from the provided file path.
- * When it finishes, the imports should be populated with all the imported files
- * as well as some of the custom resolution file names.
- */
-function parseTypescript(
-  filePath: string,
-  aliases: string[],
-  compilerOptions: CompilerOptions
-) {
-  const imports = new Set<string>();
-  const host = createCompilerHost(imports, aliases, compilerOptions);
-  createProgram([filePath], compilerOptions, host);
-
-  return imports;
-}
-
 const {
   getCurrentDirectory,
   getDirectories,
@@ -88,37 +49,24 @@ const readFile: typeof sys.readFile = (path, encoding) => {
   return getFileSource(source);
 };
 
-function getSourceFile(fileName: string, language: ScriptTarget) {
+/**
+ * This is fairly simple and just matches for all the @import statements
+ * in the file.
+ */
+function getScssImports(filePath: string): string[] {
+  const contents = fs.readFileSync(filePath, "utf8");
+  const matches = contents.match(SCSS_IMPORT) || [];
+  return matches.map(match => getModuleName(match, true));
+}
+
+function getSourceFile(
+  fileName: string,
+  language: ScriptTarget
+): SourceFile | undefined {
   const source = readFile(fileName);
   return typeof source !== "undefined"
     ? createSourceFile(fileName, source, language)
     : undefined;
-}
-
-/**
- * This creates the custom compiler host that is almost the same as the native implementation,
- * but with the custom resolveModuleNames function.
- */
-function createCompilerHost(
-  imports: Set<string>,
-  aliases: string[],
-  compilerOptions: CompilerOptions
-): CompilerHost {
-  return {
-    getSourceFile,
-    getDefaultLibFileName: () => "lib.d.ts",
-    writeFile: () => {},
-    getCurrentDirectory,
-    getDirectories,
-    getCanonicalFileName: fileName =>
-      useCaseSensitiveFileNames ? fileName : fileName.toLowerCase(),
-    useCaseSensitiveFileNames: () => useCaseSensitiveFileNames,
-    getNewLine: () => sys.newLine,
-    fileExists,
-    readFile,
-    resolveModuleNames: (moduleNames, file) =>
-      resolveModuleNames(moduleNames, file, imports, aliases, compilerOptions),
-  };
 }
 
 /**
@@ -166,10 +114,12 @@ export function resolveModuleNames(
         imports.add(importName.replace("Code.tsx", "index.ts"));
       }
       return;
-    } else if (isRaw(name)) {
+    }
+    if (isRaw(name)) {
       resolvedModules.push({ resolvedFileName: `${name}.ts` });
       return;
-    } else if (isStyle(name) || isSvg(name) || isMarkdown(name)) {
+    }
+    if (isStyle(name) || isSvg(name) || isMarkdown(name)) {
       resolvedModules.push({ resolvedFileName: `${name}.ts` });
       let updatedName = getModuleName(name);
       if (isRelative(updatedName)) {
@@ -183,6 +133,7 @@ export function resolveModuleNames(
       return;
     }
 
+    /* eslint-disable no-console */
     console.error(`Unable to find a module for "${name}" in "${filePath}"`);
     console.error();
     process.exit(1);
@@ -192,12 +143,68 @@ export function resolveModuleNames(
 }
 
 /**
+ * This creates the custom compiler host that is almost the same as the native implementation,
+ * but with the custom resolveModuleNames function.
+ */
+function createCompilerHost(
+  imports: Set<string>,
+  aliases: string[],
+  compilerOptions: CompilerOptions
+): CompilerHost {
+  return {
+    getSourceFile,
+    getDefaultLibFileName: () => "lib.d.ts",
+    writeFile: () => {},
+    getCurrentDirectory,
+    getDirectories,
+    getCanonicalFileName: fileName =>
+      useCaseSensitiveFileNames ? fileName : fileName.toLowerCase(),
+    useCaseSensitiveFileNames: () => useCaseSensitiveFileNames,
+    getNewLine: () => sys.newLine,
+    fileExists,
+    readFile,
+    resolveModuleNames: (moduleNames, file) =>
+      resolveModuleNames(moduleNames, file, imports, aliases, compilerOptions),
+  };
+}
+
+/**
+ * This took me forever to understand, so I'll describe what's going on here.
+ * Since everything is written in typescript, we can use the typescript compiler
+ * to find all the resolutions based on the provided file path.
+ *
+ * At the time of writing this, typescript's compiler does not have a built-in
+ * way to inspect a file for the fully resolved file name so you have to create
+ * your own compiler "host" (no idea what that's about) to manually track the
+ * resolutions. The custom "host" I have created is _almost_ the same as the
+ * built in default host, but it also manually tracks unique imports in an
+ * imports set as well as resolves unknown file types.
+ *
+ * Once the createProgram function is called, typescript will do its thing and start
+ * creating an AST and all this other stuff and update the imports set from the
+ * custom compiler host with all the dependencies/imports from the provided file path.
+ * When it finishes, the imports should be populated with all the imported files
+ * as well as some of the custom resolution file names.
+ */
+function parseTypescript(
+  filePath: string,
+  aliases: string[],
+  compilerOptions: CompilerOptions
+): Set<string> {
+  const imports = new Set<string>();
+  const host = createCompilerHost(imports, aliases, compilerOptions);
+  createProgram([filePath], compilerOptions, host);
+
+  return imports;
+}
+
+/**
  * Checks a "components/Demos/NAME/index.tsx" file for all the imported demos.
  */
 export async function extractDemoFiles(
   demoIndexPath: string,
   aliases: string[]
-) {
+): Promise<string[]> {
   // package name is always the folder right before the index.tsx
   const name = demoIndexPath.split(path.sep).reverse()[1];
   log.debug(`Finding all the demos for ${name} package...`);

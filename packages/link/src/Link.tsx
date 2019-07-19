@@ -65,7 +65,7 @@ export interface LinkWithComponentProps extends LinkProps {
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
    * all valid props from that component should also be allowed.
    */
-  [key: string]: any;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   component: ElementType;
 }
 

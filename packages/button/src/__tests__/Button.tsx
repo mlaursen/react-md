@@ -1,5 +1,5 @@
-import * as React from "react";
-import { mount } from "enzyme";
+import React from "react";
+import { cleanup, render } from "@testing-library/react";
 
 import Button from "../Button";
 import {
@@ -31,6 +31,8 @@ function flattenDeep(
   );
 }
 
+afterEach(cleanup);
+
 describe("Button", () => {
   // this is actually really bad practice and kind of worthess
   it("should render correctly based on the theme props", () => {
@@ -46,9 +48,11 @@ describe("Button", () => {
         )
       )
     ).forEach(themeProps => {
-      expect(
-        mount(<Button {...themeProps} id="button-example" />).render()
-      ).toMatchSnapshot();
+      const { getByTestId, unmount } = render(
+        <Button data-testid="button" {...themeProps} />
+      );
+      expect(getByTestId("button")).toMatchSnapshot();
+      unmount();
     });
   });
 });

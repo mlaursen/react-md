@@ -13,7 +13,7 @@ interface MenuClickOptions {
 export default function useMenuClick({
   onClick,
   onRequestClose,
-}: MenuClickOptions) {
+}: MenuClickOptions): React.MouseEventHandler<HTMLDivElement> {
   const cache = useRefCache({ onClick, onRequestClose });
 
   return useCallback((event: React.MouseEvent<HTMLDivElement>) => {

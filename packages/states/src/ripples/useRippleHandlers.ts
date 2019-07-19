@@ -28,7 +28,7 @@ export default function useRippleHandlers<E extends HTMLElement>({
   disabled: propDisabled = false,
   disableRipple = false,
   disableProgrammaticRipple = false,
-}: Options<E>) {
+}: Options<E>): MergableRippleHandlers<E> {
   const disabled = propDisabled || disableRipple;
   const ref = useRefCache({ ...handlers, disableProgrammaticRipple });
 

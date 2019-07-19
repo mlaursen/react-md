@@ -38,7 +38,7 @@ const DenseTooltipsWrapper: FC = ({ children }) => {
   const container = useRef<HTMLDivElement | null>(null);
   const mode = useInteractionModeContext();
 
-  const enableVariables = () => {
+  const enableVariables = (): void => {
     if (!variables.length) {
       setVariables(VARIABLES);
     }
@@ -49,7 +49,7 @@ const DenseTooltipsWrapper: FC = ({ children }) => {
       return;
     }
 
-    const handleLeave = (event: Event) => {
+    const handleLeave = (event: Event): void => {
       if (
         !container.current ||
         !event.target ||

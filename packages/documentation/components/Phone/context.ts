@@ -12,6 +12,6 @@ export const PhoneContext = createContext<PhoneContextType>({
   closePhone: () => {},
 });
 
-export function usePhoneContext() {
+export function usePhoneContext(): PhoneContextType {
   return useContext(PhoneContext);
 }

@@ -10,7 +10,7 @@ export interface Dessert {
   type: "Ice cream" | "Pastry" | "Other";
 }
 
-const desserts: ReadonlyArray<Dessert> = [
+const desserts: readonly Dessert[] = [
   {
     name: "Frozen yogurt",
     type: "Ice cream",

@@ -34,8 +34,7 @@ interface TooltippedProvidedProps extends MergableHandlers {
 
 export type ChildrenRenderer = (props: TooltippedProvidedProps) => ReactElement;
 
-interface ChildProps
-  extends Partial<Omit<TooltippedProvidedProps, "tooltip">> {}
+type ChildProps = Partial<Omit<TooltippedProvidedProps, "tooltip">>;
 type ChildElement = ReactElement<ChildProps>;
 
 const MERGABLE_PROPS: (keyof MergableHandlers)[] = [
@@ -203,6 +202,7 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
   const { dense } = props;
   const { hide, visible, position, handlers } = useTooltipState({
     position: propPosition,
+    disableHoverMode,
     defaultPosition,
     positionThreshold,
     hoverDelay,
@@ -311,11 +311,14 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
       const propHandler = child.props[propName];
       const configHandler = config[propName];
       if (!propHandler) {
+        // @ts-ignore
         result[propName] = configHandler;
       } else if (!configHandler) {
+        // @ts-ignore
         result[propName] = propHandler;
       } else {
         // not sure of a way to actually strongly type this nicely.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         result[propName] = (event: any) => {
           propHandler(event);
           configHandler(event);
@@ -354,5 +357,35 @@ const defaultProps: DefaultProps = {
 };
 
 Tooltipped.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  Tooltipped.displayName = "Tooltipped";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Tooltipped.propTypes = {
+      tooltipId: PropTypes.string,
+      dense: PropTypes.bool,
+      spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      denseSpacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      positionThreshold: PropTypes.number,
+      disableAutoSpacing: PropTypes.bool,
+      vwMargin: PropTypes.number,
+      vhMargin: PropTypes.number,
+      portal: PropTypes.bool,
+      lineWrap: PropTypes.bool,
+      focusDelay: PropTypes.number,
+      hoverDelay: PropTypes.number,
+      touchTimeout: PropTypes.number,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      defaultPosition: PropTypes.oneOf(["above", "below", "left", "right"]),
+    };
+  }
+}
 
 export default Tooltipped;

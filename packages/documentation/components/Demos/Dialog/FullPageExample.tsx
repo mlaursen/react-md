@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { Fragment, FC, useState } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
@@ -120,7 +121,7 @@ const previews = validIds.map(id => ({
 
 const FullPageExample: FC = () => {
   const [state, setState] = useState({ imageId: 277, visible: false });
-  const show = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const [index] = event.currentTarget.id.split("-").reverse();
     if (!validIds.includes(index)) {
       return;
@@ -128,7 +129,9 @@ const FullPageExample: FC = () => {
 
     setState({ visible: true, imageId: parseInt(index, 10) });
   };
-  const hide = () => setState(prevState => ({ ...prevState, visible: false }));
+  const hide = (): void => {
+    setState(prevState => ({ ...prevState, visible: false }));
+  };
 
   const { visible, imageId } = state;
   const { filename, height, width } = IMAGES[imageId] || {

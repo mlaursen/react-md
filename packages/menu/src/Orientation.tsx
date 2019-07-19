@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, FC, ReactNode, useContext } from "react";
 
 type MenuOrientation = "horizontal" | "vertical";
 const Orientation = createContext<MenuOrientation>("vertical");
 
-export function useOrientation() {
+export function useOrientation(): MenuOrientation {
   return useContext(Orientation);
 }
 

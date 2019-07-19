@@ -1,48 +1,51 @@
-import * as React from "react";
-import { create } from "react-test-renderer";
-import { mount } from "enzyme";
+import React from "react";
+import { cleanup, render } from "@testing-library/react";
 
 import FontIcon from "../FontIcon";
 
-describe("FontIcon", () => {
-  it("should use render as an <i> tag", () => {
-    const icon = mount(<FontIcon>home</FontIcon>);
+afterEach(cleanup);
 
-    expect(icon.find("i").length).toBe(1);
+describe("FontIcon", () => {
+  it("should render as an <i> element", () => {
+    const { getByTestId } = render(
+      <FontIcon data-testid="icon">home</FontIcon>
+    );
+    expect(getByTestId("icon").tagName).toBe("I");
   });
 
   it("should render correctly", () => {
-    expect(create(<FontIcon>home</FontIcon>).toJSON()).toMatchSnapshot();
-    expect(
-      create(<FontIcon iconClassName="fa fa-github" />).toJSON()
-    ).toMatchSnapshot();
+    const { getByTestId, rerender } = render(
+      <FontIcon data-testid="icon">home</FontIcon>
+    );
+    const icon = getByTestId("icon");
+    expect(icon).toMatchSnapshot();
+
+    rerender(<FontIcon data-testid="icon" iconClassName="fa fa-github" />);
   });
 
-  it("should apply the correct class names", () => {
-    const icon = mount(<FontIcon />);
+  it("should apply the correct classNames", () => {
+    const { getByTestId, rerender } = render(<FontIcon data-testid="icon" />);
+    const icon = getByTestId("icon");
+    expect(icon.className).toBe("rmd-icon rmd-icon--font material-icons");
+    expect(icon).toMatchSnapshot();
 
-    expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(false);
-    expect(icon.find("i").hasClass("material-icons")).toBe(true);
-    expect(icon.render()).toMatchSnapshot();
+    rerender(<FontIcon data-testid="icon" className="test-thing" dense />);
+    expect(icon.className).toBe(
+      "rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing"
+    );
+    expect(icon).toMatchSnapshot();
 
-    icon.setProps({ className: "test-thing", dense: true });
-    expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(true);
-    expect(icon.find("i").hasClass("material-icons")).toBe(true);
-    expect(icon.find("i").hasClass("test-thing")).toBe(true);
-    expect(icon.render()).toMatchSnapshot();
-
-    icon.setProps({ iconClassName: "fa fa-github" });
-    expect(icon.find("i").hasClass("rmd-icon")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--font")).toBe(true);
-    expect(icon.find("i").hasClass("rmd-icon--dense")).toBe(true);
-    expect(icon.find("i").hasClass("material-icons")).toBe(false);
-    expect(icon.find("i").hasClass("test-thing")).toBe(true);
-    expect(icon.find("i").hasClass("fa")).toBe(true);
-    expect(icon.find("i").hasClass("fa-github")).toBe(true);
-    expect(icon.render()).toMatchSnapshot();
+    rerender(
+      <FontIcon
+        data-testid="icon"
+        className="test-thing"
+        dense
+        iconClassName="fa fa-github"
+      />
+    );
+    expect(icon.className).toBe(
+      "rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing"
+    );
+    expect(icon).toMatchSnapshot();
   });
 });

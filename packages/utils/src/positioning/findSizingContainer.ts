@@ -18,7 +18,9 @@ export default function findSizingContainer(
 ): HTMLElement | null {
   if (!el) {
     return null;
-  } else if (/(tree|list)item/.test(el.getAttribute("role") || "")) {
+  }
+
+  if (/(tree|list)item/.test(el.getAttribute("role") || "")) {
     const content = el.querySelector(
       ".rmd-tree-item__content, .rmd-item-text"
     ) as HTMLElement;
@@ -37,7 +39,9 @@ export default function findSizingContainer(
     const content = el.querySelector(data) as HTMLElement;
     if (content) {
       return content;
-    } else if (process.env.NODE_ENV !== "production") {
+    }
+
+    if (process.env.NODE_ENV !== "production") {
       throw new Error(
         "Unable to find a child element using the `data-sizing-selector`"
       );

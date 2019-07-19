@@ -52,13 +52,13 @@ const CustomPortalContainer: FC = () => {
         </Text>
       </Portal>
       <div id="example-portal-container-1" className="custom-portal-container">
-        <Code>"example-portal-container-1"</Code>
+        <Code>&quot;example-portal-container-1&quot;</Code>
       </div>
       <div id="example-portal-container-2" className="custom-portal-container">
-        <Code>"example-portal-container-2"</Code>
+        <Code>&quot;example-portal-container-2&quot;</Code>
       </div>
       <div id="example-portal-container-3" className="custom-portal-container">
-        <Code>"example-portal-container-3"</Code>
+        <Code>&quot;example-portal-container-3&quot;</Code>
       </div>
     </div>
   );

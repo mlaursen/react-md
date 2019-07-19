@@ -3,6 +3,7 @@
 exports[`Text should be able to render as a class component 1`] = `
 <section
   class="rmd-typography rmd-typography--body-1 custom"
+  data-testid="text"
 >
   Hello, world!
 </section>
@@ -11,15 +12,27 @@ exports[`Text should be able to render as a class component 1`] = `
 exports[`Text should be able to render as a functional component 1`] = `
 <section
   class="rmd-typography rmd-typography--body-1 custom"
+  data-testid="text"
+>
+  Hello, world!
+</section>
+`;
+
+exports[`Text should be able to render as a string component prop 1`] = `
+<section
+  class="rmd-typography rmd-typography--body-1"
+  data-testid="text"
 >
   Hello, world!
 </section>
 `;
 
 exports[`Text should be able to use a children render function 1`] = `
-<span
-  className="rmd-typography rmd-typography--body-1 span"
->
-  Content
-</span>
+<div>
+  <span
+    class="span rmd-typography rmd-typography--body-1"
+  >
+    Content
+  </span>
+</div>
 `;

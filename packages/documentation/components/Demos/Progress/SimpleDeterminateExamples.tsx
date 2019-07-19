@@ -9,7 +9,7 @@ import {
 } from "@react-md/progress";
 
 import "./SimpleDeterminateExample.scss";
-import { useDownloadInterval } from "./useDownloadInterval";
+import useDownloadInterval from "./useDownloadInterval";
 
 const Container: FC = ({ children }) => (
   <div className="determinate-example-container">{children}</div>

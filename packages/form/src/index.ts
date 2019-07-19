@@ -39,7 +39,6 @@ export { default as Switch } from "./toggle/Switch";
 export * from "./toggle/Switch";
 
 export { default as AsyncSwitch } from "./toggle/AsyncSwitch";
-export * from "./toggle/AsyncSwitch";
 
 export { default as useCheckboxState } from "./toggle/useCheckboxState";
 export { default as useChoice } from "./useChoice";

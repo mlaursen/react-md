@@ -167,4 +167,26 @@ const defaultProps: DefaultProps = {
 
 DropdownMenuItem.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  DropdownMenuItem.displayName = "DropdownMenuItem";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    DropdownMenuItem.propTypes = {
+      id: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      portal: PropTypes.bool,
+      menuRenderer: PropTypes.func,
+      itemRenderer: PropTypes.func,
+      dropdownIcon: PropTypes.node,
+      disableDropdownIcon: PropTypes.bool,
+      disableEscapeCascade: PropTypes.bool,
+    };
+  }
+}
+
 export default DropdownMenuItem;

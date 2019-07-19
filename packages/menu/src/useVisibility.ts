@@ -14,6 +14,15 @@ export interface VisibilityOptions {
   onVisibilityChange?: (visible: boolean) => void;
 }
 
+interface ReturnValue {
+  visible: boolean;
+  defaultFocus: FocusType;
+  show: () => void;
+  showWithFocus: (defaultFocus: FocusType) => void;
+  hide: () => void;
+  toggle: () => void;
+}
+
 /**
  * This is the main visibility hook to be used for the `DropdownMenu` and `DropdownMenuItem`
  * components. It'll provide the current visibility as well as the default focus type once
@@ -25,7 +34,7 @@ export default function useVisibility({
   defaultVisible = false,
   defaultFocus: defaultFocusValue = "first",
   onVisibilityChange,
-}: VisibilityOptions = {}) {
+}: VisibilityOptions = {}): ReturnValue {
   const [{ visible, defaultFocus }, setState] = useState<VisibilityState>({
     visible: defaultVisible,
     defaultFocus: defaultFocusValue,

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";

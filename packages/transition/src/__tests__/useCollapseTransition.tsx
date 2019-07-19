@@ -220,10 +220,10 @@ describe("getElementSizing", () => {
 
   it("should clone the element to get the maxHeight, paddingTop, and paddingBottom values from so the main element is unmodified", () => {
     const div = document.createElement("div");
-    div.cloneNode = jest.fn(div.cloneNode);
+    const cloneNode = jest.spyOn(div, "cloneNode");
 
     getElementSizing(div);
-    expect(div.cloneNode).toBeCalledWith(false);
+    expect(cloneNode).toBeCalledWith(false);
   });
 
   it("should call window.getComputedStyle with the cloned element that has no padding and hidden visibility", () => {
@@ -232,12 +232,12 @@ describe("getElementSizing", () => {
     div.style.paddingBottom = "20px";
     div.style.visibility = "visible";
 
-    window.getComputedStyle = jest.fn(window.getComputedStyle);
+    const getComputedStyle = jest.spyOn(window, "getComputedStyle");
 
     getElementSizing(div);
     const expected = document.createElement("div");
     expected.style.visibility = "hidden";
-    expect(window.getComputedStyle).toBeCalledWith(expected);
+    expect(getComputedStyle).toBeCalledWith(expected);
 
     div.style.padding = "20px 12px";
     getElementSizing(div);
@@ -245,31 +245,32 @@ describe("getElementSizing", () => {
     expected2.style.visibility = "hidden";
     expected2.style.paddingLeft = "12px";
     expected2.style.paddingRight = "12px";
-    expect(window.getComputedStyle).toBeCalledWith(expected2);
+    expect(getComputedStyle).toBeCalledWith(expected2);
   });
 
   it("should add the cloned node to the parent element or the document.body to get correct styles and then remove", () => {
     const div = document.createElement("div");
     div.id = "div";
+    let appendChild = jest.spyOn(document.body, "appendChild");
+    let removeChild = jest.spyOn(document.body, "removeChild");
 
-    document.body.appendChild = jest.fn(document.body.appendChild);
-    document.body.removeChild = jest.fn(document.body.removeChild);
     const expected = document.createElement("div");
     expected.id = "div";
     expected.style.visibility = "hidden";
 
     getElementSizing(div);
-    expect(document.body.appendChild).toBeCalledWith(expected);
-    expect(document.body.removeChild).toBeCalledWith(expected);
+    expect(appendChild).toBeCalledWith(expected);
+    expect(removeChild).toBeCalledWith(expected);
 
     const parentDiv = document.createElement("div");
     parentDiv.id = "parentDiv";
     parentDiv.appendChild(div);
-    parentDiv.appendChild = jest.fn(parentDiv.appendChild);
-    parentDiv.removeChild = jest.fn(parentDiv.removeChild);
+
+    appendChild = jest.spyOn(parentDiv, "appendChild");
+    removeChild = jest.spyOn(parentDiv, "removeChild");
     getElementSizing(div);
-    expect(parentDiv.appendChild).toBeCalledWith(expected);
-    expect(parentDiv.removeChild).toBeCalledWith(expected);
+    expect(appendChild).toBeCalledWith(expected);
+    expect(removeChild).toBeCalledWith(expected);
   });
 
   it("should extract the maxHeight from the scrollHeight when there's an element", () => {

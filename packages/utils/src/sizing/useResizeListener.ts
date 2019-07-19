@@ -45,7 +45,7 @@ export default function useResizeListener({
   options,
   immediate,
   enabled,
-}: ResizeListenerOptions) {
+}: ResizeListenerOptions): void {
   const callback = useRefCache(onResize);
   useEffect(() => {
     if (!enabled) {
@@ -53,7 +53,7 @@ export default function useResizeListener({
     }
 
     const eventHandler = delegateEvent("resize", window, true, options);
-    const handler = (event: Event) => callback.current(event);
+    const handler = (event: Event): void => callback.current(event);
     eventHandler.add(handler);
 
     if (immediate && typeof window !== "undefined") {

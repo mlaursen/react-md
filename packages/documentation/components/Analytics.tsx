@@ -1,7 +1,6 @@
+/* eslint-disable react/no-danger */
 import React, { FC, Fragment } from "react";
-
-const GA_CODE = process.env.GA_CODE || "UA-76079335-2";
-const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;
+import { GA_CODE, GA_SRC } from "constants/index";
 
 const html = {
   __html: `window.dataLayer = window.dataLayer || [];

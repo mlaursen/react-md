@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useContext, FC, ReactNode } from "react";
 import {
   useModeClassName,
@@ -11,7 +12,7 @@ const ParentContext = createContext(false);
 /**
  * Gets the current interaction mode of the user.
  */
-export function useInteractionModeContext() {
+export function useInteractionModeContext(): UserInteractionMode {
   return useContext(InteractionMode);
 }
 
@@ -31,7 +32,7 @@ export const InteractionModeListener: FC<{
 
   return (
     <InteractionMode.Provider value={mode}>
-      <ParentContext.Provider value={true}>{children}</ParentContext.Provider>
+      <ParentContext.Provider value>{children}</ParentContext.Provider>
     </InteractionMode.Provider>
   );
 };

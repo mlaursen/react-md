@@ -66,9 +66,7 @@ export type TextElement =
   | HTMLBodyElement
   | HTMLHtmlElement;
 
-export type TextRenderFunction = (props: {
-  className: string;
-}) => ReactElement<any>;
+export type TextRenderFunction = (props: { className: string }) => ReactElement;
 
 export interface TextProps extends HTMLAttributes<TextElement> {
   /**

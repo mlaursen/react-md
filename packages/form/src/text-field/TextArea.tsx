@@ -11,10 +11,10 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/theme";
+import { useResizeObserver, WithForwardedRef, applyRef } from "@react-md/utils";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import { useResizeObserver, WithForwardedRef, applyRef } from "@react-md/utils";
 
 import useFocusState from "../useFocusState";
 import useValuedState from "./useValuedState";
@@ -178,7 +178,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
 
   const [mask, setMask] = useState<HTMLTextAreaElement | null>(null);
   const [scrollable, setScrollable] = useState(false);
-  const updateHeight = () => {
+  const updateHeight = (): void => {
     if (!mask) {
       return;
     }

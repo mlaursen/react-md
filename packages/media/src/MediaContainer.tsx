@@ -97,6 +97,10 @@ if (process.env.NODE_ENV !== "production") {
       auto: PropTypes.bool,
       height: PropTypes.number,
       width: PropTypes.number,
+      fullWidth: PropTypes.bool,
+      className: PropTypes.string,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      children: PropTypes.node,
     };
   }
 }

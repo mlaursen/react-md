@@ -1,10 +1,19 @@
-import { useCallback } from "react";
+import { useCallback, HTMLAttributes } from "react";
 import { useRefCache } from "@react-md/utils";
-import useVisibility, { VisibilityOptions } from "./useVisibility";
+import useVisibility, { VisibilityOptions, FocusType } from "./useVisibility";
 
 export interface ButtonVisibilityOptions extends VisibilityOptions {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+}
+
+interface ReturnValue
+  extends Required<
+    Pick<HTMLAttributes<HTMLButtonElement>, "onClick" | "onKeyDown">
+  > {
+  visible: boolean;
+  defaultFocus: FocusType;
+  hide: () => void;
 }
 
 /**
@@ -22,7 +31,7 @@ export default function useButtonVisibility({
   defaultVisible,
   defaultFocus: propDefaultFocus,
   onVisibilityChange,
-}: ButtonVisibilityOptions = {}) {
+}: ButtonVisibilityOptions = {}): ReturnValue {
   const handlers = useRefCache({
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
@@ -58,6 +67,7 @@ export default function useButtonVisibility({
           event.preventDefault();
           showWithFocus("last");
           break;
+        // no default
       }
     },
     []

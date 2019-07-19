@@ -1,6 +1,6 @@
 import { CSSProperties, useEffect } from "react";
 
-export type CSSVariableValue = string | null;
+export type CSSVariableValue = string | number | null;
 export interface CSSVariable {
   name: string;
   value: CSSVariableValue;
@@ -14,7 +14,7 @@ export interface CSSVariable {
  * @param name - The css variable name to fix
  * @return a "valid" css variable name.
  */
-export function toCSSVariableName(name: string, prefix: string = "--") {
+export function toCSSVariableName(name: string, prefix: string = "--"): string {
   return name.startsWith(prefix) ? name : `${prefix}${name}`;
 }
 
@@ -24,7 +24,10 @@ export function toCSSVariableName(name: string, prefix: string = "--") {
  * @param variables a list of css variables and their values
  * @return a new list ensuring that all variable names are prefixed with `--`
  */
-export function fixVariables(variables: CSSVariable[], prefix: string = "--") {
+export function fixVariables(
+  variables: CSSVariable[],
+  prefix: string = "--"
+): CSSVariable[] {
   return variables.map(({ name, value }) => ({
     name: toCSSVariableName(name, prefix),
     value,
@@ -43,7 +46,7 @@ export function fixVariables(variables: CSSVariable[], prefix: string = "--") {
 export function createCSSVariablesStyle(
   variables: CSSVariable[],
   style?: CSSProperties
-) {
+): CSSProperties | undefined {
   if (!variables.length) {
     return style;
   }
@@ -63,12 +66,12 @@ export function createCSSVariablesStyle(
  *
  * @param variables The list of css variables to create a style object for
  */
-export function useDocumentCSSVariables(variables: CSSVariable[]) {
+export function useDocumentCSSVariables(variables: CSSVariable[]): void {
   useEffect(() => {
     const { style } = document.documentElement;
     const fixedVariables = fixVariables(variables);
     fixedVariables.forEach(({ name, value }) => {
-      style.setProperty(name, value);
+      style.setProperty(name, `${value}`);
     });
 
     return () => {
@@ -79,11 +82,9 @@ export function useDocumentCSSVariables(variables: CSSVariable[]) {
   }, [variables]);
 }
 
-type ScssVariableMap = {
-  [key: string]: CSSVariableValue;
-};
+type ScssVariableMap = Record<string, CSSVariableValue>;
 
-function tryImport(packageName: string) {
+function tryImport(packageName: string): Promise<CSSVariable[]> {
   return import(`@react-md/${packageName}/dist/scssVariables`)
     .then(pkg => {
       const themeVars = `rmd-${packageName}${
@@ -105,7 +106,7 @@ function tryImport(packageName: string) {
     .catch(() => []);
 }
 
-export async function resolveVariables() {
+export async function resolveVariables(): Promise<CSSVariable[]> {
   const variables = await Promise.all([
     tryImport("app-bar"),
     tryImport("avatar"),

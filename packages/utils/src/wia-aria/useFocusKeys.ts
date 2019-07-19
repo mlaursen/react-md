@@ -34,7 +34,10 @@ export interface KeyboardFocusKeys {
  * things like: "Tab", "Alt+Home", "A", "Shift+Alt+ArrowUp"
  * @param type The keyboard focus type this key should be mapped to
  */
-export function transformKeys(keys: string[], type: KeyboardFocusKeyType) {
+export function transformKeys(
+  keys: string[],
+  type: KeyboardFocusKeyType
+): KeyConfig[] {
   return keys.map<KeyConfig>(key => ({
     shiftKey: key.includes("Shift+"),
     metaKey: key.includes("Meta+"),
@@ -58,7 +61,7 @@ export function transformKeys(keys: string[], type: KeyboardFocusKeyType) {
 export function getKeyboardEventType(
   event: KeyboardEvent | React.KeyboardEvent,
   keys: KeyConfig[]
-) {
+): KeyboardFocusKeyType | null {
   const { key, altKey, metaKey, shiftKey } = event;
   const found = keys.find(
     k =>
@@ -81,7 +84,7 @@ export function useMemoizedFocusKeys({
   decrementKeys,
   jumpToFirstKeys,
   jumpToLastKeys,
-}: Required<KeyboardFocusKeys>) {
+}: Required<KeyboardFocusKeys>): KeyConfig[] {
   return useMemo(
     () => [
       ...transformKeys(incrementKeys, "increment"),

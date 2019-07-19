@@ -15,9 +15,10 @@ import "./CustomCheckboxes.scss";
 
 const CustomCheckbox: FC<InputToggleProps> = ({
   defaultChecked = false,
+  onChange: propOnChange,
   ...props
 }) => {
-  const [checked, onChange] = useCheckboxState(defaultChecked, props.onChange);
+  const [checked, onChange] = useCheckboxState(defaultChecked, propOnChange);
 
   return (
     <Checkbox
