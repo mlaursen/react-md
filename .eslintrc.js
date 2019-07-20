@@ -41,9 +41,6 @@ module.exports = {
     // This doesn't play well with hooks and it doesn't mean much with Typescript to me
     'consistent-return': 0,
 
-    // no need to worry about regenerator stuff since it's handled by Typescript
-    'no-restricted-syntax': 0,
-
     // it's useful for reduce cases and a lot of other stuff. Easily caught in reviews
     'no-param-reassign': 0,
 

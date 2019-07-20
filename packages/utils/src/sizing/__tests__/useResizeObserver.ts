@@ -1,9 +1,7 @@
-import { act, renderHook } from "@testing-library/react-hooks";
-
 import {
   getResizeObserverTarget,
-  isSizeChange,
-  useMeasure,
+  isHeightChange,
+  isWidthChange,
 } from "../useResizeObserver";
 
 describe("getResizeObserverTarget", () => {
@@ -40,8 +38,8 @@ describe("getResizeObserverTarget", () => {
   });
 });
 
-describe("isSizeChange", () => {
-  it("should return true if the previous size was null", () => {
+describe("isHeightChange", () => {
+  it("should return true if the previous size is undefined", () => {
     const nextSize = {
       height: 100,
       width: 100,
@@ -49,13 +47,10 @@ describe("isSizeChange", () => {
       scrollWidth: 100,
     };
 
-    expect(isSizeChange(null, nextSize, false, false)).toBe(true);
-    expect(isSizeChange(null, nextSize, true, false)).toBe(true);
-    expect(isSizeChange(null, nextSize, false, true)).toBe(true);
-    expect(isSizeChange(null, nextSize, true, true)).toBe(true);
+    expect(isHeightChange(undefined, nextSize)).toBe(true);
   });
 
-  it("should return true if there was a height change and disableHeight is not true", () => {
+  it("should return true if the height or scroll height changed", () => {
     const prevSize = {
       height: 100,
       width: 100,
@@ -64,159 +59,115 @@ describe("isSizeChange", () => {
     };
 
     expect(
-      isSizeChange(prevSize, { ...prevSize, scrollHeight: 102 }, false, false)
-    ).toBe(true);
-    expect(
-      isSizeChange(
-        prevSize,
-        {
-          ...prevSize,
-          height: 102,
-          scrollHeight: 102,
-        },
-        false,
-        false
-      )
-    ).toBe(true);
-    expect(
-      isSizeChange(prevSize, { ...prevSize, height: 101 }, false, false)
+      isHeightChange(prevSize, {
+        height: 101,
+        width: 100,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
     ).toBe(true);
 
     expect(
-      isSizeChange(prevSize, { ...prevSize, scrollHeight: 102 }, true, false)
-    ).toBe(false);
-    expect(
-      isSizeChange(
-        prevSize,
-        {
-          ...prevSize,
-          height: 102,
-          scrollHeight: 102,
-        },
-        true,
-        false
-      )
-    ).toBe(false);
-    expect(
-      isSizeChange(prevSize, { ...prevSize, height: 101 }, true, false)
-    ).toBe(false);
-  });
-
-  it("should return true if there was a width change and disableWidth is not true", () => {
-    const prevSize = {
-      height: 100,
-      width: 100,
-      scrollHeight: 100,
-      scrollWidth: 100,
-    };
-
-    expect(
-      isSizeChange(prevSize, { ...prevSize, scrollWidth: 102 }, false, false)
-    ).toBe(true);
-    expect(
-      isSizeChange(
-        prevSize,
-        {
-          ...prevSize,
-          width: 102,
-          scrollWidth: 102,
-        },
-        false,
-        false
-      )
-    ).toBe(true);
-    expect(
-      isSizeChange(prevSize, { ...prevSize, width: 101 }, false, false)
+      isHeightChange(prevSize, {
+        height: 100,
+        width: 100,
+        scrollHeight: 101,
+        scrollWidth: 100,
+      })
     ).toBe(true);
 
     expect(
-      isSizeChange(prevSize, { ...prevSize, scrollWidth: 102 }, false, true)
-    ).toBe(false);
+      isHeightChange(prevSize, {
+        height: 105,
+        width: 100,
+        scrollHeight: 105,
+        scrollWidth: 100,
+      })
+    ).toBe(true);
+
     expect(
-      isSizeChange(
-        prevSize,
-        {
-          ...prevSize,
-          width: 102,
-          scrollWidth: 102,
-        },
-        false,
-        true
-      )
+      isHeightChange(prevSize, {
+        height: 100,
+        width: 105,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
     ).toBe(false);
 
     expect(
-      isSizeChange(prevSize, { ...prevSize, width: 101 }, false, true)
+      isHeightChange(prevSize, {
+        height: 100,
+        width: 100,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
     ).toBe(false);
   });
 });
 
-describe("useMeasure", () => {
-  it("should trigger the onResize argument after an element changed sizes", () => {
-    const onResize = jest.fn();
-    const { result } = renderHook(() => useMeasure({ onResize }));
-    const createElement = (
-      config: {
-        height?: number;
-        width?: number;
-        scrollHeight?: number;
-        scrollWidth?: number;
-      } = {}
-    ) => {
-      const {
-        height = 50,
-        width = 100,
-        scrollHeight = 150,
-        scrollWidth = 200,
-      } = config;
-      const element = document.createElement("div");
-      Object.defineProperty(element, "height", { value: height });
-      Object.defineProperty(element, "width", { value: width });
-      Object.defineProperty(element, "scrollHeight", { value: scrollHeight });
-      Object.defineProperty(element, "scrollWidth", { value: scrollWidth });
-
-      const entries: ResizeObserverEntry[] = [
-        {
-          target: element,
-          contentRect: {
-            x: 0,
-            y: 0,
-            height,
-            width,
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          },
-        },
-      ];
-      return { element, entries };
+describe("isWidthChange", () => {
+  it("should return true if the previous size is undefined", () => {
+    const nextSize = {
+      height: 100,
+      width: 100,
+      scrollHeight: 100,
+      scrollWidth: 100,
     };
 
-    let { element, entries } = createElement();
-    act(() => result.current(entries));
+    expect(isWidthChange(undefined, nextSize)).toBe(true);
+  });
 
-    expect(onResize).toBeCalledWith({
-      height: 50,
+  it("should return true if the width or scroll width changed", () => {
+    const prevSize = {
+      height: 100,
       width: 100,
-      scrollHeight: 150,
-      scrollWidth: 200,
-      element,
-    });
+      scrollHeight: 100,
+      scrollWidth: 100,
+    };
 
-    // didn't change, so shouldn't call again
-    act(() => result.current(entries));
-    expect(onResize).toBeCalledTimes(1);
+    expect(
+      isWidthChange(prevSize, {
+        height: 100,
+        width: 101,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
+    ).toBe(true);
 
-    ({ element, entries } = createElement({ scrollWidth: 400 }));
-    act(() => result.current(entries));
-    expect(onResize).toBeCalledTimes(2);
-    expect(onResize).toBeCalledWith({
-      height: 50,
-      width: 100,
-      scrollHeight: 150,
-      scrollWidth: 400,
-      element,
-    });
+    expect(
+      isWidthChange(prevSize, {
+        height: 100,
+        width: 100,
+        scrollHeight: 100,
+        scrollWidth: 101,
+      })
+    ).toBe(true);
+
+    expect(
+      isWidthChange(prevSize, {
+        height: 100,
+        width: 105,
+        scrollHeight: 100,
+        scrollWidth: 105,
+      })
+    ).toBe(true);
+
+    expect(
+      isWidthChange(prevSize, {
+        height: 105,
+        width: 100,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
+    ).toBe(false);
+
+    expect(
+      isWidthChange(prevSize, {
+        height: 100,
+        width: 100,
+        scrollHeight: 100,
+        scrollWidth: 100,
+      })
+    ).toBe(false);
   });
 });

@@ -2,7 +2,7 @@ import React, { FC, ElementType, useCallback, useState } from "react";
 
 import useResizeObserver, {
   ResizeObserverChangeEventHandler,
-  ResizeObserverTargetFinder,
+  FindResizeTarget,
 } from "./useResizeObserver";
 
 export interface ResizeObserverProps {
@@ -42,7 +42,7 @@ export interface ResizeObserverProps {
    * Setting this to `null` will result in a "lazy Observer". The observer will not start until it has
    * been updated to be a string or an HTMLElement.
    */
-  target?: ResizeObserverTargetFinder;
+  target?: FindResizeTarget;
 
   /**
    * The resize event handler for the resize observer. The callback will include the next height, width,
