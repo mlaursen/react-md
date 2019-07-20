@@ -80,7 +80,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
     setReadOnly(false);
   }
 
-  if (disableDense && disabled) {
+  if (disableDense && dense) {
     setDense(false);
   }
 
