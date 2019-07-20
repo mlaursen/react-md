@@ -36,7 +36,7 @@ export interface Options<E extends HTMLElement = HTMLElement> {
  * supported by the browser and delegating the event as needed.
  */
 export default function useScrollListener<E extends HTMLElement = HTMLElement>({
-  enabled,
+  enabled = true,
   onScroll,
   element,
   options = isSupported ? { passive: true, capture: true } : true,
