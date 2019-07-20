@@ -24,21 +24,25 @@ export default function useTimeout(
   defaultStarted: boolean | (() => boolean) = false
 ): ReturnValue {
   const cbRef = useRefCache(cb);
+  const delayRef = useRefCache(delay);
   const timeoutRef = useRef<number>();
+  const [enabled, start, disable] = useToggle(defaultStarted);
+
   const clearTimeout = useCallback(() => {
     window.clearTimeout(timeoutRef.current);
     timeoutRef.current = undefined;
   }, []);
+  const restart = useCallback(() => {
+    clearTimeout();
+    timeoutRef.current = window.setTimeout(() => {
+      cbRef.current();
+      disable();
+    }, delayRef.current);
+  }, []);
 
-  const [enabled, start, disable] = useToggle(defaultStarted);
   const stop = useCallback(() => {
     clearTimeout();
     disable();
-  }, []);
-
-  const restart = useCallback(() => {
-    stop();
-    start();
   }, []);
 
   useEffect(() => {
@@ -50,7 +54,6 @@ export default function useTimeout(
       cbRef.current();
       disable();
     }, delay);
-
     return () => {
       clearTimeout();
     };
