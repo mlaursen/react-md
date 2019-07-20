@@ -21,23 +21,33 @@ export default function useFocusState({
   const handlers = useRefCache({ onFocus, onBlur });
   const [focused, setFocused, setBlurred] = useToggle(false);
 
-  const handleFocus = useCallback<FocusEventHandler>(event => {
-    const { onFocus } = handlers.current;
-    if (onFocus) {
-      onFocus(event);
-    }
+  const handleFocus = useCallback<FocusEventHandler>(
+    event => {
+      const { onFocus } = handlers.current;
+      if (onFocus) {
+        onFocus(event);
+      }
 
-    setFocused();
-  }, []);
+      setFocused();
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setFocused]
+  );
 
-  const handleBlur = useCallback<BlurEventHandler>(event => {
-    const { onBlur } = handlers.current;
-    if (onBlur) {
-      onBlur(event);
-    }
+  const handleBlur = useCallback<BlurEventHandler>(
+    event => {
+      const { onBlur } = handlers.current;
+      if (onBlur) {
+        onBlur(event);
+      }
 
-    setBlurred();
-  }, []);
+      setBlurred();
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setBlurred]
+  );
 
   return [focused, handleFocus, handleBlur];
 }

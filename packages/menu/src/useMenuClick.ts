@@ -29,5 +29,7 @@ export default function useMenuClick({
     ) {
       onRequestClose();
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

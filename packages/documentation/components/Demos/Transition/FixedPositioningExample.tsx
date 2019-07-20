@@ -69,6 +69,8 @@ const FixedPositioningExample: FC = () => {
     return () => {
       window.cancelAnimationFrame(frame);
     };
+    // only want to run this hook on anchor changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anchor]);
 
   const {

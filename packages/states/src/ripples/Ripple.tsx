@@ -33,9 +33,8 @@ const Ripple: FC<RippleProps> = props => {
 
   let timeout = propTimeout;
   let classNames = propClassNames;
+  const context = useStatesConfigContext();
   if (typeof timeout === "undefined" || typeof classNames === "undefined") {
-    const context = useStatesConfigContext();
-
     if (typeof timeout === "undefined") {
       timeout = context.rippleTimeout;
     }
@@ -49,10 +48,14 @@ const Ripple: FC<RippleProps> = props => {
   const onEntered = useCallback(() => {
     const { ripple, entered } = ref.current;
     entered(ripple);
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const onExited = useCallback(() => {
     const { ripple, exited } = ref.current;
     exited(ripple);
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

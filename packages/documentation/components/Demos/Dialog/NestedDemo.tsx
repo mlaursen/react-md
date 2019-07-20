@@ -19,11 +19,11 @@ interface NestedDemoProps {
  * and then stop.
  */
 const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
+  const [visible, enable, disable] = useToggle(false);
   if (depth >= 3) {
     return null;
   }
 
-  const [visible, enable, disable] = useToggle(false);
   const depthPath = Array.from(new Array(depth + 1))
     .map((_, i) => i)
     .join("-");

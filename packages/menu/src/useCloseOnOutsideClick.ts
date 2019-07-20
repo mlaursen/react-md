@@ -54,5 +54,7 @@ export default function useCloseOnOutsideClick({
     return () => {
       window.removeEventListener("click", handleClick);
     };
-  }, [visible, controlId]);
+    // disabled since menu is a MutableRefObject
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, controlId, onRequestClose]);
 }

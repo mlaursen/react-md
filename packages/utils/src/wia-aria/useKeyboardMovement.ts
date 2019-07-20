@@ -82,10 +82,14 @@ export default function useKeyboardMovement<
     onFocusChange,
     ...(typeof search !== "boolean" ? search : undefined),
   });
-  const cache = useRefCache(search ? searchKeyDown : propOnKeyDown);
+  const cache = useRefCache({
+    keys,
+    onFocusChange,
+    onKeyDown: search ? searchKeyDown : propOnKeyDown,
+  });
 
   return useCallback((event: React.KeyboardEvent<E>) => {
-    const onKeyDown = cache.current;
+    const { keys, onKeyDown, onFocusChange } = cache.current;
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -121,5 +125,7 @@ export default function useKeyboardMovement<
         index,
       });
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

@@ -43,6 +43,8 @@ export function useTooltipHoverModeState(
     if (delayRef.current === 0) {
       setDelay(defaultDelay);
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultDelay]);
 
   const [start, stop] = useTimeout(disable, delayTimeout);
@@ -51,7 +53,9 @@ export function useTooltipHoverModeState(
     if (delayRef.current !== 0) {
       setDelay(0);
     }
-  }, []);
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stop]);
 
   return {
     delay,

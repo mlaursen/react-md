@@ -34,6 +34,8 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
     } else {
       hide();
     }
+    // disabled since I only want to update it on desktop changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLargeDesktop]);
 
   const isHome = pathname === "/" || pathname.startsWith("/sandbox");

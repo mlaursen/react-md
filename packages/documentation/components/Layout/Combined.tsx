@@ -35,12 +35,16 @@ const Combined: FC<CombinedProps> = ({
     if (visible !== isDesktop) {
       setVisible(isDesktop);
     }
+    // disabled since only want to update on media changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDesktop, isTablet, isPhone]);
 
   useEffect(() => {
     if (visible && !inline) {
       setVisible(false);
     }
+    // disabled since only want to run on pathname changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
 
   useScrollLock(visible && isPhone);

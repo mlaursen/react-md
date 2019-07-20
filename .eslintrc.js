@@ -7,7 +7,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:import/typescript',
   ],
-  plugins: ['jest'],
+  plugins: ['jest', 'react-hooks'],
   env: {
     node: true,
     browser: true,
@@ -59,6 +59,9 @@ module.exports = {
 
     // normally caught my Typescript instead and I don't care too much about speciifc objects
     'react/forbid-prop-types': 0,
+
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
 
     // overridden by prettier
     'react/jsx-wrap-multilines': 0,

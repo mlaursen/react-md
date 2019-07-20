@@ -42,7 +42,9 @@ export function useTouchDetection(touchTimeout: number = 1200): boolean {
     }
 
     setTouchTime(0);
-  }, []);
+    // disabled since useRefCache for touchRef
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [touchTimeout]);
 
   useEffect(() => {
     window.addEventListener("touchstart", updateTouchTime, true);
@@ -50,7 +52,7 @@ export function useTouchDetection(touchTimeout: number = 1200): boolean {
     return () => {
       window.removeEventListener("touchstart", updateTouchTime, true);
     };
-  }, []);
+  }, [updateTouchTime]);
 
   useEffect(() => {
     if (lastTouchTime === 0) {
@@ -68,7 +70,7 @@ export function useTouchDetection(touchTimeout: number = 1200): boolean {
       window.removeEventListener("mousemove", resetTouchTime, true);
       window.removeEventListener("contextmenu", updateContextMenu, true);
     };
-  }, [lastTouchTime]);
+  }, [lastTouchTime, resetTouchTime]);
 
   return lastTouchTime !== 0;
 }
@@ -93,7 +95,7 @@ export function useKeyboardDetection(): boolean {
     return () => {
       window.removeEventListener("keydown", enable, true);
     };
-  }, [enabled]);
+  }, [enabled, enable]);
 
   useEffect(() => {
     if (!enabled) {
@@ -107,7 +109,7 @@ export function useKeyboardDetection(): boolean {
       window.removeEventListener("mousedown", disable, true);
       window.removeEventListener("touchstart", disable, true);
     };
-  }, [enabled]);
+  }, [enabled, disable]);
 
   return enabled;
 }

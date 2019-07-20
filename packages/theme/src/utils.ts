@@ -66,8 +66,15 @@ export function createCSSVariablesStyle(
  *
  * @param variables The list of css variables to create a style object for
  */
-export function useDocumentCSSVariables(variables: CSSVariable[]): void {
+export function useDocumentCSSVariables(
+  variables: CSSVariable[],
+  disabled: boolean = false
+): void {
   useEffect(() => {
+    if (disabled) {
+      return;
+    }
+
     const { style } = document.documentElement;
     const fixedVariables = fixVariables(variables);
     fixedVariables.forEach(({ name, value }) => {
@@ -79,7 +86,7 @@ export function useDocumentCSSVariables(variables: CSSVariable[]): void {
         style.setProperty(name, "");
       });
     };
-  }, [variables]);
+  }, [variables, disabled]);
 }
 
 type ScssVariableMap = Record<string, CSSVariableValue>;

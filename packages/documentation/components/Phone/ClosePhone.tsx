@@ -31,7 +31,7 @@ const ClosePhone: FC<Props> = ({
 
       closePhone();
     },
-    [onClick]
+    [onClick, closePhone]
   );
 
   return (

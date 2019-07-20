@@ -40,7 +40,7 @@ const Portal: FC<PortalProps> = ({ into, intoId, children }) => {
     if (container !== nextContainer) {
       setContainer(nextContainer);
     }
-  });
+  }, [into, intoId, container]);
 
   if (!container) {
     return null;

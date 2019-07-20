@@ -67,7 +67,7 @@ export default function useKeyboardSearch<E extends HTMLElement = HTMLElement>({
   resetTime = 500,
   onFocusChange = ({ element }) => element.focus(),
 }: KeyboardSearchOptions<E>): React.KeyboardEventHandler<E> {
-  const { value, setValue } = useTempValue("", resetTime);
+  const [value, setValue] = useTempValue("", resetTime);
   const cache = useRefCache({ onKeyDown, getValues, onFocusChange });
 
   return useCallback((event: React.KeyboardEvent<E>) => {
@@ -103,5 +103,7 @@ export default function useKeyboardSearch<E extends HTMLElement = HTMLElement>({
         index,
       });
     }
+    // disabled since useRefCache and the value is a ref and setValue will never update
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

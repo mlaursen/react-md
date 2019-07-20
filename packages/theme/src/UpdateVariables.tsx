@@ -55,6 +55,7 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
   clone,
   variables,
 }) => {
+  useDocumentCSSVariables(variables, clone || typeof children === "function");
   if (typeof children === "function") {
     return (children as VariableChildrenRenderer)({
       style: createCSSVariablesStyle(variables, style),
@@ -72,7 +73,6 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
 
   // TODO: Add a dev runtime check to make sure that only one instance
   // of the UpdateVariables is setting the values
-  useDocumentCSSVariables(variables);
 
   return (children as StyleableChild) || null;
 };

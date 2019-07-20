@@ -95,7 +95,7 @@ const LinearProgress: FC<LinearProgressProps & WithRef> = providedProps => {
       ...propBarStyle,
       [key]: `${progress * 100}%`,
     };
-  }, [progress, propBarStyle, min, max, vertical]);
+  }, [progress, propBarStyle, vertical]);
 
   const determinate = typeof progress === "number";
   const indeterminate = !determinate;

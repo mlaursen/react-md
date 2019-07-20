@@ -32,91 +32,136 @@ export default function useRippleHandlers<E extends HTMLElement>({
   const disabled = propDisabled || disableRipple;
   const ref = useRefCache({ ...handlers, disableProgrammaticRipple });
 
-  const onKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<E>) => {
+      const { onKeyDown: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    create(event);
-  }, []);
-  const onKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyUp: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+      create(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [create]
+  );
+  const onKeyUp = useCallback(
+    (event: React.KeyboardEvent<E>) => {
+      const { onKeyUp: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    release(event);
-  }, []);
+      release(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [release]
+  );
 
-  const onMouseDown = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseDown: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+  const onMouseDown = useCallback(
+    (event: React.MouseEvent<E>) => {
+      const { onMouseDown: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    create(event);
-  }, []);
-  const onMouseUp = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseUp: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+      create(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [create]
+  );
+  const onMouseUp = useCallback(
+    (event: React.MouseEvent<E>) => {
+      const { onMouseUp: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    release(event);
-  }, []);
-  const onMouseLeave = useCallback((event: React.MouseEvent<E>) => {
-    const { onMouseLeave: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+      release(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [release]
+  );
+  const onMouseLeave = useCallback(
+    (event: React.MouseEvent<E>) => {
+      const { onMouseLeave: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    cancel(true);
-  }, []);
+      cancel(true);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cancel]
+  );
 
-  const onTouchStart = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchStart: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+  const onTouchStart = useCallback(
+    (event: React.TouchEvent<E>) => {
+      const { onTouchStart: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    create(event);
-  }, []);
-  const onTouchMove = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchMove: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+      create(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [create]
+  );
+  const onTouchMove = useCallback(
+    (event: React.TouchEvent<E>) => {
+      const { onTouchMove: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    cancel(false);
-  }, []);
-  const onTouchEnd = useCallback((event: React.TouchEvent<E>) => {
-    const { onTouchEnd: callback } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+      cancel(false);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cancel]
+  );
+  const onTouchEnd = useCallback(
+    (event: React.TouchEvent<E>) => {
+      const { onTouchEnd: callback } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    release(event);
-  }, []);
+      release(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [release]
+  );
 
-  const onClick = useCallback((event: React.MouseEvent<E>) => {
-    const { onClick: callback, disableProgrammaticRipple } = ref.current;
-    if (callback) {
-      callback(event);
-    }
+  const onClick = useCallback(
+    (event: React.MouseEvent<E>) => {
+      const { onClick: callback, disableProgrammaticRipple } = ref.current;
+      if (callback) {
+        callback(event);
+      }
 
-    // when a click event is triggered and the current active element is not
-    // the event target, we know it was a true programmatic event and should
-    // trigger a ripple for it.
-    if (
-      disableProgrammaticRipple ||
-      document.activeElement === event.currentTarget
-    ) {
-      return;
-    }
+      // when a click event is triggered and the current active element is not
+      // the event target, we know it was a true programmatic event and should
+      // trigger a ripple for it.
+      if (
+        disableProgrammaticRipple ||
+        document.activeElement === event.currentTarget
+      ) {
+        return;
+      }
 
-    create(event);
-  }, []);
+      create(event);
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [create]
+  );
 
   return {
     onKeyDown: disabled ? handlers.onKeyDown : onKeyDown,

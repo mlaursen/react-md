@@ -64,7 +64,7 @@ export function useVerticalDividerHeight(
         setHeight(Math.min(height, maxHeight));
       }
     },
-    [maxHeight]
+    [maxHeight, forwardedRef]
   );
 
   return { ref, height };

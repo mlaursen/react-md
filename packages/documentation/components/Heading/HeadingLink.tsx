@@ -20,7 +20,7 @@ const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
         document.body.removeChild(area);
       }
     },
-    [idRef]
+    []
   );
 
   return (

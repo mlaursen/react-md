@@ -33,7 +33,10 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
   const [stack, setStack] = useState<string[]>([]);
   const add = useCallback((dialogId: string) => {
     setStack(prevStack => {
-      if (process.env.NODE_ENV !== "production" && stack.includes(dialogId)) {
+      if (
+        process.env.NODE_ENV !== "production" &&
+        prevStack.includes(dialogId)
+      ) {
         /* eslint-disable no-console */
         console.warn(
           "Tried to add a duplicate dialog id to the `NestedDialogContext`."
@@ -52,7 +55,7 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
   const remove = useCallback((dialogId: string) => {
     setStack(prevStack => prevStack.filter(id => id !== dialogId));
   }, []);
-  const value = useMemo(() => ({ stack, add, remove }), [stack]);
+  const value = useMemo(() => ({ stack, add, remove }), [add, remove, stack]);
 
   return <Provider value={value}>{children}</Provider>;
 };

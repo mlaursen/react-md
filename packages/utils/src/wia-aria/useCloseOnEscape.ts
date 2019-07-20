@@ -28,6 +28,8 @@ export default function useCloseOnEscape(
     if (event.key === "Escape") {
       onRequestClose();
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return disabled ? onKeyDown : handleKeyDown;

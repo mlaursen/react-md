@@ -59,5 +59,7 @@ export default function useScrollListener<E extends HTMLElement = HTMLElement>({
     return () => {
       eventHandler.remove(handler);
     };
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, element, options]);
 }

@@ -34,18 +34,23 @@ export default function useValuedState<T extends TextElement>({
     return false;
   });
 
-  const handleChange = useCallback<React.ChangeEventHandler<T>>(event => {
-    const onChange = handler.current;
-    if (onChange) {
-      onChange(event);
-    }
+  const handleChange = useCallback<React.ChangeEventHandler<T>>(
+    event => {
+      const onChange = handler.current;
+      if (onChange) {
+        onChange(event);
+      }
 
-    if (event.currentTarget.value.length > 0) {
-      enable();
-    } else {
-      disable();
-    }
-  }, []);
+      if (event.currentTarget.value.length > 0) {
+        enable();
+      } else {
+        disable();
+      }
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [enable, disable]
+  );
 
   if (typeof value !== "undefined") {
     const isValued = typeof value === "number" || value.length > 0;

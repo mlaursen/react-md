@@ -57,7 +57,7 @@ export default function usePageHeadings(
       cancelled = true;
       window.cancelAnimationFrame(frame);
     };
-  }, [pathname]);
+  }, [pathname, disabled]);
 
   return headings;
 }

@@ -63,5 +63,7 @@ export default function useResizeListener({
     return () => {
       eventHandler.remove(handler);
     };
+    // disabled since useRefCache for callback and don't want immediate to re-trigger it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, enabled]);
 }

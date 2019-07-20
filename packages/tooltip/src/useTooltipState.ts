@@ -151,7 +151,7 @@ export default function useTooltipState({
   const hideTooltip = useCallback(() => {
     initiated.current = null;
     hide();
-  }, []);
+  }, [hide]);
 
   useVisiblityChange({
     visible,
@@ -220,7 +220,7 @@ export default function useTooltipState({
     stopKeyboardTimer();
     stopTouchTimer();
     hide();
-  }, []);
+  }, [stopMouseTimer, stopKeyboardTimer, stopTouchTimer, hide]);
 
   useOtherInteractionDisable(initiated.current, hideAndReset);
 

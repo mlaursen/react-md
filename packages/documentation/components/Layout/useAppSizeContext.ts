@@ -53,6 +53,8 @@ export default function useAppSizeContext(): AppSize {
       }
       window.cancelAnimationFrame(frame);
     };
+    // only want to run on initial mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return toggled ? currentSize : defaultSize;

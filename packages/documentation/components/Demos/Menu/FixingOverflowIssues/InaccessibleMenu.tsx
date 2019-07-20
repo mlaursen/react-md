@@ -32,7 +32,7 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
     return () => {
       window.removeEventListener("click", closeOnOutsideClick);
     };
-  }, [visible]);
+  }, [visible, disable]);
 
   return (
     <div className={block()}>

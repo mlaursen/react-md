@@ -107,6 +107,7 @@ export const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
     ) {
       onChange(appSize, defaultSize);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

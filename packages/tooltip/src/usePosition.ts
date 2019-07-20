@@ -34,40 +34,45 @@ export default function usePosition({
    * within the viewport. If this isn't done and the tooltip swaps position due to the positioning
    * logic, the animation will be reversed.
    */
-  const setEstimatedPosition = useCallback((container: HTMLElement) => {
-    const { top, left } = container.getBoundingClientRect();
+  const setEstimatedPosition = useCallback(
+    (container: HTMLElement) => {
+      const { top, left } = container.getBoundingClientRect();
 
-    let nextPosition = defaultPosition;
-    const vh = getViewportSize("height");
-    const vw = getViewportSize("width");
-    switch (defaultPosition) {
-      case "above":
-        if (top < vh - vh * threshold) {
-          nextPosition = "below";
-        }
-        break;
-      case "below":
-        if (top > vh * threshold) {
-          nextPosition = "above";
-        }
-        break;
-      case "left":
-        if (left < vw - vw * threshold) {
-          nextPosition = "right";
-        }
-        break;
-      case "right":
-        if (left > vw * threshold) {
-          nextPosition = "left";
-        }
-        break;
-      // no default
-    }
+      let nextPosition = defaultPosition;
+      const vh = getViewportSize("height");
+      const vw = getViewportSize("width");
+      switch (defaultPosition) {
+        case "above":
+          if (top < vh - vh * threshold) {
+            nextPosition = "below";
+          }
+          break;
+        case "below":
+          if (top > vh * threshold) {
+            nextPosition = "above";
+          }
+          break;
+        case "left":
+          if (left < vw - vw * threshold) {
+            nextPosition = "right";
+          }
+          break;
+        case "right":
+          if (left > vw * threshold) {
+            nextPosition = "left";
+          }
+          break;
+        // no default
+      }
 
-    if (prevPosition.current !== nextPosition) {
-      setPosition(nextPosition);
-    }
-  }, []);
+      if (prevPosition.current !== nextPosition) {
+        setPosition(nextPosition);
+      }
+    },
+    // disabled since useRefCache for prevPosition
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [defaultPosition, threshold]
+  );
 
   if (typeof determinedPosition !== "undefined") {
     return {

@@ -11,6 +11,7 @@ const block = bem("progress-suspense");
 
 const WithSuspenseFallback: FC<WithSuspenseFallbackProps> = ({ complete }) => {
   // trigger the complete action when this component unmounts
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => complete(), []);
 
   return (

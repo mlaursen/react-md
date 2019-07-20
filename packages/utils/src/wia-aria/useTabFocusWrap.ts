@@ -56,6 +56,8 @@ export default function useTabFocusWrap<E extends HTMLElement>({
         elements[0].focus();
       }
     },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

@@ -1,10 +1,10 @@
 import { MutableRefObject, useCallback, useRef } from "react";
 
-interface TempValue<T> {
-  value: MutableRefObject<T>;
-  setValue: (nextValue: T) => void;
-  resetValue: () => void;
-}
+type CurrentValueRef<T> = MutableRefObject<T>;
+type SetValue<T> = (nextValue: T) => void;
+type ResetValue = () => void;
+
+type ReturnValue<T> = [CurrentValueRef<T>, SetValue<T>, ResetValue];
 
 /**
  * Creates a temporary value that gets reset every `x`ms back to the
@@ -22,23 +22,22 @@ interface TempValue<T> {
 export default function useTempValue<T>(
   defaultValue: T,
   resetTime: number = 500
-): TempValue<T> {
+): ReturnValue<T> {
   const value = useRef(defaultValue);
   const timeout = useRef<number>();
   const resetValue = useCallback(() => {
     window.clearTimeout(timeout.current);
     value.current = defaultValue;
-  }, []);
+  }, [defaultValue]);
 
-  const setValue = useCallback((nextValue: T) => {
-    value.current = nextValue;
-    window.clearTimeout(timeout.current);
-    timeout.current = window.setTimeout(resetValue, resetTime);
-  }, []);
+  const setValue = useCallback(
+    (nextValue: T) => {
+      value.current = nextValue;
+      window.clearTimeout(timeout.current);
+      timeout.current = window.setTimeout(resetValue, resetTime);
+    },
+    [resetTime, resetValue]
+  );
 
-  return {
-    value,
-    setValue,
-    resetValue,
-  };
+  return [value, setValue, resetValue];
 }

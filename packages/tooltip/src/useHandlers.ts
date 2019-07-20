@@ -145,7 +145,7 @@ export function useMouseState({
       setEstimatedPosition(event.currentTarget);
       start();
     },
-    []
+    [setEstimatedPosition, setInitiated, start, handlers, initiated]
   );
 
   const handleMouseLeave = useCallback(
@@ -165,7 +165,7 @@ export function useMouseState({
         hoverModeActions.startDisableTimer();
       }
     },
-    [isHoverModeable]
+    [isHoverModeable, handlers, hideTooltip, hoverModeActions, initiated, stop]
   );
 
   return [
@@ -209,34 +209,44 @@ export function useKeyboardState({
     }
   }, delay);
 
-  const handleFocus = useCallback((event: React.FocusEvent<HTMLElement>) => {
-    const { onFocus } = handlers.current;
-    if (onFocus) {
-      onFocus(event);
-    }
+  const handleFocus = useCallback(
+    (event: React.FocusEvent<HTMLElement>) => {
+      const { onFocus } = handlers.current;
+      if (onFocus) {
+        onFocus(event);
+      }
 
-    // if the entire browser window was blurred, we don't want to show the tooltip
-    // on the next focus event since it is confusing to see a tooltip appear again
-    // after re-focusing a window.
-    if (isWindowBlurred.current) {
-      isWindowBlurred.current = false;
-      return;
-    }
+      // if the entire browser window was blurred, we don't want to show the tooltip
+      // on the next focus event since it is confusing to see a tooltip appear again
+      // after re-focusing a window.
+      if (isWindowBlurred.current) {
+        isWindowBlurred.current = false;
+        return;
+      }
 
-    setInitiated("keyboard");
-    setEstimatedPosition(event.currentTarget);
-    start();
-  }, []);
+      setInitiated("keyboard");
+      setEstimatedPosition(event.currentTarget);
+      start();
+    },
+    // disabled since useRefCache for handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setEstimatedPosition, setInitiated, start]
+  );
 
-  const handleBlur = useCallback((event: React.FocusEvent<HTMLElement>) => {
-    const { onBlur } = handlers.current;
-    if (onBlur) {
-      onBlur(event);
-    }
+  const handleBlur = useCallback(
+    (event: React.FocusEvent<HTMLElement>) => {
+      const { onBlur } = handlers.current;
+      if (onBlur) {
+        onBlur(event);
+      }
 
-    stop();
-    hideTooltip();
-  }, []);
+      stop();
+      hideTooltip();
+    },
+    // disabled since useRefCache for handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [hideTooltip, stop]
+  );
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
@@ -250,7 +260,9 @@ export function useKeyboardState({
         hideTooltip();
       }
     },
-    []
+    // disabled since both initiated and handlers are refs
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [hideTooltip, stop]
   );
 
   useEffect(() => {
@@ -346,6 +358,8 @@ export function useTouchState({
     return () => {
       window.removeEventListener("touchend", cb, true);
     };
+    // disabled since it should only be updated on visible or touch changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, mode]);
 
   const handleTouchStart = useCallback(
@@ -359,7 +373,9 @@ export function useTouchState({
       stop();
       setEstimatedPosition(event.currentTarget);
     },
-    []
+    // disabled since useRefCache for handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setEstimatedPosition, stop]
   );
 
   const handleTouchMove = useCallback(
@@ -371,6 +387,8 @@ export function useTouchState({
 
       touched.current = false;
     },
+    // disabled since useRefCache for handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -404,7 +422,9 @@ export function useTouchState({
       setInitiated("touch");
       showTooltip();
     },
-    []
+    // disabled since useRefCache for handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setInitiated, showTooltip]
   );
 
   return [

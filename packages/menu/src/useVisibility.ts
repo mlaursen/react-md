@@ -62,7 +62,7 @@ export default function useVisibility({
    */
   const show = useCallback(() => {
     showWithFocus("first");
-  }, []);
+  }, [showWithFocus]);
 
   /**
    * Hides the menu.

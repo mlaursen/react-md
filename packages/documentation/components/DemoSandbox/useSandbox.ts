@@ -44,6 +44,8 @@ export default function useSandbox(
       cancelled = true;
       stopLoading();
     };
+    // only want to run when these dependencies change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pkg, name, pathname]);
 
   return { sandbox, loading };

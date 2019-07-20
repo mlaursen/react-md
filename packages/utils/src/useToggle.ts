@@ -27,11 +27,15 @@ export default function useToggle(
     if (!previous.current) {
       setToggled(true);
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const disable = useCallback(() => {
     if (previous.current) {
       setToggled(false);
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggle = useCallback(() => {

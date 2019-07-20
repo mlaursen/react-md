@@ -27,6 +27,8 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
     return () => {
       cancelled = true;
     };
+    // only want to run this on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!parameters) {

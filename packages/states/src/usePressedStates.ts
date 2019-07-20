@@ -31,20 +31,25 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   const [pressed, setPressed] = useState(false);
   const ref = useRefCache({ ...handlers, pressed });
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown, pressed } = ref.current;
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<E>) => {
+      const { onKeyDown, pressed } = ref.current;
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-    const { key } = event;
-    if (
-      !pressed &&
-      (key === "Enter" || (!disableSpacebarClick && key === " "))
-    ) {
-      setPressed(true);
-    }
-  }, []);
+      const { key } = event;
+      if (
+        !pressed &&
+        (key === "Enter" || (!disableSpacebarClick && key === " "))
+      ) {
+        setPressed(true);
+      }
+    },
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [disableSpacebarClick]
+  );
 
   const handleKeyUp = useCallback((event: React.KeyboardEvent<E>) => {
     const { onKeyUp, pressed } = ref.current;
@@ -55,6 +60,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouseDown = useCallback((event: React.MouseEvent<E>) => {
@@ -66,6 +73,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed && event.button === 0) {
       setPressed(true);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouseUp = useCallback((event: React.MouseEvent<E>) => {
@@ -77,6 +86,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouseLeave = useCallback((event: React.MouseEvent<E>) => {
@@ -88,6 +99,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTouchStart = useCallback((event: React.TouchEvent<E>) => {
@@ -99,6 +112,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (!pressed) {
       setPressed(true);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTouchMove = useCallback((event: React.TouchEvent<E>) => {
@@ -110,6 +125,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTouchEnd = useCallback((event: React.TouchEvent<E>) => {
@@ -121,6 +138,8 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
     if (pressed) {
       setPressed(false);
     }
+    // disabled since useRefCache for ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

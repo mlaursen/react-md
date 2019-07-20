@@ -112,6 +112,8 @@ export default function useAppSize({
   desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   defaultSize = DEFAULT_APP_SIZE,
 }: AppSizeOptions = {}): AppSize {
+  /* eslint-disable react-hooks/rules-of-hooks */
+  // disabled since this is conditionally applied for SSR
   if (typeof window === "undefined") {
     return defaultSize;
   }

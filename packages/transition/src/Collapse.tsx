@@ -54,6 +54,9 @@ type WithDefaultProps = CollapseProps & DefaultProps;
 
 const Collapse: FC<CollapseProps> = providedProps => {
   const { children, ...props } = providedProps as WithDefaultProps;
+  // it's ok to dynamically do hooks here since I want the app to crash if the
+  // dev is swapping between a clonable child and a children renderer function
+  /* eslint-disable react-hooks/rules-of-hooks */
   if (isValidElement(children)) {
     return useCollapsibleElement(children, props);
   }

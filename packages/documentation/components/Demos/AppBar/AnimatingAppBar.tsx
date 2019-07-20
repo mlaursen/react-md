@@ -65,7 +65,7 @@ const AnimatingAppBar: FC = () => {
     return () => {
       div.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [heightRef]);
 
   return (
     <UpdateVariables variables={[{ name: "offset", value: height }]}>

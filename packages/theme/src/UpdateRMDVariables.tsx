@@ -22,6 +22,10 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
   ...props
 }) => {
   if (process.env.NODE_ENV !== "production") {
+    // only want this check functionality to work in dev mode and should be removed
+    // in prod to reduce network requests and bundle size
+    /* eslint-disable react-hooks/rules-of-hooks */
+
     // when not in prod, try to "verify" that the user provided a valid react-md css variable
     // to update. This will try to import all packages that have a scssVariables file and extract
     // their theme variables.

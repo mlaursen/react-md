@@ -42,14 +42,19 @@ export default function useButtonVisibility({
     onVisibilityChange,
   });
 
-  const onClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    const { onClick } = handlers.current;
-    if (onClick) {
-      onClick(event);
-    }
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const { onClick } = handlers.current;
+      if (onClick) {
+        onClick(event);
+      }
 
-    toggle();
-  }, []);
+      toggle();
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [toggle]
+  );
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -70,7 +75,9 @@ export default function useButtonVisibility({
         // no default
       }
     },
-    []
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [showWithFocus]
   );
 
   return {

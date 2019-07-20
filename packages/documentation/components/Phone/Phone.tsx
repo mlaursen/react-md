@@ -90,7 +90,7 @@ const Phone: FC<PhoneProps> = props => {
     if (onPhoneClose) {
       onPhoneClose();
     }
-  }, [onPhoneClose]);
+  }, [onPhoneClose, disable]);
 
   if (visible && !isPhone) {
     closePhone();

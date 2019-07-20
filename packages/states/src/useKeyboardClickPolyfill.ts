@@ -41,10 +41,14 @@ export default function useKeyboardClickPolyfill<
   disableEnterClick = false,
   disableSpacebarClick = false,
 }: Options<E> = {}): React.KeyboardEventHandler<E> | undefined {
-  const ref = useRefCache({ onKeyDown, disableSpacebarClick });
+  const ref = useRefCache({
+    onKeyDown,
+    disableSpacebarClick,
+    disableEnterClick,
+  });
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<E>) => {
-    const { onKeyDown, disableSpacebarClick } = ref.current;
+    const { onKeyDown, disableSpacebarClick, disableEnterClick } = ref.current;
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -74,6 +78,8 @@ export default function useKeyboardClickPolyfill<
     // be a "click" event instead.
     event.stopPropagation();
     event.currentTarget.click();
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return disabled ? onKeyDown : handleKeyDown;

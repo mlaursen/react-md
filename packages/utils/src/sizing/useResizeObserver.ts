@@ -142,6 +142,8 @@ export function useMeasure({
         });
       }
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
 
@@ -175,7 +177,9 @@ export default function useResizeObserver({
   getTarget,
 }: ResizeObserverOptions): void {
   const measure = useMeasure({ disableHeight, disableWidth, onResize });
-  const observer = useMemo(() => new ResizeObserverPolyfill(measure), []);
+  const observer = useMemo(() => new ResizeObserverPolyfill(measure), [
+    measure,
+  ]);
   const target = useResizeObserverTarget(getTarget);
 
   useEffect(() => () => observer.disconnect(), [observer]);
@@ -188,5 +192,5 @@ export default function useResizeObserver({
     return () => {
       observer.unobserve(target);
     };
-  }, [target]);
+  }, [target, observer]);
 }

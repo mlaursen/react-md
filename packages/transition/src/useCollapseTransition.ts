@@ -400,6 +400,8 @@ export function useCollapseTransition<E extends HTMLElement>(
     return () => {
       window.clearTimeout(transition.current);
     };
+    // disabled only want to be triggered on transition changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entering, leaving]);
 
   const mergedStyle = createTransitionStyle({

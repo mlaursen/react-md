@@ -36,6 +36,8 @@ export default function useChoice<
     }
 
     setValue(event.currentTarget.value as T);
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [value, handleChange, setValue];

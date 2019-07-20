@@ -148,7 +148,7 @@ const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
       ...propCircleStyle,
       strokeDashoffset: dashoffset - dashoffset * progress,
     };
-  }, [progress, propCircleStyle]);
+  }, [progress, propCircleStyle, dashoffset]);
 
   const determinate = typeof progress === "number";
   const indeterminate = !determinate;

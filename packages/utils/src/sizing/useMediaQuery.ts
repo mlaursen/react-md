@@ -48,7 +48,7 @@ export default function useMediaQuery(
     }
 
     return () => mq.removeListener(updater);
-  }, []);
+  }, [matches, query]);
 
   return matches;
 }

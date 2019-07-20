@@ -28,6 +28,8 @@ export default function useCheckboxState(
     }
 
     setChecked(event.currentTarget.checked);
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [checked, handleChange, setChecked];

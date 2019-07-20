@@ -32,6 +32,9 @@ export default function useTimeout(
     window.clearTimeout(timeoutRef.current);
     timeoutRef.current = undefined;
   }, []);
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  // these are all guarenteed to not change since using refs or non-updating callbacks
   const restart = useCallback(() => {
     clearTimeout();
     timeoutRef.current = window.setTimeout(() => {

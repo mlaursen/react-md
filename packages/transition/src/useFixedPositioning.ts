@@ -126,6 +126,8 @@ export default function useFixedPositioning({
 
   const element = useRef<HTMLElement | null>(null);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
+  // these are all guarenteed to not change since using refs or non-updating callbacks
   const updateStyle = useCallback(() => {
     const node = element.current;
     if (!node) {

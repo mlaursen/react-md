@@ -20,7 +20,7 @@ export default function useTemporaryToggle(
     }, duration);
 
     return () => window.clearTimeout(timeout);
-  }, [toggled]);
+  }, [toggled, disable, duration]);
 
   return { toggle, toggled, disable };
 }

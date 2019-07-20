@@ -38,7 +38,9 @@ export default function useInterval(
     return () => {
       window.clearInterval(interval);
     };
-  }, [delay, running]);
+    // disabled since useRefCache for the callback
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [delay, running, stop]);
 
   return [running, start, stop];
 }

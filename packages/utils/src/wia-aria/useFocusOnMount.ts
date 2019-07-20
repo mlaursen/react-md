@@ -44,5 +44,7 @@ export default function useFocusOnMount(
     return () => {
       window.cancelAnimationFrame(frame);
     };
+    // disabled since useRefCache and only want a mount effect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

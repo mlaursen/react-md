@@ -38,6 +38,8 @@ const Form: FC<FormProps & WithRef> = providedProps => {
         onSubmit(event);
       }
     },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

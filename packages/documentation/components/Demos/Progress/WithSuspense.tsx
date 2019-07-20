@@ -55,7 +55,7 @@ const WithSuspense: FC = () => {
         reset();
       // no default
     }
-  }, []);
+  }, [reset]);
 
   const loading = state === State.LOADING;
   const completed = state === State.COMPELTED;

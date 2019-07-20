@@ -39,16 +39,17 @@ export default function useVisiblityChange({
       return;
     }
 
-    const { onShow } = handlers.current;
+    const { onShow, onHide } = handlers.current;
     if (onShow) {
       onShow(mode);
     }
 
     return () => {
-      const { onHide } = handlers.current;
       if (onHide) {
         onHide();
       }
     };
+    // only want to trigger on visibility changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 }

@@ -205,6 +205,8 @@ export function useRippleTransition<E extends HTMLElement = HTMLElement>(
   const create = useCallback((event: RippleEvent<E>) => {
     const disableSpacebarClick = spacebarRef.current;
     dispatch(createRippleAction(event, disableSpacebarClick));
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const release = useCallback((event: RippleEvent<E>) => {
     dispatch({ type: RELEASE, event });

@@ -52,12 +52,17 @@ const SandboxModal: FC<SandboxModalProps> = ({
     if (isTreeVisible !== isDesktop) {
       setTreeVisible(isDesktop);
     }
+    // only want to run on media changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDesktop, isTablet, isPhone]);
 
   useEffect(() => {
     if (isTreeVisible && !isDesktop) {
       setTreeVisible(false);
     }
+    // this effect closes the tree on mobile only after a new file is
+    // selected
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDesktop, fileName]);
   return (
     <Dialog

@@ -248,10 +248,13 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
   });
 
   const areaRef = useRef<HTMLTextAreaElement | null>(null);
-  const refHandler = useCallback((instance: HTMLTextAreaElement | null) => {
-    applyRef(instance, forwardedRef);
-    areaRef.current = instance;
-  }, []);
+  const refHandler = useCallback(
+    (instance: HTMLTextAreaElement | null) => {
+      applyRef(instance, forwardedRef);
+      areaRef.current = instance;
+    },
+    [forwardedRef]
+  );
 
   // the container element adds some padding so that the content can scroll and
   // not be covered by the floating label. unfortunately, this means that the entire

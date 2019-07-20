@@ -45,8 +45,8 @@ export default function usePreviousFocus(
       return;
     }
 
-    const element =
-      ref.current.previousElement || (document.activeElement as HTMLElement);
+    const { previousElement, fallback } = ref.current;
+    const element = previousElement || (document.activeElement as HTMLElement);
 
     // i'll need to think of a better way to handle this flow. There's just a weird one where if going
     // from a menu to a dialog, we get lost without specifying a fallback. So if we are in a menu,
@@ -71,7 +71,6 @@ export default function usePreviousFocus(
     }
 
     return () => {
-      const { previousElement, fallback } = ref.current;
       if (
         menu &&
         menuButton &&
@@ -115,5 +114,7 @@ export default function usePreviousFocus(
         el.focus();
       }
     };
+    // disabled since useRefCache and don't wnt to update on disabled change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

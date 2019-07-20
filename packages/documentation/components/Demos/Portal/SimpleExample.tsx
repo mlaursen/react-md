@@ -28,6 +28,8 @@ const SimpleExample: FC = () => {
     listRef.current = list;
 
     updatePosition();
+    // only want to call this once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

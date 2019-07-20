@@ -34,34 +34,44 @@ export default function useItemVisibility({
     onVisibilityChange,
   });
 
-  const onClick = useCallback((event: React.MouseEvent<HTMLLIElement>) => {
-    const { onClick } = cache.current;
-    if (onClick) {
-      onClick(event);
-    }
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLLIElement>) => {
+      const { onClick } = cache.current;
+      if (onClick) {
+        onClick(event);
+      }
 
-    toggle();
-  }, []);
+      toggle();
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [toggle]
+  );
 
-  const onKeyDown = useCallback((event: React.KeyboardEvent<HTMLLIElement>) => {
-    const { onKeyDown, horizontal } = cache.current;
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLLIElement>) => {
+      const { onKeyDown, horizontal } = cache.current;
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-    const firstKey = horizontal ? "ArrowDown" : "ArrowRight";
-    const lastKey = horizontal ? "ArrowUp" : "ArrowLeft";
-    if (event.key !== firstKey && event.key !== lastKey) {
-      return;
-    }
+      const firstKey = horizontal ? "ArrowDown" : "ArrowRight";
+      const lastKey = horizontal ? "ArrowUp" : "ArrowLeft";
+      if (event.key !== firstKey && event.key !== lastKey) {
+        return;
+      }
 
-    // don't want to trigger default behavior of screen scrolling
-    event.preventDefault();
+      // don't want to trigger default behavior of screen scrolling
+      event.preventDefault();
 
-    // don't want parent menus to be effected by this as well.
-    event.stopPropagation();
-    showWithFocus(event.key === firstKey ? "first" : "last");
-  }, []);
+      // don't want parent menus to be effected by this as well.
+      event.stopPropagation();
+      showWithFocus(event.key === firstKey ? "first" : "last");
+    },
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [showWithFocus]
+  );
 
   return {
     visible,

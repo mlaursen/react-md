@@ -26,6 +26,8 @@ export default function useCloseOnScroll({
     ) {
       onRequestClose();
     }
+    // disabled since useRefCache
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return disabled ? undefined : handleScroll;

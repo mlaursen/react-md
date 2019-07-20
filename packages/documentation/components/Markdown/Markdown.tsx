@@ -18,6 +18,8 @@ import "./Markdown.scss";
 import { markdownToHTML } from "./utils";
 
 function useMarkdownResolver(markdown: MarkdownProps["children"]): string {
+  /* eslint-disable react-hooks/rules-of-hooks */
+  // i will never swap between strings and promises
   if (typeof markdown === "string") {
     return markdown;
   }
