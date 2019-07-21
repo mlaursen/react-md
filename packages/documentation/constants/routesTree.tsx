@@ -207,6 +207,7 @@ createRoute("/customization", "Customization", {
 createRoute("/packages", "Packages", {
   icon: <BuildSVGIcon />,
   childRoutes: [
+    createPackageRoute("alert"),
     createPackageRoute("app-bar"),
     createPackageRoute("avatar"),
     createPackageRoute("badge"),

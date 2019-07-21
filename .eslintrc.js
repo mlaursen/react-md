@@ -60,9 +60,11 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 
-    // overridden by prettier
+    // overridden by prettier so additional noise
     'react/jsx-wrap-multilines': 0,
     'react/jsx-one-expression-per-line': 0,
+    'react/jsx-props-no-multi-spaces': 0,
+    'react/jsx-indent': 0,
 
     // deprecated
     'jsx-a11y/label-has-for': 0,
