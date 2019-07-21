@@ -21,11 +21,11 @@ export interface SnackbarQueueProps<M extends ToastMessage>
   onActionClick?: ActionEventHandler<M>;
 }
 
-const getId = (
-  snackbarId: string | undefined,
+function getId(
+  snackbarId: string,
   toastId: string | undefined,
   actionId: string | undefined
-): string | undefined => {
+): string | undefined {
   if (actionId) {
     return actionId;
   }
@@ -34,12 +34,8 @@ const getId = (
     return `${toastId}-action`;
   }
 
-  if (snackbarId) {
-    return `${snackbarId}-action`;
-  }
-
-  return undefined;
-};
+  return `${snackbarId}-action`;
+}
 
 /**
  * Because the toast renderer is a callback function instead of a React component, it's actually

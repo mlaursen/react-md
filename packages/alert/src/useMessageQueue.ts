@@ -58,7 +58,7 @@ export default function useMessageQueue<M extends Message>({
   duplicates = "allow",
   defaultQueue = [],
 }: MessageQueueOptions<M> = {}): MessageQueueResult<M> {
-  const [queue, setCurrentQueue] = useState(defaultQueue);
+  const [queue, setQueue] = useState(defaultQueue);
   const prevQueue = useRef(queue);
   const [visible, showMessage, hideMessage] = useToggle(queue.length > 0);
   const [startTimer, stopTimer, restartTimer] = useTimeout(
@@ -81,7 +81,7 @@ export default function useMessageQueue<M extends Message>({
       }
 
       if (duplicates === "allow") {
-        setCurrentQueue(addMessageWithPriority(queue, message));
+        setQueue(addMessageWithPriority(queue, message));
         return;
       }
 
@@ -101,19 +101,19 @@ export default function useMessageQueue<M extends Message>({
       }
 
       if (i === -1) {
-        setCurrentQueue(addMessageWithPriority(queue, message));
+        setQueue(addMessageWithPriority(queue, message));
       }
     },
     [cache, stopTimer, restartTimer, showMessage, hideMessage]
   );
 
   const popMessage = useCallback(() => {
-    setCurrentQueue(([, ...nextQueue]) => nextQueue);
+    setQueue(([, ...nextQueue]) => nextQueue);
   }, []);
 
   const resetQueue = useCallback<ResetQueue<M>>(() => {
     const queue = cache.current.queue.slice();
-    setCurrentQueue([]);
+    setQueue([]);
     return queue;
     // disabled since useRefCache
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +124,7 @@ export default function useMessageQueue<M extends Message>({
     if (
       queue.length > 0 &&
       !visible &&
-      (prev.length === 0 || prev[0] !== queue[2])
+      (duplicates === "allow" || prev.length === 0 || prev[0] !== queue[2])
     ) {
       showMessage();
     }
