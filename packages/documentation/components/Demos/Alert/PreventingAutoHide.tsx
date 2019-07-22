@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { MessageQueue, useAddMessage } from "@react-md/alert";
+import { MessageQueue } from "@react-md/alert";
 
 const PreventingAutoHide: FC = () => {
-  const addMessage = useAddMessage();
+  // const addMessage = useAddMessage();
   return null;
 };
 

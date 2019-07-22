@@ -83,7 +83,7 @@ function copyFile(filePath, destPath, log) {
 }
 
 const copyScssFile = f => {
-  copyFile(f, 'dist', startLoggingScss);
+  // copyFile(f, 'dist', startLoggingScss);
   const contents = fs.readFileSync(f, 'utf8');
   const withWebpackImports = contents
     .replace(/('|")@react-md/g, '$1~@react-md')
