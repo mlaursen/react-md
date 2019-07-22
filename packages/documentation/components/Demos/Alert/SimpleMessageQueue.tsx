@@ -25,7 +25,6 @@ const messages: MessageRecord = {
   },
   [SINGLE_LINE_ACTION]: {
     action: "Action",
-    disableAutohide: true,
     children: "This is an example message",
   },
   [TWO_LINES]: {

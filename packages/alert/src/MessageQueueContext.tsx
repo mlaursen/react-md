@@ -195,3 +195,15 @@ export function useMessageQueueActions<
   // I don't know how to type the createContext for a generic
   return useContext(MessageQueueActionsContext) as MessageQueueActions<M>;
 }
+
+/**
+ * @private
+ */
+export const MessageQueueContext = createContext<Message[]>([]);
+
+/**
+ * This hook will allow you to get the current queue. This probably shouldn't be used that much.
+ */
+export function useQueue<M extends Message>(): M[] {
+  return useContext(MessageQueueContext) as M[];
+}

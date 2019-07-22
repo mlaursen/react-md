@@ -47,8 +47,8 @@ function createEventHandler<K extends keyof WindowEventMap>(
 ) {
   let running = false;
   const runCallbacks = (event: WindowEventMap[K]) => () => {
-    for (const callback of callbacks) {
-      callback(event);
+    for (let i = 0; i < callbacks.length; i += 1) {
+      callbacks[i](event);
     }
 
     running = false;

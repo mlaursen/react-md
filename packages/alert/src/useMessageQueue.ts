@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState, useRef } from "react";
-import { useRefCache, useTimeout, useToggle } from "@react-md/utils";
+import { Reducer, useCallback, useEffect, useReducer, useRef } from "react";
+import { useTimeout, useToggle } from "@react-md/utils";
 
 import {
   AddMessage,
@@ -7,13 +7,116 @@ import {
   DuplicateBehavior,
   Message,
   MessageQueueActions,
+  PopMessage,
   ResetQueue,
 } from "./MessageQueueContext";
+import useWindowBlurPause from "./useWindowBlurPause";
+
+export const ADD_MESSAGE = "ADD_MESSAGE";
+export const POP_MESSAGE = "POP_MESSAGE";
+export const RESET_QUEUE = "RESET_QUEUE";
+
+export interface AddMessageAction<M extends Message> {
+  type: typeof ADD_MESSAGE;
+  message: M;
+  duplicates: DuplicateBehavior;
+}
+
+export interface PopMessageAction {
+  type: typeof POP_MESSAGE;
+}
+
+export interface ResetQueueAction {
+  type: typeof RESET_QUEUE;
+}
+
+export type MessageActions<M extends Message> =
+  | AddMessageAction<M>
+  | PopMessageAction
+  | ResetQueueAction;
+
+/**
+ * This function is used to update the message queue state by adding a new message when
+ * needed.
+ *
+ * @private
+ */
+export function addMessage<M extends Message = Message>(
+  state: M[],
+  message: M,
+  duplicates: DuplicateBehavior
+): M[] {
+  if (state.length === 0) {
+    return [message];
+  }
+
+  const { messageId, messagePriority = "normal" } = message;
+  const i = state.findIndex(mes => mes.messageId === messageId);
+  if (messagePriority === "next" || messagePriority === "immediate") {
+    const nextState = state.slice();
+
+    // remove the existing message if duplicated messages aren't allowed. This will
+    // kind of act like a replace + next behavior
+    if (duplicates !== "allow" && i > 1) {
+      nextState.splice(i, 1);
+    }
+
+    const [current, ...remaining] = nextState;
+    if (
+      messagePriority === "immediate" &&
+      current.messagePriority !== "immediate"
+    ) {
+      return [current, message, current, ...remaining];
+    }
+
+    return [current, message, ...remaining];
+  }
+
+  if (i === -1 || (messagePriority === "normal" && duplicates === "allow")) {
+    return [...state, message];
+  }
+
+  if (messagePriority === "normal") {
+    if (duplicates === "restart") {
+      // creating a new state so that the queue visibility hook can still be triggered
+      // which will restart the timer
+      return state.slice();
+    }
+
+    return state;
+  }
+
+  if (messagePriority === "replace") {
+    const nextState = state.slice();
+    nextState[i] = message;
+    return nextState;
+  }
+
+  return [...state, message];
+}
+
+type MessageQueueReducer<M extends Message> = Reducer<M[], MessageActions<M>>;
+
+export function reducer<M extends Message>(
+  state: M[],
+  action: MessageActions<M>
+): M[] {
+  switch (action.type) {
+    case ADD_MESSAGE:
+      return addMessage(state, action.message, action.duplicates);
+    case POP_MESSAGE:
+      return state.slice(1);
+    case RESET_QUEUE:
+      return [];
+    default:
+      return state;
+  }
+}
 
 export interface MessageQueueOptions<M extends Message> {
   timeout?: number;
   duplicates?: DuplicateBehavior;
-  defaultQueue?: M[] | (() => M[]);
+  defaultQueue?: M[];
 }
 
 export interface MessageQueueResult<M extends Message>
@@ -21,28 +124,6 @@ export interface MessageQueueResult<M extends Message>
   queue: M[];
   visible: boolean;
   addMessage: AddMessage<M>;
-}
-
-function addMessageWithPriority<M extends Message>(
-  queue: M[],
-  message: M
-): M[] {
-  if (queue.length === 0) {
-    return [message];
-  }
-
-  const { messagePriority } = message;
-  const [current, ...remaining] = queue;
-  switch (messagePriority) {
-    case "immediate":
-      return [current, message, current, ...remaining];
-    case "replace":
-      return [message, ...remaining];
-    case "next":
-      return [current, message, ...remaining];
-    default:
-      return [...queue, message];
-  }
 }
 
 /**
@@ -57,120 +138,98 @@ export default function useMessageQueue<M extends Message>({
   timeout = DEFAULT_MESSAGE_QUEUE_TIMEOUT,
   duplicates = "allow",
   defaultQueue = [],
-}: MessageQueueOptions<M> = {}): MessageQueueResult<M> {
-  const [queue, setQueue] = useState(defaultQueue);
-  const prevQueue = useRef(queue);
-  const [visible, showMessage, hideMessage] = useToggle(queue.length > 0);
+}: MessageQueueOptions<M>): MessageQueueResult<M> {
+  const [queue, dispatch] = useReducer<MessageQueueReducer<M>>(
+    (state, action) => reducer<M>(state, action),
+    defaultQueue
+  );
+  const queueRef = useRef(queue);
+
+  const addMessageDispatch = useCallback<AddMessage<M>>(
+    message => {
+      if (duplicates !== "allow" && !message.messageId) {
+        throw new Error(
+          `A messageId is required when the "${duplicates}" duplicate behavior is enabled but it was not provided in the current message.`
+        );
+      }
+
+      dispatch({ type: ADD_MESSAGE, message, duplicates });
+    },
+    [duplicates]
+  );
+
+  const popMessageDispatch = useCallback<PopMessage>(() => {
+    dispatch({ type: POP_MESSAGE });
+  }, []);
+
+  const resetQueue = useCallback<ResetQueue<M>>(() => {
+    dispatch({ type: RESET_QUEUE });
+    return queueRef.current;
+  }, []);
+  const [visible, showMessage, hideMessage] = useToggle(
+    defaultQueue.length > 0
+  );
   const [startTimer, stopTimer, restartTimer] = useTimeout(
     hideMessage,
     timeout
   );
-  const cache = useRefCache({ queue, duplicates, stopTimer, startTimer });
-
-  const addMessage = useCallback(
-    (message: M) => {
-      const { queue, duplicates } = cache.current;
-      if (message.messagePriority === "immediate") {
-        hideMessage();
-      } else if (message.messagePriority === "replace") {
-        if (message.disableAutohide) {
-          stopTimer();
-        } else {
-          restartTimer();
-        }
-      }
-
-      if (duplicates === "allow") {
-        setQueue(addMessageWithPriority(queue, message));
-        return;
-      }
-
-      if (typeof message.messageId === "undefined") {
-        throw new Error(
-          `A message id is required when the "${duplicates}" duplicate behavior is enabled but it did not exist`
-        );
-      }
-
-      const i = queue.findIndex(
-        ({ messageId }) => messageId === message.messageId
-      );
-      if (i === 0 && duplicates === "restart") {
-        showMessage();
-        restartTimer();
-        return;
-      }
-
-      if (i === -1) {
-        setQueue(addMessageWithPriority(queue, message));
-      }
-    },
-    [cache, stopTimer, restartTimer, showMessage, hideMessage]
-  );
-
-  const popMessage = useCallback(() => {
-    setQueue(([, ...nextQueue]) => nextQueue);
-  }, []);
-
-  const resetQueue = useCallback<ResetQueue<M>>(() => {
-    const queue = cache.current.queue.slice();
-    setQueue([]);
-    return queue;
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
-    const prev = prevQueue.current;
-    if (
-      queue.length > 0 &&
-      !visible &&
-      (duplicates === "allow" || prev.length === 0 || prev[0] !== queue[2])
-    ) {
-      showMessage();
-    }
-    // only want to update on queue changes to show the next message
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queue]);
-
-  useEffect(() => {
-    if (!visible || !queue[0] || queue[0].disableAutohide) {
+    // this effect will handle all the "logic" for transitioning between each message along with the
+    // message priority updates.
+    const [message, nextMessage] = queue;
+    if (!message) {
       return;
     }
 
-    const handleFocusEvent = (event: Event): void => {
-      const { startTimer, stopTimer } = cache.current;
-      if (event.type === "focus") {
-        startTimer();
-      } else {
-        stopTimer();
+    const nextQueue = queueRef.current;
+    const [prevMessage] = nextQueue;
+    if (
+      message.messagePriority !== "immediate" &&
+      nextMessage &&
+      nextMessage.messagePriority === "immediate"
+    ) {
+      stopTimer();
+      if (!visible) {
+        popMessageDispatch();
+        return;
       }
-    };
 
-    // if the user blurs the window while a toast is visible, we want to stop the timer
-    // until the user re-focuses the window. if this behavior doesn't happen, a couple
-    // of messages might go unnoticed
-    window.addEventListener("blur", handleFocusEvent);
-    window.addEventListener("focus", handleFocusEvent);
-    return () => {
-      window.removeEventListener("blur", handleFocusEvent);
-      window.removeEventListener("focus", handleFocusEvent);
-    };
-    // disabled since useRefCache
+      hideMessage();
+      return;
+    }
+
+    if (!visible) {
+      showMessage();
+    }
+
+    if (queue.length === nextQueue.length && message === prevMessage) {
+      restartTimer();
+    }
+
+    // only want to run this on queue changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, queue]);
+  }, [queue]);
+
+  useWindowBlurPause({
+    startTimer,
+    stopTimer,
+    visible,
+    message: queue[0],
+  });
   useEffect(() => {
-    prevQueue.current = queue;
+    queueRef.current = queue;
   });
 
   return {
     queue,
+    resetQueue,
     visible,
     hideMessage,
+    addMessage: addMessageDispatch,
+    popMessage: popMessageDispatch,
     startTimer,
     stopTimer,
     restartTimer,
-    addMessage,
-    popMessage,
-    resetQueue,
   };
 }

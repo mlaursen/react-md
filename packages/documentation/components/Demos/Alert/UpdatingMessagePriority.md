@@ -6,6 +6,8 @@ will update the message's insertion point in the queue. The default behavior is
 to always add the new message at the end of the queue, but there is also support
 for:
 
+- `"normal"` - the default behavior or adding the message to the end of the
+  queue
 - `"next"` - the message will be shown immediately if there are no messages in
   the queue or will be shifted to the next position in the queue so it will be
   shown once the current message is dismissed or auto-hidden.

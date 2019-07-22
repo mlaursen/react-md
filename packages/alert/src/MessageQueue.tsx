@@ -7,6 +7,7 @@ import {
   MessageQueueActionsContext,
   MessageVisibilityContext,
   ToastMessage,
+  MessageQueueContext,
 } from "./MessageQueueContext";
 import { SnackbarProps } from "./Snackbar";
 import SnackbarQueue, { ActionEventHandler } from "./SnackbarQueue";
@@ -80,7 +81,9 @@ function MessageQueue<M extends ToastMessage = ToastMessage>(
     <AddMessageContext.Provider value={addMessage as AddMessage<Message>}>
       <MessageQueueActionsContext.Provider value={actions}>
         <MessageVisibilityContext.Provider value={visible}>
-          {children}
+          <MessageQueueContext.Provider value={queue}>
+            {children}
+          </MessageQueueContext.Provider>
           <SnackbarQueue<M> {...props} queue={queue} />
         </MessageVisibilityContext.Provider>
       </MessageQueueActionsContext.Provider>
@@ -109,6 +112,7 @@ if (process.env.NODE_ENV !== "production") {
       duplicates: PropTypes.oneOf(["allow", "restart", "prevent"]),
       defaultQueue: PropTypes.array,
       onActionClick: PropTypes.func,
+      children: PropTypes.node.isRequired,
     };
   }
 }
