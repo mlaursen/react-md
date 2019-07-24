@@ -2,8 +2,8 @@
 /// @group app-bar
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
 
 /// This function is used to quickly get one of the app-bar's theme values. This is really
 /// just for the `rmd-app-bar-theme` mixin to provide some validation that a correct style

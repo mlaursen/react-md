@@ -2,11 +2,11 @@
 /// @group elevation
 ////
 
-@import '@react-md/theme/dist/functions';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/theme/dist/functions';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Create the box shadow based on a z-value.
 ///

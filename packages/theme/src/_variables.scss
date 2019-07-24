@@ -2,8 +2,8 @@
 /// @group theme
 ////
 
-@import 'color-palette';
-@import 'color-a11y';
+@import './color-palette';
+@import './color-a11y';
 
 /// Boolean if the main theme mixin should also apply the styles without the `var(--rmd-theme-NAME)` for browsers that don't
 /// support CSS Variables yet. This is disabled by default since it is mostly just IE11 at this point and `create-react-app`

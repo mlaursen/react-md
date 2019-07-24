@@ -1,6 +1,6 @@
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/utils/dist/scss/mixins';
-@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
 
 .mq-example {
   @include rmd-utils-phone-media {

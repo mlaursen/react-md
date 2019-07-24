@@ -2,17 +2,17 @@
 /// @group list
 ////
 
-@import '@react-md/avatar/dist/functions';
-@import '@react-md/divider/dist/mixins';
-@import '@react-md/icon/dist/variables';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'variables';
-@import 'functions';
+@import '~@react-md/avatar/dist/functions';
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/icon/dist/variables';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
+@import './functions';
 
 /// Creates the styles for one of the list's theme values. This is mostly
 /// going to be an internal helper mixin util.

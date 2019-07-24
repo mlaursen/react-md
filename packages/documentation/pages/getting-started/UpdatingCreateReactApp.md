@@ -30,8 +30,8 @@ This will allow all the imports from `react-md` to work as they rely on the
 files without the need for a `~`:
 
 ```scss
-@import "@react-md/theme/dist/color-palette";
-@import "@react-md/theme/dist/mixins";
+@import "~@react-md/theme/dist/color-palette";
+@import "~@react-md/theme/dist/mixins";
 ```
 
 ## Defining your theme
@@ -41,7 +41,7 @@ create a variables file that contains common variables (like theming/branding)
 to use throughout your app. Create a `src/_variables.scss`:
 
 ```scss
-@import "@react-md/theme/dist/color-palette";
+@import "~@react-md/theme/dist/color-palette";
 
 // any theme changes you'd like to make
 $rmd-theme-primary: $rmd-blue-500;
@@ -91,12 +91,12 @@ variables, let's generate all the styles for your app. Update `src/index.scss`:
 +@import 'variables';
 +
 +// import all your installed react-md packages
-+@import '@react-md/app-bar/dist/app-bar';
-+@import '@react-md/avatar/dist/avatar';
-+@import '@react-md/button/dist/button';
-+@import '@react-md/layout/dist/layout';
++@import '~@react-md/app-bar/dist/app-bar';
++@import '~@react-md/avatar/dist/avatar';
++@import '~@react-md/button/dist/button';
++@import '~@react-md/layout/dist/layout';
 +// .. other imports ...
-+@import '@react-md/utils/dist/utils';
++@import '~@react-md/utils/dist/utils';
 +
 +// this mixin will automatically include all the styles of imported
 +// react-md packages for you

@@ -2,8 +2,8 @@
 /// @group utils
 ////
 
-@import 'functions';
-@import 'variables';
+@import './functions';
+@import './variables';
 
 /// A simple mixin that allows you to update styles when the [dir="rtl"] is present
 /// for languages that read right to light. This is mostly used to update spacing with

@@ -37,7 +37,7 @@ import {
 async function compile(options: CompileOptions): Promise<void> {
   const { production, data } = options;
   const fileName = `${options.fileName}${production ? ".min" : ""}.css`;
-  const srcFile = path.join(src, stylesScss);
+  const srcFile = path.join(scssDist, stylesScss);
   const outFile = path.join(cssDist, fileName);
   const sourceMapFile = `${outFile}.map`;
   log.info("Compiling the main css bundle.");
@@ -99,7 +99,7 @@ async function copyStyles(files: string[]): Promise<void> {
     files.map(async pathname => {
       const contents = fs.readFileSync(pathname, "utf8");
       const webpackImports = contents
-        .replace(/('|")@react-md/g, "$1~@react-md")
+        .replace(/~@react-md/g, "@react-md")
         .replace(/dist\//g, `${scssDist}/`);
 
       const fileName = pathname.replace(src, scssDist);
@@ -200,7 +200,7 @@ function createThemeOptions(theme: string): { fileName: string; data: string } {
   const [primary, secondary, accent, type] = theme.split("-");
   const options = {
     fileName: `react-md.${theme}`,
-    data: `@import '@react-md/theme/dist/color-palette';
+    data: `@import '@react-md/theme/dist/scss/color-palette';
 
 $rmd-theme-primary: $rmd-${primary.replace("_", "-")}-500;
 $rmd-theme-secondary: $rmd-${secondary.replace("_", "-")}-a-${accent};

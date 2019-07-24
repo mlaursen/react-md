@@ -2,14 +2,14 @@
 /// @group dialog
 ////
 
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/overlay/dist/mixins'; // have to import mixins since base styles are required
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'variables';
-@import 'functions';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/overlay/dist/mixins'; // have to import mixins since base styles are required
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
+@import './functions';
 
 /// Creates the styles for one of the dialog's theme values. This is mostly
 /// going to be an internal helper mixin util.

@@ -9,8 +9,8 @@ My recommended way is using the media query approach along with the #utils
 package:
 
 ```scss
-@import "@react-md/tooltip/dist/mixins";
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/tooltip/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 :root {
   @rmd-utils-desktop-media {

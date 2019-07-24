@@ -20,7 +20,7 @@ $ npm install --save react-md
 ```scss
 // src/app.scss
 
-@import "react-md";
+@import "~react-md/dist/react-md";
 
 @include react-md-utils;
 ```
@@ -84,10 +84,10 @@ $ npm install --save @react-md/theme \
 // src/app.scss
 
 // import react-md styles
-@import "@react-md/icon/dist/mixins";
-@import "@react-md/theme/dist/mixins";
-@import "@react-md/typography/dist/mixins";
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/icon/dist/mixins";
+@import "~@react-md/theme/dist/mixins";
+@import "~@react-md/typography/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 // generate all the styles for packages that have been imported from react-md
 @include react-md-utils;

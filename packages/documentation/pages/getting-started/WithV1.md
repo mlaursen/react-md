@@ -51,7 +51,7 @@ be be something like this:
 ```scss
 $md-typography-extended: false;
 
-@import "react-md/src/scss/react-md";
+@import "~react-md/src/scss/react-md";
 
 // instead of calling `@include react-md-everything`, make sure
 // to include everything you need except for the
@@ -189,23 +189,23 @@ $rmd-theme-light: $md-light-theme;
 $rmd-theme-light-background: $md-light-theme-background-color;
 $rmd-theme-dark-background: $md-dark-theme-background-color;
 
-@import "@react-md/app-bar/dist/mixins";
-@import "@react-md/avatar/dist/mixins";
-@import "@react-md/button/dist/mixins";
-@import "@react-md/divider/dist/mixins";
-@import "@react-md/elevation/dist/mixins";
-@import "@react-md/icon/dist/mixins";
-@import "@react-md/list/dist/mixins";
-@import "@react-md/list/dist/mixins";
-@import "@react-md/media/dist/mixins";
-@import "@react-md/overlay/dist/mixins";
-@import "@react-md/sheet/dist/mixins";
-@import "@react-md/states/dist/mixins";
-@import "@react-md/theme/dist/mixins";
-@import "@react-md/tooltip/dist/mixins";
-@import "@react-md/transition/dist/mixins";
-@import "@react-md/typography/dist/mixins";
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/app-bar/dist/mixins";
+@import "~@react-md/avatar/dist/mixins";
+@import "~@react-md/button/dist/mixins";
+@import "~@react-md/divider/dist/mixins";
+@import "~@react-md/elevation/dist/mixins";
+@import "~@react-md/icon/dist/mixins";
+@import "~@react-md/list/dist/mixins";
+@import "~@react-md/list/dist/mixins";
+@import "~@react-md/media/dist/mixins";
+@import "~@react-md/overlay/dist/mixins";
+@import "~@react-md/sheet/dist/mixins";
+@import "~@react-md/states/dist/mixins";
+@import "~@react-md/theme/dist/mixins";
+@import "~@react-md/tooltip/dist/mixins";
+@import "~@react-md/transition/dist/mixins";
+@import "~@react-md/typography/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 @include react-md-utils;
 ```

@@ -2,7 +2,7 @@
 /// @group dialog
 ////
 
-@import '@react-md/overlay/dist/variables';
+@import '~@react-md/overlay/dist/variables';
 
 /// The elevation (box-shadow) to use for the dialog when it is not full page. This
 /// should be a number between 0 and 24 since it gets passed to the `rmd-elevation`

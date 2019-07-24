@@ -2,12 +2,12 @@
 /// @group badge
 ////
 
-@import '@react-md/button/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Creates the styles for one of the badge's theme values. This is mostly
 /// going to be an internal helper mixin util.

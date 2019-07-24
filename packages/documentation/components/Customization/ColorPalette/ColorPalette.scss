@@ -1,7 +1,7 @@
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/utils/dist/scss/functions';
-@import '~@react-md/list/dist/scss/mixins';
-@import '~@react-md/elevation/dist/scss/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/functions';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
 
 $list-horizontal-margin: 0.5rem;
 $total-list-horizontal-margin: $list-horizontal-margin * 2;

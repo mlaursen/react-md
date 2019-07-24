@@ -294,26 +294,26 @@ Now that all of that is out of the way, here is a quick example for how you can
 include the styles for the recommended "base" packages for react-md.
 
 ```scss
-@import "@react-md/icon/dist/icon";
-@import "@react-md/theme/dist/theme";
-@import "@react-md/typography/dist/typography";
+@import "~@react-md/icon/dist/icon";
+@import "~@react-md/theme/dist/theme";
+@import "~@react-md/typography/dist/typography";
 @include react-md-icon;
 @include react-md-theme;
 @include react-md-typography;
 // or if you don't need to use any of the provided variables, mixins, or functions, only include the following lines
-@import "@react-md/icon/dist/styles";
-@import "@react-md/theme/dist/styles";
-@import "@react-md/typography/dist/styles";
+@import "~@react-md/icon/dist/styles";
+@import "~@react-md/theme/dist/styles";
+@import "~@react-md/typography/dist/styles";
 ```
 
 If you installed the base `react-md` package instead, these steps can be
 simplified to:
 
 ```scss
-@import "react-md/dist/react-md";
+@import "~react-md/dist/react-md";
 @include react-md-everything;
 // or if you don't need to use any of the provided variables, mixins, or functions, only include the following line
-@import "react-md/dist/styles";
+@import "~react-md/dist/styles";
 ```
 
 ## Adding fonts

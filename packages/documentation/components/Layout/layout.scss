@@ -1,14 +1,14 @@
-@import '~@react-md/app-bar/dist/scss/mixins';
-@import '~@react-md/divider/dist/scss/mixins';
-@import '~@react-md/form/dist/scss/mixins';
-@import '~@react-md/icon/dist/scss/mixins';
-@import '~@react-md/list/dist/scss/mixins';
-@import '~@react-md/sheet/dist/scss/mixins';
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/tooltip/dist/scss/mixins';
-@import '~@react-md/transition/dist/scss/mixins';
-@import '~@react-md/typography/dist/scss/mixins';
-@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/form/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/tooltip/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 :root {
   @include rmd-utils-desktop-media {

@@ -2,11 +2,11 @@
 /// @group progress
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Creates the styles for one of the progress's theme values. This is mostly
 /// going to be an internal helper mixin util.

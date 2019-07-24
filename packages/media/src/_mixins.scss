@@ -2,9 +2,9 @@
 /// @group media
 ////
 
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/functions';
-@import 'variables';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/functions';
+@import './variables';
 
 /// Creates the styles for a media container that should enforce a specific
 /// aspect ratio.

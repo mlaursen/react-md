@@ -44,7 +44,7 @@ The main export for this package will mainly be the exposed mixins which can be
 included with the following import:
 
 ```scss
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 @include rmd-utils-base;
 
@@ -69,11 +69,11 @@ automatically include all the react-md styles for packages you have included in
 this file.
 
 ```scss
-@import "@react-md/app-bar/dist/mixins";
-@import "@react-md/avatar/dist/mixins";
-@import "@react-md/button/dist/mixins";
-@import "@react-md/elevation/dist/mixins";
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/app-bar/dist/mixins";
+@import "~@react-md/avatar/dist/mixins";
+@import "~@react-md/button/dist/mixins";
+@import "~@react-md/elevation/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 @include react-md-utils;
 ```

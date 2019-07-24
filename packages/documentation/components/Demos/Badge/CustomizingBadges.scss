@@ -1,5 +1,5 @@
-@import '~@react-md/badge/dist/scss/mixins';
-@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/badge/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 .copyright-badge-container {
   @include rmd-badge-theme-update-var(font-size, rmd-typography-value(body-1, font-size));

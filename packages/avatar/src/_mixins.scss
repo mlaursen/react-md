@@ -2,10 +2,10 @@
 /// @group avatar
 ////
 
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/typography/dist/mixins';
-@import 'variables';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/typography/dist/mixins';
+@import './variables';
 
 /// Creates the styles for one of the avatar's theme values. This is mostly
 /// going to be an internal helper mixin util.

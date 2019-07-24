@@ -1,6 +1,6 @@
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/elevation/dist/scss/mixins';
-@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
 
 .simple-resize {
   @include rmd-elevation(4);

@@ -121,9 +121,10 @@ export function hackSCSSVariableValue(
 
   const { name, value } = scssVariable.context;
   const prefix = `$${name}: `;
+  const localizedImportPath = importPath.replace("src", "dist/scss");
 
   try {
-    const data = `@import '${importPath}';
+    const data = `@import '${localizedImportPath}';
 @error '${prefix}#{${value}}';
 `;
 

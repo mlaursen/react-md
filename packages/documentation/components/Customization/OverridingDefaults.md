@@ -38,7 +38,7 @@ few values.
 First, create or update `src/_rmd-variable-overrides.scss`:
 
 ```scss
-@import "@react-md/theme/dist/color-palette";
+@import "~@react-md/theme/dist/color-palette";
 
 $rmd-theme-light: false;
 // I am bad at colors and chose 2 random ones from https://flatuicolors.com/palette/defo
@@ -75,10 +75,10 @@ base styles:
 ```scss
 @import "variables";
 
-@import "@react-md/button/dist/mixins";
-@import "@react-md/theme/dist/mixins";
-@import "@react-md/list/dist/mixins";
-@import "@react-md/utils/dist/mixins";
+@import "~@react-md/button/dist/mixins";
+@import "~@react-md/theme/dist/mixins";
+@import "~@react-md/list/dist/mixins";
+@import "~@react-md/utils/dist/mixins";
 
 @include react-md-utils;
 ```

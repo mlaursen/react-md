@@ -2,8 +2,8 @@
 /// @group chip
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
 
 /// This function is used to quickly get one of the chip's theme values. This is really
 /// just for the `rmd-chip-theme` mixin to provide some validation that a correct style

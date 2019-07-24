@@ -2,8 +2,8 @@
 /// @group list
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
 
 /// This function is used to quickly get one of the list's theme values. This is really
 /// just for the `rmd-list-theme` mixin to provide some validation that a correct style

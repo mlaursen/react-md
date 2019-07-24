@@ -2,7 +2,7 @@
 /// @group table
 ////
 
-@import '@react-md/theme/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
 
 $rmd-table-fixed-background-color: rmd-theme-var(background) !default;
 $rmd-table-cell-padding: 1rem !default;

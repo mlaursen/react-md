@@ -1,6 +1,6 @@
-@import '~@react-md/button/dist/scss/mixins';
-@import '~@react-md/icon/dist/scss/mixins';
-@import '~@react-md/form/dist/scss/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/form/dist/mixins';
 
 .super-small-toggle {
   @include rmd-button-theme-update-var(icon-size, 2rem);

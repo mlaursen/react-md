@@ -1,7 +1,7 @@
-@import '~@react-md/theme/dist/scss/color-palette';
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/elevation/dist/scss/mixins';
-@import '~@react-md/overlay/dist/scss/mixins';
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/overlay/dist/mixins';
 
 .custom-theme-overlay {
   @include rmd-overlay-theme-update-var(background-color, rgba($rmd-blue-500, 0.42));

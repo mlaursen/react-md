@@ -2,15 +2,15 @@
 /// @group table
 ////
 
-@import '@react-md/divider/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/theme/dist/variables';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Creates the styles for one of the table's theme values. This is mostly
 /// going to be an internal helper mixin util.

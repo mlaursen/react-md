@@ -2,11 +2,11 @@
 /// @group link
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Creates the styles for one of the link's theme values. This is mostly
 /// going to be an internal helper mixin util.

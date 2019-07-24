@@ -2,10 +2,10 @@
 /// @group theme
 ////
 
-@import '@react-md/utils/dist/functions';
-@import 'color-palette';
-@import 'helpers';
-@import 'variables';
+@import '~@react-md/utils/dist/functions';
+@import './color-palette';
+@import './helpers';
+@import './variables';
 
 /// A theme utility function to convert a material design color to the same color but with a different
 /// swatch. If your app is not using material design colors, this utility function is useless but you

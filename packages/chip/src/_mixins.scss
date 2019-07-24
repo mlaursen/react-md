@@ -2,15 +2,15 @@
 /// @group chip
 ////
 
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'functions';
-@import 'variables';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
 
 /// Creates the styles for one of the chip's theme values. This is mostly
 /// going to be an internal helper mixin util.

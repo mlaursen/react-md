@@ -2,9 +2,9 @@
 /// @group typography
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/utils/dist/functions';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/utils/dist/functions';
+@import './variables';
 
 /// This function is used to quickly get one of the typography's theme values. This is really
 /// just for the `rmd-typography-theme` mixin to provide some validation that a correct style

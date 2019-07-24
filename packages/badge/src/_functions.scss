@@ -2,8 +2,8 @@
 /// @group badge
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
 
 /// This function is used to quickly get one of the badge's theme values. This is really
 /// just for the `rmd-badge-theme` mixin to provide some validation that a correct style

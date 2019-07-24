@@ -2,10 +2,10 @@
 /// @group states
 ////
 
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/theme/dist/color-a11y';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/color-a11y';
+@import '~@react-md/theme/dist/functions';
+@import '~@react-md/theme/dist/variables';
 
 /// Boolean if the pressed and keyboard focus interaction states should use
 /// the ripple effect. If this is set to false, a different background color

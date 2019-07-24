@@ -2,7 +2,7 @@
 /// @group tree
 ////
 
-@import '@react-md/list/dist/variables';
+@import '~@react-md/list/dist/variables';
 
 /// The default max-depth to create for the tree depths. This is used in the `rmd-tree-depths` mixin to generate offsets
 /// in css based on how deep a tree item is. If this value is less than or equal to 1, no depth styles will be created.

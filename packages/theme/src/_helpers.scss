@@ -3,8 +3,8 @@
 /// @group theme
 ////
 
-@import '@react-md/utils/dist/functions';
-@import 'variables';
+@import '~@react-md/utils/dist/functions';
+@import './variables';
 
 /// @access private
 /// @param {String} theme-name - The name of the theme to extract from the theme-map.

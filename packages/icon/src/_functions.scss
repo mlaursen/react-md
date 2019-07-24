@@ -2,8 +2,8 @@
 /// @group icon
 ////
 
-@import '@react-md/theme/dist/helpers';
-@import 'variables';
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
 
 /// This function is used to quickly get one of the icon's theme values. This is really
 /// just for the `rmd-icon-theme` mixin to provide some validation that a correct style

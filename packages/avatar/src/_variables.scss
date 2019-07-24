@@ -2,8 +2,8 @@
 /// @group avatar
 ////
 
-@import '@react-md/typography/dist/functions';
-@import '@react-md/theme/dist/variables';
+@import '~@react-md/typography/dist/functions';
+@import '~@react-md/theme/dist/variables';
 
 /// The default background color for an avatar. This will be used until
 /// the `color` prop is provided to the `Avatar` component.

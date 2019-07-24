@@ -2,8 +2,8 @@
 /// @group elevation
 ////
 
-@import '@react-md/theme/dist/functions';
-@import 'variables';
+@import '~@react-md/theme/dist/functions';
+@import './variables';
 
 /// Returns a box shadow string for the current material design elevation. This is
 /// useful if you want to merge material design elevation with custom box shadow

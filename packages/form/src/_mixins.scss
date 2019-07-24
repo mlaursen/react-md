@@ -2,9 +2,9 @@
 /// @group form
 ////
 
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
-@import 'variables';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
 @import './file-input/mixins';
 @import './label/mixins';
 @import './select/mixins';

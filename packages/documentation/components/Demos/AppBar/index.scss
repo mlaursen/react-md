@@ -1,4 +1,4 @@
-@import '~@react-md/app-bar/dist/scss/mixins';
+@import '~@react-md/app-bar/dist/mixins';
 
 .app-bar-demos {
   @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);

@@ -20,7 +20,7 @@ import { Button, Text } from "react-md";
 ```
 
 ```scss
-@import "react-md/dist/react-md";
+@import "~react-md/dist/react-md";
 
 @include react-md-everything;
 ```

@@ -1,8 +1,8 @@
-@import '~@react-md/button/dist/scss/mixins';
-@import '~@react-md/icon/dist/scss/mixins';
-@import '~@react-md/progress/dist/scss/mixins';
-@import '~@react-md/theme/dist/scss/mixins';
-@import '~@react-md/utils/dist/scss/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/progress/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 .async-button {
   @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));

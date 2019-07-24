@@ -1,6 +1,6 @@
 @import 'variables';
-@import '~@react-md/theme/dist/scss/variables';
-@import '~@react-md/typography/dist/scss/mixins';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/typography/dist/mixins';
 
 $code-background-color: darken($rmd-theme-background, 10%);
 $solarized-base-03: #002b36;
