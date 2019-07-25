@@ -10,7 +10,7 @@ import React, {
 import Cookie from "js-cookie";
 
 export type Theme = "light" | "dark";
-const ThemeContext = createContext<Theme>("dark");
+const ThemeContext = createContext<Theme>("light");
 const ThemeToggle = createContext(() => {});
 
 export function useThemeContext(): Theme {
@@ -36,9 +36,11 @@ function useThemeTransition(isLight: boolean): void {
     // force dom repaint
     root.scrollTop; // eslint-disable-line no-unused-expressions
     if (isLight) {
+      root.classList.remove("dark-theme");
       root.classList.add("light-theme");
     } else {
       root.classList.remove("light-theme");
+      root.classList.add("dark-theme");
     }
 
     const timeout = window.setTimeout(() => {
@@ -60,7 +62,7 @@ export const ThemeContextProvider: FC<ThemeContextProviderProps> = ({
   children,
   defaultTheme,
 }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme || "dark");
+  const [theme, setTheme] = useState<Theme>(defaultTheme || "light");
   const toggleTheme = useCallback(
     () => setTheme(prevTheme => (prevTheme === "dark" ? "light" : "dark")),
     []

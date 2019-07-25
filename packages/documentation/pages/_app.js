@@ -44,7 +44,7 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape: true,
       };
-      defaultTheme = req.cookies.theme || 'dark';
+      defaultTheme = req.cookies.theme || 'light';
     } else if (typeof window !== 'undefined') {
       const matchesPhone = window.matchMedia(
         `screen and (max-width: ${DEFAULT_PHONE_MAX_WIDTH})`
@@ -75,7 +75,7 @@ export default class App extends NextApp {
     return {
       componentProps,
       defaultSize: defaultSize || DEFAULT_APP_SIZE,
-      defaultTheme: defaultTheme || 'dark',
+      defaultTheme: defaultTheme || 'light',
     };
   }
 

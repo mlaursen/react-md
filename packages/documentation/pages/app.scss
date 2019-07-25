@@ -7,8 +7,8 @@
 @import 'components/Heading/heading';
 @import 'components/Blockquote/blockquote';
 
-.light-theme {
-  @include rmd-theme-light;
+.dark-theme {
+  @include rmd-theme-dark;
 
-  --code-bg: var(--code-bg-light);
+  #{--code-bg}: #{$code-dark-theme-bg};
 }

@@ -8,11 +8,11 @@ import Analytics from 'components/Analytics';
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    let theme = 'dark';
+    let theme = 'light';
     if (ctx && ctx.req) {
-      ({ theme = 'dark' } = ctx.req.cookies);
+      ({ theme = 'light' } = ctx.req.cookies);
     } else if (typeof window !== 'undefined') {
-      theme = Cookie.get('theme') || 'dark';
+      theme = Cookie.get('theme') || 'light';
     }
 
     return {
@@ -21,6 +21,10 @@ export default class MyDocument extends Document {
     };
   }
 
+  static defaultProps = {
+    theme: 'light',
+  };
+
   componentDidMount() {
     require('smoothscroll-polyfill').polyfill();
   }
@@ -28,11 +32,7 @@ export default class MyDocument extends Document {
   render() {
     const { theme } = this.props;
     return (
-      <html
-        lang="en"
-        dir="ltr"
-        className={theme === 'light' ? 'light-theme' : undefined}
-      >
+      <html lang="en" dir="ltr" className={`${theme}-theme`}>
         <Head>
           <meta
             name="viewport"

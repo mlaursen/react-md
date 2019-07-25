@@ -2,7 +2,8 @@
 @import '~@react-md/theme/dist/variables';
 @import '~@react-md/typography/dist/mixins';
 
-$code-background-color: darken($rmd-theme-background, 10%);
+$code-light-theme-bg: $rmd-grey-200;
+$code-dark-theme-bg: #171717;
 $solarized-base-03: #002b36;
 $solarized-base-02: #073642;
 $solarized-base-01: #586e75;
@@ -22,9 +23,7 @@ $solarized-cyan: #2aa198;
 $solarized-green: #859900;
 
 :root {
-  --code-bg: #{$code-background-color};
-  --code-bg-light: #{$rmd-grey-200};
-  --code-bg-dark: #{$code-background-color};
+  #{--code-bg}: #{$code-light-theme-bg};
 }
 
 .code {

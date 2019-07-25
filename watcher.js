@@ -82,36 +82,12 @@ function copyFile(filePath, destPath, log) {
   fs.copyFileSync(filePath, dest);
 }
 
-const copyScssFile = f => {
-  // copyFile(f, 'dist', startLoggingScss);
-  const contents = fs.readFileSync(f, 'utf8');
-  const withWebpackImports = contents
-    .replace(/('|")@react-md/g, '$1~@react-md')
-    .replace(/dist\//g, 'dist/scss/');
-
-  const dest = f.replace('src', 'dist/scss');
-  if (startLoggingScss) {
-    console.log(`${f} -> ${dest}`);
-  }
-
-  const folder = dest.substring(0, dest.lastIndexOf(path.sep));
-  if (!fs.existsSync(folder)) {
-    fs.mkdirSync(folder);
-  }
-
-  fs.writeFile(dest, withWebpackImports, error => {
-    if (error) {
-      console.error(error);
-    }
-  });
-};
-
 const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 
 chokidar
   .watch('packages/*/src/**/*.scss', { ignored: IGNORED })
   .on('change', filePath => {
-    copyScssFile(filePath);
+    copyFile(filePath, 'dist', startLoggingScss);
   })
   .on('ready', () => {
     console.log('Watching for scss file changes...');
