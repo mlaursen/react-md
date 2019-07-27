@@ -24,7 +24,7 @@
     "glob": "^7.1.4",
     "gzip-size": "^5.1.1",
     "jest": "^24.8.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "loglevel": "^1.6.3",
     "markdown-toc": "^1.2.0",
     "node-sass": "^4.12.0",
