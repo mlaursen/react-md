@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
+
 import Color, { ColorValue } from "./Color";
 
 interface ColorListProps {

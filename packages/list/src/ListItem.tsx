@@ -1,4 +1,4 @@
-import React, { forwardRef, FC } from "react";
+import React, { FC, forwardRef } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,

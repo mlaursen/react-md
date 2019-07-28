@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { AppBar, AppBarTitle, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import Actions from "./Actions";
 

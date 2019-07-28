@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
+import { bem } from "@react-md/utils";
 
 import "./container.scss";
-import { bem } from "@react-md/theme";
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   stacked?: boolean;

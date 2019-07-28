@@ -9,8 +9,7 @@ import React, {
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
-import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 import TextField, { TextFieldProps } from "./TextField";
 

@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useRef } from "react";
 import Head from "next/head";
-import { Dialog } from "@react-md/dialog";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import { Dialog } from "@react-md/dialog";
+import { bem, useToggle } from "@react-md/utils";
 
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { toTitle } from "utils/toTitle";

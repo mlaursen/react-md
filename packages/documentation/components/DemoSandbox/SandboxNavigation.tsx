@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
-import { MobileOnly } from "@react-md/utils";
+import { bem, MobileOnly } from "@react-md/utils";
 
 import AppBarNav from "components/AppBarNav";
 

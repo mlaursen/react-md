@@ -6,8 +6,7 @@ import {
 } from "@react-md/app-bar";
 import { Button, ButtonProps } from "@react-md/button";
 import { FontIcon } from "@react-md/icon";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import ToggleChildren from "./ToggleChildren";
 

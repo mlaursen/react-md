@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
-import React, { FC, useRef, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { Button } from "@react-md/button";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
+import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { List } from "@react-md/list";
+import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
+import { bem, useToggle } from "@react-md/utils";
 
 import "./InaccessibleMenu.scss";
-import { TextIconSpacing, IconRotator } from "@react-md/icon";
-import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 
 const block = bem("inaccessible-menu");
 

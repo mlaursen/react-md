@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, HTMLAttributes } from "react";
+import { HTMLAttributes, useCallback, useEffect, useRef } from "react";
 import { useInteractionModeContext } from "@react-md/states";
 import { SimplePosition, useToggle } from "@react-md/utils";
 

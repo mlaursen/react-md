@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { FC, HTMLAttributes, forwardRef } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export type BadgeContainerProps = HTMLAttributes<HTMLSpanElement>;
 type WithRef = WithForwardedRef<HTMLSpanElement>;

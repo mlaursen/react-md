@@ -1,4 +1,4 @@
-import React, { forwardRef, FC, HTMLAttributes, ElementType } from "react";
+import React, { ElementType, FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,

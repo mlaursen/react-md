@@ -1,9 +1,9 @@
 import React, { FC } from "react";
+import { SingletonRouter, withRouter } from "next/router";
 import qs from "qs";
 import { useActionClassName } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { withRouter, SingletonRouter } from "next/router";
 
 import LinkButton from "components/LinkButton";
 

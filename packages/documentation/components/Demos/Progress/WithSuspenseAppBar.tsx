@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import {
   ClosePhone,

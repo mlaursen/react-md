@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, react/no-array-index-key */
 import React, { FC, useCallback } from "react";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import Link from "components/Link";
 import { Heading } from "./usePageHeadings";

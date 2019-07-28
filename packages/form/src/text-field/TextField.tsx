@@ -1,20 +1,19 @@
 import React, {
   CSSProperties,
   FC,
+  forwardRef,
   InputHTMLAttributes,
   ReactNode,
   Ref,
-  forwardRef,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef, Omit } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
+import useFocusState from "../useFocusState";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import useFocusState from "../useFocusState";
 import useValuedState from "./useValuedState";
 
 /**

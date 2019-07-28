@@ -1,10 +1,10 @@
 import React, {
-  forwardRef,
+  ElementType,
   FC,
   HTMLAttributes,
   ReactElement,
-  ElementType,
   ReactNode,
+  forwardRef,
 } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";

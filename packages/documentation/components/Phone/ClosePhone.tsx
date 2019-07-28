@@ -5,7 +5,7 @@ import {
   KeyboardArrowLeftSVGIcon,
   CloseSVGIcon,
 } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import { usePhoneContext } from "./context";
 

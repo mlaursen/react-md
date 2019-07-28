@@ -8,8 +8,8 @@ import React, {
   MutableRefObject,
 } from "react";
 import { Button } from "@react-md/button";
-import { bem } from "@react-md/theme";
 import {
+  bem,
   ResizeObserver,
   ResizeObserverChangeEventHandler,
   useToggle,

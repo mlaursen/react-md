@@ -1,22 +1,21 @@
 import React, {
   CSSProperties,
   FC,
+  forwardRef,
   ReactNode,
   Ref,
   SelectHTMLAttributes,
-  forwardRef,
 } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
+import FloatingLabel from "../label/FloatingLabel";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
-import FloatingLabel from "../label/FloatingLabel";
-import useFocusState from "../useFocusState";
 import useValuedState from "../text-field/useValuedState";
+import useFocusState from "../useFocusState";
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,

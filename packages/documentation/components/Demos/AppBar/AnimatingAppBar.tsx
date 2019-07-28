@@ -9,8 +9,7 @@ import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
-import { UpdateVariables } from "@react-md/theme";
-import { useScrollListener } from "@react-md/utils";
+import { UpdateVariables, useScrollListener } from "@react-md/utils";
 
 import people from "constants/people";
 

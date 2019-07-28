@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { LinearProgress } from "@react-md/progress";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 interface WithSuspenseFallbackProps {
   complete: () => void;

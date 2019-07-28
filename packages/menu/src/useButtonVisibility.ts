@@ -1,6 +1,7 @@
-import { useCallback, HTMLAttributes } from "react";
+import { HTMLAttributes, useCallback } from "react";
 import { useRefCache } from "@react-md/utils";
-import useVisibility, { VisibilityOptions, FocusType } from "./useVisibility";
+
+import useVisibility, { FocusType, VisibilityOptions } from "./useVisibility";
 
 export interface ButtonVisibilityOptions extends VisibilityOptions {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

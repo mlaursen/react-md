@@ -4,8 +4,7 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface SnackbarProps
   extends HTMLAttributes<HTMLDivElement>,

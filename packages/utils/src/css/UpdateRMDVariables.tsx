@@ -1,18 +1,17 @@
 import React, {
   FC,
-  useEffect,
-  useState,
   MutableRefObject,
+  useEffect,
   useRef,
+  useState,
 } from "react";
-
 import UpdateVariables, { UpdateVariablesProps } from "./UpdateVariables";
 import {
-  fixVariables,
   CSSVariable,
+  fixVariables,
   resolveVariables,
   toCSSVariableName,
-} from "./utils";
+} from "./variables";
 
 const RMD_PREFIX = "--rmd-";
 const loaded: MutableRefObject<CSSVariable[]> = { current: [] };

@@ -1,19 +1,18 @@
 import React, {
-  forwardRef,
-  FC,
-  ReactNode,
   CSSProperties,
+  FC,
+  forwardRef,
   HTMLAttributes,
+  ReactNode,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import {
   CSSTransitionClassNames,
-  TransitionTimeout,
   TransitionProps,
+  TransitionTimeout,
 } from "@react-md/transition";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef, SimplePosition } from "@react-md/utils";
+import { bem, SimplePosition, WithForwardedRef } from "@react-md/utils";
 
 import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
 

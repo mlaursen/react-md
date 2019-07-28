@@ -1,11 +1,11 @@
 import React, {
   CSSProperties,
+  ElementType,
+  FC,
   forwardRef,
   Fragment,
-  FC,
   HTMLAttributes,
   ReactNode,
-  ElementType,
 } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -15,8 +15,7 @@ import {
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import { CSSTransitionProps } from "@react-md/transition";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
 

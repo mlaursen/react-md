@@ -1,20 +1,20 @@
 import React, { FC, Fragment } from "react";
 import {
+  Fieldset,
+  Form,
+  NativeSelect,
+  Radio,
   TextField,
   TextFieldTheme,
-  Form,
-  Fieldset,
-  NativeSelect,
   useChoice,
-  Radio,
 } from "@react-md/form";
 import {
+  EmailSVGIcon,
+  LocationOnSVGIcon,
   PersonSVGIcon,
   PhoneSVGIcon,
-  LocationOnSVGIcon,
-  EmailSVGIcon,
 } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import states from "constants/states";

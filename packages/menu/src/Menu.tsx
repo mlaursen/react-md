@@ -6,9 +6,9 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { bem } from "@react-md/theme";
 import { CSSTransitionProps, useFixedPositioning } from "@react-md/transition";
 import {
+  bem,
   FixedPositionOptions,
   LabelRequiredForA11y,
   PositionAnchor,

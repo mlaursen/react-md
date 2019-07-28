@@ -1,8 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
 import { act } from "react-dom/test-utils";
+
 import UpdateVariables from "../UpdateVariables";
-import { CSSVariable } from "../utils";
+import { CSSVariable } from "../variables";
 
 describe("UpdateVariables", () => {
   let container: HTMLElement | null = null;

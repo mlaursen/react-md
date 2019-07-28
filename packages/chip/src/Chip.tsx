@@ -1,13 +1,12 @@
 /* eslint-disable react/button-has-type */
-import React, { FC, HTMLAttributes, forwardRef, ReactNode } from "react";
+import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 export interface ChipProps
   extends HTMLAttributes<HTMLButtonElement>,

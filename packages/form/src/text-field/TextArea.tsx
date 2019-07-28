@@ -1,24 +1,28 @@
 import React, {
-  FC,
-  ReactNode,
   CSSProperties,
+  FC,
+  forwardRef,
+  ReactNode,
   Ref,
   TextareaHTMLAttributes,
-  forwardRef,
-  useState,
   useCallback,
   useRef,
+  useState,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { useResizeObserver, WithForwardedRef, applyRef } from "@react-md/utils";
+import {
+  applyRef,
+  bem,
+  useResizeObserver,
+  WithForwardedRef,
+} from "@react-md/utils";
+
+import FloatingLabel from "../label/FloatingLabel";
+import useFocusState from "../useFocusState";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-
-import useFocusState from "../useFocusState";
 import useValuedState from "./useValuedState";
-import FloatingLabel from "../label/FloatingLabel";
 
 export type TextAreaResize =
   | "none"

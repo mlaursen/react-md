@@ -1,12 +1,12 @@
 import React, {
   FC,
+  forwardRef,
   HTMLAttributes,
   Ref,
-  forwardRef,
   useCallback,
   useState,
 } from "react";
-import { WithForwardedRef, applyRef } from "@react-md/utils";
+import { applyRef, WithForwardedRef } from "@react-md/utils";
 
 import Divider from "./Divider";
 

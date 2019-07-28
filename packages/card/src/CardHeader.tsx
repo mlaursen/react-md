@@ -1,8 +1,7 @@
-import React, { FC, HTMLAttributes, forwardRef, ReactNode } from "react";
+import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import CardHeaderAddon from "./CardHeaderAddon";
 

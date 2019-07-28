@@ -1,5 +1,5 @@
 /**
- * The base progress prosp for both the linear and circular progress
+ * The base progress props for both the linear and circular progress
  * components.
  */
 export interface ProgressProps {

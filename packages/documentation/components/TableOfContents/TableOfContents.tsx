@@ -1,8 +1,7 @@
 import React, { Fragment, FC, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
-import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
-import { useToggle } from "@react-md/utils";
+import { bem, useToggle } from "@react-md/utils";
 
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 

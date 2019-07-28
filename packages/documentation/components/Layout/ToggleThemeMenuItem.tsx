@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 

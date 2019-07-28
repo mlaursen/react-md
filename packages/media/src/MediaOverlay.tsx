@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, forwardRef } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 

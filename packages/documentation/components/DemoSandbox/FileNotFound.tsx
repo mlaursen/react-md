@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { Text, TextContainer } from "@react-md/typography";
-import { List, ListItem } from "@react-md/list";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { bem } from "@react-md/theme";
+import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
+import { List, ListItem } from "@react-md/list";
+import { Text, TextContainer } from "@react-md/typography";
+import { bem } from "@react-md/utils";
+
 import Code from "components/Code/Code";
-import { Card, CardHeader, CardTitle, CardContent } from "@react-md/card";
 
 export interface FileNotFoundProps {
   fileName: string;
@@ -14,6 +15,7 @@ export interface FileNotFoundProps {
 }
 
 const block = bem("sandbox-modal");
+
 const FileNotFound: FC<FileNotFoundProps> = ({
   offset,
   fileName,

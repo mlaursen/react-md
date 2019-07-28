@@ -1,17 +1,16 @@
 import React, {
   FC,
-  InputHTMLAttributes,
-  Fragment,
   forwardRef,
+  Fragment,
+  InputHTMLAttributes,
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { FontIcon, TextIconSpacing } from "@react-md/icon";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
+import { FontIcon, TextIconSpacing } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";
-import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 type InputAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,

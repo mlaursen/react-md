@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 const block = bem("rmd-card");
 

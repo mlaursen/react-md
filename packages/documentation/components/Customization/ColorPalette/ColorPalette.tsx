@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
-import { bem } from "@react-md/theme";
 import scssVariables from "@react-md/theme/dist/scssVariables";
+import { bem } from "@react-md/utils";
 
 import "./ColorPalette.scss";
 import About from "./About";

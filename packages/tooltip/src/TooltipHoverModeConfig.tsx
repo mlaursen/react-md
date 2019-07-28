@@ -1,8 +1,9 @@
-import React, { ReactNode, FC, useMemo } from "react";
+import React, { FC, ReactNode, useMemo } from "react";
+
 import { DEFAULT_DELAY } from "./constants";
 import {
-  HoverModeDelay,
   HoverModeActions,
+  HoverModeDelay,
   HoverModeEnabled,
   useTooltipHoverModeState,
 } from "./useTooltipHoverMode";

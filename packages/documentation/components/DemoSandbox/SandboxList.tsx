@@ -9,7 +9,7 @@ import {
 } from "@react-md/card";
 import { TextIconSpacing } from "@react-md/icon";
 import { CodeSVGIcon, OpenInBrowserSVGIcon } from "@react-md/material-icons";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 import { Text } from "@react-md/typography";
 
 import LinkButton from "components/LinkButton";

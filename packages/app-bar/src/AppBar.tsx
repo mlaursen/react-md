@@ -1,12 +1,12 @@
-import React, { FC, ElementType, HTMLAttributes, forwardRef } from "react";
+import React, { ElementType, FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { WithForwardedRef } from "@react-md/utils";
-import { bem } from "@react-md/theme";
+import { bem, WithForwardedRef } from "@react-md/utils";
+
 import {
-  useInheritContext,
-  useParentContext,
   InheritContext,
   ParentContext,
+  useInheritContext,
+  useParentContext,
 } from "./useInheritContext";
 
 export type AppBarPosition = "top" | "bottom";

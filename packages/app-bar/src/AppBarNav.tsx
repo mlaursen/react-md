@@ -2,8 +2,7 @@
 import React, { FC, forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
 

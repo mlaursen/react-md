@@ -1,7 +1,6 @@
-import React, { forwardRef, FC, HTMLAttributes, ReactNode } from "react";
+import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
   /**

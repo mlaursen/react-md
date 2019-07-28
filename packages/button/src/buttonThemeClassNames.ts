@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 /**
  * One of the valid button types that can be used

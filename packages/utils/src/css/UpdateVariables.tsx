@@ -1,10 +1,9 @@
-import { FC, CSSProperties, ReactElement, Children, cloneElement } from "react";
-
+import { Children, cloneElement, CSSProperties, FC, ReactElement } from "react";
 import {
+  createCSSVariablesStyle,
   CSSVariable,
   useDocumentCSSVariables,
-  createCSSVariablesStyle,
-} from "./utils";
+} from "./variables";
 
 interface Styleable {
   style?: CSSProperties;
@@ -55,7 +54,6 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
   clone,
   variables,
 }) => {
-  useDocumentCSSVariables(variables, clone || typeof children === "function");
   if (typeof children === "function") {
     return (children as VariableChildrenRenderer)({
       style: createCSSVariablesStyle(variables, style),
@@ -73,6 +71,11 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
 
   // TODO: Add a dev runtime check to make sure that only one instance
   // of the UpdateVariables is setting the values
+
+  // It's ok to disable it here since I want the app to crash if they switch between cloning, children renderer,
+  // or just children
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useDocumentCSSVariables(variables, clone || typeof children === "function");
 
   return (children as StyleableChild) || null;
 };

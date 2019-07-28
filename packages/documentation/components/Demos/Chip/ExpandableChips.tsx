@@ -5,8 +5,7 @@ import { Divider } from "@react-md/divider";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { Menu, MenuItem } from "@react-md/menu";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
+import { bem, useToggle } from "@react-md/utils";
 
 import Phone from "components/Phone";
 

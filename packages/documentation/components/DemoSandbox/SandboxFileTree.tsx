@@ -1,9 +1,10 @@
 import React, { FC } from "react";
+import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import { bem } from "@react-md/theme";
 import { Tree, useTreeItemExpansion } from "@react-md/tree";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import { bem } from "@react-md/utils";
+
 import useFiles from "./useFiles";
 
 export interface SandboxFileTreeProps {

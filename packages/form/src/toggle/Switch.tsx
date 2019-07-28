@@ -1,14 +1,13 @@
 import React, {
+  CSSProperties,
   FC,
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  CSSProperties,
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef, Omit } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 import Label from "../label/Label";
 import ToggleContainer from "./ToggleContainer";

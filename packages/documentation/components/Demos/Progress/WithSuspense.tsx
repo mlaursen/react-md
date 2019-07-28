@@ -9,7 +9,7 @@ import React, {
 import { Button } from "@react-md/button";
 import { RefreshSVGIcon, CloudDownloadSVGIcon } from "@react-md/material-icons";
 import { getProgressA11y } from "@react-md/progress";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import useFakeLazyImport from "hooks/useFakeLazyImport";

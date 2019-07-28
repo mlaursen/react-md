@@ -10,12 +10,10 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem } from "@react-md/theme";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
-import useFocusState from "../useFocusState";
 import Label from "../label/Label";
-
+import useFocusState from "../useFocusState";
 import ToggleContainer from "./ToggleContainer";
 
 /**

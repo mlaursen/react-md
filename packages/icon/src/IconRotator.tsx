@@ -1,17 +1,16 @@
 import React, {
-  cloneElement,
-  isValidElement,
-  forwardRef,
   Children,
-  FC,
-  HTMLAttributes,
-  ReactNode,
+  cloneElement,
   CSSProperties,
+  FC,
+  forwardRef,
+  HTMLAttributes,
+  isValidElement,
   ReactElement,
+  ReactNode,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**

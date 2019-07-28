@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { FunctionComponent, HTMLAttributes, forwardRef } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   /**
@@ -36,7 +35,7 @@ type WithDefaultProps = LabelProps & DefaultProps & WithRef;
 
 const block = bem("rmd-label");
 
-const Label: FunctionComponent<LabelProps & WithRef> = providedProps => {
+const Label: FC<LabelProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,

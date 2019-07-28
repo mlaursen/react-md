@@ -3,8 +3,8 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { HomeSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
-import { bem } from "@react-md/theme";
 import { Text, TextContainer } from "@react-md/typography";
+import { bem } from "@react-md/utils";
 
 import LinkButton from "components/LinkButton";
 

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
+import { bem } from "@react-md/utils";
 
 export interface ColorValue {
   name: string;

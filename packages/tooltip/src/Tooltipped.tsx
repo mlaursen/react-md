@@ -2,8 +2,8 @@ import React, {
   Children,
   cloneElement,
   CSSProperties,
-  Fragment,
   FC,
+  Fragment,
   ReactElement,
   ReactNode,
   useMemo,
@@ -15,16 +15,16 @@ import {
 } from "@react-md/portal";
 import { useFixedPositioning } from "@react-md/transition";
 import {
+  HorizontalPosition,
   Omit,
   unitToNumber,
-  HorizontalPosition,
   VerticalPosition,
 } from "@react-md/utils";
 
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
+import Tooltip, { TooltipProps } from "./Tooltip";
 import { MergableHandlers } from "./useHandlers";
 import useTooltipState, { TooltipStateOptions } from "./useTooltipState";
-import Tooltip, { TooltipProps } from "./Tooltip";
 
 interface TooltippedProvidedProps extends MergableHandlers {
   id: string;

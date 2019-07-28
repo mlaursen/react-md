@@ -5,12 +5,6 @@ describe("bem", () => {
   const block2 = bem("button");
   const block3 = bem("container");
 
-  it("should return a function", () => {
-    expect(block1).toBeInstanceOf(Function);
-    expect(block2).toBeInstanceOf(Function);
-    expect(block3).toBeInstanceOf(Function);
-  });
-
   it("should throw an error if the user provides an empty string", () => {
     expect(() => bem("")).toThrowError(
       "bem requires a base block class but none were provided."

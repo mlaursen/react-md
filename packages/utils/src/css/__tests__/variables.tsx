@@ -8,7 +8,7 @@ import {
   createCSSVariablesStyle,
   useDocumentCSSVariables,
   CSSVariable,
-} from "../utils";
+} from "../variables";
 
 describe("utils", () => {
   describe("toCSSVariableName", () => {

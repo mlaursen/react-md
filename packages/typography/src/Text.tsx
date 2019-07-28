@@ -1,15 +1,14 @@
 import React, {
-  createElement,
-  forwardRef,
+  ElementType,
   FC,
   HTMLAttributes,
   ReactElement,
-  ElementType,
   ReactNode,
+  createElement,
+  forwardRef,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with the Text

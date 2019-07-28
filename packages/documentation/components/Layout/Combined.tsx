@@ -5,8 +5,7 @@ import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import { useInteractionModeContext } from "@react-md/states";
-import { bem } from "@react-md/theme";
-import { useToggle, useScrollLock } from "@react-md/utils";
+import { bem, useToggle, useScrollLock } from "@react-md/utils";
 
 import TableOfContents from "components/TableOfContents";
 

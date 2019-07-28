@@ -1,13 +1,12 @@
 import React, {
+  CSSProperties,
   FC,
   FieldsetHTMLAttributes,
-  ReactNode,
-  CSSProperties,
   forwardRef,
+  ReactNode,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface FieldsetProps
   extends FieldsetHTMLAttributes<HTMLFieldSetElement> {

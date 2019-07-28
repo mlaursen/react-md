@@ -1,7 +1,6 @@
-import React, { forwardRef, FC, HTMLAttributes, ElementType } from "react";
+import React, { ElementType, FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
   /**

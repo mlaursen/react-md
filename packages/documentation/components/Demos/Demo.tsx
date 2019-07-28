@@ -2,8 +2,7 @@ import React, { FC, Fragment, ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
+import { bem, useToggle } from "@react-md/utils";
 
 import { GITHUB_DEMO_URL } from "constants/index";
 import getSandbox from "utils/getSandbox";

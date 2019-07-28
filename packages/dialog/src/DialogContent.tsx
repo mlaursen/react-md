@@ -1,7 +1,6 @@
 import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface DialogContentProps extends HTMLAttributes<HTMLDivElement> {
   /**

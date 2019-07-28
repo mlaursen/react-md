@@ -4,8 +4,7 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
-import { bem } from "@react-md/theme";
-import { useToggle } from "@react-md/utils";
+import { bem, useToggle } from "@react-md/utils";
 
 import ConditionalFullPageDialog, {
   ConditionalFullPageDialogProps,

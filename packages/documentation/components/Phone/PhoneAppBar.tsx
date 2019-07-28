@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import useAppSizeContext from "components/Layout/useAppSizeContext";
 

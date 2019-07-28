@@ -9,7 +9,7 @@ import {
 import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import { Code, CodeBlock } from "components/Code";
 import LinkButton from "components/LinkButton";

@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { bem } from "@react-md/theme";
 import { AppBar } from "@react-md/app-bar";
 import {
   NetworkWifiSVGIcon,
   NetworkCellSVGIcon,
   BatteryFullSVGIcon,
 } from "@react-md/material-icons";
+import { bem } from "@react-md/utils";
 
 export interface StatusBarProps {
   id: string;

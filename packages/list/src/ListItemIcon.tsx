@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types, react/destructuring-assignment */
 import React, { FC } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
+import { bem } from "@react-md/utils";
 
 export type ListItemIconPosition = "top" | "middle" | "bottom";
 

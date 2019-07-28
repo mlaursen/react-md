@@ -13,15 +13,15 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { bem } from "@react-md/theme";
 import { CSSTransitionProps } from "@react-md/transition";
 import {
-  LabelRequiredForA11y,
-  WithForwardedRef,
+  bem,
   FocusContainer,
   FocusContainerOptionsProps,
+  LabelRequiredForA11y,
   useCloseOnEscape,
   useScrollLock,
+  WithForwardedRef,
 } from "@react-md/utils";
 
 import useNestedDialogFixes from "./useNestedDialogFixes";

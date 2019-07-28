@@ -5,8 +5,7 @@ import React, {
   ThHTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/theme";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { useHeaderContext } from "./HeaderContext";
 import { useTableConfigContext } from "./TableConfigContext";

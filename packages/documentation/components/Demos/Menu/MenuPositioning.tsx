@@ -1,9 +1,8 @@
 import React, { FC, Fragment } from "react";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
-import { bem } from "@react-md/theme";
 import { Text } from "@react-md/typography";
-import { HorizontalPosition, VerticalPosition } from "@react-md/utils";
+import { bem, HorizontalPosition, VerticalPosition } from "@react-md/utils";
 
 import Code from "components/Code/Code";
 

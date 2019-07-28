@@ -1,10 +1,10 @@
 import React, { FC, forwardRef } from "react";
 import {
   Divider,
+  DividerElement,
   DividerProps,
   VerticalDivider,
   VerticalDividerProps,
-  DividerElement,
 } from "@react-md/divider";
 import { WithForwardedRef } from "@react-md/utils";
 

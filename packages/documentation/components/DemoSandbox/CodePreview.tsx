@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from "react";
-import { bem } from "@react-md/theme";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import { bem } from "@react-md/utils";
 
 import { CodeBlock } from "components/Code";
 

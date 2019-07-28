@@ -11,7 +11,6 @@ import defaultMenuRenderer, {
   MenuPositionProps,
   MenuRenderer,
 } from "./defaultMenuRenderer";
-
 import MenuButton, { MenuButtonProps } from "./MenuButton";
 import useButtonVisibility from "./useButtonVisibility";
 

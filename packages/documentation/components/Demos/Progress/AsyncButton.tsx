@@ -7,7 +7,7 @@ import {
   CircularProgress,
   LinearProgress,
 } from "@react-md/progress";
-import { bem } from "@react-md/theme";
+import { bem } from "@react-md/utils";
 
 import "./AsyncButton.scss";
 
