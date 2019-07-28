@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import {
   AppSize,
   useAppSizeContext as useAppSizeContextRMD,
@@ -13,10 +13,8 @@ export const DefaultSize = createContext<AppSize>({
   isLandscape: true,
 });
 
-let listener = false;
-
 /**
- * This is a pretty bad hack to be honest... Since we can't guarentee that the
+ * This is a pretty bad hack to be honest... Since we can't guarantee that the
  * server side app size detection is correct for desktop and large desktops,
  * this is a way to make sure the initial SSR is used for hydration and will
  * re-render afterwords with the correct sizes. If this isn't done, the entire
@@ -33,24 +31,21 @@ export default function useAppSizeContext(): AppSize {
   const defaultSize = useContext(DefaultSize);
   const currentSize = useAppSizeContextRMD();
   const [toggled, , , toggle] = useToggle(false);
+  const rendered = useRef(false);
   useEffect(() => {
-    if (typeof window === "undefined" || listener) {
+    if (typeof window === "undefined" || rendered.current) {
       return;
     }
 
-    // if this is the the first "render", wait for the initial hydration
+    // always want to re-run in dev mode to be safe with hot-reloading
+    rendered.current = process.env.NODE_ENV !== "development";
+
+    // if this is the first "render", wait for the initial hydration
     // to finish and then force a re-render so that the correct app size
     // can be used
-    const frame = window.requestAnimationFrame(() => {
-      listener = true;
-      toggle();
-    });
+    const frame = window.requestAnimationFrame(toggle);
 
     return () => {
-      if (process.env.NODE_ENV === "development") {
-        // always force re-renering in dev mode because of hot-reloading
-        listener = false;
-      }
       window.cancelAnimationFrame(frame);
     };
     // only want to run on initial mount

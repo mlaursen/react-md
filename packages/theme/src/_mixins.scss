@@ -146,7 +146,7 @@
 @mixin rmd-theme-dark {
   @include rmd-theme-update-var(background, $rmd-theme-dark-background);
   @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);
-  @include rmd-theme-update-var(on-surface, $rmd-black-base);
+  @include rmd-theme-update-var(on-surface, $rmd-white-base);
   @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-dark-color);
   @include rmd-theme-update-var(
     text-secondary-on-background,
