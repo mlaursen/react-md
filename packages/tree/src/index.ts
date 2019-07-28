@@ -9,4 +9,4 @@ export * from "./TreeGroup";
 
 export * from "./hooks";
 export * from "./utils";
-export * from "./types.d";
+export * from "./types";

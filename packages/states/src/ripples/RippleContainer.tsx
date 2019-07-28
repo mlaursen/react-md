@@ -7,7 +7,7 @@ import {
 } from "@react-md/transition";
 
 import Ripple from "./Ripple";
-import { RipplesState, RippleState } from "./types.d";
+import { RipplesState, RippleState } from "./types";
 
 export interface RippleContainerProps {
   ripples: RipplesState;

@@ -1,4 +1,4 @@
-import { AnyRecord, TreeData, TreeDataList, TreeElement } from "../types.d";
+import { AnyRecord, TreeData, TreeDataList, TreeElement } from "../types";
 import buildItemIndexStack from "./buildItemIndexStack";
 import findTreeItemElement from "./findTreeItemElement";
 

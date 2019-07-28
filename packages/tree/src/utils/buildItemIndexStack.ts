@@ -1,4 +1,4 @@
-import { TreeElement } from "../types.d";
+import { TreeElement } from "../types";
 
 export default function buildItemIndexStack(
   element: HTMLElement,

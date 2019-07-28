@@ -18,7 +18,7 @@ import { Omit, WithForwardedRef } from "@react-md/utils";
 import BaseTreeItem from "./BaseTreeItem";
 import TreeGroup from "./TreeGroup";
 import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
-import { TreeItemInjectedProps, TreeProps } from "./types.d";
+import { TreeItemInjectedProps, TreeProps } from "./types";
 
 export interface TreeItemProps
   extends TreeItemInjectedProps,

@@ -9,7 +9,7 @@ import cn from "classnames";
 import { bem, Omit, WithForwardedRef } from "@react-md/utils";
 
 import getProgress from "./getProgress";
-import { ProgressProps } from "./types.d";
+import { ProgressProps } from "./types";
 
 export interface CircularProgressProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id">,

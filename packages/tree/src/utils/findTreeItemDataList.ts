@@ -1,4 +1,4 @@
-import { AnyRecord, TreeDataList } from "../types.d";
+import { AnyRecord, TreeDataList } from "../types";
 
 /**
  * Attempts to find the `TreeItemDataList` based on a stack of item indexes by digging down into the

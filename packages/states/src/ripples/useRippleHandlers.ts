@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRefCache } from "@react-md/utils";
 
-import { MergableRippleHandlers, RippleEvent } from "./types.d";
+import { MergableRippleHandlers, RippleEvent } from "./types";
 
 interface Options<E extends HTMLElement> {
   create: (event: RippleEvent<E>) => void;

@@ -1,4 +1,4 @@
-import { TreeDataList } from "../types.d";
+import { TreeDataList } from "../types";
 
 /**
  * A utility function that will find all parent ids for the provided `toMatchIds`. This is generally

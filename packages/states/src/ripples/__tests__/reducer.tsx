@@ -9,7 +9,7 @@ import {
   reducer,
   useRippleTransition,
 } from "../reducer";
-import { RippleEvent, RipplesState } from "../types.d";
+import { RippleEvent, RipplesState } from "../types";
 
 describe("createRippleAction", () => {
   const target = document.createElement("span");

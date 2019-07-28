@@ -9,7 +9,7 @@ import {
 import { useRefCache } from "@react-md/utils";
 
 import { useStatesConfigContext } from "../StatesConfig";
-import { RippleState } from "./types.d";
+import { RippleState } from "./types";
 
 export interface RippleProps {
   className?: string;

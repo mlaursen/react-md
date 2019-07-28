@@ -16,4 +16,4 @@ export { default as useTempValue } from "./useTempValue";
 export { default as useRefCache } from "./useRefCache";
 export { default as usePrevious } from "./usePrevious";
 
-export * from "./types.d";
+export * from "./types";

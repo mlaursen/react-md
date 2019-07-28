@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 import { useRippleTransition } from "./reducer";
 import RippleContainer from "./RippleContainer";
-import { RipplesOptions, MergableRippleHandlers } from "./types.d";
+import { RipplesOptions, MergableRippleHandlers } from "./types";
 import useRippleHandlers from "./useRippleHandlers";
 
 interface ReturnValue<E extends HTMLElement> {

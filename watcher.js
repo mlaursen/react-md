@@ -95,15 +95,6 @@ chokidar
   });
 
 chokidar
-  .watch('packages/*/src/**/*.d.ts', { ignored: IGNORED })
-  .on('add', copyDefinitionFile)
-  .on('change', copyDefinitionFile)
-  .on('ready', () => {
-    console.log('Watching for typescript definition changes...');
-    startLoggingDefs = true;
-  });
-
-chokidar
   .watch(['packages/*/README.md'], { ignored: IGNORED })
   .on('change', () => {
     spawnSync('yarn', ['copy-readmes'], { stdio: 'inherit', cwd: docsRoot });

@@ -1,4 +1,4 @@
-import { TreeDataList } from "../types.d";
+import { TreeDataList } from "../types";
 
 /**
  * An extremely simple util to get all ids from the TreeViewDataList.

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useRefCache } from "@react-md/utils";
 
-import { MergableRippleHandlers } from "./ripples/types.d";
+import { MergableRippleHandlers } from "./ripples/types";
 
 interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
   handlers?: MergableRippleHandlers<E>;

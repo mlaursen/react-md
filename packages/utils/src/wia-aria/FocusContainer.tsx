@@ -8,7 +8,7 @@ import React, {
 } from "react";
 
 import applyRef from "../applyRef";
-import { WithForwardedRef } from "../types.d";
+import { WithForwardedRef } from "../types";
 
 import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
 import useFocusOnMount from "./useFocusOnMount";

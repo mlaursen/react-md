@@ -1,4 +1,4 @@
-import { FlattenedTreeDataList, FlattenedTreeSort } from "../types.d";
+import { FlattenedTreeDataList, FlattenedTreeSort } from "../types";
 
 /**
  * Recursively builds a tree from a flattened data structure. This will either return a

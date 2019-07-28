@@ -120,7 +120,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.d.ts'],
+      files: ['**/types.ts'],
       rules: {
         // some type definition files will only have one export, but shouldn't be default
         'import/prefer-default-export': 0,

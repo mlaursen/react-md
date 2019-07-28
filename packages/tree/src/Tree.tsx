@@ -17,7 +17,7 @@ import { WithForwardedRef } from "@react-md/utils";
 // } from "@react-md/utils";
 
 import TreeItem from "./TreeItem";
-import { TreeDataList, TreeElement, TreeProps } from "./types.d";
+import { TreeDataList, TreeElement, TreeProps } from "./types";
 import findTreeItemElement from "./utils/findTreeItemElement";
 import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 

@@ -14,7 +14,7 @@ import {
   // TreeProps,
   // TreeElement,
   FlattenedTreeDataList,
-} from "./types.d";
+} from "./types";
 import buildTree from "./utils/buildTree";
 // import findTreeItemFromElement from "./utils/findTreeItemFromElement";
 import handleItemExpandedChange from "./utils/handleItemExpandedChange";
