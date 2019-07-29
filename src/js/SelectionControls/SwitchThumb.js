@@ -9,7 +9,7 @@ const DISABLED_INTERACTIONS = ['mouse'];
 
 /**
  * This is the `Thumb` for the switch. The `ink` in the Thumb is only active on touch and keyboard
- * interactions, so the `AccessibleFakeInkButton` does not work for this case.
+ * interactions, so the `AccessibleFakeInkedButton` does not work for this case.
  *
  * This component really just is used for custom inkage.
  */
