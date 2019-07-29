@@ -1,6 +1,6 @@
 {
   "name": "@react-md/card",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "Create interactable cards from the material design specifications.",
   "scripts": {
     "build": "dev-utils build",
@@ -37,12 +37,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/elevation": "^2.0.0-alpha.5",
-    "@react-md/icon": "^2.0.0-alpha.5",
-    "@react-md/states": "^2.0.0-alpha.5",
-    "@react-md/theme": "^2.0.0-alpha.5",
-    "@react-md/typography": "^2.0.0-alpha.5",
-    "@react-md/utils": "^2.0.0-alpha.5",
+    "@react-md/elevation": "^2.0.0-alpha.6",
+    "@react-md/icon": "^2.0.0-alpha.6",
+    "@react-md/states": "^2.0.0-alpha.6",
+    "@react-md/theme": "^2.0.0-alpha.6",
+    "@react-md/typography": "^2.0.0-alpha.6",
+    "@react-md/utils": "^2.0.0-alpha.6",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/tooltip",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "Create accessible tooltips within react-md based on the material design specifications.",
   "scripts": {
     "build": "dev-utils build",
@@ -38,11 +38,11 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/portal": "^2.0.0-alpha.5",
-    "@react-md/theme": "^2.0.0-alpha.5",
-    "@react-md/transition": "^2.0.0-alpha.5",
-    "@react-md/typography": "^2.0.0-alpha.5",
-    "@react-md/utils": "^2.0.0-alpha.5",
+    "@react-md/portal": "^2.0.0-alpha.6",
+    "@react-md/theme": "^2.0.0-alpha.6",
+    "@react-md/transition": "^2.0.0-alpha.6",
+    "@react-md/typography": "^2.0.0-alpha.6",
+    "@react-md/utils": "^2.0.0-alpha.6",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.2.1"
   },
