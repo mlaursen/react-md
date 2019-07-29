@@ -1,6 +1,6 @@
 {
   "name": "@react-md/form",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.9",
   "description": "This package is for creating all the different form input types.",
   "scripts": {
     "build": "dev-utils build",
@@ -43,14 +43,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.0.0-alpha.8",
-    "@react-md/icon": "^2.0.0-alpha.8",
-    "@react-md/progress": "^2.0.0-alpha.8",
-    "@react-md/states": "^2.0.0-alpha.8",
-    "@react-md/theme": "^2.0.0-alpha.8",
-    "@react-md/transition": "^2.0.0-alpha.8",
-    "@react-md/typography": "^2.0.0-alpha.8",
-    "@react-md/utils": "^2.0.0-alpha.8",
+    "@react-md/button": "^2.0.0-alpha.9",
+    "@react-md/icon": "^2.0.0-alpha.9",
+    "@react-md/progress": "^2.0.0-alpha.9",
+    "@react-md/states": "^2.0.0-alpha.9",
+    "@react-md/theme": "^2.0.0-alpha.9",
+    "@react-md/transition": "^2.0.0-alpha.9",
+    "@react-md/typography": "^2.0.0-alpha.9",
+    "@react-md/utils": "^2.0.0-alpha.9",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

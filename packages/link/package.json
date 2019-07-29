@@ -1,6 +1,6 @@
 {
   "name": "@react-md/link",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.9",
   "description": "The base package for including a theme for react-md. This is required by most other packages.",
   "scripts": {
     "build": "dev-utils build",
@@ -37,9 +37,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.0.0-alpha.8",
-    "@react-md/transition": "^2.0.0-alpha.8",
-    "@react-md/typography": "^2.0.0-alpha.8",
+    "@react-md/theme": "^2.0.0-alpha.9",
+    "@react-md/transition": "^2.0.0-alpha.9",
+    "@react-md/typography": "^2.0.0-alpha.9",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
