@@ -1,6 +1,6 @@
 {
   "name": "@react-md/transition",
-  "version": "2.0.0-alpha.7",
+  "version": "2.0.0-alpha.8",
   "description": "A package for working with react-md to use some simple transitions.",
   "scripts": {
     "build": "dev-utils build",
@@ -36,8 +36,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.0.0-alpha.7",
-    "@react-md/utils": "^2.0.0-alpha.7",
+    "@react-md/theme": "^2.0.0-alpha.8",
+    "@react-md/utils": "^2.0.0-alpha.8",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
