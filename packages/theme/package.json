@@ -6,13 +6,10 @@
     "build": "dev-utils build",
     "clean": "dev-utils clean"
   },
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
-  "types": "./types/index.d.ts",
+  "main": "./dist/scssVariables.js",
+  "module": "./dist/scssVariables.js",
+  "types": "./dist/scssVariables.d.ts",
   "files": [
-    "es/*",
-    "lib/*",
-    "types/*",
     "src/*",
     "dist/*"
   ],
