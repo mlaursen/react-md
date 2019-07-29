@@ -1,0 +1,40 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.grid {
+  background-color: $rmd-theme-light-background;
+
+  &--small {
+    .grid__item {
+      min-height: 3rem;
+    }
+  }
+
+  + .grid {
+    margin-top: 1rem;
+  }
+
+  &__item {
+    @include rmd-elevation(2);
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, text-primary-on-background);
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 10rem;
+    text-align: center;
+  }
+}
+
+.dark-theme {
+  .grid {
+    background-color: #121212;
+  }
+
+  .grid__item {
+    background-color: rgba($rmd-white-base, 0.05);
+    color: $rmd-white-base;
+  }
+}

@@ -275,6 +275,198 @@
   }
 }
 
+/// Generates a new grid based on the provided padding, margin, and columns.
+///
+/// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply to the base grid element.
+/// @param {Number} gutter [rmd-grid-cell-margin] - The amount of margin to apply between each cell
+/// within the grid. Unlike flex grids, this will only be applied between cells instead of to the `top`, `right`,
+/// `bottom`, and `left` of each cell so this should _normally_ be doubled compared to the flex grids.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
+/// on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
+/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
+/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
+/// @param {Number} large-desktop-columns [rmd-grid-large-desktop-columns] - The number of columns that should
+/// appear per-row on large desktop screens. If this is not greater than the `$tablet-columns` parameter, it will
+/// not be used.
+@mixin rmd-grid(
+  $padding: $rmd-grid-padding,
+  $gutter: $rmd-grid-cell-margin,
+  $phone-columns: $rmd-grid-phone-columns,
+  $tablet-columns: $rmd-grid-tablet-columns,
+  $desktop-columns: $rmd-grid-desktop-columns,
+  $large-desktop-columns: $rmd-grid-large-desktop-columns
+) {
+  @if $tablet-columns > $phone-columns {
+    @include rmd-utils-tablet-media {
+      #{$rmd-grid-columns-var}: #{$tablet-columns};
+    }
+  }
+
+  @if $desktop-columns > $tablet-columns {
+    @include rmd-utils-desktop-media {
+      #{$rmd-grid-columns-var}: #{$desktop-columns};
+    }
+  }
+
+  @if $large-desktop-columns > $desktop-columns {
+    @include rmd-utils-large-desktop-media {
+      #{$rmd-grid-columns-var}: #{$large-desktop-columns};
+    }
+  }
+
+  display: grid;
+  grid-column-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
+  grid-row-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
+  grid-template-columns: repeat(var(#{$rmd-grid-columns-var}, #{$phone-columns}), 1fr);
+  padding: $padding;
+
+  > * {
+    // this allows the children to shrink if needed so that they don't overflow
+    // the entire grid
+    min-width: 0;
+  }
+}
+
+/// This mixin is just a nice way to quickly make a cell span the entire width of the grid.
+///
+/// Note: if you set the number of columns for phone or tablet to `1`, you'll need to also
+/// wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media`
+/// mixins respectively.
+@mixin rmd-grid-cell-full {
+  grid-column: 1 / span var(#{$rmd-grid-columns-var}, $rmd-grid-phone-columns);
+}
+
+/// A mixin that allows you to override the size of a cell within the `Grid` component manually.
+/// This is useful if you want to specify sizing without using the `GridCell` component wrapper.
+///
+/// @param {Number} size - The number of columns the element should span. This should normally
+/// be a number greater than 1 since using 1 is the default cell size.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
+/// on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
+/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
+/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
+@mixin rmd-grid-cell-size(
+  $size,
+  $phone-columns: $rmd-grid-phone-columns,
+  $tablet-columns: $rmd-grid-tablet-columns,
+  $desktop-columns: $rmd-grid-desktop-columns
+) {
+  @if $size >= $desktop-columns {
+    @include rmd-utils-desktop-media {
+      // I'll need to make a desktop-only media if people actually define more columns for
+      // large desktops
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  @if $size >= $tablet-columns {
+    @include rmd-utils-tablet-only-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  @if $size >= $phone-columns {
+    @include rmd-utils-phone-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  grid-column-end: span $size;
+}
+
+/// Creates the styles for all the cell column spans and "fixes" for smaller media types if the
+/// media types doesn't support the same number of columns.
+/// @access private
+@mixin rmd-grid-cell {
+  @for $i from 2 through $rmd-grid-large-desktop-columns {
+    &--#{$i} {
+      @include rmd-grid-cell-size($i);
+    }
+  }
+}
+
+/// A simple mixin that will allow you to add the current grid list cell size to any property.
+///
+/// @param {String} property - The css property to apply the size to.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This
+/// is really just a fallback value if the `--rmd-cell-size` hasn't been defined yet by the `GridList`
+/// component.
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin that should be placed
+/// between each cell. This will be used with the current `--rmd-cell-size` to calculate the
+/// correct height and width. This value **will be multiplied by 2 in the calculation**.
+@mixin rmd-grid-list-cell-size(
+  $property,
+  $max-size: $rmd-grid-list-cell-max-size,
+  $margin: $rmd-grid-list-cell-margin
+) {
+  $size: var(#{$rmd-grid-cell-size-var}, #{$max-size});
+  @if $margin and $margin > 0 {
+    $size: calc(#{$size} - calc(var(#{$rmd-grid-cell-margin-var}, #{$margin}) * 2));
+  }
+
+  #{$property}: $size;
+}
+
+/// Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component
+/// for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.
+///
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin to apply to each cell for top, right, bottom
+/// and left.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This is really just a
+/// fallback if the `GridList` component hasn't set the `--rmd-cell-size` variable yet.
+/// @param {Boolean} include-height [true] - Boolean if the cell's height should be restricted to the current cell size
+/// as well so it can be perfectly square.
+@mixin rmd-grid-list-cell(
+  $margin: $rmd-grid-list-cell-margin,
+  $max-size: $rmd-grid-list-cell-max-size,
+  $include-height: true
+) {
+  @if $include-height {
+    @include rmd-grid-list-cell-size(height, $max-size, $margin);
+  }
+  @include rmd-grid-list-cell-size(width, $max-size, $margin);
+
+  margin: var(#{$rmd-grid-cell-margin-var}, #{$margin});
+}
+
+/// Creates the styles for the `GridList` component
+/// @access private
+@mixin rmd-grid-list($padding: $rmd-grid-list-padding, $margin: 0 auto) {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  margin: $margin;
+  padding: $padding;
+}
+
+/// Generates all the styles for the grid systems in react-md.
+/// @access private
+@mixin react-md-utils-grid {
+  .rmd-grid {
+    @include rmd-grid;
+
+    &__cell {
+      @include rmd-grid-cell;
+    }
+  }
+
+  .rmd-grid-list {
+    @include rmd-grid-list;
+
+    &__cell {
+      @include rmd-grid-list-cell($include-height: false);
+
+      &--square {
+        @include rmd-grid-list-cell-size(height);
+      }
+    }
+  }
+}
+
 /// This is a small utility function that helps set up your react-md app.
 ///
 /// This will:
@@ -316,6 +508,9 @@
 /// to make sure to correctly import that package before calling this
 /// function.
 @mixin react-md-utils {
+  @include rmd-utils-base;
+  @include react-md-utils-grid;
+
   @if mixin-exists(react-md-alert) {
     @include react-md-alert;
   }
@@ -417,6 +612,4 @@
   @if mixin-exists(react-md-typography) {
     @include react-md-typography;
   }
-
-  @include rmd-utils-base;
 }

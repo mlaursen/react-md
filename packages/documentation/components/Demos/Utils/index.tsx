@@ -14,6 +14,12 @@ import resizeListenerExample from "./ResizeListenerExample.md";
 import ResizeObserverExample from "./ResizeObserverExample";
 import resizeObserverExample from "./ResizeObserverExample.md";
 
+import MaterialGridExample from "./MaterialGridExample";
+import materialGridExample from "./MaterialGridExample.md";
+
+import SimpleGridList from "./SimpleGridList";
+import simpleGridList from "./SimpleGridList.md";
+
 const demos = [
   {
     name: "App Size Listener Example",
@@ -34,6 +40,16 @@ const demos = [
     name: "Resize Observer Example",
     description: resizeObserverExample,
     children: <ResizeObserverExample />,
+  },
+  {
+    name: "Material Grid Example",
+    description: materialGridExample,
+    children: <MaterialGridExample />,
+  },
+  {
+    name: "Simple Grid List",
+    description: simpleGridList,
+    children: <SimpleGridList />,
   },
 ];
 

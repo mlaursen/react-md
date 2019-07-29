@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Divider } from "@react-md/divider";
 import {
   Form,
   SupportedInputTypes,
@@ -11,7 +12,6 @@ import {
 } from "@react-md/form";
 
 import "./TextFieldTypes.scss";
-import { Divider } from "@react-md/divider";
 
 const types: SupportedInputTypes[] = [
   "password",

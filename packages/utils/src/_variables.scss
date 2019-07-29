@@ -41,3 +41,69 @@ $rmd-utils-desktop-min-width: 64.0625em !default;
 /// The min width for a large desktop screen.
 /// @type Number
 $rmd-utils-large-desktop-min-width: 80em !default;
+
+/// The css variable that is used to track how many columns there are within the `Grid` component.
+/// @type String
+$rmd-grid-columns-var: --rmd-grid-cols;
+
+/// The css variable that is used to apply a gutter between each cell in the `Grid` component.
+/// @type String
+$rmd-grid-gutter-var: --rmd-grid-gutter;
+
+/// The css variable that is used to apply margin to cells within the grid components.
+/// @type String
+$rmd-grid-cell-margin-var: --rmd-cell-margin;
+
+/// The css variable that is used to apply size to cells within the `GridList` component.
+/// @type String
+$rmd-grid-cell-size-var: --rmd-cell-size;
+
+/// The default amount of padding to apply to the `Grid` component. This is a bit different than the
+/// flex grid since the cells within this grid will not have outer margin.
+/// @type Number
+$rmd-grid-padding: 1rem !default;
+
+/// The default amount of margin to apply between each cell within the `Grid` component.
+/// @type Number
+$rmd-grid-cell-margin: 1rem !default;
+
+/// The material design grid system is a bit weird and does a 4 -> 8 -> 12 column layout for
+/// phone -> tablet -> desktop. This is really nice when your grid only uses even numbers, but
+/// the second you add an odd number in there, it breaks down and becomes confusing.
+///
+/// This variable is a quick way to opt-out of this grid system and have a static number of columns
+/// for each media type.
+/// @type Number
+$rmd-grid-columns: null !default;
+
+/// The default number of columns to render on mobile devices in the `Grid` component.
+/// @type Number
+$rmd-grid-phone-columns: if($rmd-grid-columns, $rmd-grid-columns, 4) !default;
+
+/// The default number of columns to render on tablet devices in the `Grid` component.
+/// @type Number
+$rmd-grid-tablet-columns: if($rmd-grid-columns, $rmd-grid-columns, 8) !default;
+
+/// The default number of columns to render on desktop screens in the `Grid` component.
+/// @type Number
+$rmd-grid-desktop-columns: if($rmd-grid-columns, $rmd-grid-columns, 12) !default;
+
+/// The default number of columns to render on large desktop screens in the `Grid` component.
+/// @type Number
+$rmd-grid-large-desktop-columns: $rmd-grid-desktop-columns !default;
+
+/// The default number of columns to render on mobile devices in the `Grid` component.
+/// @type Number
+$rmd-grid-phone-columns: 4 !default;
+
+/// The default amount of padding to apply to the `GridList` component.
+/// @type Number
+$rmd-grid-list-padding: 0.5rem !default;
+
+/// The default amount of margin to apply to each cell within the `GridList` component.
+/// @type Number
+$rmd-grid-list-cell-margin: 0.5rem;
+
+/// The default max size that each cell can be within the `GridList` component.
+/// @type NUmber
+$rmd-grid-list-cell-max-size: 9.375rem !default;
