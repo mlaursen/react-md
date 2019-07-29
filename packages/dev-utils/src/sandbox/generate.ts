@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import log from "loglevel";
 
-import { documentationRoot, projectRoot, scssDist } from "../paths";
+import { documentationRoot, projectRoot, dist } from "../paths";
 import { format, glob, list } from "../utils";
 
 import {
@@ -111,7 +111,7 @@ function createDemoStyles(dependencies: string[]): string {
     ...ALWAYS_REQUIRED_DEPENDENCIES.filter(
       name => !dependencies.includes(name)
     ),
-  ].map(name => `@import '~${name}/${scssDist}/mixins';`);
+  ].map(name => `@import '~${name}/${dist}/mixins';`);
   imports.sort();
 
   return `@import 'variables';
