@@ -62,7 +62,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     MenuItem.propTypes = {
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
       className: PropTypes.string,
       role: PropTypes.string,
       tabIndex: PropTypes.number,
