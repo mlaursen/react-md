@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { useRefCache } from "@react-md/utils";
 
 import { MergableRippleHandlers, RippleEvent } from "./types";
@@ -31,6 +31,11 @@ export default function useRippleHandlers<E extends HTMLElement>({
 }: Options<E>): MergableRippleHandlers<E> {
   const disabled = propDisabled || disableRipple;
   const ref = useRefCache({ ...handlers, disableProgrammaticRipple });
+
+  // some OS/browser don't actually focus buttons/elements that are focusable after a click
+  // event which causes a double ripple effect. This ref is used to disable the programmatic
+  // ripple in these cases.
+  const disableProgrammatic = useRef(false);
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<E>) => {
@@ -67,6 +72,7 @@ export default function useRippleHandlers<E extends HTMLElement>({
       }
 
       create(event);
+      disableProgrammatic.current = true;
     },
     // disabled since useRefCache
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,8 +157,10 @@ export default function useRippleHandlers<E extends HTMLElement>({
       // trigger a ripple for it.
       if (
         disableProgrammaticRipple ||
-        document.activeElement === event.currentTarget
+        document.activeElement === event.currentTarget ||
+        disableProgrammatic.current
       ) {
+        disableProgrammatic.current = false;
         return;
       }
 
