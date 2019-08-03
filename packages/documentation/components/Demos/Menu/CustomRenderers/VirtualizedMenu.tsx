@@ -3,7 +3,7 @@ import { List, ListRowRenderer } from "react-virtualized";
 import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import scssVariables from "@react-md/list/dist/scssVariables";
 import { Text } from "@react-md/typography";
-import { unitToNumber, useAppSize } from "@react-md/utils";
+import { unitToNumber, useAppSizeContext } from "@react-md/utils";
 
 import Code from "components/Code/Code";
 
@@ -18,7 +18,7 @@ interface Item {
 }
 
 const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
-  const { isDesktop } = useAppSize();
+  const { isDesktop } = useAppSizeContext();
   const [value, setValue] = useState("None");
 
   const rowRenderer: ListRowRenderer = ({ key, index, style }) => (
