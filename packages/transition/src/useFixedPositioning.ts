@@ -96,6 +96,7 @@ function getFixedTo(fixedTo: FixedTo): HTMLElement | null {
 
 interface ReturnValue extends Required<TransitionHooks> {
   style?: CSSProperties;
+  updateStyle: () => void;
 }
 
 /**
@@ -231,6 +232,7 @@ export default function useFixedPositioning({
 
   return {
     style,
+    updateStyle,
     onEnter: handleEnter,
     onEntering: handleEntering,
     onEntered: handleEntered,

@@ -99,6 +99,13 @@ export interface FixedPositionOptions {
   disableSwapping?: boolean;
 
   /**
+   * Boolean if the fixed element should be updated to have the same width as the container
+   * element. This is only valid when the horizontal anchor is set to `"center"` and will
+   * throw an error for all the other types.
+   */
+  equalWidth?: boolean;
+
+  /**
    * Boolean if the style object should include the `transformOrigin` value based on the x and y
    * positions.
    */
@@ -489,12 +496,22 @@ export default function getFixedPosition({
   yMargin = 0,
   disableSwapping = false,
   transformOrigin = false,
+  equalWidth = false,
 }: FixedPositionOptions): FixedPositionResult {
   container = findSizingContainer(container);
   const anchor = {
     x: propAnchor.x || "center",
     y: propAnchor.y || "below",
   };
+
+  if (process.env.NODE_ENV !== "production") {
+    if (equalWidth && anchor.x !== "center") {
+      throw new Error(
+        'Unable to use equal width when the horizontal anchor is not `"center"`.'
+      );
+    }
+  }
+
   if (!container) {
     return {
       actualX: anchor.x,
@@ -528,7 +545,7 @@ export default function getFixedPosition({
   let right: number | undefined;
   let bottom: number | undefined;
 
-  const adjustConfig = {
+  const adjustConfig: AdjustPositionOptions = {
     containerLeft: containerRect.left,
     containerTop: containerRect.top,
     containerWidth,
@@ -543,7 +560,11 @@ export default function getFixedPosition({
     vhMargin,
     disableSwapping,
   };
-  if (width > maxWidth) {
+
+  if (equalWidth) {
+    left = containerRect.left + xMargin;
+    right = vw - containerRect.right - xMargin;
+  } else if (width > maxWidth) {
     left = vwMargin;
     right = vwMargin;
     actualX = "center";

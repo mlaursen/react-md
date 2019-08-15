@@ -168,12 +168,12 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
     portalIntoId,
     mountOnEnter,
     unmountOnExit,
-    onEnter,
-    onEntering,
-    onEntered,
+    onEnter: propOnEnter,
+    onEntering: propOnEntering,
+    onEntered: propOnEntered,
     onExit,
     onExiting,
-    onExited,
+    onExited: propOnExited,
     timeout,
     classNames,
     anchor: propAnchor,
@@ -203,16 +203,22 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
     disableCloseOnScroll,
   });
 
-  const { style, ...transitionHandlers } = useFixedPositioning({
+  const {
+    style,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExited,
+  } = useFixedPositioning({
     ...positionOptions,
     fixedTo: () => document.getElementById(controlId),
     onScroll,
     onResize: disableCloseOnResize ? undefined : onRequestClose,
     anchor,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
+    onEnter: propOnEnter,
+    onEntering: propOnEntering,
+    onEntered: propOnEntered,
+    onExited: propOnExited,
     transformOrigin: true,
   });
 
@@ -228,9 +234,12 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
         in={visible}
         classNames={classNames}
         timeout={timeout}
-        {...transitionHandlers}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
         onExit={onExit}
         onExiting={onExiting}
+        onExited={onExited}
         mountOnEnter={mountOnEnter}
         unmountOnExit={unmountOnExit}
       >
