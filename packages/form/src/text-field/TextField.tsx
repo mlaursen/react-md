@@ -5,6 +5,7 @@ import React, {
   InputHTMLAttributes,
   ReactNode,
   Ref,
+  HTMLAttributes,
 } from "react";
 import cn from "classnames";
 import { bem, Omit, WithForwardedRef } from "@react-md/utils";
@@ -101,6 +102,13 @@ export interface TextFieldProps
    * forwarded on to the `input` element.
    */
   containerRef?: Ref<HTMLDivElement>;
+
+  /**
+   * Any additional html attributes that should be applied to the main container div. This is probably only
+   * going to be used internally so that additional accessibility can be added to text fields for more complex
+   * widgets.
+   */
+  containerProps?: Omit<HTMLAttributes<HTMLDivElement>, "style" | "className">;
 }
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
@@ -152,6 +160,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     leftChildren,
     rightChildren,
     underlineDirection,
+    containerProps,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, value, defaultValue, disabled, type } = props;
@@ -169,6 +178,7 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
 
   return (
     <TextFieldContainer
+      {...containerProps}
       style={style}
       className={className}
       ref={containerRef}
