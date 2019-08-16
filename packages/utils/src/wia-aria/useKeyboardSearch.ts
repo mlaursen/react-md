@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 
+import extractTextContent from "../search/extractTextContent";
+import findMatchIndex from "../search/findMatchIndex";
 import useTempValue from "../useTempValue";
 import useRefCache from "../useRefCache";
 
 import getFocusableElements from "./getFocusableElements";
-import extractTextContent from "./extractTextContent";
-import findMatchIndex from "./findMatchIndex";
 
 export interface ProgrammaticFocusChange {
   /**
