@@ -93,12 +93,6 @@ export interface FixedPositionOptions {
   yMargin?: number;
 
   /**
-   * Boolean if the auto-swapping behavior should be disabled. It's normally recommended
-   * to not disable this since it'll allow elements to appear off screen.
-   */
-  disableSwapping?: boolean;
-
-  /**
    * Boolean if the fixed element should be updated to have the same width as the container
    * element. This is only valid when the horizontal anchor is set to `"center"` and will
    * throw an error for all the other types.
@@ -110,6 +104,19 @@ export interface FixedPositionOptions {
    * positions.
    */
   transformOrigin?: boolean;
+
+  /**
+   * Boolean if the auto-swapping behavior should be disabled. It's normally recommended
+   * to not disable this since it'll allow elements to appear off screen.
+   */
+  disableSwapping?: boolean;
+
+  /**
+   * Boolean if the fixed positioning should no longer prevent the fixed element to be positioned
+   * within the viewport. This is nice if you want to allow for full page scrolling instead and
+   * manually set a max-height on your element.
+   */
+  disableViewHeightBounds?: boolean;
 }
 
 function getTransformOrigin(anchor: PositionAnchor): string {
@@ -212,6 +219,7 @@ interface AdjustPositionOptions {
   vwMargin: number;
   vhMargin: number;
   disableSwapping: boolean;
+  disableViewHeightBounds: boolean;
 }
 
 interface HorizontalUpdate {
@@ -349,10 +357,11 @@ function fixAbovePosition({
   vh,
   vhMargin,
   disableSwapping,
+  disableViewHeightBounds,
 }: AdjustPositionOptions): VerticalUpdate {
   let top = containerTop - elementHeight - yMargin;
   let actualY: VerticalPosition = "above";
-  if (top < vhMargin) {
+  if (!disableViewHeightBounds && top < vhMargin) {
     const nextTop = containerTop + containerHeight + yMargin;
     if (disableSwapping || nextTop + elementHeight > vh - vhMargin) {
       top = vhMargin;
@@ -373,11 +382,12 @@ function fixBelowPosition({
   vh,
   vhMargin,
   disableSwapping,
+  disableViewHeightBounds,
 }: AdjustPositionOptions): VerticalUpdate {
   let top = containerTop + containerHeight + yMargin;
   let actualY: VerticalPosition = "below";
   const maxTop = vh - vhMargin;
-  if (top + elementHeight > maxTop) {
+  if (!disableViewHeightBounds && top + elementHeight > maxTop) {
     const nextTop = containerTop - elementHeight - yMargin;
     if (disableSwapping || nextTop < vhMargin) {
       top = vhMargin;
@@ -398,11 +408,12 @@ function fixTopPosition({
   yMargin,
   vhMargin,
   disableSwapping,
+  disableViewHeightBounds,
 }: AdjustPositionOptions): VerticalUpdate {
   let actualY: VerticalPosition = "top";
   let top = containerTop + yMargin;
   const screenBottom = vh - vhMargin;
-  if (top + elementHeight > screenBottom) {
+  if (!disableViewHeightBounds && top + elementHeight > screenBottom) {
     const nextTop = containerTop + containerHeight - elementHeight - yMargin;
     if (disableSwapping || nextTop < vhMargin) {
       top = screenBottom - elementHeight;
@@ -423,11 +434,12 @@ function fixBottomPosition({
   yMargin,
   vhMargin,
   disableSwapping,
+  disableViewHeightBounds,
 }: AdjustPositionOptions): VerticalUpdate {
   let actualY: VerticalPosition = "bottom";
   let top = containerTop + containerHeight - elementHeight - yMargin;
   const screenBottom = vh - vhMargin;
-  if (top + elementHeight > screenBottom) {
+  if (!disableViewHeightBounds && top + elementHeight > screenBottom) {
     if (disableSwapping || containerTop < vhMargin) {
       top = vhMargin;
     } else {
@@ -445,9 +457,14 @@ function fixVerticalCenter({
   elementHeight,
   vh,
   vhMargin,
+  disableViewHeightBounds,
 }: AdjustPositionOptions): number {
   const halvedHeight = elementHeight / 2;
   let top = containerTop + containerHeight / 2 - halvedHeight;
+  if (disableViewHeightBounds) {
+    return top;
+  }
+
   const screenBottom = vh - vhMargin;
   if (top + halvedHeight > screenBottom) {
     top = screenBottom - halvedHeight;
@@ -494,9 +511,10 @@ export default function getFixedPosition({
   vhMargin = 16,
   xMargin = 0,
   yMargin = 0,
-  disableSwapping = false,
-  transformOrigin = false,
   equalWidth = false,
+  transformOrigin = false,
+  disableSwapping = false,
+  disableViewHeightBounds = false,
 }: FixedPositionOptions): FixedPositionResult {
   container = findSizingContainer(container);
   const anchor = {
@@ -559,6 +577,7 @@ export default function getFixedPosition({
     vwMargin,
     vhMargin,
     disableSwapping,
+    disableViewHeightBounds,
   };
 
   if (equalWidth) {
@@ -589,7 +608,7 @@ export default function getFixedPosition({
     }
   }
 
-  if (height > maxHeight) {
+  if (!disableViewHeightBounds && height > maxHeight) {
     top = vhMargin;
     bottom = vhMargin;
     actualY = "center";
@@ -622,7 +641,7 @@ export default function getFixedPosition({
       top,
       right,
       bottom,
-      position: "fixed",
+      position: disableViewHeightBounds ? "absolute" : "fixed",
       transformOrigin: transformOrigin
         ? getTransformOrigin({ x: actualX, y: actualY })
         : undefined,
