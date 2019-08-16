@@ -39,7 +39,7 @@ export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   enabled = true,
   onScroll,
   element,
-  options = isSupported ? { passive: true, capture: true } : true,
+  options = isSupported ? { passive: true } : false,
 }: Options<E>): void {
   const callback = useRefCache(onScroll);
 
