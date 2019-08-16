@@ -106,6 +106,13 @@ export interface FixedPositionOptions {
   transformOrigin?: boolean;
 
   /**
+   * Boolean if the fixed element should no longer be able to overlap the container element. This
+   * is useful for autocomplete menus or other components that retain focus on the container
+   * element while the fixed element becomes visible.
+   */
+  preventOverlap?: boolean;
+
+  /**
    * Boolean if the auto-swapping behavior should be disabled. It's normally recommended
    * to not disable this since it'll allow elements to appear off screen.
    */
@@ -218,6 +225,7 @@ interface AdjustPositionOptions {
   vh: number;
   vwMargin: number;
   vhMargin: number;
+  preventOverlap: boolean;
   disableSwapping: boolean;
   disableViewHeightBounds: boolean;
 }
@@ -229,6 +237,7 @@ interface HorizontalUpdate {
 
 interface VerticalUpdate {
   top: number;
+  bottom?: number;
   actualY: VerticalPosition;
 }
 
@@ -381,23 +390,42 @@ function fixBelowPosition({
   yMargin,
   vh,
   vhMargin,
+  preventOverlap,
   disableSwapping,
   disableViewHeightBounds,
 }: AdjustPositionOptions): VerticalUpdate {
   let top = containerTop + containerHeight + yMargin;
   let actualY: VerticalPosition = "below";
-  const maxTop = vh - vhMargin;
-  if (!disableViewHeightBounds && top + elementHeight > maxTop) {
+  const viewportBottom = vh - vhMargin;
+  const isTooTall = top + elementHeight > viewportBottom;
+  if (disableViewHeightBounds || !isTooTall) {
+    // since this is below, we know that the fixed element can never overlap the container
+    // element since it'll never be swapped to above
+    return { actualY, top };
+  }
+
+  let bottom: number | undefined;
+  if (preventOverlap) {
+    const remainingTop = containerTop - yMargin;
+    if (disableSwapping || remainingTop > top) {
+      // less space above or not allowed to swap, just span to the end of the viewport
+      actualY = "above";
+      top = vhMargin;
+      bottom = remainingTop;
+    } else {
+      bottom = vhMargin;
+    }
+  } else {
     const nextTop = containerTop - elementHeight - yMargin;
     if (disableSwapping || nextTop < vhMargin) {
       top = vhMargin;
     } else {
-      top = nextTop;
       actualY = "above";
+      top = nextTop;
     }
   }
 
-  return { actualY, top };
+  return { actualY, top, bottom };
 }
 
 function fixTopPosition({
@@ -512,6 +540,7 @@ export default function getFixedPosition({
   xMargin = 0,
   yMargin = 0,
   equalWidth = false,
+  preventOverlap = false,
   transformOrigin = false,
   disableSwapping = false,
   disableViewHeightBounds = false,
@@ -576,6 +605,7 @@ export default function getFixedPosition({
     vh,
     vwMargin,
     vhMargin,
+    preventOverlap,
     disableSwapping,
     disableViewHeightBounds,
   };
@@ -608,7 +638,7 @@ export default function getFixedPosition({
     }
   }
 
-  if (!disableViewHeightBounds && height > maxHeight) {
+  if (!disableViewHeightBounds && !preventOverlap && height > maxHeight) {
     top = vhMargin;
     bottom = vhMargin;
     actualY = "center";
@@ -618,7 +648,7 @@ export default function getFixedPosition({
         ({ actualY, top } = fixAbovePosition(adjustConfig));
         break;
       case "below":
-        ({ actualY, top } = fixBelowPosition(adjustConfig));
+        ({ actualY, top, bottom } = fixBelowPosition(adjustConfig));
         break;
       case "top":
         ({ actualY, top } = fixTopPosition(adjustConfig));
