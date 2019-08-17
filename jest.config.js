@@ -17,4 +17,9 @@ module.exports = {
       tsConfig: './tsconfig.test.json',
     },
   },
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    ...packages.map(name => `<rootDir>/packages/${name}/es`),
+    ...packages.map(name => `<rootDir>/packages/${name}/lib`),
+  ],
 };
