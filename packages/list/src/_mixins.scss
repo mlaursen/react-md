@@ -169,6 +169,8 @@
 
     display: block;
     flex-grow: 1;
+    // this is so it overlays the background colors from the interaction states
+    z-index: 1;
 
     &--secondary {
       @include rmd-theme(color, text-secondary-on-background);
