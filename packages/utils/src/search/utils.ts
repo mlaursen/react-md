@@ -54,6 +54,18 @@ export function getItemValue(item: unknown, valueKey = "value"): string {
   }
 }
 
+/**
+ * A function that will get a string value from each item. The default implementation
+ * will:
+ * - return a number as a string
+ * - return a string as itself
+ * - return the result of item() if it is a function (this will also be used if the `valueKey`
+ *   on an object is a function).
+ * - return item[valueKey] if it's an object (this uses typeof item === "object")
+ * - return the empty string for all other data types
+ */
+export type GetItemValue<T = unknown> = (item: T, valueKey: string) => string;
+
 export interface BaseSearchOptions<T = unknown> {
   /**
    * The key to use to get a value string if the item is an object.
@@ -70,7 +82,7 @@ export interface BaseSearchOptions<T = unknown> {
    * - return item[valueKey] if it's an object (this uses typeof item === "object")
    * - return the empty string for all other data types
    */
-  getItemValue?: (item: T, valueKey: string) => string;
+  getItemValue?: GetItemValue<T>;
 }
 
 export interface SearchOptions<T = unknown> extends BaseSearchOptions<T> {
