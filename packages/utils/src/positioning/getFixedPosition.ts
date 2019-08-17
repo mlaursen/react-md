@@ -1,535 +1,41 @@
+import createHorizontalPosition from "./createHorizontalPosition";
+import createVerticalPosition from "./createVerticalPosition";
 import findSizingContainer from "./findSizingContainer";
-import getElementRect, { Coords } from "./getElementRect";
+import getElementRect from "./getElementRect";
+import getTransformOrigin from "./getTransformOrigin";
 import getViewportSize from "./getViewportSize";
+import { FixedPosition, FixedPositionOptions } from "./types";
 
 /**
- * Above:
- * - the container top is in-line with the bottom of the element.
- * Below:
- * - the container bottom is in-line with the top of the element
- * Center:
- * - the container center is in-line with the top of the element
- * Top:
- * - the container top is in-line with the top of the element
- * Bottom:
- * - the container bottom is in-line with the bottom of the element
- */
-export type VerticalPosition = "above" | "below" | "center" | "top" | "bottom";
-
-/**
- * Left:
- * - the container left is in-line with the right of the element
- * Right:
- * - the container right is in-line with the left of the element
- * Center:
- * - the container's horizontal center point will be aligned with the
- *   element's horizontal center point
- * Inner Left:
- * - the container's left is in-line with the left of the element
- * Inner Right:
- * - the container's right is in-line with the right of the element
- */
-export type HorizontalPosition =
-  | "left"
-  | "right"
-  | "center"
-  | "inner-left"
-  | "inner-right";
-
-/**
- * An object containing the x and y positions to anchor a fixed element to
- * another container element.
- */
-export interface PositionAnchor {
-  x: HorizontalPosition;
-  y: VerticalPosition;
-}
-
-/**
- * A "simple" version of all the positioning options. These are generally used
- * across all of react-md as it'll use the "center" version of the opposite type
- * when creating a fixed position.
- */
-export type SimplePosition = "above" | "below" | "left" | "right";
-
-export interface FixedPositionOptions {
-  /**
-   * The container element that the `element` should be fixed to.
-   */
-  container: HTMLElement | null;
-
-  /**
-   * The element that is fixed to a `container` element.
-   */
-  element: HTMLElement | null;
-
-  /**
-   * The configuration to anchor the fixed element to the container element.
-   */
-  anchor?: Partial<PositionAnchor>;
-
-  /**
-   * The viewwidth margin to apply so that the element doesn't need to be directly
-   * on the screen edge.
-   */
-  vwMargin?: number;
-
-  /**
-   * The viewwidth margin to apply so that the element doesn't need to be directly
-   * on the screen edge.
-   */
-  vhMargin?: number;
-
-  /**
-   * The container width margin to apply so that the element doesn't need to be directly
-   * on the container's edge.
-   */
-  xMargin?: number;
-
-  /**
-   * The container height margin to apply so that the element doesn't need to be directly
-   * on the container's edge
-   */
-  yMargin?: number;
-
-  /**
-   * Boolean if the fixed element should be updated to have the same width as the container
-   * element. This is only valid when the horizontal anchor is set to `"center"` and will
-   * throw an error for all the other types.
-   */
-  equalWidth?: boolean;
-
-  /**
-   * Boolean if the style object should include the `transformOrigin` value based on the x and y
-   * positions.
-   */
-  transformOrigin?: boolean;
-
-  /**
-   * Boolean if the fixed element should no longer be able to overlap the container element. This
-   * is useful for autocomplete menus or other components that retain focus on the container
-   * element while the fixed element becomes visible.
-   */
-  preventOverlap?: boolean;
-
-  /**
-   * Boolean if the auto-swapping behavior should be disabled. It's normally recommended
-   * to not disable this since it'll allow elements to appear off screen.
-   */
-  disableSwapping?: boolean;
-
-  /**
-   * Boolean if the fixed positioning should no longer prevent the fixed element to be positioned
-   * within the viewport. This is nice if you want to allow for full page scrolling instead and
-   * manually set a max-height on your element.
-   */
-  disableViewHeightBounds?: boolean;
-}
-
-function getTransformOrigin(anchor: PositionAnchor): string {
-  let x = "0";
-  switch (anchor.x) {
-    case "right":
-    case "inner-left":
-      x = "0";
-      break;
-    case "center":
-      x = "50%";
-      break;
-    case "left":
-    case "inner-right":
-      x = "100%";
-      break;
-    default:
-      x = "0";
-  }
-
-  let y = "0";
-  switch (anchor.y) {
-    case "above":
-    case "bottom":
-      y = "100%";
-      break;
-    case "center":
-      y = "50%";
-      break;
-    case "below":
-    case "top":
-      y = "0";
-      break;
-    default:
-      y = "0";
-  }
-
-  return `${x} ${y}`;
-}
-
-export interface FixedPositionResult {
-  actualX: HorizontalPosition;
-  actualY: VerticalPosition;
-  style?: Coords & {
-    position: string;
-    transformOrigin?: string;
-  };
-}
-
-function createStyleWithoutElement(
-  containerRect: ClientRect | DOMRect,
-  anchor: PositionAnchor,
-  transformOrigin: boolean
-): FixedPositionResult {
-  const { x, y } = anchor;
-  const {
-    height,
-    width,
-    left: containerLeft,
-    top: containerTop,
-  } = containerRect;
-
-  let left = containerLeft;
-  let top = containerTop;
-  if (x === "right" || x === "inner-right") {
-    left += width;
-  } else if (x === "center") {
-    left += width / 2;
-  }
-
-  if (y === "below" || y === "bottom") {
-    top += height;
-  } else if (y === "center") {
-    top += height / 2;
-  }
-
-  return {
-    actualX: x,
-    actualY: y,
-    style: {
-      left,
-      top,
-      position: "fixed",
-      transformOrigin: transformOrigin ? getTransformOrigin(anchor) : undefined,
-    },
-  };
-}
-
-interface AdjustPositionOptions {
-  containerLeft: number;
-  containerTop: number;
-  containerWidth: number;
-  containerHeight: number;
-  elementWidth: number;
-  elementHeight: number;
-  xMargin: number;
-  yMargin: number;
-  vw: number;
-  vh: number;
-  vwMargin: number;
-  vhMargin: number;
-  preventOverlap: boolean;
-  disableSwapping: boolean;
-  disableViewHeightBounds: boolean;
-}
-
-interface HorizontalUpdate {
-  left: number;
-  actualX: HorizontalPosition;
-}
-
-interface VerticalUpdate {
-  top: number;
-  bottom?: number;
-  actualY: VerticalPosition;
-}
-
-/**
- * Tries to fix the "left" horizontal positoining by ensuring it can be within the viewport
- * and tries swapping sides if possible. This is basically the inverse of `fixRightPosition`
- */
-function fixLeftPosition({
-  containerLeft,
-  containerWidth,
-  elementWidth,
-  xMargin,
-  vw,
-  vwMargin,
-  disableSwapping,
-}: AdjustPositionOptions): HorizontalUpdate {
-  let left = containerLeft - elementWidth - xMargin;
-  let actualX: HorizontalPosition = "left";
-  if (left < vwMargin) {
-    const nextLeft = containerLeft + containerWidth + xMargin;
-    if (disableSwapping || nextLeft + elementWidth > vw - vwMargin) {
-      left = vwMargin;
-    } else {
-      left = nextLeft;
-      actualX = "right";
-    }
-  }
-
-  return { left, actualX };
-}
-
-function fixRightPosition({
-  containerLeft,
-  containerWidth,
-  elementWidth,
-  xMargin,
-  vw,
-  vwMargin,
-  disableSwapping,
-}: AdjustPositionOptions): HorizontalUpdate {
-  let actualX: HorizontalPosition = "right";
-  let left = containerLeft + containerWidth + xMargin;
-  const screenRight = vw - vwMargin;
-  if (left + elementWidth > screenRight) {
-    const nextLeft = containerLeft - containerWidth - xMargin;
-    if (disableSwapping || nextLeft < vwMargin) {
-      left = screenRight - elementWidth;
-    } else {
-      actualX = "left";
-      left = nextLeft;
-    }
-  }
-
-  return { left, actualX };
-}
-
-function fixInnerLeftPosition({
-  containerLeft,
-  containerWidth,
-  elementWidth,
-  vw,
-  xMargin,
-  vwMargin,
-  disableSwapping,
-}: AdjustPositionOptions): HorizontalUpdate {
-  let left = containerLeft + xMargin;
-  let actualX: HorizontalPosition = "inner-left";
-  const screenRight = vw - vwMargin;
-  if (left < vwMargin) {
-    const nextLeft = containerLeft + containerWidth - elementWidth - xMargin;
-    if (disableSwapping || nextLeft > screenRight) {
-      left = vwMargin;
-    } else {
-      left = nextLeft;
-      actualX = "right";
-    }
-  }
-
-  return { actualX, left };
-}
-
-function fixInnerRightPosition({
-  containerLeft,
-  containerWidth,
-  elementWidth,
-  vw,
-  xMargin,
-  vwMargin,
-  disableSwapping,
-}: AdjustPositionOptions): HorizontalUpdate {
-  let left = containerLeft + containerWidth - elementWidth - xMargin;
-  let actualX: HorizontalPosition = "inner-right";
-  if (left < vwMargin) {
-    if (disableSwapping || containerLeft + elementWidth > vw - vwMargin) {
-      left = vwMargin;
-    } else {
-      left = containerLeft + xMargin;
-      actualX = "left";
-    }
-  }
-
-  return { actualX, left };
-}
-
-function fixHorizontalCenterPosition({
-  containerLeft,
-  containerWidth,
-  elementWidth,
-  vw,
-  vwMargin,
-}: AdjustPositionOptions): number {
-  let left = containerLeft + containerWidth / 2 - elementWidth / 2;
-  const screenRight = vw - vwMargin;
-  if (left + elementWidth > screenRight) {
-    left = screenRight - elementWidth;
-  }
-
-  return left;
-}
-
-function fixAbovePosition({
-  containerTop,
-  containerHeight,
-  elementHeight,
-  yMargin,
-  vh,
-  vhMargin,
-  disableSwapping,
-  disableViewHeightBounds,
-}: AdjustPositionOptions): VerticalUpdate {
-  let top = containerTop - elementHeight - yMargin;
-  let actualY: VerticalPosition = "above";
-  if (!disableViewHeightBounds && top < vhMargin) {
-    const nextTop = containerTop + containerHeight + yMargin;
-    if (disableSwapping || nextTop + elementHeight > vh - vhMargin) {
-      top = vhMargin;
-    } else {
-      top = nextTop;
-      actualY = "below";
-    }
-  }
-
-  return { actualY, top };
-}
-
-function fixBelowPosition({
-  containerTop,
-  containerHeight,
-  elementHeight,
-  yMargin,
-  vh,
-  vhMargin,
-  preventOverlap,
-  disableSwapping,
-  disableViewHeightBounds,
-}: AdjustPositionOptions): VerticalUpdate {
-  let top = containerTop + containerHeight + yMargin;
-  let actualY: VerticalPosition = "below";
-  const viewportBottom = vh - vhMargin;
-  const isTooTall = top + elementHeight > viewportBottom;
-  if (disableViewHeightBounds || !isTooTall) {
-    // since this is below, we know that the fixed element can never overlap the container
-    // element since it'll never be swapped to above
-    return { actualY, top };
-  }
-
-  let bottom: number | undefined;
-  if (preventOverlap) {
-    const remainingTop = containerTop - yMargin;
-    if (disableSwapping || remainingTop > top) {
-      // less space above or not allowed to swap, just span to the end of the viewport
-      actualY = "above";
-      top = vhMargin;
-      bottom = remainingTop;
-    } else {
-      bottom = vhMargin;
-    }
-  } else {
-    const nextTop = containerTop - elementHeight - yMargin;
-    if (disableSwapping || nextTop < vhMargin) {
-      top = vhMargin;
-    } else {
-      actualY = "above";
-      top = nextTop;
-    }
-  }
-
-  return { actualY, top, bottom };
-}
-
-function fixTopPosition({
-  containerTop,
-  containerHeight,
-  elementHeight,
-  vh,
-  yMargin,
-  vhMargin,
-  disableSwapping,
-  disableViewHeightBounds,
-}: AdjustPositionOptions): VerticalUpdate {
-  let actualY: VerticalPosition = "top";
-  let top = containerTop + yMargin;
-  const screenBottom = vh - vhMargin;
-  if (!disableViewHeightBounds && top + elementHeight > screenBottom) {
-    const nextTop = containerTop + containerHeight - elementHeight - yMargin;
-    if (disableSwapping || nextTop < vhMargin) {
-      top = screenBottom - elementHeight;
-    } else {
-      actualY = "bottom";
-      top = nextTop;
-    }
-  }
-
-  return { actualY, top };
-}
-
-function fixBottomPosition({
-  containerTop,
-  containerHeight,
-  elementHeight,
-  vh,
-  yMargin,
-  vhMargin,
-  disableSwapping,
-  disableViewHeightBounds,
-}: AdjustPositionOptions): VerticalUpdate {
-  let actualY: VerticalPosition = "bottom";
-  let top = containerTop + containerHeight - elementHeight - yMargin;
-  const screenBottom = vh - vhMargin;
-  if (!disableViewHeightBounds && top + elementHeight > screenBottom) {
-    if (disableSwapping || containerTop < vhMargin) {
-      top = vhMargin;
-    } else {
-      actualY = "top";
-      top = containerTop + yMargin;
-    }
-  }
-
-  return { actualY, top };
-}
-
-function fixVerticalCenter({
-  containerTop,
-  containerHeight,
-  elementHeight,
-  vh,
-  vhMargin,
-  disableViewHeightBounds,
-}: AdjustPositionOptions): number {
-  const halvedHeight = elementHeight / 2;
-  let top = containerTop + containerHeight / 2 - halvedHeight;
-  if (disableViewHeightBounds) {
-    return top;
-  }
-
-  const screenBottom = vh - vhMargin;
-  if (top + halvedHeight > screenBottom) {
-    top = screenBottom - halvedHeight;
-  } else if (top - halvedHeight < vhMargin) {
-    top = vhMargin;
-  }
-
-  return top;
-}
-
-/**
- * One of the most complicated functions in this project that will attempt to position
- * an element relative to another container element while still being visible within
- * the viewport. Below is the logical flow for attempting to fix the element to the container:
+ * One of the most complicated functions in this project that will attempt to
+ * position an element relative to another container element while still being
+ * visible within the viewport. Below is the logical flow for attempting to fix
+ * the element to the container:
  *
- * No Container:
- * If there is no container element, return an the provided x and y positions and no styles since
- * there's nothing we can use to calculate the position.
+ * No Container: If there is no container element, return the provided x and y
+ * positions and no styles since there's nothing we can use to calculate the
+ * position.
  *
- * No Element:
- * If the container was provided but the element to position does not exist, return an style object
- * containing the `left` and `top` values for the container and apply as many of the positioning
- * options as possible so that the styles are "as close as possible" before the fixed element
- * is added to the dom. This will also return the provided x and y positions since nothing
- * could be swapped around yet.
+ * No Element: If the container was provided but the element to position does
+ * not exist, return an style object containing the `left` and `top` values for
+ * the container and apply as many of the positioning options as possible so
+ * that the styles are "as close as possible" before the fixed element is added
+ * to the DOM. This will also return the provided x and y positions since
+ * nothing could be swapped around yet.
  *
- * Container and Element:
- * If both the container and fixed element were provided, apply all the positioning options
- * to the `left` and `top` values of the container based on the sizes of both elements.
+ * Container and Element: If both the container and fixed element were provided,
+ * apply all the positioning options to the `left` and `top` values of the
+ * container based on the sizes of both elements.
  *
- * Now that the `left` and `top` values were applied, check to see if the element is fully
- * visible within the viewport with the provided positioning options. If it is fully visible,
- * do nothing else. If it isn't... follow the next flow:
+ * Now that the `left` and `top` values were applied, check to see if the
+ * element is fully visible within the viewport with the provided positioning
+ * options. If it is fully visible, do nothing else. If it isn't... follow the
+ * next flow:
  *
- * First, check the horizontal sizes and make sure that the element is still within the viewport
- * with the provided viewwidth margin. If it isn't, first try to swap only to a `right` style
- * instead of left to see if that fixes it, otherwise keep both the `left` and `right` styles.
+ * First, check the horizontal sizes and make sure that the element is still
+ * within the viewport with the provided viewwidth margin. If it isn't, first
+ * try to swap only to a `right` style instead of left to see if that fixes it,
+ * otherwise keep both the `left` and `right` styles.
  */
 export default function getFixedPosition({
   container,
@@ -543,8 +49,8 @@ export default function getFixedPosition({
   preventOverlap = false,
   transformOrigin = false,
   disableSwapping = false,
-  disableViewHeightBounds = false,
-}: FixedPositionOptions): FixedPositionResult {
+  disableVHBounds = false,
+}: FixedPositionOptions): FixedPosition {
   container = findSizingContainer(container);
   const anchor = {
     x: propAnchor.x || "center",
@@ -557,9 +63,15 @@ export default function getFixedPosition({
         'Unable to use equal width when the horizontal anchor is not `"center"`.'
       );
     }
+
+    if (preventOverlap && anchor.y !== "above" && anchor.y !== "below") {
+      throw new Error(
+        'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'
+      );
+    }
   }
 
-  if (!container) {
+  if (!container || !element) {
     return {
       actualX: anchor.x,
       actualY: anchor.y,
@@ -567,101 +79,32 @@ export default function getFixedPosition({
   }
 
   const containerRect = container.getBoundingClientRect();
-  const initialResult = createStyleWithoutElement(
-    containerRect,
-    anchor,
-    transformOrigin
-  );
-  if (!element) {
-    return initialResult;
-  }
-
   const vh = getViewportSize("height");
   const vw = getViewportSize("width");
-  const maxHeight = vh - vhMargin * 2;
-  const maxWidth = vw - vwMargin * 2;
-  const { height: containerHeight, width: containerWidth } = containerRect;
-
-  let actualX = anchor.x;
-  let actualY = anchor.y;
 
   const { height, width } = getElementRect(element);
 
-  let left: number | undefined;
-  let top: number | undefined;
-  let right: number | undefined;
-  let bottom: number | undefined;
-
-  const adjustConfig: AdjustPositionOptions = {
-    containerLeft: containerRect.left,
-    containerTop: containerRect.top,
-    containerWidth,
-    containerHeight,
-    elementWidth: width,
-    elementHeight: height,
-    xMargin,
-    yMargin,
+  const { left, right, actualX } = createHorizontalPosition({
+    x: anchor.x,
     vw,
-    vh,
     vwMargin,
-    vhMargin,
-    preventOverlap,
+    xMargin,
+    equalWidth,
+    elWidth: width,
+    containerRect,
     disableSwapping,
-    disableViewHeightBounds,
-  };
-
-  if (equalWidth) {
-    left = containerRect.left + xMargin;
-    right = vw - containerRect.right - xMargin;
-  } else if (width > maxWidth) {
-    left = vwMargin;
-    right = vwMargin;
-    actualX = "center";
-  } else {
-    switch (anchor.x) {
-      case "left":
-        ({ actualX, left } = fixLeftPosition(adjustConfig));
-        break;
-      case "right":
-        ({ actualX, left } = fixRightPosition(adjustConfig));
-        break;
-      case "inner-left":
-        ({ actualX, left } = fixInnerLeftPosition(adjustConfig));
-        break;
-      case "inner-right":
-        ({ actualX, left } = fixInnerRightPosition(adjustConfig));
-        break;
-      case "center":
-        left = fixHorizontalCenterPosition(adjustConfig);
-        break;
-      // no default
-    }
-  }
-
-  if (!disableViewHeightBounds && !preventOverlap && height > maxHeight) {
-    top = vhMargin;
-    bottom = vhMargin;
-    actualY = "center";
-  } else {
-    switch (anchor.y) {
-      case "above":
-        ({ actualY, top } = fixAbovePosition(adjustConfig));
-        break;
-      case "below":
-        ({ actualY, top, bottom } = fixBelowPosition(adjustConfig));
-        break;
-      case "top":
-        ({ actualY, top } = fixTopPosition(adjustConfig));
-        break;
-      case "center":
-        top = fixVerticalCenter(adjustConfig);
-        break;
-      case "bottom":
-        ({ actualY, top } = fixBottomPosition(adjustConfig));
-        break;
-      // no default
-    }
-  }
+  });
+  const { top, bottom, actualY } = createVerticalPosition({
+    y: anchor.y,
+    vh,
+    vhMargin,
+    yMargin,
+    elHeight: height,
+    containerRect,
+    disableSwapping,
+    preventOverlap,
+    disableVHBounds,
+  });
 
   return {
     actualX,
@@ -671,7 +114,7 @@ export default function getFixedPosition({
       top,
       right,
       bottom,
-      position: disableViewHeightBounds ? "absolute" : "fixed",
+      position: disableVHBounds ? "absolute" : "fixed",
       transformOrigin: transformOrigin
         ? getTransformOrigin({ x: actualX, y: actualY })
         : undefined,

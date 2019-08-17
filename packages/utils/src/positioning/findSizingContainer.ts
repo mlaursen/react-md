@@ -7,11 +7,11 @@
  *
  * NOTE: The `data-sizing-selector` will be run from the current element instead of the `document`.
  *
- * @param el - The element to find a sizing containet for.
+ * @param el The element to find a sizing container for.
  * @return the sizing container relative to the provided element, or `null` if none
- *  could be found.
+ * could be found.
  * @throws This error will be thrown if using the `data-query-selector` and the query
- *  selector does not return an element on the page.
+ * selector does not return an element on the page.
  */
 export default function findSizingContainer(
   el: HTMLElement | null
