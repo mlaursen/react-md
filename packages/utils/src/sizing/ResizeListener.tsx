@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import { Omit } from "../omit";
 import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
 
 export type ResizeListenerProps = Omit<ResizeListenerOptions, "enabled">;

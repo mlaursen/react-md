@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 import cn from "classnames";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import getProgress from "./getProgress";
 import { ProgressProps } from "./types";

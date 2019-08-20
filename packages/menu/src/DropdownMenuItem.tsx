@@ -1,6 +1,6 @@
 import React, { FC, Fragment, ReactNode } from "react";
 import { FontIcon, IconRotator } from "@react-md/icon";
-import { Omit, PositionAnchor, WithForwardedRef } from "@react-md/utils";
+import { PositionAnchor, WithForwardedRef } from "@react-md/utils";
 
 import defaultItemRenderer from "./defaultItemRenderer";
 import defaultMenuRenderer from "./defaultMenuRenderer";

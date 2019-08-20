@@ -10,7 +10,7 @@ import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { FontIcon, TextIconSpacing } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 type InputAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,

@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import { Omit } from "../omit";
 import useScrollListener, { Options } from "./useScrollListener";
 
 export type ScrollListenerProps = Omit<Options<HTMLElement>, "enabled">;

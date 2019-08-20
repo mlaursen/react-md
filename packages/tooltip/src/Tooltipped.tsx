@@ -16,7 +16,6 @@ import {
 import { useFixedPositioning } from "@react-md/transition";
 import {
   HorizontalPosition,
-  Omit,
   unitToNumber,
   VerticalPosition,
 } from "@react-md/utils";

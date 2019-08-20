@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
 import { ButtonProps } from "@react-md/button";
-import { Omit } from "@react-md/utils";
 
 import { ToastProps } from "./Toast";
 

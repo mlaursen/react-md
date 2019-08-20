@@ -1,6 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
 import Link, { LinkProps } from "next/link";
-import { Omit } from "@react-md/utils";
 import useLinkPrefetch from "hooks/useLinkPrefetch";
 
 export interface LinkUnstyledProps

@@ -6,7 +6,6 @@ import {
   Ref,
 } from "react";
 import { ListProps } from "@react-md/list";
-import { Omit } from "@react-md/utils";
 
 /**
  * The valid HTML Element for the tree view. Only really used for event listeners.

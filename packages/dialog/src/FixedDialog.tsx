@@ -7,7 +7,6 @@ import {
   useFixedPositioning,
 } from "@react-md/transition";
 import {
-  Omit,
   WithForwardedRef,
   LabelRequiredForA11y,
   getViewportSize,

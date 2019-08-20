@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { Link as RMDLink } from "@react-md/link";
-import { Omit } from "@react-md/utils";
 
 import useLinkPrefetch from "hooks/useLinkPrefetch";
 

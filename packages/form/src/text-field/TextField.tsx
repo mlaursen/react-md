@@ -8,7 +8,7 @@ import React, {
   HTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";

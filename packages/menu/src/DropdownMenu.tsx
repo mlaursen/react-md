@@ -1,7 +1,7 @@
 import React, { FC, forwardRef, Fragment } from "react";
 import { FontIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import defaultItemRenderer, {
   Item,

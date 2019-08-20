@@ -1,4 +1,4 @@
-import { omit } from "../omit";
+import omit from "../omit";
 
 describe("omit", () => {
   it("should return the object unmodified if there are no keys", () => {

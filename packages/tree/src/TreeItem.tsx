@@ -13,7 +13,7 @@ import {
   SimpleListItemProps,
 } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
-import { Omit, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 import BaseTreeItem from "./BaseTreeItem";
 import TreeGroup from "./TreeGroup";

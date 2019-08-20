@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import Label from "../label/Label";
 import ToggleContainer from "./ToggleContainer";

@@ -6,7 +6,7 @@ export * from "./sizing";
 export * from "./positioning";
 export * from "./wia-aria";
 
-export * from "./omit";
+export { default as omit } from "./omit";
 
 export { default as unitToNumber } from "./unitToNumber";
 export { default as applyRef } from "./applyRef";

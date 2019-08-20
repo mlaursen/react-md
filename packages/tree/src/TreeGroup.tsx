@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { Collapse, CollapseProps } from "@react-md/transition";
 import { List, ListProps } from "@react-md/list";
-import { Omit } from "@react-md/utils";
 
 export interface TreeGroupProps
   extends ListProps,

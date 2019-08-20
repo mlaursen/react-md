@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import { bem, Omit } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import { GITHUB_URL } from "constants/index";
 import GithubSVGIcon from "icons/GithubSVGIcon";

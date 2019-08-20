@@ -2,7 +2,6 @@ import { CSSProperties, useCallback, useRef, useState } from "react";
 import {
   FixedPositionOptions,
   getFixedPosition,
-  Omit,
   PositionAnchor,
   useRefCache,
   useResizeListener,

@@ -6,7 +6,7 @@ import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface OverlayProps
   extends Omit<CSSTransition.CSSTransitionProps, "children">,

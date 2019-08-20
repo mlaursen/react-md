@@ -1,5 +1,4 @@
 import React, { FC, MutableRefObject } from "react";
-import { Omit } from "@react-md/utils";
 
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";

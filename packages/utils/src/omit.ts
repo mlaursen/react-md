@@ -1,5 +1,3 @@
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
 /**
  * I really don't know how to typedef this. It just creates
  * a new object that has all the values copied over except for
@@ -9,7 +7,7 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
  * @param omitKeys - The keys to remove.
  * @return a new object without the specified keys
  */
-export function omit<T extends object, K extends keyof T>(
+export default function omit<T extends object, K extends keyof T>(
   object: T,
   omitKeys: K[] | string[]
 ): Omit<T, K> {

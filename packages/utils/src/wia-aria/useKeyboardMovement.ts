@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 
 import loop from "../loop";
-import { Omit } from "../omit";
 import useRefCache from "../useRefCache";
 
 import getFocusableElements from "./getFocusableElements";

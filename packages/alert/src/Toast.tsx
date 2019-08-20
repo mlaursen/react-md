@@ -2,7 +2,7 @@ import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionProps } from "@react-md/transition";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface ToastProps
   extends HTMLAttributes<HTMLDivElement>,

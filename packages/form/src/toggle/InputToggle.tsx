@@ -10,7 +10,7 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 import Label from "../label/Label";
 import useFocusState from "../useFocusState";

@@ -4,7 +4,6 @@ import {
   useInteractionStates,
   InteractionStatesOptions,
 } from "@react-md/states";
-import { Omit } from "@react-md/utils";
 
 import "./CustomComponent.scss";
 

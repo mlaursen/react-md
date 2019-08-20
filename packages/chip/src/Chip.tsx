@@ -6,7 +6,7 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem, Omit, WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface ChipProps
   extends HTMLAttributes<HTMLButtonElement>,

@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
-import { Omit } from "@react-md/utils";
 
 import HeadingLink from "./HeadingLink";
 
