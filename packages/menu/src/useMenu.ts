@@ -1,6 +1,6 @@
 import { HTMLAttributes, MutableRefObject, Ref } from "react";
+import { useCloseOnOutsideClick } from "@react-md/utils";
 
-import useCloseOnOutsideClick from "./useCloseOnOutsideClick";
 import useCloseOnScroll from "./useCloseOnScroll";
 import useMenuClick from "./useMenuClick";
 import useMenuKeyDown from "./useMenuKeyDown";
@@ -93,7 +93,30 @@ export default function useMenu({
     onRequestClose,
   });
 
-  useCloseOnOutsideClick({ menu, visible, controlId, onRequestClose });
+  useCloseOnOutsideClick({
+    element: menu,
+    enabled: visible,
+    onOutideClick(element, target, contains) {
+      if (!element || !target) {
+        return;
+      }
+
+      const control = document.getElementById(controlId);
+
+      // Need to also check if we have an `aria-expanded` visible anywhere since
+      // the child menus need to be portalled out to fix the overflow issue in
+      // Safari. If we didn't need to portal, this line could be removed as the
+      // `menu.current` would contain the child menu and not close.
+      const expanded =
+        menu.current &&
+        menu.current.querySelector('[aria-expanded="true"]') &&
+        target.closest('[role="menu"]');
+
+      if (!contains(control, target) && !expanded) {
+        onRequestClose();
+      }
+    },
+  });
 
   const onClick = useMenuClick({ onClick: propOnClick, onRequestClose });
   const onKeyDown = useMenuKeyDown({
