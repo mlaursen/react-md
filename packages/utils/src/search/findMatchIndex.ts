@@ -58,3 +58,5 @@ export default function findMatchIndex(
 
   return index;
 }
+
+export type FindMatchIndex = typeof findMatchIndex;

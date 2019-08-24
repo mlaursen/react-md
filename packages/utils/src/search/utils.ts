@@ -103,6 +103,7 @@ export const DEFAULT_GET_ITEM_VALUE = getItemValue;
 export const DEFAULT_VALUE_KEY = "value";
 export const DEFAULT_TRIM = true;
 export const DEFAULT_IGNORE_WHITESPACE = false;
+export const DEFAULT_SEARCH_RESET_TIME = 500;
 
 export const DEFAULT_SEARCH_OPTIONS: Required<SearchOptions> = {
   getItemValue: DEFAULT_GET_ITEM_VALUE,

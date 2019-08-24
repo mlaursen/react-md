@@ -8,6 +8,7 @@ export * from "./positioning";
 export * from "./wia-aria";
 
 export { default as omit } from "./omit";
+export { default as scrollIntoView } from "./scrollIntoView";
 
 export { default as unitToNumber } from "./unitToNumber";
 export { default as applyRef } from "./applyRef";

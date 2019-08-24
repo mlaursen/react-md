@@ -1,33 +1,71 @@
-import { cleanup } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
-import {
-  getKeyboardEventType,
-  transformKeys,
-  useMemoizedFocusKeys,
-} from "../useFocusKeys";
+import { getItemId, getKeyboardEventType, transformKeys } from "../utils";
+
+import { IncrementMovementKey, JumpMovementKey } from "../types";
+
+describe("getItemId", () => {
+  it("should return a list with the base id concatenated with the index + 1 since DOM nodes should normally start at 1 instead of 0", () => {
+    expect(getItemId("base-id", 0)).toBe("base-id-item-1");
+    expect(getItemId("base-id", 1)).toBe("base-id-item-2");
+    expect(getItemId("base-id", 2)).toBe("base-id-item-3");
+    expect(getItemId("base-id", 100)).toBe("base-id-item-101");
+
+    expect(getItemId("id", 0)).toBe("id-item-1");
+    expect(getItemId("id", 1)).toBe("id-item-2");
+    expect(getItemId("id", 2)).toBe("id-item-3");
+    expect(getItemId("id", 100)).toBe("id-item-101");
+  });
+
+  it("should throw an error if the provided index is less than 0", () => {
+    expect(() => getItemId("base-id", -1)).toThrowError(
+      "The provided index must be greater than 0"
+    );
+    expect(() => getItemId("base-id", -2)).toThrowError(
+      "The provided index must be greater than 0"
+    );
+    expect(() => getItemId("base-id", -100)).toThrowError(
+      "The provided index must be greater than 0"
+    );
+  });
+
+  it("should throw an error if the provided id is the empty string", () => {
+    expect(() => getItemId("", 0)).toThrowError(
+      "The id must be a string with a length greater than 0"
+    );
+    expect(() => getItemId("", 1)).toThrowError(
+      "The id must be a string with a length greater than 0"
+    );
+    expect(() => getItemId("", 100)).toThrowError(
+      "The id must be a string with a length greater than 0"
+    );
+  });
+});
 
 describe("getKeyboardEventType", () => {
   const letterAEvent = {
     key: "A",
     altKey: false,
+    ctrlKey: false,
     metaKey: false,
     shiftKey: false,
   } as KeyboardEvent;
   const letterBEvent = {
     key: "B",
     altKey: false,
+    ctrlKey: false,
     metaKey: true,
     shiftKey: false,
   } as KeyboardEvent;
   const letterCEvent = {
     key: "C",
     altKey: true,
+    ctrlKey: false,
     metaKey: false,
     shiftKey: true,
   } as KeyboardEvent;
   const tabEvent = {
     key: "Tab",
     altKey: true,
+    ctrlKey: false,
     metaKey: true,
     shiftKey: true,
   } as KeyboardEvent;
@@ -44,6 +82,7 @@ describe("getKeyboardEventType", () => {
           key: "A",
           type: "increment",
           altKey: false,
+          ctrlKey: false,
           metaKey: false,
           shiftKey: true,
         },
@@ -56,6 +95,7 @@ describe("getKeyboardEventType", () => {
           key: "B",
           type: "increment",
           altKey: false,
+          ctrlKey: false,
           metaKey: true,
           shiftKey: true,
         },
@@ -70,6 +110,7 @@ describe("getKeyboardEventType", () => {
           key: "A",
           type: "increment",
           altKey: false,
+          ctrlKey: false,
           metaKey: false,
           shiftKey: false,
         },
@@ -82,6 +123,7 @@ describe("getKeyboardEventType", () => {
           key: "B",
           type: "increment",
           altKey: false,
+          ctrlKey: false,
           metaKey: true,
           shiftKey: false,
         },
@@ -92,40 +134,48 @@ describe("getKeyboardEventType", () => {
 
 describe("transformKeys", () => {
   it("should create a list of key objects that have the shiftKey, metaKey, altKey, key, and type properties defined", () => {
-    expect(transformKeys(["Tab"], "increment")).toEqual([
+    expect(
+      transformKeys([IncrementMovementKey.ArrowDown], "increment")
+    ).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
-        key: "Tab",
+        key: "ArrowDown",
         type: "increment",
       },
     ]);
 
-    expect(transformKeys(["Tab"], "decrement")).toEqual([
+    expect(
+      transformKeys([IncrementMovementKey.ArrowDown], "decrement")
+    ).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
-        key: "Tab",
+        key: "ArrowDown",
         type: "decrement",
       },
     ]);
 
-    expect(transformKeys(["Home"], "first")).toEqual([
+    expect(transformKeys([JumpMovementKey.Home], "first")).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
         key: "Home",
         type: "first",
       },
     ]);
 
-    expect(transformKeys(["End"], "last")).toEqual([
+    expect(transformKeys([JumpMovementKey.End], "last")).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
         key: "End",
         type: "last",
@@ -134,51 +184,54 @@ describe("transformKeys", () => {
   });
 
   it("should be able to transform multiple keys", () => {
-    expect(transformKeys(["Tab", "ArrowDown"], "increment")).toEqual([
+    expect(
+      transformKeys(
+        [IncrementMovementKey.ArrowDown, IncrementMovementKey.ArrowUp],
+        "increment"
+      )
+    ).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
-        key: "Tab",
+        key: "ArrowDown",
         type: "increment",
       },
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
-        key: "ArrowDown",
+        key: "ArrowUp",
         type: "increment",
       },
     ]);
   });
 
   it("should correctly parse the Alt, Shift, and Meta keys from the string", () => {
-    expect(transformKeys(["Shift+Tab"], "decrement")).toEqual([
+    expect(
+      transformKeys([IncrementMovementKey.ShiftArrowDown], "decrement")
+    ).toEqual([
       {
         shiftKey: true,
         metaKey: false,
+        ctrlKey: false,
         altKey: false,
-        key: "Tab",
+        key: "ArrowDown",
         type: "decrement",
       },
     ]);
 
-    expect(transformKeys(["Meta+Tab"], "decrement")).toEqual([
-      {
-        shiftKey: false,
-        metaKey: true,
-        altKey: false,
-        key: "Tab",
-        type: "decrement",
-      },
-    ]);
-
-    expect(transformKeys(["Alt+Tab"], "decrement")).toEqual([
+    expect(
+      transformKeys([IncrementMovementKey.AltArrowDown], "decrement")
+    ).toEqual([
       {
         shiftKey: false,
         metaKey: false,
+        ctrlKey: false,
         altKey: true,
-        key: "Tab",
+        key: "ArrowDown",
         type: "decrement",
       },
     ]);
@@ -186,33 +239,15 @@ describe("transformKeys", () => {
 
   it("should correctly parse multiple modifiers in a string", () => {
     const keys = [
-      "Shift+Tab",
-      "Alt+A",
-      "Meta+Home",
-      "Shift+Alt+Tab",
-      "Meta+Alt+P",
-      "Shift+Alt+Meta+S",
-      "Alt+Meta+Shift+B",
+      JumpMovementKey.ControlShiftHome,
+      JumpMovementKey.ControlShiftEnd,
     ];
 
     const expected = [
       {
         shiftKey: true,
         metaKey: false,
-        altKey: false,
-        key: "Tab",
-        type: "decrement",
-      },
-      {
-        shiftKey: false,
-        metaKey: false,
-        altKey: true,
-        key: "A",
-        type: "decrement",
-      },
-      {
-        shiftKey: false,
-        metaKey: true,
+        ctrlKey: true,
         altKey: false,
         key: "Home",
         type: "decrement",
@@ -220,79 +255,13 @@ describe("transformKeys", () => {
       {
         shiftKey: true,
         metaKey: false,
-        altKey: true,
-        key: "Tab",
-        type: "decrement",
-      },
-      {
-        shiftKey: false,
-        metaKey: true,
-        altKey: true,
-        key: "P",
-        type: "decrement",
-      },
-      {
-        shiftKey: true,
-        metaKey: true,
-        altKey: true,
-        key: "S",
-        type: "decrement",
-      },
-      {
-        shiftKey: true,
-        metaKey: true,
-        altKey: true,
-        key: "B",
+        ctrlKey: true,
+        altKey: false,
+        key: "End",
         type: "decrement",
       },
     ];
 
     expect(transformKeys(keys, "decrement")).toEqual(expected);
-  });
-});
-
-describe("useMemoizedFocusKeys", () => {
-  afterEach(cleanup);
-
-  it("should return the correct list of keys", () => {
-    const { result } = renderHook(() =>
-      useMemoizedFocusKeys({
-        incrementKeys: ["ArrowDown"],
-        decrementKeys: ["ArrowUp"],
-        jumpToFirstKeys: ["Home"],
-        jumpToLastKeys: ["End"],
-      })
-    );
-
-    expect(result.current).toEqual([
-      {
-        key: "ArrowDown",
-        type: "increment",
-        altKey: false,
-        metaKey: false,
-        shiftKey: false,
-      },
-      {
-        key: "ArrowUp",
-        type: "decrement",
-        altKey: false,
-        metaKey: false,
-        shiftKey: false,
-      },
-      {
-        key: "Home",
-        type: "first",
-        altKey: false,
-        metaKey: false,
-        shiftKey: false,
-      },
-      {
-        key: "End",
-        type: "last",
-        altKey: false,
-        metaKey: false,
-        shiftKey: false,
-      },
-    ]);
   });
 });

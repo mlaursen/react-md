@@ -24,4 +24,11 @@ describe("loop", () => {
     expect(loop(0, 1, false)).toBe(1);
     expect(loop(0, 20, false)).toBe(20);
   });
+
+  it("should only keep the number between 0 and the max value if the minmax arg is enabled", () => {
+    expect(loop(-1, 20, true, true)).toBe(0);
+    expect(loop(-1, 20, false, true)).toBe(0);
+    expect(loop(100, 20, true, true)).toBe(20);
+    expect(loop(100, 20, false, true)).toBe(20);
+  });
 });

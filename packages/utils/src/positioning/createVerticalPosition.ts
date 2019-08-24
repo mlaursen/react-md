@@ -127,7 +127,7 @@ export function createAnchoredTop(config: FixConfig): YPosition {
   let top = getTopCoord(config);
   let actualY: VerticalPosition = "top";
 
-  if (disableVHBounds || top + elHeight > screenBottom) {
+  if (disableVHBounds || top + elHeight <= screenBottom) {
     return { actualY, top };
   }
 
