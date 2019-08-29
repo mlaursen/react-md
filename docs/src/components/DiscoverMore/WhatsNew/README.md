@@ -1,3 +1,11 @@
+## August 2019
+
+### v1.12.3 Release
+
+#### Changelog
+
+- Fixed the `ExpansionPanel` to be able to conditionally render panels. [issues-840]
+
 ## July 2019
 
 ### v1.12.2 Release
