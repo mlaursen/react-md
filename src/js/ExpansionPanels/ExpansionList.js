@@ -1,4 +1,4 @@
-import React, { PureComponent, cloneElement, Children } from 'react';
+import React, { PureComponent, cloneElement, Children, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
@@ -206,12 +206,18 @@ export default class ExpansionList extends PureComponent {
       ...props
     } = this.props;
 
-    const panels = Children.map(children, (child, i) => cloneElement(child, {
-      key: child.key || i,
-      overflown,
-      columnWidths,
-      focused: focusedIndex === i,
-    }));
+    const panels = Children.map(children, (child, i) => {
+      if (!child || !isValidElement(child)) {
+        return child;
+      }
+
+      return cloneElement(child, {
+        key: child.key || i,
+        overflown,
+        columnWidths,
+        focused: focusedIndex === i,
+      });
+    });
     return (
       <Component
         {...props}

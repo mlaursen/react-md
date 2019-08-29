@@ -94,4 +94,19 @@ describe('ExpansionList', () => {
 
     expect(panel.props.focused).toBe(false);
   });
+
+  it('should be able to conditionally render panels', () => {
+    const render = () =>
+      renderIntoDocument(
+        <ExpansionList>
+          <ExpansionPanel label="Test" />
+          {false && <ExpansionPanel label="Never Rendered" />}
+          {true && <ExpansionPanel label="Another" />}
+          This is some text
+          {null}
+        </ExpansionList>
+      );
+
+    expect(render).not.toThrow();
+  });
 });
