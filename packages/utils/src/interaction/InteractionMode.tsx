@@ -1,10 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useContext, FC, ReactNode } from "react";
-import {
-  useModeClassName,
-  useModeDetection,
-  UserInteractionMode,
-} from "./useModeDetection";
+import useModeDetection, { UserInteractionMode } from "./useModeDetection";
+import useModeClassName from "./useModeClassName";
 
 const InteractionMode = createContext<UserInteractionMode>("mouse");
 const ParentContext = createContext(false);
@@ -36,3 +32,16 @@ export const InteractionModeListener: FC<{
     </InteractionMode.Provider>
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    InteractionModeListener.propTypes = {
+      children: PropTypes.node.isRequired,
+    };
+  }
+}

@@ -1,8 +1,12 @@
 import React, { FC } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
-import { StatesConfig, InteractionModeListener } from "@react-md/states";
+import { StatesConfig } from "@react-md/states";
 import { TooltipHoverModeConfig } from "@react-md/tooltip";
-import { AppSizeListener, AppSizeListenerProps } from "@react-md/utils";
+import {
+  AppSizeListener,
+  AppSizeListenerProps,
+  InteractionModeListener,
+} from "@react-md/utils";
 
 import Combined from "./Combined";
 import "./Layout.scss";

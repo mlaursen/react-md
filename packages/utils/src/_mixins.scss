@@ -275,6 +275,30 @@
   }
 }
 
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app on a touch device.
+@mixin rmd-utils-touch-only {
+  .rmd-utils--touch & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a keyboard.
+@mixin rmd-utils-keyboard-only {
+  .rmd-utils--keyboard & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a mouse.
+@mixin rmd-utils-mouse-only {
+  .rmd-utils--mouse & {
+    @content;
+  }
+}
+
 /// Generates a new grid based on the provided padding, margin, and columns.
 ///
 /// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply to the base grid element.

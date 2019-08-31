@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
-import { useInteractionModeContext } from "@react-md/states";
 import { Tooltipped } from "@react-md/tooltip";
-import { bem, useToggle } from "@react-md/utils";
+import { bem, useToggle, useInteractionModeContext } from "@react-md/utils";
 
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 import { useThemeContext, useThemeToggle } from "./ThemeContext";

@@ -4,8 +4,12 @@ import { SingletonRouter, withRouter } from "next/router";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import { useInteractionModeContext } from "@react-md/states";
-import { bem, useToggle, useScrollLock } from "@react-md/utils";
+import {
+  bem,
+  useToggle,
+  useScrollLock,
+  useInteractionModeContext,
+} from "@react-md/utils";
 
 import TableOfContents from "components/TableOfContents";
 

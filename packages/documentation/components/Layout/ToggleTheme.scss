@@ -1,6 +1,6 @@
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/transition/dist/mixins';
-@import '~@react-md/states/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 // need extra precedence since the app bar has inherit colors which we want
 // for all other actions except this one.
@@ -11,7 +11,7 @@
     fill: currentColor;
   }
 
-  @include rmd-states-mouse-only {
+  @include rmd-utils-mouse-only {
     &--on:hover {
       color: inherit;
     }

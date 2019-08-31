@@ -1,7 +1,10 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 import scssVariables from "@react-md/tooltip/dist/scssVariables";
-import { useInteractionModeContext } from "@react-md/states";
-import { CSSVariable, useDocumentCSSVariables } from "@react-md/utils";
+import {
+  CSSVariable,
+  useDocumentCSSVariables,
+  useInteractionModeContext,
+} from "@react-md/utils";
 
 const VARIABLES = [
   {

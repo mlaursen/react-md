@@ -42,30 +42,6 @@
   transition: background-color $rmd-transition-standard-time;
 }
 
-/// This mixin allows you to add styles to an element only when the user is
-/// interacting with your app on a touch device.
-@mixin rmd-states-touch-only {
-  .rmd-states--touch & {
-    @content;
-  }
-}
-
-/// This mixin allows you to add styles to an element only when the user is
-/// interacting with your app with a keyboard.
-@mixin rmd-states-keyboard-only {
-  .rmd-states--keyboard & {
-    @content;
-  }
-}
-
-/// This mixin allows you to add styles to an element only when the user is
-/// interacting with your app with a mouse.
-@mixin rmd-states-mouse-only {
-  .rmd-states--mouse & {
-    @content;
-  }
-}
-
 /// A simple mixin that allows you to add custom pressed state styles to an
 /// element.
 /// @param {String} pressed-class-name [rmd-states-pressed-class-name] - The class name
@@ -126,7 +102,7 @@
     @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
   }
 
-  @include rmd-states-keyboard-only {
+  @include rmd-utils-keyboard-only {
     &:focus {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
 
@@ -136,7 +112,7 @@
     }
   }
 
-  @include rmd-states-touch-only {
+  @include rmd-utils-touch-only {
     &:focus,
     &:hover {
       @include rmd-states-theme-update-var(background-color, transparent);
@@ -146,7 +122,7 @@
   @if $rmd-states-use-pressed-states-fallback {
     @include rmd-states-pressed-styles {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
-      @include rmd-states-keyboard-only {
+      @include rmd-utils-keyboard-only {
         @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
       }
     }

@@ -32,7 +32,7 @@
   @include rmd-button-theme(height, icon-size);
   @include rmd-button-theme(width, icon-size);
   @include rmd-states-surface;
-  @include rmd-states-keyboard-only {
+  @include rmd-utils-keyboard-only {
     &--focused {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
 
@@ -217,7 +217,7 @@
     }
   }
 
-  @include rmd-states-keyboard-only {
+  @include rmd-utils-keyboard-only {
     &:focus + .rmd-switch__ball {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
     }
@@ -227,7 +227,7 @@
     }
   }
 
-  @include rmd-states-touch-only {
+  @include rmd-utils-touch-only {
     &:focus + .rmd-switch__ball,
     &:hover + .rmd-switch__ball {
       @include rmd-states-theme-update-var(background-color, transparent);

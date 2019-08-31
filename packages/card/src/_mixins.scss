@@ -44,7 +44,7 @@
     text-secondary-on-background,
     #{rmd-card-theme-var(secondary-color)}
   );
-  @include rmd-states-mouse-only {
+  @include rmd-utils-mouse-only {
     &--raiseable {
       @include rmd-elevation-transition(
         $rmd-card-base-elevation,

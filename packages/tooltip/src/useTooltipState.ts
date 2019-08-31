@@ -1,6 +1,9 @@
 import { HTMLAttributes, useCallback, useEffect, useRef } from "react";
-import { useInteractionModeContext } from "@react-md/states";
-import { SimplePosition, useToggle } from "@react-md/utils";
+import {
+  SimplePosition,
+  useToggle,
+  useInteractionModeContext,
+} from "@react-md/utils";
 
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
 import { TooltipProps } from "./Tooltip";

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
-import { useRefCache } from "@react-md/utils";
+import { useRefCache, UserInteractionMode } from "@react-md/utils";
 
 import { TooltipInitiated } from "./useHandlers";
 

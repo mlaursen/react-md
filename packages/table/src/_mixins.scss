@@ -9,6 +9,7 @@
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
 @import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 @import './functions';
 @import './variables';
 
@@ -122,7 +123,7 @@
   }
 
   &--hoverable {
-    @include rmd-states-mouse-only {
+    @include rmd-utils-mouse-only {
       @include rmd-transition(standard);
       transition: background-color $rmd-transition-standard-time;
 

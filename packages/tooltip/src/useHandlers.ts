@@ -5,8 +5,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { UserInteractionMode } from "@react-md/states/types/useModeDetection";
-import { useRefCache, useTimeout } from "@react-md/utils";
+import { useRefCache, useTimeout, UserInteractionMode } from "@react-md/utils";
 
 import {
   useTooltipHoverModeActions,
