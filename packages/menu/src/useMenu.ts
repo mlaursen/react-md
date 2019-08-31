@@ -57,6 +57,7 @@ export interface MenuOptions {
    * outside element scrolled.
    */
   disableCloseOnScroll?: boolean;
+  defaultFocus: "first" | "last" | string;
 }
 
 interface ReturnValue
@@ -85,6 +86,7 @@ export default function useMenu({
   onKeyDown: propOnKeyDown,
   onRequestClose,
   disableCloseOnScroll = false,
+  defaultFocus,
 }: MenuOptions): ReturnValue {
   const { menu, ref } = useMenuRef(forwardedRef);
   const onScroll = useCloseOnScroll({
@@ -120,9 +122,11 @@ export default function useMenu({
 
   const onClick = useMenuClick({ onClick: propOnClick, onRequestClose });
   const onKeyDown = useMenuKeyDown({
+    menu: menu.current,
     onKeyDown: propOnKeyDown,
     onRequestClose,
     horizontal,
+    defaultFocus,
   });
 
   return {

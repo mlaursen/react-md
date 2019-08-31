@@ -201,6 +201,7 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
     onKeyDown: propOnKeyDown,
     onRequestClose,
     disableCloseOnScroll,
+    defaultFocus,
   });
 
   const {
