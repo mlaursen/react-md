@@ -4,9 +4,6 @@
     "baseUrl": "./packages",
     "noEmit": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "paths": {
-      "@react-md/*": ["*/src"]
-    }
+    "noUnusedParameters": true
   }
 }

@@ -182,8 +182,8 @@ export default function useMessageQueue<M extends Message>({
       return;
     }
 
-    const nextQueue = queueRef.current;
-    const [prevMessage] = nextQueue;
+    const prevQueue = queueRef.current;
+    const [prevMessage] = prevQueue;
     if (
       message.messagePriority !== "immediate" &&
       nextMessage &&
@@ -203,7 +203,7 @@ export default function useMessageQueue<M extends Message>({
       showMessage();
     }
 
-    if (queue.length === nextQueue.length && message === prevMessage) {
+    if (queue.length === prevQueue.length && message === prevMessage) {
       restartTimer();
     }
 
