@@ -98,7 +98,7 @@ export default function useMenu({
   useCloseOnOutsideClick({
     element: menu,
     enabled: visible,
-    onOutideClick(element, target, contains) {
+    onOutsideClick(element, target, contains) {
       if (!element || !target) {
         return;
       }

@@ -68,13 +68,13 @@ describe("useCloseOnOutsideClick", () => {
   });
 
   it("should add a window click event listener when enabled", () => {
-    const onOutideClick = jest.fn();
+    const onOutsideClick = jest.fn();
     const addEventListener = jest.spyOn(window, "addEventListener");
     const removeEventListener = jest.spyOn(window, "removeEventListener");
     const { rerender } = renderHook(
       options => useCloseOnOutsideClick(options),
       {
-        initialProps: { enabled: true, element: null, onOutideClick },
+        initialProps: { enabled: true, element: null, onOutsideClick },
       }
     );
 
@@ -84,18 +84,18 @@ describe("useCloseOnOutsideClick", () => {
       expect.any(Function)
     );
 
-    rerender({ enabled: false, element: null, onOutideClick });
+    rerender({ enabled: false, element: null, onOutsideClick });
     expect(removeEventListener).toBeCalledWith("click", expect.any(Function));
 
-    expect(onOutideClick).not.toBeCalled();
+    expect(onOutsideClick).not.toBeCalled();
   });
 
-  it("should call the onOutideClick handler if an element is clicked and the target is null", () => {
-    const onOutideClick = jest.fn();
+  it("should call the onOutsideClick handler if an element is clicked and the target is null", () => {
+    const onOutsideClick = jest.fn();
     const initialProps: Options<HTMLElement> = {
       enabled: true,
       element: null,
-      onOutideClick,
+      onOutsideClick,
     };
     const { rerender } = renderHook(
       options => useCloseOnOutsideClick(options),
@@ -106,18 +106,18 @@ describe("useCloseOnOutsideClick", () => {
 
     const click = new MouseEvent("click", { bubbles: true });
     target.dispatchEvent(click);
-    expect(onOutideClick).toBeCalledWith(null, target, contains);
+    expect(onOutsideClick).toBeCalledWith(null, target, contains);
 
-    onOutideClick.mockClear();
-    expect(onOutideClick).not.toBeCalledWith(null, target);
+    onOutsideClick.mockClear();
+    expect(onOutsideClick).not.toBeCalledWith(null, target);
     rerender({ ...initialProps, element: { current: null } });
 
     target.dispatchEvent(click);
-    expect(onOutideClick).toBeCalledWith(null, target, contains);
+    expect(onOutsideClick).toBeCalledWith(null, target, contains);
   });
 
   it("should call the onOutsideClick handler if the provided element does not contain the click target", () => {
-    const onOutideClick = jest.fn();
+    const onOutsideClick = jest.fn();
     const element = document.createElement("div");
     element.id = "element";
 
@@ -128,7 +128,7 @@ describe("useCloseOnOutsideClick", () => {
     const initialProps: Options<HTMLElement> = {
       enabled: true,
       element,
-      onOutideClick,
+      onOutsideClick,
     };
 
     const { rerender } = renderHook(
@@ -140,35 +140,35 @@ describe("useCloseOnOutsideClick", () => {
     element.dispatchEvent(click);
     child.dispatchEvent(click);
 
-    expect(onOutideClick).not.toBeCalled();
+    expect(onOutsideClick).not.toBeCalled();
     target.dispatchEvent(click);
-    expect(onOutideClick).toBeCalledWith(element, target, contains);
+    expect(onOutsideClick).toBeCalledWith(element, target, contains);
 
-    onOutideClick.mockClear();
+    onOutsideClick.mockClear();
     rerender({ ...initialProps, element: { current: element } });
-    expect(onOutideClick).not.toBeCalled();
+    expect(onOutsideClick).not.toBeCalled();
 
     element.dispatchEvent(click);
     child.dispatchEvent(click);
 
-    expect(onOutideClick).not.toBeCalled();
+    expect(onOutsideClick).not.toBeCalled();
     target.dispatchEvent(click);
-    expect(onOutideClick).toBeCalledWith(element, target, contains);
+    expect(onOutsideClick).toBeCalledWith(element, target, contains);
   });
 
   it("should not trigger the onOutsideClick behavior if the event is not bubbled", () => {
-    const onOutideClick = jest.fn();
+    const onOutsideClick = jest.fn();
     const element = document.createElement("div");
     element.id = "element";
 
     renderHook(() =>
-      useCloseOnOutsideClick({ enabled: true, element, onOutideClick })
+      useCloseOnOutsideClick({ enabled: true, element, onOutsideClick })
     );
 
     const click = new MouseEvent("click", { bubbles: false });
     target.dispatchEvent(click);
     element.dispatchEvent(click);
 
-    expect(onOutideClick).not.toBeCalled();
+    expect(onOutsideClick).not.toBeCalled();
   });
 });

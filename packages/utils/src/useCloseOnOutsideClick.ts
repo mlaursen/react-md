@@ -51,7 +51,7 @@ export type OnOutsideClick<E extends HTMLElement> = (
 export interface Options<E extends HTMLElement> {
   enabled: boolean;
   element: E | null | MutableRefObject<E | null>;
-  onOutideClick: OnOutsideClick<E>;
+  onOutsideClick: OnOutsideClick<E>;
 }
 
 /**
@@ -65,11 +65,11 @@ export interface Options<E extends HTMLElement> {
 export default function useCloseOnOutsideClick<E extends HTMLElement>({
   enabled,
   element,
-  onOutideClick,
+  onOutsideClick,
 }: Options<E>): void {
-  const handler = useRef(onOutideClick);
+  const handler = useRef(onOutsideClick);
   useEffect(() => {
-    handler.current = onOutideClick;
+    handler.current = onOutsideClick;
   });
 
   useEffect(() => {
