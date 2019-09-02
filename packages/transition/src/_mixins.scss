@@ -182,6 +182,67 @@
   }
 }
 
+/// @access private
+@mixin rmd-transition-classes {
+  .rmd-transition {
+    &--scale-enter {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    &--scale-enter-active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: scale(1);
+      transition: transform $rmd-transition-scale-enter-duration,
+        opacity $rmd-transition-scale-enter-duration;
+    }
+
+    &--scale-exit {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &--scale-exit-active {
+      @include rmd-transition(acceleration);
+
+      opacity: 0;
+      transform: scale(0);
+      transition: transform $rmd-transition-scale-leave-duration,
+        opacity $rmd-transition-scale-leave-duration;
+    }
+
+    &--scale-y-enter {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    &--scale-y-enter-active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: scaleY(1);
+      transition: transform $rmd-transition-scale-y-enter-duration,
+        opacity $rmd-transition-scale-y-enter-duration;
+    }
+
+    &--scale-y-exit {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    &--scale-y-exit-active {
+      @include rmd-transition(acceleration);
+
+      opacity: 0;
+      transform: scaleY(0);
+      transition: transform $rmd-transition-scale-y-leave-duration,
+        opacity $rmd-transition-scale-y-leave-duration;
+    }
+  }
+}
+
 /// Creates the transition theme css variables as well as the styles
 /// for components in the transition package.
 @mixin react-md-transition {
@@ -189,4 +250,5 @@
 
   @include rmd-collapse;
   @include rmd-cross-fade;
+  @include rmd-transition-classes;
 }

@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { CSSTransition } from "react-transition-group";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { CSSTransitionProps, useFixedPositioning } from "@react-md/transition";
+import {
+  CSSTransitionProps,
+  useFixedPositioning,
+  ScaleTransition,
+} from "@react-md/transition";
 import {
   bem,
   FixedPositionOptions,
@@ -128,8 +131,6 @@ type DefaultProps = Required<
     | "role"
     | "horizontal"
     | "tabIndex"
-    | "classNames"
-    | "timeout"
     | "mountOnEnter"
     | "unmountOnExit"
     | "defaultFocus"
@@ -230,9 +231,9 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
-      <CSSTransition
+      <ScaleTransition
         appear={mountOnEnter}
-        in={visible}
+        visible={visible}
         classNames={classNames}
         timeout={timeout}
         onEnter={onEnter}
@@ -258,7 +259,7 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
             <MenuEvents menuRef={menuRef} defaultFocus={defaultFocus} />
           </div>
         </OrientationProvider>
-      </CSSTransition>
+      </ScaleTransition>
     </ConditionalPortal>
   );
 };
@@ -269,18 +270,6 @@ const defaultProps: DefaultProps = {
   mountOnEnter: true,
   unmountOnExit: true,
   defaultFocus: "first",
-  classNames: {
-    appear: "rmd-menu--enter",
-    appearActive: "rmd-menu--enter-active",
-    enter: "rmd-menu--enter",
-    enterActive: "rmd-menu--enter-active",
-    exit: "rmd-menu--exit",
-    exitActive: "rmd-menu--exit-active",
-  },
-  timeout: {
-    enter: 200,
-    exit: 150,
-  },
   horizontal: false,
   disableCloseOnScroll: false,
   disableCloseOnResize: false,

@@ -4,6 +4,9 @@ export * from "./Collapse";
 export { default as CrossFade } from "./CrossFade";
 export * from "./CrossFade";
 
+export { default as ScaleTransition } from "./ScaleTransition";
+export * from "./ScaleTransition";
+
 export {
   useCollapseTransition,
   useCollapsibleElement,

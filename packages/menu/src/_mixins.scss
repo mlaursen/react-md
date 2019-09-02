@@ -46,32 +46,6 @@
     display: flex;
     flex-wrap: nowrap;
   }
-
-  &--enter {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  &--enter-active {
-    @include rmd-transition(deceleration);
-
-    opacity: 1;
-    transform: scale(1);
-    transition: transform $rmd-menu-enter-duration, opacity $rmd-menu-enter-duration;
-  }
-
-  &--exit {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  &--exit-active {
-    @include rmd-transition(deceleration);
-
-    opacity: 0;
-    transform: scale(0);
-    transition: transform $rmd-menu-leave-duration, opacity $rmd-menu-leave-duration;
-  }
 }
 
 /// Creates all the styles for the @react-md/menu package.

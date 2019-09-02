@@ -57,6 +57,22 @@ $rmd-cross-fade-translate-distance: -1rem !default;
 /// @type Number
 $rmd-cross-fade-transition-duration: 0.3s !default;
 
+/// The transition enter duration for the scaling animation.
+/// @type Number
+$rmd-transition-scale-enter-duration: $rmd-transition-enter-time !default;
+
+/// The transition leave duration for the scaling animation.
+/// @type Number
+$rmd-transition-scale-leave-duration: $rmd-transition-leave-time !default;
+
+/// The transition enter duration for the vertical scale animation.
+/// @type Number
+$rmd-transition-scale-y-enter-duration: $rmd-transition-enter-time !default;
+
+/// The transition leave duration for the vertical scale animation.
+/// @type Number
+$rmd-transition-scale-y-leave-duration: $rmd-transition-leave-time !default;
+
 /// A Map of all the "themeable" parts of the transition package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.
