@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import scrollIntoView from "../../scrollIntoView";
 import { SearchChangeEvent } from "../../search/useKeyboardSearch";
@@ -7,6 +7,7 @@ import useKeyboardMovement, {
   KeyboardMovementProviders,
 } from "./useKeyboardMovement";
 import { getItemId } from "./utils";
+import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
 
 type Options<D = unknown, E extends HTMLElement = HTMLElement> = Omit<
   KeyboardMovementOptions<D, E>,
@@ -55,6 +56,11 @@ interface ActiveDescendantOptions<
    * be foucsed via `aria-activedescendant`.
    */
   onChange?: SearchChangeEvent<D>;
+
+  /**
+   * An optional value that will control the focused index within this hook.
+   */
+  value?: string;
 }
 
 /**
@@ -94,13 +100,28 @@ export default function useActiveDescendantMovement<
   defaultFocusedIndex = -1,
   items,
   onChange,
+  value,
+  getItemValue = DEFAULT_GET_ITEM_VALUE,
+  valueKey = DEFAULT_VALUE_KEY,
   ...options
 }: ActiveDescendantOptions<D, CE>): ActiveDescendantMovementProviders<CE, IE> {
   const [focusedIndex, setFocusedIndex] = useState(defaultFocusedIndex);
   const activeId = focusedIndex !== -1 ? getId(baseId, focusedIndex) : "";
+  useEffect(() => {
+    if (typeof value === "undefined") {
+      return;
+    }
+
+    const index = items.findIndex(
+      option => getItemValue(option, valueKey) === value
+    );
+    setFocusedIndex(index);
+  }, [value, getItemValue, valueKey, items]);
 
   const { itemRefs, onKeyDown } = useKeyboardMovement<D, CE, IE>({
     ...options,
+    valueKey,
+    getItemValue,
     focusedIndex,
     items,
     onChange(data) {
