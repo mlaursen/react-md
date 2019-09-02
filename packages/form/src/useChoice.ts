@@ -1,5 +1,4 @@
 import React, { useState, useCallback, Dispatch, SetStateAction } from "react";
-import { useRefCache } from "@react-md/utils";
 
 type InputElement = HTMLInputElement | HTMLSelectElement;
 type ChangeEventHandler<E extends InputElement> = React.ChangeEventHandler<E>;
@@ -28,17 +27,16 @@ export default function useChoice<
   onChange?: ChangeEventHandler<E>
 ): [T, ChangeEventHandler<E>, SetValue<T>] {
   const [value, setValue] = useState<T>(defaultValue);
-  const handler = useRefCache(onChange);
-  const handleChange = useCallback<ChangeEventHandler<E>>(event => {
-    const propOnChange = handler.current;
-    if (propOnChange) {
-      propOnChange(event);
-    }
+  const handleChange = useCallback<ChangeEventHandler<E>>(
+    event => {
+      if (onChange) {
+        onChange(event);
+      }
 
-    setValue(event.currentTarget.value as T);
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      setValue(event.currentTarget.value as T);
+    },
+    [onChange]
+  );
 
   return [value, handleChange, setValue];
 }

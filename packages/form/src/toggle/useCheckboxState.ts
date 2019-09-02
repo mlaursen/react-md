@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { useRefCache } from "@react-md/utils";
 
 type ChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>;
 type SetChecked = Dispatch<SetStateAction<boolean>>;
@@ -19,18 +18,17 @@ export default function useCheckboxState(
   onChange?: ChangeEventHandler
 ): [boolean, ChangeEventHandler, SetChecked] {
   const [checked, setChecked] = useState(defaultChecked);
-  const handler = useRefCache(onChange);
 
-  const handleChange = useCallback<ChangeEventHandler>(event => {
-    const propOnChange = handler.current;
-    if (propOnChange) {
-      propOnChange(event);
-    }
+  const handleChange = useCallback<ChangeEventHandler>(
+    event => {
+      if (onChange) {
+        onChange(event);
+      }
 
-    setChecked(event.currentTarget.checked);
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      setChecked(event.currentTarget.checked);
+    },
+    [onChange]
+  );
 
   return [checked, handleChange, setChecked];
 }

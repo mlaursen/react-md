@@ -1,5 +1,5 @@
 import { useCallback, HTMLAttributes } from "react";
-import { useToggle, useRefCache } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 type FocusElement =
   | HTMLInputElement
@@ -18,35 +18,28 @@ export default function useFocusState({
   onFocus,
   onBlur,
 }: Options): [boolean, FocusEventHandler, BlurEventHandler] {
-  const handlers = useRefCache({ onFocus, onBlur });
   const [focused, setFocused, setBlurred] = useToggle(false);
 
   const handleFocus = useCallback<FocusEventHandler>(
     event => {
-      const { onFocus } = handlers.current;
       if (onFocus) {
         onFocus(event);
       }
 
       setFocused();
     },
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setFocused]
+    [setFocused, onFocus]
   );
 
   const handleBlur = useCallback<BlurEventHandler>(
     event => {
-      const { onBlur } = handlers.current;
       if (onBlur) {
         onBlur(event);
       }
 
       setBlurred();
     },
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setBlurred]
+    [setBlurred, onBlur]
   );
 
   return [focused, handleFocus, handleBlur];
