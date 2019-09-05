@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable @typescript-eslint/no-use-before-define, import/prefer-default-export */
 import React, { ReactNode } from "react";
 import {
   BuildSVGIcon,

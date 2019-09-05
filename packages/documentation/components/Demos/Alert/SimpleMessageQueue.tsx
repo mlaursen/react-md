@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { useAddMessage, MessageQueue, ToastMessage } from "@react-md/alert";
 import { useChoice, Form } from "@react-md/form";
@@ -112,7 +112,7 @@ const SimpleMessageQueue: FC = () => {
   );
 };
 
-export default () => (
+export default (): ReactElement => (
   <MessageQueue id="simple-message-queue">
     <SimpleMessageQueue />
   </MessageQueue>

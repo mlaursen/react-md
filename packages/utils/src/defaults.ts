@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
+type Rec = Record<string, unknown>;
 
 /**
  * This is normally used for reusable shareable configs that have multiple shared
@@ -19,11 +19,8 @@ export default function defaults<O extends {}, R extends {}>(
 
   return keys.reduce<O & R>(
     (result, key) => {
-      // I have no idea how to correctly type this
-      // @ts-ignore
-      if (typeof result[key] === "undefined") {
-        // @ts-ignore
-        result[key] = required[key];
+      if (typeof (result as Rec)[key] === "undefined") {
+        (result as Rec)[key] = (required as Rec)[key];
       }
 
       return result;

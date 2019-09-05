@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { MarkdownPage } from "components/Markdown";
 
 import readme from "./UpdatingCreateReactApp.md";
 
-export default () => <MarkdownPage>{readme}</MarkdownPage>;
+export default (): ReactElement => <MarkdownPage>{readme}</MarkdownPage>;

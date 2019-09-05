@@ -34,6 +34,7 @@ export function setTouchEvent(
    */
   options?: AddEventListenerOptions
 ): void {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   el[`${add ? "add" : "remove"}EventListener`](
     `touch${eventType}`,

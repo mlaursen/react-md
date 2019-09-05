@@ -1,3 +1,5 @@
+type R = Record<string, unknown>;
+
 /**
  * I really don't know how to typedef this. It just creates
  * a new object that has all the values copied over except for
@@ -17,8 +19,7 @@ export default function omit<T extends object, K extends keyof T>(
 
   return Object.keys(object).reduce((updated, key) => {
     if (!(omitKeys as string[]).includes(key)) {
-      // @ts-ignore
-      updated[key] = object[key];
+      (updated as R)[key] = (object as R)[key];
     }
 
     return updated;

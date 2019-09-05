@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import README from "./README.md";
 import DemoPage from "../DemoPage";
@@ -32,6 +32,6 @@ const demos = [
   },
 ];
 
-export default () => (
+export default (): ReactElement => (
   <DemoPage demos={demos} description={README} packageName="table" />
 );

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactElement } from "react";
 import { MessageQueue } from "@react-md/alert";
 
 const PreventingAutoHide: FC = () => {
@@ -6,7 +6,7 @@ const PreventingAutoHide: FC = () => {
   return null;
 };
 
-export default () => (
+export default (): ReactElement => (
   <MessageQueue id="preventing-autohide-queue">
     <PreventingAutoHide />
   </MessageQueue>

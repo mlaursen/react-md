@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import DemoPage from "../DemoPage";
 
@@ -37,6 +37,6 @@ const demos = [
   },
 ];
 
-export default () => (
+export default (): ReactElement => (
   <DemoPage demos={demos} packageName="badge" fonts={["Material Icons"]} />
 );

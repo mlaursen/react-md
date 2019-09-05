@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { TextContainer } from "@react-md/typography";
 
 import { Markdown } from "components/Markdown";
@@ -19,7 +19,7 @@ but it doesn't handle \`defaultProps\` correctly and is coupled a bit too much
 into \`styleguidist\` to be fully configurable.
 `;
 
-export default () => (
+export default (): ReactElement => (
   <InProgress title="API">
     <TextContainer>
       <Markdown>{description}</Markdown>

@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, @typescript-eslint/no-var-requires */
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
@@ -10,7 +10,6 @@ const IGNORED = /(__tests__|dev-utils|documentation)/;
 const processes = [];
 
 let startLoggingScss = false;
-let startLoggingDefs = false;
 
 const PACKAGES = fs
   .readdirSync('packages')
@@ -81,8 +80,6 @@ function copyFile(filePath, destPath, log) {
 
   fs.copyFileSync(filePath, dest);
 }
-
-const copyDefinitionFile = f => copyFile(f, 'types', startLoggingDefs);
 
 chokidar
   .watch('packages/*/src/**/*.scss', { ignored: IGNORED })

@@ -1,4 +1,11 @@
-import React, { FC, Fragment, useCallback, useEffect, useState } from "react";
+import React, {
+  FC,
+  Fragment,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import {
   Message,
   MessageQueue,
@@ -104,7 +111,7 @@ const UpdatingMessagePriority: FC = () => {
   );
 };
 
-export default () => (
+export default (): ReactElement => (
   <MessageQueue<ExampleMessage> id="updating-message-priority">
     <UpdatingMessagePriority />
   </MessageQueue>

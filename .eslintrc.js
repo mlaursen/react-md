@@ -80,6 +80,10 @@ module.exports = {
       },
     ],
 
+    // I like being explicit even if using a default arg can show the type of it, it might change
+    // or have multiple types available
+    '@typescript-eslint/no-inferrable-types': [2, { ignoreParameters: true }],
+
     // handled by strict tsconfig
     '@typescript-eslint/no-unused-vars': 0,
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import DemoPage from "../DemoPage";
 
@@ -13,4 +13,6 @@ const demos = [
   },
 ];
 
-export default () => <DemoPage demos={demos} packageName="sheet" />;
+export default (): ReactElement => (
+  <DemoPage demos={demos} packageName="sheet" />
+);

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, ReactElement } from "react";
 import {
   DuplicateBehavior,
   MessageQueue,
@@ -103,7 +103,7 @@ const HandlingDuplicatedMessages: FC<Props> = ({
   );
 };
 
-export default () => {
+export default (): ReactElement => {
   const [duplicates, onDuplicateChange] = useChoice<DuplicateBehavior>("allow");
 
   return (

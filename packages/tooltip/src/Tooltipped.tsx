@@ -33,6 +33,7 @@ interface TooltippedProvidedProps extends MergableHandlers {
 
 export type ChildrenRenderer = (props: TooltippedProvidedProps) => ReactElement;
 
+type R = Record<string, unknown>;
 type ChildProps = Partial<Omit<TooltippedProvidedProps, "tooltip">>;
 type ChildElement = ReactElement<ChildProps>;
 
@@ -310,11 +311,9 @@ const Tooltipped: FC<TooltippedProps> = providedProps => {
       const propHandler = child.props[propName];
       const configHandler = config[propName];
       if (!propHandler) {
-        // @ts-ignore
-        result[propName] = configHandler;
+        (result as R)[propName] = configHandler;
       } else if (!configHandler) {
-        // @ts-ignore
-        result[propName] = propHandler;
+        (result as R)[propName] = propHandler;
       } else {
         // not sure of a way to actually strongly type this nicely.
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

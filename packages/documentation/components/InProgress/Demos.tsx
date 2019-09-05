@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import InProgress from "./InProgress";
 
-export default () => <InProgress title="Demos" />;
+export default (): ReactElement => <InProgress title="Demos" />;

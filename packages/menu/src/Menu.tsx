@@ -336,6 +336,7 @@ if (process.env.NODE_ENV !== "production") {
       horizontal: PropTypes.bool,
       disableCloseOnScroll: PropTypes.bool,
       disableCloseOnResize: PropTypes.bool,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       _a11yValidator: (props, _propName, component) => {
         const label = props["aria-label"];

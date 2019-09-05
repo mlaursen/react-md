@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import "./index.scss";
 import DemoPage from "../DemoPage";
@@ -66,6 +66,6 @@ const demos = [
   },
 ];
 
-export default () => (
+export default (): ReactElement => (
   <DemoPage demos={demos} packageName="app-bar" className="app-bar-demos" />
 );

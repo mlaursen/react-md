@@ -86,9 +86,9 @@ interface ReturnValue<E extends HTMLElement> {
  * @typeparam E The element type for the component being wrapped. This is really just used to "better type"
  * the event handlers.
  */
-export function useInteractionStates<E extends HTMLElement = HTMLElement>(
-  options: InteractionStatesOptions<E> = {}
-): ReturnValue<E> {
+export default function useInteractionStates<
+  E extends HTMLElement = HTMLElement
+>(options: InteractionStatesOptions<E> = {}): ReturnValue<E> {
   const {
     disabled,
     rippleClassName,
