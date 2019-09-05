@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from "react";
 import cn from "classnames";
-import {
-  CSSTransitionClassNames,
-  TransitionTimeout,
-} from "@react-md/transition";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { TransitionTimeout } from "@react-md/transition";
 
 import Ripple from "./Ripple";
 import { RipplesState, RippleState } from "./types";

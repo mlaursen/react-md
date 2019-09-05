@@ -1,7 +1,5 @@
-import {
-  CSSTransitionClassNames,
-  TransitionTimeout,
-} from "@react-md/transition";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { TransitionTimeout } from "@react-md/transition";
 
 export const TOOLTIP_CLASS_NAMES: CSSTransitionClassNames = {
   appear: "rmd-tooltip--enter",

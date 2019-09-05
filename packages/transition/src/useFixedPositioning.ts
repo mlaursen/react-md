@@ -1,4 +1,5 @@
 import { CSSProperties, useCallback, useRef, useState } from "react";
+import { TransitionProps } from "react-transition-group/Transition";
 import {
   FixedPositionOptions,
   getFixedPosition,
@@ -7,7 +8,6 @@ import {
   useResizeListener,
   useScrollListener,
 } from "@react-md/utils";
-import { TransitionProps } from "react-transition-group/Transition";
 
 export type FixedToFunction = () => HTMLElement | null;
 export type FixedTo = string | HTMLElement | null | FixedToFunction;

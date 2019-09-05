@@ -7,13 +7,13 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { CSSTransition } from "react-transition-group";
+import CSSTransition from "react-transition-group/CSSTransition";
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { CSSTransitionProps } from "@react-md/transition";
+import { OverridableCSSTransitionProps } from "@react-md/transition";
 import {
   bem,
   FocusContainer,
@@ -27,7 +27,7 @@ import {
 import useNestedDialogFixes from "./useNestedDialogFixes";
 
 export interface DialogProps
-  extends CSSTransitionProps,
+  extends OverridableCSSTransitionProps,
     RenderConditionalPortalProps,
     FocusContainerOptionsProps,
     HTMLAttributes<HTMLDivElement> {

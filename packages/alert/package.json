@@ -46,7 +46,7 @@
     "@react-md/typography": "^2.0.0-alpha.9",
     "@react-md/utils": "^2.0.0-alpha.9",
     "classnames": "^2.2.6",
-    "react-transition-group": "^4.2.1"
+    "react-transition-group": "^4.2.2"
   },
   "peerDependencies": {
     "react": ">= 16.8"

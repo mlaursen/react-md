@@ -8,13 +8,13 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { CSSTransition } from "react-transition-group";
+import CSSTransition from "react-transition-group/CSSTransition";
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { CSSTransitionProps } from "@react-md/transition";
+import { OverridableCSSTransitionProps } from "@react-md/transition";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
@@ -32,7 +32,7 @@ export type SheetVerticalSize = "none" | "touch" | "recommended";
 
 export interface SheetProps
   extends HTMLAttributes<HTMLDivElement>,
-    CSSTransitionProps,
+    OverridableCSSTransitionProps,
     RenderConditionalPortalProps {
   /**
    * An id for the sheet. This is required by default since the sheet must behave like one

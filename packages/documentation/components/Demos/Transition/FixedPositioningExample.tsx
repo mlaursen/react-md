@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useEffect, useRef, useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import CSSTransition from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import { Form, useCheckboxState } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";

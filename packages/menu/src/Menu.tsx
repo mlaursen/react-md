@@ -6,7 +6,7 @@ import {
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import {
-  CSSTransitionProps,
+  OverridableCSSTransitionProps,
   useFixedPositioning,
   ScaleTransition,
 } from "@react-md/transition";
@@ -24,7 +24,7 @@ import useMenu from "./useMenu";
 
 export interface MenuProps
   extends HTMLAttributes<HTMLDivElement>,
-    CSSTransitionProps,
+    OverridableCSSTransitionProps,
     RenderConditionalPortalProps {
   /**
    * The id for the menu. THis is required for a11y.

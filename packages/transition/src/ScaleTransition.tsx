@@ -1,10 +1,9 @@
 import React, { FC, ReactNode } from "react";
-import { CSSTransition } from "react-transition-group";
-import {
+import CSSTransition, {
   CSSTransitionClassNames,
-  CSSTransitionProps,
-  TransitionTimeout,
-} from "./types";
+} from "react-transition-group/CSSTransition";
+
+import { OverridableCSSTransitionProps, TransitionTimeout } from "./types";
 
 export const SCALE_CLASSNAMES: CSSTransitionClassNames = {
   appear: "rmd-transition--scale-enter",
@@ -31,13 +30,7 @@ export const SCALE_TIMEOUT: TransitionTimeout = {
   exit: 150,
 };
 
-export interface ScaleTransitionProps extends CSSTransitionProps {
-  /**
-   * Boolean if the scale transition should also be able to be triggered immediately
-   * on mount if the `visible` prop is enabled.
-   */
-  appear?: boolean;
-
+export interface ScaleTransitionProps extends OverridableCSSTransitionProps {
   /**
    * Boolean if the vertical scale animation should be used instead of the normal
    * scale animation.

@@ -1,82 +1,30 @@
-// these were copied from @types/react-transition-group and renamed to be prefixed with Transition
-// since they currently aren't exported
-export type TransitionEnterHandler = (
-  node: HTMLElement,
-  appearing: boolean
-) => void;
-export type TransitionExitHandler = (node: HTMLElement) => void;
+import { TransitionProps } from "react-transition-group/Transition";
+import { CSSTransitionProps } from "react-transition-group/CSSTransition";
 
-export type TransitionTimeout = number | { enter?: number; exit?: number };
+export type TransitionTimeout = TransitionProps["timeout"];
 
-// this was copied over just for simplicity and not requiring adding react-transition-group for this
-export type CSSTransitionClassNames =
-  | string
-  | {
-      appear?: string;
-      appearActive?: string;
-      enter?: string;
-      enterActive?: string;
-      enterDone?: string;
-      exit?: string;
-      exitActive?: string;
-      exitDone?: string;
-    };
+// Don't want the children stuff when overriding/reusing in react-md components
+// as well as the [prop: string]: any, so pick the reusable ones
+type TransitionKeys =
+  | "appear"
+  | "enter"
+  | "exit"
+  | "mountOnEnter"
+  | "unmountOnExit"
+  | "onEnter"
+  | "onEntering"
+  | "onEntering"
+  | "onEntered"
+  | "onExit"
+  | "onExiting"
+  | "onExited";
 
-export interface TransitionProps {
-  /**
-   * The transition duration for the overlay. This should not be changed unless you manually change the
-   * `$rmd-overlay-transition-duration` scss variable.
-   */
+// timeout is required in the Transition props, but 99% of the time it'll be added
+// with defaultProps in overrides
+export interface OverridableTransitionProps
+  extends Pick<TransitionProps, TransitionKeys> {
   timeout?: TransitionTimeout;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * not be rendered in the DOM until the `visible` prop is `true` but this can be changed by setting this
-   * prop to `false`.
-   */
-  mountOnEnter?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group. By default, the overlay will
-   * be removed from the DOM when the `visible` prop is `false` but this can be changed by setting this
-   * prop to `false`.
-   */
-  unmountOnExit?: boolean;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onEnter?: TransitionEnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onEntering?: TransitionEnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onEntered?: TransitionEnterHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onExit?: TransitionExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onExiting?: TransitionExitHandler;
-
-  /**
-   * Pass-down prop to the `Transition` component from react-transition-group.
-   */
-  onExited?: TransitionExitHandler;
 }
 
-export interface CSSTransitionProps extends TransitionProps {
-  /**
-   * The class names to use during the different parts of the animation.
-   */
-  classNames?: CSSTransitionClassNames;
-}
+export type OverridableCSSTransitionProps = OverridableTransitionProps &
+  Pick<CSSTransitionProps, "classNames">;

@@ -6,10 +6,11 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { CSSTransition } from "react-transition-group";
-import {
+import CSSTransition, {
   CSSTransitionClassNames,
-  TransitionProps,
+} from "react-transition-group/CSSTransition";
+import {
+  OverridableTransitionProps,
   TransitionTimeout,
 } from "@react-md/transition";
 import { bem, SimplePosition, WithForwardedRef } from "@react-md/utils";
@@ -21,7 +22,7 @@ import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
  */
 export interface TooltipProps
   extends Pick<
-      TransitionProps,
+      OverridableTransitionProps,
       | "onEnter"
       | "onEntering"
       | "onEntered"

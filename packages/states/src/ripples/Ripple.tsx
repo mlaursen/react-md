@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { FC, useCallback } from "react";
 import cn from "classnames";
-import { CSSTransition } from "react-transition-group";
-import {
+import CSSTransition, {
   CSSTransitionClassNames,
-  TransitionTimeout,
-} from "@react-md/transition";
+} from "react-transition-group/CSSTransition";
+import { TransitionTimeout } from "@react-md/transition";
 import { useRefCache } from "@react-md/utils";
 
 import { useStatesConfigContext } from "../StatesConfig";

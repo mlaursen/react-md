@@ -5,6 +5,7 @@ import {
   ReactElement,
   RefObject,
 } from "react";
+
 import {
   CollapseOptions,
   useCollapseTransition,
