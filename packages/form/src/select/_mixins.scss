@@ -2,53 +2,146 @@
 /// @group form-select
 ////
 
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 @import '../text-field/mixins';
-@import './variables';
+@import '../functions';
+@import '../variables';
+
+/// @access private
+@mixin rmd-native-select-container {
+  &--multi {
+    @include rmd-form-theme(min-height, text-height);
+    @include rmd-form-theme-update-var(addon-top, $rmd-select-native-addon-top);
+
+    height: auto;
+  }
+
+  &--padded {
+    $calc: #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(text-padding-top)};
+    padding-top: calc(#{$calc});
+  }
+}
+
+/// @access private
+@mixin rmd-native-select {
+  @include rmd-text-field;
+
+  &--icon {
+    @include rmd-icon-theme(padding-right, size);
+
+    appearance: none;
+  }
+
+  &--multi {
+    padding-top: 0;
+  }
+
+  &__icon {
+    @include rmd-utils-rtl-auto(right, 0);
+
+    // without this, the span will render with a height larger
+    // than the icon and be positioned weirdly
+    display: inline-flex;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  &__label {
+    // it doesn't look like selects support the label attribute, so just
+    // make the labe not have pointer events so if you click on it, the
+    // select is clicked instead of the label.
+    pointer-events: none;
+  }
+}
+
+/// @access private
+@mixin rmd-select {
+  @include rmd-typography(body-1, font-size);
+  @include rmd-utils-hide-focus-outline;
+
+  &__value {
+    @include rmd-utils-rtl {
+      @include rmd-form-theme(padding-left, text-padding-right);
+      @include rmd-form-theme(padding-right, text-padding-left);
+    }
+    @include rmd-form-theme(padding-left, text-padding-left);
+    @include rmd-form-theme(padding-right, text-padding-right);
+
+    &--placeholder {
+      @include rmd-transition(standard);
+      @include rmd-theme(color, text-secondary-on-background);
+
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &--placeholder-active {
+      @include rmd-theme(color, text-secondary-on-background);
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-listbox {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll;
+
+  &--temporary {
+    @include rmd-elevation($rmd-listbox-elevation);
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, on-surface);
+
+    z-index: $rmd-listbox-z-index;
+  }
+}
+
+/// @access private
+@mixin rmd-option {
+  @if $rmd-option-selected-content {
+    @include rmd-list-theme-update-var(item-horizontal-padding, 1.5rem);
+  }
+
+  @include rmd-utils-keyboard-only {
+    &--focused {
+      @each $property, $value in $rmd-option-focused-styles {
+        #{$property}: #{$value};
+      }
+    }
+  }
+
+  &--selected {
+    @if $rmd-option-selected-content {
+      &::after {
+        @include rmd-utils-rtl-auto(left, $rmd-option-selected-offset);
+        @include rmd-theme(color, text-primary-on-background);
+
+        content: $rmd-option-selected-content;
+        position: absolute;
+      }
+    }
+  }
+}
 
 /// @access private
 @mixin react-md-select {
   .rmd-native-select-container {
-    &--multi {
-      @include rmd-form-theme(min-height, text-height);
-      @include rmd-form-theme-update-var(addon-top, $rmd-select-native-addon-top);
-
-      height: auto;
-    }
-
-    &--padded {
-      $calc: #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(text-padding-top)};
-      padding-top: calc(#{$calc});
-    }
+    @include rmd-native-select-container;
   }
 
   .rmd-native-select {
-    @include rmd-text-field;
+    @include rmd-native-select;
+  }
 
-    &--icon {
-      @include rmd-icon-theme(padding-right, size);
+  .rmd-listbox {
+    @include rmd-listbox;
+  }
 
-      appearance: none;
-    }
+  .rmd-option {
+    @include rmd-option;
+  }
 
-    &--multi {
-      padding-top: 0;
-    }
-
-    &__icon {
-      @include rmd-utils-rtl-auto(right, 0);
-
-      // without this, the span will render with a height larger
-      // than the icon and be positioned weirdly
-      display: inline-flex;
-      pointer-events: none;
-      position: absolute;
-    }
-
-    &__label {
-      // it doesn't look like selects support the label attribute, so just
-      // make the labe not have pointer events so if you click on it, the
-      // select is clicked instead of the label.
-      pointer-events: none;
-    }
+  .rmd-select {
+    @include rmd-select;
   }
 }

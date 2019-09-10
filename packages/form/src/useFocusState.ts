@@ -5,7 +5,8 @@ type FocusElement =
   | HTMLInputElement
   | HTMLTextAreaElement
   | HTMLLabelElement
-  | HTMLSelectElement;
+  | HTMLSelectElement
+  | HTMLDivElement;
 type BlurEventHandler = React.FocusEventHandler<FocusElement>;
 type FocusEventHandler = React.FocusEventHandler<FocusElement>;
 

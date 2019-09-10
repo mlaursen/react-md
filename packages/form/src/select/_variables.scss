@@ -13,3 +13,39 @@ $rmd-select-native-multiple-padding: 0.75rem !default;
 /// on the size of the select field instead.
 /// @type Number
 $rmd-select-native-addon-top: 1rem !default;
+
+/// The z-index to use for a temporary listbox.
+/// @type Number
+$rmd-listbox-z-index: 10 !default;
+
+/// The elevation level for a temporary listbox. This should be a number between 0-24
+/// as it generates a material design box shadow value.
+/// @type Number
+$rmd-listbox-elevation: 8 !default;
+
+/// The styles to apply when an option is focused with `aria-activedescendant`
+/// behavior. This should be a map of styles that should be applied.
+/// @type Map
+$rmd-option-focused-styles: (
+  box-shadow: inset 0 0 0 2px $rmd-blue-500,
+) !default;
+
+/// The amount of `left` (or right when rtl languages are used) to apply
+/// to the option's selected checkmark css.
+/// @type Number
+$rmd-option-selected-offset: 0.5rem !default;
+
+/// The content to use for the selected state of the option. If this value is
+/// set to null, the `::after` styles will not be created and the
+/// `$rmd-option-horizontal-padding` variable will not be used to update the
+/// list item's horizontal padding for options. This is useful if you want
+/// to use icons or ignore the selected state instead.
+/// @type String
+$rmd-option-selected-content: '\2713' !default;
+
+/// The amount of horizontal padding that should be applied to each option.
+/// This overrides the `$rmd-list-item-horizontal-padding` css variable so that
+/// the selected checkmark styles can appear nicely.
+/// @type Number
+/// @see rmd-option-selected-content
+$rmd-option-horizontal-padding: 1.5rem !default;

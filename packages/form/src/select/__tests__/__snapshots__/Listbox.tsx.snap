@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Listbox should be able to render an option that is a string, a number, or an object 1`] = `
+<ul
+  aria-activedescendant=""
+  class="rmd-list rmd-listbox"
+  data-testid="listbox"
+  id="listbox-1"
+  role="listbox"
+  tabindex="0"
+>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-1"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 1
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-2"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      0
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-3"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      1
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-4"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Label
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-5"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      <span>
+        Custom
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Listbox should be able to render an option that is a string, a number, or an object 2`] = `
+<ul
+  aria-activedescendant=""
+  class="rmd-list rmd-listbox rmd-listbox--temporary"
+  data-testid="listbox"
+  id="listbox-1"
+  role="listbox"
+  tabindex="-1"
+>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-1"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 1
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-2"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      0
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-3"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      1
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-4"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Label
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-5"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      <span>
+        Custom
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Listbox should default to rendering as a non-temporary and inline listbox 1`] = `
+<ul
+  aria-activedescendant=""
+  class="rmd-list rmd-listbox"
+  data-testid="listbox"
+  id="listbox-1"
+  role="listbox"
+  tabindex="0"
+>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-1"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 1
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-2"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 2
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-3"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 3
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-4"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 4
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-5"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 5
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-6"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 6
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-7"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 7
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-8"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 8
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-9"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 9
+    </span>
+  </li>
+  <li
+    class="rmd-list-item rmd-list-item--clickable rmd-option"
+    id="listbox-1-option-10"
+    role="option"
+  >
+    <span
+      class="rmd-list-item__text"
+    >
+      Option 10
+    </span>
+  </li>
+</ul>
+`;

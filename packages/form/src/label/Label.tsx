@@ -27,22 +27,33 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
    * components.
    */
   active?: boolean;
+
+  /**
+   * The component to render the label as. This should be the default value of `"label"` 99%
+   * of the time, but can also be rendered as a `"span"` for the `Select` implementation
+   * where it needs to be rendered in a button.
+   */
+  component?: "label" | "span";
 }
 
 type WithRef = WithForwardedRef<HTMLLabelElement>;
-type DefaultProps = Required<Pick<LabelProps, "error" | "active" | "disabled">>;
+type DefaultProps = Required<
+  Pick<LabelProps, "error" | "active" | "disabled" | "component">
+>;
 type WithDefaultProps = LabelProps & DefaultProps & WithRef;
 
 const block = bem("rmd-label");
 
 const Label: FC<LabelProps & WithRef> = providedProps => {
   const {
+    htmlFor,
     className,
     forwardedRef,
     children,
     error,
     active,
     disabled,
+    component: Component,
     ...props
   } = providedProps as WithDefaultProps;
   if (!children) {
@@ -50,8 +61,9 @@ const Label: FC<LabelProps & WithRef> = providedProps => {
   }
 
   return (
-    <label
+    <Component
       {...props}
+      htmlFor={Component === "label" ? htmlFor : undefined}
       ref={forwardedRef}
       className={cn(
         block({
@@ -63,7 +75,7 @@ const Label: FC<LabelProps & WithRef> = providedProps => {
       )}
     >
       {children}
-    </label>
+    </Component>
   );
 };
 
@@ -71,6 +83,7 @@ const defaultProps: DefaultProps = {
   error: false,
   active: false,
   disabled: false,
+  component: "label",
 };
 
 Label.defaultProps = defaultProps;
@@ -89,6 +102,7 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       active: PropTypes.bool,
       disabled: PropTypes.bool,
+      component: PropTypes.oneOf(["label", "span"]),
     };
   }
 }
