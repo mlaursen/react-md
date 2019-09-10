@@ -1,29 +1,18 @@
 import { useState, useEffect } from "react";
-import { SearchChangeEvent } from "../../search/useKeyboardSearch";
 import useKeyboardMovement, {
-  KeyboardMovementOptions,
+  BaseKeyboardMovementOptions,
   KeyboardMovementProviders,
 } from "./useKeyboardMovement";
 
-type Options<D = unknown, E extends HTMLElement = HTMLElement> = Omit<
-  KeyboardMovementOptions<D, E>,
-  "onChange" | "focusedIndex"
->;
-
 interface KeyboardFocusOptions<
   D = unknown,
-  E extends HTMLElement = HTMLElement
-> extends Options<D, E> {
+  CE extends HTMLElement = HTMLElement,
+  IE extends HTMLElement = HTMLElement
+> extends BaseKeyboardMovementOptions<D, CE, IE> {
   /**
    * The index that should be focused by default.
    */
   defaultFocusedIndex?: number;
-
-  /**
-   * An optional function to call when the keydown event triggers a new item to
-   * be focused via `aria-activedescendant`.
-   */
-  onChange?: SearchChangeEvent<D>;
 }
 
 /**
@@ -46,20 +35,20 @@ interface KeyboardFocusOptions<
  */
 export default function useFocusMovement<
   D = unknown,
-  E extends HTMLElement = HTMLElement,
-  I extends HTMLElement = HTMLElement
+  CE extends HTMLElement = HTMLElement,
+  IE extends HTMLElement = HTMLElement
 >({
   defaultFocusedIndex = -1,
   onChange,
   ...options
-}: KeyboardFocusOptions<D, E>): KeyboardMovementProviders<E, I> {
+}: KeyboardFocusOptions<D, CE, IE>): KeyboardMovementProviders<CE, IE> {
   const [focusedIndex, setFocusedIndex] = useState(defaultFocusedIndex);
-  const { itemRefs, onKeyDown } = useKeyboardMovement<D, E, I>({
+  const [itemRefs, handleKeyDown] = useKeyboardMovement<D, CE, IE>({
     ...options,
     focusedIndex,
-    onChange(data) {
+    onChange(data, itemRefs) {
       if (onChange) {
-        onChange(data);
+        onChange(data, itemRefs);
       }
 
       const { index } = data;
@@ -91,5 +80,5 @@ export default function useFocusMovement<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { itemRefs, onKeyDown };
+  return [itemRefs, handleKeyDown];
 }

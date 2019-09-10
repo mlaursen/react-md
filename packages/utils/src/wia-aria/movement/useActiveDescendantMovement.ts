@@ -1,18 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 import scrollIntoView from "../../scrollIntoView";
-import { SearchChangeEvent } from "../../search/useKeyboardSearch";
 import useKeyboardMovement, {
-  KeyboardMovementOptions,
-  KeyboardMovementProviders,
+  BaseKeyboardMovementOptions,
+  ItemRef,
+  MovementHandler,
 } from "./useKeyboardMovement";
 import { getItemId } from "./utils";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
-
-type Options<D = unknown, E extends HTMLElement = HTMLElement> = Omit<
-  KeyboardMovementOptions<D, E>,
-  "onChange" | "focusedIndex"
->;
 
 export type ActiveDescendantId = string;
 
@@ -26,14 +21,19 @@ export type ActiveDescendantId = string;
 export interface ActiveDescendantMovementProviders<
   CE extends HTMLElement,
   IE extends HTMLElement
-> extends KeyboardMovementProviders<CE, IE> {
+> {
+  itemRefs: ItemRef<IE>[];
+  onKeyDown: MovementHandler<CE>;
   activeId: ActiveDescendantId;
+  focusedIndex: number;
+  setFocusedIndex: Dispatch<SetStateAction<number>>;
 }
 
 interface ActiveDescendantOptions<
   D = unknown,
-  CE extends HTMLElement = HTMLElement
-> extends Options<D, CE> {
+  CE extends HTMLElement = HTMLElement,
+  IE extends HTMLElement = HTMLElement
+> extends BaseKeyboardMovementOptions<D, CE, IE> {
   /**
    * The base id that should be used to generate the `aria-activedescendant`
    * value id. This will be passed into the `getId` option.
@@ -47,20 +47,11 @@ interface ActiveDescendantOptions<
   getId?(id: string, index: number): string;
 
   /**
-   * The index that should be focused by default.
+   * The default index that should be "focused" when the component mounts. This is
+   * set to `-1` by default so that it only gains a new "focused" index when the
+   * container element is focused.
    */
-  defaultFocusedIndex?: number;
-
-  /**
-   * An optional function to call when the keydown event triggers a new item to
-   * be foucsed via `aria-activedescendant`.
-   */
-  onChange?: SearchChangeEvent<D>;
-
-  /**
-   * An optional value that will control the focused index within this hook.
-   */
-  value?: string;
+  defaultFocusedIndex?: (() => number) | number;
 }
 
 /**
@@ -100,33 +91,25 @@ export default function useActiveDescendantMovement<
   defaultFocusedIndex = -1,
   items,
   onChange,
-  value,
   getItemValue = DEFAULT_GET_ITEM_VALUE,
   valueKey = DEFAULT_VALUE_KEY,
   ...options
-}: ActiveDescendantOptions<D, CE>): ActiveDescendantMovementProviders<CE, IE> {
+}: ActiveDescendantOptions<D, CE, IE>): ActiveDescendantMovementProviders<
+  CE,
+  IE
+> {
   const [focusedIndex, setFocusedIndex] = useState(defaultFocusedIndex);
   const activeId = focusedIndex !== -1 ? getId(baseId, focusedIndex) : "";
-  useEffect(() => {
-    if (typeof value === "undefined") {
-      return;
-    }
 
-    const index = items.findIndex(
-      option => getItemValue(option, valueKey) === value
-    );
-    setFocusedIndex(index);
-  }, [value, getItemValue, valueKey, items]);
-
-  const { itemRefs, onKeyDown } = useKeyboardMovement<D, CE, IE>({
+  const [itemRefs, onKeyDown] = useKeyboardMovement<D, CE, IE>({
     ...options,
     valueKey,
     getItemValue,
     focusedIndex,
     items,
-    onChange(data) {
+    onChange(data, itemRefs) {
       if (onChange) {
-        onChange(data);
+        onChange(data, itemRefs);
       }
 
       const { index, target } = data;
@@ -143,5 +126,7 @@ export default function useActiveDescendantMovement<
     activeId,
     itemRefs,
     onKeyDown,
+    focusedIndex,
+    setFocusedIndex,
   };
 }

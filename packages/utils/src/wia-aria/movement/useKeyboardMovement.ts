@@ -14,32 +14,6 @@ export type MovementHandler<E extends HTMLElement> = React.KeyboardEventHandler<
 >;
 
 /**
- * The options for custom keyboard movement.
- *
- * @typeparam D the type of each item within the item list
- * @typeparam E the type of the DOM element for the keyboard event handler.
- */
-export interface KeyboardMovementOptions<
-  D = unknown,
-  E extends HTMLElement = HTMLElement
-> extends BaseKeyboardSearchOptions<D, E>, MovementConfig {
-  /**
-   * The currently focused index within the item list. This will need to be
-   * updated due to the `onChange` callback being called for this hook to work
-   * as it is fully "controlled" by a parent hook/component.
-   */
-  focusedIndex: number;
-
-  /**
-   * Boolean if the event should trigger `event.stopPropagation()` when the
-   * custom keyboard movement is triggered. This should generally be kept as
-   * `false` or `undefined` by default, but enabled when creating more complex
-   * 2-dimensional movement cases such as grids.
-   */
-  stopPropagation?: boolean;
-}
-
-/**
  * A mutable ref object that must be applied to each DOM node within the
  * "focusable"/"searchable" list of elements so that custom focus behavior can
  * be triggered.
@@ -48,30 +22,83 @@ export interface KeyboardMovementOptions<
  */
 export type ItemRef<E extends HTMLElement> = MutableRefObject<E | null>;
 
+export interface BaseKeyboardMovementOptions<
+  D = unknown,
+  CE extends HTMLElement = HTMLElement,
+  IE extends HTMLElement = HTMLElement
+> extends Omit<BaseKeyboardSearchOptions<D, CE>, "onChange">, MovementConfig {
+  /**
+   * Boolean if the event should trigger `event.stopPropagation()` when the
+   * custom keyboard movement is triggered. This should generally be kept as
+   * `false` or `undefined` by default, but enabled when creating more complex
+   * 2-dimensional movement cases such as grids.
+   */
+  stopPropagation?: boolean;
+
+  /**
+   * A required change event handler that will be called whenever a user types a letter and it
+   * causes a new item to be "found". This should normally be something that either updates the
+   * `aria-activedescendant` id to the new found item's id or manually focus the item's DOM
+   * node.
+   */
+  onChange?: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
+}
+
 /**
+ * The options for custom keyboard movement.
+ *
+ * @typeparam D the type of each item within the item list
+ * @typeparam CE the type of the DOM element for the keyboard event handler.
+ * @typeparam IE the type of the DOM element for the keyboard event handler.
+ */
+export interface KeyboardMovementOptions<
+  D = unknown,
+  CE extends HTMLElement = HTMLElement,
+  IE extends HTMLElement = HTMLElement
+> extends BaseKeyboardMovementOptions<D, CE, IE> {
+  /**
+   * The currently focused index within the item list. This will need to be
+   * updated due to the `onChange` callback being called for this hook to work
+   * as it is fully "controlled" by a parent hook/component.
+   */
+  focusedIndex: number;
+
+  /**
+   * A required change event handler that will be called whenever a user types a letter and it
+   * causes a new item to be "found". This should normally be something that either updates the
+   * `aria-activedescendant` id to the new found item's id or manually focus the item's DOM
+   * node.
+   */
+  onChange: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
+}
+
+/**
+ * Returns an ordered list with two items:
+ * - itemRefs
+ * - onKeyDown event handler
  *
  * @typeparam CE The HTMLElement type of the container element that handles the
  * custom keyboard movement.
  * @typeparam IE The HTMLElement type of each item within the container element
  * that can be focusable.
  */
-export interface KeyboardMovementProviders<
+export type KeyboardMovementProviders<
   CE extends HTMLElement,
   IE extends HTMLElement
-> {
+> = [
   /**
    * A list of mutable ref objects that must be applied to each focusable item
    * within the list. This list will automatically be generated based on the
    * number of items provided to the `useKeyboardMovement` hook
    */
-  itemRefs: ItemRef<IE>[];
+  ItemRef<IE>[],
 
   /**
    * The keydown event handler to apply to a "container" element that has custom
    * keyboard focus.
    */
-  onKeyDown: MovementHandler<CE>;
-}
+  MovementHandler<CE>
+];
 
 /**
  * This is a low-level hook for providing custom keyboard movement based on key
@@ -122,7 +149,7 @@ export default function useKeyboardMovement<
   searchable = true,
   valueKey = DEFAULT_VALUE_KEY,
   getItemValue = DEFAULT_GET_ITEM_VALUE,
-}: KeyboardMovementOptions<D, CE>): KeyboardMovementProviders<CE, IE> {
+}: KeyboardMovementOptions<D, CE, IE>): KeyboardMovementProviders<CE, IE> {
   const keys = useMemo(
     () => [
       ...transformKeys(incrementKeys, "increment"),
@@ -142,7 +169,9 @@ export default function useKeyboardMovement<
     items,
     valueKey,
     getItemValue,
-    onChange,
+    onChange(data) {
+      onChange(data, itemRefs);
+    },
     searchIndex: focusedIndex,
     resetTime,
     findMatchIndex,
@@ -200,7 +229,7 @@ export default function useKeyboardMovement<
         query: `${type}-${event.key}`,
         target: event.currentTarget,
       };
-      onChange(data);
+      onChange(data, itemRefs);
     },
     [
       onKeyDown,
@@ -212,11 +241,9 @@ export default function useKeyboardMovement<
       loopable,
       searchable,
       onChange,
+      itemRefs,
     ]
   );
 
-  return {
-    itemRefs,
-    onKeyDown: handleKeyDown,
-  };
+  return [itemRefs, handleKeyDown];
 }

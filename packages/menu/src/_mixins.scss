@@ -33,6 +33,7 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-menu-theme-values, menu);
 }
 
+/// @access private
 @mixin rmd-menu {
   @include rmd-utils-hide-focus-outline;
   @include rmd-utils-scroll;

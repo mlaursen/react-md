@@ -72,5 +72,5 @@ export default function useMenuKeyDown({
         onRequestClose();
       }
     },
-  }).onKeyDown;
+  })[1];
 }

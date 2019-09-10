@@ -551,7 +551,7 @@
     @include react-md-button;
   }
 
-  // has to come after buttons
+  // has to come after buttons since it overrides some button styles
   @if mixin-exists(react-md-app-bar) {
     @include react-md-app-bar;
   }
@@ -560,7 +560,7 @@
     @include react-md-overlay;
   }
 
-  // has to come after overlays
+  // has to come after overlays since it overrides the z-index
   @if mixin-exists(react-md-dialog) {
     @include react-md-dialog;
   }
@@ -577,12 +577,12 @@
     @include react-md-divider;
   }
 
-  @if mixin-exists(react-md-icon) {
-    @include react-md-icon;
-  }
-
   @if mixin-exists(react-md-form) {
     @include react-md-form;
+  }
+
+  @if mixin-exists(react-md-icon) {
+    @include react-md-icon;
   }
 
   @if mixin-exists(react-md-link) {
