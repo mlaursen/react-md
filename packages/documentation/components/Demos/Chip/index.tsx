@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import DemoPage from "../DemoPage";
 
 import SimpleChips from "./SimpleChips";
-import simpleChips from "./simpleChips.md";
+import simpleChips from "./SimpleChips.md";
 
 import ExpandableChips from "./ExpandableChips";
 import expandableChips from "./ExpandableChips.md";
