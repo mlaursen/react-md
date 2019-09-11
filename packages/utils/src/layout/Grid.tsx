@@ -120,8 +120,8 @@ const Grid: FC<GridProps & WithRef> = ({
     [GRID_COLUMNS_VAR]:
       (isPhone && phoneColumns) ||
       (isTablet && tabletColumns) ||
-      (isDesktop && desktopColumns) ||
       (isLargeDesktop && largeDesktopColumns) ||
+      (isDesktop && desktopColumns) ||
       columns,
     [GRID_GUTTER_VAR]: gutter,
   };

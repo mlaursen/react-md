@@ -30,6 +30,12 @@ import textFieldTypes from "./TextFieldTypes.md";
 import NativeSelectExample from "./NativeSelectExample";
 import nativeSelectExample from "./NativeSelectExample.md";
 
+import SelectExample from "./SelectExample";
+import selectExample from "./SelectExample.md";
+
+import CustomizingSelectOptions from "./CustomizingSelectOptions";
+import customizingSelectOptions from "./CustomizingSelectOptions.md";
+
 import TextAreaExample from "./TextAreaExample";
 import textAreaExample from "./TextAreaExample.md";
 
@@ -41,6 +47,41 @@ const demos = [
     name: "Checkbox and Radio Examples",
     description: checkboxAndRadioExamples,
     children: <CheckboxAndRadioExamples />,
+  },
+  {
+    name: "Text Field Example",
+    description: textFieldExample,
+    children: <TextFieldExample />,
+  },
+  {
+    name: "Text Field Types",
+    description: textFieldTypes,
+    children: <TextFieldTypes />,
+  },
+  {
+    name: "Text Area Example",
+    description: textAreaExample,
+    children: <TextAreaExample />,
+  },
+  {
+    name: "File Input Example",
+    description: fileInputExample,
+    children: <FileInputExample />,
+  },
+  {
+    name: "Native Select Example",
+    description: nativeSelectExample,
+    children: <NativeSelectExample />,
+  },
+  {
+    name: "Select Example",
+    description: selectExample,
+    children: <SelectExample />,
+  },
+  {
+    name: "Customizing Select Options",
+    description: customizingSelectOptions,
+    children: <CustomizingSelectOptions />,
   },
   {
     name: "Indeterminate Checkboxes",
@@ -61,31 +102,6 @@ const demos = [
     name: "Async Switch Example",
     description: asyncSwitchExample,
     children: <AsyncSwitchExample />,
-  },
-  {
-    name: "File Input Example",
-    description: fileInputExample,
-    children: <FileInputExample />,
-  },
-  {
-    name: "Text Field Example",
-    description: textFieldExample,
-    children: <TextFieldExample />,
-  },
-  {
-    name: "Text Field Types",
-    description: textFieldTypes,
-    children: <TextFieldTypes />,
-  },
-  {
-    name: "Native Select Example",
-    description: nativeSelectExample,
-    children: <NativeSelectExample />,
-  },
-  {
-    name: "Text Area Example",
-    description: textAreaExample,
-    children: <TextAreaExample />,
   },
   {
     name: "Example Form",

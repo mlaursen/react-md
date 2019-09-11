@@ -175,11 +175,10 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
       }
 
       switch (event.key) {
+        case " ":
         case "ArrowUp":
         case "ArrowDown":
-          show();
-          break;
-        case " ":
+          // prevent page scroll
           event.preventDefault();
           show();
           break;
@@ -233,11 +232,6 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
       // scrolling
       node.focus();
     },
-    onExited() {
-      if (selectRef.current) {
-        selectRef.current.focus();
-      }
-    },
   });
 
   const handleClick = useCallback(
@@ -250,6 +244,13 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     },
     [onClick, show]
   );
+
+  const handleKeyboardClose = useCallback(() => {
+    hide();
+    if (selectRef.current) {
+      selectRef.current.focus();
+    }
+  }, [hide]);
 
   return (
     <Fragment>
@@ -264,18 +265,18 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
         role="button"
         tabIndex={disabled ? undefined : 0}
         ref={ref}
-        active={focused}
+        active={focused || visible}
         label={!!label}
-        className={cn(block(), className)}
+        className={cn(block({ disabled }), className)}
       >
         <FloatingLabel
           style={labelStyle}
           className={cn(block("label"), labelClassName)}
           htmlFor={id}
           error={error}
-          active={valued && focused}
+          active={valued && (focused || visible)}
           valued={valued}
-          floating={focused || valued}
+          floating={focused || valued || visible}
           dense={dense}
           disabled={disabled}
           leftChildren={!!leftChildren}
@@ -311,7 +312,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
         onChange={onChange}
         visible={visible}
         temporary
-        onRequestClose={hide}
+        onRequestClose={handleKeyboardClose}
         options={options}
         labelKey={labelKey}
         valueKey={valueKey}

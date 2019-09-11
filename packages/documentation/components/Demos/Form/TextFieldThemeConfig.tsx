@@ -112,16 +112,14 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
           checked={useLeft}
           onChange={handleLeftChange}
         />
-        {
-          <Checkbox
-            id={`${idPrefix}-right-icon`}
-            name="rightIcon"
-            label="Use right icon"
-            disabled={isUnstyled || disableRightIcon}
-            checked={useRight}
-            onChange={handleRightChange}
-          />
-        }
+        <Checkbox
+          id={`${idPrefix}-right-icon`}
+          name="rightIcon"
+          label="Use right icon"
+          disabled={isUnstyled || disableRightIcon}
+          checked={useRight}
+          onChange={handleRightChange}
+        />
         <Checkbox
           id={`${idPrefix}-dense`}
           name="dense"

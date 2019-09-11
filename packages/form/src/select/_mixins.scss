@@ -57,8 +57,11 @@
 
 /// @access private
 @mixin rmd-select {
-  @include rmd-typography(body-1, font-size);
   @include rmd-utils-hide-focus-outline;
+
+  &--disabled {
+    @include rmd-theme(color, text-disabled-on-background);
+  }
 
   &__value {
     @include rmd-utils-rtl {
@@ -67,6 +70,9 @@
     }
     @include rmd-form-theme(padding-left, text-padding-left);
     @include rmd-form-theme(padding-right, text-padding-right);
+    @include rmd-form-theme(padding-top, text-padding-top);
+    @include rmd-typography(body-1, font-size);
+    @include rmd-typography-text-overflow-ellipsis;
 
     &--placeholder {
       @include rmd-transition(standard);

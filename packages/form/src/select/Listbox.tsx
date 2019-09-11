@@ -155,7 +155,6 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     className,
     forwardedRef,
     temporary,
-    onFocus,
     onKeyDown: propOnKeyDown,
     labelKey,
     valueKey,
@@ -236,8 +235,26 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     defaultFocusedIndex: getIndex,
     items: options,
     baseId: id,
+    valueKey: labelKey,
     getId: getOptionId,
-    getItemValue: getOptionValue,
+    getItemValue(option, key) {
+      if (!isListboxOptionProps(option)) {
+        return `${option}`;
+      }
+
+      const search = option[key];
+      if (typeof search === "number" || typeof search === "string") {
+        return `${search}`;
+      }
+
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "Unable to find a searchable label string for the provided option. Users will be unable to use the typeahead feature in the Listbox component until this is fixed."
+        );
+      }
+      return "";
+    },
     onChange(data) {
       if (disableMovementChange) {
         return;
@@ -277,24 +294,6 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     },
   });
 
-  const handleFocus = useCallback(
-    (event: React.FocusEvent<ListElement>) => {
-      if (onFocus) {
-        onFocus(event);
-      }
-
-      if (!activeId) {
-        let index = 0;
-        if (value) {
-          index = Math.max(0, getIndex());
-        }
-        setFocusedIndex(index);
-        handleChange(index);
-      }
-    },
-    [onFocus, activeId, value, setFocusedIndex, handleChange, getIndex]
-  );
-
   return (
     <ConditionalPortal
       portal={portal}
@@ -321,7 +320,6 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
           tabIndex={tabIndex}
           className={cn(block({ temporary }), className)}
           ref={forwardedRef}
-          onFocus={handleFocus}
           onKeyDown={onKeyDown}
         >
           {options.map((option, i) => {

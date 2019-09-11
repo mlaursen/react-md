@@ -58,8 +58,12 @@ export function getOptionLabel(
   labelKey: string
 ): ReactNode {
   if (isListboxOptionProps(option)) {
+    if (typeof option.children !== "undefined") {
+      return option.children;
+    }
+
     const label = option[labelKey];
-    return typeof label === "undefined" ? option.children || null : label;
+    return typeof label === "undefined" ? null : label;
   }
 
   return option;

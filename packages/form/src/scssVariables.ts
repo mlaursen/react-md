@@ -47,6 +47,8 @@ export default {
   "rmd-label-floating-dense-top": "0.9rem",
   "rmd-select-native-multiple-padding": "0.75rem",
   "rmd-select-native-addon-top": "1rem",
+  "rmd-listbox-z-index": 10,
+  "rmd-listbox-elevation": 8,
   "rmd-option-focused-styles": { "box-shadow": "inset 0 0 0 2px #2196f3" },
   "rmd-option-selected-offset": "0.5rem",
   "rmd-option-selected-content": "✓",

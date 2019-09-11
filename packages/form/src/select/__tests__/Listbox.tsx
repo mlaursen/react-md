@@ -86,7 +86,7 @@ describe("Listbox", () => {
       0,
       1,
       { label: "Label", value: "A" },
-      { value: "B", children: <span>Custom</span> },
+      { value: "B", label: "Custom", children: <span>Custom</span> },
     ];
 
     const { getByTestId, rerender } = render(
@@ -166,49 +166,6 @@ describe("Listbox", () => {
 
     expect(listbox.getAttribute("tabIndex")).toBe("0");
     expect(listbox.getAttribute("aria-activedescendant")).toBe("");
-  });
-
-  it("should automatically set the aria-activedescendant to the first option when the listbox is focused if no option was selected already and call the onChange prop", () => {
-    const onChange = jest.fn();
-    const { getByTestId } = render(<Listbox {...PROPS} onChange={onChange} />);
-
-    const listbox = getByTestId("listbox");
-    expect(onChange).not.toBeCalled();
-    fireEvent.focus(listbox);
-    expect(listbox.getAttribute("aria-activedescendant")).toBe(
-      "listbox-1-option-1"
-    );
-    expect(onChange).toBeCalledWith(options[0], options[0]);
-
-    fireEvent.blur(listbox);
-    expect(listbox.getAttribute("aria-activedescendant")).toBe(
-      "listbox-1-option-1"
-    );
-
-    fireEvent.focus(listbox);
-    expect(listbox.getAttribute("aria-activedescendant")).toBe(
-      "listbox-1-option-1"
-    );
-    expect(onChange).toBeCalledTimes(1);
-  });
-
-  it("should not update the aria-activedescendant if it is already set due to the provided value matching an option", () => {
-    const onChange = jest.fn();
-    const { getByTestId } = render(
-      <Listbox {...PROPS} onChange={onChange} value="Option 1" />
-    );
-
-    const listbox = getByTestId("listbox");
-    expect(listbox.getAttribute("aria-activedescendant")).toBe(
-      "listbox-1-option-1"
-    );
-
-    expect(onChange).not.toBeCalled();
-    fireEvent.focus(listbox);
-    expect(listbox.getAttribute("aria-activedescendant")).toBe(
-      "listbox-1-option-1"
-    );
-    expect(onChange).not.toBeCalled();
   });
 
   it("should trigger the onRequestClose callback when the enter, spacebar or escape keys are pressed in a temporary listbox", () => {

@@ -16,7 +16,7 @@ type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<Pick<GridListCellProps, "square">>;
 type WithDefaultProps = GridListCellProps & DefaultProps & WithRef;
 
-const block = bem("rmd-grid-list__cell");
+const block = bem("rmd-grid-list");
 
 const GridListCell: FC<GridListCellProps & WithRef> = providedProps => {
   const {
@@ -31,7 +31,7 @@ const GridListCell: FC<GridListCellProps & WithRef> = providedProps => {
     <div
       {...props}
       ref={forwardedRef}
-      className={cn(block({ square }), className)}
+      className={cn(block("cell", { square }), className)}
     >
       {children}
     </div>
