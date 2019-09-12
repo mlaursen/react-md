@@ -157,7 +157,7 @@ $rmd-states-pressed-class-name: '.rmd-states--pressed' !default;
 /// needed.
 /// @type Map
 $rmd-states-theme-values: (
-  background-color: inherit,
+  background-color: transparent,
   hover-color: $rmd-states-hover-color,
   focus-color: $rmd-states-focus-color,
   pressed-color: $rmd-states-pressed-color,

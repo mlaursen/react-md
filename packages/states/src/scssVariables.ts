@@ -24,7 +24,7 @@ export default {
   "rmd-states-ripple-opacity-duration": "0.3s",
   "rmd-states-pressed-class-name": ".rmd-states--pressed",
   "rmd-states-theme-values": {
-    "background-color": "inherit",
+    "background-color": "transparent",
     "hover-color": "rgba(0, 0, 0, 0.08)",
     "focus-color": "rgba(0, 0, 0, 0.24)",
     "pressed-color": "rgba(0, 0, 0, 0.32)",
