@@ -14,6 +14,8 @@ import { FixedPositionOptions, HorizontalPosition } from "./types";
 interface XPosition {
   left: number;
   right?: number;
+  width?: number;
+  minWidth?: number;
   actualX: HorizontalPosition;
 }
 
@@ -33,7 +35,11 @@ interface Options
   extends Required<
     Pick<
       FixedPositionOptions,
-      "vwMargin" | "xMargin" | "equalWidth" | "disableSwapping"
+      | "vwMargin"
+      | "xMargin"
+      | "equalWidth"
+      | "minEqualWidth"
+      | "disableSwapping"
     >
   > {
   x: HorizontalPosition;
@@ -185,6 +191,50 @@ export function createAnchoredRight(config: FixConfig): XPosition {
   return { actualX, left };
 }
 
+interface EqualWidthOptions
+  extends Pick<
+    Options,
+    "x" | "vw" | "elWidth" | "xMargin" | "vwMargin" | "containerRect"
+  > {
+  isMinWidth: boolean;
+}
+
+/**
+ * @private
+ */
+export function createEqualWidth({
+  x,
+  vw,
+  elWidth,
+  xMargin,
+  vwMargin,
+  containerRect,
+  isMinWidth,
+}: EqualWidthOptions): XPosition {
+  const left = containerRect.left + xMargin;
+
+  let width: number | undefined = containerRect.width - xMargin * 2;
+  let minWidth: number | undefined;
+  let right: number | undefined;
+  if (isMinWidth) {
+    minWidth = width;
+    width = undefined;
+    if (left + elWidth > vw - vwMargin) {
+      right = vwMargin;
+    }
+  }
+
+  // going to assume that the container element is visible in the DOM and just
+  // make the fixed element have the same left and right corners
+  return {
+    left,
+    right,
+    width,
+    minWidth,
+    actualX: x,
+  };
+}
+
 /**
  * Creates the horizontal position for a fixed element with the provided
  * options.
@@ -196,18 +246,21 @@ export default function createHorizontalPosition({
   vwMargin,
   xMargin,
   equalWidth,
+  minEqualWidth,
   elWidth,
   containerRect,
   disableSwapping,
 }: Options): XPosition {
-  if (equalWidth) {
-    // going to assume that the container element is visible in the DOM and just
-    // make the fixed element have the same left and right corners
-    return {
-      left: containerRect.left + xMargin,
-      right: vw - containerRect.right - xMargin,
-      actualX: x,
-    };
+  if (equalWidth || minEqualWidth) {
+    return createEqualWidth({
+      x,
+      vw,
+      vwMargin,
+      xMargin,
+      elWidth,
+      containerRect,
+      isMinWidth: minEqualWidth,
+    });
   }
 
   if (elWidth > vw - vwMargin * 2) {

@@ -46,6 +46,7 @@ export default function getFixedPosition({
   xMargin = 0,
   yMargin = 0,
   equalWidth = false,
+  minEqualWidth = false,
   preventOverlap = false,
   transformOrigin = false,
   disableSwapping = false,
@@ -58,7 +59,7 @@ export default function getFixedPosition({
   };
 
   if (process.env.NODE_ENV !== "production") {
-    if (equalWidth && anchor.x !== "center") {
+    if ((equalWidth || minEqualWidth) && anchor.x !== "center") {
       throw new Error(
         'Unable to use equal width when the horizontal anchor is not `"center"`.'
       );
@@ -82,15 +83,16 @@ export default function getFixedPosition({
   const vh = getViewportSize("height");
   const vw = getViewportSize("width");
 
-  const { height, width } = getElementRect(element);
+  const { height, width: elWidth } = getElementRect(element);
 
-  const { left, right, actualX } = createHorizontalPosition({
+  const { left, right, width, minWidth, actualX } = createHorizontalPosition({
     x: anchor.x,
     vw,
     vwMargin,
     xMargin,
     equalWidth,
-    elWidth: width,
+    minEqualWidth,
+    elWidth,
     containerRect,
     disableSwapping,
   });
@@ -114,6 +116,8 @@ export default function getFixedPosition({
       top,
       right,
       bottom,
+      width,
+      minWidth,
       position: disableVHBounds ? "absolute" : "fixed",
       transformOrigin: transformOrigin
         ? getTransformOrigin({ x: actualX, y: actualY })

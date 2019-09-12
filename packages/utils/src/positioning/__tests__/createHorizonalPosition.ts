@@ -5,6 +5,7 @@ import {
   createAnchoredCenter,
   createAnchoredInnerRight,
   createAnchoredRight,
+  createEqualWidth,
 } from "../createHorizontalPosition";
 import {
   getLeftCoord,
@@ -13,6 +14,7 @@ import {
   getInnerRightCoord,
   getRightCoord,
 } from "../getCoord";
+import { HorizontalPosition } from "../types";
 
 const containerRect1: ClientRect = {
   left: 100,
@@ -499,6 +501,110 @@ describe("createAnchoredRight", () => {
     expect(createAnchoredRight(config2)).toEqual({
       left: getLeftCoord(config2),
       actualX: "left",
+    });
+  });
+});
+
+describe("createEqualWidth", () => {
+  const options1 = {
+    x: "center" as HorizontalPosition,
+    vw: 1000,
+    vwMargin: 0,
+    xMargin: 0,
+    elWidth: 200,
+    containerRect: {
+      left: 300,
+      right: 300,
+      top: 0,
+      bottom: 200,
+      height: 200,
+      width: 400,
+    },
+    isMinWidth: false,
+  };
+  const options2 = { ...options1, vwMargin: 16 };
+  const options3 = { ...options1, xMargin: 5 };
+  const options4 = { ...options2, xMargin: 5 };
+
+  it("should return the width of the container element along with the left value", () => {
+    expect(createEqualWidth(options1)).toEqual({
+      left: 300,
+      width: 400,
+      actualX: "center",
+    });
+    expect(createEqualWidth(options2)).toEqual({
+      left: 300,
+      width: 400,
+      actualX: "center",
+    });
+    expect(createEqualWidth(options3)).toEqual({
+      left: 305,
+      width: 390,
+      actualX: "center",
+    });
+    expect(createEqualWidth(options4)).toEqual({
+      left: 305,
+      width: 390,
+      actualX: "center",
+    });
+  });
+
+  it("should set the minWidth to the container's width instead of right if the isMinWidth option is enabled ", () => {
+    expect(createEqualWidth({ ...options1, isMinWidth: true })).toEqual({
+      left: 300,
+      minWidth: 400,
+      actualX: "center",
+    });
+    expect(createEqualWidth({ ...options1, isMinWidth: true })).toEqual({
+      left: 300,
+      minWidth: 400,
+      actualX: "center",
+    });
+    expect(createEqualWidth({ ...options3, isMinWidth: true })).toEqual({
+      left: 305,
+      minWidth: 390,
+      actualX: "center",
+    });
+    expect(createEqualWidth({ ...options4, isMinWidth: true })).toEqual({
+      left: 305,
+      minWidth: 390,
+      actualX: "center",
+    });
+  });
+
+  it("should set the minWidth to the containers width and set the right to the vwMargin if the element's width is bigger than the screens right edge", () => {
+    const opt1 = {
+      ...options1,
+      isMinWidth: true,
+      elWidth: 1200,
+    };
+    const opt2 = { ...opt1, vwMargin: 16 };
+    const opt3 = { ...opt1, xMargin: 5 };
+    const opt4 = { ...opt2, xMargin: 5 };
+
+    expect(createEqualWidth(opt1)).toEqual({
+      left: 300,
+      minWidth: 400,
+      right: 0,
+      actualX: "center",
+    });
+    expect(createEqualWidth(opt2)).toEqual({
+      left: 300,
+      minWidth: 400,
+      right: 16,
+      actualX: "center",
+    });
+    expect(createEqualWidth(opt3)).toEqual({
+      left: 305,
+      minWidth: 390,
+      right: 0,
+      actualX: "center",
+    });
+    expect(createEqualWidth(opt4)).toEqual({
+      left: 305,
+      minWidth: 390,
+      right: 16,
+      actualX: "center",
     });
   });
 });

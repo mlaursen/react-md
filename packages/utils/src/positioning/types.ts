@@ -96,6 +96,14 @@ export interface FixedPositionOptions {
   equalWidth?: boolean;
 
   /**
+   * Boolean if the fixed element should be updated to have a `min-width` set to the
+   * same width as the container element. This will only be used when the horizontal
+   * anchor is set to `"center"` and will throw an error for all other types. If the
+   * `equalWidth` argument is enabled, this will be ignored.
+   */
+  minEqualWidth?: boolean;
+
+  /**
    * Boolean if the style object should include the `transformOrigin` value
    * based on the x and y positions.
    */
@@ -130,6 +138,9 @@ export interface FixedPositionOptions {
  * `left` values will be provided, but there are a few flows where the `right`
  * and `bottom` could be added or the `top` and `left` are removed.
  *
+ * The `width` values will only be used when the `equalWidth` or `minEqualWidth`
+ * options are enabled.
+ *
  * @private
  */
 export interface Coords {
@@ -137,6 +148,8 @@ export interface Coords {
   right?: number;
   bottom?: number;
   left?: number;
+  width?: number;
+  minWidth?: number;
 }
 
 /**
