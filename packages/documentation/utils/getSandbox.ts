@@ -1,4 +1,4 @@
-import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes/index";
+import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { upperFirst } from "./toTitle";
