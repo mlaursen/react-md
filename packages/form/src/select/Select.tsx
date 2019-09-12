@@ -28,6 +28,7 @@ import TextFieldContainer, {
 import {
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
+  getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
 } from "./utils";
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
@@ -68,6 +69,18 @@ export interface SelectProps
   labelClassName?: string;
 
   /**
+   * An optional style to apply to the current display value within the `Select`'s button
+   * component.
+   */
+  displayLabelStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the current display value within the `Select`'s button
+   * component.
+   */
+  displayLabelClassName?: string;
+
+  /**
    * An optional style to apply to the listbox.
    */
   listboxStyle?: CSSProperties;
@@ -88,6 +101,21 @@ export interface SelectProps
    * or the `label` prop was not provided.
    */
   placeholder?: ReactNode;
+
+  /**
+   * A function that gets called whenever the Select's value changes so that the selected option can
+   * be converted into a renderable element to show in the Select's button. The default behavior is
+   * to use the `getOptionLabel` default behavior. If the option is an object and the `disableLeftAddon`
+   * prop has not been disabled, it will then attempt to also extract a `leftIcon` or `leftAvatar` from
+   * the option and use the `TextIconSpacing` component with the label + icon/avatar.
+   */
+  getDisplayLabel?: typeof DEFAULT_GET_DISPLAY_LABEL;
+
+  /**
+   * Boolean if the `Select`'s button display value should not attempt to extract a `leftIcon`/`leftAvatar`
+   * from the current selected option to display.
+   */
+  disableLeftAddon?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -109,6 +137,8 @@ type DefaultProps = Required<
     | "getOptionId"
     | "getOptionLabel"
     | "getOptionValue"
+    | "getDisplayLabel"
+    | "disableLeftAddon"
     | "disableMovementChange"
   >
 >;
@@ -134,6 +164,8 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     label,
     labelStyle,
     labelClassName,
+    displayLabelStyle,
+    displayLabelClassName,
     listboxStyle,
     listboxClassName,
     portal,
@@ -145,6 +177,8 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     getOptionId,
     getOptionLabel,
     getOptionValue,
+    getDisplayLabel,
+    disableLeftAddon,
     disableMovementChange,
     readOnly,
     placeholder,
@@ -156,15 +190,20 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
 
   const valued = typeof value === "number" || !!value;
   const displayValue = useMemo(() => {
-    const currentOption = options.find(
-      option => getOptionValue(option, valueKey) === value
-    );
-    if (!currentOption) {
-      return null;
-    }
+    const currentOption =
+      options.find(option => getOptionValue(option, valueKey) === value) ||
+      null;
 
-    return getOptionLabel(currentOption, labelKey);
-  }, [options, valueKey, labelKey, getOptionLabel, getOptionValue, value]);
+    return getDisplayLabel(currentOption, labelKey, !disableLeftAddon);
+  }, [
+    options,
+    getDisplayLabel,
+    labelKey,
+    disableLeftAddon,
+    getOptionValue,
+    valueKey,
+    value,
+  ]);
 
   const [visible, show, hide] = useToggle(false);
   const [focused, handleFocus, handleBlur] = useFocusState({ onBlur, onFocus });
@@ -286,12 +325,17 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
           {label}
         </FloatingLabel>
         <span
-          className={block("value", {
-            disabled,
-            readonly: readOnly,
-            placeholder: !valued && placeholder,
-            "placeholder-active": !valued && placeholder && focused,
-          })}
+          id={`${id}-value`}
+          style={displayLabelStyle}
+          className={cn(
+            block("value", {
+              disabled,
+              readonly: readOnly,
+              placeholder: !valued && placeholder,
+              "placeholder-active": !valued && placeholder && focused,
+            }),
+            displayLabelClassName
+          )}
         >
           {displayValue || (!valued && placeholder)}
         </span>
@@ -341,6 +385,8 @@ const defaultProps: DefaultProps = {
   getOptionId: DEFAULT_GET_OPTION_ID,
   getOptionLabel: DEFAULT_GET_OPTION_LABEL,
   getOptionValue: DEFAULT_GET_ITEM_VALUE,
+  getDisplayLabel: DEFAULT_GET_DISPLAY_LABEL,
+  disableLeftAddon: false,
   disableMovementChange: false,
 };
 
@@ -375,6 +421,8 @@ if (process.env.NODE_ENV !== "production") {
       getOptionId: PropTypes.func,
       getOptionLabel: PropTypes.func,
       getOptionValue: PropTypes.func,
+      getDisplayLabel: PropTypes.func,
+      disableLeftAddon: PropTypes.bool,
       disableMovementChange: PropTypes.bool,
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),
       dense: PropTypes.bool,

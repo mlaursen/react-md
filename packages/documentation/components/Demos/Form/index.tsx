@@ -33,8 +33,10 @@ import nativeSelectExample from "./NativeSelectExample.md";
 import SelectExample from "./SelectExample";
 import selectExample from "./SelectExample.md";
 
-import CustomizingSelectOptions from "./CustomizingSelectOptions";
-import customizingSelectOptions from "./CustomizingSelectOptions.md";
+import {
+  CustomizingSelectOptions,
+  customizingSelectOptions,
+} from "./CustomizingSelectOptions";
 
 import TextAreaExample from "./TextAreaExample";
 import textAreaExample from "./TextAreaExample.md";

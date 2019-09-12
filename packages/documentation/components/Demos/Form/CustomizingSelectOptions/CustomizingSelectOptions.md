@@ -20,15 +20,24 @@ select also has the following props to help with rendering and accessibility:
 
 - `labelKey` - A key on the object that should be considered the label
 - `valueKey` - A key on the object that should be considered the value
-- `searchKey` - A key on the object that should return a string that can be used
-  for the typeahead feature (defaults to the `labelKey`)
 - `getOptionLabel` - A function that is called for each option to extract a
   label
 - `getOptionValue` - A function that is called for each option to extract a
   value
-- `getOptionSearchLabel` - A function that is called for each option to extract
-  a search label string for the typeahead feature
+- `getDisplayLabel` - A function that is called for the selected option that
+  should return a renderable ode to display within the `Select`'s button.
 
 > You probably won't need all this additional functionality other than the
-> `labelKey`, `valueKey`, and `searchKey` props, but it might be useful for
-> virtualization libraries or other stuff like that.
+> `labelKey` and `valueKey` props, but it might be useful for virtualization
+> libraries or other stuff like that.
+
+The examples below will show some use-cases for these props to add some more
+style to your select fields:
+
+- using the `labelKey` and `valueKey` props converting a list of states that
+  have the format of `interface State { name: string; abbreviation: string; }`
+  without needing to transform the list yourself
+- rendering custom `children` within each option and still being search
+  accessible
+- displaying icons/avatars along with the selected option in the `Select`'s
+  button

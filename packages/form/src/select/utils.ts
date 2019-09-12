@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, createElement } from "react";
 import { SimpleListItemProps } from "@react-md/list";
+import { TextIconSpacing } from "@react-md/icon";
 
 export interface ListboxOptionProps extends SimpleListItemProps {
   [labelKey: string]: ReactNode;
@@ -67,4 +68,44 @@ export function getOptionLabel(
   }
 
   return option;
+}
+
+/**
+ * A function that will get the display value for the `Select` field based on the current
+ * selected option. The default behavior will be to return null if an option is not
+ * currently selected so the placeholder text can be shown instead. If there is an option
+ * selected, it will:
+ * - get the option's label using the general `getOptionLabel` util
+ * - check if includeLeft is enabled and the option is an object with `leftIcon` or
+ *   `leftAvatar`
+ *   - if there is a `leftIcon` or `leftAvatar`, use the `TextIconSpacing` of the
+ *     label + the icon or avatar.
+ *
+ * @param option The option to get a display label for
+ * @param labelKey The key to use to extract a label from the option when it is an object
+ * @param includeLeft Boolean if a `leftIcon` or `leftAvatar` should be added with `TextIconSpacing`
+ * to the result.
+ * @return A renderable node to display in a `Select` field.
+ */
+export function getDisplayLabel(
+  option: ListboxOption,
+  labelKey: string,
+  includeLeft: boolean
+): ReactNode {
+  if (!option) {
+    return null;
+  }
+
+  const label = getOptionLabel(option, labelKey);
+  if (!includeLeft || !isListboxOptionProps(option)) {
+    return label;
+  }
+
+  const { leftIcon, leftAvatar } = option;
+
+  return createElement(
+    TextIconSpacing,
+    { icon: leftIcon || leftAvatar },
+    label
+  );
 }

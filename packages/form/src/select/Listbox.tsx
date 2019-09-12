@@ -145,6 +145,8 @@ type WithDefaultProps = ListboxProps & DefaultProps & WithRef;
 
 const block = bem("rmd-listbox");
 
+let warned: Set<string> | undefined;
+
 /**
  * This component is used to render the list part of a `<select>` element with built-in accessibility
  * and the ability to add custom styles. This should probably not be used much outside of `react-md`
@@ -250,10 +252,22 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       }
 
       if (process.env.NODE_ENV !== "production") {
-        // eslint-disable-next-line no-console
-        console.warn(
-          "Unable to find a searchable label string for the provided option. Users will be unable to use the typeahead feature in the Listbox component until this is fixed."
-        );
+        if (!warned) {
+          warned = new Set();
+        }
+
+        if (!warned.has(id)) {
+          /* eslint-disable no-console */
+          console.warn(
+            `A listbox with an id of "${id}" has an option that does not have a searchable label string. ` +
+              "Users will be unable to use the typeahead feature in the Listbox component until this is fixed. " +
+              "To fix this warning, you can use the `labelKey` prop on the `Listbox`/`Select` component to point " +
+              "to a string on the following option:",
+            option
+          );
+
+          warned.add(id);
+        }
       }
       return "";
     },
