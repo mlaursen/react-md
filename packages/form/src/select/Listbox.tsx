@@ -16,6 +16,7 @@ import {
   omit,
   useActiveDescendantMovement,
   WithForwardedRef,
+  scrollIntoView,
 } from "@react-md/utils";
 
 import Option from "./Option";
@@ -155,6 +156,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     className,
     forwardedRef,
     temporary,
+    onFocus,
     onKeyDown: propOnKeyDown,
     labelKey,
     valueKey,
@@ -268,14 +270,13 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       }
 
       switch (event.key) {
-        case "Enter": {
+        case "Enter":
           handleChange(focusedIndex);
           if (temporary && onRequestClose) {
             onRequestClose();
           }
           break;
-        }
-        case " ": {
+        case " ":
           event.preventDefault();
           handleChange(focusedIndex);
           if (temporary && onRequestClose) {
@@ -283,7 +284,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
           }
 
           break;
-        }
+        case "Tab":
         case "Escape":
           if (temporary && onRequestClose) {
             onRequestClose();
@@ -293,6 +294,20 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       }
     },
   });
+
+  const handleFocus = useCallback(
+    (event: React.FocusEvent<ListElement>) => {
+      if (onFocus) {
+        onFocus(event);
+      }
+
+      const item = itemRefs[focusedIndex] && itemRefs[focusedIndex].current;
+      if (item) {
+        scrollIntoView(event.currentTarget, item);
+      }
+    },
+    [focusedIndex, itemRefs, onFocus]
+  );
 
   return (
     <ConditionalPortal
@@ -320,6 +335,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
           tabIndex={tabIndex}
           className={cn(block({ temporary }), className)}
           ref={forwardedRef}
+          onFocus={handleFocus}
           onKeyDown={onKeyDown}
         >
           {options.map((option, i) => {
