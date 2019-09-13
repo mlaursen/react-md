@@ -48,6 +48,20 @@ export interface PositionAnchor {
  */
 export type SimplePosition = "above" | "below" | "left" | "right";
 
+/**
+ * An optional configuration for calculating and setting the width of the element
+ * relative to the width of the container. When this value is set to `"auto"` (default),
+ * the width will be based on content width but still ensuring it can fit within
+ * the viewport. Setting this to `"equal"` will just apply the container's width
+ * to the fixed element. Finally, setting this to `"min"` will set the container's
+ * width as the `minWidth` for the fixed element so that it is at least the same
+ * width as the container.
+ *
+ * If this is set to `"equal"` or `"min"` and the horizontal anchor is not set to
+ * `"center"`, an error will be thrown.
+ */
+export type PositionWidth = "auto" | "equal" | "min";
+
 export interface FixedPositionOptions {
   /**
    * The container element that the `element` should be fixed to.
@@ -89,19 +103,9 @@ export interface FixedPositionOptions {
   yMargin?: number;
 
   /**
-   * Boolean if the fixed element should be updated to have the same width as
-   * the container element. This is only valid when the horizontal anchor is set
-   * to `"center"` and will throw an error for all the other types.
+   * @see PositionWidth
    */
-  equalWidth?: boolean;
-
-  /**
-   * Boolean if the fixed element should be updated to have a `min-width` set to the
-   * same width as the container element. This will only be used when the horizontal
-   * anchor is set to `"center"` and will throw an error for all other types. If the
-   * `equalWidth` argument is enabled, this will be ignored.
-   */
-  minEqualWidth?: boolean;
+  width?: PositionWidth;
 
   /**
    * Boolean if the style object should include the `transformOrigin` value

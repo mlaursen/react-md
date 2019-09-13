@@ -45,8 +45,7 @@ export default function getFixedPosition({
   vhMargin = 16,
   xMargin = 0,
   yMargin = 0,
-  equalWidth = false,
-  minEqualWidth = false,
+  width: widthType = "auto",
   preventOverlap = false,
   transformOrigin = false,
   disableSwapping = false,
@@ -59,9 +58,9 @@ export default function getFixedPosition({
   };
 
   if (process.env.NODE_ENV !== "production") {
-    if ((equalWidth || minEqualWidth) && anchor.x !== "center") {
+    if (widthType !== "auto" && anchor.x !== "center") {
       throw new Error(
-        'Unable to use equal width when the horizontal anchor is not `"center"`.'
+        'Unable to use a calculated width when the horizontal anchor is not `"center"`.'
       );
     }
 
@@ -90,8 +89,7 @@ export default function getFixedPosition({
     vw,
     vwMargin,
     xMargin,
-    equalWidth,
-    minEqualWidth,
+    width: widthType,
     elWidth,
     containerRect,
     disableSwapping,

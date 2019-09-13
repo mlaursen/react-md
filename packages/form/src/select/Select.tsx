@@ -20,6 +20,7 @@ import {
   useCloseOnOutsideClick,
   useToggle,
   WithForwardedRef,
+  PositionWidth,
 } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
@@ -126,7 +127,7 @@ export interface SelectProps
    * The sizing behavior will always ensure that the left and right bounds of the listbox appear within
    * the viewport.
    */
-  listboxSize?: "equal" | "min" | "auto";
+  listboxWidth?: PositionWidth;
 
   /**
    * Boolean if the `Select`'s button display value should not attempt to extract a `leftIcon`/`leftAvatar`
@@ -160,7 +161,7 @@ type DefaultProps = Required<
     | "isRightAddon"
     | "rightChildren"
     | "anchor"
-    | "listboxSize"
+    | "listboxWidth"
     | "labelKey"
     | "valueKey"
     | "getOptionId"
@@ -200,7 +201,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     listboxStyle,
     listboxClassName,
     anchor,
-    listboxSize,
+    listboxWidth,
     portal,
     portalInto,
     portalIntoId,
@@ -296,8 +297,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     onScroll: disableHideOnScroll ? undefined : hide,
     onResize: disableHideOnResize ? undefined : hide,
     transformOrigin: true,
-    equalWidth: listboxSize === "equal",
-    minEqualWidth: listboxSize === "min",
+    width: listboxWidth,
     onEntering(node) {
       // can't do onEnter since the positioning styles haven't been applied to the
       // dom node at this time. this means the list is the last element in the DOM
@@ -420,7 +420,7 @@ const defaultProps: DefaultProps = {
     x: "center",
     y: "below",
   },
-  listboxSize: "equal",
+  listboxWidth: "equal",
   labelKey: "label",
   valueKey: "value",
   getOptionId: DEFAULT_GET_OPTION_ID,
@@ -491,7 +491,7 @@ if (process.env.NODE_ENV !== "production") {
         ]),
         y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
       }),
-      listboxSize: PropTypes.oneOf(["equal", "min", "auto"]),
+      listboxWidth: PropTypes.oneOf(["equal", "min", "auto"]),
     };
   }
 }

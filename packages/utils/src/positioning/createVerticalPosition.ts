@@ -186,12 +186,12 @@ export function createAnchoredBottom(config: FixConfig): YPosition {
   } = config;
   let top = getBottomCoord(config);
   let actualY: VerticalPosition = "bottom";
-  if (disableVHBounds || top + elHeight > screenBottom) {
+  if (disableVHBounds || top > vhMargin) {
     return { actualY, top };
   }
 
   const swappedTop = getTopCoord(config);
-  if (disableSwapping || swappedTop < vhMargin) {
+  if (disableSwapping || swappedTop + elHeight > screenBottom) {
     top = screenBottom - elHeight;
   } else {
     actualY = "top";

@@ -35,11 +35,7 @@ interface Options
   extends Required<
     Pick<
       FixedPositionOptions,
-      | "vwMargin"
-      | "xMargin"
-      | "equalWidth"
-      | "minEqualWidth"
-      | "disableSwapping"
+      "vwMargin" | "xMargin" | "width" | "disableSwapping"
     >
   > {
   x: HorizontalPosition;
@@ -245,13 +241,12 @@ export default function createHorizontalPosition({
   vw,
   vwMargin,
   xMargin,
-  equalWidth,
-  minEqualWidth,
+  width,
   elWidth,
   containerRect,
   disableSwapping,
 }: Options): XPosition {
-  if (equalWidth || minEqualWidth) {
+  if (width === "min" || width === "equal") {
     return createEqualWidth({
       x,
       vw,
@@ -259,7 +254,7 @@ export default function createHorizontalPosition({
       xMargin,
       elWidth,
       containerRect,
-      isMinWidth: minEqualWidth,
+      isMinWidth: width === "min",
     });
   }
 
