@@ -4,7 +4,21 @@
 @import '~@react-md/transition/dist/mixins';
 
 .fixed-position-form {
-  margin-bottom: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  fieldset {
+    margin: 1rem;
+  }
+}
+
+.fixed-position-select {
+  margin: 1rem;
+  width: 10rem;
+}
+
+.fixed-position-listbox {
+  max-height: 25rem;
 }
 
 .fixed-position-div {
@@ -19,6 +33,7 @@
   display: flex;
   justify-content: center;
   margin: 1rem;
+  width: 100%;
 }
 
 .fixed-position {

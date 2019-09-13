@@ -1,7 +1,13 @@
-import React, { FC, Fragment, useEffect, useRef, useState } from "react";
+import React, { FC, Fragment, useRef, useState, useCallback } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
-import { Form, useCheckboxState } from "@react-md/form";
+import {
+  Form,
+  Select,
+  useCheckboxState,
+  ListboxOption,
+  Fieldset,
+} from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
 import { useFixedPositioning } from "@react-md/transition";
 import { Text } from "@react-md/typography";
@@ -10,12 +16,13 @@ import {
   useToggle,
   VerticalPosition,
   PositionAnchor,
+  PositionWidth,
 } from "@react-md/utils";
 
 import Checkbox from "components/Checkbox";
-import Radio from "components/Radio";
 
 import "./FixedPositioningExample.scss";
+import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 
 const horizontals: HorizontalPosition[] = [
   "left",
@@ -32,6 +39,8 @@ const verticals: VerticalPosition[] = [
   "bottom",
 ];
 
+const widths: PositionWidth[] = ["auto", "equal", "min"];
+
 const anchors = horizontals.reduce<Record<string, PositionAnchor>>(
   (value, x) => {
     verticals.forEach(y => {
@@ -43,35 +52,36 @@ const anchors = horizontals.reduce<Record<string, PositionAnchor>>(
   {}
 );
 
+const anchorOptions = Object.entries(anchors).map(([value, anchor]) => ({
+  ...anchor,
+  label: value,
+  value,
+}));
+
+type Anchor = typeof anchorOptions[0];
+const CENTERED_ANCHOR = anchorOptions.find(
+  anchor => anchor.label === "center center"
+) as Anchor;
+
 const FixedPositioningExample: FC = () => {
-  const [visible, show, hide, toggle] = useToggle(false);
+  const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [disableSwapping, handleSwapCange] = useCheckboxState(false);
   const [transformOrigin, handleOriginChange] = useCheckboxState(false);
   const [hideOnScroll, handleScrollChange] = useCheckboxState(true);
   const [hideOnResize, handleScrollResize] = useCheckboxState(true);
-  const [anchor, setAnchor] = useState<PositionAnchor>({
-    x: "center",
-    y: "below",
-  });
-
-  useEffect(() => {
-    if (!visible) {
-      return;
-    }
-
-    // changing the anchor while it is visible will not update the position, so need to
-    // re-show it again to get the updated position. This really only happens if changing
-    // the radio buttons with the up and down arrow keys and "submitting" the form to make
-    // it visible.
-    hide();
-    const frame = window.requestAnimationFrame(show);
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-    // only want to run this hook on anchor changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [anchor]);
+  const [anchor, setAnchor] = useState(anchorOptions[0]);
+  const handleAnchorChange = useCallback(
+    (_value: string, anchor: ListboxOption) => {
+      setAnchor(anchor as Anchor);
+    },
+    []
+  );
+  const [width, setWidth] = useState<PositionWidth>("auto");
+  const handleWidthChange = useCallback((nextWidth: string) => {
+    setAnchor(CENTERED_ANCHOR);
+    setWidth(nextWidth as PositionWidth);
+  }, []);
 
   const {
     style,
@@ -81,67 +91,97 @@ const FixedPositioningExample: FC = () => {
     onExited,
   } = useFixedPositioning({
     fixedTo: buttonRef.current,
-    anchor,
+    anchor: { x: anchor.x, y: anchor.y },
+    width,
     transformOrigin,
     disableSwapping,
-    onScroll: hideOnScroll ? hide : undefined,
-    onResize: hideOnResize ? hide : undefined,
+    onScroll(_event, _div, button) {
+      if (hideOnScroll) {
+        hide();
+        return;
+      }
+
+      if (!button) {
+        return;
+      }
+      // hide when the button isn't in the viewport anymore if the
+      // hideOnScroll behavior is disabled
+      const { top } = button.getBoundingClientRect();
+      if (top < 0 || top > window.innerHeight) {
+        hide();
+      }
+    },
+    onResize(_event) {
+      if (hideOnResize) {
+        hide();
+      }
+    },
   });
 
   return (
     <Fragment>
       <Form className="fixed-position-form">
-        <Checkbox
-          id="fixed-swap"
-          name="options"
-          label="Disable Swapping"
-          checked={disableSwapping}
-          onChange={handleSwapCange}
+        <Fieldset legend="Fixed Positioning Options" disableLegendSROnly>
+          <Checkbox
+            id="fixed-swap"
+            name="options"
+            label="Disable Swapping"
+            checked={disableSwapping}
+            onChange={handleSwapCange}
+          />
+          <Checkbox
+            id="fixed-origin"
+            name="options"
+            label="Transform Origin"
+            checked={transformOrigin}
+            onChange={handleOriginChange}
+          />
+          <Checkbox
+            id="fixed-hide-on-scroll"
+            name="options"
+            label="Hide on scroll"
+            checked={hideOnScroll}
+            onChange={handleScrollChange}
+          />
+          <Checkbox
+            id="fixed-hide-on-resize"
+            name="options"
+            label="Hide on resize"
+            checked={hideOnResize}
+            onChange={handleScrollResize}
+          />
+        </Fieldset>
+        <Select
+          id="fixed-anchor-type"
+          label="Anchor"
+          className="fixed-position-select"
+          listboxClassName="fixed-position-listbox"
+          inline
+          options={anchorOptions}
+          value={anchor.value}
+          onChange={handleAnchorChange}
+          rightChildren={<ArrowDropDownSVGIcon />}
+          listboxWidth="min"
+          isOptionDisabled={option => {
+            const opt = option as Anchor;
+            return width !== "auto" && !opt.value.startsWith("center");
+          }}
         />
-        <Checkbox
-          id="fixed-origin"
-          name="options"
-          label="Transform Origin"
-          checked={transformOrigin}
-          onChange={handleOriginChange}
+        <Select
+          id="fixed-anchor-width"
+          label="Fixed element width"
+          className="fixed-position-select"
+          inline
+          options={widths}
+          value={width}
+          onChange={handleWidthChange}
+          rightChildren={<ArrowDropDownSVGIcon />}
         />
-        <Checkbox
-          id="fixed-hide-on-scroll"
-          name="options"
-          label="Hide on scroll"
-          checked={hideOnScroll}
-          onChange={handleScrollChange}
-        />
-        <Checkbox
-          id="fixed-hide-on-resize"
-          name="options"
-          label="Hide on resize"
-          checked={hideOnResize}
-          onChange={handleScrollResize}
-        />
-        <fieldset>
-          <Text component="legend">Anchor</Text>
-          {Object.entries(anchors).map(([value, currentAnchor]) => (
-            <Radio
-              key={value}
-              id={`fixed-anchor-${value}`}
-              name="anchor"
-              value={value}
-              label={value}
-              checked={
-                anchor.x === currentAnchor.x && anchor.y === currentAnchor.y
-              }
-              onChange={() => {
-                setAnchor(currentAnchor);
-              }}
-            />
-          ))}
-        </fieldset>
         <div className="fixed-position-footer">
           <Button
             id="fixed-positioning-button"
             ref={buttonRef}
-            onClick={toggle}
+            onClick={show}
             theme="primary"
             themeType="contained"
             type="submit"
@@ -174,7 +214,11 @@ const FixedPositioningExample: FC = () => {
         onEntered={onEntered}
         onExited={onExited}
       >
-        <div style={style} className="fixed-position-div">
+        <div
+          id="fixed-position-div"
+          style={style}
+          className="fixed-position-div"
+        >
           <Text>This is some amazing text in a fixed element!</Text>
         </div>
       </CSSTransition>
