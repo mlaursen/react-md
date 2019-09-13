@@ -30,6 +30,14 @@ $rmd-option-focused-styles: (
   box-shadow: inset 0 0 0 2px $rmd-blue-500,
 ) !default;
 
+/// The styles to apply when an option is selected. This should be a map of style properties
+/// with values to apply.
+/// @type Map
+$rmd-option-selected-styles: (
+  background-color: $rmd-blue-900,
+  color: $rmd-white-base,
+) !default;
+
 /// The amount of `left` (or right when rtl languages are used) to apply
 /// to the option's selected checkmark css.
 /// @type Number

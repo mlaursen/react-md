@@ -126,8 +126,6 @@ export default function useFixedPositioning({
 
   const element = useRef<HTMLElement | null>(null);
 
-  /* eslint-disable react-hooks/exhaustive-deps */
-  // these are all guarenteed to not change since using refs or non-updating callbacks
   const updateStyle = useCallback(() => {
     const node = element.current;
     if (!node) {
@@ -164,48 +162,63 @@ export default function useFixedPositioning({
     }
 
     setStyle(style);
-  }, []);
+  }, [options]);
 
-  const updateNodeAndStyle = useCallback((node: HTMLElement) => {
-    element.current = node;
-    updateStyle();
-  }, []);
+  const updateNodeAndStyle = useCallback(
+    (node: HTMLElement) => {
+      element.current = node;
+      updateStyle();
+    },
+    [updateStyle]
+  );
 
-  const handleEnter = useCallback((node: HTMLElement, appear: boolean) => {
-    const { onEnter } = handlers.current;
-    if (onEnter) {
-      onEnter(node, appear);
-    }
+  const handleEnter = useCallback(
+    (node: HTMLElement, appear: boolean) => {
+      const { onEnter } = handlers.current;
+      if (onEnter) {
+        onEnter(node, appear);
+      }
 
-    updateNodeAndStyle(node);
-  }, []);
+      updateNodeAndStyle(node);
+    },
+    [handlers, updateNodeAndStyle]
+  );
 
-  const handleEntering = useCallback((node: HTMLElement, appear: boolean) => {
-    const { onEntering } = handlers.current;
-    if (onEntering) {
-      onEntering(node, appear);
-    }
+  const handleEntering = useCallback(
+    (node: HTMLElement, appear: boolean) => {
+      const { onEntering } = handlers.current;
+      if (onEntering) {
+        onEntering(node, appear);
+      }
 
-    updateNodeAndStyle(node);
-  }, []);
+      updateNodeAndStyle(node);
+    },
+    [handlers, updateNodeAndStyle]
+  );
 
-  const handleEntered = useCallback((node: HTMLElement, appear: boolean) => {
-    const { onEntered } = handlers.current;
-    if (onEntered) {
-      onEntered(node, appear);
-    }
+  const handleEntered = useCallback(
+    (node: HTMLElement, appear: boolean) => {
+      const { onEntered } = handlers.current;
+      if (onEntered) {
+        onEntered(node, appear);
+      }
 
-    updateNodeAndStyle(node);
-  }, []);
+      updateNodeAndStyle(node);
+    },
+    [handlers, updateNodeAndStyle]
+  );
 
-  const handleExited = useCallback((node: HTMLElement) => {
-    const { onExited } = handlers.current;
-    if (onExited) {
-      onExited(node);
-    }
+  const handleExited = useCallback(
+    (node: HTMLElement) => {
+      const { onExited } = handlers.current;
+      if (onExited) {
+        onExited(node);
+      }
 
-    element.current = null;
-  }, []);
+      element.current = null;
+    },
+    [handlers]
+  );
 
   useResizeListener({
     enabled: !!element.current,

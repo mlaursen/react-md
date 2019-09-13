@@ -1,4 +1,10 @@
-import React, { FC, forwardRef, HTMLAttributes, useCallback } from "react";
+import React, {
+  FC,
+  forwardRef,
+  HTMLAttributes,
+  useCallback,
+  useRef,
+} from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
 import {
@@ -125,6 +131,12 @@ export interface ListboxProps
    * the `temporary` prop is enabled.
    */
   onRequestClose?: () => void;
+
+  /**
+   * Boolean if all the options should just be read only and prevent the `onChange` handler to
+   * be called when an option is keyboard focused or clicked.
+   */
+  readOnly?: boolean;
 }
 
 type WithRef = WithForwardedRef<ListElement>;
@@ -176,6 +188,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     visible,
     onRequestClose,
     timeout,
+    readOnly,
     classNames,
     mountOnEnter,
     unmountOnExit,
@@ -215,6 +228,10 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
    */
   const handleChange = useCallback(
     (index: number) => {
+      if (readOnly) {
+        return;
+      }
+
       const option = options[index];
       if (!option) {
         return;
@@ -225,7 +242,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
         onChange(optionValue, options[index]);
       }
     },
-    [options, onChange, getOptionValue, valueKey, value]
+    [options, onChange, getOptionValue, valueKey, value, readOnly]
   );
 
   const {
@@ -309,6 +326,16 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     },
   });
 
+  const prevVisible = useRef(visible);
+  if (visible !== prevVisible.current) {
+    prevVisible.current = visible;
+    // whenever it gains visibility, try to set the focused index to the
+    // current active value
+    if (visible) {
+      setFocusedIndex(getIndex());
+    }
+  }
+
   const handleFocus = useCallback(
     (event: React.FocusEvent<ListElement>) => {
       if (onFocus) {
@@ -331,6 +358,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     >
       <ScaleTransition
         visible={!temporary || visible}
+        vertical
         timeout={timeout}
         classNames={classNames}
         mountOnEnter={mountOnEnter}
@@ -361,6 +389,14 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
               optionProps = omit(option, [labelKey, valueKey]);
             }
 
+            let onClick;
+            if (!readOnly) {
+              onClick = () => {
+                handleChange(i);
+                setFocusedIndex(i);
+              };
+            }
+
             return (
               <Option
                 key={optionValue}
@@ -369,10 +405,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
                 ref={itemRefs[i]}
                 focused={optionId === activeId}
                 selected={value === optionValue}
-                onClick={() => {
-                  handleChange(i);
-                  setFocusedIndex(i);
-                }}
+                onClick={onClick}
               >
                 {optionLabel}
               </Option>

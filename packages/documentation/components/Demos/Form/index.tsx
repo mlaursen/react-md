@@ -3,6 +3,24 @@ import React, { ReactElement } from "react";
 import description from "./README.md";
 import DemoPage from "../DemoPage";
 
+import TextFieldExample from "./TextFieldExample";
+import textFieldExample from "./TextFieldExample.md";
+
+import TextFieldTypes from "./TextFieldTypes";
+import textFieldTypes from "./TextFieldTypes.md";
+
+import TextAreaExample from "./TextAreaExample";
+import textAreaExample from "./TextAreaExample.md";
+
+import FileInputExample from "./FileInputExample";
+import fileInputExample from "./FileInputExample.md";
+
+import NativeSelectExample from "./NativeSelectExample";
+import nativeSelectExample from "./NativeSelectExample.md";
+
+import SelectExample from "./SelectExample";
+import selectExample from "./SelectExample.md";
+
 import CheckboxAndRadioExamples from "./CheckboxAndRadioExamples";
 import checkboxAndRadioExamples from "./CheckboxAndRadioExamples.md";
 
@@ -18,38 +36,15 @@ import switchExamples from "./SwitchExamples.md";
 import AsyncSwitchExample from "./AsyncSwitchExample";
 import asyncSwitchExample from "./AsyncSwitchExample.md";
 
-import FileInputExample from "./FileInputExample";
-import fileInputExample from "./FileInputExample.md";
-
-import TextFieldExample from "./TextFieldExample";
-import textFieldExample from "./TextFieldExample.md";
-
-import TextFieldTypes from "./TextFieldTypes";
-import textFieldTypes from "./TextFieldTypes.md";
-
-import NativeSelectExample from "./NativeSelectExample";
-import nativeSelectExample from "./NativeSelectExample.md";
-
-import SelectExample from "./SelectExample";
-import selectExample from "./SelectExample.md";
-
 import {
   CustomizingSelectOptions,
   customizingSelectOptions,
 } from "./CustomizingSelectOptions";
 
-import TextAreaExample from "./TextAreaExample";
-import textAreaExample from "./TextAreaExample.md";
-
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
 const demos = [
-  {
-    name: "Checkbox and Radio Examples",
-    description: checkboxAndRadioExamples,
-    children: <CheckboxAndRadioExamples />,
-  },
   {
     name: "Text Field Example",
     description: textFieldExample,
@@ -84,6 +79,11 @@ const demos = [
     name: "Customizing Select Options",
     description: customizingSelectOptions,
     children: <CustomizingSelectOptions />,
+  },
+  {
+    name: "Checkbox and Radio Examples",
+    description: checkboxAndRadioExamples,
+    children: <CheckboxAndRadioExamples />,
   },
   {
     name: "Indeterminate Checkboxes",

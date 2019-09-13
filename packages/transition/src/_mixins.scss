@@ -216,6 +216,7 @@
     &--scale-y-enter {
       opacity: 0;
       transform: scaleY(0);
+      transform-origin: 0 0;
     }
 
     &--scale-y-enter-active {
@@ -230,6 +231,7 @@
     &--scale-y-exit {
       opacity: 1;
       transform: scaleY(1);
+      transform-origin: 0 0;
     }
 
     &--scale-y-exit-active {

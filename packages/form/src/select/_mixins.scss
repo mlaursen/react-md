@@ -3,6 +3,10 @@
 ////
 
 @import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 @import '../text-field/mixins';
 @import '../functions';
@@ -108,22 +112,25 @@
     @include rmd-list-theme-update-var(item-horizontal-padding, 1.5rem);
   }
 
-  @include rmd-utils-keyboard-only {
-    &--focused {
-      @each $property, $value in $rmd-option-focused-styles {
-        #{$property}: #{$value};
+  &--selected {
+    @each $property, $value in $rmd-option-selected-styles {
+      #{$property}: #{$value};
+    }
+
+    @if $rmd-option-selected-content {
+      &::after {
+        @include rmd-utils-rtl-auto(left, $rmd-option-selected-offset);
+
+        content: $rmd-option-selected-content;
+        position: absolute;
       }
     }
   }
 
-  &--selected {
-    @if $rmd-option-selected-content {
-      &::after {
-        @include rmd-utils-rtl-auto(left, $rmd-option-selected-offset);
-        @include rmd-theme(color, text-primary-on-background);
-
-        content: $rmd-option-selected-content;
-        position: absolute;
+  @include rmd-utils-keyboard-only {
+    &--focused {
+      @each $property, $value in $rmd-option-focused-styles {
+        #{$property}: #{$value};
       }
     }
   }

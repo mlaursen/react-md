@@ -1,37 +1,39 @@
 import React, {
+  CSSProperties,
   FC,
+  forwardRef,
   Fragment,
   HTMLAttributes,
   ReactNode,
-  CSSProperties,
-  forwardRef,
-  useRef,
   useCallback,
   useMemo,
+  useRef,
 } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { useFixedPositioning } from "@react-md/transition";
 import {
-  bem,
-  WithForwardedRef,
-  DEFAULT_GET_ITEM_VALUE,
   applyRef,
-  useToggle,
+  bem,
+  DEFAULT_GET_ITEM_VALUE,
+  PositionAnchor,
   useCloseOnOutsideClick,
+  useToggle,
+  WithForwardedRef,
 } from "@react-md/utils";
 
-import Listbox, { ListboxOptions } from "./Listbox";
+import FloatingLabel from "../label/FloatingLabel";
 import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
+import useFocusState from "../useFocusState";
+
+import Listbox, { ListboxOptions } from "./Listbox";
 import {
+  getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
-  getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
 } from "./utils";
-import FloatingLabel from "../label/FloatingLabel";
-import useFocusState from "../useFocusState";
 
 type FakeSelectAttributes = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -39,9 +41,9 @@ type FakeSelectAttributes = Omit<
 >;
 
 export interface SelectProps
-  extends TextFieldContainerOptions,
-    ListboxOptions,
-    FakeSelectAttributes {
+  extends FakeSelectAttributes,
+    TextFieldContainerOptions,
+    ListboxOptions {
   /**
    * The id for the select component. This is required for a11y and will be used to generate
    * ids for the listbox and each option within the listbox.
@@ -112,10 +114,35 @@ export interface SelectProps
   getDisplayLabel?: typeof DEFAULT_GET_DISPLAY_LABEL;
 
   /**
+   * The positioning configuration for how the listbox should be anchored to the select button.
+   */
+  anchor?: PositionAnchor;
+
+  /**
+   * The sizing behavior for the listbox. It will default to have the same width as the select button,
+   * but it is also possible to either have the `min-width` be the width of the select button or just
+   * automatically determine the width.
+   *
+   * The sizing behavior will always ensure that the left and right bounds of the listbox appear within
+   * the viewport.
+   */
+  listboxSize?: "equal" | "min" | "auto";
+
+  /**
    * Boolean if the `Select`'s button display value should not attempt to extract a `leftIcon`/`leftAvatar`
    * from the current selected option to display.
    */
   disableLeftAddon?: boolean;
+
+  /**
+   * Boolean if the select's listbox should not hide if the user resizes the browser while it is visible.
+   */
+  disableHideOnResize?: boolean;
+
+  /**
+   * Boolean if the select's listbox should not hide if the user scrolls the page while it is visible.
+   */
+  disableHideOnScroll?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -132,6 +159,8 @@ type DefaultProps = Required<
     | "isLeftAddon"
     | "isRightAddon"
     | "rightChildren"
+    | "anchor"
+    | "listboxSize"
     | "labelKey"
     | "valueKey"
     | "getOptionId"
@@ -140,6 +169,8 @@ type DefaultProps = Required<
     | "getDisplayLabel"
     | "disableLeftAddon"
     | "disableMovementChange"
+    | "disableHideOnResize"
+    | "disableHideOnScroll"
   >
 >;
 type WithDefaultProps = SelectProps & DefaultProps & WithRef;
@@ -168,6 +199,8 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     displayLabelClassName,
     listboxStyle,
     listboxClassName,
+    anchor,
+    listboxSize,
     portal,
     portalInto,
     portalIntoId,
@@ -180,6 +213,8 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     getDisplayLabel,
     disableLeftAddon,
     disableMovementChange,
+    disableHideOnResize,
+    disableHideOnScroll,
     readOnly,
     placeholder,
     value,
@@ -257,12 +292,12 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     onExited,
   } = useFixedPositioning({
     fixedTo: () => selectRef.current,
-    anchor: {
-      x: "center",
-      y: "below",
-    },
+    anchor,
+    onScroll: disableHideOnScroll ? undefined : hide,
+    onResize: disableHideOnResize ? undefined : hide,
     transformOrigin: true,
-    equalWidth: true,
+    equalWidth: listboxSize === "equal",
+    minEqualWidth: listboxSize === "min",
     onEntering(node) {
       // can't do onEnter since the positioning styles haven't been applied to the
       // dom node at this time. this means the list is the last element in the DOM
@@ -332,7 +367,8 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
               disabled,
               readonly: readOnly,
               placeholder: !valued && placeholder,
-              "placeholder-active": !valued && placeholder && focused,
+              "placeholder-active":
+                !valued && placeholder && (focused || visible),
             }),
             displayLabelClassName
           )}
@@ -380,6 +416,11 @@ const defaultProps: DefaultProps = {
   isRightAddon: true,
   underlineDirection: "left",
   rightChildren: <FontIcon>arrow_drop_down</FontIcon>,
+  anchor: {
+    x: "center",
+    y: "below",
+  },
+  listboxSize: "equal",
   labelKey: "label",
   valueKey: "value",
   getOptionId: DEFAULT_GET_OPTION_ID,
@@ -388,6 +429,8 @@ const defaultProps: DefaultProps = {
   getDisplayLabel: DEFAULT_GET_DISPLAY_LABEL,
   disableLeftAddon: false,
   disableMovementChange: false,
+  disableHideOnResize: false,
+  disableHideOnScroll: false,
 };
 
 Select.defaultProps = defaultProps;
@@ -436,6 +479,19 @@ if (process.env.NODE_ENV !== "production") {
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
+      disableHideOnResize: PropTypes.bool,
+      disableHideOnScroll: PropTypes.bool,
+      anchor: PropTypes.shape({
+        x: PropTypes.oneOf([
+          "inner-left",
+          "inner-right",
+          "center",
+          "left",
+          "right",
+        ]),
+        y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
+      }),
+      listboxSize: PropTypes.oneOf(["equal", "min", "auto"]),
     };
   }
 }

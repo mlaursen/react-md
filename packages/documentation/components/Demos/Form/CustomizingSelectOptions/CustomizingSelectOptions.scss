@@ -3,6 +3,7 @@
 .customizing-select-options {
   display: grid;
   grid-row-gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .customizing-select-options__value {

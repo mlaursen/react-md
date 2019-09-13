@@ -1,5 +1,11 @@
 import React, { FC, useState, useCallback } from "react";
-import { Select, ListboxOption } from "@react-md/form";
+import {
+  Select,
+  ListboxOption,
+  Checkbox,
+  Fieldset,
+  useCheckboxState,
+} from "@react-md/form";
 
 import TextFieldThemeConfig from "./TextFieldThemeConfig";
 
@@ -13,6 +19,8 @@ const SelectExample: FC = () => {
     },
     []
   );
+  const [disableMovementChange, handleMovementChange] = useCheckboxState(false);
+
   return (
     <TextFieldThemeConfig
       idPrefix="custom-select"
@@ -24,9 +32,19 @@ const SelectExample: FC = () => {
           options={options}
           value={value}
           onChange={handleChange}
+          disableMovementChange={disableMovementChange}
         />
       )}
-    />
+    >
+      <Fieldset legend="Select options" disableLegendSROnly>
+        <Checkbox
+          id="custom-select-disable-movement"
+          label="Disable keyboard movement change"
+          checked={disableMovementChange}
+          onChange={handleMovementChange}
+        />
+      </Fieldset>
+    </TextFieldThemeConfig>
   );
 };
 

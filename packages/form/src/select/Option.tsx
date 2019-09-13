@@ -44,7 +44,13 @@ const Option: FC<OptionProps & WithRef> = providedProps => {
       role="option"
       aria-selected={selected || undefined}
       ref={forwardedRef}
-      className={cn(block({ selected, focused }), className)}
+      className={cn(
+        block({
+          selected,
+          focused,
+        }),
+        className
+      )}
     >
       {children}
     </SimpleListItem>
