@@ -168,6 +168,7 @@ type DefaultProps = Required<
     | "getOptionLabel"
     | "getOptionValue"
     | "getDisplayLabel"
+    | "isOptionDisabled"
     | "disableLeftAddon"
     | "disableMovementChange"
     | "disableHideOnResize"
@@ -212,6 +213,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     getOptionLabel,
     getOptionValue,
     getDisplayLabel,
+    isOptionDisabled,
     disableLeftAddon,
     disableMovementChange,
     disableHideOnResize,
@@ -399,6 +401,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
         getOptionId={getOptionId}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
+        isOptionDisabled={isOptionDisabled}
         disableMovementChange={disableMovementChange}
       />
     </Fragment>
@@ -427,6 +430,7 @@ const defaultProps: DefaultProps = {
   getOptionLabel: DEFAULT_GET_OPTION_LABEL,
   getOptionValue: DEFAULT_GET_ITEM_VALUE,
   getDisplayLabel: DEFAULT_GET_DISPLAY_LABEL,
+  isOptionDisabled: () => false,
   disableLeftAddon: false,
   disableMovementChange: false,
   disableHideOnResize: false,
@@ -465,6 +469,7 @@ if (process.env.NODE_ENV !== "production") {
       getOptionLabel: PropTypes.func,
       getOptionValue: PropTypes.func,
       getDisplayLabel: PropTypes.func,
+      isOptionDisabled: PropTypes.func,
       disableLeftAddon: PropTypes.bool,
       disableMovementChange: PropTypes.bool,
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),

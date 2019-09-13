@@ -73,6 +73,12 @@ export interface ListboxOptions extends RenderConditionalPortalProps {
   getOptionValue?: typeof DEFAULT_GET_ITEM_VALUE;
 
   /**
+   * A function to call for each option to check if it is currently disabled. This is really just a
+   * convenience prop so that you don't need to modify the `options` yourself.
+   */
+  isOptionDisabled?: (option: ListboxOption) => boolean;
+
+  /**
    * The listbox is a controlled component, so you will need to provide the current value
    * and an `onChange` handler. The `value` must be a string and _should_ be one of the option's
    * values when something has been selected. If you want to have an "empty" select box to require
@@ -148,6 +154,7 @@ type DefaultProps = Required<
     | "getOptionId"
     | "getOptionValue"
     | "getOptionLabel"
+    | "isOptionDisabled"
     | "visible"
     | "temporary"
     | "disableMovementChange"
@@ -198,6 +205,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     onExit,
     onExiting,
     onExited,
+    isOptionDisabled,
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
@@ -233,7 +241,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       }
 
       const option = options[index];
-      if (!option) {
+      if (!option || isOptionDisabled(option)) {
         return;
       }
 
@@ -242,7 +250,15 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
         onChange(optionValue, options[index]);
       }
     },
-    [options, onChange, getOptionValue, valueKey, value, readOnly]
+    [
+      readOnly,
+      options,
+      isOptionDisabled,
+      getOptionValue,
+      valueKey,
+      value,
+      onChange,
+    ]
   );
 
   const {
@@ -389,8 +405,10 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
               optionProps = omit(option, [labelKey, valueKey]);
             }
 
+            const disabled = isOptionDisabled(option);
+
             let onClick;
-            if (!readOnly) {
+            if (!readOnly && !disabled) {
               onClick = () => {
                 handleChange(i);
                 setFocusedIndex(i);
@@ -401,6 +419,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
               <Option
                 key={optionValue}
                 id={optionId}
+                disabled={disabled}
                 {...optionProps}
                 ref={itemRefs[i]}
                 focused={optionId === activeId}
@@ -425,6 +444,7 @@ const defaultProps: DefaultProps = {
   getOptionId: DEFAULT_GET_OPTION_ID,
   getOptionLabel: DEFAULT_GET_OPTION_LABEL,
   getOptionValue: DEFAULT_GET_ITEM_VALUE,
+  isOptionDisabled: () => false,
   disableMovementChange: false,
 };
 
@@ -448,6 +468,7 @@ if (process.env.NODE_ENV !== "production") {
       getOptionId: PropTypes.func,
       getOptionLabel: PropTypes.func,
       getOptionValue: PropTypes.func,
+      isOptionDisabled: PropTypes.func,
       visible: PropTypes.bool,
       temporary: PropTypes.bool,
       onRequestClose: PropTypes.func,
