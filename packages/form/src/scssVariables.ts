@@ -50,6 +50,10 @@ export default {
   "rmd-listbox-z-index": 10,
   "rmd-listbox-elevation": 8,
   "rmd-option-focused-styles": { "box-shadow": "inset 0 0 0 2px #2196f3" },
+  "rmd-option-selected-styles": {
+    "background-color": "#0d47a1",
+    color: "#fff",
+  },
   "rmd-option-selected-offset": "0.5rem",
   "rmd-option-selected-content": "✓",
   "rmd-option-horizontal-padding": "1.5rem",

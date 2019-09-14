@@ -2,6 +2,10 @@ import React, { FC, ReactNode } from "react";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
+import {
+  ConditionalPortal,
+  RenderConditionalPortalProps,
+} from "@react-md/portal";
 
 import { OverridableCSSTransitionProps, TransitionTimeout } from "./types";
 
@@ -30,7 +34,9 @@ export const SCALE_TIMEOUT: TransitionTimeout = {
   exit: 150,
 };
 
-export interface ScaleTransitionProps extends OverridableCSSTransitionProps {
+export interface ScaleTransitionProps
+  extends OverridableCSSTransitionProps,
+    RenderConditionalPortalProps {
   /**
    * Boolean if the vertical scale animation should be used instead of the normal
    * scale animation.
@@ -50,7 +56,10 @@ export interface ScaleTransitionProps extends OverridableCSSTransitionProps {
 }
 
 type DefaultProps = Required<
-  Pick<ScaleTransitionProps, "timeout" | "mountOnEnter" | "unmountOnExit">
+  Pick<
+    ScaleTransitionProps,
+    "timeout" | "mountOnEnter" | "unmountOnExit" | "portal"
+  >
 >;
 type WithDefaultProps = ScaleTransitionProps & DefaultProps;
 
@@ -69,6 +78,9 @@ const ScaleTransition: FC<ScaleTransitionProps> = providedProps => {
     children,
     classNames: propClassNames,
     vertical,
+    portal,
+    portalInto,
+    portalIntoId,
     ...props
   } = providedProps as WithDefaultProps;
 
@@ -78,18 +90,65 @@ const ScaleTransition: FC<ScaleTransitionProps> = providedProps => {
   }
 
   return (
-    <CSSTransition {...props} in={visible} classNames={classNames}>
-      {children}
-    </CSSTransition>
+    <ConditionalPortal
+      portal={portal}
+      portalInto={portalInto}
+      portalIntoId={portalIntoId}
+    >
+      <CSSTransition {...props} in={visible} classNames={classNames}>
+        {children}
+      </CSSTransition>
+    </ConditionalPortal>
   );
 };
 
 const defaultProps: DefaultProps = {
+  portal: false,
   mountOnEnter: true,
   unmountOnExit: true,
   timeout: SCALE_TIMEOUT,
 };
 
 ScaleTransition.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    ScaleTransition.propTypes = {
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      portalIntoId: PropTypes.string,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      visible: PropTypes.bool.isRequired,
+      vertical: PropTypes.bool,
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      children: PropTypes.node,
+    };
+  }
+}
 
 export default ScaleTransition;

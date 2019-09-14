@@ -43,9 +43,6 @@
   "optionalDependencies": {
     "prop-types": ">= 15.6"
   },
-  "dependencies": {
-    "@react-md/transition": "^2.0.0-alpha.9"
-  },
   "publishConfig": {
     "access": "public"
   }

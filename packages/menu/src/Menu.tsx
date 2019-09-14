@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
   OverridableCSSTransitionProps,
   useFixedPositioning,
@@ -226,41 +223,38 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
 
   const orientation = horizontal ? "horizontal" : "vertical";
   return (
-    <ConditionalPortal
+    <ScaleTransition
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
+      appear={mountOnEnter}
+      visible={visible}
+      classNames={classNames}
+      timeout={timeout}
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
+      mountOnEnter={mountOnEnter}
+      unmountOnExit={unmountOnExit}
     >
-      <ScaleTransition
-        appear={mountOnEnter}
-        visible={visible}
-        classNames={classNames}
-        timeout={timeout}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
-      >
-        <OrientationProvider orientation={orientation}>
-          <div
-            {...props}
-            aria-orientation={orientation}
-            style={style}
-            ref={ref}
-            className={cn(block({ horizontal }), className)}
-            onClick={onClick}
-            onKeyDown={onKeyDown}
-          >
-            {children}
-            <MenuEvents menuRef={menuRef} defaultFocus={defaultFocus} />
-          </div>
-        </OrientationProvider>
-      </ScaleTransition>
-    </ConditionalPortal>
+      <OrientationProvider orientation={orientation}>
+        <div
+          {...props}
+          aria-orientation={orientation}
+          style={style}
+          ref={ref}
+          className={cn(block({ horizontal }), className)}
+          onClick={onClick}
+          onKeyDown={onKeyDown}
+        >
+          {children}
+          <MenuEvents menuRef={menuRef} defaultFocus={defaultFocus} />
+        </div>
+      </OrientationProvider>
+    </ScaleTransition>
   );
 };
 

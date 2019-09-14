@@ -7,10 +7,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
-import {
-  RenderConditionalPortalProps,
-  ConditionalPortal,
-} from "@react-md/portal";
+import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
   OverridableCSSTransitionProps,
   ScaleTransition,
@@ -20,9 +17,9 @@ import {
   DEFAULT_GET_ITEM_VALUE,
   MovementPresets,
   omit,
+  scrollIntoView,
   useActiveDescendantMovement,
   WithForwardedRef,
-  scrollIntoView,
 } from "@react-md/utils";
 
 import Option from "./Option";
@@ -367,72 +364,69 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
   );
 
   return (
-    <ConditionalPortal
+    <ScaleTransition
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
+      visible={!temporary || visible}
+      vertical
+      timeout={timeout}
+      classNames={classNames}
+      mountOnEnter={mountOnEnter}
+      unmountOnExit={unmountOnExit}
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
     >
-      <ScaleTransition
-        visible={!temporary || visible}
-        vertical
-        timeout={timeout}
-        classNames={classNames}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
+      <List
+        {...props}
+        aria-activedescendant={activeId}
+        role="listbox"
+        tabIndex={tabIndex}
+        className={cn(block({ temporary }), className)}
+        ref={forwardedRef}
+        onFocus={handleFocus}
+        onKeyDown={onKeyDown}
       >
-        <List
-          {...props}
-          aria-activedescendant={activeId}
-          role="listbox"
-          tabIndex={tabIndex}
-          className={cn(block({ temporary }), className)}
-          ref={forwardedRef}
-          onFocus={handleFocus}
-          onKeyDown={onKeyDown}
-        >
-          {options.map((option, i) => {
-            const optionId = getOptionId(id, i);
-            const optionValue = getOptionValue(option, valueKey);
-            const optionLabel = getOptionLabel(option, labelKey);
-            let optionProps: ListboxOptionProps | undefined;
-            if (isListboxOptionProps(option)) {
-              optionProps = omit(option, [labelKey, valueKey]);
-            }
+        {options.map((option, i) => {
+          const optionId = getOptionId(id, i);
+          const optionValue = getOptionValue(option, valueKey);
+          const optionLabel = getOptionLabel(option, labelKey);
+          let optionProps: ListboxOptionProps | undefined;
+          if (isListboxOptionProps(option)) {
+            optionProps = omit(option, [labelKey, valueKey]);
+          }
 
-            const disabled = isOptionDisabled(option);
+          const disabled = isOptionDisabled(option);
 
-            let onClick;
-            if (!readOnly && !disabled) {
-              onClick = () => {
-                handleChange(i);
-                setFocusedIndex(i);
-              };
-            }
+          let onClick;
+          if (!readOnly && !disabled) {
+            onClick = () => {
+              handleChange(i);
+              setFocusedIndex(i);
+            };
+          }
 
-            return (
-              <Option
-                key={optionValue}
-                id={optionId}
-                disabled={disabled}
-                {...optionProps}
-                ref={itemRefs[i]}
-                focused={optionId === activeId}
-                selected={value === optionValue}
-                onClick={onClick}
-              >
-                {optionLabel}
-              </Option>
-            );
-          })}
-        </List>
-      </ScaleTransition>
-    </ConditionalPortal>
+          return (
+            <Option
+              key={optionValue}
+              id={optionId}
+              disabled={disabled}
+              {...optionProps}
+              ref={itemRefs[i]}
+              focused={optionId === activeId}
+              selected={value === optionValue}
+              onClick={onClick}
+            >
+              {optionLabel}
+            </Option>
+          );
+        })}
+      </List>
+    </ScaleTransition>
   );
 };
 
