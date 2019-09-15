@@ -1,4 +1,11 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, {
+  FC,
+  forwardRef,
+  HTMLAttributes,
+  isValidElement,
+  Children,
+  cloneElement,
+} from "react";
 import cn from "classnames";
 
 import bem from "../css/bem";
@@ -42,6 +49,12 @@ export interface GridCellProps
   extends HTMLAttributes<HTMLDivElement>,
     GridCSSProperties {
   /**
+   * Boolean if the className should be cloned into the child instead of wrapping
+   * in another div. This will only work if the `children` is a single ReactElement.
+   */
+  clone?: boolean;
+
+  /**
    * The number of columns that the cell should span. If this value is provided, it will be used
    * instead of the `colEnd` property.
    *
@@ -78,6 +91,7 @@ type WithRef = WithForwardedRef<HTMLDivElement>;
 const GridCell: FC<GridCellProps & WithRef> = ({
   style,
   className,
+  clone,
   forwardedRef,
   children,
   colSpan,
@@ -115,18 +129,34 @@ const GridCell: FC<GridCellProps & WithRef> = ({
     } = media);
   }
 
+  const cellStyle = {
+    gridColumnStart: colStart,
+    gridColumnEnd: colEnd,
+    gridRowStart: rowStart,
+    gridRowEnd: rowSpan ? `span ${rowSpan}` : rowEnd,
+    ...style,
+  };
+  const cellClassName = cn(
+    block("cell", {
+      [`${colSpan}`]: colSpan,
+    }),
+    className
+  );
+
+  if (clone && isValidElement(children)) {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      style: { ...child.props.style, ...cellStyle },
+      className: cn(cellClassName, child.props.className),
+    });
+  }
+
   return (
     <div
       {...props}
-      style={{
-        gridColumnStart: colStart,
-        gridColumnEnd: colEnd,
-        gridRowStart: rowStart,
-        gridRowEnd: rowSpan ? `span ${rowSpan}` : rowEnd,
-        ...style,
-      }}
+      style={cellStyle}
       ref={forwardedRef}
-      className={cn(block("cell", { [`${colSpan}`]: colSpan }), className)}
+      className={cellClassName}
     >
       {children}
     </div>
@@ -154,6 +184,7 @@ if (process.env.NODE_ENV !== "production") {
     GridCell.propTypes = {
       style: PropTypes.object,
       className: PropTypes.string,
+      clone: PropTypes.bool,
       rowSpan: PropTypes.number,
       rowStart: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       rowEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
