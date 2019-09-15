@@ -1,0 +1,11 @@
+////
+/// @group autocomplete
+////
+
+@import '~@react-md/theme/dist/functions';
+
+/// A Map of all the "themeable" parts of the autocomplete package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-autocomplete-theme-values: () !default;

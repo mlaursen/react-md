@@ -40,3 +40,21 @@ export const HORIZONTAL_LISTBOX: MovementConfig = {
   ...HORIZONTAL_MENU,
   loopable: false,
 };
+
+/**
+ * A keyboard movement configuration preset for handling vertical combobox
+ * movements.
+ */
+export const VERTICAL_COMBOBOX: MovementConfig = {
+  ...VERTICAL_MENU,
+  searchable: false,
+};
+
+/**
+ * A keyboard movement configuration preset for handling horizontal combobox
+ * movements.
+ */
+export const HORIZONTAL_COMBOBOX: MovementConfig = {
+  ...HORIZONTAL_MENU,
+  searchable: false,
+};

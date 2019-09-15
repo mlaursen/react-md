@@ -209,6 +209,7 @@ createRoute("/packages", "Packages", {
   childRoutes: [
     createPackageRoute("alert"),
     createPackageRoute("app-bar"),
+    createPackageRoute("autocomplete"),
     createPackageRoute("avatar"),
     createPackageRoute("badge"),
     createPackageRoute("button"),

@@ -30,7 +30,7 @@ export type OnFixedPositionScroll = (
   fixedTo: HTMLElement | null
 ) => void;
 
-type TransitionHooks = Pick<
+export type TransitionHooks = Pick<
   TransitionProps,
   "onEnter" | "onEntering" | "onEntered" | "onExited"
 >;

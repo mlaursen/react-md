@@ -1,0 +1,51 @@
+////
+/// @group autocomplete
+////
+
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the autocomplete's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-autocomplete-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-autocomplete-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-autocomplete-theme-values` map when `null`.
+@mixin rmd-autocomplete-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-autocomplete-theme-values,
+    autocomplete
+  );
+}
+
+/// Updates one of the autocomplete's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The autocomplete theme style type to update. This should be one
+///   of the `$rmd-autocomplete-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-autocomplete-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-autocomplete-theme-values,
+    autocomplete
+  );
+}
+
+/// Creates all the styles for the autocomplete button
+@mixin rmd-autocomplete {
+}
+
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
+@mixin react-md-autocomplete {
+  @include rmd-theme-create-root-theme($rmd-autocomplete-theme-values, autocomplete);
+
+  .rmd-autocomplete {
+    @include rmd-autocomplete;
+  }
+}

@@ -7,6 +7,10 @@ export function toTitle(
   joinWith: string = " ",
   capitals: boolean = false
 ): string {
+  if (/autocomplete/i.test(s)) {
+    return "AutoComplete";
+  }
+
   return s
     .split(capitals ? /(?=[A-Z])/ : "-")
     .map(upperFirst)
