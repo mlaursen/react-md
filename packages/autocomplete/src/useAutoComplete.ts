@@ -1,44 +1,78 @@
 import {
+  CSSProperties,
   HTMLAttributes,
   MutableRefObject,
-  useState,
+  useCallback,
+  useEffect,
   useMemo,
   useRef,
-  useCallback,
-  CSSProperties,
-  useEffect,
+  useState,
 } from "react";
-import { useFixedPositioning, TransitionHooks } from "@react-md/transition";
+import {
+  OptionalFixedPositionOptions,
+  TransitionHooks,
+  useFixedPositioning,
+} from "@react-md/transition";
 import {
   applyRef,
-  WithForwardedRef,
-  useActiveDescendantMovement,
   MovementPresets,
   PositionWidth,
-  PositionAnchor,
-  useToggle,
+  useActiveDescendantMovement,
   useCloseOnOutsideClick,
+  useToggle,
+  WithForwardedRef,
 } from "@react-md/utils";
 
 import {
-  AutoCompletion,
   AutoCompleteData,
   AutoCompleteFilterFunction,
+  AutoCompleteHandler,
+  AutoCompletion,
   FilterFunctionOptions,
+} from "./types";
+import {
   getFilterFunction,
   getResultId as DEFAULT_GET_RESULT_ID,
   getResultValue as DEFAULT_GET_RESULT_VALUE,
-  AutoCompleteHandler,
 } from "./utils";
+
+export interface PositionOptions
+  extends Omit<OptionalFixedPositionOptions, "width"> {
+  /**
+   * The sizing behavior for the listbox. It will default to have the same width as the select button,
+   * but it is also possible to either have the `min-width` be the width of the select button or just
+   * automatically determine the width.
+   *
+   * The sizing behavior will always ensure that the left and right bounds of the listbox appear within
+   * the viewport.
+   */
+  listboxWidth?: PositionWidth;
+
+  /**
+   * An optional style to also apply to the listbox element showing all the matches.
+   */
+  listboxStyle?: CSSProperties;
+
+  /**
+   * Boolean if the select's listbox should not hide if the user resizes the browser while it is visible.
+   */
+  disableHideOnResize?: boolean;
+
+  /**
+   * Boolean if the select's listbox should not hide if the user scrolls the page while it is visible.
+   */
+  disableHideOnScroll?: boolean;
+}
 
 type EventHandlers = Pick<
   HTMLAttributes<HTMLInputElement>,
-  "onBlur" | "onFocus" | "onChange" | "onKeyDown"
+  "onBlur" | "onFocus" | "onChange" | "onClick" | "onKeyDown"
 >;
 
 interface AutoCompleteOptions
   extends EventHandlers,
-    WithForwardedRef<HTMLInputElement> {
+    WithForwardedRef<HTMLInputElement>,
+    PositionOptions {
   autoComplete: AutoCompletion;
   data: AutoCompleteData[];
   suggestionsId: string;
@@ -48,11 +82,7 @@ interface AutoCompleteOptions
   filter: AutoCompleteFilterFunction;
   filterOptions: FilterFunctionOptions;
   onAutoComplete?: AutoCompleteHandler;
-  anchor: PositionAnchor;
-  listboxWidth: PositionWidth;
-  listboxStyle?: CSSProperties;
-  disableHideOnResize: boolean;
-  disableHideOnScroll: boolean;
+  clearOnAutoComplete: boolean;
 }
 
 interface ReturnValue {
@@ -64,6 +94,7 @@ interface ReturnValue {
   filteredData: AutoCompleteData[];
   handleBlur: React.FocusEventHandler<HTMLInputElement>;
   handleFocus: React.FocusEventHandler<HTMLInputElement>;
+  handleClick: React.MouseEventHandler<HTMLInputElement>;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
   handleKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
   handleAutoComplete: (index: number) => void;
@@ -71,6 +102,11 @@ interface ReturnValue {
   transitionHooks: Required<TransitionHooks>;
 }
 
+/**
+ * This hook handles all the autocomplete's "logic" and behavior.
+ *
+ * @private
+ */
 export default function useAutoComplete({
   autoComplete,
   suggestionsId,
@@ -82,13 +118,23 @@ export default function useAutoComplete({
   getResultValue,
   onBlur,
   onFocus,
+  onClick,
   onChange,
   onKeyDown,
   forwardedRef,
   onAutoComplete,
+  clearOnAutoComplete,
   anchor,
+  xMargin,
+  yMargin,
+  vwMargin,
+  vhMargin,
+  transformOrigin,
   listboxWidth,
   listboxStyle,
+  preventOverlap,
+  disableSwapping,
+  disableVHBounds,
   disableHideOnResize,
   disableHideOnScroll,
 }: AutoCompleteOptions): ReturnValue {
@@ -97,7 +143,12 @@ export default function useAutoComplete({
   //   autoComplete === "inline" || autoComplete === "both";
 
   const [value, setValue] = useState("");
+
+  // this is really just a hacky way to make sure that once a value has been autocompleted,
+  // the menu doesn't immediately re-appear due to the hook below for showing when the value/
+  // filtered data list change
   const autocompleted = useRef(false);
+
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -120,7 +171,6 @@ export default function useAutoComplete({
   );
 
   const filter = useMemo(() => getFilterFunction(filterFn), [filterFn]);
-
   const filteredData = useMemo(() => {
     if (!value) {
       return data;
@@ -153,11 +203,23 @@ export default function useAutoComplete({
       }
 
       focused.current = true;
-      if (isListAutocomplete) {
+      if (isListAutocomplete && filteredData.length) {
         show();
       }
     },
-    [isListAutocomplete, onFocus, show]
+    [filteredData, isListAutocomplete, onFocus, show]
+  );
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLInputElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+
+      if (isListAutocomplete && filteredData.length) {
+        show();
+      }
+    },
+    [filteredData.length, isListAutocomplete, onClick, show]
   );
 
   const handleAutoComplete = useCallback(
@@ -165,13 +227,27 @@ export default function useAutoComplete({
       const result = filteredData[index];
       const resultValue = getResultValue(result, valueKey);
       if (onAutoComplete) {
-        onAutoComplete(resultValue, result, setValue);
+        onAutoComplete({
+          value: resultValue,
+          index,
+          result,
+          resultIndex: data.findIndex(
+            datum => getResultValue(datum, valueKey) === resultValue
+          ),
+        });
       }
 
-      setValue(resultValue);
+      setValue(clearOnAutoComplete ? "" : resultValue);
       autocompleted.current = true;
     },
-    [filteredData, getResultValue, onAutoComplete, valueKey]
+    [
+      clearOnAutoComplete,
+      data,
+      filteredData,
+      getResultValue,
+      onAutoComplete,
+      valueKey,
+    ]
   );
 
   const {
@@ -206,8 +282,11 @@ export default function useAutoComplete({
             hide();
           }
           break;
+        case "Tab":
+          hide();
+          break;
         case "Enter":
-          if (visible) {
+          if (visible && focusedIndex >= 0) {
             handleAutoComplete(focusedIndex);
             hide();
           }
@@ -242,9 +321,15 @@ export default function useAutoComplete({
     anchor,
     onScroll: disableHideOnScroll ? undefined : hide,
     onResize: disableHideOnResize ? undefined : hide,
-    transformOrigin: true,
     width: listboxWidth,
-    preventOverlap: true,
+    xMargin,
+    yMargin,
+    vwMargin,
+    vhMargin,
+    transformOrigin,
+    preventOverlap,
+    disableSwapping,
+    disableVHBounds,
   });
 
   useEffect(() => {
@@ -257,6 +342,9 @@ export default function useAutoComplete({
     } else if (!filteredData.length && visible) {
       hide();
     }
+
+    // this effect is just for toggling the visibility states as needed if the value or
+    // filter data list changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredData, value]);
 
@@ -289,7 +377,7 @@ export default function useAutoComplete({
     activeId,
     itemRefs,
     filteredData,
-    fixedStyle: { ...listboxStyle, ...style },
+    fixedStyle: { ...style, ...listboxStyle },
     transitionHooks: {
       onEnter,
       onEntering,
@@ -298,6 +386,7 @@ export default function useAutoComplete({
     },
     handleBlur,
     handleFocus,
+    handleClick,
     handleChange,
     handleKeyDown,
     handleAutoComplete,
