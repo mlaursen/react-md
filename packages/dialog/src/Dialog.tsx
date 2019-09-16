@@ -424,6 +424,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.string,
         PropTypes.object,
       ]),
+      portalIntoId: PropTypes.string,
       defaultFocus: PropTypes.oneOfType([
         PropTypes.oneOf(["first", "last"]),
         PropTypes.string,

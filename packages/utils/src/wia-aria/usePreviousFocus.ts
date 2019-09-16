@@ -91,7 +91,7 @@ export default function usePreviousFocus(
             : null;
       }
 
-      if (!el) {
+      if (!el && fallback) {
         switch (typeof fallback) {
           case "string":
             el = document.querySelector<HTMLElement>(fallback);
@@ -99,8 +99,6 @@ export default function usePreviousFocus(
           case "function":
             el = fallback();
             break;
-          case "undefined":
-            return;
           default:
             el = fallback;
         }

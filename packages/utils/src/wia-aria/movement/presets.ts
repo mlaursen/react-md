@@ -19,8 +19,8 @@ export const VERTICAL_MENU: MovementConfig = {
  */
 export const HORIZONTAL_MENU: MovementConfig = {
   ...VERTICAL_MENU,
-  incrementKeys: [IncrementMovementKey.ArrowLeft],
-  decrementKeys: [IncrementMovementKey.ArrowRight],
+  incrementKeys: [IncrementMovementKey.ArrowRight],
+  decrementKeys: [IncrementMovementKey.ArrowLeft],
 };
 
 /**
@@ -46,7 +46,12 @@ export const HORIZONTAL_LISTBOX: MovementConfig = {
  * movements.
  */
 export const VERTICAL_COMBOBOX: MovementConfig = {
-  ...VERTICAL_MENU,
+  incrementKeys: [IncrementMovementKey.ArrowDown],
+  decrementKeys: [IncrementMovementKey.ArrowUp],
+  // don't want to be able to jump since home and end should do default behavior
+  // in text field
+  jumpToFirstKeys: [],
+  jumpToLastKeys: [],
   searchable: false,
 };
 
@@ -55,6 +60,11 @@ export const VERTICAL_COMBOBOX: MovementConfig = {
  * movements.
  */
 export const HORIZONTAL_COMBOBOX: MovementConfig = {
-  ...HORIZONTAL_MENU,
+  incrementKeys: [IncrementMovementKey.ArrowRight],
+  decrementKeys: [IncrementMovementKey.ArrowLeft],
+  // don't want to be able to jump since home and end should do default behavior
+  // in text field
+  jumpToFirstKeys: [],
+  jumpToLastKeys: [],
   searchable: false,
 };

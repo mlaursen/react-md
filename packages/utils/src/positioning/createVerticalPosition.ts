@@ -7,6 +7,7 @@ import {
   getBottomCoord,
   getCenterYCoord,
 } from "./getCoord";
+import getViewportSize from "./getViewportSize";
 
 /**
  * @private
@@ -230,7 +231,7 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
 
   if (preventOverlap) {
     const availableTop = containerRect.top - yMargin;
-    if (disableSwapping || availableTop < top) {
+    if (disableSwapping || availableTop < screenBottom - top) {
       return {
         actualY,
         top,
@@ -240,8 +241,10 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
 
     return {
       actualY: "above",
-      top: vhMargin,
-      bottom: availableTop,
+      top: Math.max(vhMargin, availableTop - elHeight),
+      // this makes it so that the bottom of the fixed element is the top of the container
+      // element. this ensures that it won't ever overlap the container element
+      bottom: getViewportSize("height") - availableTop,
     };
   }
 
