@@ -95,7 +95,7 @@ const FixedPositioningExample: FC = () => {
     width,
     transformOrigin,
     disableSwapping,
-    onScroll(_event, _div, button) {
+    onScroll(_event, { fixedTo: button }) {
       if (hideOnScroll) {
         hide();
         return;

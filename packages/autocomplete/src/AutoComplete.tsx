@@ -343,7 +343,7 @@ const defaultProps: DefaultProps = {
   disableSwapping: false,
   disableVHBounds: false,
   disableHideOnResize: false,
-  disableHideOnScroll: false,
+  disableHideOnScroll: true,
 };
 
 AutoComplete.defaultProps = defaultProps;

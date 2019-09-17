@@ -6,11 +6,7 @@ import {
   GetFixedPositionOptions,
   useFixedPositioning,
 } from "@react-md/transition";
-import {
-  WithForwardedRef,
-  LabelRequiredForA11y,
-  getViewportSize,
-} from "@react-md/utils";
+import { WithForwardedRef, LabelRequiredForA11y } from "@react-md/utils";
 
 import Dialog, { DialogProps } from "./Dialog";
 
@@ -75,15 +71,8 @@ const FixedDialog: FC<StrictProps & WithRef> = providedProps => {
   } = useFixedPositioning({
     transformOrigin: true,
     ...options,
-    onScroll: (_event, element) => {
-      if (!element) {
-        return;
-      }
-
-      const { top, right, bottom, left } = element.getBoundingClientRect();
-      const vh = getViewportSize("height");
-      const vw = getViewportSize("width");
-      if (right < 0 || left > vw || bottom < 0 || top > vh) {
+    onScroll: (_event, { visible }) => {
+      if (!visible) {
         onRequestClose();
       }
     },

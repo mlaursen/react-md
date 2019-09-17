@@ -320,7 +320,11 @@ export default function useAutoComplete({
   } = useFixedPositioning({
     fixedTo: () => inputRef.current,
     anchor,
-    onScroll: disableHideOnScroll ? undefined : hide,
+    onScroll(_event, { visible }) {
+      if (!disableHideOnScroll || !visible) {
+        hide();
+      }
+    },
     onResize: disableHideOnResize ? undefined : hide,
     width: listboxWidth,
     xMargin,

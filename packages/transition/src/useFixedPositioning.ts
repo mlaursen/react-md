@@ -7,6 +7,7 @@ import {
   useRefCache,
   useResizeListener,
   useScrollListener,
+  getViewportSize,
 } from "@react-md/utils";
 
 export type FixedToFunction = () => HTMLElement | null;
@@ -24,11 +25,19 @@ export type PositionChange = (
   actual: PositionAnchor
 ) => void;
 
-export type OnFixedPositionScroll = (
-  event: Event,
-  element: HTMLElement | null,
-  fixedTo: HTMLElement | null
-) => void;
+export interface ScrollData {
+  element: HTMLElement | null;
+  fixedTo: HTMLElement | null;
+
+  /**
+   * Boolean if the `fixedTo` element is visible within the viewport. This is useful
+   * if you'd like to hide the element only once the user scrolls these elements
+   * out of view.
+   */
+  visible: boolean;
+}
+
+export type OnFixedPositionScroll = (event: Event, data: ScrollData) => void;
 
 export type TransitionHooks = Pick<
   TransitionProps,
@@ -235,7 +244,27 @@ export default function useFixedPositioning({
     enabled: !!element.current,
     onScroll: event => {
       if (onScroll) {
-        onScroll(event, element.current, getFixedTo(fixedTo));
+        const container = getFixedTo(fixedTo);
+        const rect = container && container.getBoundingClientRect();
+        let visible = false;
+        if (rect) {
+          const { vhMargin = 16, vwMargin = 16 } = remainingOptions;
+          const vh = getViewportSize("height");
+          const vw = getViewportSize("width");
+          const { top, left } = rect;
+
+          visible =
+            top >= vhMargin &&
+            top <= vh - vhMargin &&
+            left >= vwMargin &&
+            left <= vw - vwMargin;
+        }
+
+        onScroll(event, {
+          element: element.current,
+          fixedTo: container,
+          visible,
+        });
       }
 
       updateStyle();
