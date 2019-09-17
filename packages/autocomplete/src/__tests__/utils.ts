@@ -1,13 +1,13 @@
 import { createElement } from "react";
 import { fuzzyFilter, caseInsensitiveFilter } from "@react-md/utils";
 
+import { AutoCompleteData } from "../types";
 import {
   getResultId,
   getResultLabel,
   getResultValue,
   getFilterFunction,
   noFilter,
-  AutoCompleteData,
 } from "../utils";
 
 const div = createElement("div", { className: "class-name" }, "Children");
@@ -22,44 +22,50 @@ describe("getResultId", () => {
 
 describe("getResultLabel", () => {
   it("should return the result itself if it is a string", () => {
-    expect(getResultLabel("", "")).toBe("");
-    expect(getResultLabel("", "key")).toBe("");
+    expect(getResultLabel("", "", "")).toBe("");
+    expect(getResultLabel("", "key", "")).toBe("");
 
-    expect(getResultLabel("label", "")).toBe("label");
-    expect(getResultLabel("label", "label")).toBe("label");
-    expect(getResultLabel("this is something", "label")).toBe(
+    expect(getResultLabel("label", "", "")).toBe("label");
+    expect(getResultLabel("label", "label", "")).toBe("label");
+    expect(getResultLabel("this is something", "label", "")).toBe(
       "this is something"
     );
   });
 
   it("should return the labelKey's value property if the result is an object", () => {
-    expect(getResultLabel({ label: "Thing" }, "label")).toBe("Thing");
+    expect(getResultLabel({ label: "Thing" }, "label", "")).toBe("Thing");
 
-    expect(getResultLabel({ label: span }, "label")).toBe(span);
+    expect(getResultLabel({ label: span }, "label", "")).toBe(span);
 
-    expect(getResultLabel({ label: div, thing: "Thing" }, "label")).toBe(div);
-    expect(getResultLabel({ label: div, thing: "Thing" }, "thing")).toBe(
+    expect(getResultLabel({ label: div, thing: "Thing" }, "label", "")).toBe(
+      div
+    );
+    expect(getResultLabel({ label: div, thing: "Thing" }, "thing", "")).toBe(
       "Thing"
     );
   });
 
   it("should return null if the labelKey is undefined", () => {
-    expect(getResultLabel({}, "label")).toBe(null);
-    expect(getResultLabel({ thing: "Thing" }, "label")).toBe(null);
+    expect(getResultLabel({}, "label", "")).toBe(null);
+    expect(getResultLabel({ thing: "Thing" }, "label", "")).toBe(null);
 
-    expect(getResultLabel({ label: "" }, "label")).toBe("");
-    expect(getResultLabel({ label: 0 }, "label")).toBe(0);
-    expect(getResultLabel({ label: null }, "label")).toBe(null);
-    expect(getResultLabel({ label: false }, "label")).toBe(false);
-    expect(getResultLabel({ label: true }, "label")).toBe(true);
+    expect(getResultLabel({ label: "" }, "label", "")).toBe("");
+    expect(getResultLabel({ label: 0 }, "label", "")).toBe(0);
+    expect(getResultLabel({ label: null }, "label", "")).toBe(null);
+    expect(getResultLabel({ label: false }, "label", "")).toBe(false);
+    expect(getResultLabel({ label: true }, "label", "")).toBe(true);
   });
 
   it("should return the children property if it true-ish", () => {
-    expect(getResultLabel({ children: div, label: "Thing" }, "label")).toBe(
+    expect(getResultLabel({ children: div, label: "Thing" }, "label", "")).toBe(
       div
     );
-    expect(getResultLabel({ children: span, label: div }, "label")).toBe(span);
-    expect(getResultLabel({ children: null, label: span }, "label")).toBe(span);
+    expect(getResultLabel({ children: span, label: div }, "label", "")).toBe(
+      span
+    );
+    expect(getResultLabel({ children: null, label: span }, "label", "")).toBe(
+      span
+    );
   });
 });
 
