@@ -342,8 +342,11 @@ export function printSizes(
     return;
   }
 
-  log.debug(message);
-  log.debug(list(filePaths.map(fp => getFileSize(fp))));
+  const logger = process.argv.includes("--gzip-size") ? log.info : log.debug;
+
+  logger(message);
+  logger(list(filePaths.map(fp => getFileSize(fp))));
+  logger("");
 }
 
 /**
