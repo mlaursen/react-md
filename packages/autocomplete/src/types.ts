@@ -66,7 +66,7 @@ export interface AutoCompleteResult {
   value: string;
 
   /**
-   * The index of the result in the **original data list**.
+   * The index of the result in the **filtered data list**.
    */
   index: number;
 
@@ -76,9 +76,14 @@ export interface AutoCompleteResult {
   result: AutoCompleteData;
 
   /**
-   * The index of the result in the **filtered data list**.
+   * The index of the result in the **original data list**.
    */
-  resultIndex: number;
+  dataIndex: number;
+
+  /**
+   * The list of data that has been filtered based on the current value.
+   */
+  filteredData: AutoCompleteData[];
 }
 
 /**

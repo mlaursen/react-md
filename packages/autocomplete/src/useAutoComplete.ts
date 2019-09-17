@@ -231,9 +231,10 @@ export default function useAutoComplete({
           value: resultValue,
           index,
           result,
-          resultIndex: data.findIndex(
+          dataIndex: data.findIndex(
             datum => getResultValue(datum, valueKey) === resultValue
           ),
+          filteredData,
         });
       }
 

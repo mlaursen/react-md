@@ -20,8 +20,8 @@ const desserts = dessertList.map(({ name }) => name);
 
 const HighlightMatches: FC = () => {
   const [dessert, setDessert] = useState<Dessert | null>(null);
-  const onAutoComplete = useCallback<AutoCompleteHandler>(({ index }) => {
-    setDessert(dessertList[index]);
+  const onAutoComplete = useCallback<AutoCompleteHandler>(({ dataIndex }) => {
+    setDessert(dessertList[dataIndex]);
   }, []);
 
   return (
