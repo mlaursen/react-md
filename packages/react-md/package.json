@@ -37,9 +37,12 @@
   "dependencies": {
     "@react-md/alert": "^2.0.0-alpha.9",
     "@react-md/app-bar": "^2.0.0-alpha.9",
+    "@react-md/autocomplete": "^2.0.0-alpha.9",
     "@react-md/avatar": "^2.0.0-alpha.9",
+    "@react-md/badge": "^2.0.0-alpha.9",
     "@react-md/button": "^2.0.0-alpha.9",
     "@react-md/card": "^2.0.0-alpha.9",
+    "@react-md/chip": "^2.0.0-alpha.9",
     "@react-md/dialog": "^2.0.0-alpha.9",
     "@react-md/divider": "^2.0.0-alpha.9",
     "@react-md/elevation": "^2.0.0-alpha.9",
