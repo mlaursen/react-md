@@ -525,6 +525,14 @@
       @include rmd-typography-base;
     }
   }
+
+  body {
+    &.rmd-utils--touch {
+      // this allows for click events to be bubbleable on iOS to the root document. Without this,
+      // all the `onOutsideClick` behavior won't work.
+      cursor: pointer;
+    }
+  }
 }
 
 /// This mixin will include the styles for all packages that have been
