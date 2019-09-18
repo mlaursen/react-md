@@ -1,3 +1,4 @@
+@import '~@react-md/app-bar/dist/mixins';
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/divider/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
@@ -37,6 +38,7 @@
     @include rmd-elevation(2);
     @include rmd-theme(background-color, background);
     @include rmd-theme-update-var(background, rmd-theme-var(surface));
+    @include rmd-app-bar-theme-update-var(color, rmd-theme-var(on-surface));
 
     padding: 2rem;
   }
