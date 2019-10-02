@@ -1,6 +1,11 @@
-import { getItemId, getKeyboardEventType, transformKeys } from "../utils";
+import {
+  getItemId,
+  getKeyboardConfig,
+  getStringifiedKeyConfig,
+  transformKeys,
+} from "../utils";
 
-import { IncrementMovementKey, JumpMovementKey } from "../types";
+import { IncrementMovementKey, JumpMovementKey, KeyConfig } from "../types";
 
 describe("getItemId", () => {
   it("should return a list with the base id concatenated with the index + 1 since DOM nodes should normally start at 1 instead of 0", () => {
@@ -40,7 +45,7 @@ describe("getItemId", () => {
   });
 });
 
-describe("getKeyboardEventType", () => {
+describe("getKeyboardConfig", () => {
   const letterAEvent = {
     key: "A",
     altKey: false,
@@ -71,13 +76,13 @@ describe("getKeyboardEventType", () => {
   } as KeyboardEvent;
 
   it("should return null if the event does not have a corresponding IKeyboardFocusKeyEvent", () => {
-    expect(getKeyboardEventType(letterAEvent, [])).toBeNull();
-    expect(getKeyboardEventType(letterBEvent, [])).toBeNull();
-    expect(getKeyboardEventType(letterCEvent, [])).toBeNull();
-    expect(getKeyboardEventType(tabEvent, [])).toBeNull();
+    expect(getKeyboardConfig(letterAEvent, [])).toBeNull();
+    expect(getKeyboardConfig(letterBEvent, [])).toBeNull();
+    expect(getKeyboardConfig(letterCEvent, [])).toBeNull();
+    expect(getKeyboardConfig(tabEvent, [])).toBeNull();
 
     expect(
-      getKeyboardEventType(letterAEvent, [
+      getKeyboardConfig(letterAEvent, [
         {
           key: "A",
           type: "increment",
@@ -90,7 +95,7 @@ describe("getKeyboardEventType", () => {
     ).toBeNull();
 
     expect(
-      getKeyboardEventType(letterBEvent, [
+      getKeyboardConfig(letterBEvent, [
         {
           key: "B",
           type: "increment",
@@ -104,31 +109,52 @@ describe("getKeyboardEventType", () => {
   });
 
   it("should return the type when the key, metaKey, altKey, and shiftKey match up", () => {
-    expect(
-      getKeyboardEventType(letterAEvent, [
-        {
-          key: "A",
-          type: "increment",
-          altKey: false,
-          ctrlKey: false,
-          metaKey: false,
-          shiftKey: false,
-        },
-      ])
-    ).toBe("increment");
+    const key1: KeyConfig = {
+      key: "A",
+      type: "increment",
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    };
+    const key2: KeyConfig = {
+      key: "B",
+      type: "increment",
+      altKey: false,
+      ctrlKey: false,
+      metaKey: true,
+      shiftKey: false,
+    };
 
+    expect(getKeyboardConfig(letterAEvent, [key1])).toEqual(key1);
+    expect(getKeyboardConfig(letterBEvent, [key2])).toEqual(key2);
+  });
+});
+
+describe("getStringifiedKeyConfig", () => {
+  it("should return the correct strings", () => {
+    const homeKey: KeyConfig = {
+      key: "Home",
+      type: "first",
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    };
+
+    expect(getStringifiedKeyConfig(homeKey)).toBe("first-Home");
+    expect(getStringifiedKeyConfig({ ...homeKey, ctrlKey: true })).toBe(
+      "first-Control+Home"
+    );
     expect(
-      getKeyboardEventType(letterBEvent, [
-        {
-          key: "B",
-          type: "increment",
-          altKey: false,
-          ctrlKey: false,
-          metaKey: true,
-          shiftKey: false,
-        },
-      ])
-    ).toBe("increment");
+      getStringifiedKeyConfig({ ...homeKey, ctrlKey: true, metaKey: true })
+    ).toBe("first-Meta+Control+Home");
+    expect(
+      getStringifiedKeyConfig({ ...homeKey, ctrlKey: true, altKey: true })
+    ).toBe("first-Control+Alt+Home");
+    expect(
+      getStringifiedKeyConfig({ ...homeKey, shiftKey: true, altKey: true })
+    ).toBe("first-Shift+Alt+Home");
   });
 });
 

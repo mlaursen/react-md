@@ -57,19 +57,42 @@ export function transformKeys(
  * from.
  * @private
  */
-export function getKeyboardEventType(
+export function getKeyboardConfig(
   event: KeyboardEvent | React.KeyboardEvent,
   keys: KeyConfig[]
-): FocusType | null {
+): KeyConfig | null {
   const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
-  const found = keys.find(
-    k =>
-      k.key === key &&
-      k.altKey === altKey &&
-      k.ctrlKey === ctrlKey &&
-      k.metaKey === metaKey &&
-      k.shiftKey === shiftKey
+  return (
+    keys.find(
+      k =>
+        k.key === key &&
+        k.altKey === altKey &&
+        k.ctrlKey === ctrlKey &&
+        k.metaKey === metaKey &&
+        k.shiftKey === shiftKey
+    ) || null
   );
+}
 
-  return (found && found.type) || null;
+/**
+ * Creates a stringified representation of the configuration so that the config can be checked
+ * in the `onChange` callback for keyboard movement. This is used as the `query` attribute
+ * on the change data.
+ *
+ * @param config The key config to stringify
+ * @private
+ */
+export function getStringifiedKeyConfig(config: KeyConfig): string {
+  const { key, altKey, ctrlKey, metaKey, shiftKey, type } = config;
+  const suffix = [
+    metaKey && "Meta",
+    ctrlKey && "Control",
+    shiftKey && "Shift",
+    altKey && "Alt",
+    key,
+  ]
+    .filter(Boolean)
+    .join("+");
+
+  return `${type}-${suffix}`;
 }

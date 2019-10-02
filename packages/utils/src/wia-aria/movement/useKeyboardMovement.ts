@@ -7,7 +7,11 @@ import useKeyboardSearch, {
 } from "../../search/useKeyboardSearch";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
 import { MovementConfig } from "./types";
-import { getKeyboardEventType, transformKeys } from "./utils";
+import {
+  transformKeys,
+  getKeyboardConfig,
+  getStringifiedKeyConfig,
+} from "./utils";
 
 export type MovementHandler<E extends HTMLElement> = React.KeyboardEventHandler<
   E
@@ -188,8 +192,8 @@ export default function useKeyboardMovement<
       }
 
       const target = event.target as HTMLElement;
-      const type = getKeyboardEventType(event, keys);
-      if (!type || !target) {
+      const keyConfig = getKeyboardConfig(event, keys);
+      if (!keyConfig || !target) {
         return;
       }
 
@@ -199,6 +203,8 @@ export default function useKeyboardMovement<
       if (stopPropagation) {
         event.stopPropagation();
       }
+
+      const { type } = keyConfig;
 
       const lastIndex = items.length - 1;
       let index: number;
@@ -226,7 +232,7 @@ export default function useKeyboardMovement<
         index,
         item: items[index],
         items,
-        query: `${type}-${event.key}`,
+        query: getStringifiedKeyConfig(keyConfig),
         target: event.currentTarget,
       };
       onChange(data, itemRefs);

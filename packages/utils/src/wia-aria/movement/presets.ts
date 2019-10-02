@@ -68,3 +68,21 @@ export const HORIZONTAL_COMBOBOX: MovementConfig = {
   jumpToLastKeys: [],
   searchable: false,
 };
+
+export const VERTICAL_TREE: MovementConfig = {
+  incrementKeys: [IncrementMovementKey.ArrowDown],
+  decrementKeys: [IncrementMovementKey.ArrowUp],
+  jumpToFirstKeys: [JumpMovementKey.Home, JumpMovementKey.ControlShiftHome],
+  jumpToLastKeys: [JumpMovementKey.End, JumpMovementKey.ControlShiftEnd],
+  loopable: true,
+  searchable: true,
+};
+
+export const HORIZONTAL_TREE: MovementConfig = {
+  incrementKeys: [IncrementMovementKey.ArrowRight],
+  decrementKeys: [IncrementMovementKey.ArrowLeft],
+  jumpToFirstKeys: [JumpMovementKey.Home, JumpMovementKey.ControlShiftHome],
+  jumpToLastKeys: [JumpMovementKey.End, JumpMovementKey.ControlShiftEnd],
+  loopable: true,
+  searchable: true,
+};
