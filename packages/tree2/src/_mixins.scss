@@ -1,0 +1,170 @@
+////
+/// @group tree
+////
+
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
+@import './functions';
+
+/// Creates the styles for one of the tree's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-tree-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-tree-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-tree-theme-values` map when `null`.
+@mixin rmd-tree-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tree-theme-values, tree);
+}
+
+/// Updates one of the tree's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The tree theme style type to update. This should be one
+///   of the `$rmd-tree-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-tree-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tree-theme-values, tree);
+}
+
+/// Creates the styles for all the depths from the provided min and max values for a tree.
+///
+/// @param {String} selector-prefix [''] - An optional prefix to apply before the `aria-level` selector.
+/// @param {Number} min [1] - The min level to use. This needs to be a number greater than 0.
+/// @param {Number} max [rmd-tree-max-depth] - The max number of levels to create styles for.
+/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount of padding to be used for each level of depth.
+/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of padding that should be added to a tree item.
+@mixin rmd-tree-depths(
+  $selector-prefix: '',
+  $min: 1,
+  $max: $rmd-tree-max-depth,
+  $incrementor: $rmd-tree-item-padding-incrementor,
+  $base-padding: $rmd-tree-item-padding-base
+) {
+  @if $min < 1 {
+    @error 'Invalid min value: \'#{$min}\'! The min must be a number greater than 0.';
+  }
+
+  @if $max < $min {
+    @error 'Invalid max value: \'#{$max}\'! The max must be a number greater than the min value: \'#{$min}\'';
+  }
+
+  $index: $min;
+  @while $index < $max {
+    @include rmd-tree-item-at-depth($index, $selector-prefix, $incrementor, $base-padding);
+
+    $index: $index + 1;
+  }
+}
+
+/// Creates styles to add additional padding to tree items based on depth. This will only work
+/// if you correctly apply the `aria-level` attributes to the list items.
+///
+/// The formula used for creating padding is:
+/// ```scss
+/// $padding: (($depth - 1) * $incrementor) + $base;
+/// ```
+///
+/// @param {Number} depth - The depth to create styles for.
+/// @param {String} selector-prefix [''] - An optional selector prefix to add before the `aria-level`.
+/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount of padding to be used for each level of depth.
+/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of padding that should be added to a tree item.
+@mixin rmd-tree-item-at-depth(
+  $depth,
+  $selector-prefix: '',
+  $incrementor: $rmd-tree-item-padding-incrementor,
+  $base: $rmd-tree-item-padding-base
+) {
+  $selector: '#{$selector-prefix}[aria-level="#{$depth + 1}"].rmd-tree-item__content, #{$selector-prefix}[aria-level="#{$depth + 1}"] > .rmd-tree-item__content';
+  $padding: (($depth - 1) * $incrementor) + $base;
+
+  #{$selector} {
+    @include rmd-utils-rtl-auto(padding-left, $padding, $rmd-list-item-horizontal-padding);
+  }
+}
+
+/// Creates all the styles for a tree.
+@mixin rmd-tree {
+  @include rmd-tree-depths;
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll;
+
+  width: 100%;
+}
+
+/// Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created
+/// beforehand since these styles just prevent the outline when focused to work with the `@react-md/states`
+/// package.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-tree-item {
+///     @include rmd-tree-item;
+///   }
+@mixin rmd-tree-item {
+  @include rmd-utils-hide-focus-outline;
+  // added again just-in-case so that dnd libraries don't do a bad drag image
+  list-style: none;
+
+  &__content {
+    @include rmd-list-item;
+    @include rmd-states-surface-selected;
+
+    &--focused {
+      @if $rmd-tree-item-focused-styles {
+        @each $property, $value in $rmd-tree-item-focused-styles {
+          #{$property}: #{$value};
+        }
+      }
+
+      @if $rmd-tree-item-keyboard-focused-styles {
+        @include rmd-utils-keyboard-only {
+          @each $property, $value in $rmd-tree-item-keyboard-focused-styles {
+            #{$property}: #{$value};
+          }
+        }
+      }
+    }
+  }
+}
+
+/// Creates the styles for the tree group.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-tree-group {
+///     @include rmd-tree-group;
+///   }
+@mixin rmd-tree-group {
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  // remove the list padding to make it more condensed
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+/// Creates all the styles for a tree
+@mixin react-md-tree {
+  @include rmd-theme-create-root-theme($rmd-tree-theme-values, tree);
+
+  .rmd-tree {
+    @include rmd-tree;
+  }
+
+  .rmd-tree-item {
+    @include rmd-tree-item;
+  }
+
+  .rmd-tree-group {
+    @include rmd-tree-group;
+  }
+
+  .rmd-tree-item__rotator-icon {
+    @include rmd-icon-theme-update-var(rotate-to, rotate(90deg));
+  }
+}
