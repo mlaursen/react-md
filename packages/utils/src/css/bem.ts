@@ -1,18 +1,15 @@
 type Block = string;
 type Element = string;
-interface Modifier {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
+type Modifier = Record<string, unknown>;
 
 function modify(base: string, modifier?: Modifier): string {
   if (!modifier) {
     return base;
   }
 
+  const hasOwn = Object.prototype.hasOwnProperty;
   return Object.keys(modifier).reduce((s, mod) => {
-    // eslint-disable-next-line no-prototype-builtins
-    if (modifier.hasOwnProperty(mod) && modifier[mod]) {
+    if (hasOwn.call(modifier, mod) && modifier[mod]) {
       s = `${s} ${base}--${mod}`;
     }
 
