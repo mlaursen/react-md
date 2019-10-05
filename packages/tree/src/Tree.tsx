@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, ReactNode } from "react";
+import React, { FC, forwardRef, ReactNode, MutableRefObject } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";
@@ -81,10 +81,15 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     const listSize = items.length;
 
     return items.map((item, index) => {
-      const { itemId, childItems } = item;
+      const { itemId, childItems, isCustom } = item;
       const selected = selectedIds.includes(itemId);
       const expanded = expandedIds.includes(itemId);
-      const { id, ref } = itemIdRefs[itemId];
+      let id = "";
+      let ref: MutableRefObject<HTMLLIElement | null> | undefined;
+      if (!isCustom) {
+        ({ id, ref } = itemIdRefs[itemId]);
+      }
+
       const focused = id === activeId;
 
       return itemRenderer(

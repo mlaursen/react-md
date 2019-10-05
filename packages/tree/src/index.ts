@@ -7,3 +7,5 @@ export { default as TreeItem } from "./TreeItem";
 
 export { default as TreeGroup } from "./TreeGroup";
 export * from "./TreeGroup";
+
+export { default as defaultItemRenderer } from "./defaultItemRenderer";

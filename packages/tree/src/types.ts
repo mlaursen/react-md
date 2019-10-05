@@ -16,7 +16,15 @@ export type TreeItemId = string;
 export type ExpandedIds = TreeItemId[];
 export type SelectedIds = TreeItemId[];
 
-export interface TreeItemIds {
+export interface TreeItemIds extends ListItemChildrenProps {
+  /**
+   * Boolean if the provided item is a custom element and will not be rendered in a `TreeItem`
+   * component. This is useful if you want to be able to render `Divider` or `ListSubheader`
+   * components within a tree since they _should_ be able to be rendered without any of the tree
+   * functionality.
+   */
+  isCustom?: boolean;
+
   /**
    * The unique identifier for an item within the tree. This is used to be able to link tree items
    * together with parent items as well as selected/expanded logic.
@@ -36,7 +44,7 @@ export interface TreeItemIds {
  *
  * @private
  */
-export interface UnknownTreeItem extends TreeItemIds, ListItemChildrenProps {
+export interface UnknownTreeItem extends TreeItemIds {
   [key: string]: unknown;
 }
 
@@ -72,6 +80,11 @@ export type TreeData<T extends TreeItemIds> = Record<TreeItemId, T>;
  * - `[a, b, c]`
  */
 export type TreeItemSorter<T extends TreeItemIds> = (items: T[]) => T[];
+
+/**
+ * A render function that allows you to add additional functionality to or custom components
+ * within the tree.
+ */
 export type TreeItemRenderer<T extends TreeItemIds> = (
   providedProps: ProvidedTreeItemProps,
   item: T,
@@ -244,6 +257,18 @@ export interface TreeItemProps
   [key: string]: unknown;
 }
 
+export type ConfigurableTreeItemProps = Omit<
+  TreeItemProps,
+  | "id"
+  | "depth"
+  | "itemIndex"
+  | "listSize"
+  | "selected"
+  | "expanded"
+  | "focused"
+  | "renderChildItems"
+>;
+
 type TreeItemKeys =
   | "id"
   | "depth"
@@ -263,13 +288,15 @@ export interface ProvidedTreeItemProps
 
   /**
    * A ref that **must** be passed down to each `TreeItem` so that keyboard accessibility works.
+   * This will be omitted when the `isCustom` key is enabled on the item.
    */
-  ref: MutableRefObject<HTMLLIElement | null>;
+  ref?: MutableRefObject<HTMLLIElement | null>;
 
   /**
-   * A click handler that allows for the item to be selected or expanded.
+   * A click handler that allows for the item to be selected or expanded. This will be omitted
+   * when the `isCustom` key is enabled on the item.
    */
-  onClick: React.MouseEventHandler<HTMLLIElement>;
+  onClick?: React.MouseEventHandler<HTMLLIElement>;
 }
 
 export interface TreeProps<T extends TreeItemIds = UnknownTreeItem>
@@ -359,7 +386,7 @@ export interface TreeProps<T extends TreeItemIds = UnknownTreeItem>
    * Note: It is generally recommended to use the `itemRenderer` instead for additional functionality as
    * you will have more control. This prop is more for applying custom styles or display data on the item.
    */
-  getItemProps?: (item: T) => TreeItemProps | undefined;
+  getItemProps?: (item: T) => ConfigurableTreeItemProps | undefined;
 }
 
 export type ProvidedTreeProps = Required<

@@ -41,6 +41,10 @@ function flatten({
   valueKey,
   getItemValue,
 }: FlattenOptions): SearchableTreeItem[] {
+  if (item.isCustom) {
+    return list;
+  }
+
   const id = getTreeItemId(baseId, index, parentIndexes);
   const value = getItemValue(item, valueKey);
   const { itemId, parentId, childItems } = item;

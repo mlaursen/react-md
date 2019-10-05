@@ -1,14 +1,18 @@
 import React, { FC, memo, useRef } from "react";
+import { SingletonRouter, withRouter } from "next/router";
+import { Divider } from "@react-md/divider";
+import { ListSubheader } from "@react-md/list";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import {
+  defaultItemRenderer,
   Tree,
   TreeItemExpansion,
+  TreeItemRenderer,
   TreeItemSelection,
   useTreeItemExpansion,
 } from "@react-md/tree";
-import { SingletonRouter, withRouter } from "next/router";
 
-import { routesTree } from "constants/routesTree";
+import { RouteItem, routesTree } from "constants/routesTree";
 
 export interface NavigationTreeProps {
   pathname: string;
@@ -59,6 +63,28 @@ function useNavigation(pathname: string): TreeState {
   };
 }
 
+const itemRenderer: TreeItemRenderer<RouteItem> = (
+  itemProps,
+  item,
+  treeProps
+) => {
+  const { key } = itemProps;
+  const { divider, subheader } = item;
+  if (divider) {
+    return <Divider key={key} />;
+  }
+
+  if (subheader) {
+    return (
+      <ListSubheader key={key} role="none">
+        {item.children}
+      </ListSubheader>
+    );
+  }
+
+  return defaultItemRenderer(itemProps, item, treeProps);
+};
+
 const NavigationTree: FC<NavigationTreeProps> = memo(({ pathname }) => {
   const state = useNavigation(pathname.replace(/\?.*$/, ""));
   return (
@@ -70,6 +96,7 @@ const NavigationTree: FC<NavigationTreeProps> = memo(({ pathname }) => {
       valueKey="children"
       {...state}
       expanderIcon={<KeyboardArrowDownSVGIcon />}
+      itemRenderer={itemRenderer}
     />
   );
 });

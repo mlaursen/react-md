@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define, import/prefer-default-export */
-import React, { ReactNode, ElementType } from "react";
+import React, { ElementType, ReactNode } from "react";
 import {
   BuildSVGIcon,
   ColorLensSVGIcon,
@@ -8,10 +8,10 @@ import {
 } from "@react-md/material-icons";
 import { TreeData, TreeItemIds } from "@react-md/tree";
 
+import LinkUnstyled from "components/LinkUnstyled";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
-import LinkUnstyled from "components/LinkUnstyled";
 
 export interface RouteItem extends TreeItemIds {
   children: ReactNode;
@@ -21,6 +21,8 @@ export interface RouteItem extends TreeItemIds {
   rel?: string;
   contentComponent?: ElementType;
   readOnly?: boolean;
+  divider?: boolean;
+  subheader?: boolean;
 }
 
 export type RoutesTree = TreeData<RouteItem>;
@@ -132,15 +134,16 @@ function createPackageRoute(
 /**
  * Creates a divider in the tree.
  */
-// function createDivider(index: number, parentId: string | null = null): void {
-//   const itemId = `divider-${index}`;
-//   routesTree[itemId] = {
-//     itemId,
-//     parentId,
-//     divider: true,
-//     ignore: true,
-//   };
-// }
+function createDivider(index: number, parentId: string | null = null): void {
+  const itemId = `divider-${index}`;
+  routesTree[itemId] = {
+    itemId,
+    parentId,
+    children: null,
+    divider: true,
+    isCustom: true,
+  };
+}
 
 /**
  * Creates a subheader in the tree.
@@ -154,7 +157,8 @@ function createSubheader(
     itemId,
     parentId,
     children,
-    readOnly: true,
+    isCustom: true,
+    subheader: true,
   };
 }
 
@@ -236,7 +240,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("utils"),
   ],
 });
-// createDivider(0);
+createDivider(0);
 createSubheader("references", "References");
 createExternalRoute("https://reactjs.org", "React", <ReactSVGIcon />);
 createExternalRoute(

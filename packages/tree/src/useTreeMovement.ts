@@ -89,6 +89,8 @@ interface ReturnValue {
 }
 
 /**
+ * This hook handles all the complex and "fun" stuff for selecting keyboard accessibility within a tree
+ * and enabling keyboard movement, selection, and expansion.
  *
  * @private
  */
@@ -226,17 +228,20 @@ export default function useTreeMovement({
             setFocusedIndex(parentIndex);
           }
           break;
-        case "a":
-          if (multiSelect && event.ctrlKey) {
-            event.preventDefault();
-            const allItemIds = visibleItems.map(({ itemId }) => itemId);
-            if (selectedIds.length === allItemIds.length) {
-              onMultiItemSelect([]);
-            } else {
-              onMultiItemSelect(allItemIds);
-            }
+        case "a": {
+          if (!multiSelect || !event.ctrlKey) {
+            return;
+          }
+
+          event.preventDefault();
+          const allItemIds = visibleItems.map(({ itemId }) => itemId);
+          if (selectedIds.length === allItemIds.length) {
+            onMultiItemSelect([]);
+          } else {
+            onMultiItemSelect(allItemIds);
           }
           break;
+        }
         case "*": {
           const item = visibleItems[focusedIndex];
           if (!item) {
@@ -293,6 +298,12 @@ export default function useTreeMovement({
         onFocus(event);
       }
 
+      if (focusedIndex !== -1) {
+        // this happens when a tree item is clicked with the mouse or touch
+        return;
+      }
+
+      // try to "focus" the first selected itemId if there is a selection.
       if (selectedIds.length) {
         const index = visibleItems.findIndex(item =>
           selectedIds.includes(item.itemId)
@@ -303,13 +314,12 @@ export default function useTreeMovement({
         }
       }
 
-      if (focusedIndex === -1) {
-        const index = Math.max(
-          0,
-          Math.min(lastFocus.current, visibleItems.length)
-        );
-        setFocusedIndex(index);
-      }
+      // fallback to the first visible tree item if there were no selected ids
+      const index = Math.max(
+        0,
+        Math.min(lastFocus.current, visibleItems.length)
+      );
+      setFocusedIndex(index);
     },
     [focusedIndex, onFocus, selectedIds, setFocusedIndex, visibleItems]
   );
