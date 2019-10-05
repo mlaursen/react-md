@@ -258,6 +258,16 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     ]
   );
 
+  const handleKeyboardClick = useCallback(
+    (focusedIndex: number) => {
+      handleChange(focusedIndex);
+      if (temporary && onRequestClose) {
+        onRequestClose();
+      }
+    },
+    [handleChange, onRequestClose, temporary]
+  );
+
   const {
     activeId,
     itemRefs,
@@ -308,26 +318,14 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
 
       handleChange(data.index);
     },
+    onEnter: handleKeyboardClick,
+    onSpace: handleKeyboardClick,
     onKeyDown(event) {
       if (propOnKeyDown) {
         propOnKeyDown(event);
       }
 
       switch (event.key) {
-        case "Enter":
-          handleChange(focusedIndex);
-          if (temporary && onRequestClose) {
-            onRequestClose();
-          }
-          break;
-        case " ":
-          event.preventDefault();
-          handleChange(focusedIndex);
-          if (temporary && onRequestClose) {
-            onRequestClose();
-          }
-
-          break;
         case "Tab":
         case "Escape":
           if (temporary && onRequestClose) {

@@ -29,6 +29,11 @@ export interface ActiveDescendantMovementProviders<
   setFocusedIndex: Dispatch<SetStateAction<number>>;
 }
 
+type KeyHandler<IE extends HTMLElement = HTMLElement> = (
+  focusedIndex: number,
+  itemRef: IE | null
+) => void;
+
 interface ActiveDescendantOptions<
   D = unknown,
   CE extends HTMLElement = HTMLElement,
@@ -52,6 +57,21 @@ interface ActiveDescendantOptions<
    * container element is focused.
    */
   defaultFocusedIndex?: (() => number) | number;
+
+  /**
+   * An optional function to call when the enter key has been pressed while the container
+   * element has keyboard focus. This is normally used for triggering click events for
+   * that specific item.
+   */
+  onEnter?: KeyHandler<IE>;
+
+  /**
+   * An optional function to call when the space key has been pressed while the container
+   * element has keyboard focus. This is normally used for triggering click events for
+   * that specific item and will always call `event.preventDefault()` to prevent the page
+   * scrolling behavior.
+   */
+  onSpace?: KeyHandler<IE>;
 }
 
 /**
@@ -93,6 +113,9 @@ export default function useActiveDescendantMovement<
   onChange,
   getItemValue = DEFAULT_GET_ITEM_VALUE,
   valueKey = DEFAULT_VALUE_KEY,
+  onKeyDown,
+  onEnter,
+  onSpace,
   ...options
 }: ActiveDescendantOptions<D, CE, IE>): ActiveDescendantMovementProviders<
   CE,
@@ -101,7 +124,7 @@ export default function useActiveDescendantMovement<
   const [focusedIndex, setFocusedIndex] = useState(defaultFocusedIndex);
   const activeId = focusedIndex !== -1 ? getId(baseId, focusedIndex) : "";
 
-  const [itemRefs, onKeyDown] = useKeyboardMovement<D, CE, IE>({
+  const [itemRefs, handleKeyDown] = useKeyboardMovement<D, CE, IE>({
     ...options,
     valueKey,
     getItemValue,
@@ -120,12 +143,26 @@ export default function useActiveDescendantMovement<
 
       setFocusedIndex(index);
     },
+    onKeyDown(event) {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      const ref =
+        (itemRefs[focusedIndex] && itemRefs[focusedIndex].current) || null;
+      if (onEnter && event.key === "Enter") {
+        onEnter(focusedIndex, ref);
+      } else if (onSpace && event.key === " ") {
+        event.preventDefault();
+        onSpace(focusedIndex, ref);
+      }
+    },
   });
 
   return {
     activeId,
     itemRefs,
-    onKeyDown,
+    onKeyDown: handleKeyDown,
     focusedIndex,
     setFocusedIndex,
   };
