@@ -35,6 +35,8 @@ export default function defaultItemRenderer(
     to,
     href,
     isLink,
+    readOnly,
+    disabled,
   } = treeItem;
 
   return (
@@ -44,6 +46,8 @@ export default function defaultItemRenderer(
       href={href}
       isLink={isLink}
       contentComponent={contentComponent}
+      readOnly={readOnly}
+      disabled={disabled}
       leftIcon={leftIcon}
       leftAvatar={leftAvatar}
       rightIcon={rightIcon}

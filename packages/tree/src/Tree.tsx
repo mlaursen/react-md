@@ -1,218 +1,116 @@
-import React, {
-  forwardRef,
-  FC,
-  // HTMLAttributes,
-  ReactNode,
-  // useEffect,
-  useState,
-} from "react";
+import React, { FC, forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
-import { List } from "@react-md/list";
-import { WithForwardedRef } from "@react-md/utils";
-// import {
-//   KeyboardFocusChangeEvent,
-//   useKeyboardFocusEventHandler,
-//   useSearchEventHandler,
-// } from "@react-md/utils";
+import { List, ListElement } from "@react-md/list";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
-import TreeItem from "./TreeItem";
-import { TreeDataList, TreeElement, TreeProps } from "./types";
-import findTreeItemElement from "./utils/findTreeItemElement";
-import findTreeItemFromElement from "./utils/findTreeItemFromElement";
+import defaultGetItemLabel from "./defaultGetItemLabel";
+import defaultGetItemValue from "./defaultGetItemValue";
+import defaultItemRenderer from "./defaultItemRenderer";
+import { ProvidedTreeProps, TreeProps, UnknownTreeItem } from "./types";
+import { NestedTreeItem } from "./useNestedTreeList";
+import useTreeMovement from "./useTreeMovement";
 
-export interface TreeWithLabel extends TreeProps {
-  "aria-label": string;
-}
-
-export interface TreeWithLabelledBy extends TreeProps {
-  "aria-labelledby": string;
-}
-
-type WithRef = WithForwardedRef<TreeElement>;
-type DefaultProps = Required<
-  Pick<
-    TreeProps,
-    | "searchResetTime"
-    | "multiSelect"
-    | "selectOnFocus"
-    | "disableGroupSelection"
-    | "disableSiblingExpansion"
-    | "expanderIcon"
-    | "treeRenderer"
-    | "itemRenderer"
-    | "getItemId"
-    | "defaultActiveId"
-  >
->;
+type WithRef = WithForwardedRef<ListElement>;
+type DefaultProps = ProvidedTreeProps;
 type WithDefaultProps = TreeProps & DefaultProps & WithRef;
-type RequiredTreeProps = TreeWithLabel | TreeWithLabelledBy;
 
-const Tree: FC<RequiredTreeProps & WithRef> = providedProps => {
+const block = bem("rmd-tree");
+
+const Tree: FC<TreeProps & WithRef> = providedProps => {
   const {
     className,
-    onKeyDown,
-    selectedIds,
-    expandedIds,
-    onItemSelect,
-    onItemExpandedChange,
-    onMultipleItemExpansion,
-    onMultipleItemSelection,
-    multiSelect,
-    selectOnFocus,
-    disableGroupSelection,
-    disableSiblingExpansion,
-    disableFontIconTextCheck,
-    searchResetTime,
-    getItemId,
-    data,
-    expanderIcon,
-    treeRenderer,
-    itemRenderer,
-    defaultActiveId,
     forwardedRef,
+    itemRenderer,
+    data,
+    multiSelect,
+    selectedIds,
+    onItemSelect,
+    onMultiItemSelect,
+    expandedIds,
+    onItemExpansion,
+    onMultiItemExpansion,
+    expanderLeft,
+    expanderIcon,
+    labelKey,
+    valueKey,
+    getItemLabel,
+    getItemValue,
+    getItemProps,
+    sort,
+    rootId,
+    onBlur,
+    onFocus,
+    onKeyDown,
     ...props
   } = providedProps as WithDefaultProps;
+  const { id } = props;
 
-  // const [activeId, setActiveId] = useState(defaultActiveId);
-  const [isTreeFocused, setTreeFocused] = useState(false);
-
-  // const onKeyboardFocus: KeyboardFocusChangeEvent = (value, event) => {
-  //   setActiveId(value.element.id);
-  //   // allows for the current active descendant to be visible if there
-  //   // is scrolling enabled..
-  //   value.element.focus();
-  //   event.currentTarget.focus();
-  // };
-
-  // let { handlers } = useKeyboardFocusEventHandler<
-  //   TreeElement,
-  //   Required<Pick<HTMLAttributes<TreeElement>, "onClick">>
-  // >({
-  //   handlers: {
-  //     onKeyDown: event => {
-  //       if (onKeyDown) {
-  //         onKeyDown(event);
-  //       }
-
-  //       const { key } = event;
-  //       if (key === " " || key === "Enter") {
-  //         if (key === " ") {
-  //           event.preventDefault();
-
-  //           if (!multiSelect) {
-  //             return;
-  //           }
-  //         }
-
-  //         const active = document.getElementById(activeId);
-  //         if (active) {
-  //           active.click();
-  //         }
-  //         const tree = event.currentTarget;
-  //         window.requestAnimationFrame(() => tree.focus());
-  //       } else if (key === "ArrowLeft" || key === "ArrowRight") {
-  //         const item = findTreeItemFromElement(
-  //           document.getElementById(activeId) as HTMLElement,
-  //           data,
-  //           event.currentTarget
-  //         );
-  //         if (!item || !item.childItems || !item.childItems) {
-  //           return;
-  //         }
-
-  //         const expand = key === "ArrowRight";
-  //         const isExpanded = expandedIds.includes(item.itemId);
-  //         if (expand !== isExpanded) {
-  //           onItemExpandedChange(item.itemId, expand);
-  //         }
-  //       }
-  //     },
-  //     onClick: event => {
-  //       if (!event.target) {
-  //         return;
-  //       }
-
-  //       const element = findTreeItemElement(event.target as HTMLElement);
-  //       if (!element) {
-  //         return;
-  //       }
-
-  //       const item = findTreeItemFromElement(
-  //         element,
-  //         data,
-  //         event.currentTarget
-  //       );
-  //       if (!item) {
-  //         return;
-  //       }
-
-  //       const { itemId } = item;
-  //       // make sure parent groups aren't opened or closed as well.
-  //       event.stopPropagation();
-  //       if (item.childItems) {
-  //         const i = expandedIds.indexOf(itemId);
-  //         onItemExpandedChange(itemId, i === -1);
-  //       }
-
-  //       // the event will not be trusted if it happens after the enter keypress. When
-  //       // that happens, we only want the `onItemSelect` to be called when it is not already
-  //       // selected as Enter will only select -- not toggle
-  //       if (
-  //         (!disableGroupSelection || !item.childItems) &&
-  //         (event.isTrusted || !selectedIds.includes(itemId))
-  //       ) {
-  //         onItemSelect(itemId);
-  //       }
-
-  //       setActiveId(element.id);
-  //     },
-  //   },
-  //   onKeyboardFocus,
-  // });
-
-  // ({ handlers } = useSearchEventHandler({
-  //   handlers,
-  //   onKeyboardFocus,
-  //   searchResetTime,
-  // }));
-
-  // useEffect(() => {
-  //   if (activeId) {
-  //     return;
-  //   }
-  // }, []);
+  const {
+    items,
+    activeId,
+    setActiveId,
+    itemIdRefs,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+  } = useTreeMovement({
+    id,
+    data,
+    sort,
+    rootId,
+    onBlur,
+    onFocus,
+    onKeyDown,
+    multiSelect,
+    selectedIds,
+    onItemSelect,
+    onMultiItemSelect,
+    expandedIds,
+    onItemExpansion,
+    onMultiItemExpansion,
+    valueKey,
+    getItemValue,
+  });
 
   const renderChildItems = (
-    data: TreeDataList,
+    items: NestedTreeItem<UnknownTreeItem>[],
     depth: number,
-    prefix: string
+    parentIndexes: number[]
   ): ReactNode => {
-    const listSize = data.length;
-    return data.map((item, i) => {
+    const listSize = items.length;
+
+    return items.map((item, index) => {
       const { itemId, childItems } = item;
-      const id = getItemId({
-        itemId,
-        treeId: props.id,
-        itemIndex: i,
-        prefix,
-      });
       const selected = selectedIds.includes(itemId);
       const expanded = expandedIds.includes(itemId);
-      // const focused = isTreeFocused && activeId === id;
+      const { id, ref } = itemIdRefs[itemId];
+      const focused = id === activeId;
 
       return itemRenderer(
         {
           key: itemId,
           id,
+          ref,
           depth,
           listSize,
-          itemIndex: i,
+          itemIndex: index,
           selected,
           expanded,
-          focused: false,
+          focused,
+          onClick() {
+            setActiveId(itemId);
+            onItemSelect(itemId);
+            if (childItems) {
+              onItemExpansion(itemId, !expanded);
+            }
+          },
           renderChildItems: childItems
-            ? () => renderChildItems(childItems, depth + 1, `${prefix}-${i}`)
+            ? () =>
+                renderChildItems(childItems, depth + 1, [
+                  ...parentIndexes,
+                  index + 1,
+                ])
             : undefined,
         },
         item,
@@ -221,117 +119,77 @@ const Tree: FC<RequiredTreeProps & WithRef> = providedProps => {
     });
   };
 
-  return treeRenderer({
-    ...props,
-    ref: forwardedRef,
-    onKeyDown: () => {},
-    onClick: event => {
-      if (!event.target) {
-        return;
-      }
-
-      const element = findTreeItemElement(event.target as HTMLElement);
-      if (!element) {
-        return;
-      }
-
-      const item = findTreeItemFromElement(element, data, event.currentTarget);
-      if (!item) {
-        return;
-      }
-
-      const { itemId } = item;
-      // make sure parent groups aren't opened or closed as well.
-      event.stopPropagation();
-      if (item.childItems) {
-        const i = expandedIds.indexOf(itemId);
-        onItemExpandedChange(itemId, i === -1);
-      }
-
-      // the event will not be trusted if it happens after the enter keypress. When
-      // that happens, we only want the `onItemSelect` to be called when it is not already
-      // selected as Enter will only select -- not toggle
-      if (
-        (!disableGroupSelection || !item.childItems) &&
-        (event.isTrusted || !selectedIds.includes(itemId))
-      ) {
-        onItemSelect(itemId);
-      }
-    },
-    // ...handlers,
-    onKeyUp: event => {
-      if (!isTreeFocused) {
-        setTreeFocused(true);
-      }
-
-      if (
-        !event.target ||
-        event.target !== event.currentTarget ||
-        event.key !== "Tab" ||
-        event.shiftKey
-      ) {
-        return;
-      }
-    },
-    onMouseDown: event => {
-      if (props.onMouseDown) {
-        props.onMouseDown(event);
-      }
-
-      if (isTreeFocused) {
-        setTreeFocused(false);
-      }
-    },
-    onBlur: event => {
-      if (props.onBlur) {
-        props.onBlur(event);
-      }
-
-      if (!event.target || !event.currentTarget.contains(event.target)) {
-        setTreeFocused(false);
-      }
-    },
-    tabIndex: 0,
-    // "aria-activedescendant": activeId,
-    role: "tree",
-    className: cn("rmd-tree", className),
-    children: renderChildItems(data, 0, ""),
-  });
+  return (
+    <List
+      {...props}
+      aria-activedescendant={activeId}
+      aria-multiselectable={multiSelect || undefined}
+      tabIndex={0}
+      role="tree"
+      className={cn(block(), className)}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+    >
+      {renderChildItems(items, 0, [])}
+    </List>
+  );
 };
 
 const defaultProps: DefaultProps = {
-  defaultActiveId: "",
-  searchResetTime: 500,
+  rootId: null,
   multiSelect: false,
-  selectOnFocus: false,
-  disableGroupSelection: false,
-  disableSiblingExpansion: false,
+  expanderLeft: false,
   expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
-  getItemId: ({ treeId, itemIndex, prefix }) =>
-    `${treeId}-item${prefix}-${itemIndex}`,
-  treeRenderer: props => <List {...props} />,
-  itemRenderer: (
-    props,
-    { leftIcon, rightIcon, children, contentComponent, to, href },
-    { expanderIcon, expanderLeft }
-  ) => (
-    <TreeItem
-      {...props}
-      expanderLeft={expanderLeft}
-      expanderIcon={expanderIcon}
-      contentComponent={contentComponent}
-      to={to}
-      href={href}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-    >
-      {children}
-    </TreeItem>
-  ),
+  itemRenderer: defaultItemRenderer,
+  labelKey: "name",
+  valueKey: "name",
+  getItemLabel: defaultGetItemLabel,
+  getItemValue: defaultGetItemValue,
+  getItemProps: () => undefined,
 };
 
 Tree.defaultProps = defaultProps;
 
-export default forwardRef<TreeElement, RequiredTreeProps>((props, ref) => (
+if (process.env.NODE_ENV !== "production") {
+  Tree.displayName = "Tree";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    Tree.propTypes = {
+      id: PropTypes.string.isRequired,
+      onFocus: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      "aria-label": PropTypes.string,
+      "aria-labelledby": PropTypes.string,
+      // TODO: Update to custom prop validation for itemId and parentId
+      data: PropTypes.object.isRequired,
+      rootId: PropTypes.string,
+      sort: PropTypes.func,
+      selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+      onItemSelect: PropTypes.func.isRequired,
+      onMultiItemSelect: PropTypes.func.isRequired,
+      expandedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+      onItemExpansion: PropTypes.func.isRequired,
+      onMultiItemExpansion: PropTypes.func.isRequired,
+      multiSelect: PropTypes.bool,
+      expanderLeft: PropTypes.bool,
+      expanderIcon: PropTypes.node,
+      itemRenderer: PropTypes.func,
+      labelKey: PropTypes.string,
+      valueKey: PropTypes.string,
+      getItemLabel: PropTypes.func,
+      getItemValue: PropTypes.func,
+      getItemProps: PropTypes.func,
+    };
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default forwardRef<ListElement, TreeProps<any>>((props, ref) => (
   <Tree {...props} forwardedRef={ref} />
 ));

@@ -1,18 +1,15 @@
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useMemo } from "react";
-import {
-  FlattenedTree,
-  useFlattenedTree,
-  FlattenedTreeData,
-} from "@react-md/tree";
+import { TreeData, TreeItemIds } from "@react-md/tree";
 
-export interface FileTreeData {
+export interface FileTreeData extends TreeItemIds {
   children: string;
   content?: string;
 }
-export type FlattenedFileTree = FlattenedTree<FileTreeData>;
 
-const BASE_TREE: FlattenedFileTree = {
+export type FileTree = TreeData<FileTreeData>;
+
+const BASE_TREE: TreeData<FileTreeData> = {
   public: {
     parentId: null,
     itemId: "public",
@@ -25,7 +22,7 @@ const BASE_TREE: FlattenedFileTree = {
   },
 };
 
-function addParentFolders(filePath: string, tree: FlattenedFileTree): void {
+function addParentFolders(filePath: string, tree: FileTree): void {
   let i = 0;
   let currentPath = filePath;
   // eslint-disable-next-line no-cond-assign
@@ -45,12 +42,10 @@ function addParentFolders(filePath: string, tree: FlattenedFileTree): void {
   }
 }
 
-export default function useFiles(
-  sandbox: IFiles
-): FlattenedTreeData<FileTreeData>[] {
-  const files = useMemo(
+export default function useFiles(sandbox: IFiles): TreeData<FileTreeData> {
+  return useMemo(
     () =>
-      Object.entries(sandbox).reduce<FlattenedFileTree>(
+      Object.entries(sandbox).reduce<FileTree>(
         (tree, [filePath, { content }]) => {
           addParentFolders(filePath, tree);
           const i = filePath.lastIndexOf("/");
@@ -74,6 +69,4 @@ export default function useFiles(
       ),
     [sandbox]
   );
-
-  return useFlattenedTree(files, null);
 }

@@ -26,6 +26,21 @@ $rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !def
 /// @type Number
 $rmd-tree-item-padding-base: $rmd-list-item-text-keyline !default;
 
+/// The styles to apply when a tree item gains focus. These styles will be applied even
+/// after a touch or mouse click.
+/// @type Map
+$rmd-tree-item-focused-styles: () !default;
+
+/// The styles to apply to a tree item that is **focused while in keyboard mode** only.
+/// If you want to apply focus styles for all modes, use the `$rmd-tree-item-focused-styles`
+/// instead and set this value to `null` or an empty Map `()`.
+///
+/// @see rmd-tree-item-focused-styles
+/// @type Map
+$rmd-tree-item-keyboard-focused-styles: (
+  box-shadow: inset 0 0 0 2px $rmd-blue-500,
+) !default;
+
 /// A Map of all the "themeable" parts of the tree package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.

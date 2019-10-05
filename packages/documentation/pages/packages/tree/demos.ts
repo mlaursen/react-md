@@ -1,1 +1,1 @@
-export { default } from "components/InProgress/Demos";
+export { default } from "components/Demos/Tree";

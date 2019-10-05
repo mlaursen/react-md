@@ -1,53 +1,42 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  FC,
-  HTMLAttributes,
-  ReactNode,
-  ElementType,
-} from "react";
+import React, { FC, forwardRef, useCallback } from "react";
 import cn from "classnames";
-import {
-  ListItemChildren,
-  ListItemChildrenProps,
-  SimpleListItemProps,
-} from "@react-md/list";
+import { FontIcon } from "@react-md/icon";
+import { ListItemChildren, ListElement } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
-import { WithForwardedRef } from "@react-md/utils";
+import { bem, WithForwardedRef } from "@react-md/utils";
 
-import BaseTreeItem from "./BaseTreeItem";
 import TreeGroup from "./TreeGroup";
 import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
-import { TreeItemInjectedProps, TreeProps } from "./types";
-
-export interface TreeItemProps
-  extends TreeItemInjectedProps,
-    ListItemChildrenProps,
-    Pick<TreeProps, "expanderIcon" | "expanderLeft">,
-    Pick<SimpleListItemProps, "threeLines" | "height">,
-    Omit<HTMLAttributes<HTMLSpanElement | HTMLAnchorElement>, "id"> {
-  [key: string]: any;
-  disabled?: boolean;
-  className?: string;
-  liStyle?: CSSProperties;
-  liClassName?: string;
-  children?: ReactNode;
-  contentComponent?: ElementType;
-  isLink?: boolean;
-}
+import { TreeItemProps } from "./types";
 
 type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
   Pick<
     TreeItemProps,
-    "contentComponent" | "height" | "threeLines" | "textChildren"
+    | "contentComponent"
+    | "expanderLeft"
+    | "expanderIcon"
+    | "disabled"
+    | "height"
+    | "threeLines"
+    | "textChildren"
   >
 >;
 type WithDefaultProps = TreeItemProps & DefaultProps & WithRef;
 
+const block = bem("rmd-tree-item");
+
+/**
+ * This component renders an item within a tree with optional child items. This should almost always
+ * be used from the `itemRenderer` prop from the `Tree` component as it provides a lot of the required
+ * a11y props for you.
+ */
 const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
   const {
     id,
+    className: propClassName,
+    liStyle,
+    liClassName,
     depth,
     listSize,
     itemIndex,
@@ -55,9 +44,6 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     expanded,
     selected,
     focused,
-    className: propClassName,
-    contentComponent,
-    isLink: propIsLink,
     expanderIcon,
     expanderLeft,
     textClassName,
@@ -74,16 +60,26 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     height,
     threeLines,
     children,
-    disableRipple,
-    disableProgrammaticRipple,
+    contentComponent: Content,
+    isLink: propIsLink,
+    disabled,
+    readOnly,
+    onFocus,
     ...props
   } = providedProps as WithDefaultProps;
-  const { disabled } = props;
 
-  let isLink = propIsLink;
-  if (typeof isLink === "undefined") {
-    isLink = contentComponent !== "span";
-  }
+  const isLink =
+    typeof propIsLink === "boolean"
+      ? propIsLink
+      : typeof Content !== "string" || Content === "a";
+
+  const { ripples, className, handlers } = useInteractionStates({
+    disabled,
+    className: propClassName,
+    handlers: isLink ? props : undefined,
+    disableSpacebarClick: isLink,
+  });
+
   let group;
   let leftIcon = propLeftIcon;
   let rightIcon = propRightIcon;
@@ -102,16 +98,21 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     group = <TreeGroup collapsed={!expanded}>{renderChildItems()}</TreeGroup>;
   }
 
-  const { ripples, className, handlers } = useInteractionStates({
-    disabled,
-    className: propClassName,
-    handlers: isLink ? props : undefined,
-    disableRipple,
-    disableProgrammaticRipple,
-    disableSpacebarClick: isLink,
-  });
+  const handleFocus = useCallback(
+    (event: React.FocusEvent<HTMLLIElement>) => {
+      if (onFocus) {
+        onFocus(event);
+      }
 
-  const Content = contentComponent as ElementType;
+      event.preventDefault();
+      const tree = event.currentTarget.closest('[role="tree"]');
+      if (tree) {
+        (tree as ListElement).focus();
+      }
+    },
+    [onFocus]
+  );
+
   const a11y = {
     "aria-expanded": renderChildItems ? expanded : undefined,
     "aria-level": depth + 1,
@@ -122,26 +123,29 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     role: "treeitem",
     tabIndex: -1,
     ...handlers,
+    onFocus: handleFocus,
   };
   const noA11y = { role: "none" };
 
   return (
-    <BaseTreeItem ref={forwardedRef} {...(isLink ? noA11y : a11y)}>
+    <li
+      {...(isLink ? noA11y : a11y)}
+      ref={forwardedRef}
+      style={liStyle}
+      className={cn(block(), liClassName)}
+    >
       <Content
         {...props}
         {...(isLink ? a11y : undefined)}
         className={cn(
-          "rmd-tree-item__content",
-          {
-            "rmd-tree-item__content--link": isLink,
-            "rmd-tree-item__content--clickable": !disabled,
-            [`rmd-tree-item__content--${height}`]:
-              height !== "auto" && height !== "normal",
-            "rmd-tree-item__content--three-lines":
-              !!secondaryText && threeLines,
-            "rmd-states--focused": focused,
-            "rmd-tree-item__content--selected": selected,
-          },
+          block("content", {
+            link: isLink,
+            clickable: !disabled && !readOnly,
+            [height]: height !== "auto" && height !== "normal",
+            "three-lines": !!secondaryText && threeLines,
+            selected,
+            focused,
+          }),
           className
         )}
       >
@@ -162,18 +166,63 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
         {ripples}
       </Content>
       {group}
-    </BaseTreeItem>
+    </li>
   );
 };
 
 const defaultProps: DefaultProps = {
   contentComponent: "span",
+  expanderLeft: false,
+  expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
+  disabled: false,
   height: "auto",
   threeLines: false,
   textChildren: true,
 };
 
 TreeItem.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  TreeItem.displayName = "TreeItem";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TreeItem.propTypes = {
+      id: PropTypes.string.isRequired,
+      depth: PropTypes.number.isRequired,
+      itemIndex: PropTypes.number.isRequired,
+      listSize: PropTypes.number.isRequired,
+      selected: PropTypes.bool.isRequired,
+      expanded: PropTypes.bool.isRequired,
+      focused: PropTypes.bool.isRequired,
+      renderChildItems: PropTypes.func,
+      liStyle: PropTypes.object,
+      liClassName: PropTypes.string,
+      isLink: PropTypes.bool,
+      contentComponent: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      disabled: PropTypes.bool,
+      expanderLeft: PropTypes.bool,
+      expanderIcon: PropTypes.node,
+      height: PropTypes.oneOf([
+        "auto",
+        "normal",
+        "medium",
+        "large",
+        "extra-large",
+      ]),
+      threeLines: PropTypes.bool,
+      textChildren: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLLIElement, TreeItemProps>((props, ref) => (
   <TreeItem {...props} forwardedRef={ref} />

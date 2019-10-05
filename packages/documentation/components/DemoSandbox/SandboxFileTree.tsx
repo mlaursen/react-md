@@ -17,6 +17,7 @@ export interface SandboxFileTreeProps {
 }
 
 const block = bem("sandbox-modal");
+const noop = (): void => {};
 const EMPTY = {};
 
 const SandboxFileTree: FC<SandboxFileTreeProps> = ({
@@ -45,6 +46,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
         aria-label="Files"
         data={data}
         onItemSelect={onFileChange}
+        onMultiItemSelect={noop}
         selectedIds={[fileName]}
         {...useTreeItemExpansion(["src", "public"])}
         expanderIcon={<KeyboardArrowDownSVGIcon />}

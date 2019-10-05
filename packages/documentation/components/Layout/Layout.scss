@@ -28,6 +28,7 @@
 .layout {
   &__main {
     @include rmd-app-bar-offset;
+    @include rmd-utils-hide-focus-outline;
     @include rmd-utils-keyboard-only {
       @include rmd-transition-shadow-transition(none, inset 0 0 0 4px $rmd-blue-500, '&:focus');
 

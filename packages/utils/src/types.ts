@@ -24,5 +24,6 @@ interface LabelA11y {
   "aria-label"?: string;
   "aria-labelledby"?: string;
 }
+
 export type LabelRequiredForA11y<T extends LabelA11y> = T &
   RequireAtLeastOne<T, "aria-label" | "aria-labelledby">;

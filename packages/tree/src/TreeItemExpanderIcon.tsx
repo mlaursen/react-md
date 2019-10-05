@@ -1,30 +1,28 @@
-import React from "react";
+import React, { ReactNode, FC } from "react";
 import cn from "classnames";
 import { FontIcon, IconRotator, IconRotatorBaseProps } from "@react-md/icon";
+import { bem } from "@react-md/utils";
 
 export interface TreeItemExpanderIconProps extends IconRotatorBaseProps {
-  children?: React.ReactElement<any>;
+  children?: ReactNode;
 }
 
 type DefaultProps = Required<
   Pick<TreeItemExpanderIconProps, "rotated" | "children">
 >;
-export type WithDefaultProps = TreeItemExpanderIconProps & DefaultProps;
+type WithDefaultProps = TreeItemExpanderIconProps & DefaultProps;
+
+const block = bem("rmd-tree-item");
 
 /**
  * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to be used within
  * a `TreeView`.
  */
-const TreeItemExpanderIcon: React.FC<
-  TreeItemExpanderIconProps
-> = providedProps => {
+const TreeItemExpanderIcon: FC<TreeItemExpanderIconProps> = providedProps => {
   const { className, ...props } = providedProps as WithDefaultProps;
 
   return (
-    <IconRotator
-      {...props}
-      className={cn("rmd-tree-item__rotator-icon", className)}
-    />
+    <IconRotator {...props} className={cn(block("rotator-icon"), className)} />
   );
 };
 

@@ -1,35 +1,29 @@
 /* eslint-disable @typescript-eslint/no-use-before-define, import/prefer-default-export */
-import React, { ReactNode } from "react";
+import React, { ReactNode, ElementType } from "react";
 import {
   BuildSVGIcon,
   ColorLensSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
 } from "@react-md/material-icons";
-import { FlattenedTree } from "@react-md/tree";
+import { TreeData, TreeItemIds } from "@react-md/tree";
 
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
+import LinkUnstyled from "components/LinkUnstyled";
 
-export interface RouteLink {
+export interface RouteItem extends TreeItemIds {
   children: ReactNode;
   target?: string;
   href?: string;
   leftIcon?: ReactNode;
   rel?: string;
+  contentComponent?: ElementType;
+  readOnly?: boolean;
 }
 
-export interface RouteSubheader extends RouteLink {
-  subheader: true;
-}
-
-export interface RouteDivider {
-  divider: boolean;
-}
-
-export type RoutesTreeData = (RouteLink | RouteSubheader) | RouteDivider;
-export type RoutesTree = FlattenedTree<RoutesTreeData>;
+export type RoutesTree = TreeData<RouteItem>;
 
 interface ChildRouteConfig {
   path: string;
@@ -80,6 +74,7 @@ function createRoute(
     children,
     leftIcon: icon,
     href: childRoutes.length ? undefined : href,
+    contentComponent: childRoutes.length ? undefined : LinkUnstyled,
   };
 
   childRoutes.forEach(childRoute => createChildRoute(childRoute, href));
@@ -137,14 +132,15 @@ function createPackageRoute(
 /**
  * Creates a divider in the tree.
  */
-function createDivider(index: number, parentId: string | null = null): void {
-  const itemId = `divider-${index}`;
-  routesTree[itemId] = {
-    itemId,
-    parentId,
-    divider: true,
-  };
-}
+// function createDivider(index: number, parentId: string | null = null): void {
+//   const itemId = `divider-${index}`;
+//   routesTree[itemId] = {
+//     itemId,
+//     parentId,
+//     divider: true,
+//     ignore: true,
+//   };
+// }
 
 /**
  * Creates a subheader in the tree.
@@ -158,7 +154,7 @@ function createSubheader(
     itemId,
     parentId,
     children,
-    subheader: true,
+    readOnly: true,
   };
 }
 
@@ -179,6 +175,7 @@ function createExternalRoute(
     rel: "noopener noreferrer",
     target: "_blank",
     leftIcon: icon,
+    contentComponent: LinkUnstyled,
   };
 }
 
@@ -239,7 +236,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("utils"),
   ],
 });
-createDivider(0);
+// createDivider(0);
 createSubheader("references", "References");
 createExternalRoute("https://reactjs.org", "React", <ReactSVGIcon />);
 createExternalRoute(
