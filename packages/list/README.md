@@ -52,7 +52,7 @@ const App = () => (
       Item 3 Disabled
     </ListItem>
     <Divider />
-    <ListItemSubheader>Sub actions</ListItemSubheader>
+    <ListSubheader>Sub actions</ListSubheader>
     <ListItem id="item-4" leftIcon={<FontIcon>close</FontIcon>}>
       Close
     </ListItem>

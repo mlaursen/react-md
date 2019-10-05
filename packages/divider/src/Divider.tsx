@@ -28,7 +28,7 @@ export interface DividerProps extends HTMLAttributes<DividerElement> {
 }
 
 type WithRef = WithForwardedRef<DividerElement>;
-type DefaultProps = Required<Pick<DividerProps, "inset" | "vertical">>;
+type DefaultProps = Required<Pick<DividerProps, "inset" | "vertical" | "role">>;
 type WithDefaultProps = DividerProps & DefaultProps & WithRef;
 
 const block = bem("rmd-divider");
@@ -54,6 +54,7 @@ const Divider: FC<DividerProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  role: "separator",
   inset: false,
   vertical: false,
 };
@@ -69,6 +70,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Divider.propTypes = {
+      role: PropTypes.string,
       inset: PropTypes.bool,
       vertical: PropTypes.bool,
     };
