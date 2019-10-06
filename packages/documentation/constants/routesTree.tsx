@@ -6,14 +6,14 @@ import {
   HomeSVGIcon,
   InfoOutlineSVGIcon,
 } from "@react-md/material-icons";
-import { TreeData, TreeItemIds } from "@react-md/tree";
+import { TreeData, BaseTreeItem } from "@react-md/tree";
 
 import LinkUnstyled from "components/LinkUnstyled";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
 
-export interface RouteItem extends TreeItemIds {
+export interface RouteItem extends BaseTreeItem {
   children: ReactNode;
   target?: string;
   href?: string;

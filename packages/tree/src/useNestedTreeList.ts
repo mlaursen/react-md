@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 
-import { TreeItemIds, TreeData, TreeItemId, TreeItemSorter } from "./types";
+import { BaseTreeItem, TreeData, TreeItemId, TreeItemSorter } from "./types";
 
 /**
  * @private
  */
-export type NestedTreeItem<T extends TreeItemIds> = T & {
+export type NestedTreeItem<T extends BaseTreeItem> = T & {
   childItems?: NestedTreeItem<T>[];
 };
 
@@ -21,7 +21,7 @@ export type NestedTreeItem<T extends TreeItemIds> = T & {
  *
  * @private
  */
-export function buildTree<T extends TreeItemIds>(
+export function buildTree<T extends BaseTreeItem>(
   parentId: null | TreeItemId,
   items: T[],
   sort?: TreeItemSorter<T>
@@ -64,7 +64,7 @@ export function buildTree<T extends TreeItemIds>(
  * but if there's a different unique identifier for the "root level" items,
  * that can be used instead.
  */
-export default function useNestedTreeList<T extends TreeItemIds>(
+export default function useNestedTreeList<T extends BaseTreeItem>(
   tree: TreeData<T>,
   sort?: TreeItemSorter<T>,
   rootId: null | TreeItemId = null

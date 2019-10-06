@@ -4,7 +4,7 @@ import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import {
-  defaultItemRenderer,
+  defaultTreeItemRenderer,
   Tree,
   TreeItemExpansion,
   TreeItemRenderer,
@@ -82,7 +82,7 @@ const itemRenderer: TreeItemRenderer<RouteItem> = (
     );
   }
 
-  return defaultItemRenderer(itemProps, item, treeProps);
+  return defaultTreeItemRenderer(itemProps, item, treeProps);
 };
 
 const NavigationTree: FC<NavigationTreeProps> = memo(({ pathname }) => {

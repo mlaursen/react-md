@@ -1,7 +1,7 @@
 import { buildTree } from "../useNestedTreeList";
-import { TreeData, TreeItemIds } from "../types";
+import { TreeData, BaseTreeItem } from "../types";
 
-interface TestTreeItem extends TreeItemIds {
+interface TestTreeItem extends BaseTreeItem {
   children: string;
 }
 

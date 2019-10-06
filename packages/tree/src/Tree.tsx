@@ -6,7 +6,7 @@ import { bem, WithForwardedRef } from "@react-md/utils";
 
 import defaultGetItemLabel from "./defaultGetItemLabel";
 import defaultGetItemValue from "./defaultGetItemValue";
-import defaultItemRenderer from "./defaultItemRenderer";
+import defaultTreeItemRenderer from "./defaultTreeItemRenderer";
 import { ProvidedTreeProps, TreeProps, UnknownTreeItem } from "./types";
 import { NestedTreeItem } from "./useNestedTreeList";
 import useTreeMovement from "./useTreeMovement";
@@ -146,7 +146,7 @@ const defaultProps: DefaultProps = {
   multiSelect: false,
   expanderLeft: false,
   expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
-  itemRenderer: defaultItemRenderer,
+  itemRenderer: defaultTreeItemRenderer,
   labelKey: "name",
   valueKey: "name",
   getItemLabel: defaultGetItemLabel,
@@ -194,6 +194,10 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
+// This actually works pretty nicef since the only time you really need the
+// "strict" typing for the TreeItem is the `itemRenderer`. Since I also expose
+// the `TreeItemRenderer` type, you can strictly type it there if needed and
+// will not cause type errors.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default forwardRef<ListElement, TreeProps<any>>((props, ref) => (
   <Tree {...props} forwardedRef={ref} />

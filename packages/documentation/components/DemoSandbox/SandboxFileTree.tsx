@@ -49,6 +49,8 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
         onMultiItemSelect={noop}
         selectedIds={[fileName]}
         {...useTreeItemExpansion(["src", "public"])}
+        labelKey="children"
+        valueKey="children"
         expanderIcon={<KeyboardArrowDownSVGIcon />}
       />
     </Sheet>

@@ -16,15 +16,7 @@ export type TreeItemId = string;
 export type ExpandedIds = TreeItemId[];
 export type SelectedIds = TreeItemId[];
 
-export interface TreeItemIds extends ListItemChildrenProps {
-  /**
-   * Boolean if the provided item is a custom element and will not be rendered in a `TreeItem`
-   * component. This is useful if you want to be able to render `Divider` or `ListSubheader`
-   * components within a tree since they _should_ be able to be rendered without any of the tree
-   * functionality.
-   */
-  isCustom?: boolean;
-
+export interface TreeItemIds {
   /**
    * The unique identifier for an item within the tree. This is used to be able to link tree items
    * together with parent items as well as selected/expanded logic.
@@ -39,12 +31,22 @@ export interface TreeItemIds extends ListItemChildrenProps {
   parentId: null | TreeItemId;
 }
 
+export interface BaseTreeItem extends TreeItemIds, ListItemChildrenProps {
+  /**
+   * Boolean if the provided item is a custom element and will not be rendered in a `TreeItem`
+   * component. This is useful if you want to be able to render `Divider` or `ListSubheader`
+   * components within a tree since they _should_ be able to be rendered without any of the tree
+   * functionality.
+   */
+  isCustom?: boolean;
+}
+
 /**
  * This is just a type I use internally for handling tree items with unknown keys.
  *
  * @private
  */
-export interface UnknownTreeItem extends TreeItemIds {
+export interface UnknownTreeItem extends BaseTreeItem {
   [key: string]: unknown;
 }
 
@@ -52,7 +54,7 @@ export interface UnknownTreeItem extends TreeItemIds {
  * This type represents the data that can be handled by the `Tree` component. This is really just
  * a Map of `itemId -> item` for quick lookups for the logic within the tree.
  */
-export type TreeData<T extends TreeItemIds> = Record<TreeItemId, T>;
+export type TreeData<T extends BaseTreeItem> = Record<TreeItemId, T>;
 
 /**
  * A function to call that will sort the items within the tree for each unique `parentId`. If you have a
@@ -79,13 +81,13 @@ export type TreeData<T extends TreeItemIds> = Record<TreeItemId, T>;
  * - `[c1, c2, c3]`
  * - `[a, b, c]`
  */
-export type TreeItemSorter<T extends TreeItemIds> = (items: T[]) => T[];
+export type TreeItemSorter<T extends BaseTreeItem> = (items: T[]) => T[];
 
 /**
  * A render function that allows you to add additional functionality to or custom components
  * within the tree.
  */
-export type TreeItemRenderer<T extends TreeItemIds> = (
+export type TreeItemRenderer<T extends BaseTreeItem> = (
   providedProps: ProvidedTreeItemProps,
   item: T,
   treeProps: ProvidedTreeProps
@@ -299,7 +301,7 @@ export interface ProvidedTreeItemProps
   onClick?: React.MouseEventHandler<HTMLLIElement>;
 }
 
-export interface TreeProps<T extends TreeItemIds = UnknownTreeItem>
+export interface TreeProps<T extends BaseTreeItem = UnknownTreeItem>
   extends ListProps,
     TreeItemExpansionIcon,
     TreeItemExpansion,

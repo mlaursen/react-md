@@ -73,6 +73,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
       visible={sandbox !== null}
       onRequestClose={onRequestClose}
       className={block()}
+      disableTransition
     >
       <Head>
         <title>{title}</title>
