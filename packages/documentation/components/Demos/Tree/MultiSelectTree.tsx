@@ -8,8 +8,8 @@ import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 
 import folders from "./folders";
 
-const SingleSelectTree: FC = () => {
-  const selection = useTreeItemSelection([], false);
+const MultiSelectTree: FC = () => {
+  const selection = useTreeItemSelection([], true);
   const expansion = useTreeItemExpansion([]);
 
   return (
@@ -24,4 +24,4 @@ const SingleSelectTree: FC = () => {
   );
 };
 
-export default SingleSelectTree;
+export default MultiSelectTree;
