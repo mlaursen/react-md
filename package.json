@@ -20,6 +20,8 @@
     "lint-styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all -p lint-ts lint-styles",
     "test": "jest --config jest.config.js",
+    "test-doc": "yarn workspace documentation test",
+    "test-all": "npm-run-all test-doc test",
     "format": "prettier --write packages/*/{src,components,constants,hooks,pages,server,utils}/**/*.{ts,tsx,scss,js,jsx}",
     "sandbox": "yarn workspace documentation sandbox",
     "prepublishOnly": "npm-run-all clean dev-utils force-install build-dist lint test",
@@ -90,7 +92,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm-run-all typecheck lint test"
+      "pre-push": "npm-run-all typecheck lint test-all"
     }
   },
   "lint-staged": {

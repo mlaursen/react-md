@@ -3,23 +3,15 @@ import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { SingletonRouter, withRouter } from "next/router";
 
 import NotFoundPage from "components/NotFoundPage";
+import { parseSandbox, SandboxParams, SandboxQuery } from "utils/routes";
 
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";
 
-interface Query {
-  pkg?: string;
-  name?: string;
-  from?: string;
-  fileName?: string;
-}
-
-type QueryRecord = Record<string, undefined | string | string[]>;
-
-interface DemoSandboxProps extends Required<Query> {
+interface DemoSandboxProps extends SandboxParams {
   sandbox: IFiles | null;
-  router: SingletonRouter<Query>;
+  router: SingletonRouter<SandboxQuery>;
 }
 
 const DemoSandbox: FC<DemoSandboxProps> = ({
@@ -37,7 +29,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({
   });
 
   const onRequestClose = useCallback(() => {
-    if (from) {
+    if (from && from.startsWith("/packages")) {
       router.push(from);
       return;
     }
@@ -55,7 +47,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({
         fn = undefined;
       }
 
-      const query: QueryRecord = { pkg, name };
+      const query: SandboxQuery = { pkg, name };
       if (from) {
         query.from = from;
       }
@@ -90,39 +82,16 @@ const DemoSandbox: FC<DemoSandboxProps> = ({
 };
 
 interface WithRouterProps {
-  router: SingletonRouter<Query>;
+  router: SingletonRouter<SandboxQuery>;
   sandbox: IFiles | null;
 }
 
-const toString = (q: string | string[] | undefined): string => {
-  if (!q) {
-    return "";
-  }
+const DemoSandboxWithRouter: FC<WithRouterProps> = ({ router, sandbox }) => (
+  <DemoSandbox
+    {...parseSandbox(router.query)}
+    sandbox={sandbox}
+    router={router}
+  />
+);
 
-  if (Array.isArray(q)) {
-    return q[0] || "";
-  }
-
-  return q;
-};
-
-const WithRouter: FC<WithRouterProps> = ({ router, sandbox }) => {
-  const query = router.query || {};
-  const pkg = toString(query.pkg);
-  const name = toString(query.name);
-  const from = toString(query.from);
-  const fileName = toString(query.fileName) || "src/Demo.tsx";
-
-  return (
-    <DemoSandbox
-      pkg={pkg}
-      name={name}
-      from={from}
-      fileName={fileName}
-      sandbox={sandbox}
-      router={router}
-    />
-  );
-};
-
-export default withRouter(WithRouter);
+export default withRouter(DemoSandboxWithRouter);

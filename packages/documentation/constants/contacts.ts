@@ -1,4 +1,4 @@
-import people from "constants/people";
+import people from "./people";
 
 const mod = (x: number): number => Math.floor(x % 9);
 

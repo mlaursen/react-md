@@ -101,7 +101,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/__tests__/*'],
+      files: ['**/__tests__/*', '**/testSetup/*'],
       env: {
         jest: true,
       },
@@ -109,11 +109,13 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/explicit-function-return-type': 0,
         '@typescript-eslint/no-object-literal-type-assertion': 0,
+        '@typescript-eslint/no-var-requires': 0,
         'jsx-a11y/no-autofocus': 0,
         'jsx-a11y/no-static-element-interactions': 0,
         'jsx-a11y/anchor-is-valid': 0,
         'react/prop-types': 0,
         'react/prefer-stateless-function': 0,
+        'prefer-template': 0,
       },
     },
     {

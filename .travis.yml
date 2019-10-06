@@ -21,4 +21,5 @@ script:
   - yarn workspace documentation sandbox --empty --silent
   - yarn typecheck
   - yarn lint
+  - yarn test-doc --runInBand
   - yarn test --runInBand

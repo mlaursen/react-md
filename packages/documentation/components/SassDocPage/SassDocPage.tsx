@@ -4,7 +4,7 @@ import { Text } from "@react-md/typography";
 import { CodeBlock } from "components/Code";
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
-import { PackageSassDoc } from "types/formattedSassDoc.d";
+import { PackageSassDoc } from "types/formattedSassDoc";
 
 import VariableTable from "./VariableTable";
 
