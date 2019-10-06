@@ -1,4 +1,3 @@
-const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
@@ -22,20 +21,18 @@ const withCustomConfig = (nextConfig = {}) => ({
   },
 });
 
-module.exports = withTypescript(
-  withImages(
-    withCustomConfig(
-      withCSS(
-        withSass({
-          sassLoaderOptions: {
-            sourceMap: !isProduction,
-          },
-          postcssLoaderOptions: {
-            ident: 'postcss',
-            sourceMap: !isProduction,
-          },
-        })
-      )
+module.exports = withImages(
+  withCustomConfig(
+    withCSS(
+      withSass({
+        sassLoaderOptions: {
+          sourceMap: !isProduction,
+        },
+        postcssLoaderOptions: {
+          ident: 'postcss',
+          sourceMap: !isProduction,
+        },
+      })
     )
   )
 );

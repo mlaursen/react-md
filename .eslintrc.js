@@ -143,5 +143,14 @@ module.exports = {
         'react/prop-types': 0,
       },
     },
+    {
+      files: ['**/*.js', '**/*.jsx'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 0,
+        '@typescript-eslint/no-object-literal-type-assertion': 0,
+        '@typescript-eslint/no-var-requires': 0,
+        'import/no-unresolved': 0,
+      },
+    },
   ],
 };

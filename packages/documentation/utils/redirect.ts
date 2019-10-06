@@ -1,10 +1,12 @@
-import { NextFunctionComponent } from "next";
+import { NextComponentType, NextPageContext } from "next";
 import Router from "next/router";
 
 export interface RedirectConfig {
   concat?: boolean;
   statusCode?: number;
 }
+
+type NextFunctionComponent = NextComponentType<NextPageContext, {}, {}>;
 
 /**
  * Creates a component that will redirect with nextjs. This should be

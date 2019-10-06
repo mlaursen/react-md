@@ -1,5 +1,5 @@
 import React, { FC, memo, useRef } from "react";
-import { SingletonRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
@@ -101,8 +101,10 @@ const NavigationTree: FC<NavigationTreeProps> = memo(({ pathname }) => {
   );
 });
 
-const RoutedTree: FC<{ router: SingletonRouter }> = ({ router }) => (
-  <NavigationTree pathname={router.pathname} />
-);
+const RoutedTree: FC = () => {
+  const router = useRouter();
 
-export default withRouter(RoutedTree);
+  return <NavigationTree pathname={router.pathname} />;
+};
+
+export default RoutedTree;

@@ -1,22 +1,13 @@
-import React, { FC } from "react";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import React from "react";
 import { mocked } from "ts-jest/utils";
 import { cleanup, render, fireEvent } from "utils/tests";
 
-import { SandboxQuery } from "utils/routes";
-
-import DemoSandboxx from "../DemoSandbox";
+import DemoSandbox from "../DemoSandbox";
 import useSandbox from "../useSandbox";
 
 jest.mock("../useSandbox");
 
 const useSandboxMock = mocked(useSandbox);
-
-interface DemoSandboxProps {
-  router: { query: SandboxQuery };
-  sandbox: IFiles | null;
-}
-const DemoSandbox = DemoSandboxx as FC<DemoSandboxProps>;
 
 beforeEach(() => {
   useSandboxMock.mockImplementation(defaultSandbox => ({
@@ -39,9 +30,9 @@ describe("DemoSandbox", () => {
       },
       pathname: "/sandbox",
     };
-    const { getById, rerender } = render(
-      <DemoSandbox router={router} sandbox={sandbox} />
-    );
+    const { getById, rerender } = render(<DemoSandbox sandbox={sandbox} />, {
+      router,
+    });
     const closeBtn = getById<HTMLButtonElement>("sandbox-dialog-close");
 
     fireEvent.click(closeBtn);
@@ -56,7 +47,7 @@ describe("DemoSandbox", () => {
           "http://im-a-bad-website.com/packages/tree/demos#single-select-tree-demo-title",
       },
     };
-    rerender(<DemoSandbox router={badRouter} sandbox={sandbox} />);
+    rerender(<DemoSandbox sandbox={sandbox} />, { router: badRouter });
 
     fireEvent.click(closeBtn);
     expect(push).toBeCalledWith(router.pathname);

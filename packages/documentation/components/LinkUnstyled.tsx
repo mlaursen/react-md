@@ -1,6 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
 import Link, { LinkProps } from "next/link";
-import useLinkPrefetch from "hooks/useLinkPrefetch";
 
 export interface LinkUnstyledProps
   extends Omit<LinkProps, "children" | "passHref" | "onError">,
@@ -16,16 +15,15 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
   href,
   as,
   children,
-  onMouseEnter,
-  onKeyUp,
   ...props
 }) => {
-  const handlers = useLinkPrefetch({
-    href,
-    onMouseEnter,
-    onKeyUp,
-    disabled: !prefetch,
-  });
+  if (href.startsWith("http")) {
+    return (
+      <a {...props} href={href} rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
 
   return (
     <Link
@@ -35,13 +33,7 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
       href={href}
       as={as}
     >
-      <a
-        {...props}
-        {...handlers}
-        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      >
-        {children}
-      </a>
+      <a {...props}>{children}</a>
     </Link>
   );
 };

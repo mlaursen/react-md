@@ -1,6 +1,6 @@
 import './app.scss';
-import React from 'react';
-import NextApp, { Container } from 'next/app';
+import React, { Fragment } from 'react';
+import NextApp from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
@@ -151,7 +151,7 @@ export default class App extends NextApp {
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
 
     return (
-      <Container>
+      <Fragment>
         <GoogleFont font="Roboto:400,500,700" />
         <GoogleFont font="Source Code Pro" />
         <Head>
@@ -168,7 +168,7 @@ export default class App extends NextApp {
             </CrossFade>
           </Layout>
         </ThemeContextProvider>
-      </Container>
+      </Fragment>
     );
   }
 }

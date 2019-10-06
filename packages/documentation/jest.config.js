@@ -24,7 +24,6 @@ module.exports = {
     '^pages/(.*)$': '<rootDir>/pages/$1',
     '^types/(.*)$': '<rootDir>/types/$1',
     '^utils/(.*)$': '<rootDir>/utils/$1',
-    '^next/router$': '<rootDir>/testSetup/nextRouter.js',
   },
   transform: {
     '\\.svg$': '<rootDir>/testSetup/inlineSvgTransformer.js',

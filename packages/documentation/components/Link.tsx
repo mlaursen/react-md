@@ -2,8 +2,6 @@ import React, { FC, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { Link as RMDLink } from "@react-md/link";
 
-import useLinkPrefetch from "hooks/useLinkPrefetch";
-
 export interface LinkProps extends Omit<NextLinkProps, "children"> {
   id?: string;
   className?: string;
@@ -12,20 +10,34 @@ export interface LinkProps extends Omit<NextLinkProps, "children"> {
 }
 
 const Link: FC<LinkProps> = ({
-  id,
   children,
-  className,
   prefetch,
+  shallow,
+  scroll,
+  replace,
+  as,
+  href,
+  passHref,
   ...props
 }) => {
-  const { href } = props;
-  const handlers = useLinkPrefetch({ href, disabled: !prefetch });
-
-  return (
-    <NextLink {...props}>
-      <RMDLink id={id} {...handlers} className={className}>
+  if (href.startsWith("http")) {
+    return (
+      <RMDLink {...props} href={href}>
         {children}
       </RMDLink>
+    );
+  }
+
+  return (
+    <NextLink
+      shallow={shallow}
+      scroll={scroll}
+      replace={replace}
+      href={href}
+      as={as}
+      passHref={passHref}
+    >
+      <RMDLink {...props}>{children}</RMDLink>
     </NextLink>
   );
 };

@@ -1,6 +1,6 @@
 import React, { Fragment, FC, useEffect } from "react";
 import cn from "classnames";
-import { SingletonRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
 import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
@@ -19,20 +19,16 @@ import NavigationTree from "./NavigationTree";
 
 export interface CombinedProps {
   title: string;
-  router: SingletonRouter;
 }
 
 const block = bem("layout");
 
-const Combined: FC<CombinedProps> = ({
-  title: propTitle,
-  children,
-  router,
-}) => {
+const Combined: FC<CombinedProps> = ({ title: propTitle, children }) => {
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
   const isLandscapeTablet = isLandscape && isTablet;
   const inline = isDesktop || isLandscapeTablet;
   const [visible, , disable, toggle, setVisible] = useToggle(isDesktop);
+  const router = useRouter();
 
   useEffect(() => {
     if (visible !== isDesktop) {
@@ -123,4 +119,4 @@ const Combined: FC<CombinedProps> = ({
   );
 };
 
-export default withRouter(Combined);
+export default Combined;

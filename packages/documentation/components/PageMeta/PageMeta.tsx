@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Head from "next/head";
-import { withRouter, SingletonRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import home from "./home.png";
 
@@ -11,16 +11,14 @@ interface PageMetaProps {
     src: string;
     alt: string;
   };
-  router?: SingletonRouter;
 }
 
-type DefaultProps = Required<
-  Pick<PageMetaProps, "description" | "router" | "image">
->;
+type DefaultProps = Required<Pick<PageMetaProps, "description" | "image">>;
 type WithDefaultProps = PageMetaProps & DefaultProps;
 
 const PageMeta: FC<PageMetaProps> = props => {
-  const { title, description, image, router } = props as WithDefaultProps;
+  const { title, description, image } = props as WithDefaultProps;
+  const router = useRouter();
 
   return (
     <Head>
@@ -52,4 +50,4 @@ PageMeta.defaultProps = {
   },
 };
 
-export default withRouter(PageMeta);
+export default PageMeta;

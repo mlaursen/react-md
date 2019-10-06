@@ -1,27 +1,21 @@
 import React, { FC, Fragment, useCallback } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { SingletonRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import NotFoundPage from "components/NotFoundPage";
-import { parseSandbox, SandboxParams, SandboxQuery } from "utils/routes";
+import { parseSandbox, SandboxQuery } from "utils/routes";
 
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";
 
-interface DemoSandboxProps extends SandboxParams {
+interface DemoSandboxProps {
   sandbox: IFiles | null;
-  router: SingletonRouter<SandboxQuery>;
 }
 
-const DemoSandbox: FC<DemoSandboxProps> = ({
-  sandbox: defaultSandbox,
-  pkg,
-  name,
-  from,
-  fileName,
-  router,
-}) => {
+const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
+  const router = useRouter();
+  const { pkg, name, from, fileName } = parseSandbox(router.query);
   const { sandbox, loading } = useSandbox(defaultSandbox, {
     pkg,
     name,
@@ -81,17 +75,4 @@ const DemoSandbox: FC<DemoSandboxProps> = ({
   );
 };
 
-interface WithRouterProps {
-  router: SingletonRouter<SandboxQuery>;
-  sandbox: IFiles | null;
-}
-
-const DemoSandboxWithRouter: FC<WithRouterProps> = ({ router, sandbox }) => (
-  <DemoSandbox
-    {...parseSandbox(router.query)}
-    sandbox={sandbox}
-    router={router}
-  />
-);
-
-export default withRouter(DemoSandboxWithRouter);
+export default DemoSandbox;
