@@ -165,7 +165,7 @@ export default function useTreeMovement({
       }
 
       const start = isToStart ? 0 : focusedIndex;
-      const end = isToStart ? index : undefined;
+      const end = isToStart ? focusedIndex + 1 : undefined;
       const jumpSelectedIds = visibleItems
         .slice(start, end)
         .map(({ itemId }) => itemId);
@@ -303,22 +303,18 @@ export default function useTreeMovement({
         return;
       }
 
+      let index = -1;
       // try to "focus" the first selected itemId if there is a selection.
       if (selectedIds.length) {
-        const index = visibleItems.findIndex(item =>
+        index = visibleItems.findIndex(item =>
           selectedIds.includes(item.itemId)
         );
-        if (index !== -1) {
-          setFocusedIndex(index);
-          return;
-        }
       }
 
       // fallback to the first visible tree item if there were no selected ids
-      const index = Math.max(
-        0,
-        Math.min(lastFocus.current, visibleItems.length)
-      );
+      if (index === -1) {
+        index = Math.max(0, Math.min(lastFocus.current, visibleItems.length));
+      }
       setFocusedIndex(index);
     },
     [focusedIndex, onFocus, selectedIds, setFocusedIndex, visibleItems]
