@@ -11,11 +11,11 @@
     "sandbox": "dev-utils sandbox",
     "sassdoc": "dev-utils sassdoc",
     "dev": "npm-run-all prebuild start-dev",
-    "dev-log": "FORCE_COLOR=true next | cat",
+    "dev-log": "cross-env NEXT_TELEMETRY_DISABLED=1 FORCE_COLOR=true next | cat",
     "test": "jest",
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
-    "build-client": "next build",
+    "build-client": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "node .next/server",
     "start-dev": "nodemon",
     "start-prod": "npm-run-all build start"

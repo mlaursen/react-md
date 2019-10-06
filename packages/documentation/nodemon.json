@@ -5,6 +5,9 @@
     "tsconfig.server.json",
     "tsconfig.json"
   ],
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": 1
+  },
   "ext": "ts",
   "exec": "ts-node --project tsconfig.server.json server/index.ts"
 }
