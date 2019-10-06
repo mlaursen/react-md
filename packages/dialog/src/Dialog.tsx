@@ -163,6 +163,12 @@ export interface DialogProps
    * not seem to be working as expected.
    */
   disableNestedDialogFixes?: boolean;
+
+  /**
+   * Boolean if the `appear`, `enter`, and `exit` transitions should be disabled for the dialog.
+   * This is just a shortcut so all three of those props don't need to be disabled.
+   */
+  disableTransition?: boolean;
 }
 
 type StrictProps = LabelRequiredForA11y<DialogProps>;
@@ -174,6 +180,10 @@ type DefaultProps = Required<
     | "tabIndex"
     | "modal"
     | "type"
+    | "appear"
+    | "enter"
+    | "exit"
+    | "disableTransition"
     | "classNames"
     | "timeout"
     | "defaultFocus"
@@ -211,6 +221,10 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
     portal,
     portalInto,
     portalIntoId,
+    appear,
+    enter,
+    exit,
+    disableTransition,
     classNames,
     timeout,
     mountOnEnter,
@@ -311,7 +325,9 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
       <Fragment>
         {overlayEl}
         <CSSTransition
-          appear={mountOnEnter}
+          appear={!disableTransition && appear}
+          enter={!disableTransition && enter}
+          exit={!disableTransition && exit}
           in={visible}
           classNames={classNames}
           timeout={timeout}
@@ -340,6 +356,10 @@ const defaultProps: DefaultProps = {
   overlayHidden: false,
   mountOnEnter: true,
   unmountOnExit: true,
+  appear: true,
+  enter: true,
+  exit: true,
+  disableTransition: false,
   timeout: {
     enter: 200,
     exit: 150,
@@ -412,6 +432,10 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
+      appear: PropTypes.bool,
+      enter: PropTypes.bool,
+      exit: PropTypes.bool,
+      disableTransition: PropTypes.bool,
       onEnter: PropTypes.func,
       onEntering: PropTypes.func,
       onEntered: PropTypes.func,
