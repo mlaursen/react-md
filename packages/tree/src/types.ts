@@ -161,8 +161,27 @@ export interface TreeItemSelection {
   onMultiItemSelect: (itemIds: SelectedIds) => void;
 }
 
+export interface TreeItemStates {
+  /**
+   * Boolean if the tree item is currently selected.
+   */
+  selected: boolean;
+
+  /**
+   * Boolean if the tree item is expanded. When this is true, it should add `aria-expanded="true"` to the
+   * tree item.
+   */
+  expanded: boolean;
+
+  /**
+   * Boolean if the tree item is the current keyboard focus.
+   */
+  focused: boolean;
+}
+
 export interface TreeItemProps
   extends HTMLAttributes<HTMLLIElement>,
+    TreeItemStates,
     TreeItemExpansionIcon,
     ListItemChildrenProps,
     Pick<SimpleListItemProps, "threeLines" | "height"> {
@@ -189,22 +208,6 @@ export interface TreeItemProps
    * `"aria-setsize"`.
    */
   listSize: number;
-
-  /**
-   * Boolean if the tree item is currently selected.
-   */
-  selected: boolean;
-
-  /**
-   * Boolean if the tree item is expanded. When this is true, it should add `aria-expanded="true"` to the
-   * tree item.
-   */
-  expanded: boolean;
-
-  /**
-   * Boolean if the tree item is the current keyboard focus.
-   */
-  focused: boolean;
 
   /**
    * This function will only be provided when the tree item has child tree items. This function should only be called
@@ -394,7 +397,9 @@ export interface TreeProps<T extends BaseTreeItem = UnknownTreeItem>
    * Note: It is generally recommended to use the `itemRenderer` instead for additional functionality as
    * you will have more control. This prop is more for applying custom styles or display data on the item.
    */
-  getItemProps?: (item: T) => ConfigurableTreeItemProps | undefined;
+  getItemProps?: (
+    item: T & TreeItemStates
+  ) => ConfigurableTreeItemProps | undefined;
 }
 
 export type ProvidedTreeProps = Required<

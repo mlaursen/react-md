@@ -45,6 +45,7 @@ export default function defaultTreeItemRenderer(
   treeProps: ProvidedTreeProps
 ): ReactElement {
   const treeItem = item as UnknownTreeItem & { visibleIndex: number };
+  const { focused, selected, expanded } = itemProps;
   const {
     expanderLeft,
     expanderIcon,
@@ -80,7 +81,7 @@ export default function defaultTreeItemRenderer(
       rightAvatar={rightAvatar}
       expanderLeft={expanderLeft}
       expanderIcon={expanderIcon}
-      {...getItemProps(treeItem)}
+      {...getItemProps({ ...treeItem, focused, selected, expanded })}
     >
       {getItemLabel(treeItem, labelKey)}
     </TreeItem>
