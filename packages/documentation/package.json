@@ -90,6 +90,7 @@
     "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-prismjs": "^1.0.2",
+    "cross-env": "^6.0.3",
     "jest": "^24.9.0",
     "next-images": "^1.2.0",
     "node-sass": "^4.12.0",
