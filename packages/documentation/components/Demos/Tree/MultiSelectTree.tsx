@@ -14,7 +14,7 @@ const MultiSelectTree: FC = () => {
 
   return (
     <Tree
-      id="single-select-tree"
+      id="multi-select-tree"
       data={folders}
       aria-label="Tree"
       {...selection}
