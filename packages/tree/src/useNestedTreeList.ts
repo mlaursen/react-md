@@ -37,7 +37,8 @@ export function buildTree<T extends BaseTreeItem>(
     i -= 1;
     if (items[i] && items[i].parentId === parentId) {
       const [item] = items.splice(i, 1);
-      childItems.unshift(item);
+      // shallow cloning so childItems doesn't get applied to the original data set
+      childItems.unshift({ ...item });
     }
   }
 

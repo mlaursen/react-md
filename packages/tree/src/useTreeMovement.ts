@@ -15,7 +15,7 @@ import {
 import { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
 import useFlattenedTreeList, {
   SearchableTreeItem,
-  TreeItemIdRefRecord,
+  MetadataRecord,
 } from "./useFlattenedTreeList";
 import useNestedTreeList, { NestedTreeItem } from "./useNestedTreeList";
 
@@ -63,7 +63,7 @@ interface ReturnValue {
    * to the itemRenderer for that item. This is just for a quick lookup to help with all the
    * tree traversal and keyboard movement.
    */
-  itemIdRefs: TreeItemIdRefRecord;
+  itemIdRefs: MetadataRecord;
 
   /**
    * A blur handler that should be passed to the tree list element that handles removing the
@@ -117,6 +117,7 @@ export default function useTreeMovement({
     id,
     items,
     expandedIds,
+    rootId,
     valueKey,
     getItemValue,
   });

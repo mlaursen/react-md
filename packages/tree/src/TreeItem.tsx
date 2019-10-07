@@ -37,6 +37,8 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     className: propClassName,
     liStyle,
     liClassName,
+    liRef,
+    forwardedRef,
     depth,
     listSize,
     itemIndex,
@@ -51,7 +53,6 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     textChildren,
     primaryText,
     secondaryText,
-    forwardedRef,
     leftIcon: propLeftIcon,
     leftAvatar,
     rightIcon: propRightIcon,
@@ -130,13 +131,14 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
   return (
     <li
       {...(isLink ? noA11y : a11y)}
-      ref={forwardedRef}
+      ref={liRef}
       style={liStyle}
       className={cn(block(), liClassName)}
     >
       <Content
         {...props}
         {...(isLink ? a11y : undefined)}
+        ref={forwardedRef}
         className={cn(
           block("content", {
             link: isLink,

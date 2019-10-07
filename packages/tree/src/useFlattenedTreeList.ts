@@ -80,21 +80,24 @@ interface Options extends TreeConfig {
   id: string;
   items: NestedTreeItem<UnknownTreeItem>[];
   expandedIds: ExpandedIds;
+  rootId: TreeItemId | null;
 }
 
 export type TreeItemRef = MutableRefObject<HTMLLIElement | null>;
-export interface TreeItemIdRef {
+export interface ItemMetadata {
   id: string;
   ref: TreeItemRef;
+  visibleIndex: number;
 }
 
-export type TreeItemIdRefRecord = Record<TreeItemId, TreeItemIdRef>;
+export type MetadataRecord = Record<TreeItemId, ItemMetadata>;
 
-type ReturnValue = [
-  SearchableTreeItem[],
-  TreeItemIdRefRecord,
-  SearchableTreeItem[]
-];
+interface ItemCollection {
+  itemRefs: MetadataRecord;
+  visibleItems: SearchableTreeItem[];
+}
+
+type ReturnValue = [SearchableTreeItem[], MetadataRecord, SearchableTreeItem[]];
 
 /**
  * Creates a flattened and ordered list of all the tree items that are current visible
@@ -111,6 +114,7 @@ type ReturnValue = [
 export default function useFlattenedTreeList({
   id,
   items,
+  rootId,
   expandedIds,
   valueKey,
   getItemValue,
@@ -133,24 +137,29 @@ export default function useFlattenedTreeList({
     [getItemValue, id, items, valueKey]
   );
 
-  const itemRefs = useMemo(
-    () =>
-      flattenedItems.reduce<TreeItemIdRefRecord>(
-        (collection, item) => ({
-          ...collection,
-          [item.itemId]: {
-            id: item.id,
-            ref: { current: null },
-          },
-        }),
-        {}
-      ),
-    [flattenedItems]
-  );
+  const { visibleItems, itemRefs } = useMemo(() => {
+    let index = 0;
+    return flattenedItems.reduce<ItemCollection>(
+      (collection, item) => {
+        const { parentId, itemId } = item;
+        const isVisible =
+          parentId === rootId ||
+          (parentId !== null && expandedIds.includes(parentId));
 
-  const visibleItems = flattenedItems.filter(
-    ({ parentId }) => parentId === null || expandedIds.includes(parentId)
-  );
+        collection.itemRefs[itemId] = {
+          id: item.id,
+          ref: { current: null },
+          visibleIndex: isVisible ? index : -1,
+        };
+        if (isVisible) {
+          index += 1;
+          collection.visibleItems.push(item);
+        }
+        return collection;
+      },
+      { visibleItems: [], itemRefs: {} }
+    );
+  }, [expandedIds, flattenedItems, rootId]);
 
   return [visibleItems, itemRefs, flattenedItems];
 }

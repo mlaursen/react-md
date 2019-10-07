@@ -44,7 +44,7 @@ export default function defaultTreeItemRenderer(
   item: BaseTreeItem,
   treeProps: ProvidedTreeProps
 ): ReactElement {
-  const treeItem = item as UnknownTreeItem;
+  const treeItem = item as UnknownTreeItem & { visibleIndex: number };
   const {
     expanderLeft,
     expanderIcon,

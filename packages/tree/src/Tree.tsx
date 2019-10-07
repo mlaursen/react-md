@@ -86,8 +86,9 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
       const expanded = expandedIds.includes(itemId);
       let id = "";
       let ref: MutableRefObject<HTMLLIElement | null> | undefined;
+      let visibleIndex = -1;
       if (!isCustom) {
-        ({ id, ref } = itemIdRefs[itemId]);
+        ({ id, ref, visibleIndex } = itemIdRefs[itemId]);
       }
 
       const focused = id === activeId;
@@ -96,7 +97,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
         {
           key: itemId,
           id,
-          ref,
+          liRef: ref,
           depth,
           listSize,
           itemIndex: index,
@@ -118,7 +119,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
                 ])
             : undefined,
         },
-        item,
+        { ...item, visibleIndex },
         providedProps as WithDefaultProps
       );
     });

@@ -5,6 +5,7 @@ import {
   MutableRefObject,
   ReactElement,
   ReactNode,
+  Ref,
 } from "react";
 import {
   ListItemChildrenProps,
@@ -89,7 +90,7 @@ export type TreeItemSorter<T extends BaseTreeItem> = (items: T[]) => T[];
  */
 export type TreeItemRenderer<T extends BaseTreeItem> = (
   providedProps: ProvidedTreeItemProps,
-  item: T,
+  item: T & { visibleIndex: number },
   treeProps: ProvidedTreeProps
 ) => ReactElement | null;
 
@@ -226,6 +227,11 @@ export interface TreeItemProps
   liClassName?: string;
 
   /**
+   * An optional ref to apply to the content of the tree item.
+   */
+  liRef?: Ref<HTMLLIElement>;
+
+  /**
    * Boolean if the `TreeItem` is a link component which changes up how the accessibility attributes
    * are applied to the DOM. The default behavior is to check if the `contentComponent` is to consider
    * it a link if it is not a string (custom component) or the string: `"a"`. Since this might cause
@@ -292,7 +298,7 @@ export interface ProvidedTreeItemProps
    * A ref that **must** be passed down to each `TreeItem` so that keyboard accessibility works.
    * This will be omitted when the `isCustom` key is enabled on the item.
    */
-  ref?: MutableRefObject<HTMLLIElement | null>;
+  liRef?: MutableRefObject<HTMLLIElement | null>;
 
   /**
    * A click handler that allows for the item to be selected or expanded. This will be omitted
