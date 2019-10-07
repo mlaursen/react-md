@@ -65,6 +65,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'react/jsx-props-no-multi-spaces': 0,
     'react/jsx-indent': 0,
+    'react/jsx-curly-brace-presence': 0,
 
     // deprecated
     'jsx-a11y/label-has-for': 0,
