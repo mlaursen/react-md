@@ -2,16 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "noEmit": true,
     "skipLibCheck": true,
     "target": "esnext",
-    "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
     "rootDir": ".",
     "baseUrl": ".",
+    "isolatedModules": true,
     "paths": {
       "constants/*": ["constants/*"],
       "components/*": ["components/*"],
@@ -31,5 +28,8 @@
     "types",
     "utils"
   ],
-  "exclude": ["server/**/*.ts"]
+  "exclude": [
+    "server/**/*.ts",
+    "**/__tests__"
+  ]
 }

@@ -2,6 +2,7 @@
   "watch": [
     "server",
     "nodemon.json",
+    "next.config.js",
     "tsconfig.server.json",
     "tsconfig.json"
   ],

@@ -14,7 +14,7 @@
     "build-dist": "lerna run build --ignore @react-md/dev-utils --ignore documentation",
     "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --",
     "typecheck-packages": "tsc --noEmit -p tsconfig.check.json",
-    "typecheck-documentation": "tsc --noEmit -p packages/documentation/tsconfig.json",
+    "typecheck-documentation": "tsc --noEmit --noUnusedLocals --noUnusedParameters -p packages/documentation/tsconfig.json",
     "typecheck": "npm-run-all typecheck-packages typecheck-documentation",
     "lint-ts": "eslint \"packages/*/{components,constants,hooks,icons,pages,src,utils}/**/*.{ts,tsx}\"",
     "lint-styles": "sass-lint -c .sass-lint.yml -v",

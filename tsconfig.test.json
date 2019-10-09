@@ -7,6 +7,10 @@
     "module": "commonjs"
   },
   "include": [
-    "packages/*/src/**/__tests__"
+    "packages/*/src"
+  ],
+  "exclude": [
+    "packages/documentation",
+    "packages/dev-utils"
   ]
 }
