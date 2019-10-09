@@ -209,7 +209,10 @@ export async function extractDemoFiles(
   const name = demoIndexPath.split(path.sep).reverse()[1];
   log.debug(`Finding all the demos for ${name} package...`);
 
-  const contents = await fs.readFile(demoIndexPath, "utf8");
+  let contents = await fs.readFile(demoIndexPath, "utf8");
+  // remove commented out lines
+  contents = contents.replace(/^\s*\/\/.+\r?\n/gm, "");
+
   // want to exclude files that have a comment after them (normally do // SANDBOX_IGNORE),
   // but just makes sure the line ends with ;
   const demos = (contents.match(/from "(.\/[A-z]+)"(?=;\r?\n)/g) || []).map(
