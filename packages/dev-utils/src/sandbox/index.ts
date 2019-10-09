@@ -3,7 +3,7 @@ import path from "path";
 import { CompilerOptions } from "typescript";
 import log from "loglevel";
 
-import { documentationRoot, projectRoot } from "../paths";
+import { documentationRoot, projectRoot, src } from "../paths";
 import { glob, list, time, toTitle, clean } from "../utils";
 import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
@@ -67,10 +67,14 @@ async function createSandboxJsonFiles(
   log.debug(JSON.stringify(compilerOptions, null, 2));
   log.debug();
 
-  const aliases = Object.keys(compilerOptions.paths).map(name =>
-    name.includes("@react-md") ? name : name.replace("/*", "")
-  );
-  aliases.push("_variables.scss");
+  const aliases = Object.keys(compilerOptions.paths).map(name => {
+    if (!name.includes("@react-md")) {
+      name = name.replace("/*", "");
+    }
+
+    return `${src}/${name}`;
+  });
+  aliases.push(`${src}/_variables.scss`);
   const demos = (await Promise.all(
     demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath, aliases))
   )).reduce((list, sublist) => [...list, ...sublist], []);

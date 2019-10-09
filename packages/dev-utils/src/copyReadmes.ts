@@ -2,10 +2,10 @@ import fs from "fs-extra";
 import path from "path";
 import log from "loglevel";
 
-import { documentationRoot, packagesRoot, projectRoot } from "./paths";
+import { documentationRoot, packagesRoot, projectRoot, src } from "./paths";
 import { glob, time, format } from "./utils";
 
-const docPackages = path.join(documentationRoot, "pages", "packages");
+const docPackages = path.join(documentationRoot, src, "pages", "packages");
 
 const INCLUDING_STYLES = "<!-- INCLUDING_STYLES -->";
 const START_TOKEN = "<!-- DOCS_REMOVE -->";

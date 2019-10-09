@@ -5,11 +5,6 @@
     "jsx": "react"
   },
   "include": [
-    "constants",
-    "components",
-    "hooks",
-    "icons",
-    "types",
-    "utils"
+    "src"
   ]
 }
