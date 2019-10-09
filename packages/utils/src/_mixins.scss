@@ -528,6 +528,8 @@
 
   body {
     &.rmd-utils--touch {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
       // this allows for click events to be bubbleable on iOS to the root document. Without this,
       // all the `onOutsideClick` behavior won't work.
       cursor: pointer;
