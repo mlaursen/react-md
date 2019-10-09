@@ -1,5 +1,6 @@
 import React, { FC, Fragment, useCallback, useState } from "react";
 import { ButtonTheme, ButtonThemeType } from "@react-md/button";
+import { Divider } from "@react-md/divider";
 import {
   Checkbox,
   Fieldset,
@@ -14,7 +15,6 @@ import { SrOnly, Text } from "@react-md/typography";
 import CodeBlock from "components/Code/CodeBlock";
 
 import "./FileInputExample.scss";
-import { Divider } from "@react-md/divider";
 
 const themes: ButtonTheme[] = [
   "primary",
