@@ -33,19 +33,18 @@ feel free to propose changes to this document in a pull request.
   - [clean-build](#clean-build)
   - [build-dist](#build-dist)
   - [build](#build)
-  - [typecheck-packages](#typecheck-packages)
-  - [typecheck-documentation](#typecheck-documentation)
   - [typecheck](#typecheck)
-  - [lint-scripts](#lint-scripts)
+  - [lint-ts](#lint-ts)
   - [lint-styles](#lint-styles)
   - [lint](#lint)
+  - [test](#test)
   - [format](#format)
   - [sandbox](#sandbox)
   - [update-vars](#update-vars)
   - [cli](#cli)
-  - [clean-packages](#clean-packages)
-  - [clean-dev-utils](#clean-dev-utils)
   - [clean](#clean)
+  - [clean-dev-utils](#clean-dev-utils)
+  - [clean-all](#clean-all)
   - [watch](#watch)
 - [Watcher Configuration](#watcher-configuration)
 
@@ -361,25 +360,15 @@ around 10-15 minutes to complete, so I wouldn't recommend running this often.
 This is the main build command that will build the modules and commonjs builds
 for all `@react-md` packages.
 
-### typecheck-packages
-
-This will run the `tsc` command to ensure there are no unused variables in all
-the `@react-md` scoped packages.
-
-### typecheck-documentation
-
-This will run the `tsc` command to ensure there are no unused variables in all
-the documentation.
-
 ### typecheck
 
-This script will run both the `typecheck-packages` and `typecheck-documentation`
-commands which just updates the `tsconfig` definitions to make sure there are no
-unused variables in typescript files.
+This will run the `tsc` command to ensure there are no unused variables or type
+errors in all the packages in this repo.
 
-### lint-scripts
+### lint-ts
 
-This will run `tslint` on all the scoped `@react-md` packages.
+This will run `eslint` on all the Typescript and Javascript files in the
+packages in this repo.
 
 ### lint-styles
 
@@ -388,8 +377,16 @@ This will run `sass-lint` against all the `.scss` files in the scoped
 
 ### lint
 
-This will just run both the `lint-styles` and `lint-scripts` commands in
-parallel.
+This will just run both the `lint-styles` and `lint-ts` commands.
+
+### test
+
+This will run all the tests using `jest`. You can also add a `--watch` flag to
+run the tests in watch mode.
+
+```sh
+$ yarn test --watch
+```
 
 ### format
 
@@ -420,7 +417,7 @@ level. This isn't extremely helpful out of the box other than documentation
 purposes since the `dev-utils` script normally assumes it's in one of the
 packages when being run.
 
-### clean-packages
+### clean
 
 This command will run clean in each scoped `@react-md` package.
 
@@ -428,9 +425,9 @@ This command will run clean in each scoped `@react-md` package.
 
 This command will run clean in the `dev-utils` package.
 
-### clean
+### clean-all
 
-This will run both the `clean-packages` and `clean-dev-utils` command.
+This will run both the `clean` and `clean-dev-utils` command.
 
 ### watch
 
@@ -440,11 +437,10 @@ This will run the main `watcher.js` script that will:
   modified
 - copy `.scss` files into the `dist` directory in each package when they have
   been modified
-- build the base styles of the documentation site when any `.scss` file has been
-  modified
 - create empty sandboxes when a `Demo/{{PACKAGE}}/index.tsx` file has been
   modified
-- start up `tsc` watchers for all packages for both modules and commonjs
+- **lazily** start up `tsc` watchers for all packages for both modules and
+  commonjs
 
 See the watcher configuration for some more details.
 

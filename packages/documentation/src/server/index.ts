@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import path from "path";
 import { parse } from "url";
 import next from "next";
@@ -21,7 +22,7 @@ nextApp.prepare().then(() => {
   app.use(express.static(PUBLIC, { maxAge: CACHE_DURATION }));
 
   app.get("*", cookieParser(), (req, res) => {
-    const parsedUrl = parse(req.url!, true);
+    const parsedUrl = parse(req.url, true);
     handle(req, res, parsedUrl);
   });
 

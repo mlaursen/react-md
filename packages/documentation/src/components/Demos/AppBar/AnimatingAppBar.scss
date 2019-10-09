@@ -21,7 +21,8 @@
     // app-bar-height (3.5rem) + 96 for custom offset
     $height: (3.5 * 16) + 96;
 
-    background-image: url(https://picsum.photos/#{$width}/#{$height}?image=811);
+    // sass-lint:disable next-line no-url-protocols
+    background-image: url(#{'https://picsum.photos/#{$width}/#{$height}?image=811'});
     height: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));
     padding-bottom: var(--offset);
 

@@ -1,16 +1,23 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "target": "es5",
-    "module": "commonjs"
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "constants/*": ["packages/documentation/src/constants/*"],
+      "components/*": ["packages/documentation/src/components/*"],
+      "hooks/*": ["packages/documentation/src/hooks/*"],
+      "icons/*": ["packages/documentation/src/icons/*"],
+      "pages/*": ["packages/documentation/src/pages/*"],
+      "types/*": ["packages/documentation/src/types/*"],
+      "utils/*": ["packages/documentation/src/utils/*"]
+    }
   },
   "include": [
     "packages/*/src"
   ],
   "exclude": [
-    "packages/documentation",
     "packages/dev-utils"
   ]
 }

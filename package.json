@@ -13,23 +13,19 @@
     "clean-build": "npm-run-all clean dev-utils build-dist",
     "build-dist": "lerna run build --ignore @react-md/dev-utils --ignore documentation",
     "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --",
-    "typecheck-packages": "tsc --noEmit -p tsconfig.check.json",
-    "typecheck-documentation": "tsc --noEmit --noUnusedLocals --noUnusedParameters -p packages/documentation/tsconfig.json",
-    "typecheck": "npm-run-all typecheck-packages typecheck-documentation",
-    "lint-ts": "eslint \"packages/*/{components,constants,hooks,icons,pages,src,utils}/**/*.{ts,tsx}\"",
+    "typecheck": "tsc -p tsconfig.check.json",
+    "lint-ts": "eslint \"packages/*/src/**/*.{ts,tsx,js,jsx}\"",
     "lint-styles": "sass-lint -c .sass-lint.yml -v",
-    "lint": "npm-run-all -p lint-ts lint-styles",
+    "lint": "npm-run-all lint-ts lint-styles",
     "test": "jest --config jest.config.js",
-    "test-doc": "yarn workspace documentation test",
-    "test-all": "npm-run-all test-doc test",
     "format": "prettier --write packages/*/{src,components,constants,hooks,pages,server,utils}/**/*.{ts,tsx,scss,js,jsx}",
     "sandbox": "yarn workspace documentation sandbox",
-    "prepublishOnly": "npm-run-all clean dev-utils force-install build-dist lint test",
+    "prepublishOnly": "npm-run-all clean-all dev-utils force-install build-dist",
     "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore documentation -- yarn build --styles-only",
     "cli": "dev-utils",
-    "clean-packages": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation",
+    "clean": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation",
     "clean-dev-utils": "lerna run clean --scope @react-md/dev-utils",
-    "clean": "npm-run-all clean-packages clean-dev-utils",
+    "clean-all": "npm-run-all clean clean-dev-utils",
     "watch": "nodemon watcher.js --watch watcher.js"
   },
   "engines": {
@@ -92,7 +88,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm-run-all typecheck lint test-all"
+      "pre-push": "npm-run-all typecheck lint test"
     }
   },
   "lint-staged": {
@@ -100,7 +96,7 @@
       "prettier --write",
       "git add"
     ],
-    "packages/*/{src,components,pages,icons,hooks,utils,server}/**/*.{ts,tsx,scss,js,jsx}": [
+    "packages/*/src/**/*.{ts,tsx,scss,js,jsx}": [
       "prettier --write",
       "git add"
     ]

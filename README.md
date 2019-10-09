@@ -166,8 +166,8 @@ More information can be found on the documentation site's page
 
 ## Contributing
 
-Please read the [contributing guidelines](./github/CONTRIBUTING.md) if you would
-like to contribute.
+Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
+would like to contribute.
 
 [typescript]: https://www.typescriptlang.org/
 [create-react-app]:

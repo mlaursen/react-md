@@ -120,7 +120,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.tsx'],
+      files: ['**/*.tsx', '**/_app.js'],
       rules: {
         // .tsx is .jsx extension
         'react/jsx-filename-extension': 0,

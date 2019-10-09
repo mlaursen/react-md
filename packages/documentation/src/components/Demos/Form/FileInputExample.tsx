@@ -29,7 +29,7 @@ const SimpleFileInputs: FC = () => {
   const [file, setFile] = useState("");
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     event => {
-      const [file] = event.currentTarget.files || [null];
+      const [file] = Array.from(event.currentTarget.files || [null]);
       if (file) {
         setFile(file.name);
       }
