@@ -15,7 +15,7 @@ export function getModuleName(filePath: string, scss: boolean = false): string {
 
   return filePath
     .replace(/.*node_modules\//, "")
-    .replace(/\/(types|dist\/).+$/, "")
+    .replace(/\/(types|dist)\/.+$/, "")
     .replace(/.+documentation\//, "")
     .replace(/prismjs.+/, "prismjs")
     .replace(/.*@types\/([a-z-]+)(\/.+)?$/, "$1");
