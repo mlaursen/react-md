@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { src } from "../paths";
 
-export const DEMOS_FOLDER = path.join(src, "components", "Demos");
-export const SANDBOXES_PATH = path.join(src, "constants", "sandboxes");
+export const DEMOS_FOLDER = path.join("components", "Demos");
+export const SANDBOXES_PATH = path.join("constants", "sandboxes");
 
 /**
  * These packages will always be required for a sandbox since they are the base

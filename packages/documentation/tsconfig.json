@@ -6,8 +6,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "target": "esnext",
-    "rootDir": "src",
-    "baseUrl": "src",
+    "rootDir": ".",
+    "baseUrl": ".",
     "isolatedModules": true,
     "paths": {
       "constants/*": ["constants/*"],
@@ -20,10 +20,16 @@
     }
   },
   "include": [
-    "src"
+    "constants",
+    "components",
+    "hooks",
+    "icons",
+    "pages",
+    "types",
+    "utils"
   ],
   "exclude": [
-    "src/server",
+    "server/**/*.ts",
     "**/__tests__"
   ]
 }

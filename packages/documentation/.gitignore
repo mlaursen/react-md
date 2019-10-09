@@ -1,3 +1,4 @@
 /.next
-src/pages/packages/*/README.md
-src/constants/sandboxes
+/pages/app.css*
+/pages/packages/*/README.md
+/constants/sandboxes

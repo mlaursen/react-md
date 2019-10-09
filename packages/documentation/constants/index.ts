@@ -1,5 +1,5 @@
-import rootPackageJson from "../../../../package.json";
-import packageJson from "../../package.json";
+import rootPackageJson from "../../../package.json";
+import packageJson from "../package.json";
 
 const {
   bugs: { url },
