@@ -1,15 +1,16 @@
-import React, { Fragment, FC, useEffect } from "react";
+import React, { FC, Fragment } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
-import { bem, useToggle } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import useAppSizeContext from "components/Layout/useAppSizeContext";
-
-import "./TableOfContents.scss";
 
 import List from "./List";
 import Toggle from "./Toggle";
 import usePageHeadings from "./usePageHeadings";
+import { useTOCActions, useTOCVisibility } from "./VisibilityContext";
+
+import "./TableOfContents.scss";
 
 export interface TableOfContentsProps {
   pathname: string;
@@ -25,28 +26,17 @@ const CLASSNAMES = {
 
 const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
   const { isPhone, isLargeDesktop } = useAppSizeContext();
-  const [visible, show, hide, toggle] = useToggle(isLargeDesktop);
+  const { visible, rendered } = useTOCVisibility();
+  const { hide, toggle } = useTOCActions();
 
-  useEffect(() => {
-    if (isLargeDesktop) {
-      show();
-    } else {
-      hide();
-    }
-    // disabled since I only want to update it on desktop changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLargeDesktop]);
-
-  const isHome = pathname === "/" || pathname.startsWith("/sandbox");
-  const headings = usePageHeadings(pathname, isHome);
-
-  if (isHome) {
+  const headings = usePageHeadings(pathname, !rendered);
+  if (!rendered) {
     return null;
   }
 
   return (
     <Fragment>
-      {!isPhone && (
+      {(!isPhone || visible) && (
         <Toggle
           onClick={toggle}
           isLargeDesktop={isLargeDesktop}

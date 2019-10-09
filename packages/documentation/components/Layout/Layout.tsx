@@ -8,6 +8,8 @@ import {
   InteractionModeListener,
 } from "@react-md/utils";
 
+import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
+
 import Combined from "./Combined";
 import "./Layout.scss";
 import { DefaultSize } from "./useAppSizeContext";
@@ -31,12 +33,10 @@ const Layout: FC<LayoutProps> = ({
         <StatesConfig>
           <TooltipHoverModeConfig>
             <DefaultSize.Provider value={defaultSize}>
-              <SkipToMainContent />
-              {pathname.startsWith("/code") ? (
-                children
-              ) : (
+              <TOCVisibilityProvider pathname={pathname}>
+                <SkipToMainContent />
                 <Combined title={title}>{children}</Combined>
-              )}
+              </TOCVisibilityProvider>
             </DefaultSize.Provider>
           </TooltipHoverModeConfig>
         </StatesConfig>

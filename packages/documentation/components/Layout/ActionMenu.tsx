@@ -7,6 +7,7 @@ import { unitToNumber } from "@react-md/utils";
 import ToggleThemeMenuItem from "./ToggleThemeMenuItem";
 import ToggleRTLMenuItem from "./ToggleRTLMenuItem";
 import GithubLinkMenuItem from "./GithubLinkMenuItem";
+import TableOfContentsMenuItem from "./TableOfContentsMenuItem";
 
 const margin = unitToNumber(scssVariables["rmd-app-bar-lr-margin"]);
 const options = {
@@ -20,6 +21,7 @@ const ActionMenu: FC = () => {
       <ToggleThemeMenuItem />,
       <ToggleRTLMenuItem />,
       <GithubLinkMenuItem />,
+      <TableOfContentsMenuItem />,
     ],
     []
   );

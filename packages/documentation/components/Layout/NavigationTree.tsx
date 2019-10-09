@@ -95,6 +95,7 @@ const NavigationTree: FC<NavigationTreeProps> = memo(({ pathname }) => {
       labelKey="children"
       valueKey="children"
       {...state}
+      className="layout__nav-tree"
       expanderIcon={<KeyboardArrowDownSVGIcon />}
       itemRenderer={itemRenderer}
     />

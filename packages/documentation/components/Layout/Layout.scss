@@ -82,4 +82,10 @@
   &__nav-header {
     @include rmd-divider-border(bottom);
   }
+
+  &__nav-tree {
+    @include rmd-utils-tablet-only-media {
+      height: calc(100% - #{rmd-app-bar-theme-var(height)});
+    }
+  }
 }
