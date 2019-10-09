@@ -46,7 +46,3 @@ accessibility and keyboard movement. They key features are:
   item with `Control+Shift+Home` (requires `multiSelect` prop enabled)
 - selecting all visible tree items from the current selection to the last tree
   item with `Control+Shift+End` (requires `multiSelect` prop enabled)
-
-> Check out the [customizing tree items](#customizing-tree-items) example for
-> some more details about maintaining accessibility while customizing the
-> `TreeItem`.
