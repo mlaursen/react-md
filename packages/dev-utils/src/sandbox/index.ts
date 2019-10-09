@@ -3,7 +3,7 @@ import path from "path";
 import { CompilerOptions } from "typescript";
 import log from "loglevel";
 
-import { documentationRoot } from "../paths";
+import { documentationRoot, projectRoot } from "../paths";
 import { glob, list, time, toTitle, clean } from "../utils";
 import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
@@ -20,6 +20,20 @@ export interface ResolveConfig {
   empty: boolean;
   clean: boolean;
   cleanOnly: boolean;
+}
+
+function getCompilerOptions(): CompilerOptions {
+  const base = fs.readJsonSync(path.join(projectRoot, "tsconfig.base.json"));
+  const docs = fs.readJsonSync(path.join(documentationRoot, "tsconfig.json"));
+
+  // this isn't entirely correct, but not sure how to really do this.
+  const resolved = {
+    ...base.compilerOptions,
+    ...docs.compilerOptions,
+  } as CompilerOptions;
+  delete resolved.moduleResolution;
+
+  return resolved;
 }
 
 async function createSandboxJsonFiles(
@@ -47,13 +61,7 @@ async function createSandboxJsonFiles(
   log.debug(list(demoIndexes));
   log.debug();
 
-  const tsconfig = await fs.readJson(
-    path.join(documentationRoot, "tsconfig.json")
-  );
-
-  // this isn't entirely correct, but not sure how to really do this.
-  const compilerOptions = tsconfig.compilerOptions as CompilerOptions;
-  delete compilerOptions.moduleResolution;
+  const compilerOptions = getCompilerOptions();
 
   log.debug("Using the following compiler options:");
   log.debug(JSON.stringify(compilerOptions, null, 2));
