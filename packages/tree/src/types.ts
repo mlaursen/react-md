@@ -94,6 +94,17 @@ export type TreeItemRenderer<T extends BaseTreeItem> = (
   treeProps: ProvidedTreeProps
 ) => ReactElement | null;
 
+/**
+ * A function to get additional props to pass to each tree item. It will be provided the current
+ * item and the "states" of the item merged together.
+ *
+ * Note: It is generally recommended to use the `itemRenderer` instead for additional functionality as
+ * you will have more control. This prop is more for applying custom styles or display data on the item.
+ */
+export type GetItemProps<T extends TreeItemIds> = (
+  item: T & TreeItemStates
+) => ConfigurableTreeItemProps | undefined;
+
 export interface TreeItemExpansionIcon {
   /**
    * The icon to show within each item within the tree that helps show that there are child items.
@@ -278,7 +289,7 @@ export type ConfigurableTreeItemProps = Omit<
   | "expanded"
   | "focused"
   | "renderChildItems"
->;
+> & { children?: ReactNode };
 
 type TreeItemKeys =
   | "id"
@@ -391,15 +402,9 @@ export interface TreeProps<T extends BaseTreeItem = UnknownTreeItem>
   getItemValue?: (item: T, valueKey: string) => string;
 
   /**
-   * A function to get additional props to pass to each tree item. It will be provided the current
-   * item.
-   *
-   * Note: It is generally recommended to use the `itemRenderer` instead for additional functionality as
-   * you will have more control. This prop is more for applying custom styles or display data on the item.
+   * @see GetItemProps
    */
-  getItemProps?: (
-    item: T & TreeItemStates
-  ) => ConfigurableTreeItemProps | undefined;
+  getItemProps?: GetItemProps<T>;
 }
 
 export type ProvidedTreeProps = Required<

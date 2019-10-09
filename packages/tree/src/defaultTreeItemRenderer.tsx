@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import TreeItem from "./TreeItem";
 import {
   ProvidedTreeItemProps,
@@ -66,6 +66,18 @@ export default function defaultTreeItemRenderer(
     disabled,
   } = treeItem;
 
+  const overrides = getItemProps({
+    ...treeItem,
+    focused,
+    selected,
+    expanded,
+  });
+
+  let children: ReactNode = (overrides && overrides.children) || undefined;
+  if (typeof children === "undefined") {
+    children = getItemLabel(treeItem, labelKey);
+  }
+
   return (
     <TreeItem
       {...itemProps}
@@ -81,9 +93,9 @@ export default function defaultTreeItemRenderer(
       rightAvatar={rightAvatar}
       expanderLeft={expanderLeft}
       expanderIcon={expanderIcon}
-      {...getItemProps({ ...treeItem, focused, selected, expanded })}
+      {...overrides}
     >
-      {getItemLabel(treeItem, labelKey)}
+      {children}
     </TreeItem>
   );
 }
