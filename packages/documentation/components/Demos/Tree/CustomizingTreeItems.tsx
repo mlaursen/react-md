@@ -1,25 +1,23 @@
 import React, { FC, ReactNode } from "react";
-import { FontIcon } from "@react-md/icon";
 import {
-  FolderSVGIcon,
   ArrowDropDownSVGIcon,
   FolderOpenSVGIcon,
+  FolderSVGIcon,
 } from "@react-md/material-icons";
 import {
-  TreeItemIds,
-  TreeData,
-  useTreeItemSelection,
-  useTreeItemExpansion,
-  Tree,
-  TreeItemStates,
   GetItemProps,
+  Tree,
+  TreeData,
+  TreeItemIds,
+  useTreeItemExpansion,
+  useTreeItemSelection,
 } from "@react-md/tree";
 import { bem } from "@react-md/utils";
 
-import HTML5SVGIcon from "icons/HTML5SVGIcon";
-import TypescriptSVGIcon from "icons/TypescriptSVGIcon";
-import SassSVGIcon from "icons/SassSVGIcon";
 import FileSVGIcon from "icons/FileSVGIcon";
+import HTML5SVGIcon from "icons/HTML5SVGIcon";
+import SassSVGIcon from "icons/SassSVGIcon";
+import TypescriptSVGIcon from "icons/TypescriptSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 
 import "./CustomizingTreeItems.scss";

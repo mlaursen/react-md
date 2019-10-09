@@ -243,7 +243,15 @@ export function extractImports(
   aliases: string[],
   compilerOptions: CompilerOptions
 ): string[] {
-  const imports = parseTypescript(filePath, aliases, compilerOptions);
+  let imports: Set<string>;
+  if (filePath.endsWith("Link/ThirdPartyRoutingLibraries.tsx")) {
+    // temp hack for now since there's an error in the `child_process.d.ts` in here
+    // with a missing `net` type/export.
+    imports = new Set(["@react-md/link", "next", "components/Link.tsx"]);
+  } else {
+    imports = parseTypescript(filePath, aliases, compilerOptions);
+  }
+
   imports.forEach(fileName => {
     if (isStyle(fileName)) {
       const scssImports = getScssImports(fileName).filter(
