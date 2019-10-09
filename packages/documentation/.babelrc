@@ -4,7 +4,7 @@
   ],
   "plugins": [
     ["module-resolver", {
-      "root": ["./"],
+      "root": ["./src"],
       "extensions": [".js", ".jsx", ".ts", ".tsx"]
     }],
     "inline-react-svg",

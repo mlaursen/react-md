@@ -1,3 +1,4 @@
+const path = require('path');
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
@@ -27,6 +28,7 @@ module.exports = withImages(
       withSass({
         sassLoaderOptions: {
           sourceMap: !isProduction,
+          includePaths: [path.resolve(process.cwd(), 'src')],
         },
         postcssLoaderOptions: {
           ident: 'postcss',
