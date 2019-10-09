@@ -9,6 +9,13 @@ export default {
     "-moz-osx-font-smoothing": "grayscale",
     "-webkit-font-smoothing": "antialiased",
   },
+  "rmd-typography-thin": 100,
+  "rmd-typography-light": 300,
+  "rmd-typography-regular": 400,
+  "rmd-typography-medium": 500,
+  "rmd-typography-bold": 700,
+  "rmd-typography-semi-bold": 800,
+  "rmd-typography-black": 900,
   "rmd-typography-font-weights": {
     thin: 100,
     light: 300,

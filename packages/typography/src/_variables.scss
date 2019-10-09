@@ -94,6 +94,34 @@ $rmd-typography-base: (
   -webkit-font-smoothing: antialiased,
 );
 
+/// The thin font weight to use.
+/// @type Number
+$rmd-typography-thin: 100 !default;
+
+/// The light font weight to use.
+/// @type Number
+$rmd-typography-light: 300 !default;
+
+/// The regular font weight to use.
+/// @type Number
+$rmd-typography-regular: 400 !default;
+
+/// The medium font weight to use.
+/// @type Number
+$rmd-typography-medium: 500 !default;
+
+/// The bold font weight to use.
+/// @type Number
+$rmd-typography-bold: 700 !default;
+
+/// The semi-bold font weight to use.
+/// @type Number
+$rmd-typography-semi-bold: 800 !default;
+
+/// The darkest font weight to use.
+/// @type Number
+$rmd-typography-black: 900 !default;
+
 /// A Map of all the font weights.
 ///
 /// @type Map
@@ -105,13 +133,13 @@ $rmd-typography-base: (
 /// @prop {Number} semi-bold [800] - The semi-bold font weight value.
 /// @prop {Number} black [900] - The black font weight value.
 $rmd-typography-font-weights: (
-  thin: 100,
-  light: 300,
-  regular: 400,
-  medium: 500,
-  bold: 700,
-  semi-bold: 800,
-  black: 900,
+  thin: $rmd-typography-thin,
+  light: $rmd-typography-light,
+  regular: $rmd-typography-regular,
+  medium: $rmd-typography-medium,
+  bold: $rmd-typography-bold,
+  semi-bold: $rmd-typography-semi-bold,
+  black: $rmd-typography-black,
 ) !default;
 
 /// A list of the "default" font weights that are normally included within an app.
