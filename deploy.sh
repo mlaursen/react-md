@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 for arg in "$@"; do
   case $arg in

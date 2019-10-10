@@ -17,6 +17,12 @@ type WithDefaultProps = TreeProps & DefaultProps & WithRef;
 
 const block = bem("rmd-tree");
 
+/**
+ * Creates an accessible tree widget that allows you to show hierarchical data
+ * in a list presentation view. This component requires the selection and expansion
+ * state to be provided/controlled but you can use the `useTreeItemSelection` and
+ * `useTreeItemExpansion` hooks for a great starting point for this functionality.
+ */
 const Tree: FC<TreeProps & WithRef> = providedProps => {
   const {
     className,
@@ -195,7 +201,7 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-// This actually works pretty nicef since the only time you really need the
+// This actually works pretty nice since the only time you really need the
 // "strict" typing for the TreeItem is the `itemRenderer`. Since I also expose
 // the `TreeItemRenderer` type, you can strictly type it there if needed and
 // will not cause type errors.
