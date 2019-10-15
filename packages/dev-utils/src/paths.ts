@@ -1,4 +1,9 @@
 import path from "path";
+import { execSync } from "child_process";
+
+export const projectRoot = execSync("git rev-parse --show-toplevel")
+  .toString()
+  .trim();
 
 export const src = "src";
 export const es = "es";
@@ -11,7 +16,6 @@ export const umdDist = path.join(dist, "umd");
 export const nodeModules = "node_modules";
 export const packages = "packages";
 export const documentation = "documentation";
-export const projectRoot = path.join(process.cwd(), "..", "..");
 export const rootNodeModules = path.join(projectRoot, nodeModules);
 export const packagesRoot = path.join(projectRoot, packages);
 export const documentationRoot = path.join(packagesRoot, documentation);

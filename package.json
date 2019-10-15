@@ -23,7 +23,7 @@
     "prepublishOnly": "npm-run-all clean-all dev-utils force-install build-dist",
     "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore documentation -- yarn build --styles-only",
     "cli": "dev-utils",
-    "clean": "lerna exec \"npm run clean\" --ignore @react-md/dev-utils --ignore documentation",
+    "clean": "dev-utils clean",
     "clean-dev-utils": "lerna run clean --scope @react-md/dev-utils",
     "clean-all": "npm-run-all clean clean-dev-utils",
     "watch": "nodemon watcher.js --watch watcher.js"
