@@ -1,0 +1,73 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>. Example - Fixing Overflow Issues</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/menu/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": ". Example - Fixing Overflow Issues",
+      "description": "Example from https://react-md.dev/packages/./demos#fixing-overflow-issues",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/dialog": "next",
+        "@react-md/elevation": "next",
+        "@react-md/icon": "next",
+        "@react-md/list": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/menu": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Dialog,\n  DialogHeader,\n  DialogTitle,\n  DialogContent,\n} from \"@react-md/dialog\";\nimport { DropdownMenu } from \"@react-md/menu\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport \"./FixingOverflowIssues.scss\";\nimport InaccessibleMenu from \"./InaccessibleMenu\";\n\nconst ITEMS = Array.from(new Array(20), (_, i) => `Item ${i + 1}`);\n\nconst Demo: FC = () => {\n  const [visible, show, hide] = useToggle(false);\n  return (\n    <Fragment>\n      <Button\n        id=\"overflow-dialog-button\"\n        onClick={show}\n        themeType=\"contained\"\n        theme=\"primary\"\n      >\n        Show Dialog\n      </Button>\n      <Dialog\n        id=\"overflow-dialog\"\n        visible={visible}\n        onRequestClose={hide}\n        aria-labelledby=\"overflow-dialog-title\"\n      >\n        <DialogHeader>\n          <DialogTitle>Overflow Dialog</DialogTitle>\n        </DialogHeader>\n        <DialogContent className=\"overflow-dialog-content\">\n          <InaccessibleMenu items={ITEMS} />\n          <DropdownMenu\n            id=\"overflow-menu\"\n            items={ITEMS}\n            theme=\"secondary\"\n            themeType=\"outline\"\n          >\n            Dropdown\n          </DropdownMenu>\n        </DialogContent>\n      </Dialog>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/FixingOverflowIssues.scss": {
+    "content": ".overflow-dialog-content {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 20rem;\n\n  .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/InaccessibleMenu.scss": {
+    "content": "@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n\n.inaccessible-menu {\n  display: inline-block;\n  position: relative;\n\n  &__menu {\n    @include rmd-theme(background-color, surface);\n    @include rmd-elevation(8);\n\n    position: absolute;\n    right: 0;\n    top: 0;\n    z-index: 1;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/InaccessibleMenu.tsx": {
+    "content": "/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */\nimport React, { FC, useEffect, useRef } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { IconRotator, TextIconSpacing } from \"@react-md/icon\";\nimport { List } from \"@react-md/list\";\nimport { ArrowDropDownSVGIcon } from \"@react-md/material-icons\";\nimport { MenuItem } from \"@react-md/menu\";\nimport { bem, useToggle } from \"@react-md/utils\";\n\nimport \"./InaccessibleMenu.scss\";\n\nconst block = bem(\"inaccessible-menu\");\n\n// sorry -- too lazy to fully implement a11y and functionality just for a \"broken\" demo\nconst InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {\n  const [visible, , disable, toggle] = useToggle(false);\n  const menu = useRef<HTMLDivElement | null>(null);\n  useEffect(() => {\n    if (!visible) {\n      return;\n    }\n\n    const closeOnOutsideClick = (event: MouseEvent): void => {\n      const target = event.target as HTMLElement;\n      if (!target || !menu.current || !menu.current.contains(target)) {\n        disable();\n      }\n    };\n    window.addEventListener(\"click\", closeOnOutsideClick);\n\n    return () => {\n      window.removeEventListener(\"click\", closeOnOutsideClick);\n    };\n  }, [visible, disable]);\n\n  return (\n    <div className={block()}>\n      <Button\n        id=\"inaccessible-menu-button\"\n        themeType=\"outline\"\n        onClick={toggle}\n        theme=\"error\"\n      >\n        <TextIconSpacing\n          icon={\n            <IconRotator rotated={visible}>\n              <ArrowDropDownSVGIcon />\n            </IconRotator>\n          }\n          iconAfter\n        >\n          Relative\n        </TextIconSpacing>\n      </Button>\n      {visible && (\n        <div\n          role=\"menu\"\n          id=\"inacceesible-menu\"\n          className={block(\"menu\")}\n          aria-label=\"Menu\"\n          onClick={disable}\n        >\n          <List>\n            {items.map(item => (\n              <MenuItem key={item}>{item}</MenuItem>\n            ))}\n          </List>\n        </div>\n      )}\n    </div>\n  );\n};\n\nexport default InaccessibleMenu;\n",
+    "isBinary": false
+  }
+}

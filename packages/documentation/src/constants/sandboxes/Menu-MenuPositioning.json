@@ -1,0 +1,74 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Menu Example - Menu Positioning</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/menu/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Menu Example - Menu Positioning",
+      "description": "Example from https://react-md.dev/packages/menu/demos#menu-positioning",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/icon": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/menu": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { ArrowDropDownSVGIcon } from \"@react-md/material-icons\";\nimport { DropdownMenu } from \"@react-md/menu\";\nimport { Text } from \"@react-md/typography\";\nimport { bem, HorizontalPosition, VerticalPosition } from \"@react-md/utils\";\n\nimport Code from \"components/Code/Code\";\n\nimport \"./MenuPositioning.scss\";\n\nconst items = [\"Item 1\", \"Item 2\", \"Item 3\"];\n\nconst verticalPositions: VerticalPosition[] = [\n  \"above\",\n  \"below\",\n  \"center\",\n  \"top\",\n  \"bottom\",\n];\nconst horizontalPositions: HorizontalPosition[] = [\n  \"inner-left\",\n  \"inner-right\",\n  \"center\",\n  \"left\",\n  \"right\",\n];\n\nconst block = bem(\"example-menu-button\");\n\nconst Demo: FC = () => (\n  <Fragment>\n    {horizontalPositions.map((x, i) => (\n      <Fragment key={x}>\n        <Text type=\"headline-6\" margin={i === 0 ? \"none\" : \"top\"}>\n          Horizontal Position: <Code>{x}</Code>\n        </Text>\n        <div className=\"menu-positioning-container\">\n          <div className=\"menu-positioning-group\">\n            {verticalPositions.map(y => (\n              <DropdownMenu\n                id={`position-${x}-${y}`}\n                key={y}\n                anchor={{ x, y }}\n                items={items}\n                menuLabel=\"Menu\"\n                themeType=\"outline\"\n                dropdownIcon={\n                  <ArrowDropDownSVGIcon className={block(\"icon\")} />\n                }\n                className={block()}\n              >\n                <span className={block(\"text\")}>{y}</span>\n              </DropdownMenu>\n            ))}\n          </div>\n        </div>\n      </Fragment>\n    ))}\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Code/Code.tsx": {
+    "content": "import React, { FC, forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nexport interface CodeProps extends HTMLAttributes<HTMLElement> {\n  className?: string;\n  children: ReactNode;\n  inline?: boolean;\n}\n\nconst Code: FC<CodeProps & WithForwardedRef<HTMLElement>> = ({\n  children,\n  inline,\n  className,\n  forwardedRef,\n  ...props\n}) => (\n  <code\n    {...props}\n    ref={forwardedRef}\n    className={cn(\"code\", { \"code--inline\": inline }, className)}\n  >\n    {children}\n  </code>\n);\n\nCode.defaultProps = {\n  inline: true,\n};\n\nexport default forwardRef<HTMLElement, CodeProps>((props, ref) => (\n  <Code {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  },
+  "src/Code/code.scss": {
+    "content": "@import '../variables';\n@import '~@react-md/theme/dist/variables';\n@import '~@react-md/typography/dist/mixins';\n\n$code-light-theme-bg: $rmd-grey-200;\n$code-dark-theme-bg: #171717;\n$solarized-base-03: #002b36;\n$solarized-base-02: #073642;\n$solarized-base-01: #586e75;\n$solarized-base-00: #657b83;\n$solarized-base-0: #839496;\n$solarized-base-1: #93a1a1;\n$solarized-base-2: #eee8d5;\n$solarized-base-3: #fdf6e3;\n\n$solarized-yellow: #b58900;\n$solarized-orange: #cb4b16;\n$solarized-red: #d30102;\n$solarized-magenta: #d33682;\n$solarized-violet: #6c71c4;\n$solarized-blue: #268bd2;\n$solarized-cyan: #2aa198;\n$solarized-green: #859900;\n\n:root {\n  #{--code-bg}: #{$code-light-theme-bg};\n}\n\n.code {\n  @include rmd-typography(body-1);\n\n  font-family: 'Source Code Pro', Consolas, Monaco, monospace;\n\n  &::selection,\n  *::selection {\n    background-color: $solarized-base-02;\n  }\n\n  &--block {\n    background-color: $solarized-base-03;\n    color: $solarized-base-1;\n\n    // always enforce ltr for blocked code\n    direction: ltr;\n    margin: 0.5em 0;\n    overflow: auto;\n    padding: 1em;\n  }\n\n  &--inline {\n    background-color: var(--code-bg);\n    border-radius: 0.25rem;\n    font-size: 0.9em;\n    padding: 0.1em 0.4em;\n    white-space: pre-wrap;\n  }\n\n  &--counted {\n    padding-left: 3em;\n    position: relative;\n  }\n\n  &__lines {\n    border-right: 1px solid $solarized-base-01;\n    display: flex;\n    flex-direction: column;\n    left: 0;\n    padding-right: 0.25em;\n    pointer-events: none;\n    position: absolute;\n    text-align: right;\n    width: 2.5em;\n  }\n}\n\n// prismjs custom theme\n// this is _basically_ my current vim theme, but not aas good since\n// Prism doesn't have as many tokenizers\n.token {\n  position: relative;\n  z-index: 1;\n\n  &.comment,\n  &.doctype {\n    color: $solarized-base-01;\n  }\n\n  &.keyword {\n    color: $solarized-green;\n  }\n\n  &.punctuation {\n    color: $solarized-base-01;\n  }\n\n  &.inserted,\n  &.string,\n  .language-tsx &.attr-value {\n    color: $solarized-cyan;\n  }\n\n  &.tag,\n  &.selector,\n  &.class-name,\n  // fixes mixins/functions\n  .language-scss &.function,\n  // fixes variables\n  .language-scss &.variable {\n    color: $solarized-blue;\n  }\n\n  &.attr-name,\n  &.property,\n  &.builtin {\n    color: $solarized-yellow;\n  }\n\n  &.script,\n  &.interpolation,\n  // to fix interfaces\n  .language-ts &.keyword + .class-name,\n  .language-tsx &.keyword + .class-name {\n    color: $solarized-base-1;\n  }\n\n  // fixes property colors\n  .language-scss &.keyword,\n  // for npm install\n  .language-shell &.function {\n    color: $solarized-orange;\n  }\n\n  &.deleted,\n  &.boolean,\n  &.number,\n  &.interpolation-punctuation {\n    color: $solarized-red;\n  }\n\n  &.important,\n  &.bold {\n    font-weight: map-get($rmd-typography-font-weights, bold);\n  }\n\n  &.italic {\n    font-style: italic;\n  }\n\n  &.entity {\n    cursor: help;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Code/index.ts": {
+    "content": "import \"./code.scss\";\nexport { default } from \"./Code\";\n",
+    "isBinary": false
+  },
+  "src/MenuPositioning.scss": {
+    "content": "@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.menu-positioning-container {\n  display: flex;\n  justify-content: center;\n}\n\n.menu-positioning-group {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n}\n\n.example-menu-button {\n  // make equal width buttons that are centered\n  flex: 1 0 auto;\n  margin: 1rem auto;\n  width: 100%;\n\n  &__text {\n    // since the icon is aligned to the end with margin, the default icon spacing can't\n    // be applied as it relies on margin as well. If you apply padding to an icon, the sizing\n    // gets messed up so it's easier to apply it to the text element here. now we have the same\n    // text spacing as before for the largest button.\n    @include rmd-icon-text-spacing($property: padding-right);\n  }\n\n  &__icon {\n    // align the icon to the end since equal width buttons look bad with centered text/icons\n    @include rmd-utils-rtl-auto(margin-left, auto);\n  }\n}\n",
+    "isBinary": false
+  }
+}

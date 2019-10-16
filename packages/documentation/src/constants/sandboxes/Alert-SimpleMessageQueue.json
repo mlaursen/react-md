@@ -1,0 +1,62 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Alert Example - Simple Message Queue</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/alert/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Alert Example - Simple Message Queue",
+      "description": "Example from https://react-md.dev/packages/alert/demos#simple-message-queue",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/alert": "next",
+        "@react-md/button": "next",
+        "@react-md/form": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment, ReactElement } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { useAddMessage, MessageQueue, ToastMessage } from \"@react-md/alert\";\nimport { useChoice, Form } from \"@react-md/form\";\n\nimport Radio from \"components/Radio\";\n\nconst SINGLE_LINE = \"SINGLE_LINE\";\nconst SINGLE_LINE_ACTION = \"SINGLE_LINE_ACTION\";\nconst TWO_LINES = \"TWO_LINES\";\nconst TWO_LINES_ACTION = \"TWO_LINES_ACTION\";\nconst TWO_LINES_STACKED = \"TWO_LINES_STACKED\";\n\ntype MessageKeys =\n  | typeof SINGLE_LINE\n  | typeof SINGLE_LINE_ACTION\n  | typeof TWO_LINES\n  | typeof TWO_LINES_ACTION\n  | typeof TWO_LINES_STACKED;\ntype MessageRecord = Record<MessageKeys, ToastMessage>;\n\nconst messages: MessageRecord = {\n  [SINGLE_LINE]: {\n    children: \"This is an example message\",\n  },\n  [SINGLE_LINE_ACTION]: {\n    action: \"Action\",\n    children: \"This is an example message\",\n  },\n  [TWO_LINES]: {\n    twoLines: true,\n    children: (\n      <Fragment>\n        <p>This is an example message</p>\n        <p>With a second line of text.</p>\n      </Fragment>\n    ),\n  },\n  [TWO_LINES_ACTION]: {\n    action: \"Action\",\n    twoLines: true,\n    children: (\n      <Fragment>\n        <p>This is an example message</p>\n        <p>With a second line of text.</p>\n      </Fragment>\n    ),\n  },\n  [TWO_LINES_STACKED]: {\n    action: \"Action\",\n    stacked: true,\n    twoLines: true,\n    children: (\n      <Fragment>\n        <p>This is an example message</p>\n        <p>With a second line of text.</p>\n      </Fragment>\n    ),\n  },\n};\n\nconst Demo: FC = () => {\n  const addMessage = useAddMessage();\n  const [key, handleKeyChange] = useChoice<MessageKeys>(SINGLE_LINE);\n\n  return (\n    <Form onSubmit={() => addMessage(messages[key])}>\n      <Radio\n        id=\"mqr-1\"\n        name=\"message\"\n        value={SINGLE_LINE}\n        checked={key === SINGLE_LINE}\n        onChange={handleKeyChange}\n        label=\"Single Line Message\"\n      />\n      <Radio\n        id=\"mqr-2\"\n        name=\"message\"\n        value={SINGLE_LINE_ACTION}\n        checked={key === SINGLE_LINE_ACTION}\n        onChange={handleKeyChange}\n        label=\"Single Line Message with Action\"\n      />\n      <Radio\n        id=\"mqr-3\"\n        name=\"message\"\n        value={TWO_LINES}\n        checked={key === TWO_LINES}\n        onChange={handleKeyChange}\n        label=\"Two Line Message\"\n      />\n      <Radio\n        id=\"mqr-4\"\n        name=\"message\"\n        value={TWO_LINES_ACTION}\n        checked={key === TWO_LINES_ACTION}\n        onChange={handleKeyChange}\n        label=\"Two Line Message with Action\"\n      />\n      <Radio\n        id=\"mqr-5\"\n        name=\"message\"\n        value={TWO_LINES_STACKED}\n        checked={key === TWO_LINES_STACKED}\n        onChange={handleKeyChange}\n        label=\"Two Line Message with Stacked Action\"\n      />\n      <Button id=\"mqr-submit\" type=\"submit\" theme=\"primary\">\n        Add Message\n      </Button>\n    </Form>\n  );\n};\n\nexport default (): ReactElement => (\n  <MessageQueue id=\"simple-message-queue\">\n    <SimpleMessageQueue />\n  </MessageQueue>\n);\n",
+    "isBinary": false
+  },
+  "src/Radio.tsx": {
+    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Radio as RadioMD, RadioProps } from \"@react-md/form\";\nimport { RadioButtonCheckedSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Radio: FC<RadioProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <RadioMD {...props} ref={forwardedRef} />;\n\nRadio.defaultProps = {\n  icon: <RadioButtonCheckedSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, RadioProps>((props, ref) => (\n  <Radio {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  }
+}

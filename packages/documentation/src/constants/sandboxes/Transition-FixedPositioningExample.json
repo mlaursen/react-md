@@ -1,0 +1,69 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Transition Example - Fixed Positioning Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/overlay/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Transition Example - Fixed Positioning Example",
+      "description": "Example from https://react-md.dev/packages/transition/demos#fixed-positioning-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/elevation": "next",
+        "@react-md/form": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/overlay": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-transition-group": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment, useRef, useState, useCallback } from \"react\";\nimport CSSTransition from \"react-transition-group/CSSTransition\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Form,\n  Select,\n  useCheckboxState,\n  ListboxOption,\n  Fieldset,\n} from \"@react-md/form\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useFixedPositioning } from \"@react-md/transition\";\nimport { Text } from \"@react-md/typography\";\nimport {\n  HorizontalPosition,\n  useToggle,\n  VerticalPosition,\n  PositionAnchor,\n  PositionWidth,\n} from \"@react-md/utils\";\n\nimport Checkbox from \"components/Checkbox\";\n\nimport \"./FixedPositioningExample.scss\";\nimport { ArrowDropDownSVGIcon } from \"@react-md/material-icons\";\n\nconst horizontals: HorizontalPosition[] = [\n  \"left\",\n  \"right\",\n  \"center\",\n  \"inner-left\",\n  \"inner-right\",\n];\nconst verticals: VerticalPosition[] = [\n  \"above\",\n  \"below\",\n  \"center\",\n  \"top\",\n  \"bottom\",\n];\n\nconst widths: PositionWidth[] = [\"auto\", \"equal\", \"min\"];\n\nconst anchors = horizontals.reduce<Record<string, PositionAnchor>>(\n  (value, x) => {\n    verticals.forEach(y => {\n      value[`${x} ${y}`] = { x, y };\n    });\n\n    return value;\n  },\n  {}\n);\n\nconst anchorOptions = Object.entries(anchors).map(([value, anchor]) => ({\n  ...anchor,\n  label: value,\n  value,\n}));\n\ntype Anchor = typeof anchorOptions[0];\nconst CENTERED_ANCHOR = anchorOptions.find(\n  anchor => anchor.label === \"center center\"\n) as Anchor;\n\nconst Demo: FC = () => {\n  const [visible, show, hide] = useToggle(false);\n  const buttonRef = useRef<HTMLButtonElement | null>(null);\n  const [disableSwapping, handleSwapCange] = useCheckboxState(false);\n  const [transformOrigin, handleOriginChange] = useCheckboxState(false);\n  const [hideOnScroll, handleScrollChange] = useCheckboxState(true);\n  const [hideOnResize, handleScrollResize] = useCheckboxState(true);\n  const [anchor, setAnchor] = useState(anchorOptions[0]);\n  const handleAnchorChange = useCallback(\n    (_value: string, anchor: ListboxOption) => {\n      setAnchor(anchor as Anchor);\n    },\n    []\n  );\n  const [width, setWidth] = useState<PositionWidth>(\"auto\");\n  const handleWidthChange = useCallback((nextWidth: string) => {\n    setAnchor(CENTERED_ANCHOR);\n    setWidth(nextWidth as PositionWidth);\n  }, []);\n\n  const {\n    style,\n    onEnter,\n    onEntering,\n    onEntered,\n    onExited,\n  } = useFixedPositioning({\n    fixedTo: buttonRef.current,\n    anchor: { x: anchor.x, y: anchor.y },\n    width,\n    transformOrigin,\n    disableSwapping,\n    onScroll(_event, { fixedTo: button }) {\n      if (hideOnScroll) {\n        hide();\n        return;\n      }\n\n      if (!button) {\n        return;\n      }\n      // hide when the button isn't in the viewport anymore if the\n      // hideOnScroll behavior is disabled\n      const { top } = button.getBoundingClientRect();\n      if (top < 0 || top > window.innerHeight) {\n        hide();\n      }\n    },\n    onResize(_event) {\n      if (hideOnResize) {\n        hide();\n      }\n    },\n  });\n\n  return (\n    <Fragment>\n      <Form className=\"fixed-position-form\">\n        <Fieldset legend=\"Fixed Positioning Options\" disableLegendSROnly>\n          <Checkbox\n            id=\"fixed-swap\"\n            name=\"options\"\n            label=\"Disable Swapping\"\n            checked={disableSwapping}\n            onChange={handleSwapCange}\n          />\n          <Checkbox\n            id=\"fixed-origin\"\n            name=\"options\"\n            label=\"Transform Origin\"\n            checked={transformOrigin}\n            onChange={handleOriginChange}\n          />\n          <Checkbox\n            id=\"fixed-hide-on-scroll\"\n            name=\"options\"\n            label=\"Hide on scroll\"\n            checked={hideOnScroll}\n            onChange={handleScrollChange}\n          />\n          <Checkbox\n            id=\"fixed-hide-on-resize\"\n            name=\"options\"\n            label=\"Hide on resize\"\n            checked={hideOnResize}\n            onChange={handleScrollResize}\n          />\n        </Fieldset>\n        <Select\n          id=\"fixed-anchor-type\"\n          label=\"Anchor\"\n          className=\"fixed-position-select\"\n          listboxClassName=\"fixed-position-listbox\"\n          inline\n          options={anchorOptions}\n          value={anchor.value}\n          onChange={handleAnchorChange}\n          rightChildren={<ArrowDropDownSVGIcon />}\n          listboxWidth=\"min\"\n          isOptionDisabled={option => {\n            const opt = option as Anchor;\n            return width !== \"auto\" && !opt.value.startsWith(\"center\");\n          }}\n        />\n        <Select\n          id=\"fixed-anchor-width\"\n          label=\"Fixed element width\"\n          className=\"fixed-position-select\"\n          inline\n          options={widths}\n          value={width}\n          onChange={handleWidthChange}\n          rightChildren={<ArrowDropDownSVGIcon />}\n        />\n        <div className=\"fixed-position-footer\">\n          <Button\n            id=\"fixed-positioning-button\"\n            ref={buttonRef}\n            onClick={show}\n            theme=\"primary\"\n            themeType=\"contained\"\n            type=\"submit\"\n          >\n            Toggle\n          </Button>\n        </div>\n      </Form>\n      <Overlay\n        id=\"fixed-positioning-overlay\"\n        onRequestClose={hide}\n        hidden\n        visible={visible}\n      />\n      <CSSTransition\n        in={visible}\n        mountOnEnter\n        unmountOnExit\n        classNames={{\n          appear: \"fixed-position--enter\",\n          appearActive: \"fixed-position--enter-active\",\n          enter: \"fixed-position--enter\",\n          enterActive: \"fixed-position--enter-active\",\n          exit: \"fixed-position--exit\",\n          exitActive: \"fixed-position--exit-active\",\n        }}\n        timeout={{ enter: 200, exit: 150 }}\n        onEnter={onEnter}\n        onEntering={onEntering}\n        onEntered={onEntered}\n        onExited={onExited}\n      >\n        <div\n          id=\"fixed-position-div\"\n          style={style}\n          className=\"fixed-position-div\"\n        >\n          <Text>This is some amazing text in a fixed element!</Text>\n        </div>\n      </CSSTransition>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Checkbox.tsx": {
+    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Checkbox as CheckboxMD, CheckboxProps } from \"@react-md/form\";\nimport { CheckBoxSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <CheckboxMD {...props} ref={forwardedRef} />;\n\nCheckbox.defaultProps = {\n  icon: <CheckBoxSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (\n  <Checkbox {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  },
+  "src/FixedPositioningExample.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/overlay/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n\n.fixed-position-form {\n  display: flex;\n  flex-wrap: wrap;\n\n  fieldset {\n    margin: 1rem;\n  }\n}\n\n.fixed-position-select {\n  margin: 1rem;\n  width: 10rem;\n}\n\n.fixed-position-listbox {\n  max-height: 25rem;\n}\n\n.fixed-position-div {\n  @include rmd-elevation(2);\n  @include rmd-theme(background-color, surface);\n\n  padding: 1rem;\n  z-index: $rmd-overlay-z-index + 1;\n}\n\n.fixed-position-footer {\n  display: flex;\n  justify-content: center;\n  margin: 1rem;\n  width: 100%;\n}\n\n.fixed-position {\n  &--enter {\n    transform: scale(0);\n  }\n\n  &--enter-active {\n    @include rmd-transition(deceleration);\n\n    transform: scale(1);\n    transition: transform 0.2s;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: scale(1);\n    transition: transform 0.15s, opacity 0.15s;\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: scale(0);\n  }\n}\n",
+    "isBinary": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Progress Example - Simple Determinate Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Progress Example - Simple Determinate Examples",
+      "description": "Example from https://react-md.dev/packages/progress/demos#simple-determinate-examples",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/icon": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/progress": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { Fragment, FC } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { TextIconSpacing } from \"@react-md/icon\";\nimport { CloudDownloadSVGIcon } from \"@react-md/material-icons\";\nimport {\n  CircularProgress,\n  getProgressA11y,\n  LinearProgress,\n} from \"@react-md/progress\";\n\nimport \"./SimpleDeterminateExample.scss\";\nimport useDownloadInterval from \"./useDownloadInterval\";\n\nconst Container: FC = ({ children }) => (\n  <div className=\"determinate-example-container\">{children}</div>\n);\n\nconst Demo: FC = () => {\n  const {\n    value: value1,\n    running: running1,\n    start: start1,\n  } = useDownloadInterval();\n  const {\n    value: value2,\n    running: running2,\n    start: start2,\n  } = useDownloadInterval();\n\n  return (\n    <Fragment>\n      <Container>\n        <Button\n          id=\"determinate-linear-example-toggle\"\n          onClick={start1}\n          theme=\"primary\"\n          themeType=\"outline\"\n          disabled={running1}\n          {...getProgressA11y(\"determinate-circular-progress\", running1)}\n        >\n          <TextIconSpacing icon={<CloudDownloadSVGIcon />}>\n            Download\n          </TextIconSpacing>\n        </Button>\n        <LinearProgress\n          id=\"determinate-linear-progress\"\n          className=\"determinate-example-linear\"\n          value={value1}\n        />\n      </Container>\n      <Container>\n        <Button\n          id=\"determinate-example-toggle\"\n          onClick={start2}\n          theme=\"primary\"\n          themeType=\"outline\"\n          disabled={running2}\n          {...getProgressA11y(\"determinate-circular-progress\", running2)}\n        >\n          <TextIconSpacing icon={<CloudDownloadSVGIcon />}>\n            Download\n          </TextIconSpacing>\n        </Button>\n        <CircularProgress\n          id=\"determinate-circular-progress\"\n          value={value2}\n          centered={false}\n          className=\"determinate-example-circular\"\n        />\n      </Container>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/SimpleDeterminateExample.scss": {
+    "content": "@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n\n.determinate-example-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  margin: 1rem 0;\n}\n\n.determinate-example-linear {\n  margin: 1rem 0;\n}\n\n.determinate-example-circular {\n  margin-left: 1.5rem;\n}\n",
+    "isBinary": false
+  },
+  "src/useDownloadInterval.ts": {
+    "content": "import { useState } from \"react\";\nimport { useInterval } from \"@react-md/utils\";\n\ninterface ReturnValue {\n  value: number;\n  start: () => void;\n  running: boolean;\n}\n\n/*\n * A reusable hook to handle the progress examples for both the linear and circular\n * progress bars with an incremental interval.\n */\nexport default function useDownloadInterval(delay: number = 100): ReturnValue {\n  const [value, setValue] = useState(0);\n  const [running, start] = useInterval(stop => {\n    const nextValue = Math.min(100, value + 1);\n    if (value === nextValue) {\n      stop();\n    } else {\n      setValue(nextValue);\n    }\n  }, delay);\n\n  return {\n    value,\n    start,\n    running,\n  };\n}\n",
+    "isBinary": false
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>AppBar Example - Animating App Bar</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/avatar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "AppBar Example - Animating App Bar",
+      "description": "Example from https://react-md.dev/packages/app-bar/demos#animating-app-bar",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/avatar": "next",
+        "@react-md/button": "next",
+        "@react-md/elevation": "next",
+        "@react-md/list": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useRef, useState } from \"react\";\nimport {\n  AppBar,\n  AppBarAction,\n  AppBarNav,\n  AppBarTitle,\n} from \"@react-md/app-bar\";\nimport { Avatar } from \"@react-md/avatar\";\nimport avatarVariables from \"@react-md/avatar/dist/scssVariables\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { MenuSVGIcon, MoreVertSVGIcon } from \"@react-md/material-icons\";\nimport { UpdateVariables, useScrollListener } from \"@react-md/utils\";\n\nimport people from \"constants/people\";\n\nimport \"./AnimatingAppBar.scss\";\n\nconst COLORS = Object.keys(avatarVariables[\"rmd-avatar-colors\"]);\n\nconst transformedPeople = people.map((name, i) => ({\n  id: name.toLowerCase().replace(/ /g, \"-\"),\n  name,\n  avatar: name.substring(0, 1),\n  color: COLORS[i % COLORS.length],\n}));\n\nconst HEIGHT = 96;\n\n// this is used along with the current `scrollTop` value to make\n// the animation happen a bit slower. The number has no real significance\n// and just looked \"decent\"\nconst SCROLL_MULTIPLIER = 0.314;\n\nconst Demo: FC = () => {\n  const [height, setHeight] = useState(`${HEIGHT}px`);\n\n  const ref = useRef<HTMLDivElement | null>(null);\n  useScrollListener({\n    element: ref.current,\n    onScroll: () => {\n      if (!ref.current) {\n        return;\n      }\n\n      const { scrollTop } = ref.current;\n      const remaining = Math.min(\n        Math.max(HEIGHT - scrollTop * SCROLL_MULTIPLIER, 0),\n        HEIGHT\n      );\n      const nextHeight = `${remaining}px`;\n      if (height !== nextHeight) {\n        setHeight(nextHeight);\n      }\n    },\n  });\n\n  return (\n    <UpdateVariables variables={[{ name: \"offset\", value: height }]}>\n      {({ style }) => (\n        <div style={style} className=\"animating-app-bar\">\n          <AppBar\n            id=\"animating-app-bar\"\n            className=\"animating-app-bar__bar\"\n            fixed\n            theme=\"clear\"\n          >\n            <AppBarNav id=\"animating-app-bar-nav\" aria-label=\"Navigation\">\n              <MenuSVGIcon />\n            </AppBarNav>\n            <AppBarTitle className=\"animating-app-bar__title\">\n              Animating App Bar\n            </AppBarTitle>\n            <AppBarAction\n              id=\"animating-app-bar-kebab\"\n              aria-label=\"Actions\"\n              first\n            >\n              <MoreVertSVGIcon />\n            </AppBarAction>\n          </AppBar>\n          <div className=\"animating-app-bar__content\" ref={ref}>\n            <List>\n              {transformedPeople.map(({ id, name, avatar, color }, i) => (\n                <ListItem\n                  id={`person-${i}`}\n                  key={id}\n                  leftAvatar={<Avatar color={color}>{avatar}</Avatar>}\n                >\n                  {name}\n                </ListItem>\n              ))}\n            </List>\n          </div>\n        </div>\n      )}\n    </UpdateVariables>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/AnimatingAppBar.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/app-bar/dist/functions';\n@import '~@react-md/app-bar/dist/mixins';\n\n.animating-app-bar {\n  @include rmd-elevation(6);\n  @include rmd-utils-block-centered;\n\n  max-width: 20rem;\n  position: relative;\n\n  &__bar {\n    @include rmd-button-theme-update-var(color, $rmd-white-base);\n    @include rmd-theme(color, $rmd-white-base);\n\n    // 20rem\n    $width: 20 * 16;\n    // app-bar-height (3.5rem) + 96 for custom offset\n    $height: (3.5 * 16) + 96;\n\n    // sass-lint:disable next-line no-url-protocols\n    background-image: url(#{'https://picsum.photos/#{$width}/#{$height}?image=811'});\n    height: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));\n    padding-bottom: var(--offset);\n\n    // this is for the demo only since I don't want to move to\n    // a different page for this demo to have a fixed app bar.\n    // you wouldn't normally need to do this\n    position: absolute;\n  }\n\n  &__title {\n    transform: translateY(var(--offset));\n  }\n\n  &__content {\n    @include rmd-utils-scroll;\n\n    height: 35rem;\n    padding-top: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));\n  }\n\n  // when it's in the mobile full page view, reset some of the styles again\n  .rmd-dialog--full-page & {\n    height: 100%;\n    margin: 0;\n    max-width: none;\n    position: static;\n\n    &__bar {\n      position: fixed;\n    }\n\n    &__content {\n      height: 100%;\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/people.ts": {
+    "content": "export default [\n  \"Jasmine Robinson\",\n  \"Devonte Craig\",\n  \"Dean Reid\",\n  \"Shaquille Bauer\",\n  \"Vivian Bishop\",\n  \"Braden Mullins\",\n  \"Katlyn Mcdonald\",\n  \"Isabella Marshall\",\n  \"Lee Christensen\",\n  \"Tommy Hogan\",\n  \"Timothy Harvey\",\n  \"Preston Phillips\",\n  \"Marco Sherman\",\n  \"Haley Coleman\",\n  \"Mario Swanson\",\n  \"Xavier Solis\",\n  \"Keaton Cannon\",\n  \"Cassandra Austin\",\n  \"Irene Holland\",\n  \"Gustavo Love\",\n  \"Meghan Stewart\",\n  \"Renee Townsend\",\n  \"Bobby Newman\",\n  \"Keaton Ortiz\",\n  \"Dustin Wells\",\n  \"Jerry Mcgee\",\n  \"Carl Howard\",\n  \"Sabrina Lang\",\n  \"Reed Baker\",\n  \"Kristen Fields\",\n  \"Gavin Carrillo\",\n  \"Claudia Neal\",\n  \"Leonard Schneider\",\n  \"Dominick Boyd\",\n  \"Mary Hampton\",\n  \"Mark Ayala\",\n  \"Kristina Warner\",\n  \"Antonio Walton\",\n  \"Tyson Scott\",\n  \"Harley Moss\",\n] as const;\n",
+    "isBinary": false
+  }
+}

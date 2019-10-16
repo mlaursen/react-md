@@ -1,0 +1,61 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Link Example - With Button Styles</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/link/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Link Example - With Button Styles",
+      "description": "Example from https://react-md.dev/packages/link/demos#with-button-styles",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/link": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { ButtonThemeProps, buttonThemeClassNames } from \"@react-md/button\";\nimport { Link, LinkProps } from \"@react-md/link\";\n\nimport \"./WithButtonStyles.scss\";\n\nconst LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({\n  className,\n  theme,\n  themeType,\n  buttonType,\n  disabled,\n  children,\n  ...props\n}) => (\n  <Link\n    {...props}\n    className={buttonThemeClassNames({\n      disabled,\n      theme,\n      themeType,\n      buttonType,\n      className: cn(\"link-styled-button\", className),\n    })}\n  >\n    {children}\n  </Link>\n);\n\nLinkStyledButton.defaultProps = {\n  theme: \"primary\",\n  themeType: \"contained\",\n  buttonType: \"text\",\n};\n\nconst Demo: FC = () => (\n  <div className=\"link-button-styles\">\n    <LinkStyledButton href=\"https://react-md.dev\">\n      https://react-md.dev\n    </LinkStyledButton>\n  </div>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/WithButtonStyles.scss": {
+    "content": "@import '~@react-md/button/dist/mixins';\n\n.link-styled-button {\n  @include rmd-button-theme(color);\n\n  &:visited,\n  &:hover {\n    @include rmd-button-theme(color);\n  }\n}\n",
+    "isBinary": false
+  }
+}

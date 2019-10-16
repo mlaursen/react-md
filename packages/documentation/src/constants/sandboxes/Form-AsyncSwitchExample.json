@@ -1,0 +1,55 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Form Example - Async Switch Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Form Example - Async Switch Example",
+      "description": "Example from https://react-md.dev/packages/form/demos#async-switch-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/form": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState, Fragment } from \"react\";\nimport { AsyncSwitch, useCheckboxState, Checkbox } from \"@react-md/form\";\nimport { useTimeout } from \"@react-md/utils\";\n\nconst Demo: FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [checked, setChecked] = useState(false);\n  const [fail, handleFailChange] = useCheckboxState(false);\n  const [start] = useTimeout(() => {\n    setLoading(false);\n    if (fail) {\n      setChecked(prevChecked => !prevChecked);\n    }\n  }, 5000);\n\n  return (\n    <Fragment>\n      <Checkbox\n        id=\"async-switch-fail\"\n        label={'Fail the \"API\" call'}\n        checked={fail}\n        onChange={handleFailChange}\n      />\n      <AsyncSwitch\n        id=\"async-switch\"\n        name=\"switch\"\n        label=\"Async Switch\"\n        loading={loading}\n        onChange={event => {\n          start();\n          setLoading(true);\n          setChecked(event.currentTarget.checked);\n        }}\n        checked={checked}\n      />\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

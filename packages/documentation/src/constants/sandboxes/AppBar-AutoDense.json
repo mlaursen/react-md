@@ -1,0 +1,69 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>AppBar Example - Auto Dense</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "AppBar Example - Auto Dense",
+      "description": "Example from https://react-md.dev/packages/app-bar/demos#auto-dense",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { AppBar, AppBarNav, AppBarTitle } from \"@react-md/app-bar\";\nimport { MenuSVGIcon } from \"@react-md/material-icons\";\n\nimport \"./AutoDense.scss\";\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container className=\"auto-dense\">\n    <AppBar id=\"auto-dense-app-bar\">\n      <AppBarNav id=\"auto-dense-app-bar-nav\" aria-label=\"Navigation\">\n        <MenuSVGIcon />\n      </AppBarNav>\n      <AppBarTitle>Auto Dense</AppBarTitle>\n    </AppBar>\n    <AppBar\n      id=\"auto-prominent-dense-app-bar\"\n      className=\"auto-dense__prominent\"\n      prominent\n    >\n      <AppBar>\n        <AppBarNav\n          id=\"auto-prominent-dense-app-bar-nav\"\n          aria-label=\"Navigation\"\n        >\n          <MenuSVGIcon />\n        </AppBarNav>\n        <AppBarTitle>Auto Dense and prominent</AppBarTitle>\n      </AppBar>\n    </AppBar>\n  </Container>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/AutoDense.scss": {
+    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.auto-dense {\n  @include rmd-utils-desktop-media {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    &__prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n    }\n  }\n\n  &__prominent {\n    @include rmd-app-bar-theme-update-var(\n      prominent-height,\n      rmd-app-bar-theme-var(prominent-dense-height)\n    );\n\n    // just because I don't want to create 2 rows of data for this example\n    align-items: flex-start;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n\n.app-bar-container {\n  @include rmd-utils-block-centered;\n  @include rmd-utils-phone-media {\n    margin: 2rem 0.5rem;\n    max-width: none;\n  }\n\n  display: grid;\n  grid-row-gap: 2rem;\n  max-width: 40rem;\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div {...props} className={cn(\"app-bar-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  }
+}

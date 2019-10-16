@@ -18,7 +18,6 @@ install:
 
 script:
   - yarn build --silent
-  - yarn workspace documentation sandbox --empty --silent
   - yarn typecheck
   - yarn lint
   - yarn test -i
