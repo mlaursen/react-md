@@ -8,27 +8,12 @@ for arg in "$@"; do
       build_next=1
       shift
       ;;
-    -sn|-ns)
-      build_next=1
-      build_sandbox=1
-      shift
-      ;;
-    -bns|-bsn|-nsb|-nbs|-snb|-sbn)
-      build_dist=1
-      build_next=1
-      build_sandbox=1
-      shift
-      ;;
     -b)
       build_dist=1
       shift
       ;;
     -n)
       build_next=1
-      shift
-      ;;
-    -s)
-      build_sandbox=1
       shift
       ;;
     *)
@@ -52,10 +37,6 @@ fi
 
 if [[ $build_dist -eq 1 ]]; then
   yarn build
-fi
-
-if [[ $build_sandbox -eq 1 ]]; then
-  yarn sandbox --clean
 fi
 
 if [[ $build_next -eq 1 ]]; then

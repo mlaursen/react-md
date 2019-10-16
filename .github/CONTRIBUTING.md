@@ -41,7 +41,6 @@ feel free to propose changes to this document in a pull request.
   - [format](#format)
   - [sandbox](#sandbox)
   - [update-vars](#update-vars)
-  - [cli](#cli)
   - [clean](#clean)
   - [clean-dev-utils](#clean-dev-utils)
   - [clean-all](#clean-all)
@@ -409,13 +408,6 @@ For a list of available commands.
 
 This is a simple wrapper that will run the `build` command on all packages but
 only updating the generated `scssVariables.ts` file.
-
-### cli
-
-This is really just a wrapper for the `dev-utils` that can be run at the root
-level. This isn't extremely helpful out of the box other than documentation
-purposes since the `dev-utils` script normally assumes it's in one of the
-packages when being run.
 
 ### clean
 
