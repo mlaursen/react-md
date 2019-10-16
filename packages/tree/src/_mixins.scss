@@ -115,18 +115,9 @@
     @include rmd-states-surface-selected;
 
     &--focused {
-      @if $rmd-tree-item-focused-styles {
-        @each $property, $value in $rmd-tree-item-focused-styles {
-          #{$property}: #{$value};
-        }
-      }
-
-      @if $rmd-tree-item-keyboard-focused-styles {
-        @include rmd-utils-keyboard-only {
-          @each $property, $value in $rmd-tree-item-keyboard-focused-styles {
-            #{$property}: #{$value};
-          }
-        }
+      @include rmd-utils-map-to-styles($rmd-tree-item-focused-styles);
+      @include rmd-utils-keyboard-only {
+        @include rmd-utils-map-to-styles($rmd-tree-item-keyboard-focused-styles);
       }
     }
   }

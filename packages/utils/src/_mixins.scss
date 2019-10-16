@@ -5,6 +5,19 @@
 @import './functions';
 @import './variables';
 
+/// This is a simple mixin that will create styles from a Map of properties with
+/// values.
+///
+/// @param Map style-map - The map of styles that should be applied. If this is
+/// `null`, no styles will be generated.
+@mixin rmd-utils-map-to-styles($style-map) {
+  @if $style-map {
+    @each $property, $value in $style-map {
+      #{$property}: #{$value};
+    }
+  }
+}
+
 /// A simple mixin that allows you to update styles when the [dir="rtl"] is present
 /// for languages that read right to light. This is mostly used to update spacing with
 /// margins or padding and a more "verbose" method of declaring rtl styles.
@@ -66,6 +79,7 @@
 /// @param {Map} swapped-styles [()] - Any optional swapped style overrides that should
 ///   be applied.
 @mixin rmd-utils-rtl-auto-group($styles, $swapped-styles: ()) {
+  @include rmd-utils-map-to-styles($styles);
   @include rmd-utils-rtl {
     @each $property, $value in $styles {
       $inversed-property: rmd-utils-swap-position($property);
@@ -81,10 +95,6 @@
 
       @content;
     }
-  }
-
-  @each $property, $value in $styles {
-    #{$property}: #{$value};
   }
 }
 

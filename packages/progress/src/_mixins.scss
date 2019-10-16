@@ -36,9 +36,7 @@
   @if $styles != null {
     @each $percentage, $style in $styles {
       #{$percentage} {
-        @each $property, $value in $style {
-          #{$property}: #{$value};
-        }
+        @include rmd-utils-map-to-styles($style);
       }
     }
   }

@@ -113,9 +113,7 @@
   }
 
   &--selected {
-    @each $property, $value in $rmd-option-selected-styles {
-      #{$property}: #{$value};
-    }
+    @include rmd-utils-map-to-styles($rmd-option-selected-styles);
 
     @if $rmd-option-selected-content {
       &::after {
@@ -129,9 +127,7 @@
 
   @include rmd-utils-keyboard-only {
     &--focused {
-      @each $property, $value in $rmd-option-focused-styles {
-        #{$property}: #{$value};
-      }
+      @include rmd-utils-map-to-styles($rmd-option-focused-styles);
     }
   }
 }

@@ -18,9 +18,7 @@
     &--focused {
       // for this demo, we just want the keyboard focused styles to also appear
       // for non-keyboard interacting users (usually waits for a keypress)
-      @each $property, $value in $rmd-tree-item-keyboard-focused-styles {
-        #{$property}: #{$value};
-      }
+      @include rmd-utils-map-to-styles($rmd-tree-item-keyboard-focused-styles);
     }
 
     &--selected {
