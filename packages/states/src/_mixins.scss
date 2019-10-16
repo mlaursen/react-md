@@ -137,6 +137,19 @@
 @mixin rmd-states-surface-selected($selector: '&--selected') {
   #{$selector} {
     @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(selected-color));
+
+    // since the base states disables the additional hover and focus states in touch mode,
+    // they have to be re-enabled for the selected state or else the background color won't
+    // appear until the user blurs the selected item.
+    @include rmd-utils-touch-only {
+      &:hover,
+      &:focus {
+        @include rmd-states-theme-update-var(
+          background-color,
+          rmd-states-theme-var(selected-color)
+        );
+      }
+    }
   }
 }
 
