@@ -99,6 +99,10 @@
     "packages/*/src/**/*.{ts,tsx,scss,js,jsx}": [
       "prettier --write",
       "git add"
+    ],
+    "packages/documentation/src/components/Demos/**/*.{ts,tsx}": [
+      "yarn workspace documentation sandbox --staged",
+      "git add packages/documentation/src/constants/sandboxes"
     ]
   },
   "workspaces": [

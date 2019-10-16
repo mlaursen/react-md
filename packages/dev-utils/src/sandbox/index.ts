@@ -20,6 +20,7 @@ export interface ResolveConfig {
   empty: boolean;
   clean: boolean;
   cleanOnly: boolean;
+  staged: boolean;
 }
 
 function getCompilerOptions(): CompilerOptions {
@@ -148,14 +149,31 @@ async function createSandboxJsonFiles(
  *
  * This will take a long time...
  */
-export default async function sandbox(config: ResolveConfig): Promise<void> {
-  const {
-    components,
-    lookupsOnly,
-    empty,
-    clean: cleanSandboxes,
-    cleanOnly,
-  } = config;
+export default async function sandbox({
+  components,
+  lookupsOnly,
+  empty,
+  clean: cleanSandboxes,
+  cleanOnly,
+  staged,
+}: ResolveConfig): Promise<void> {
+  if (staged) {
+    const demos = Array.from(
+      new Set(
+        components.map(filePath => {
+          let demo = filePath.replace(/.+\/Demos\//, "");
+          demo = demo.substring(0, demo.indexOf(path.sep));
+
+          return demo;
+        })
+      )
+    );
+
+    await createSandboxJsonFiles(demos, false);
+    await createSandboxesLookup();
+    return;
+  }
+
   if (cleanSandboxes || cleanOnly) {
     await time(async () => {
       const sandboxes = await findGeneratedSandboxes();

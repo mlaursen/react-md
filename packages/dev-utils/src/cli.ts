@@ -92,12 +92,22 @@ createCommand("sandbox [components...]")
     "--empty",
     "Creates an empty version of all the sandboxes that do not exist yet."
   )
+  .option(
+    "--staged",
+    "This will update the command to work with `lint-staged` to dynamically update only the required sandboxes"
+  )
   .action(
     (
       components: string[],
-      { lookupsOnly = false, empty = false, clean = false, cleanOnly = false }
+      {
+        lookupsOnly = false,
+        empty = false,
+        clean = false,
+        cleanOnly = false,
+        staged = false,
+      }
     ) => {
-      sandbox({ lookupsOnly, components, empty, clean, cleanOnly });
+      sandbox({ lookupsOnly, components, empty, clean, cleanOnly, staged });
     }
   );
 
