@@ -2,7 +2,7 @@ import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
-type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
+export type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
 
