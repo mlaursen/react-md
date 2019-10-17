@@ -3,10 +3,10 @@ import { FontIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { WithForwardedRef } from "@react-md/utils";
 
-import defaultItemRenderer, {
-  Item,
+import defaultMenuItemRenderer, {
   MenuItemRenderer,
-} from "./defaultItemRenderer";
+  ValidMenuItem,
+} from "./defaultMenuItemRenderer";
 import defaultMenuRenderer, {
   MenuPositionProps,
   MenuRenderer,
@@ -48,7 +48,7 @@ export interface BaseDropdownMenuProps
    * A list of menu items to render. Each item will be passed to the `menuItemRenderer`
    * function.
    */
-  items: Item[];
+  items: ValidMenuItem[];
 
   /**
    * A function to call for each `item` in the `items` list to render a ReactElement.
@@ -167,7 +167,7 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
 const defaultProps: DefaultProps = {
   defaultVisible: false,
   menuRenderer: defaultMenuRenderer,
-  itemRenderer: defaultItemRenderer,
+  itemRenderer: defaultMenuItemRenderer,
   dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
 };

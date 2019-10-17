@@ -4,13 +4,13 @@ import MenuItem, { MenuItemProps } from "./MenuItem";
 import MenuItemLink, { MenuItemLinkProps } from "./MenuItemLink";
 import MenuItemSeparator, { MenuItemSeparatorProps } from "./MenuItemSeparator";
 
-export type Item =
+export type ValidMenuItem =
   | ReactNode
   | MenuItemProps
   | (MenuItemSeparatorProps & { role: "separator" });
 
-export default function defaultItemRenderer(
-  item: Item,
+export default function defaultMenuItemRenderer(
+  item: ValidMenuItem,
   key: string
 ): ReactNode {
   if (item !== 0 && !item) {
@@ -43,4 +43,4 @@ export default function defaultItemRenderer(
   return <MenuItem key={key} {...itemProps} />;
 }
 
-export type MenuItemRenderer = typeof defaultItemRenderer;
+export type MenuItemRenderer = typeof defaultMenuItemRenderer;

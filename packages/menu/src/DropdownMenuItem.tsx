@@ -2,7 +2,7 @@ import React, { FC, Fragment, ReactNode } from "react";
 import { FontIcon, IconRotator } from "@react-md/icon";
 import { PositionAnchor, WithForwardedRef } from "@react-md/utils";
 
-import defaultItemRenderer from "./defaultItemRenderer";
+import defaultMenuItemRenderer from "./defaultMenuItemRenderer";
 import defaultMenuRenderer from "./defaultMenuRenderer";
 import { BaseDropdownMenuProps } from "./DropdownMenu";
 import MenuItem, { MenuItemProps } from "./MenuItem";
@@ -159,7 +159,7 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
 const defaultProps: DefaultProps = {
   portal: true,
   menuRenderer: defaultMenuRenderer,
-  itemRenderer: defaultItemRenderer,
+  itemRenderer: defaultMenuItemRenderer,
   dropdownIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
   disableDropdownIcon: false,
   disableEscapeCascade: false,

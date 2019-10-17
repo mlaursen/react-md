@@ -19,5 +19,14 @@ export * from "./DropdownMenu";
 export { default as DropdownMenuItem } from "./DropdownMenuItem";
 export * from "./DropdownMenuItem";
 
-export { InjectedMenuProps, MenuRenderer } from "./defaultMenuRenderer";
-export { Item, MenuItemRenderer } from "./defaultItemRenderer";
+export {
+  default as defaultMenuRenderer,
+  AllInjectedMenuProps,
+  InjectedMenuProps,
+  MenuRenderer,
+} from "./defaultMenuRenderer";
+export {
+  default as defaultMenuItemRenderer,
+  ValidMenuItem,
+  MenuItemRenderer,
+} from "./defaultMenuItemRenderer";
