@@ -1,4 +1,5 @@
 import React, {
+  Children,
   FC,
   forwardRef,
   HTMLAttributes,
@@ -14,6 +15,7 @@ import bem from "../css/bem";
 import useResizeObserver from "../sizing/useResizeObserver";
 import { WithForwardedRef } from "../types";
 import getScrollbarWidth from "./scrollbarWidth";
+import GridListCell from "./GridListCell";
 
 /**
  * This is the css variable that is used store the current size of each cell.
@@ -108,12 +110,27 @@ export interface GridListProps extends HTMLAttributes<HTMLDivElement> {
    * renderable elements that are sized with the `--rmd-cell-width` css variable.
    */
   children: ReactNode | RenderGridListChildren;
+
+  /**
+   * Boolean if the current cell sizing should automatically be cloned into each child. This will
+   * only work if the `children` is renderable element or a list of renderable elements
+   * that accept the `style` and `className` props.
+   */
+  clone?: boolean;
+
+  /**
+   * Boolean if each child within the `GridList` should be wrapped with the `GridListCell` component.
+   * This will only work if the `children` is not a `function`.
+   */
+  wrapOnly?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<
   Pick<
     GridListProps,
+    | "clone"
+    | "wrapOnly"
     | "maxCellSize"
     | "containerPadding"
     | "disableHeightObserver"
@@ -140,6 +157,8 @@ const GridList: FC<GridListProps & WithRef> = providedProps => {
     style,
     className,
     children,
+    clone,
+    wrapOnly,
     cellMargin,
     maxCellSize,
     forwardedRef,
@@ -195,6 +214,17 @@ const GridList: FC<GridListProps & WithRef> = providedProps => {
     [CELL_MARGIN_VAR]: cellMargin || undefined,
   };
 
+  let content: ReactNode = null;
+  if (typeof children === "function") {
+    content = children(gridSize);
+  } else if (clone || wrapOnly) {
+    content = Children.map(children, child => (
+      <GridListCell clone={clone}>{child}</GridListCell>
+    ));
+  } else {
+    content = children;
+  }
+
   return (
     <div
       {...props}
@@ -202,12 +232,14 @@ const GridList: FC<GridListProps & WithRef> = providedProps => {
       style={mergedStyle}
       className={cn(block(), className)}
     >
-      {typeof children === "function" ? children(gridSize) : children}
+      {content}
     </div>
   );
 };
 
 const defaultProps: DefaultProps = {
+  clone: false,
+  wrapOnly: false,
   maxCellSize: 150,
   containerPadding: 16,
   disableHeightObserver: false,
@@ -226,6 +258,8 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     GridList.propTypes = {
+      clone: PropTypes.bool,
+      wrapOnly: PropTypes.bool,
       className: PropTypes.string,
       children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
       forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

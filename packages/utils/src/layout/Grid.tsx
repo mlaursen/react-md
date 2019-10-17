@@ -1,8 +1,9 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { FC, forwardRef, HTMLAttributes, Children } from "react";
 import cn from "classnames";
 
 import { useAppSizeContext } from "../sizing/AppSize";
 import { WithForwardedRef } from "../types";
+import GridCell from "./GridCell";
 
 /**
  * This CSS Variable allows you to override the number of columns that should be displayed in the
@@ -21,6 +22,20 @@ export const GRID_COLUMNS_VAR = "--rmd-grid-cols";
 export const GRID_GUTTER_VAR = "--rmd-grid-gutter";
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Boolean if the `children` should be updated to be wrapped in the `GridCell` component and
+   * clone the `className` into each child automatically. This is really just a convenience prop
+   * so you don't always need to import both the `Grid` and `GridCell` components to create a grid.
+   */
+  clone?: boolean;
+
+  /**
+   * Boolean if the `children` should be updated to be wrapped in the `GridCell` component.
+   * This is really just a convenience prop so you don't always need to import both the `Grid`
+   * and `GridCell` components to create a grid/
+   */
+  wrapOnly?: boolean;
+
   /**
    * This prop allows you to generate your grid with a dynamic amount of columns instead of a static
    * size. This will update the grid to ignore all the `columns` props and update the grid to show
@@ -82,6 +97,7 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
+type DefaultProps = Required<Pick<GridProps, "clone" | "wrapOnly">>;
 type CSSProperties = React.CSSProperties & {
   [GRID_GUTTER_VAR]?: string;
   [GRID_COLUMNS_VAR]?: number;
@@ -99,6 +115,8 @@ const Grid: FC<GridProps & WithRef> = ({
   className,
   forwardedRef,
   children,
+  clone,
+  wrapOnly,
   columns,
   phoneColumns,
   tabletColumns,
@@ -126,6 +144,13 @@ const Grid: FC<GridProps & WithRef> = ({
     [GRID_GUTTER_VAR]: gutter,
   };
 
+  let content = children;
+  if (clone || wrapOnly) {
+    content = Children.map(children, child => (
+      <GridCell clone={wrapOnly}>{child}</GridCell>
+    ));
+  }
+
   return (
     <div
       {...props}
@@ -133,10 +158,17 @@ const Grid: FC<GridProps & WithRef> = ({
       ref={forwardedRef}
       className={cn("rmd-grid", className)}
     >
-      {children}
+      {content}
     </div>
   );
 };
+
+const defaultProps: DefaultProps = {
+  clone: false,
+  wrapOnly: false,
+};
+
+Grid.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
   Grid.displayName = "Grid";
@@ -150,6 +182,8 @@ if (process.env.NODE_ENV !== "production") {
     Grid.propTypes = {
       style: PropTypes.object,
       className: PropTypes.string,
+      clone: PropTypes.bool,
+      wrapOnly: PropTypes.bool,
       columns: PropTypes.number,
       phoneColumns: PropTypes.number,
       tabletColumns: PropTypes.number,
