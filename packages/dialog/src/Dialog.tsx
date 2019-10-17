@@ -40,8 +40,11 @@ export interface DialogProps
    * The role for the dialog component. This should normally stay as the default of `"dialog"` **unless**
    * you want the screen reader to interupt the normal workflow for this message. It is good to set this
    * value to `"alertdialog"` error message confirmations or general confirmation prompts.
+   *
+   * Note: The `dialog` technically supports being rendered as a `menu`, but this is really only
+   * for mobile sheet support and will not provide the menu keyboard functionality automatically.
    */
-  role?: "dialog" | "alertdialog";
+  role?: "dialog" | "alertdialog" | "menu";
 
   /**
    * A label to apply to the dialog. Either this or the `aria-labelledby` prop are required
@@ -280,7 +283,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
   let dialog = (
     <FocusContainer
       {...props}
-      aria-modal
+      aria-modal={!!overlayEl || undefined}
       disableTabFocusWrap={disableFocusContainer}
       disableFocusOnMount={disableFocusContainer || disableFocusOnMount}
       disableFocusOnUnmount={disableFocusContainer || disableFocusOnUnmount}
@@ -393,7 +396,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Dialog.propTypes = {
       id: PropTypes.string.isRequired,
-      role: PropTypes.oneOf(["dialog", "alertdialog"]),
+      role: PropTypes.oneOf(["dialog", "alertdialog", "menu"]),
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
       className: PropTypes.string,
