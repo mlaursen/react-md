@@ -67,7 +67,6 @@ exports[`Dialog should render correctly (with snapshots) 4`] = `
   <div />
   <div
     aria-label="Dialog"
-    aria-modal="true"
     class="rmd-dialog rmd-dialog--full-page rmd-dialog--enter rmd-dialog--enter-active"
     id="dialog-1"
     role="dialog"
@@ -83,7 +82,6 @@ exports[`Dialog should render correctly (with snapshots) 5`] = `
   <div />
   <div
     aria-label="Dialog"
-    aria-modal="true"
     class="rmd-dialog rmd-dialog--full-page rmd-dialog--exit rmd-dialog--exit-active"
     id="dialog-1"
     role="dialog"

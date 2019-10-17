@@ -359,7 +359,7 @@ const defaultProps: DefaultProps = {
   overlayHidden: false,
   mountOnEnter: true,
   unmountOnExit: true,
-  appear: true,
+  appear: false,
   enter: true,
   exit: true,
   disableTransition: false,
