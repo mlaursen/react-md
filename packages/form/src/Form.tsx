@@ -1,5 +1,5 @@
 import React, { FC, FormHTMLAttributes, forwardRef, useCallback } from "react";
-import { WithForwardedRef, useRefCache } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
@@ -26,10 +26,8 @@ const Form: FC<FormProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  const config = useRefCache({ onSubmit, disablePreventDefault });
   const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
     event => {
-      const { onSubmit, disablePreventDefault } = config.current;
       if (!disablePreventDefault) {
         event.preventDefault();
       }
@@ -38,9 +36,7 @@ const Form: FC<FormProps & WithRef> = providedProps => {
         onSubmit(event);
       }
     },
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [disablePreventDefault, onSubmit]
   );
 
   return (
