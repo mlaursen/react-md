@@ -3,10 +3,8 @@
 ////
 
 @import '~@react-md/elevation/dist/mixins';
-@import '~@react-md/theme/dist/helpers';
-@import '~@react-md/theme/dist/mixins';
 @import '~@react-md/transition/dist/mixins';
-@import '~@react-md/utils/dist/functions';
+@import '~@react-md/theme/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 @import './variables';
 @import './functions';
@@ -72,21 +70,17 @@
   .rmd-sheet {
     @include rmd-elevation($rmd-sheet-elevation);
     @include rmd-utils-scroll;
-    @include rmd-utils-hide-focus-outline;
-    @include rmd-theme-update-var(background, rmd-sheet-theme-var(background-color));
-    @include rmd-sheet-theme(background-color);
     @include rmd-sheet-positions;
-
     @include rmd-sheet-theme(max-height);
-    @include rmd-sheet-theme(max-width);
     @include rmd-sheet-theme(height);
     @include rmd-sheet-theme(width);
 
-    &--fixed {
-      @include rmd-elevation($rmd-sheet-fixed-elevation);
+    position: fixed;
+    z-index: $rmd-sheet-z-index;
 
-      position: fixed;
-      z-index: $rmd-sheet-z-index;
+    &--raised {
+      @include rmd-elevation($rmd-sheet-raised-elevation);
+      z-index: $rmd-sheet-raised-z-index;
     }
 
     &--horizontal {
@@ -94,30 +88,19 @@
       top: 0;
     }
 
-    &--small-width {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(small-width));
+    &--touch-width {
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
     }
 
-    &--until-small-width {
-      @include rmd-sheet-theme-update-var(max-width, rmd-sheet-theme-var(small-max-width));
-      @include rmd-sheet-theme-update-var(width, 100%);
-    }
-
-    &--large-width {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(large-width));
-    }
-
-    &--until-large-width {
-      @include rmd-sheet-theme-update-var(max-width, rmd-sheet-theme-var(large-max-width));
-      @include rmd-sheet-theme-update-var(width, 100%);
+    &--static-width {
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
     }
 
     &--media-width {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(small-width));
-
-      @media (min-width: 48rem) {
-        @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(large-width));
+      @include rmd-utils-tablet-media {
+        @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
       }
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
     }
 
     &--vertical {
@@ -161,5 +144,9 @@
 
       transition: transform $rmd-sheet-enter-duration;
     }
+  }
+
+  .rmd-sheet-overlay {
+    z-index: $rmd-sheet-overlay-z-index;
   }
 }

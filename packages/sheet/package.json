@@ -37,6 +37,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@react-md/dialog": "^2.0.0-alpha.9",
     "@react-md/elevation": "^2.0.0-alpha.9",
     "@react-md/overlay": "^2.0.0-alpha.9",
     "@react-md/theme": "^2.0.0-alpha.9",

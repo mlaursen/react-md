@@ -4,13 +4,15 @@
 @import '~@react-md/app-bar/dist/mixins';
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
 
 $phone-height: 35.5rem;
 $phone-width: 20rem;
 
 $fixed-classes: (
   rmd-app-bar--fixed: 1,
-  rmd-sheet--fixed: 2,
+  rmd-sheet-overlay: 1,
+  rmd-sheet--raised: 2,
 );
 
 .phone {
@@ -27,8 +29,10 @@ $fixed-classes: (
       prominent-dense-height,
       calc(#{rmd-app-bar-theme-var(prominent-height)} + #{rmd-icon-theme-var(size)})
     );
+    @include rmd-sheet-theme-update-var(touch-width, calc(100% - #{$rmd-sheet-touch-margin}));
 
     height: $phone-height;
+    overflow: hidden;
     position: relative;
     width: $phone-width;
 

@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "incremental": false,
-    "baseUrl": "src",
+    "baseUrl": "src/server",
     "rootDir": "src",
     "skipLibCheck": true,
     "module": "commonjs",

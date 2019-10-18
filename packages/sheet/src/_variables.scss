@@ -6,24 +6,28 @@
 @import '~@react-md/theme/dist/functions';
 @import '~@react-md/theme/dist/variables';
 
-/// The background color to use for the sheet.
-/// @type Color
-$rmd-sheet-background-color: rmd-theme-var(surface) !default;
+/// The z-index to use for sheets that normally appear without an overlay and inline with other content.
+/// @type Nuber
+$rmd-sheet-z-index: 1 !default;
 
-/// The elevation to use for sheets that are displayed "inline" with other content. This _should__ most likely
-/// stay the default, but it needs to be a number between 0 and 16.
+/// The z-index to use for sheets that normally appear with an overlay and covering other elements on
+/// the page.
+/// @type Number
+$rmd-sheet-raised-z-index: $rmd-overlay-z-index + 1 !default;
+
+/// The z-index to use for a sheet's overlay. This value just needs to be smaller than the
+/// `$rmd-sheet-raised-z-index` value so the overlay does not cover the sheet.
+/// @type Number
+$rmd-sheet-overlay-z-index: $rmd-sheet-raised-z-index - 1 !default;
+
+/// This is the default elevation to use for sheets that do not have an overlay. This is normally
+/// used for showing sheets more "inline" with other content.
 /// @type Number
 $rmd-sheet-elevation: 2 !default;
 
-/// The elevation to use for fixed sheets. This _should_ most likely stay the default, but it needs to
-/// be a number between 0 and 16.
+/// The elevation to use for temporary sheets that usually display an overlay as well.
 /// @type Number
-$rmd-sheet-fixed-elevation: 16 !default;
-
-/// The z-index for sheets. The value doesn't matter _too_ much but it needs to at least be above the
-/// overlay that is created along with the sheet.
-/// @type Number
-$rmd-sheet-z-index: $rmd-overlay-z-index + 1;
+$rmd-sheet-raised-elevation: 16 !default;
 
 /// The duration for the enter transition.
 /// @type Number
@@ -39,25 +43,14 @@ $rmd-sheet-leave-duration: 0.15s !default;
 /// @type Number
 $rmd-sheet-touch-margin: 3.5rem !default;
 
-/// The width to apply to "small" sheets. This width **should** be used for mobile devices along with
-/// the max-width.
+/// The width of a sheet on small touch devices.
 /// @type Number
-$rmd-sheet-small-width: calc(100vw - #{$rmd-sheet-touch-margin}) !default;
+$rmd-sheet-touch-width: calc(100vw - #{$rmd-sheet-touch-margin}) !default;
 
-/// The max-width to apply to "small" sheets. This max-width **should** be used for mobile devices along with
-/// the max-width.
+/// The width to apply to "static" width sheets. This width **should not** be used on phones but can be
+/// used for tablets or desktops.
 /// @type Number
-$rmd-sheet-small-max-width: 20rem !default;
-
-/// The width to apply to "large" sheets. This width **should not** be used on phones but can be used for tablets or
-/// desktops.
-/// @type Number
-$rmd-sheet-large-width: 16rem !default;
-
-/// The max-width to apply to "large" sheets. This max-width **should not** be used on phones but can be used for tablets or
-/// desktops.
-/// @type Number
-$rmd-sheet-large-max-width: 25rem !default;
+$rmd-sheet-static-width: 16rem !default;
 
 /// The max height to set for sheets. It is recommended to leave this as 100% and instead update the
 /// `$rmd-sheet-touchable-max-height` instead.
@@ -94,13 +87,9 @@ $rmd-sheet-enabled-positions: $rmd-sheet-positions !default;
 /// needed.
 /// @type Map
 $rmd-sheet-theme-values: (
-  background-color: $rmd-sheet-background-color,
-  small-width: $rmd-sheet-small-width,
-  small-max-width: $rmd-sheet-small-max-width,
-  large-width: $rmd-sheet-large-width,
-  large-max-width: $rmd-sheet-large-max-width,
+  touch-width: $rmd-sheet-touch-width,
+  static-width: $rmd-sheet-static-width,
   touchable-max-height: $rmd-sheet-touchable-max-height,
-  max-width: null,
   max-height: null,
   height: null,
   width: null,

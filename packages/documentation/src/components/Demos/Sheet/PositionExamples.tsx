@@ -1,56 +1,54 @@
-import React, { FC, useState, Fragment, useCallback } from "react";
-import { Sheet, SheetPosition } from "@react-md/sheet";
+import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
+import { Fieldset, useChoice } from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
+import { Sheet, SheetPosition } from "@react-md/sheet";
 import { useToggle } from "@react-md/utils";
 
-const PositionExamples: FC = () => {
-  const [position, setPosition] = useState<SheetPosition>("bottom");
-  const [toggled, , disable, toggle] = useToggle(false);
+import Radio from "components/Radio";
 
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPosition(event.currentTarget.value as SheetPosition);
-    },
-    []
-  );
+const positions: SheetPosition[] = ["top", "right", "bottom", "left"];
+
+const PositionExamples: FC = () => {
+  const [position, handlePositionChange] = useChoice<SheetPosition>("left");
+  const [visible, show, hide] = useToggle(false);
 
   return (
     <Fragment>
-      <Button
-        id="sheet-position-example-toggle"
-        onClick={toggle}
-        theme="clear"
-        themeType="outline"
-      >
-        Show Sheet
-      </Button>
-      {["top", "right", "bottom", "left"].map(pos => (
-        <div key={pos}>
-          <label htmlFor={`sheet-position-${pos}`}>{pos}</label>
-          <input
-            id={`sheet-position-${pos}-input`}
-            name="sheet-positions"
-            type="radio"
+      <Fieldset legend="Sheet positions" disableLegendSROnly>
+        {positions.map(pos => (
+          <Radio
+            key={pos}
+            id={`sheet-position-${pos}`}
             value={pos}
+            name="positions"
+            label={pos}
             checked={pos === position}
-            onChange={handleChange}
+            onChange={handlePositionChange}
           />
-        </div>
-      ))}
-      <Sheet
-        id="sheet-position-example"
-        visible={toggled}
-        position={position || "bottom"}
-        onRequestClose={disable}
+        ))}
+      </Fieldset>
+      <Button
+        id="show-sheet-position"
+        onClick={show}
+        theme="secondary"
+        themeType="contained"
       >
-        <List>
-          <ListItem id="sheet-item-1">Item 1</ListItem>
-          <ListItem id="sheet-item-2">Item 2</ListItem>
-          <ListItem id="sheet-item-3">Item 3</ListItem>
-          <ListItem id="sheet-item-4">Item 4</ListItem>
-          <ListItem id="sheet-item-5">Item 5</ListItem>
-          <ListItem id="sheet-item-6">Item 6</ListItem>
+        Show
+      </Button>
+      <Sheet
+        id="example-sheet-1"
+        aria-label="Example Sheet"
+        visible={visible}
+        onRequestClose={hide}
+        position={position}
+      >
+        <List onClick={hide}>
+          <ListItem id="example-sheet-item-1">Item 1</ListItem>
+          <ListItem id="example-sheet-item-2">Item 2</ListItem>
+          <ListItem id="example-sheet-item-3">Item 3</ListItem>
+          <ListItem id="example-sheet-item-4">Item 4</ListItem>
+          <ListItem id="example-sheet-item-5">Item 5</ListItem>
         </List>
       </Sheet>
     </Fragment>

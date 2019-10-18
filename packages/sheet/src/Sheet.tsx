@@ -1,94 +1,41 @@
-import React, {
-  CSSProperties,
-  ElementType,
-  FC,
-  forwardRef,
-  Fragment,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { FC, forwardRef } from "react";
 import cn from "classnames";
-import CSSTransition from "react-transition-group/CSSTransition";
-import { Overlay } from "@react-md/overlay";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { Dialog, DialogProps } from "@react-md/dialog";
+import { LabelRequiredForA11y, WithForwardedRef, bem } from "@react-md/utils";
 
-import { SHEET_CLASS_NAMES, SHEET_TRANSITION_TIMEOUT } from "./constants";
+type AllowedDialogProps = Omit<
+  DialogProps,
+  "role" | "type" | "modal" | "forceContainer"
+>;
 
-export type SheetPosition = "calculated" | "top" | "right" | "bottom" | "left";
-export type SheetHorizontalSize =
-  | "none"
-  | "media"
-  | "small"
-  | "large"
-  | "until-small"
-  | "until-large"
-  | "until-media";
+export type SheetPosition = "top" | "right" | "bottom" | "left";
+export type SheetHorizontalSize = "none" | "media" | "touch" | "static";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-export interface SheetProps
-  extends HTMLAttributes<HTMLDivElement>,
-    OverridableCSSTransitionProps,
-    RenderConditionalPortalProps {
+export interface SheetProps extends AllowedDialogProps {
   /**
-   * An id for the sheet. This is required by default since the sheet must behave like one
-   * of the a11y roles.
+   * The role that the sheet should be rendered as. You'll normally want to keep this as the
+   * default of `"dialog"` unless you are implementing a mobile sheet menu.
+   *
+   * Note: Setting this to `"menu"` **will not** provide the menu keyboard accessibility
+   * automatically.
    */
-  id: string;
+  role?: "dialog" | "menu";
 
   /**
-   * The role for the sheet to behave as.
-   */
-  role?: "dialog" | "alert" | "alertdialog" | "menu";
-
-  /**
-   * The tab index for the sheet. This should normally stay at `-1`.
-   */
-  tabIndex?: number;
-
-  /**
-   * Boolean if the sheet is currently visible.
-   */
-  visible: boolean;
-
-  /**
-   * A function used to close the sheet when the overlay is clicked. This is required so that the
-   * sheet can be closed on escape keypress or if the overlay is clicked.
-   */
-  onRequestClose: () => void;
-
-  /**
-   * Boolean if there should be an overlay displayed with the sheet. This is recommended/required
-   * on mobile devices.
-   */
-  overlay?: boolean;
-
-  /**
-   * An optional style to apply to the overlay.
-   */
-  overlayStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the overlay.
-   */
-  overlayClassName?: string;
-
-  /**
-   * The position for the sheet to be rendered.
+   * The location that the sheet should be located within the viewport.
    */
   position?: SheetPosition;
 
   /**
    * The size to use for sheets that have been positioned left or right. The default supported
    * values are:
-   * - none - no limits added to sizing. the size will be based on content or custom styles
-   * - small - used for mobile devices.
-   * - large - used for landscape tablets and desktops.
-   * - media - automatically switches between "small" and "large" based on css media queries.
+   * - none - the size is based on content, but is still limtied to the viewport width so that the
+   *     horizontal scrolling will not occur within the pageno limits added to sizing.
+   * - touch - the `min-width` is set to be the entire viewport width minus a touchable area and
+   *     `max-width` is set to `20rem` and is normally recommended for mobile devices.
+   * - static - the width is set to a static `16rem` and generally used for landscape tablets and desktops.
+   * - media - automatically switches between "touch" and "static" based on css media queries.
    *     (this is the default)
    */
   horizontalSize?: SheetHorizontalSize;
@@ -102,158 +49,118 @@ export interface SheetProps
    *     min-height of 3.5rem
    */
   verticalSize?: SheetVerticalSize;
-
-  /**
-   * Boolean if the sheet should be updated to have the look-and-feel of being rendered inline with
-   * other content on the page instead of directly over everything. This is really just used to
-   * lower the box shadow.
-   */
-  inline?: boolean;
-
-  /**
-   * An optional component to render the sheet as. This should really only be one of:
-   * - "div"
-   * - "nav"
-   * - "ul"
-   *
-   * where `"div"` and `"nav"` will be the most used.
-   */
-  component?: ElementType;
 }
 
+type StrictProps = LabelRequiredForA11y<SheetProps>;
 type WithRef = WithForwardedRef<HTMLDivElement>;
 type DefaultProps = Required<
   Pick<
     SheetProps,
     | "role"
-    | "tabIndex"
-    | "inline"
-    | "overlay"
     | "position"
-    | "timeout"
-    | "mountOnEnter"
-    | "unmountOnExit"
-    | "classNames"
     | "horizontalSize"
     | "verticalSize"
-    | "component"
+    | "overlay"
+    | "tabIndex"
+    | "appear"
+    | "enter"
+    | "exit"
+    | "timeout"
+    | "classNames"
+    | "disableTransition"
+    | "defaultFocus"
+    | "mountOnEnter"
+    | "unmountOnExit"
+    | "disableScrollLock"
+    | "disableEscapeClose"
+    | "disableFocusContainer"
+    | "disableNestedDialogFixes"
+    | "portal"
+    | "overlayHidden"
   >
 >;
-type SheetWithDefaultProps = SheetProps & DefaultProps & WithRef;
+type WithDefaultProps = StrictProps & DefaultProps & WithRef;
 
 const block = bem("rmd-sheet");
 
-const Sheet: FC<SheetProps & WithRef> = providedProps => {
+/**
+ * The Sheet component is an extension of the `Dialog` except that it is fixed to the
+ * edges of the viewport instead of centered or full page. This component is great for
+ * rendering a navigation tree or menus on mobile devices.
+ */
+const Sheet: FC<StrictProps & WithRef> = providedProps => {
   const {
-    inline,
-    overlay,
-    overlayStyle,
-    overlayClassName,
-    visible,
-    timeout,
-    onRequestClose,
-    position,
     className,
-    classNames,
     children,
-    mountOnEnter,
-    unmountOnExit,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
+    position,
+    forwardedRef,
     horizontalSize,
     verticalSize,
-    forwardedRef,
-    portal,
-    portalInto,
-    portalIntoId,
-    component: Component,
+    overlay,
+    overlayClassName,
     ...props
-  } = providedProps as SheetWithDefaultProps;
-
-  const isCalculated = position === "calculated";
-  const isHorizontal = position === "left" || position === "right";
-  let overlayEl: ReactNode = null;
-  if (overlay) {
-    overlayEl = (
-      <Overlay
-        id={`${props.id}-overlay`}
-        style={overlayStyle}
-        className={overlayClassName}
-        visible={visible}
-        onRequestClose={onRequestClose}
-      />
-    );
-  }
+  } = providedProps as WithDefaultProps;
+  const horizontal = position === "left" || position === "right";
 
   return (
-    <ConditionalPortal
-      portal={portal}
-      portalInto={portalInto}
-      portalIntoId={portalIntoId}
+    <Dialog
+      {...props}
+      ref={forwardedRef}
+      type="custom"
+      overlay={overlay}
+      overlayClassName={cn("rmd-sheet-overlay", overlayClassName)}
+      className={cn(
+        block({
+          horizontal,
+          vertical: !horizontal,
+          raised: overlay,
+          [position]: true,
+          [`${horizontalSize}-width`]: horizontal,
+          "viewport-height": !horizontal && verticalSize === "none",
+          "touchable-height": !horizontal && verticalSize === "touch",
+          "recommended-height": !horizontal && verticalSize === "recommended",
+        }),
+        className
+      )}
     >
-      <Fragment>
-        {overlayEl}
-        <CSSTransition
-          appear={mountOnEnter}
-          in={visible}
-          classNames={classNames}
-          timeout={timeout}
-          onEnter={onEnter}
-          onEntering={onEntering}
-          onEntered={onEntered}
-          onExit={onExit}
-          onExiting={onExiting}
-          onExited={onExited}
-          mountOnEnter={mountOnEnter}
-          unmountOnExit={unmountOnExit}
-        >
-          {state => (
-            <Component
-              {...props}
-              ref={forwardedRef}
-              className={cn(
-                block({
-                  fixed: !inline,
-                  horizontal: !isCalculated && isHorizontal,
-                  vertical: !isCalculated && !isHorizontal,
-                  [`${horizontalSize}-width`]: isHorizontal,
-                  "viewport-height": !isHorizontal && verticalSize === "none",
-                  "touchable-height": !isHorizontal && verticalSize === "touch",
-                  "recommended-height":
-                    !isHorizontal && verticalSize === "recommended",
-                  [position]: position !== "calculated",
-                  offscreen: !visible && state === "exited",
-                  hidden: !visible && state === "exited",
-                }),
-                className
-              )}
-            >
-              {children}
-            </Component>
-          )}
-        </CSSTransition>
-      </Fragment>
-    </ConditionalPortal>
+      {children}
+    </Dialog>
   );
 };
 
 const defaultProps: DefaultProps = {
-  component: "div",
   role: "dialog",
-  tabIndex: -1,
-  inline: false,
-  overlay: true,
-  mountOnEnter: true,
-  unmountOnExit: true,
-  position: "bottom",
-  timeout: SHEET_TRANSITION_TIMEOUT,
-  classNames: SHEET_CLASS_NAMES,
+  position: "left",
   horizontalSize: "media",
   verticalSize: "recommended",
+  tabIndex: -1,
+  appear: false,
+  enter: true,
+  exit: true,
+  timeout: {
+    enter: 200,
+    exit: 150,
+  },
+  classNames: {
+    appear: "rmd-sheet--offscreen",
+    appearActive: "rmd-sheet--enter rmd-sheet--visible",
+    enter: "rmd-sheet--offscreen",
+    enterActive: "rmd-sheet--enter rmd-sheet--visible",
+    exit: "rmd-sheet--exit",
+    exitActive: "rmd-sheet--offscreen",
+    exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
+  },
+  disableTransition: false,
+  mountOnEnter: true,
+  unmountOnExit: true,
+  portal: true,
+  overlay: true,
+  overlayHidden: false,
+  defaultFocus: "first",
+  disableScrollLock: false,
+  disableEscapeClose: false,
+  disableFocusContainer: false,
+  disableNestedDialogFixes: false,
 };
 
 Sheet.defaultProps = defaultProps;
@@ -268,9 +175,22 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Sheet.propTypes = {
-      style: PropTypes.object,
+      id: PropTypes.string.isRequired,
+      "aria-label": PropTypes.string,
+      "aria-labelledby": PropTypes.string,
       className: PropTypes.string,
-      children: PropTypes.node.isRequired,
+      tabIndex: PropTypes.number,
+      visible: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      overlay: PropTypes.bool,
+      overlayStyle: PropTypes.object,
+      overlayClassName: PropTypes.string,
+      overlayHidden: PropTypes.bool,
+      containerStyle: PropTypes.object,
+      containerClassName: PropTypes.string,
+      children: PropTypes.node,
       classNames: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -291,6 +211,10 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
+      appear: PropTypes.bool,
+      enter: PropTypes.bool,
+      exit: PropTypes.bool,
+      disableTransition: PropTypes.bool,
       onEnter: PropTypes.func,
       onEntering: PropTypes.func,
       onEntered: PropTypes.func,
@@ -303,35 +227,23 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.string,
         PropTypes.object,
       ]),
-      id: PropTypes.string.isRequired,
-      visible: PropTypes.bool.isRequired,
-      onRequestClose: PropTypes.func.isRequired,
-      tabIndex: PropTypes.number,
-      overlay: PropTypes.bool,
-      overlayStyle: PropTypes.object,
-      overlayClassName: PropTypes.string,
-      position: PropTypes.oneOf([
-        "calculated",
-        "top",
-        "right",
-        "bottom",
-        "left",
+      portalIntoId: PropTypes.string,
+      defaultFocus: PropTypes.oneOfType([
+        PropTypes.oneOf(["first", "last"]),
+        PropTypes.string,
       ]),
-      horizontalSize: PropTypes.oneOf([
-        "none",
-        "media",
-        "small",
-        "large",
-        "until-small",
-        "until-large",
-        "until-media",
-      ]),
+      disableScrollLock: PropTypes.bool,
+      disableEscapeClose: PropTypes.bool,
+      disableFocusContainer: PropTypes.bool,
+      disableNestedDialogFixes: PropTypes.bool,
+      position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+      horizontalSize: PropTypes.oneOf(["none", "media", "touch", "static"]),
       verticalSize: PropTypes.oneOf(["none", "touch", "recommended"]),
-      inline: PropTypes.bool,
+      role: PropTypes.oneOf(["dialog", "menu"]),
     };
   }
 }
 
-export default forwardRef<HTMLDivElement, SheetProps>((props, ref) => (
+export default forwardRef<HTMLDivElement, StrictProps>((props, ref) => (
   <Sheet {...props} forwardedRef={ref} />
 ));

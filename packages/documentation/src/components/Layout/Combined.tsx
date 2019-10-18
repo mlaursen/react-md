@@ -81,15 +81,14 @@ const Combined: FC<CombinedProps> = ({ title: propTitle, children }) => {
       />
       <Sheet
         id="main-navigation"
+        aria-label="Navigation"
         visible={visible}
         onRequestClose={disable}
         position="left"
+        portal={!inline}
         overlay={!inline}
-        inline={inline}
         className={cn(block("nav", { inline }))}
-        component="nav"
-        mountOnEnter={false}
-        unmountOnExit={false}
+        disableScrollLock
       >
         {isLandscapeTablet && (
           <AppBar theme="clear" className={block("nav-header")}>

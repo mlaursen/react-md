@@ -17,6 +17,7 @@
   &--unstyled {
     border: 0;
     margin: 0;
+    min-width: 0; // just so it can shrink correctly in flex or grid
     padding: 0;
   }
 

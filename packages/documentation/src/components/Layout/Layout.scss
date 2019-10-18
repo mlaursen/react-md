@@ -45,21 +45,21 @@
     &--offset {
       @include rmd-app-bar-offset;
       @include rmd-utils-rtl {
-        @include rmd-sheet-theme(margin-right, large-width);
+        @include rmd-sheet-theme(margin-right, static-width);
 
         margin-left: auto;
       }
 
-      @include rmd-sheet-theme(margin-left, large-width);
+      @include rmd-sheet-theme(margin-left, static-width);
 
       &::before {
         @include rmd-utils-rtl {
-          @include rmd-sheet-theme(margin-right, large-width);
+          @include rmd-sheet-theme(margin-right, static-width);
 
           margin-left: auto;
         }
 
-        @include rmd-sheet-theme(margin-left, large-width);
+        @include rmd-sheet-theme(margin-left, static-width);
       }
     }
   }
@@ -73,10 +73,10 @@
       @include rmd-app-bar-theme(top, height);
     }
 
-    &--inline {
-      position: fixed;
-      z-index: 10;
-    }
+    // &--inline {
+    //   position: fixed;
+    //   z-index: 10;
+    // }
   }
 
   &__nav-header {

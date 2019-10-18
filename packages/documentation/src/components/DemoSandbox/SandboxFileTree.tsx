@@ -32,14 +32,16 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
   return (
     <Sheet
       id="code-previewer-file-sheet"
+      aria-label="Files sheet"
       visible={visible}
       onRequestClose={onRequestClose}
       position="left"
       overlay={!inline}
-      inline={inline}
+      portal={!inline}
       className={block("files", { inline })}
       mountOnEnter={false}
       unmountOnExit={false}
+      disableScrollLock
     >
       <Tree
         id="code-previewer-files"

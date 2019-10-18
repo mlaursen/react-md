@@ -193,7 +193,9 @@ const sandboxes: Sandboxes = {
     WithSuspense: () => resolve(import("./Progress-WithSuspense.json")),
   },
   Sheet: {
+    MobileActionSheet: () => resolve(import("./Sheet-MobileActionSheet.json")),
     PositionExamples: () => resolve(import("./Sheet-PositionExamples.json")),
+    SheetSizing: () => resolve(import("./Sheet-SheetSizing.json")),
   },
   States: {
     CustomComponent: () => resolve(import("./States-CustomComponent.json")),
