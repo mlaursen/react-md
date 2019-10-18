@@ -17,15 +17,6 @@ describe("getContainer", () => {
     getElementById.mockRestore();
   });
 
-  it("should throw an error if there is no element in the dom with the provided id", () => {
-    expect(() => getContainer(undefined, "some-id")).toThrowError(
-      "Unable to find a valid HTMLElement to render a portal into with the provided id: " +
-        `\`some-id\`. Please provide an id of an element that exists on the page ` +
-        "at the time of the portal rendering, provide a valid `into` prop, or leave both " +
-        "the `intoId` and `into` props `undefined` to render in the `document.body`."
-    );
-  });
-
   it("should use the into param as a query selector if it is a string", () => {
     const element = document.createElement("div");
     const querySelector = jest.spyOn(document, "querySelector");
@@ -35,16 +26,6 @@ describe("getContainer", () => {
     expect(getContainer(".query-1", undefined)).toBe(element);
     expect(querySelector).toBeCalledWith(".query-1");
     querySelector.mockRestore();
-  });
-
-  it("should throw an error if the query selector string does not return an element", () => {
-    expect(() => getContainer(".query-string")).toThrowError(
-      "Unable to find a valid HTMLElement to render a portal into with the provided " +
-        `querySelector: \`.query-string\`. Please provide a querySelector that will return ` +
-        "a valid HTMLElement on the page at the time of the portal rendering, an " +
-        "HTMLElement, an id for an element on the page with `intoId`, or leave both the " +
-        "`intoId` and `into` props `undefined` to render in the `document.body`."
-    );
   });
 
   it("should use an into function to get an element", () => {
