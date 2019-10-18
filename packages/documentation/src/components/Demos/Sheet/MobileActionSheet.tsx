@@ -1,17 +1,16 @@
 import React, { FC, useCallback } from "react";
 import {
-  DropdownMenu,
-  InjectedMenuProps,
-  MenuRenderer,
-  defaultMenuRenderer,
-} from "@react-md/menu";
-import {
   ArrowDropDownSVGIcon,
-  ShareSVGIcon,
-  LinkSVGIcon,
-  EditSVGIcon,
   DeleteSVGIcon,
+  EditSVGIcon,
+  LinkSVGIcon,
+  ShareSVGIcon,
 } from "@react-md/material-icons";
+import {
+  defaultMenuRenderer,
+  DropdownMenu,
+  MenuRenderer,
+} from "@react-md/menu";
 import { Sheet, SheetProps } from "@react-md/sheet";
 import { LabelRequiredForA11y } from "@react-md/utils";
 
