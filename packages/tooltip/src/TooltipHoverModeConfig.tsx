@@ -65,4 +65,20 @@ const defaultProps: DefaultProps = {
 
 TooltipHoverModeConfig.defaultProps = defaultProps;
 
+if (process.env.NODE_ENV !== "production") {
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TooltipHoverModeConfig.propTypes = {
+      enabled: PropTypes.bool,
+      delayTimeout: PropTypes.number,
+      defaultDelay: PropTypes.number,
+      children: PropTypes.node.isRequired,
+    };
+  }
+}
+
 export default TooltipHoverModeConfig;

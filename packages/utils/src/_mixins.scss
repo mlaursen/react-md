@@ -548,6 +548,42 @@
   }
 }
 
+/// This mixin will attempt to apply all the available dense theme mixins that have
+/// been imported. This should normally be used within a `:root` selector and a media
+/// query.
+///
+/// @example scss - Simple Usage
+/// :root {
+///   @include rmd-utils-desktop-media {
+///     @include rmd-utils-dense;
+///   }
+/// }
+@mixin rmd-utils-dense {
+  @if mixin-exists(rmd-app-bar-dense-theme) {
+    @include rmd-app-bar-dense-theme;
+  }
+
+  @if mixin-exists(rmd-toggle-dense-theme) {
+    @include rmd-toggle-dense-theme;
+  }
+
+  @if mixin-exists(rmd-icon-dense-theme) {
+    @include rmd-icon-dense-theme;
+  }
+
+  @if mixin-exists(rmd-list-dense-theme) {
+    @include rmd-list-dense-theme;
+  }
+
+  @if mixin-exists(rmd-list-item-dense-theme) {
+    @include rmd-list-item-dense-theme;
+  }
+
+  @if mixin-exists(rmd-tooltip-dense-theme) {
+    @include rmd-tooltip-dense-theme;
+  }
+}
+
 /// This mixin will include the styles for all packages that have been
 /// imported in your scss files. If there are missing styles, you need
 /// to make sure to correctly import that package before calling this

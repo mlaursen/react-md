@@ -103,6 +103,8 @@ export interface AppSizeOptions {
  * the type of device requesting a page. Once the app has been rendered in the DOM,
  * this hook will attach event listeners to automatically update the app size when
  * the page is resized.
+ *
+ * @private
  */
 export default function useAppSize({
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
