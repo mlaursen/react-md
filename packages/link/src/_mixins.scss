@@ -53,4 +53,21 @@
       @include rmd-link-theme(color, hover-color);
     }
   }
+
+  .rmd-link-skip {
+    @include rmd-typography-value(headline-6, font-size, font-weight, letter-spacing);
+    @include rmd-utils-sr-only(true, null);
+    @include rmd-utils-hide-focus-outline;
+
+    z-index: $rmd-link-skip-z-index;
+
+    &--styled {
+      @include rmd-utils-map-to-styles($rmd-link-skip-styles);
+
+      &:focus,
+      &:active {
+        @include rmd-utils-map-to-styles($rmd-link-skip-active-styles);
+      }
+    }
+  }
 }

@@ -6,6 +6,10 @@ component can easily integrate with
 [@reach/router](https://github.com/reach/router), and theoretically any other
 routing library if needed.
 
+This package also exports a great screen-reader and keyboard accessibility
+helper: `SkipToMainContent` that will allow a user to immediately jump to the
+main content of the page.
+
 ## Installation
 
 ```sh
@@ -30,7 +34,9 @@ more customization information, but an example usage is shown below.
 
 <!-- INCLUDING_STYLES -->
 
-## Usage with react-router
+## Usage
+
+### Usage with react-router
 
 ```tsx
 import React, { FC } from "react";
@@ -59,6 +65,45 @@ const App = () => (
     <Route exact path="/" component={Home} />
     <Route path="/about" component={About} />
   </BrowserRouter>
+);
+
+render(<App />, document.getElementById("root"));
+```
+
+### SkipToMainContent
+
+If you are using the `@react-md/layout` package, this component is already
+built-in to help out! However, this component can also be used within full page
+dialogs or custom screens to be able to jump to a specific element in the page.
+
+```tsx
+import React, { FC } from "react";
+import { render } from "react-dom";
+import {
+  Dialog,
+  DialogHeader,
+  DialogContent,
+  DialogFooter,
+} from "@react-md/dialog";
+import { SkipToMainContent } from "@react-md/link";
+
+const noop = (): void => {};
+
+const App: FC = () => (
+  <Dialog
+    id="full-page-dialog"
+    aria-labelledby="full-page-dialog-title"
+    visible
+    onRequestClose={noop}
+  >
+    <DialogHeader>
+      <SkipToMainContent mainId="full-page-dialog-content" />
+      {/* pretend 100 focusable things before main content */}
+    </DialogHeader>
+    <DialogContent id="full-page-dialog-content">
+      <p>Here is some content</p>
+    </DialogContent>
+  </Dialog>
 );
 
 render(<App />, document.getElementById("root"));
