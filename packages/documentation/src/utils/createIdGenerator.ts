@@ -2,6 +2,14 @@
  * An extremely simplified uuid function that is scoped with a speciifc prefix. This
  * will just always increment the total count at the end of the prefix.
  *
+ * ```ts
+ * const uuid = createIdGenerator("my-custom-prefix");
+ *
+ * uuid(); // my-custom-prefix-0
+ * uuid(); // my-custom-prefix-1
+ * uuid(); // my-custom-prefix-2
+ * ```
+ *
  * @param prefix The string prefix to use
  * @return a function to call to generate a "uuid"
  */
