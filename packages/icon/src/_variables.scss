@@ -24,6 +24,11 @@ $rmd-icon-dense-size: 1.25rem !default;
 /// @type Boolean
 $rmd-icon-include-dense: true !default;
 
+/// Boolean if you are using the material-icons font icon library. This will update the dense theme
+/// to fix material icons as well.
+/// @type Boolean
+$rmd-icon-material-icons-font: false !default;
+
 /// Boolean if font icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can
 /// disable the style generation for the unused type to save a few bytes.
 ///

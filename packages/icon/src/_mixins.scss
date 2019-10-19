@@ -141,6 +141,14 @@
   .rmd-icon {
     @include rmd-icon-base;
 
+    @if $rmd-icon-material-icons-font {
+      &.material-icons {
+        // force material-icons to use the size of icons even if the material-icons font css
+        // is loaded after the base react-md styles
+        @include rmd-icon-theme(font-size, size);
+      }
+    }
+
     // sass-lint:disable no-important
     // when other icon libraries don't have consistent sizes...
     &--forced-font {
