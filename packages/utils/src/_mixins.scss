@@ -642,6 +642,10 @@
     @include react-md-icon;
   }
 
+  @if mixin-exists(react-md-layout) {
+    @include react-md-layout;
+  }
+
   @if mixin-exists(react-md-link) {
     @include react-md-link;
   }
@@ -692,5 +696,13 @@
 
   @if mixin-exists(react-md-typography) {
     @include react-md-typography;
+  }
+
+  @if $rmd-utils-auto-dense {
+    :root {
+      @include rmd-utils-desktop-media {
+        @include rmd-utils-dense;
+      }
+    }
   }
 }

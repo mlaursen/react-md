@@ -8,6 +8,12 @@
 /// @type Boolean
 $rmd-utils-ios-scroll-momentum: true !default;
 
+/// Boolean if the dense spec should automatically be applied based on media queries
+/// once the app has reached a "desktop" size.
+///
+/// @type Boolean
+$rmd-utils-auto-dense: true !default;
+
 /// A list of the supported swappable variables for `rmd-utils-swap-position`.
 /// @type List
 $rmd-utils-swappable-positions: top right bottom left;
@@ -105,5 +111,5 @@ $rmd-grid-list-padding: 0.5rem !default;
 $rmd-grid-list-cell-margin: 0.5rem;
 
 /// The default max size that each cell can be within the `GridList` component.
-/// @type NUmber
+/// @type Number
 $rmd-grid-list-cell-max-size: 9.375rem !default;
