@@ -20,7 +20,7 @@ export interface SheetProps extends AllowedDialogProps {
    * Note: Setting this to `"menu"` **will not** provide the menu keyboard accessibility
    * automatically.
    */
-  role?: "dialog" | "menu";
+  role?: "dialog" | "menu" | "none";
 
   /**
    * The location that the sheet should be located within the viewport.
@@ -57,6 +57,7 @@ type DefaultProps = Required<
   Pick<
     SheetProps,
     | "role"
+    | "component"
     | "position"
     | "horizontalSize"
     | "verticalSize"
@@ -96,11 +97,13 @@ const Sheet: FC<StrictProps & WithRef> = providedProps => {
     forwardedRef,
     horizontalSize,
     verticalSize,
-    overlay,
+    overlay: propOverlay,
     overlayClassName,
     ...props
   } = providedProps as WithDefaultProps;
+  const { role } = props;
   const horizontal = position === "left" || position === "right";
+  const overlay = role !== "none" && propOverlay;
 
   return (
     <Dialog
@@ -130,6 +133,7 @@ const Sheet: FC<StrictProps & WithRef> = providedProps => {
 
 const defaultProps: DefaultProps = {
   role: "dialog",
+  component: "div",
   position: "left",
   horizontalSize: "media",
   verticalSize: "recommended",
@@ -239,7 +243,8 @@ if (process.env.NODE_ENV !== "production") {
       position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
       horizontalSize: PropTypes.oneOf(["none", "media", "touch", "static"]),
       verticalSize: PropTypes.oneOf(["none", "touch", "recommended"]),
-      role: PropTypes.oneOf(["dialog", "menu"]),
+      role: PropTypes.oneOf(["dialog", "menu", "none"]),
+      component: PropTypes.oneOf(["div", "nav"]),
     };
   }
 }

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
+import { SkipToMainContent } from "@react-md/link";
 import { StatesConfig } from "@react-md/states";
 import { TooltipHoverModeConfig } from "@react-md/tooltip";
 import {
@@ -13,7 +14,6 @@ import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityCont
 import Combined from "./Combined";
 import "./Layout.scss";
 import { DefaultSize } from "./useAppSizeContext";
-import SkipToMainContent from "./SkipToMainContent";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -34,7 +34,7 @@ const Layout: FC<LayoutProps> = ({
           <TooltipHoverModeConfig>
             <DefaultSize.Provider value={defaultSize}>
               <TOCVisibilityProvider pathname={pathname}>
-                <SkipToMainContent />
+                <SkipToMainContent mainId="main-content" />
                 <Combined title={title}>{children}</Combined>
               </TOCVisibilityProvider>
             </DefaultSize.Provider>

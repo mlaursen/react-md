@@ -44,7 +44,7 @@ export interface DialogProps
    * Note: The `dialog` technically supports being rendered as a `menu`, but this is really only
    * for mobile sheet support and will not provide the menu keyboard functionality automatically.
    */
-  role?: "dialog" | "alertdialog" | "menu";
+  role?: "dialog" | "alertdialog" | "menu" | "none";
 
   /**
    * A label to apply to the dialog. Either this or the `aria-labelledby` prop are required
@@ -172,6 +172,12 @@ export interface DialogProps
    * This is just a shortcut so all three of those props don't need to be disabled.
    */
   disableTransition?: boolean;
+
+  /**
+   * The component to render the dialog as. This really shouldn't be used outside of the `@react-md/layout`
+   * and `@react-md/sheet` packages to conditionally render a navigation panel.
+   */
+  component?: "div" | "nav";
 }
 
 type StrictProps = LabelRequiredForA11y<DialogProps>;
@@ -199,6 +205,7 @@ type DefaultProps = Required<
     | "disableNestedDialogFixes"
     | "portal"
     | "overlayHidden"
+    | "component"
   >
 >;
 type WithDefaultProps = StrictProps & DefaultProps & WithRef;
@@ -239,6 +246,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
     onExiting,
     onExited,
     modal,
+    role,
     type,
     disableScrollLock,
     disableEscapeClose: propDisableEscapeClose,
@@ -250,6 +258,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
+  const isNoneRole = role === "none";
   const isFullPage = type === "full-page";
   const isCentered = type === "centered";
 
@@ -260,7 +269,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
     disableEscapeClose: propDisableEscapeClose,
   });
 
-  useScrollLock(visible && !disableScrollLock);
+  useScrollLock(visible && !isNoneRole && !disableScrollLock);
 
   let overlayEl: ReactNode = null;
   if (typeof propOverlay === "boolean" ? propOverlay : !isFullPage) {
@@ -283,13 +292,18 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
   let dialog = (
     <FocusContainer
       {...props}
-      aria-modal={!!overlayEl || undefined}
-      disableTabFocusWrap={disableFocusContainer}
-      disableFocusOnMount={disableFocusContainer || disableFocusOnMount}
-      disableFocusOnUnmount={disableFocusContainer || disableFocusOnUnmount}
+      role={isNoneRole ? undefined : role}
+      aria-modal={(!isNoneRole && !!overlayEl) || undefined}
+      disableTabFocusWrap={isNoneRole || disableFocusContainer}
+      disableFocusOnMount={
+        isNoneRole || disableFocusContainer || disableFocusOnMount
+      }
+      disableFocusOnUnmount={
+        isNoneRole || disableFocusContainer || disableFocusOnUnmount
+      }
       onKeyDown={useCloseOnEscape(
         onRequestClose,
-        disableEscapeClose,
+        disableEscapeClose || isNoneRole,
         onKeyDown
       )}
       className={cn(
@@ -321,7 +335,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
 
   return (
     <ConditionalPortal
-      portal={portal}
+      portal={!isNoneRole && portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
@@ -375,6 +389,7 @@ const defaultProps: DefaultProps = {
     exit: "rmd-dialog--exit",
     exitActive: "rmd-dialog--exit-active",
   },
+  component: "div",
   defaultFocus: "first",
   forceContainer: false,
   disableScrollLock: false,
@@ -396,7 +411,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Dialog.propTypes = {
       id: PropTypes.string.isRequired,
-      role: PropTypes.oneOf(["dialog", "alertdialog", "menu"]),
+      role: PropTypes.oneOf(["dialog", "alertdialog", "menu", "none"]),
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
       className: PropTypes.string,
@@ -414,6 +429,7 @@ if (process.env.NODE_ENV !== "production") {
       containerStyle: PropTypes.object,
       containerClassName: PropTypes.string,
       forceContainer: PropTypes.bool,
+      component: PropTypes.oneOf(["div", "nav"]),
       children: PropTypes.node,
       classNames: PropTypes.oneOfType([
         PropTypes.string,

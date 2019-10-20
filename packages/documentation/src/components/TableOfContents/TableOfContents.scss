@@ -88,14 +88,6 @@ $toc-z-index: 9;
     transition: opacity $rmd-dialog-leave-duration, transform $rmd-dialog-leave-duration;
   }
 
-  @media (min-width: 80.1rem) {
-    @at-root {
-      .demo {
-        @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
-      }
-    }
-  }
-
   &__header {
     padding-top: 2rem;
   }

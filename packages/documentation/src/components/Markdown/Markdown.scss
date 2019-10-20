@@ -16,3 +16,12 @@
     @include rmd-utils-scroll;
   }
 }
+
+.iframe {
+  border: 0;
+  border-radius: 0.25rem;
+  height: 32rem;
+  margin: 2rem auto;
+  overflow: hidden;
+  width: 100%;
+}

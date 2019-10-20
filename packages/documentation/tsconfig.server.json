@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "module": "commonjs",
     "target": "es2017",
-    "outDir": ".next/server"
+    "outDir": ".next"
   },
   "include": ["src/server/**/*.ts"],
   "exclude": [".next"]

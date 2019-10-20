@@ -1,16 +1,36 @@
 @import '~@react-md/app-bar/dist/mixins';
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/divider/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 
+// duplicated from TableOfContents.scss
+$toc-width: 15rem;
+$demo-padding: 2rem;
+$demo-padding-extra: 6rem;
+
 .demo {
   @include rmd-utils-tablet-media {
-    padding: 0 6rem;
+    @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
+
+    padding: 0 $demo-padding-extra;
+
+    .code--counted {
+      width: calc(100vw - #{$demo-padding-extra * 2});
+    }
   }
 
-  padding: 0 2rem;
+  @include rmd-utils-desktop-media {
+    .code--counted {
+      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
+
+      width: calc(100vw - #{$offset});
+    }
+  }
+
+  padding: 0 $demo-padding;
 
   &__divider {
     margin-bottom: 2rem;
