@@ -9,3 +9,5 @@ export { default as TreeGroup } from "./TreeGroup";
 export * from "./TreeGroup";
 
 export { default as defaultTreeItemRenderer } from "./defaultTreeItemRenderer";
+export { default as getChildItems } from "./getChildItems";
+export { default as getItemsFrom } from "./getItemsFrom";
