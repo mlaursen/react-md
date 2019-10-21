@@ -1,19 +1,20 @@
 import React, { FC } from "react";
-import { NestedDialogContextProvider } from "@react-md/dialog";
-import { SkipToMainContent } from "@react-md/link";
-import { StatesConfig } from "@react-md/states";
-import { TooltipHoverModeConfig } from "@react-md/tooltip";
 import {
-  AppSizeListener,
-  AppSizeListenerProps,
-  InteractionModeListener,
-} from "@react-md/utils";
+  Configuration,
+  Layout as RMDLayout,
+  useLayoutNavigation,
+} from "@react-md/layout";
+import {
+  MenuSVGIcon,
+  KeyboardArrowDownSVGIcon,
+} from "@react-md/material-icons";
+import { AppSizeListenerProps } from "@react-md/utils";
 
+import { routesTree } from "constants/routesTree";
+import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
 
-import Combined from "./Combined";
-import "./Layout.scss";
-import { DefaultSize } from "./useAppSizeContext";
+import Actions from "./Actions";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -27,22 +28,20 @@ const Layout: FC<LayoutProps> = ({
   pathname,
   defaultSize,
 }) => (
-  <AppSizeListener defaultSize={defaultSize}>
-    <NestedDialogContextProvider>
-      <InteractionModeListener>
-        <StatesConfig>
-          <TooltipHoverModeConfig>
-            <DefaultSize.Provider value={defaultSize}>
-              <TOCVisibilityProvider pathname={pathname}>
-                <SkipToMainContent mainId="main-content" />
-                <Combined title={title}>{children}</Combined>
-              </TOCVisibilityProvider>
-            </DefaultSize.Provider>
-          </TooltipHoverModeConfig>
-        </StatesConfig>
-      </InteractionModeListener>
-    </NestedDialogContextProvider>
-  </AppSizeListener>
+  <Configuration defaultSize={defaultSize}>
+    <RMDLayout
+      {...useLayoutNavigation(routesTree, pathname)}
+      appBarTitle={title}
+      navIcon={<MenuSVGIcon />}
+      expanderIcon={<KeyboardArrowDownSVGIcon />}
+      appBarChildren={<Actions />}
+    >
+      <TOCVisibilityProvider pathname={pathname}>
+        <TableOfContents pathname={pathname} />
+        {children}
+      </TOCVisibilityProvider>
+    </RMDLayout>
+  </Configuration>
 );
 
 export default Layout;

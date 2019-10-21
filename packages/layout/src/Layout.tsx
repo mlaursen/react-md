@@ -146,6 +146,7 @@ const Layout: FC<LayoutProps> = providedProps => {
     largeDesktopLayout,
     children,
     navItems,
+    mainComponent: Main,
     ...props
   } = providedProps as WithDefaultProps;
   const {
@@ -205,7 +206,7 @@ const Layout: FC<LayoutProps> = providedProps => {
         hideNav={hideNav}
         isPersistent={isPersistent}
       />
-      <main
+      <Main
         id={mainId}
         ref={mainRef}
         tabIndex={mainTabIndex}
@@ -219,7 +220,7 @@ const Layout: FC<LayoutProps> = providedProps => {
         )}
       >
         {children}
-      </main>
+      </Main>
     </Fragment>
   );
 };

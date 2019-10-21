@@ -142,7 +142,11 @@ if (process.env.NODE_ENV !== "production") {
     Link.propTypes = {
       className: PropTypes.string,
       href: PropTypes.string,
-      component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+      component: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
       target: PropTypes.string,
       rel: PropTypes.string,
       preventMaliciousTarget: PropTypes.bool,
