@@ -4,6 +4,7 @@ export default {
   "rmd-icon-size": "1.5rem",
   "rmd-icon-dense-size": "1.25rem",
   "rmd-icon-include-dense": true,
+  "rmd-icon-material-icons-font": true,
   "rmd-icon-use-font-icons": true,
   "rmd-icon-use-svg-icons": true,
   "rmd-icon-spacing-with-text": "0.5rem",
