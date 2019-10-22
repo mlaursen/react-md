@@ -72,7 +72,6 @@ interface PackageRouteConfig {
   install?: boolean;
   api?: boolean;
   demos?: boolean;
-  guide?: boolean;
   sassdoc?: boolean;
 }
 
@@ -80,13 +79,7 @@ function createPackageRoute(
   name: string,
   config: PackageRouteConfig = {}
 ): ChildRouteConfig {
-  const {
-    install = true,
-    api = true,
-    demos = true,
-    guide = false,
-    sassdoc = true,
-  } = config;
+  const { install = true, api = true, demos = true, sassdoc = true } = config;
 
   const childRoutes: ChildRouteConfig[] = [];
   if (demos) {
@@ -100,13 +93,6 @@ function createPackageRoute(
     childRoutes.push({
       path: "/installation",
       children: "Installation",
-    });
-  }
-
-  if (guide) {
-    childRoutes.push({
-      path: "/guide",
-      children: "Guide",
     });
   }
 
@@ -221,7 +207,7 @@ createRoute("/packages", "Packages", {
     createPackageRoute("elevation", { api: false }),
     createPackageRoute("form"),
     createPackageRoute("icon"),
-    createPackageRoute("layout", { demos: false, guide: true }),
+    createPackageRoute("layout", { demos: false }),
     createPackageRoute("link"),
     createPackageRoute("list"),
     createPackageRoute("material-icons", { sassdoc: false }),

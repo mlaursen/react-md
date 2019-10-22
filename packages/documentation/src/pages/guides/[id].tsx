@@ -12,7 +12,9 @@ const Guides: NextFC<GuidesProps> = ({ readme }) =>
   !readme ? <NotFoundPage /> : <MarkdownPage>{readme}</MarkdownPage>;
 
 Guides.getInitialProps = async ({ query }): Promise<GuidesProps> => {
-  const readme = await import(`../../guides/${query.id}`).catch(() => "");
+  const readme = await import(`../../guides/${query.id}.md`)
+    .then(mod => mod.default)
+    .catch(() => "");
 
   return { readme };
 };

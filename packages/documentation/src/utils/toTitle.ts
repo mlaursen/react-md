@@ -11,6 +11,11 @@ export function toTitle(
     return "AutoComplete";
   }
 
+  if (s === "[id]") {
+    // TODO: Fix to use query params instead
+    return "Layout";
+  }
+
   return s
     .split(capitals ? /(?=[A-Z])/ : "-")
     .map(upperFirst)
