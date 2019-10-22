@@ -147,7 +147,7 @@ const Grid: FC<GridProps & WithRef> = ({
   let content = children;
   if (clone || wrapOnly) {
     content = Children.map(children, child => (
-      <GridCell clone={wrapOnly}>{child}</GridCell>
+      <GridCell clone={clone}>{child}</GridCell>
     ));
   }
 
