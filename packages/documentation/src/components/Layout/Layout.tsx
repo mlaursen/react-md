@@ -7,6 +7,7 @@ import {
 import {
   MenuSVGIcon,
   KeyboardArrowDownSVGIcon,
+  KeyboardArrowLeftSVGIcon,
 } from "@react-md/material-icons";
 import { AppSizeListenerProps } from "@react-md/utils";
 
@@ -31,10 +32,14 @@ const Layout: FC<LayoutProps> = ({
   <Configuration defaultSize={defaultSize}>
     <RMDLayout
       {...useLayoutNavigation(routesTree, pathname)}
-      appBarTitle={title}
+      appBarTitle={title.replace("react-md - ", "")}
+      navHeaderTitle="react-md"
       navIcon={<MenuSVGIcon />}
+      hideNavIcon={<KeyboardArrowLeftSVGIcon />}
       expanderIcon={<KeyboardArrowDownSVGIcon />}
       appBarChildren={<Actions />}
+      tabletLayout="toggleable"
+      landscapeTabletLayout="toggleable"
     >
       <TOCVisibilityProvider pathname={pathname}>
         <TableOfContents pathname={pathname} />

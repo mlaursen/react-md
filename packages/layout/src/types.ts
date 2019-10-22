@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, ReactElement, ReactNode } from "react";
+import { CSSProperties, ElementType, ReactNode } from "react";
 import { AppBarTheme } from "@react-md/app-bar";
 import { BaseTreeItem, TreeData, TreeProps } from "@react-md/tree";
 
@@ -92,7 +92,89 @@ export interface LayoutConfiguration {
   largeDesktopLayout?: SupportedWideLayout;
 }
 
-export interface LayoutAppBarProps {
+/**
+ * The exported context that allows you to control the visibility of the layout's
+ * navigation visibility.
+ */
+export interface LayoutNavigationContext {
+  /**
+   * A function to call that will show the main navigation sheet.
+   */
+  showNav: () => void;
+
+  /**
+   * A function to call that will hide the main navigation sheet.
+   */
+  hideNav: () => void;
+
+  /**
+   * The current resolved `layout` based on the app's size.
+   */
+  layout: SupportedWideLayout;
+
+  /**
+   * Boolean if the main navigation is currently visible,.
+   */
+  isNavVisible: boolean;
+
+  /**
+   * Boolean if the current resolved layout is the `"full-height"` layout type. This
+   * is normally used to offset the main `AppBar` so it is not covered by the main
+   * navigation element.
+   */
+  isFullHeight: boolean;
+
+  /**
+   * Boolean if the main navigation is displayed inline with the other
+   * content. This will be `false` whenever the resolved layout type
+   * is `"temporary"` or `"temporary-mini"`.
+   */
+  isPersistent: boolean;
+}
+
+export interface LayoutAppBarNavProps {
+  /**
+   * The icon that should be displayed in the `AppBarNav` component when the main
+   * navigation is in a temporary or toggleable element.
+   */
+  navIcon?: ReactNode;
+
+  /**
+   * The `aria-label` to apply to the `AppBarNav` component when the main navigation
+   * is in a temporary or toggleable element.
+   */
+  navIconLabel?: string;
+
+  /**
+   * The `aria-labelledby` to apply to the `AppBarNav` component when the main navigation
+   * is in a temporary or toggleable element.
+   */
+  navIconLabelledBy?: string;
+}
+
+export interface LayoutToggleableAppBarNavProps {
+  /**
+   * The icon that should be displayed in the `AppBarNav` component within a toggleable
+   * main navigation panel's header.
+   */
+  hideNavIcon?: ReactNode;
+
+  /**
+   * The `aria-label` to apply to the `AppBarNav` component within a toggleable main
+   * navigation panel's header.
+   */
+  hideNavLabel?: string;
+
+  /**
+   * The `aria-labelledby` to apply to the `AppBarNav` component within a toggleable
+   * main navigation panel's header.
+   */
+  hideNavLabelledBy?: string;
+}
+
+export interface LayoutAppBarProps
+  extends LayoutAppBarNavProps,
+    LayoutToggleableAppBarNavProps {
   /**
    * The theme to provide to the main app bar.
    */
@@ -122,91 +204,11 @@ export interface LayoutAppBarProps {
    * add additional `AppBarAction`, or your own `AppBarTitle` if the default
    * `appBarTitle` prop isn't to your liking.
    *
-   * Note: It is recommended to use the `appBarRenderer` prop for a more customized
+   * Note: It is recommended to use the `appBar` prop for a more customized
    * app bar that allows you to have full control over how the `AppBar` is rendered.
    */
   appBarChildren?: ReactNode;
-
-  /**
-   * The icon that should be displayed in the `AppBarNav` component when the main
-   * navigation is in a temporary or toggleable element.
-   */
-  navIcon?: ReactNode;
-
-  /**
-   * The `aria-label` to apply to the `AppBarNav` component when the main navigation
-   * is in a temporary or toggleable element.
-   */
-  navIconLabel?: string;
 }
-
-/**
- * The "props" that are provided to a custom app bar renderer. This allows you to
- * implement your own functionality while still maintaining the default functionality
- * and styles of the main Layout.
- */
-export interface LayoutAppBarRendererProps
-  extends Required<Pick<LayoutAppBarProps, "navIconLabel">> {
-  /**
-   * The `className` to apply to the main `AppBar` so that it is positioned currently
-   * relative to the main navigation.
-   */
-  className: string;
-
-  /**
-   * Boolean if the app bar is currently offset by the main navigation component.
-   */
-  offset: boolean;
-
-  /**
-   * A function to call that will show the main navigation when the main navigation is
-   * temporary or toggleable.
-   */
-  showNav: () => void;
-
-  /**
-   * Boolean if the main navigation is currently visible.
-   */
-  isNavVisible: boolean;
-
-  /**
-   * Boolean if the main navigation is not temporary or toggleable.
-   */
-  isPersistent: boolean;
-}
-
-/**
- * A custom `AppBar` renderer that can be used for additional flexibility and customization
- * for a layout's AppBar. This _looks_ like the normal interface for a React component,
- * but you should always use it to return a React component so you can have access
- * to hooks.
- *
- * ```tsx
- * // This technically works, but is not recommended since you won't be able to use
- * // React hooks this way
- * <Layout
- *   appBarRenderer={props => <AppBar {...props}> ... Implementation ... </AppBar>}
- *   {...otherProps}
- * />
- *
- *
- * // This is recommended even though it looks like it isn't really doing anything other
- * // than a bit more boilerplate. This pattern will allow you to use hooks though in
- * // your implementation since you've now created a React element instead of just a
- * // function renderer
- * const MyCustomAppBar: FC<LayoutAppBarRendererProps> = props => {
- *   ... Implementation ...
- * }
- * const appBarRenderer: LayoutAppBarRenderer = props => <MyCustomAppBar {...props} />
- * ```
- *
- * TODO: Look into moving this into Context + hook for this instead so you don't need
- * this weird workaround just so hooks can be used. It'll just be
- * {customAppBar || <LayoutAppBar {...props} />}
- */
-export type LayoutAppBarRenderer = (
-  props: LayoutAppBarRendererProps
-) => ReactElement | null;
 
 /**
  * This is the "recommended" layout navigation item configuration that works pretty
@@ -322,7 +324,6 @@ export type LayoutNavigationTree<
   T extends BaseTreeItem = LayoutNavigationItem
 > = TreeData<T>;
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * The props for the main navigation element in the layout. This can either be a persistent
  * navigation that is displayed inline with the rest of the content, a temporary navigation
@@ -331,18 +332,67 @@ export type LayoutNavigationTree<
  */
 export interface LayoutNavigationProps<
   T extends BaseTreeItem = LayoutNavigationItem
-> extends Omit<TreeProps<T>, "id" | "data" | "aria-label" | "aria-labelledby"> {
+>
+  extends Omit<TreeProps<T>, "id" | "data" | "aria-label" | "aria-labelledby">,
+    LayoutToggleableAppBarNavProps {
+  /**
+   * An optional style to apply to the `<nav>` element that surrounds the navigation tree on
+   * **mobile only**.
+   */
+  navStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the `<nav>` element that surrounds the navigation tree on
+   * **mobile only**.
+   */
+  navClassName?: string;
+
   /**
    * An optional `aria-label` to apply to the navigation tree. Either this or the `navLabelledBy`
    * prop are required for a11y.
    */
-  navLabel?: string;
+  navTreeLabel?: string;
 
   /**
    * An optional `aria-labelledby` to apply to the navigation tree. Either this or the `navLabel`
    * prop are required for a11y.
    */
-  navLabelledBy?: string;
+  navTreeLabelledBy?: string;
+
+  /**
+   * An optional custom header element to apply to the main navigation pane. The default behavior
+   * is to display an `AppBar` with an `AppBarTitle` (only when the `navHeaderTitle` prop is defined)
+   * for full-height and toggleable layouts. If the current layout is toggleable, an arrow back
+   * button will also be rendered in this header.
+   *
+   * You can force hide this component by setting this prop to `null` or provide your own implementation.
+   * It's recommended to use the `useLayoutNavigationContext` hook to be able to toggle the visibility
+   * of the main navigation panel.
+   */
+  navHeader?: ReactNode;
+
+  /**
+   * An optional title to apply to the header element within the main navigation when the
+   * current layout is `"toggleable"` or `"toggleable-mini"`.
+   */
+  navHeaderTitle?: ReactNode;
+
+  /**
+   * An optional style to apply to the default `navHeader` implementation. If you have defined
+   * the `navHeader` prop, this will be unused.
+   */
+  navHeaderStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the default `navHeader` implementation. If you have defined
+   * the `navHeader` prop, this will be unused.
+   */
+  navHeaderClassName?: string;
+
+  /**
+   * An optional element to render in the footer of the main navigation panel.
+   */
+  navFooter?: ReactNode;
 
   /**
    * An optional `aria-label` to apply to the navigation tree's container sheet element. Either this
@@ -375,4 +425,3 @@ export interface LayoutNavigationProps<
    */
   navItems: LayoutNavigationTree<T>;
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */

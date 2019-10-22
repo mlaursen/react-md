@@ -1,25 +1,25 @@
-import React, { CSSProperties, FC, Fragment, ReactNode, Ref } from "react";
+import React, { CSSProperties, FC, ReactNode, Ref, useMemo } from "react";
 import cn from "classnames";
 import { FontIcon } from "@react-md/icon";
 import { SkipToMainContent } from "@react-md/link";
 import { bem, useInteractionModeContext } from "@react-md/utils";
 
-import {
-  DEFAULT_DESKTOP_LAYOUT,
-  DEFAULT_LANDSCAPE_TABLET_LAYOUT,
-  DEFAULT_PHONE_LAYOUT,
-  DEFAULT_TABLET_LAYOUT,
-} from "./getLayout";
+import defaultNavigationItemRenderer from "./defaultNavigationItemRenderer";
 import LayoutAppBar from "./LayoutAppBar";
 import LayoutNavigation from "./LayoutNavigation";
 import {
   LayoutAppBarProps,
-  LayoutAppBarRenderer,
   LayoutConfiguration,
   LayoutNavigationProps,
 } from "./types";
-import useLayout from "./useLayout";
-import defaultNavigationItemRenderer from "./defaultNavigationItemRenderer";
+import useLayout, {
+  DEFAULT_DESKTOP_LAYOUT,
+  DEFAULT_LANDSCAPE_TABLET_LAYOUT,
+  DEFAULT_PHONE_LAYOUT,
+  DEFAULT_TABLET_LAYOUT,
+  isToggleableLayout,
+} from "./useLayout";
+import { Provider } from "./useLayoutNavigationContext";
 
 export interface LayoutProps
   extends LayoutConfiguration,
@@ -48,7 +48,7 @@ export interface LayoutProps
    * prop. It will replace the default `AppBar` and provide the required styles and state
    * for the `AppBar` and controlling the main navigation element.
    */
-  appBarRenderer?: LayoutAppBarRenderer;
+  appBar?: ReactNode;
 
   /**
    * An optional ref to apply to the `AppBar` component.
@@ -98,7 +98,9 @@ type DefaultProps = Required<
     | "denseAppBar"
     | "navIcon"
     | "navIconLabel"
-    | "navLabel"
+    | "hideNavIcon"
+    | "hideNavLabel"
+    | "navTreeLabel"
     | "sheetLabel"
     | "phoneLayout"
     | "tabletLayout"
@@ -125,14 +127,15 @@ const main = bem("rmd-layout-main");
 const Layout: FC<LayoutProps> = providedProps => {
   const {
     id,
+    appBar: propAppBar,
     appBarTheme,
     fixedAppBar,
     denseAppBar,
     navIcon,
     navIconLabel,
+    navIconLabelledBy,
     appBarTitle,
     appBarChildren,
-    appBarRenderer,
     appBarRef,
     appBarStyle,
     appBarClassName,
@@ -150,11 +153,12 @@ const Layout: FC<LayoutProps> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const {
-    isFullHeight,
-    isPersistent,
     showNav,
     hideNav,
+    layout,
     isNavVisible,
+    isFullHeight,
+    isPersistent,
   } = useLayout({
     phoneLayout,
     tabletLayout,
@@ -176,35 +180,47 @@ const Layout: FC<LayoutProps> = providedProps => {
     mainTabIndex = -1;
   }
 
-  return (
-    <Fragment>
-      <SkipToMainContent mainId={mainId} />
+  const value = useMemo(
+    () => ({
+      showNav,
+      hideNav,
+      layout,
+      isNavVisible,
+      isFullHeight,
+      isPersistent,
+    }),
+    [hideNav, isFullHeight, isNavVisible, isPersistent, layout, showNav]
+  );
+
+  let appBar = propAppBar;
+  if (typeof propAppBar === "undefined") {
+    appBar = (
       <LayoutAppBar
-        offset={isFullHeight}
-        renderer={appBarRenderer}
+        style={appBarStyle}
+        className={appBarClassName}
         layoutId={id}
         theme={appBarTheme}
         fixed={fixedAppBar}
         dense={denseAppBar}
-        isPersistent={isPersistent}
+        appBarTitle={appBarTitle}
         navIcon={navIcon}
         navIconLabel={navIconLabel}
-        appBarTitle={appBarTitle}
-        showNav={showNav}
-        isNavVisible={isNavVisible}
-        style={appBarStyle}
-        className={appBarClassName}
+        navIconLabelledBy={navIconLabelledBy}
       >
         {appBarChildren}
       </LayoutAppBar>
+    );
+  }
+
+  return (
+    <Provider value={value}>
+      <SkipToMainContent mainId={mainId} />
+      {appBar}
       <LayoutNavigation
         {...props}
-        offset={fixedAppBar && !isFullHeight}
+        fixedAppBar={fixedAppBar}
         layoutId={id}
         navItems={navItems}
-        visible={isNavVisible}
-        hideNav={hideNav}
-        isPersistent={isPersistent}
       />
       <Main
         id={mainId}
@@ -214,14 +230,15 @@ const Layout: FC<LayoutProps> = providedProps => {
         className={cn(
           main({
             offset: fixedAppBar,
-            "nav-offset": isPersistent,
+            "nav-offset":
+              isPersistent || (isNavVisible && isToggleableLayout(layout)),
           }),
           mainClassName
         )}
       >
         {children}
       </Main>
-    </Fragment>
+    </Provider>
   );
 };
 
@@ -232,7 +249,9 @@ const defaultProps: DefaultProps = {
   denseAppBar: false,
   navIcon: <FontIcon>menu</FontIcon>,
   navIconLabel: "Navigation toggle",
-  navLabel: "Navigation tree",
+  navTreeLabel: "Navigation tree",
+  hideNavIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
+  hideNavLabel: "Hide navigation",
   sheetLabel: "Navigation",
   phoneLayout: DEFAULT_PHONE_LAYOUT,
   tabletLayout: DEFAULT_TABLET_LAYOUT,
@@ -265,6 +284,7 @@ if (process.env.NODE_ENV !== "production") {
     ];
     Layout.propTypes = {
       id: PropTypes.string,
+      appBar: PropTypes.node,
       appBarTheme: PropTypes.oneOf([
         "primary",
         "secondary",
@@ -277,13 +297,18 @@ if (process.env.NODE_ENV !== "production") {
       appBarChildren: PropTypes.node,
       navIcon: PropTypes.node,
       navIconLabel: PropTypes.string,
-      appBarRenderer: PropTypes.func,
+      navIconLabelledBy: PropTypes.string,
+      hideNavIcon: PropTypes.node,
+      hideNavLabel: PropTypes.string,
+      hideNavLabelledBy: PropTypes.string,
       appBarRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
       appBarStyle: PropTypes.object,
       appBarClassName: PropTypes.string,
 
-      navLabel: PropTypes.string,
-      navLabelledBy: PropTypes.string,
+      navStyle: PropTypes.object,
+      navClassName: PropTypes.string,
+      navTreeLabel: PropTypes.string,
+      navTreeLabelledBy: PropTypes.string,
       sheetLabel: PropTypes.string,
       sheetLabelledBy: PropTypes.string,
 

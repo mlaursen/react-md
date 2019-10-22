@@ -41,6 +41,9 @@
   @include rmd-theme(background-color, background);
   @include rmd-theme(color, text-primary-on-background);
   @include rmd-utils-hide-focus-outline;
+  @if mixin-exists(rmd-app-bar-theme-update-var) {
+    @include rmd-app-bar-theme-update-var(color, rmd-theme-var(text-primary-on-background));
+  }
 
   display: flex;
   flex-direction: column;

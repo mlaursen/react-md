@@ -3,21 +3,21 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { Sheet } from "@react-md/sheet";
 import { Tree } from "@react-md/tree";
-import { RequireAtLeastOne, bem } from "@react-md/utils";
+import { bem, RequireAtLeastOne } from "@react-md/utils";
 
+import LayoutNavigationHeader from "./LayoutNavigationHeader";
 import { LayoutNavigationProps } from "./types";
+import { isInlineLayout } from "./useLayout";
+import useLayoutNavigationContext from "./useLayoutNavigationContext";
 
 interface FullLayoutNavigationProps extends LayoutNavigationProps {
-  offset: boolean;
   layoutId: string;
-  visible: boolean;
-  hideNav: () => void;
-  isPersistent: boolean;
+  fixedAppBar: boolean;
 }
 
 type StrictProps = RequireAtLeastOne<
   FullLayoutNavigationProps,
-  "navLabel" | "navLabelledBy"
+  "navTreeLabel" | "navTreeLabelledBy"
 > &
   RequireAtLeastOne<
     FullLayoutNavigationProps,
@@ -30,43 +30,85 @@ const block = bem("rmd-layout-nav");
  * @private
  */
 const LayoutNavigation: FC<StrictProps> = ({
-  offset,
   layoutId,
+  fixedAppBar,
   navItems,
-  visible,
-  hideNav,
-  isPersistent,
-  navLabel,
-  navLabelledBy,
+  navStyle,
+  navClassName,
+  navTreeLabel,
+  navTreeLabelledBy,
+  hideNavIcon,
+  hideNavLabel,
+  hideNavLabelledBy,
   sheetLabel,
   sheetLabelledBy,
   sheetStyle,
   sheetClassName,
+  navHeader: propNavHeader,
+  navHeaderTitle,
+  navHeaderStyle,
+  navHeaderClassName,
+  navFooter,
   ...props
 }) => {
+  const {
+    hideNav,
+    layout,
+    isFullHeight,
+    isPersistent,
+    isNavVisible,
+  } = useLayoutNavigationContext();
   const tree = (
     <Tree
       {...props}
       id={`${layoutId}-nav-tree`}
       data={navItems}
-      aria-label={navLabel}
-      aria-labelledby={navLabelledBy}
+      aria-label={navTreeLabel}
+      aria-labelledby={navTreeLabelledBy}
     />
   );
+
+  let navHeader = propNavHeader;
+  if (typeof navHeader === "undefined") {
+    navHeader = (
+      <LayoutNavigationHeader
+        style={navHeaderStyle}
+        className={navHeaderClassName}
+        layoutId={layoutId}
+        hideNavIcon={hideNavIcon}
+        hideNavLabel={hideNavLabel}
+        hideNavLabelledBy={hideNavLabelledBy}
+      >
+        {navHeaderTitle}
+      </LayoutNavigationHeader>
+    );
+  }
+
+  const isInline = isInlineLayout(layout);
 
   return (
     <Sheet
       id={`${layoutId}-nav-container`}
       aria-label={sheetLabel as string}
       aria-labelledby={sheetLabelledBy}
-      role={isPersistent ? "none" : "dialog"}
+      role={isInline ? "none" : "dialog"}
       style={sheetStyle}
-      className={cn(block({ offset }), sheetClassName)}
-      visible={visible}
+      className={cn(
+        block({ offset: fixedAppBar && isPersistent && !isFullHeight }),
+        sheetClassName
+      )}
+      visible={isNavVisible}
       onRequestClose={hideNav}
-      component={isPersistent ? "nav" : "div"}
+      component={isInline ? "nav" : "div"}
     >
-      {isPersistent ? tree : <nav>{tree}</nav>}
+      {navHeader}
+      {isPersistent && tree}
+      {!isPersistent && (
+        <nav style={navStyle} className={navClassName}>
+          {tree}
+        </nav>
+      )}
+      {navFooter}
     </Sheet>
   );
 };

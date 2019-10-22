@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/divider/dist/mixins';
 @import '~@react-md/form/dist/mixins';
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/list/dist/mixins';
@@ -40,6 +41,10 @@
 
   .rmd-layout-nav {
     @include rmd-layout-app-bar-offset;
+  }
+
+  .rmd-layout-nav-header {
+    @include rmd-divider-border(bottom);
   }
 
   .rmd-layout-main {
