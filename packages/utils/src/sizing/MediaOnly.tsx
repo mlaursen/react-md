@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
 
-import { useAppSizeContext } from "./AppSize";
+import useAppSize from "./useAppSize";
 
 export interface MediaOnlyProps {
   /**
@@ -24,7 +24,7 @@ type WithDefaultProps = MediaOnlyProps & DefaultProps;
  */
 export const MobileOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
-  const { isPhone, isTablet } = useAppSizeContext();
+  const { isPhone, isTablet } = useAppSize();
   if (isPhone || isTablet) {
     return children;
   }
@@ -38,7 +38,7 @@ export const MobileOnly: FC<MediaOnlyProps> = props => {
  */
 export const PhoneOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
-  const { isPhone } = useAppSizeContext();
+  const { isPhone } = useAppSize();
   if (isPhone) {
     return children;
   }
@@ -52,7 +52,7 @@ export const PhoneOnly: FC<MediaOnlyProps> = props => {
  */
 export const TabletOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
-  const { isTablet } = useAppSizeContext();
+  const { isTablet } = useAppSize();
   if (isTablet) {
     return children;
   }
@@ -66,7 +66,7 @@ export const TabletOnly: FC<MediaOnlyProps> = props => {
  */
 export const DesktopOnly: FC<MediaOnlyProps> = props => {
   const { children, fallback } = props as WithDefaultProps;
-  const { isDesktop } = useAppSizeContext();
+  const { isDesktop } = useAppSize();
   if (isDesktop) {
     return children;
   }

@@ -12,9 +12,7 @@ import {
   MenuRenderer,
 } from "@react-md/menu";
 import { Sheet, SheetProps } from "@react-md/sheet";
-import { LabelRequiredForA11y } from "@react-md/utils";
-
-import useAppSizeContext from "components/Layout/useAppSizeContext";
+import { LabelRequiredForA11y, useAppSize } from "@react-md/utils";
 
 import "./MobileActionSheet.scss";
 
@@ -67,12 +65,7 @@ const renderSheet: MenuRenderer = ({
 }) => <MenuSheet {...props} />;
 
 const MobileActionSheet: FC = () => {
-  const {
-    isTablet,
-    isLandscape,
-    isDesktop,
-    isLargeDesktop,
-  } = useAppSizeContext();
+  const { isTablet, isLandscape, isDesktop, isLargeDesktop } = useAppSize();
   const sheet = !isDesktop && !isLargeDesktop && !(isTablet && isLandscape);
   return (
     <DropdownMenu

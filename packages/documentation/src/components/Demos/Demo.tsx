@@ -2,7 +2,7 @@ import React, { FC, Fragment, ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
-import { bem, useToggle } from "@react-md/utils";
+import { bem, useAppSize, useToggle } from "@react-md/utils";
 
 import { GITHUB_DEMO_URL } from "constants/index";
 import getSandbox from "utils/getSandbox";
@@ -10,7 +10,6 @@ import { toTitle } from "utils/toTitle";
 
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 import Heading from "components/Heading";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { Markdown } from "components/Markdown";
 import { ClosePhone } from "components/Phone";
 
@@ -95,7 +94,7 @@ const Demo: FC<DemoProps> = props => {
     fileName = `${fileName}.tsx`;
   }
 
-  const { isPhone, isTablet } = useAppSizeContext();
+  const { isPhone, isTablet } = useAppSize();
   let dialogDisabled = !fullPage;
   if (phoneFullPage) {
     dialogDisabled = !isPhone;

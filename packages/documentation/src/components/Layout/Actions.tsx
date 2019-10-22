@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { useAppSizeContext } from "@react-md/utils";
+import { useAppSize } from "@react-md/utils";
 
 import ToggleTheme from "./ToggleTheme";
 import ToggleRTL from "./ToggleRTL";
@@ -7,7 +7,7 @@ import ActionMenu from "./ActionMenu";
 import GithubLink from "./GithubLink";
 
 const Actions: FC = () => {
-  const { isPhone } = useAppSizeContext();
+  const { isPhone } = useAppSize();
   if (isPhone) {
     return <ActionMenu />;
   }

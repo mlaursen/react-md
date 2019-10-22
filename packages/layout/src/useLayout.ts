@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { AppSize, useAppSizeContext } from "@react-md/utils";
+import { AppSize, useAppSize } from "@react-md/utils";
 
 import {
   LayoutConfiguration,
@@ -110,7 +110,7 @@ export default function useLayout({
   desktopLayout,
   largeDesktopLayout,
 }: LayoutConfiguration): LayoutNavigationContext {
-  const appSize = useAppSizeContext();
+  const appSize = useAppSize();
   const layout = getLayout({
     appSize,
     phoneLayout,

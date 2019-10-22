@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { TextContainer, Text } from \"@react-md/typography\";\nimport { AppSizeListener, useAppSizeContext } from \"@react-md/utils\";\n\nimport CodeBlock from \"components/Code/CodeBlock\";\n\nconst CurrentSize: FC = () => {\n  const context = useAppSizeContext();\n  return (\n    <TextContainer>\n      <Text type=\"headline-6\">The current app size is:</Text>\n      <CodeBlock language=\"json\">{JSON.stringify(context, null, 2)}</CodeBlock>\n    </TextContainer>\n  );\n};\n\nconst Demo: FC = () => (\n  <AppSizeListener>\n    <CurrentSize />\n  </AppSizeListener>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { TextContainer, Text } from \"@react-md/typography\";\nimport { AppSizeListener, useAppSize } from \"@react-md/utils\";\n\nimport CodeBlock from \"components/Code/CodeBlock\";\n\nconst CurrentSize: FC = () => {\n  const context = useAppSize();\n  return (\n    <TextContainer>\n      <Text type=\"headline-6\">The current app size is:</Text>\n      <CodeBlock language=\"json\">{JSON.stringify(context, null, 2)}</CodeBlock>\n    </TextContainer>\n  );\n};\n\nconst Demo: FC = () => (\n  <AppSizeListener>\n    <CurrentSize />\n  </AppSizeListener>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Code/Code.tsx": {

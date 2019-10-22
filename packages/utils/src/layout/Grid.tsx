@@ -1,7 +1,7 @@
 import React, { FC, forwardRef, HTMLAttributes, Children } from "react";
 import cn from "classnames";
 
-import { useAppSizeContext } from "../sizing/AppSize";
+import useAppSize from "../sizing/useAppSize";
 import { WithForwardedRef } from "../types";
 import GridCell from "./GridCell";
 
@@ -127,7 +127,7 @@ const Grid: FC<GridProps & WithRef> = ({
   minCellWidth,
   ...props
 }) => {
-  const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSizeContext();
+  const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
   const mergedStyle: CSSProperties = {
     padding,

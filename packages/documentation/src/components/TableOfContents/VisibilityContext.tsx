@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { useAppSizeContext, useToggle } from "@react-md/utils";
+import { useAppSize, useToggle } from "@react-md/utils";
 
 interface TOCVisibility {
   visible: boolean;
@@ -33,7 +33,7 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
   children,
   pathname,
 }) => {
-  const { isLargeDesktop } = useAppSizeContext();
+  const { isLargeDesktop } = useAppSize();
   const [visible, show, hide, toggle] = useToggle(isLargeDesktop);
 
   useEffect(() => {

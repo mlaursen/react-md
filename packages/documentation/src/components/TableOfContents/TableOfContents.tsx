@@ -1,9 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/utils";
-
-import useAppSizeContext from "components/Layout/useAppSizeContext";
+import { bem, useAppSize } from "@react-md/utils";
 
 import List from "./List";
 import Toggle from "./Toggle";
@@ -25,7 +23,7 @@ const CLASSNAMES = {
 };
 
 const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
-  const { isPhone, isLargeDesktop } = useAppSizeContext();
+  const { isPhone, isLargeDesktop } = useAppSize();
   const { visible, rendered } = useTOCVisibility();
   const { hide, toggle } = useTOCActions();
 

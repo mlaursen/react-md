@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
-import { bem } from "@react-md/utils";
-
-import useAppSizeContext from "components/Layout/useAppSizeContext";
+import { bem, useAppSize } from "@react-md/utils";
 
 import { usePhoneContext } from "./context";
 import StatusBar from "./StatusBar";
@@ -12,7 +10,7 @@ const block = bem("phone");
 
 const PhoneAppBar: FC<AppBarProps> = ({ className, children, ...props }) => {
   const { id } = usePhoneContext();
-  const { isPhone } = useAppSizeContext();
+  const { isPhone } = useAppSize();
 
   return (
     <AppBar

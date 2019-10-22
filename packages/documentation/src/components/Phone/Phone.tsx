@@ -4,12 +4,11 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
-import { bem, useToggle } from "@react-md/utils";
+import { bem, useAppSize, useToggle } from "@react-md/utils";
 
 import ConditionalFullPageDialog, {
   ConditionalFullPageDialogProps,
 } from "components/ConditionalFullPageDialog";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 
 import "./Phone.scss";
 import { PhoneContext } from "./context";
@@ -82,7 +81,7 @@ const Phone: FC<PhoneProps> = props => {
     disableContent,
     onPhoneClose,
   } = props as WithDefaultProps;
-  const { isPhone } = useAppSizeContext();
+  const { isPhone } = useAppSize();
   const [visible, enable, disable] = useToggle(false);
   const closePhone = useCallback(() => {
     disable();

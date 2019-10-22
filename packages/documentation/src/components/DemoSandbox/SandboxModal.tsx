@@ -2,9 +2,8 @@ import React, { FC, useEffect, useRef } from "react";
 import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
-import { bem, useToggle } from "@react-md/utils";
+import { bem, useAppSize, useToggle } from "@react-md/utils";
 
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 import { toTitle } from "utils/toTitle";
 
 import "./SandboxModal.scss";
@@ -40,7 +39,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
     rendered.current = true;
   }, []);
 
-  const { isPhone, isTablet, isDesktop, isLandscape } = useAppSizeContext();
+  const { isPhone, isTablet, isDesktop, isLandscape } = useAppSize();
   const isLandscapeTablet = isLandscape && isTablet;
   const inline = isDesktop || isLandscapeTablet;
   const [isTreeVisible, showTree, hideTree, , setTreeVisible] = useToggle(

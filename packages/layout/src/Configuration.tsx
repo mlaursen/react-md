@@ -24,7 +24,7 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   /**
    * An optional function to call when the app gets resized based on media queries.
    * This is useful if you want to store the current app state in redux if you can't
-   * always access this state with the `useAppSizeContext` hook.
+   * always access this state with the `useAppSize` hook.
    */
   onAppResize?: AppSizeListenerProps["onChange"];
 

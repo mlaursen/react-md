@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
 
-import { AppSizeListener, useAppSizeContext } from "../AppSize";
+import useAppSize from "../useAppSize";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../constants";
 
 const onchange = jest.fn();
@@ -31,11 +31,11 @@ beforeEach(() => {
 });
 afterEach(cleanup);
 
-describe("useAppSizeContext", () => {
+describe("useAppSize", () => {
   it("should throw an error when not used as a child of the AppSizeListener", () => {
     // can't use renderHook for this since the error will be caught in the ErrorBoundary
     const Test = () => {
-      useAppSizeContext();
+      useAppSize();
       return null;
     };
 
@@ -46,49 +46,5 @@ describe("useAppSizeContext", () => {
     expect(() => render(<Test />)).toThrowError(
       "Attempted to use the current `AppSizeContext` without mounting the `AppSizeListener` component beforehand."
     );
-  });
-});
-
-describe("AppSizeListener", () => {
-  it("should render without crashing", () => {
-    expect(() =>
-      render(<AppSizeListener>Hello</AppSizeListener>)
-    ).not.toThrow();
-  });
-
-  it("should only call the onChange prop after mount if the defaultSize does not equal the mounted size", () => {
-    const onChange = jest.fn();
-    render(<AppSizeListener onChange={onChange}>Hello</AppSizeListener>);
-
-    expect(onChange).not.toBeCalled();
-
-    const defaultSize = {
-      isPhone: true,
-      isTablet: false,
-      isDesktop: false,
-      isLargeDesktop: false,
-      isLandscape: true,
-    };
-    render(
-      <AppSizeListener defaultSize={defaultSize} onChange={onChange}>
-        Hello
-      </AppSizeListener>
-    );
-
-    expect(onChange).toBeCalledWith(
-      {
-        isPhone: false,
-        isTablet: false,
-        isDesktop: true,
-        isLargeDesktop: false,
-        isLandscape: true,
-      },
-      defaultSize
-    );
-  });
-
-  it("should call the onChange prop whenever the appSize changes", () => {
-    // not sure how to test this one nicely atm
-    expect(true).toBe(true);
   });
 });

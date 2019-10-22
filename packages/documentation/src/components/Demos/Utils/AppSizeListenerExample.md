@@ -1,7 +1,7 @@
 The `AppSizeListener` component is used to determine the current application
 size based on media queries. You normally want to add this component near the
-root of your app and then use the `useAppSizeContext` hook to determine the
-current app size within child components.
+root of your app and then use the `useAppSize` hook to determine the current app
+size within child components.
 
 > If you are using the #layout package, this will be handled for you
 > automatically.

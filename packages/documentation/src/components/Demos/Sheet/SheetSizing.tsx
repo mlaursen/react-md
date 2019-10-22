@@ -11,10 +11,9 @@ import {
   SheetPosition,
   SheetVerticalSize,
 } from "@react-md/sheet";
-import { GridList, useToggle } from "@react-md/utils";
+import { GridList, useAppSize, useToggle } from "@react-md/utils";
 
 import Checkbox from "components/Checkbox";
-import useAppSizeContext from "components/Layout/useAppSizeContext";
 import ConditionalPhone from "components/Phone/ConditionalPhone";
 
 const positions: SheetPosition[] = ["top", "right", "bottom", "left"];
@@ -38,7 +37,7 @@ const SheetSizing: FC = () => {
 
   const isHorizontal = position === "left" || position === "right";
   const [emulate, setEmulate] = useState(false);
-  const { isDesktop } = useAppSizeContext();
+  const { isDesktop } = useAppSize();
 
   if (emulate && !isDesktop) {
     setEmulate(false);

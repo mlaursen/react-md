@@ -18,7 +18,6 @@ import {
   VARIABLES_SCSS_FILE,
 } from "./constants";
 import { isSvg } from "./matchers";
-import { getFileSource } from "./formatters";
 
 function toUrlId(s: string): string {
   return s
@@ -226,10 +225,6 @@ export default async function generate({
           path.join(documentationRoot, filePath),
           "utf8"
         );
-      }
-
-      if (/\.tsx?$/.test(filePath)) {
-        content = getFileSource(content);
       }
 
       if (!isSvg(filePath)) {

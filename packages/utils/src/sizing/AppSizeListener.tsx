@@ -1,12 +1,4 @@
-import React, {
-  createContext,
-  FC,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import React, { FC, ReactNode, useEffect, useMemo, useRef } from "react";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
@@ -16,32 +8,12 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
 } from "./constants";
 
-import useAppSize, {
+import { AppSizeContext } from "./useAppSize";
+import useAppSizeMedia, {
   AppSize,
   AppSizeOptions,
   DEFAULT_APP_SIZE,
-} from "./useAppSize";
-
-export const AppSizeContext = createContext<
-  AppSize & { __initialized: boolean }
->({
-  ...DEFAULT_APP_SIZE,
-  __initialized: false,
-});
-
-/**
- * A helper hook to get the current app size context.
- */
-export function useAppSizeContext(): AppSize {
-  const { __initialized, ...context } = useContext(AppSizeContext);
-  if (!__initialized) {
-    throw new Error(
-      "Attempted to use the current `AppSizeContext` without mounting the `AppSizeListener` component beforehand."
-    );
-  }
-
-  return context;
-}
+} from "./useAppSizeMedia";
 
 export interface AppSizeListenerProps extends AppSizeOptions {
   children: ReactNode;
@@ -72,7 +44,7 @@ type WithDefaultProps = AppSizeListenerProps & DefaultProps;
  * This component should be mounted near the top of your app as it will keep track
  * of the current app size based on the provided breakpoint widths.
  */
-export const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
+const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
   const {
     children,
     onChange,
@@ -84,7 +56,7 @@ export const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
     desktopLargeMinWidth,
   } = providedProps as WithDefaultProps;
 
-  const appSize = useAppSize({
+  const appSize = useAppSizeMedia({
     phoneMaxWidth,
     tabletMaxWidth,
     tabletMinWidth,
@@ -107,6 +79,7 @@ export const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
     ) {
       onChange(appSize, defaultSize);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -170,3 +143,5 @@ if (process.env.NODE_ENV !== "production") {
     };
   }
 }
+
+export default AppSizeListener;

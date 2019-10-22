@@ -9,7 +9,7 @@ import React, {
 import cn from "classnames";
 
 import bem from "../css/bem";
-import { useAppSizeContext } from "../sizing/AppSize";
+import useAppSize from "../sizing/useAppSize";
 import { WithForwardedRef } from "../types";
 
 export interface GridCSSProperties {
@@ -106,7 +106,7 @@ const GridCell: FC<GridCellProps & WithRef> = ({
   largeDesktop,
   ...props
 }) => {
-  const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSizeContext();
+  const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
   let colStart = propColStart;
   let colEnd = propColEnd;
