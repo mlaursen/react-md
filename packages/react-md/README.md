@@ -1,9 +1,14 @@
 # react-md
 
-This package is kind of deprecated now as it is recommended to install each
-scoped package within react-md instead. This package can be used for convenience
-to import everything from a single namespace if you **really** trust dead code
-elimination in your bundler.
+This is a convenience package that can be used to have a single entry point for
+all the functionality within `react-md`. My personal preference is still to
+install all the individual packages by themselves just so there is a bit of
+separation of "concerns" and verbose about specific components and
+functionality, but it is a bit annoying to have to install and update all these
+packages individually.
+
+Please see the main [documentation site](https://react-md.dev) for more
+information, configuration, live demos, and documentation.
 
 ## Installation
 
@@ -11,16 +16,69 @@ elimination in your bundler.
 $ npm install --save react-md
 ```
 
-## Usage
+This _really_ is the same as:
 
-```tsx
-import { Button, Text } from "react-md";
-
-// use as normal
+```sh
+$ npm install --save \
+    @react-md/alert \
+    @react-md/app-bar \
+    @react-md/autocomplete \
+    @react-md/avatar \
+    @react-md/badge \
+    @react-md/button \
+    @react-md/card \
+    @react-md/chip \
+    @react-md/dialog \
+    @react-md/divider \
+    @react-md/elevation \
+    @react-md/form \
+    @react-md/icon \
+    @react-md/layout \
+    @react-md/link \
+    @react-md/list \
+    @react-md/material-icons \
+    @react-md/media \
+    @react-md/menu \
+    @react-md/overlay \
+    @react-md/portal \
+    @react-md/progress \
+    @react-md/sheet \
+    @react-md/states \
+    @react-md/table \
+    @react-md/theme \
+    @react-md/tooltip \
+    @react-md/transition \
+    @react-md/tree \
+    @react-md/typography \
+    @react-md/utils
 ```
+
+## Including Styles
+
+Unlike all the other individual packages, there is only a single scss import
+that contains all the variables, functions, and mixins from all the other
+packages:
 
 ```scss
 @import "~react-md/dist/react-md";
 
-@include react-md-everything;
+// creates all the default styles
+@include react-md-utils;
+```
+
+## Usage
+
+All the components, hooks, utils, and types will be available from the root
+`react-md` namespace:
+
+```ts
+import { Button, Text, Layout, Configuration } from "react-md";
+```
+
+If you installed the packages individually, it would be the same as:
+
+```ts
+import { Button } from "@react-md/button";
+import { Layout, Configuration } from "@react-md/layout";
+import { Text } from "@react-md/typography";
 ```

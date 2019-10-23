@@ -10,6 +10,7 @@ export * from "@react-md/dialog";
 export * from "@react-md/divider";
 export * from "@react-md/form";
 export * from "@react-md/icon";
+export * from "@react-md/layout";
 export * from "@react-md/link";
 export * from "@react-md/list";
 export * from "@react-md/media";
