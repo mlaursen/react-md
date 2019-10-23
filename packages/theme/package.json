@@ -1,6 +1,6 @@
 {
   "name": "@react-md/theme",
-  "version": "2.0.0-alpha.9",
+  "version": "2.0.0-alpha.10",
   "description": "The base package for including a theme for react-md. This is required by most other packages.",
   "scripts": {
     "build": "dev-utils build",
@@ -32,7 +32,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/utils": "^2.0.0-alpha.9"
+    "@react-md/utils": "^2.0.0-alpha.10"
   },
   "peerDependencies": {
     "react": ">= 16.8"

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/autocomplete",
-  "version": "2.0.0-alpha.9",
+  "version": "2.0.0-alpha.10",
   "description": "",
   "scripts": {
     "build": "dev-utils build",
@@ -38,14 +38,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/form": "^2.0.0-alpha.9",
-    "@react-md/list": "^2.0.0-alpha.9",
-    "@react-md/portal": "^2.0.0-alpha.9",
-    "@react-md/states": "^2.0.0-alpha.9",
-    "@react-md/theme": "^2.0.0-alpha.9",
-    "@react-md/transition": "^2.0.0-alpha.9",
-    "@react-md/typography": "^2.0.0-alpha.9",
-    "@react-md/utils": "^2.0.0-alpha.9",
+    "@react-md/form": "^2.0.0-alpha.10",
+    "@react-md/list": "^2.0.0-alpha.10",
+    "@react-md/portal": "^2.0.0-alpha.10",
+    "@react-md/states": "^2.0.0-alpha.10",
+    "@react-md/theme": "^2.0.0-alpha.10",
+    "@react-md/transition": "^2.0.0-alpha.10",
+    "@react-md/typography": "^2.0.0-alpha.10",
+    "@react-md/utils": "^2.0.0-alpha.10",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
