@@ -38,8 +38,6 @@ const Layout: FC<LayoutProps> = ({
       hideNavIcon={<KeyboardArrowLeftSVGIcon />}
       expanderIcon={<KeyboardArrowDownSVGIcon />}
       appBarChildren={<Actions />}
-      tabletLayout="toggleable"
-      landscapeTabletLayout="toggleable"
     >
       <TOCVisibilityProvider pathname={pathname}>
         <TableOfContents pathname={pathname} />

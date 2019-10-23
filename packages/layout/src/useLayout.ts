@@ -9,7 +9,7 @@ import {
 
 export const DEFAULT_PHONE_LAYOUT = "temporary";
 export const DEFAULT_TABLET_LAYOUT = "toggleable";
-export const DEFAULT_LANDSCAPE_TABLET_LAYOUT = "full-height";
+export const DEFAULT_LANDSCAPE_TABLET_LAYOUT = "toggleable";
 export const DEFAULT_DESKTOP_LAYOUT = "full-height";
 
 interface Options extends LayoutConfiguration {
