@@ -29,18 +29,26 @@ import {
   time,
 } from "./utils";
 
+let loggedOnce = false;
+
 /**
  * Compiles the current package's code by including the `src/styles.scss` file. This can be run for
  * production or development. The compiled styles will also be processed by postcss with the
  * different plugins.
  */
-async function compile(options: CompileOptions): Promise<void> {
+async function compile(
+  options: CompileOptions,
+  isMultiCompile: boolean = false
+): Promise<void> {
   const { production, data } = options;
   const fileName = `${options.fileName}${production ? ".min" : ""}.css`;
   const srcFile = path.join(scssDist, stylesScss);
   const outFile = path.join(cssDist, fileName);
   const sourceMapFile = `${outFile}.map`;
-  log.info("Compiling the main css bundle.");
+  if (!isMultiCompile || !loggedOnce) {
+    loggedOnce = true;
+    log.info("Compiling the main css bundle.");
+  }
 
   await fs.ensureDir(cssDist);
   if (!production) {
@@ -206,7 +214,7 @@ $rmd-theme-primary: $rmd-${primary.replace("_", "-")}-500;
 $rmd-theme-secondary: $rmd-${secondary.replace("_", "-")}-a-${accent};
 $rmd-theme-light: ${type === "light"};
 
-@import 'src/styles';
+@import 'dist/scss/styles';
 `,
   };
 
@@ -241,7 +249,13 @@ export async function generateThemeStyles(): Promise<void> {
     () =>
       Promise.all(
         themes.map(theme =>
-          compile({ production: true, ...createThemeOptions(theme) })
+          compile(
+            {
+              ...createThemeOptions(theme),
+              production: true,
+            },
+            true
+          )
         )
       ),
     "generating themes"
