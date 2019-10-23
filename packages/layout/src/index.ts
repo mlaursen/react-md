@@ -7,8 +7,6 @@ export {
   default as defaultNavigationItemRenderer,
 } from "./defaultNavigationItemRenderer";
 export { default as useLayoutNavigation } from "./useLayoutNavigation";
-export {
-  default as useLayoutNavigationContext,
-} from "./useLayoutNavigationContext";
+export { default as useNavigationVisibility } from "./useNavigationVisibility";
 
 export * from "./types";

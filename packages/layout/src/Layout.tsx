@@ -19,7 +19,7 @@ import useLayout, {
   DEFAULT_TABLET_LAYOUT,
   isToggleableLayout,
 } from "./useLayout";
-import { Provider } from "./useLayoutNavigationContext";
+import { Provider } from "./useNavigationVisibility";
 
 export interface LayoutProps
   extends LayoutConfiguration,
@@ -110,6 +110,7 @@ type DefaultProps = Required<
     | "labelKey"
     | "valueKey"
     | "mainComponent"
+    | "disableTemporaryAutoclose"
   >
 >;
 type WithDefaultProps = LayoutProps & DefaultProps;
@@ -261,6 +262,7 @@ const defaultProps: DefaultProps = {
   mainComponent: "main",
   labelKey: "children",
   valueKey: "children",
+  disableTemporaryAutoclose: false,
 };
 
 Layout.defaultProps = defaultProps;
@@ -326,6 +328,8 @@ if (process.env.NODE_ENV !== "production") {
       labelKey: PropTypes.string,
       valueKey: PropTypes.string,
       itemRenderer: PropTypes.func,
+
+      disableTemporaryAutoclose: PropTypes.bool,
     };
   }
 }

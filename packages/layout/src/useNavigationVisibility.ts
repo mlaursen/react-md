@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { LayoutNavigationContext } from "./types";
+import { LayoutNavigationVisibility } from "./types";
 
 /**
  * @private
@@ -14,7 +14,7 @@ const noop = (name: string) => (): void => {
   }
 };
 
-const context = createContext<LayoutNavigationContext>({
+const context = createContext<LayoutNavigationVisibility>({
   // "mobile" first. ha, ha, ha
   layout: "temporary",
   showNav: noop("showNav"),
@@ -37,6 +37,6 @@ export { Provider };
  * @return the context that provides the handlers, visibility, and resolved persistance
  * of the main navigation
  */
-export default function useLayoutNavigationContext(): LayoutNavigationContext {
+export default function useNavigationVisibility(): LayoutNavigationVisibility {
   return useContext(context);
 }

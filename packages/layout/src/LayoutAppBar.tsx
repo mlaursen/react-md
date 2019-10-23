@@ -6,7 +6,7 @@ import { bem } from "@react-md/utils";
 
 import { LayoutAppBarNavProps } from "./types";
 import { isToggleableLayout } from "./useLayout";
-import useLayoutNavigationContext from "./useLayoutNavigationContext";
+import useNavigationVisibility from "./useNavigationVisibility";
 
 /**
  * @private
@@ -55,7 +55,7 @@ const LayoutAppBar: FC<LayoutAppBarProps> = ({
     isNavVisible,
     isFullHeight,
     isPersistent,
-  } = useLayoutNavigationContext();
+  } = useNavigationVisibility();
 
   const isToggleable = isToggleableLayout(layout);
   const isToggleableVisible = isToggleable && isNavVisible;

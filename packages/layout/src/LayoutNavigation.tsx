@@ -8,7 +8,8 @@ import { bem, RequireAtLeastOne } from "@react-md/utils";
 import LayoutNavigationHeader from "./LayoutNavigationHeader";
 import { LayoutNavigationProps } from "./types";
 import { isInlineLayout } from "./useLayout";
-import useLayoutNavigationContext from "./useLayoutNavigationContext";
+import useNavigationVisibility from "./useNavigationVisibility";
+import useTemporaryNavigation from "./useTemporaryNavigation";
 
 interface FullLayoutNavigationProps extends LayoutNavigationProps {
   layoutId: string;
@@ -49,15 +50,18 @@ const LayoutNavigation: FC<StrictProps> = ({
   navHeaderStyle,
   navHeaderClassName,
   navFooter,
+  disableTemporaryAutoclose,
   ...props
 }) => {
+  const { selectedIds } = props;
+  useTemporaryNavigation(selectedIds, disableTemporaryAutoclose);
   const {
     hideNav,
     layout,
     isFullHeight,
     isPersistent,
     isNavVisible,
-  } = useLayoutNavigationContext();
+  } = useNavigationVisibility();
   const tree = (
     <Tree
       {...props}
@@ -85,7 +89,6 @@ const LayoutNavigation: FC<StrictProps> = ({
   }
 
   const isInline = isInlineLayout(layout);
-
   return (
     <Sheet
       id={`${layoutId}-nav-container`}

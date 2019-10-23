@@ -3,7 +3,7 @@ import { AppSize, useAppSize } from "@react-md/utils";
 
 import {
   LayoutConfiguration,
-  LayoutNavigationContext,
+  LayoutNavigationVisibility,
   SupportedWideLayout,
 } from "./types";
 
@@ -109,7 +109,7 @@ export default function useLayout({
   landscapeTabletLayout,
   desktopLayout,
   largeDesktopLayout,
-}: LayoutConfiguration): LayoutNavigationContext {
+}: LayoutConfiguration): LayoutNavigationVisibility {
   const appSize = useAppSize();
   const layout = getLayout({
     appSize,

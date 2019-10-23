@@ -6,7 +6,7 @@ import { bem } from "@react-md/utils";
 
 import { LayoutToggleableAppBarNavProps } from "./types";
 import { isFullHeightLayout, isToggleableLayout } from "./useLayout";
-import useLayoutNavigationContext from "./useLayoutNavigationContext";
+import useNavigationVisibility from "./useNavigationVisibility";
 
 interface LayoutNavigationHeaderProps extends LayoutToggleableAppBarNavProps {
   style?: CSSProperties;
@@ -26,7 +26,7 @@ const LayoutNavigationHeader: FC<LayoutNavigationHeaderProps> = ({
   hideNavLabelledBy,
   children,
 }) => {
-  const { hideNav, layout } = useLayoutNavigationContext();
+  const { hideNav, layout } = useNavigationVisibility();
   const isFullHeight = isFullHeightLayout(layout);
 
   // only want this header to show on the toggleable types

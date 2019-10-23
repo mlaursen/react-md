@@ -96,7 +96,7 @@ export interface LayoutConfiguration {
  * The exported context that allows you to control the visibility of the layout's
  * navigation visibility.
  */
-export interface LayoutNavigationContext {
+export interface LayoutNavigationVisibility {
   /**
    * A function to call that will show the main navigation sheet.
    */
@@ -424,4 +424,12 @@ export interface LayoutNavigationProps<
    * can always provided your own `sort` behavior though.
    */
   navItems: LayoutNavigationTree<T>;
+
+  /**
+   * Boolean if the temporary navigation type should no longer automatically close when the
+   * `selectedIds` updates to contain a new route when using the `useLayoutNavigation` hook.
+   * This makes it so when a user on mobile clicks a route within your app in the main navigation
+   * pane, it will automatically close if it was a link.
+   */
+  disableTemporaryAutoclose?: boolean;
 }
