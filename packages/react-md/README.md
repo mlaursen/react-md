@@ -82,3 +82,24 @@ import { Button } from "@react-md/button";
 import { Layout, Configuration } from "@react-md/layout";
 import { Text } from "@react-md/typography";
 ```
+
+## Library Size
+
+This is is the only package that actually generates "default" `.css` files for a
+few themes as well as a UMD build. If you are interested in this library's size,
+check out the `build` results:
+
+```sh
+$ yarn build --clean --umd --themes
+
+The gzipped file sizes are:
+- dist/css/react-md.indigo-pink-200-dark.min.css 65 B
+- dist/css/react-md.indigo-pink-200-light.min.css 66 B
+- dist/css/react-md.light_blue-deep_orange-200-light.min.css 74 B
+- dist/css/react-md.light_blue-deep_orange-700-dark.min.css 75 B
+- dist/css/react-md.purple-pink-200-dark.min.css 65 B
+- dist/css/react-md.purple-pink-200-light.min.css 66 B
+- dist/css/react-md.teal-pink-200-dark.min.css 63 B
+- dist/css/react-md.teal-pink-200-light.min.css 64 B
+- dist/umd/react-md.production.min.js 55 B
+```

@@ -1,26 +1,27 @@
-import fs from "fs-extra";
-import path from "path";
-import { promisify } from "util";
-import { execSync, ExecOptions } from "child_process";
-import nodeGlob from "glob";
-import now from "performance-now";
-import prettyMS from "pretty-ms";
-import gzipSize from "gzip-size";
+import { ExecOptions, execSync } from "child_process";
 import filesize from "filesize";
-import prettier from "prettier";
+import fs from "fs-extra";
+import nodeGlob from "glob";
+import gzipSize from "gzip-size";
 import log from "loglevel";
+import path from "path";
+import now from "performance-now";
+import prettier from "prettier";
+import prettyMS from "pretty-ms";
+import { promisify } from "util";
 
+import { GZIP, UMD } from "./flags";
 import {
-  packageJson,
-  types,
   dist,
-  src,
   es,
   lib,
+  packageJson,
   packagesRoot,
-  tsConfigESModule,
+  src,
   tsConfigCommonJS,
+  tsConfigESModule,
   tsConfigVariables,
+  types,
 } from "./paths";
 
 const readDir = promisify(fs.readdir);
@@ -342,7 +343,10 @@ export function printSizes(
     return;
   }
 
-  const logger = process.argv.includes("--gzip-size") ? log.info : log.debug;
+  const logger =
+    process.argv.includes(GZIP) || process.argv.includes(UMD)
+      ? log.info
+      : log.debug;
 
   logger(message);
   logger(list(filePaths.map(fp => getFileSize(fp))));

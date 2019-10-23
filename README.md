@@ -14,6 +14,8 @@ Create an accessible React application with the
   to implement a different theme for your React application
 - [Full documentation](https://react-md.dev) - All the remaining documentation
   along with every single guide, API Reference, and examples
+- [Library Size](#library-size) - The UMD bundle size for the entire `react-md`
+  library and sizes for some of the pre-built css files.
 
 ### Highlights/Features
 
@@ -134,27 +136,28 @@ components from react-md. It is generally recommended to update your base
 -  );
 -}
 +import {
-+  AppSizeListener,
-+  NestedDialogContextProvider,
-+  InteractionModeListener,
-+  StatesConfig,
++  Configuration,
++  Layout,
++  useLayoutNavigation,
 +  Text,
 +  Button,
 +} from 'react-md';
 +import './App.scss';
 +
++// see @react-md/layout package for info on the main navigation
++const routes = {};
 +function App() {
 +  return (
-+    <AppSizeListener>
-+      <NestedDialogContextProvider>
-+        <InteractionModeListener>
-+          <StatesConfig>
-+            <Text type="headline-4">Hello, world!</Text>
-+            <Button theme="primary">Example button</Button>
-+          </StatesConfig>
-+        </InteractionModeListener>
-+      </NestedDialogContextProvider>
-+    </AppSizeListener>
++    <Configuration>
++      <Layout
++        {...useLayoutNavigation(routes, pathname)}
++        appBarTitle="My App"
++        navHeaderTitle="My App"
++      >
++        <Text type="headline-4">Hello, world!</Text>
++        <Button theme="primary">Example button</Button>
++      </Layout>
++    </Configuration>
 +  );
 +}
 
@@ -163,6 +166,27 @@ export default App;
 
 More information can be found on the documentation site's page
 [about creating projects](https://react-md.dev/getting-started/installation)
+
+## Library Size
+
+The base `react-md` package (non-scoped) is the only package that also provides
+pre-built css themes and a UMD bundle. If you are interested in seeing what an
+estimated size for this library, check out the results below:
+
+```sh
+$ yarn workspace react-md build --clean --umd --themes
+
+The gzipped file sizes are:
+- dist/css/react-md.indigo-pink-200-dark.min.css 65 B
+- dist/css/react-md.indigo-pink-200-light.min.css 66 B
+- dist/css/react-md.light_blue-deep_orange-200-light.min.css 74 B
+- dist/css/react-md.light_blue-deep_orange-700-dark.min.css 75 B
+- dist/css/react-md.purple-pink-200-dark.min.css 65 B
+- dist/css/react-md.purple-pink-200-light.min.css 66 B
+- dist/css/react-md.teal-pink-200-dark.min.css 63 B
+- dist/css/react-md.teal-pink-200-light.min.css 64 B
+- dist/umd/react-md.production.min.js 55 B
+```
 
 ## Contributing
 

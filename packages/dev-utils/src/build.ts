@@ -14,6 +14,7 @@ export interface BuildConfig {
   updateOnly: boolean;
   umdOnly: boolean;
   stylesOnly: boolean;
+  themes: boolean;
   themesOnly: boolean;
   scriptsOnly: boolean;
   variablesOnly: boolean;
@@ -27,6 +28,7 @@ const DEFAULT_CONFIG: BuildConfig = {
   updateOnly: false,
   umdOnly: false,
   stylesOnly: false,
+  themes: false,
   themesOnly: false,
   scriptsOnly: false,
   variablesOnly: false,
@@ -40,6 +42,7 @@ async function runBuild({
   update,
   updateOnly,
   stylesOnly,
+  themes,
   themesOnly,
   scriptsOnly,
   variablesOnly,
@@ -48,9 +51,13 @@ async function runBuild({
     await time(runClean, "clean");
   }
 
-  if (themesOnly) {
+  if (themes || themesOnly) {
+    // styles are required for this to work.
+    await time(() => styles(css), "styles");
     await time(generateThemeStyles, "generate theme styles");
-    return;
+    if (themesOnly) {
+      return;
+    }
   }
 
   if (variablesOnly) {
@@ -66,7 +73,7 @@ async function runBuild({
     }
   }
 
-  if ((!umdOnly && !scriptsOnly) || stylesOnly) {
+  if (!themes && ((!umdOnly && !scriptsOnly) || stylesOnly)) {
     await time(() => styles(css), "styles");
   }
 
@@ -104,6 +111,7 @@ export default async function build(
       "updateOnly",
       "umdOnly",
       "stylesOnly",
+      "themes",
       "themesOnly",
       "variablesOnly",
     ]),

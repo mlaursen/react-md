@@ -28,6 +28,7 @@ import {
   printSizes,
   time,
 } from "./utils";
+import { UMD } from "./flags";
 
 let loggedOnce = false;
 
@@ -261,6 +262,8 @@ export async function generateThemeStyles(): Promise<void> {
     "generating themes"
   );
 
-  const themeFiles = await glob("dist/css/*.min.css");
-  printSizes(themeFiles);
+  if (!process.argv.includes(UMD)) {
+    const themeFiles = await glob("dist/css/*.min.css");
+    printSizes(themeFiles);
+  }
 }
