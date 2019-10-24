@@ -1,4 +1,12 @@
 import React, { FC, ReactNode } from "react";
+import { NestedDialogContextProvider } from "@react-md/dialog";
+import {
+  StatesConfigProps,
+  RIPPLE_TIMEOUT,
+  RIPPLE_CLASS_NAMES,
+  StatesConfig,
+} from "@react-md/states";
+import { TooltipHoverModeConfig } from "@react-md/tooltip";
 import {
   AppSizeListener,
   AppSizeListenerProps,
@@ -11,14 +19,6 @@ import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   InteractionModeListener,
 } from "@react-md/utils";
-import { NestedDialogContextProvider } from "@react-md/dialog";
-import {
-  StatesConfigProps,
-  RIPPLE_TIMEOUT,
-  RIPPLE_CLASS_NAMES,
-  StatesConfig,
-} from "@react-md/states";
-import { TooltipHoverModeConfig } from "@react-md/tooltip";
 
 export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   /**
