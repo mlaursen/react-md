@@ -2,11 +2,9 @@
 @import '~@react-md/utils/dist/mixins';
 
 .markdown {
-  &__p {
-    @include rmd-typography(body-1);
-    @include rmd-utils-desktop-media {
-      @include rmd-typography(body-2);
-    }
+  &__p,
+  &__list {
+    @include rmd-typography(subtitle-1);
   }
 }
 

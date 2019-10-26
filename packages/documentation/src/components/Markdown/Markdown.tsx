@@ -8,6 +8,8 @@ import React, {
   Fragment,
   useRef,
   MutableRefObject,
+  useCallback,
+  Ref,
 } from "react";
 import cn from "classnames";
 import Router from "next/router";
@@ -56,28 +58,44 @@ function useHTML(children: MarkdownChildren): DangerHTML {
 
 function useLinkUpdates({
   __html: html,
-}: DangerHTML): MutableRefObject<HTMLDivElement | null> {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-
-    const { origin } = window.location;
-    Array.from(
-      ref.current.querySelectorAll<HTMLAnchorElement>("a[href]")
-    ).forEach(link => {
-      if (link.href.startsWith(origin)) {
-        link.onclick = event => {
-          event.preventDefault();
-          const href = link.href.replace(origin, "");
-          Router.push(href);
-        };
+}: DangerHTML): (instance: HTMLDivElement | null) => void {
+  return useCallback(
+    (instance: HTMLDivElement | null) => {
+      if (!instance) {
+        return;
       }
-    });
-  }, [html]);
 
-  return ref;
+      const { origin } = window.location;
+      const links = Array.from(
+        instance.querySelectorAll<HTMLAnchorElement>("a[href]")
+      );
+
+      links.forEach(link => {
+        if (link.href.startsWith(origin)) {
+          link.onclick = event => {
+            event.preventDefault();
+            const href = link.href.replace(origin, "");
+
+            // convert the href into an as+href if it's a known guide
+            const [, guide] = href.match(/\/guides\/([a-z]+(-[a-z]+)*)$/) || [
+              "",
+              "",
+            ];
+
+            if (guide) {
+              Router.push(href.replace(guide, "[id]"), href);
+            } else {
+              Router.push(href);
+            }
+          };
+        }
+      });
+    },
+    // disable this rule because we want to force remaking the links
+    // if the html was updated
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [html]
+  );
 }
 
 export type ResolveMarkdown = () => Promise<string | { default: string }>;

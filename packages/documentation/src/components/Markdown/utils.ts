@@ -102,6 +102,11 @@ renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 
 type Transform = (markdown: string) => string;
 const joinedNames = PACKAGE_NAMES.join("|");
+const packagesList = `
+${PACKAGE_NAMES.map(name => `- [@react-md/${name}](/packages/${name})`).join(
+  "\n"
+)}
+`;
 const allNames = `${joinedNames}|react-md`;
 const whitespace = "(?=\r?\n| |[^/])";
 
@@ -115,17 +120,6 @@ const getVersion = (name: string): string => {
 };
 
 const transforms: Transform[] = [
-  // package-name@ -> package-name@version
-  md =>
-    md.replace(
-      new RegExp(`(${allNames})@`, "g"),
-      (_, lookup) => `${lookup}@${getVersion(lookup)}`
-    ),
-  // @package-name -> version
-  md =>
-    md.replace(new RegExp(`@(${allNames})${whitespace}`, "g"), (_, lookup) =>
-      getVersion(lookup)
-    ),
   // #package-name -> [@react-md/package-name](/packages/package-name)
   md =>
     md.replace(
@@ -138,18 +132,8 @@ const transforms: Transform[] = [
       new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
       "[$1 $2](/packages/$1/$2)"
     ),
-  // #including-styles -> [including styles](/getting-started/installation#including-styles)
-  md =>
-    md.replace(
-      /#including-styles(?![)-])/g,
-      "[including styles](/getting-started/installation#including-styles)"
-    ),
-  // #defining-a-theme -> [defining a theme](/packages/theme/installation#defining-a-theme)
-  md =>
-    md.replace(
-      /#defining-a-theme/g,
-      "[defining a theme](/packages/theme/installation#defining-a-theme)"
-    ),
+  // #packages -> markdown list for all react-md packages
+  md => md.replace(/#packages/g, packagesList),
   // create links to github issues/PRs with #ISSUE_NUMBER
   // the regex below tries to make sure that hex codes aren't switched to links
   md =>
@@ -165,7 +149,23 @@ const transforms: Transform[] = [
     ),
   // create github commit links for git sha's of length 7 (should be first 7 of sha)
   md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
+  md => md.replace(/(:tada:)/g, "🎉"),
 ];
+
+renderer.image = (href, title, alt) => {
+  return (
+    `<a href="${href}">` +
+    '<div class="rmd-media-container rmd-media-container--auto">' +
+    `<img src="${href}" alt="${alt}" title="${title || alt}" />` +
+    "</div>" +
+    "</a>"
+  );
+};
+
+renderer.list = (body, ordered, start) => {
+  const tag = ordered ? "ol" : "ul";
+  return `<${tag} class="markdown__list">${body}</${tag}>`;
+};
 
 const transform = (markdown: string): string =>
   transforms.reduce((updated, fn) => fn(updated), markdown);
