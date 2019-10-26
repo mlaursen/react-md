@@ -16,7 +16,7 @@ export function getScrollPosition(pathname: string): number {
   }
 
   const element = document.getElementById(hash.substring(1));
-  const header = document.getElementById("main-app-bar");
+  const header = document.getElementById("layout-header");
   if (!element || !header) {
     return 0;
   }
