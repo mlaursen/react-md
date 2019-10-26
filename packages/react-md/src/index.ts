@@ -13,6 +13,7 @@ export * from "@react-md/icon";
 export * from "@react-md/layout";
 export * from "@react-md/link";
 export * from "@react-md/list";
+export * from "@react-md/material-icons";
 export * from "@react-md/media";
 export * from "@react-md/menu";
 export * from "@react-md/overlay";

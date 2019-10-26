@@ -59,6 +59,7 @@ export default function defaultTreeItemRenderer(
     leftAvatar,
     rightAvatar,
     contentComponent,
+    as,
     to,
     href,
     isLink,
@@ -81,6 +82,7 @@ export default function defaultTreeItemRenderer(
   return (
     <TreeItem
       {...itemProps}
+      as={as}
       to={to}
       href={href}
       isLink={isLink}

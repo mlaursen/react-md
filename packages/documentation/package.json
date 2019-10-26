@@ -28,10 +28,12 @@
   "dependencies": {
     "@react-md/alert": "^2.0.0-alpha.10",
     "@react-md/app-bar": "^2.0.0-alpha.10",
+    "@react-md/autocomplete": "^2.0.0-alpha.10",
     "@react-md/avatar": "^2.0.0-alpha.10",
     "@react-md/badge": "^2.0.0-alpha.10",
     "@react-md/button": "^2.0.0-alpha.10",
     "@react-md/card": "^2.0.0-alpha.10",
+    "@react-md/chip": "^2.0.0-alpha.10",
     "@react-md/dialog": "^2.0.0-alpha.10",
     "@react-md/divider": "^2.0.0-alpha.10",
     "@react-md/elevation": "^2.0.0-alpha.10",

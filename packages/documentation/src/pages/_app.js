@@ -139,15 +139,19 @@ export default class App extends NextApp {
     }
   };
 
+  getPathname = () => {
+    const { pathname, query } = this.props.router;
+
+    return Object.entries(query).reduce(
+      (resolved, [key, value]) => resolved.replace(`[${key}]`, value),
+      pathname
+    );
+  };
+
   render() {
-    const {
-      Component,
-      componentProps,
-      defaultSize,
-      router: { pathname },
-      defaultTheme,
-    } = this.props;
+    const { Component, componentProps, defaultSize, defaultTheme } = this.props;
     const { statusCode } = componentProps;
+    const pathname = this.getPathname();
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
 
     return (

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define, import/prefer-default-export */
-import React, { ReactNode } from "react";
+import React, { ReactNode, ReactType } from "react";
 import { LayoutNavigationTree } from "@react-md/layout";
 import {
   BuildSVGIcon,
@@ -14,12 +14,15 @@ import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
 
 interface ChildRouteConfig {
+  as?: string;
   path: string;
+  icon?: ReactNode;
   children: ReactNode;
   childRoutes?: ChildRouteConfig[];
 }
 
 interface RouteConfig {
+  as?: string;
   icon?: ReactNode;
   childRoutes?: ChildRouteConfig[];
   parentPath?: string | null;
@@ -36,8 +39,8 @@ function createChildRoute(
   childRoute: ChildRouteConfig,
   parentPath: string
 ): void {
-  const { path, children, childRoutes } = childRoute;
-  createRoute(path, children, { childRoutes, parentPath });
+  const { as, path, children, childRoutes, icon } = childRoute;
+  createRoute(path, children, { childRoutes, parentPath, icon, as });
 }
 
 /**
@@ -55,17 +58,32 @@ function createRoute(
   config: RouteConfig
 ): void {
   const { icon, childRoutes = [], parentPath = null } = config;
-  const href = `${parentPath || ""}${path}`;
-  routesTree[href] = {
-    itemId: href,
+  const nextPath = `${parentPath || ""}${path}`;
+
+  let as: string | undefined;
+  let href: string | undefined;
+  let itemId = nextPath;
+  let contentComponent: ReactType | undefined;
+  if (!childRoutes.length) {
+    href = itemId;
+    contentComponent = LinkUnstyled;
+    if (config.as) {
+      as = `${parentPath || ""}${config.as}`;
+      itemId = as;
+    }
+  }
+
+  routesTree[itemId] = {
+    itemId,
     parentId: parentPath,
     children,
     leftIcon: icon,
-    href: childRoutes.length ? undefined : href,
-    contentComponent: childRoutes.length ? undefined : LinkUnstyled,
+    as,
+    href,
+    contentComponent,
   };
 
-  childRoutes.forEach(childRoute => createChildRoute(childRoute, href));
+  childRoutes.forEach(childRoute => createChildRoute(childRoute, nextPath));
 }
 
 interface PackageRouteConfig {
