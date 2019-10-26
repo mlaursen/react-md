@@ -23,8 +23,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 This package automatically creates a component file for each material-icon that

@@ -35,8 +35,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 Starting with v2 of `react-md`, all interactable elements require a unique `id`

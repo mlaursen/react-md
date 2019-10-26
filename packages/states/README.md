@@ -30,8 +30,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 This package has two main exports: `StatesConfig` and `useInteractionStates`.

@@ -24,8 +24,6 @@ examples in this README.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Defining a theme
 
 Starting with v2.0.0, react-md will use both SCSS and css variables to define

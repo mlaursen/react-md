@@ -29,8 +29,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 One of the main use-cases will probably be to display a list of people with

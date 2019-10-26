@@ -42,8 +42,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Example
 
 This package exports multiple components to create your dialog as well as a

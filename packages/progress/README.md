@@ -28,8 +28,6 @@ and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 The majority of the time you'll be using the progress components to track some

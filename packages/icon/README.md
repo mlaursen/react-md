@@ -33,8 +33,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 Even though the `FontIcon` and `SVGIcon` components are the "main" exports for

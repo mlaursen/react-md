@@ -21,8 +21,6 @@ and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 Material design has 24 different elevation types and the `rmd-elevation` mixin

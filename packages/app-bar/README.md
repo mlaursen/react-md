@@ -32,13 +32,10 @@ and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 The primary use of this package is to create a fixed header that includes your
-app's logo, title, mobile navagitation, or common actions. Here's a quick
-example:
+app's logo, title, mobile navigation, or common actions. Here's a quick example:
 
 ```tsx
 import React from "react";

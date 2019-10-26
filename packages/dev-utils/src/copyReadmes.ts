@@ -7,7 +7,6 @@ import { glob, time, format } from "./utils";
 
 const docPackages = path.join(documentationRoot, src, "pages", "packages");
 
-const INCLUDING_STYLES = "<!-- INCLUDING_STYLES -->";
 const START_TOKEN = "<!-- DOCS_REMOVE -->";
 const STOP_TOKEN = "<!-- DOCS_REMOVE_END -->";
 
@@ -52,23 +51,7 @@ function decreaseHeadingSize(markdown: string): string {
   return markdown.replace(/(#+)(?= )/g, "$1#");
 }
 
-function addIncludingStylesLink(markdown: string): string {
-  return markdown.replace(
-    INCLUDING_STYLES,
-    `### Including Styles
-
-> If you have not done so already, please read the main documentation about
-> #including-styles before continuing.
-
-`
-  );
-}
-
-const transforms = [
-  removeDocSpecific,
-  decreaseHeadingSize,
-  addIncludingStylesLink,
-];
+const transforms = [removeDocSpecific, decreaseHeadingSize];
 
 const transform = (markdown: string, readme: string): string =>
   transforms.reduce((updated, fn) => fn(updated, readme), markdown);

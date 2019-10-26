@@ -1,7 +1,7 @@
 # @react-md/media
 
 This package is used for adding responsive media within your page such as images
-and videos. Unlike other `react-md` pacakges, this package does not include a
+and videos. Unlike other `react-md` packages, this package does not include a
 theme.
 
 ## Installation
@@ -19,8 +19,6 @@ You should check out the
 more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
-
-<!-- INCLUDING_STYLES -->
 
 ## Usage
 

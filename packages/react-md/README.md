@@ -55,7 +55,7 @@ $ npm install --save \
 
 ## Including Styles
 
-Unlike all the other individual packages, there is only a single scss import
+Unlike all the other individual packages, there is only a single SCSS import
 that contains all the variables, functions, and mixins from all the other
 packages:
 

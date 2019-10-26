@@ -40,8 +40,6 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
 
 The main exports for this package are the `Configuration` component, `Layout`

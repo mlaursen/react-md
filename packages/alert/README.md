@@ -27,6 +27,52 @@ more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 
-<!-- INCLUDING_STYLES -->
-
 ## Usage
+
+`src/index.tsx`
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+import { MessageQueue } from "@react-md/alert";
+
+import App from "./App";
+
+render(
+  <MessageQueue id="main-alerts">
+    <App />
+  </MessageQueue>,
+  document.getElementById("root")
+);
+```
+
+`src/App.tsx`
+
+```tsx
+import React, { FC } from "react";
+import { useAddMessage } from "@react-md/alert";
+import { Button } from "@react-md/button";
+
+const App: FC = () => {
+  const addMessage = useAddMessage();
+
+  return (
+    <Button
+      id="button-1"
+      onClick={() => addMessage({ children: "Example Message" })}
+    >
+      Show Message
+    </Button>
+  );
+};
+
+export default App;
+```
+
+### Typescript Types
+
+All the useful types are exported from the root for convenience. The following
+types might help self-describe how messages work:
+
+- `Message`
+- `ToastMessage`
