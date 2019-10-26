@@ -52,13 +52,14 @@ export default function defaultTreeItemRenderer(
     labelKey,
     getItemLabel,
     getItemProps,
+    linkComponent,
   } = treeProps;
   const {
     leftIcon,
     rightIcon,
     leftAvatar,
     rightAvatar,
-    contentComponent,
+    contentComponent: itemComponent,
     as,
     to,
     href,
@@ -77,6 +78,11 @@ export default function defaultTreeItemRenderer(
   let children: ReactNode = (overrides && overrides.children) || undefined;
   if (typeof children === "undefined") {
     children = getItemLabel(treeItem, labelKey);
+  }
+
+  let contentComponent = itemComponent;
+  if (isLink !== false && (to || href || isLink)) {
+    contentComponent = contentComponent || linkComponent;
   }
 
   return (

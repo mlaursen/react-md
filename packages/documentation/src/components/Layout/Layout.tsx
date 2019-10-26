@@ -12,6 +12,7 @@ import {
 import { AppSizeListenerProps } from "@react-md/utils";
 
 import { routesTree } from "constants/routesTree";
+import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
 
@@ -38,6 +39,7 @@ const Layout: FC<LayoutProps> = ({
       hideNavIcon={<KeyboardArrowLeftSVGIcon />}
       expanderIcon={<KeyboardArrowDownSVGIcon />}
       appBarChildren={<Actions />}
+      linkComponent={LinkUnstyled}
     >
       <TOCVisibilityProvider pathname={pathname}>
         <TableOfContents pathname={pathname} />

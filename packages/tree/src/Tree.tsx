@@ -43,6 +43,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     getItemLabel,
     getItemValue,
     getItemProps,
+    linkComponent,
     sort,
     rootId,
     onBlur,
@@ -197,6 +198,11 @@ if (process.env.NODE_ENV !== "production") {
       getItemLabel: PropTypes.func,
       getItemValue: PropTypes.func,
       getItemProps: PropTypes.func,
+      linkComponent: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.object,
+        PropTypes.oneOf(["a"]),
+      ]),
     };
   }
 }

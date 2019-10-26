@@ -8,7 +8,6 @@ import {
   InfoOutlineSVGIcon,
 } from "@react-md/material-icons";
 
-import LinkUnstyled from "components/LinkUnstyled";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import ReactSVGIcon from "icons/ReactSVGIcon";
 import { toTitle } from "utils/toTitle";
@@ -63,10 +62,8 @@ function createRoute(
   let as: string | undefined;
   let href: string | undefined;
   let itemId = nextPath;
-  let contentComponent: ReactType | undefined;
   if (!childRoutes.length) {
     href = itemId;
-    contentComponent = LinkUnstyled;
     if (config.as) {
       as = `${parentPath || ""}${config.as}`;
       itemId = as;
@@ -80,7 +77,6 @@ function createRoute(
     leftIcon: icon,
     as,
     href,
-    contentComponent,
   };
 
   childRoutes.forEach(childRoute => createChildRoute(childRoute, nextPath));

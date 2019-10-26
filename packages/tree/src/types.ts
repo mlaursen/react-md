@@ -405,20 +405,28 @@ export interface TreeProps<T extends BaseTreeItem = UnknownTreeItem>
    * @see GetItemProps
    */
   getItemProps?: GetItemProps<T>;
+
+  /**
+   * The component to use for any treeitem that has a `to`, `href`, or `isLink` attribute. This is
+   * a nice way to be able to update treeitems to be links instead of storing the `contentComponent`
+   * in the tree's data.
+   */
+  linkComponent?: ElementType;
 }
 
-export type ProvidedTreeProps = Required<
-  Pick<
-    TreeProps,
-    | "rootId"
-    | "multiSelect"
-    | "expanderIcon"
-    | "expanderLeft"
-    | "itemRenderer"
-    | "labelKey"
-    | "valueKey"
-    | "getItemLabel"
-    | "getItemValue"
-    | "getItemProps"
-  >
->;
+export type ProvidedTreeProps = Pick<TreeProps, "linkComponent"> &
+  Required<
+    Pick<
+      TreeProps,
+      | "rootId"
+      | "multiSelect"
+      | "expanderIcon"
+      | "expanderLeft"
+      | "itemRenderer"
+      | "labelKey"
+      | "valueKey"
+      | "getItemLabel"
+      | "getItemValue"
+      | "getItemProps"
+    >
+  >;
