@@ -31,21 +31,21 @@ const Layout: FC<LayoutProps> = ({
   defaultSize,
 }) => (
   <Configuration defaultSize={defaultSize}>
-    <RMDLayout
-      {...useLayoutNavigation(routesTree, pathname)}
-      appBarTitle={title.replace("react-md - ", "")}
-      navHeaderTitle="react-md"
-      navIcon={<MenuSVGIcon />}
-      hideNavIcon={<KeyboardArrowLeftSVGIcon />}
-      expanderIcon={<KeyboardArrowDownSVGIcon />}
-      appBarChildren={<Actions />}
-      linkComponent={LinkUnstyled}
-    >
-      <TOCVisibilityProvider pathname={pathname}>
+    <TOCVisibilityProvider pathname={pathname}>
+      <RMDLayout
+        {...useLayoutNavigation(routesTree, pathname)}
+        appBarTitle={title.replace("react-md - ", "")}
+        navHeaderTitle="react-md"
+        navIcon={<MenuSVGIcon />}
+        hideNavIcon={<KeyboardArrowLeftSVGIcon />}
+        expanderIcon={<KeyboardArrowDownSVGIcon />}
+        appBarChildren={<Actions />}
+        linkComponent={LinkUnstyled}
+      >
         <TableOfContents pathname={pathname} />
         {children}
-      </TOCVisibilityProvider>
-    </RMDLayout>
+      </RMDLayout>
+    </TOCVisibilityProvider>
   </Configuration>
 );
 
