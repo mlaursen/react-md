@@ -220,8 +220,11 @@ export interface LayoutNavigationItem extends BaseTreeItem {
    * unless you manually provide a `getTreeItemValue` prop and/or update the `valueKey`
    * to be a key referencing a stringified value of this item so it can be keyboard
    * searched.
+   *
+   * This is only optional by default in case you want to be able to render custom dividers
+   * or subheaders within your navigation tree. Otherwise, this should be required.
    */
-  children: ReactNode;
+  children?: ReactNode;
 
   /**
    * An optional link target. Example: "_blank".

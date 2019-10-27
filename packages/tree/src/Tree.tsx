@@ -26,6 +26,7 @@ const block = bem("rmd-tree");
 const Tree: FC<TreeProps & WithRef> = providedProps => {
   const {
     className,
+    forwardedRef,
     itemRenderer,
     data,
     multiSelect,
@@ -35,8 +36,14 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     expandedIds,
     onItemExpansion,
     onMultiItemExpansion,
+    expanderLeft: _expanderLeft,
+    expanderIcon: _expanderIcon,
+    labelKey: _labelKey,
     valueKey,
+    getItemLabel: _getItemLabel,
     getItemValue,
+    getItemProps: _getItemProps,
+    linkComponent: _linkComponent,
     sort,
     rootId,
     onBlur,
@@ -130,8 +137,9 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
       {...props}
       aria-activedescendant={activeId}
       aria-multiselectable={multiSelect || undefined}
-      tabIndex={0}
       role="tree"
+      tabIndex={0}
+      ref={forwardedRef}
       className={cn(block(), className)}
       onBlur={handleBlur}
       onFocus={handleFocus}
