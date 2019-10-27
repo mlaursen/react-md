@@ -48,13 +48,11 @@ module.exports = {
     // on components.
     'global-require': 0,
 
-    // normally caught my Typescript instead.
+    // normally caught by Typescript instead.
     'react/no-unused-prop-types': 0,
-
-    // normally caught my Typescript instead.
     'react/require-default-props': 0,
 
-    // normally caught my Typescript instead and I don't care too much about speciifc objects
+    // normally caught by Typescript instead and I don't care too much about speciifc objects
     'react/forbid-prop-types': 0,
 
     'react-hooks/rules-of-hooks': 'error',
@@ -84,9 +82,6 @@ module.exports = {
     // I like being explicit even if using a default arg can show the type of it, it might change
     // or have multiple types available
     '@typescript-eslint/no-inferrable-types': [2, { ignoreParameters: true }],
-
-    // handled by strict tsconfig
-    '@typescript-eslint/no-unused-vars': 0,
 
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/expect-expect': ['error', { assertFunctionNames: ['expect'] }],

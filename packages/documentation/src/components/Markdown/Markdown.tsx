@@ -1,15 +1,12 @@
 /* eslint-disable react/no-danger */
 import React, {
   FC,
-  useState,
+  Fragment,
+  HTMLAttributes,
+  useCallback,
   useEffect,
   useMemo,
-  HTMLAttributes,
-  Fragment,
-  useRef,
-  MutableRefObject,
-  useCallback,
-  Ref,
+  useState,
 } from "react";
 import cn from "classnames";
 import Router from "next/router";

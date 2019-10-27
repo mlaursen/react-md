@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define, import/prefer-default-export */
-import React, { ReactNode, ReactType } from "react";
+import React, { ReactNode } from "react";
 import { LayoutNavigationTree } from "@react-md/layout";
 import {
   BuildSVGIcon,
   ColorLensSVGIcon,
+  DescriptionSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
 } from "@react-md/material-icons";
@@ -179,21 +180,47 @@ function createExternalRoute(
     rel: "noopener noreferrer",
     target: "_blank",
     leftIcon: icon,
-    contentComponent: LinkUnstyled,
   };
 }
 
 createRoute("/", "Home", { icon: <HomeSVGIcon /> });
-createRoute("/getting-started", "Getting Started", {
-  icon: <InfoOutlineSVGIcon />,
+createRoute("/about", "About", { icon: <InfoOutlineSVGIcon /> });
+createRoute("/guides", "Guides", {
+  icon: <DescriptionSVGIcon />,
   childRoutes: [
-    { path: "/quick-start", children: "Quick Start" },
-    { path: "/installation", children: "Installation" },
+    { path: "/[id]", as: "/installation", children: "Installation" },
+    { path: "/[id]", as: "/scoped-packages", children: "Scoped Packages" },
     {
-      path: "/updating-create-react-app",
-      children: "Updating create-react-app",
+      path: "/[id]",
+      as: "/creating-a-new-app",
+      children: "Creating a New App",
     },
-    { path: "/with-v1", children: "With v1" },
+    {
+      path: "/[id]",
+      as: "/configuring-your-layout",
+      children: "Configuring Your Layout",
+    },
+    {
+      path: "/[id]",
+      as: "/customizing-your-theme",
+      children: "Customizing Your Theme",
+    },
+    {
+      path: "/[id]",
+      as: "/including-styles-without-webpack",
+      children: "Including Styles without Webpack",
+    },
+    {
+      path: "/[id]",
+      as: "/using-the-sass-exports",
+      children: "Using the Sass Exports",
+    },
+    {
+      path: "/[id]",
+      as: "/advanced-installation",
+      children: "Advanced Installation",
+    },
+    { path: "/[id]", as: "/working-with-v1", children: "Working with v1" },
   ],
 });
 createRoute("/customization", "Customization", {

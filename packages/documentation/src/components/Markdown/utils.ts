@@ -1,13 +1,8 @@
-import cn from "classnames";
-import * as marked from "marked";
 import Prism from "prismjs";
+import * as marked from "marked";
+import cn from "classnames";
 
-import {
-  GITHUB_URL,
-  PACKAGE_NAMES,
-  PACKAGES_RECORD,
-  VERSION,
-} from "constants/index";
+import { GITHUB_URL, PACKAGE_NAMES } from "constants/index";
 
 export function getLanguage(language: string): string {
   switch (language) {
@@ -103,21 +98,11 @@ renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 type Transform = (markdown: string) => string;
 const joinedNames = PACKAGE_NAMES.join("|");
 const packagesList = `
-${PACKAGE_NAMES.map(name => `- [@react-md/${name}](/packages/${name})`).join(
-  "\n"
-)}
+${PACKAGE_NAMES.map(
+  name => `- [@react-md/${name}](/packages/${name}/installation)`
+).join("\n")}
 `;
-const allNames = `${joinedNames}|react-md`;
 const whitespace = "(?=\r?\n| |[^/])";
-
-const getVersion = (name: string): string => {
-  let version = VERSION;
-  if (name !== "react-md") {
-    const lookup = `@react-md/${name}`;
-    version = PACKAGES_RECORD[lookup] || VERSION;
-  }
-  return version;
-};
 
 const transforms: Transform[] = [
   // #package-name -> [@react-md/package-name](/packages/package-name)
@@ -133,7 +118,14 @@ const transforms: Transform[] = [
       "[$1 $2](/packages/$1/$2)"
     ),
   // #packages -> markdown list for all react-md packages
-  md => md.replace(/#packages/g, packagesList),
+  md =>
+    md.replace(/#packages(\/demos)?/g, (_, demos) => {
+      if (demos) {
+        return packagesList.replace(/installation/g, "demos");
+      }
+
+      return packagesList;
+    }),
   // create links to github issues/PRs with #ISSUE_NUMBER
   // the regex below tries to make sure that hex codes aren't switched to links
   md =>
@@ -162,7 +154,7 @@ renderer.image = (href, title, alt) => {
   );
 };
 
-renderer.list = (body, ordered, start) => {
+renderer.list = (body, ordered) => {
   const tag = ordered ? "ol" : "ul";
   return `<${tag} class="markdown__list">${body}</${tag}>`;
 };
