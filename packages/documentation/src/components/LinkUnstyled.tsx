@@ -8,7 +8,6 @@ export interface LinkUnstyledProps
 }
 
 const LinkUnstyled: FC<LinkUnstyledProps> = ({
-  prefetch,
   shallow,
   scroll,
   replace,
@@ -27,7 +26,6 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
 
   return (
     <Link
-      prefetch={prefetch}
       shallow={shallow}
       scroll={scroll}
       replace={replace}
@@ -41,7 +39,6 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
 
 LinkUnstyled.defaultProps = {
   scroll: false,
-  prefetch: true,
 };
 
 export default LinkUnstyled;

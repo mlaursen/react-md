@@ -11,7 +11,6 @@ export interface LinkProps extends Omit<NextLinkProps, "children"> {
 
 const Link: FC<LinkProps> = ({
   children,
-  prefetch,
   shallow,
   scroll,
   replace,
@@ -36,7 +35,6 @@ const Link: FC<LinkProps> = ({
       href={href}
       as={as}
       passHref={passHref}
-      prefetch={prefetch}
     >
       <RMDLink {...props}>{children}</RMDLink>
     </NextLink>
@@ -44,7 +42,6 @@ const Link: FC<LinkProps> = ({
 };
 
 Link.defaultProps = {
-  prefetch: true,
   passHref: true,
   scroll: false,
 };
