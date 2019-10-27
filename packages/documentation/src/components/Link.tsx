@@ -36,6 +36,7 @@ const Link: FC<LinkProps> = ({
       href={href}
       as={as}
       passHref={passHref}
+      prefetch={prefetch}
     >
       <RMDLink {...props}>{children}</RMDLink>
     </NextLink>

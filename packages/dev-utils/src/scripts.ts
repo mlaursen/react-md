@@ -16,14 +16,7 @@ import {
   types,
   umdDist,
 } from "./paths";
-import {
-  copyFiles,
-  createTsConfig,
-  exec,
-  getPackageName,
-  glob,
-  list,
-} from "./utils";
+import { copyFiles, exec, getPackageName, glob, list } from "./utils";
 
 function tscVariables(): void {
   log.info("Compiling scssVariables...");

@@ -25,7 +25,7 @@ const SelectExample: FC = () => {
     <TextFieldThemeConfig
       idPrefix="custom-select"
       disableRightIcon
-      renderField={({ rightChildren, ...props }) => (
+      renderField={({ rightChildren: _rightChildren, ...props }) => (
         <Select
           {...props}
           id="custom-select-1"

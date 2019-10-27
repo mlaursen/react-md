@@ -13,22 +13,12 @@ import {
 } from "typescript";
 import log from "loglevel";
 
-import { documentationRoot } from "../paths";
-import { list } from "../utils";
 import {
   getModuleName,
   getRelativeFolder,
   getAliasedRelativeFolder,
 } from "./formatters";
-import {
-  isAliased,
-  isDirectory,
-  isMarkdown,
-  isStyle,
-  isSvg,
-  isRaw,
-  isRelative,
-} from "./matchers";
+import { isMarkdown, isStyle, isSvg, isRaw, isRelative } from "./matchers";
 
 const SCSS_IMPORT = /@import '(.+)';/g;
 
@@ -193,8 +183,7 @@ function parseTypescript(
  * Checks a "components/Demos/NAME/index.tsx" file for all the imported demos.
  */
 export async function extractDemoFiles(
-  demoIndexPath: string,
-  aliases: string[]
+  demoIndexPath: string
 ): Promise<string[]> {
   // package name is always the folder right before the index.tsx
   const name = demoIndexPath.split(path.sep).reverse()[1];

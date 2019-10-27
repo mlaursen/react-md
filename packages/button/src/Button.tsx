@@ -43,9 +43,9 @@ type ButtonWithDefaultProps = ButtonProps & DefaultProps & WithRef;
 
 const Button: FC<ButtonProps & WithRef> = providedProps => {
   const {
-    theme,
+    theme: _theme,
     themeType,
-    buttonType,
+    buttonType: _buttonType,
     children,
     forwardedRef,
     disableRipple,

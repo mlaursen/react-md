@@ -58,8 +58,8 @@ export default function SnackbarQueue<M extends ToastMessage = ToastMessage>({
     const snackbarId = props.id;
     const toastId = toast.id;
     const {
-      messageId,
-      messagePriority,
+      messageId: _messageId,
+      messagePriority: _messagePriority,
       disableAutohide = false,
       disableActionHide = false,
       action: providedAction,

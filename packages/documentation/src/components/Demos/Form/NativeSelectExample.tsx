@@ -54,7 +54,12 @@ const NativeSelectExample: FC = () => {
       idPrefix="native-select"
       disableDense={multiple}
       disableRightIcon={!multiple}
-      renderField={({ label, placeholder, readOnly, ...props }) => (
+      renderField={({
+        label,
+        placeholder: _placeholder,
+        readOnly,
+        ...props
+      }) => (
         <NativeSelect
           id="configurable-native-select"
           {...props}

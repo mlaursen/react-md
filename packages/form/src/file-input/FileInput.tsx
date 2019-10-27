@@ -82,7 +82,6 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
   const {
     style,
     className: propClassName,
-    "aria-label": propAriaLabel,
     theme,
     themeType,
     buttonType,

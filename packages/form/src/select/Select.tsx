@@ -224,7 +224,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     onChange,
     ...props
   } = providedProps as WithDefaultProps;
-  const { id, disabled, error, dense, leftChildren, rightChildren } = props;
+  const { id, disabled, error, dense } = props;
 
   const valued = typeof value === "number" || !!value;
   const displayValue = useMemo(() => {
@@ -376,8 +376,6 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
           floating={focused || valued || visible}
           dense={dense}
           disabled={disabled}
-          leftChildren={!!leftChildren}
-          rightChildren={!!rightChildren}
           component="span"
         >
           {label}

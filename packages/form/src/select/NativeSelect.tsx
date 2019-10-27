@@ -185,7 +185,6 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
         floating={valued || multiple}
         dense={dense}
         disabled={disabled}
-        leftChildren={!!leftChildren}
       >
         {label}
       </FloatingLabel>

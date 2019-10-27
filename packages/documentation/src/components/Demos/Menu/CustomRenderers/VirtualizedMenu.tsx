@@ -33,7 +33,7 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   );
 
   const menuRenderer: MenuRenderer = (
-    { horizontal, children, ...props },
+    { horizontal: _horizontal, children: _children, ...props },
     // this is really just added to show that it is provided as the second argument.
     // it isn't really required for these examples
     items

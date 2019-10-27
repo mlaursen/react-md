@@ -352,7 +352,7 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
           onEntering={onEntering}
           onEntered={onEntered}
           onExit={onExit}
-          onExiting={onExited}
+          onExiting={onExiting}
           onExited={onExited}
           mountOnEnter={mountOnEnter}
           unmountOnExit={unmountOnExit}

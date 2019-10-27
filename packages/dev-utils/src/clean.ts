@@ -1,6 +1,5 @@
-import fs from "fs-extra";
-import { es, lib, dist, types, projectRoot } from "./paths";
-import { time, list, glob, clean } from "./utils";
+import { dist, es, lib, projectRoot, types } from "./paths";
+import { clean, glob, time } from "./utils";
 
 export default function packageClean(others: string[] = []): Promise<void> {
   return time(async () => {

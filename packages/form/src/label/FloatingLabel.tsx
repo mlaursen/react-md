@@ -12,8 +12,6 @@ export interface FloatingLabelProps extends LabelProps {
 
   dense?: boolean;
   floating?: boolean;
-  leftChildren?: boolean;
-  rightChildren?: boolean;
 }
 
 type DefaultProps = Required<
@@ -37,8 +35,6 @@ const FloatingLabel: FC<FloatingLabelProps & WithRef> = providedProps => {
     dense,
     valued,
     floating,
-    leftChildren,
-    rightChildren,
     ...props
   } = providedProps as WithDefaultProps;
   const { active, error, disabled } = props;

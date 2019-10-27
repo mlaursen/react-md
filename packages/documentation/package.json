@@ -4,9 +4,8 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all copy-readmes \"sandbox --empty\"",
-    "add-toc": "dev-utils toc \"+(pages|components)/**/*.md\"",
-    "copy-readmes": "dev-utils readmes",
+    "prebuild": "npm-run-all readmes",
+    "readmes": "dev-utils readmes",
     "sandbox": "dev-utils sandbox",
     "sassdoc": "dev-utils sassdoc",
     "dev": "npm-run-all prebuild start-dev",

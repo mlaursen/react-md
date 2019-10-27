@@ -52,7 +52,7 @@ const ListItem: FC<ListItemProps & WithRef> = providedProps => {
     rightMediaLarge,
     rightPosition,
     forceIconWrap,
-    height,
+    height: _height,
     disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,

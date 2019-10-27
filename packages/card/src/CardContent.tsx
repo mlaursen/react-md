@@ -62,6 +62,7 @@ const CardContent: FC<CardContentProps & WithRef> = providedProps => {
   return (
     <div
       {...props}
+      ref={forwardedRef}
       className={cn(
         block("content", {
           padded: !disablePadding,

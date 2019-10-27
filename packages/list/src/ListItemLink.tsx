@@ -48,10 +48,11 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
     rightIcon,
     rightAvatar,
     forceIconWrap,
-    height: propHeight,
+    height: _height,
     threeLines,
     component: Component,
-    enableKeyboardClick,
+    // links should **never** be clickable with space
+    enableKeyboardClick: _enableKeyboardClick,
     disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,

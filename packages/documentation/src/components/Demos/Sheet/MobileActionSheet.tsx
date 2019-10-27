@@ -55,12 +55,12 @@ const MenuSheet: FC<LabelRequiredForA11y<SheetProps>> = ({
 const renderSheet: MenuRenderer = ({
   // these props are only required for the `Menu` component, but not within the sheet
   // so we can just extract them and not pass them down
-  horizontal,
-  controlId,
-  anchor,
-  positionOptions,
-  disableCloseOnResize,
-  disableCloseOnScroll,
+  horizontal: _horizontal,
+  controlId: _controlId,
+  anchor: _anchor,
+  positionOptions: _positionOptions,
+  disableCloseOnResize: _disableCloseOnResize,
+  disableCloseOnScroll: _disableCloseOnScroll,
   ...props
 }) => <MenuSheet {...props} />;
 

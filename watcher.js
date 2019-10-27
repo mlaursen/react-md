@@ -94,7 +94,7 @@ chokidar
 chokidar
   .watch(['packages/*/README.md'], { ignored: IGNORED })
   .on('change', () => {
-    spawnSync('yarn', ['copy-readmes'], { stdio: 'inherit', cwd: docsRoot });
+    spawnSync('yarn', ['readmes'], { stdio: 'inherit', cwd: docsRoot });
     console.log('Done!');
   })
   .on('ready', () => {

@@ -37,7 +37,7 @@ const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
     forceIconWrap,
     children,
     forwardedRef,
-    height: propHeight,
+    height: _height,
     threeLines,
     "aria-disabled": ariaDisabled,
     disabled,

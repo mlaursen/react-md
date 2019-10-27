@@ -120,8 +120,6 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
     labelClassName,
     labelDisabled,
     iconAfter,
-    onFocus: propOnFocus,
-    onBlur: propOnBlur,
     children,
     ...props
   } = providedProps as WithDefaultProps;
@@ -150,7 +148,7 @@ const Switch: FC<SwitchProps & WithRef> = providedProps => {
         }
         iconAfter={!iconAfter}
       >
-        <span className={cn(block(), trackClassName)}>
+        <span style={trackStyle} className={cn(block(), trackClassName)}>
           <input
             {...props}
             type="checkbox"

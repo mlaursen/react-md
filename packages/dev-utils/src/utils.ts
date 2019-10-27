@@ -24,7 +24,6 @@ import {
   types,
 } from "./paths";
 
-const readDir = promisify(fs.readdir);
 const prettierConfig = prettier.resolveConfig.sync(
   path.join(packagesRoot, "button", "src", "index.ts")
 );
@@ -165,25 +164,18 @@ interface TsConfigOptions {
  * files will extend their "root" versions at the project base, but the extend
  * functionality isn't 100% what I need so additional settings are added.
  */
-export function createTsConfig(
-  tsConfigType: TsConfigType,
-  packageName: string
-): TsConfigOptions {
+export function createTsConfig(tsConfigType: TsConfigType): TsConfigOptions {
   const isCommonJS = tsConfigType === "commonjs";
   const isESModule = tsConfigType === "module";
   const isVariables = tsConfigType === "variables";
 
-  let cacheExtension = "";
   let outDir: undefined | string;
   if (isESModule) {
     outDir = `./${es}`;
-    cacheExtension = ".ejs";
   } else if (isCommonJS) {
     outDir = `./${lib}`;
-    cacheExtension = ".cjs";
   } else if (isVariables) {
     outDir = `./${dist}`;
-    cacheExtension = ".var";
   }
 
   let extendsPrefix = ".base";
@@ -235,31 +227,18 @@ export async function createTsConfigFiles(): Promise<void> {
     return;
   }
 
-  const packageName = await getPackageName();
   const config = { spaces: 2 };
   if (!variablesOnly) {
     log.info(`Creating \`${tsConfigESModule}\`...`);
-    await fs.writeJson(
-      tsConfigESModule,
-      createTsConfig("module", packageName),
-      config
-    );
+    await fs.writeJson(tsConfigESModule, createTsConfig("module"), config);
 
     log.info(`Creating \`${tsConfigCommonJS}\`...`);
-    await fs.writeJson(
-      tsConfigCommonJS,
-      createTsConfig("commonjs", packageName),
-      config
-    );
+    await fs.writeJson(tsConfigCommonJS, createTsConfig("commonjs"), config);
   }
 
   if (variables) {
     log.info(`Creating the \`${tsConfigVariables}\` file...`);
-    await fs.writeJson(
-      tsConfigVariables,
-      createTsConfig("variables", packageName),
-      config
-    );
+    await fs.writeJson(tsConfigVariables, createTsConfig("variables"), config);
   }
 }
 

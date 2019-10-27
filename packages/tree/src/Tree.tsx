@@ -26,7 +26,6 @@ const block = bem("rmd-tree");
 const Tree: FC<TreeProps & WithRef> = providedProps => {
   const {
     className,
-    forwardedRef,
     itemRenderer,
     data,
     multiSelect,
@@ -36,14 +35,8 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     expandedIds,
     onItemExpansion,
     onMultiItemExpansion,
-    expanderLeft,
-    expanderIcon,
-    labelKey,
     valueKey,
-    getItemLabel,
     getItemValue,
-    getItemProps,
-    linkComponent,
     sort,
     rootId,
     onBlur,

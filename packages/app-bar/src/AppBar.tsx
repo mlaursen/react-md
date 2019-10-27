@@ -95,7 +95,8 @@ const block = bem("rmd-app-bar");
  */
 const AppBar: FC<AppBarProps & WithRef> = providedProps => {
   const {
-    component: propComponent,
+    theme: _theme,
+    component: _component,
     className,
     forwardedRef,
     children,
@@ -104,7 +105,6 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
     fixed,
     fixedPosition,
     fixedElevation,
-    theme: propTheme,
     inheritColor,
     ...props
   } = providedProps as WithDefaultProps;

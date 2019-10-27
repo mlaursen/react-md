@@ -1,5 +1,5 @@
-import fs from "fs";
 import path from "path";
+
 import { src } from "../paths";
 
 export const DEMOS_FOLDER = path.join(src, "components", "Demos");

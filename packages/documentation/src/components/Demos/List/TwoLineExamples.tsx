@@ -30,7 +30,8 @@ const Folder: FC<AvatarProps> = props => (
 const InfoIcon: FC<SVGIconProps & { id: string; date: Date }> = ({
   id,
   className,
-  date,
+  // TODO: Remember why I added a date to these demos
+  date: _date,
   ...props
 }) => (
   <span

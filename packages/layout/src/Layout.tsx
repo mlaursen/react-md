@@ -204,6 +204,7 @@ const Layout: FC<LayoutProps> = providedProps => {
         fixed={fixedAppBar}
         dense={denseAppBar}
         appBarTitle={appBarTitle}
+        appBarRef={appBarRef}
         navIcon={navIcon}
         navIconLabel={navIconLabel}
         navIconLabelledBy={navIconLabelledBy}

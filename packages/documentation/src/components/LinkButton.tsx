@@ -1,27 +1,20 @@
 import React, { FC } from "react";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
-import { RenderConditionalPortalProps } from "@react-md/portal";
 import { useInteractionStates } from "@react-md/states";
 
 import LinkUnstyled, { LinkUnstyledProps } from "./LinkUnstyled";
 
-export interface LinkButtonProps
-  extends LinkUnstyledProps,
-    RenderConditionalPortalProps,
-    ButtonThemeProps {
+export interface LinkButtonProps extends LinkUnstyledProps, ButtonThemeProps {
   target?: string;
   tooltipClassName?: string;
 }
 
 const LinkButton: FC<LinkButtonProps> = providedProps => {
   const {
-    className: propClassName,
+    className: _className,
     theme,
     buttonType,
     themeType,
-    portal,
-    portalInto,
-    portalIntoId,
     children,
     ...props
   } = providedProps;

@@ -68,6 +68,17 @@ module.exports = {
     // deprecated
     'jsx-a11y/label-has-for': 0,
 
+    // This is a "better" version of the noUnusedLocals and noUnusedParameters from
+    // the tsconfig.json since it can catch unused vars in rest parameters that weren't
+    // meant to be omitted. I must manually rename to be _name so I know it was intentionally
+    // omitted
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
     // Allow expressions to work with react hooks. Annoying to have to typedef each arrow
     // function in a useEffect or useCallback when it can be derived.
     '@typescript-eslint/explicit-function-return-type': [
@@ -81,7 +92,10 @@ module.exports = {
 
     // I like being explicit even if using a default arg can show the type of it, it might change
     // or have multiple types available
-    '@typescript-eslint/no-inferrable-types': [2, { ignoreParameters: true }],
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      { ignoreParameters: true },
+    ],
 
     'jest/consistent-test-it': ['error', { fn: 'it' }],
     'jest/expect-expect': ['error', { assertFunctionNames: ['expect'] }],

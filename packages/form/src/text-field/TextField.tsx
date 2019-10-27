@@ -205,8 +205,6 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
         valued={valued}
         dense={dense}
         disabled={disabled}
-        leftChildren={!!leftChildren}
-        rightChildren={!!rightChildren}
       >
         {label}
       </FloatingLabel>

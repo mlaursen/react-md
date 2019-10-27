@@ -27,6 +27,7 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
 
   return (
     <Link
+      prefetch={prefetch}
       shallow={shallow}
       scroll={scroll}
       replace={replace}

@@ -1,5 +1,4 @@
 import fs from "fs-extra";
-import { flattenDeep } from "lodash";
 import path from "path";
 import log from "loglevel";
 

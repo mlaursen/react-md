@@ -1,13 +1,12 @@
-import { VariableSassDoc } from "sassdoc";
+import combineMediaQueries from "css-mqpacker";
+import cssnano from "cssnano";
+import log from "loglevel";
 import nodeSass from "node-sass";
 import nodePostcss from "postcss";
-import postcssPresetEnv from "postcss-preset-env";
-import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
-import sorting from "postcss-sorting";
-import cssnano from "cssnano";
 import combineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
-import combineMediaQueries from "css-mqpacker";
-import log from "loglevel";
+import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
+import postcssPresetEnv from "postcss-preset-env";
+import sorting from "postcss-sorting";
 
 import { rootNodeModules, src } from "./paths";
 import { list } from "./utils";

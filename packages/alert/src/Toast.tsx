@@ -83,6 +83,7 @@ const Toast: FC<ToastProps & WithRef> = providedProps => {
     >
       <div
         {...props}
+        ref={forwardedRef}
         className={cn(
           block({
             stacked,

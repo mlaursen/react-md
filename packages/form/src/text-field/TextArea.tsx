@@ -363,8 +363,6 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
         valued={valued}
         dense={dense}
         disabled={disabled}
-        leftChildren={!!leftChildren}
-        rightChildren={!!rightChildren}
       >
         {label}
       </FloatingLabel>
