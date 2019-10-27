@@ -1,22 +1,18 @@
 import fs from "fs-extra";
-import path from "path";
 import log from "loglevel";
+import path from "path";
 
-import { documentationRoot, packagesRoot, projectRoot, src } from "./paths";
-import { glob, time, format } from "./utils";
-
-const docPackages = path.join(documentationRoot, src, "pages", "packages");
+import { documentaionReadmes, packagesRoot, projectRoot } from "./paths";
+import { format, glob, time } from "./utils";
 
 const START_TOKEN = "<!-- DOCS_REMOVE -->";
 const STOP_TOKEN = "<!-- DOCS_REMOVE_END -->";
 
 async function copy(readme: string): Promise<string> {
   const pkgName = readme.substring(0, readme.indexOf("/"));
-  const dir = path.join(docPackages, pkgName);
-  await fs.ensureDir(dir);
 
   const src = path.join(packagesRoot, readme);
-  const dest = path.join(dir, "README.md");
+  const dest = path.join(documentaionReadmes, `${pkgName}.md`);
   const i = projectRoot.length + 1;
 
   log.debug(`- ${src.substring(i)} -> ${dest.substring(i)}`);
@@ -68,6 +64,7 @@ async function run(): Promise<void> {
     cwd: packagesRoot,
   });
 
+  await fs.ensureDir(documentaionReadmes);
   const moved = await Promise.all(readmes.map(copy));
   log.info();
   await Promise.all(moved.map(update));

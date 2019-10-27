@@ -19,28 +19,24 @@ const demos = [
     name: "Simple Example",
     description: simpleExample,
     children: <SimpleExample />,
-    phoneFullPage: true,
   },
   {
     name: "With Media",
     description: withMedia,
     children: <WithMedia />,
-    phoneFullPage: true,
   },
   {
     name: "With Actions",
     description: withActions,
     children: <WithActions />,
-    phoneFullPage: true,
   },
   {
     name: "Expandable Cards",
     description: expandableCards,
     children: <ExpandableCards />,
-    phoneFullPage: true,
   },
 ];
 
 export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="card" disableCards />
+  <DemoPage demos={demos} packageName="card" disableCard phoneFullPage />
 );

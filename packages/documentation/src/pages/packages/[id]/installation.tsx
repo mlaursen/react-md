@@ -4,20 +4,24 @@ import { NextFC } from "types/next";
 
 import NotFoundPage from "components/NotFoundPage";
 import { MarkdownPage } from "components/Markdown";
+import { qsToString } from "utils/routes";
 
-interface GuidesProps {
+interface InstallationProps {
   readme: string | null;
 }
 
-const Guides: NextFC<GuidesProps> = ({ readme }) =>
+const Installation: NextFC<InstallationProps> = ({ readme }) =>
   readme === null ? <NotFoundPage /> : <MarkdownPage>{readme}</MarkdownPage>;
 
-Guides.getInitialProps = async ({ query }): Promise<GuidesProps> => {
-  const readme = await import(`../../guides/${query.id}.md`)
+Installation.getInitialProps = async ({
+  query,
+}): Promise<InstallationProps> => {
+  const name = qsToString(query.id);
+  const readme = await import(`../../../readmes/${name}.md`)
     .then(mod => mod.default)
     .catch(() => null);
 
   return { readme };
 };
 
-export default Guides;
+export default Installation;

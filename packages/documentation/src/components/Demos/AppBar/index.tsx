@@ -22,50 +22,38 @@ const demos = [
   {
     name: "Simple Usage",
     description: simpleUsage,
-    phoneFullPage: true,
-    fullPageFAB: true,
-    disableFullPageAppBar: true,
-    disableFullPageContent: true,
     children: <SimpleUsage />,
   },
   {
     name: "Different Sizes",
     description: differentSizes,
-    phoneFullPage: true,
-    fullPageFAB: true,
-    disableFullPageAppBar: true,
-    disableFullPageContent: true,
     children: <DifferentSizes />,
   },
   {
     name: "Auto Dense",
     description: autoDense,
-    phoneFullPage: true,
-    fullPageFAB: true,
-    disableFullPageAppBar: true,
-    disableFullPageContent: true,
     children: <AutoDense />,
   },
   {
     name: "Fixed with Offset",
     description: fixedWithOffset,
-    phoneFullPage: true,
-    fullPageFAB: true,
-    disableFullPageAppBar: true,
-    disableFullPageContent: true,
     children: <FixedWithOffset />,
   },
   {
     name: "Animating App Bar",
     description: animatingAppBar,
-    phoneFullPage: true,
-    fullPageFAB: true,
-    disableFullPageAppBar: true,
-    disableFullPageContent: true,
     children: <AnimatingAppBar />,
   },
 ];
 
 export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="app-bar" className="app-bar-demos" />
+  <DemoPage
+    demos={demos}
+    packageName="app-bar"
+    className="app-bar-demos"
+    fullPageFAB
+    phoneFullPage
+    disableFullPageAppBar
+    disableFullPageContent
+  />
 );

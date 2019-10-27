@@ -1,36 +1,40 @@
 import React, { FC } from "react";
 import cn from "classnames";
+import { defaults } from "lodash";
 
 import { toId } from "utils/toTitle";
 
-import Demo, { DemoProps } from "./Demo";
+import Demo from "./Demo";
 import DemoPageHeader from "./DemoPageHeader";
 import DemoPageFont from "./DemoPageFont";
+import { DemoPageConfig, DemoProps, DemoConfig } from "./types";
 
-export interface DemoPageProps {
+export interface DemoPageProps extends DemoPageConfig {
   className?: string;
   packageName: string;
-  description?: string;
-  demos: Pick<
-    DemoProps,
-    | "name"
-    | "description"
-    | "fullPage"
-    | "fullPageFAB"
-    | "disableFullPageAppBar"
-    | "disableFullPageContent"
-    | "phoneFullPage"
-    | "mobileFullPage"
-    | "disableCard"
-    | "fileName"
-    | "children"
-  >[];
-  fonts?: string[];
-  disableCards?: boolean;
 }
 
-type DefaultProps = Required<Pick<DemoPageProps, "fonts" | "disableCards">>;
+type DefaultProps = Required<Pick<DemoPageProps, "fonts" | "disableCard">>;
 type WithDefaultProps = DemoPageProps & DefaultProps;
+
+const getDemoProps = (
+  props: DemoPageProps,
+  demo: DemoConfig,
+  index: number
+): DemoProps & { key: string } => {
+  const { name } = demo;
+  const { packageName } = props;
+  const id = toId(name);
+  const config = defaults({}, demo, props);
+  return {
+    ...demo,
+    ...config,
+    key: id,
+    id,
+    index,
+    packageName,
+  };
+};
 
 const DemoPage: FC<DemoPageProps> = props => {
   const {
@@ -39,7 +43,6 @@ const DemoPage: FC<DemoPageProps> = props => {
     packageName,
     className,
     fonts,
-    disableCards,
   } = props as WithDefaultProps;
 
   return (
@@ -48,31 +51,16 @@ const DemoPage: FC<DemoPageProps> = props => {
         <DemoPageFont font={font} key={font} />
       ))}
       <DemoPageHeader packageName={packageName}>{description}</DemoPageHeader>
-      {demos.map(({ name, ...props }, index) => {
-        const id = toId(name);
-        return (
-          <Demo
-            {...props}
-            key={id}
-            id={id}
-            name={name}
-            index={index}
-            packageName={packageName}
-            disableCard={
-              typeof props.disableCard !== "undefined"
-                ? props.disableCard
-                : disableCards
-            }
-          />
-        );
-      })}
+      {demos.map((demo, index) => (
+        <Demo {...getDemoProps(props, demo, index)} />
+      ))}
     </div>
   );
 };
 
 DemoPage.defaultProps = {
   fonts: [],
-  disableCards: false,
+  disableCard: false,
 };
 
 export default DemoPage;

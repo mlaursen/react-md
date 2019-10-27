@@ -196,43 +196,44 @@ just need to refresh the page for the styles to work.
 
 The documentation folder will contain the following folders:
 
-- `components` - All the React components to be used throughout the app. This is
-  95% of the codebase
-- `constants` - Any general constants to use throughout the app and demos. This
-  is where reusable data should be stored
-- `hooks` - Any reusable hooks for the documentation site only
-- `icons` - Any custom icons that are not available from Material Icons
-- `pages` - All the pages in the site. Check out the next block for more
-  information
 - `public` - Static files to be served. This shouldn't really include many other
   files as most of the time the static files should be imported normally with
   webpack.
-- `server` - The custom typescript server
-- `types` - Any custom types needed to run the app
-- `utils`- General utils used for the documentation site. This include things
-  like a simple number generator or some string utils
+- `src/components` - All the React components to be used throughout the app.
+  This is 95% of the codebase
+- `src/constants` - Any general constants to use throughout the app and demos.
+  This is where reusable data should be stored
+- `src/guides` - A list of all the `*.md` files that should be used as guides
+- `src/hooks` - Any reusable hooks for the documentation site only
+- `src/icons` - Any custom icons that are not available from Material Icons
+- `src/pages` - All the pages in the site. Check out the next block for more
+  information
+- `src/server` - The custom typescript server
+- `src/types` - Any custom types needed to run the app
+- `src/utils`- General utils used for the documentation site. This include
+  things like a simple number generator or some string utils
 
 ### nextjs pages
 
 If you haven't used `nextjs` before, the way it works is that every file found
 in the `pages` directory will be turned into a route in the website. So if we
-want to have the `/getting-started` and `/getting-started/installation` routes,
+want to have the `/customization` and `/customization/color-palette` routes,
 you'll have a file structure of:
 
 ```
-pages/getting-started/index.ts
-pages/getting-started/installation.ts
+pages/customization/index.tsx
+pages/customization/color-palette.tsx
 ```
 
 Since this can lead to some pages accidentally being created, components aren't
 actually created in this directory and instead are found within the base
 `components` folder. All the files within the `pages` folder will just be a
 simple _pointer_ to a file in the `components` folder. A really good example for
-this is how the demo pages for each package is created. All that exists at
-`pages/packages/avatars/demos.ts` is a single line:
+this is how the About page is created. All that exists at `pages/about.ts` is a
+single line:
 
 ```ts
-export { default } from "components/Demos/Avatar";
+export { default } from "components/About";
 ```
 
 ### Creating a new Demo

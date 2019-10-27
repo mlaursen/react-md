@@ -19,6 +19,7 @@ export const documentation = "documentation";
 export const rootNodeModules = path.join(projectRoot, nodeModules);
 export const packagesRoot = path.join(projectRoot, packages);
 export const documentationRoot = path.join(packagesRoot, documentation);
+export const documentaionReadmes = path.join(documentationRoot, src, "readmes");
 export const tempStylesFolder = "tempStyles";
 
 export const devUtils = path.join(packagesRoot, "dev-utils");

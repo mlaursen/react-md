@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from "react";
+import React, { FC, Fragment } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
@@ -13,45 +13,12 @@ import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
 import { ClosePhone } from "components/Phone";
 
-import "./Demo.scss";
 import CodePreview from "./CodePreview";
 import GithubDemoLink from "./GithubDemoLink";
 import Sandbox from "./Sandbox";
+import { DemoProps } from "./types";
 
-export interface DemoProps {
-  id: string;
-  name: string;
-  description: string;
-
-  /**
-   * Boolean if the demo should require a full page modal to display.
-   */
-  fullPage?: boolean;
-  disableFullPageAppBar?: boolean;
-  disableFullPageContent?: boolean;
-  fullPageFAB?: boolean;
-  disableCard?: boolean;
-
-  /**
-   * Boolean if the demo should require a full page modal to display only
-   * for phones.
-   */
-  phoneFullPage?: boolean;
-
-  /**
-   * Boolean if the demo should require a full page modal to display only
-   * for mobile devices. This will include both phones and tablets.
-   */
-  mobileFullPage?: boolean;
-  index: number;
-  fileName?: string;
-  packageName: string;
-
-  /**
-   * This should be the demo content to display.
-   */
-  children: ReactElement;
-}
+import "./Demo.scss";
 
 type WithDefaultProps = DemoProps &
   Required<
@@ -85,10 +52,7 @@ const Demo: FC<DemoProps> = props => {
   } = props as WithDefaultProps;
 
   const title = toTitle(packageName, "");
-  let { fileName } = props;
-  if (!fileName) {
-    fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(/ /g, "")}`;
-  }
+  let fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(/ /g, "")}`;
 
   if (!fileName.endsWith(".tsx")) {
     fileName = `${fileName}.tsx`;

@@ -11,7 +11,7 @@ import {
 } from "@react-md/material-icons";
 import { AppSizeListenerProps } from "@react-md/utils";
 
-import { routesTree } from "constants/routesTree";
+import navItems from "constants/navItems";
 import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
@@ -33,7 +33,7 @@ const Layout: FC<LayoutProps> = ({
   <Configuration defaultSize={defaultSize}>
     <TOCVisibilityProvider pathname={pathname}>
       <RMDLayout
-        {...useLayoutNavigation(routesTree, pathname)}
+        {...useLayoutNavigation(navItems, pathname)}
         appBarTitle={title.replace("react-md - ", "")}
         navHeaderTitle="react-md"
         navIcon={<MenuSVGIcon />}

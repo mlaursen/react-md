@@ -2,7 +2,7 @@ import qs from "qs";
 
 type QueryParam = string | string[] | undefined;
 
-const toString = (q: QueryParam): string => {
+export const qsToString = (q: QueryParam): string => {
   if (!q) {
     return "";
   }
@@ -24,10 +24,10 @@ export type SandboxQuery = Partial<SandboxParams>;
 
 export function parseSandbox(query?: SandboxQuery): SandboxParams {
   query = query || {};
-  const pkg = toString(query.pkg);
-  const name = toString(query.name);
-  const from = toString(query.from);
-  const fileName = toString(query.fileName) || "src/Demo.tsx";
+  const pkg = qsToString(query.pkg);
+  const name = qsToString(query.name);
+  const from = qsToString(query.from);
+  const fileName = qsToString(query.fileName) || "src/Demo.tsx";
 
   return {
     pkg,

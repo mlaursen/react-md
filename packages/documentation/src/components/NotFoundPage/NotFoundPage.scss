@@ -1,4 +1,5 @@
-@import 'mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 .not-found {
   background-color: rmd-theme-get-swatch($rmd-theme-primary, 800);
