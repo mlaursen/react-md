@@ -127,8 +127,14 @@ export default function useKeyboardSearch<
         onKeyDown(event);
       }
 
-      const { key } = event;
-      if (key.length > 1 || (!value.current && key === " ")) {
+      const { key, altKey, ctrlKey, metaKey } = event;
+      if (
+        altKey ||
+        ctrlKey ||
+        metaKey ||
+        key.length > 1 ||
+        (!value.current && key === " ")
+      ) {
         // might need to change this later if other languages have
         // non-meta keys that are more than 1 letter
         return;
