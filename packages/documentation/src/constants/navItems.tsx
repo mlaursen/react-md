@@ -86,11 +86,6 @@ const routes: NavItem[] = [
     leftIcon: <HomeSVGIcon />,
   },
   {
-    href: "/about",
-    children: "About",
-    leftIcon: <InfoOutlineSVGIcon />,
-  },
-  {
     href: "/guides",
     children: "Guides",
     leftIcon: <DescriptionSVGIcon />,
@@ -131,6 +126,10 @@ const routes: NavItem[] = [
         href: "/working-with-v1",
         children: "Working with v1",
       },
+      {
+        href: "/contributing",
+        children: "Contributing",
+      },
     ],
   },
   {
@@ -165,6 +164,11 @@ const routes: NavItem[] = [
       children: toTitle(name),
       routes: getPackageRoutes(name),
     })),
+  },
+  {
+    href: "/about",
+    children: "About",
+    leftIcon: <InfoOutlineSVGIcon />,
   },
   { divider: true },
   { subheader: true, children: "References" },

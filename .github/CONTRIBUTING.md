@@ -49,7 +49,7 @@ feel free to propose changes to this document in a pull request.
 
 <!-- tocstop -->
 
-## I don't want to read the whole thing I just want to ask a question!
+## I don't want to read the whole thing I just want to ask a question!<!-- force-heading -->
 
 If you have a question about how to use `react-md`, getting started, or general
 styling questions, please do not create an issue. Instead, join the [official

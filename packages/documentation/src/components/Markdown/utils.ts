@@ -66,8 +66,13 @@ renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
 renderer.heading = (text, level, _raw, slugger) => {
   // if it is over 60 characters, it is probably not really a title
   const isNoMargin = text.includes("<!-- no-margin -->");
-  const isValidHeading = text.length <= 60 && !isNoMargin;
-  const id = slugger.slug(text);
+  const isForcedHeading = text.includes("<!-- force-heading -->");
+  // replace comments since they will be slugged :/
+  text = text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
+
+  const isValidHeading = isForcedHeading || (text.length <= 60 && !isNoMargin);
+  // `'t` gets slugged as 39t
+  const id = slugger.slug(text).replace(/39t/g, "t");
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
     // eslint-disable-next-line @typescript-eslint/camelcase

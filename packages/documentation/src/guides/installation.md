@@ -131,4 +131,5 @@ you'll probably be interested in:
 [material icons font]: https://material.io/resources/icons/
 [configuring your layout]: /guides/configuring-your-layout
 [scoped packages]: /guides/scoped-packages
-[inlucding styles without webpack]: /guides/inlucding-styles-without-webpack
+[including styles without webpack]: /guides/inlucding-styles-without-webpack
+[unpkg.com]: https://unpkg.com

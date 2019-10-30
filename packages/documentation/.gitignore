@@ -1,2 +1,5 @@
 /.next
 src/readmes
+
+# this is copied over from .github/CONTRIBUTING.md
+src/guides/contributing.md

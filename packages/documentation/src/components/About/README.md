@@ -6,16 +6,6 @@ along with the [Material Design principals]. The main difference between this
 library and [material-ui] is how the styles are provided. This library is
 focused more towards developers that like [Sass] instead of CSS-in-JS solutions.
 
-## I'd Like to Contribute!
-
-That's great to hear! I've written up a decently thorough [contributing guide]
-that should hopefully help you get started. It should outline:
-
-- how to clone this repo and initialize the dev environment
-- all the available scripts and `dev-utils` to help develop
-- how the documentation site works and adding new demos
-- general best practices
-
 ## What's the library size?
 
 The base `react-md` package (non-scoped) is the only package that also provides

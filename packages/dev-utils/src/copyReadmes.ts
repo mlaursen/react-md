@@ -2,7 +2,13 @@ import fs from "fs-extra";
 import log from "loglevel";
 import path from "path";
 
-import { documentaionReadmes, packagesRoot, projectRoot } from "./paths";
+import {
+  documentaionReadmes,
+  packagesRoot,
+  projectRoot,
+  documentationRoot,
+  src,
+} from "./paths";
 import { format, glob, time } from "./utils";
 
 const START_TOKEN = "<!-- DOCS_REMOVE -->";
@@ -68,6 +74,10 @@ async function run(): Promise<void> {
   const moved = await Promise.all(readmes.map(copy));
   log.info();
   await Promise.all(moved.map(update));
+  await fs.copy(
+    path.join(projectRoot, ".github", "CONTRIBUTING.md"),
+    path.join(documentationRoot, src, "guides", "contributing.md")
+  );
 }
 
 export default async function copyReadmes(): Promise<void> {
