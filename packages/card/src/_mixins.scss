@@ -38,12 +38,9 @@
 /// Creates all the styles for the `Card` component only. You'll need to use this within a
 /// selector.
 @mixin rmd-card {
-  @include rmd-theme-update-var(background, #{rmd-card-theme-var(background-color)});
-  @include rmd-theme-update-var(text-primary-on-background, #{rmd-card-theme-var(color)});
-  @include rmd-theme-update-var(
-    text-secondary-on-background,
-    #{rmd-card-theme-var(secondary-color)}
-  );
+  @include rmd-theme-update-var(background, rmd-card-theme-var(background-color));
+  @include rmd-theme-update-var(text-primary-on-background, rmd-card-theme-var(color));
+  @include rmd-theme-update-var(text-secondary-on-background, rmd-card-theme-var(secondary-color));
   @include rmd-utils-mouse-only {
     &--raiseable {
       @include rmd-elevation-transition(
