@@ -4,7 +4,7 @@ This guide will help you create a new app with `react-md` along with
 [create-react-app] as the project bootstrapper. The basic requirements for
 continuing are:
 
-- [node] installed with at least version `10` to make thigns simple
+- [node] installed with at least version `10` to make things simple
 - [yarn] or [npm]
 - experience in React
 

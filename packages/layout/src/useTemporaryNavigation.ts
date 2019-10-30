@@ -36,6 +36,10 @@ export default function useTemporaryNavigation(
       !isNavVisible ||
       lastSelectedId.current === selectedId
     ) {
+      // need to update the lastSelectedId since the selectedId might've changed
+      // by a route change OUTSIDE of the navigation drawer. if it isn't updated,
+      // it'll automatically close the next time it is opened.
+      lastSelectedId.current = selectedId;
       return;
     }
 

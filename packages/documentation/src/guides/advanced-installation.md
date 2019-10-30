@@ -203,9 +203,15 @@ command before the `react-scripts start`.
 
 ## Self-hosting the fonts
 
+TODO
+
 ### Self-hosting the Material Icons font
 
+TODO
+
 ## Switching to SVG Icons
+
+TODO
 
 [google fonts]: https://fonts.google.com
 [unpkg.com]: https://unpkg.com
