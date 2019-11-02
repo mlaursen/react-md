@@ -86,3 +86,21 @@ export const HORIZONTAL_TREE: MovementConfig = {
   loopable: true,
   searchable: true,
 };
+
+export const HORIZONTAL_TABS: MovementConfig = {
+  incrementKeys: [IncrementMovementKey.ArrowRight],
+  decrementKeys: [IncrementMovementKey.ArrowLeft],
+  jumpToFirstKeys: [JumpMovementKey.Home],
+  jumpToLastKeys: [JumpMovementKey.End],
+  loopable: true,
+  searchable: false,
+};
+
+export const VERTICAL_TABS: MovementConfig = {
+  incrementKeys: [IncrementMovementKey.ArrowDown],
+  decrementKeys: [IncrementMovementKey.ArrowUp],
+  jumpToFirstKeys: [JumpMovementKey.Home],
+  jumpToLastKeys: [JumpMovementKey.End],
+  loopable: true,
+  searchable: false,
+};

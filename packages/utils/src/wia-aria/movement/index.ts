@@ -2,7 +2,7 @@ import * as MovementPresets from "./presets";
 
 export { MovementPresets };
 
-export { default as useKeyboardMovement } from "./useKeyboardMovement";
+export { default as useKeyboardMovement, ItemRef } from "./useKeyboardMovement";
 export {
   default as useActiveDescendantMovement,
 } from "./useActiveDescendantMovement";

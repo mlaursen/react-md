@@ -24,7 +24,9 @@ export type MovementHandler<E extends HTMLElement> = React.KeyboardEventHandler<
  *
  * @typeparam E the element type of each item within the focusable list.
  */
-export type ItemRef<E extends HTMLElement> = MutableRefObject<E | null>;
+export type ItemRef<
+  E extends HTMLElement = HTMLElement
+> = MutableRefObject<E | null>;
 
 export interface BaseKeyboardMovementOptions<
   D = unknown,
