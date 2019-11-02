@@ -1,6 +1,14 @@
 import { ReactNode } from "react";
+import { PhoneConfiguration } from "components/Phone/Phone";
 
 export interface DemoOptions {
+  /**
+   * Boolean if the demo should be "emulated" in the fake phone on desktop
+   * devices. If this prop is enabled, it will always enable the `mobileFullPage`
+   * prop.
+   */
+  emulated?: boolean | PhoneConfiguration;
+
   /**
    * Boolean if the demo should no longer be wrapped in the `Card`
    * component to help highlight the demo from the rest of the page's

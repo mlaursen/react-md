@@ -39,7 +39,8 @@
     "@react-md/portal": "^2.0.0-alpha.10",
     "@react-md/theme": "^2.0.0-alpha.10",
     "@react-md/utils": "^2.0.0-alpha.10",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {
     "react": ">= 16.8"

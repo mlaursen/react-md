@@ -14,16 +14,7 @@ import "./Phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
 
-export interface PhoneProps
-  extends Pick<
-    ConditionalFullPageDialogProps,
-    "disableAppBar" | "disableContent"
-  > {
-  /**
-   * An id for the phone. This is required for accessibility and quickly linking to things.
-   */
-  id: string;
-
+export interface PhoneConfiguration {
   /**
    * An optional app bar to use within the phone. This should normally contain the `ClosePhone`
    * component so that it can be hidden on mobile devices when the full page dialog is used.
@@ -37,6 +28,33 @@ export interface PhoneProps
   title?: ReactNode;
 
   /**
+   * A class name to apply to the fake phone's content element.
+   */
+  contentClassName?: string;
+
+  /**
+   * Boolean if the phone's content should gain the stacked styles which update the content
+   * to be display flex and flex-direction column. THis is great when creating a custom app
+   * bar that isn't fixed to the top with position fixed.
+   */
+  contentStacked?: boolean;
+
+  /**
+   * Boolean if the phone's app bar should be prominent. This is used to add the required offset class names
+   * to the content element.
+   */
+  prominent?: boolean;
+}
+
+export interface PhoneProps
+  extends PhoneConfiguration,
+    Pick<ConditionalFullPageDialogProps, "disableAppBar" | "disableContent"> {
+  /**
+   * An id for the phone. This is required for accessibility and quickly linking to things.
+   */
+  id: string;
+
+  /**
    * The content to display. This will conditionally render in a full page dialog.
    */
   children: ReactNode;
@@ -47,23 +65,14 @@ export interface PhoneProps
   className?: string;
 
   /**
-   * A class name to apply to the fake phone's content element.
-   */
-  contentClassName?: string;
-
-  /**
-   * Boolean if the phone's app bar should be prominent. This is used to add the required offset class names
-   * to the content element.
-   */
-  prominent?: boolean;
-
-  /**
    * An optional function to call when the dialog is closed. This is useful if the demo should be reset
    * when the full page dialog is closed.
    */
   onPhoneClose?: () => void;
 }
-type DefaultProps = Required<Pick<PhoneProps, "appBar" | "title">>;
+type DefaultProps = Required<
+  Pick<PhoneProps, "appBar" | "title" | "contentStacked">
+>;
 type WithDefaultProps = PhoneProps & DefaultProps;
 
 const block = bem("phone");
@@ -76,6 +85,7 @@ const Phone: FC<PhoneProps> = props => {
     appBar,
     className,
     contentClassName,
+    contentStacked: stacked,
     prominent,
     disableAppBar,
     disableContent,
@@ -122,11 +132,11 @@ const Phone: FC<PhoneProps> = props => {
           <div
             id={`${id}-content`}
             className={cn(
-              block("content"),
+              block("content", { stacked }),
               {
-                [APP_BAR_OFFSET_DENSE_CLASSNAME]: !isPhone,
+                [APP_BAR_OFFSET_DENSE_CLASSNAME]: appBar && !isPhone,
                 [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]:
-                  !isPhone && prominent,
+                  appBar && !isPhone && prominent,
               },
               contentClassName
             )}
@@ -142,6 +152,7 @@ const Phone: FC<PhoneProps> = props => {
 const defaultProps: DefaultProps = {
   appBar: <DefaultAppBar />,
   title: "Example",
+  contentStacked: false,
 };
 
 Phone.defaultProps = defaultProps;

@@ -11,7 +11,7 @@ import { toTitle } from "utils/toTitle";
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
-import { ClosePhone } from "components/Phone";
+import Phone, { ClosePhone } from "components/Phone";
 
 import CodePreview from "./CodePreview";
 import GithubDemoLink from "./GithubDemoLink";
@@ -29,6 +29,7 @@ type WithDefaultProps = DemoProps &
       | "mobileFullPage"
       | "fullPageFAB"
       | "disableCard"
+      | "emulated"
     >
   >;
 
@@ -45,10 +46,9 @@ const Demo: FC<DemoProps> = props => {
     children,
     index,
     packageName,
+    emulated,
     fullPageFAB,
     disableCard,
-    disableFullPageAppBar,
-    disableFullPageContent,
   } = props as WithDefaultProps;
 
   const title = toTitle(packageName, "");
@@ -58,12 +58,33 @@ const Demo: FC<DemoProps> = props => {
     fileName = `${fileName}.tsx`;
   }
 
-  const { isPhone, isTablet } = useAppSize();
+  const { isPhone, isTablet, isDesktop } = useAppSize();
   let dialogDisabled = !fullPage;
   if (phoneFullPage) {
     dialogDisabled = !isPhone;
-  } else if (mobileFullPage) {
+  } else if (mobileFullPage || emulated) {
     dialogDisabled = !isPhone && !isTablet;
+  }
+
+  let content = children;
+  if (emulated && isDesktop) {
+    content = (
+      <Phone
+        id={`${id}-phone`}
+        {...(typeof emulated !== "boolean" ? emulated : undefined)}
+      >
+        {children}
+      </Phone>
+    );
+  }
+
+  let {
+    disableFullPageAppBar,
+    disableFullPageContent,
+  } = props as WithDefaultProps;
+  if (emulated && typeof emulated === "object" && !emulated.appBar) {
+    disableFullPageAppBar = true;
+    disableFullPageContent = true;
   }
 
   const [toggled, enable, disable] = useToggle(false);
@@ -100,7 +121,7 @@ const Demo: FC<DemoProps> = props => {
             disableContent={disableFullPageContent}
           >
             <Fragment>
-              {children}
+              {content}
               {toggled && fullPageFAB && (
                 <ClosePhone id={id} floating onClick={disable} />
               )}
@@ -120,6 +141,7 @@ Demo.defaultProps = {
   disableFullPageContent: false,
   fullPageFAB: false,
   disableCard: false,
+  emulated: false,
 };
 
 export default Demo;

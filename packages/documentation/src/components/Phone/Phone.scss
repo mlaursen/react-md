@@ -30,6 +30,7 @@ $fixed-classes: (
       calc(#{rmd-app-bar-theme-var(prominent-height)} + #{rmd-icon-theme-var(size)})
     );
     @include rmd-sheet-theme-update-var(touch-width, calc(100% - #{$rmd-sheet-touch-margin}));
+    @include rmd-typography-theme-update-var(line-width, $rmd-typography-mobile-max-line-length);
 
     height: $phone-height;
     overflow: hidden;
@@ -75,6 +76,11 @@ $fixed-classes: (
     @include rmd-utils-scroll;
 
     height: 100%;
+
+    &--stacked {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__close {
