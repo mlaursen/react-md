@@ -316,6 +316,12 @@
       @include rmd-app-bar-theme(height, prominent-dense-height);
     }
 
+    &--derived {
+      @include rmd-app-bar-theme(min-height, prominent-dense-height);
+
+      height: auto;
+    }
+
     &__nav {
       @include rmd-app-bar-nav;
     }

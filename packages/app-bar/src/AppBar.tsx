@@ -61,9 +61,19 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
    * for the provided `theme`. If this value is `undefined`, the color will only be inherited when
    * the theme is set to `primary` or `secondary`. However if this value is a boolean, it will be
    * used instead. So if you set this to `false` and set the `theme` to `"primary"`, the defined
-   * primary text clor will not be inherited.
+   * primary text color will not be inherited.
    */
   inheritColor?: boolean;
+
+  /**
+   * Boolean if the height should be derived from the content's size instead of having static fixed
+   * heights. This will update the `height` to be `auto` and instead set the `min-height` to the current
+   * "static" height. This is great when you want to add tabs or other elements into the `AppBar`.
+   *
+   * Note: Enabling this prop will **prevent the `rmd-app-bar-offset` functionality** since the height
+   * is no longer static.
+   */
+  derived?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -77,6 +87,7 @@ type DefaultProps = Required<
     | "dense"
     | "prominent"
     | "theme"
+    | "derived"
   >
 >;
 type WithDefaultProps = AppBarProps & DefaultProps & WithRef;
@@ -102,6 +113,7 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
     children,
     dense,
     prominent,
+    derived,
     fixed,
     fixedPosition,
     fixedElevation,
@@ -135,6 +147,7 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
               dense: dense && !prominent,
               prominent,
               "prominent-dense": dense && prominent,
+              derived,
               fixed,
               [fixedPosition]: fixed,
               "fixed-elevation": fixed && fixedElevation,
@@ -157,6 +170,7 @@ const defaultProps: DefaultProps = {
   fixedElevation: true,
   dense: false,
   prominent: false,
+  derived: false,
   theme: "primary",
 };
 
@@ -181,6 +195,7 @@ if (process.env.NODE_ENV !== "production") {
       children: PropTypes.node,
       dense: PropTypes.bool,
       prominent: PropTypes.bool,
+      derived: PropTypes.bool,
       fixed: PropTypes.bool,
       fixedPosition: PropTypes.oneOf(["top", "bottom"]),
       fixedElevation: PropTypes.bool,
