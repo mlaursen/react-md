@@ -43,6 +43,9 @@
 /// Creates the base styles for icons. This should be combined with the `rmd-icon-font` or
 /// `rmd-icon-svg` mixins to get the full styles.
 @mixin rmd-icon-base {
+  // you normally don't want icons to shrink in flex containers.
+  // update the icon manually instead.
+  flex-shrink: 0;
   user-select: none;
 }
 
@@ -84,7 +87,11 @@
 ///
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
-  @include rmd-utils-rtl-auto($property, $spacing, 0);
+  @if $property == 'margin-left' or $property == 'margin-right' {
+    @include rmd-utils-rtl-auto($property, $spacing, 0);
+  } @else {
+    #{$property}: $spacing;
+  }
 }
 
 /// A mixin to create the styles to space an icon before or after text with the provided selectors and
@@ -101,10 +108,16 @@
 ///   before or after the text. If this is set to `null`, no before styles will be created.
 /// @param {String} after-selector ['&--after'] - The selector to use for determining if an icon is placed
 ///   before or after the text. If this is set to `null`, no after styles will be created.
+/// @param {String} above-selector ['&--above'] - The selector to use for determining if an icon is placed
+///   above or below the text. If this is set to `null`, no before styles will be created.
+/// @param {String} below-selector ['&--after'] - The selector to use for determining if an icon is placed
+///   above or below the text. If this is set to `null`, no after styles will be created.
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spaced-with-text(
   $before-selector: '&--before',
   $after-selector: '&--after',
+  $above-selector: '&--above',
+  $below-selector: '&--below',
   $spacing: $rmd-icon-spacing-with-text
 ) {
   @if $before-selector != null {
@@ -116,6 +129,18 @@
   @if $after-selector != null {
     #{$after-selector} {
       @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-left);
+    }
+  }
+
+  @if $above-selector != null {
+    #{$above-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-bottom);
+    }
+  }
+
+  @if $below-selector != null {
+    #{$below-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-top);
     }
   }
 }

@@ -50,19 +50,41 @@ export interface TextIconSpacingProps {
   afterClassName?: string;
 
   /**
+   * The class name to use for an icon that is placed before above the text. This is used when
+   * the `stacked` prop is enabled and the `iconAfter` prop is disabled or omitted.
+   */
+  aboveClassName?: string;
+
+  /**
+   * The class name to use for an icon that is placed before above the text. This is used when
+   * the `stacked` prop is enabled and the `iconAfter` prop is enabled.
+   */
+  belowClassName?: string;
+
+  /**
    * Boolean if the icon should be forced into a `<span>` with the class names applied instead of
    * attempting to clone into the provided icon.
    */
   forceIconWrap?: boolean;
+
+  /**
+   * Boolean if the icon and text should be stacked instead of inline. Note: You'll normally want
+   * to update the container element to have `display: flex` and `flex-direction: column` for
+   * this to work.
+   */
+  stacked?: boolean;
 }
 
 type DefaultProps = Required<
   Pick<
     TextIconSpacingProps,
     | "children"
+    | "stacked"
     | "iconAfter"
     | "beforeClassName"
     | "afterClassName"
+    | "aboveClassName"
+    | "belowClassName"
     | "forceIconWrap"
   >
 >;
@@ -71,11 +93,14 @@ type WithDefaultProps = TextIconSpacingProps & DefaultProps;
 const TextIconSpacing: FC<TextIconSpacingProps> = props => {
   const {
     icon: propIcon,
+    stacked,
     iconAfter,
     children,
     className,
     beforeClassName,
     afterClassName,
+    aboveClassName,
+    belowClassName,
     forceIconWrap,
   } = props as WithDefaultProps;
 
@@ -83,32 +108,26 @@ const TextIconSpacing: FC<TextIconSpacingProps> = props => {
     return children as ReactElement;
   }
 
+  const baseClassName = cn(
+    {
+      [beforeClassName]: !stacked && !iconAfter,
+      [afterClassName]: !stacked && iconAfter,
+      [aboveClassName]: stacked && !iconAfter,
+      [belowClassName]: stacked && iconAfter,
+    },
+    className
+  );
+
   let iconEl = propIcon;
   let content = children;
   if (!forceIconWrap && isValidElement(propIcon)) {
     const icon = Children.only(propIcon);
     iconEl = cloneElement(icon, {
-      className: cn(
-        className,
-        {
-          [beforeClassName]: !iconAfter,
-          [afterClassName]: iconAfter,
-        },
-        icon.props.className
-      ),
+      className: cn(baseClassName, icon.props.className),
     });
   } else if (propIcon) {
     iconEl = (
-      <span
-        className={cn(
-          "rmd-text-icon-spacing",
-          {
-            [beforeClassName]: !iconAfter,
-            [afterClassName]: iconAfter,
-          },
-          className
-        )}
-      >
+      <span className={cn("rmd-text-icon-spacing", baseClassName)}>
         {propIcon}
       </span>
     );
@@ -129,10 +148,13 @@ const TextIconSpacing: FC<TextIconSpacingProps> = props => {
 
 const defaultProps: DefaultProps = {
   children: null,
+  stacked: false,
   iconAfter: false,
   forceIconWrap: false,
   beforeClassName: "rmd-icon--before",
   afterClassName: "rmd-icon--after",
+  aboveClassName: "rmd-icon--above",
+  belowClassName: "rmd-icon--below",
 };
 
 TextIconSpacing.defaultProps = defaultProps;
@@ -154,9 +176,12 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       iconAfter: PropTypes.bool,
+      stacked: PropTypes.bool,
       children: PropTypes.node,
       beforeClassName: PropTypes.string,
       afterClassName: PropTypes.string,
+      aboveClassName: PropTypes.string,
+      belowClassName: PropTypes.string,
       forceIconWrap: PropTypes.bool,
     };
   }
