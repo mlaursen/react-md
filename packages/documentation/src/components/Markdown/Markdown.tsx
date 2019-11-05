@@ -100,9 +100,15 @@ export type MarkdownChildren = string | ResolveMarkdown;
 
 export interface MarkdownProps extends HTMLAttributes<HTMLDivElement> {
   children: ResolveMarkdown | string;
+  disableSinglePMargin?: boolean;
 }
 
-const Markdown: FC<MarkdownProps> = ({ className, children, ...props }) => {
+const Markdown: FC<MarkdownProps> = ({
+  className,
+  children,
+  disableSinglePMargin,
+  ...props
+}) => {
   const html = useHTML(children);
   const ref = useLinkUpdates(html);
   return (
@@ -111,7 +117,11 @@ const Markdown: FC<MarkdownProps> = ({ className, children, ...props }) => {
       <div
         {...props}
         ref={ref}
-        className={cn("markdown-container", className)}
+        className={cn(
+          "markdown-container",
+          { "markdown-container--no-p-margin": disableSinglePMargin },
+          className
+        )}
         dangerouslySetInnerHTML={html}
       />
     </Fragment>

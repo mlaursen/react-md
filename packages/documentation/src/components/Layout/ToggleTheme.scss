@@ -22,9 +22,17 @@
   }
 }
 
-.toggle-theme-transition {
+@mixin transition {
   @include rmd-transition(standard);
 
-  transition-duration: 0.15s;
+  transition-duration: $rmd-transition-standard-time;
   transition-property: background-color, color;
+}
+
+.toggle-theme-transition {
+  @include transition;
+
+  * {
+    @include transition;
+  }
 }

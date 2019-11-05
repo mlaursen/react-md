@@ -66,6 +66,7 @@ renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
 renderer.heading = (text, level, _raw, slugger) => {
   // if it is over 60 characters, it is probably not really a title
   const isNoMargin = text.includes("<!-- no-margin -->");
+  const isNoMarginBottom = text.includes("<!-- no-margin-bottom -->");
   const isForcedHeading = text.includes("<!-- force-heading -->");
   // replace comments since they will be slugged :/
   text = text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
@@ -78,6 +79,7 @@ renderer.heading = (text, level, _raw, slugger) => {
     // eslint-disable-next-line @typescript-eslint/camelcase
     heading__toc: text.includes("Table of Contents"),
     "rmd-typography--no-margin": isNoMargin,
+    "rmd-typography--no-margin-bottom": isNoMarginBottom,
   });
 
   return `<h${level} id="${id}" class="${className}">

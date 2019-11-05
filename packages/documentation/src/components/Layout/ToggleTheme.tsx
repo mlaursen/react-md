@@ -2,18 +2,20 @@ import React, { FC } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { bem, useToggle, useInteractionModeContext } from "@react-md/utils";
+import { bem, useInteractionModeContext, useToggle } from "@react-md/utils";
 
+import useTheme from "components/Theme/useTheme";
+import useThemeActions from "components/Theme/useThemeActions";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
-import { useThemeContext, useThemeToggle } from "./ThemeContext";
+
 import "./ToggleTheme.scss";
 
 const block = bem("toggle-theme");
 
 const ToggleTheme: FC = () => {
-  const theme = useThemeContext();
+  const { theme } = useTheme();
+  const { toggleTheme } = useThemeActions();
   const isLight = theme === "light";
-  const toggleTheme = useThemeToggle();
 
   const [toggled, enable, disable] = useToggle(false);
   let icon = <LightbulbOutlineSVGIcon />;

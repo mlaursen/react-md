@@ -3,16 +3,16 @@ import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
 import { bem } from "@react-md/utils";
 
+import useTheme from "components/Theme/useTheme";
+import useThemeActions from "components/Theme/useThemeActions";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
-
-import { useThemeContext, useThemeToggle } from "./ThemeContext";
 
 const block = bem("toggle-theme");
 
 const ToggleThemeMenuItem: FC = () => {
-  const onClick = useThemeToggle();
-  const currentTheme = useThemeContext();
-  const isLight = currentTheme === "light";
+  const { theme } = useTheme();
+  const { toggleTheme } = useThemeActions();
+  const isLight = theme === "light";
   let icon = <LightbulbOutlineSVGIcon />;
   if (isLight) {
     icon = <LightbulbSVGIcon className={block({ on: true })} />;
@@ -21,9 +21,9 @@ const ToggleThemeMenuItem: FC = () => {
   return (
     <MenuItem
       id="toggle-theme"
-      onClick={onClick}
+      onClick={toggleTheme}
       leftIcon={icon}
-      secondaryText={`Current theme: ${currentTheme}`}
+      secondaryText={`Current theme: ${theme}`}
     >
       Toggle Light/Dark Theme
     </MenuItem>

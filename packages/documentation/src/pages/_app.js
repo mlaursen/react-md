@@ -17,7 +17,7 @@ import {
 
 import Layout from 'components/Layout';
 import GoogleFont from 'components/GoogleFont';
-import { ThemeContextProvider } from 'components/Layout/ThemeContext';
+import Theme from 'components/Theme';
 import { smoothScroll, getScrollPosition } from 'utils/smoothScroll';
 import { toBreadcrumbPageTitle } from 'utils/toTitle';
 
@@ -161,7 +161,7 @@ export default class App extends NextApp {
         <Head>
           <title>{pageTitle}</title>
         </Head>
-        <ThemeContextProvider defaultTheme={defaultTheme}>
+        <Theme defaultTheme={defaultTheme}>
           <Layout
             defaultSize={defaultSize}
             pathname={pathname}
@@ -171,7 +171,7 @@ export default class App extends NextApp {
               <Component {...componentProps} />
             </CrossFade>
           </Layout>
-        </ThemeContextProvider>
+        </Theme>
       </Fragment>
     );
   }

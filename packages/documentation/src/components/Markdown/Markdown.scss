@@ -22,6 +22,12 @@
   ol {
     @include rmd-utils-scroll;
   }
+
+  &--no-p-margin {
+    > p:only-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .iframe {

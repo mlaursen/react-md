@@ -47,7 +47,10 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLargeDesktop]);
 
-  const rendered = pathname !== "/" && !pathname.startsWith("/sandbox");
+  const rendered =
+    pathname !== "/" &&
+    !pathname.startsWith("/sandbox") &&
+    !pathname.startsWith("/customization/theme-builder");
   const actions = useMemo(() => ({ show, hide, toggle }), [hide, show, toggle]);
   const visibility = useMemo(
     () => ({
