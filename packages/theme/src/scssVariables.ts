@@ -1,6 +1,6 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
-  "rmd-theme-default-contrast-ratio": 3.1,
+  "rmd-theme-default-contrast-ratio": 3,
   "rmd-red-50": "#ffebee",
   "rmd-red-100": "#ffcdd2",
   "rmd-red-200": "#ef9a9a",
