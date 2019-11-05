@@ -32,6 +32,15 @@ export interface GridCSSProperties {
   rowEnd?: number | string;
 
   /**
+   * The number of columns that the cell should span. If this value is provided, it will be used
+   * instead of the `colEnd` property.
+   *
+   * Note: If this value is larger than the number of columns allowed in the current grid, it will
+   * shrink all the other columns.
+   */
+  colSpan?: number;
+
+  /**
    * The column that the cell should start at. When this is `undefined`, it will just appear in normal
    * order within the grid.
    */
@@ -94,7 +103,7 @@ const GridCell: FC<GridCellProps & WithRef> = ({
   clone,
   forwardedRef,
   children,
-  colSpan,
+  colSpan: propColSpan,
   colStart: propColStart,
   colEnd: propColEnd,
   rowSpan: propRowSpan,
@@ -108,6 +117,7 @@ const GridCell: FC<GridCellProps & WithRef> = ({
 }) => {
   const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
+  let colSpan = propColSpan;
   let colStart = propColStart;
   let colEnd = propColEnd;
   let rowSpan = propRowSpan;
@@ -124,6 +134,7 @@ const GridCell: FC<GridCellProps & WithRef> = ({
       rowSpan = propRowSpan,
       rowStart = propRowStart,
       rowEnd = propRowEnd,
+      colSpan = propColSpan,
       colStart = propColStart,
       colEnd = propColEnd,
     } = media);
