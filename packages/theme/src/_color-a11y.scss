@@ -6,13 +6,13 @@
 
 /// This is the default contrast ratio to use for color accessibility between
 /// background and foreground colors. This number should be at least:
-/// - 3.1 for large text (18pt normal or 14pt bold)
+/// - 3 for large text (18pt normal or 14pt bold)
 /// - 4.5 for normal text
 /// - 7.1 for Level AAA requirements.
 ///
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 /// @type Number
-$rmd-theme-default-contrast-ratio: 3.1 !default;
+$rmd-theme-default-contrast-ratio: 3 !default;
 
 /// Precomputed linear color channel values, for use in contrast calculations.
 /// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
