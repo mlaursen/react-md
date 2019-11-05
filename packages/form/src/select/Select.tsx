@@ -34,6 +34,7 @@ import {
   getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
+  defaultIsOptionDisabled,
 } from "./utils";
 
 type FakeSelectAttributes = Omit<
@@ -449,7 +450,7 @@ const defaultProps: DefaultProps = {
   getOptionLabel: DEFAULT_GET_OPTION_LABEL,
   getOptionValue: DEFAULT_GET_ITEM_VALUE,
   getDisplayLabel: DEFAULT_GET_DISPLAY_LABEL,
-  isOptionDisabled: () => false,
+  isOptionDisabled: defaultIsOptionDisabled,
   disableLeftAddon: false,
   disableMovementChange: false,
   disableHideOnResize: false,

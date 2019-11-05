@@ -26,6 +26,18 @@ export function isListboxOptionProps(
 }
 
 /**
+ * The default implementation to check if an option is disabled. It will just check
+ * if the option is an object and if it has the disabled prop enabled.
+ *
+ * @param option The option to check
+ * @return true if the option is disabled
+ * @private
+ */
+export function defaultIsOptionDisabled(option: ListboxOption): boolean {
+  return isListboxOptionProps(option) && !!option.disabled;
+}
+
+/**
  * The default way to generate a "unique" id for each option within the
  * listbox by concatenating the current index with a base id.
  *

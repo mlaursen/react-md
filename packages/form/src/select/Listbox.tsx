@@ -29,6 +29,7 @@ import {
   isListboxOptionProps,
   ListboxOption,
   ListboxOptionProps,
+  defaultIsOptionDisabled,
 } from "./utils";
 
 export interface ListboxOptions extends RenderConditionalPortalProps {
@@ -436,7 +437,7 @@ const defaultProps: DefaultProps = {
   getOptionId: DEFAULT_GET_OPTION_ID,
   getOptionLabel: DEFAULT_GET_OPTION_LABEL,
   getOptionValue: DEFAULT_GET_ITEM_VALUE,
-  isOptionDisabled: () => false,
+  isOptionDisabled: defaultIsOptionDisabled,
   disableMovementChange: false,
 };
 
