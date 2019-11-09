@@ -14,6 +14,13 @@ $rmd-utils-ios-scroll-momentum: true !default;
 /// @type Boolean
 $rmd-utils-auto-dense: true !default;
 
+/// Boolean if the rtl fixes should be included by default. You can save a few bytes
+/// in your bundle size by disabling this if you don't need to worry about right-to-left
+/// languages in your app.
+///
+/// @type Boolean
+$rmd-utils-enable-rtl: true !default;
+
 /// A list of the supported swappable variables for `rmd-utils-swap-position`.
 /// @type List
 $rmd-utils-swappable-positions: top right bottom left;

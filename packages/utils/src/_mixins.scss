@@ -33,8 +33,10 @@
 ///   }
 ///
 @mixin rmd-utils-rtl {
-  [dir='rtl'] & {
-    @content;
+  @if $rmd-utils-enable-rtl {
+    [dir='rtl'] & {
+      @content;
+    }
   }
 }
 
