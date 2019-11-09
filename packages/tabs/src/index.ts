@@ -1,3 +1,6 @@
+export { default as TabsList } from "./TabsList";
+export * from "./TabsList";
+
 export { default as Tabs } from "./Tabs";
 export * from "./Tabs";
 
@@ -9,3 +12,11 @@ export * from "./TabPanels";
 
 export { default as TabPanel } from "./TabPanel";
 export * from "./TabPanel";
+
+export {
+  default as TabsManager,
+  TabsManagerContext,
+  TabsManagerProps,
+} from "./TabsManager";
+
+export * from "./types";

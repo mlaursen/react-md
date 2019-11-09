@@ -25,13 +25,17 @@ $rmd-tab-vertical-padding: 0.75rem !default;
 /// to fill the entire space of the `Tabs` container width. This also means that
 /// they will shrink if the `Tabs` container is small.
 /// @type Number
-$rmd-tab-min-width: 6.125rem !default;
+$rmd-tab-min-width: 5.625rem !default;
 
 /// The maxium width for a tab. The way tabs work is that they will grow as needed
 /// to fill the entire space of the `Tabs` container width. This also means that
 /// they will shrink if the `Tabs` container is small.
 /// @type Number
 $rmd-tab-max-width: 20rem !default;
+
+/// The tab indicator color to use.
+/// @type String|Color
+$rmd-tab-indicator-color: rmd-theme-var(primary) !default;
 
 /// The color to use when a tab has become active.
 /// @type String|Color
@@ -54,10 +58,17 @@ $rmd-tab-active-indicator-height: 0.125rem !default;
 /// @type List
 $rmd-tabs-positions: (left center right) !default;
 
+/// The amount of padding to use when the `scollable` prop is enabled on the `Tabs` component that
+/// will be added to the left of the first tab (or right for RTL languages). This padding is useful
+/// to help users know that the content is scrollable.
+/// @type Number
+$rmd-tabs-scrollable-padding: 3.25rem !default;
+
 /// A map of all the themeable parts of the tabs package.
 /// @type Map
 $rmd-tabs-theme-values: (
   active: $rmd-tab-active-color,
   inactive: $rmd-tab-inactive-color,
   disabled: $rmd-tab-disabled-color,
+  indicator-color: $rmd-tab-indicator-color,
 ) !default;

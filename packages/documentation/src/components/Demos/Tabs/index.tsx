@@ -2,13 +2,23 @@ import React, { ReactElement } from "react";
 
 import DemoPage from "../DemoPage";
 
+import README from "./README.md";
+
+import BasicUsage from "./BasicUsage";
+import basicUsage from "./BasicUsage.md";
+
 import SimpleTwoPageTab from "./SimpleTwoPageTab";
 import simpleTwoPageTab from "./SimpleTwoPageTab.md";
 
-// import SimpleThreeTabs from "./SimpleThreeTabs";
-// import simpleThreeTabs from "./SimpleThreeTabs.md";
+import { ConfigurableTabs, configurableTabs } from "./ConfigurableTabs";
 
 const demos = [
+  {
+    name: "Basic Usage",
+    description: basicUsage,
+    children: <BasicUsage />,
+    phoneFullPage: true,
+  },
   {
     name: "Simple Two Page Tab",
     description: simpleTwoPageTab,
@@ -16,14 +26,13 @@ const demos = [
     emulated: { appBar: null, contentStacked: true },
     fullPageFAB: true,
   },
-  // {
-  //   name: "Simple Three Tabs",
-  //   description: simpleThreeTabs,
-  //   phoneFullPage: true,
-  //   children: <SimpleThreeTabs />,
-  // },
+  {
+    name: "Configurable Tabs",
+    description: configurableTabs,
+    children: <ConfigurableTabs />,
+  },
 ];
 
 export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="typography" />
+  <DemoPage demos={demos} description={README} packageName="tabs" />
 );

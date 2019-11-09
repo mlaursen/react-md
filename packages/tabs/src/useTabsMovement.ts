@@ -16,9 +16,9 @@ interface Options {
   children: ReactNode;
   onClick: MouseEventHandler<HTMLDivElement> | undefined;
   onKeyDown: KeyboardEventHandler<HTMLDivElement> | undefined;
+  automatic: boolean;
   horizontal: boolean;
   activeIndex: number;
-  disableLazyMode: boolean;
   onActiveIndexChange: (activeIndex: number) => void;
 }
 
@@ -33,12 +33,12 @@ interface ReturnValue {
  * @private
  */
 export default function useTabsMovement({
-  children,
-  activeIndex,
-  horizontal,
   onClick,
   onKeyDown,
-  disableLazyMode,
+  children,
+  automatic,
+  horizontal,
+  activeIndex,
   onActiveIndexChange,
 }: Options): ReturnValue {
   // first filter out all "nulled" or falsish elements since it's possible to do:
@@ -69,7 +69,7 @@ export default function useTabsMovement({
         return;
       }
 
-      if (disableLazyMode) {
+      if (automatic) {
         onActiveIndexChange(index);
       }
 

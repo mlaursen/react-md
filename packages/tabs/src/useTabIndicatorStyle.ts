@@ -29,7 +29,11 @@ interface CSSVariables {
 type CSSProperties = React.CSSProperties & CSSVariables;
 
 type MergedTabRef = (instance: HTMLDivElement | null) => void;
-type ReturnValue = [CSSProperties, MergedTabRef];
+type ReturnValue = [
+  CSSProperties,
+  MergedTabRef,
+  MutableRefObject<HTMLDivElement | null>
+];
 
 const getActiveTab = (
   itemRefs: MutableRefObject<HTMLElement | null>[],
@@ -123,5 +127,5 @@ export default function useTabIndicatorStyle({
     style,
     cssVars,
   ]);
-  return [mergedStyle, mergedRef];
+  return [mergedStyle, mergedRef, tabsRef];
 }
