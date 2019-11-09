@@ -86,7 +86,7 @@ const UpdatingMessagePriority: FC = () => {
         ))}
       </div>
       <Form onSubmit={exampleNextFlow}>
-        <Fieldset legend="Priority" disableLegendSROnly>
+        <Fieldset legend="Priority">
           {PRIORITIES.map(p => (
             <Radio
               key={p}

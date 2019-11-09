@@ -45,7 +45,7 @@ const SheetSizing: FC = () => {
 
   return (
     <Form>
-      <Fieldset legend="Position Options" disableLegendSROnly>
+      <Fieldset legend="Position Options">
         <GridList clone maxCellSize={300}>
           <Select
             id="sheet-sizing-position"

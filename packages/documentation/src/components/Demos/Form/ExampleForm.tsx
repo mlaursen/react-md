@@ -31,7 +31,7 @@ const ExampleForm: FC = () => {
 
   return (
     <Fragment>
-      <Fieldset legend="Theme options" disableLegendSROnly unstyled={false}>
+      <Fieldset legend="Theme options" unstyled={false}>
         {themes.map(theme => (
           <Radio
             id={`form-theme-${theme}`}

@@ -90,7 +90,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
 
   return (
     <Form className="text-field-theme-config">
-      <Fieldset legend="Text field theme" disableLegendSROnly>
+      <Fieldset legend="Text field theme">
         {themes.map((theme, i) => (
           <Radio
             id={`${idPrefix}-theme-${i}`}
@@ -103,7 +103,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
           />
         ))}
       </Fieldset>
-      <Fieldset legend="Text field options" disableLegendSROnly>
+      <Fieldset legend="Text field options">
         <Checkbox
           id={`${idPrefix}-left-icon`}
           name="leftIcon"

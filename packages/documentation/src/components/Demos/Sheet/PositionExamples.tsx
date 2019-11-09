@@ -15,7 +15,7 @@ const PositionExamples: FC = () => {
 
   return (
     <Fragment>
-      <Fieldset legend="Sheet positions" disableLegendSROnly>
+      <Fieldset legend="Sheet positions">
         {positions.map(pos => (
           <Radio
             key={pos}

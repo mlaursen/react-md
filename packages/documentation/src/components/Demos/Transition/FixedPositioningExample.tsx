@@ -121,7 +121,7 @@ const FixedPositioningExample: FC = () => {
   return (
     <Fragment>
       <Form className="fixed-position-form">
-        <Fieldset legend="Fixed Positioning Options" disableLegendSROnly>
+        <Fieldset legend="Fixed Positioning Options">
           <Checkbox
             id="fixed-swap"
             name="options"

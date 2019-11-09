@@ -53,7 +53,6 @@ const HandlingDuplicatedMessages: FC<Props> = ({
             {" duplicate behavior"}
           </Fragment>
         }
-        disableLegendSROnly
       >
         <Radio
           id="mq-duplicates-1"

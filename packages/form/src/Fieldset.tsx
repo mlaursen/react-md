@@ -27,10 +27,9 @@ export interface FieldsetProps
   legendClassName?: string;
 
   /**
-   * Boolean if the legend should no longer be styled to be visible for
-   * screen readers only.
+   * Boolean if the legend should only be styled to be visible for screen readers.
    */
-  disableLegendSROnly?: boolean;
+  legendSROnly?: boolean;
 
   /**
    * Boolean if the fieldset should remove the default browser styles of margin, padding, and border.
@@ -39,9 +38,7 @@ export interface FieldsetProps
 }
 
 type WithRef = WithForwardedRef<HTMLFieldSetElement>;
-type DefaultProps = Required<
-  Pick<FieldsetProps, "unstyled" | "disableLegendSROnly">
->;
+type DefaultProps = Required<Pick<FieldsetProps, "unstyled" | "legendSROnly">>;
 type WithDefaultProps = FieldsetProps & DefaultProps & WithRef;
 
 const block = bem("rmd-fieldset");
@@ -59,7 +56,7 @@ const Fieldset: FC<FieldsetProps & WithRef> = providedProps => {
     legend,
     legendStyle,
     legendClassName,
-    disableLegendSROnly,
+    legendSROnly,
     children,
     ...props
   } = providedProps as WithDefaultProps;
@@ -73,7 +70,7 @@ const Fieldset: FC<FieldsetProps & WithRef> = providedProps => {
       <legend
         style={legendStyle}
         className={cn(
-          block("legend", { "sr-only": !disableLegendSROnly }),
+          block("legend", { "sr-only": legendSROnly }),
           legendClassName
         )}
       >
@@ -86,7 +83,7 @@ const Fieldset: FC<FieldsetProps & WithRef> = providedProps => {
 
 const defaultProps: DefaultProps = {
   unstyled: true,
-  disableLegendSROnly: false,
+  legendSROnly: false,
 };
 
 Fieldset.defaultProps = defaultProps;
@@ -106,7 +103,7 @@ if (process.env.NODE_ENV !== "production") {
       legend: PropTypes.node.isRequired,
       legendStyle: PropTypes.object,
       legendClassName: PropTypes.string,
-      disableLegendSROnly: PropTypes.bool,
+      legendSROnly: PropTypes.bool,
     };
   }
 }

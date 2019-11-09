@@ -40,7 +40,7 @@ const TextAreaExample: FC = () => {
         />
       )}
     >
-      <Fieldset legend="Textarea options" disableLegendSROnly>
+      <Fieldset legend="Textarea options">
         <Checkbox
           id="textarea-animate"
           checked={animate}

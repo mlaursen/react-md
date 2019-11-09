@@ -9,7 +9,7 @@ const IndeterminateCheckboxes: FC = () => {
     checked.length > 0 && checked.length !== condiments.length;
 
   return (
-    <Fieldset legend="Sandwich Condiments" disableLegendSROnly unstyled={false}>
+    <Fieldset legend="Sandwich Condiments" unstyled={false}>
       <Checkbox
         id="condiments-all"
         label="All Condiments"

@@ -48,7 +48,7 @@ const SimpleFileInputs: FC = () => {
       </Text>
       <CodeBlock aria-live="polite">{file || "None"}</CodeBlock>
       <Form className="file-input-example">
-        <Fieldset legend="Theme" disableLegendSROnly>
+        <Fieldset legend="Theme">
           {themes.map(t => (
             <Radio
               id={`text-theme-${t}`}
@@ -61,7 +61,7 @@ const SimpleFileInputs: FC = () => {
             />
           ))}
         </Fieldset>
-        <Fieldset legend="Theme type" disableLegendSROnly>
+        <Fieldset legend="Theme type">
           {themeTypes.map(type => (
             <Radio
               id={`text-theme-${type}`}

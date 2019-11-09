@@ -36,7 +36,7 @@ const SelectExample: FC = () => {
         />
       )}
     >
-      <Fieldset legend="Select options" disableLegendSROnly>
+      <Fieldset legend="Select options">
         <Checkbox
           id="custom-select-disable-movement"
           label="Disable keyboard movement change"

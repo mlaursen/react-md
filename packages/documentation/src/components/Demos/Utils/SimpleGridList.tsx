@@ -38,7 +38,7 @@ const SimpleGridList: FC = () => {
 
   return (
     <Fragment>
-      <Fieldset legend="GridList options" disableLegendSROnly>
+      <Fieldset legend="GridList options">
         <Grid minCellWidth="9rem">
           <TextField
             id="simple-grid-list-cell-count"

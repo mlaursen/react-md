@@ -34,7 +34,7 @@ const TextFieldTypes: FC = () => {
 
   return (
     <Form className="text-field-types">
-      <Fieldset legend="Text field theme" disableLegendSROnly>
+      <Fieldset legend="Text field theme">
         {themes.map(theme => (
           <Radio
             id={`text-field-types-theme-${theme}`}

@@ -81,7 +81,7 @@ const NativeSelectExample: FC = () => {
         </NativeSelect>
       )}
     >
-      <Fieldset legend="Select options" disableLegendSROnly>
+      <Fieldset legend="Select options">
         <Checkbox
           id="native-select-optgroup"
           name="optgroup"
