@@ -244,6 +244,23 @@
   }
 }
 
+/// This mixin will hide the scrollbar for an element but still allow scrolling by
+/// using the scrollbar-width property along with the -webkit-scrollbar pseudo selector.
+/// If on a non-MacOS and the horizontal scrollbars were hidden, the user can still
+/// scroll by holding shift while scrolling.
+///
+/// Note: This only works due to the limited browser support of this library. If you need
+/// to support older browsers, don't use this.
+/// @link https://caniuse.com/#feat=css-scrollbar
+@mixin rmd-utils-hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+}
+
 /// Creates a media query so that only phones will be targeted with the
 /// styles. This media query **will stop** at the phone's max width
 /// instead of being a `min-width` query since it would be better to just
