@@ -1,6 +1,6 @@
 # Configuring Your Layout
 
-This guide will inform you on:
+This guide will cover the following topics:
 
 - Configuring `react-md` with the `Configuration` component
 - Setting up the base `Layout` component

@@ -1,4 +1,5 @@
 import qs from "qs";
+import { ParsedUrlQuery } from "querystring";
 
 type QueryParam = string | string[] | undefined;
 
@@ -13,6 +14,16 @@ export const qsToString = (q: QueryParam): string => {
 
   return q;
 };
+
+export function getCompletePathname(
+  pathname: string,
+  query: ParsedUrlQuery
+): string {
+  return Object.entries(query).reduce(
+    (updated, [key, value]) => updated.replace(`[${key}]`, qsToString(value)),
+    pathname
+  );
+}
 
 export interface SandboxParams {
   pkg: string;

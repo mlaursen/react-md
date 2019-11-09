@@ -80,8 +80,10 @@ All your colors should now automatically be updated to support a dark theme!
 
 What if you want to only include the dark theme when a specific class has been
 toggled (like this documentation site) or only if the user has enabled the dark
-theme in their OS? Luckily, `react-md` provides a `rmd-theme-dark` mixin that
-will do that for you!
+theme in their OS? Luckily, `react-md` provides `rmd-theme-light` and
+`rmd-theme-dark` mixins that will do that for you! If you have the
+`$rmd-theme-light` left as the default `true`, use the `rmd-theme-dark` mixin to
+conditionally apply the dark theme.
 
 ```scss
 @import "~react-md/dist/react-md";

@@ -133,8 +133,8 @@ const routes: NavItem[] = [
     ],
   },
   {
-    href: "/customization",
-    children: "Customization",
+    href: "/colors-and-theming",
+    children: "Colors and Theming",
     leftIcon: <ColorLensSVGIcon />,
     routes: [
       {

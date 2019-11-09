@@ -49,6 +49,7 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
 
   const rendered =
     pathname !== "/" &&
+    pathname !== "/_error" &&
     !pathname.startsWith("/sandbox") &&
     !pathname.startsWith("/customization/theme-builder");
   const actions = useMemo(() => ({ show, hide, toggle }), [hide, show, toggle]);

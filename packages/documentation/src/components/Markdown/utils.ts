@@ -116,7 +116,7 @@ const transforms: Transform[] = [
   md =>
     md.replace(
       new RegExp(`#(${joinedNames})${whitespace}`, "g"),
-      "[@react-md/$1](/packages/$1)"
+      "[@react-md/$1](/packages/$1/demos)"
     ),
   // #package-name -> [package-name page](/packages/package-name/page)
   md =>
