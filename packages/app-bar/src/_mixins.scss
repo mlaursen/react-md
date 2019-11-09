@@ -317,7 +317,7 @@
     }
 
     &--derived {
-      @include rmd-app-bar-theme(min-height, prominent-dense-height);
+      @include rmd-app-bar-theme(min-height, height);
 
       height: auto;
     }
