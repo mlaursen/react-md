@@ -30,6 +30,7 @@ export type PackageName =
   | "Sheet"
   | "States"
   | "Table"
+  | "Tabs"
   | "Theme"
   | "Tooltip"
   | "Transition"
@@ -209,6 +210,9 @@ const sandboxes: Sandboxes = {
     BaseStyles: () => resolve(import("./Table-BaseStyles.json")),
     ResponsiveTables: () => resolve(import("./Table-ResponsiveTables.json")),
     SimpleExamples: () => resolve(import("./Table-SimpleExamples.json")),
+  },
+  Tabs: {
+    SimpleTwoPageTab: () => resolve(import("./Tabs-SimpleTwoPageTab.json")),
   },
   Theme: {
     SimpleExample: () => resolve(import("./Theme-SimpleExample.json")),

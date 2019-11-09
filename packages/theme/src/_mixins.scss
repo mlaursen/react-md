@@ -122,6 +122,11 @@
       $rmd-states-light-theme-ripple-background-color
     );
   }
+
+  @if mixin-exists(rmd-tabs-theme-update-var) {
+    @include rmd-tabs-theme-update-var(active, $rmd-black-base);
+    @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-light-color);
+  }
 }
 
 /// This mixin can be used to apply the dark theme by updating **every** color theme variable across
@@ -206,6 +211,11 @@
       ripple-background-color,
       $rmd-states-dark-theme-ripple-background-color
     );
+  }
+
+  @if mixin-exists(rmd-tabs-theme-update-var) {
+    @include rmd-tabs-theme-update-var(active, $rmd-white-base);
+    @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-dark-color);
   }
 }
 

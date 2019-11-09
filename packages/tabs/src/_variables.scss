@@ -1,0 +1,63 @@
+////
+/// @group tabs
+////
+
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/functions';
+
+/// The default height for a tab.
+/// @type Number
+$rmd-tab-height: 3rem !default;
+
+/// The default height for a tab that has stacked text with an icon.
+/// @type Number
+$rmd-tab-stacked-height: 4.5rem !default;
+
+/// The amount of padding to apply to the left and right of the tab's content
+/// @type Number
+$rmd-tab-horizontal-padding: 1rem !default;
+
+/// The amount of padding to apply to the top and bottom of the tab's content
+/// @type Number
+$rmd-tab-vertical-padding: 0.75rem !default;
+
+/// The minimum width for a tab. The way tabs work is that they will grow as needed
+/// to fill the entire space of the `Tabs` container width. This also means that
+/// they will shrink if the `Tabs` container is small.
+/// @type Number
+$rmd-tab-min-width: 6.125rem !default;
+
+/// The maxium width for a tab. The way tabs work is that they will grow as needed
+/// to fill the entire space of the `Tabs` container width. This also means that
+/// they will shrink if the `Tabs` container is small.
+/// @type Number
+$rmd-tab-max-width: 20rem !default;
+
+/// The color to use when a tab has become active.
+/// @type String|Color
+$rmd-tab-active-color: rmd-theme(text-primary-on-background) !default;
+
+/// The color to use when a tab is inactive.
+/// @type String|Color
+$rmd-tab-inactive-color: rmd-theme(text-secondary-on-background) !default;
+
+/// The color to use when a tab is disabled.
+/// @type String|Color
+$rmd-tab-disabled-color: rmd-theme(text-disabled-on-background) !default;
+
+/// The height for the active tab indicator divider.
+/// @type Number
+$rmd-tab-active-indicator-height: 0.125rem !default;
+
+/// A list of alignments that should be supported by the Tabs component. These values
+/// should be valid values for the `justify-content` property.
+/// @type List
+$rmd-tabs-positions: (left center right) !default;
+
+/// A map of all the themeable parts of the tabs package.
+/// @type Map
+$rmd-tabs-theme-values: (
+  active: $rmd-tab-active-color,
+  inactive: $rmd-tab-inactive-color,
+  disabled: $rmd-tab-disabled-color,
+) !default;

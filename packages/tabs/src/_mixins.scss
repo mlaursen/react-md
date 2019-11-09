@@ -1,0 +1,184 @@
+////
+/// @group tabs
+////
+
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the tabs's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-tabs-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-tabs-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-tabs-theme-values` map when `null`.
+@mixin rmd-tabs-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tabs-theme-values, tabs);
+}
+
+/// Updates one of the tabs's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The tabs theme style type to update. This should be one
+///   of the `$rmd-tabs-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-tabs-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tabs-theme-values, tabs);
+}
+
+@mixin rmd-tabs {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll(x);
+
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  width: 100%;
+
+  &::after {
+    @include rmd-transition(deceleration);
+
+    background-color: rmd-theme(primary);
+    bottom: 0;
+    content: '';
+    height: $rmd-tab-active-indicator-height;
+    left: 0;
+    max-width: var(--rmd-tab-width, $rmd-tab-min-width);
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(var(--rmd-tab-offset, 0));
+    transition: transform $rmd-transition-standard-time, max-width $rmd-transition-standard-time;
+    width: 100%;
+    z-index: 1;
+  }
+
+  @each $position in $rmd-tabs-positions {
+    &--#{$position} {
+      justify-content: $position;
+    }
+  }
+}
+
+@mixin rmd-tab {
+  @include rmd-states-surface;
+  @include rmd-transition(standard);
+  @include rmd-typography(button, (line-height));
+  @include rmd-typography-text-overflow-ellipsis;
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-tabs-theme(color, inactive);
+
+  align-items: center;
+  background-color: transparent;
+  border-width: 0;
+  display: inline-flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: $rmd-tab-height;
+  justify-content: center;
+  max-width: $rmd-tab-max-width;
+  min-width: $rmd-tab-min-width;
+  padding: 0 $rmd-tab-horizontal-padding;
+  position: relative;
+  transition: color $rmd-transition-standard-time;
+
+  &--stacked {
+    flex-direction: column;
+    height: $rmd-tab-stacked-height;
+    padding-bottom: $rmd-tab-vertical-padding;
+    padding-top: $rmd-tab-vertical-padding;
+  }
+
+  &--active {
+    @include rmd-tabs-theme(color, active);
+    @include rmd-icon-theme-update-var(color, rmd-tabs-theme-var(active));
+  }
+
+  &--disabled {
+    @include rmd-tabs-theme(color, disabled);
+    @include rmd-icon-theme-update-var(color, rmd-tabs-theme-var(disabled));
+  }
+}
+
+@mixin rmd-tab-panels {
+  @include rmd-utils-scroll(y);
+
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow-x: hidden;
+
+  // sass-lint:disable no-duplicate-properties
+  &--slide-left {
+    #{--p1-start}: 100%;
+    #{--p2-start}: -100%;
+    #{--p1-end}: 0;
+    #{--p2-end}: -200%;
+  }
+
+  &--slide-right {
+    #{--p1-start}: -100%;
+    #{--p2-start}: -100%;
+    #{--p1-end}: 0;
+    #{--p2-end}: 0;
+  }
+}
+
+@mixin rmd-tab-panel {
+  flex-shrink: 0;
+  height: 100%;
+  width: 100%;
+  will-change: transform;
+
+  &--animate {
+    @include rmd-transition(standard);
+
+    transition: transform $rmd-transition-standard-time;
+  }
+
+  &--start:nth-child(1) {
+    transform: translate3d(var(--p1-start), 0, 0);
+  }
+
+  &--end:nth-child(1) {
+    transform: translate3d(var(--p1-end), 0, 0);
+  }
+
+  &--start:nth-child(2) {
+    transform: translate3d(var(--p2-start), 0, 0);
+  }
+
+  &--end:nth-child(2) {
+    transform: translate3d(var(--p2-end), 0, 0);
+  }
+}
+
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
+@mixin react-md-tabs {
+  @include rmd-theme-create-root-theme($rmd-tabs-theme-values, tabs);
+
+  .rmd-tabs {
+    @include rmd-tabs;
+  }
+
+  .rmd-tab {
+    @include rmd-tab;
+  }
+
+  .rmd-tab-panels {
+    @include rmd-tab-panels;
+  }
+
+  .rmd-tab-panel {
+    @include rmd-tab-panel;
+  }
+}

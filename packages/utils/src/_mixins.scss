@@ -678,6 +678,10 @@
     @include react-md-table;
   }
 
+  @if mixin-exists(react-md-tabs) {
+    @include react-md-tabs;
+  }
+
   @if mixin-exists(react-md-theme) {
     @include react-md-theme;
   }
