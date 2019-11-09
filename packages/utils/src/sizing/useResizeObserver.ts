@@ -1,4 +1,4 @@
-import { useEffect, MutableRefObject, useRef } from "react";
+import { useEffect, MutableRefObject, useRef, useState } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
 
 // these are copied from the ResizeObserverPolyfill type definitions since the type definition
@@ -27,6 +27,10 @@ interface ResizeObserverEntry {
  */
 type GetTarget = () => HTMLElement | null;
 
+type TargetRef<
+  E extends HTMLElement = HTMLElement
+> = MutableRefObject<E | null>;
+
 /**
  * A resize observer target finder. This can either be a `document.querySeletor` string,
  * an `HTMLElement`, a function that returns an `HTMLElement`, or `null`.
@@ -34,7 +38,28 @@ type GetTarget = () => HTMLElement | null;
  * Setting this to `null` will result in a "lazy Observer". The observer will not start until it has
  * been updated to be a string or an HTMLElement.
  */
-export type FindResizeTarget = string | HTMLElement | GetTarget | null;
+export type FindResizeTarget<E extends HTMLElement = HTMLElement> =
+  | TargetRef<E>
+  | string
+  | HTMLElement
+  | GetTarget
+  | null;
+
+/**
+ * @private
+ */
+const isRefTarget = (
+  target: FindResizeTarget
+): target is MutableRefObject<HTMLElement | null> =>
+  !!target &&
+  typeof (target as MutableRefObject<HTMLElement | null>).current !==
+    "undefined";
+
+/**
+ * @private
+ */
+const isFunctionTarget = (target: FindResizeTarget): target is GetTarget =>
+  typeof target === "function";
 
 /**
  * A utility function to get the current resize observer element.
@@ -44,18 +69,19 @@ export type FindResizeTarget = string | HTMLElement | GetTarget | null;
 export function getResizeObserverTarget(
   target: FindResizeTarget
 ): HTMLElement | null {
-  if (target === null) {
-    return target;
+  if (isRefTarget(target)) {
+    return target.current;
   }
 
-  switch (typeof target) {
-    case "function":
-      return (target as GetTarget)();
-    case "string":
-      return document.querySelector<HTMLElement>(target);
-    default:
-      return target as HTMLElement;
+  if (isFunctionTarget(target)) {
+    return target();
   }
+
+  if (typeof target === "string") {
+    return document.querySelector<HTMLElement>(target);
+  }
+
+  return target;
 }
 
 /**
@@ -103,11 +129,11 @@ export type ResizeObserverChangeEventHandler = (
   event: ResizeObserverChangeEvent
 ) => void;
 
-export interface ResizeObserverOptions {
+export interface ResizeObserverOptions<E extends HTMLElement = HTMLElement> {
   disableHeight?: boolean;
   disableWidth?: boolean;
   onResize: ResizeObserverChangeEventHandler;
-  getTarget: FindResizeTarget;
+  getTarget: FindResizeTarget<E>;
 }
 
 interface DelegatedHandler {
@@ -171,12 +197,12 @@ function measure(entries: ResizeObserverEntry[]): void {
  *
  * @param options The resize observer options.
  */
-export default function useResizeObserver({
+export default function useResizeObserver<E extends HTMLElement>({
   disableHeight = false,
   disableWidth = false,
   onResize,
   getTarget,
-}: ResizeObserverOptions): void {
+}: ResizeObserverOptions<E>): void {
   // have to put it into an "instance variable ref" since you'll generally be
   // doing this with arrow functions and it's pretty bad for performance with
   // the measurer to observer and unobserve each render especially when the
@@ -186,8 +212,29 @@ export default function useResizeObserver({
     resizeHandler.current = onResize;
   });
 
+  const [target, setTarget] = useState(() =>
+    getResizeObserverTarget(getTarget)
+  );
   useEffect(() => {
-    const target = getResizeObserverTarget(getTarget);
+    const initialTarget = getResizeObserverTarget(getTarget);
+    if (initialTarget !== target) {
+      setTarget(initialTarget);
+    }
+
+    // want componentDidMount only for this since there are some resize targets that
+    // use refs which aren't available until this phase.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const prevGetTarget = useRef(getTarget);
+  if (prevGetTarget.current !== getTarget) {
+    prevGetTarget.current = getTarget;
+    const nextTarget = getResizeObserverTarget(getTarget);
+    if (nextTarget !== target) {
+      setTarget(nextTarget);
+    }
+  }
+
+  useEffect(() => {
     if (!target || (disableHeight && disableWidth)) {
       return;
     }
@@ -218,5 +265,5 @@ export default function useResizeObserver({
         );
       }
     };
-  }, [disableHeight, disableWidth, getTarget]);
+  }, [disableHeight, disableWidth, target]);
 }

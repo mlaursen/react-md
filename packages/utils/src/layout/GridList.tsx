@@ -206,7 +206,7 @@ const GridList: FC<GridListProps & WithRef> = providedProps => {
     disableHeight: disableHeightObserver,
     disableWidth: disableWidthObserver,
     onResize: recalculate,
-    getTarget: () => ref.current,
+    getTarget: ref,
   });
   const mergedStyle: CSSProperties = {
     ...style,

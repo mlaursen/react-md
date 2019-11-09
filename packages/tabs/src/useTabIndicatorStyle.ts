@@ -100,7 +100,7 @@ export default function useTabIndicatorStyle({
     [ref]
   );
   useResizeObserver({
-    getTarget: () => tabsRef.current,
+    getTarget: tabsRef,
     onResize() {
       // whenever the tabs container element is resized, it _probably_ means that the tabs
       // will be resized or moved. this means the indicator will be in the wrong place so
