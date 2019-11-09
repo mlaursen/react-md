@@ -32,7 +32,8 @@ const ListItemIcon: FC<ListItemIconProps> = ({
     className={cn(
       base("icon", {
         [position]: position !== "middle",
-        avatar,
+        before,
+        "avatar-before": before && avatar,
         media: media || mediaLarge,
         "media-large": mediaLarge,
       }),

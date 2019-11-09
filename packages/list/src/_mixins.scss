@@ -118,7 +118,6 @@
 /// Creates all the styles for a list item.
 @mixin rmd-list-item {
   @include rmd-list-item-base;
-  @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
 
   &--clickable {
     @include rmd-utils-hide-focus-outline;
@@ -188,7 +187,14 @@
       align-self: flex-end;
     }
 
-    &--avatar {
+    &--before {
+      // this should only be added on the first icon in the list item since it's the only
+      // one that should match the "keyline" of the app. The right icon/avatars should
+      // have the existing text icon spacing.
+      @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
+    }
+
+    &--avatar-before {
       @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
     }
 
