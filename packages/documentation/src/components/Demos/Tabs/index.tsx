@@ -11,6 +11,7 @@ import SimpleTwoPageTab from "./SimpleTwoPageTab";
 import simpleTwoPageTab from "./SimpleTwoPageTab.md";
 
 import { ConfigurableTabs, configurableTabs } from "./ConfigurableTabs";
+import { PersistentTabs, persistentTabs } from "./PersistentTabs";
 
 const demos = [
   {
@@ -27,9 +28,17 @@ const demos = [
     fullPageFAB: true,
   },
   {
+    name: "Persistent Tabs",
+    description: persistentTabs,
+    children: <PersistentTabs />,
+    emulated: { appBar: null, contentStacked: true },
+    fullPageFAB: true,
+  },
+  {
     name: "Configurable Tabs",
     description: configurableTabs,
     children: <ConfigurableTabs />,
+    phoneFullPage: true,
   },
 ];
 

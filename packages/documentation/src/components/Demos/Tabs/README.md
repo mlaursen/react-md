@@ -23,5 +23,7 @@ components:
   that links to a `Tab` within the `Tabs` component with the `aria-labelledby`
   attribute.
 
-Check out the demos below to see example usage and explanations for the
-`TabPanels`/`TabPanel` components.
+The `Tabs` component will also allow the user to navigate through tabs with the
+left and right arrow keys and optionally auto-select the tabs. Check out the
+demos below to see example usage and explanations for the `TabPanels`/`TabPanel`
+components.

@@ -1,31 +1,33 @@
 /* eslint-disable react/no-array-index-key */
 import React, { FC, Fragment } from "react";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
-import { bem } from "@react-md/utils";
 
 import "./ConfigurableTabs.scss";
 
 import ConfigurationForm from "./ConfigurationForm";
 import PanelContent from "./PanelContent";
 import useConfiguration from "./useConfiguration";
-
-const block = bem("configurable-tabs");
+import styles from "./styles";
 
 const ConfigurableTabs: FC = () => {
   const { tabs, ...configuration } = useConfiguration();
   const {
+    themed,
+    padded,
+    automatic,
+
     stacked,
     iconAfter,
-    padded,
+
+    persistent,
     customTransition,
     disableTransition,
-    themed,
   } = configuration;
 
   return (
     <Fragment>
       <ConfigurationForm {...configuration} />
-      <div className={block()}>
+      <div className={styles()}>
         <TabsManager
           tabsId="configurable-tabs"
           tabs={tabs}
@@ -33,18 +35,19 @@ const ConfigurableTabs: FC = () => {
           iconAfter={iconAfter}
         >
           <Tabs
+            automatic={automatic}
             padded={padded}
-            className={block("tabs", { themed })}
-            orientation="vertical"
+            className={styles("tabs", { themed })}
           />
           <TabPanels
             /* the key is used here since swapping the disableTransition */
             /* prop causes the animation to fire again otherwise */
             key={`${disableTransition || customTransition}`}
             disableTransition={disableTransition || customTransition}
+            persistent={persistent}
           >
             {tabs.map((_, i) => (
-              <TabPanel key={i} className={block("content")}>
+              <TabPanel key={i} className={styles("content")}>
                 <PanelContent i={i} customTransition={customTransition} />
               </TabPanel>
             ))}

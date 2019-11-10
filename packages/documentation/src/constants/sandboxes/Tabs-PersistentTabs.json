@@ -1,0 +1,81 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>. Example - Persistent Tabs</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/media/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/tabs/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": ". Example - Persistent Tabs",
+      "description": "Example from https://react-md.dev/packages/./demos#persistent-tabs",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/form": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/media": "next",
+        "@react-md/progress": "next",
+        "@react-md/states": "next",
+        "@react-md/tabs": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  ".env": {
+    "content": "SASS_PATH=node_modules:src\n",
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { useCheckboxState } from \"@react-md/form\";\nimport { TabsManager, Tabs, TabPanels } from \"@react-md/tabs\";\n\nimport Checkbox from \"./Checkbox\";\n\nimport \"./PersistentTabs.scss\";\nimport Content1 from \"./Content1\";\nimport Content2 from \"./Content2\";\n\nconst tabs = [\"Tab 1\", \"Tab 2\"];\n\nconst Demo: FC = () => {\n  const [persistent, handleChange] = useCheckboxState(false);\n  return (\n    <TabsManager tabs={tabs} tabsId=\"persistent-tabs\">\n      <AppBar theme=\"default\" derived prominent>\n        <AppBar>\n          <Checkbox\n            id=\"persistent-tab-enable\"\n            checked={persistent}\n            onChange={handleChange}\n            label=\"Enable Persistant Tabs\"\n          />\n        </AppBar>\n        <Tabs />\n      </AppBar>\n      <TabPanels persistent={persistent} className=\"persistent-tabs\">\n        <Content1 />\n        <Content2 />\n      </TabPanels>\n    </TabsManager>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Checkbox.tsx": {
+    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Checkbox as CheckboxMD, CheckboxProps } from \"@react-md/form\";\nimport { CheckBoxSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <CheckboxMD {...props} ref={forwardedRef} />;\n\nCheckbox.defaultProps = {\n  icon: <CheckBoxSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (\n  <Checkbox {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  },
+  "src/Content1.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport { TabPanel, TabPanelProps } from \"@react-md/tabs\";\n\nconst Content1: FC<TabPanelProps> = props => (\n  <TabPanel {...props}>\n    <Text type=\"headline-4\">Tab 1 Content</Text>\n  </TabPanel>\n);\n\nexport default Content1;\n",
+    "isBinary": false
+  },
+  "src/Content2.tsx": {
+    "content": "import React, { FC, useState, useEffect } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport { TabPanelProps, TabPanel } from \"@react-md/tabs\";\nimport { GridList, GridListCell } from \"@react-md/utils\";\nimport { CircularProgress } from \"@react-md/progress\";\nimport { MediaContainer, MediaOverlay } from \"@react-md/media\";\nimport { randomInt } from \"./random\";\nimport { CrossFade } from \"@react-md/transition\";\n\ninterface Item {\n  name: string;\n  url: string;\n}\n\ninterface State {\n  loading: boolean;\n  data: Item[];\n}\n\ninterface PicsumPhotoItem {\n  format: string;\n  height: number;\n  width: number;\n  filename: string;\n  id: number;\n  author: string;\n  author_url: string;\n  post_url: string;\n}\n\nconst Content2: FC<TabPanelProps> = props => {\n  const [{ loading, data }, setState] = useState<State>({\n    loading: false,\n    data: [],\n  });\n\n  useEffect(() => {\n    let cancelled = false;\n\n    setState({ loading: true, data: [] });\n    (async function load() {\n      const response = await fetch(\"https://picsum.photos/list\");\n      const result = await response.json();\n      const list = result as PicsumPhotoItem[];\n      const start = randomInt({ min: 0, max: 20 });\n      const total = randomInt({ min: 6, max: 14 });\n      const data = list.slice(start, start + total).map(({ author, id }) => ({\n        name: author,\n        url: `https://picsum.photos/250?image=${id}`,\n      }));\n      if (!cancelled) {\n        setState({\n          data,\n          loading: false,\n        });\n      }\n    })();\n\n    return () => {\n      cancelled = true;\n    };\n  }, []);\n\n  return (\n    <TabPanel {...props}>\n      <Text type=\"headline-4\">Tab 2 Content</Text>\n      <GridList maxCellSize={250}>\n        {loading && <CircularProgress id=\"loading-tab-2\" />}\n        {data.map(({ name, url }) => (\n          <GridListCell key={url} square clone>\n            <MediaContainer>\n              <img src={url} alt=\"\" />\n              <MediaOverlay>\n                <Text margin=\"none\">{name}</Text>\n              </MediaOverlay>\n            </MediaContainer>\n          </GridListCell>\n        ))}\n      </GridList>\n    </TabPanel>\n  );\n};\n\nexport default Content2;\n",
+    "isBinary": false
+  },
+  "src/PersistentTabs.scss": {
+    "content": ".persistent-tabs {\n  padding: 1rem;\n}\n",
+    "isBinary": false
+  },
+  "src/random.ts": {
+    "content": "/* eslint-disable import/prefer-default-export */\ninterface RandomInt {\n  min?: number;\n  max?: number;\n}\n\n/**\n * Generates a random integer between a min and max value. Defaults\n * to 0-10.\n */\nexport function randomInt({ min = 0, max = 10 }: RandomInt = {}): number {\n  return Math.floor(Math.random() * max) + min;\n}\n",
+    "isBinary": false
+  }
+}

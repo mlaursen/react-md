@@ -25,6 +25,16 @@
   }
 
   &__content {
-    padding: 0 3rem;
+    padding: 0 3rem 3rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__full-width {
+    width: 100%;
   }
 }

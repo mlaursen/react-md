@@ -52,6 +52,8 @@ export interface TabConfiguration {
   handleThemedChange: Handler;
   padded: boolean;
   handlePaddedChange: Handler;
+  automatic: boolean;
+  handleAutomaticChange: Handler;
 
   // Tab config
   noIcon: boolean;
@@ -64,6 +66,8 @@ export interface TabConfiguration {
   handleIconAfterChange: Handler;
 
   // TabPanel config
+  persistent: boolean;
+  handlePersistentChange: Handler;
   disableTransition: boolean;
   customTransition: boolean;
   handleTransitionChange: Handler;
@@ -73,6 +77,7 @@ export default function useConfiguration(): TabConfiguration {
   // Tabs config
   const [themed, handleThemedChange] = useCheckboxState(false);
   const [padded, handlePaddedChange] = useCheckboxState(false);
+  const [automatic, handleAutomaticChange] = useCheckboxState(false);
 
   // Tab config
   const [icons, handleIconChange] = useChoice<IconBehavior>("none");
@@ -80,11 +85,15 @@ export default function useConfiguration(): TabConfiguration {
   const [iconAfter, handleIconAfterChange] = useCheckboxState(false);
 
   // TabPanel config
-  const [transition, handleTransitionChange] = useChoice<TransitionBehavior>(
-    "enabled"
-  );
+  const [persistent, handlePersistentChange] = useCheckboxState(false);
+  const [transition, handleTransitionChange, setTransition] = useChoice<
+    TransitionBehavior
+  >("enabled");
   const disableTransition = transition === "disabled";
   const customTransition = transition === "custom";
+  if (customTransition && persistent) {
+    setTransition("enabled");
+  }
 
   const noIcon = icons === "none";
   const onlyIcon = icons === "only";
@@ -108,6 +117,8 @@ export default function useConfiguration(): TabConfiguration {
     handleThemedChange,
     padded,
     handlePaddedChange,
+    automatic,
+    handleAutomaticChange,
 
     // Tab config
     noIcon,
@@ -120,6 +131,8 @@ export default function useConfiguration(): TabConfiguration {
     handleIconAfterChange,
 
     // TabPanel config
+    persistent,
+    handlePersistentChange,
     disableTransition,
     customTransition,
     handleTransitionChange,

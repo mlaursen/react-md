@@ -174,11 +174,21 @@
     // Sliding right is super easy since the panels are in the desired order already in the dom. All
     // that's required is moving them negative 100% of the tab panel's container width so the new
     // current panel slides into view while the previous panel slides out of view.
+    //
+    // Sliding left when there's no conditional rendering is super easy as well as it's just the reverse
+    // of sliding right now since the panels are always in order.
 
     #{--p1-start}: 100%;
     #{--p2-start}: -100%;
     #{--p1-end}: 0;
     #{--p2-end}: -200%;
+  }
+
+  &--slide-left-persistent {
+    #{--p1-start}: 0;
+    #{--p2-start}: 0;
+    #{--p1-end}: -100%;
+    #{--p2-end}: -100%;
   }
 
   &--slide-right {
@@ -202,19 +212,19 @@
     transition: transform $rmd-transition-standard-time;
   }
 
-  &--start:nth-child(1) {
+  &--enter {
     transform: translate3d(var(--p1-start), 0, 0);
   }
 
-  &--end:nth-child(1) {
+  &--enter-active {
     transform: translate3d(var(--p1-end), 0, 0);
   }
 
-  &--start:nth-child(2) {
+  &--exit {
     transform: translate3d(var(--p2-start), 0, 0);
   }
 
-  &--end:nth-child(2) {
+  &--exit-active {
     transform: translate3d(var(--p2-end), 0, 0);
   }
 }

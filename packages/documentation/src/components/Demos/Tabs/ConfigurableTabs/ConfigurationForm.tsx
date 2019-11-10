@@ -13,6 +13,8 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
   handleThemedChange,
   padded,
   handlePaddedChange,
+  automatic,
+  handleAutomaticChange,
 
   // Tab config
   noIcon,
@@ -25,6 +27,8 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
   handleIconAfterChange,
 
   // TabPanel config
+  persistent,
+  handlePersistentChange,
   disableTransition,
   customTransition,
   handleTransitionChange,
@@ -45,6 +49,13 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
           label="Padded"
           checked={padded}
           onChange={handlePaddedChange}
+        />
+        <Checkbox
+          id="configurable-tabs-automatic"
+          name="automatic"
+          label="Automatic Keyboard Selection"
+          checked={automatic}
+          onChange={handleAutomaticChange}
         />
       </Fieldset>
       <Fieldset legend="Icon Options">
@@ -90,6 +101,13 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
         />
       </Fieldset>
       <Fieldset legend="Tab Panel Options">
+        <Checkbox
+          id="configurable-tabs-panel-rendering"
+          name="persistent"
+          label="Persistent Tabs"
+          checked={persistent}
+          onChange={handlePersistentChange}
+        />
         <Radio
           id="configurable-tabs-transition-enabled"
           name="transition"
@@ -113,6 +131,7 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
           label="Custom Transition"
           checked={customTransition}
           onChange={handleTransitionChange}
+          disabled={persistent}
         />
       </Fieldset>
     </Grid>

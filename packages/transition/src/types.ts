@@ -6,6 +6,7 @@ export type TransitionTimeout = TransitionProps["timeout"];
 // Don't want the children stuff when overriding/reusing in react-md components
 // as well as the [prop: string]: any, so pick the reusable ones
 type TransitionKeys =
+  | "in"
   | "appear"
   | "enter"
   | "exit"
