@@ -72,6 +72,9 @@ const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
     incrementing: true,
   });
 
+  // have to set these in refs since changing these might cause mounting
+  // and unmounting in the Transition group component :/ they should only
+  // be re-evaluated when the activeIndex changes.
   const transitionable = useRef(!persistent && !disableTransition);
   const animimatable = useRef(persistent && !disableTransition);
   if (prevIndex.current !== activeIndex) {
@@ -83,8 +86,12 @@ const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
   useEffect(() => {
     setState(({ previous }) => ({
       incrementing: previous < activeIndex,
-      previous,
+      previous: disableTransition ? activeIndex : previous,
     }));
+
+    // this is for only updating the incrementing state and should not be fired
+    // again if the disableTransition prop is changed
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex]);
 
   const onEntered = useCallback(() => {
@@ -154,12 +161,16 @@ const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
             animateIn = index === activeIndex;
           }
 
+          let hidden = index !== activeIndex;
+          if (persistent) {
+            hidden = hidden && index !== previous;
+          }
           return cloneElement(child, {
             key,
             in: animateIn,
             id: `${tabsId}-panel-${index + 1}`,
             "aria-labelledby": labelledBy,
-            hidden: persistent && (index !== activeIndex && index !== previous),
+            hidden,
             onEntered: disableTransition ? undefined : onEntered,
           });
         })}

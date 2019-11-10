@@ -216,6 +216,7 @@ const sandboxes: Sandboxes = {
     ConfigurableTabs: () => resolve(import("./Tabs-ConfigurableTabs.json")),
     PersistentTabs: () => resolve(import("./Tabs-PersistentTabs.json")),
     SimpleTwoPageTab: () => resolve(import("./Tabs-SimpleTwoPageTab.json")),
+    SwipeableTabs: () => resolve(import("./Tabs-SwipeableTabs.json")),
   },
   Theme: {
     SimpleExample: () => resolve(import("./Theme-SimpleExample.json")),

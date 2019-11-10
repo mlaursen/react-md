@@ -40,9 +40,6 @@ const ConfigurableTabs: FC = () => {
             className={styles("tabs", { themed })}
           />
           <TabPanels
-            /* the key is used here since swapping the disableTransition */
-            /* prop causes the animation to fire again otherwise */
-            key={`${disableTransition || customTransition}`}
             disableTransition={disableTransition || customTransition}
             persistent={persistent}
           >
