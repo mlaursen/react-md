@@ -33,8 +33,7 @@ $demo-padding-extra: 6rem;
   padding: 0 $demo-padding;
 
   &__divider {
-    margin-bottom: 2rem;
-    margin-top: 6rem;
+    @include rmd-divider-theme-update-var(spacing, 6rem auto 2rem);
   }
 
   &__description {

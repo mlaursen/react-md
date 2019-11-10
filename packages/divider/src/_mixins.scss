@@ -49,22 +49,22 @@
   .rmd-divider {
     @include rmd-divider-theme(border-color, background-color);
     @include rmd-divider-theme(border-width, size);
+    @include rmd-divider-theme(margin, spacing);
     @include rmd-divider-theme(width, max-size);
 
     display: block;
     flex-shrink: 0;
-    margin: rmd-divider-theme-var(spacing) auto;
 
     &--vertical {
       @include rmd-divider-theme(border-left-width, size);
       @include rmd-divider-theme(border-left-color, background-color);
       @include rmd-divider-theme(height, max-size);
+      @include rmd-divider-theme(margin, vertical-spacing);
       @include rmd-divider-theme(width, size);
 
       border-bottom-style: none;
       border-left-style: inset;
       display: inline-block;
-      margin: auto rmd-divider-theme-var(spacing);
     }
 
     &--inset {

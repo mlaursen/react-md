@@ -30,10 +30,13 @@ $rmd-divider-max-size: 100% !default;
 /// @type Number
 $rmd-divider-inset: 4rem !default;
 
-/// The amount of spacing to apply above and below horizontal dividers or
-/// left and right for vertical dividers.
+/// The amount of margin to apply to horizontal dividers.
 /// @type Number
-$rmd-divider-spacing: 0.25rem !default;
+$rmd-divider-spacing: 0.25rem auto !default;
+
+/// The amount of margin to apply to vertical dividers.
+/// @type Number
+$rmd-divider-vertical-spacing: auto 0.25rem !default;
 
 /// The divider color to use on light backgrounds.
 /// @type Color
@@ -62,5 +65,6 @@ $rmd-divider-theme-values: (
   size: $rmd-divider-size,
   inset: $rmd-divider-inset,
   spacing: $rmd-divider-spacing,
+  vertical-spacing: $rmd-divider-vertical-spacing,
   max-size: $rmd-divider-max-size,
 ) !default;
