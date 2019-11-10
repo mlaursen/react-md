@@ -2340,6 +2340,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-swipeable@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable/-/react-swipeable-4.3.0.tgz#e6ea299ec7e2c826a22ae5b6cdfcb1533397487d"
+  integrity sha512-ZBpazpHerohJrup7BvHP97eLPKM95QY40yqMOTYFcKnyexZdZCBW5jHcIBSccwDMBvlTZMiwZ4YKkq4DjPHd4A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-test-renderer@^16.8.2", "@types/react-test-renderer@^16.8.3":
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.0.tgz#d60f530ecf4c906721511603cca711b4fa830d41"
@@ -13163,6 +13170,13 @@ react-router@5.1.2:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-swipeable@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-5.4.0.tgz#3c2421296a993b8fc6cb05051b9bf025cb6af9e4"
+  integrity sha512-TUbldupF3cxMF+pBWfz24TlQa23K4CecqQ8EA+onxEiAg+UEPSJ5IousOjMm0IVBYz62KX1klHL8p7SGSR3CiQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-test-renderer@^16.8.6:
   version "16.8.6"

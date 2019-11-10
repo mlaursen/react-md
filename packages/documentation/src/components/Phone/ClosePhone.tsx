@@ -1,5 +1,4 @@
 import React, { FC, useCallback } from "react";
-import cn from "classnames";
 import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import {
   KeyboardArrowLeftSVGIcon,

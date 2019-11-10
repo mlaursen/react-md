@@ -13,22 +13,26 @@ describe("AppBarTitle", () => {
   it("should apply the correct class names", () => {
     const { container, rerender } = render(<AppBarTitle />);
     let title = container.querySelector("h6") as HTMLHeadingElement;
-    expect(title.className).toBe("rmd-app-bar__title");
+    expect(title.className).toBe(
+      "rmd-app-bar__title rmd-app-bar__title--no-wrap"
+    );
 
     rerender(<AppBarTitle keyline />);
     title = container.querySelector("h6") as HTMLHeadingElement;
     expect(title.className).toBe(
-      "rmd-app-bar__title rmd-app-bar__title--keyline"
+      "rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--keyline"
     );
 
     rerender(<AppBarTitle className="custom-class names" />);
     title = container.querySelector("h6") as HTMLHeadingElement;
-    expect(title.className).toBe("rmd-app-bar__title custom-class names");
+    expect(title.className).toBe(
+      "rmd-app-bar__title rmd-app-bar__title--no-wrap custom-class names"
+    );
 
     rerender(<AppBarTitle keyline className="custom-class names" />);
     title = container.querySelector("h6") as HTMLHeadingElement;
     expect(title.className).toBe(
-      "rmd-app-bar__title rmd-app-bar__title--keyline custom-class names"
+      "rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--keyline custom-class names"
     );
 
     rerender(
@@ -36,7 +40,7 @@ describe("AppBarTitle", () => {
     );
     title = container.querySelector("h6") as HTMLHeadingElement;
     expect(title.className).toBe(
-      "rmd-app-bar__title rmd-app-bar__title--keyline rmd-app-bar__title--inherit custom-class names"
+      "rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--keyline rmd-app-bar__title--inherit custom-class names"
     );
   });
 });

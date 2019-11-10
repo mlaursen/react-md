@@ -71,6 +71,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.1.2",
+    "react-swipeable": "^5.4.0",
     "react-virtualized": "^9.21.1",
     "smoothscroll-polyfill": "^0.4.4"
   },
@@ -86,6 +87,7 @@
     "@types/marked": "^0.6.5",
     "@types/prismjs": "^1.16.0",
     "@types/qs": "^6.5.3",
+    "@types/react-swipeable": "^4.3.0",
     "@types/react-virtualized": "^9.21.4",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
