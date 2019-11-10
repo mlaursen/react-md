@@ -81,13 +81,11 @@ $fixed-classes: (
     }
   }
 
-  &__close {
-    &--floating {
-      bottom: 1rem;
-      margin: 0;
-      position: fixed;
-      right: 1rem;
-      z-index: 100;
-    }
+  &__close-container {
+    bottom: 1rem;
+    margin: 0;
+    position: fixed;
+    right: 1rem;
+    z-index: 100;
   }
 }

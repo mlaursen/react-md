@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import { AppBarTitle, AppBar } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
+
+import AppBarTitle from "components/AppBarTitle";
 
 import ClosePhone from "./ClosePhone";
 import { usePhoneContext } from "./context";

@@ -27,7 +27,6 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -54,12 +53,8 @@
     "content": "import React, { FC } from \"react\";\nimport {\n  AppBar,\n  AppBarNav,\n  AppBarTitle,\n  AppBarAction,\n  AppBarTheme,\n} from \"@react-md/app-bar\";\nimport {\n  MenuSVGIcon,\n  SearchSVGIcon,\n  MoreVertSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst themes: AppBarTheme[] = [\"primary\", \"secondary\", \"default\", \"clear\"];\n\nconst Demo: FC = () => (\n  <Container>\n    {themes.map((theme, i) => (\n      <AppBar id={`simple-usage-app-bar-${i}`} theme={theme} key={theme}>\n        <AppBarNav id={`simple-usage-nav-${i}`} aria-label=\"Navigation\">\n          <MenuSVGIcon />\n        </AppBarNav>\n        <AppBarTitle\n          id={`simple-usage-title-${i}`}\n          className=\"rmd-typography--capitalize\"\n        >\n          {theme}\n        </AppBarTitle>\n        <AppBarAction id={`simple-usage-search-${i}`} first aria-label=\"Search\">\n          <SearchSVGIcon />\n        </AppBarAction>\n        <AppBarAction id={`simple-usage-kebab-${i}`} last aria-label=\"Actions\">\n          <MoreVertSVGIcon />\n        </AppBarAction>\n      </AppBar>\n    ))}\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.app-bar-container {\n  @include rmd-utils-block-centered;\n  @include rmd-utils-phone-media {\n    margin: 2rem 0.5rem;\n    max-width: none;\n  }\n\n  display: grid;\n  grid-row-gap: 2rem;\n  max-width: 40rem;\n}\n",
-    "isBinary": false
-  },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div {...props} className={cn(\"app-bar-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport { Grid } from \"@react-md/utils\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  ...props\n}) => (\n  <Grid {...props} clone padding={0} columns={1}>\n    {children}\n  </Grid>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

@@ -1,6 +1,8 @@
 import React, { FC } from "react";
-import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
+
+import AppBarTitle from "components/AppBarTitle";
 
 import "./AutoDense.scss";
 import Container from "./Container";

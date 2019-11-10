@@ -1,5 +1,5 @@
 import React, { Fragment, FC, ReactElement, ReactNode } from "react";
-import { AppBar, AppBarTitle } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
@@ -8,6 +8,7 @@ import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
+import AppBarTitle from "components/AppBarTitle";
 
 export interface FullPageDemoProps {
   id: string;

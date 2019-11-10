@@ -1,10 +1,12 @@
 import React, { Fragment, FC, ReactElement, ReactNode } from "react";
-import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, LaunchSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
+
+import AppBarTitle from "components/AppBarTitle";
 
 export interface ConditionalFullPageDialogProps {
   id: string;

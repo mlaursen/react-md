@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { Fragment, FC, useState } from "react";
-import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
+
+import AppBarTitle from "components/AppBarTitle";
 
 import "./FullPageExample.scss";
 

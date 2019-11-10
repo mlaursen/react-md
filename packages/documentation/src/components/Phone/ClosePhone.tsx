@@ -34,18 +34,23 @@ const ClosePhone: FC<Props> = ({
     [onClick, closePhone]
   );
 
-  return (
+  const button = (
     <AppBarNav
       {...props}
       id={`${id}-close`}
       onClick={handleClick}
       theme={floating ? "secondary" : undefined}
       themeType={floating ? "contained" : undefined}
-      className={cn(block("close", { floating }), className)}
+      className={className}
     >
       {floating ? <CloseSVGIcon /> : children}
     </AppBarNav>
   );
+  if (!floating) {
+    return button;
+  }
+
+  return <span className={block("close-container")}>{button}</span>;
 };
 
 ClosePhone.defaultProps = {

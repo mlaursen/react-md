@@ -1,10 +1,5 @@
 import React, { FC } from "react";
-import {
-  AppBar,
-  AppBarAction,
-  AppBarNav,
-  AppBarTitle,
-} from "@react-md/app-bar";
+import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { TextIconSpacing } from "@react-md/icon";
 import {
   ArrowDropDownSVGIcon,
@@ -12,6 +7,8 @@ import {
   MoreVertSVGIcon,
   SearchSVGIcon,
 } from "@react-md/material-icons";
+
+import AppBarTitle from "components/AppBarTitle";
 
 import Container from "./Container";
 

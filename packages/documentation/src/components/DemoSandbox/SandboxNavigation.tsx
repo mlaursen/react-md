@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { AppBar, AppBarTitle, AppBarAction } from "@react-md/app-bar";
+import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 import { bem, MobileOnly } from "@react-md/utils";
 
 import AppBarNav from "components/AppBarNav";
+import AppBarTitle from "components/AppBarTitle";
 
 interface SandboxNavigationProps {
   name: string;

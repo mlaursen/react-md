@@ -3,7 +3,6 @@ import cn from "classnames";
 import {
   AppBar,
   AppBarNav,
-  AppBarTitle,
   AppBarAction,
   APP_BAR_OFFSET_CLASSNAME,
   APP_BAR_OFFSET_DENSE_CLASSNAME,
@@ -16,6 +15,8 @@ import {
   MoreVertSVGIcon,
 } from "@react-md/material-icons";
 import { Text, TextContainer } from "@react-md/typography";
+
+import AppBarTitle from "components/AppBarTitle";
 
 import "./FixedWithOffset.scss";
 

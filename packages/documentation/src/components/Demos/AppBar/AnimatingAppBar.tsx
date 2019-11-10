@@ -1,10 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import {
-  AppBar,
-  AppBarAction,
-  AppBarNav,
-  AppBarTitle,
-} from "@react-md/app-bar";
+import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
@@ -12,6 +7,7 @@ import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
 import { UpdateVariables, useScrollListener } from "@react-md/utils";
 
 import people from "constants/people";
+import AppBarTitle from "components/AppBarTitle";
 
 import "./AnimatingAppBar.scss";
 
