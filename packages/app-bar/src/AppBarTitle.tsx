@@ -61,7 +61,7 @@ const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  noWrap: false,
+  noWrap: true,
   keyline: false,
 };
 

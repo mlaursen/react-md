@@ -173,6 +173,7 @@
 @mixin rmd-app-bar-title {
   @include rmd-typography(headline-6);
   @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
+  @include rmd-utils-hide-focus-outline;
 
   margin-bottom: 0;
   margin-top: 0;
