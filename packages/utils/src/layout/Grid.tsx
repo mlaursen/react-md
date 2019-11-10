@@ -4,6 +4,7 @@ import cn from "classnames";
 import useAppSize from "../sizing/useAppSize";
 import { WithForwardedRef } from "../types";
 import GridCell from "./GridCell";
+import { bem } from "../css";
 
 /**
  * This CSS Variable allows you to override the number of columns that should be displayed in the
@@ -103,6 +104,8 @@ type CSSProperties = React.CSSProperties & {
   [GRID_COLUMNS_VAR]?: number;
 };
 
+const block = bem("rmd-grid");
+
 /**
  * The grid component is generally used for a base layout in your app to provide nice padding
  * and spacing between each item.
@@ -130,7 +133,7 @@ const Grid: FC<GridProps & WithRef> = ({
   const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
   const mergedStyle: CSSProperties = {
-    padding,
+    padding: (padding !== 0 && padding) || undefined,
     gridTemplateColumns: minCellWidth
       ? `repeat(auto-fill, minmax(${minCellWidth}, 1fr))`
       : undefined,
@@ -156,7 +159,7 @@ const Grid: FC<GridProps & WithRef> = ({
       {...props}
       style={mergedStyle}
       ref={forwardedRef}
-      className={cn("rmd-grid", className)}
+      className={cn(block({ "no-padding": padding === 0 }), className)}
     >
       {content}
     </div>

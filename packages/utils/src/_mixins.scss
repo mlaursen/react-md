@@ -502,6 +502,10 @@
   .rmd-grid {
     @include rmd-grid;
 
+    &--no-padding {
+      padding: 0;
+    }
+
     &__cell {
       @include rmd-grid-cell;
     }
