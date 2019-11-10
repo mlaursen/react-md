@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"constants/people\";\n\nimport Container from \"./Container\";\nimport \"./NonInteractable.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"simple-list-examples\">\n    <Container>\n      <List>\n        {people.slice(0, 10).map(name => (\n          <SimpleListItem key={name} className=\"li li--dotted li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map(name => (\n          <SimpleListItem key={name} className=\"li li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n    </Container>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport \"./NonInteractable.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"simple-list-examples\">\n    <Container>\n      <List>\n        {people.slice(0, 10).map(name => (\n          <SimpleListItem key={name} className=\"li li--dotted li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map(name => (\n          <SimpleListItem key={name} className=\"li li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n    </Container>\n  </div>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Container.scss": {

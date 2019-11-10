@@ -171,7 +171,7 @@ export default async function generate({
   };
 
   const aliasRegExp = new RegExp(
-    `(${aliases.join("|")}).*/(?=[A-z]+(.[a-z]+)?")`,
+    `(${aliases.join("|").replace(/src\//g, "")}).*/(?=[A-z]+(.[a-z]+)?")`,
     "g"
   );
 

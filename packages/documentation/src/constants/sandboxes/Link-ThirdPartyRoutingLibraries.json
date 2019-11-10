@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport Link from \"components/Link\";\n\nconst Demo: FC = () => (\n  <ul>\n    <li>\n      <Link href=\"#with-icons\">With Icons demo link</Link>\n    </li>\n  </ul>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport Link from \"./Link\";\n\nconst Demo: FC = () => (\n  <ul>\n    <li>\n      <Link href=\"#with-icons\">With Icons demo link</Link>\n    </li>\n  </ul>\n);\n\nexport default Demo;\n",
     "isBinary": false
   }
 }

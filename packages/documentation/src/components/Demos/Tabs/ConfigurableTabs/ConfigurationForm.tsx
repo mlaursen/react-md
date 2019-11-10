@@ -30,7 +30,7 @@ const ConfigurationForm: FC<Omit<TabConfiguration, "tabs">> = ({
   handleTransitionChange,
 }) => (
   <Form>
-    <Grid clone columns={1} tabletColumns={2} desktopColumns={3}>
+    <Grid clone columns={1} tabletColumns={2} largeDesktopColumns={3}>
       <Fieldset legend="Tabs Options">
         <Checkbox
           id="configurable-tabs-theme"

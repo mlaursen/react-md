@@ -5,6 +5,7 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
+    "cli": "dev-utils",
     "start": "yarn workspace documentation start-dev",
     "dev": "npm-run-all -p watch start",
     "force-install": "yarn --force",

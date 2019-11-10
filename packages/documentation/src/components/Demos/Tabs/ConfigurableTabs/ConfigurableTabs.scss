@@ -17,6 +17,9 @@
 
     &--themed {
       @include rmd-theme(background-color, primary);
+      @include rmd-theme(color, on-primary);
+      @include rmd-tabs-theme-update-var(active, inherit);
+      @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-dark-color);
       @include rmd-tabs-theme-update-var(indicator-color, rmd-theme-var(secondary));
     }
   }

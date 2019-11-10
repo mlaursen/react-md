@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "/* eslint-disable react/no-array-index-key */\nimport React, { FC } from \"react\";\nimport Code from \"components/Code/Code\";\n\nimport \"./AllElevations.scss\";\n\nconst Demo: FC = () => (\n  <ul className=\"elevations-container\">\n    {Array.from(new Array(25)).map((_, elevation) => (\n      <li\n        key={elevation}\n        className={`elevation-container elevation-container--${elevation}`}\n      >\n        <Code className=\"elevation-container__import\">{`@include rmd-elevation(${elevation})`}</Code>\n      </li>\n    ))}\n  </ul>\n);\n\nexport default Demo;\n",
+    "content": "/* eslint-disable react/no-array-index-key */\nimport React, { FC } from \"react\";\nimport Code from \"./Code\";\n\nimport \"./AllElevations.scss\";\n\nconst Demo: FC = () => (\n  <ul className=\"elevations-container\">\n    {Array.from(new Array(25)).map((_, elevation) => (\n      <li\n        key={elevation}\n        className={`elevation-container elevation-container--${elevation}`}\n      >\n        <Code className=\"elevation-container__import\">{`@include rmd-elevation(${elevation})`}</Code>\n      </li>\n    ))}\n  </ul>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Code/Code.tsx": {

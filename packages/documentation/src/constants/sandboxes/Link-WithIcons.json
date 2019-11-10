@@ -50,7 +50,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { Link } from \"@react-md/link\";\nimport { TextIconSpacing } from \"@react-md/icon\";\n\nimport TwitterIcon from \"icons/TwitterIcon\";\n\nimport \"./WithIcons.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"link-container\">\n    <Link href=\"https://twitter.com\" flexCentered>\n      <TextIconSpacing icon={<TwitterIcon role=\"presentation\" />}>\n        Twitter\n      </TextIconSpacing>\n    </Link>\n    <Link href=\"https://twitter.com\" flexCentered>\n      <TwitterIcon title=\"Twitter\" />\n    </Link>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Link } from \"@react-md/link\";\nimport { TextIconSpacing } from \"@react-md/icon\";\n\nimport TwitterIcon from \"./TwitterIcon\";\n\nimport \"./WithIcons.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"link-container\">\n    <Link href=\"https://twitter.com\" flexCentered>\n      <TextIconSpacing icon={<TwitterIcon role=\"presentation\" />}>\n        Twitter\n      </TextIconSpacing>\n    </Link>\n    <Link href=\"https://twitter.com\" flexCentered>\n      <TwitterIcon title=\"Twitter\" />\n    </Link>\n  </div>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/WithIcons.scss": {
