@@ -26,25 +26,37 @@ export default function useThemeConfiguration(
     setTheme(theme => (theme === "dark" ? "light" : "dark"));
   }, []);
 
-  const rendered = useRef(false);
+  const firstRender = useRef(true);
   useEffect(() => {
-    if (!rendered.current) {
-      rendered.current = true;
+    const root = document.documentElement as HTMLElement;
+    if (firstRender.current) {
+      // right now I lose cookies for some reason whenever I redeploy the server,
+      // so add a localStorage backup to the mix so the picked theme can still be
+      // correct after redeploys...
+      const localTheme = localStorage.getItem("theme");
+      if (
+        (localTheme === "light" || localTheme === "dark") &&
+        localTheme !== theme
+      ) {
+        root.classList.remove(`${theme}-theme`);
+        root.classList.add(`${localTheme}-theme`);
+        Cookie.set("theme", localTheme);
+        setTheme(localTheme);
+        return;
+      }
+
+      firstRender.current = false;
       return;
     }
 
     Cookie.set("theme", theme);
-    const root = document.documentElement as HTMLElement;
+    localStorage.setItem("theme", theme);
     root.classList.add("toggle-theme-transition");
     // force dom repaint
     root.scrollTop; // eslint-disable-line no-unused-expressions
-    if (theme === "light") {
-      root.classList.remove("dark-theme");
-      root.classList.add("light-theme");
-    } else {
-      root.classList.remove("light-theme");
-      root.classList.add("dark-theme");
-    }
+    const previous = theme === "light" ? "dark" : "light";
+    root.classList.remove(`${previous}-theme`);
+    root.classList.add(`${theme}-theme`);
 
     const timeout = window.setTimeout(() => {
       root.classList.remove("toggle-theme-transition");
