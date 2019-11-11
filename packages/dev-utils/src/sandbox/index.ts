@@ -104,10 +104,13 @@ async function createSandboxJsonFiles(
   log.info("Starting to extract all the imports for each demo...");
   await Promise.all(
     demos.map(demoPath => {
-      const [demoName, packageName] = demoPath
+      const [demoName, folder1, folder2] = demoPath
         .replace(`${path.sep}index.ts`, "")
+        .replace(`.${path.sep}`, "")
         .split(path.sep)
         .reverse();
+      const packageName =
+        folder1 === demoName.replace(/\.tsx?$/, "") ? folder2 : folder1;
       const debugName = `${packageName}/${demoName}`;
       log.info(debugName);
       log.info("Extracting dependencies...");
