@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from "react";
+import React, { FC, forwardRef, useRef } from "react";
 import cn from "classnames";
 import { Dialog, DialogProps } from "@react-md/dialog";
 import { LabelRequiredForA11y, WithForwardedRef, bem } from "@react-md/utils";
@@ -101,9 +101,17 @@ const Sheet: FC<StrictProps & WithRef> = providedProps => {
     overlayClassName,
     ...props
   } = providedProps as WithDefaultProps;
-  const { role } = props;
+  const { role, visible, mountOnEnter, unmountOnExit } = props;
   const horizontal = position === "left" || position === "right";
   const overlay = role !== "none" && propOverlay;
+
+  // if the sheet mounts while not visible and the conditional mounting isn't enabled,
+  // need to default to the offscreen state which is normally handled by the
+  // CSSTransition's exit state.
+  const offscreen = useRef(!visible && !unmountOnExit && !mountOnEnter);
+  if (offscreen.current && visible) {
+    offscreen.current = false;
+  }
 
   return (
     <Dialog
@@ -117,6 +125,7 @@ const Sheet: FC<StrictProps & WithRef> = providedProps => {
           horizontal,
           vertical: !horizontal,
           raised: overlay,
+          offscreen: offscreen.current,
           [position]: true,
           [`${horizontalSize}-width`]: horizontal,
           "viewport-height": !horizontal && verticalSize === "none",
