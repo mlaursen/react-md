@@ -213,7 +213,7 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
   // recalculate the height when the width changes as well.
   useResizeObserver({
     disableHeight: true,
-    getTarget: mask,
+    target: mask,
     onResize: updateHeight,
   });
   const [valued, onChange] = useValuedState<HTMLTextAreaElement>({

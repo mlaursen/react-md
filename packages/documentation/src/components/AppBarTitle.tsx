@@ -38,7 +38,7 @@ const AppBarTitle: FC<AppBarTitleProps> = ({
         setTooltip(null);
       }
     },
-    getTarget: ref,
+    target: ref,
   });
 
   const id = useMemo(() => {
