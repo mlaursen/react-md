@@ -1,33 +1,13 @@
-import { useEffect, MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useEffect } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
-
-// these are copied from the ResizeObserverPolyfill type definitions since the type definition
-// file doesn't seem to be importing the polyfill which causes compilation errors in other packages.
-// I don't really know how to fix it.
-
-interface DOMRectReadOnly {
-  readonly x: number;
-  readonly y: number;
-  readonly width: number;
-  readonly height: number;
-  readonly top: number;
-  readonly right: number;
-  readonly bottom: number;
-  readonly left: number;
-}
-
-interface ResizeObserverEntry {
-  readonly target: Element;
-  readonly contentRect: DOMRectReadOnly;
-}
 
 /**
  * A function that will return the resize observer target element. This
  * should return an HTMLElement or null.
  */
-type GetTarget = () => HTMLElement | null;
+type GetTarget<E extends HTMLElement = HTMLElement> = () => E | null;
 
-type TargetRef<
+type RefTarget<
   E extends HTMLElement = HTMLElement
 > = MutableRefObject<E | null>;
 
@@ -47,8 +27,8 @@ export type ResizeObserverTarget<E extends HTMLElement = HTMLElement> =
   | null
   | HTMLElement
   | string
-  | TargetRef<E>
-  | GetTarget;
+  | RefTarget<E>
+  | GetTarget<E>;
 
 /**
  * @private
@@ -135,10 +115,10 @@ export type ResizeObserverChangeEventHandler = (
 ) => void;
 
 export interface ResizeObserverOptions<E extends HTMLElement = HTMLElement> {
+  target: ResizeObserverTarget<E>;
+  onResize: ResizeObserverChangeEventHandler;
   disableHeight?: boolean;
   disableWidth?: boolean;
-  onResize: ResizeObserverChangeEventHandler;
-  target: ResizeObserverTarget<E>;
 }
 
 /**
