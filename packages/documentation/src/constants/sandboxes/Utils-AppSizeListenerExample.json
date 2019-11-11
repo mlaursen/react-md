@@ -1,14 +1,14 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Utils Example - App Size Listener Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Utils Example - App Size Listener Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
@@ -21,6 +21,7 @@
       "description": "Example from https://react-md.dev/packages/utils/demos#app-size-listener-example",
       "main": "src/index.tsx",
       "dependencies": {
+        "@react-md/layout": "next",
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
@@ -45,10 +46,6 @@
         "start": "react-scripts start"
       }
     },
-    "isBinary": false
-  },
-  ".env": {
-    "content": "SASS_PATH=node_modules:src\n",
     "isBinary": false
   },
   "src/Demo.tsx": {
@@ -80,7 +77,7 @@
     "isBinary": false
   },
   "src/index.ts": {
-    "content": "import rootPackageJson from \"../../../../package.json\";\nimport packageJson from \"../../package.json\";\n\nconst {\n  bugs: { url },\n  homepage,\n  version,\n} = rootPackageJson;\n\nexport const GITHUB_URL = url.replace(/\\/issues/, \"\");\nexport const GITHUB_FILE_URL = `${GITHUB_URL}/tree/next`;\nexport const GITHUB_DOC_PREFIX = `${GITHUB_FILE_URL}/packages/documentation`;\nexport const GITHUB_DEMO_URL = `${GITHUB_DOC_PREFIX}/components/Demos`;\nexport const HOMEPAGE = homepage;\nexport const VERSION = version;\n\nexport const PACKAGES = Object.entries(packageJson.dependencies)\n  .filter(([k]) => k.startsWith(\"@react-md\"))\n  .map(([name, version]) => ({\n    name,\n    version: version.replace(/([^0-9])+/, \"\"),\n  }));\n\ninterface PackagesRecord {\n  [key: string]: string;\n}\n\nexport const PACKAGES_RECORD: PackagesRecord = PACKAGES.reduce(\n  (obj, { name, version }) => ({\n    ...obj,\n    [name]: version,\n  }),\n  {}\n);\n\nexport const PACKAGE_NAMES = Object.keys(PACKAGES_RECORD).map(\n  name => `${name.substring(name.indexOf(\"/\") + 1)}`\n);\n\nexport const CODE_SANDBOX_DEFINE_API =\n  \"https://codesandbox.io/api/v1/sandboxes/define\";\n\nexport const GA_CODE = process.env.GA_CODE || \"UA-76079335-2\";\nexport const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;\n",
+    "content": "import rootPackageJson from \"../../../../package.json\";\nimport packageJson from \"../../package.json\";\n\nconst {\n  bugs: { url },\n  homepage,\n  version,\n} = rootPackageJson;\n\nexport const GITHUB_URL = url.replace(/\\/issues/, \"\");\nexport const GITHUB_FILE_URL = `${GITHUB_URL}/tree/next`;\nexport const GITHUB_DOC_PREFIX = `${GITHUB_FILE_URL}/packages/documentation`;\nexport const GITHUB_DEMO_URL = `${GITHUB_DOC_PREFIX}/src/components/Demos`;\nexport const HOMEPAGE = homepage;\nexport const VERSION = version;\n\nexport const PACKAGES = Object.entries(packageJson.dependencies)\n  .filter(([k]) => k.startsWith(\"@react-md\"))\n  .map(([name, version]) => ({\n    name,\n    version: version.replace(/([^0-9])+/, \"\"),\n  }));\n\ninterface PackagesRecord {\n  [key: string]: string;\n}\n\nexport const PACKAGES_RECORD: PackagesRecord = PACKAGES.reduce(\n  (obj, { name, version }) => ({\n    ...obj,\n    [name]: version,\n  }),\n  {}\n);\n\nexport const PACKAGE_NAMES = Object.keys(PACKAGES_RECORD).map(\n  name => `${name.substring(name.indexOf(\"/\") + 1)}`\n);\n\nexport const CODE_SANDBOX_DEFINE_API =\n  \"https://codesandbox.io/api/v1/sandboxes/define\";\n\nexport const GA_CODE = process.env.GA_CODE || \"UA-76079335-2\";\nexport const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;\n",
     "isBinary": false
   }
 }

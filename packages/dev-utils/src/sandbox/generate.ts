@@ -196,10 +196,6 @@ export default async function generate({
       content: packageJson,
       isBinary: false,
     },
-    ".env": {
-      content: "SASS_PATH=node_modules:src\n",
-      isBinary: false,
-    },
   };
 
   const files = (await Promise.all(

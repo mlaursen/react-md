@@ -1,14 +1,14 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <title>Progress Example - Simple Indeterminate Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Progress Example - Simple Indeterminate Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
     "isBinary": false
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { StatesConfig, InteractionModeListener } from \"@react-md/states\";\n\nimport \"./styles.scss\";\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <InteractionModeListener>\n    <StatesConfig>\n      <Demo />\n    </StatesConfig>\n  </InteractionModeListener>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
@@ -26,6 +26,7 @@
         "@react-md/dialog": "next",
         "@react-md/elevation": "next",
         "@react-md/icon": "next",
+        "@react-md/layout": "next",
         "@react-md/material-icons": "next",
         "@react-md/progress": "next",
         "@react-md/sheet": "next",
@@ -53,10 +54,6 @@
     },
     "isBinary": false
   },
-  ".env": {
-    "content": "SASS_PATH=node_modules:src\n",
-    "isBinary": false
-  },
   "src/Demo.tsx": {
     "content": "import React, { FC, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  LinearProgress,\n  CircularProgress,\n  getProgressA11y,\n} from \"@react-md/progress\";\n\nimport Phone from \"./Phone\";\n\nimport \"./SimpleExamples.scss\";\nimport useTemporaryToggle from \"./useTemporaryToggle\";\n\nconst Demo: FC = () => {\n  const {\n    toggled: linearVisible,\n    toggle: toggleLinear,\n    disable: disableLinear,\n  } = useTemporaryToggle();\n  const {\n    toggled: circularVisible,\n    toggle: toggleCircular,\n    disable: disableCircular,\n  } = useTemporaryToggle();\n\n  return (\n    <Fragment>\n      <Phone id=\"simple-linear\" title=\"Linear\" onPhoneClose={disableLinear}>\n        {linearVisible && <LinearProgress id=\"simple-linear-progress\" />}\n        <Button\n          id=\"show-linear-progress\"\n          {...getProgressA11y(\"simple-linear-progress\", circularVisible)}\n          onClick={toggleLinear}\n          theme=\"primary\"\n          themeType=\"contained\"\n          className=\"centered-progress-toggle\"\n          disabled={linearVisible}\n        >\n          Toggle Progress\n        </Button>\n      </Phone>\n      <Phone\n        id=\"simple-circular\"\n        title=\"Circular\"\n        onPhoneClose={disableCircular}\n      >\n        {circularVisible && <CircularProgress id=\"simple-circular-progress\" />}\n        <Button\n          id=\"show-circular-progress\"\n          {...getProgressA11y(\"simple-circular-progress\", circularVisible)}\n          onClick={toggleCircular}\n          theme=\"primary\"\n          themeType=\"contained\"\n          className=\"centered-progress-toggle\"\n          disabled={circularVisible}\n        >\n          Toggle Progress\n        </Button>\n      </Phone>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
@@ -78,7 +75,7 @@
     "isBinary": false
   },
   "src/Phone/ClosePhone.tsx": {
-    "content": "import React, { FC, useCallback } from \"react\";\nimport cn from \"classnames\";\nimport { AppBarNav, AppBarNavProps } from \"@react-md/app-bar\";\nimport {\n  KeyboardArrowLeftSVGIcon,\n  CloseSVGIcon,\n} from \"@react-md/material-icons\";\nimport { bem } from \"@react-md/utils\";\n\nimport { usePhoneContext } from \"./context\";\n\nconst block = bem(\"phone\");\n\ninterface Props extends AppBarNavProps {\n  floating?: boolean;\n}\n\nconst ClosePhone: FC<Props> = ({\n  children,\n  onClick,\n  floating,\n  className,\n  ...props\n}) => {\n  const { id, closePhone } = usePhoneContext();\n  const handleClick = useCallback(\n    (event: React.MouseEvent<HTMLButtonElement>) => {\n      if (onClick) {\n        onClick(event);\n      }\n\n      closePhone();\n    },\n    [onClick, closePhone]\n  );\n\n  const button = (\n    <AppBarNav\n      {...props}\n      id={`${id}-close`}\n      onClick={handleClick}\n      theme={floating ? \"secondary\" : undefined}\n      themeType={floating ? \"contained\" : undefined}\n      className={className}\n    >\n      {floating ? <CloseSVGIcon /> : children}\n    </AppBarNav>\n  );\n  if (!floating) {\n    return button;\n  }\n\n  return <span className={block(\"close-container\")}>{button}</span>;\n};\n\nClosePhone.defaultProps = {\n  \"aria-label\": \"Go back\",\n  children: <KeyboardArrowLeftSVGIcon />,\n  floating: false,\n};\n\nexport default ClosePhone;\n",
+    "content": "import React, { FC, useCallback } from \"react\";\nimport { AppBarNav, AppBarNavProps } from \"@react-md/app-bar\";\nimport {\n  KeyboardArrowLeftSVGIcon,\n  CloseSVGIcon,\n} from \"@react-md/material-icons\";\nimport { bem } from \"@react-md/utils\";\n\nimport { usePhoneContext } from \"./context\";\n\nconst block = bem(\"phone\");\n\ninterface Props extends AppBarNavProps {\n  floating?: boolean;\n}\n\nconst ClosePhone: FC<Props> = ({\n  children,\n  onClick,\n  floating,\n  className,\n  ...props\n}) => {\n  const { id, closePhone } = usePhoneContext();\n  const handleClick = useCallback(\n    (event: React.MouseEvent<HTMLButtonElement>) => {\n      if (onClick) {\n        onClick(event);\n      }\n\n      closePhone();\n    },\n    [onClick, closePhone]\n  );\n\n  const button = (\n    <AppBarNav\n      {...props}\n      id={`${id}-close`}\n      onClick={handleClick}\n      theme={floating ? \"secondary\" : undefined}\n      themeType={floating ? \"contained\" : undefined}\n      className={className}\n    >\n      {floating ? <CloseSVGIcon /> : children}\n    </AppBarNav>\n  );\n  if (!floating) {\n    return button;\n  }\n\n  return <span className={block(\"close-container\")}>{button}</span>;\n};\n\nClosePhone.defaultProps = {\n  \"aria-label\": \"Go back\",\n  children: <KeyboardArrowLeftSVGIcon />,\n  floating: false,\n};\n\nexport default ClosePhone;\n",
     "isBinary": false
   },
   "src/Phone/DefaultAppBar.tsx": {

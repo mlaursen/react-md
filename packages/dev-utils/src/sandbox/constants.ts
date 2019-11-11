@@ -10,6 +10,7 @@ export const SANDBOXES_PATH = path.join(src, "constants", "sandboxes");
  * recommended packages or because they are used to setup the "base" styles.
  */
 export const ALWAYS_REQUIRED_DEPENDENCIES = [
+  "@react-md/layout",
   "@react-md/states",
   "@react-md/theme",
   "@react-md/typography",
@@ -41,17 +42,14 @@ export const NON_STYLEABLE_RMD_PACKAGES = [
 
 export const DEMO_INDEX = `import React from "react";
 import { render } from "react-dom";
-import { StatesConfig, InteractionModeListener } from "@react-md/states";
+import { Configuration } from "@react-md/layout";
 
-import "./styles.scss";
 import Demo from "./Demo";
 
 const App = () => (
-  <InteractionModeListener>
-    <StatesConfig>
-      <Demo />
-    </StatesConfig>
-  </InteractionModeListener>
+  <Configuration>
+    <Demo />
+  </Configuration>
 );
 
 render(<App />, document.getElementById("root"));
@@ -69,6 +67,10 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css"
     />
     <title>{{DEMO_TITLE}}</title>
   </head>
