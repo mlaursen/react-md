@@ -23,5 +23,6 @@
   .rmd-sheet,
   .rmd-overlay {
     position: absolute;
+    z-index: 1;
   }
 }
