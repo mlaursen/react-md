@@ -28,6 +28,7 @@ const Preview: FC = () => {
           visible={visible}
           onRequestClose={hide}
           portalInto={() => container.current}
+          disableScrollLock
         >
           <List>
             {Array.from(new Array(5), (_, i) => (

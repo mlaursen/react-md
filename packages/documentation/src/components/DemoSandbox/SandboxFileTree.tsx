@@ -38,6 +38,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       position="left"
       overlay={!inline}
       portal={!inline}
+      portalIntoId="sandbox-modal"
       className={block("files", { inline })}
       mountOnEnter={false}
       unmountOnExit={false}
