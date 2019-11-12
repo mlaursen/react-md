@@ -1,17 +1,19 @@
 # react-md [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=next)](https://travis-ci.org/mlaursen/react-md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/mlaursen/react-md/pulls) [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
+### v2 is still in alpha, but nearing completion. Please see the [v1 documentation site](https://react-md.mlaursen.com) and [branch](../../tree/v1) until then.
+
 Create an accessible React application with the
 [material design specifications](https://material.io/design/) and Scss.
 
-- [Creating a new project](#creating-a-new-project) - How to create a new
-  project with react-md
-- [Updating an existing project](https://react-md.dev/getting-started/updating-create-react-app) -
-  How to add react-md into an existing project
-- [Installing packages](https://react-md.dev/getting-started/installation) - How
-  to install related components and packages within react-md for building your
+- [Installing packages](https://react-md.dev/guides/installation) - How to
+  install related components and packages within react-md for building your
   application
-- [Implementing a theme](https://react-md.dev/customization/color-palette) - How
-  to implement a different theme for your React application
+- [Creating a new app](https://react-md.dev/guides/creating-a-new-app) - How to
+  create a new app with react-md
+- [Working from v1](https://react-md.dev/guides/working-with-v1) - How to use
+  migrate from v1 of `react-md` to v2.
+- [Customizing your theme](https://react-md.dev/guides/customizing-your-theme) -
+  How to implement a different theme for your React application
 - [Full documentation](https://react-md.dev) - All the remaining documentation
   along with every single guide, API Reference, and examples
 - [Library Size](#library-size) - The UMD bundle size for the entire `react-md`
@@ -28,7 +30,7 @@ Create an accessible React application with the
 - Out of the box left-to-right and right-to-left language support
 - UMD Bundles and pre-compiled css available on https://unpkg.com (see more
   information
-  [here](https://react-md.dev/getting-started/installation#using-umd-bundles))
+  [here](https://react-md.dev/guides/advanced-installation#using-the-cdn-hosted-pre-compiled-themes))
 - Written and maintained in [Typescript]
 
 ## Creating a new project
@@ -165,7 +167,7 @@ export default App;
 ```
 
 More information can be found on the documentation site's page
-[about creating projects](https://react-md.dev/getting-started/installation)
+[about creating projects](https://react-md.dev/guides/installation)
 
 ## Library Size
 
