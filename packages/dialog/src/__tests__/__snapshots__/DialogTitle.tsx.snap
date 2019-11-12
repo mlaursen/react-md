@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogTitle should render correctly (with snapshots) 1`] = `
+<h2
+  className="rmd-dialog__title"
+>
+  Title 1
+</h2>
+`;
+
+exports[`DialogTitle should render correctly (with snapshots) 2`] = `
+<h2
+  className="rmd-dialog__title"
+>
+  <span>
+    Some content
+  </span>
+</h2>
+`;
+
+exports[`DialogTitle should render correctly (with snapshots) 3`] = `
+<h2
+  className="rmd-dialog__title"
+>
+  <button
+    type="button"
+  >
+    Click Me
+  </button>
+</h2>
+`;

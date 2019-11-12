@@ -1,35 +1,51 @@
 #!/bin/bash
-# exit on any error
 set -e
 
-tar_name=react-md.tar.bz2
-ssh_alias=mlaursen
-server_location=/var/www/react-md/master
+for arg in "$@"; do
+  case $arg in
+    -bn|-nb)
+      build_dist=1
+      build_next=1
+      shift
+      ;;
+    -b)
+      build_dist=1
+      shift
+      ;;
+    -n)
+      build_next=1
+      shift
+      ;;
+    *)
+      echo "Unknown argument: $arg"
+      shift
+      ;;
+  esac
+done
 
-yarn && yarn build
+dist_tar_name=react-md.tar.bz2
+next_tar_name=nextjs.tar.bz2
+server_alias=react-md
 
-cd docs
-yarn && yarn build
+rm -rf $dist_tar_name $next_tar_name
 
-cd ..
-rm -f "$tar_name"
-tar --exclude='docs/src/server/databases/.gitkeep' \
-  --exclude='docs/src/server/databases/airQuality.json' \
-  --exclude='docs/public/.DS_STORE' \
-  --exclude='docs/public/robots.txt' \
-  --exclude='docs/public/favicon.ico' \
-  --exclude='docs/public/react-md.png' \
-  -jcvf "$tar_name" \
-    lib \
-    docs/dist \
-    docs/public \
-    docs/src/constants/scssColors.js \
-    docs/src/server/databases \
-    docs/webpack-assets.json
+if [[ $build_dist -eq 1 ]]; then
+  yarn build
+fi
 
-rm_assets="rm -rf public/sassdoc dist && find public ! -name 'robots.txt' ! -name 'react-md.png' ! -name 'favicon.ico' ! -path '**/themes/**' -type f -exec rm -f {} +"
+if [[ $build_next -eq 1 ]]; then
+  rm -rf packages/documentation/.next
+  yarn workspace documentation build
+fi
 
-ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib && cd docs && $rm_assets && yarn --production"
-scp "$tar_name" "$ssh_alias":"$server_location"
+find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) \
+  | sed '/react-md/d' \
+  | tar cjf $dist_tar_name --files-from -
 
-ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name && git clean -f && cd .. && pm2 start processes.yml"
+tar cjf $next_tar_name packages/documentation/.next
+
+scp $dist_tar_name react-md:~/react-md
+scp $next_tar_name react-md:~/react-md
+
+ssh $server_alias "cd react-md && git pull && rm -rf packages/documentation/.next && find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) | xargs rm -r && tar xjf $dist_tar_name && tar xjf $next_tar_name && yarn && git clean -f && cd && pm2 restart ecosystem.config.js"
+git clean -f

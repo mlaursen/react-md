@@ -1,0 +1,442 @@
+////
+/// @group form-text-field
+////
+
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import '../variables';
+@import '../functions';
+
+/// @access private
+@mixin rmd-text-field-container {
+  @include rmd-transition(standard);
+  @include rmd-form-theme(height, text-height);
+
+  align-items: center;
+  display: flex;
+  position: relative;
+  transition: border-color $rmd-transition-standard-time;
+
+  &--hoverable:hover {
+    @include rmd-form-theme(border-color, text-border-hover-color);
+  }
+
+  &--inline {
+    display: inline-flex;
+  }
+
+  &--label {
+    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-height));
+  }
+
+  &--error {
+    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(text-active-color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(text-border-color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(
+      text-border-hover-color,
+      rmd-form-theme-var(error-hover-color)
+    );
+  }
+
+  &--disabled {
+    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(disabled-color));
+  }
+
+  &--underline {
+    @if $rmd-text-field-underline-padding {
+      @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
+      @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-underline-padding);
+    }
+    @include rmd-form-theme(border-color, text-border-color);
+
+    border-bottom-style: solid;
+    border-bottom-width: $rmd-text-field-border-width;
+
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-form-theme(background-color, text-active-color);
+
+      bottom: -$rmd-text-field-border-width;
+      content: '';
+      height: $rmd-text-field-border-width-active;
+      left: 0;
+      position: absolute;
+      right: 0;
+      transform: scale(0);
+      transition: transform $rmd-transition-standard-time;
+      z-index: 1;
+    }
+  }
+
+  &--underline-labelled {
+    @include rmd-form-theme-update-var(
+      text-padding-top,
+      $rmd-text-field-underline-label-padding-top
+    );
+    @include rmd-form-theme-update-var(addon-margin-top, $rmd-text-field-addon-margin);
+  }
+
+  &--filled {
+    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(label-left-offset, $rmd-text-field-filled-padding);
+    @include rmd-form-theme(background-color, text-filled-color);
+    @include rmd-states-surface(false);
+
+    border-top-left-radius: $rmd-text-field-filled-border-radius;
+    border-top-right-radius: $rmd-text-field-filled-border-radius;
+  }
+
+  &--underline-left::after {
+    transform-origin: left;
+  }
+
+  &--underline-center::after {
+    transform-origin: center;
+  }
+
+  &--underline-right::after {
+    transform-origin: right;
+  }
+
+  &--underline-active::after {
+    transform: scale(1);
+  }
+
+  &--underline-left-addon {
+    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';
+    @if $rmd-text-field-underline-padding {
+      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
+    }
+
+    @include rmd-form-theme-update-var(text-padding-left, calc(#{$calc-string}));
+    @include rmd-form-theme-update-var(
+      label-left-offset,
+      $rmd-text-field-underline-label-left-offset
+    );
+  }
+
+  &--underline-right-addon {
+    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';
+    @if $rmd-text-field-underline-padding {
+      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
+    }
+
+    @include rmd-form-theme-update-var(text-padding-right, calc(#{$calc-string}));
+  }
+
+  &--outline {
+    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-outline-padding);
+    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-outline-padding);
+    @include rmd-form-theme-update-var(
+      label-left-offset,
+      $rmd-text-field-outline-padding - $rmd-label-floating-padding
+    );
+    @include rmd-form-theme-update-var(label-top-offset, -50%);
+    @include rmd-form-theme-update-var(label-active-padding, 0 $rmd-label-floating-padding);
+    @include rmd-form-theme-update-var(label-active-background-color, rmd-theme-var(background));
+    @include rmd-form-theme(border-color, text-border-color);
+
+    border-radius: $rmd-text-field-border-radius;
+    border-style: solid;
+    border-width: $rmd-text-field-border-width;
+
+    &::after {
+      @include rmd-transition(standard);
+      @include rmd-utils-pseudo-element;
+
+      box-shadow: 0 0 0 $rmd-text-field-border-width-active rmd-form-theme-var(text-active-color);
+      opacity: 0;
+      transition: opacity $rmd-transition-standard-time;
+    }
+  }
+
+  &--outline-active::after {
+    opacity: 1;
+  }
+
+  &--outline-left {
+    $outline-offset: calc(
+      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-outline-padding + $rmd-text-field-addon-margin}
+    );
+
+    @include rmd-form-theme-update-var(text-padding-left, $outline-offset);
+  }
+
+  &--outline-right {
+    $outline-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2});
+
+    @include rmd-form-theme-update-var(text-padding-right, $outline-offset);
+  }
+
+  &--dense {
+    @include rmd-form-theme-update-var(
+      text-height,
+      rmd-form-theme-var(text-placeholder-dense-height)
+    );
+  }
+
+  &--dense-label {
+    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-dense-height));
+  }
+
+  &--dense-placeholder {
+    @include rmd-form-theme-update-var(
+      text-padding-top,
+      $rmd-text-field-underline-dense-padding-top
+    );
+  }
+}
+
+/// A simple mixin that applies placeholder styles to an input/textarea
+/// element.
+@mixin rmd-text-field-placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:placeholder {
+    @content;
+  }
+}
+
+/// Creates the base styles for a text field so that it gains the
+/// correct typography and a few different colors based on its state.
+@mixin rmd-text-field-base {
+  @include rmd-typography(body-1, font-size);
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-text-field-placeholder {
+    @include rmd-transition(standard);
+    @include rmd-theme(color, text-secondary-on-background);
+
+    // want to gain the same font styles as the input/textarea itself,
+    // just apply different colors as needed instead. Can't just do font: inherit
+    // since it'll break the styles in firefox.
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  background-color: transparent;
+  border-width: 0;
+  color: inherit;
+  font-size: 1em;
+  width: 100%;
+
+  &[disabled] {
+    @include rmd-theme(color, text-disabled-on-background);
+
+    @include rmd-text-field-placeholder {
+      @include rmd-theme(color, text-disabled-on-background);
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-text-field {
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
+  @include rmd-form-theme(padding-left, text-padding-left);
+  @include rmd-form-theme(padding-right, text-padding-right);
+  @include rmd-form-theme(padding-top, text-padding-top);
+  @include rmd-text-field-base;
+
+  flex: 1 1 auto;
+  height: 100%;
+
+  &--floating {
+    @include rmd-text-field-placeholder {
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &[disabled] {
+      @include rmd-text-field-placeholder {
+        color: transparent;
+      }
+    }
+
+    &:focus {
+      @include rmd-text-field-placeholder {
+        @include rmd-theme(color, text-secondary-on-background);
+      }
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-text-field-addon {
+  @include rmd-icon-theme(height, size);
+  @include rmd-icon-theme(width, size);
+  @include rmd-form-theme(top, addon-top);
+  @include rmd-form-theme(margin-top, addon-margin-top);
+
+  position: absolute;
+
+  &:first-child {
+    @include rmd-utils-rtl-auto(left, rmd-form-theme-var(label-left-offset));
+  }
+
+  &:last-child {
+    @include rmd-utils-rtl-auto(right, $rmd-text-field-addon-margin);
+  }
+
+  &--presentational {
+    pointer-events: none;
+  }
+}
+
+/// @access private
+@mixin rmd-textarea-container {
+  @include rmd-form-theme-update-var(addon-top, $rmd-textarea-addon-top);
+
+  $calc: #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(textarea-padding)};
+
+  height: auto;
+  max-width: 100%;
+  padding-top: calc(#{$calc});
+
+  &--animate {
+    @include rmd-transition(standard);
+
+    transition: height $rmd-transition-standard-time;
+  }
+
+  &--cursor:hover {
+    // need to add this cursor back since the textarea container adds padding to itself
+    // instead of the textarea so it loses this cursor. the container element will still
+    // focus the textarea when clicked
+    cursor: text;
+  }
+
+  &__inner {
+    height: 100%;
+    width: 100%;
+
+    &--animate {
+      @include rmd-transition(standard);
+
+      transition: height $rmd-transition-standard-time;
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-textarea {
+  @include rmd-transition(standard);
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
+  @include rmd-form-theme(padding-left, text-padding-left);
+  @include rmd-form-theme(padding-right, text-padding-right);
+  @include rmd-form-theme(min-height, text-height);
+  @include rmd-text-field-base;
+
+  flex: 1 1 auto;
+  height: 100%;
+
+  &--floating {
+    @include rmd-text-field-placeholder {
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &:focus {
+      @include rmd-text-field-placeholder {
+        @include rmd-theme(color, text-secondary-on-background);
+      }
+    }
+  }
+
+  &--rh {
+    resize: horizontal;
+  }
+
+  &--rv {
+    resize: vertical;
+  }
+
+  &--rn {
+    overflow: hidden;
+    resize: none;
+  }
+
+  // only want the textarea to be scrollable if there's a limit on the rows
+  // since it'll flash the scrollbar on most OS during the height transition
+  &--scrollable {
+    overflow: auto;
+  }
+
+  &--mask {
+    height: auto;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+  }
+}
+
+/// @access private
+@mixin react-md-text-field {
+  .rmd-text-field-container {
+    @include rmd-text-field-container;
+  }
+
+  .rmd-text-field {
+    @include rmd-text-field;
+  }
+
+  .rmd-text-field-addon {
+    @include rmd-text-field-addon;
+  }
+
+  .rmd-password {
+    &--offset {
+      // don't want any padding since the input will gain the button margin instead
+      @include rmd-form-theme-update-var(text-padding-right, 0);
+    }
+
+    &__input {
+      &--offset {
+        @include rmd-utils-rtl-auto(margin-right, rmd-button-theme-var(icon-size));
+      }
+    }
+
+    &__toggle {
+      @include rmd-utils-rtl-auto(right, 0);
+
+      position: absolute;
+    }
+  }
+
+  .rmd-textarea-container {
+    @include rmd-textarea-container;
+  }
+
+  .rmd-textarea {
+    @include rmd-textarea;
+  }
+}

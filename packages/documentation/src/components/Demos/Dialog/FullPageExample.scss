@@ -1,0 +1,36 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.dialog-image-preview-item {
+  @include rmd-utils-keyboard-only {
+    $start-shadow: none;
+    $end-shadow: inset 0 0 0 2px $rmd-black-base;
+
+    @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus', false);
+  }
+
+  border-radius: 0;
+  margin: 1rem;
+  overflow: hidden;
+  padding: 0;
+
+  &:focus,
+  &:hover {
+    img {
+      transform: scale(1.25);
+    }
+  }
+
+  img {
+    @include rmd-transition(standard);
+
+    transition: transform 0.15s;
+  }
+}
+
+.dialog-image-full-preview {
+  @include rmd-app-bar-theme(margin-top, height);
+
+  max-height: calc(100% - #{rmd-app-bar-theme-var(height)});
+}

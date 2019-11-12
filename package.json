@@ -1,126 +1,111 @@
 {
   "name": "react-md",
-  "version": "1.12.3",
-  "description": "React material design components",
-  "main": "./lib",
-  "module": "./es",
-  "jsnext:main": "./es",
-  "files": [
-    "es/",
-    "lib/",
-    "dist/",
-    "src/",
-    "index.d.ts",
-    "LICENSE"
-  ],
-  "types": "./index.d.ts",
+  "private": true,
+  "version": "2.0.0-alpha.0",
+  "description": "The mono-repo for react-md",
+  "main": "index.js",
   "scripts": {
-    "lint:fix": "eslint -c .eslintrc --fix src",
-    "lint": "eslint -c .eslintrc src",
-    "test": "npm run test:tsc && cross-env BABEL_ENV=test jest",
-    "test:tsc": "npm run tsd && tsc index.d.ts",
-    "test:watch": "cross-env BABEL_ENV=test jest --watch",
-    "test:docs": "cd docs && npm run test",
-    "test:docs:watch": "cd docs && npm run test:watch",
-    "test:all": "npm-run-all test test:docs",
-    "tsd": "cpx \"./src/js/**/*.d.ts\" ./lib",
-    "css-bundles": "node ./makeBundles.js",
-    "dev": "npm-run-all -p build:watch docs",
-    "dev:minimal": "npm-run-all -p build:es:watch docs:minimal",
-    "docs": "cd docs && npm run clean && npm run doc-dbs && npm-run-all -p start:dev watch:all",
-    "docs:minimal": "cd docs && npm run start:dev",
-    "prebuild": "rimraf es lib dist",
-    "build:watch": "npm-run-all -p build:cjs:watch build:es:watch",
-    "build:cjs": "cross-env NODE_ENV=development BABEL_ENV=cjs babel src/js -d lib --ignore=__tests__,__mocks__",
-    "build:cjs:watch": "npm run build:cjs -- -w",
-    "build:es": "cross-env NODE_ENV=development BABEL_ENV=es babel src/js -d es --ignore=__tests__,__mocks__",
-    "build:es:watch": "npm run build:es -- -w",
-    "build:umd": "node src/tools/build.js",
-    "build": "npm-run-all -p tsd css-bundles build:cjs build:es build:umd"
+    "cli": "dev-utils",
+    "start": "yarn workspace documentation start-dev",
+    "dev": "npm-run-all -p watch start",
+    "force-install": "yarn --force",
+    "setup": "npm-run-all dev-utils force-install build",
+    "dev-utils": "lerna run build --scope @react-md/dev-utils",
+    "clean-build": "npm-run-all clean dev-utils build-dist",
+    "build-dist": "lerna run build --ignore @react-md/dev-utils --ignore documentation",
+    "build": "lerna run build --ignore @react-md/dev-utils --ignore documentation --ignore react-md --",
+    "typecheck": "tsc -p tsconfig.check.json",
+    "lint-ts": "eslint \"packages/*/src/**/*.{ts,tsx,js,jsx}\"",
+    "lint-styles": "sass-lint -c .sass-lint.yml -v",
+    "lint": "npm-run-all lint-ts lint-styles",
+    "test": "jest --config jest.config.js",
+    "format": "prettier --write \"packages/*/{src,components,constants,hooks,pages,server,utils}/**/*.{ts,tsx,scss,js,jsx}\"",
+    "sandbox": "yarn workspace documentation sandbox",
+    "prepublishOnly": "npm-run-all clean-all dev-utils force-install build-dist",
+    "update-vars": "lerna exec --ignore @react-md/dev-utils --ignore documentation -- yarn build --styles-only",
+    "clean": "dev-utils clean",
+    "clean-dev-utils": "lerna run clean --scope @react-md/dev-utils",
+    "clean-all": "npm-run-all clean clean-dev-utils",
+    "watch": "nodemon watcher.js --watch watcher.js"
+  },
+  "engines": {
+    "node": ">= 10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git"
   },
-  "keywords": [
-    "react-md",
-    "react",
-    "material-design",
-    "material-ui"
-  ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
-  "homepage": "https://github.com/mlaursen/react-md#readme",
+  "homepage": "https://react-md.dev",
   "devDependencies": {
-    "@types/react": "^16.0.5",
-    "autoprefixer": "^7.1.4",
-    "babel-cli": "^6.26.0",
-    "babel-core": "6",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "bluebird": "^3.5.1",
-    "cpx": "^1.5.0",
-    "cross-env": "^3.1.4",
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.1",
-    "enzyme-to-json": "^3.1.1",
-    "eslint": "^3.3.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.1.0",
-    "eslint-plugin-react": "^6.1.2",
-    "gzip-size": "^4.0.0",
-    "intl": "^1.2.5",
-    "jest-cli": "^21.2.1",
-    "node-sass": "^4.12.0",
-    "npm-run-all": "^4.1.1",
-    "postcss": "^6.0.13",
-    "pretty-bytes": "^4.0.2",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0",
-    "rimraf": "^2.5.4",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.2.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^2.0.1",
-    "typescript": "^2.2.1"
+    "@testing-library/react": "^8.0.7",
+    "@testing-library/react-hooks": "^1.1.0",
+    "@types/classnames": "^2.2.9",
+    "@types/filesize": "^4.2.0",
+    "@types/fs-extra": "^8.0.0",
+    "@types/glob": "^7.1.1",
+    "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.141",
+    "@types/node": "^12.7.11",
+    "@types/node-sass": "^4.11.0",
+    "@types/prettier": "^1.18.3",
+    "@types/reach__router": "^1.2.4",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@types/react-router": "^5.1.2",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/react-test-renderer": "^16.8.3",
+    "@types/react-transition-group": "^4.2.3",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "babel-eslint": "^10.0.3",
+    "chokidar": "^3.2.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "husky": "^3.0.8",
+    "jest": "^24.9.0",
+    "lerna": "^3.16.4",
+    "lint-staged": "^9.4.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "sass-lint": "^1.13.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.5.3"
   },
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "prop-types": "15.6.0",
-    "react-motion": "^0.5.0",
-    "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.12.8",
-    "react-transition-group": "^1.2.1",
-    "resize-observer-polyfill": "^1.4.2"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm-run-all typecheck lint test"
+    }
   },
-  "peerDependencies": {
-    "react": ">= 15.3.0 || 16.0.0",
-    "react-dom": ">= 15.3.0 || 16.0.0"
-  },
-  "jest": {
-    "cacheDirectory": "./.jest-cache",
-    "setupFiles": [
-      "<rootDir>/src/testShim.js",
-      "<rootDir>/src/beforeTest.js"
+  "lint-staged": {
+    "**/*.md": [
+      "prettier --write",
+      "git add"
     ],
-    "roots": [
-      "<rootDir>/src"
+    "packages/*/src/**/*.{ts,tsx,scss,js,jsx}": [
+      "prettier --write",
+      "git add"
     ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
+    "packages/documentation/src/components/Demos/**/*.{ts,tsx}": [
+      "yarn sandbox --staged",
+      "git add packages/documentation/src/constants/sandboxes"
     ]
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

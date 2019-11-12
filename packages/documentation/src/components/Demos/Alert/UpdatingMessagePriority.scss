@@ -1,0 +1,11 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.updating-message-priority {
+  @include rmd-elevation(4);
+  @include rmd-utils-scroll;
+
+  height: 25rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}

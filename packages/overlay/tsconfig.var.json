@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.cjs.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "src",
+    "declaration": true,
+    "target": "es5"
+  },
+  "include": [
+    "src/scssVariables.ts"
+  ],
+  "exclude": [
+    "**/__tests__/*"
+  ]
+}

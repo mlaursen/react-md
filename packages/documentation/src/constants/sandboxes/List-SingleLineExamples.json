@@ -1,0 +1,69 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>List Example - Single Line Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/avatar/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "List Example - Single Line Examples",
+      "description": "Example from https://react-md.dev/packages/list/demos#single-line-examples",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/avatar": "next",
+        "@react-md/divider": "next",
+        "@react-md/elevation": "next",
+        "@react-md/layout": "next",
+        "@react-md/list": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { Divider } from \"@react-md/divider\";\nimport { List, ListItem } from \"@react-md/list\";\nimport {\n  AdjustSVGIcon,\n  AppsSVGIcon,\n  ArchiveSVGIcon,\n  ArrowBackSVGIcon,\n  DeleteSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {people.slice(0, 5).map((name, i) => (\n        <ListItem key={name} id={`simple-item-${i}`}>\n          {name}\n        </ListItem>\n      ))}\n    </List>\n    <List>\n      <ListItem id=\"icon-item-0\" leftIcon={<AppsSVGIcon />}>\n        Apps\n      </ListItem>\n      <ListItem id=\"icon-item-1\" rightIcon={<ArchiveSVGIcon />}>\n        Archive\n      </ListItem>\n      <ListItem\n        id=\"icon-item-2\"\n        leftIcon={<ArrowBackSVGIcon />}\n        rightIcon={<ArchiveSVGIcon />}\n        textChildren\n      >\n        Go Back and Archive\n      </ListItem>\n      <Divider />\n      <ListItem\n        id=\"icon-item-3\"\n        leftAvatar={<Avatar src=\"https://picsum.photos/40?image=54\" alt=\"\" />}\n      >\n        {people[11]}\n      </ListItem>\n      <ListItem\n        id=\"icon-item-4\"\n        rightAvatar={<Avatar src=\"https://picsum.photos/40?image=45\" alt=\"\" />}\n      >\n        {people[12]}\n      </ListItem>\n      <Divider inset />\n      <ListItem\n        id=\"icon-item-5\"\n        leftAvatar={<Avatar src=\"https://picsum.photos/40?image=844\" alt=\"\" />}\n        rightIcon={<DeleteSVGIcon />}\n      >\n        {people[13]}\n      </ListItem>\n      <ListItem\n        id=\"icon-item-6\"\n        leftIcon={<AdjustSVGIcon />}\n        rightAvatar={<Avatar src=\"https://picsum.photos/40?image=553\" alt=\"\" />}\n      >\n        {people[14]}\n      </ListItem>\n    </List>\n    <List>\n      <ListItem\n        id=\"media-item-0\"\n        leftMedia={<img src=\"https://picsum.photos/56?image=700\" alt=\"\" />}\n      >\n        With a graphic\n      </ListItem>\n      <ListItem\n        id=\"media-item-1\"\n        leftMediaLarge={\n          <img src=\"https://picsum.photos/100/56?image=800\" alt=\"\" />\n        }\n      >\n        With a large graphic\n      </ListItem>\n      <ListItem\n        id=\"media-item-2\"\n        rightMedia={<img src=\"https://picsum.photos/56?image=700\" alt=\"\" />}\n      >\n        With a graphic\n      </ListItem>\n      <ListItem\n        id=\"media-item-3\"\n        rightMediaLarge={\n          <img src=\"https://picsum.photos/100/56?image=800\" alt=\"\" />\n        }\n      >\n        With a large graphic\n      </ListItem>\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Container.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n\n.list-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"list-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/people.ts": {
+    "content": "export default [\n  \"Jasmine Robinson\",\n  \"Devonte Craig\",\n  \"Dean Reid\",\n  \"Shaquille Bauer\",\n  \"Vivian Bishop\",\n  \"Braden Mullins\",\n  \"Katlyn Mcdonald\",\n  \"Isabella Marshall\",\n  \"Lee Christensen\",\n  \"Tommy Hogan\",\n  \"Timothy Harvey\",\n  \"Preston Phillips\",\n  \"Marco Sherman\",\n  \"Haley Coleman\",\n  \"Mario Swanson\",\n  \"Xavier Solis\",\n  \"Keaton Cannon\",\n  \"Cassandra Austin\",\n  \"Irene Holland\",\n  \"Gustavo Love\",\n  \"Meghan Stewart\",\n  \"Renee Townsend\",\n  \"Bobby Newman\",\n  \"Keaton Ortiz\",\n  \"Dustin Wells\",\n  \"Jerry Mcgee\",\n  \"Carl Howard\",\n  \"Sabrina Lang\",\n  \"Reed Baker\",\n  \"Kristen Fields\",\n  \"Gavin Carrillo\",\n  \"Claudia Neal\",\n  \"Leonard Schneider\",\n  \"Dominick Boyd\",\n  \"Mary Hampton\",\n  \"Mark Ayala\",\n  \"Kristina Warner\",\n  \"Antonio Walton\",\n  \"Tyson Scott\",\n  \"Harley Moss\",\n] as const;\n",
+    "isBinary": false
+  }
+}

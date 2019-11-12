@@ -1,0 +1,76 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Dialog Example - Nested Dialogs</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Dialog Example - Nested Dialogs",
+      "description": "Example from https://react-md.dev/packages/dialog/demos#nested-dialogs",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/button": "next",
+        "@react-md/dialog": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/tooltip": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { AppBar, AppBarNav } from \"@react-md/app-bar\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Dialog,\n  DialogContent,\n  NestedDialogContextProvider,\n} from \"@react-md/dialog\";\nimport { KeyboardArrowLeftSVGIcon } from \"@react-md/material-icons\";\nimport { useToggle } from \"@react-md/utils\";\n\nimport AppBarTitle from \"./AppBarTitle\";\n\nimport \"./NestedDialogs.scss\";\nimport LoremIpsum from \"./LoremIpsum\";\nimport NestedDemo from \"./NestedDemo\";\n\nconst Demo: FC = () => {\n  const [visible, enable, disable] = useToggle(false);\n  const dialogId = \"nested-demo-dialog-full-page\";\n  return (\n    <NestedDialogContextProvider>\n      <Button id=\"nested-demo-button-first\" onClick={enable}>\n        Show Main Dialog\n      </Button>\n      <Dialog\n        id={dialogId}\n        visible={visible}\n        onRequestClose={disable}\n        aria-labelledby={`${dialogId}-title`}\n        type=\"full-page\"\n      >\n        <AppBar theme=\"default\">\n          <AppBarNav aria-label=\"Close\" onClick={disable}>\n            <KeyboardArrowLeftSVGIcon />\n          </AppBarNav>\n          <AppBarTitle>Main Full Page Dialog</AppBarTitle>\n        </AppBar>\n        <DialogContent className=\"nested-dialogs-content\">\n          <NestedDemo depth={0} />\n          <LoremIpsum />\n        </DialogContent>\n      </Dialog>\n    </NestedDialogContextProvider>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/AppBarTitle.tsx": {
+    "content": "import React, { FC, useRef, useState, ReactNode, useMemo } from \"react\";\nimport {\n  AppBarTitle as RMDAppBarTitle,\n  AppBarTitleProps,\n} from \"@react-md/app-bar\";\nimport { Tooltipped } from \"@react-md/tooltip\";\nimport { useResizeObserver } from \"@react-md/utils\";\nimport createIdGenerator from \"./createIdGenerator\";\n\nconst hackyIds = createIdGenerator(\"dynamic-tooltips\");\n\n/**\n * This component is a wrapper for the AppBarTitle component from @react-md/app-bar\n * that will automatically update the title to show a tooltip if the title becomes\n * truncated.\n *\n * This is pretty hacky right so it isn't part of the main lib yet, but a better\n * sultion to \"auto tooltip\" things might be added one day.\n */\nconst AppBarTitle: FC<AppBarTitleProps> = ({\n  id: propId,\n  children,\n  ...props\n}) => {\n  const [tooltip, setTooltip] = useState<ReactNode>(null);\n  const ref = useRef<HTMLHeadingElement | null>(null);\n  useResizeObserver({\n    disableHeight: true,\n    onResize() {\n      if (!ref.current) {\n        return;\n      }\n\n      const isTruncated = ref.current.offsetWidth < ref.current.scrollWidth;\n      if (isTruncated && !tooltip) {\n        setTooltip(children);\n      } else if (!isTruncated && tooltip) {\n        setTooltip(null);\n      }\n    },\n    target: ref,\n  });\n\n  const id = useMemo(() => {\n    if (propId) {\n      return propId;\n    }\n\n    return hackyIds();\n  }, [propId]);\n\n  return (\n    <Tooltipped id={id} tooltip={tooltip}>\n      <RMDAppBarTitle {...props} ref={ref} tabIndex={tooltip ? 0 : undefined}>\n        {children}\n      </RMDAppBarTitle>\n    </Tooltipped>\n  );\n};\n\nexport default AppBarTitle;\n",
+    "isBinary": false
+  },
+  "src/LoremIpsum.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Text, TextContainer } from \"@react-md/typography\";\n\nconst LoremIpsum: FC = () => (\n  <TextContainer>\n    <Text>\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum sodales\n      sem, non molestie nunc mollis at. Morbi sed lobortis lorem. Vivamus nisi\n      turpis, blandit eu dolor a, tincidunt eleifend odio. Integer id dui velit.\n      Nulla nisi eros, porttitor id ligula id, hendrerit maximus mauris. Sed\n      feugiat lacinia euismod. Mauris eros lectus, ultrices et arcu in, finibus\n      ornare neque. Proin rhoncus molestie sagittis. Cras sit amet magna sed\n      erat scelerisque auctor. Mauris iaculis erat non mi mollis, eget feugiat\n      odio lacinia. Aliquam dapibus at velit quis posuere. Phasellus est sem,\n      auctor in mattis ut, rhoncus eu metus. In turpis sem, fermentum a\n      elementum eu, lobortis ut massa. Suspendisse a urna enim.\n    </Text>\n    <Text>\n      Proin sit amet tortor gravida, blandit turpis a, elementum nulla. Praesent\n      quis nisl vel eros tincidunt ultrices. Integer tristique, nulla eget\n      pharetra sagittis, quam nisl feugiat felis, at lobortis dui purus sit amet\n      metus. Praesent ipsum ante, consequat at velit vel, dapibus condimentum\n      purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas\n      porttitor sapien non ante ultrices, et posuere mi pellentesque. Nunc\n      sollicitudin, tellus vel auctor interdum, tortor nisl rutrum ligula, vitae\n      consectetur lacus metus non quam. Aliquam quis purus eu ipsum vulputate\n      pellentesque ac nec ipsum. Nunc consequat leo ac nunc scelerisque, a\n      fermentum sapien placerat. Morbi commodo non augue ut cursus. Proin\n      vehicula nulla quis orci lacinia, et fermentum mi vestibulum. Etiam\n      facilisis mi nec ante porta venenatis. Integer pulvinar quis neque eu\n      consectetur.\n    </Text>\n    <Text>\n      Nam consectetur aliquam volutpat. Phasellus imperdiet nibh diam, vitae\n      gravida tellus convallis ut. Donec at varius magna. Ut euismod in enim sed\n      aliquet. Integer egestas commodo lorem, id pellentesque ex aliquet nec.\n      Nulla non nisl orci. Ut blandit ex vel maximus pharetra. Quisque et\n      eleifend odio.\n    </Text>\n    <Text>\n      Vestibulum interdum arcu eu dui volutpat, ut fringilla ipsum pharetra.\n      Aenean at venenatis ligula. Quisque cursus aliquet purus, ut fermentum\n      metus rhoncus in. Suspendisse tortor ante, varius sit amet massa at,\n      imperdiet laoreet neque. Morbi et tristique eros, vitae pharetra sapien.\n      Phasellus et mauris enim. Donec volutpat ligula id ex placerat, a feugiat\n      tellus lobortis. Integer interdum varius suscipit. Aenean rhoncus\n      venenatis enim sed finibus. Sed id blandit mi, eget gravida velit.\n      Pellentesque dignissim varius elit, vitae faucibus neque aliquet vel. In\n      vitae massa odio. Donec vehicula, ante quis luctus varius, dui lacus\n      dapibus ligula, quis placerat metus leo ut nisl. Phasellus scelerisque\n      scelerisque velit ac euismod.\n    </Text>\n    <Text>\n      Fusce eget cursus purus. Nullam nisi sapien, congue a diam non, suscipit\n      maximus eros. Nulla lectus neque, congue sit amet lorem vitae, lacinia\n      tempus urna. Nullam in rhoncus ligula. Integer rhoncus a quam quis\n      elementum. Integer dignissim, felis ac rhoncus fermentum, ex massa tempor\n      dolor, sit amet vestibulum erat massa in dui. Nam egestas, lorem in\n      interdum viverra, quam augue tempor turpis, ut accumsan ante urna ut nisi.\n      Maecenas lobortis lacus ipsum, id laoreet nisl hendrerit consectetur.\n      Fusce fringilla tempus convallis. Donec fermentum nibh at tincidunt\n      interdum. Etiam egestas mauris eget egestas rhoncus.\n    </Text>\n  </TextContainer>\n);\n\nexport default LoremIpsum;\n",
+    "isBinary": false
+  },
+  "src/NestedDemo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Dialog,\n  DialogHeader,\n  DialogTitle,\n  DialogContent,\n  DialogFooter,\n} from \"@react-md/dialog\";\nimport { Text } from \"@react-md/typography\";\nimport { useToggle } from \"@react-md/utils\";\n\ninterface NestedDemoProps {\n  depth: number;\n}\n\n/**\n * This demo will recursively call itself until there have been 3 dialogs created\n * and then stop.\n */\nconst NestedDemo: FC<NestedDemoProps> = ({ depth }) => {\n  const [visible, enable, disable] = useToggle(false);\n  if (depth >= 3) {\n    return null;\n  }\n\n  const depthPath = Array.from(new Array(depth + 1))\n    .map((_, i) => i)\n    .join(\"-\");\n\n  const dialogId = `nested-demo-dialog-${depthPath}`;\n  return (\n    <Fragment>\n      <Button id={`nested-demo-button-${depthPath}`} onClick={enable}>\n        Show Next Dialog\n      </Button>\n      <Dialog\n        id={dialogId}\n        visible={visible}\n        onRequestClose={disable}\n        aria-labelledby={`${dialogId}-title`}\n      >\n        <DialogHeader>\n          <DialogTitle id={`${dialogId}-title`}>\n            Dialog at depth {depth}\n          </DialogTitle>\n        </DialogHeader>\n        <DialogContent>\n          <Text>This is some content within the dialog.</Text>\n          <NestedDemo depth={depth + 1} />\n        </DialogContent>\n        <DialogFooter>\n          <Button id={`${dialogId}-close`} onClick={disable}>\n            Close\n          </Button>\n        </DialogFooter>\n      </Dialog>\n    </Fragment>\n  );\n};\n\nexport default NestedDemo;\n",
+    "isBinary": false
+  },
+  "src/NestedDialogs.scss": {
+    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.nested-dialogs-content {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n}\n",
+    "isBinary": false
+  },
+  "src/createIdGenerator.ts": {
+    "content": "/**\n * An extremely simplified uuid function that is scoped with a speciifc prefix. This\n * will just always increment the total count at the end of the prefix.\n *\n * ```ts\n * const uuid = createIdGenerator(\"my-custom-prefix\");\n *\n * uuid(); // my-custom-prefix-0\n * uuid(); // my-custom-prefix-1\n * uuid(); // my-custom-prefix-2\n * ```\n *\n * @param prefix The string prefix to use\n * @return a function to call to generate a \"uuid\"\n */\nexport default function createIdGenerator(prefix: string): () => string {\n  const generator = (function* idGenerator() {\n    let index = 0;\n    while (true) {\n      yield `${prefix}-${index}`;\n      index += 1;\n    }\n  })();\n\n  return () => generator.next().value;\n}\n",
+    "isBinary": false
+  }
+}

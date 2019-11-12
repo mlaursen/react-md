@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FontIcon should apply the correct classNames 1`] = `
+<i
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons"
+  data-testid="icon"
+/>
+`;
+
+exports[`FontIcon should apply the correct classNames 2`] = `
+<i
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing"
+  data-testid="icon"
+/>
+`;
+
+exports[`FontIcon should apply the correct classNames 3`] = `
+<i
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing"
+  data-testid="icon"
+/>
+`;
+
+exports[`FontIcon should render correctly 1`] = `
+<i
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--font material-icons"
+  data-testid="icon"
+>
+  home
+</i>
+`;

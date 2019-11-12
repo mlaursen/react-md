@@ -1,0 +1,52 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Tabs Example - Basic Usage</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/tabs/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Tabs Example - Basic Usage",
+      "description": "Example from https://react-md.dev/packages/tabs/demos#basic-usage",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/tabs": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { TabsManager, Tabs, TabPanels, TabPanel } from \"@react-md/tabs\";\nimport { Text } from \"@react-md/typography\";\n\nconst tabs = [\"Tab 1\", \"Tab 2\", \"Tab 3\"];\n\nconst Demo: FC = () => (\n  <TabsManager tabs={tabs} tabsId=\"basic-usage-tabs\">\n    <Tabs />\n    <TabPanels>\n      <TabPanel>\n        <Text type=\"headline-4\">Panel 1</Text>\n      </TabPanel>\n      <TabPanel>\n        <Text type=\"headline-4\">Panel 2</Text>\n      </TabPanel>\n      <TabPanel>\n        <Text type=\"headline-4\">Panel 3</Text>\n      </TabPanel>\n    </TabPanels>\n  </TabsManager>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

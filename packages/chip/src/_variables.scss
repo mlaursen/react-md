@@ -1,0 +1,144 @@
+////
+/// @group chip
+////
+
+@import '~@react-md/theme/dist/functions';
+
+/// The height for chips.
+/// @type Number
+$rmd-chip-height: 2rem !default;
+
+/// The border radius to use for all chip types.
+/// @type Number
+$rmd-chip-border-radius: 1rem !default;
+
+/// The background color to use for "solid" themed chips when using the light
+/// theme.
+/// @type Color
+$rmd-chip-solid-light-background-color: $rmd-grey-300 !default;
+
+/// The text color to use for "solid" themed chips when using the light theme.
+/// @type Color
+$rmd-chip-solid-light-color: if(
+  rmd-theme-tone($rmd-chip-solid-light-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color to use for "solid" themed chips when using the dark
+/// theme.
+/// @type Color
+$rmd-chip-solid-dark-background-color: $rmd-grey-900 !default;
+
+/// The text color to use for "solid" themed chips when using the dark theme.
+/// @type Color
+$rmd-chip-solid-dark-color: if(
+  rmd-theme-tone($rmd-chip-solid-dark-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color to use for "solid" themed chips.
+/// @type Color
+$rmd-chip-solid-background-color: if(
+  $rmd-theme-light,
+  $rmd-chip-solid-light-background-color,
+  $rmd-chip-solid-dark-background-color
+) !default;
+
+/// The text color to use for "solid" themed chips.
+/// @type Color
+$rmd-chip-solid-color: if(
+  $rmd-theme-light,
+  $rmd-chip-solid-light-color,
+  $rmd-chip-solid-dark-color
+) !default;
+
+/// The background color to use for "outlined" themed chips when using
+/// the light theme.
+/// @type Color
+$rmd-chip-outline-light-background-color: $rmd-theme-light-surface !default;
+
+/// The text color to use for "outlined" themed chips when using the
+/// light theme.
+/// @type Color
+$rmd-chip-outline-light-color: if(
+  rmd-theme-tone($rmd-chip-outline-light-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color to use for "outlined" themed chips when using
+/// the dark theme.
+/// @type Color
+$rmd-chip-outline-dark-background-color: $rmd-theme-dark-surface !default;
+
+/// The text color to use for "outlined" themed chips when using the
+/// dark theme.
+/// @type Color
+$rmd-chip-outline-dark-color: if(
+  rmd-theme-tone($rmd-chip-outline-dark-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color to use for "outlined" themed chips.
+/// @type Color
+$rmd-chip-outline-background-color: if(
+  $rmd-theme-light,
+  $rmd-chip-outline-light-background-color,
+  $rmd-chip-outline-dark-background-color
+) !default;
+
+/// The tect color to use for "outlined" themed chips.
+/// @type Color
+$rmd-chip-outline-color: if(
+  $rmd-theme-light,
+  $rmd-chip-outline-light-color,
+  $rmd-chip-outline-dark-color
+) !default;
+
+/// The border color to use for "outline" themed chips.
+/// @type Color
+$rmd-chip-outline-border-color: $rmd-grey-300 !default;
+
+/// The amount of spacing to use when between the left edge and the
+/// leading icon/avatar in the chip.
+/// @type Number
+$rmd-chip-small-spacing: 0.25rem !default;
+
+/// The amount of spacing to use between the leading icon/avatar and
+/// the chip's text as well as the trailing icon and the chip's edge.
+/// @type Number
+$rmd-chip-medium-spacing: 0.5rem !default;
+
+/// The amount of spacing to use for the chip's edge when there are no
+/// leading or trailing icons/avatars.
+/// @type Number
+$rmd-chip-large-spacing: 0.75rem !default;
+
+/// The size to update icons to that appear within a chip.
+/// @type Number
+$rmd-chip-icon-size: 1.125rem !default;
+
+/// The base box-shadow to apply to chips when outlined. This will normally be used along with a color variable
+/// to define a box shadow.
+/// @type String
+$rmd-chip-box-shadow: inset 0 0 0 1px !default;
+
+/// A Map of all the "themeable" parts of the chip package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-chip-theme-values: (
+  height: $rmd-chip-height,
+  border-radius: $rmd-chip-border-radius,
+  solid-background-color: $rmd-chip-solid-background-color,
+  solid-color: $rmd-chip-solid-color,
+  outline-background-color: $rmd-chip-outline-background-color,
+  outline-color: $rmd-chip-outline-color,
+  outline-border-color: $rmd-chip-outline-border-color,
+  small-spacing: $rmd-chip-small-spacing,
+  medium-spacing: $rmd-chip-medium-spacing,
+  large-spacing: $rmd-chip-large-spacing,
+) !default;

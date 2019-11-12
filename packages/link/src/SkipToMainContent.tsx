@@ -1,0 +1,145 @@
+import React, {
+  FC,
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  useCallback,
+} from "react";
+import cn from "classnames";
+import { bem, WithForwardedRef } from "@react-md/utils";
+
+import Link from "./Link";
+
+export interface SkipToMainContentProps
+  extends HTMLAttributes<HTMLAnchorElement> {
+  /**
+   * An id to use for the link.
+   */
+  id?: string;
+
+  /**
+   * The id to use for the `<main>` content that should be focused once
+   * this link is clicked.
+   */
+  mainId: string;
+
+  /**
+   * The children to display once the link has been keyboard focused.
+   */
+  children?: ReactNode;
+
+  /**
+   * Boolean if the skip to main content link should be unstyled so that you
+   * can provide your own styles. This is just helpful if you are using this
+   * component in a multiple places and don't want to keep overriding the default
+   * styles each time.
+   *
+   * Note: there will still be the "base" link styles, font size, and z-index. The
+   * `$rmd-link-skip-styles` and `$rmd-link-skip-active-styles` will not be applied.
+   */
+  unstyled?: boolean;
+}
+
+type WithRef = WithForwardedRef<HTMLAnchorElement>;
+type DefaultProps = Required<
+  Pick<SkipToMainContentProps, "id" | "children" | "unstyled">
+>;
+type WithDefaultProps = SkipToMainContentProps & DefaultProps & WithRef;
+
+const block = bem("rmd-link-skip");
+
+/**
+ * This component allows you to create a screen-reader only/keyboard focusable only link
+ * that allows a user to skip to the main content of the page. This is extremely useful
+ * when you have a lot of navigation items that must be tabbed through before the main
+ * content can be focused and this component should normally be the first focusable element
+ * on your page.
+ */
+const SkipToMainContent: FC<
+  SkipToMainContentProps & WithRef
+> = providedProps => {
+  const {
+    mainId,
+    unstyled,
+    className,
+    children,
+    onClick,
+    forwardedRef,
+    ...props
+  } = providedProps as WithDefaultProps;
+
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+
+      event.preventDefault();
+      const main = document.getElementById(mainId);
+      if (!main) {
+        if (process.env.NODE_ENV !== "production") {
+          /* eslint-disable no-console */
+          const foundMain = document.querySelector("main");
+          const foundMainId = foundMain && foundMain.id;
+          console.error(
+            `Unable to find a main element to focus with an id of: "${mainId}".`
+          );
+          if (foundMainId) {
+            console.error(
+              `However, a "<main>" element was found with an id: "${foundMainId}". Should this be the "mainId" prop for the "SkipToMainContent" component?`
+            );
+          }
+        }
+
+        return;
+      }
+
+      main.focus();
+    },
+    [mainId, onClick]
+  );
+
+  return (
+    <Link
+      {...props}
+      href={`#${mainId}`}
+      onClick={handleClick}
+      ref={forwardedRef}
+      className={cn(block({ styled: !unstyled }), className)}
+    >
+      {children}
+    </Link>
+  );
+};
+
+const defaultProps: DefaultProps = {
+  id: "skip-to-main-content",
+  children: "Skip to main content",
+  unstyled: false,
+};
+
+SkipToMainContent.defaultProps = defaultProps;
+
+if (process.env.NODE_ENV !== "production") {
+  SkipToMainContent.displayName = "SkipToMainContent";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    SkipToMainContent.propTypes = {
+      id: PropTypes.string,
+      mainId: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      children: PropTypes.node,
+      unstyled: PropTypes.bool,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    };
+  }
+}
+
+export default forwardRef<HTMLAnchorElement, SkipToMainContentProps>(
+  (props, ref) => <SkipToMainContent {...props} forwardedRef={ref} />
+);

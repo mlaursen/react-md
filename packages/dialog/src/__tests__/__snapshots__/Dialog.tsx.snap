@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog should render correctly (with snapshots) 1`] = `
+<body>
+  <div />
+</body>
+`;
+
+exports[`Dialog should render correctly (with snapshots) 2`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-overlay--active"
+    id="dialog-1-overlay"
+    tabindex="-1"
+  />
+  <span
+    class="rmd-dialog-container rmd-dialog--enter rmd-dialog--enter-active"
+    id="dialog-1-container"
+  >
+    <div
+      aria-label="Dialog"
+      aria-modal="true"
+      class="rmd-dialog rmd-dialog--centered"
+      id="dialog-1"
+      role="dialog"
+      tabindex="-1"
+    />
+  </span>
+</body>
+`;
+
+exports[`Dialog should render correctly (with snapshots) 3`] = `
+<body
+  style=""
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--clickable rmd-dialog-overlay"
+    id="dialog-1-overlay"
+    tabindex="-1"
+  />
+  <span
+    class="rmd-dialog-container rmd-dialog--exit rmd-dialog--exit-active"
+    id="dialog-1-container"
+  >
+    <div
+      aria-label="Dialog"
+      aria-modal="true"
+      class="rmd-dialog rmd-dialog--centered"
+      id="dialog-1"
+      role="dialog"
+      tabindex="-1"
+    />
+  </span>
+</body>
+`;
+
+exports[`Dialog should render correctly (with snapshots) 4`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <div
+    aria-label="Dialog"
+    class="rmd-dialog rmd-dialog--full-page rmd-dialog--enter rmd-dialog--enter-active"
+    id="dialog-1"
+    role="dialog"
+    tabindex="-1"
+  />
+</body>
+`;
+
+exports[`Dialog should render correctly (with snapshots) 5`] = `
+<body
+  style=""
+>
+  <div />
+  <div
+    aria-label="Dialog"
+    class="rmd-dialog rmd-dialog--full-page rmd-dialog--exit rmd-dialog--exit-active"
+    id="dialog-1"
+    role="dialog"
+    tabindex="-1"
+  />
+</body>
+`;

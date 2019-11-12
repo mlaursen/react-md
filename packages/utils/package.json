@@ -1,0 +1,45 @@
+{
+  "name": "@react-md/utils",
+  "version": "2.0.0-alpha.10",
+  "description": "General utils for react-md.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/utils"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "utils",
+    "throttled events",
+    "rtl",
+    "right to left websites",
+    "safari scroll fix"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "resize-observer-polyfill": "^1.5.1"
+  }
+}

@@ -1,0 +1,70 @@
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/transition/dist/variables';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.heading {
+  @include rmd-utils-phone-media {
+    // decrease font size and line-height so it can fit on mobile screens.
+    &.rmd-typography--headline-2 {
+      @include rmd-typography-value(headline-3, font-size, line-height);
+    }
+  }
+
+  @include rmd-utils-tablet-media {
+    margin-left: -1em;
+    padding-left: 1em;
+  }
+
+  position: relative;
+
+  &:hover .heading__link {
+    opacity: 1;
+  }
+
+  &--no-margin-top {
+    margin-top: 0;
+  }
+
+  &__link {
+    @include rmd-icon-theme(color);
+    @include rmd-utils-hide-focus-outline;
+    @include rmd-utils-desktop-media {
+      display: block;
+    }
+
+    display: none;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    text-decoration: none;
+    transition: opacity $rmd-transition-standard-time;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &__toc {
+    margin-bottom: 0.25em;
+
+    + ul {
+      margin: 0;
+      padding-bottom: 2em;
+
+      p {
+        margin: 0;
+      }
+
+      a,
+      li {
+        @include rmd-typography(headline-6);
+      }
+    }
+  }
+}

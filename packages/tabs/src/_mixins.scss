@@ -1,0 +1,251 @@
+////
+/// @group tabs
+////
+
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the tabs's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-tabs-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-tabs-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-tabs-theme-values` map when `null`.
+@mixin rmd-tabs-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tabs-theme-values, tabs);
+}
+
+/// Updates one of the tabs's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The tabs theme style type to update. This should be one
+///   of the `$rmd-tabs-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-tabs-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tabs-theme-values, tabs);
+}
+
+/// @access private
+@mixin rmd-tabs {
+  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited browser support. Yay!
+  // The scrollbars will be hidden, but still scrollable. For non-MacOS users, you can still get the
+  // normal scroll behavior by holding shift+scroll or use keyboard movement.
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll(x);
+  @include rmd-utils-hide-scrollbar;
+
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  width: 100%;
+
+  &::after {
+    @include rmd-transition(deceleration);
+    @include rmd-tabs-theme(background-color, indicator-color);
+
+    bottom: 0;
+    content: '';
+    height: $rmd-tab-active-indicator-height;
+    left: 0;
+    max-width: var(--rmd-tab-width, $rmd-tab-min-width);
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(var(--rmd-tab-offset, 0));
+    transition: transform $rmd-transition-standard-time, max-width $rmd-transition-standard-time;
+    width: 100%;
+    z-index: 1;
+  }
+
+  @each $position in $rmd-tabs-positions {
+    &--#{$position} {
+      $justify: if($position == center, $position, if($position == left, flex-start, flex-end));
+
+      justify-content: $justify;
+    }
+  }
+
+  &--padded {
+    @include rmd-utils-rtl-auto(padding-left, $rmd-tabs-scrollable-padding);
+  }
+}
+
+/// @access private
+@mixin rmd-tab {
+  @include rmd-states-surface;
+  @include rmd-transition(standard);
+  @include rmd-typography(button, (line-height));
+  @include rmd-typography-text-overflow-ellipsis;
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-tabs-theme(color, inactive);
+
+  align-items: center;
+  background-color: transparent;
+  border-width: 0;
+  display: inline-flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: $rmd-tab-height;
+  justify-content: center;
+  max-width: $rmd-tab-max-width;
+  min-width: $rmd-tab-min-width;
+  padding: 0 $rmd-tab-horizontal-padding;
+  position: relative;
+  transition: color $rmd-transition-standard-time;
+
+  &--stacked {
+    flex-direction: column;
+    height: $rmd-tab-stacked-height;
+    padding-bottom: $rmd-tab-vertical-padding;
+    padding-top: $rmd-tab-vertical-padding;
+  }
+
+  &--active {
+    @include rmd-tabs-theme(color, active);
+    @include rmd-icon-theme-update-var(color, rmd-tabs-theme-var(active));
+  }
+
+  &--disabled {
+    @include rmd-tabs-theme(color, disabled);
+    @include rmd-icon-theme-update-var(color, rmd-tabs-theme-var(disabled));
+  }
+}
+
+/// @access private
+@mixin rmd-tab-panels {
+  @include rmd-utils-scroll(y);
+
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow-x: hidden;
+
+  // sass-lint:disable no-duplicate-properties
+  &--slide-left {
+    // the animations here confused me a lot, so hopefully this will clear up how this works
+    // along with some flows...
+    //
+    // The tab panels will animate the first and second child by changing the X position in
+    // `translate3d`. The first panel will always be the current panel that matches the
+    // `activeIndex` while the second panel will not exist or the previous panel that matched
+    // based on `activeIndex`.
+    //
+    // So some flows:
+    // - Start with a single active panel with activeIndex 0
+    //   - [Panel0]
+    // - Switch to panel with activeIndex 1
+    //   - [Panel1, Panel0]
+    // - Finsh animation and remove previous panel
+    //   - [Panel1]
+    // - Switch to panel with activeIndex 0 again
+    //   - [Panel0, Panel1]
+    // - Finsh animation and remove previous panel
+    //   - [Panel0]
+    //
+    // So what's so confusing about this? Well, when adding a new slide, you'll need to slide
+    // the panels to the left. However... the next panel is actually the **first** panel within
+    // the panel list instead of the second. This means that we need to swap the positions with
+    // css for the current active panel and the previous active panel so we get:
+    //
+    // - [Panel1, Panel0] - Actual
+    // - [Panel0, Panel1] - Wanted
+    //
+    // This can be accomplished by moving the current active panel (Panel1) out of view by using 100%
+    // of the tab panel's container width which now is in the same location as the previous active panel
+    // (Panel0). Both panels are now out of view, so we'll want to move the previous active panel back
+    // to within view by moving it 100% of the tab panel's container width but in the opposite direction.
+    //
+    // Ok, we now have [Panel0, Panel1] displayed. Now we need to animate them both to the left. This
+    // can be done by just removing the custom 100% transform we added to the current active panel
+    // (Panel1) and moving the previous active panel (Panel0) another 100%.
+    //
+    // Whew. Done!
+    //
+    // Sliding right is super easy since the panels are in the desired order already in the dom. All
+    // that's required is moving them negative 100% of the tab panel's container width so the new
+    // current panel slides into view while the previous panel slides out of view.
+    //
+    // Sliding left when there's no conditional rendering is super easy as well as it's just the reverse
+    // of sliding right now since the panels are always in order.
+
+    #{--p1-start}: 100%;
+    #{--p2-start}: -100%;
+    #{--p1-end}: 0;
+    #{--p2-end}: -200%;
+  }
+
+  &--slide-left-persistent {
+    #{--p1-start}: 0;
+    #{--p2-start}: 0;
+    #{--p1-end}: -100%;
+    #{--p2-end}: -100%;
+  }
+
+  &--slide-right {
+    #{--p1-start}: -100%;
+    #{--p2-start}: -100%;
+    #{--p1-end}: 0;
+    #{--p2-end}: 0;
+  }
+}
+
+/// @access private
+@mixin rmd-tab-panel {
+  flex-shrink: 0;
+  height: 100%;
+  width: 100%;
+  will-change: transform;
+
+  &--animate {
+    @include rmd-transition(standard);
+
+    transition: transform $rmd-transition-standard-time;
+  }
+
+  &--enter {
+    transform: translate3d(var(--p1-start), 0, 0);
+  }
+
+  &--enter-active {
+    transform: translate3d(var(--p1-end), 0, 0);
+  }
+
+  &--exit {
+    transform: translate3d(var(--p2-start), 0, 0);
+  }
+
+  &--exit-active {
+    transform: translate3d(var(--p2-end), 0, 0);
+  }
+}
+
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
+@mixin react-md-tabs {
+  @include rmd-theme-create-root-theme($rmd-tabs-theme-values, tabs);
+
+  .rmd-tabs {
+    @include rmd-tabs;
+  }
+
+  .rmd-tab {
+    @include rmd-tab;
+  }
+
+  .rmd-tab-panels {
+    @include rmd-tab-panels;
+  }
+
+  .rmd-tab-panel {
+    @include rmd-tab-panel;
+  }
+}

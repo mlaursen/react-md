@@ -1,0 +1,97 @@
+////
+/// @group sheet
+////
+
+@import '~@react-md/overlay/dist/variables';
+@import '~@react-md/theme/dist/functions';
+@import '~@react-md/theme/dist/variables';
+
+/// The z-index to use for sheets that normally appear without an overlay and inline with other content.
+/// @type Nuber
+$rmd-sheet-z-index: 1 !default;
+
+/// The z-index to use for sheets that normally appear with an overlay and covering other elements on
+/// the page.
+/// @type Number
+$rmd-sheet-raised-z-index: $rmd-overlay-z-index + 1 !default;
+
+/// The z-index to use for a sheet's overlay. This value just needs to be smaller than the
+/// `$rmd-sheet-raised-z-index` value so the overlay does not cover the sheet.
+/// @type Number
+$rmd-sheet-overlay-z-index: $rmd-sheet-raised-z-index - 1 !default;
+
+/// This is the default elevation to use for sheets that do not have an overlay. This is normally
+/// used for showing sheets more "inline" with other content.
+/// @type Number
+$rmd-sheet-elevation: 2 !default;
+
+/// The elevation to use for temporary sheets that usually display an overlay as well.
+/// @type Number
+$rmd-sheet-raised-elevation: 16 !default;
+
+/// The duration for the enter transition.
+/// @type Number
+$rmd-sheet-enter-duration: 0.2s !default;
+
+/// The duration for the leave transition.
+/// @type Number
+$rmd-sheet-leave-duration: 0.15s !default;
+
+/// The amount of horizontal margin to use between the viewport's edge and the sheet's edge. This
+/// is used so that mobile devies have an overlay "touch target" to close the sheet without requiring
+/// one of the actions to be clicked.
+/// @type Number
+$rmd-sheet-touch-margin: 3.5rem !default;
+
+/// The width of a sheet on small touch devices.
+/// @type Number
+$rmd-sheet-touch-width: calc(100vw - #{$rmd-sheet-touch-margin}) !default;
+
+/// The width to apply to "static" width sheets. This width **should not** be used on phones but can be
+/// used for tablets or desktops.
+/// @type Number
+$rmd-sheet-static-width: 16rem !default;
+
+/// The max height to set for sheets. It is recommended to leave this as 100% and instead update the
+/// `$rmd-sheet-touchable-max-height` instead.
+/// @type Number
+/// @see rmd-sheet-touchable-max-height
+$rmd-sheet-max-height: 100% !default;
+
+/// The max height for a sheet that has a "touchable" area that can be used to close the sheet without selecting
+/// one of the actions.
+///
+/// @type Number
+$rmd-sheet-touchable-max-height: calc(100% - #{$rmd-sheet-touch-margin}) !default;
+
+/// The "recommended" min-height from the material design spec for bottom sheets.
+/// @type Number
+$rmd-sheet-recommended-min-height: 3.5rem !default;
+
+/// The "recommended" max-height from the material design spec for bottom sheets. I personally think it is better
+/// to either set the max-height to `calc(100% - 3.5rem)` or `100%` with a close button.
+/// @type Number
+$rmd-sheet-recommended-max-height: 50% !default;
+
+/// A list of positions that are supported by the sheet component.
+/// @type List
+$rmd-sheet-positions: top right bottom left;
+
+/// The positions that are created by default with the `react-md-sheet` mixin. When generating
+/// styles, this list will be looped through to create the correct position styles.
+/// @type List
+$rmd-sheet-enabled-positions: $rmd-sheet-positions !default;
+
+/// A Map of all the "themeable" parts of the sheet package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-sheet-theme-values: (
+  touch-width: $rmd-sheet-touch-width,
+  static-width: $rmd-sheet-static-width,
+  touchable-max-height: $rmd-sheet-touchable-max-height,
+  max-height: null,
+  height: null,
+  width: null,
+  transform-offscreen: null,
+) !default;

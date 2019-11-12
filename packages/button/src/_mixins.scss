@@ -1,0 +1,197 @@
+////
+/// @group button
+////
+
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/variables';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the button's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-button-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-button-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-button-theme-values` map when `null`.
+@mixin rmd-button-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-button-theme-values, button);
+}
+
+/// Updates one of the button's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The button theme style type to update. This should be one
+///   of the `$rmd-button-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-button-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-button-theme-values, button);
+}
+
+/// A simple mixin to create an unstyled button.
+///
+/// NOTE: An unstyled button removed the `outline-style` so you *must* add a custom focus behavior with
+/// either ripples or something else for keyboard users.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-button-unstyled;
+///     @include rmd-typography(button);
+///
+///     display: inline-flex;
+///   }
+@mixin rmd-button-unstyled {
+  @include rmd-utils-hide-focus-outline;
+
+  background-color: transparent;
+  border-width: 0;
+}
+
+/// The base styles for a button.
+///
+/// @example scss - Example Usage SCSS
+///   .my-button {
+///     @include rmd-button-base;
+///   }
+@mixin rmd-button-base {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-button-theme(background-color);
+  @include rmd-button-theme(color);
+
+  align-items: center;
+  border-width: 0;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
+
+/// Creates the base styles for a text button.
+@mixin rmd-button-text {
+  @include rmd-typography(button);
+
+  // icons have smaller sizes due to the padding on buttons. This is also not applied
+  // below in the rmd-button__icon since a user of this library _could_ include the icon styles
+  // after the button styles which would prevent these styles from working
+  @if $rmd-icon-use-font-icons or $rmd-icon-use-svg-icons {
+    @include rmd-icon-theme-update-var(size, $rmd-button-text-icon-size);
+  }
+
+  @include rmd-button-theme(border-radius, text-border-radius);
+  @include rmd-button-theme(min-height, text-height);
+  @include rmd-button-theme(min-width, text-min-width);
+
+  padding: rmd-button-theme-var(text-vertical-padding) rmd-button-theme-var(text-horizontal-padding);
+}
+
+/// Creates the base styles for an icon button.
+@mixin rmd-button-icon {
+  @if not $rmd-button-text-icon-inherit-color {
+    @include rmd-icon-theme-update-var(color, currentColor);
+  }
+
+  @include rmd-button-theme(border-radius, icon-border-radius);
+  @include rmd-button-theme(height, icon-size);
+  @include rmd-button-theme(width, icon-size);
+
+  padding: 0;
+}
+
+/// Creates all the styles for a button. This should be used within a class or selector.
+/// @access private
+@mixin rmd-button {
+  @if $rmd-button-text-icon-inherit-color {
+    @include rmd-icon-theme-update-var(color, currentColor);
+  }
+  @include rmd-button-base;
+  @include rmd-states-surface;
+
+  &--text {
+    @include rmd-button-text;
+  }
+
+  &--icon {
+    @include rmd-button-icon;
+  }
+
+  &--outline {
+    box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)
+      rmd-button-theme-var(outline);
+  }
+
+  &--contained {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
+    @include rmd-elevation-transition(
+      $rmd-button-contained-resting-elevation,
+      $rmd-button-contained-pressed-elevation,
+      '&#{$rmd-states-pressed-class-name}',
+      false,
+      $rmd-button-contained-elevation-transition-time
+    );
+    // don't want the normal pressed colors to appear since we have an elevation change
+    // instead
+    @include rmd-states-theme-update-var(background-color, transparent);
+  }
+
+  &--disabled {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
+  }
+
+  &--primary {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(primary));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));
+  }
+
+  &--text-primary {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(primary));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));
+  }
+
+  &--secondary {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(secondary));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));
+  }
+
+  &--text-secondary {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));
+  }
+
+  &--warning {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(warning));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));
+  }
+
+  &--text-warning {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(warning));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));
+  }
+
+  &--error {
+    @include rmd-button-theme-update-var(background-color, rmd-theme-var(error));
+    @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));
+  }
+
+  &--text-error {
+    @include rmd-button-theme-update-var(color, rmd-theme-var(error));
+    @include rmd-button-theme-update-var(outline, rmd-theme-var(error));
+  }
+}
+
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
+@mixin react-md-button {
+  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);
+
+  .rmd-button {
+    @include rmd-button;
+  }
+}

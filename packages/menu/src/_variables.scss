@@ -1,0 +1,51 @@
+////
+/// @group card
+////
+
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/list/dist/functions';
+
+/// The background color to use for menus
+/// @type Color
+$rmd-menu-background-color: rmd-theme-var(surface) !default;
+
+/// The text color to use for menus
+/// @type Color
+$rmd-menu-color: rmd-theme-var(on-surface) !default;
+
+/// The z-index for menus.
+/// @type Number
+$rmd-menu-z-index: 11 !default;
+
+/// The elevation for menus. This should be a number from 0 to 24 (inclusive)
+/// as it gets passed to the `rmd-elevation` mixin.
+/// @type Number
+$rmd-menu-elevation: 8 !default;
+
+/// The min-width to apply to menus.
+/// @type Number
+$rmd-menu-min-width: 7rem !default;
+
+/// The min-width to apply to each menu item when the menu is set
+/// to horizontal.
+/// @type Number
+$rmd-menu-horizontal-item-min-width: 5rem !default;
+
+/// The amount of spacing to use between icons and text within menu items. This
+/// really overwrites the additional spacing provided in the base `list` package
+/// since menu items are normally more dense and don't need to align with specific
+/// "keylines" in your app.
+/// @type Number
+$rmd-menu-icon-spacing: 1rem !default;
+
+/// A Map of all the "themeable" parts of the menu package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-menu-theme-values: (
+  background-color: $rmd-menu-background-color,
+  color: $rmd-menu-color,
+  min-width: $rmd-menu-min-width,
+  icon-spacing: $rmd-menu-icon-spacing,
+  z-index: $rmd-menu-z-index,
+) !default;

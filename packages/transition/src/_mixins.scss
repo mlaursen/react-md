@@ -1,0 +1,256 @@
+////
+/// @group transition
+////
+
+@import '~@react-md/theme/dist/helpers';
+@import './variables';
+@import './functions';
+
+/// Creates the styles for one of the transition's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-transition-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-transition-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-transition-theme-values` map when `null`.
+@mixin rmd-transition-theme($property, $theme-style, $fallback: null) {
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-transition-theme-values,
+    transition
+  );
+}
+
+/// Updates one of the transition's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The transition theme style type to update. This should be one
+///   of the `$rmd-transition-theme-values` keys.
+/// @param {String|Number|Color} - The new value to use.
+@mixin rmd-transition-set-theme-var($style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-transition-theme-values, transition);
+}
+
+/// This is really just used internally to apply a base box shadow and position relative
+/// so that the pseudo element with the end box shadow can be shown.
+/// @param {String} shadow - The box shadow to apply.
+/// @access private
+@mixin rmd-transition-parent-shadow($shadow) {
+  box-shadow: $shadow;
+  position: relative;
+}
+
+/// This includes the base styles for animating the pseudo element's shadow.
+/// This should really only be used internally.
+///
+/// @param {String} shadow - The box shadow to apply.
+/// @param {Number|String} duration - The transition duration for the shadow opacity change.
+/// @param {Number} z-index [0] - The z-index to apply. This is set to 0 by default so that
+/// it can be shown more easily if there are child elements with position absolute.
+/// @access private
+@mixin rmd-transition-pseudo-shadow(
+  $shadow,
+  $duration: $rmd-transition-standard-time,
+  $z-index: 0
+) {
+  @include rmd-transition(standard);
+  @include rmd-utils-pseudo-element($z-index);
+
+  box-shadow: $shadow;
+  opacity: 0;
+  transition: opacity $duration;
+}
+
+/// A mixin that allows you to animate box shadow performantly.
+///
+/// @example scss - Simple Usage
+///   @import '~@react-md/theme/dist/color-palette';
+///
+///   .my-class {
+///     $start-shadow: inset 0 0 1px $rmd-blue-500;
+///     $end-shadow: inset 0 0 4px $rmd-blue-500;
+///
+///     @include rmd-transition-shadow-transition($start-shadow, $end-shadow, ('&:focus' '&:hover'));
+///   }
+///
+/// @example scss - Merging with elevation
+///   @import '~@react-md/elevation/dist/functions';
+///   @import '~@react-md/theme/dist/color-palette';
+///
+///   .my-class {
+///     $start-shadow: rmd-elevation(2);
+///     $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;
+///
+///     @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus');
+///   }
+///
+/// @param {String} start-shadow - The starting box-shadow to use.
+/// @param {String} end-shadow - The ending box-shadow to use.
+/// @param {String|List} active-selectors - Either a single string or a list of strings that is used
+///   to determine when the `$end-shadow` should be used.
+/// @param {Boolean} before [true] - Boolean if the `::before` or `::after` pseudo selector should be
+///   used as the `end-shadow` target.
+/// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration
+/// @param {Number} pseudo-z-index [0] - The z-index to apply. This is set to 0 by default so that
+/// it can be shown more easily if there are child elements with position absolute
+@mixin rmd-transition-shadow-transition(
+  $start-shadow,
+  $end-shadow,
+  $active-selectors,
+  $before: true,
+  $duration: $rmd-transition-standard-time,
+  $pseudo-z-index: 0
+) {
+  @include rmd-transition-parent-shadow($start-shadow);
+
+  $shadow-target: if($before, '&::before', '&::after');
+
+  #{$shadow-target} {
+    @include rmd-transition-pseudo-shadow($end-shadow, $duration, $pseudo-z-index);
+  }
+
+  // remove the leading '&'
+  $suffix: str-slice($shadow-target, 2);
+  $active-string: '';
+  @if type-of($active-selectors) == string {
+    $active-string: $active-selectors + $suffix;
+  } @else if type-of($active-selectors) == list {
+    @for $i from 1 to length($active-selectors) + 1 {
+      $selector: nth($active-selectors, $i);
+
+      $prefix: $active-string + if($i > 1, ', ', '');
+      $active-string: $prefix + $selector + $suffix;
+    }
+  }
+
+  #{$active-string} {
+    opacity: 1;
+  }
+}
+
+/// Adds a transition timing function for the provided transition type.
+///
+/// @param {String} type - The transition type that should be used. This should be one of the
+///   keys for `$rmd-transitions`
+/// @param {Boolean} animation - Boolean if this should be applied to the animation timing
+///   function instead of the transition timing function.
+@mixin rmd-transition($type, $animation: false) {
+  @include rmd-transition-theme(
+    if($animation, animation-timing-function, transition-timing-function),
+    $type
+  );
+}
+
+/// Creates the styles for the Collapse component within react-md
+@mixin rmd-collapse {
+  .rmd-collapse {
+    transition-property: max-height, padding-bottom, padding-top;
+    will-change: max-height, padding-bottom, padding-top;
+
+    &--no-overflow {
+      overflow: hidden;
+    }
+
+    &--enter {
+      @include rmd-transition($rmd-collapse-enter-transition-func);
+    }
+
+    &--leave {
+      @include rmd-transition($rmd-collapse-leave-transition-func);
+    }
+  }
+}
+
+/// Creates the cross fade animation styles. This animation is usually used
+/// when loading in new parts of a page or page transitions as there is no
+/// exit animation by default.
+@mixin rmd-cross-fade {
+  .rmd-cross-fade {
+    opacity: 0;
+    transform: translateY($rmd-cross-fade-translate-distance);
+
+    &--active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: $rmd-cross-fade-transition-duration;
+      transition-property: opacity, transform;
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-transition-classes {
+  .rmd-transition {
+    &--scale-enter {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    &--scale-enter-active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: scale(1);
+      transition: transform $rmd-transition-scale-enter-duration,
+        opacity $rmd-transition-scale-enter-duration;
+    }
+
+    &--scale-exit {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &--scale-exit-active {
+      @include rmd-transition(acceleration);
+
+      opacity: 0;
+      transform: scale(0);
+      transition: transform $rmd-transition-scale-leave-duration,
+        opacity $rmd-transition-scale-leave-duration;
+    }
+
+    &--scale-y-enter {
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: 0 0;
+    }
+
+    &--scale-y-enter-active {
+      @include rmd-transition(deceleration);
+
+      opacity: 1;
+      transform: scaleY(1);
+      transition: transform $rmd-transition-scale-y-enter-duration,
+        opacity $rmd-transition-scale-y-enter-duration;
+    }
+
+    &--scale-y-exit {
+      opacity: 1;
+      transform: scaleY(1);
+      transform-origin: 0 0;
+    }
+
+    &--scale-y-exit-active {
+      @include rmd-transition(acceleration);
+
+      opacity: 0;
+      transform: scaleY(0);
+      transition: transform $rmd-transition-scale-y-leave-duration,
+        opacity $rmd-transition-scale-y-leave-duration;
+    }
+  }
+}
+
+/// Creates the transition theme css variables as well as the styles
+/// for components in the transition package.
+@mixin react-md-transition {
+  @include rmd-theme-create-root-theme($rmd-transition-theme-values, transition);
+
+  @include rmd-collapse;
+  @include rmd-cross-fade;
+  @include rmd-transition-classes;
+}

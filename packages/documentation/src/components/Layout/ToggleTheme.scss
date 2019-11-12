@@ -1,0 +1,38 @@
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+// need extra precedence since the app bar has inherit colors which we want
+// for all other actions except this one.
+.toggle-theme {
+  &--on {
+    color: $rmd-yellow-500;
+    // only needed for the menu-item implementation
+    fill: currentColor;
+  }
+
+  @include rmd-utils-mouse-only {
+    &--on:hover {
+      color: inherit;
+    }
+
+    &--off:hover {
+      color: $rmd-yellow-500;
+    }
+  }
+}
+
+@mixin transition {
+  @include rmd-transition(standard);
+
+  transition-duration: $rmd-transition-standard-time;
+  transition-property: background-color, color;
+}
+
+.toggle-theme-transition {
+  @include transition;
+
+  * {
+    @include transition;
+  }
+}

@@ -1,0 +1,163 @@
+////
+/// @group table
+////
+
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the table's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-table-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-table-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-table-theme-values` map when `null`.
+@mixin rmd-table-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-table-theme-values, table);
+}
+
+/// Updates one of the table's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The table theme style type to update. This should be one
+///   of the `$rmd-table-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-table-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-table-theme-values, table);
+}
+
+@mixin rmd-table-container {
+  @include rmd-utils-scroll;
+
+  // &--fixed-header {
+  //   @include rmd-table-theme(padding-top, cell-height);
+  // }
+
+  // &--fixed-footer {
+  //   @include rmd-table-theme(padding-bottom, cell-height);
+  // }
+}
+
+@mixin rmd-table {
+  border-collapse: collapse;
+  max-width: 100%;
+
+  &--dense {
+    @include rmd-table-theme-update-var(cell-height, rmd-table-theme-var(cell-dense-height));
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // &--fixed {
+  //   @include rmd-table-theme(background-color, fixed-background-color);
+
+  //   z-index: 1;
+  // }
+}
+
+@mixin rmd-table-header {
+}
+
+@mixin rmd-table-caption {
+  @include rmd-typography(caption);
+}
+
+@mixin rmd-table-alignments {
+  @each $alignment in (left center right) {
+    &--#{$alignment} {
+      text-align: $alignment;
+    }
+  }
+}
+
+@mixin rmd-table-cell {
+  @include rmd-typography(subtitle-1);
+  @include rmd-table-theme(color, data-cell-color);
+  @include rmd-table-theme(font-size, data-cell-font-size);
+  @include rmd-table-theme(height, cell-height);
+  @include rmd-table-alignments;
+  @include rmd-table-theme(padding-left, cell-padding);
+  @include rmd-table-theme(padding-right, cell-padding);
+
+  &--grow {
+    width: 100%;
+  }
+
+  &--padding-extra {
+    @include rmd-table-theme(padding-right, cell-padding-extra);
+  }
+
+  &--header {
+    @include rmd-table-theme(color, header-cell-color);
+    @include rmd-table-theme(font-size, header-cell-font-size);
+    @include rmd-typography-value(subtitle-2, font-weight, line-height);
+  }
+
+  &--border-right {
+    @include rmd-divider-border(right);
+  }
+
+  &--no-wrap {
+    @include rmd-typography-text-overflow-ellipsis;
+  }
+}
+
+@mixin rmd-table-row {
+  &--bordered {
+    @include rmd-divider-border(bottom);
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+
+  &--hoverable {
+    @include rmd-utils-mouse-only {
+      @include rmd-transition(standard);
+      transition: background-color $rmd-transition-standard-time;
+
+      &:hover {
+        @include rmd-table-theme(background-color, hover-color);
+      }
+    }
+  }
+}
+
+@mixin react-md-table {
+  @include rmd-theme-create-root-theme($rmd-table-theme-values, table);
+
+  .rmd-table-container {
+    @include rmd-table-container;
+  }
+
+  .rmd-table {
+    @include rmd-table;
+  }
+
+  .rmd-table-header {
+    @include rmd-table-header;
+  }
+
+  .rmd-table-cell {
+    @include rmd-table-cell;
+  }
+
+  .rmd-table-row {
+    @include rmd-table-row;
+  }
+
+  .rmd-table-caption {
+    @include rmd-table-caption;
+  }
+}

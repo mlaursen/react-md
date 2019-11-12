@@ -1,0 +1,49 @@
+////
+/// @group media
+////
+
+@import '~@react-md/theme/dist/color-palette';
+
+/// The background color for a media overlay.
+/// @type Color
+$rmd-media-overlay-background-color: rgba($rmd-black-base, 0.54) !default;
+
+/// A list of selectors or html elements that should be considered responsive
+/// media by default. This will make it so that when using the `MediaContainer`
+/// component, the following elements will be responsive automatically.
+/// @type List
+$rmd-media-selectors: (img '>svg' iframe video embed object) !default;
+
+/// The default aspect ratio for the media component when an aspect ratio is
+/// enforced.
+/// @type Number
+$rmd-media-default-aspect-ratio: percentage(9 / 16) !default;
+
+/// A Map including the default aspect ratios to create for responsive media
+/// with a forced aspect ratio. Each key must be a string for a class name suffix
+/// and each value should be a list in the form of (width height).
+/// @type Map
+$rmd-media-default-aspect-ratios: (
+  '16-9': 16 9,
+  '4-3': 4 3,
+  '1-1': 1 1,
+) !default;
+
+/// The default padding for the media overlay component.
+/// @type Number
+$rmd-media-overlay-padding: 1rem !default;
+
+/// This is the default width for the media overlay component when the position
+/// is set to `left`, `right`, or `center`. This is really just added since these
+/// positions might cause overflow issues since their width will change based on
+/// the content size. Setting it to a width will prevent this.
+///
+/// So if you'd like to add the default behavior back, you can set this to `100%`
+/// or `null`.
+/// @type Number
+$rmd-media-overlay-horizontal-width: 30% !default;
+
+/// The positions for the media overlay. This can be set to an empty list or null
+/// if you'd like to save a few bytes by not generating the styles for some positions.
+/// @type List
+$rmd-media-overlay-positions: (top right bottom left middle center absolute-center) !default;

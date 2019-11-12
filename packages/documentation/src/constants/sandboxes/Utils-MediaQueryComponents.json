@@ -1,0 +1,57 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Utils Example - Media Query Components</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Utils Example - Media Query Components",
+      "description": "Example from https://react-md.dev/packages/utils/demos#media-query-components",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/divider": "next",
+        "@react-md/elevation": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { TextContainer, Text } from \"@react-md/typography\";\nimport {\n  MobileOnly,\n  PhoneOnly,\n  TabletOnly,\n  DesktopOnly,\n} from \"@react-md/utils\";\n\nimport \"./MediaQueryComponents.scss\";\n\nconst Demo: FC = () => (\n  <Fragment>\n    <TextContainer>\n      <MobileOnly>\n        <Text>This will only appear on phone and tablet screen sizes.</Text>\n      </MobileOnly>\n      <PhoneOnly>\n        <Text>This will only appear on phone screen sizes.</Text>\n      </PhoneOnly>\n      <TabletOnly>\n        <Text>This will only appear on tablet screen sizes.</Text>\n      </TabletOnly>\n      <DesktopOnly>\n        <Text>This will only appear on desktop screen sizes.</Text>\n      </DesktopOnly>\n    </TextContainer>\n    <Divider />\n    <div className=\"mq-example\">\n      <Text margin=\"none\">\n        This section will gain different styles as the viewport increases. I\n        highly recommend opening the dev tools and seeing how the different\n        styles get applied and when some are completely removed to get a better\n        undertanding of the media queries.\n      </Text>\n    </div>\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/MediaQueryComponents.scss": {
+    "content": "@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n\n.mq-example {\n  @include rmd-utils-phone-media {\n    // only applied **up** to the phone max width\n    border: 1px solid rmd-theme-var(error);\n  }\n\n  @include rmd-utils-tablet-only-media {\n    // only applied between the phone max width + 1 and the tablet max width\n    border: 4px solid rmd-theme-var(warning);\n  }\n\n  @include rmd-utils-tablet-media {\n    // everything tablet sized and up will gain an elevation of 4\n    @include rmd-elevation(4);\n\n    // now that we have more real estate, double the padding for tablets\n    // and above\n    padding: 2rem;\n  }\n\n  @include rmd-utils-desktop-media {\n    // add a primary border ond desktops\n    border: 2px solid rmd-theme-var(primary);\n  }\n\n  @include rmd-utils-large-desktop-media {\n    // increase the box-shadow on large screens\n    @include rmd-elevation(8);\n  }\n\n  // every size will gain a 1rem margin and padding\n  margin: 1rem;\n  padding: 1rem;\n}\n",
+    "isBinary": false
+  }
+}

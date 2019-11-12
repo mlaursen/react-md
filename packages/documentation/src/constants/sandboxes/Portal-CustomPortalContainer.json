@@ -1,0 +1,76 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Portal Example - Custom Portal Container</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Portal Example - Custom Portal Container",
+      "description": "Example from https://react-md.dev/packages/portal/demos#custom-portal-container",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/elevation": "next",
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/portal": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { useChoice } from \"@react-md/form\";\nimport { Portal } from \"@react-md/portal\";\nimport { Text } from \"@react-md/typography\";\n\nimport Code from \"./Code\";\nimport Radio from \"./Radio\";\n\nimport \"./CustomPortalContainer.scss\";\n\nconst values = [\n  { intoId: \"example-portal-container-1\" },\n  { into: \"#example-portal-container-2\" },\n  {\n    into: () =>\n      document.getElementById(\"example-portal-container-3\") as HTMLDivElement,\n  },\n];\n\nconst Demo: FC = () => {\n  const [selected, handleChange] = useChoice<\"0\" | \"1\" | \"2\">(\"0\");\n\n  return (\n    <div className=\"portal-container-example\">\n      <Radio\n        id=\"use-into-id\"\n        label=\"Use intoId\"\n        name=\"portalInto\"\n        value=\"0\"\n        checked={selected === \"0\"}\n        onChange={handleChange}\n      />\n      <Radio\n        id=\"use-into-query\"\n        label=\"Use into query\"\n        name=\"portalInto\"\n        value=\"1\"\n        checked={selected === \"1\"}\n        onChange={handleChange}\n      />\n      <Radio\n        id=\"use-into-function\"\n        label=\"Use into function\"\n        name=\"portalInto\"\n        value=\"2\"\n        checked={selected === \"2\"}\n        onChange={handleChange}\n      />\n      <Portal {...values[parseInt(selected, 10)]}>\n        <Text type=\"subtitle-1\" margin=\"none\">\n          Portal content!\n        </Text>\n      </Portal>\n      <div id=\"example-portal-container-1\" className=\"custom-portal-container\">\n        <Code>&quot;example-portal-container-1&quot;</Code>\n      </div>\n      <div id=\"example-portal-container-2\" className=\"custom-portal-container\">\n        <Code>&quot;example-portal-container-2&quot;</Code>\n      </div>\n      <div id=\"example-portal-container-3\" className=\"custom-portal-container\">\n        <Code>&quot;example-portal-container-3&quot;</Code>\n      </div>\n    </div>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Code/Code.tsx": {
+    "content": "import React, { FC, forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nexport interface CodeProps extends HTMLAttributes<HTMLElement> {\n  className?: string;\n  children: ReactNode;\n  inline?: boolean;\n}\n\nconst Code: FC<CodeProps & WithForwardedRef<HTMLElement>> = ({\n  children,\n  inline,\n  className,\n  forwardedRef,\n  ...props\n}) => (\n  <code\n    {...props}\n    ref={forwardedRef}\n    className={cn(\"code\", { \"code--inline\": inline }, className)}\n  >\n    {children}\n  </code>\n);\n\nCode.defaultProps = {\n  inline: true,\n};\n\nexport default forwardRef<HTMLElement, CodeProps>((props, ref) => (\n  <Code {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  },
+  "src/Code/code.scss": {
+    "content": "@import '../variables';\n@import '~@react-md/theme/dist/variables';\n@import '~@react-md/typography/dist/mixins';\n\n$code-light-theme-bg: $rmd-grey-200;\n$code-dark-theme-bg: #171717;\n$solarized-base-03: #002b36;\n$solarized-base-02: #073642;\n$solarized-base-01: #586e75;\n$solarized-base-00: #657b83;\n$solarized-base-0: #839496;\n$solarized-base-1: #93a1a1;\n$solarized-base-2: #eee8d5;\n$solarized-base-3: #fdf6e3;\n\n$solarized-yellow: #b58900;\n$solarized-orange: #cb4b16;\n$solarized-red: #d30102;\n$solarized-magenta: #d33682;\n$solarized-violet: #6c71c4;\n$solarized-blue: #268bd2;\n$solarized-cyan: #2aa198;\n$solarized-green: #859900;\n\n:root {\n  #{--code-bg}: #{$code-light-theme-bg};\n}\n\n.code {\n  @include rmd-typography(body-1);\n\n  font-family: 'Source Code Pro', Consolas, Monaco, monospace;\n\n  &::selection,\n  *::selection {\n    background-color: $solarized-base-02;\n  }\n\n  &--block {\n    background-color: $solarized-base-03;\n    color: $solarized-base-1;\n\n    // always enforce ltr for blocked code\n    direction: ltr;\n    margin: 0.5em 0;\n    overflow: auto;\n    padding: 1em;\n  }\n\n  &--inline {\n    background-color: var(--code-bg);\n    border-radius: 0.25rem;\n    font-size: 0.9em;\n    padding: 0.1em 0.4em;\n    white-space: pre-wrap;\n  }\n\n  &--counted {\n    padding-left: 3em;\n    position: relative;\n  }\n\n  &__lines {\n    border-right: 1px solid $solarized-base-01;\n    display: flex;\n    flex-direction: column;\n    left: 0;\n    padding-right: 0.25em;\n    pointer-events: none;\n    position: absolute;\n    text-align: right;\n    width: 2.5em;\n  }\n}\n\n// prismjs custom theme\n// this is _basically_ my current vim theme, but not aas good since\n// Prism doesn't have as many tokenizers\n.token {\n  position: relative;\n  z-index: 1;\n\n  &.comment,\n  &.doctype {\n    color: $solarized-base-01;\n  }\n\n  &.keyword {\n    color: $solarized-green;\n  }\n\n  &.punctuation {\n    color: $solarized-base-01;\n  }\n\n  &.inserted,\n  &.string,\n  .language-tsx &.attr-value {\n    color: $solarized-cyan;\n  }\n\n  &.tag,\n  &.selector,\n  &.class-name,\n  // fixes mixins/functions\n  .language-scss &.function,\n  // fixes variables\n  .language-scss &.variable {\n    color: $solarized-blue;\n  }\n\n  &.attr-name,\n  &.property,\n  &.builtin {\n    color: $solarized-yellow;\n  }\n\n  &.script,\n  &.interpolation,\n  // to fix interfaces\n  .language-ts &.keyword + .class-name,\n  .language-tsx &.keyword + .class-name {\n    color: $solarized-base-1;\n  }\n\n  // fixes property colors\n  .language-scss &.keyword,\n  // for npm install\n  .language-shell &.function {\n    color: $solarized-orange;\n  }\n\n  &.deleted,\n  &.boolean,\n  &.number,\n  &.interpolation-punctuation {\n    color: $solarized-red;\n  }\n\n  &.important,\n  &.bold {\n    font-weight: map-get($rmd-typography-font-weights, bold);\n  }\n\n  &.italic {\n    font-style: italic;\n  }\n\n  &.entity {\n    cursor: help;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Code/index.ts": {
+    "content": "import \"./code.scss\";\nexport { default } from \"./Code\";\n",
+    "isBinary": false
+  },
+  "src/CustomPortalContainer.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n\n.custom-portal-container {\n  @include rmd-elevation(4);\n\n  display: flex;\n  flex-direction: column;\n  height: 10rem;\n  justify-content: space-between;\n  margin: 1rem;\n  width: 10rem;\n}\n",
+    "isBinary": false
+  },
+  "src/Radio.tsx": {
+    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Radio as RadioMD, RadioProps } from \"@react-md/form\";\nimport { RadioButtonCheckedSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Radio: FC<RadioProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <RadioMD {...props} ref={forwardedRef} />;\n\nRadio.defaultProps = {\n  icon: <RadioButtonCheckedSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, RadioProps>((props, ref) => (\n  <Radio {...props} forwardedRef={ref} />\n));\n",
+    "isBinary": false
+  }
+}

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Collapse rendering should not render as null if any of minHeight, minPaddingTop, or minPaddingBottom are greater than 0 1`] = `
+<div>
+  <div />
+</div>
+`;

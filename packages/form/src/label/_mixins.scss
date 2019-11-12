@@ -1,0 +1,93 @@
+////
+/// @group form-label
+////
+
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import '../variables';
+@import '../functions';
+
+/// Creates the base styles for a `<label>` element as well as all the different
+/// states a label can be in.
+@mixin rmd-label {
+  @include rmd-typography(body-1);
+  @include rmd-transition(standard);
+
+  display: inline-flex;
+  font-size: $rmd-label-font-size;
+  transition: color $rmd-transition-standard-time;
+
+  &--active {
+    @include rmd-form-theme(color, active-color);
+  }
+
+  &--error {
+    @include rmd-form-theme(color, error-color);
+  }
+
+  &--disabled {
+    @include rmd-form-theme(color, disabled-color);
+  }
+}
+
+/// @access private
+@mixin rmd-floating-label {
+  @include rmd-form-theme-update-var(active-color, rmd-form-theme-var(text-active-color));
+  @include rmd-utils-rtl {
+    left: auto;
+    right: 0;
+    transform: translate(
+      rmd-utils-negate-var(rmd-form-theme-var(text-padding-left)),
+      rmd-form-theme-var(floating-top)
+    );
+  }
+
+  $transitions: background-color, color, font-size, transform;
+
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(rmd-form-theme-var(text-padding-left), rmd-form-theme-var(floating-top));
+  transition-property: $transitions;
+  will-change: $transitions;
+
+  &--dense {
+    @include rmd-form-theme-update-var(floating-top, rmd-form-theme-var(floating-dense-top));
+  }
+
+  &--active {
+    @include rmd-utils-rtl {
+      transform: translate(
+        rmd-utils-negate-var(rmd-form-theme-var(label-left-offset)),
+        rmd-form-theme-var(label-top-offset)
+      );
+    }
+
+    @include rmd-form-theme(background-color, label-active-background-color);
+    @include rmd-form-theme(padding, label-active-padding);
+
+    font-size: $rmd-label-floating-font-size;
+    transform: translate(
+      rmd-form-theme-var(label-left-offset),
+      rmd-form-theme-var(label-top-offset)
+    );
+    z-index: 1;
+  }
+
+  &--inactive {
+    @include rmd-theme(color, text-secondary-on-background);
+  }
+}
+
+/// @access private
+@mixin react-md-label {
+  .rmd-label {
+    @include rmd-label;
+  }
+
+  .rmd-floating-label {
+    @include rmd-floating-label;
+  }
+}

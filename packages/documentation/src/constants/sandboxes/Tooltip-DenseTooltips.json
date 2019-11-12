@@ -1,0 +1,66 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Tooltip Example - Dense Tooltips</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Tooltip Example - Dense Tooltips",
+      "description": "Example from https://react-md.dev/packages/tooltip/demos#dense-tooltips",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/tooltip": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport { SimplePosition } from \"@react-md/utils\";\n\nimport Container from \"./Container\";\nimport TooltippedButton from \"./TooltippedButton\";\n\nconst positions: SimplePosition[] = [\"above\", \"right\", \"below\", \"left\"];\n\nconst Demo: FC = () => {\n  return (\n    <Fragment>\n      <Text type=\"headline-6\" margin=\"none\">\n        Normal\n      </Text>\n      <Container>\n        {positions.map(position => (\n          <TooltippedButton\n            id={`normal-tooltip-${position}`}\n            key={position}\n            defaultPosition={position}\n            tooltip=\"This is a tooltip\"\n          >\n            {position}\n          </TooltippedButton>\n        ))}\n      </Container>\n      <Text type=\"headline-6\" margin=\"top\">\n        Dense\n      </Text>\n      <Container>\n        {positions.map(position => (\n          <TooltippedButton\n            id={`dense-tooltip-${position}`}\n            key={position}\n            defaultPosition={position}\n            tooltip=\"This is a tooltip\"\n            dense\n          >\n            {position}\n          </TooltippedButton>\n        ))}\n      </Container>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Container.scss": {
+    "content": ".tooltip-example-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--stacked {\n    flex-direction: column;\n  }\n\n  > .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  stacked?: boolean;\n}\n\nconst block = bem(\"tooltip-example-container\");\n\nconst Container: FC<ContainerProps> = ({\n  className,\n  children,\n  stacked,\n  ...props\n}) => (\n  <div {...props} className={cn(block({ stacked }), className)}>\n    {children}\n  </div>\n);\n\nContainer.defaultProps = {\n  stacked: false,\n};\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/TooltippedButton.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { ButtonProps, Button } from \"@react-md/button\";\nimport { Tooltipped, TooltippedProps } from \"@react-md/tooltip\";\n\ninterface TooltippedButtonProps\n  extends ButtonProps,\n    Pick<TooltippedProps, \"tooltip\" | \"defaultPosition\" | \"dense\"> {\n  id: string;\n}\n\nconst TooltippedButton: FC<TooltippedButtonProps> = ({\n  id,\n  tooltip,\n  onMouseEnter,\n  onMouseLeave,\n  onTouchStart,\n  onTouchMove,\n  onFocus,\n  onKeyDown,\n  children,\n  dense,\n  defaultPosition,\n  ...props\n}) => (\n  <Tooltipped\n    id={id}\n    tooltip={tooltip}\n    dense={dense}\n    defaultPosition={defaultPosition}\n    onMouseEnter={onMouseEnter}\n    onMouseLeave={onMouseLeave}\n    onTouchStart={onTouchStart}\n    onTouchMove={onTouchMove}\n    onFocus={onFocus}\n    onKeyDown={onKeyDown}\n  >\n    <Button {...props}>{children}</Button>\n  </Tooltipped>\n);\n\nTooltippedButton.defaultProps = {\n  themeType: \"outline\",\n};\n\nexport default TooltippedButton;\n",
+    "isBinary": false
+  }
+}

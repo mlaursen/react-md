@@ -1,0 +1,17 @@
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+
+.inaccessible-menu {
+  display: inline-block;
+  position: relative;
+
+  &__menu {
+    @include rmd-theme(background-color, surface);
+    @include rmd-elevation(8);
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+}

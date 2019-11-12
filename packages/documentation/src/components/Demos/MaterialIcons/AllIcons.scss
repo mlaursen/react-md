@@ -1,0 +1,28 @@
+@import '~@react-md/utils/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+
+.all-icons-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.all-icons__info {
+  @include rmd-icon-theme-update-var(size, 2.5rem);
+
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: 8rem;
+}
+
+.all-icons__name {
+  @include rmd-typography-text-overflow-ellipsis;
+
+  margin-top: 0.5rem;
+  text-align: center;
+  width: 100%;
+}

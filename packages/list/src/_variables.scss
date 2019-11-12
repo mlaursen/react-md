@@ -1,0 +1,177 @@
+////
+/// @group list
+////
+
+@import '~@react-md/typography/dist/functions';
+
+/// The amount of padding to place before the first list item and after the last list item in the list.
+///
+/// @type Number
+/// @see rmd-list-dense-vertical-padding
+$rmd-list-vertical-padding: 0.5rem !default;
+
+/// The amount of padding to place before the first list item and after the last list item in the list.
+///
+/// @type Number
+$rmd-list-dense-vertical-padding: 0.25rem !default;
+
+/// The amount of padding to place to the left and right of all the list items. It is recommended
+/// to keep this value at `0` and instead update the `$rmd-list-item-horizontal-padding` instead to
+/// get better clickable areas and hover effects on each item.
+///
+/// @type Number
+/// @see rmd-list-dense-horizontal-padding
+/// @see rmd-list-item-horizontal-padding
+$rmd-list-horizontal-padding: 0 !default;
+
+/// The amount of padding to place to the left and right of all the list items in a "dense" layout. It
+/// is recommended to keep this value at `0` and instead update the `$rmd-list-item-horizontal-padding`
+/// instead to get better clickable areas and hover effects on each item.
+///
+/// @type Number
+/// @see rmd-list-horizontal-padding
+/// @see rmd-list-item-horizontal-padding
+$rmd-list-dense-horizontal-padding: $rmd-list-horizontal-padding !default;
+
+/// The line height to apply to all items within the list. The default typography applied to lists uses
+/// the `subtitle-1` typography specs, but it looks better to apply the main text line-height within lists.
+///
+/// @type Number
+$rmd-list-line-height: rmd-typography-value(body-1, line-height) !default;
+
+/// The font size to apply to all items in a list.
+///
+/// @type Number
+$rmd-list-font-size: rmd-typography-value(subtitle-1, font-size) !default;
+
+/// The font size to use for a "dense" list layout.
+/// @type Number
+$rmd-list-dense-font-size: 0.8125rem !default;
+
+/// The amount of vertical padding to apply to each list item. This is really only added to help with the
+/// default "growing height" case of items since the list item is aligned using a centered flexbox.
+///
+/// @type Number
+$rmd-list-item-vertical-padding: 0.5rem !default;
+
+/// The amount of horizontal padding to apply to each list item.
+///
+/// @type Number
+$rmd-list-item-horizontal-padding: 1rem !default;
+
+/// The default height for a list item. To help create more general lists and layouts this height will
+/// be applied as a `min-height` instead of `height` so that it can grow in height based on the content.
+/// When using the `ListItem` component, it will automatically "upgrade" to use `height` when the `secondaryText`
+/// or list item "addons" are provided to help enforce the material design specs.
+///
+/// @type Number
+$rmd-list-item-height: 3rem !default;
+
+/// The default height for a dense list item.
+/// @type Number
+$rmd-list-item-dense-height: 2.5rem !default;
+
+/// The height for a "medium" sized list item. This will normally get applied
+/// for any list item that has an icon or avatar.
+/// @type Number
+$rmd-list-item-medium-height: 3.5rem !default;
+
+/// The height for a "medium" sized list item that is also dense.
+/// @type Number
+$rmd-list-item-dense-medium-height: 3rem !default;
+
+/// The height for a "large" sized list item. This will normally get applied
+/// for any list item that has secondary text with no icon, or avatar.
+/// @type Number
+$rmd-list-item-large-height: 4rem !default;
+
+/// The height for a "large" sized list item that is also dense.
+/// @type Number
+$rmd-list-item-dense-large-height: 3.5rem !default;
+
+/// The height for an "extra large" sized list item. This will normally get applied
+/// for any list item that:
+/// - is single line but has a media
+/// - has secondary text with an icon, avatar, media, or metadata
+///
+/// @type Number
+$rmd-list-item-extra-large-height: 4.5rem !default;
+
+/// The height for a "extra large" sized list item that is also dense.
+/// @type Number
+$rmd-list-item-dense-extra-large-height: 4rem !default;
+
+/// The height for a list item with three lines of text.
+/// @type Number
+$rmd-list-item-three-line-height: 5.5rem !default;
+
+/// The height for a list item with three lines of text while being dense.
+/// @type Number
+$rmd-list-item-dense-three-line-height: 5rem !default;
+
+/// The line-height to use for the secondary text within the list item. This is different
+/// than the primary text since this can span multiple lines by default.
+/// @type Number
+$rmd-list-item-secondary-text-line-height: 1.42857 !default;
+
+/// The max allowed height for the three-line list item's secondary text. You probably
+/// don't want to change this value unless you changed the other list item heights.
+/// @type Number
+$rmd-list-item-secondary-text-three-line-max-height: 3rem !default;
+
+/// The max allowed height for the dense three-line list item's secondary text. You probably
+/// don't want to change this value unless you changed the other list item heights.
+/// @type Number
+$rmd-list-item-dense-secondary-text-three-line-max-height: 2.25rem !default;
+
+/// The spacing between the left side of the list item up to the left side of the
+/// first character of text. This is normally just used to align the list items
+/// with other components.
+/// @type Number
+$rmd-list-item-text-keyline: 4.5rem !default;
+
+/// The size to use for media that appears before or after the main content in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-size: 3.5rem !default;
+
+/// The size to use for large media that appears before or after the main content in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-large-size: 6.25rem !default;
+
+/// The amount of spacing to place between the main content and media that appears in
+/// a list item.
+/// @type Number
+$rmd-list-item-media-spacing: 1rem !default;
+
+/// A Map of all the "themeable" parts of the list package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-list-theme-values: (
+  vertical-padding: $rmd-list-vertical-padding,
+  horizontal-padding: $rmd-list-horizontal-padding,
+  font-size: $rmd-list-font-size,
+  text-keyline: $rmd-list-item-text-keyline,
+  item-height: $rmd-list-item-height,
+  item-medium-height: $rmd-list-item-medium-height,
+  item-large-height: $rmd-list-item-large-height,
+  item-extra-large-height: $rmd-list-item-extra-large-height,
+  item-three-line-height: $rmd-list-item-three-line-height,
+  item-vertical-padding: $rmd-list-item-vertical-padding,
+  item-horizontal-padding: $rmd-list-item-horizontal-padding,
+  item-secondary-three-line-height: $rmd-list-item-secondary-text-three-line-max-height,
+  dense-font-size: $rmd-list-dense-font-size,
+  dense-vertical-padding: $rmd-list-dense-vertical-padding,
+  dense-horizontal-padding: $rmd-list-dense-horizontal-padding,
+  dense-item-height: $rmd-list-item-dense-height,
+  dense-item-medium-height: $rmd-list-item-dense-medium-height,
+  dense-item-large-height: $rmd-list-item-dense-large-height,
+  dense-item-extra-large-height: $rmd-list-item-dense-extra-large-height,
+  dense-item-three-line-height: $rmd-list-item-dense-three-line-height,
+  dense-item-secondary-three-line-height: $rmd-list-item-dense-secondary-text-three-line-max-height,
+  media-size: $rmd-list-item-media-size,
+  media-spacing: $rmd-list-item-media-spacing,
+  media-large-size: $rmd-list-item-media-large-size,
+) !default;

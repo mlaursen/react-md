@@ -1,0 +1,152 @@
+////
+/// @group sheet
+////
+
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
+@import './functions';
+
+/// Creates the styles for one of the sheet's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-sheet-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-sheet-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-sheet-theme-values` map when `null`.
+@mixin rmd-sheet-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-sheet-theme-values, sheet);
+}
+
+/// Updates one of the sheet's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The sheet theme style type to update. This should be one
+///   of the `$rmd-sheet-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-sheet-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-sheet-theme-values, sheet);
+}
+
+/// Creates the different positioning styles for all the sheet positions.
+/// @access private
+@mixin rmd-sheet-positions {
+  @if $rmd-sheet-enabled-positions {
+    @each $position in $rmd-sheet-enabled-positions {
+      $position: rmd-utils-validate($rmd-sheet-positions, $position, 'sheet position');
+
+      &--#{$position} {
+        @if $position == left {
+          @include rmd-utils-rtl-auto(left, 0) {
+            @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
+          }
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+        } @else if $position == right {
+          @include rmd-utils-rtl-auto(right, 0) {
+            @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+          }
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
+        } @else if $position == top {
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, -100%, 0));
+
+          top: 0;
+        } @else if $position == bottom {
+          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, 100%, 0));
+
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+/// Creates all the styles for the sheet package as well as the root css variable theme.
+@mixin react-md-sheet {
+  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);
+
+  .rmd-sheet {
+    @include rmd-elevation($rmd-sheet-elevation);
+    @include rmd-utils-scroll;
+    @include rmd-sheet-positions;
+    @include rmd-sheet-theme(max-height);
+    @include rmd-sheet-theme(height);
+    @include rmd-sheet-theme(width);
+
+    position: fixed;
+    z-index: $rmd-sheet-z-index;
+
+    &--raised {
+      @include rmd-elevation($rmd-sheet-raised-elevation);
+      z-index: $rmd-sheet-raised-z-index;
+    }
+
+    &--horizontal {
+      bottom: 0;
+      top: 0;
+    }
+
+    &--touch-width {
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+    }
+
+    &--static-width {
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+    }
+
+    &--media-width {
+      @include rmd-utils-tablet-media {
+        @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+      }
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+    }
+
+    &--vertical {
+      left: 0;
+      right: 0;
+    }
+
+    &--viewport-height {
+      @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);
+    }
+
+    &--touchable-height {
+      @include rmd-sheet-theme-update-var(max-height, rmd-sheet-theme-var(touchable-max-height));
+    }
+
+    &--recommended-height {
+      max-height: $rmd-sheet-recommended-max-height;
+      min-height: $rmd-sheet-recommended-min-height;
+    }
+
+    &--offscreen {
+      @include rmd-sheet-theme(transform, transform-offscreen);
+    }
+
+    &--hidden {
+      box-shadow: none;
+    }
+
+    &--visible {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &--enter {
+      @include rmd-transition(deceleration);
+
+      transition: transform $rmd-sheet-enter-duration;
+    }
+
+    &--exit {
+      @include rmd-transition(acceleration);
+
+      transition: transform $rmd-sheet-enter-duration;
+    }
+  }
+
+  .rmd-sheet-overlay {
+    z-index: $rmd-sheet-overlay-z-index;
+  }
+}

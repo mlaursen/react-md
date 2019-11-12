@@ -1,0 +1,46 @@
+{
+  "name": "@react-md/theme",
+  "version": "2.0.0-alpha.10",
+  "description": "The base package for including a theme for react-md. This is required by most other packages.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean"
+  },
+  "main": "./dist/scssVariables.js",
+  "module": "./dist/scssVariables.js",
+  "types": "./dist/scssVariables.d.ts",
+  "files": [
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/theme"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "theme",
+    "colors",
+    "css variables"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/utils": "^2.0.0-alpha.10"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

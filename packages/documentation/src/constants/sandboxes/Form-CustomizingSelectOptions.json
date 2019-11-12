@@ -1,0 +1,82 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Form Example - Customizing Select Options</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/avatar/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Form Example - Customizing Select Options",
+      "description": "Example from https://react-md.dev/packages/form/demos#customizing-select-options",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/avatar": "next",
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Text } from \"@react-md/typography\";\n\nimport \"./CustomizingSelectOptions.scss\";\nimport UsingKeys from \"./UsingKeys\";\nimport CustomChildren from \"./CustomChildren\";\nimport WithOptionLeftAddon from \"./WithOptionLeftAddon\";\n\nconst Demo: FC = () => (\n  <div className=\"customizing-select-options\">\n    <Text type=\"headline-6\" margin=\"none\">\n      Using Keys\n    </Text>\n    <UsingKeys />\n    <Text type=\"headline-6\" margin=\"top\">\n      Custom Children\n    </Text>\n    <CustomChildren />\n    <Text type=\"headline-6\" margin=\"top\">\n      Icons and Avatars\n    </Text>\n    <WithOptionLeftAddon />\n  </div>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/CustomChildren.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Select } from \"@react-md/form\";\n\nimport desserts from \"./desserts\";\n\nimport useSelect from \"./useSelect\";\n\nconst options = desserts.map(({ name, calories }, i) => ({\n  // this is required for a11y so that the user can still \"search\"\n  // for this field by typing letters while the select is visible.\n  // if this was not provided, a warning would be thrown in the console\n  // for this select component explaining that the `children` prop\n  // can't be used for searching since it is not a string\n  label: name,\n  value: `dessert-${i}`,\n  children: (\n    <Fragment>\n      <strong>{name.substring(0, 3)}</strong>\n      {name.substring(3)}\n      <i>{` (${calories} kcal)`}</i>\n    </Fragment>\n  ),\n}));\n\nconst CustomChildren: FC = () => {\n  const [value, handleChange] = useSelect(options[0].value);\n  return (\n    <Select\n      id=\"select-using-custom-children\"\n      label=\"State\"\n      placeholder=\"Colorado\"\n      options={options}\n      value={value}\n      onChange={handleChange}\n    />\n  );\n};\n\nexport default CustomChildren;\n",
+    "isBinary": false
+  },
+  "src/CustomizingSelectOptions.scss": {
+    "content": "@import '~@react-md/avatar/dist/mixins';\n\n.customizing-select-options {\n  display: grid;\n  grid-row-gap: 1rem;\n  grid-template-columns: minmax(0, 1fr);\n}\n\n.customizing-select-options__value {\n  @include rmd-avatar-theme-update-var(size, 1.5rem);\n  @include rmd-avatar-theme-update-var(font-size, 0.75rem);\n}\n",
+    "isBinary": false
+  },
+  "src/UsingKeys.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Select } from \"@react-md/form\";\n\nimport immutableStates from \"./states\";\nimport useSelect from \"./useSelect\";\n\nconst states = immutableStates.slice();\n\nconst UsingKeys: FC = () => {\n  const [value, handleChange] = useSelect(\"\");\n  return (\n    <Select\n      id=\"select-using-keys\"\n      label=\"State\"\n      placeholder=\"Colorado\"\n      labelKey=\"name\"\n      valueKey=\"abbreviation\"\n      options={states}\n      value={value}\n      onChange={handleChange}\n    />\n  );\n};\n\nexport default UsingKeys;\n",
+    "isBinary": false
+  },
+  "src/WithOptionLeftAddon.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport scssVariables from \"@react-md/avatar/dist/scssVariables\";\nimport { Select, useCheckboxState, Checkbox } from \"@react-md/form\";\nimport { CloseSVGIcon } from \"@react-md/material-icons\";\n\nimport immutableStates from \"./states\";\nimport useSelect from \"./useSelect\";\n\nconst COLORS = Object.keys(scssVariables[\"rmd-avatar-colors\"]);\nconst states = immutableStates.map(({ name, abbreviation }, i) => ({\n  leftAvatar: <Avatar color={COLORS[i % COLORS.length]}>{abbreviation}</Avatar>,\n  label: name,\n  value: abbreviation,\n  children: (\n    <span>\n      {name} (<i>{abbreviation}</i>)\n    </span>\n  ),\n  rightIcon: <CloseSVGIcon />,\n}));\n\nconst WithOptionLeftAddon: FC = () => {\n  const [value, handleChange] = useSelect(\"\");\n  const [disableLeftAddon, handleLeftAddonChange] = useCheckboxState(false);\n  return (\n    <Fragment>\n      <Checkbox\n        id=\"enable-left-addon\"\n        label=\"Disable Left Addon\"\n        checked={disableLeftAddon}\n        onChange={handleLeftAddonChange}\n      />\n      <Select\n        id=\"select-using-left-addon\"\n        label=\"State\"\n        placeholder=\"Colorado\"\n        options={states}\n        value={value}\n        onChange={handleChange}\n        disableLeftAddon={disableLeftAddon}\n        displayLabelClassName=\"customizing-select-options__value\"\n      />\n    </Fragment>\n  );\n};\n\nexport default WithOptionLeftAddon;\n",
+    "isBinary": false
+  },
+  "src/useSelect.ts": {
+    "content": "import { useCallback, useState } from \"react\";\n\ntype ChangeHandler = (nextValue: string) => void;\n\n/**\n * A simple hook that memoizes the value and change handler for the select\n * demos. This is really only needed since the set state action from `useState`\n * throws a warning about a second argument being applied since the `onChange`\n * callback for the `Select` is:\n *\n * ```\n * onChange(nextValue: string, option: ListboxOption): void\n * ```\n *\n * This just makes sure that we only use the nextValue for all the demos.\n *\n * @param defautlValue The default value for the select in the demo\n * @return an ordered list of value and change handler.\n */\nexport default function useSelect(\n  defaultValue: string\n): [string, ChangeHandler] {\n  const [value, setValue] = useState(defaultValue);\n  const handleChange = useCallback((nextValue: string) => {\n    setValue(nextValue);\n  }, []);\n\n  return [value, handleChange];\n}\n",
+    "isBinary": false
+  },
+  "src/desserts.ts": {
+    "content": "export interface Dessert {\n  name: string;\n  calories: number;\n  fat: number;\n  carbs: number;\n  protein: number;\n  sodium: number;\n  calcium: number;\n  iron: number;\n  type: \"Ice cream\" | \"Pastry\" | \"Other\";\n}\n\nconst desserts: readonly Dessert[] = [\n  {\n    name: \"Frozen yogurt\",\n    type: \"Ice cream\",\n    calories: 159,\n    fat: 6.0,\n    carbs: 24,\n    protein: 4.0,\n    sodium: 87,\n    calcium: 14,\n    iron: 1,\n  },\n  {\n    name: \"Ice cream sandwhich\",\n    type: \"Ice cream\",\n    calories: 237,\n    fat: 9.0,\n    carbs: 37,\n    protein: 4.3,\n    sodium: 129,\n    calcium: 8,\n    iron: 1,\n  },\n  {\n    name: \"Eclair\",\n    type: \"Pastry\",\n    calories: 262,\n    fat: 16.0,\n    carbs: 37,\n    protein: 6.0,\n    sodium: 337,\n    calcium: 6,\n    iron: 7,\n  },\n  {\n    name: \"Cupcake\",\n    type: \"Pastry\",\n    calories: 305,\n    fat: 3.7,\n    carbs: 67,\n    protein: 4.3,\n    sodium: 413,\n    calcium: 3,\n    iron: 8,\n  },\n  {\n    name: \"Gingerbread\",\n    type: \"Pastry\",\n    calories: 356,\n    fat: 16.0,\n    carbs: 49,\n    protein: 3.9,\n    sodium: 327,\n    calcium: 7,\n    iron: 16,\n  },\n  {\n    name: \"Jelly bean\",\n    type: \"Other\",\n    calories: 375,\n    fat: 0.0,\n    carbs: 94,\n    protein: 0.0,\n    sodium: 50,\n    calcium: 0,\n    iron: 0,\n  },\n  {\n    name: \"Lollipop\",\n    type: \"Other\",\n    calories: 392,\n    fat: 0.2,\n    carbs: 98,\n    protein: 0.0,\n    sodium: 38,\n    calcium: 0,\n    iron: 2,\n  },\n  {\n    name: \"Honeycomb\",\n    type: \"Other\",\n    calories: 408,\n    fat: 3.2,\n    carbs: 87,\n    protein: 6.5,\n    sodium: 562,\n    calcium: 0,\n    iron: 45,\n  },\n  {\n    name: \"Donut\",\n    type: \"Pastry\",\n    calories: 52,\n    fat: 25.0,\n    carbs: 51,\n    protein: 4.9,\n    sodium: 326,\n    calcium: 2,\n    iron: 22,\n  },\n  {\n    name: \"KitKat\",\n    type: \"Other\",\n    calories: 16,\n    fat: 6.0,\n    carbs: 65,\n    protein: 7.0,\n    sodium: 54,\n    calcium: 12,\n    iron: 6,\n  },\n];\n\nexport default desserts;\n",
+    "isBinary": false
+  },
+  "src/states.ts": {
+    "content": "export default [\n  {\n    name: \"Alabama\",\n    abbreviation: \"AL\",\n  },\n  {\n    name: \"Alaska\",\n    abbreviation: \"AK\",\n  },\n  {\n    name: \"American Samoa\",\n    abbreviation: \"AS\",\n  },\n  {\n    name: \"Arizona\",\n    abbreviation: \"AZ\",\n  },\n  {\n    name: \"Arkansas\",\n    abbreviation: \"AR\",\n  },\n  {\n    name: \"California\",\n    abbreviation: \"CA\",\n  },\n  {\n    name: \"Colorado\",\n    abbreviation: \"CO\",\n  },\n  {\n    name: \"Connecticut\",\n    abbreviation: \"CT\",\n  },\n  {\n    name: \"Delaware\",\n    abbreviation: \"DE\",\n  },\n  {\n    name: \"District Of Columbia\",\n    abbreviation: \"DC\",\n  },\n  {\n    name: \"Federated States Of Micronesia\",\n    abbreviation: \"FM\",\n  },\n  {\n    name: \"Florida\",\n    abbreviation: \"FL\",\n  },\n  {\n    name: \"Georgia\",\n    abbreviation: \"GA\",\n  },\n  {\n    name: \"Guam\",\n    abbreviation: \"GU\",\n  },\n  {\n    name: \"Hawaii\",\n    abbreviation: \"HI\",\n  },\n  {\n    name: \"Idaho\",\n    abbreviation: \"ID\",\n  },\n  {\n    name: \"Illinois\",\n    abbreviation: \"IL\",\n  },\n  {\n    name: \"Indiana\",\n    abbreviation: \"IN\",\n  },\n  {\n    name: \"Iowa\",\n    abbreviation: \"IA\",\n  },\n  {\n    name: \"Kansas\",\n    abbreviation: \"KS\",\n  },\n  {\n    name: \"Kentucky\",\n    abbreviation: \"KY\",\n  },\n  {\n    name: \"Louisiana\",\n    abbreviation: \"LA\",\n  },\n  {\n    name: \"Maine\",\n    abbreviation: \"ME\",\n  },\n  {\n    name: \"Marshall Islands\",\n    abbreviation: \"MH\",\n  },\n  {\n    name: \"Maryland\",\n    abbreviation: \"MD\",\n  },\n  {\n    name: \"Massachusetts\",\n    abbreviation: \"MA\",\n  },\n  {\n    name: \"Michigan\",\n    abbreviation: \"MI\",\n  },\n  {\n    name: \"Minnesota\",\n    abbreviation: \"MN\",\n  },\n  {\n    name: \"Mississippi\",\n    abbreviation: \"MS\",\n  },\n  {\n    name: \"Missouri\",\n    abbreviation: \"MO\",\n  },\n  {\n    name: \"Montana\",\n    abbreviation: \"MT\",\n  },\n  {\n    name: \"Nebraska\",\n    abbreviation: \"NE\",\n  },\n  {\n    name: \"Nevada\",\n    abbreviation: \"NV\",\n  },\n  {\n    name: \"New Hampshire\",\n    abbreviation: \"NH\",\n  },\n  {\n    name: \"New Jersey\",\n    abbreviation: \"NJ\",\n  },\n  {\n    name: \"New Mexico\",\n    abbreviation: \"NM\",\n  },\n  {\n    name: \"New York\",\n    abbreviation: \"NY\",\n  },\n  {\n    name: \"North Carolina\",\n    abbreviation: \"NC\",\n  },\n  {\n    name: \"North Dakota\",\n    abbreviation: \"ND\",\n  },\n  {\n    name: \"Northern Mariana Islands\",\n    abbreviation: \"MP\",\n  },\n  {\n    name: \"Ohio\",\n    abbreviation: \"OH\",\n  },\n  {\n    name: \"Oklahoma\",\n    abbreviation: \"OK\",\n  },\n  {\n    name: \"Oregon\",\n    abbreviation: \"OR\",\n  },\n  {\n    name: \"Palau\",\n    abbreviation: \"PW\",\n  },\n  {\n    name: \"Pennsylvania\",\n    abbreviation: \"PA\",\n  },\n  {\n    name: \"Puerto Rico\",\n    abbreviation: \"PR\",\n  },\n  {\n    name: \"Rhode Island\",\n    abbreviation: \"RI\",\n  },\n  {\n    name: \"South Carolina\",\n    abbreviation: \"SC\",\n  },\n  {\n    name: \"South Dakota\",\n    abbreviation: \"SD\",\n  },\n  {\n    name: \"Tennessee\",\n    abbreviation: \"TN\",\n  },\n  {\n    name: \"Texas\",\n    abbreviation: \"TX\",\n  },\n  {\n    name: \"Utah\",\n    abbreviation: \"UT\",\n  },\n  {\n    name: \"Vermont\",\n    abbreviation: \"VT\",\n  },\n  {\n    name: \"Virgin Islands\",\n    abbreviation: \"VI\",\n  },\n  {\n    name: \"Virginia\",\n    abbreviation: \"VA\",\n  },\n  {\n    name: \"Washington\",\n    abbreviation: \"WA\",\n  },\n  {\n    name: \"West Virginia\",\n    abbreviation: \"WV\",\n  },\n  {\n    name: \"Wisconsin\",\n    abbreviation: \"WI\",\n  },\n  {\n    name: \"Wyoming\",\n    abbreviation: \"WY\",\n  },\n] as const;\n",
+    "isBinary": false
+  }
+}

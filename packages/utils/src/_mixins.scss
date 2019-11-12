@@ -1,0 +1,735 @@
+////
+/// @group utils
+////
+
+@import './functions';
+@import './variables';
+
+/// This is a simple mixin that will create styles from a Map of properties with
+/// values.
+///
+/// @param Map style-map - The map of styles that should be applied. If this is
+/// `null`, no styles will be generated.
+@mixin rmd-utils-map-to-styles($style-map) {
+  @if $style-map {
+    @each $property, $value in $style-map {
+      #{$property}: #{$value};
+    }
+  }
+}
+
+/// A simple mixin that allows you to update styles when the [dir="rtl"] is present
+/// for languages that read right to light. This is mostly used to update spacing with
+/// margins or padding and a more "verbose" method of declaring rtl styles.
+///
+/// @example scss - Example Usage SCSS
+///   .my-class {
+///     margin-right: 1rem;
+///
+///     @include rmd-utils-rtl {
+///       margin-left: 1rem;
+///       margin-right: auto;
+///     }
+///   }
+///
+@mixin rmd-utils-rtl {
+  @if $rmd-utils-enable-rtl {
+    [dir='rtl'] & {
+      @content;
+    }
+  }
+}
+
+/// This mixin will try to automatically swap the positioning styles for rtl languages.
+/// If the swapped style should have something other than `auto` as the new style, that
+/// style should be included in the `$swapped-styles` map with the correct value.
+///
+/// @param {String} property - The property that should be reversed for rtl languages.
+/// @param {String|Number} value - The value that should be used for the original property
+/// value or the inversed property value when in rtl mode.
+/// @param {String|Number} swapped-value [null] - The value to use when in rtl languages
+/// for the original property. When this is set to `null`, `0` will be used for margins
+/// and padding while `auto` for everything else.
+@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) {
+  $inversed-property: rmd-utils-swap-position($property);
+
+  @include rmd-utils-rtl {
+    @if $swapped-value == null {
+      $swapped-value: auto;
+
+      @each $prefix in $rmd-utils-swappable-position-prefixes {
+        @if str-index($property, '#{$prefix}-') {
+          $swapped-value: 0;
+        }
+      }
+    }
+
+    #{$property}: #{$swapped-value};
+    #{$inversed-property}: #{$value};
+    @content;
+  }
+
+  #{$property}: #{$value};
+}
+
+/// This mixin will try to automatically swap the positioning styles for rtl languages.
+/// If the swapped style should have something other than `auto` as the new style, that
+/// style should be included in the `$swapped-styles` map with the correct value.
+///
+/// @param {Map} styles - The styles that should be swapped for rtl languages. Right now
+///   react-md only supports the `$rmd-utils-swappable-positions`.
+/// @param {Map} swapped-styles [()] - Any optional swapped style overrides that should
+///   be applied.
+@mixin rmd-utils-rtl-auto-group($styles, $swapped-styles: ()) {
+  @include rmd-utils-map-to-styles($styles);
+  @include rmd-utils-rtl {
+    @each $property, $value in $styles {
+      $inversed-property: rmd-utils-swap-position($property);
+      $inversed-value: auto;
+      @if map-has-key($swapped-styles, $property) {
+        $inversed-value: map-get($swapped-styles, $property);
+      } @else if map-has-key($styles, $inversed-property) {
+        $inversed-value: map-get($swapped-styles, $inversed-property);
+      }
+
+      #{$property}: #{$inversed-value};
+      #{$inversed-property}: #{$value};
+
+      @content;
+    }
+  }
+}
+
+/// A very simple mixin that will center an element within the page for you
+/// when you aren't using flexbox or grid for the part of the layout.
+@mixin rmd-utils-block-centered($vertical-margin: null) {
+  display: block;
+
+  @if $vertical-margin {
+    margin: $vertical-margin auto;
+  } @else {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/// A very simple mixin that is used to position an element in the center of
+/// another element by using some transforms and `position: absolute`. You will
+/// need to make sure that the parent element has `position: relative` to work.
+@mixin rmd-utils-absolute-centered {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+/// An extremely simple util that is used to add scrolling to an element with a "patch" for adding scroll
+/// momentum to iOS.
+///
+/// @param {String} position [null] - This should either be "x", "y", or null. This will just change the style
+///     between overflow, overflow-x, and overflow-y.
+/// @param {String} type [auto] - The scroll type to apply. It is recommended to use the default of `auto` in
+///     most cases, but it can be set to something else.
+/// @param {Boolean} enable-momentum [$rmd-utils-ios-scroll-momentum] - Boolean if iOS scroll momentum should be "patched".
+@mixin rmd-utils-scroll(
+  $position: null,
+  $type: auto,
+  $enable-momentum: $rmd-utils-ios-scroll-momentum
+) {
+  $style: overflow;
+  @if $position == 'x' or $position == 'y' {
+    $style: #{$style}-#{$position};
+  }
+
+  #{$style}: $type;
+
+  @if $enable-momentum {
+    // sass-lint:disable no-vendor-prefixes
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/// A helper mixin that will hide the outline style when a user focuses any element / on the page. All this really does
+/// is create an `outline-style: none` when the element is focused.
+///
+/// @param {Boolean} fix-moz-focus [true] - Boolean if the Firefox focus inner styles should also
+///     be removed.
+@mixin rmd-utils-hide-focus-outline($fix-moz-focus: true) {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &:focus {
+    outline-style: none;
+  }
+
+  @if $fix-moz-focus {
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}
+
+/// An extremely simple mixin that will allow any element to be fixed to the entire viewport
+/// size.
+/// @param {String} position [fixed] - The positioning that should be applied. This should be
+/// one of the values for the `position` attribute.
+@mixin rmd-utils-full-screen($position: fixed) {
+  bottom: 0;
+  left: 0;
+  position: $position;
+  right: 0;
+  top: 0;
+}
+
+/// Creates the styles to apply to a pseudo element (`::before` or `::after`) so that
+/// it spans the entire size of the container element. This is really useful for
+/// focus effects or other interaction states. This relies on the parent to have
+/// `position: relative;` to work.
+///
+/// @param {Number} z-index [0] - The z-index to use.
+@mixin rmd-utils-pseudo-element($z-index: 0) {
+  @include rmd-utils-full-screen(absolute);
+
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+  z-index: $z-index;
+}
+
+/// Creates styles to make a screenreader only class visible while focused.
+/// @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+/// @access private
+@mixin rmd-utils-sr-only-focusable {
+  &:active,
+  &:focus {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    margin: auto;
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+  }
+}
+
+/// Creates styles so that an element is visible only for screen readers.
+///
+/// @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+/// @param {Boolean} focusable [false] - Boolean if the element should still be focusable
+/// and then be visible when focused.
+/// @param {String} focus-suffix ['&--focusable'] - The suffix to use for an element that
+/// can be focusable. This will be used alongside `&:active` and `&:focus`. If this value
+/// is set to `null`, no prefix will be provided and just the `&:active` and `&:focus`
+/// selectors will be used instead. These styles will only be generated if the `focusable`
+/// parameter is `true`.
+@mixin rmd-utils-sr-only($focusable: false, $focus-suffix: '&--focusable') {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+
+  @if $focusable {
+    @if not $focus-suffix {
+      @include rmd-utils-sr-only-focusable;
+    } @else {
+      #{$focus-suffix} {
+        @include rmd-utils-sr-only-focusable;
+      }
+    }
+  }
+}
+
+/// This mixin will hide the scrollbar for an element but still allow scrolling by
+/// using the scrollbar-width property along with the -webkit-scrollbar pseudo selector.
+/// If on a non-MacOS and the horizontal scrollbars were hidden, the user can still
+/// scroll by holding shift while scrolling.
+///
+/// Note: This only works due to the limited browser support of this library. If you need
+/// to support older browsers, don't use this.
+/// @link https://caniuse.com/#feat=css-scrollbar
+@mixin rmd-utils-hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+}
+
+/// Creates a media query so that only phones will be targeted with the
+/// styles. This media query **will stop** at the phone's max width
+/// instead of being a `min-width` query since it would be better to just
+/// apply the phone styles as a base and use the tablet or desktop min-width
+/// queries for additional overrides.
+@mixin rmd-utils-phone-media {
+  @media screen and (max-width: #{$rmd-utils-phone-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so devices targeted at the min-width of a tablet and
+/// above will gain these styles.
+@mixin rmd-utils-tablet-media {
+  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes between the min and max width of a
+/// tablet will only gain these styles.
+@mixin rmd-utils-tablet-only-media {
+  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) and (max-width: #{$rmd-utils-tablet-max-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least the min width
+/// for a desktop will gain these styles.
+@mixin rmd-utils-desktop-media {
+  @media screen and (min-width: #{$rmd-utils-desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least the min width
+/// for a large desktop will gain these styles.
+@mixin rmd-utils-large-desktop-media {
+  @media screen and (min-width: #{$rmd-utils-large-desktop-min-width}) {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app on a touch device.
+@mixin rmd-utils-touch-only {
+  .rmd-utils--touch & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a keyboard.
+@mixin rmd-utils-keyboard-only {
+  .rmd-utils--keyboard & {
+    @content;
+  }
+}
+
+/// This mixin allows you to add styles to an element only when the user is
+/// interacting with your app with a mouse.
+@mixin rmd-utils-mouse-only {
+  .rmd-utils--mouse & {
+    @content;
+  }
+}
+
+/// Generates a new grid based on the provided padding, margin, and columns.
+///
+/// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply to the base grid element.
+/// @param {Number} gutter [rmd-grid-cell-margin] - The amount of margin to apply between each cell
+/// within the grid. Unlike flex grids, this will only be applied between cells instead of to the `top`, `right`,
+/// `bottom`, and `left` of each cell so this should _normally_ be doubled compared to the flex grids.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
+/// on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
+/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
+/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
+/// @param {Number} large-desktop-columns [rmd-grid-large-desktop-columns] - The number of columns that should
+/// appear per-row on large desktop screens. If this is not greater than the `$tablet-columns` parameter, it will
+/// not be used.
+@mixin rmd-grid(
+  $padding: $rmd-grid-padding,
+  $gutter: $rmd-grid-cell-margin,
+  $phone-columns: $rmd-grid-phone-columns,
+  $tablet-columns: $rmd-grid-tablet-columns,
+  $desktop-columns: $rmd-grid-desktop-columns,
+  $large-desktop-columns: $rmd-grid-large-desktop-columns
+) {
+  @if $tablet-columns > $phone-columns {
+    @include rmd-utils-tablet-media {
+      #{$rmd-grid-columns-var}: #{$tablet-columns};
+    }
+  }
+
+  @if $desktop-columns > $tablet-columns {
+    @include rmd-utils-desktop-media {
+      #{$rmd-grid-columns-var}: #{$desktop-columns};
+    }
+  }
+
+  @if $large-desktop-columns > $desktop-columns {
+    @include rmd-utils-large-desktop-media {
+      #{$rmd-grid-columns-var}: #{$large-desktop-columns};
+    }
+  }
+
+  display: grid;
+  grid-column-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
+  grid-row-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
+  grid-template-columns: repeat(var(#{$rmd-grid-columns-var}, #{$phone-columns}), 1fr);
+  padding: $padding;
+
+  > * {
+    // this allows the children to shrink if needed so that they don't overflow
+    // the entire grid
+    min-width: 0;
+  }
+}
+
+/// This mixin is just a nice way to quickly make a cell span the entire width of the grid.
+///
+/// Note: if you set the number of columns for phone or tablet to `1`, you'll need to also
+/// wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media`
+/// mixins respectively.
+@mixin rmd-grid-cell-full {
+  grid-column: 1 / span var(#{$rmd-grid-columns-var}, $rmd-grid-phone-columns);
+}
+
+/// A mixin that allows you to override the size of a cell within the `Grid` component manually.
+/// This is useful if you want to specify sizing without using the `GridCell` component wrapper.
+///
+/// @param {Number} size - The number of columns the element should span. This should normally
+/// be a number greater than 1 since using 1 is the default cell size.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
+/// on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
+/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
+/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
+@mixin rmd-grid-cell-size(
+  $size,
+  $phone-columns: $rmd-grid-phone-columns,
+  $tablet-columns: $rmd-grid-tablet-columns,
+  $desktop-columns: $rmd-grid-desktop-columns
+) {
+  @if $size >= $desktop-columns {
+    @include rmd-utils-desktop-media {
+      // I'll need to make a desktop-only media if people actually define more columns for
+      // large desktops
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  @if $size >= $tablet-columns {
+    @include rmd-utils-tablet-only-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  @if $size >= $phone-columns {
+    @include rmd-utils-phone-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  grid-column-end: span $size;
+}
+
+/// Creates the styles for all the cell column spans and "fixes" for smaller media types if the
+/// media types doesn't support the same number of columns.
+/// @access private
+@mixin rmd-grid-cell {
+  @for $i from 2 through $rmd-grid-large-desktop-columns {
+    &--#{$i} {
+      @include rmd-grid-cell-size($i);
+    }
+  }
+}
+
+/// A simple mixin that will allow you to add the current grid list cell size to any property.
+///
+/// @param {String} property - The css property to apply the size to.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This
+/// is really just a fallback value if the `--rmd-cell-size` hasn't been defined yet by the `GridList`
+/// component.
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin that should be placed
+/// between each cell. This will be used with the current `--rmd-cell-size` to calculate the
+/// correct height and width. This value **will be multiplied by 2 in the calculation**.
+@mixin rmd-grid-list-cell-size(
+  $property,
+  $max-size: $rmd-grid-list-cell-max-size,
+  $margin: $rmd-grid-list-cell-margin
+) {
+  $size: var(#{$rmd-grid-cell-size-var}, #{$max-size});
+  @if $margin and $margin > 0 {
+    $size: calc(#{$size} - calc(var(#{$rmd-grid-cell-margin-var}, #{$margin}) * 2));
+  }
+
+  #{$property}: $size;
+}
+
+/// Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component
+/// for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.
+///
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin to apply to each cell for top, right, bottom
+/// and left.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This is really just a
+/// fallback if the `GridList` component hasn't set the `--rmd-cell-size` variable yet.
+/// @param {Boolean} include-height [true] - Boolean if the cell's height should be restricted to the current cell size
+/// as well so it can be perfectly square.
+@mixin rmd-grid-list-cell(
+  $margin: $rmd-grid-list-cell-margin,
+  $max-size: $rmd-grid-list-cell-max-size,
+  $include-height: true
+) {
+  @if $include-height {
+    @include rmd-grid-list-cell-size(height, $max-size, $margin);
+  }
+  @include rmd-grid-list-cell-size(width, $max-size, $margin);
+
+  margin: var(#{$rmd-grid-cell-margin-var}, #{$margin});
+}
+
+/// Creates the styles for the `GridList` component
+/// @access private
+@mixin rmd-grid-list($padding: $rmd-grid-list-padding, $margin: 0 auto) {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  margin: $margin;
+  padding: $padding;
+}
+
+/// Generates all the styles for the grid systems in react-md.
+/// @access private
+@mixin react-md-utils-grid {
+  .rmd-grid {
+    @include rmd-grid;
+
+    &--no-padding {
+      padding: 0;
+    }
+
+    &__cell {
+      @include rmd-grid-cell;
+    }
+  }
+
+  .rmd-grid-list {
+    @include rmd-grid-list;
+
+    &__cell {
+      @include rmd-grid-list-cell($include-height: false);
+
+      &--square {
+        @include rmd-grid-list-cell-size(height);
+      }
+    }
+  }
+}
+
+/// This is a small utility function that helps set up your react-md app.
+///
+/// This will:
+/// - update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)
+/// - remove the margin and padding from the `html` and `body`
+/// - apply the base background color and text colors to the `html` tag if the `@react-md/theme` package
+///   has been correctly included
+/// - apply the base typography to the `html` element if the `@react-md/typography` package
+///   has been correctly included
+@mixin rmd-utils-base {
+  *,
+  *::before,
+  *::after {
+    // setting everything to border-box for easier positioning
+    // and calculations
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    @if mixin-exists(rmd-theme) {
+      @include rmd-theme(background-color, background);
+      @include rmd-theme(color, text-primary-on-background);
+    }
+
+    @if mixin-exists(rmd-typography-base) {
+      @include rmd-typography-base;
+    }
+  }
+
+  body {
+    &.rmd-utils--touch {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+      // this allows for click events to be bubbleable on iOS to the root document. Without this,
+      // all the `onOutsideClick` behavior won't work.
+      cursor: pointer;
+    }
+  }
+}
+
+/// This mixin will attempt to apply all the available dense theme mixins that have
+/// been imported. This should normally be used within a `:root` selector and a media
+/// query.
+///
+/// @example scss - Simple Usage
+/// :root {
+///   @include rmd-utils-desktop-media {
+///     @include rmd-utils-dense;
+///   }
+/// }
+@mixin rmd-utils-dense {
+  @if mixin-exists(rmd-app-bar-dense-theme) {
+    @include rmd-app-bar-dense-theme;
+  }
+
+  @if mixin-exists(rmd-toggle-dense-theme) {
+    @include rmd-toggle-dense-theme;
+  }
+
+  @if mixin-exists(rmd-icon-dense-theme) {
+    @include rmd-icon-dense-theme;
+  }
+
+  @if mixin-exists(rmd-list-dense-theme) {
+    @include rmd-list-dense-theme;
+  }
+
+  @if mixin-exists(rmd-list-item-dense-theme) {
+    @include rmd-list-item-dense-theme;
+  }
+
+  @if mixin-exists(rmd-tooltip-dense-theme) {
+    @include rmd-tooltip-dense-theme;
+  }
+}
+
+/// This mixin will include the styles for all packages that have been
+/// imported in your scss files. If there are missing styles, you need
+/// to make sure to correctly import that package before calling this
+/// function.
+@mixin react-md-utils {
+  @include rmd-utils-base;
+  @include react-md-utils-grid;
+
+  @if mixin-exists(react-md-alert) {
+    @include react-md-alert;
+  }
+
+  @if mixin-exists(react-md-avatar) {
+    @include react-md-avatar;
+  }
+
+  @if mixin-exists(react-md-badge) {
+    @include react-md-badge;
+  }
+
+  @if mixin-exists(react-md-button) {
+    @include react-md-button;
+  }
+
+  // has to come after buttons since it overrides some button styles
+  @if mixin-exists(react-md-app-bar) {
+    @include react-md-app-bar;
+  }
+
+  @if mixin-exists(react-md-overlay) {
+    @include react-md-overlay;
+  }
+
+  // has to come after overlays since it overrides the z-index
+  @if mixin-exists(react-md-dialog) {
+    @include react-md-dialog;
+  }
+
+  @if mixin-exists(react-md-card) {
+    @include react-md-card;
+  }
+
+  @if mixin-exists(react-md-chip) {
+    @include react-md-chip;
+  }
+
+  @if mixin-exists(react-md-divider) {
+    @include react-md-divider;
+  }
+
+  @if mixin-exists(react-md-form) {
+    @include react-md-form;
+  }
+
+  @if mixin-exists(react-md-icon) {
+    @include react-md-icon;
+  }
+
+  @if mixin-exists(react-md-layout) {
+    @include react-md-layout;
+  }
+
+  @if mixin-exists(react-md-link) {
+    @include react-md-link;
+  }
+
+  @if mixin-exists(react-md-list) {
+    @include react-md-list;
+  }
+
+  @if mixin-exists(react-md-media) {
+    @include react-md-media;
+  }
+
+  @if mixin-exists(react-md-menu) {
+    @include react-md-menu;
+  }
+
+  @if mixin-exists(react-md-progress) {
+    @include react-md-progress;
+  }
+
+  @if mixin-exists(react-md-sheet) {
+    @include react-md-sheet;
+  }
+
+  @if mixin-exists(react-md-states) {
+    @include react-md-states;
+  }
+
+  @if mixin-exists(react-md-table) {
+    @include react-md-table;
+  }
+
+  @if mixin-exists(react-md-tabs) {
+    @include react-md-tabs;
+  }
+
+  @if mixin-exists(react-md-theme) {
+    @include react-md-theme;
+  }
+
+  @if mixin-exists(react-md-tooltip) {
+    @include react-md-tooltip;
+  }
+
+  @if mixin-exists(react-md-transition) {
+    @include react-md-transition;
+  }
+
+  @if mixin-exists(react-md-tree) {
+    @include react-md-tree;
+  }
+
+  @if mixin-exists(react-md-typography) {
+    @include react-md-typography;
+  }
+
+  @if $rmd-utils-auto-dense {
+    :root {
+      @include rmd-utils-desktop-media {
+        @include rmd-utils-dense;
+      }
+    }
+  }
+}

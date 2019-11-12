@@ -1,0 +1,56 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Utils Example - Material Grid Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Utils Example - Material Grid Example",
+      "description": "Example from https://react-md.dev/packages/utils/demos#material-grid-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/elevation": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { Grid, GridCell } from \"@react-md/utils\";\n\nimport \"./Grid.scss\";\n\nconst GridExample: FC = () => (\n  <Fragment>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(12), (_, i) => (\n        <GridCell key={i} className=\"grid__item\">{`Cell ${i + 1}`}</GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(6), (_, i) => (\n        <GridCell key={i} className=\"grid__item\" colSpan={2}>\n          {`Cell ${i + 1}`}\n        </GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(8), (_, i) => (\n        <GridCell key={i} className=\"grid__item\" colSpan={3}>\n          {`Cell ${i + 1}`}\n        </GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(3), (_, i) => (\n        <GridCell key={i} className=\"grid__item\" colSpan={4}>\n          {`Cell ${i + 1}`}\n        </GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(2), (_, i) => (\n        <GridCell key={i} className=\"grid__item\" colSpan={5}>\n          {`Cell ${i + 1}`}\n        </GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      {Array.from(new Array(2), (_, i) => (\n        <GridCell key={i} className=\"grid__item\" colSpan={6}>\n          {`Cell ${i + 1}`}\n        </GridCell>\n      ))}\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={7}>\n        Cell 1\n      </GridCell>\n      <GridCell className=\"grid__item\" colSpan={5}>\n        Cell 2\n      </GridCell>\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={8}>\n        Cell 1\n      </GridCell>\n      <GridCell className=\"grid__item\" colSpan={4}>\n        Cell 2\n      </GridCell>\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={9}>\n        Cell 1\n      </GridCell>\n      <GridCell className=\"grid__item\" colSpan={3}>\n        Cell 2\n      </GridCell>\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={10}>\n        Cell 1\n      </GridCell>\n      <GridCell className=\"grid__item\" colSpan={2}>\n        Cell 2\n      </GridCell>\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={11}>\n        Cell 1\n      </GridCell>\n      <GridCell className=\"grid__item\">Cell 2</GridCell>\n    </Grid>\n    <Grid className=\"grid grid--small\">\n      <GridCell className=\"grid__item\" colSpan={12}>\n        Cell 1\n      </GridCell>\n    </Grid>\n  </Fragment>\n);\n\nexport default GridExample;\n",
+    "isBinary": false
+  },
+  "src/Grid.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.grid {\n  background-color: $rmd-theme-light-background;\n\n  &--small {\n    .grid__item {\n      min-height: 3rem;\n    }\n  }\n\n  + .grid {\n    margin-top: 1rem;\n  }\n\n  &__item {\n    @include rmd-elevation(2);\n    @include rmd-theme(background-color, surface);\n    @include rmd-theme(color, text-primary-on-background);\n\n    align-items: center;\n    display: flex;\n    justify-content: center;\n    min-height: 10rem;\n    text-align: center;\n  }\n}\n\n.dark-theme {\n  .grid {\n    background-color: #121212;\n  }\n\n  .grid__item {\n    background-color: rgba($rmd-white-base, 0.05);\n    color: $rmd-white-base;\n  }\n}\n",
+    "isBinary": false
+  }
+}

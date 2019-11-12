@@ -1,0 +1,144 @@
+////
+/// @group app-bar
+////
+
+@import '~@react-md/button/dist/variables';
+@import '~@react-md/icon/dist/variables';
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/variables';
+
+/// The z-index to use for the fixed app bar. Ideally this value should be less than
+/// any of the "temporary" materials like overlays, sheets, and menus.
+/// @type Number
+$rmd-app-bar-z-index: 10 !default;
+
+/// The elevation to use for "fixed" app bars. This should be a number between 0 and 16.
+/// @type Number
+$rmd-app-bar-fixed-elevation: 2 !default;
+
+/// The height for the app bar.
+/// @type Number
+$rmd-app-bar-height: 3.5rem !default;
+
+/// The dense height for the app bar.
+/// @type Number
+$rmd-app-bar-dense-height: 3rem !default;
+
+/// The prominent/extended height for the app bar.
+/// @type Number
+$rmd-app-bar-prominent-height: $rmd-app-bar-height * 2 !default;
+
+/// The prominent/extended height for the app bar when the `dense` prop is also enabled.
+/// @type Number
+$rmd-app-bar-prominent-dense-height: $rmd-app-bar-dense-height * 2 !default;
+
+/// The default keyline to use for either the `AppBarNav` or `AppBarTitle`. This makes the icon in the `AppBarNav` or
+/// the first letter in the `AppBarTitle` appear at this distance.
+/// @type Number
+$rmd-app-bar-keyline: 1rem !default;
+
+/// The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned
+/// at the keyline (ignoring the button padding).
+/// @type Number
+$rmd-app-bar-nav-margin: $rmd-app-bar-keyline - (($rmd-button-icon-size - $rmd-icon-size) / 2);
+
+/// The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or the `offset` prop is enabled.
+/// @type Number
+$rmd-app-bar-title-keyline: 4.5rem !default;
+
+/// The amount of margin to apply to the title when used with the `AppBarNav` component.
+/// @type Number
+$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin -
+  $rmd-button-icon-size;
+
+/// The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be
+/// applied if using the `AppBarNav` component and will be applied to the `AppBarAction` component that enables the `last` prop.
+/// @type Number
+$rmd-app-bar-lr-margin: 0.25rem !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"primary"`.
+/// @type Color
+$rmd-app-bar-primary-background-color: rmd-theme-var(primary) !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"primary"`.
+/// @type Color
+$rmd-app-bar-primary-color: rmd-theme-var(on-primary) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"secondary"`.
+/// @type Color
+$rmd-app-bar-secondary-background-color: rmd-theme-var(secondary) !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"secondary"`.
+/// @type Color
+$rmd-app-bar-secondary-color: rmd-theme-var(on-secondary) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"default"`
+/// and the app is currently using a light theme.
+/// @type Color
+$rmd-app-bar-default-light-theme-background-color: $rmd-grey-100 !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"default"` and
+/// the app is currently using a light theme.
+/// @type Color
+$rmd-app-bar-default-light-theme-color: if(
+  rmd-theme-tone($rmd-app-bar-default-light-theme-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color for the app bar when the `theme` prop is set to `"default"`
+/// and the app is currently using a dark theme.
+/// @type Color
+$rmd-app-bar-default-dark-theme-background-color: $rmd-grey-900 !default;
+
+/// The text color for the app bar when the `theme` prop is set to `"default"` and
+/// the app is currently using a dark theme.
+/// @type Color
+$rmd-app-bar-default-dark-theme-color: if(
+  rmd-theme-tone($rmd-app-bar-default-dark-theme-background-color) == light,
+  $rmd-black-base,
+  $rmd-white-base
+) !default;
+
+/// The background color to use for the app bar that is using the `default` theme. This
+/// value is derived based on the current background color of the app for light or dark
+/// themed apps.
+/// @type Color
+$rmd-app-bar-default-background-color: if(
+  rmd-theme-tone($rmd-theme-background) == light,
+  $rmd-app-bar-default-light-theme-background-color,
+  $rmd-app-bar-default-dark-theme-background-color
+) !default;
+
+/// The text color to use for the app bar that is using the `default` theme. This
+/// value is derived based on the current background color of the app for light or dark
+/// themed apps.
+/// @type Color
+$rmd-app-bar-default-color: if(
+  rmd-theme-tone($rmd-app-bar-default-background-color) == light,
+  $rmd-app-bar-default-light-theme-color,
+  $rmd-app-bar-default-dark-theme-color
+) !default;
+
+/// A Map of all the "themeable" parts of the app-bar package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-app-bar-theme-values: (
+  background-color: transparent,
+  color: initial,
+  primary: $rmd-app-bar-primary-background-color,
+  on-primary: $rmd-app-bar-primary-color,
+  secondary: $rmd-app-bar-secondary-background-color,
+  on-secondary: $rmd-app-bar-secondary-color,
+  default-background-color: $rmd-app-bar-default-background-color,
+  default-light-background-color: $rmd-app-bar-default-light-theme-background-color,
+  default-dark-background-color: $rmd-app-bar-default-dark-theme-background-color,
+  default-color: $rmd-app-bar-default-color,
+  default-light-color: $rmd-app-bar-default-light-theme-color,
+  default-dark-color: $rmd-app-bar-default-dark-theme-color,
+  height: $rmd-app-bar-height,
+  dense-height: $rmd-app-bar-dense-height,
+  prominent-height: $rmd-app-bar-prominent-height,
+  prominent-dense-height: $rmd-app-bar-prominent-dense-height,
+) !default;

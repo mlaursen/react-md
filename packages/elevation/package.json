@@ -1,0 +1,41 @@
+{
+  "name": "@react-md/elevation",
+  "version": "2.0.0-alpha.10",
+  "description": "This is a small package for react-md that can create the elevation styles in the material design spec.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean"
+  },
+  "main": "./dist/scssVariables.js",
+  "module": "./dist/scssVariables.js",
+  "types": "./dist/scssVariables.d.ts",
+  "files": [
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/elevation"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "react-md",
+    "material design",
+    "sass",
+    "styles",
+    "elevation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/theme": "^2.0.0-alpha.10",
+    "@react-md/transition": "^2.0.0-alpha.10",
+    "@react-md/utils": "^2.0.0-alpha.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

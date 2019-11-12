@@ -1,0 +1,61 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Badge Example - With Tooltips</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/badge/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Badge Example - With Tooltips",
+      "description": "Example from https://react-md.dev/packages/badge/demos#with-tooltips",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/badge": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/tooltip": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport TooltippedBadgedButton from \"./TooltippedBadgedButton\";\n\nimport \"./SimpleExamples.scss\";\n\nconst Demo: FC = () => (\n  <Fragment>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-1\"\n      tooltip=\"No Alerts\"\n      className=\"badge-container\"\n    />\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-2\"\n      tooltip=\"10 New Alerts\"\n      className=\"badge-container\"\n    >\n      10\n    </TooltippedBadgedButton>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-3\"\n      tooltip=\"100 New Alerts\"\n      className=\"badge-container\"\n    >\n      99+\n    </TooltippedBadgedButton>\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/SimpleExamples.scss": {
+    "content": ".badge-container {\n  margin: 1rem;\n}\n",
+    "isBinary": false
+  },
+  "src/TooltippedBadgedButton.tsx": {
+    "content": "import React, { FC, ReactNode, CSSProperties, forwardRef } from \"react\";\nimport { Tooltipped } from \"@react-md/tooltip\";\nimport { BadgedButton } from \"@react-md/badge\";\nimport { BadgedButtonProps } from \"@react-md/badge/./BadgedButton\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nexport interface TooltippedBadgedButtonProps extends BadgedButtonProps {\n  id: string;\n  tooltip?: ReactNode;\n  tooltipStyle?: CSSProperties;\n  tooltipClassName?: string;\n}\n\nconst TooltippedBadgedButton: FC<\n  TooltippedBadgedButtonProps & WithForwardedRef<HTMLButtonElement>\n> = ({\n  id,\n  tooltip,\n  tooltipStyle,\n  tooltipClassName,\n  children,\n  forwardedRef,\n  ...props\n}) => (\n  <Tooltipped\n    id={id}\n    tooltip={tooltip}\n    style={tooltipStyle}\n    className={tooltipClassName}\n  >\n    <BadgedButton {...props} ref={forwardedRef}>\n      {children}\n    </BadgedButton>\n  </Tooltipped>\n);\n\nexport default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(\n  (props, ref) => <TooltippedBadgedButton {...props} forwardedRef={ref} />\n);\n",
+    "isBinary": false
+  }
+}

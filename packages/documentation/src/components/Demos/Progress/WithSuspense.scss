@@ -1,0 +1,39 @@
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.progress-suspense {
+  &__hello {
+    padding: 1rem;
+  }
+
+  &__load {
+    bottom: 1rem;
+    position: absolute;
+    right: 1rem;
+    z-index: 3;
+  }
+
+  &__loading {
+    @include rmd-utils-absolute-centered;
+
+    white-space: nowrap;
+  }
+
+  &__loading-title {
+    margin: 0 0 1rem;
+  }
+
+  &__add {
+    $size: 2rem;
+    @include rmd-button-theme-update-var(icon-size, $size);
+    @include rmd-theme(color, text-primary-on-light);
+
+    background-color: $rmd-white-base;
+    bottom: -$size / 2;
+    left: 1rem;
+    position: absolute;
+    z-index: 300;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "esnext",
+    "rootDir": "src",
+    "baseUrl": "src",
+    "isolatedModules": true,
+    "paths": {
+      "constants/*": ["constants/*"],
+      "components/*": ["components/*"],
+      "hooks/*": ["hooks/*"],
+      "icons/*": ["icons/*"],
+      "pages/*": ["pages/*"],
+      "types/*": ["types/*"],
+      "utils/*": ["utils/*"]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/server",
+    "**/__tests__"
+  ]
+}

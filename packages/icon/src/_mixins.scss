@@ -1,0 +1,238 @@
+////
+/// @group icon
+////
+
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the icon's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-icon-theme-values` value to.
+/// @param {String} theme-style [property] - One of the keys of `rmd-icon-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-icon-theme-values` map when `null`.
+@mixin rmd-icon-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-icon-theme-values, icon);
+}
+
+/// Updates one of the icon's theme variables with the new value for the section
+/// of your app.
+///
+/// @example scss - Example SCSS USage
+///   .bigger-icon-section {
+///     @include rmd-icon-theme-update-var(size, 4rem);
+///   }
+///
+///
+/// @example scss - Updating the base icon size with a media query
+///   @media (min-width: 75rem)  {
+///     @include rmd-icon-theme-update-var(size, rmd-icon-theme(dense-size));
+///   }
+///
+/// @param {String} theme-style - The icon theme style type to update. This should be one
+///   of the `$rmd-icon-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-icon-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-icon-theme-values, icon);
+}
+
+/// Creates the base styles for icons. This should be combined with the `rmd-icon-font` or
+/// `rmd-icon-svg` mixins to get the full styles.
+@mixin rmd-icon-base {
+  // you normally don't want icons to shrink in flex containers.
+  // update the icon manually instead.
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/// Creates the base styles for a font icon.
+///
+/// @example scss - Example SCSS Usage
+///   .font-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-font;
+///   }
+@mixin rmd-icon-font {
+  @include rmd-icon-theme(color);
+  @include rmd-icon-theme(font-size, size);
+
+  text-align: center;
+}
+
+/// A simple mixin to create the dense theme for an icon.
+@mixin rmd-icon-dense-theme {
+  @include rmd-icon-theme-update-var(size, rmd-icon-theme-var(dense-size));
+}
+
+/// Creates the base styles for an svg icon.
+///
+/// @example scss - Example SCSS Usage
+///   .svg-icon {
+///     @include rmd-icon-base;
+///     @include rmd-icon-svg;
+///   }
+@mixin rmd-icon-svg {
+  @include rmd-icon-theme(fill, color);
+  @include rmd-icon-theme(height, size);
+  @include rmd-icon-theme(width, size);
+}
+
+/// Creates the styles that should be applied to an icon that is placed before or after text
+/// by applying the spacing to the provided `$property` value. This will automatically be
+/// swapped when the language changes to right-to-left.
+///
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
+  @if $property == 'margin-left' or $property == 'margin-right' {
+    @include rmd-utils-rtl-auto($property, $spacing, 0);
+  } @else {
+    #{$property}: $spacing;
+  }
+}
+
+/// A mixin to create the styles to space an icon before or after text with the provided selectors and
+/// spacing.
+///
+/// @example scss - Updating Selectors
+///   // create a component so that it uses the :first-child and :last-child css
+///   // selectors instead of class names that must be applied.
+///   .my-wrapper {
+///     @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');
+///   }
+///
+/// @param {String} before-selector ['&--before'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no before styles will be created.
+/// @param {String} after-selector ['&--after'] - The selector to use for determining if an icon is placed
+///   before or after the text. If this is set to `null`, no after styles will be created.
+/// @param {String} above-selector ['&--above'] - The selector to use for determining if an icon is placed
+///   above or below the text. If this is set to `null`, no before styles will be created.
+/// @param {String} below-selector ['&--after'] - The selector to use for determining if an icon is placed
+///   above or below the text. If this is set to `null`, no after styles will be created.
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+@mixin rmd-icon-spaced-with-text(
+  $before-selector: '&--before',
+  $after-selector: '&--after',
+  $above-selector: '&--above',
+  $below-selector: '&--below',
+  $spacing: $rmd-icon-spacing-with-text
+) {
+  @if $before-selector != null {
+    #{$before-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-right);
+    }
+  }
+
+  @if $after-selector != null {
+    #{$after-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-left);
+    }
+  }
+
+  @if $above-selector != null {
+    #{$above-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-bottom);
+    }
+  }
+
+  @if $below-selector != null {
+    #{$below-selector} {
+      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-top);
+    }
+  }
+}
+
+/// Creates the styles for the `IconRotator` component. These styles are extremely simple and basically
+/// apply different rotate transforms based on a class name.
+@mixin rmd-icon-rotator {
+  .rmd-icon-rotator {
+    @include rmd-icon-theme(transform, rotate-from);
+
+    &--animate {
+      transition: transform $rmd-icon-rotator-transition-time linear;
+    }
+
+    &--rotated {
+      @include rmd-icon-theme(transform, rotate-to);
+    }
+  }
+}
+
+/// Creates all the styles for the icon components.
+@mixin rmd-icon {
+  .rmd-icon {
+    @include rmd-icon-base;
+
+    @if $rmd-icon-material-icons-font {
+      &.material-icons {
+        // force material-icons to use the size of icons even if the material-icons font css
+        // is loaded after the base react-md styles
+        @include rmd-icon-theme(font-size, size);
+      }
+    }
+
+    // sass-lint:disable no-important
+    // when other icon libraries don't have consistent sizes...
+    &--forced-font {
+      font-size: rmd-icon-theme-var(size) !important;
+    }
+
+    &--forced-size {
+      height: rmd-icon-theme-var(size) !important;
+      width: rmd-icon-theme-var(size) !important;
+    }
+
+    @if $rmd-icon-include-dense {
+      &--dense {
+        @include rmd-icon-dense-theme;
+      }
+    }
+
+    @if $rmd-icon-use-font-icons {
+      &--font {
+        @include rmd-icon-font;
+      }
+    }
+
+    @if $rmd-icon-use-svg-icons {
+      &--svg {
+        @include rmd-icon-svg;
+
+        * {
+          // make sit so that paths and other things won't be event targets which makes things easier
+          // to determine if something is an icon or not
+          pointer-events: none;
+        }
+      }
+    }
+
+    @include rmd-icon-spaced-with-text;
+  }
+}
+
+/// Creates the styles for when the `TextIconSpacing` component
+/// needs to wrap the content in a `<span>`. It's really used to
+/// force vertical centerl alignment.
+@mixin rmd-icon-spacing {
+  .rmd-text-icon-spacing {
+    align-items: center;
+    display: inline-flex;
+  }
+}
+
+/// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
+/// to be enabled to generate any styles.
+@mixin react-md-icon {
+  @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {
+    @error 'Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.';
+  }
+
+  @include rmd-theme-create-root-theme($rmd-icon-theme-values, icon);
+
+  @include rmd-icon;
+  @include rmd-icon-spacing;
+  @include rmd-icon-rotator;
+}

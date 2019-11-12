@@ -1,0 +1,53 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Menu Example - Nested Dropdown Menus</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/menu/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Menu Example - Nested Dropdown Menus",
+      "description": "Example from https://react-md.dev/packages/menu/demos#nested-dropdown-menus",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/menu": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment, useState } from \"react\";\nimport { Checkbox } from \"@react-md/form\";\nimport {\n  DropdownMenu,\n  DropdownMenuItem,\n  MenuItemSeparator,\n} from \"@react-md/menu\";\n\nconst InfiniteNestedMenus: FC<{\n  depth: number;\n  index: number;\n  portal: boolean;\n}> = ({ depth, index, portal }) => (\n  <DropdownMenuItem\n    id={`nested-menu-depth-${index}-${depth}`}\n    portal={portal}\n    items={[\n      \"Item 1\",\n      \"Item 2\",\n      ...Array.from(new Array(4), (_, i) => (\n        <InfiniteNestedMenus depth={depth + 1} index={i} portal={portal} />\n      )),\n      \"Item 8\",\n    ]}\n  >\n    {`Current depth: ${depth} and index: ${index}`}\n  </DropdownMenuItem>\n);\n\nconst Demo: FC = () => {\n  const [portal, setPortal] = useState(true);\n\n  return (\n    <Fragment>\n      <Checkbox\n        id=\"nested-menu-portal\"\n        name=\"portal\"\n        label=\"Enable Portal?\"\n        checked={portal}\n        onChange={event => setPortal(event.currentTarget.checked)}\n      />\n      <DropdownMenu\n        id=\"simple-nested-menus-example\"\n        portal={portal}\n        items={[\n          \"Item 1\",\n          \"Item 2\",\n          <MenuItemSeparator />,\n          <InfiniteNestedMenus depth={0} index={0} portal={portal} />,\n          \"Item 4\",\n          \"Item 5\",\n        ]}\n      >\n        Simple\n      </DropdownMenu>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

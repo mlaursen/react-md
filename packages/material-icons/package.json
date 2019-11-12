@@ -1,0 +1,57 @@
+{
+  "name": "@react-md/material-icons",
+  "version": "2.0.0-alpha.10",
+  "description": "This package is just a simple wrapper for using material icons within react-md as either font icons or svg icons.",
+  "scripts": {
+    "clean": "dev-utils clean bin",
+    "executable": "chmod +x bin/cli.js",
+    "compile": "tsc -p tsconfig.cli.json",
+    "build-cli": "npm-run-all compile executable",
+    "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
+    "watch": "npm-run-all -p \"compile -- -w\" watcher",
+    "build": "dev-utils build"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "src/*",
+    "svgs/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/material-icons"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "component",
+    "components",
+    "icons",
+    "svg icon",
+    "font icon",
+    "material design icons"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@react-md/icon": "^2.0.0-alpha.10",
+    "download": "^7.1.0",
+    "unzipper": "^0.10.5"
+  },
+  "peerDependencies": {
+    "@react-md/icon": "^2.0.0-alpha.0",
+    "react": ">= 16.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

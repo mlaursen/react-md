@@ -1,0 +1,278 @@
+////
+/// @group progress
+////
+
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/functions';
+
+/// Boolean if the linear progress bar styles should be created by
+/// default.
+/// @type Boolean
+$rmd-progress-include-linear: true !default;
+
+/// Boolean if the circular progress bar styles should be created by
+/// default.
+/// @type Boolean
+$rmd-progress-include-circular: true !default;
+
+/// This is the main color that should be used for the linear progress
+/// and the circular progress components.
+/// @type Color
+$rmd-progress-color: $rmd-theme-primary !default;
+
+/// This is the background color that is used fot the linear progress only.
+/// You normally want this color to be a bit ligher than the main progress
+/// color since it'll be underneath the main progress.
+/// @type Color
+$rmd-progress-background-color: rmd-theme-get-swatch(
+  $rmd-theme-primary,
+  300,
+  false,
+  rgba($rmd-theme-primary, 0.4)
+) !default;
+
+/// This is the linear progress bar's height or the width when switched to vertical.
+/// @type Number
+$rmd-linear-progress-size: 4px !default;
+
+/// The transition duration for the entire linear progress animation. This one is
+/// much longer compared to other transitions since progress indicators are normally
+/// for longer running background tasks.
+/// @type Number
+$rmd-linear-progress-transition-duration: 2.4s !default;
+
+/// The delay before the second linear progress animation should start. This animation
+/// is for the very quick and smaller bar animation that will appear after the first
+/// transition is near the end.
+/// @type Number
+$rmd-linear-progress-short-animation-delay: 0.75s !default;
+
+/// The linear progress bar styles to apply for the transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-styles: (
+  0%: (
+    left: -35%,
+    right: 100%,
+  ),
+  60%: (
+    left: 100%,
+    right: -90%,
+  ),
+  100%: (
+    left: 100%,
+    right: -90%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-short-styles: (
+  0%: (
+    left: -200%,
+    right: 100%,
+  ),
+  40%: (
+    left: 107%,
+    right: -8%,
+  ),
+  100%: (
+    left: 107%,
+    right: -8%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-reverse-styles: (
+  0%: (
+    left: 100%,
+    right: -35%,
+  ),
+  60%: (
+    left: -90%,
+    right: 100%,
+  ),
+  100%: (
+    left: -90%,
+    right: 100%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-reverse-short-styles: (
+  0%: (
+    left: 100%,
+    right: -200%,
+  ),
+  40%: (
+    left: -8%,
+    right: 107%,
+  ),
+  100%: (
+    left: -8%,
+    right: 107%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the vertical transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-vertical-styles: (
+  0%: (
+    bottom: -35%,
+    top: 100%,
+  ),
+  60%: (
+    bottom: 100%,
+    top: -90%,
+  ),
+  100%: (
+    bottom: 100%,
+    top: -90%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter vertical transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-vertical-short-styles: (
+  0%: (
+    bottom: -200%,
+    top: 100%,
+  ),
+  40%: (
+    bottom: 107%,
+    top: -8%,
+  ),
+  100%: (
+    bottom: 107%,
+    top: -8%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the vertical transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-vertical-reverse-styles: (
+  0%: (
+    bottom: 100%,
+    top: -35%,
+  ),
+  60%: (
+    bottom: -90%,
+    top: 100%,
+  ),
+  100%: (
+    bottom: -90%,
+    top: 100%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter vertical transition. Each key in this map
+/// will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-linear-progress-vertical-reverse-short-styles: (
+  0%: (
+    bottom: 100%,
+    top: -200%,
+  ),
+  40%: (
+    bottom: -8%,
+    top: 107%,
+  ),
+  100%: (
+    bottom: -8%,
+    top: 107%,
+  ),
+) !default;
+
+/// The size for the circular progress svg.
+/// @type Number
+$rmd-circular-progress-size: 3rem !default;
+
+/// The stroke width for the circular svg. I wouldn't change this value unless you
+/// also update the `viewbox` for the `CircularProgress` component.
+/// @type Number
+$rmd-progress-circle-stroke-width: 6 !default;
+
+/// The dasharray fro the circular svg. I don't really know how this works so good
+/// luck changing it to something else. If this value is changed, you'll aslo need
+/// to update the `dasharray` prop for the `CircularProgress` component.
+/// @type Number
+$rmd-progress-circle-dasharray: 187 !default;
+
+/// The entire transition duration for the circular progress. This is really the full
+/// time for the change in the `stroke-dashoffset` as the default rotation will rotate
+/// `720deg` over this time.
+/// @type Number
+$rmd-progress-circle-transition-duration: 2.4s !default;
+
+/// The starting dashoffset for the ciruclar progress animation. This will be used for
+/// the `0%` and `100%` values in the animation keyframes by default.
+/// @type Number
+$rmd-progress-circle-start-offset: $rmd-progress-circle-dasharray !default;
+
+/// The ending dashoffset for the ciruclar progress animation. This will be used for
+/// the `50%` value in the animation keyframes by default.
+/// @type Number
+$rmd-progress-circle-end-offset: $rmd-progress-circle-dasharray / 4 !default;
+
+/// The circular progress styles to apply for the rotation transition. Each key in this
+/// map will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-progress-circle-rotate-styles: (
+  0%: (
+    transform: rotate(0deg),
+  ),
+  50%: (
+    transform: rotate(135deg),
+  ),
+  75%: (
+    transform: rotate(450deg),
+  ),
+  100%: (
+    transform: rotate(720deg),
+  ),
+) !default;
+
+/// The circular progress styles to apply for the dashoffset transition. Each key in this
+/// map will be set immediately at the root of the `keyframes` and then each child map
+/// will be considered a map of property: value.
+/// @type Map
+$rmd-progress-circle-dash-styles: (
+  0%: (
+    stroke-dashoffset: $rmd-progress-circle-start-offset,
+  ),
+  50%: (
+    stroke-dashoffset: $rmd-progress-circle-end-offset,
+  ),
+  100%: (
+    stroke-dashoffset: $rmd-progress-circle-start-offset,
+  ),
+) !default;
+
+/// A Map of all the "themeable" parts of the progress package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-progress-theme-values: (
+  color: $rmd-progress-color,
+  background-color: $rmd-progress-background-color,
+  linear-size: $rmd-linear-progress-size,
+  circular-size: $rmd-circular-progress-size,
+  circular-width: $rmd-progress-circle-stroke-width,
+) !default;

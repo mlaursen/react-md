@@ -1,297 +1,200 @@
-# react-md
+# react-md [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=next)](https://travis-ci.org/mlaursen/react-md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/mlaursen/react-md/pulls) [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
-React Material Design - React components built with sass
+### v2 is still in alpha, but nearing completion. Please see the [v1 documentation site](https://react-md.mlaursen.com) and [branch](../../tree/v1) until then.
 
-[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
-[![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
+Create an accessible React application with the
+[material design specifications](https://material.io/design/) and Scss.
 
-react-md is a set of React components and sass files for implementing [Google's Material Design](https://material.google.com). The
-[Documentation Website](http://react-md.mlaursen.com) can be used for viewing live examples, code samples, and general prop documentation.
+- [Installing packages](https://react-md.dev/guides/installation) - How to
+  install related components and packages within react-md for building your
+  application
+- [Creating a new app](https://react-md.dev/guides/creating-a-new-app) - How to
+  create a new app with react-md
+- [Working from v1](https://react-md.dev/guides/working-with-v1) - How to use
+  migrate from v1 of `react-md` to v2.
+- [Customizing your theme](https://react-md.dev/guides/customizing-your-theme) -
+  How to implement a different theme for your React application
+- [Full documentation](https://react-md.dev) - All the remaining documentation
+  along with every single guide, API Reference, and examples
+- [Library Size](#library-size) - The UMD bundle size for the entire `react-md`
+  library and sizes for some of the pre-built css files.
 
-## Installation
+### Highlights/Features
 
-```bash
-$ npm install --save react react-dom react-md
+- Matches the accessibility guidelines from
+  [www.w3.org](https://www.w3.org/TR/wai-aria-practices)
+- Low level customizable components
+- Easily themeable on a global and component level
+- Uses css variables for dynamic themes with fallbacks for older browsers
+- Out of the box dark theme mode support
+- Out of the box left-to-right and right-to-left language support
+- UMD Bundles and pre-compiled css available on https://unpkg.com (see more
+  information
+  [here](https://react-md.dev/guides/advanced-installation#using-the-cdn-hosted-pre-compiled-themes))
+- Written and maintained in [Typescript]
+
+## Creating a new project
+
+First use [create-react-app] to create your project:
+
+```sh
+$ npx create-react-app my-app
+$ cd my-app
+$ npm start
 ```
 
-There are also a few examples available within the [examples folder](examples/) to help get you started.
+> npx comes with npm 5.2+ and higher, if you have an older version you will need
+> to install `create-react-app` globally instead
 
-## Customizing the theme
+Or with `yarn`:
 
-The application should define a `primary` and `secondary` color. The `primary` color
-should be chosen from one of the `'-500'` colors and the `secondary` should be one of
-the `'a-'` colors.
+```sh
+$ yarn create react-app my-app
+$ cd my-app
+```
 
-The default color palette is defined as:
+> NOTE: You can also add the `--typescript` flag to bootstrap a react-app with
+> typescript support
+
+Next, install `react-md` and `node-sass`:
+
+```sh
+$ npm install --save react-md node-sass
+```
+
+Next, create a `src/App.scss` file to include all the `react-md` styles and
+import the `App.scss` file in the `src/App.js`:
 
 ```scss
-$md-primary-color: $md-indigo-500 !default;
-$md-secondary-color: $md-pink-a-200 !default;
+@import "~react-md/dist/scss/react-md";
+
+// this will include all the styles from react-md
+@include react-md-utils;
 ```
 
-If you change these variables before the `react-md-everything` mixin is included, your entire
-application will be styled with your new theme.
-
-```scss
-@import '~react-md/src/scss/react-md';
-
-$md-primary-color: $md-teal-500;
-$md-secondary-color: $md-lime-a-400;
-
-@include react-md-everything;
+```diff
+ import React from 'react';
+ import logo from './logo.svg';
+ import './App.css';
++import './App.scss';
 ```
 
-See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
-is also a theme builder available to try mix and matching different colors.
+Finally, update the `public/index.html` to include the `Roboto` font and the
+Material Icons font icons stylesheets from Google fonts:
 
-### Styling Links
+```diff
+     <meta charset="utf-8" />
+     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="theme-color" content="#000000" />
+     <!--
+       manifest.json provides metadata used when your web app is installed on a
+       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+     -->
+     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
++    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+     <!--
+       Notice the use of %PUBLIC_URL% in the tags above.
+       It will be replaced with the URL of the `public` folder during the build.
+       Only files inside the `public` folder can be referenced from the HTML.
 
-There are currently no styles applied to links by default for two reasons:
-
-1. There aren't many guidelines for link styling in Material Design (or there weren't when I started this project)
-2. Most of the time, links will mostly be handled by the `ListItem` component with a `react-router`'s `Link` component
-
-If you would like some default link styles, you can copy/paste the following block to get some _reasonable_ defaults.
-
-```scss
-// These are the styles that are applied to the documentation site.
-// If you want **ALL** links to have these styles, you can of course change it to be applied
-// to all <a> tags
-.link {
-  color: $md-primary-color;
-  display: inline-block;
-  text-decoration: none;
-  transition: color $md-transition-time;
-
-  &:visited {
-    color: get-swatch($md-primary-color, 200, true);
-  }
-
-  &:hover {
-    color: get-color('text', $md-light-theme);
-    text-decoration: underline;
-  }
-}
+       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+       work correctly both with client-side routing and a non-root public URL.
+       Learn how to configure a non-root public URL by running `npm run build`.
+     -->
+     <title>React App</title>
+   </head>
+-  <body>
++  <body class="rmd-typography">
 ```
 
-## Usage
+Once you have the styles, fonts, and font icons setup, you can start creating
+components from react-md. It is generally recommended to update your base
+`src/App.js` to include some default configuration components:
 
-Please see the list of [examples](examples/) for how you can get a project started off quickly with React and React MD.
+```diff
+ import React from 'react';
+-import logo from './logo.svg';
+-import './App.css';
+-import './App.scss';
+-
+-function App() {
+-  return (
+-    <div className="App">
+-      <header className="App-header">
+-        <img src={logo} className="App-logo" alt="logo" />
+-        <p>
+-          Edit <code>src/App.js</code> and save to reload.
+-        </p>
+-        <a
+-          className="App-link"
+-          href="https://reactjs.org"
+-          target="_blank"
+-          rel="noopener noreferrer">
+-          Learn React
+-        </a>
+-      </header>
+-    </div>
+-  );
+-}
++import {
++  Configuration,
++  Layout,
++  useLayoutNavigation,
++  Text,
++  Button,
++} from 'react-md';
++import './App.scss';
++
++// see @react-md/layout package for info on the main navigation
++const routes = {};
++function App() {
++  return (
++    <Configuration>
++      <Layout
++        {...useLayoutNavigation(routes, pathname)}
++        appBarTitle="My App"
++        navHeaderTitle="My App"
++      >
++        <Text type="headline-4">Hello, world!</Text>
++        <Button theme="primary">Example button</Button>
++      </Layout>
++    </Configuration>
++  );
++}
 
-### UMD Usage
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/react-md@1.12.3/dist/react-md.deep_purple-pink.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700"
-    />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
-    <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script>
-    <script src="https://unpkg.com/react-md@1.12.3/dist/react-md.min.js"></script>
-      var MyAwesomeComponent = React.createClass({
-        render: function() {
-          return React.createElement(ReactMD.Button, {
-            label: 'Hello, World!',
-            flat: true,
-          });
-        },
-      });
-
-      ReactDOM.render(
-        React.createElement(MyAwesomeComponent),
-        document.getElementById('app'),
-      );
-    </script>
-  </body>
-</html>
+export default App;
 ```
 
-## Known Bugs/Works in Progress/Future Changes
+More information can be found on the documentation site's page
+[about creating projects](https://react-md.dev/guides/installation)
 
-- Bottom sheets
-- Steppers
-- Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
+## Library Size
+
+The base `react-md` package (non-scoped) is the only package that also provides
+pre-built css themes and a UMD bundle. If you are interested in seeing what an
+estimated size for this library, check out the results below:
+
+```sh
+$ yarn workspace react-md build --clean --umd --themes
+
+The gzipped file sizes are:
+- dist/css/react-md.indigo-pink-200-dark.min.css 65 B
+- dist/css/react-md.indigo-pink-200-light.min.css 66 B
+- dist/css/react-md.light_blue-deep_orange-200-light.min.css 74 B
+- dist/css/react-md.light_blue-deep_orange-700-dark.min.css 75 B
+- dist/css/react-md.purple-pink-200-dark.min.css 65 B
+- dist/css/react-md.purple-pink-200-light.min.css 66 B
+- dist/css/react-md.teal-pink-200-dark.min.css 63 B
+- dist/css/react-md.teal-pink-200-light.min.css 64 B
+- dist/umd/react-md.production.min.js 55 B
+```
 
 ## Contributing
 
-Please see the [documentation site README](https://github.com/mlaursen/react-md/tree/master/docs#react-md-documentation)
-for information about contributing using the documentation server. Otherwise, here is some information about only working
-within `react-md`.
+Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
+would like to contribute.
 
-Right now I am using the `Ruby` version of `scss_lint` to lint scss files. This means that you will need to have Ruby installed
-and the `sass-lint` gem.
-
-```bash
-$ gem install scss_lint
-```
-
-I have an issue (#274) open about switching over to the node port, but it hasn't really been worked on because I don't like
-the little amount of features that have been ported over so far.
-
-**You will need to use node@8 for both the base react-md package and documentation server at this time**. I am hoping to fix
-it at some point, but it might not be fixed until v2 of react-md.
-
-### Minimal Setup
-
-```bash
-mlaursen @ ~/code/react-md
-$ yarn
-$ yarn build   # build the es and lib folders for docs scripts
-$ cd docs
-mlaursen @ ~/code/react-md/docs
-$ yarn
-$ cp .env.example .env
-$ cd ..
-mlaursen @ ~/code/react-md
-$ yarn dev
-```
-
-# Development Scripts
-
-- [lint](#lint)
-  - [lint:fix](#lintfix)
-  - [lint:styles](#lintstyles)
-  - [lint:scripts](#lintscripts)
-- [test](#test)
-  - [test:tsc](#testtsc)
-  - [test:watch](#testwatch)
-  - [test:docs](#testdocs)
-  - [test:docs:watch](#testdocswatch)
-  - [test:all](#testall)
-- [tsd](#tsd)
-- [css-bundles](#css-bundles)
-- [dev](#dev)
-  - [dev:minimal](#devminimal)
-- [docs](#docs)
-  - [docs:minimal](#docsminimal)
-- [prebuild](#prebuild)
-- [build](#build)
-  - [build:watch](#buildwatch)
-  - [build:cjs](#buildcjs)
-  - [build:cjs:watch](#buildcjswatch)
-  - [build:es](#buildes)
-  - [build:es:watch](#buildeswatch)
-  - [build:umd](#buildumd)
-
-### lint
-
-This will run both the [lint:styles](#lintstyles) and [lint:scripts](#lintscripts) commands.
-
-#### lint:fix
-
-This will attempt to automatically fix any `eslint` errors that can be fixed.
-
-#### lint:styles
-
-As stated above, this will lint all the scss files within the `src/scss` directory. Unfortunately, this requires the Ruby gems
-version of `scss-lint` to be installed to work because the node port isn't quite there yet for me. You can either
-remove this temporarily from the build process or:
-
-```bash
-$ gem install scss_lint
-```
-
-#### lint:scripts
-
-This will run `eslint` over all the files in the `src/js` folder.
-
-### test
-
-This command will run [test:tsc](#testtsc) followed by `jest`.
-
-#### test:tsc
-
-This will do a simple Typescript compliation test to make sure there aren't any syntax errors or
-invalid types. There should probably be a better testing system put in place.
-
-#### test:watch
-
-This will just run `jest` in watch mode.
-
-#### test:docs
-
-This will just run `jest` in the docs folder.
-
-#### test:docs:watch
-
-This will just run `jest` in watch mode in the docs folder.
-
-#### test:all
-
-This will run tests for Typescript definitions, the base react-md repo, and the docs folder.
-
-### tsd
-
-This command will just copy all the Typescript definitions into the `lib` folder so that it can be used correctly
-by Typescript users.
-
-### css-bundles
-
-This script makes 255 different scss files to be compiled for production use. This is automatically run before
-[build](#build).
-
-### dev
-
-This will start up the documentation server in development mode as well as watching for changes within the base react-md library.
-Please look at the [Getting Started](docs/README.md#getting-started) for some preliminary setup required.
-
-### dev:minimal
-
-This will start up the documentation server in development mode as well as watching for changes within the base react-md library.
-The only difference is that the [docs:minimal](#docsminimal) command will be run instead of [docs](#docs)
-
-### docs
-
-This will start up the documentation server in development mode. For some more information about this command,
-please see the [documentation server scripts](docs/README.md#Scripts).
-
-### docs:minimal
-
-This will start up the documentation server in development mode without rebuilding all the "databases" before startup.
-
-### prebuild
-
-This command is automatically run before [build](#build). It will basically remove all the old artifacts and compiled
-files followed by linting the entire project.
-
-### build
-
-This command will do the full build of `react-md` before a release. It runs almost all of the other scripts in a specified
-order so that the `es`, `lib`,`dist` folders are created and contain the correct files for release.
-
-#### build:watch
-
-This command will just build and watch changes for the CommonJS and ES6 modules distributables. This is just used behind
-the scenes for the [dev](#dev) command for hot reloads.
-
-#### build:cjs
-
-This command will build the CommonJS distributables for react-md.
-
-#### build:cjs:watch
-
-This command will build the CommonJS distributables for react-md and recompile when changes occur.
-
-#### build:es
-
-This command will build the ES6 modules distributables for react-md.
-
-#### build:es:watch
-
-This command will build the ES6 modules distributables for react-md and recomple when changes occur.
-
-#### build:umd
-
-This command will create the UMD bundles for development and production use. It will also display the
-size of the production UMD bundle in pretty format bytes.
+[typescript]: https://www.typescriptlang.org/
+[create-react-app]:
+  https://facebook.github.io/create-react-app/docs/getting-started

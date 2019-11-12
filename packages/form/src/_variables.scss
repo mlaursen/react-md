@@ -1,0 +1,81 @@
+////
+/// @group form
+////
+
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/theme/dist/functions';
+@import '~@react-md/typography/dist/variables';
+
+@import './file-input/variables';
+@import './label/variables';
+@import './select/variables';
+@import './text-field/variables';
+@import './toggle/variables';
+
+/// The color to use when a form contains an error.
+/// @type Color
+$rmd-form-error-color: $rmd-theme-error !default;
+
+/// This is the color that is used when a text field/textarea is errored
+/// and the user hovers over it.
+/// @type Color
+$rmd-form-error-hover-color: rmd-theme-get-swatch(
+  $rmd-form-error-color,
+  700,
+  true,
+  darken($rmd-form-error-color, 20%)
+) !default;
+
+/// The color to use when a form element (text, checkbox, radio, etc) is
+/// currently active by the user(normally focus).
+/// @type Color
+$rmd-form-active-color: rmd-theme-var(secondary) !default;
+
+/// The color to use when a form element is disabled.
+/// @type Color
+$rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
+
+/// The default color to use for placeholder text within text fields.
+/// @type Color
+$rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
+
+// sass-lint:disable zero-unit
+
+/// A Map of all the "themeable" parts of the form package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-form-theme-values: (
+  error-color: $rmd-form-error-color,
+  error-hover-color: $rmd-form-error-hover-color,
+  active-color: $rmd-form-active-color,
+  disabled-color: $rmd-form-disabled-color,
+  toggle-inset: $rmd-toggle-inset,
+  toggle-dense-inset: $rmd-toggle-dense-inset,
+  indeterminate-height: $rmd-checkbox-indeterminate-height,
+  indeterminate-dense-height: $rmd-checkbox-indeterminate-dense-height,
+  track-background-color: $rmd-switch-track-background-color,
+  floating-top: $rmd-label-floating-top,
+  floating-dense-top: $rmd-label-floating-dense-top,
+  addon-top: auto,
+  addon-margin-top: 0px,
+  label-left-offset: 0px,
+  label-top-offset: 0px,
+  label-active-padding: 0px,
+  label-active-background-color: transparent,
+  text-padding-left: 0px,
+  text-padding-right: 0px,
+  text-padding-top: 0px,
+  text-offset: 0px,
+  text-active-color: $rmd-text-field-active-color,
+  text-border-color: $rmd-text-field-border-color,
+  text-border-hover-color: $rmd-text-field-border-hover-color,
+  text-filled-color: $rmd-text-field-filled-background-color,
+  text-height: $rmd-text-field-height,
+  text-label-height: $rmd-text-field-label-height,
+  text-label-dense-height: $rmd-text-field-label-dense-height,
+  text-placeholder-height: $rmd-text-field-height,
+  text-placeholder-dense-height: $rmd-text-field-dense-height,
+  textarea-padding: $rmd-textarea-vertical-padding,
+) !default;

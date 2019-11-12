@@ -1,0 +1,14 @@
+@import 'mixins';
+
+@include react-md-utils;
+
+// styles that must *always* be included.
+@import 'components/Code/code';
+@import 'components/Heading/heading';
+@import 'components/Blockquote/blockquote';
+
+.dark-theme {
+  @include rmd-theme-dark;
+
+  #{--code-bg}: #{$code-dark-theme-bg};
+}

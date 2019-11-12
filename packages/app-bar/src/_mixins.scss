@@ -1,0 +1,340 @@
+////
+/// @group app-bar
+////
+
+@import '~@react-md/button/dist/mixins'; // have to do mixins instead of functions since base styles are required
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the app-bar's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-app-bar-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-app-bar-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-app-bar-theme-values` map when `null`.
+@mixin rmd-app-bar-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-app-bar-theme-values, app-bar);
+}
+
+/// Updates one of the app-bar's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The app-bar theme style type to update. This should be one
+///   of the `$rmd-app-bar-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-app-bar-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-app-bar-theme-values, app-bar);
+}
+
+/// Creates the styles for the `AppBar` component when it is fixed to the top or bottom
+/// of the page. This will create four classes:
+/// - `&--fixed`
+/// - `&--fixed-elevation`
+/// - `&--top`
+/// - `&--right`
+/// - `&--bottom`
+/// - `&--left`
+///
+/// To get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class
+/// as well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should
+/// gain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the
+/// different use cases.
+///
+/// @example scss - Simple Example
+///   .app-bar {
+///     @include rmd-app-bar-fixed;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--fixed app-bar--top">
+///     An app-bar fixed to the top of the page.
+///   </div>
+///
+///   <div class="app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom">
+///     An app-bar fixed to the bottom of the page with elevation
+///   </div>
+///
+@mixin rmd-app-bar-fixed {
+  &--fixed {
+    @include rmd-theme-update-var(surface, rmd-app-bar-theme-var(background-color));
+
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: $rmd-app-bar-z-index;
+  }
+
+  &--fixed-elevation {
+    @include rmd-elevation($rmd-app-bar-fixed-elevation);
+  }
+
+  $positions: top right bottom left;
+  @each $position in $positions {
+    &--#{$position} {
+      #{$position}: 0;
+    }
+  }
+}
+
+/// Creates the styles for different app bar themes. This will create 4 classes:
+/// - `--primary`
+/// - `--secondary`
+/// - `--default`
+///
+/// The primary and secondary suffixes will use the theme variables for generating the correct theme background color and
+/// text color on top of the theme color. The default suffix is used to create a third theme type with any colors that are
+/// provided.
+///
+/// @example scss - Simple Example
+///   $rmd-theme-primary: $rmd-blue-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///
+///   .app-bar {
+///     @include rmd-app-bar-themes;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--primary">
+///     An app bar with the primary theme color as the background color.
+///   </div>
+///
+///   <div class="app-bar app-bar--secondary">
+///     An app bar with the secondary theme color as the background color.
+///   </div>
+///
+///   <div class="app-bar app-bar--default">
+///     An app bar with the default theme applied.
+///   </div>
+@mixin rmd-app-bar-themes {
+  @include rmd-app-bar-theme(background-color);
+  @include rmd-app-bar-theme(color);
+
+  &--primary {
+    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(primary));
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-primary));
+  }
+
+  &--secondary {
+    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(secondary));
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-secondary));
+  }
+
+  &--default {
+    @include rmd-app-bar-theme-update-var(
+      background-color,
+      rmd-app-bar-theme-var(default-background-color)
+    );
+    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(default-color));
+  }
+}
+
+/// Creates the styles for the `AppBarNav` component. The base classes for buttons next to be applied
+/// as well.
+///
+/// @example scss - Simple Example
+///   .app-bar__nav {
+///     // add the next two lines if not applying the base .rmd-button classes
+///     // @include rmd-button-base;
+///     // @include rmd-button-text;
+///     @include rmd-app-bar-nav;
+///   }
+///
+/// @example html - Simple Example
+///   <div class="app-bar app-bar--primary">
+///     <button type="button" className="app-bar__nav">Nav Button</button>
+///   </div>
+///
+@mixin rmd-app-bar-nav {
+  @include rmd-utils-rtl-auto-group(
+    (
+      margin-left: $rmd-app-bar-lr-margin,
+      margin-right: $rmd-app-bar-title-nav-margin,
+    )
+  );
+  flex-shrink: 0;
+
+  &--inherit {
+    color: inherit;
+  }
+}
+
+/// Creates the styles for the `AppBarTitle` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__title {
+///     @include rmd-app-bar-title;
+///   }
+@mixin rmd-app-bar-title {
+  @include rmd-typography(headline-6);
+  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
+  @include rmd-utils-hide-focus-outline;
+
+  margin-bottom: 0;
+  margin-top: 0;
+
+  .rmd-app-bar__nav ~ & {
+    @include rmd-utils-rtl-auto(margin-left, 0);
+  }
+
+  &--keyline {
+    @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline, auto);
+  }
+
+  &--no-wrap {
+    @include rmd-typography-text-overflow-ellipsis;
+  }
+
+  &--inherit {
+    color: inherit;
+  }
+}
+
+///
+/// @param {Boolean} first - Boolean if the styles for being the first
+/// action should be created.
+@mixin rmd-app-bar-action-position($first) {
+  @if $first {
+    @include rmd-utils-rtl-auto(margin-left, auto);
+  } @else {
+    @include rmd-utils-rtl-auto(margin-right, $rmd-app-bar-lr-margin);
+  }
+}
+
+/// Creates the styles for the `AppBarAction` component.
+///
+/// @example scss - Example Usage SCSS
+///   .rmd-app-bar__action {
+///     @include rmd-app-bar-action;
+///   }
+@mixin rmd-app-bar-action {
+  flex-shrink: 0;
+
+  &--last {
+    @include rmd-app-bar-action-position(false);
+  }
+
+  &--first {
+    @include rmd-app-bar-action-position(true);
+  }
+
+  &--inherit {
+    color: inherit;
+  }
+}
+
+/// This mixin is used to apply an offset to an element so that it can be placed
+/// with a fixed App Bar. This is really used to help layout your app so that the
+/// initial content isn't covered by the app bar.
+///
+///  @example scss - Example Usage
+///    .offset-by-height {
+///      @include rmd-app-bar-offset;
+///    }
+///
+///    .offset-by-dense-height {
+///      @include rmd-app-bar-ofset($height-type: dense-height);
+///    }
+///
+/// @param {String} property [padding-top] - The property to apply the offset to. This should be
+/// one of: `padding-top`, `padding-bottom`, `margin-top`, `margin-bottom`, `top`, `bottom`.
+/// @param {String} height-type [height] - The app bar height type to use. This should be one of:
+/// `height`, `dense-height`, `prominent-height`, `prominent-dense-height`
+@mixin rmd-app-bar-offset($property: padding-top, $height-type: height) {
+  $valid-propertys: (padding-top padding-bottom margin-top margin-bottom top bottom);
+  $property: rmd-utils-validate($valid-propertys, $property, 'app bar offset property');
+
+  @include rmd-app-bar-theme($property, $height-type);
+}
+
+/// Creates all the app  bar offset classnames to use. This ties in with the provided constants
+/// in javascript:
+///  - APP_BAR_OFFSET_CLASSNAME
+///  - APP_BAR_OFFSET_DENSE_CLASSNAME
+///  - APP_BAR_OFFSET_PROMINENT_CLASSNAME
+///  - APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME
+@mixin rmd-app-bar-offsets {
+  .rmd-app-bar-offset {
+    @include rmd-app-bar-theme(padding-top, height);
+
+    &--dense {
+      @include rmd-app-bar-theme(padding-top, dense-height);
+    }
+
+    &--prominent {
+      @include rmd-app-bar-theme(padding-top, prominent-height);
+    }
+
+    &--prominent-dense {
+      @include rmd-app-bar-theme(padding-top, prominent-dense-height);
+    }
+  }
+}
+
+/// This mixin allows you to quickly apply the dense theme for app bars. This should normally
+/// be used within a media query.
+@mixin rmd-app-bar-dense-theme {
+  @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+  @include rmd-app-bar-theme-update-var(
+    prominent-height,
+    rmd-app-bar-theme-var(prominent-dense-height)
+  );
+}
+
+/// Creates all the styles for the app bar package.
+@mixin react-md-app-bar {
+  @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);
+
+  .rmd-app-bar {
+    @include rmd-app-bar-fixed;
+    @include rmd-app-bar-themes;
+    @include rmd-app-bar-theme(height);
+
+    align-items: center;
+    display: flex;
+    // since app bars can appear a lot in full page dialogs, setting these flex values
+    // allows it be be a direct replacement of the `DialogHeader` component without all
+    // the offsets and additional styles needed for fixed app bars.
+    flex: 0 0 auto;
+    width: 100%;
+
+    &--dense {
+      @include rmd-app-bar-theme(height, dense-height);
+    }
+
+    &--prominent {
+      @include rmd-app-bar-theme(height, prominent-height);
+
+      flex-wrap: wrap;
+    }
+
+    &--prominent-dense {
+      @include rmd-app-bar-theme(height, prominent-dense-height);
+    }
+
+    &--derived {
+      @include rmd-app-bar-theme(min-height, height);
+
+      height: auto;
+    }
+
+    &__nav {
+      @include rmd-app-bar-nav;
+    }
+
+    &__title {
+      @include rmd-app-bar-title;
+    }
+
+    &__action {
+      @include rmd-app-bar-action;
+    }
+  }
+
+  @include rmd-app-bar-offsets;
+}

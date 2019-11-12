@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogFooter should render correctly (with snapshots) 1`] = `
+<footer
+  className="rmd-dialog__footer"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 2`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 3`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 4`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 5`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 6`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 7`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 8`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 9`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-start"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 10`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 11`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-end"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;
+
+exports[`DialogFooter should render correctly (with snapshots) 12`] = `
+<footer
+  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
+  id="dialog-footer"
+>
+  <button
+    id="close-dialog"
+    type="button"
+  >
+    Close
+  </button>
+  <button
+    id="confirm-dialog"
+    type="button"
+  >
+    Confirm
+  </button>
+</footer>
+`;

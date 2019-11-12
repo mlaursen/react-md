@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should render correctly when there is no component prop 1`] = `
+<a
+  className="rmd-link"
+  href="#"
+>
+  Content
+</a>
+`;
+
+exports[`Link should render correctly when there is no component prop 2`] = `
+<a
+  className="rmd-link"
+>
+  Disabled Link
+</a>
+`;
+
+exports[`Link should render correctly when there is no component prop 3`] = `
+<a
+  className="rmd-link"
+  href="/direct-url"
+>
+  Direct url
+</a>
+`;
+
+exports[`Link should should render correctly when using @reach/router's Link component 1`] = `
+<a
+  href="/#"
+  onClick={[Function]}
+>
+  Content
+</a>
+`;
+
+exports[`Link should should render correctly when using @reach/router's Link component 2`] = `
+<a
+  aria-current="page"
+  href="/"
+  onClick={[Function]}
+>
+  Disabled Link
+</a>
+`;
+
+exports[`Link should should render correctly when using @reach/router's Link component 3`] = `
+<a
+  href="/direct-url"
+  onClick={[Function]}
+>
+  Direct url
+</a>
+`;
+
+exports[`Link should should render correctly when using react-router's Link component 1`] = `
+<a
+  className="rmd-link"
+  href="/"
+  onClick={[Function]}
+>
+  Content
+</a>
+`;
+
+exports[`Link should should render correctly when using react-router's Link component 2`] = `
+<a
+  className="rmd-link"
+  href="/"
+  onClick={[Function]}
+>
+  Disabled Link
+</a>
+`;
+
+exports[`Link should should render correctly when using react-router's Link component 3`] = `
+<a
+  className="rmd-link"
+  href="/direct-url"
+  onClick={[Function]}
+>
+  Direct url
+</a>
+`;

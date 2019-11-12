@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconRotator should default to cloning the icon rotator class names into the child element 1`] = `
+<div>
+  <i
+    class="custom-icon rmd-icon-rotator rmd-icon-rotator--animate"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`IconRotator should default to cloning the icon rotator class names into the child element 2`] = `
+<div>
+  <i
+    class="custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`IconRotator should work automatically with the FontIcon component 1`] = `
+<div>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    home
+  </i>
+</div>
+`;
+
+exports[`IconRotator should work automatically with the FontIcon component 2`] = `
+<div>
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+  >
+    home
+  </i>
+</div>
+`;
+
+exports[`IconRotator should work automatically with the SVGIcon component 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate"
+    focusable="false"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="0i3odksf"
+    />
+  </svg>
+</div>
+`;
+
+exports[`IconRotator should work automatically with the SVGIcon component 2`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+    focusable="false"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="0i3odksf"
+    />
+  </svg>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 1`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    <i
+      class="custom-icon"
+      data-testid="icon"
+    />
+  </span>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 2`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+  >
+    <i
+      class="custom-icon"
+      data-testid="icon"
+    />
+  </span>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 3`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      home
+    </i>
+  </span>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 4`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      home
+    </i>
+  </span>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 5`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    <svg
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--svg"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="0i3odksf"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`IconRotator should wrapp the children with a span if the forceIconWrap prop is enabled 6`] = `
+<div>
+  <span
+    class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+  >
+    <svg
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--svg"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="0i3odksf"
+      />
+    </svg>
+  </span>
+</div>
+`;

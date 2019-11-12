@@ -4,21 +4,15 @@
 node_modules
 
 # Compiled files
-/es
-/lib
-/dist
-docs/dist
-docs/webpack-assets.json
-docs/webpack-stats.json
-docs/.env
-docs/public
-!docs/public/robots.txt
-!docs/public/favicon.ico
-!docs/public/react-md.png
-docs/src/server/databases/*
-!docs/src/server/databases/airQuality.json
-src/scss/bundles
-docs/src/constants/scssColors.js
+/packages/*/es
+/packages/*/lib
+/packages/*/dist
+/packages/*/types
+/packages/dev-utils/bin
+/packages/material-icons/bin
+/packages/material-icons/temp
+!/packages/documentation/types
+*.tsbuildinfo
 
 # Testing
 coverage

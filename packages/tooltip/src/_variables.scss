@@ -1,0 +1,135 @@
+////
+/// @group tooltip
+////
+
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/functions';
+
+/// The background color to use for tooltips.
+/// @type Color
+$rmd-tooltip-background-color: #616161 !default;
+
+/// The text color to use for tooltips. By default, this will inherit the primary
+/// text colors for a dark or light background color of the tooltip.
+/// @type Color
+$rmd-tooltip-color: if(
+  rmd-theme-contrast-tone($rmd-tooltip-background-color) == 'light',
+  rmd-theme-var(text-primary-on-dark),
+  rmd-theme-var(text-primary-on-light)
+) !default;
+
+/// The max width to apply to tooltips.
+/// @type Number
+$rmd-tooltip-max-width: 15rem !default;
+
+/// The enter transition time for the tooltip to enter or to exit.
+/// @type Number
+$rmd-tooltip-enter-duration: 0.15s !default;
+
+/// The exit transition time for the tooltip to enter or to exit.
+/// @type Number
+$rmd-tooltip-exit-duration: 0.15s !default;
+
+/// The z-index to use for tooltips when they are visible.
+/// @type Number
+$rmd-tooltip-z-index: 100 !default;
+
+/// The font size to use for tooltips
+///
+/// @see rmd-tooltip-dense-font-size
+/// @type Number
+$rmd-tooltip-font-size: 1rem !default;
+
+/// The default line-height to use for tooltips.
+/// @type Number
+$rmd-tooltip-line-height: 1.5rem !default;
+
+/// The min height to use for tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see rmd-tooltip-dense-min-height
+/// @type Number
+$rmd-tooltip-min-height: 2rem !default;
+
+/// The left and right padding to apply to tooltips.
+///
+/// @see rmd-tooltip-dense-horizontal-padding
+/// @type Number
+$rmd-tooltip-horizontal-padding: 1rem !default;
+
+/// The top and bottom padding to apply to tooltips when line wrapping is enabled.
+///
+/// @see rmd-tooltip-dense-line-wrap-vertical-padding
+/// @type Number
+$rmd-tooltip-line-wrap-vertical-padding: 0.5625rem !default;
+
+/// The amount of spacing to place between the tooltip and the tooltip's container element.
+///
+/// @see rmd-tooltip-dense-spacing
+/// @type Number
+$rmd-tooltip-spacing: 1.5rem !default;
+
+/// The font size to use for dense tooltips.
+/// @type Number
+$rmd-tooltip-dense-font-size: 0.625rem !default;
+
+/// The line height to use for dense tooltips.
+/// @type Number
+$rmd-tooltip-dense-line-height: 0.825rem !default;
+
+/// The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically
+/// based on line wrapping. You will need to add additional padding in these cases though.
+///
+/// @see rmd-tooltip-min-height
+/// @type Number
+$rmd-tooltip-dense-min-height: 1.375rem !default;
+
+/// The left and right padding to use for dense tooltips
+/// @type Number
+$rmd-tooltip-dense-horizontal-padding: 0.5rem !default;
+
+/// The top and bottom padding to apply to dense tooltips when line wrapping is enabled.
+///
+/// @see rmd-tooltip-line-wrap-vertical-padding
+/// @type Number
+$rmd-tooltip-dense-line-wrap-vertical-padding: 0.375rem !default;
+
+/// The amount of spacing to place between the dense tooltip and the tooltip's container element.
+/// @type Number
+$rmd-tooltip-dense-spacing: 0.875rem !default;
+
+/// The border radius to apply to tooltips
+/// @type Number
+$rmd-tooltip-border-radius: 0.25rem !default;
+
+/// The distance that the tooltip should animate from the tooltip's control element.
+/// @type Number
+$rmd-tooltip-transition-distance: 0.5rem !default;
+
+/// This is really just for internal use and a ncie way to loop over the four positions when creating styles.
+/// @type List
+$rmd-tooltip-position-values: above below left right;
+
+/// A Map of all the "themeable" parts of the overlay package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-tooltip-theme-values: (
+  background-color: $rmd-tooltip-background-color,
+  color: $rmd-tooltip-color,
+  transition-distance: $rmd-tooltip-transition-distance,
+  z-index: $rmd-tooltip-z-index,
+  spacing: $rmd-tooltip-spacing,
+  min-height: $rmd-tooltip-min-height,
+  max-width: $rmd-tooltip-max-width,
+  font-size: $rmd-tooltip-font-size,
+  line-height: $rmd-tooltip-line-height,
+  horizontal-padding: $rmd-tooltip-horizontal-padding,
+  vertical-padding: $rmd-tooltip-line-wrap-vertical-padding,
+  dense-spacing: $rmd-tooltip-dense-spacing,
+  dense-min-height: $rmd-tooltip-dense-min-height,
+  dense-font-size: $rmd-tooltip-dense-font-size,
+  dense-line-height: $rmd-tooltip-dense-line-height,
+  dense-horizontal-padding: $rmd-tooltip-dense-horizontal-padding,
+  dense-vertical-padding: $rmd-tooltip-dense-line-wrap-vertical-padding,
+);

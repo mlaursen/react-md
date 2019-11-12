@@ -1,0 +1,16 @@
+@import '~@react-md/elevation/dist/mixins';
+
+.list-container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .rmd-list {
+    @include rmd-elevation(4);
+
+    margin: 1rem;
+    max-width: 20rem;
+    width: 100%;
+  }
+}

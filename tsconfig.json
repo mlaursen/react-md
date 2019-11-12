@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "constants/*": ["packages/documentation/src/constants/*"],
+      "components/*": ["packages/documentation/src/components/*"],
+      "hooks/*": ["packages/documentation/src/hooks/*"],
+      "icons/*": ["packages/documentation/src/icons/*"],
+      "pages/*": ["packages/documentation/src/pages/*"],
+      "types/*": ["packages/documentation/src/types/*"],
+      "utils/*": ["packages/documentation/src/utils/*"]
+    }
+  },
+  "include": [
+    "packages/*/src"
+  ],
+}

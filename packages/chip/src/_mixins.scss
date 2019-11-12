@@ -1,0 +1,83 @@
+////
+/// @group chip
+////
+
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the chip's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-chip-theme-values` value to.
+/// @param {String} theme-style - One of the keys of `rmd-chip-theme-values` to extract a value from.
+/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+///   isn't set somehow. This will default to automatically retrieving the default value
+///   from the `rmd-chip-theme-values` map when `null`.
+@mixin rmd-chip-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-chip-theme-values, chip);
+}
+
+/// Updates one of the chip's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The chip theme style type to update. This should be one
+///   of the `$rmd-chip-theme-values` keys.
+/// @param {String|Number|Color} value - The new value to use.
+@mixin rmd-chip-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-chip-theme-values, chip);
+}
+
+/// Creates all the styles for the chip button
+@mixin rmd-chip {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-states-surface;
+  @include rmd-typography(body-2);
+  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);
+  @include rmd-chip-theme(height);
+  @include rmd-chip-theme(border-radius);
+  @include rmd-chip-theme(padding-left, large-spacing);
+  @include rmd-chip-theme(padding-right, large-spacing);
+
+  align-items: center;
+  border-width: 0;
+  display: inline-flex;
+  position: relative;
+
+  &--solid {
+    @include rmd-elevation-transition(0, 4, '&#{$rmd-states-pressed-class-name}', false, 0.15s);
+    @include rmd-chip-theme(background-color, solid-background-color);
+    @include rmd-chip-theme(color, solid-color);
+  }
+
+  &--outline {
+    @include rmd-elevation-transition(0, 8, '&#{$rmd-states-pressed-class-name}', false, 0.15s);
+    @include rmd-chip-theme(background-color, outline-background-color);
+    @include rmd-chip-theme(color, outline-color);
+
+    box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);
+  }
+
+  &--leading-icon {
+    @include rmd-chip-theme(padding-left, small-spacing);
+  }
+
+  &--trailing-icon {
+    @include rmd-chip-theme(padding-right, medium-spacing);
+  }
+}
+
+/// Creates all the styles for this package as well as defining all the theme CSS variables.
+@mixin react-md-chip {
+  @include rmd-theme-create-root-theme($rmd-chip-theme-values, chip);
+
+  .rmd-chip {
+    @include rmd-chip;
+  }
+}

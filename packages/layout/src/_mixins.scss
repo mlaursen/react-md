@@ -1,0 +1,80 @@
+////
+/// @group layout
+////
+
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/tooltip/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import './variables';
+
+/// @access private
+@mixin rmd-layout-app-bar-offset {
+  &--offset {
+    @include rmd-app-bar-offset;
+  }
+}
+
+@mixin react-md-layout {
+  .rmd-layout-header {
+    &--nav-offset {
+      @include rmd-utils-rtl {
+        @include rmd-sheet-theme(right, static-width);
+
+        left: auto;
+      }
+
+      @include rmd-sheet-theme(left, static-width);
+
+      // using left and right doesn't actually work how I expected...
+      // left: 0, right: 0 will span the entire relative container or
+      // viewport when fixed, but left: 16, right: 0 won't set the right
+      // edge to the edge of the viewport/relative container so you
+      // have to also adjust the width
+      width: calc(100% - #{rmd-sheet-theme-var(static-width)});
+    }
+  }
+
+  .rmd-layout-nav {
+    @include rmd-layout-app-bar-offset;
+  }
+
+  .rmd-layout-nav-header {
+    @include rmd-divider-border(bottom);
+  }
+
+  .rmd-layout-main {
+    @include rmd-layout-app-bar-offset;
+
+    // going to replace the default focus outline with the custom box-shadow instead
+    @include rmd-utils-hide-focus-outline;
+    @include rmd-utils-keyboard-only {
+      @include rmd-transition-shadow-transition(none, $rmd-layout-main-focus-shadow, '&:focus');
+
+      &::before {
+        @include rmd-app-bar-theme(top, height);
+
+        position: fixed;
+      }
+    }
+
+    // need to polyfill for IE11 even though not 100% supported
+    display: block;
+    height: 100%;
+
+    &--nav-offset {
+      @include rmd-utils-rtl {
+        @include rmd-sheet-theme(margin-right, static-width);
+
+        margin-left: auto;
+      }
+
+      // might need to change to just left and right instead of margin-left and margin-right
+      // for some browser support
+      @include rmd-sheet-theme(margin-left, static-width);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+////
+/// @group layout
+////
+
+@import '~@react-md/theme/dist/variables';
+
+/// The box-shadow to use when the `<main>` element has been keyboard focused
+/// from the `SkipToMainContent` link.
+///
+/// @type String
+$rmd-layout-main-focus-shadow: inset 0 0 0 4px $rmd-blue-500 !default;

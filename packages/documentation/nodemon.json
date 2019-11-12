@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "src/server",
+    "nodemon.json",
+    "next.config.js",
+    "tsconfig.server.json",
+    "tsconfig.json"
+  ],
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": 1
+  },
+  "ext": "ts",
+  "exec": "ts-node --project tsconfig.server.json src/server"
+}

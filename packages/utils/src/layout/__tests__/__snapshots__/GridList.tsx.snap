@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridList should render correctly... (lazy test) 1`] = `
+<div>
+  <div
+    class="rmd-grid-list"
+  >
+    <span>
+      Columns: 7, cellWidth: 140.57142857142858
+    </span>
+  </div>
+</div>
+`;
+
+exports[`GridList should render correctly... (lazy test) 2`] = `
+<div>
+  <div
+    class="rmd-grid-list"
+  >
+    <span>
+      Columns: 3, cellWidth: 328
+    </span>
+  </div>
+</div>
+`;
+
+exports[`GridList should render correctly... (lazy test) 3`] = `
+<div>
+  <div
+    class="rmd-grid-list"
+  >
+    <div>
+      This is some content!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GridList should render correctly... (lazy test) 4`] = `
+<div>
+  <div
+    class="rmd-grid-list"
+  >
+    <div>
+      This is some content!
+    </div>
+  </div>
+</div>
+`;

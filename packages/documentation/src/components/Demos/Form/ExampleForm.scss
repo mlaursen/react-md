@@ -1,0 +1,30 @@
+@import '~@react-md/icon/dist/functions';
+
+.example-form {
+  align-items: center;
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-columns: calc(#{rmd-icon-theme-var(size)} + 1rem) 1fr;
+  margin: 1rem;
+
+  &__address-icon {
+    align-self: flex-start;
+    margin-top: 1rem;
+  }
+
+  &__address-field {
+    margin-top: 1rem;
+
+    &--first {
+      margin-right: 0.5rem;
+    }
+
+    &--inline {
+      width: calc(50% - 0.5rem);
+
+      &:last-child {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

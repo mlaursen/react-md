@@ -1,0 +1,7 @@
+@import '~@react-md/utils/dist/mixins';
+
+.centered-progress-toggle {
+  @include rmd-utils-absolute-centered;
+
+  white-space: nowrap;
+}

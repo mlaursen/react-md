@@ -1,0 +1,80 @@
+////
+/// @group alert
+////
+
+@import '~@react-md/theme/dist/color-palette';
+
+/// The amount of margin to apply to the snackbar so that it does not touch the viewport
+/// edges.
+/// @type Number
+$rmd-snackbar-margin: 1rem !default;
+
+/// The z-index for the snackbar.
+/// @type Number
+$rmd-snackbar-z-index: 100 !default;
+
+/// The border radius to apply to a toast.
+/// @type Number
+$rmd-toast-border-radius: 0.25rem !default;
+
+/// The background color for a toast.
+/// @type Color
+$rmd-toast-background-color: #323232 !default;
+
+/// The text color for a toast.
+/// @type Color
+$rmd-toast-color: $rmd-white-base !default;
+
+/// The minimum height for a single line toast.
+/// @type Number
+$rmd-toast-min-height: 3rem !default;
+
+/// The minimum height for a two line toast.
+/// @type Number
+$rmd-toast-two-line-min-height: 4.25rem !default;
+
+/// The min-width to apply to toasts for larger screens. Mobile devices that are smaller than this
+/// will just span the entire viewport excluding the default snackbar margin.
+/// @type Number
+$rmd-toast-min-width: 21.5rem !default;
+
+/// The amount of padding to apply to the top and bottom of the toast.
+/// @type Number
+$rmd-toast-vertical-padding: 0.75rem !default;
+
+/// The amount of padding to apply to the left and right of the toast's message. When there is also
+/// an action in the toast, the right padding will be reduced to the `$rmd-toast-action-margin`.
+/// @type Number
+$rmd-toast-horizontal-padding: 1rem !default;
+
+/// The amount of margin to apply to the toast's action if there is one. This will be applied to the left
+/// and right of the action.
+/// @type Number;
+$rmd-toast-action-margin: 0.5rem !default;
+
+/// The amount of margin-top to apply to the action button when it has been stacked within the toast.
+/// @type Number
+$rmd-toast-stacked-action-margin-top: 1 !default;
+
+/// The elevation to add to a toast. This will be used to create the correct box-shadow.
+/// @type Number
+$rmd-toast-elevation: 6 !default;
+
+/// The transition duration for the enter animation for a toast. If this value gets updated, you'll
+/// also need to update the `timoout` prop on the `Toast` as well.
+/// @type Number
+$rmd-toast-enter-duration: 0.15s !default;
+
+/// The transition duration for the exit animation for a toast. If this value gets updated, you'll
+/// also need to update the `timoout` prop on the `Toast` as well.
+/// @type Number
+$rmd-toast-exit-duration: 0.15s !default;
+
+/// A Map of all the "themeable" parts of the alert package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-alert-theme-values: (
+  toast-background-color: $rmd-toast-background-color,
+  toast-color: $rmd-toast-color,
+) !default;

@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "incremental": false,
+    "baseUrl": "src/server",
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "target": "es2017",
+    "outDir": ".next"
+  },
+  "include": ["src/server/**/*.ts"],
+  "exclude": [".next"]
+}

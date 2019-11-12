@@ -1,0 +1,33 @@
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/tree/dist/mixins';
+@import '~@react-md/typography/dist/variables';
+
+.customizing-tree-items {
+  // want to decrease the padding-left for each tree item for a more
+  // "dense" theme
+  @include rmd-tree-depths($max: 2, $base-padding: 2rem);
+  @include rmd-utils-tablet-media {
+    display: inline-block;
+    width: 15rem;
+  }
+
+  &__item {
+    // want to decrease the leftIcon spacing for a more "dense" theme
+    @include rmd-icon-theme-update-var(text-spacing, 1rem);
+
+    &--focused {
+      // for this demo, we just want the keyboard focused styles to also appear
+      // for non-keyboard interacting users (usually waits for a keypress)
+      @include rmd-utils-map-to-styles($rmd-tree-item-keyboard-focused-styles);
+    }
+
+    &--selected {
+      color: $rmd-black-base;
+      font-weight: $rmd-typography-bold;
+
+      .dark-theme & {
+        color: $rmd-white-base;
+      }
+    }
+  }
+}

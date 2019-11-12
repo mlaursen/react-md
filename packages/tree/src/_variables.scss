@@ -1,0 +1,51 @@
+////
+/// @group tree
+////
+
+@import '~@react-md/list/dist/variables';
+
+/// The default max-depth to create for the tree depths. This is used in the `rmd-tree-depths` mixin to generate offsets
+/// in css based on how deep a tree item is. If this value is less than or equal to 1, no depth styles will be created.
+///
+/// @type Number
+$rmd-tree-max-depth: 3 !default;
+
+/// The amount of padding that should be multiplied by the current depth and added to the `rmd-tree-item-padding-base`.
+///
+/// @see rmd-tree-depths
+/// @see rmd-tree-item-at-depth
+/// @type Number
+$rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !default;
+
+/// The base amout of padding to apply to a tree item that has a depth greater than 1. This is set to a value
+/// that assumes you have icons to the left of the items at the base level. If you do not, it would be better to
+/// set this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.
+///
+/// @see rmd-tree-depths
+/// @see rmd-tree-item-at-depth
+/// @type Number
+$rmd-tree-item-padding-base: $rmd-list-item-text-keyline !default;
+
+/// The styles to apply when a tree item gains focus. These styles will be applied even
+/// after a touch or mouse click.
+/// @type Map
+$rmd-tree-item-focused-styles: () !default;
+
+/// The styles to apply to a tree item that is **focused while in keyboard mode** only.
+/// If you want to apply focus styles for all modes, use the `$rmd-tree-item-focused-styles`
+/// instead and set this value to `null` or an empty Map `()`.
+///
+/// @see rmd-tree-item-focused-styles
+/// @type Map
+$rmd-tree-item-keyboard-focused-styles: (
+  box-shadow: inset 0 0 0 2px $rmd-blue-500,
+) !default;
+
+/// A Map of all the "themeable" parts of the tree package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-tree-theme-values: (
+  incrementor: $rmd-tree-item-padding-incrementor,
+  base-padding: $rmd-tree-item-padding-base,
+) !default;

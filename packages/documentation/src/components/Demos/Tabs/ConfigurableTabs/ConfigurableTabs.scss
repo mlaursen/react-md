@@ -1,0 +1,40 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/tabs/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.configurable-tabs {
+  @include rmd-utils-tablet-media {
+    @include rmd-utils-block-centered;
+    @include rmd-elevation(4);
+
+    max-width: 40rem;
+  }
+
+  &__tabs {
+    @include rmd-app-bar-theme(background-color, default-background-color);
+
+    &--themed {
+      @include rmd-theme(background-color, primary);
+      @include rmd-theme(color, on-primary);
+      @include rmd-tabs-theme-update-var(active, inherit);
+      @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-dark-color);
+      @include rmd-tabs-theme-update-var(indicator-color, rmd-theme-var(secondary));
+    }
+  }
+
+  &__content {
+    padding: 0 3rem 3rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__full-width {
+    width: 100%;
+  }
+}

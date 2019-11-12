@@ -1,0 +1,156 @@
+////
+/// @group form-select
+////
+
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+@import '../text-field/mixins';
+@import '../functions';
+@import '../variables';
+
+/// @access private
+@mixin rmd-native-select-container {
+  &--multi {
+    @include rmd-form-theme(min-height, text-height);
+    @include rmd-form-theme-update-var(addon-top, $rmd-select-native-addon-top);
+
+    height: auto;
+  }
+
+  &--padded {
+    $calc: #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(text-padding-top)};
+    padding-top: calc(#{$calc});
+  }
+}
+
+/// @access private
+@mixin rmd-native-select {
+  @include rmd-text-field;
+
+  &--icon {
+    @include rmd-icon-theme(padding-right, size);
+
+    appearance: none;
+  }
+
+  &--multi {
+    padding-top: 0;
+  }
+
+  &__icon {
+    @include rmd-utils-rtl-auto(right, 0);
+
+    // without this, the span will render with a height larger
+    // than the icon and be positioned weirdly
+    display: inline-flex;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  &__label {
+    // it doesn't look like selects support the label attribute, so just
+    // make the labe not have pointer events so if you click on it, the
+    // select is clicked instead of the label.
+    pointer-events: none;
+  }
+}
+
+/// @access private
+@mixin rmd-select {
+  @include rmd-utils-hide-focus-outline;
+
+  &--disabled {
+    @include rmd-theme(color, text-disabled-on-background);
+  }
+
+  &__value {
+    @include rmd-utils-rtl {
+      @include rmd-form-theme(padding-left, text-padding-right);
+      @include rmd-form-theme(padding-right, text-padding-left);
+    }
+    @include rmd-form-theme(padding-left, text-padding-left);
+    @include rmd-form-theme(padding-right, text-padding-right);
+    @include rmd-form-theme(padding-top, text-padding-top);
+    @include rmd-typography(body-1, font-size);
+    @include rmd-typography-text-overflow-ellipsis;
+
+    &--placeholder {
+      @include rmd-transition(standard);
+      @include rmd-theme(color, text-secondary-on-background);
+
+      color: transparent;
+      transition: color $rmd-transition-standard-time;
+    }
+
+    &--placeholder-active {
+      @include rmd-theme(color, text-secondary-on-background);
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-listbox {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-utils-scroll;
+
+  &--temporary {
+    @include rmd-elevation($rmd-listbox-elevation);
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, on-surface);
+
+    z-index: $rmd-listbox-z-index;
+  }
+}
+
+/// @access private
+@mixin rmd-option {
+  @if $rmd-option-selected-content {
+    @include rmd-list-theme-update-var(item-horizontal-padding, 1.5rem);
+  }
+
+  &--selected {
+    @include rmd-utils-map-to-styles($rmd-option-selected-styles);
+
+    @if $rmd-option-selected-content {
+      &::after {
+        @include rmd-utils-rtl-auto(left, $rmd-option-selected-offset);
+
+        content: $rmd-option-selected-content;
+        position: absolute;
+      }
+    }
+  }
+
+  @include rmd-utils-keyboard-only {
+    &--focused {
+      @include rmd-utils-map-to-styles($rmd-option-focused-styles);
+    }
+  }
+}
+
+/// @access private
+@mixin react-md-select {
+  .rmd-native-select-container {
+    @include rmd-native-select-container;
+  }
+
+  .rmd-native-select {
+    @include rmd-native-select;
+  }
+
+  .rmd-listbox {
+    @include rmd-listbox;
+  }
+
+  .rmd-option {
+    @include rmd-option;
+  }
+
+  .rmd-select {
+    @include rmd-select;
+  }
+}

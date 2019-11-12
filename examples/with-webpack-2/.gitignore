@@ -1,7 +1,0 @@
-public
-node_modules
-coverage
-.env
-
-*.log
-.DS_STORE

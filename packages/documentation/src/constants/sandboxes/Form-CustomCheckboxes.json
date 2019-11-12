@@ -1,0 +1,60 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Form Example - Custom Checkboxes</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Form Example - Custom Checkboxes",
+      "description": "Example from https://react-md.dev/packages/form/demos#custom-checkboxes",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/divider": "next",
+        "@react-md/form": "next",
+        "@react-md/icon": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport {\n  Checkbox,\n  Form,\n  InputToggleProps,\n  useCheckboxState,\n} from \"@react-md/form\";\nimport {\n  FavoriteBorderFontIcon,\n  FavoriteSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport \"./CustomCheckboxes.scss\";\n\nconst CustomCheckbox: FC<InputToggleProps> = ({\n  defaultChecked = false,\n  onChange: propOnChange,\n  ...props\n}) => {\n  const [checked, onChange] = useCheckboxState(defaultChecked, propOnChange);\n\n  return (\n    <Checkbox\n      {...props}\n      checked={checked}\n      onChange={onChange}\n      icon={checked ? <FavoriteSVGIcon /> : <FavoriteBorderFontIcon />}\n      disableIconOverlay\n    />\n  );\n};\n\nconst Demo: FC = () => (\n  <Form>\n    <CustomCheckbox\n      id=\"custom-checkbox-1\"\n      name=\"custom-checkbox\"\n      label=\"Checkbox 1\"\n    />\n    <CustomCheckbox\n      id=\"custom-checkbox-2\"\n      name=\"custom-checkbox\"\n      label=\"Checkbox 2\"\n      defaultChecked\n    />\n    <CustomCheckbox\n      id=\"custom-checkbox-3\"\n      name=\"custom-checkbox\"\n      label=\"Checkbox 3\"\n      disabled\n    />\n    <CustomCheckbox\n      id=\"custom-checkbox-4\"\n      name=\"custom-checkbox\"\n      label=\"Checkbox 4\"\n      disabled\n      defaultChecked\n    />\n    <Divider />\n    <Checkbox\n      id=\"custom-checkbox-5\"\n      label=\"Super Small\"\n      name=\"custom-checkbox\"\n      className=\"super-small-toggle\"\n    />\n    <Checkbox\n      id=\"custom-checkbox-6\"\n      label=\"Super Large\"\n      name=\"custom-checkbox\"\n      className=\"super-large-toggle\"\n    />\n  </Form>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/CustomCheckboxes.scss": {
+    "content": "@import '~@react-md/button/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n\n.super-small-toggle {\n  @include rmd-button-theme-update-var(icon-size, 2rem);\n  @include rmd-icon-theme-update-var(size, 1rem);\n  @include rmd-form-theme-update-var(toggle-inset, 0.25rem);\n}\n\n.super-large-toggle {\n  @include rmd-button-theme-update-var(icon-size, 5rem);\n  @include rmd-icon-theme-update-var(size, 4rem);\n  @include rmd-form-theme-update-var(toggle-inset, 0.85rem);\n}\n",
+    "isBinary": false
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Card Example - Simple Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/avatar/dist/mixins';\n@import '~@react-md/card/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Card Example - Simple Example",
+      "description": "Example from https://react-md.dev/packages/card/demos#simple-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/avatar": "next",
+        "@react-md/card": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport {\n  Card,\n  CardContent,\n  CardTitle,\n  CardSubtitle,\n  CardHeader,\n} from \"@react-md/card\";\nimport { Text } from \"@react-md/typography\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Card>\n      <CardHeader>\n        <CardTitle>Main Title</CardTitle>\n      </CardHeader>\n      <CardContent>\n        <Text>\n          Duis lacinia lectus sed enim placerat, non consequat arcu tincidunt.\n          Pellentesque vel condimentum lorem. Cras et arcu nibh. Cras euismod\n          lectus commodo finibus facilisis. Sed ullamcorper odio sed scelerisque\n          semper. Donec sollicitudin lorem eget tincidunt efficitur. Aenean sit\n          amet tempus lacus, sit amet semper justo. Sed quis suscipit ante.\n          Etiam aliquam risus eu laoreet placerat.\n        </Text>\n      </CardContent>\n    </Card>\n    <Card>\n      <CardHeader>\n        <CardTitle>Main Title</CardTitle>\n        <CardSubtitle>Subtitle</CardSubtitle>\n      </CardHeader>\n      <CardContent>\n        <Text>\n          Duis pellentesque, ligula vel convallis tincidunt, arcu enim cursus\n          leo, sit amet euismod eros tellus vel nisi. Quisque ultrices elementum\n          nisi id pulvinar. Vivamus ac posuere mauris, vitae aliquet massa.\n          Donec semper vestibulum odio sit amet aliquam. Nullam sed pellentesque\n          risus, condimentum vulputate quam. Donec sed lacinia nisl. Donec\n          convallis risus a placerat pellentesque.\n        </Text>\n      </CardContent>\n    </Card>\n    <Card>\n      <CardHeader beforeChildren={<Avatar>A</Avatar>}>\n        <CardTitle>Card Title</CardTitle>\n        <CardSubtitle>Card subtitle</CardSubtitle>\n      </CardHeader>\n      <CardContent>\n        <Text>\n          Proin eget lacinia sem. Curabitur viverra, ex ac vulputate malesuada,\n          risus justo pharetra lectus, id gravida metus diam et nisi. Fusce\n          semper eu magna sit amet interdum. Phasellus fringilla in elit auctor\n          sodales. Interdum et malesuada fames ac ante ipsum primis in faucibus.\n          Sed facilisis enim ut leo euismod dapibus. Curabitur neque urna,\n          ullamcorper ac nibh in, vehicula varius orci. Nunc lacinia magna eget\n          dolor eleifend, eu dapibus lacus suscipit. Pellentesque sollicitudin\n          mi sagittis magna fringilla luctus sit amet quis elit. Vestibulum ante\n          ipsum primis in faucibus orci luctus et ultrices posuere cubilia\n          Curae; Cras congue nunc elit, ac commodo orci laoreet at. Quisque\n          libero erat, ultricies quis neque ut, blandit laoreet nibh. Phasellus\n          sagittis lobortis ipsum, vitae maximus quam auctor sit amet. Quisque\n          ut lobortis purus.\n        </Text>\n      </CardContent>\n    </Card>\n  </Container>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Container.scss": {
+    "content": ".card-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--centered {\n    justify-content: center;\n  }\n\n  .rmd-card {\n    margin: 0.5rem;\n  }\n\n  .rmd-dialog--full-page & {\n    .rmd-card {\n      width: 100%;\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst block = bem(\"card-container\");\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div className={block({ centered })}>{children}</div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  }
+}

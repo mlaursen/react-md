@@ -1,0 +1,37 @@
+////
+/// @group table
+////
+
+@import '~@react-md/theme/dist/mixins';
+
+$rmd-table-fixed-background-color: rmd-theme-var(background) !default;
+$rmd-table-cell-padding: 1rem !default;
+$rmd-table-cell-padding-extra: 3.5rem !default;
+
+$rmd-table-cell-height: 3rem !default;
+
+$rmd-table-cell-dense-height: 2rem !default;
+
+$rmd-table-header-cell-color: rmd-theme-var(text-secondary-on-background) !default;
+$rmd-table-header-font-size: 0.75rem !default;
+$rmd-table-data-cell-color: rmd-theme-var(text-primary-on-background) !default;
+$rmd-table-data-cell-font-size: 0.875rem !default;
+
+$rmd-table-row-hover-color: rgba($rmd-black-base, 0.12) !default;
+
+/// A Map of all the "themeable" parts of the table package. Every key in this map will
+/// be used to create a css variable to dynamically update the values of the icon as
+/// needed.
+/// @type Map
+$rmd-table-theme-values: (
+  fixed-background-color: $rmd-table-fixed-background-color,
+  cell-height: $rmd-table-cell-height,
+  cell-padding: $rmd-table-cell-padding,
+  cell-padding-extra: $rmd-table-cell-padding-extra,
+  cell-dense-height: $rmd-table-cell-dense-height,
+  header-cell-color: $rmd-table-header-cell-color,
+  header-cell-font-size: $rmd-table-header-font-size,
+  data-cell-color: $rmd-table-data-cell-color,
+  data-cell-font-size: $rmd-table-data-cell-font-size,
+  hover-color: $rmd-table-row-hover-color,
+) !default;

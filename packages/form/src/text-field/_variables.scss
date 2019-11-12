@@ -1,0 +1,143 @@
+////
+/// @group form-text
+////
+
+@import '~@react-md/icon/dist/variables';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/functions';
+
+/// The color to use for the text field's borders/underlines while the user
+/// is focusing the text field.
+/// @type Color
+$rmd-text-field-active-color: rmd-theme-var(primary) !default;
+
+/// The text field's border color to use in light themed apps or backgrounds.
+/// @type Color
+$rmd-text-field-light-border-color: rgba($rmd-black-base, 0.12) !default;
+
+/// The text field's border color to use in dark themed apps or backgrounds.
+/// @type Color
+$rmd-text-field-dark-border-color: rgba($rmd-white-base, 0.5) !default;
+
+/// The default text field's border color to use.
+/// @type Color
+$rmd-text-field-border-color: if(
+  $rmd-theme-light,
+  $rmd-text-field-light-border-color,
+  $rmd-text-field-dark-border-color
+) !default;
+
+/// The text field's border color to use in light themed apps or backgrounds
+/// when the user is hovering the text field.
+/// @type Color
+$rmd-text-field-light-border-hover-color: rgba($rmd-black-base, 0.87) !default;
+
+/// The text field's border color to use in dark themed apps or backgrounds
+/// when the user is hovering the text field.
+/// @type Color
+$rmd-text-field-dark-border-hover-color: rgba($rmd-white-base, 0.87) !default;
+
+/// The default text field's hover border color to use.
+/// @type Color
+$rmd-text-field-border-hover-color: if(
+  $rmd-theme-light,
+  $rmd-text-field-light-border-hover-color,
+  $rmd-text-field-dark-border-hover-color
+) !default;
+
+/// The border radius to apply to text fields.
+/// @type Number
+$rmd-text-field-border-radius: 0.25rem !default;
+
+/// The default border width for outlined text fields.
+/// @type Number
+$rmd-text-field-border-width: 1px !default;
+
+/// The border width for outlined text fields that are currently
+/// focused.
+/// @type Number
+$rmd-text-field-border-width-active: 2px !default;
+
+/// The height to use for a text field with a label.
+/// @type Number
+$rmd-text-field-label-height: 3.5rem !default;
+
+/// The height to use for a text field with a label with the dense spec.
+/// @type Number
+$rmd-text-field-label-dense-height: 3.25rem !default;
+
+/// The height to use for a text field without a label (so placeholder only).
+/// @type Number
+$rmd-text-field-height: 3rem !default;
+
+/// The height to use for a text field without a label with the dense
+/// spec (so placeholder only).
+/// @type Number
+$rmd-text-field-dense-height: 2.5rem !default;
+
+/// The amount of padding to apply to the left and right of the text field
+/// when it has the outline theme applied.
+/// @type Number
+$rmd-text-field-outline-padding: 1rem !default;
+
+/// The amount of padding to apply to the top of an underlined or filled text field.
+/// This is used to push the input down a little bit to look nice with the floating
+/// label.
+/// @type Number
+$rmd-text-field-underline-label-padding-top: 1rem !default;
+
+/// The amount of offset to apply to the floating label for an underlined or filled
+/// text field when there is an icon to the left of the input.
+/// @type Number
+$rmd-text-field-underline-label-left-offset: $rmd-icon-spacing-with-text !default;
+
+/// The amount of padding to apply to the top of an underlined or filled text field
+/// when the dense theme is enabled. This is used to push the input down a little bit
+/// to look nice with the floating label.
+/// @type Number
+$rmd-text-field-underline-dense-padding-top: 0.25rem !default;
+
+/// The amount of padding to apply to the left and right of the text field
+/// when it has the underline theme applied.
+/// @type Number
+$rmd-text-field-underline-padding: null !default;
+
+/// The amount of padding to apply to the left and right of the text field
+/// when it has the filled theme applied.
+/// @type Number
+$rmd-text-field-filled-padding: 0.75rem !default;
+
+/// The background color to use for filled text fields when using the light theme.
+/// @type Color
+$rmd-text-field-filled-light-background-color: $rmd-grey-100 !default;
+
+/// The background color to use for filled text fields when using the dark theme.
+/// @type Color
+$rmd-text-field-filled-dark-background-color: $rmd-grey-700 !default;
+
+/// The default background color for filled text fields.
+/// @type Color
+$rmd-text-field-filled-background-color: if(
+  $rmd-theme-light,
+  $rmd-text-field-filled-light-background-color,
+  $rmd-text-field-filled-dark-background-color
+) !default;
+
+/// The border radius to apply to the top left and top right of the filled text
+/// field.
+/// @type Number
+$rmd-text-field-filled-border-radius: 0.25rem !default;
+
+/// The amount of spacing between the left or right of the text field and the icon.
+/// @type Number
+$rmd-text-field-addon-margin: $rmd-icon-spacing-with-text !default;
+
+/// An additional amount of padding to apply to textareas.
+/// @type Number
+$rmd-textarea-vertical-padding: 0.5rem !default;
+
+/// The amount to start offseting the textarea's left/right inline addon icons. If
+/// this value isn't set, the icons will be centered in the textarea's height and
+/// will continually be centered as the user types more and more text.
+/// @type Number
+$rmd-textarea-addon-top: 1rem !default;

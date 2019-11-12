@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "8"
+  - "10"
 
 cache:
   yarn: true
@@ -11,8 +11,13 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 install:
+  - yarn global add lerna
   - yarn install
+  - lerna run build --scope @react-md/dev-utils
+  - yarn install --force
 
 script:
+  - yarn build --silent
+  - yarn typecheck
   - yarn lint
   - yarn test -i

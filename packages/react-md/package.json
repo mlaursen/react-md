@@ -1,0 +1,76 @@
+{
+  "name": "react-md",
+  "version": "2.0.0-alpha.10",
+  "description": "This is the full react-md library bundled together for convenience.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "homepage": "https://react-md.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/react-md"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/alert": "^2.0.0-alpha.10",
+    "@react-md/app-bar": "^2.0.0-alpha.10",
+    "@react-md/autocomplete": "^2.0.0-alpha.10",
+    "@react-md/avatar": "^2.0.0-alpha.10",
+    "@react-md/badge": "^2.0.0-alpha.10",
+    "@react-md/button": "^2.0.0-alpha.10",
+    "@react-md/card": "^2.0.0-alpha.10",
+    "@react-md/chip": "^2.0.0-alpha.10",
+    "@react-md/dialog": "^2.0.0-alpha.10",
+    "@react-md/divider": "^2.0.0-alpha.10",
+    "@react-md/elevation": "^2.0.0-alpha.10",
+    "@react-md/form": "^2.0.0-alpha.10",
+    "@react-md/icon": "^2.0.0-alpha.10",
+    "@react-md/layout": "^2.0.0-alpha.10",
+    "@react-md/link": "^2.0.0-alpha.10",
+    "@react-md/list": "^2.0.0-alpha.10",
+    "@react-md/material-icons": "^2.0.0-alpha.10",
+    "@react-md/media": "^2.0.0-alpha.10",
+    "@react-md/menu": "^2.0.0-alpha.10",
+    "@react-md/overlay": "^2.0.0-alpha.10",
+    "@react-md/portal": "^2.0.0-alpha.10",
+    "@react-md/progress": "^2.0.0-alpha.10",
+    "@react-md/sheet": "^2.0.0-alpha.10",
+    "@react-md/states": "^2.0.0-alpha.10",
+    "@react-md/table": "^2.0.0-alpha.10",
+    "@react-md/theme": "^2.0.0-alpha.10",
+    "@react-md/tooltip": "^2.0.0-alpha.10",
+    "@react-md/transition": "^2.0.0-alpha.10",
+    "@react-md/tree": "^2.0.0-alpha.10",
+    "@react-md/typography": "^2.0.0-alpha.10",
+    "@react-md/utils": "^2.0.0-alpha.10"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

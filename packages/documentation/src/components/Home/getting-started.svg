@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 355 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0961786685 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <rect fill="#13B0A5" x="0" y="0" width="355" height="355"></rect>
+            <g transform="translate(20.000000, 79.000000)">
+                <g>
+                    <rect fill="#CFD0D1" x="0" y="105.141099" width="203" height="41.5334737" rx="8"></rect>
+                    <path d="M0,8.0004786 C0,3.58193628 3.58797025,0 8.00471346,0 L194.995287,0 C199.416168,0 203,3.5909304 203,8.0004786 L203,119.985591 L0,119.985591 L0,8.0004786 Z" stroke="#474E5C" stroke-width="8" fill="#FF8782"></path>
+                </g>
+                <circle fill="#474E5C" cx="101" cy="134" r="7"></circle>
+                <path d="M76,147 L126,147 L132,172 L70,172 L76,147 Z" fill="#CECFD1"></path>
+                <path d="M64,174 L70.1670079,172 L132,172 L138,174 L138,176 L64,176 L64,174 Z" fill="#CECFD1"></path>
+                <path d="M75.9052734,146.581299 L126.095459,146.581299 L127.554688,153 L74.5166016,153 L75.9052734,146.581299 Z" fill="#AEB1B7"></path>
+                <rect fill="#FFFFFF" filter="url(#filter-1)" x="46" y="16" width="109" height="84" rx="2"></rect>
+                <path d="M46,16.9981014 C46,15.8945804 46.893411,15 48.0085357,15 L152.991464,15 C154.100748,15 155,15.8867064 155,16.9981014 L155,23 L46,23 C46.0000002,23 46,16.9981014 46,16.9981014 Z" fill="#EAEAF5"></path>
+                <circle fill="#FB4E54" cx="50.5" cy="18.5" r="1.5"></circle>
+                <path d="M54.5,20 C55.3284271,20 56,19.3284271 56,18.5 C56,17.6715729 55.3284271,17 54.5,17 C53.6715729,17 53,17.6715729 53,18.5 C53,19.3284271 53.6715729,20 54.5,20 Z" fill="#FBAE58"></path>
+                <path d="M58.5,20 C59.3284271,20 60,19.3284271 60,18.5 C60,17.6715729 59.3284271,17 58.5,17 C57.6715729,17 57,17.6715729 57,18.5 C57,19.3284271 57.6715729,20 58.5,20 Z" fill="#65B455"></path>
+                <rect fill="#FFFFFF" x="63" y="17" width="78" height="4" rx="1"></rect>
+                <rect fill="#FFFFFF" x="144" y="17" width="6" height="4" rx="1"></rect>
+                <rect fill="#EAEAF5" x="151" y="27" width="2" height="67" rx="1"></rect>
+                <path d="M110.052833,31.0146326 C110.222413,29.3648761 111.699583,28.0274842 113.357818,28.0274842 L115.474957,28.0274842 C117.130669,28.0274842 118.47289,29.3658346 118.47289,31.0364956 L118.47289,92.0184727 C118.47289,93.6803038 117.128539,95.0274842 115.473467,95.0274842 L106.472312,95.0274842 C104.815777,95.0274842 103.61046,93.6891338 103.779942,92.0403357 L110.052833,31.0146326 Z" fill="#13B0A5" transform="translate(111.118469, 61.527484) rotate(43.000000) translate(-111.118469, -61.527484) "></path>
+                <path d="M78.3835945,60.6966606 C78.3835945,59.039834 79.7267095,57.6967106 81.3819873,57.6967106 L83.1982738,57.6967106 C84.8542405,57.6967106 86.4739991,59.0076653 86.8156404,60.6226095 L92.7646207,88.7435368 C93.1064705,90.3594662 92.0392437,91.6694358 90.384172,91.6694358 L81.3830169,91.6694358 C79.7264817,91.6694358 78.3835945,90.3167002 78.3835945,88.6694858 L78.3835945,60.6966606 Z" fill="#13B0A5" transform="translate(85.605983, 74.683073) rotate(-46.000000) translate(-85.605983, -74.683073) "></path>
+                <circle fill="#D8D8D8" cx="101" cy="4" r="1"></circle>
+            </g>
+            <g transform="translate(188.000000, 197.000000)">
+                <path d="M16,6.00998847 C16,2.69076349 18.6906927,0 22.0017142,0 L133.998286,0 C137.312941,0 140,2.69532171 140,6.00998847 L140,77 L16,77 C16,77 16,6.00998847 16,6.00998847 Z" stroke="#E8EBF0" stroke-width="5" fill="#F7AC82"></path>
+                <path d="M0,77 L157,77 C157,77 151.905273,81 146.666016,81 L10.7197266,81 C5.71875,81 0,77 0,77 Z" fill="#F4F5F7"></path>
+                <path d="M70,77 L87,77 L87,78 C87,78.5522847 86.5452911,79 86.0000398,79 L70.9999602,79 C70.4476974,79 70,78.5561352 70,78 L70,77 Z" fill="#D8DBE1"></path>
+                <circle fill="#A5ADBC" cx="78" cy="2" r="1"></circle>
+                <rect fill="#FACBB1" x="31" y="11" width="94" height="18"></rect>
+                <rect fill="#FACBB1" x="31" y="61" width="94" height="4"></rect>
+                <rect fill="#FACBB1" x="36" y="34" width="42" height="23"></rect>
+                <rect fill="#FACBB1" x="85" y="36" width="35" height="18"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

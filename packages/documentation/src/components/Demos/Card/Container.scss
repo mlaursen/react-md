@@ -1,0 +1,19 @@
+.card-container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+
+  &--centered {
+    justify-content: center;
+  }
+
+  .rmd-card {
+    margin: 0.5rem;
+  }
+
+  .rmd-dialog--full-page & {
+    .rmd-card {
+      width: 100%;
+    }
+  }
+}

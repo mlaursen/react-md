@@ -1,0 +1,54 @@
+{
+  "name": "@react-md/media",
+  "version": "2.0.0-alpha.10",
+  "description": "This package is used for including responsive media (images, videos, etc) within your app.",
+  "scripts": {
+    "build": "dev-utils build",
+    "clean": "dev-utils clean"
+  },
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "es/*",
+    "lib/*",
+    "types/*",
+    "src/*",
+    "dist/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md",
+    "directory": "packages/media"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "component",
+    "components",
+    "responsive",
+    "images",
+    "videos",
+    "media"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/theme": "^2.0.0-alpha.10",
+    "@react-md/utils": "^2.0.0-alpha.10",
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

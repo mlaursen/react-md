@@ -1,0 +1,70 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>AppBar Example - Auto Dense</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "AppBar Example - Auto Dense",
+      "description": "Example from https://react-md.dev/packages/app-bar/demos#auto-dense",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/app-bar": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/tooltip": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { AppBar, AppBarNav } from \"@react-md/app-bar\";\nimport { MenuSVGIcon } from \"@react-md/material-icons\";\n\nimport AppBarTitle from \"./AppBarTitle\";\n\nimport \"./AutoDense.scss\";\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container className=\"auto-dense\">\n    <AppBar id=\"auto-dense-app-bar\">\n      <AppBarNav id=\"auto-dense-app-bar-nav\" aria-label=\"Navigation\">\n        <MenuSVGIcon />\n      </AppBarNav>\n      <AppBarTitle>Auto Dense</AppBarTitle>\n    </AppBar>\n    <AppBar\n      id=\"auto-prominent-dense-app-bar\"\n      className=\"auto-dense__prominent\"\n      prominent\n    >\n      <AppBar>\n        <AppBarNav\n          id=\"auto-prominent-dense-app-bar-nav\"\n          aria-label=\"Navigation\"\n        >\n          <MenuSVGIcon />\n        </AppBarNav>\n        <AppBarTitle>Auto Dense and prominent</AppBarTitle>\n      </AppBar>\n    </AppBar>\n  </Container>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/AppBarTitle.tsx": {
+    "content": "import React, { FC, useRef, useState, ReactNode, useMemo } from \"react\";\nimport {\n  AppBarTitle as RMDAppBarTitle,\n  AppBarTitleProps,\n} from \"@react-md/app-bar\";\nimport { Tooltipped } from \"@react-md/tooltip\";\nimport { useResizeObserver } from \"@react-md/utils\";\nimport createIdGenerator from \"./createIdGenerator\";\n\nconst hackyIds = createIdGenerator(\"dynamic-tooltips\");\n\n/**\n * This component is a wrapper for the AppBarTitle component from @react-md/app-bar\n * that will automatically update the title to show a tooltip if the title becomes\n * truncated.\n *\n * This is pretty hacky right so it isn't part of the main lib yet, but a better\n * sultion to \"auto tooltip\" things might be added one day.\n */\nconst AppBarTitle: FC<AppBarTitleProps> = ({\n  id: propId,\n  children,\n  ...props\n}) => {\n  const [tooltip, setTooltip] = useState<ReactNode>(null);\n  const ref = useRef<HTMLHeadingElement | null>(null);\n  useResizeObserver({\n    disableHeight: true,\n    onResize() {\n      if (!ref.current) {\n        return;\n      }\n\n      const isTruncated = ref.current.offsetWidth < ref.current.scrollWidth;\n      if (isTruncated && !tooltip) {\n        setTooltip(children);\n      } else if (!isTruncated && tooltip) {\n        setTooltip(null);\n      }\n    },\n    target: ref,\n  });\n\n  const id = useMemo(() => {\n    if (propId) {\n      return propId;\n    }\n\n    return hackyIds();\n  }, [propId]);\n\n  return (\n    <Tooltipped id={id} tooltip={tooltip}>\n      <RMDAppBarTitle {...props} ref={ref} tabIndex={tooltip ? 0 : undefined}>\n        {children}\n      </RMDAppBarTitle>\n    </Tooltipped>\n  );\n};\n\nexport default AppBarTitle;\n",
+    "isBinary": false
+  },
+  "src/AutoDense.scss": {
+    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.auto-dense {\n  @include rmd-utils-desktop-media {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    &__prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n    }\n  }\n\n  &__prominent {\n    @include rmd-app-bar-theme-update-var(\n      prominent-height,\n      rmd-app-bar-theme-var(prominent-dense-height)\n    );\n\n    // just because I don't want to create 2 rows of data for this example\n    align-items: flex-start;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport { Grid } from \"@react-md/utils\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  ...props\n}) => (\n  <Grid {...props} clone padding={0} columns={1}>\n    {children}\n  </Grid>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  },
+  "src/createIdGenerator.ts": {
+    "content": "/**\n * An extremely simplified uuid function that is scoped with a speciifc prefix. This\n * will just always increment the total count at the end of the prefix.\n *\n * ```ts\n * const uuid = createIdGenerator(\"my-custom-prefix\");\n *\n * uuid(); // my-custom-prefix-0\n * uuid(); // my-custom-prefix-1\n * uuid(); // my-custom-prefix-2\n * ```\n *\n * @param prefix The string prefix to use\n * @return a function to call to generate a \"uuid\"\n */\nexport default function createIdGenerator(prefix: string): () => string {\n  const generator = (function* idGenerator() {\n    let index = 0;\n    while (true) {\n      yield `${prefix}-${index}`;\n      index += 1;\n    }\n  })();\n\n  return () => generator.next().value;\n}\n",
+    "isBinary": false
+  }
+}

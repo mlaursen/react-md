@@ -1,0 +1,61 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Card Example - With Actions</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/card/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Card Example - With Actions",
+      "description": "Example from https://react-md.dev/packages/card/demos#with-actions",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/card": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Card,\n  CardTitle,\n  CardContent,\n  CardActions,\n  CardHeader,\n} from \"@react-md/card\";\nimport { Text } from \"@react-md/typography\";\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Card raiseable>\n      <CardHeader>\n        <CardTitle>This is a title</CardTitle>\n      </CardHeader>\n      <CardContent>\n        <Text>\n          Sed molestie finibus varius. Maecenas tincidunt eu quam eget sodales.\n          Fusce ut lacus luctus, aliquam erat eu, fringilla libero. Nulla\n          rhoncus mi nec orci ultricies ultricies. Aenean et hendrerit velit.\n          Curabitur condimentum a tortor sit amet porttitor. Sed ut neque eget\n          massa feugiat ullamcorper. Sed quis vulputate mi, imperdiet egestas\n          diam. Nullam rutrum nisl sed mi posuere commodo. Nulla eleifend\n          interdum euismod. Suspendisse sit amet rutrum lorem, nec aliquet\n          tellus. Nam non massa imperdiet, vehicula diam nec, efficitur turpis.\n          In non suscipit tellus. Vivamus ac volutpat velit, sit amet faucibus\n          nisi. Pellentesque condimentum dignissim augue, sit amet porta ipsum\n          feugiat nec.\n        </Text>\n      </CardContent>\n      <CardActions>\n        <Button>Action 1</Button>\n        <Button>Action 2</Button>\n      </CardActions>\n    </Card>\n  </Container>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Container.scss": {
+    "content": ".card-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--centered {\n    justify-content: center;\n  }\n\n  .rmd-card {\n    margin: 0.5rem;\n  }\n\n  .rmd-dialog--full-page & {\n    .rmd-card {\n      width: 100%;\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Container.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst block = bem(\"card-container\");\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div className={block({ centered })}>{children}</div>\n);\n\nexport default Container;\n",
+    "isBinary": false
+  }
+}
