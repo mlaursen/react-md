@@ -98,9 +98,9 @@ $ npm run test:watch  # watches for changes in tests and reruns
 If there are any visual changes or you want to test the functionality of a component, you can use the documentation
 site and create a new example.
 
-See the documentation's site [README](https://github.com/mlaursen/react-md/tree/master/docs#react-md-documentation) for information on running the dev server.
+See the documentation's site [README](https://github.com/mlaursen/react-md/tree/v1/docs#react-md-documentation) for information on running the dev server.
 
 ### License
 
 By contributing your code to to the `mlaursen/react-md` GitHub repository, you agree to license your contribution under the
-[MIT License](https://github.com/mlaursen/react-md/blob/master/LICENSE).
+[MIT License](https://github.com/mlaursen/react-md/tree/v1/LICENSE).

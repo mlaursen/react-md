@@ -17,7 +17,7 @@ or by locally hosting and using the provided Sass mixins to include them. See [h
 and [host-google-font](/customization/typography?tab=1#mixin-host-google-font) for more details.
 
 ### Examples
-Please see the [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) for example project setups using
+Please see the [examples folder](https://github.com/mlaursen/react-md/tree/v1/examples) for example project setups using
 [create-react-app](https://github.com/facebook/create-react-app), [next.js](https://github.com/zeit/next.js/), webpack,
 and others.
 

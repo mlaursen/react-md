@@ -125,7 +125,7 @@ Please see the list of [examples](examples/) for how you can get a project start
 
 ## Contributing
 
-Please see the [documentation site README](https://github.com/mlaursen/react-md/tree/master/docs#react-md-documentation)
+Please see the [documentation site README](https://github.com/mlaursen/react-md/tree/v1/docs#react-md-documentation)
 for information about contributing using the documentation server. Otherwise, here is some information about only working
 within `react-md`.
 

@@ -107,7 +107,7 @@ information in the main stickied issue [issues-826].
 
 ### Documentation Change
 
-- Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app-v2).
+- Added an example of getting started with [react-md and create-react-app@v2](https://github.com/mlaursen/react-md/tree/v1/examples/with-create-react-app-v2).
 
 ### v1.8.0 Released
 
@@ -338,7 +338,7 @@ using the `timeZone` prop before.
 - Added an example for handling [nested dialogs](/components/dialogs#nested-dialogs).
 - Fixed the invalid prop linking for the `SelectField`. [issues-628]
 - Fixed the `onOkClick` documentation for the `EditDialogColumn`. [commit-8d50ccb]
-- Updated the [examples](https://github.com/mlaursen/react-md/tree/master/examples) to correctly watch
+- Updated the [examples](https://github.com/mlaursen/react-md/tree/v1/examples) to correctly watch
   Sass files. [pull-626]
 
 ## November 2017
@@ -781,7 +781,7 @@ Added a new place to showcase apps that are using react-md. You can view them [h
 ### v1.0.12 Released
 
 This release is mostly about fixing some of the cross-browser support and weird issues in mobile safari.
-In addition, an [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) has been added
+In addition, an [examples folder](https://github.com/mlaursen/react-md/tree/v1/examples) has been added
 to hopefully help newer people get a react-md project started up.
 
 In addition, I decided to move the ticket from `v1.1.0` to `v1.0.12` about the annoying delay when a menu/drawer/toast
