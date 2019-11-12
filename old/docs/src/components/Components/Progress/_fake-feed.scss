@@ -1,6 +1,0 @@
-@import '~globals';
-
-.progress__fake-feed__progress {
-  display: flex;
-  height: calc(#{$md-progress-margin * 2} + #{$md-font-icon-size});
-}

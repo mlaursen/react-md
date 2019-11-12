@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CodeVariable should render correctly 1`] = `
-<code
-  className="code-variable language-scss"
->
-  $md-primary-color: #90f293;
-</code>
-`;

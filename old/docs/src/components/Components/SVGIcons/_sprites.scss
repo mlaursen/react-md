@@ -1,8 +1,0 @@
-// The svg-sprite-loader creates a .sprite-symbol-usage class name when on IE 11 and sets it to display: none
-// until it becomes :target. However, we want the icons to always be visible and this solution doesn't
-// appear to work. When on IE 11, it creates an SVG with all the symbol defs as the first element in
-// the body. We can work around this problem by targeting the react-app tree and then setting it to
-// visible in there.
-.sprite-symbol-usage.sprite-symbol-usage {
-  display: inline;
-}
