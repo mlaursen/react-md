@@ -9,6 +9,7 @@ import {
   MessageQueueActions,
   PopMessage,
   ResetQueue,
+  ToastMessage,
 } from "./MessageQueueContext";
 import useWindowBlurPause from "./useWindowBlurPause";
 
@@ -16,21 +17,53 @@ export const ADD_MESSAGE = "ADD_MESSAGE";
 export const POP_MESSAGE = "POP_MESSAGE";
 export const RESET_QUEUE = "RESET_QUEUE";
 
-export interface AddMessageAction<M extends Message> {
+/**
+ * @private
+ */
+export interface AddMessageAction<M extends Message = ToastMessage> {
   type: typeof ADD_MESSAGE;
   message: M;
   duplicates: DuplicateBehavior;
 }
 
+/**
+ * @private
+ */
+export function addMessage<M extends Message = ToastMessage>(
+  message: M,
+  duplicates: DuplicateBehavior
+): AddMessageAction {
+  return { type: ADD_MESSAGE, message, duplicates };
+}
+
+/**
+ * @private
+ */
 export interface PopMessageAction {
   type: typeof POP_MESSAGE;
 }
 
+/**
+ * @private
+ */
+export const popMessage = (): PopMessageAction => ({ type: POP_MESSAGE });
+
+/**
+ * @private
+ */
 export interface ResetQueueAction {
   type: typeof RESET_QUEUE;
 }
 
-export type MessageActions<M extends Message> =
+/**
+ * @private
+ */
+export const resetQueue = (): ResetQueueAction => ({ type: RESET_QUEUE });
+
+/**
+ * @private
+ */
+export type MessageActions<M extends Message = ToastMessage> =
   | AddMessageAction<M>
   | PopMessageAction
   | ResetQueueAction;
@@ -41,7 +74,7 @@ export type MessageActions<M extends Message> =
  *
  * @private
  */
-export function addMessage<M extends Message = Message>(
+export function handleAddMessage<M extends Message = ToastMessage>(
   state: M[],
   message: M,
   duplicates: DuplicateBehavior
@@ -52,32 +85,35 @@ export function addMessage<M extends Message = Message>(
 
   const { messageId, messagePriority = "normal" } = message;
   const i = state.findIndex(mes => mes.messageId === messageId);
-  if (messagePriority === "next" || messagePriority === "immediate") {
+  const isNext = messagePriority === "next";
+  const isNormal = messagePriority === "normal";
+  const isReplace = messagePriority === "replace";
+  const isImmediate = messagePriority === "immediate";
+  const isDuplicable = duplicates === "allow";
+  const isRestart = duplicates === "restart";
+  if (isNext || isImmediate) {
     const nextState = state.slice();
 
     // remove the existing message if duplicated messages aren't allowed. This will
     // kind of act like a replace + next behavior
-    if (duplicates !== "allow" && i > 1) {
+    if (!isDuplicable && i > 0) {
       nextState.splice(i, 1);
     }
 
     const [current, ...remaining] = nextState;
-    if (
-      messagePriority === "immediate" &&
-      current.messagePriority !== "immediate"
-    ) {
+    if (isImmediate && current.messagePriority !== "immediate") {
       return [current, message, current, ...remaining];
     }
 
     return [current, message, ...remaining];
   }
 
-  if (i === -1 || (messagePriority === "normal" && duplicates === "allow")) {
+  if (i === -1 || (isDuplicable && isNormal)) {
     return [...state, message];
   }
 
-  if (messagePriority === "normal") {
-    if (duplicates === "restart") {
+  if (isNormal) {
+    if (isRestart) {
       // creating a new state so that the queue visibility hook can still be triggered
       // which will restart the timer
       return state.slice();
@@ -86,7 +122,7 @@ export function addMessage<M extends Message = Message>(
     return state;
   }
 
-  if (messagePriority === "replace") {
+  if (isReplace) {
     const nextState = state.slice();
     nextState[i] = message;
     return nextState;
@@ -95,31 +131,37 @@ export function addMessage<M extends Message = Message>(
   return [...state, message];
 }
 
-type MessageQueueReducer<M extends Message> = Reducer<M[], MessageActions<M>>;
+type MessageQueueReducer<M extends Message = ToastMessage> = Reducer<
+  M[],
+  MessageActions<M>
+>;
 
-export function reducer<M extends Message>(
+/**
+ * @private
+ */
+export function reducer<M extends Message = ToastMessage>(
   state: M[],
   action: MessageActions<M>
 ): M[] {
   switch (action.type) {
     case ADD_MESSAGE:
-      return addMessage(state, action.message, action.duplicates);
+      return handleAddMessage(state, action.message, action.duplicates);
     case POP_MESSAGE:
-      return state.slice(1);
+      return state.length ? state.slice(1) : state;
     case RESET_QUEUE:
-      return [];
+      return state.length ? [] : state;
     default:
       return state;
   }
 }
 
-export interface MessageQueueOptions<M extends Message> {
+export interface MessageQueueOptions<M extends Message = ToastMessage> {
   timeout?: number;
   duplicates?: DuplicateBehavior;
   defaultQueue?: M[];
 }
 
-export interface MessageQueueResult<M extends Message>
+export interface MessageQueueResult<M extends Message = ToastMessage>
   extends MessageQueueActions<M> {
   queue: M[];
   visible: boolean;
@@ -134,7 +176,7 @@ export interface MessageQueueResult<M extends Message>
  *
  * @private
  */
-export default function useMessageQueue<M extends Message>({
+export default function useMessageQueue<M extends Message = ToastMessage>({
   timeout = DEFAULT_MESSAGE_QUEUE_TIMEOUT,
   duplicates = "allow",
   defaultQueue = [],
@@ -159,11 +201,11 @@ export default function useMessageQueue<M extends Message>({
   );
 
   const popMessageDispatch = useCallback<PopMessage>(() => {
-    dispatch({ type: POP_MESSAGE });
+    dispatch(popMessage());
   }, []);
 
-  const resetQueue = useCallback<ResetQueue<M>>(() => {
-    dispatch({ type: RESET_QUEUE });
+  const resetQueueDispatch = useCallback<ResetQueue<M>>(() => {
+    dispatch(resetQueue());
     return queueRef.current;
   }, []);
   const [visible, showMessage, hideMessage] = useToggle(
@@ -223,7 +265,7 @@ export default function useMessageQueue<M extends Message>({
 
   return {
     queue,
-    resetQueue,
+    resetQueue: resetQueueDispatch,
     visible,
     hideMessage,
     addMessage: addMessageDispatch,

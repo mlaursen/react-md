@@ -19,4 +19,10 @@ describe("isContrastCompliant", () => {
 
     expect(isContrastCompliant("#fafafa", rmdTeal500)).toBe(false);
   });
+
+  it("should allow for a custom compliance level that is a number", () => {
+    const rmdTeal500 = "#009688";
+    expect(isContrastCompliant("#fafafa", rmdTeal500, 1)).toBe(true);
+    expect(isContrastCompliant("#fafafa", rmdTeal500, 3)).toBe(true);
+  });
 });
