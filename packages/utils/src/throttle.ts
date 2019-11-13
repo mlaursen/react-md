@@ -54,11 +54,6 @@ export default function throttle<F extends ThrottleableFunction>(
     const now = Date.now();
     const remaining = wait - (now - lastCalledTime);
     if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        window.clearTimeout(timeout);
-        timeout = undefined;
-      }
-
       lastCalledTime = now;
       result = fn(...args);
     } else if (!timeout) {

@@ -1,4 +1,13 @@
-let cached: number;
+let cached: number | undefined;
+
+/**
+ * This is used to reset the cached value for each test and verify the cached
+ * behavior is working
+ * @private
+ */
+export const reset = (): void => {
+  cached = undefined;
+};
 
 /**
  * This will return the scrollbar width for a specific OS by creating a temporary element
@@ -16,7 +25,8 @@ let cached: number;
  * the "cached" value will be returned immediately instead
  * @return the current scrollbar width or -1 if running this on the server
  */
-export default function getScrollbarWidth(forced: boolean = false): number {
+export default function scrollbarWidth(forced: boolean = false): number {
+  /* istanbul ignore if */
   if (typeof window === "undefined") {
     return -1;
   }
@@ -37,7 +47,7 @@ export default function getScrollbarWidth(forced: boolean = false): number {
   // the scrollbar width can be determined by comparing the width of the parent element
   // that has scrollbars to the child element that does not.
   cached = outer.offsetWidth - inner.offsetWidth;
-  (outer.parentNode as HTMLElement).removeChild(outer);
+  document.body.removeChild(outer);
 
   return cached;
 }
