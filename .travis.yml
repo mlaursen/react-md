@@ -20,4 +20,7 @@ script:
   - yarn build --silent
   - yarn typecheck
   - yarn lint
-  - yarn test -i
+  - yarn test -i --coverage
+  - npm install codecov -g
+after_success:
+  - codecov
