@@ -37,6 +37,8 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [
     '/node_modules/',
+    '<rootDir>/packages/documentation/src',
+    '<rootDir>/testSetup',
     ...packages.map(name => `<rootDir>/packages/${name}/es`),
     ...packages.map(name => `<rootDir>/packages/${name}/lib`),
   ],
