@@ -11,7 +11,7 @@ import {
 import {
   useScrollListener,
   ResizeObserver,
-  ResizeObserverChangeEventHandler,
+  ObservedResizeEventHandler,
 } from "@react-md/utils";
 
 const rows = [
@@ -44,7 +44,7 @@ type CellWidth = Record<
 
 const SimpleExamples: FC = () => {
   const [columnWidths, setColumnWidths] = useState<CellWidth>({});
-  const adjust: ResizeObserverChangeEventHandler = ({ element }) => {
+  const adjust: ObservedResizeEventHandler = ({ element }) => {
     const { cellIndex } = element as HTMLTableDataCellElement;
     setColumnWidths(prevWidths => ({
       ...prevWidths,

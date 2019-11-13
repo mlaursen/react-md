@@ -18,6 +18,6 @@ export { default as useAppSize } from "./useAppSize";
 export { AppSize, AppSizeOptions, DEFAULT_APP_SIZE } from "./useAppSizeMedia";
 export {
   default as useResizeObserver,
-  ResizeObserverChangeEventHandler,
+  ObservedResizeEventHandler,
 } from "./useResizeObserver";
 export { default as useResizeListener } from "./useResizeListener";

@@ -11,7 +11,7 @@ import { Button } from "@react-md/button";
 import {
   bem,
   ResizeObserver,
-  ResizeObserverChangeEventHandler,
+  ObservedResizeEventHandler,
   useToggle,
 } from "@react-md/utils";
 
@@ -26,7 +26,7 @@ const DEFAULT_WIDTH = 150;
 interface Size {
   height: number;
   width: number;
-  onResize: ResizeObserverChangeEventHandler;
+  onResize: ObservedResizeEventHandler;
 }
 
 /**
@@ -39,7 +39,7 @@ function useSize(): Size {
     width: DEFAULT_WIDTH,
   });
 
-  const onResize: ResizeObserverChangeEventHandler = event => {
+  const onResize: ObservedResizeEventHandler = event => {
     const { height, width } = event;
     setSize({ height, width });
   };

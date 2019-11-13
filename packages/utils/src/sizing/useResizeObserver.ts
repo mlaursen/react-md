@@ -100,23 +100,46 @@ export function isWidthChange(
 }
 
 interface ElementSize {
+  /**
+   * The height for the element that was changed.
+   */
   height: number;
+
+  /**
+   * The width for the element that was changed.
+   */
   width: number;
+
+  /**
+   * The scroll height for the element that was changed.
+   */
   scrollHeight: number;
+
+  /**
+   * The scroll height for the element that was changed.
+   */
   scrollWidth: number;
 }
 
-export interface ResizeObserverChangeEvent extends ElementSize {
+/**
+ * The data that is provided whenever an observed element changes size.
+ */
+export interface ObservedResizeData extends ElementSize {
+  /**
+   * The element that was changed due to an observered resize event.
+   */
   element: HTMLElement;
 }
 
-export type ResizeObserverChangeEventHandler = (
-  event: ResizeObserverChangeEvent
-) => void;
+/**
+ * A type that can be used to strongly type a callback function for a resize observe
+ * onResize function. It's really just a wrapper for the main `ObserverableResizeEvent`
+ */
+export type ObservedResizeEventHandler = (event: ObservedResizeData) => void;
 
 export interface ResizeObserverOptions<E extends HTMLElement = HTMLElement> {
   target: ResizeObserverTarget<E>;
-  onResize: ResizeObserverChangeEventHandler;
+  onResize: ObservedResizeEventHandler;
   disableHeight?: boolean;
   disableWidth?: boolean;
 }
@@ -168,6 +191,7 @@ export default function useResizeObserver<E extends HTMLElement>({
         }
       }
     });
+    observer.observe(resizeTarget);
 
     return () => {
       observer.disconnect();

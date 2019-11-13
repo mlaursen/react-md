@@ -1,7 +1,7 @@
-import React, { FC, ElementType, useCallback, useState } from "react";
+import React, { ElementType, FC, useCallback, useState } from "react";
 
 import useResizeObserver, {
-  ResizeObserverChangeEventHandler,
+  ObservedResizeEventHandler,
   ResizeObserverTarget,
 } from "./useResizeObserver";
 
@@ -48,7 +48,7 @@ export interface ResizeObserverProps {
    * The resize event handler for the resize observer. The callback will include the next height, width,
    * scrollHeight, scrollWidth, and the element that is being observed.
    */
-  onResize: ResizeObserverChangeEventHandler;
+  onResize: ObservedResizeEventHandler;
 }
 
 type DefaultProps = Required<
