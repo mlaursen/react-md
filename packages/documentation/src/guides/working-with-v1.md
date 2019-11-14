@@ -23,23 +23,23 @@ To get started, I'd recommend these following packages as they are the "base"
 for `react-md`:
 
 ```sh
-$ npm install --save @react-md/utils \
-    @react-md/theme \
-    @react-md/icon \
-    @react-md/states \
-    @react-md/typography \
-    @react-md/layout
+$ npm install --save @react-md/utils@next \
+    @react-md/theme@next \
+    @react-md/icon@next \
+    @react-md/states@next \
+    @react-md/typography@next \
+    @react-md/layout@next
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add @react-md/utils \
-    @react-md/theme \
-    @react-md/icon \
-    @react-md/states \
-    @react-md/typography \
-    @react-md/layout
+$ yarn add @react-md/utils@next \
+    @react-md/theme@next \
+    @react-md/icon@next \
+    @react-md/states@next \
+    @react-md/typography@next \
+    @react-md/layout@next
 ```
 
 From here, you'll want to do the normal [configuring your layout] setup to use

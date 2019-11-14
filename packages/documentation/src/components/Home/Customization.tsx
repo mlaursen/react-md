@@ -36,7 +36,7 @@ const GettingStarted: FC = () => (
     </CardContent>
     <Divider />
     <CardActions>
-      <LinkButton href="/customization/color-palette" themeType="outline">
+      <LinkButton href="/colors-and-theming/color-palette" themeType="outline">
         Customize!
       </LinkButton>
     </CardActions>

@@ -40,7 +40,7 @@ export function toBreadcrumbPageTitle(
     title = parts.map(p => toTitle(p)).join(" - ");
   }
 
-  return `react-md${title ? ` - ${title}` : ""}`;
+  return `react-md@v2${title ? ` - ${title}` : ""}`;
 }
 
 export function toGtagTitle(pathname: string, statusCode?: number): string {

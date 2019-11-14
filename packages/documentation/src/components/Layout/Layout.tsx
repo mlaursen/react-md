@@ -16,7 +16,9 @@ import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
 
+import "./Layout.scss";
 import Actions from "./Actions";
+import NavHeaderTitle from "./NavHeaderTitle";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -34,8 +36,9 @@ const Layout: FC<LayoutProps> = ({
     <TOCVisibilityProvider pathname={pathname}>
       <RMDLayout
         {...useLayoutNavigation(navItems, pathname)}
-        appBarTitle={title.replace("react-md - ", "")}
-        navHeaderTitle="react-md"
+        appBarTitle={title.replace("react-md@v2 - ", "")}
+        navHeaderTitle={<NavHeaderTitle />}
+        navHeaderClassName="layout-nav-header"
         navIcon={<MenuSVGIcon />}
         hideNavIcon={<KeyboardArrowLeftSVGIcon />}
         expanderIcon={<KeyboardArrowDownSVGIcon />}

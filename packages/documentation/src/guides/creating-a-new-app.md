@@ -26,14 +26,14 @@ Once the command has completed, `cd` into the `my-app` directory and install
 `react-md` and `node-sass`:
 
 ```sh
-$ npm install --save react-md
+$ npm install --save react-md@next
 $ npm install --save-dev node-sass
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add react-md
+$ yarn add react-md@next
 $ yarn add --dev node-sass
 ```
 

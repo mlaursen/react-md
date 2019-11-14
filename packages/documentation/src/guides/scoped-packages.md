@@ -4,13 +4,13 @@ In the simple [installation guide], you should have seen `react-md` being
 installed as:
 
 ```sh
-$ npm install --save react-md
+$ npm install --save react-md@next
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add react-md
+$ yarn add react-md@next
 ```
 
 However, once you start digging deeper into the rest of this documentation site
@@ -32,20 +32,20 @@ Installing a scoped package is basically the same as installing the base
 `react-md` package. Pick and choose which packages you want:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/states \
-    @react-md/layout
+$ npm install --save @react-md/theme@next \
+    @react-md/typography@next \
+    @react-md/states@next \
+    @react-md/layout@next
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add @react-md/theme \
-    @react-md/utils \
-    @react-md/typography \
-    @react-md/states \
-    @react-md/layout
+$ yarn add @react-md/theme@next \
+    @react-md/utils@next \
+    @react-md/typography@next \
+    @react-md/states@next \
+    @react-md/layout@next
 ```
 
 ## Including Styles from a Scoped Package

@@ -39,7 +39,7 @@ const Components: FC = () => (
     </CodeBlock>
     <Divider />
     <CardActions>
-      <LinkButton href="/packages/app-bar" themeType="outline">
+      <LinkButton href="/packages/alert/demos" themeType="outline">
         See Examples!
       </LinkButton>
     </CardActions>
