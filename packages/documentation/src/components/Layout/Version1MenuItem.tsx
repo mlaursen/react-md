@@ -1,34 +1,28 @@
+import React, { FC, forwardRef } from "react";
 import { LinkSVGIcon } from "@react-md/material-icons";
-import { MenuItem, MenuItemProps } from "@react-md/menu";
+import { MenuItemLink, MenuItemLinkProps } from "@react-md/menu";
 import { WithForwardedRef } from "@react-md/utils";
-import React, { FC, forwardRef, useCallback } from "react";
 
-interface Props extends MenuItemProps {
+interface Props extends MenuItemLinkProps {
   small?: boolean;
 }
 
-const Version1MenuItem: FC<Props & WithForwardedRef<HTMLLIElement>> = ({
+const Version1MenuItem: FC<Props & WithForwardedRef<HTMLAnchorElement>> = ({
   small,
   forwardedRef,
   ...props
-}) => {
-  const onClick = useCallback(() => {
-    window.location.href = "https://react-md.mlaursen.com";
-  }, []);
+}) => (
+  <MenuItemLink
+    {...props}
+    id="version-1-link"
+    ref={forwardedRef}
+    leftIcon={!small && <LinkSVGIcon />}
+    href="https://react-md.mlaursen.com"
+  >
+    {`${!small ? "react-md" : ""}@v1`}
+  </MenuItemLink>
+);
 
-  return (
-    <MenuItem
-      {...props}
-      id="version-1-link"
-      ref={forwardedRef}
-      leftIcon={!small && <LinkSVGIcon />}
-      onClick={onClick}
-    >
-      {`${!small ? "react-md" : ""}@v1`}
-    </MenuItem>
-  );
-};
-
-export default forwardRef<HTMLLIElement, Props>((props, ref) => (
+export default forwardRef<HTMLAnchorElement, Props>((props, ref) => (
   <Version1MenuItem {...props} forwardedRef={ref} />
 ));

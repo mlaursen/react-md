@@ -1,8 +1,8 @@
 ## Overriding Defaults
 
 > Before reading this page, you must have first completed the documentation for
-> #including-styles and #defining-a-theme as this is an expansion upon those two
-> pages to customize your theme.
+> #customizing-your-theme as this is an expansion upon those two pages to
+> customize your theme.
 
 One of the goals for `react-md` is to be able to start with reasonable default
 styles that match the Material Design specifications but also expose a way to
@@ -31,9 +31,9 @@ color palette from the #theme package. So here's a quick example of changing a
 few values.
 
 > I recommend keeping a separate `_rmd-variable-overrides.scss` file so you can
-> easily keep track of which default varables you have overridden. You can then
+> easily keep track of which default variables you have overridden. You can then
 > import this in your "global" variables file so you have access to these values
-> from any Sass file in your project. See [recommended base project files].
+> from any Sass file in your project.
 
 First, create or update `src/_rmd-variable-overrides.scss`:
 
@@ -95,7 +95,5 @@ you as well as live-preview your changes. Otherwise, you can look into the
 time** changes through CSS variables as well as accessing the scss variable
 values in javascript/typescript.
 
-[theme builder]: /customization/theme-builder
-[creating dynamic themes]: /customization/creating-dynamic-themes
-[recommended base project files]:
-  /packages/theme/installation#recommended-base-project-files
+[theme builder]: /colors-and-theming/theme-builder
+[creating dynamic themes]: /colors-and-theming/creating-dynamic-themes

@@ -1,4 +1,4 @@
-##### If you have not done so already, you should read the #defining-a-theme documentation before continuing on in this page. The demos within the page will be more about updating existing themes instead of creating them.
+##### If you have not done so already, you should read the #customizing-your-theme documentation before continuing on in this page. The demos within the page will be more about updating existing themes instead of creating them.
 
 This example will show how you can use the provided mixins to update the theme
 for some custom components. The `@react-md/theme` package exports some useful

@@ -29,7 +29,7 @@
     "watch": "nodemon watcher.js --watch watcher.js"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12"
   },
   "repository": {
     "type": "git",

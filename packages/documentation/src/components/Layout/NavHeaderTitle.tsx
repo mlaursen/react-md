@@ -1,21 +1,23 @@
-import React, { FC } from "react";
-import { TextIconSpacing } from "@react-md/icon";
+import React, { FC, Fragment } from "react";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
 
+import "./NavHeaderTitle.scss";
 import Version1MenuItem from "./Version1MenuItem";
 
 const NavHeaderTitle: FC = () => (
-  <TextIconSpacing icon={<span>react-md</span>}>
+  <Fragment>
+    react-md
     <DropdownMenu
       id="version-picker"
       items={[<Version1MenuItem small />]}
       dropdownIcon={<ArrowDropDownSVGIcon />}
       anchor={{ x: "inner-right", y: "below" }}
+      className="nav-header-title"
     >
       @v2
     </DropdownMenu>
-  </TextIconSpacing>
+  </Fragment>
 );
 
 export default NavHeaderTitle;

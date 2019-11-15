@@ -3,6 +3,7 @@ import * as marked from "marked";
 import cn from "classnames";
 
 import { GITHUB_URL, PACKAGE_NAMES } from "constants/index";
+import { DEMOABLE_PACKAGES } from "constants/navItems";
 
 export function getLanguage(language: string): string {
   switch (language) {
@@ -112,11 +113,14 @@ ${PACKAGE_NAMES.map(
 const whitespace = "(?=\r?\n| |[^/])";
 
 const transforms: Transform[] = [
-  // #package-name -> [@react-md/package-name](/packages/package-name)
+  // #package-name -> [@react-md/package-name](/packages/package-name/demos|installation)
   md =>
     md.replace(
       new RegExp(`#(${joinedNames})${whitespace}`, "g"),
-      "[@react-md/$1](/packages/$1/demos)"
+      (_, pkg) =>
+        `[@react-md/${pkg}](/packages/${pkg}/${
+          DEMOABLE_PACKAGES.includes(pkg) ? "demos" : "installation"
+        })`
     ),
   // #package-name -> [package-name page](/packages/package-name/page)
   md =>
@@ -128,7 +132,10 @@ const transforms: Transform[] = [
   md =>
     md.replace(/#packages(\/demos)?/g, (_, demos) => {
       if (demos) {
-        return packagesList.replace(/installation/g, "demos");
+        return packagesList.replace(
+          /^(?!layout)(.+)\/installation/g,
+          "$1/demos"
+        );
       }
 
       return packagesList;
@@ -149,6 +156,11 @@ const transforms: Transform[] = [
   // create github commit links for git sha's of length 7 (should be first 7 of sha)
   md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
   md => md.replace(/(:tada:)/g, "🎉"),
+  md =>
+    md.replace(
+      /#customizing-your-theme/g,
+      "[customizing your theme](/colors-and-theming/customizing-your-theme)"
+    ),
 ];
 
 renderer.image = (href, title, alt) => {
