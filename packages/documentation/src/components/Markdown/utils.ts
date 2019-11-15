@@ -159,7 +159,7 @@ const transforms: Transform[] = [
   md =>
     md.replace(
       /#customizing-your-theme/g,
-      "[customizing your theme](/colors-and-theming/customizing-your-theme)"
+      "[customizing your theme](/guides/customizing-your-theme)"
     ),
 ];
 
