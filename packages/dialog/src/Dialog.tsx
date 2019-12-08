@@ -38,7 +38,7 @@ export interface DialogProps
 
   /**
    * The role for the dialog component. This should normally stay as the default of `"dialog"` **unless**
-   * you want the screen reader to interupt the normal workflow for this message. It is good to set this
+   * you want the screen reader to interrupt the normal workflow for this message. It is good to set this
    * value to `"alertdialog"` error message confirmations or general confirmation prompts.
    *
    * Note: The `dialog` technically supports being rendered as a `menu`, but this is really only
@@ -273,6 +273,9 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
 
   let overlayEl: ReactNode = null;
   if (typeof propOverlay === "boolean" ? propOverlay : !isFullPage) {
+    // do not add the portal props to the overlay element since the portalling
+    // is handled in here. With how portals work, this would be rendered **after**
+    // the dialog instead of before which breaks some dialog styles
     overlayEl = (
       <Overlay
         id={`${id}-overlay`}
@@ -282,9 +285,6 @@ const Dialog: FC<StrictProps & WithRef> = providedProps => {
         visible={visible}
         clickable={!modal}
         onRequestClose={modal ? noop : onRequestClose}
-        portal={portal}
-        portalInto={portalInto}
-        portalIntoId={portalIntoId}
       />
     );
   }

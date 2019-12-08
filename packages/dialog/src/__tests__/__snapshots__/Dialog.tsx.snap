@@ -89,3 +89,30 @@ exports[`Dialog should render correctly (with snapshots) 5`] = `
   />
 </body>
 `;
+
+exports[`Dialog should render the overlay before the dialog container since they have the same z-index to prevent the overlay from covering the dialog 1`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-overlay--active"
+    id="dialog-overlay"
+    tabindex="-1"
+  />
+  <span
+    class="rmd-dialog-container"
+    id="dialog-container"
+  >
+    <div
+      aria-label="a"
+      aria-modal="true"
+      class="rmd-dialog rmd-dialog--centered"
+      id="dialog"
+      role="dialog"
+      tabindex="-1"
+    />
+  </span>
+</body>
+`;

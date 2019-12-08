@@ -32,6 +32,25 @@ describe("Dialog", () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  it("should render the overlay before the dialog container since they have the same z-index to prevent the overlay from covering the dialog", () => {
+    const props = {
+      id: "dialog",
+      "aria-label": "a",
+      visible: true,
+      onRequestClose: jest.fn(),
+    };
+
+    const { baseElement } = render(<Dialog {...props} />);
+    expect(baseElement).toMatchSnapshot();
+    const container = document.getElementById("dialog-container");
+    const overlay = document.getElementById("dialog-overlay");
+    if (!container || !overlay) {
+      throw new Error();
+    }
+
+    expect(overlay.nextElementSibling).toEqual(container);
+  });
+
   describe("a11y", () => {
     const props = {
       id: "dialog-id",
