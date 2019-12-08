@@ -55,9 +55,8 @@ const block = bem("rmd-link-skip");
  * content can be focused and this component should normally be the first focusable element
  * on your page.
  */
-const SkipToMainContent: FC<
-  SkipToMainContentProps & WithRef
-> = providedProps => {
+const SkipToMainContent: FC<SkipToMainContentProps &
+  WithRef> = providedProps => {
   const {
     mainId,
     unstyled,

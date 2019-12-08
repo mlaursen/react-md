@@ -82,7 +82,7 @@ export type MergableHandlers = MergableMouseHandlers &
   MergableTouchHandlers;
 
 type MouseResult = [
-  (() => void),
+  () => void,
   React.MouseEventHandler<HTMLElement> | undefined,
   React.MouseEventHandler<HTMLElement> | undefined
 ];
@@ -175,7 +175,7 @@ export function useMouseState({
 }
 
 type KeyboardResult = [
-  (() => void),
+  () => void,
   React.FocusEventHandler<HTMLElement> | undefined,
   React.FocusEventHandler<HTMLElement> | undefined,
   React.KeyboardEventHandler<HTMLElement> | undefined
@@ -297,7 +297,7 @@ export function useKeyboardState({
 }
 
 type TouchResult = [
-  (() => void),
+  () => void,
   React.TouchEventHandler<HTMLElement>,
   React.TouchEventHandler<HTMLElement>,
   React.MouseEventHandler<HTMLElement> | undefined

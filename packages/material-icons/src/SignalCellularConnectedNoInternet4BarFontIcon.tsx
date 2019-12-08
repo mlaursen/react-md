@@ -4,9 +4,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SignalCellularConnectedNoInternet4BarFontIcon: FC<
-  FontIconProps
-> = props => (
+const SignalCellularConnectedNoInternet4BarFontIcon: FC<FontIconProps> = props => (
   <FontIcon {...props}>signal_cellular_connected_no_internet_4_bar</FontIcon>
 );
 

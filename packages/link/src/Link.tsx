@@ -64,7 +64,7 @@ export interface LinkWithComponentProps extends LinkProps {
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
    * all valid props from that component should also be allowed.
    */
-  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  [key: string]: unknown;
   component: ElementType;
 }
 
@@ -82,9 +82,8 @@ const block = bem("rmd-link");
  * routing library like `react-router` or `reach-router` by providing the `Link` as the
  * `linkComponent` prop.
  */
-const Link: FC<
-  (LinkProps | LinkWithComponentProps) & WithRef
-> = providedProps => {
+const Link: FC<(LinkProps | LinkWithComponentProps) &
+  WithRef> = providedProps => {
   const {
     className: propClassName,
     component: Component,

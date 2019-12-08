@@ -119,9 +119,8 @@ const block = bem("rmd-text-field-container");
  *
  * @private
  */
-const TextFieldContainer: FC<
-  TextFieldContainerProps & WithRef
-> = providedProps => {
+const TextFieldContainer: FC<TextFieldContainerProps &
+  WithRef> = providedProps => {
   const {
     inline,
     className,

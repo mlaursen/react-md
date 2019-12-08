@@ -42,9 +42,11 @@ const block = bem("rmd-media-container");
  * within your app. This component also allows for focing a specific aspect ratio
  * for these elements with both the `height` and `width` props are provided.
  */
-const MediaContainer: FC<
-  (MediaContainerProps | MediaContainerWithAspectRatioProps) & WithRef
-> = ({
+const MediaContainer: FC<(
+  | MediaContainerProps
+  | MediaContainerWithAspectRatioProps
+) &
+  WithRef> = ({
   className,
   height,
   width,

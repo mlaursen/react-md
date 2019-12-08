@@ -160,9 +160,12 @@ export async function buildUMD(): Promise<void> {
 
   const files = await glob("+(src|es|lib|dist|types)/rollup*");
   await Promise.all(
-    [rollupConfigPath, tsConfigRollupPath, tempRollupIndexPath, ...files].map(
-      p => fs.remove(p)
-    )
+    [
+      rollupConfigPath,
+      tsConfigRollupPath,
+      tempRollupIndexPath,
+      ...files,
+    ].map(p => fs.remove(p))
   );
 }
 

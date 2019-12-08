@@ -21,9 +21,8 @@ export interface MenuItemSeparatorProps
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-const MenuItemSeparator: FC<
-  MenuItemSeparatorProps & WithForwardedRef<DividerElement>
-> = ({
+const MenuItemSeparator: FC<MenuItemSeparatorProps &
+  WithForwardedRef<DividerElement>> = ({
   "aria-orientation": propOrientation,
   maxHeight,
   forwardedRef,

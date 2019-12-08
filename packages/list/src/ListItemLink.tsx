@@ -21,6 +21,10 @@ export interface ListItemLinkProps
    * this value and provide all props and class name.
    */
   component?: ElementType;
+}
+
+export interface ListItemLinkWithComponentProps extends ListItemLinkProps {
+  component: ElementType;
 
   /**
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
@@ -51,8 +55,6 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
     height: _height,
     threeLines,
     component: Component,
-    // links should **never** be clickable with space
-    enableKeyboardClick: _enableKeyboardClick,
     disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,
@@ -144,6 +146,7 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLAnchorElement | ElementType, ListItemLinkProps>(
-  (props, ref) => <ListItemLink {...props} forwardedRef={ref} />
-);
+export default forwardRef<
+  HTMLAnchorElement | ElementType,
+  ListItemLinkProps | ListItemLinkWithComponentProps
+>((props, ref) => <ListItemLink {...props} forwardedRef={ref} />);

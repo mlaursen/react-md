@@ -25,9 +25,7 @@ const TableConfigContext = createContext<DefaultValue>({
 interface TableConfigProviderProps extends TableConfig {
   children: ReactNode;
 }
-export const TableConfigProvider: FC<
-  TableConfigProviderProps
-> = providedProps => {
+export const TableConfigProvider: FC<TableConfigProviderProps> = providedProps => {
   const {
     noWrap,
     bordered,

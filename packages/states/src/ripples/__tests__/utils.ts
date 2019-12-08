@@ -206,6 +206,7 @@ describe("getOrigin", () => {
       width: 32,
       x: 0,
       y: 0,
+      toJSON: () => "",
     }));
 
     expect(
@@ -247,6 +248,7 @@ describe("getOrigin", () => {
       width: 32,
       x: 0,
       y: 0,
+      toJSON: () => "",
     }));
     expect(
       getOrigin({ type: "mousedown", pageX: 0, pageY: 0 }, element)
@@ -292,6 +294,7 @@ describe("getOrigin", () => {
       width: 32,
       x: 0,
       y: 0,
+      toJSON: () => "",
     }));
 
     const makeGetItem = ({ pageX = 0, pageY = 0 } = {}) => () => ({
@@ -355,6 +358,7 @@ describe("getOrigin", () => {
       width: 32,
       x: 0,
       y: 0,
+      toJSON: () => "",
     }));
 
     touches = createTouches();

@@ -28,9 +28,7 @@ type DefaultProps = Required<
 >;
 type WithDefaultProps = ConditionalFullPageDialogProps & DefaultProps;
 
-const ConditionalFullPageDialog: FC<
-  ConditionalFullPageDialogProps
-> = providedProps => {
+const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = providedProps => {
   const {
     id,
     title,

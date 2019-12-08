@@ -76,9 +76,11 @@ async function createSandboxJsonFiles(
     return `${src}/${name}`;
   });
   aliases.push(`${src}/_variables.scss`);
-  const demos = (await Promise.all(
-    demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath))
-  )).reduce((list, sublist) => [...list, ...sublist], []);
+  const demos = (
+    await Promise.all(
+      demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath))
+    )
+  ).reduce((list, sublist) => [...list, ...sublist], []);
 
   demos.sort();
 

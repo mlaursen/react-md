@@ -7,7 +7,7 @@ import { bem, WithForwardedRef } from "@react-md/utils";
 
 import TreeGroup from "./TreeGroup";
 import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
-import { TreeItemProps } from "./types";
+import { TreeItemProps, TreeItemWithContentComponentProps } from "./types";
 
 type WithRef = WithForwardedRef<HTMLLIElement>;
 type DefaultProps = Required<
@@ -226,6 +226,7 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLLIElement, TreeItemProps>((props, ref) => (
-  <TreeItem {...props} forwardedRef={ref} />
-));
+export default forwardRef<
+  HTMLLIElement,
+  TreeItemProps | TreeItemWithContentComponentProps
+>((props, ref) => <TreeItem {...props} forwardedRef={ref} />);

@@ -198,53 +198,55 @@ export default async function generate({
     },
   };
 
-  const files = (await Promise.all(
-    [demoPath, ...aliased].map(async filePath => {
-      let pathname = filePath;
-      if (filePath === demoPath) {
-        pathname = "Demo.tsx";
-      } else if (pathname.includes("Demos")) {
-        pathname = filePath.substring(filePath.lastIndexOf("/") + 1);
-      } else {
-        const regexp = new RegExp(`^(${aliases.join("|")})${path.sep}`);
-        pathname = filePath.replace(regexp, "");
-      }
+  const files = (
+    await Promise.all(
+      [demoPath, ...aliased].map(async filePath => {
+        let pathname = filePath;
+        if (filePath === demoPath) {
+          pathname = "Demo.tsx";
+        } else if (pathname.includes("Demos")) {
+          pathname = filePath.substring(filePath.lastIndexOf("/") + 1);
+        } else {
+          const regexp = new RegExp(`^(${aliases.join("|")})${path.sep}`);
+          pathname = filePath.replace(regexp, "");
+        }
 
-      const fileName = `src/${pathname}`;
+        const fileName = `src/${pathname}`;
 
-      let content: string;
-      if (filePath.endsWith("Code/index.ts")) {
-        content = CODE_INDEX_FILE;
-      } else {
-        content = await fs.readFile(
-          path.join(documentationRoot, filePath),
-          "utf8"
-        );
-      }
+        let content: string;
+        if (filePath.endsWith("Code/index.ts")) {
+          content = CODE_INDEX_FILE;
+        } else {
+          content = await fs.readFile(
+            path.join(documentationRoot, filePath),
+            "utf8"
+          );
+        }
 
-      if (!isSvg(filePath)) {
-        content = content.replace(aliasRegExp, "./");
-      }
+        if (!isSvg(filePath)) {
+          content = content.replace(aliasRegExp, "./");
+        }
 
-      if (filePath.endsWith("code.scss")) {
-        content = content.replace(/'variables'/, "'../variables'");
-      }
+        if (filePath.endsWith("code.scss")) {
+          content = content.replace(/'variables'/, "'../variables'");
+        }
 
-      if (demoPath === filePath) {
-        const name = demoName.replace(".tsx", "");
-        content = content
-          .replace(`${name}: FC`, "Demo: FC")
-          .replace(`default ${name};`, "default Demo;");
-      }
+        if (demoPath === filePath) {
+          const name = demoName.replace(".tsx", "");
+          content = content
+            .replace(`${name}: FC`, "Demo: FC")
+            .replace(`default ${name};`, "default Demo;");
+        }
 
-      return {
-        [fileName]: {
-          content,
-          isBinary: false,
-        },
-      };
-    })
-  )).reduce((json, value) => {
+        return {
+          [fileName]: {
+            content,
+            isBinary: false,
+          },
+        };
+      })
+    )
+  ).reduce((json, value) => {
     const key = Object.keys(value)[0];
     if (json[key]) {
       log.error(

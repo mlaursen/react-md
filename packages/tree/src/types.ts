@@ -267,11 +267,19 @@ export interface TreeItemProps
   contentComponent?: ElementType;
 
   /**
+   * Boolean if the tree item is read only. Not sure why this was added though since `<li>` elements don't
+   * support `readOnly`.
+   */
+  readOnly?: boolean;
+
+  /**
    * Boolean if the tree item is disabled which will prevent it from being interactable. It will still be
    * "keyboard focusable" while disabled, but clicking or selecting won't work.
    */
   disabled?: boolean;
+}
 
+export interface TreeItemWithContentComponentProps extends TreeItemProps {
   /**
    * Since I allow the `contentComponent` prop for handling rendering `<a>` tags from other routing libraries,
    * I unfortunately need an index key so that those props can be passed down correctly.

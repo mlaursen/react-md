@@ -11,9 +11,8 @@ export interface TooltippedBadgedButtonProps extends BadgedButtonProps {
   tooltipClassName?: string;
 }
 
-const TooltippedBadgedButton: FC<
-  TooltippedBadgedButtonProps & WithForwardedRef<HTMLButtonElement>
-> = ({
+const TooltippedBadgedButton: FC<TooltippedBadgedButtonProps &
+  WithForwardedRef<HTMLButtonElement>> = ({
   id,
   tooltip,
   tooltipStyle,

@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, ElementType } from "react";
 import TreeItem from "./TreeItem";
 import {
   ProvidedTreeItemProps,
@@ -6,6 +6,12 @@ import {
   BaseTreeItem,
   UnknownTreeItem,
 } from "./types";
+
+function isElementType(
+  contentComponent: unknown
+): contentComponent is ElementType {
+  return typeof contentComponent !== "undefined";
+}
 
 /**
  * A "reasonable" default implementation for rendering a tree item that extracts
@@ -59,14 +65,24 @@ export default function defaultTreeItemRenderer(
     rightIcon,
     leftAvatar,
     rightAvatar,
-    contentComponent: itemComponent,
     as,
     to,
     href,
-    isLink,
-    readOnly,
-    disabled,
   } = treeItem;
+  let isLink: boolean | undefined;
+  let readOnly: boolean | undefined;
+  let disabled: boolean | undefined;
+  if (typeof treeItem.isLink === "boolean") {
+    ({ isLink } = treeItem);
+  }
+
+  if (typeof treeItem.readOnly === "boolean") {
+    ({ readOnly } = treeItem);
+  }
+
+  if (typeof treeItem.disabled === "boolean") {
+    ({ disabled } = treeItem);
+  }
 
   const overrides = getItemProps({
     ...treeItem,
@@ -80,7 +96,11 @@ export default function defaultTreeItemRenderer(
     children = getItemLabel(treeItem, labelKey);
   }
 
-  let contentComponent = itemComponent;
+  let contentComponent: ElementType | undefined;
+  if (isElementType(treeItem.contentComponent)) {
+    ({ contentComponent } = treeItem);
+  }
+
   if (isLink !== false && (to || href || isLink)) {
     contentComponent = contentComponent || linkComponent;
   }

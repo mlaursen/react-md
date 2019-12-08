@@ -13,12 +13,8 @@ export { default as AccessibilitySVGIcon } from "./AccessibilitySVGIcon";
 export { default as AccessibilityFontIcon } from "./AccessibilityFontIcon";
 export { default as AccessibleSVGIcon } from "./AccessibleSVGIcon";
 export { default as AccessibleFontIcon } from "./AccessibleFontIcon";
-export {
-  default as AccountBalanceWalletSVGIcon,
-} from "./AccountBalanceWalletSVGIcon";
-export {
-  default as AccountBalanceWalletFontIcon,
-} from "./AccountBalanceWalletFontIcon";
+export { default as AccountBalanceWalletSVGIcon } from "./AccountBalanceWalletSVGIcon";
+export { default as AccountBalanceWalletFontIcon } from "./AccountBalanceWalletFontIcon";
 export { default as AccountBalanceSVGIcon } from "./AccountBalanceSVGIcon";
 export { default as AccountBalanceFontIcon } from "./AccountBalanceFontIcon";
 export { default as AccountBoxSVGIcon } from "./AccountBoxSVGIcon";
@@ -36,9 +32,7 @@ export { default as AddAlertFontIcon } from "./AddAlertFontIcon";
 export { default as AddBoxSVGIcon } from "./AddBoxSVGIcon";
 export { default as AddBoxFontIcon } from "./AddBoxFontIcon";
 export { default as AddCircleOutlineSVGIcon } from "./AddCircleOutlineSVGIcon";
-export {
-  default as AddCircleOutlineFontIcon,
-} from "./AddCircleOutlineFontIcon";
+export { default as AddCircleOutlineFontIcon } from "./AddCircleOutlineFontIcon";
 export { default as AddCircleSVGIcon } from "./AddCircleSVGIcon";
 export { default as AddCircleFontIcon } from "./AddCircleFontIcon";
 export { default as AddLocationSVGIcon } from "./AddLocationSVGIcon";
@@ -53,62 +47,26 @@ export { default as AddSVGIcon } from "./AddSVGIcon";
 export { default as AddFontIcon } from "./AddFontIcon";
 export { default as AdjustSVGIcon } from "./AdjustSVGIcon";
 export { default as AdjustFontIcon } from "./AdjustFontIcon";
-export {
-  default as AirlineSeatFlatAngledSVGIcon,
-} from "./AirlineSeatFlatAngledSVGIcon";
-export {
-  default as AirlineSeatFlatAngledFontIcon,
-} from "./AirlineSeatFlatAngledFontIcon";
+export { default as AirlineSeatFlatAngledSVGIcon } from "./AirlineSeatFlatAngledSVGIcon";
+export { default as AirlineSeatFlatAngledFontIcon } from "./AirlineSeatFlatAngledFontIcon";
 export { default as AirlineSeatFlatSVGIcon } from "./AirlineSeatFlatSVGIcon";
 export { default as AirlineSeatFlatFontIcon } from "./AirlineSeatFlatFontIcon";
-export {
-  default as AirlineSeatIndividualSuiteSVGIcon,
-} from "./AirlineSeatIndividualSuiteSVGIcon";
-export {
-  default as AirlineSeatIndividualSuiteFontIcon,
-} from "./AirlineSeatIndividualSuiteFontIcon";
-export {
-  default as AirlineSeatLegroomExtraSVGIcon,
-} from "./AirlineSeatLegroomExtraSVGIcon";
-export {
-  default as AirlineSeatLegroomExtraFontIcon,
-} from "./AirlineSeatLegroomExtraFontIcon";
-export {
-  default as AirlineSeatLegroomNormalSVGIcon,
-} from "./AirlineSeatLegroomNormalSVGIcon";
-export {
-  default as AirlineSeatLegroomNormalFontIcon,
-} from "./AirlineSeatLegroomNormalFontIcon";
-export {
-  default as AirlineSeatLegroomReducedSVGIcon,
-} from "./AirlineSeatLegroomReducedSVGIcon";
-export {
-  default as AirlineSeatLegroomReducedFontIcon,
-} from "./AirlineSeatLegroomReducedFontIcon";
-export {
-  default as AirlineSeatReclineExtraSVGIcon,
-} from "./AirlineSeatReclineExtraSVGIcon";
-export {
-  default as AirlineSeatReclineExtraFontIcon,
-} from "./AirlineSeatReclineExtraFontIcon";
-export {
-  default as AirlineSeatReclineNormalSVGIcon,
-} from "./AirlineSeatReclineNormalSVGIcon";
-export {
-  default as AirlineSeatReclineNormalFontIcon,
-} from "./AirlineSeatReclineNormalFontIcon";
-export {
-  default as AirplanemodeActiveSVGIcon,
-} from "./AirplanemodeActiveSVGIcon";
-export {
-  default as AirplanemodeActiveFontIcon,
-} from "./AirplanemodeActiveFontIcon";
-export {
-  default as AirplanemodeInactiveSVGIcon,
-} from "./AirplanemodeInactiveSVGIcon";
-export {
-  default as AirplanemodeInactiveFontIcon,
-} from "./AirplanemodeInactiveFontIcon";
+export { default as AirlineSeatIndividualSuiteSVGIcon } from "./AirlineSeatIndividualSuiteSVGIcon";
+export { default as AirlineSeatIndividualSuiteFontIcon } from "./AirlineSeatIndividualSuiteFontIcon";
+export { default as AirlineSeatLegroomExtraSVGIcon } from "./AirlineSeatLegroomExtraSVGIcon";
+export { default as AirlineSeatLegroomExtraFontIcon } from "./AirlineSeatLegroomExtraFontIcon";
+export { default as AirlineSeatLegroomNormalSVGIcon } from "./AirlineSeatLegroomNormalSVGIcon";
+export { default as AirlineSeatLegroomNormalFontIcon } from "./AirlineSeatLegroomNormalFontIcon";
+export { default as AirlineSeatLegroomReducedSVGIcon } from "./AirlineSeatLegroomReducedSVGIcon";
+export { default as AirlineSeatLegroomReducedFontIcon } from "./AirlineSeatLegroomReducedFontIcon";
+export { default as AirlineSeatReclineExtraSVGIcon } from "./AirlineSeatReclineExtraSVGIcon";
+export { default as AirlineSeatReclineExtraFontIcon } from "./AirlineSeatReclineExtraFontIcon";
+export { default as AirlineSeatReclineNormalSVGIcon } from "./AirlineSeatReclineNormalSVGIcon";
+export { default as AirlineSeatReclineNormalFontIcon } from "./AirlineSeatReclineNormalFontIcon";
+export { default as AirplanemodeActiveSVGIcon } from "./AirplanemodeActiveSVGIcon";
+export { default as AirplanemodeActiveFontIcon } from "./AirplanemodeActiveFontIcon";
+export { default as AirplanemodeInactiveSVGIcon } from "./AirplanemodeInactiveSVGIcon";
+export { default as AirplanemodeInactiveFontIcon } from "./AirplanemodeInactiveFontIcon";
 export { default as AirplaySVGIcon } from "./AirplaySVGIcon";
 export { default as AirplayFontIcon } from "./AirplayFontIcon";
 export { default as AirportShuttleSVGIcon } from "./AirportShuttleSVGIcon";
@@ -139,12 +97,8 @@ export { default as ArrowBackSVGIcon } from "./ArrowBackSVGIcon";
 export { default as ArrowBackFontIcon } from "./ArrowBackFontIcon";
 export { default as ArrowDownwardSVGIcon } from "./ArrowDownwardSVGIcon";
 export { default as ArrowDownwardFontIcon } from "./ArrowDownwardFontIcon";
-export {
-  default as ArrowDropDownCircleSVGIcon,
-} from "./ArrowDropDownCircleSVGIcon";
-export {
-  default as ArrowDropDownCircleFontIcon,
-} from "./ArrowDropDownCircleFontIcon";
+export { default as ArrowDropDownCircleSVGIcon } from "./ArrowDropDownCircleSVGIcon";
+export { default as ArrowDropDownCircleFontIcon } from "./ArrowDropDownCircleFontIcon";
 export { default as ArrowDropDownSVGIcon } from "./ArrowDropDownSVGIcon";
 export { default as ArrowDropDownFontIcon } from "./ArrowDropDownFontIcon";
 export { default as ArrowDropUpSVGIcon } from "./ArrowDropUpSVGIcon";
@@ -164,21 +118,11 @@ export { default as AssignmentIndFontIcon } from "./AssignmentIndFontIcon";
 export { default as AssignmentLateSVGIcon } from "./AssignmentLateSVGIcon";
 export { default as AssignmentLateFontIcon } from "./AssignmentLateFontIcon";
 export { default as AssignmentReturnSVGIcon } from "./AssignmentReturnSVGIcon";
-export {
-  default as AssignmentReturnFontIcon,
-} from "./AssignmentReturnFontIcon";
-export {
-  default as AssignmentReturnedSVGIcon,
-} from "./AssignmentReturnedSVGIcon";
-export {
-  default as AssignmentReturnedFontIcon,
-} from "./AssignmentReturnedFontIcon";
-export {
-  default as AssignmentTurnedInSVGIcon,
-} from "./AssignmentTurnedInSVGIcon";
-export {
-  default as AssignmentTurnedInFontIcon,
-} from "./AssignmentTurnedInFontIcon";
+export { default as AssignmentReturnFontIcon } from "./AssignmentReturnFontIcon";
+export { default as AssignmentReturnedSVGIcon } from "./AssignmentReturnedSVGIcon";
+export { default as AssignmentReturnedFontIcon } from "./AssignmentReturnedFontIcon";
+export { default as AssignmentTurnedInSVGIcon } from "./AssignmentTurnedInSVGIcon";
+export { default as AssignmentTurnedInFontIcon } from "./AssignmentTurnedInFontIcon";
 export { default as AssignmentSVGIcon } from "./AssignmentSVGIcon";
 export { default as AssignmentFontIcon } from "./AssignmentFontIcon";
 export { default as AssistantPhotoSVGIcon } from "./AssistantPhotoSVGIcon";
@@ -203,12 +147,8 @@ export { default as BackupSVGIcon } from "./BackupSVGIcon";
 export { default as BackupFontIcon } from "./BackupFontIcon";
 export { default as BatteryAlertSVGIcon } from "./BatteryAlertSVGIcon";
 export { default as BatteryAlertFontIcon } from "./BatteryAlertFontIcon";
-export {
-  default as BatteryChargingFullSVGIcon,
-} from "./BatteryChargingFullSVGIcon";
-export {
-  default as BatteryChargingFullFontIcon,
-} from "./BatteryChargingFullFontIcon";
+export { default as BatteryChargingFullSVGIcon } from "./BatteryChargingFullSVGIcon";
+export { default as BatteryChargingFullFontIcon } from "./BatteryChargingFullFontIcon";
 export { default as BatteryFullSVGIcon } from "./BatteryFullSVGIcon";
 export { default as BatteryFullFontIcon } from "./BatteryFullFontIcon";
 export { default as BatteryStdSVGIcon } from "./BatteryStdSVGIcon";
@@ -223,24 +163,12 @@ export { default as BlockSVGIcon } from "./BlockSVGIcon";
 export { default as BlockFontIcon } from "./BlockFontIcon";
 export { default as BluetoothAudioSVGIcon } from "./BluetoothAudioSVGIcon";
 export { default as BluetoothAudioFontIcon } from "./BluetoothAudioFontIcon";
-export {
-  default as BluetoothConnectedSVGIcon,
-} from "./BluetoothConnectedSVGIcon";
-export {
-  default as BluetoothConnectedFontIcon,
-} from "./BluetoothConnectedFontIcon";
-export {
-  default as BluetoothDisabledSVGIcon,
-} from "./BluetoothDisabledSVGIcon";
-export {
-  default as BluetoothDisabledFontIcon,
-} from "./BluetoothDisabledFontIcon";
-export {
-  default as BluetoothSearchingSVGIcon,
-} from "./BluetoothSearchingSVGIcon";
-export {
-  default as BluetoothSearchingFontIcon,
-} from "./BluetoothSearchingFontIcon";
+export { default as BluetoothConnectedSVGIcon } from "./BluetoothConnectedSVGIcon";
+export { default as BluetoothConnectedFontIcon } from "./BluetoothConnectedFontIcon";
+export { default as BluetoothDisabledSVGIcon } from "./BluetoothDisabledSVGIcon";
+export { default as BluetoothDisabledFontIcon } from "./BluetoothDisabledFontIcon";
+export { default as BluetoothSearchingSVGIcon } from "./BluetoothSearchingSVGIcon";
+export { default as BluetoothSearchingFontIcon } from "./BluetoothSearchingFontIcon";
 export { default as BluetoothSVGIcon } from "./BluetoothSVGIcon";
 export { default as BluetoothFontIcon } from "./BluetoothFontIcon";
 export { default as BlurCircularSVGIcon } from "./BlurCircularSVGIcon";
@@ -266,9 +194,7 @@ export { default as BorderClearFontIcon } from "./BorderClearFontIcon";
 export { default as BorderColorSVGIcon } from "./BorderColorSVGIcon";
 export { default as BorderColorFontIcon } from "./BorderColorFontIcon";
 export { default as BorderHorizontalSVGIcon } from "./BorderHorizontalSVGIcon";
-export {
-  default as BorderHorizontalFontIcon,
-} from "./BorderHorizontalFontIcon";
+export { default as BorderHorizontalFontIcon } from "./BorderHorizontalFontIcon";
 export { default as BorderInnerSVGIcon } from "./BorderInnerSVGIcon";
 export { default as BorderInnerFontIcon } from "./BorderInnerFontIcon";
 export { default as BorderLeftSVGIcon } from "./BorderLeftSVGIcon";
@@ -283,12 +209,8 @@ export { default as BorderTopSVGIcon } from "./BorderTopSVGIcon";
 export { default as BorderTopFontIcon } from "./BorderTopFontIcon";
 export { default as BorderVerticalSVGIcon } from "./BorderVerticalSVGIcon";
 export { default as BorderVerticalFontIcon } from "./BorderVerticalFontIcon";
-export {
-  default as BrandingWatermarkSVGIcon,
-} from "./BrandingWatermarkSVGIcon";
-export {
-  default as BrandingWatermarkFontIcon,
-} from "./BrandingWatermarkFontIcon";
+export { default as BrandingWatermarkSVGIcon } from "./BrandingWatermarkSVGIcon";
+export { default as BrandingWatermarkFontIcon } from "./BrandingWatermarkFontIcon";
 export { default as Brightness1SVGIcon } from "./Brightness1SVGIcon";
 export { default as Brightness1FontIcon } from "./Brightness1FontIcon";
 export { default as Brightness2SVGIcon } from "./Brightness2SVGIcon";
@@ -310,9 +232,7 @@ export { default as BrightnessHighFontIcon } from "./BrightnessHighFontIcon";
 export { default as BrightnessLowSVGIcon } from "./BrightnessLowSVGIcon";
 export { default as BrightnessLowFontIcon } from "./BrightnessLowFontIcon";
 export { default as BrightnessMediumSVGIcon } from "./BrightnessMediumSVGIcon";
-export {
-  default as BrightnessMediumFontIcon,
-} from "./BrightnessMediumFontIcon";
+export { default as BrightnessMediumFontIcon } from "./BrightnessMediumFontIcon";
 export { default as BrokenImageSVGIcon } from "./BrokenImageSVGIcon";
 export { default as BrokenImageFontIcon } from "./BrokenImageFontIcon";
 export { default as BrushSVGIcon } from "./BrushSVGIcon";
@@ -339,12 +259,8 @@ export { default as CallMadeSVGIcon } from "./CallMadeSVGIcon";
 export { default as CallMadeFontIcon } from "./CallMadeFontIcon";
 export { default as CallMergeSVGIcon } from "./CallMergeSVGIcon";
 export { default as CallMergeFontIcon } from "./CallMergeFontIcon";
-export {
-  default as CallMissedOutgoingSVGIcon,
-} from "./CallMissedOutgoingSVGIcon";
-export {
-  default as CallMissedOutgoingFontIcon,
-} from "./CallMissedOutgoingFontIcon";
+export { default as CallMissedOutgoingSVGIcon } from "./CallMissedOutgoingSVGIcon";
+export { default as CallMissedOutgoingFontIcon } from "./CallMissedOutgoingFontIcon";
 export { default as CallMissedSVGIcon } from "./CallMissedSVGIcon";
 export { default as CallMissedFontIcon } from "./CallMissedFontIcon";
 export { default as CallReceivedSVGIcon } from "./CallReceivedSVGIcon";
@@ -381,32 +297,20 @@ export { default as CastConnectedSVGIcon } from "./CastConnectedSVGIcon";
 export { default as CastConnectedFontIcon } from "./CastConnectedFontIcon";
 export { default as CastSVGIcon } from "./CastSVGIcon";
 export { default as CastFontIcon } from "./CastFontIcon";
-export {
-  default as CenterFocusStrongSVGIcon,
-} from "./CenterFocusStrongSVGIcon";
-export {
-  default as CenterFocusStrongFontIcon,
-} from "./CenterFocusStrongFontIcon";
+export { default as CenterFocusStrongSVGIcon } from "./CenterFocusStrongSVGIcon";
+export { default as CenterFocusStrongFontIcon } from "./CenterFocusStrongFontIcon";
 export { default as CenterFocusWeakSVGIcon } from "./CenterFocusWeakSVGIcon";
 export { default as CenterFocusWeakFontIcon } from "./CenterFocusWeakFontIcon";
 export { default as ChangeHistorySVGIcon } from "./ChangeHistorySVGIcon";
 export { default as ChangeHistoryFontIcon } from "./ChangeHistoryFontIcon";
-export {
-  default as ChatBubbleOutlineSVGIcon,
-} from "./ChatBubbleOutlineSVGIcon";
-export {
-  default as ChatBubbleOutlineFontIcon,
-} from "./ChatBubbleOutlineFontIcon";
+export { default as ChatBubbleOutlineSVGIcon } from "./ChatBubbleOutlineSVGIcon";
+export { default as ChatBubbleOutlineFontIcon } from "./ChatBubbleOutlineFontIcon";
 export { default as ChatBubbleSVGIcon } from "./ChatBubbleSVGIcon";
 export { default as ChatBubbleFontIcon } from "./ChatBubbleFontIcon";
 export { default as ChatSVGIcon } from "./ChatSVGIcon";
 export { default as ChatFontIcon } from "./ChatFontIcon";
-export {
-  default as CheckBoxOutlineBlankSVGIcon,
-} from "./CheckBoxOutlineBlankSVGIcon";
-export {
-  default as CheckBoxOutlineBlankFontIcon,
-} from "./CheckBoxOutlineBlankFontIcon";
+export { default as CheckBoxOutlineBlankSVGIcon } from "./CheckBoxOutlineBlankSVGIcon";
+export { default as CheckBoxOutlineBlankFontIcon } from "./CheckBoxOutlineBlankFontIcon";
 export { default as CheckBoxSVGIcon } from "./CheckBoxSVGIcon";
 export { default as CheckBoxFontIcon } from "./CheckBoxFontIcon";
 export { default as CheckCircleSVGIcon } from "./CheckCircleSVGIcon";
@@ -422,9 +326,7 @@ export { default as ChildCareFontIcon } from "./ChildCareFontIcon";
 export { default as ChildFriendlySVGIcon } from "./ChildFriendlySVGIcon";
 export { default as ChildFriendlyFontIcon } from "./ChildFriendlyFontIcon";
 export { default as ChromeReaderModeSVGIcon } from "./ChromeReaderModeSVGIcon";
-export {
-  default as ChromeReaderModeFontIcon,
-} from "./ChromeReaderModeFontIcon";
+export { default as ChromeReaderModeFontIcon } from "./ChromeReaderModeFontIcon";
 export { default as ClassSVGIcon } from "./ClassSVGIcon";
 export { default as ClassFontIcon } from "./ClassFontIcon";
 export { default as ClearAllSVGIcon } from "./ClearAllSVGIcon";
@@ -451,12 +353,8 @@ export { default as CloudSVGIcon } from "./CloudSVGIcon";
 export { default as CloudFontIcon } from "./CloudFontIcon";
 export { default as CodeSVGIcon } from "./CodeSVGIcon";
 export { default as CodeFontIcon } from "./CodeFontIcon";
-export {
-  default as CollectionsBookmarkSVGIcon,
-} from "./CollectionsBookmarkSVGIcon";
-export {
-  default as CollectionsBookmarkFontIcon,
-} from "./CollectionsBookmarkFontIcon";
+export { default as CollectionsBookmarkSVGIcon } from "./CollectionsBookmarkSVGIcon";
+export { default as CollectionsBookmarkFontIcon } from "./CollectionsBookmarkFontIcon";
 export { default as CollectionsSVGIcon } from "./CollectionsSVGIcon";
 export { default as CollectionsFontIcon } from "./CollectionsFontIcon";
 export { default as ColorLensSVGIcon } from "./ColorLensSVGIcon";
@@ -471,12 +369,8 @@ export { default as CompareSVGIcon } from "./CompareSVGIcon";
 export { default as CompareFontIcon } from "./CompareFontIcon";
 export { default as ComputerSVGIcon } from "./ComputerSVGIcon";
 export { default as ComputerFontIcon } from "./ComputerFontIcon";
-export {
-  default as ConfirmationNumberSVGIcon,
-} from "./ConfirmationNumberSVGIcon";
-export {
-  default as ConfirmationNumberFontIcon,
-} from "./ConfirmationNumberFontIcon";
+export { default as ConfirmationNumberSVGIcon } from "./ConfirmationNumberSVGIcon";
+export { default as ConfirmationNumberFontIcon } from "./ConfirmationNumberFontIcon";
 export { default as ContactMailSVGIcon } from "./ContactMailSVGIcon";
 export { default as ContactMailFontIcon } from "./ContactMailFontIcon";
 export { default as ContactPhoneSVGIcon } from "./ContactPhoneSVGIcon";
@@ -489,12 +383,8 @@ export { default as ContentCutSVGIcon } from "./ContentCutSVGIcon";
 export { default as ContentCutFontIcon } from "./ContentCutFontIcon";
 export { default as ContentPasteSVGIcon } from "./ContentPasteSVGIcon";
 export { default as ContentPasteFontIcon } from "./ContentPasteFontIcon";
-export {
-  default as ControlPointDuplicateSVGIcon,
-} from "./ControlPointDuplicateSVGIcon";
-export {
-  default as ControlPointDuplicateFontIcon,
-} from "./ControlPointDuplicateFontIcon";
+export { default as ControlPointDuplicateSVGIcon } from "./ControlPointDuplicateSVGIcon";
+export { default as ControlPointDuplicateFontIcon } from "./ControlPointDuplicateFontIcon";
 export { default as ControlPointSVGIcon } from "./ControlPointSVGIcon";
 export { default as ControlPointFontIcon } from "./ControlPointFontIcon";
 export { default as CopyrightSVGIcon } from "./CopyrightSVGIcon";
@@ -573,24 +463,14 @@ export { default as DirectionsBusSVGIcon } from "./DirectionsBusSVGIcon";
 export { default as DirectionsBusFontIcon } from "./DirectionsBusFontIcon";
 export { default as DirectionsCarSVGIcon } from "./DirectionsCarSVGIcon";
 export { default as DirectionsCarFontIcon } from "./DirectionsCarFontIcon";
-export {
-  default as DirectionsRailwaySVGIcon,
-} from "./DirectionsRailwaySVGIcon";
-export {
-  default as DirectionsRailwayFontIcon,
-} from "./DirectionsRailwayFontIcon";
+export { default as DirectionsRailwaySVGIcon } from "./DirectionsRailwaySVGIcon";
+export { default as DirectionsRailwayFontIcon } from "./DirectionsRailwayFontIcon";
 export { default as DirectionsRunSVGIcon } from "./DirectionsRunSVGIcon";
 export { default as DirectionsRunFontIcon } from "./DirectionsRunFontIcon";
 export { default as DirectionsSubwaySVGIcon } from "./DirectionsSubwaySVGIcon";
-export {
-  default as DirectionsSubwayFontIcon,
-} from "./DirectionsSubwayFontIcon";
-export {
-  default as DirectionsTransitSVGIcon,
-} from "./DirectionsTransitSVGIcon";
-export {
-  default as DirectionsTransitFontIcon,
-} from "./DirectionsTransitFontIcon";
+export { default as DirectionsSubwayFontIcon } from "./DirectionsSubwayFontIcon";
+export { default as DirectionsTransitSVGIcon } from "./DirectionsTransitSVGIcon";
+export { default as DirectionsTransitFontIcon } from "./DirectionsTransitFontIcon";
 export { default as DirectionsWalkSVGIcon } from "./DirectionsWalkSVGIcon";
 export { default as DirectionsWalkFontIcon } from "./DirectionsWalkFontIcon";
 export { default as DirectionsSVGIcon } from "./DirectionsSVGIcon";
@@ -635,12 +515,8 @@ export { default as EjectSVGIcon } from "./EjectSVGIcon";
 export { default as EjectFontIcon } from "./EjectFontIcon";
 export { default as EmailSVGIcon } from "./EmailSVGIcon";
 export { default as EmailFontIcon } from "./EmailFontIcon";
-export {
-  default as EnhancedEncryptionSVGIcon,
-} from "./EnhancedEncryptionSVGIcon";
-export {
-  default as EnhancedEncryptionFontIcon,
-} from "./EnhancedEncryptionFontIcon";
+export { default as EnhancedEncryptionSVGIcon } from "./EnhancedEncryptionSVGIcon";
+export { default as EnhancedEncryptionFontIcon } from "./EnhancedEncryptionFontIcon";
 export { default as EqualizerSVGIcon } from "./EqualizerSVGIcon";
 export { default as EqualizerFontIcon } from "./EqualizerFontIcon";
 export { default as ErrorOutlineSVGIcon } from "./ErrorOutlineSVGIcon";
@@ -696,29 +572,21 @@ export { default as FavoriteBorderFontIcon } from "./FavoriteBorderFontIcon";
 export { default as FavoriteSVGIcon } from "./FavoriteSVGIcon";
 export { default as FavoriteFontIcon } from "./FavoriteFontIcon";
 export { default as FeaturedPlayListSVGIcon } from "./FeaturedPlayListSVGIcon";
-export {
-  default as FeaturedPlayListFontIcon,
-} from "./FeaturedPlayListFontIcon";
+export { default as FeaturedPlayListFontIcon } from "./FeaturedPlayListFontIcon";
 export { default as FeaturedVideoSVGIcon } from "./FeaturedVideoSVGIcon";
 export { default as FeaturedVideoFontIcon } from "./FeaturedVideoFontIcon";
 export { default as FeedbackSVGIcon } from "./FeedbackSVGIcon";
 export { default as FeedbackFontIcon } from "./FeedbackFontIcon";
 export { default as FiberDvrSVGIcon } from "./FiberDvrSVGIcon";
 export { default as FiberDvrFontIcon } from "./FiberDvrFontIcon";
-export {
-  default as FiberManualRecordSVGIcon,
-} from "./FiberManualRecordSVGIcon";
-export {
-  default as FiberManualRecordFontIcon,
-} from "./FiberManualRecordFontIcon";
+export { default as FiberManualRecordSVGIcon } from "./FiberManualRecordSVGIcon";
+export { default as FiberManualRecordFontIcon } from "./FiberManualRecordFontIcon";
 export { default as FiberNewSVGIcon } from "./FiberNewSVGIcon";
 export { default as FiberNewFontIcon } from "./FiberNewFontIcon";
 export { default as FiberPinSVGIcon } from "./FiberPinSVGIcon";
 export { default as FiberPinFontIcon } from "./FiberPinFontIcon";
 export { default as FiberSmartRecordSVGIcon } from "./FiberSmartRecordSVGIcon";
-export {
-  default as FiberSmartRecordFontIcon,
-} from "./FiberSmartRecordFontIcon";
+export { default as FiberSmartRecordFontIcon } from "./FiberSmartRecordFontIcon";
 export { default as FileDownloadSVGIcon } from "./FileDownloadSVGIcon";
 export { default as FileDownloadFontIcon } from "./FileDownloadFontIcon";
 export { default as FileUploadSVGIcon } from "./FileUploadSVGIcon";
@@ -745,12 +613,8 @@ export { default as Filter9SVGIcon } from "./Filter9SVGIcon";
 export { default as Filter9FontIcon } from "./Filter9FontIcon";
 export { default as FilterBAndWSVGIcon } from "./FilterBAndWSVGIcon";
 export { default as FilterBAndWFontIcon } from "./FilterBAndWFontIcon";
-export {
-  default as FilterCenterFocusSVGIcon,
-} from "./FilterCenterFocusSVGIcon";
-export {
-  default as FilterCenterFocusFontIcon,
-} from "./FilterCenterFocusFontIcon";
+export { default as FilterCenterFocusSVGIcon } from "./FilterCenterFocusSVGIcon";
+export { default as FilterCenterFocusFontIcon } from "./FilterCenterFocusFontIcon";
 export { default as FilterDramaSVGIcon } from "./FilterDramaSVGIcon";
 export { default as FilterDramaFontIcon } from "./FilterDramaFontIcon";
 export { default as FilterFramesSVGIcon } from "./FilterFramesSVGIcon";
@@ -809,24 +673,14 @@ export { default as FolderSVGIcon } from "./FolderSVGIcon";
 export { default as FolderFontIcon } from "./FolderFontIcon";
 export { default as FontDownloadSVGIcon } from "./FontDownloadSVGIcon";
 export { default as FontDownloadFontIcon } from "./FontDownloadFontIcon";
-export {
-  default as FormatAlignCenterSVGIcon,
-} from "./FormatAlignCenterSVGIcon";
-export {
-  default as FormatAlignCenterFontIcon,
-} from "./FormatAlignCenterFontIcon";
-export {
-  default as FormatAlignJustifySVGIcon,
-} from "./FormatAlignJustifySVGIcon";
-export {
-  default as FormatAlignJustifyFontIcon,
-} from "./FormatAlignJustifyFontIcon";
+export { default as FormatAlignCenterSVGIcon } from "./FormatAlignCenterSVGIcon";
+export { default as FormatAlignCenterFontIcon } from "./FormatAlignCenterFontIcon";
+export { default as FormatAlignJustifySVGIcon } from "./FormatAlignJustifySVGIcon";
+export { default as FormatAlignJustifyFontIcon } from "./FormatAlignJustifyFontIcon";
 export { default as FormatAlignLeftSVGIcon } from "./FormatAlignLeftSVGIcon";
 export { default as FormatAlignLeftFontIcon } from "./FormatAlignLeftFontIcon";
 export { default as FormatAlignRightSVGIcon } from "./FormatAlignRightSVGIcon";
-export {
-  default as FormatAlignRightFontIcon,
-} from "./FormatAlignRightFontIcon";
+export { default as FormatAlignRightFontIcon } from "./FormatAlignRightFontIcon";
 export { default as FormatBoldSVGIcon } from "./FormatBoldSVGIcon";
 export { default as FormatBoldFontIcon } from "./FormatBoldFontIcon";
 export { default as FormatClearSVGIcon } from "./FormatClearSVGIcon";
@@ -834,43 +688,21 @@ export { default as FormatClearFontIcon } from "./FormatClearFontIcon";
 export { default as FormatColorFillSVGIcon } from "./FormatColorFillSVGIcon";
 export { default as FormatColorFillFontIcon } from "./FormatColorFillFontIcon";
 export { default as FormatColorResetSVGIcon } from "./FormatColorResetSVGIcon";
-export {
-  default as FormatColorResetFontIcon,
-} from "./FormatColorResetFontIcon";
+export { default as FormatColorResetFontIcon } from "./FormatColorResetFontIcon";
 export { default as FormatColorTextSVGIcon } from "./FormatColorTextSVGIcon";
 export { default as FormatColorTextFontIcon } from "./FormatColorTextFontIcon";
-export {
-  default as FormatIndentDecreaseSVGIcon,
-} from "./FormatIndentDecreaseSVGIcon";
-export {
-  default as FormatIndentDecreaseFontIcon,
-} from "./FormatIndentDecreaseFontIcon";
-export {
-  default as FormatIndentIncreaseSVGIcon,
-} from "./FormatIndentIncreaseSVGIcon";
-export {
-  default as FormatIndentIncreaseFontIcon,
-} from "./FormatIndentIncreaseFontIcon";
+export { default as FormatIndentDecreaseSVGIcon } from "./FormatIndentDecreaseSVGIcon";
+export { default as FormatIndentDecreaseFontIcon } from "./FormatIndentDecreaseFontIcon";
+export { default as FormatIndentIncreaseSVGIcon } from "./FormatIndentIncreaseSVGIcon";
+export { default as FormatIndentIncreaseFontIcon } from "./FormatIndentIncreaseFontIcon";
 export { default as FormatItalicSVGIcon } from "./FormatItalicSVGIcon";
 export { default as FormatItalicFontIcon } from "./FormatItalicFontIcon";
-export {
-  default as FormatLineSpacingSVGIcon,
-} from "./FormatLineSpacingSVGIcon";
-export {
-  default as FormatLineSpacingFontIcon,
-} from "./FormatLineSpacingFontIcon";
-export {
-  default as FormatListBulletedSVGIcon,
-} from "./FormatListBulletedSVGIcon";
-export {
-  default as FormatListBulletedFontIcon,
-} from "./FormatListBulletedFontIcon";
-export {
-  default as FormatListNumberedSVGIcon,
-} from "./FormatListNumberedSVGIcon";
-export {
-  default as FormatListNumberedFontIcon,
-} from "./FormatListNumberedFontIcon";
+export { default as FormatLineSpacingSVGIcon } from "./FormatLineSpacingSVGIcon";
+export { default as FormatLineSpacingFontIcon } from "./FormatLineSpacingFontIcon";
+export { default as FormatListBulletedSVGIcon } from "./FormatListBulletedSVGIcon";
+export { default as FormatListBulletedFontIcon } from "./FormatListBulletedFontIcon";
+export { default as FormatListNumberedSVGIcon } from "./FormatListNumberedSVGIcon";
+export { default as FormatListNumberedFontIcon } from "./FormatListNumberedFontIcon";
 export { default as FormatPaintSVGIcon } from "./FormatPaintSVGIcon";
 export { default as FormatPaintFontIcon } from "./FormatPaintFontIcon";
 export { default as FormatQuoteSVGIcon } from "./FormatQuoteSVGIcon";
@@ -879,28 +711,14 @@ export { default as FormatShapesSVGIcon } from "./FormatShapesSVGIcon";
 export { default as FormatShapesFontIcon } from "./FormatShapesFontIcon";
 export { default as FormatSizeSVGIcon } from "./FormatSizeSVGIcon";
 export { default as FormatSizeFontIcon } from "./FormatSizeFontIcon";
-export {
-  default as FormatStrikethroughSVGIcon,
-} from "./FormatStrikethroughSVGIcon";
-export {
-  default as FormatStrikethroughFontIcon,
-} from "./FormatStrikethroughFontIcon";
-export {
-  default as FormatTextdirectionLToRSVGIcon,
-} from "./FormatTextdirectionLToRSVGIcon";
-export {
-  default as FormatTextdirectionLToRFontIcon,
-} from "./FormatTextdirectionLToRFontIcon";
-export {
-  default as FormatTextdirectionRToLSVGIcon,
-} from "./FormatTextdirectionRToLSVGIcon";
-export {
-  default as FormatTextdirectionRToLFontIcon,
-} from "./FormatTextdirectionRToLFontIcon";
+export { default as FormatStrikethroughSVGIcon } from "./FormatStrikethroughSVGIcon";
+export { default as FormatStrikethroughFontIcon } from "./FormatStrikethroughFontIcon";
+export { default as FormatTextdirectionLToRSVGIcon } from "./FormatTextdirectionLToRSVGIcon";
+export { default as FormatTextdirectionLToRFontIcon } from "./FormatTextdirectionLToRFontIcon";
+export { default as FormatTextdirectionRToLSVGIcon } from "./FormatTextdirectionRToLSVGIcon";
+export { default as FormatTextdirectionRToLFontIcon } from "./FormatTextdirectionRToLFontIcon";
 export { default as FormatUnderlinedSVGIcon } from "./FormatUnderlinedSVGIcon";
-export {
-  default as FormatUnderlinedFontIcon,
-} from "./FormatUnderlinedFontIcon";
+export { default as FormatUnderlinedFontIcon } from "./FormatUnderlinedFontIcon";
 export { default as ForumSVGIcon } from "./ForumSVGIcon";
 export { default as ForumFontIcon } from "./ForumFontIcon";
 export { default as Forward10SVGIcon } from "./Forward10SVGIcon";
@@ -1004,9 +822,7 @@ export { default as HttpFontIcon } from "./HttpFontIcon";
 export { default as HttpsSVGIcon } from "./HttpsSVGIcon";
 export { default as HttpsFontIcon } from "./HttpsFontIcon";
 export { default as ImageAspectRatioSVGIcon } from "./ImageAspectRatioSVGIcon";
-export {
-  default as ImageAspectRatioFontIcon,
-} from "./ImageAspectRatioFontIcon";
+export { default as ImageAspectRatioFontIcon } from "./ImageAspectRatioFontIcon";
 export { default as ImageSVGIcon } from "./ImageSVGIcon";
 export { default as ImageFontIcon } from "./ImageFontIcon";
 export { default as ImportContactsSVGIcon } from "./ImportContactsSVGIcon";
@@ -1014,17 +830,11 @@ export { default as ImportContactsFontIcon } from "./ImportContactsFontIcon";
 export { default as ImportExportSVGIcon } from "./ImportExportSVGIcon";
 export { default as ImportExportFontIcon } from "./ImportExportFontIcon";
 export { default as ImportantDevicesSVGIcon } from "./ImportantDevicesSVGIcon";
-export {
-  default as ImportantDevicesFontIcon,
-} from "./ImportantDevicesFontIcon";
+export { default as ImportantDevicesFontIcon } from "./ImportantDevicesFontIcon";
 export { default as InboxSVGIcon } from "./InboxSVGIcon";
 export { default as InboxFontIcon } from "./InboxFontIcon";
-export {
-  default as IndeterminateCheckBoxSVGIcon,
-} from "./IndeterminateCheckBoxSVGIcon";
-export {
-  default as IndeterminateCheckBoxFontIcon,
-} from "./IndeterminateCheckBoxFontIcon";
+export { default as IndeterminateCheckBoxSVGIcon } from "./IndeterminateCheckBoxSVGIcon";
+export { default as IndeterminateCheckBoxFontIcon } from "./IndeterminateCheckBoxFontIcon";
 export { default as InfoOutlineSVGIcon } from "./InfoOutlineSVGIcon";
 export { default as InfoOutlineFontIcon } from "./InfoOutlineFontIcon";
 export { default as InfoSVGIcon } from "./InfoSVGIcon";
@@ -1040,9 +850,7 @@ export { default as InsertDriveFileFontIcon } from "./InsertDriveFileFontIcon";
 export { default as InsertEmoticonSVGIcon } from "./InsertEmoticonSVGIcon";
 export { default as InsertEmoticonFontIcon } from "./InsertEmoticonFontIcon";
 export { default as InsertInvitationSVGIcon } from "./InsertInvitationSVGIcon";
-export {
-  default as InsertInvitationFontIcon,
-} from "./InsertInvitationFontIcon";
+export { default as InsertInvitationFontIcon } from "./InsertInvitationFontIcon";
 export { default as InsertLinkSVGIcon } from "./InsertLinkSVGIcon";
 export { default as InsertLinkFontIcon } from "./InsertLinkFontIcon";
 export { default as InsertPhotoSVGIcon } from "./InsertPhotoSVGIcon";
@@ -1053,36 +861,18 @@ export { default as InvertColorsSVGIcon } from "./InvertColorsSVGIcon";
 export { default as InvertColorsFontIcon } from "./InvertColorsFontIcon";
 export { default as IsoSVGIcon } from "./IsoSVGIcon";
 export { default as IsoFontIcon } from "./IsoFontIcon";
-export {
-  default as KeyboardArrowDownSVGIcon,
-} from "./KeyboardArrowDownSVGIcon";
-export {
-  default as KeyboardArrowDownFontIcon,
-} from "./KeyboardArrowDownFontIcon";
-export {
-  default as KeyboardArrowLeftSVGIcon,
-} from "./KeyboardArrowLeftSVGIcon";
-export {
-  default as KeyboardArrowLeftFontIcon,
-} from "./KeyboardArrowLeftFontIcon";
-export {
-  default as KeyboardArrowRightSVGIcon,
-} from "./KeyboardArrowRightSVGIcon";
-export {
-  default as KeyboardArrowRightFontIcon,
-} from "./KeyboardArrowRightFontIcon";
+export { default as KeyboardArrowDownSVGIcon } from "./KeyboardArrowDownSVGIcon";
+export { default as KeyboardArrowDownFontIcon } from "./KeyboardArrowDownFontIcon";
+export { default as KeyboardArrowLeftSVGIcon } from "./KeyboardArrowLeftSVGIcon";
+export { default as KeyboardArrowLeftFontIcon } from "./KeyboardArrowLeftFontIcon";
+export { default as KeyboardArrowRightSVGIcon } from "./KeyboardArrowRightSVGIcon";
+export { default as KeyboardArrowRightFontIcon } from "./KeyboardArrowRightFontIcon";
 export { default as KeyboardArrowUpSVGIcon } from "./KeyboardArrowUpSVGIcon";
 export { default as KeyboardArrowUpFontIcon } from "./KeyboardArrowUpFontIcon";
-export {
-  default as KeyboardBackspaceSVGIcon,
-} from "./KeyboardBackspaceSVGIcon";
-export {
-  default as KeyboardBackspaceFontIcon,
-} from "./KeyboardBackspaceFontIcon";
+export { default as KeyboardBackspaceSVGIcon } from "./KeyboardBackspaceSVGIcon";
+export { default as KeyboardBackspaceFontIcon } from "./KeyboardBackspaceFontIcon";
 export { default as KeyboardCapslockSVGIcon } from "./KeyboardCapslockSVGIcon";
-export {
-  default as KeyboardCapslockFontIcon,
-} from "./KeyboardCapslockFontIcon";
+export { default as KeyboardCapslockFontIcon } from "./KeyboardCapslockFontIcon";
 export { default as KeyboardHideSVGIcon } from "./KeyboardHideSVGIcon";
 export { default as KeyboardHideFontIcon } from "./KeyboardHideFontIcon";
 export { default as KeyboardReturnSVGIcon } from "./KeyboardReturnSVGIcon";
@@ -1104,9 +894,7 @@ export { default as LandscapeFontIcon } from "./LandscapeFontIcon";
 export { default as LanguageSVGIcon } from "./LanguageSVGIcon";
 export { default as LanguageFontIcon } from "./LanguageFontIcon";
 export { default as LaptopChromebookSVGIcon } from "./LaptopChromebookSVGIcon";
-export {
-  default as LaptopChromebookFontIcon,
-} from "./LaptopChromebookFontIcon";
+export { default as LaptopChromebookFontIcon } from "./LaptopChromebookFontIcon";
 export { default as LaptopMacSVGIcon } from "./LaptopMacSVGIcon";
 export { default as LaptopMacFontIcon } from "./LaptopMacFontIcon";
 export { default as LaptopWindowsSVGIcon } from "./LaptopWindowsSVGIcon";
@@ -1134,9 +922,7 @@ export { default as LibraryBooksFontIcon } from "./LibraryBooksFontIcon";
 export { default as LibraryMusicSVGIcon } from "./LibraryMusicSVGIcon";
 export { default as LibraryMusicFontIcon } from "./LibraryMusicFontIcon";
 export { default as LightbulbOutlineSVGIcon } from "./LightbulbOutlineSVGIcon";
-export {
-  default as LightbulbOutlineFontIcon,
-} from "./LightbulbOutlineFontIcon";
+export { default as LightbulbOutlineFontIcon } from "./LightbulbOutlineFontIcon";
 export { default as LineStyleSVGIcon } from "./LineStyleSVGIcon";
 export { default as LineStyleFontIcon } from "./LineStyleFontIcon";
 export { default as LineWeightSVGIcon } from "./LineWeightSVGIcon";
@@ -1165,12 +951,8 @@ export { default as LocalCafeSVGIcon } from "./LocalCafeSVGIcon";
 export { default as LocalCafeFontIcon } from "./LocalCafeFontIcon";
 export { default as LocalCarWashSVGIcon } from "./LocalCarWashSVGIcon";
 export { default as LocalCarWashFontIcon } from "./LocalCarWashFontIcon";
-export {
-  default as LocalConvenienceStoreSVGIcon,
-} from "./LocalConvenienceStoreSVGIcon";
-export {
-  default as LocalConvenienceStoreFontIcon,
-} from "./LocalConvenienceStoreFontIcon";
+export { default as LocalConvenienceStoreSVGIcon } from "./LocalConvenienceStoreSVGIcon";
+export { default as LocalConvenienceStoreFontIcon } from "./LocalConvenienceStoreFontIcon";
 export { default as LocalDiningSVGIcon } from "./LocalDiningSVGIcon";
 export { default as LocalDiningFontIcon } from "./LocalDiningFontIcon";
 export { default as LocalDrinkSVGIcon } from "./LocalDrinkSVGIcon";
@@ -1179,22 +961,14 @@ export { default as LocalFloristSVGIcon } from "./LocalFloristSVGIcon";
 export { default as LocalFloristFontIcon } from "./LocalFloristFontIcon";
 export { default as LocalGasStationSVGIcon } from "./LocalGasStationSVGIcon";
 export { default as LocalGasStationFontIcon } from "./LocalGasStationFontIcon";
-export {
-  default as LocalGroceryStoreSVGIcon,
-} from "./LocalGroceryStoreSVGIcon";
-export {
-  default as LocalGroceryStoreFontIcon,
-} from "./LocalGroceryStoreFontIcon";
+export { default as LocalGroceryStoreSVGIcon } from "./LocalGroceryStoreSVGIcon";
+export { default as LocalGroceryStoreFontIcon } from "./LocalGroceryStoreFontIcon";
 export { default as LocalHospitalSVGIcon } from "./LocalHospitalSVGIcon";
 export { default as LocalHospitalFontIcon } from "./LocalHospitalFontIcon";
 export { default as LocalHotelSVGIcon } from "./LocalHotelSVGIcon";
 export { default as LocalHotelFontIcon } from "./LocalHotelFontIcon";
-export {
-  default as LocalLaundryServiceSVGIcon,
-} from "./LocalLaundryServiceSVGIcon";
-export {
-  default as LocalLaundryServiceFontIcon,
-} from "./LocalLaundryServiceFontIcon";
+export { default as LocalLaundryServiceSVGIcon } from "./LocalLaundryServiceSVGIcon";
+export { default as LocalLaundryServiceFontIcon } from "./LocalLaundryServiceFontIcon";
 export { default as LocalLibrarySVGIcon } from "./LocalLibrarySVGIcon";
 export { default as LocalLibraryFontIcon } from "./LocalLibraryFontIcon";
 export { default as LocalMallSVGIcon } from "./LocalMallSVGIcon";
@@ -1226,19 +1000,13 @@ export { default as LocalTaxiFontIcon } from "./LocalTaxiFontIcon";
 export { default as LocationCitySVGIcon } from "./LocationCitySVGIcon";
 export { default as LocationCityFontIcon } from "./LocationCityFontIcon";
 export { default as LocationDisabledSVGIcon } from "./LocationDisabledSVGIcon";
-export {
-  default as LocationDisabledFontIcon,
-} from "./LocationDisabledFontIcon";
+export { default as LocationDisabledFontIcon } from "./LocationDisabledFontIcon";
 export { default as LocationOffSVGIcon } from "./LocationOffSVGIcon";
 export { default as LocationOffFontIcon } from "./LocationOffFontIcon";
 export { default as LocationOnSVGIcon } from "./LocationOnSVGIcon";
 export { default as LocationOnFontIcon } from "./LocationOnFontIcon";
-export {
-  default as LocationSearchingSVGIcon,
-} from "./LocationSearchingSVGIcon";
-export {
-  default as LocationSearchingFontIcon,
-} from "./LocationSearchingFontIcon";
+export { default as LocationSearchingSVGIcon } from "./LocationSearchingSVGIcon";
+export { default as LocationSearchingFontIcon } from "./LocationSearchingFontIcon";
 export { default as LockOpenSVGIcon } from "./LockOpenSVGIcon";
 export { default as LockOpenFontIcon } from "./LockOpenFontIcon";
 export { default as LockOutlineSVGIcon } from "./LockOutlineSVGIcon";
@@ -1273,12 +1041,8 @@ export { default as MailSVGIcon } from "./MailSVGIcon";
 export { default as MailFontIcon } from "./MailFontIcon";
 export { default as MapSVGIcon } from "./MapSVGIcon";
 export { default as MapFontIcon } from "./MapFontIcon";
-export {
-  default as MarkunreadMailboxSVGIcon,
-} from "./MarkunreadMailboxSVGIcon";
-export {
-  default as MarkunreadMailboxFontIcon,
-} from "./MarkunreadMailboxFontIcon";
+export { default as MarkunreadMailboxSVGIcon } from "./MarkunreadMailboxSVGIcon";
+export { default as MarkunreadMailboxFontIcon } from "./MarkunreadMailboxFontIcon";
 export { default as MarkunreadSVGIcon } from "./MarkunreadSVGIcon";
 export { default as MarkunreadFontIcon } from "./MarkunreadFontIcon";
 export { default as MemorySVGIcon } from "./MemorySVGIcon";
@@ -1306,9 +1070,7 @@ export { default as MonetizationOnFontIcon } from "./MonetizationOnFontIcon";
 export { default as MoneyOffSVGIcon } from "./MoneyOffSVGIcon";
 export { default as MoneyOffFontIcon } from "./MoneyOffFontIcon";
 export { default as MonochromePhotosSVGIcon } from "./MonochromePhotosSVGIcon";
-export {
-  default as MonochromePhotosFontIcon,
-} from "./MonochromePhotosFontIcon";
+export { default as MonochromePhotosFontIcon } from "./MonochromePhotosFontIcon";
 export { default as MoodBadSVGIcon } from "./MoodBadSVGIcon";
 export { default as MoodBadFontIcon } from "./MoodBadFontIcon";
 export { default as MoodSVGIcon } from "./MoodSVGIcon";
@@ -1375,28 +1137,14 @@ export { default as NoteAddSVGIcon } from "./NoteAddSVGIcon";
 export { default as NoteAddFontIcon } from "./NoteAddFontIcon";
 export { default as NoteSVGIcon } from "./NoteSVGIcon";
 export { default as NoteFontIcon } from "./NoteFontIcon";
-export {
-  default as NotificationsActiveSVGIcon,
-} from "./NotificationsActiveSVGIcon";
-export {
-  default as NotificationsActiveFontIcon,
-} from "./NotificationsActiveFontIcon";
-export {
-  default as NotificationsNoneSVGIcon,
-} from "./NotificationsNoneSVGIcon";
-export {
-  default as NotificationsNoneFontIcon,
-} from "./NotificationsNoneFontIcon";
+export { default as NotificationsActiveSVGIcon } from "./NotificationsActiveSVGIcon";
+export { default as NotificationsActiveFontIcon } from "./NotificationsActiveFontIcon";
+export { default as NotificationsNoneSVGIcon } from "./NotificationsNoneSVGIcon";
+export { default as NotificationsNoneFontIcon } from "./NotificationsNoneFontIcon";
 export { default as NotificationsOffSVGIcon } from "./NotificationsOffSVGIcon";
-export {
-  default as NotificationsOffFontIcon,
-} from "./NotificationsOffFontIcon";
-export {
-  default as NotificationsPausedSVGIcon,
-} from "./NotificationsPausedSVGIcon";
-export {
-  default as NotificationsPausedFontIcon,
-} from "./NotificationsPausedFontIcon";
+export { default as NotificationsOffFontIcon } from "./NotificationsOffFontIcon";
+export { default as NotificationsPausedSVGIcon } from "./NotificationsPausedSVGIcon";
+export { default as NotificationsPausedFontIcon } from "./NotificationsPausedFontIcon";
 export { default as NotificationsSVGIcon } from "./NotificationsSVGIcon";
 export { default as NotificationsFontIcon } from "./NotificationsFontIcon";
 export { default as OfflinePinSVGIcon } from "./OfflinePinSVGIcon";
@@ -1421,38 +1169,20 @@ export { default as PanToolSVGIcon } from "./PanToolSVGIcon";
 export { default as PanToolFontIcon } from "./PanToolFontIcon";
 export { default as PanoramaFishEyeSVGIcon } from "./PanoramaFishEyeSVGIcon";
 export { default as PanoramaFishEyeFontIcon } from "./PanoramaFishEyeFontIcon";
-export {
-  default as PanoramaHorizontalSVGIcon,
-} from "./PanoramaHorizontalSVGIcon";
-export {
-  default as PanoramaHorizontalFontIcon,
-} from "./PanoramaHorizontalFontIcon";
+export { default as PanoramaHorizontalSVGIcon } from "./PanoramaHorizontalSVGIcon";
+export { default as PanoramaHorizontalFontIcon } from "./PanoramaHorizontalFontIcon";
 export { default as PanoramaVerticalSVGIcon } from "./PanoramaVerticalSVGIcon";
-export {
-  default as PanoramaVerticalFontIcon,
-} from "./PanoramaVerticalFontIcon";
-export {
-  default as PanoramaWideAngleSVGIcon,
-} from "./PanoramaWideAngleSVGIcon";
-export {
-  default as PanoramaWideAngleFontIcon,
-} from "./PanoramaWideAngleFontIcon";
+export { default as PanoramaVerticalFontIcon } from "./PanoramaVerticalFontIcon";
+export { default as PanoramaWideAngleSVGIcon } from "./PanoramaWideAngleSVGIcon";
+export { default as PanoramaWideAngleFontIcon } from "./PanoramaWideAngleFontIcon";
 export { default as PanoramaSVGIcon } from "./PanoramaSVGIcon";
 export { default as PanoramaFontIcon } from "./PanoramaFontIcon";
 export { default as PartyModeSVGIcon } from "./PartyModeSVGIcon";
 export { default as PartyModeFontIcon } from "./PartyModeFontIcon";
-export {
-  default as PauseCircleFilledSVGIcon,
-} from "./PauseCircleFilledSVGIcon";
-export {
-  default as PauseCircleFilledFontIcon,
-} from "./PauseCircleFilledFontIcon";
-export {
-  default as PauseCircleOutlineSVGIcon,
-} from "./PauseCircleOutlineSVGIcon";
-export {
-  default as PauseCircleOutlineFontIcon,
-} from "./PauseCircleOutlineFontIcon";
+export { default as PauseCircleFilledSVGIcon } from "./PauseCircleFilledSVGIcon";
+export { default as PauseCircleFilledFontIcon } from "./PauseCircleFilledFontIcon";
+export { default as PauseCircleOutlineSVGIcon } from "./PauseCircleOutlineSVGIcon";
+export { default as PauseCircleOutlineFontIcon } from "./PauseCircleOutlineFontIcon";
 export { default as PauseSVGIcon } from "./PauseSVGIcon";
 export { default as PauseFontIcon } from "./PauseFontIcon";
 export { default as PaymentSVGIcon } from "./PaymentSVGIcon";
@@ -1463,20 +1193,12 @@ export { default as PeopleSVGIcon } from "./PeopleSVGIcon";
 export { default as PeopleFontIcon } from "./PeopleFontIcon";
 export { default as PermCameraMicSVGIcon } from "./PermCameraMicSVGIcon";
 export { default as PermCameraMicFontIcon } from "./PermCameraMicFontIcon";
-export {
-  default as PermContactCalendarSVGIcon,
-} from "./PermContactCalendarSVGIcon";
-export {
-  default as PermContactCalendarFontIcon,
-} from "./PermContactCalendarFontIcon";
+export { default as PermContactCalendarSVGIcon } from "./PermContactCalendarSVGIcon";
+export { default as PermContactCalendarFontIcon } from "./PermContactCalendarFontIcon";
 export { default as PermDataSettingSVGIcon } from "./PermDataSettingSVGIcon";
 export { default as PermDataSettingFontIcon } from "./PermDataSettingFontIcon";
-export {
-  default as PermDeviceInformationSVGIcon,
-} from "./PermDeviceInformationSVGIcon";
-export {
-  default as PermDeviceInformationFontIcon,
-} from "./PermDeviceInformationFontIcon";
+export { default as PermDeviceInformationSVGIcon } from "./PermDeviceInformationSVGIcon";
+export { default as PermDeviceInformationFontIcon } from "./PermDeviceInformationFontIcon";
 export { default as PermIdentitySVGIcon } from "./PermIdentitySVGIcon";
 export { default as PermIdentityFontIcon } from "./PermIdentityFontIcon";
 export { default as PermMediaSVGIcon } from "./PermMediaSVGIcon";
@@ -1501,12 +1223,8 @@ export { default as PetsSVGIcon } from "./PetsSVGIcon";
 export { default as PetsFontIcon } from "./PetsFontIcon";
 export { default as PhoneAndroidSVGIcon } from "./PhoneAndroidSVGIcon";
 export { default as PhoneAndroidFontIcon } from "./PhoneAndroidFontIcon";
-export {
-  default as PhoneBluetoothSpeakerSVGIcon,
-} from "./PhoneBluetoothSpeakerSVGIcon";
-export {
-  default as PhoneBluetoothSpeakerFontIcon,
-} from "./PhoneBluetoothSpeakerFontIcon";
+export { default as PhoneBluetoothSpeakerSVGIcon } from "./PhoneBluetoothSpeakerSVGIcon";
+export { default as PhoneBluetoothSpeakerFontIcon } from "./PhoneBluetoothSpeakerFontIcon";
 export { default as PhoneForwardedSVGIcon } from "./PhoneForwardedSVGIcon";
 export { default as PhoneForwardedFontIcon } from "./PhoneForwardedFontIcon";
 export { default as PhoneInTalkSVGIcon } from "./PhoneInTalkSVGIcon";
@@ -1541,42 +1259,22 @@ export { default as PhotoFilterSVGIcon } from "./PhotoFilterSVGIcon";
 export { default as PhotoFilterFontIcon } from "./PhotoFilterFontIcon";
 export { default as PhotoLibrarySVGIcon } from "./PhotoLibrarySVGIcon";
 export { default as PhotoLibraryFontIcon } from "./PhotoLibraryFontIcon";
-export {
-  default as PhotoSizeSelectActualSVGIcon,
-} from "./PhotoSizeSelectActualSVGIcon";
-export {
-  default as PhotoSizeSelectActualFontIcon,
-} from "./PhotoSizeSelectActualFontIcon";
-export {
-  default as PhotoSizeSelectLargeSVGIcon,
-} from "./PhotoSizeSelectLargeSVGIcon";
-export {
-  default as PhotoSizeSelectLargeFontIcon,
-} from "./PhotoSizeSelectLargeFontIcon";
-export {
-  default as PhotoSizeSelectSmallSVGIcon,
-} from "./PhotoSizeSelectSmallSVGIcon";
-export {
-  default as PhotoSizeSelectSmallFontIcon,
-} from "./PhotoSizeSelectSmallFontIcon";
+export { default as PhotoSizeSelectActualSVGIcon } from "./PhotoSizeSelectActualSVGIcon";
+export { default as PhotoSizeSelectActualFontIcon } from "./PhotoSizeSelectActualFontIcon";
+export { default as PhotoSizeSelectLargeSVGIcon } from "./PhotoSizeSelectLargeSVGIcon";
+export { default as PhotoSizeSelectLargeFontIcon } from "./PhotoSizeSelectLargeFontIcon";
+export { default as PhotoSizeSelectSmallSVGIcon } from "./PhotoSizeSelectSmallSVGIcon";
+export { default as PhotoSizeSelectSmallFontIcon } from "./PhotoSizeSelectSmallFontIcon";
 export { default as PhotoSVGIcon } from "./PhotoSVGIcon";
 export { default as PhotoFontIcon } from "./PhotoFontIcon";
 export { default as PictureAsPdfSVGIcon } from "./PictureAsPdfSVGIcon";
 export { default as PictureAsPdfFontIcon } from "./PictureAsPdfFontIcon";
-export {
-  default as PictureInPictureAltSVGIcon,
-} from "./PictureInPictureAltSVGIcon";
-export {
-  default as PictureInPictureAltFontIcon,
-} from "./PictureInPictureAltFontIcon";
+export { default as PictureInPictureAltSVGIcon } from "./PictureInPictureAltSVGIcon";
+export { default as PictureInPictureAltFontIcon } from "./PictureInPictureAltFontIcon";
 export { default as PictureInPictureSVGIcon } from "./PictureInPictureSVGIcon";
-export {
-  default as PictureInPictureFontIcon,
-} from "./PictureInPictureFontIcon";
+export { default as PictureInPictureFontIcon } from "./PictureInPictureFontIcon";
 export { default as PieChartOutlinedSVGIcon } from "./PieChartOutlinedSVGIcon";
-export {
-  default as PieChartOutlinedFontIcon,
-} from "./PieChartOutlinedFontIcon";
+export { default as PieChartOutlinedFontIcon } from "./PieChartOutlinedFontIcon";
 export { default as PieChartSVGIcon } from "./PieChartSVGIcon";
 export { default as PieChartFontIcon } from "./PieChartFontIcon";
 export { default as PinDropSVGIcon } from "./PinDropSVGIcon";
@@ -1586,21 +1284,13 @@ export { default as PlaceFontIcon } from "./PlaceFontIcon";
 export { default as PlayArrowSVGIcon } from "./PlayArrowSVGIcon";
 export { default as PlayArrowFontIcon } from "./PlayArrowFontIcon";
 export { default as PlayCircleFilledSVGIcon } from "./PlayCircleFilledSVGIcon";
-export {
-  default as PlayCircleFilledFontIcon,
-} from "./PlayCircleFilledFontIcon";
-export {
-  default as PlayCircleOutlineSVGIcon,
-} from "./PlayCircleOutlineSVGIcon";
-export {
-  default as PlayCircleOutlineFontIcon,
-} from "./PlayCircleOutlineFontIcon";
+export { default as PlayCircleFilledFontIcon } from "./PlayCircleFilledFontIcon";
+export { default as PlayCircleOutlineSVGIcon } from "./PlayCircleOutlineSVGIcon";
+export { default as PlayCircleOutlineFontIcon } from "./PlayCircleOutlineFontIcon";
 export { default as PlayForWorkSVGIcon } from "./PlayForWorkSVGIcon";
 export { default as PlayForWorkFontIcon } from "./PlayForWorkFontIcon";
 export { default as PlaylistAddCheckSVGIcon } from "./PlaylistAddCheckSVGIcon";
-export {
-  default as PlaylistAddCheckFontIcon,
-} from "./PlaylistAddCheckFontIcon";
+export { default as PlaylistAddCheckFontIcon } from "./PlaylistAddCheckFontIcon";
 export { default as PlaylistAddSVGIcon } from "./PlaylistAddSVGIcon";
 export { default as PlaylistAddFontIcon } from "./PlaylistAddFontIcon";
 export { default as PlaylistPlaySVGIcon } from "./PlaylistPlaySVGIcon";
@@ -1620,9 +1310,7 @@ export { default as PortraitFontIcon } from "./PortraitFontIcon";
 export { default as PowerInputSVGIcon } from "./PowerInputSVGIcon";
 export { default as PowerInputFontIcon } from "./PowerInputFontIcon";
 export { default as PowerSettingsNewSVGIcon } from "./PowerSettingsNewSVGIcon";
-export {
-  default as PowerSettingsNewFontIcon,
-} from "./PowerSettingsNewFontIcon";
+export { default as PowerSettingsNewFontIcon } from "./PowerSettingsNewFontIcon";
 export { default as PowerSVGIcon } from "./PowerSVGIcon";
 export { default as PowerFontIcon } from "./PowerFontIcon";
 export { default as PregnantWomanSVGIcon } from "./PregnantWomanSVGIcon";
@@ -1647,18 +1335,10 @@ export { default as QueuePlayNextSVGIcon } from "./QueuePlayNextSVGIcon";
 export { default as QueuePlayNextFontIcon } from "./QueuePlayNextFontIcon";
 export { default as QueueSVGIcon } from "./QueueSVGIcon";
 export { default as QueueFontIcon } from "./QueueFontIcon";
-export {
-  default as RadioButtonCheckedSVGIcon,
-} from "./RadioButtonCheckedSVGIcon";
-export {
-  default as RadioButtonCheckedFontIcon,
-} from "./RadioButtonCheckedFontIcon";
-export {
-  default as RadioButtonUncheckedSVGIcon,
-} from "./RadioButtonUncheckedSVGIcon";
-export {
-  default as RadioButtonUncheckedFontIcon,
-} from "./RadioButtonUncheckedFontIcon";
+export { default as RadioButtonCheckedSVGIcon } from "./RadioButtonCheckedSVGIcon";
+export { default as RadioButtonCheckedFontIcon } from "./RadioButtonCheckedFontIcon";
+export { default as RadioButtonUncheckedSVGIcon } from "./RadioButtonUncheckedSVGIcon";
+export { default as RadioButtonUncheckedFontIcon } from "./RadioButtonUncheckedFontIcon";
 export { default as RadioSVGIcon } from "./RadioSVGIcon";
 export { default as RadioFontIcon } from "./RadioFontIcon";
 export { default as RateReviewSVGIcon } from "./RateReviewSVGIcon";
@@ -1675,24 +1355,16 @@ export { default as RedoSVGIcon } from "./RedoSVGIcon";
 export { default as RedoFontIcon } from "./RedoFontIcon";
 export { default as RefreshSVGIcon } from "./RefreshSVGIcon";
 export { default as RefreshFontIcon } from "./RefreshFontIcon";
-export {
-  default as RemoveCircleOutlineSVGIcon,
-} from "./RemoveCircleOutlineSVGIcon";
-export {
-  default as RemoveCircleOutlineFontIcon,
-} from "./RemoveCircleOutlineFontIcon";
+export { default as RemoveCircleOutlineSVGIcon } from "./RemoveCircleOutlineSVGIcon";
+export { default as RemoveCircleOutlineFontIcon } from "./RemoveCircleOutlineFontIcon";
 export { default as RemoveCircleSVGIcon } from "./RemoveCircleSVGIcon";
 export { default as RemoveCircleFontIcon } from "./RemoveCircleFontIcon";
 export { default as RemoveFromQueueSVGIcon } from "./RemoveFromQueueSVGIcon";
 export { default as RemoveFromQueueFontIcon } from "./RemoveFromQueueFontIcon";
 export { default as RemoveRedEyeSVGIcon } from "./RemoveRedEyeSVGIcon";
 export { default as RemoveRedEyeFontIcon } from "./RemoveRedEyeFontIcon";
-export {
-  default as RemoveShoppingCartSVGIcon,
-} from "./RemoveShoppingCartSVGIcon";
-export {
-  default as RemoveShoppingCartFontIcon,
-} from "./RemoveShoppingCartFontIcon";
+export { default as RemoveShoppingCartSVGIcon } from "./RemoveShoppingCartSVGIcon";
+export { default as RemoveShoppingCartFontIcon } from "./RemoveShoppingCartFontIcon";
 export { default as RemoveSVGIcon } from "./RemoveSVGIcon";
 export { default as RemoveFontIcon } from "./RemoveFontIcon";
 export { default as ReorderSVGIcon } from "./ReorderSVGIcon";
@@ -1731,12 +1403,8 @@ export { default as RoomServiceSVGIcon } from "./RoomServiceSVGIcon";
 export { default as RoomServiceFontIcon } from "./RoomServiceFontIcon";
 export { default as RoomSVGIcon } from "./RoomSVGIcon";
 export { default as RoomFontIcon } from "./RoomFontIcon";
-export {
-  default as Rotate90DegreesCcwSVGIcon,
-} from "./Rotate90DegreesCcwSVGIcon";
-export {
-  default as Rotate90DegreesCcwFontIcon,
-} from "./Rotate90DegreesCcwFontIcon";
+export { default as Rotate90DegreesCcwSVGIcon } from "./Rotate90DegreesCcwSVGIcon";
+export { default as Rotate90DegreesCcwFontIcon } from "./Rotate90DegreesCcwFontIcon";
 export { default as RotateLeftSVGIcon } from "./RotateLeftSVGIcon";
 export { default as RotateLeftFontIcon } from "./RotateLeftFontIcon";
 export { default as RotateRightSVGIcon } from "./RotateRightSVGIcon";
@@ -1761,24 +1429,12 @@ export { default as ScheduleSVGIcon } from "./ScheduleSVGIcon";
 export { default as ScheduleFontIcon } from "./ScheduleFontIcon";
 export { default as SchoolSVGIcon } from "./SchoolSVGIcon";
 export { default as SchoolFontIcon } from "./SchoolFontIcon";
-export {
-  default as ScreenLockLandscapeSVGIcon,
-} from "./ScreenLockLandscapeSVGIcon";
-export {
-  default as ScreenLockLandscapeFontIcon,
-} from "./ScreenLockLandscapeFontIcon";
-export {
-  default as ScreenLockPortraitSVGIcon,
-} from "./ScreenLockPortraitSVGIcon";
-export {
-  default as ScreenLockPortraitFontIcon,
-} from "./ScreenLockPortraitFontIcon";
-export {
-  default as ScreenLockRotationSVGIcon,
-} from "./ScreenLockRotationSVGIcon";
-export {
-  default as ScreenLockRotationFontIcon,
-} from "./ScreenLockRotationFontIcon";
+export { default as ScreenLockLandscapeSVGIcon } from "./ScreenLockLandscapeSVGIcon";
+export { default as ScreenLockLandscapeFontIcon } from "./ScreenLockLandscapeFontIcon";
+export { default as ScreenLockPortraitSVGIcon } from "./ScreenLockPortraitSVGIcon";
+export { default as ScreenLockPortraitFontIcon } from "./ScreenLockPortraitFontIcon";
+export { default as ScreenLockRotationSVGIcon } from "./ScreenLockRotationSVGIcon";
+export { default as ScreenLockRotationFontIcon } from "./ScreenLockRotationFontIcon";
 export { default as ScreenRotationSVGIcon } from "./ScreenRotationSVGIcon";
 export { default as ScreenRotationFontIcon } from "./ScreenRotationFontIcon";
 export { default as ScreenShareSVGIcon } from "./ScreenShareSVGIcon";
@@ -1795,110 +1451,48 @@ export { default as SelectAllSVGIcon } from "./SelectAllSVGIcon";
 export { default as SelectAllFontIcon } from "./SelectAllFontIcon";
 export { default as SendSVGIcon } from "./SendSVGIcon";
 export { default as SendFontIcon } from "./SendFontIcon";
-export {
-  default as SentimentDissatisfiedSVGIcon,
-} from "./SentimentDissatisfiedSVGIcon";
-export {
-  default as SentimentDissatisfiedFontIcon,
-} from "./SentimentDissatisfiedFontIcon";
+export { default as SentimentDissatisfiedSVGIcon } from "./SentimentDissatisfiedSVGIcon";
+export { default as SentimentDissatisfiedFontIcon } from "./SentimentDissatisfiedFontIcon";
 export { default as SentimentNeutralSVGIcon } from "./SentimentNeutralSVGIcon";
-export {
-  default as SentimentNeutralFontIcon,
-} from "./SentimentNeutralFontIcon";
-export {
-  default as SentimentSatisfiedSVGIcon,
-} from "./SentimentSatisfiedSVGIcon";
-export {
-  default as SentimentSatisfiedFontIcon,
-} from "./SentimentSatisfiedFontIcon";
-export {
-  default as SentimentVeryDissatisfiedSVGIcon,
-} from "./SentimentVeryDissatisfiedSVGIcon";
-export {
-  default as SentimentVeryDissatisfiedFontIcon,
-} from "./SentimentVeryDissatisfiedFontIcon";
-export {
-  default as SentimentVerySatisfiedSVGIcon,
-} from "./SentimentVerySatisfiedSVGIcon";
-export {
-  default as SentimentVerySatisfiedFontIcon,
-} from "./SentimentVerySatisfiedFontIcon";
-export {
-  default as SettingsApplicationsSVGIcon,
-} from "./SettingsApplicationsSVGIcon";
-export {
-  default as SettingsApplicationsFontIcon,
-} from "./SettingsApplicationsFontIcon";
-export {
-  default as SettingsBackupRestoreSVGIcon,
-} from "./SettingsBackupRestoreSVGIcon";
-export {
-  default as SettingsBackupRestoreFontIcon,
-} from "./SettingsBackupRestoreFontIcon";
-export {
-  default as SettingsBluetoothSVGIcon,
-} from "./SettingsBluetoothSVGIcon";
-export {
-  default as SettingsBluetoothFontIcon,
-} from "./SettingsBluetoothFontIcon";
-export {
-  default as SettingsBrightnessSVGIcon,
-} from "./SettingsBrightnessSVGIcon";
-export {
-  default as SettingsBrightnessFontIcon,
-} from "./SettingsBrightnessFontIcon";
+export { default as SentimentNeutralFontIcon } from "./SentimentNeutralFontIcon";
+export { default as SentimentSatisfiedSVGIcon } from "./SentimentSatisfiedSVGIcon";
+export { default as SentimentSatisfiedFontIcon } from "./SentimentSatisfiedFontIcon";
+export { default as SentimentVeryDissatisfiedSVGIcon } from "./SentimentVeryDissatisfiedSVGIcon";
+export { default as SentimentVeryDissatisfiedFontIcon } from "./SentimentVeryDissatisfiedFontIcon";
+export { default as SentimentVerySatisfiedSVGIcon } from "./SentimentVerySatisfiedSVGIcon";
+export { default as SentimentVerySatisfiedFontIcon } from "./SentimentVerySatisfiedFontIcon";
+export { default as SettingsApplicationsSVGIcon } from "./SettingsApplicationsSVGIcon";
+export { default as SettingsApplicationsFontIcon } from "./SettingsApplicationsFontIcon";
+export { default as SettingsBackupRestoreSVGIcon } from "./SettingsBackupRestoreSVGIcon";
+export { default as SettingsBackupRestoreFontIcon } from "./SettingsBackupRestoreFontIcon";
+export { default as SettingsBluetoothSVGIcon } from "./SettingsBluetoothSVGIcon";
+export { default as SettingsBluetoothFontIcon } from "./SettingsBluetoothFontIcon";
+export { default as SettingsBrightnessSVGIcon } from "./SettingsBrightnessSVGIcon";
+export { default as SettingsBrightnessFontIcon } from "./SettingsBrightnessFontIcon";
 export { default as SettingsCellSVGIcon } from "./SettingsCellSVGIcon";
 export { default as SettingsCellFontIcon } from "./SettingsCellFontIcon";
 export { default as SettingsEthernetSVGIcon } from "./SettingsEthernetSVGIcon";
-export {
-  default as SettingsEthernetFontIcon,
-} from "./SettingsEthernetFontIcon";
-export {
-  default as SettingsInputAntennaSVGIcon,
-} from "./SettingsInputAntennaSVGIcon";
-export {
-  default as SettingsInputAntennaFontIcon,
-} from "./SettingsInputAntennaFontIcon";
-export {
-  default as SettingsInputComponentSVGIcon,
-} from "./SettingsInputComponentSVGIcon";
-export {
-  default as SettingsInputComponentFontIcon,
-} from "./SettingsInputComponentFontIcon";
-export {
-  default as SettingsInputCompositeSVGIcon,
-} from "./SettingsInputCompositeSVGIcon";
-export {
-  default as SettingsInputCompositeFontIcon,
-} from "./SettingsInputCompositeFontIcon";
-export {
-  default as SettingsInputHdmiSVGIcon,
-} from "./SettingsInputHdmiSVGIcon";
-export {
-  default as SettingsInputHdmiFontIcon,
-} from "./SettingsInputHdmiFontIcon";
-export {
-  default as SettingsInputSvideoSVGIcon,
-} from "./SettingsInputSvideoSVGIcon";
-export {
-  default as SettingsInputSvideoFontIcon,
-} from "./SettingsInputSvideoFontIcon";
+export { default as SettingsEthernetFontIcon } from "./SettingsEthernetFontIcon";
+export { default as SettingsInputAntennaSVGIcon } from "./SettingsInputAntennaSVGIcon";
+export { default as SettingsInputAntennaFontIcon } from "./SettingsInputAntennaFontIcon";
+export { default as SettingsInputComponentSVGIcon } from "./SettingsInputComponentSVGIcon";
+export { default as SettingsInputComponentFontIcon } from "./SettingsInputComponentFontIcon";
+export { default as SettingsInputCompositeSVGIcon } from "./SettingsInputCompositeSVGIcon";
+export { default as SettingsInputCompositeFontIcon } from "./SettingsInputCompositeFontIcon";
+export { default as SettingsInputHdmiSVGIcon } from "./SettingsInputHdmiSVGIcon";
+export { default as SettingsInputHdmiFontIcon } from "./SettingsInputHdmiFontIcon";
+export { default as SettingsInputSvideoSVGIcon } from "./SettingsInputSvideoSVGIcon";
+export { default as SettingsInputSvideoFontIcon } from "./SettingsInputSvideoFontIcon";
 export { default as SettingsOverscanSVGIcon } from "./SettingsOverscanSVGIcon";
-export {
-  default as SettingsOverscanFontIcon,
-} from "./SettingsOverscanFontIcon";
+export { default as SettingsOverscanFontIcon } from "./SettingsOverscanFontIcon";
 export { default as SettingsPhoneSVGIcon } from "./SettingsPhoneSVGIcon";
 export { default as SettingsPhoneFontIcon } from "./SettingsPhoneFontIcon";
 export { default as SettingsPowerSVGIcon } from "./SettingsPowerSVGIcon";
 export { default as SettingsPowerFontIcon } from "./SettingsPowerFontIcon";
 export { default as SettingsRemoteSVGIcon } from "./SettingsRemoteSVGIcon";
 export { default as SettingsRemoteFontIcon } from "./SettingsRemoteFontIcon";
-export {
-  default as SettingsSystemDaydreamSVGIcon,
-} from "./SettingsSystemDaydreamSVGIcon";
-export {
-  default as SettingsSystemDaydreamFontIcon,
-} from "./SettingsSystemDaydreamFontIcon";
+export { default as SettingsSystemDaydreamSVGIcon } from "./SettingsSystemDaydreamSVGIcon";
+export { default as SettingsSystemDaydreamFontIcon } from "./SettingsSystemDaydreamFontIcon";
 export { default as SettingsVoiceSVGIcon } from "./SettingsVoiceSVGIcon";
 export { default as SettingsVoiceFontIcon } from "./SettingsVoiceFontIcon";
 export { default as SettingsSVGIcon } from "./SettingsSVGIcon";
@@ -1919,42 +1513,18 @@ export { default as ShowChartSVGIcon } from "./ShowChartSVGIcon";
 export { default as ShowChartFontIcon } from "./ShowChartFontIcon";
 export { default as ShuffleSVGIcon } from "./ShuffleSVGIcon";
 export { default as ShuffleFontIcon } from "./ShuffleFontIcon";
-export {
-  default as SignalCellular4BarSVGIcon,
-} from "./SignalCellular4BarSVGIcon";
-export {
-  default as SignalCellular4BarFontIcon,
-} from "./SignalCellular4BarFontIcon";
-export {
-  default as SignalCellularConnectedNoInternet4BarSVGIcon,
-} from "./SignalCellularConnectedNoInternet4BarSVGIcon";
-export {
-  default as SignalCellularConnectedNoInternet4BarFontIcon,
-} from "./SignalCellularConnectedNoInternet4BarFontIcon";
-export {
-  default as SignalCellularNoSimSVGIcon,
-} from "./SignalCellularNoSimSVGIcon";
-export {
-  default as SignalCellularNoSimFontIcon,
-} from "./SignalCellularNoSimFontIcon";
-export {
-  default as SignalCellularNullSVGIcon,
-} from "./SignalCellularNullSVGIcon";
-export {
-  default as SignalCellularNullFontIcon,
-} from "./SignalCellularNullFontIcon";
-export {
-  default as SignalCellularOffSVGIcon,
-} from "./SignalCellularOffSVGIcon";
-export {
-  default as SignalCellularOffFontIcon,
-} from "./SignalCellularOffFontIcon";
-export {
-  default as SignalWifi4BarLockSVGIcon,
-} from "./SignalWifi4BarLockSVGIcon";
-export {
-  default as SignalWifi4BarLockFontIcon,
-} from "./SignalWifi4BarLockFontIcon";
+export { default as SignalCellular4BarSVGIcon } from "./SignalCellular4BarSVGIcon";
+export { default as SignalCellular4BarFontIcon } from "./SignalCellular4BarFontIcon";
+export { default as SignalCellularConnectedNoInternet4BarSVGIcon } from "./SignalCellularConnectedNoInternet4BarSVGIcon";
+export { default as SignalCellularConnectedNoInternet4BarFontIcon } from "./SignalCellularConnectedNoInternet4BarFontIcon";
+export { default as SignalCellularNoSimSVGIcon } from "./SignalCellularNoSimSVGIcon";
+export { default as SignalCellularNoSimFontIcon } from "./SignalCellularNoSimFontIcon";
+export { default as SignalCellularNullSVGIcon } from "./SignalCellularNullSVGIcon";
+export { default as SignalCellularNullFontIcon } from "./SignalCellularNullFontIcon";
+export { default as SignalCellularOffSVGIcon } from "./SignalCellularOffSVGIcon";
+export { default as SignalCellularOffFontIcon } from "./SignalCellularOffFontIcon";
+export { default as SignalWifi4BarLockSVGIcon } from "./SignalWifi4BarLockSVGIcon";
+export { default as SignalWifi4BarLockFontIcon } from "./SignalWifi4BarLockFontIcon";
 export { default as SignalWifi4BarSVGIcon } from "./SignalWifi4BarSVGIcon";
 export { default as SignalWifi4BarFontIcon } from "./SignalWifi4BarFontIcon";
 export { default as SignalWifiOffSVGIcon } from "./SignalWifiOffSVGIcon";
@@ -2011,42 +1581,22 @@ export { default as StarSVGIcon } from "./StarSVGIcon";
 export { default as StarFontIcon } from "./StarFontIcon";
 export { default as StarsSVGIcon } from "./StarsSVGIcon";
 export { default as StarsFontIcon } from "./StarsFontIcon";
-export {
-  default as StayCurrentLandscapeSVGIcon,
-} from "./StayCurrentLandscapeSVGIcon";
-export {
-  default as StayCurrentLandscapeFontIcon,
-} from "./StayCurrentLandscapeFontIcon";
-export {
-  default as StayCurrentPortraitSVGIcon,
-} from "./StayCurrentPortraitSVGIcon";
-export {
-  default as StayCurrentPortraitFontIcon,
-} from "./StayCurrentPortraitFontIcon";
-export {
-  default as StayPrimaryLandscapeSVGIcon,
-} from "./StayPrimaryLandscapeSVGIcon";
-export {
-  default as StayPrimaryLandscapeFontIcon,
-} from "./StayPrimaryLandscapeFontIcon";
-export {
-  default as StayPrimaryPortraitSVGIcon,
-} from "./StayPrimaryPortraitSVGIcon";
-export {
-  default as StayPrimaryPortraitFontIcon,
-} from "./StayPrimaryPortraitFontIcon";
+export { default as StayCurrentLandscapeSVGIcon } from "./StayCurrentLandscapeSVGIcon";
+export { default as StayCurrentLandscapeFontIcon } from "./StayCurrentLandscapeFontIcon";
+export { default as StayCurrentPortraitSVGIcon } from "./StayCurrentPortraitSVGIcon";
+export { default as StayCurrentPortraitFontIcon } from "./StayCurrentPortraitFontIcon";
+export { default as StayPrimaryLandscapeSVGIcon } from "./StayPrimaryLandscapeSVGIcon";
+export { default as StayPrimaryLandscapeFontIcon } from "./StayPrimaryLandscapeFontIcon";
+export { default as StayPrimaryPortraitSVGIcon } from "./StayPrimaryPortraitSVGIcon";
+export { default as StayPrimaryPortraitFontIcon } from "./StayPrimaryPortraitFontIcon";
 export { default as StopScreenShareSVGIcon } from "./StopScreenShareSVGIcon";
 export { default as StopScreenShareFontIcon } from "./StopScreenShareFontIcon";
 export { default as StopSVGIcon } from "./StopSVGIcon";
 export { default as StopFontIcon } from "./StopFontIcon";
 export { default as StorageSVGIcon } from "./StorageSVGIcon";
 export { default as StorageFontIcon } from "./StorageFontIcon";
-export {
-  default as StoreMallDirectorySVGIcon,
-} from "./StoreMallDirectorySVGIcon";
-export {
-  default as StoreMallDirectoryFontIcon,
-} from "./StoreMallDirectoryFontIcon";
+export { default as StoreMallDirectorySVGIcon } from "./StoreMallDirectorySVGIcon";
+export { default as StoreMallDirectoryFontIcon } from "./StoreMallDirectoryFontIcon";
 export { default as StoreSVGIcon } from "./StoreSVGIcon";
 export { default as StoreFontIcon } from "./StoreFontIcon";
 export { default as StraightenSVGIcon } from "./StraightenSVGIcon";
@@ -2057,18 +1607,10 @@ export { default as StrikethroughSSVGIcon } from "./StrikethroughSSVGIcon";
 export { default as StrikethroughSFontIcon } from "./StrikethroughSFontIcon";
 export { default as StyleSVGIcon } from "./StyleSVGIcon";
 export { default as StyleFontIcon } from "./StyleFontIcon";
-export {
-  default as SubdirectoryArrowLeftSVGIcon,
-} from "./SubdirectoryArrowLeftSVGIcon";
-export {
-  default as SubdirectoryArrowLeftFontIcon,
-} from "./SubdirectoryArrowLeftFontIcon";
-export {
-  default as SubdirectoryArrowRightSVGIcon,
-} from "./SubdirectoryArrowRightSVGIcon";
-export {
-  default as SubdirectoryArrowRightFontIcon,
-} from "./SubdirectoryArrowRightFontIcon";
+export { default as SubdirectoryArrowLeftSVGIcon } from "./SubdirectoryArrowLeftSVGIcon";
+export { default as SubdirectoryArrowLeftFontIcon } from "./SubdirectoryArrowLeftFontIcon";
+export { default as SubdirectoryArrowRightSVGIcon } from "./SubdirectoryArrowRightSVGIcon";
+export { default as SubdirectoryArrowRightFontIcon } from "./SubdirectoryArrowRightFontIcon";
 export { default as SubjectSVGIcon } from "./SubjectSVGIcon";
 export { default as SubjectFontIcon } from "./SubjectFontIcon";
 export { default as SubscriptionsSVGIcon } from "./SubscriptionsSVGIcon";
@@ -2077,12 +1619,8 @@ export { default as SubtitlesSVGIcon } from "./SubtitlesSVGIcon";
 export { default as SubtitlesFontIcon } from "./SubtitlesFontIcon";
 export { default as SubwaySVGIcon } from "./SubwaySVGIcon";
 export { default as SubwayFontIcon } from "./SubwayFontIcon";
-export {
-  default as SupervisorAccountSVGIcon,
-} from "./SupervisorAccountSVGIcon";
-export {
-  default as SupervisorAccountFontIcon,
-} from "./SupervisorAccountFontIcon";
+export { default as SupervisorAccountSVGIcon } from "./SupervisorAccountSVGIcon";
+export { default as SupervisorAccountFontIcon } from "./SupervisorAccountFontIcon";
 export { default as SurroundSoundSVGIcon } from "./SurroundSoundSVGIcon";
 export { default as SurroundSoundFontIcon } from "./SurroundSoundFontIcon";
 export { default as SwapCallsSVGIcon } from "./SwapCallsSVGIcon";
@@ -2091,12 +1629,8 @@ export { default as SwapHorizSVGIcon } from "./SwapHorizSVGIcon";
 export { default as SwapHorizFontIcon } from "./SwapHorizFontIcon";
 export { default as SwapVertSVGIcon } from "./SwapVertSVGIcon";
 export { default as SwapVertFontIcon } from "./SwapVertFontIcon";
-export {
-  default as SwapVerticalCircleSVGIcon,
-} from "./SwapVerticalCircleSVGIcon";
-export {
-  default as SwapVerticalCircleFontIcon,
-} from "./SwapVerticalCircleFontIcon";
+export { default as SwapVerticalCircleSVGIcon } from "./SwapVerticalCircleSVGIcon";
+export { default as SwapVerticalCircleFontIcon } from "./SwapVerticalCircleFontIcon";
 export { default as SwitchCameraSVGIcon } from "./SwitchCameraSVGIcon";
 export { default as SwitchCameraFontIcon } from "./SwitchCameraFontIcon";
 export { default as SwitchVideoSVGIcon } from "./SwitchVideoSVGIcon";
@@ -2179,12 +1713,8 @@ export { default as TrainSVGIcon } from "./TrainSVGIcon";
 export { default as TrainFontIcon } from "./TrainFontIcon";
 export { default as TramSVGIcon } from "./TramSVGIcon";
 export { default as TramFontIcon } from "./TramFontIcon";
-export {
-  default as TransferWithinAStationSVGIcon,
-} from "./TransferWithinAStationSVGIcon";
-export {
-  default as TransferWithinAStationFontIcon,
-} from "./TransferWithinAStationFontIcon";
+export { default as TransferWithinAStationSVGIcon } from "./TransferWithinAStationSVGIcon";
+export { default as TransferWithinAStationFontIcon } from "./TransferWithinAStationFontIcon";
 export { default as TransformSVGIcon } from "./TransformSVGIcon";
 export { default as TransformFontIcon } from "./TransformFontIcon";
 export { default as TranslateSVGIcon } from "./TranslateSVGIcon";
@@ -2217,22 +1747,12 @@ export { default as UsbSVGIcon } from "./UsbSVGIcon";
 export { default as UsbFontIcon } from "./UsbFontIcon";
 export { default as VerifiedUserSVGIcon } from "./VerifiedUserSVGIcon";
 export { default as VerifiedUserFontIcon } from "./VerifiedUserFontIcon";
-export {
-  default as VerticalAlignBottomSVGIcon,
-} from "./VerticalAlignBottomSVGIcon";
-export {
-  default as VerticalAlignBottomFontIcon,
-} from "./VerticalAlignBottomFontIcon";
-export {
-  default as VerticalAlignCenterSVGIcon,
-} from "./VerticalAlignCenterSVGIcon";
-export {
-  default as VerticalAlignCenterFontIcon,
-} from "./VerticalAlignCenterFontIcon";
+export { default as VerticalAlignBottomSVGIcon } from "./VerticalAlignBottomSVGIcon";
+export { default as VerticalAlignBottomFontIcon } from "./VerticalAlignBottomFontIcon";
+export { default as VerticalAlignCenterSVGIcon } from "./VerticalAlignCenterSVGIcon";
+export { default as VerticalAlignCenterFontIcon } from "./VerticalAlignCenterFontIcon";
 export { default as VerticalAlignTopSVGIcon } from "./VerticalAlignTopSVGIcon";
-export {
-  default as VerticalAlignTopFontIcon,
-} from "./VerticalAlignTopFontIcon";
+export { default as VerticalAlignTopFontIcon } from "./VerticalAlignTopFontIcon";
 export { default as VibrationSVGIcon } from "./VibrationSVGIcon";
 export { default as VibrationFontIcon } from "./VibrationFontIcon";
 export { default as VideoCallSVGIcon } from "./VideoCallSVGIcon";
@@ -2335,12 +1855,8 @@ export { default as WorkSVGIcon } from "./WorkSVGIcon";
 export { default as WorkFontIcon } from "./WorkFontIcon";
 export { default as WrapTextSVGIcon } from "./WrapTextSVGIcon";
 export { default as WrapTextFontIcon } from "./WrapTextFontIcon";
-export {
-  default as YoutubeSearchedForSVGIcon,
-} from "./YoutubeSearchedForSVGIcon";
-export {
-  default as YoutubeSearchedForFontIcon,
-} from "./YoutubeSearchedForFontIcon";
+export { default as YoutubeSearchedForSVGIcon } from "./YoutubeSearchedForSVGIcon";
+export { default as YoutubeSearchedForFontIcon } from "./YoutubeSearchedForFontIcon";
 export { default as ZoomInSVGIcon } from "./ZoomInSVGIcon";
 export { default as ZoomInFontIcon } from "./ZoomInFontIcon";
 export { default as ZoomOutMapSVGIcon } from "./ZoomOutMapSVGIcon";

@@ -112,21 +112,21 @@ describe("handleAddMessage", () => {
         message1,
         message1,
       ]);
-      expect(handleAddMessage([message1, message2], message1, "allow")).toEqual(
-        [message1, message2, message1]
-      );
+      expect(
+        handleAddMessage([message1, message2], message1, "allow")
+      ).toEqual([message1, message2, message1]);
     });
 
     it("should add all new messages to the end of the queue when duplicates are allowed", () => {
       const message1: Message = {};
       const message2: Message = { messageId: "message-2" };
       const message3: Message = { messageId: "message-3" };
-      expect(handleAddMessage([message1, message2], message3, "allow")).toEqual(
-        [message1, message2, message3]
-      );
-      expect(handleAddMessage([message1, message2], message1, "allow")).toEqual(
-        [message1, message2, message1]
-      );
+      expect(
+        handleAddMessage([message1, message2], message3, "allow")
+      ).toEqual([message1, message2, message3]);
+      expect(
+        handleAddMessage([message1, message2], message1, "allow")
+      ).toEqual([message1, message2, message1]);
       expect(handleAddMessage([message1], message1, "allow")).toEqual([
         message1,
         message1,

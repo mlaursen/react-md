@@ -123,7 +123,7 @@ export function getFilterFunction<O extends {} = {}>(
  * const [example, setExample] = useState<Example | null>(null);
  * const onAutoComplete = useCallback<AuoCompleteHandler>((_name, example) => {
  *   if (isResultOf<Example>(example)) {
- *     setExampple(example);
+ *     setExample(example);
  *   }
  * }, [])
  * ```

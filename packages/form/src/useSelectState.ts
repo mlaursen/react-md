@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 type DefaultValue<T extends string> = T | (() => T);
-type ReturnValue<T extends string> = [T, ((nextValue: string) => void)];
+type ReturnValue<T extends string> = [T, (nextValue: string) => void];
 
 /**
  * This is a simple hook that will allow you to "strongly" type a `Select` component's

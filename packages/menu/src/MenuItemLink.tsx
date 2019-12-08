@@ -1,6 +1,10 @@
-import React, { FC, forwardRef } from "react";
+import React, { ElementType, FC, forwardRef } from "react";
 import cn from "classnames";
-import { ListItemLink, ListItemLinkProps } from "@react-md/list";
+import {
+  ListItemLink,
+  ListItemLinkProps,
+  ListItemLinkWithComponentProps,
+} from "@react-md/list";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface MenuItemLinkProps extends ListItemLinkProps {
@@ -16,7 +20,10 @@ export interface MenuItemLinkProps extends ListItemLinkProps {
   tabIndex?: number;
 }
 
-type WithRef = WithForwardedRef<HTMLAnchorElement>;
+export type MenuItemLinkWithComponentProps = MenuItemLinkProps &
+  ListItemLinkWithComponentProps;
+
+type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
 type DefaultProps = Required<Pick<MenuItemLinkProps, "role" | "tabIndex">>;
 type WithDefaultProps = MenuItemLinkProps & DefaultProps & WithRef;
 
@@ -48,6 +55,7 @@ const defaultProps: DefaultProps = {
 
 MenuItemLink.defaultProps = defaultProps;
 
-export default forwardRef<HTMLAnchorElement, MenuItemLinkProps>(
-  (props, ref) => <MenuItemLink {...props} forwardedRef={ref} />
-);
+export default forwardRef<
+  HTMLAnchorElement | ElementType,
+  MenuItemLinkProps | MenuItemLinkWithComponentProps
+>((props, ref) => <MenuItemLink {...props} forwardedRef={ref} />);
