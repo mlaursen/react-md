@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import usePreviousFocus, { FocusFallback } from "../usePreviousFocus";
 
@@ -12,7 +12,6 @@ beforeEach(() => {
     return 0;
   });
 });
-afterEach(cleanup);
 afterAll(requestAnimationFrame.mockRestore);
 
 interface TestProps {

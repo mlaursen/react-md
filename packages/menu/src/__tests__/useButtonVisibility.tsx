@@ -1,6 +1,5 @@
 import React, { FC, MutableRefObject } from "react";
-
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import MenuButton, { MenuButtonProps } from "../MenuButton";
@@ -8,8 +7,6 @@ import useButtonVisibility, {
   ButtonVisibilityOptions,
 } from "../useButtonVisibility";
 import { VisibilityState } from "../useVisibility";
-
-afterEach(cleanup);
 
 interface TestProps
   extends Omit<MenuButtonProps, "id" | "visible">,

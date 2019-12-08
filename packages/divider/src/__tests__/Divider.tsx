@@ -1,9 +1,7 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Divider from "../Divider";
-
-afterEach(cleanup);
 
 describe("Divider", () => {
   it("should render as an hr by default", () => {

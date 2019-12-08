@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { mocked } from "ts-jest/utils";
 
 import useInterval from "../useInterval";
@@ -8,11 +8,9 @@ import useInterval from "../useInterval";
 jest.useFakeTimers();
 const setInterval = mocked(window.setInterval);
 const clearInterval = mocked(window.clearInterval);
-
-afterEach(() => {
-  cleanup();
-  jest.clearAllMocks();
-  jest.clearAllTimers();
+beforeEach(() => {
+  setInterval.mockClear();
+  clearInterval.mockClear();
 });
 
 interface TestProps {

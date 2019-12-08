@@ -1,9 +1,8 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import AppBarTitle from "../AppBarTitle";
 
-afterEach(cleanup);
 describe("AppBarTitle", () => {
   it("should render as an h6", () => {
     const { container } = render(<AppBarTitle />);

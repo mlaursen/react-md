@@ -1,9 +1,7 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import AppBar from "../AppBar";
-
-afterEach(cleanup);
 
 describe("AppBar", () => {
   it("should render as a header element by default", () => {

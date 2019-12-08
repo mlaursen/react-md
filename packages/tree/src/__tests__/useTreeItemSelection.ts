@@ -1,9 +1,6 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
 import useTreeItemSelection from "../useTreeItemSelection";
-
-afterEach(cleanup);
 
 describe("useTreeItemSelection", () => {
   it("should default to the provided selectedIds list", () => {

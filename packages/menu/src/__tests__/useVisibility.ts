@@ -1,9 +1,6 @@
-import { cleanup } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 
 import useVisibility from "../useVisibility";
-
-afterEach(cleanup);
 
 describe("useVisibility", () => {
   it("should default to the correct state", () => {

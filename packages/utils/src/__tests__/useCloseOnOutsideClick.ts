@@ -1,4 +1,3 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import useCloseOnOutsideClick, {
@@ -6,8 +5,6 @@ import useCloseOnOutsideClick, {
   getElement,
   Options,
 } from "../useCloseOnOutsideClick";
-
-afterEach(cleanup);
 
 describe("contains", () => {
   it("should return false if either the element or target are null", () => {

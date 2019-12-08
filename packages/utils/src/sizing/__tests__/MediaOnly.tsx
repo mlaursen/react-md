@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import { MobileOnly, PhoneOnly, TabletOnly, DesktopOnly } from "../MediaOnly";
 import AppSizeListener from "../AppSizeListener";
@@ -32,7 +32,6 @@ beforeAll(() => {
 beforeEach(() => {
   jest.clearAllMocks();
 });
-afterEach(cleanup);
 
 describe("MediaOnly", () => {
   it("should throw an error if any of the components are mounted without an AppSizeListener parent", () => {

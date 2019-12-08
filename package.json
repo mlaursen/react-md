@@ -42,8 +42,8 @@
   },
   "homepage": "https://react-md.dev",
   "devDependencies": {
-    "@testing-library/react": "^8.0.7",
-    "@testing-library/react-hooks": "^1.1.0",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^3.2.1",
     "@types/classnames": "^2.2.9",
     "@types/filesize": "^4.2.0",
     "@types/fs-extra": "^8.0.0",
@@ -78,9 +78,9 @@
     "lint-staged": "^9.4.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-test-renderer": "^16.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
     "sass-lint": "^1.13.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.5.3"

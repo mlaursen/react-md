@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Button from "../Button";
 import {
@@ -30,8 +30,6 @@ function flattenDeep(
     []
   );
 }
-
-afterEach(cleanup);
 
 describe("Button", () => {
   // this is actually really bad practice and kind of worthess

@@ -1,9 +1,7 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Avatar from "../Avatar";
-
-afterEach(cleanup);
 
 describe("Avatar", () => {
   it("should render as a span by default", () => {

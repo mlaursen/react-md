@@ -1,6 +1,6 @@
 import React, { FC, Ref } from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import useKeyboardClickPolyfill from "../useKeyboardClickPolyfill";
 
@@ -29,8 +29,6 @@ const Test: FC<Props> = ({
     </li>
   );
 };
-
-afterEach(cleanup);
 
 describe("useKeyboardClickPolyfill", () => {
   it("should return a click handler", () => {

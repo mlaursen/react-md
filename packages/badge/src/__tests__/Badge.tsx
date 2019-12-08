@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Badge, { BadgeTheme } from "../Badge";
-
-afterEach(cleanup);
 
 describe("Badge", () => {
   it("should render as null by default", () => {

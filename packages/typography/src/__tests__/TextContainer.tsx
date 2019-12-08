@@ -1,10 +1,8 @@
 import React from "react";
 import cn from "classnames";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import TextContainer from "../TextContainer";
-
-afterEach(cleanup);
 
 describe("TextContainer", () => {
   it("should render as a div by default", () => {

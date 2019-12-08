@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import MediaOverlay from "../MediaOverlay";
-
-afterEach(cleanup);
 
 describe("MediaOverlay", () => {
   it("should apply the correct class names", () => {

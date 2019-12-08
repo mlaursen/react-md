@@ -1,9 +1,7 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import AppBarAction from "../AppBarAction";
-
-afterEach(cleanup);
 
 describe("AppBarAction", () => {
   it("should default to rendering as a clear icon button", () => {

@@ -1,9 +1,7 @@
 import React, { FC } from "react";
-import { cleanup, render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import useTabFocusWrap from "../useTabFocusWrap";
-
-afterEach(cleanup);
 
 interface Props {
   disabled?: boolean;

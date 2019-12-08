@@ -1,9 +1,7 @@
 import React, { FC, Fragment } from "react";
-import { cleanup, render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import useChoice from "../useChoice";
-
-afterEach(cleanup);
 
 interface Props {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;

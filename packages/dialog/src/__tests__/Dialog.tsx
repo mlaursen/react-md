@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
-import { cleanup, render, wait } from "@testing-library/react";
+import { render, wait } from "@testing-library/react";
 
 import Dialog from "../Dialog";
 import DialogContent from "../DialogContent";
-
-afterEach(cleanup);
 
 describe("Dialog", () => {
   it("should render correctly (with snapshots)", () => {

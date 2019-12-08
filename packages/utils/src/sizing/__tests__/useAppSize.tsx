@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import useAppSize from "../useAppSize";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../constants";
@@ -29,7 +29,6 @@ beforeAll(() => {
 beforeEach(() => {
   jest.clearAllMocks();
 });
-afterEach(cleanup);
 
 describe("useAppSize", () => {
   it("should throw an error when not used as a child of the AppSizeListener", () => {

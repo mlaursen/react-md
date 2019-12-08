@@ -1,11 +1,9 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
 import DialogHeader from "../DialogHeader";
 import DialogTitle from "../DialogTitle";
-
-afterEach(cleanup);
 
 describe("DialogHeader", () => {
   it("should render correctly", () => {

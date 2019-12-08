@@ -3,19 +3,12 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import useWindowBlurPause from "../useWindowBlurPause";
 
-const addEventListener = jest.spyOn(window, "addEventListener");
-const removeEventListener = jest.spyOn(window, "removeEventListener");
 const startTimer = jest.fn();
 const stopTimer = jest.fn();
 
 afterEach(() => {
   jest.resetAllMocks();
   cleanup();
-});
-
-afterAll(() => {
-  addEventListener.mockRestore();
-  removeEventListener.mockRestore();
 });
 
 describe("useWindowBlurPause", () => {
@@ -29,17 +22,6 @@ describe("useWindowBlurPause", () => {
       })
     );
 
-    expect(addEventListener).toBeCalledWith("blur", expect.any(Function));
-    expect(addEventListener).toBeCalledWith("focus", expect.any(Function));
-    // can't just say toBeCalled() since renderHook adds window error events
-    expect(removeEventListener).not.toBeCalledWith(
-      "blur",
-      expect.any(Function)
-    );
-    expect(removeEventListener).not.toBeCalledWith(
-      "focus",
-      expect.any(Function)
-    );
     expect(startTimer).not.toBeCalled();
     expect(stopTimer).not.toBeCalled();
 
@@ -60,8 +42,6 @@ describe("useWindowBlurPause", () => {
       })
     );
 
-    expect(removeEventListener).toBeCalledWith("blur", expect.any(Function));
-    expect(removeEventListener).toBeCalledWith("focus", expect.any(Function));
     expect(startTimer).toBeCalledTimes(1);
     expect(stopTimer).toBeCalledTimes(1);
   });
@@ -108,16 +88,6 @@ describe("useWindowBlurPause", () => {
       })
     );
 
-    expect(addEventListener).not.toBeCalledWith("blur", expect.any(Function));
-    expect(addEventListener).not.toBeCalledWith("focus", expect.any(Function));
-    expect(removeEventListener).not.toBeCalledWith(
-      "blur",
-      expect.any(Function)
-    );
-    expect(removeEventListener).not.toBeCalledWith(
-      "focus",
-      expect.any(Function)
-    );
     expect(startTimer).not.toBeCalled();
     expect(stopTimer).not.toBeCalled();
   });

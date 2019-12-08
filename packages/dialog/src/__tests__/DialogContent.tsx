@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
 import DialogContent from "../DialogContent";
-
-afterEach(cleanup);
 
 describe("DialogContent", () => {
   it("should render correctly", () => {

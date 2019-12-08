@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import MediaContainer from "../MediaContainer";
-
-afterEach(cleanup);
 
 describe("MediaContainer", () => {
   it("should apply the correct class names", () => {

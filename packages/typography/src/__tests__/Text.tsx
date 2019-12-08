@@ -1,10 +1,8 @@
 import React from "react";
 import cn from "classnames";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Text, { TextTypes } from "../Text";
-
-afterEach(cleanup);
 
 describe("Text", () => {
   it("should render corrrrectly based on the type prop", () => {

@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import GridList from "../GridList";
-
-afterEach(cleanup);
 
 beforeAll(() => {
   Object.defineProperties(HTMLElement.prototype, {

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import useFocusOnMount from "../useFocusOnMount";
 
@@ -35,7 +35,6 @@ describe("useFocusOnMount", () => {
     });
   });
 
-  afterEach(cleanup);
   afterAll(requestAnimationFrame.mockRestore);
 
   it("should use the requestAnimationFrame if not disabled and cancelAnimationFrame on unmount", () => {

@@ -20,14 +20,14 @@ describe("useTimeout", () => {
 
     const [start] = result.current;
     expect(cb).not.toBeCalled();
-    expect(setTimeout).not.toBeCalled();
+    expect(setTimeout).toBeCalledTimes(1);
     expect(clearTimeout).not.toBeCalled();
 
     act(() => {
       start();
     });
 
-    expect(setTimeout).toBeCalledTimes(1);
+    expect(setTimeout).toBeCalledTimes(2);
     expect(setTimeout).toBeCalledWith(expect.any(Function), 300);
     expect(clearTimeout).not.toBeCalled();
     expect(cb).not.toBeCalled();
@@ -104,7 +104,7 @@ describe("useTimeout", () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(setTimeout).toBeCalledTimes(1);
+    expect(setTimeout).toBeCalledTimes(2);
   });
 
   it("should be able to start the timer immediately", () => {

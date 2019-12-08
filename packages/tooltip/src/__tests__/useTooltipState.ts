@@ -1,11 +1,8 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import useTooltipState, {
   useOtherInteractionDisable,
 } from "../useTooltipState";
-
-afterEach(cleanup);
 
 describe("useOtherInteractionDisable", () => {
   const hideTooltip = jest.fn();

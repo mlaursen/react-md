@@ -392,8 +392,6 @@ describe("reducer", () => {
   });
 });
 
-// afterEach(cleanup);
-
 // describe("useMessageQueue", () => {
 //   it("should return the correct default queue", () => {
 //     const { result } = renderHook(() => useMessageQueue({}));

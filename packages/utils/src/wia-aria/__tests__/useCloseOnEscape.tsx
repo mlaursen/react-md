@@ -1,9 +1,7 @@
 import React, { FC } from "react";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import useCloseOnEscape from "../useCloseOnEscape";
-
-afterEach(cleanup);
 
 interface Props {
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;

@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, createRef } from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { fireEvent, render, cleanup } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import usePressedStates from "../usePressedStates";
 
@@ -56,7 +56,6 @@ const Test: FC<Props> = ({
   );
 };
 
-afterEach(cleanup);
 describe("usePressedStates", () => {
   it("should return an object containing the pressed state and all the event handlers", () => {
     const { result } = renderHook(() => usePressedStates());

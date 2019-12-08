@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Collapse from "../Collapse";
-
-afterEach(cleanup);
 
 describe("Collapse", () => {
   describe("rendering", () => {

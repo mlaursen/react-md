@@ -1,12 +1,10 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import IconRotator from "../IconRotator";
 import FontIcon from "../FontIcon";
 import SVGIcon from "../SVGIcon";
-
-afterEach(cleanup);
 
 const Icon: FC<{ className?: string }> = ({ className }) => (
   <i data-testid="icon" className={cn("custom-icon", className)} />

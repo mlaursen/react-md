@@ -1,10 +1,8 @@
 import React, { MutableRefObject, FC } from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import { useInheritContext, InheritContext } from "../useInheritContext";
-
-afterEach(cleanup);
 
 describe("useInheritContext", () => {
   it("should default to false", () => {

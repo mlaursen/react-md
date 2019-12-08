@@ -1,6 +1,6 @@
 import React from "react";
 import { mocked } from "ts-jest/utils";
-import { cleanup, render, fireEvent } from "utils/tests";
+import { render, fireEvent } from "utils/tests";
 
 import DemoSandbox from "../DemoSandbox";
 import useSandbox from "../useSandbox";
@@ -15,7 +15,6 @@ beforeEach(() => {
     loading: false,
   }));
 });
-afterEach(cleanup);
 
 describe("DemoSandbox", () => {
   it("should not return to a from url that does not start with /packages so malicious urls can't be returned to", () => {

@@ -1,9 +1,6 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import usePosition from "../usePosition";
-
-afterEach(cleanup);
 
 describe("usePosition", () => {
   it("should set the position to the defaultPosition unless the position option was applied", () => {

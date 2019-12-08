@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import ConditionalPortal from "../ConditionalPortal";
-
-afterEach(cleanup);
 
 const Test = () => <div data-testid="test" />;
 

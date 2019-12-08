@@ -1,9 +1,6 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
 import useTreeItemExpansion from "../useTreeItemExpansion";
-
-afterEach(cleanup);
 
 describe("useTreeItemExpansion", () => {
   it("should set the initial expandedIds to the provided default ids", () => {

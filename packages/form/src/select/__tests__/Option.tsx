@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { FontIcon } from "@react-md/icon";
 
 import Option from "../Option";
-
-afterEach(cleanup);
 
 describe("Option", () => {
   it("should render as an <li> with the correct attributes", () => {

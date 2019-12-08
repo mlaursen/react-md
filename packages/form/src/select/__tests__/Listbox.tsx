@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import Listbox from "../Listbox";
 import { getOptionId } from "../utils";
-
-afterEach(cleanup);
 
 const options = Array.from(new Array(10), (_, i) => `Option ${i + 1}`);
 const options2 = options.map((opt, i) => ({

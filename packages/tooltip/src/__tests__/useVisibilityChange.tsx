@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import useVisiblityChange from "../useVisibilityChange";
 import { TooltipInitiated } from "../useHandlers";
@@ -21,7 +21,6 @@ const Test: FC<Props> = ({ visible, mode }) => {
   return null;
 };
 
-afterEach(cleanup);
 beforeEach(() => {
   jest.clearAllMocks();
 });

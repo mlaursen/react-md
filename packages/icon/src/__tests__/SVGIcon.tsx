@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import SVGIcon from "../SVGIcon";
-
-afterEach(cleanup);
 
 describe("SVGIcon", () => {
   it("should default to setting aria-hidden", () => {

@@ -1,9 +1,7 @@
 import React, { Fragment, FC } from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import FocusContainer, { FocusContainerProps } from "../FocusContainer";
-
-afterEach(cleanup);
 
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 
