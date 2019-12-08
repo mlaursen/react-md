@@ -41,7 +41,7 @@ export function highlightCode(code: string, lang: string = ""): string {
 const renderer = new marked.Renderer();
 
 renderer.code = (rawCode, language) => {
-  language = getLanguage(language);
+  language = getLanguage(language || "");
   const code = highlightCode(rawCode, language);
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";

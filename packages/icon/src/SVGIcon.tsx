@@ -7,7 +7,7 @@ export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default
    * since IE11 and Edge actually default this to true and keyboard's will tab focus all SVGs.
    */
-  focusable?: string;
+  focusable?: "false" | "true" | boolean;
 
   /**
    * The `viewBox` attribute allows you to specify that a given set of graphics stretch to
@@ -70,9 +70,8 @@ const block = bem("rmd-icon");
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a sprite map
  * as an icon.
  */
-const SVGIcon: FC<
-  SVGIconProps & WithForwardedRef<SVGSVGElement>
-> = providedProps => {
+const SVGIcon: FC<SVGIconProps &
+  WithForwardedRef<SVGSVGElement>> = providedProps => {
   const {
     className,
     use,

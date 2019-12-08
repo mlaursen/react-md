@@ -26,7 +26,7 @@ export interface ListItemLinkProps
    * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
    * all valid props from that component should also be allowed.
    */
-  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  [key: string]: unknown;
 }
 
 type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
