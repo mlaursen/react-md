@@ -136,14 +136,14 @@
 /// `prefers-color-scheme` so that if the user has the dark theme enabled, they'll automatically gain
 /// the dark theme while using your app as well.
 ///
-/// @example scss- Media Query Example
+/// Note: You'll still need to ensure that all the package's mixins were imported to get this to work.
+///
+/// @example scss - Media Query Example
 ///   @media (prefers-color-scheme: dark) {
 ///     :root {
 ///       @include rmd-theme-dark;
 ///     }
 ///   }
-///
-/// Note: You'll still need to ensure that all the package's mixins were imported to get this to work.
 @mixin rmd-theme-dark {
   @include rmd-theme-update-var(background, $rmd-theme-dark-background);
   @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);

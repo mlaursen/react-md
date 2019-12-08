@@ -89,6 +89,7 @@
 /// wraps the variable with `cacl(-1 * #{$variable})`.
 ///
 /// @param {String} css-variable - The css variable string to negate.
+/// @return {String} a calc string that negates a css variable.
 @function rmd-utils-negate-var($css-variable) {
   @return calc(-1 * #{$css-variable});
 }

@@ -2,6 +2,8 @@
 /// @group form-select
 ////
 
+@import '~@react-md/theme/dist/color-palette';
+
 /// The additional amount of apdding to apply to the top of the select field
 /// container in addition to normal text field padding. This is used so the
 /// floating label does not cover the scrollable content.
