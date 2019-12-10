@@ -778,7 +778,7 @@ export default class Layover extends PureComponent {
         return;
       }
 
-      node = node.offsetParent;
+      node = node.offsetParent || node.parentNode;
     }
   };
 
