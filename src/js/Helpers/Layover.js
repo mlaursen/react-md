@@ -768,7 +768,7 @@ export default class Layover extends PureComponent {
     }
 
     let node = this._container;
-    while (node) {
+    while (node && node !== document) {
       const fixed = window.getComputedStyle(node).position === 'fixed';
       if (fixed && node.className.match(/md-dialog--(full-page|centered)/)) {
         this._dialog = node;
@@ -778,7 +778,7 @@ export default class Layover extends PureComponent {
         return;
       }
 
-      node = node.offsetParent;
+      node = node.offsetParent || node.parentNode;
     }
   };
 
