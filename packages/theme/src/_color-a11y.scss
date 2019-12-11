@@ -27,6 +27,7 @@ $rmd-theme-default-contrast-ratio: 3 !default;
 /// but it is recommended to pass the computed values from a 'more complete' layer (like node)
 /// as a lookup table to speed up compilation time.
 /// @access private
+/// @type List
 $rmd-theme-linear-channel-values: (
   0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125 0.00121410793419535
     0.0015176349177441874 0.001821161901293025 0.0021246888848418626 0.0024282158683907
