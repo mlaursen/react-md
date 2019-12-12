@@ -152,7 +152,6 @@ interface TsConfigOptions {
     incremental: boolean;
     declaration: boolean;
     declarationDir: string;
-    target: string;
   };
   include: string[];
   exclude: string[] | undefined;
@@ -196,7 +195,6 @@ export function createTsConfig(tsConfigType: TsConfigType): TsConfigOptions {
       incremental: !isVariables || undefined,
       declaration: isESModule || isVariables || undefined,
       declarationDir: isESModule ? types : undefined,
-      target: isESModule ? undefined : "es5",
     },
     include: [isVariables ? path.join(src, "scssVariables.ts") : src],
     exclude: exclude.length ? exclude : undefined,
