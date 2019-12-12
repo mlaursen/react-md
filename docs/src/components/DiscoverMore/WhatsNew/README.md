@@ -1,3 +1,12 @@
+## December 2019
+
+### v1.12.4 Release
+
+#### Changelog
+
+- Fixed the `Layover` / `Menu` components' positioning when using `display: hidden` for a relative
+  container. ([@showme79] - [issues-852])
+
 ## August 2019
 
 ### v1.12.3 Release
