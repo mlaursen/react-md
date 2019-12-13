@@ -215,6 +215,21 @@ export default class SelectField extends PureComponent {
     getItemProps: PropTypes.func,
 
     /**
+     * An optional function to get a node that will be rendered as the label of active item.
+     * By default a string will be used that is retrieved from active item's data.
+     *
+     * An object with the following fields will be passed into the function:
+     * - `activeItem` - active item's data
+     * - `activeIndex` - active item's index
+     * - `activeLabel` - active item's label (that is used by default when `getActiveLabel` prop is not specified)
+     * - `activeValue` - active item's value
+     * - `value` - current list value
+     * - `menuItems` - value of `menuItems` prop
+     * - `field` - reference to the component instance
+     */
+    getActiveLabel: PropTypes.func,
+
+    /**
      * The default value to use for the select field. If this is set, it should either match
      * one of the `number` or `string` in your `menuItems` list or be the empty string. If
      * the `menuItems` is a list of `object`, this value should match one of the menu item's
@@ -992,7 +1007,7 @@ export default class SelectField extends PureComponent {
           index: i,
           active,
           disabled,
-          itemValue,
+          itemValue: dataValue,
           value,
           props,
           item,
@@ -1049,6 +1064,7 @@ export default class SelectField extends PureComponent {
       itemValue,
       itemProps,
       getItemProps,
+      getActiveLabel,
       defaultValue,
       defaultVisible,
       onClick,
@@ -1082,11 +1098,25 @@ export default class SelectField extends PureComponent {
       listId = `${menuId}-options`;
     }
 
-    const { listProps, active, activeLabel } = this.state;
+    const { listProps, active, activeIndex } = this.state;
     const below = position === SelectField.Positions.BELOW;
     const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
     const value = getField(this.props, this.state, 'value');
     const useSameWidth = typeof sameWidth !== 'undefined' ? sameWidth : below;
+
+    let { activeLabel } = this.state;
+    if (typeof getActiveLabel === 'function') {
+      const activeItem = activeIndex > -1 ? menuItems[activeIndex] : null;
+      activeLabel = getActiveLabel({
+        activeItem,
+        activeIndex,
+        activeLabel,
+        activeValue: activeItem ? this._getItemPart(activeItem, itemLabel, itemValue) : '',
+        value,
+        menuItems,
+        field: this,
+      });
+    }
 
     const toggle = (
       <SelectFieldToggle

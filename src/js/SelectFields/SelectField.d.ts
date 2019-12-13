@@ -9,10 +9,36 @@ import {
 } from '../Helpers/Layover';
 import { BaseMenuProps } from '../Menus/Menu';
 
+export type MenuItem = number | string | Object | React.ReactElement<any>;
+export type MenuItemList = Array<MenuItem>;
+
+export type ListValue = number | string;
+
+export interface GetItemPropsParam {
+  index: number;
+  active: boolean;
+  disabled: boolean;
+  itemValue: any;
+  value: ListValue;
+  props: Object;
+  item: number | string;
+  field: SelectFieldComponent;
+}
+
+export interface GetActiveLabelParam {
+  activeItem: MenuItem;
+  activeIndex: number;
+  activeLabel: string;
+  activeValue: any;
+  value: ListValue;
+  menuItems: MenuItemList;
+  field: SelectFieldComponent;
+}
+
 export interface FieldDataProps {
   id: string;
   name: string;
-  value: number | string;
+  value: ListValue;
 }
 
 export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
@@ -26,16 +52,17 @@ export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldPr
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  menuItems?: Array<number | string | Object | React.ReactElement<any>>;
+  menuItems?: MenuItemList;
   keyboardMatchingTimeout?: number;
   itemLabel?: string;
   itemValue?: string;
   itemProps?: string;
   name?: string;
-  getItemProps?: (data: Object) => Object;
-  defaultValue?: number | string;
-  value?: number | string;
-  onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>, data: FieldDataProps) => void;
+  getItemProps?: (data: GetItemPropsParam) => Object;
+  getActiveLabel?: (data: GetActiveLabelParam) => React.ReactNode;
+  defaultValue?: ListValue;
+  value?: ListValue;
+  onChange?: (value: ListValue, selectedIndex: number, event: React.MouseEvent<HTMLElement>, data: FieldDataProps) => void;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   dropdownIcon?: React.ReactElement<any>;
   toolbar?: boolean;
