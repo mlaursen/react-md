@@ -1,5 +1,12 @@
 ## December 2019
 
+### v1.13.0 Release
+
+#### Changelog
+
+- Added a `getActiveLabel` prop to the `SelectField` for additional styling and updated the type
+  definitions for the `SelectField`. ([@gamtiq] - [pull-855])
+
 ### v1.12.4 Release
 
 #### Changelog

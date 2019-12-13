@@ -56,6 +56,15 @@ const Simple = ({ simplifiedMenu }) => (
       menuItems={OBJECT_ITEMS}
       simplifiedMenu={simplifiedMenu}
     />
+    <SelectField
+      id="select-field-3-1"
+      label="Custom Active Label"
+      placeholder="Placeholder"
+      className="md-cell"
+      menuItems={OBJECT_ITEMS}
+      getActiveLabel={getActiveLabel}
+      simplifiedMenu={simplifiedMenu}
+    />
     <h4 className="md-cell md-cell--12">SelectField Buttons</h4>
     <SelectField
       id="select-field-4"
@@ -105,7 +114,6 @@ const Simple = ({ simplifiedMenu }) => (
       placeholder="Strings disabled"
       className="md-cell md-cell--bottom"
       menuItems={STRING_ITEMS}
-      getActiveLabel={getActiveLabel}
       disabled
       dropdownIcon={icon}
       simplifiedMenu={simplifiedMenu}
