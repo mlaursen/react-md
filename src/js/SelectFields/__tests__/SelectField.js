@@ -171,6 +171,21 @@ describe('SelectField', () => {
     expect(items.at(2).prop('secondaryText')).toBe(lastText);
   });
 
+  it('should render active item\'s label that is returned by specified function', () => {
+    function getLabel({ activeLabel, activeIndex, menuItems }) {
+      return activeIndex > -1 ? `${activeLabel} (${activeIndex + 1}/${menuItems.length})` : activeLabel;
+    }
+
+    const menuItems = ['a', 'b', 'c', 'd'];
+    const field = mount(<SelectField id="test" menuItems={menuItems} value="c" getActiveLabel={getLabel} onChange={jest.fn()} />);
+    let input = field.find(SelectFieldInput).first();
+    expect(input.text()).toContain(getLabel({ activeLabel: 'c', activeIndex: 2, menuItems }));
+
+    field.setProps({ value: 'a' });
+    input = field.find(SelectFieldInput).first();
+    expect(input.text()).toContain(getLabel({ activeLabel: 'a', activeIndex: 0, menuItems }));
+  });
+
   it('should still have the correct label if the menuItems are defined as a list in the render and the parent component rerenders', () => {
     let renderCount = 0;
     class Test extends React.Component {

@@ -25,6 +25,10 @@ const OBJECT_ITEMS = [{
 
 const icon = <SVGIcon use={arrowDropDown.url} />;
 
+function getActiveLabel({ activeLabel, activeIndex }) {
+  return activeIndex > -1 ? `#${activeIndex + 1}: ${activeLabel}` : activeLabel;
+}
+
 const Simple = ({ simplifiedMenu }) => (
   <div className="md-grid">
     <h4 className="md-cell md-cell--12">Normal SelectFields</h4>
@@ -101,6 +105,7 @@ const Simple = ({ simplifiedMenu }) => (
       placeholder="Strings disabled"
       className="md-cell md-cell--bottom"
       menuItems={STRING_ITEMS}
+      getActiveLabel={getActiveLabel}
       disabled
       dropdownIcon={icon}
       simplifiedMenu={simplifiedMenu}
