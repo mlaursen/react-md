@@ -1,19 +1,20 @@
 import fs from "fs-extra";
-import path from "path";
 import log from "loglevel";
+import path from "path";
 
-import { documentationRoot, projectRoot, dist } from "../paths";
-import { format, glob, list } from "../utils";
-
+import { dist, documentationRoot, projectRoot } from "../constants";
+import format from "../utils/format";
+import glob from "../utils/glob";
+import list from "../utils/list";
 import {
   ALWAYS_REQUIRED_DEPENDENCIES,
   ALWAYS_REQUIRED_DEV_DEPENDENCIES,
+  CODE_INDEX_FILE,
   DEMO_INDEX,
   DEMO_INDEX_HTML,
   NON_STYLEABLE_RMD_PACKAGES,
   SANDBOXES_FILE,
   SANDBOXES_PATH,
-  CODE_INDEX_FILE,
   VARIABLES_SCSS_FILE,
 } from "./constants";
 import { isSvg } from "./matchers";

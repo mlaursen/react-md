@@ -1,4 +1,4 @@
-import fs from "fs";
+import { lstatSync } from "fs";
 
 /**
  * Checks if the filePath is considered a markdown file.
@@ -48,7 +48,7 @@ export function isAliased(filePath: string, aliases: string[]): boolean {
  */
 export function isDirectory(filePath: string): boolean {
   try {
-    return fs.lstatSync(filePath).isDirectory();
+    return lstatSync(filePath).isDirectory();
   } catch (e) {
     return false;
   }

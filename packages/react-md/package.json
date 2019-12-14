@@ -3,6 +3,7 @@
   "version": "2.0.0-alpha.10",
   "description": "This is the full react-md library bundled together for convenience.",
   "scripts": {
+    "umd": "rollup -c",
     "build": "dev-utils build",
     "clean": "dev-utils clean"
   },
@@ -66,6 +67,13 @@
     "@react-md/tree": "^2.0.0-alpha.10",
     "@react-md/typography": "^2.0.0-alpha.10",
     "@react-md/utils": "^2.0.0-alpha.10"
+  },
+  "devDependencies": {
+    "rollup": "^1.27.9",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
   },
   "peerDependencies": {
     "react": ">= 16.8"

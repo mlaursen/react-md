@@ -3,33 +3,17 @@
 import commander from "commander";
 import loglevel from "loglevel";
 
-import build, { BuildConfig } from "./build";
+import build from "./build";
 import clean from "./clean";
-import copyReadmes from "./copyReadmes";
-import {
-  CLEAN,
-  CLEAN_ONLY,
-  CSS,
-  DEBUG,
-  EMPTY,
-  GZIP,
-  LOOKUPS_ONLY,
-  NO_CLEAN,
-  SCRIPTS_ONLY,
-  SILENT,
-  STAGED,
-  STYLES_ONLY,
-  THEMES,
-  THEMES_ONLY,
-  UMD,
-  UMD_ONLY,
-  UPDATE,
-  UPDATE_ONLY,
-  VARIABLES_ONLY,
-} from "./flags";
-import markdownTOC from "./markdownTOC";
+import { DEBUG, SILENT } from "./constants";
+import prepublish from "./prepublish";
+import readmes from "./readmes";
 import sandbox from "./sandbox";
 import sassdoc from "./sassdoc";
+import createScssVariables from "./scssVariables";
+import copyStyles from "./utils/copyStyles";
+import createThemes from "./utils/createThemes";
+import watch from "./watch";
 
 const argv = process.argv.slice(2);
 
@@ -44,56 +28,63 @@ if (argv.includes(DEBUG)) {
 const createCommand = (command: string): commander.Command =>
   commander
     .command(command)
-    .option(
-      DEBUG,
-      "This will enable verbose logging while the script is running."
-    )
-    .option(SILENT, "This will enable no logging while the script is running.");
+    .option(DEBUG, "Enables the verbose logging to help debug errors.")
+    .option(SILENT, "Disables all logging.");
 
-createCommand("clean [dirs...]").action((dirs: string[]) => {
-  clean(dirs);
-});
+createCommand("build")
+  .description(
+    "Compiles all the typescript files in each package that contains components or scssVariables. " +
+      "When run from the root, all packages will be built in dependency order with lerna."
+  )
+  .option("-w, --watch", "Runs type build in watch mode.")
+  .option(
+    "--cjs",
+    "Updates the watch command to also include the CommonJS bundles."
+  )
+  .option(
+    "--scoped-only",
+    "Only build the scoped packages to ignore the base `react-md` package."
+  )
+  .action(
+    ({ scopedOnly = false, silent = false, watch = false, cjs = false }) => {
+      build(scopedOnly, silent, watch, cjs);
+    }
+  );
 
-createCommand("build [options...]")
-  .option(CLEAN, "Boolean if the clean command should be run before build.")
-  .option(
-    STYLES_ONLY,
-    "Only copies the scss files into the dist directory and compiles any styles.scss files to css"
+createCommand("prepublish")
+  .description(
+    "Runs all the required scripts before publishing the packages with lerna. " +
+      "Also used for first-time clones to setup all builds in a single command."
   )
   .option(
-    SCRIPTS_ONLY,
-    "Only compiles the typescript files to ES Modules, CommonJS, and UMD."
+    "--init",
+    "Updates the scripts so that only the typescript files are compiled and " +
+      "the scss files are copied to the dist. This is normally used for " +
+      "first-time clones."
   )
-  .option(UMD, "Updates the build process to include the UMD build.")
-  .option(UMD_ONLY, "Only compiles the UMD build.")
-  .option(
-    VARIABLES_ONLY,
-    "Only creates updates the `src/scssVariables.ts` file"
-  )
-  .option(
-    GZIP,
-    "Always logs the gzip size instead of requiring the verbose flag to be enabled."
-  )
-  .option(
-    CSS,
-    "Update the build to also compile the base .css files for a package."
-  )
-  .option(
-    THEMES,
-    "Update the build to also create the main theme files in the react-md base package"
-  )
-  .option(THEMES_ONLY, "Only build the react-md theme files.")
-  .option(UPDATE, "Update all the shared files.")
-  .option(UPDATE_ONLY, "Update all the shared files only.")
-  .action((_, program: BuildConfig) => {
-    build(program);
-  });
+  .action(({ init = false, silent = false }) => prepublish(init, silent));
 
-createCommand("toc [glob]").action((glob: string) => {
-  markdownTOC(glob);
-});
+createCommand("styles")
+  .description(
+    "Copies all the SCSS files into the dist folder as well as creating non-webpack export version."
+  )
+  .action(() => copyStyles());
 
-createCommand("readmes").action(() => copyReadmes());
+createCommand("sassdoc")
+  .description(
+    "Creates the sassdoc for the documentation site in all scoped packages."
+  )
+  .action(() => sassdoc());
+
+createCommand("variables")
+  .description("Creates the scssVariables file in all scoped packages.")
+  .action(() => createScssVariables());
+
+createCommand("readmes")
+  .description(
+    "Copies all the readmes from the scoped packages into the documentation site. It also handles adding or removing content from the readmes with special comment tokens."
+  )
+  .action(() => readmes());
 
 createCommand("sandbox [components...]")
   .description(
@@ -101,24 +92,18 @@ createCommand("sandbox [components...]")
       "so that dynamic code sandboxes and inline code can be used."
   )
   .option(
-    CLEAN,
-    "This will clean all the sandboxes before running the sandbox command"
-  )
-  .option(CLEAN_ONLY, "This will only clean all the existing Sandbox files")
-  .option(
-    LOOKUPS_ONLY,
-    "This will only the command to update the sandboxes.ts file in the demos folder."
+    "--clean",
+    "Removes all the sandbox files before creating the sandboxes."
   )
   .option(
-    // want this option so that the Json files don't need to be stored in git and the app can
-    // run immediately for new users
-    EMPTY,
-    "Creates an empty version of all the sandboxes that do not exist yet."
+    "--clean-only",
+    "Removes all the sandbox files without creating new ones."
   )
   .option(
-    STAGED,
-    "This will update the command to work with `lint-staged` to dynamically update only the required sandboxes"
+    "--lookups-only",
+    "Only updates the sandbox index file in the documentation package for sandbox lookups."
   )
+  .option("--staged", "Only creates sandboxes for staged demo files.")
   .action(
     (
       components: string[],
@@ -129,18 +114,33 @@ createCommand("sandbox [components...]")
         cleanOnly = false,
         staged = false,
       }
-    ) => {
-      sandbox({ lookupsOnly, components, empty, clean, cleanOnly, staged });
-    }
+    ) => sandbox({ lookupsOnly, components, empty, clean, cleanOnly, staged })
   );
 
-createCommand("sassdoc")
-  .option(
-    NO_CLEAN,
-    "Boolean if the temp styles directory should not be cleaned up after this script is run"
+createCommand("themes")
+  .description(
+    "Create all the pre-compiled themes in the base react-md package."
   )
-  .action(({ clean }: { clean: boolean }) => {
-    sassdoc(clean);
-  });
+  .action(() => createThemes());
+
+createCommand("watch")
+  .description(
+    "Dynamically starts tsc watchers for each package once a file has been changed " +
+      "in that package."
+  )
+  .option(
+    "--cjs",
+    "Also starts up a commonjs watcher for each package. This is not enabled by " +
+      "default since the next server doesn't have hot-reloading for shared packages " +
+      "right now so the server would have to be restarted anyways for the changes to " +
+      " be in effect."
+  )
+  .action(({ cjs = false }) => watch(cjs));
+
+createCommand("clean")
+  .description(
+    "Cleans the current package or all the packages if run from the root level."
+  )
+  .action(() => clean());
 
 commander.parse(process.argv);

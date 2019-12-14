@@ -13,10 +13,12 @@
     "resolveJsonModule": true,
     "lib": [
       "dom",
-      "es2017"
+      "es2019"
     ]
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "sassdoc.d.ts"
+  ],
+  "exclude": ["src/old"]
 }

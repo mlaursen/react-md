@@ -4,10 +4,6 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all readmes",
-    "readmes": "dev-utils readmes",
-    "sandbox": "dev-utils sandbox",
-    "sassdoc": "dev-utils sassdoc",
     "dev": "npm-run-all prebuild start-dev",
     "dev-log": "cross-env NEXT_TELEMETRY_DISABLED=1 FORCE_COLOR=true next | cat",
     "build": "npm-run-all build-client build-server",

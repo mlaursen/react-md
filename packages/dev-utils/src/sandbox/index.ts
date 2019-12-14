@@ -1,17 +1,25 @@
-import fs from "fs-extra";
+import {
+  ensureDir,
+  existsSync,
+  readJsonSync,
+  remove,
+  writeJson,
+} from "fs-extra";
+import log from "loglevel";
 import path from "path";
 import { CompilerOptions } from "typescript";
-import log from "loglevel";
 
-import { documentationRoot, projectRoot, src } from "../paths";
-import { glob, list, time, toTitle, clean } from "../utils";
+import { documentationRoot, projectRoot, src } from "../constants";
+import glob from "../utils/glob";
+import list from "../utils/list";
+import toTitle from "../utils/toTitle";
 import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
 import generate, {
   createSandboxesLookup,
-  getSandboxFileName,
   findGeneratedSandboxes,
+  getSandboxFileName,
 } from "./generate";
 
 export interface ResolveConfig {
@@ -24,8 +32,8 @@ export interface ResolveConfig {
 }
 
 function getCompilerOptions(): CompilerOptions {
-  const base = fs.readJsonSync(path.join(projectRoot, "tsconfig.base.json"));
-  const docs = fs.readJsonSync(path.join(documentationRoot, "tsconfig.json"));
+  const base = readJsonSync(path.join(projectRoot, "tsconfig.base.json"));
+  const docs = readJsonSync(path.join(documentationRoot, "tsconfig.json"));
 
   // this isn't entirely correct, but not sure how to really do this.
   const resolved = {
@@ -88,16 +96,16 @@ async function createSandboxJsonFiles(
   log.debug(list(demos));
   log.debug();
 
-  await fs.ensureDir(SANDBOXES_PATH);
+  await ensureDir(SANDBOXES_PATH);
   if (empty) {
     const paths = demos.map(getSandboxFileName);
-    const missing = paths.filter(p => !fs.existsSync(p));
+    const missing = paths.filter(p => !existsSync(p));
     if (missing.length) {
       log.debug("Creating empty sandbox files:", true);
       log.debug(list(missing), true);
       log.debug("", true);
 
-      await Promise.all(paths.map(p => fs.writeJson(p, {})));
+      await Promise.all(paths.map(p => writeJson(p, {})));
     }
 
     return;
@@ -180,26 +188,21 @@ export default async function sandbox({
   }
 
   if (cleanSandboxes || cleanOnly) {
-    await time(async () => {
-      const sandboxes = await findGeneratedSandboxes();
-      let filtered = sandboxes;
-      if (components.length) {
-        const regexp = new RegExp(components.join("|"), "i");
-        filtered = sandboxes.filter(pathname => regexp.test(pathname));
-      }
+    const sandboxes = await findGeneratedSandboxes();
+    let filtered = sandboxes;
+    if (components.length) {
+      const regexp = new RegExp(components.join("|"), "i");
+      filtered = sandboxes.filter(pathname => regexp.test(pathname));
+    }
 
-      return clean(filtered);
-    }, "clean sandboxes");
+    await Promise.all(filtered.map(name => remove(name)));
   }
 
   if (!lookupsOnly && !cleanOnly) {
-    await time(
-      () => createSandboxJsonFiles(components, empty),
-      "creating sandboxes"
-    );
+    await createSandboxJsonFiles(components, empty);
   }
 
   if (!cleanOnly) {
-    time(createSandboxesLookup, "sandbox lookups");
+    await createSandboxesLookup();
   }
 }

@@ -1,9 +1,9 @@
-import path from "path";
+import { join } from "path";
 
-import { src } from "../paths";
+import { src } from "../constants";
 
-export const DEMOS_FOLDER = path.join(src, "components", "Demos");
-export const SANDBOXES_PATH = path.join(src, "constants", "sandboxes");
+export const DEMOS_FOLDER = join(src, "components", "Demos");
+export const SANDBOXES_PATH = join(src, "constants", "sandboxes");
 
 /**
  * These packages will always be required for a sandbox since they are the base

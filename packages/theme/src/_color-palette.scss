@@ -1039,21 +1039,21 @@ $rmd-theme-color-map: (
 );
 
 /// The "primary" color suffix numbers that are available for use. This is really just created
-/// for the `rmd-theme-get-swatch` mixin.
+/// for the `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
+/// scssVariables export.
 /// @type List
-/// @access private
 $rmd-theme-primary-suffixes: 50 100 200 300 400 500 600 700 800 900;
 
 /// The "accent" color suffix numbers that are available for use. This is really just created
-/// for the `rmd-theme-get-swatch` mixin.
+/// for the `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
+/// scssVariables export.
 /// @type List
-/// @access private
 $rmd-theme-accent-suffixes: 100 200 400 700;
 
 /// A list of all the available colors within material design. This is really just created for the
-/// `rmd-theme-get-swatch` mixin.
+/// `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
+/// scssVariables export.
 /// @type List
-/// @access private
 $rmd-theme-colors: (
   'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green'
     'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange' 'brown' 'grey' 'blue-grey'

@@ -1,20 +1,34 @@
-import { dist, es, lib, projectRoot, types } from "./paths";
-import { clean, glob, time } from "./utils";
+import { existsSync } from "fs";
+import log from "loglevel";
+import { join } from "path";
 
-export default function packageClean(others: string[] = []): Promise<void> {
-  return time(async () => {
-    if (process.cwd() === projectRoot) {
-      const dists = await glob("packages/*/+(es|lib|dist|types)");
-      const builds = await glob("packages/*/*.tsbuildinfo");
+import { dist, es, isRoot, lib, packagesRoot, types } from "./constants";
+import list from "./utils/list";
+import rmdir from "./utils/rmdir";
+import getPackages from "./utils/getPackages";
 
-      // just so it doesn't log if it's already been cleaned
-      const next = await glob("packages/documentation/.next");
+const dists = [es, lib, dist, types];
 
-      return clean([...dists, ...builds, ...next]);
-    }
+export default async function clean(): Promise<void> {
+  let directories: string[];
+  if (!isRoot) {
+    directories = dists.map(dist => join(process.cwd(), dist));
+  } else {
+    directories = getPackages(true).flatMap(name =>
+      dists.map(dist => join(packagesRoot, name, dist))
+    );
+  }
 
-    const builds = await glob("*.tsbuildinfo");
-    const toRemove = [es, lib, dist, types, ...builds, ...others];
-    return clean(toRemove);
-  }, "clean");
+  directories = directories.filter(dir => existsSync(dir));
+  if (!directories.length) {
+    log.debug("Already clean!");
+    return;
+  }
+
+  log.debug("Removing the following directories:");
+  log.debug(
+    list(directories.map(dir => dir.substring(dir.indexOf("packages"))))
+  );
+  log.debug();
+  await Promise.all(directories.map(dir => rmdir(dir, { recursive: true })));
 }

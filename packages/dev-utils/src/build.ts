@@ -1,122 +1,87 @@
-import { defaults, pick } from "lodash";
 import log from "loglevel";
+import { execSync } from "child_process";
 
-import runClean from "./clean";
-import scripts, { buildUMD } from "./scripts";
-import styles, { createScssVariables, generateThemeStyles } from "./styles";
-import { printMinifiedSizes, time, createTsConfigFiles } from "./utils";
+import { isRoot } from "./constants";
+import getCurrentPackageName from "./utils/getCurrentPackageName";
+import getPackages from "./utils/getPackages";
+import tsc, { CompileTarget, tscWatcher } from "./utils/tsc";
 
-export interface BuildConfig {
-  css: boolean;
-  umd: boolean;
-  clean: boolean;
-  update: boolean;
-  updateOnly: boolean;
-  umdOnly: boolean;
-  stylesOnly: boolean;
-  themes: boolean;
-  themesOnly: boolean;
-  scriptsOnly: boolean;
-  variablesOnly: boolean;
+function getTargets(packageName: string): CompileTarget[] {
+  const configs: CompileTarget[] = [];
+  if (getPackages("typescript").includes(packageName)) {
+    configs.push("ejs", "cjs");
+  }
+
+  if (getPackages("scss").includes(packageName)) {
+    configs.push("var");
+  }
+
+  return configs;
 }
 
-const DEFAULT_CONFIG: BuildConfig = {
-  css: false,
-  umd: false,
-  clean: false,
-  update: false,
-  updateOnly: false,
-  umdOnly: false,
-  stylesOnly: false,
-  themes: false,
-  themesOnly: false,
-  scriptsOnly: false,
-  variablesOnly: false,
-};
-
-async function runBuild({
-  css,
-  umd,
-  clean,
-  umdOnly,
-  update,
-  updateOnly,
-  stylesOnly,
-  themes,
-  themesOnly,
-  scriptsOnly,
-  variablesOnly,
-}: BuildConfig): Promise<void> {
-  if (clean) {
-    await time(runClean, "clean");
+function getNameOf(tsconfigPath: string): string {
+  if (!isRoot) {
+    return getCurrentPackageName(false);
   }
 
-  if (themes || themesOnly) {
-    // styles are required for this to work.
-    await time(() => styles(css), "styles");
-    await time(generateThemeStyles, "generate theme styles");
-    if (themesOnly) {
-      return;
+  const [, name] = tsconfigPath.split("/").reverse();
+  if (name === "react-md") {
+    return name;
+  }
+
+  return `@react-md/${name}`;
+}
+
+/**
+ * Runs tsc for all the packages that have typescript files or packages that
+ * have a scssVariables file.
+ */
+export default function build(
+  scopedOnly: boolean,
+  silent: boolean,
+  watch: boolean = false,
+  cjs: boolean = false
+): Promise<void> {
+  if (isRoot) {
+    if (watch) {
+      throw new Error("Unable to create a build watcher from the root.");
     }
-  }
 
-  if (variablesOnly) {
-    await time(createScssVariables, "create scss variables");
+    let command = [
+      "@react-md/dev-utils",
+      "documentation",
+      !scopedOnly && "react-md",
+    ].reduce((cmd, name) => {
+      if (!name) {
+        return cmd;
+      }
+
+      return `${cmd} --ignore ${name}`;
+    }, "lerna run build");
+
+    let added = false;
+    if (silent) {
+      added = true;
+      command = `${command} -- --silent`;
+    }
+
+    if (watch) {
+      command = `${command} ${added ? "" : "-- "}-w`;
+      added = true;
+    }
+
+    log.info(command);
+    execSync(command, { stdio: "inherit" });
     return;
   }
 
-  if (update || updateOnly) {
-    await time(createTsConfigFiles, "create tsconfig files");
-
-    if (updateOnly) {
-      return;
-    }
+  if (watch) {
+    tscWatcher(cjs);
+    return;
   }
 
-  if (!themes && ((!umdOnly && !scriptsOnly) || stylesOnly)) {
-    await time(() => styles(css), "styles");
-  }
-
-  if (!umdOnly && !scriptsOnly && !stylesOnly) {
-    log.debug();
-  }
-
-  if (umdOnly) {
-    await time(buildUMD, "umd");
-  } else if (!stylesOnly || scriptsOnly) {
-    await time(() => scripts(umd), "scripts");
-  }
-
-  let exclude: RegExp | undefined;
-  if (umdOnly) {
-    exclude = /\.css|es|lib/;
-  } else if (scriptsOnly) {
-    exclude = /\.css/;
-  } else if (stylesOnly) {
-    exclude = /\.js/;
-  }
-
-  await printMinifiedSizes(exclude);
-}
-
-export default async function build(
-  config: Partial<BuildConfig> = DEFAULT_CONFIG
-): Promise<void> {
-  const buildConfig = defaults(
-    pick(config, [
-      "css",
-      "umd",
-      "clean",
-      "update",
-      "updateOnly",
-      "umdOnly",
-      "stylesOnly",
-      "themes",
-      "themesOnly",
-      "variablesOnly",
-    ]),
-    DEFAULT_CONFIG
-  );
-
-  time(() => runBuild(buildConfig), "build");
+  const name = getCurrentPackageName();
+  log.info(`Building ${getNameOf(name)}...`);
+  getTargets(name).forEach(target => tsc(target));
+  log.info();
 }
