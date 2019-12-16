@@ -18,7 +18,8 @@
   },
   "include": [
     "src",
-    "sassdoc.d.ts"
+    "sassdoc.d.ts",
+    "sassdoc-custom.d.ts"
   ],
   "exclude": ["src/old"]
 }

@@ -1,10 +1,9 @@
 import React from "react";
+import { NextFC } from "next";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
-import { getSandboxByQuery } from "utils/getSandbox";
 import DemoSandbox from "components/DemoSandbox";
-
-import { NextFC } from "types/next";
+import { getSandboxByQuery } from "utils/getSandbox";
 
 interface SandboxProps {
   sandbox: IFiles | null;

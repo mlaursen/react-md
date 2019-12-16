@@ -11,7 +11,6 @@
       "hooks/*": ["packages/documentation/src/hooks/*"],
       "icons/*": ["packages/documentation/src/icons/*"],
       "pages/*": ["packages/documentation/src/pages/*"],
-      "types/*": ["packages/documentation/src/types/*"],
       "utils/*": ["packages/documentation/src/utils/*"]
     }
   },

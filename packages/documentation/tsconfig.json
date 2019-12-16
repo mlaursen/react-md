@@ -15,7 +15,6 @@
       "hooks/*": ["hooks/*"],
       "icons/*": ["icons/*"],
       "pages/*": ["pages/*"],
-      "types/*": ["types/*"],
       "utils/*": ["utils/*"]
     }
   },

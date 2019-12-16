@@ -1,5 +1,5 @@
+import { NextFC } from "next";
 import Router from "next/router";
-import { NextFC } from "types/next";
 
 export interface RedirectConfig {
   concat?: boolean;

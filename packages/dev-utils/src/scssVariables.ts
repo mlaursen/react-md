@@ -1,7 +1,7 @@
 import log from "loglevel";
 import { join } from "path";
 
-import { packagesRoot, scssVariables, src, tempStylesDir } from "./constants";
+import { packagesRoot, scssVariables, src } from "./constants";
 import copyStyles from "./utils/copyStyles";
 import format from "./utils/format";
 import getCompiledScssVariable, {
@@ -10,7 +10,7 @@ import getCompiledScssVariable, {
 } from "./utils/getCompiledScssVariable";
 import getSassdoc from "./utils/getSassdoc";
 import { JSONObject, JSONValue } from "./utils/json";
-import rmdir from "./utils/rmdir";
+import { cleanTempStyles } from "./utils/moveToTempStyles";
 import { isVariableItem } from "./utils/sassdoc";
 import writeFile from "./utils/writeFile";
 
@@ -79,5 +79,5 @@ export default ${JSON.stringify(json)};
     })
   );
 
-  await rmdir(tempStylesDir, { recursive: true });
+  await cleanTempStyles();
 }

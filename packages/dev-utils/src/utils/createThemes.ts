@@ -9,11 +9,11 @@ import combineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssPresetEnv from "postcss-preset-env";
 import sorting from "postcss-sorting";
+
 import { dist, packagesRoot, tempStylesDir } from "../constants";
 import copyStyles from "./copyStyles";
 import list from "./list";
-import moveToTempStyles from "./moveToTempStyles";
-import rmdir from "./rmdir";
+import moveToTempStyles, { cleanTempStyles } from "./moveToTempStyles";
 import writeFile from "./writeFile";
 
 const cssDist = join(packagesRoot, "react-md", dist, "css");
@@ -171,5 +171,5 @@ export default async function createThemes(): Promise<void> {
   });
   log.debug();
 
-  await rmdir(tempStylesDir, { recursive: true });
+  await cleanTempStyles();
 }

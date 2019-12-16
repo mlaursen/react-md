@@ -1,11 +1,12 @@
 import { copyFile, ensureDir } from "fs-extra";
-import { join, sep } from "path";
 import log from "loglevel";
+import { join, sep } from "path";
 
 import { isRoot, nonWebpackDist, tempStylesDir } from "../constants";
 import getCurrentPackageName from "./getCurrentPackageName";
 import getPackages from "./getPackages";
 import glob from "./glob";
+import rmdir from "./rmdir";
 
 export default async function moveToTempStyles(
   base: boolean = false
@@ -32,4 +33,8 @@ export default async function moveToTempStyles(
     })
   );
   log.debug();
+}
+
+export function cleanTempStyles(): Promise<void> {
+  return rmdir(tempStylesDir, { recursive: true });
 }

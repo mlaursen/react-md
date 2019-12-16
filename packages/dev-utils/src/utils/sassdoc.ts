@@ -17,3 +17,5 @@ export const isFunctionItem = (item: Item): item is FunctionItem =>
 
 export const isMixinItem = (item: Item): item is MixinItem =>
   item.context.type === "function";
+
+export const isPublic = (item: Item): boolean => item.access !== "private";

@@ -1,10 +1,24 @@
-import prettier from "prettier";
+import prettier, { Options, resolveConfig, BuiltInParserName } from "prettier";
 import { join } from "path";
 import { packagesRoot } from "../constants";
 
-const prettierConfig = prettier.resolveConfig.sync(
-  join(packagesRoot, "button", "src", "index.ts")
-);
+let prettierConfig: Options;
+function getOptions(parser?: BuiltInParserName): Options {
+  if (prettierConfig !== null) {
+    prettierConfig = resolveConfig.sync(
+      join(packagesRoot, "button", "src", "index.ts")
+    );
+  }
+
+  if (!parser && prettierConfig.parser) {
+    return prettierConfig;
+  }
+
+  return {
+    ...prettierConfig,
+    parser: parser || "babel",
+  };
+}
 
 /**
  * Formats any code provided with prettier.
@@ -16,10 +30,7 @@ const prettierConfig = prettier.resolveConfig.sync(
  */
 export default function format(
   code: string,
-  parser?: prettier.BuiltInParserName
+  parser?: BuiltInParserName
 ): string {
-  return prettier.format(code, {
-    ...prettierConfig,
-    parser: parser || prettierConfig?.parser || "babel",
-  });
+  return prettier.format(code, getOptions(parser));
 }

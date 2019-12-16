@@ -1,6 +1,5 @@
 import React from "react";
-
-import { NextFC } from "types/next";
+import { NextFC } from "next";
 
 import NotFoundPage from "components/NotFoundPage";
 import { MarkdownPage } from "components/Markdown";

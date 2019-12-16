@@ -13,7 +13,9 @@ declare module "sassdoc" {
   /**
    * The `@access` annotation. Defaults to "public".
    *
-   * ``` @access public ```
+   * ```scss
+   * @access public
+   * ```
    */
   export type ItemAccess = "public" | "private";
 
@@ -36,8 +38,11 @@ declare module "sassdoc" {
    * The recommended item types to use when using the `@param` and `@type`
    * annotations.
    *
-   * ``` @param {Color} name - Description @prop {Function} base.default
-   * [default] - Description @type {String|Number} ```
+   * ```scss
+   * @param {Color} name - Description
+   * @prop {Function} base.default [default] - Description
+   * @type {String|Number}
+   * ```
    */
   export type DataType =
     | "Number"
@@ -51,15 +56,20 @@ declare module "sassdoc" {
    * The recommended item types to use when using the `@param`, `@prop` and
    * `@type` annotations.
    *
-   * ``` @param {Color} name - Description @prop {Function} base.default
-   * [default] - Description @type {String|Number} ```
+   * ```
+   * @param {Color} name - Description
+   * @prop {Function} base.default [default] - Description
+   * @type {String|Number}
+   * ```
    */
   export type ItemDataType = DataType | "Function" | "Mixin";
 
   /**
    * The `@author` annotation.
    *
-   * ``` @author Mikkel Laursen ```
+   * ```scss
+   * @author Mikkel Laursen
+   * ```
    */
   export type ItemAuthor = string[];
 
@@ -67,14 +77,18 @@ declare module "sassdoc" {
    * The `@content` annotation. This will automatically be generated as an
    * empty string if the mixin uses the `@content` declaration.
    *
-   * ``` @content Description about the `@content` declaration.  ```
+   * ```scss
+   * @content Description about the `@content` declaration.
+   * ```
    */
   export type ItemContent = string;
 
   /**
    * The `@deprecated` annotation.
    *
-   * ``` @deprecated No longer in use because XY and Z.  ```
+   * ```scss
+   * @deprecated No longer in use because XY and Z.
+   * ```
    */
   export type ItemDeprecated = string;
 
@@ -88,7 +102,12 @@ declare module "sassdoc" {
    * The `@example` annotation. sassdoc only supports a few languages, but the
    * sassdoc interface can still use undocumented types.
    *
-   * ``` @example scss - My Cool example .class-name { color: red; } ```
+   * ```scss
+   * @example scss - My Cool example
+   *   .class-name {
+   *     color: red;
+   *   }
+   * ```
    *
    * Note: Need to indent each line with two spaces
    */
@@ -113,7 +132,9 @@ declare module "sassdoc" {
   /**
    * The `@group` annotation.
    *
-   * ``` @group Theme ```
+   * ```scss
+   * @group Theme
+   * ```
    *
    * Note: sassdoc does not support multiple groups out of the box so it'll
    * always be a list of a single item.
@@ -124,14 +145,18 @@ declare module "sassdoc" {
    * The `@ignore` annotation. This is honestly worthless to add since it looks
    * like it'll always be an empty array.
    *
-   * ``` @ignore This line will be ignored...  ```
+   * ```scss
+   * @ignore This line will be ignored...
+   * ```
    */
   export type ItemIgnore = string[];
 
   /**
    * The `@link` annotation.
    *
-   * ``` @link https://example.com Caption for the link ```
+   * ```scss
+   * @link https://example.com Caption for the link
+   * ```
    */
   export interface ItemLink {
     /**
@@ -148,15 +173,19 @@ declare module "sassdoc" {
   /**
    * The `@output` annotation.
    *
-   * ``` @output Description of the output styles.  ```
+   * ```scss
+   * @output Description of the output styles.
+   * ```
    */
   export type ItemOutput = string;
 
   /**
    * The `@param` annotation.
    *
-   * ``` @param {String} variable-name - My description @param {Boolean} my-bool
-   * [false] - Another description ```
+   * ```scss
+   * @param {String} variable-name - My description
+   * @param {Boolean} my-bool [false] - Another description
+   * ```
    *
    * @typeparam T This can be used if you want to strongly type what types you
    * want to use in your sassdoc (normally for case-sensitivity). sassdoc is not
@@ -194,7 +223,9 @@ declare module "sassdoc" {
   /**
    * The `@prop` annotation. This should only be used for Map types I believe.
    *
-   * ``` @prop {Function} base.default [default] - description ```
+   * ```scss
+   * @prop {Function} base.default [default] - description
+   * ```
    */
   export interface ItemProperty<T extends string = ItemDataType> {
     /**
@@ -228,7 +259,9 @@ declare module "sassdoc" {
    * manually since sassdoc automatically determines which items are required in
    * other items.
    *
-   * ``` @require {type} item - description <link> ```
+   * ```scss
+   * @require {type} item - description <link>
+   * ```
    */
   export interface ItemRequire {
     /**
@@ -258,7 +291,9 @@ declare module "sassdoc" {
   /**
    * The `@return` annotation.
    *
-   * ``` @return {Boolean} description ```
+   * ```scss
+   * @return {Boolean} description
+   * ```
    */
   export interface ItemReturn<T extends string = ItemDataType> {
     /**
@@ -279,7 +314,9 @@ declare module "sassdoc" {
   /**
    * The `@since` annotation.
    *
-   * ``` @since version description ```
+   * ```scss
+   * @since version description
+   * ```
    */
   export interface ItemSince {
     /**
@@ -296,7 +333,9 @@ declare module "sassdoc" {
   /**
    * The `@throw` annotation
    *
-   * ``` @throw Error related message ```
+   * ```scss
+   * @throw Error related message
+   * ```
    */
   export type ItemThrow = string[];
 
@@ -307,7 +346,9 @@ declare module "sassdoc" {
   /**
    * The `@todo` annotation
    *
-   * ``` @todo Task to be done ```
+   * ```scss
+   * @todo Task to be done
+   * ```
    */
   export type ItemTodo = string[];
 
@@ -317,9 +358,13 @@ declare module "sassdoc" {
    * provide your own type value that extends the ItemDataType if you want it to
    * be strict or just do `string`.
    *
-   * ``` export type MyItemType = ItemType<ItemDataType | string>; ```
+   * ```ts
+   * export type MyItemType = ItemType<ItemDataType | string>;
+   * ```
    *
-   * ``` @type Boolean @type String | Color ```
+   * ```scss
+   * @type Boolean @type String | Color
+   * ```
    */
   export type ItemType<T extends string = ItemDataType> = T;
 
@@ -354,8 +399,16 @@ declare module "sassdoc" {
     value: string;
   }
 
+  /**
+   * This is used to tell if a variable can be overridden or if it is private
+   * for the file. This will always be "private" unless the variable has
+   * `!default` at the end.
+   */
+  export type VariableScope = "default" | "private";
+
   export interface VariableContext extends ValueableContext {
     type: "variable";
+    scope: VariableScope;
   }
 
   export interface PlaceholderContext extends ValueableContext {
@@ -379,7 +432,9 @@ declare module "sassdoc" {
   /**
    * The `@see` annotation
    *
-   * ``` @see other-type @see other-type Description ```
+   * ```scss
+   * @see other-type @see other-type Description
+   * ```
    */
   export interface ItemReference {
     context: ItemContext;
@@ -397,11 +452,20 @@ declare module "sassdoc" {
      * The path to the file from the current working directory for the sassdoc
      * input path.
      *
-     * ``` styles └── src ├── _functions.scss ├── _mixins.scss └──
-     * _variables.scss ```
+     * ```sh
+     * styles
+     * └── src
+     * ├── _functions.scss
+     * ├── _mixins.scss
+     * └── _variables.scss
+     * ```
      *
-     * ``` parse("styles"); // "src/_functions.scss" // "src/_mixins.scss" //
-     * "src/_variables.scss" ```
+     * ```ts
+     * parse("styles");
+     * // "src/_functions.scss"
+     * // "src/_mixins.scss"
+     * // "src/_variables.scss"
+     * ```
      */
     path: string;
 
