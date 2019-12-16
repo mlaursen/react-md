@@ -10,7 +10,7 @@
 /// key is used, but might be useful in other cases.
 ///
 /// @param {String} theme-style - One of the `$rmd-list-theme-values` map keys to get a value for.
-/// @return {Color|Number|String} one of the list's theme values.
+/// @return {Color|String|Number} one of the list's theme values.
 @function rmd-list-theme($theme-style) {
   @return rmd-theme-get-var-value($theme-style, $rmd-list-theme-values, list);
 }

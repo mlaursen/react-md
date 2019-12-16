@@ -10,7 +10,7 @@
 /// key is used, but might be useful in other cases.
 ///
 /// @param {String} style - One of the `$rmd-overlay-theme-values` map keys to get a value for.
-/// @return {Color|Number|String} one of the overlay's theme values.
+/// @return {Color|String|Number} one of the overlay's theme values.
 @function rmd-overlay-theme($theme-style) {
   @return rmd-theme-get-var-value($theme-style, $rmd-overlay-theme-values, overlay);
 }

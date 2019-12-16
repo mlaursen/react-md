@@ -10,7 +10,7 @@
 /// key is used, but might be useful in other cases.
 ///
 /// @param {String} theme-style - One of the `$rmd-tabs-theme-values` map keys to get a value for.
-/// @return {Color|Number|String} one of the tabs's theme values.
+/// @return {Color|String|Number} one of the tabs's theme values.
 @function rmd-tabs-theme($theme-style) {
   @return rmd-theme-get-var-value($theme-style, $rmd-tabs-theme-values, tabs);
 }

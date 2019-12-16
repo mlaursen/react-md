@@ -17,7 +17,7 @@
 ///
 /// @param {String} property - The property to set a `rmd-chip-theme-values` value to.
 /// @param {String} theme-style - One of the keys of `rmd-chip-theme-values` to extract a value from.
-/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
 ///   isn't set somehow. This will default to automatically retrieving the default value
 ///   from the `rmd-chip-theme-values` map when `null`.
 @mixin rmd-chip-theme($property, $theme-style: $property, $fallback: null) {

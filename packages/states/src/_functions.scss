@@ -10,7 +10,7 @@
 /// key is used, but might be useful in other cases.
 ///
 /// @param {String} theme-style - One of the `$rmd-states-theme-values` map keys to get a value for.
-/// @return {Color|Number|String} one of the states's theme values.
+/// @return {Color|String|Number} one of the states's theme values.
 @function rmd-states-theme($theme-style) {
   @return rmd-theme-get-var-value($theme-style, $rmd-states-theme-values, states);
 }

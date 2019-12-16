@@ -34,19 +34,19 @@ $rmd-tab-min-width: 5.625rem !default;
 $rmd-tab-max-width: 20rem !default;
 
 /// The tab indicator color to use.
-/// @type String|Color
+/// @type Color|String
 $rmd-tab-indicator-color: rmd-theme-var(primary) !default;
 
 /// The color to use when a tab has become active.
-/// @type String|Color
+/// @type Color|String
 $rmd-tab-active-color: rmd-theme(text-primary-on-background) !default;
 
 /// The color to use when a tab is inactive.
-/// @type String|Color
+/// @type Color|String
 $rmd-tab-inactive-color: rmd-theme(text-secondary-on-background) !default;
 
 /// The color to use when a tab is disabled.
-/// @type String|Color
+/// @type Color|String
 $rmd-tab-disabled-color: rmd-theme(text-disabled-on-background) !default;
 
 /// The height for the active tab indicator divider.

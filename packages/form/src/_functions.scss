@@ -10,7 +10,7 @@
 /// key is used, but might be useful in other cases.
 ///
 /// @param {String} theme-style - One of the `$rmd-form-theme-values` map keys to get a value for.
-/// @return {Color|Number|String} one of the form's theme values.
+/// @return {Color|String|Number} one of the form's theme values.
 @function rmd-form-theme($theme-style) {
   @return rmd-theme-get-var-value($theme-style, $rmd-form-theme-values, form);
 }
@@ -25,7 +25,7 @@
 /// @param {String} theme-style - One of the `$rmd-form-theme-values` map keys to set a value for.
 /// @param {Color|String|Number} fallback [null] - An optional fallback color to apply. This is set to `null` by
 /// default and not used since the link's theme variables should always exist.
-/// @return {Color|Number|String} one of the form's theme values.
+/// @return {Color|String|Number} one of the form's theme values.
 @function rmd-form-theme-var($theme-style, $fallback: null) {
   @return rmd-theme-get-var($theme-style, $rmd-form-theme-values, form, $fallback);
 }
@@ -35,7 +35,7 @@
 ///
 /// @param {String} property - The property to set a `rmd-form-theme-values` value to.
 /// @param {String} theme-style - One of the keys of `rmd-form-theme-values` to extract a value from.
-/// @param {String|Color|Number} fallback [null] - A fallback value to use if the css variable
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
 ///   isn't set somehow. This will default to automatically retrieving the default value
 ///   from the `rmd-form-theme-values` map when `null`.
 @mixin rmd-form-theme($property, $theme-style: $property, $fallback: null) {

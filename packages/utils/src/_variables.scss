@@ -105,10 +105,6 @@ $rmd-grid-desktop-columns: if($rmd-grid-columns, $rmd-grid-columns, 12) !default
 /// @type Number
 $rmd-grid-large-desktop-columns: $rmd-grid-desktop-columns !default;
 
-/// The default number of columns to render on mobile devices in the `Grid` component.
-/// @type Number
-$rmd-grid-phone-columns: 4 !default;
-
 /// The default amount of padding to apply to the `GridList` component.
 /// @type Number
 $rmd-grid-list-padding: 0.5rem !default;
