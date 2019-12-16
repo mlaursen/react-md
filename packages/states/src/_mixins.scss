@@ -57,7 +57,9 @@
 /// mixin for this to work.
 ///
 /// Note: If you used the `rmd-states-surface` mixin, this functionality will be included
-/// by default.
+/// by default. In addition this only works for non-inline elements due to how positioning
+/// works for them. You'll either need to update it to be `display: inline-block` or fallbac
+/// to the `outline-style`s.
 ///
 /// @example scss - Example Usage SCSS
 ///   .my-custom-component {

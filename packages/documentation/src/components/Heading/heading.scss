@@ -37,7 +37,7 @@
     &::before {
       @include rmd-states-surface-base;
 
-      margin: $rmd-link-focus-shadow-margin;
+      margin: -0.25rem;
     }
 
     display: none;

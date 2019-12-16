@@ -12,7 +12,7 @@ export default {
     top: "0.25rem",
     transform: "translateX(-50%)",
   },
-  "rmd-link-skip-active-styles": { border: "0.25rem dashed #000" },
+  "rmd-link-skip-active-styles": { outline: "0.25rem dashed #000" },
   "rmd-link-theme-values": {
     color: "#2196f3",
     "hover-color": "#42a5f5",

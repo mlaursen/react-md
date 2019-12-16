@@ -21,15 +21,6 @@ $rmd-link-visited-color: $rmd-blue-600 !default;
 /// @type Color
 $rmd-link-hover-color: $rmd-blue-400 !default;
 
-/// The amount of margin to apply to the `::before` element for the keyboard
-/// focus shadow. This should normally be set to a negative value to add
-/// some spacing between the link's content and the focus shadow itself.
-///
-/// Note: This will only be applied if the `$rmd-states-use-pressed-states-fallback`
-/// variable is enabled.
-/// @type Number
-$rmd-link-focus-shadow-margin: -0.125rem !default;
-
 /// The z-index to apply for the skip to main content link.
 /// This should always be the biggest z-index in your app so it can be
 /// visible.
@@ -50,7 +41,7 @@ $rmd-link-skip-styles: (
 /// keyboard focused.
 /// @type Map
 $rmd-link-skip-active-styles: (
-  border: 0.25rem dashed $rmd-black-base,
+  outline: 0.25rem dashed $rmd-black-base,
 ) !default;
 
 /// A Map of all the "themeable" parts of the link package. Every key in this map will

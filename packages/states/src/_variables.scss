@@ -138,10 +138,20 @@ $rmd-states-selected-color: if(
   $rmd-states-dark-theme-selected-color
 ) !default;
 
+/// The keyboard focus shadow width to use when the `$rmd-states-use-focus-shadow`
+/// variable is enabled.
+/// @type Number
+$rmd-states-focus-shadow-width: 0.125rem !default;
+
+/// The keyboard focus shadow color to use when the `$rmd-states-use-focus-shadow`
+/// variable is enabled.
+/// @type Color
+$rmd-states-focus-shadow-color: $rmd-blue-500 !default;
+
 /// The box-shadow to use when the user keyboard-focuses an element
 /// and the `$rmd-states-use-focus-shadow` variable is enabled.
 /// @type String
-$rmd-states-focus-shadow: inset 0 0 0 0.125rem $rmd-blue-500;
+$rmd-states-focus-shadow: inset 0 0 0 $rmd-states-focus-shadow-width $rmd-states-focus-shadow-color !default;
 
 /// The base background color for the ripple effect.
 /// @type Color

@@ -40,16 +40,15 @@
     @include rmd-typography-base;
 
     @if $rmd-states-use-focus-shadow {
-      @include rmd-states-focus-shadow;
-      @include rmd-utils-hide-focus-outline;
-
-      position: relative;
-
-      &::before {
-        @include rmd-states-surface-base;
-
-        margin: $rmd-link-focus-shadow-margin;
+      // Can't use the normal states focus shadow behavior since links are rendered inline.
+      // The pseudo selectors with different shadows only work nicely with block elements.
+      @include rmd-utils-keyboard-only {
+        &:focus {
+          outline: $rmd-states-focus-shadow-width solid $rmd-states-focus-shadow-color;
+        }
       }
+    } @else {
+      @include rmd-utils-hide-focus-outline;
     }
 
     transition: color $rmd-link-transition-time;
@@ -71,30 +70,18 @@
   .rmd-link-skip {
     @include rmd-typography-value(headline-6, font-size, font-weight, letter-spacing);
     @include rmd-utils-sr-only(true, null);
-
-    @if not $rmd-states-use-focus-shadow {
-      @include rmd-utils-hide-focus-outline;
-    }
+    @include rmd-utils-hide-focus-outline;
 
     z-index: $rmd-link-skip-z-index;
 
     &--styled {
       @include rmd-utils-map-to-styles($rmd-link-skip-styles);
 
-      @if $rmd-states-use-focus-shadow {
-        @include rmd-utils-keyboard-only {
-          // disabling the default focus shadow since using the custom link active
-          // styles below which have a border
-          &:focus::before {
-            box-shadow: none;
-            margin: 0;
-          }
+      @include rmd-utils-keyboard-only {
+        &:focus,
+        &:active {
+          @include rmd-utils-map-to-styles($rmd-link-skip-active-styles);
         }
-      }
-
-      &:focus,
-      &:active {
-        @include rmd-utils-map-to-styles($rmd-link-skip-active-styles);
       }
     }
   }

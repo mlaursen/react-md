@@ -96,6 +96,10 @@
       "prettier --write",
       "git add"
     ],
+    "packages/!(documentation)/src/**/_variables.scss": [
+      "yarn dev-utils variables",
+      "git add -- *scssVariables.ts"
+    ],
     "packages/documentation/src/components/Demos/**/*.{ts,tsx}": [
       "yarn sandbox --staged",
       "git add packages/documentation/src/constants/sandboxes"
