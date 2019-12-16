@@ -316,9 +316,21 @@ export default function useTreeMovement({
       if (index === -1) {
         index = Math.max(0, Math.min(lastFocus.current, visibleItems.length));
       }
+
+      const currentItem = itemIdRefs[visibleItems[index]?.itemId]?.ref.current;
+      if (currentItem) {
+        scrollIntoView(event.currentTarget, currentItem);
+      }
       setFocusedIndex(index);
     },
-    [focusedIndex, onFocus, selectedIds, setFocusedIndex, visibleItems]
+    [
+      focusedIndex,
+      itemIdRefs,
+      onFocus,
+      selectedIds,
+      setFocusedIndex,
+      visibleItems,
+    ]
   );
 
   const setActiveId = useCallback(
