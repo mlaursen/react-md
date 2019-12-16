@@ -37,6 +37,7 @@ const Layout: FC<LayoutProps> = ({
       <RMDLayout
         {...useLayoutNavigation(navItems, pathname)}
         appBarTitle={title.replace("react-md@v2 - ", "")}
+        appBarAfterNav
         navHeaderTitle={<NavHeaderTitle />}
         navHeaderClassName="layout-nav-header"
         navIcon={<MenuSVGIcon />}

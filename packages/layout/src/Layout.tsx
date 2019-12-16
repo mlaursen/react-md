@@ -66,6 +66,14 @@ export interface LayoutProps
   appBarClassName?: string;
 
   /**
+   * Boolean if the main app bar should appear after the navigation component.
+   * It is generally recommended to enable this prop if the navigation component
+   * as a focusable element in the header since it will have a better tab focus
+   * order.
+   */
+  appBarAfterNav?: boolean;
+
+  /**
    * An optional ref to apply to the `<main>` element.
    */
   mainRef?: Ref<HTMLDivElement>;
@@ -94,6 +102,7 @@ type DefaultProps = Required<
     LayoutProps,
     | "id"
     | "appBarTheme"
+    | "appBarAfterNav"
     | "fixedAppBar"
     | "denseAppBar"
     | "navIcon"
@@ -130,6 +139,7 @@ const Layout: FC<LayoutProps> = providedProps => {
     id,
     appBar: propAppBar,
     appBarTheme,
+    appBarAfterNav,
     fixedAppBar,
     denseAppBar,
     navIcon,
@@ -217,13 +227,14 @@ const Layout: FC<LayoutProps> = providedProps => {
   return (
     <Provider value={value}>
       <SkipToMainContent mainId={mainId} />
-      {appBar}
+      {!appBarAfterNav && appBar}
       <LayoutNavigation
         {...props}
         fixedAppBar={fixedAppBar}
         layoutId={id}
         navItems={navItems}
       />
+      {appBarAfterNav && appBar}
       <Main
         id={mainId}
         ref={mainRef}
@@ -247,6 +258,7 @@ const Layout: FC<LayoutProps> = providedProps => {
 const defaultProps: DefaultProps = {
   id: "layout",
   appBarTheme: "primary",
+  appBarAfterNav: false,
   fixedAppBar: true,
   denseAppBar: false,
   navIcon: <FontIcon>menu</FontIcon>,
@@ -307,6 +319,7 @@ if (process.env.NODE_ENV !== "production") {
       appBarRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
       appBarStyle: PropTypes.object,
       appBarClassName: PropTypes.string,
+      appBarAfterNav: PropTypes.bool,
 
       navStyle: PropTypes.object,
       navClassName: PropTypes.string,
