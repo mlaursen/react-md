@@ -52,6 +52,45 @@
   }
 }
 
+/// This mixin will add the focus shadow color to your current element only during
+/// keyboard focus events. Your element must also have included the `rmd-states-surface-base`
+/// mixin for this to work.
+///
+/// Note: If you used the `rmd-states-surface` mixin, this functionality will be included
+/// by default.
+///
+/// @example scss - Example Usage SCSS
+///   .my-custom-component {
+///      @include rmd-states-focus-shadow;
+///
+///      position: relative;
+///
+///      &::before {
+///        @include rmd-states-surface-base;
+///
+///        // omit this margin if your component adds its own padding
+///        // so that there is some space between the focus effect and
+///        // content.
+///        margin: -0.25rem;
+///      }
+///   }
+///
+/// @param {Boolean} after [false] - Boolean if the `::after` pseudo element should
+/// be used instead of the `::before`.
+@mixin rmd-states-focus-shadow($after: false) {
+  @if $rmd-states-use-focus-shadow {
+    @include rmd-utils-keyboard-only {
+      $selector: if($after, '&::after', '&::before');
+
+      &:focus {
+        #{$selector} {
+          @include rmd-states-theme(box-shadow, focus-shadow);
+        }
+      }
+    }
+  }
+}
+
 /// This is the main interaction states creator. It will apply all the styles
 /// to an element so that it will:
 /// - gain the pointer cursor when it is not disabled (also works for aria-disabled)
@@ -82,6 +121,7 @@
 ///   when hovered.
 @mixin rmd-states-surface($clickable: true) {
   @include rmd-utils-hide-focus-outline;
+  @include rmd-states-focus-shadow;
 
   &::before {
     @include rmd-states-surface-base;

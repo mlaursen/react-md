@@ -7,6 +7,7 @@
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/list/dist/mixins';
 @import '~@react-md/sheet/dist/mixins';
+@import '~@react-md/states/dist/variables';
 @import '~@react-md/tooltip/dist/mixins';
 @import '~@react-md/transition/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
@@ -52,13 +53,17 @@
 
     // going to replace the default focus outline with the custom box-shadow instead
     @include rmd-utils-hide-focus-outline;
+
     @include rmd-utils-keyboard-only {
       @include rmd-transition-shadow-transition(none, $rmd-layout-main-focus-shadow, '&:focus');
 
       &::before {
         @include rmd-app-bar-theme(top, height);
 
+        // need to inherit the margin based for the offsets
+        margin: inherit;
         position: fixed;
+        z-index: $rmd-layout-main-focus-z-index;
       }
     }
 

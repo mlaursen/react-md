@@ -23,6 +23,14 @@ $rmd-states-use-ripple: true !default;
 /// @type Boolean
 $rmd-states-use-pressed-states-fallback: true !default;
 
+/// Boolean if the focus state should still us a box-shadow outline for keyboard users.
+/// This is generally recommended for accessibility since the default `outline-style`
+/// is removed, and just a `background-color` change normally isn't enough to help
+/// users determine the current focus of the page at a glance.
+///
+/// @type Boolean
+$rmd-states-use-focus-shadow: true !default;
+
 /// The base background color to use for the different interaction states for
 /// a light themed application. This is the color that gets different opacities
 /// applied to it.
@@ -130,6 +138,11 @@ $rmd-states-selected-color: if(
   $rmd-states-dark-theme-selected-color
 ) !default;
 
+/// The box-shadow to use when the user keyboard-focuses an element
+/// and the `$rmd-states-use-focus-shadow` variable is enabled.
+/// @type String
+$rmd-states-focus-shadow: inset 0 0 0 0.125rem $rmd-blue-500;
+
 /// The base background color for the ripple effect.
 /// @type Color
 $rmd-states-ripple-background-color: if(
@@ -160,6 +173,7 @@ $rmd-states-theme-values: (
   background-color: transparent,
   hover-color: $rmd-states-hover-color,
   focus-color: $rmd-states-focus-color,
+  focus-shadow: $rmd-states-focus-shadow,
   pressed-color: $rmd-states-pressed-color,
   selected-color: $rmd-states-selected-color,
   ripple-background-color: $rmd-states-ripple-background-color,

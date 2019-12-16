@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/theme/dist/helpers';
+@import '~@react-md/states/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 @import './functions';
@@ -38,6 +39,19 @@
     @include rmd-link-theme(color);
     @include rmd-typography-base;
 
+    @if $rmd-states-use-focus-shadow {
+      @include rmd-states-focus-shadow;
+      @include rmd-utils-hide-focus-outline;
+
+      position: relative;
+
+      &::before {
+        @include rmd-states-surface-base;
+
+        margin: $rmd-link-focus-shadow-margin;
+      }
+    }
+
     transition: color $rmd-link-transition-time;
 
     &--flex-centered {
@@ -57,12 +71,26 @@
   .rmd-link-skip {
     @include rmd-typography-value(headline-6, font-size, font-weight, letter-spacing);
     @include rmd-utils-sr-only(true, null);
-    @include rmd-utils-hide-focus-outline;
+
+    @if not $rmd-states-use-focus-shadow {
+      @include rmd-utils-hide-focus-outline;
+    }
 
     z-index: $rmd-link-skip-z-index;
 
     &--styled {
       @include rmd-utils-map-to-styles($rmd-link-skip-styles);
+
+      @if $rmd-states-use-focus-shadow {
+        @include rmd-utils-keyboard-only {
+          // disabling the default focus shadow since using the custom link active
+          // styles below which have a border
+          &:focus::before {
+            box-shadow: none;
+            margin: 0;
+          }
+        }
+      }
 
       &:focus,
       &:active {

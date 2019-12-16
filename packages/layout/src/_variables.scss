@@ -2,10 +2,15 @@
 /// @group layout
 ////
 
-@import '~@react-md/theme/dist/variables';
+@import '~@react-md/states/dist/variables';
 
 /// The box-shadow to use when the `<main>` element has been keyboard focused
 /// from the `SkipToMainContent` link.
 ///
 /// @type String
-$rmd-layout-main-focus-shadow: inset 0 0 0 4px $rmd-blue-500 !default;
+$rmd-layout-main-focus-shadow: $rmd-states-focus-shadow !default;
+
+/// The z-index to use for the `<main>` element when it is keyboard focused. This
+/// z-index is just used so that it should appear over all elements.
+/// @type Number
+$rmd-layout-main-focus-z-index: 999 !default;

@@ -32,6 +32,13 @@
     @include rmd-utils-desktop-media {
       display: block;
     }
+    @include rmd-states-focus-shadow;
+
+    &::before {
+      @include rmd-states-surface-base;
+
+      margin: $rmd-link-focus-shadow-margin;
+    }
 
     display: none;
     left: 0;
