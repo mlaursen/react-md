@@ -10,6 +10,7 @@ import {
   MovementPresets,
   useActiveDescendantMovement,
   scrollIntoView,
+  useInteractionModeContext,
 } from "@react-md/utils";
 
 import { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
@@ -121,6 +122,8 @@ export default function useTreeMovement({
     valueKey,
     getItemValue,
   });
+
+  const isKeyboard = useInteractionModeContext() === "keyboard";
 
   const {
     activeId,
@@ -318,13 +321,14 @@ export default function useTreeMovement({
       }
 
       const currentItem = itemIdRefs[visibleItems[index]?.itemId]?.ref.current;
-      if (currentItem) {
+      if (currentItem && isKeyboard) {
         scrollIntoView(event.currentTarget, currentItem);
       }
       setFocusedIndex(index);
     },
     [
       focusedIndex,
+      isKeyboard,
       itemIdRefs,
       onFocus,
       selectedIds,

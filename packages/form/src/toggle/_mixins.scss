@@ -45,6 +45,7 @@
   align-items: center;
   border-radius: $rmd-toggle-border-radius;
   display: inline-flex;
+  flex-shrink: 0;
   justify-content: center;
   position: relative;
 
