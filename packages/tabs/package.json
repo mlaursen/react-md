@@ -1,6 +1,6 @@
 {
   "name": "@react-md/tabs",
-  "version": "2.0.0-alpha.10",
+  "version": "2.0.0-alpha.11",
   "description": "Create accessible tabs to organize data across multiple screens or interactions.",
   "scripts": {
     "build": "dev-utils build",
@@ -38,12 +38,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/icon": "^2.0.0-alpha.10",
-    "@react-md/theme": "^2.0.0-alpha.10",
-    "@react-md/states": "^2.0.0-alpha.10",
-    "@react-md/transition": "^2.0.0-alpha.10",
-    "@react-md/typography": "^2.0.0-alpha.10",
-    "@react-md/utils": "^2.0.0-alpha.10",
+    "@react-md/icon": "^2.0.0-alpha.11",
+    "@react-md/states": "^2.0.0-alpha.11",
+    "@react-md/theme": "^2.0.0-alpha.11",
+    "@react-md/transition": "^2.0.0-alpha.11",
+    "@react-md/typography": "^2.0.0-alpha.11",
+    "@react-md/utils": "^2.0.0-alpha.11",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },
