@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { MenuItemLink } from "@react-md/menu";
 
-import { GITHUB_URL } from "constants/index";
+import { GITHUB_URL } from "constants/github";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 
 const GithubLinkMenuItem: FC = () => (

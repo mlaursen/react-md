@@ -1,7 +1,7 @@
 import React from "react";
 import { NextFC } from "next";
 
-import { APIABLE_PACKAGES } from "constants/navItems";
+import { TYPESCRIPT_PACKAGES } from "constants/packages";
 import NotFoundPage from "components/NotFoundPage";
 import APIInProgress from "components/InProgress/API";
 import { qsToString } from "utils/routes";
@@ -15,7 +15,7 @@ const API: NextFC<APIProps> = ({ typedoc }) =>
 
 API.getInitialProps = async ({ query }): Promise<APIProps> => {
   const name = qsToString(query.id);
-  const typedoc = APIABLE_PACKAGES.includes(name) ? {} : null;
+  const typedoc = TYPESCRIPT_PACKAGES.includes(name) ? {} : null;
   // const typedoc = await import(`../../../typedocs/${query.id}`)
   //   .then(mod => mod.default)
   //   .catch(() => null);

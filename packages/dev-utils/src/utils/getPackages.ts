@@ -6,9 +6,9 @@ let packages: string[];
 let scssPackages: string[];
 let typescriptPackages: string[];
 
-const NO_STYLES_PACKAGES = /autocomplete|material-icons|portal/;
+export const NO_STYLES_PACKAGES = /autocomplete|material-icons|portal/;
 // Note: this ignores the scssVariables file
-const NO_SCRIPT_PACKAGES = /elevation|theme/;
+export const NO_SCRIPT_PACKAGES = /elevation|theme/;
 
 export type PackageType = "scss" | "typescript" | boolean;
 

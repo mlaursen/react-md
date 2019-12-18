@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { GITHUB_URL } from "constants/index";
+import { GITHUB_URL } from "constants/github";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 import LinkButton, { LinkButtonProps } from "components/LinkButton";
 

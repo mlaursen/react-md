@@ -6,6 +6,7 @@ import loglevel from "loglevel";
 import build from "./build";
 import clean from "./clean";
 import { DEBUG, SILENT } from "./constants";
+import docConstants from "./docConstants";
 import prepublish from "./prepublish";
 import readmes from "./readmes";
 import sandbox from "./sandbox";
@@ -136,6 +137,12 @@ createCommand("watch")
       " be in effect."
   )
   .action(({ cjs = false }) => watch(cjs));
+
+createCommand("doc-constants")
+  .description(
+    "Updates the `src/constants/generated.ts` file in the documentation package."
+  )
+  .action(() => docConstants());
 
 createCommand("clean")
   .description(

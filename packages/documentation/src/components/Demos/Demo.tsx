@@ -4,7 +4,7 @@ import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
 import { bem, useAppSize, useToggle } from "@react-md/utils";
 
-import { GITHUB_DEMO_URL } from "constants/index";
+import { GITHUB_DEMO_URL } from "constants/github";
 import getSandbox from "utils/getSandbox";
 import { toTitle } from "utils/toTitle";
 

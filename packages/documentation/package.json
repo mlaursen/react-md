@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm-run-all prebuild start-dev",
     "dev-log": "cross-env NEXT_TELEMETRY_DISABLED=1 FORCE_COLOR=true next | cat",
+    "sandbox": "dev-utils sandbox",
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
     "build-client": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",

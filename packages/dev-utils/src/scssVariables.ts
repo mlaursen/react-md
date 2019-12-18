@@ -2,6 +2,7 @@ import log from "loglevel";
 import { join } from "path";
 
 import { packagesRoot, scssVariables, src } from "./constants";
+import { isVariableItem } from "./sassdoc-custom";
 import copyStyles from "./utils/copyStyles";
 import format from "./utils/format";
 import getCompiledScssVariable, {
@@ -11,7 +12,6 @@ import getCompiledScssVariable, {
 import getSassdoc from "./utils/getSassdoc";
 import { JSONObject, JSONValue } from "./utils/json";
 import { cleanTempStyles } from "./utils/moveToTempStyles";
-import { isVariableItem } from "./utils/sassdoc";
 import writeFile from "./utils/writeFile";
 
 function toJSONValue(value: CompiledScssValue): JSONValue {

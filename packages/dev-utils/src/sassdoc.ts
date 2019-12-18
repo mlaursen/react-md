@@ -1,17 +1,35 @@
-import { readJsonSync } from "fs-extra";
+import { readFile } from "fs-extra";
+import { omit } from "lodash";
 import log from "loglevel";
 import { renderSync } from "node-sass";
 import { join } from "path";
 import { BuiltInParserName } from "prettier";
-import { ExampleType, Item, LineNumberRange, VariableItem } from "sassdoc";
+import {
+  ExampleType,
+  FunctionItem,
+  Item,
+  ItemReference,
+  MixinItem,
+  VariableItem,
+} from "sassdoc";
 
+import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
 import {
   CompiledExample,
+  FormattedFunctionItem,
   FormattedItem,
-  FormattedItemType,
+  FormattedItemLink,
+  FormattedMixinItem,
   FormattedVariableItem,
-} from "../sassdoc-custom";
-import { nonWebpackDist, projectRoot, tempStylesDir } from "./constants";
+  isFunctionItem,
+  isMixinItem,
+  isPublic,
+  isVariableItem,
+  ItemReferenceLink,
+  PackageSassDocMap,
+  ParameterizedItem,
+  ParameterizedItemParameter,
+} from "./sassdoc-custom";
 import copyStyles from "./utils/copyStyles";
 import format from "./utils/format";
 import getCompiledScssVariable, {
@@ -22,32 +40,19 @@ import getCompiledScssVariable, {
 import getPackages from "./utils/getPackages";
 import getSassdoc from "./utils/getSassdoc";
 import { cleanTempStyles } from "./utils/moveToTempStyles";
-import {
-  isFunctionItem,
-  isMixinItem,
-  isPlaceholderItem,
-  isPublic,
-  isVariableItem,
-} from "./utils/sassdoc";
 import writeFile from "./utils/writeFile";
 
-let githubUrl: string;
-function getGithubUrl(path: string, lineRange: LineNumberRange): string {
-  if (!githubUrl) {
-    const packageJson = readJsonSync(join(projectRoot, "package.json"));
-
-    githubUrl = packageJson.repository.url
-      .replace("git+", "")
-      .replace(".git", "");
+function getGithubUrl(path: string, start?: number, end?: number): string {
+  let line = "";
+  if (typeof start === "number") {
+    line = `#L${start}`;
   }
 
-  let line = `#L${lineRange.start}`;
-  if (lineRange.end !== lineRange.start) {
-    line += `-L${lineRange.end}`;
+  if (typeof end === "number" && start !== end) {
+    line += `-L${end}`;
   }
 
-  const location = path.replace("@react-md/", "").replace("dist/scss", "src");
-  return `${githubUrl}/blob/master/packages/${location}${line}`;
+  return `packages/${path}${line}`;
 }
 
 function getFormatParser(type: ExampleType): BuiltInParserName {
@@ -106,54 +111,109 @@ ${code}
   }
 }
 
-function formatItem(item: Item): FormattedItem {
+export interface FullItemReferenceLink extends ItemReferenceLink {
+  private: boolean;
+}
+
+function getPackageName(item: Item): string {
+  const [packageName] = item.group;
+
+  return packageName.replace(/(form).+/, "$1");
+}
+
+function createReferenceLink(item: Item): FullItemReferenceLink {
+  const { name, type } = item.context;
+
+  return {
+    name,
+    type,
+    packageName: getPackageName(item),
+    private: !isPublic(item),
+  };
+}
+
+function getReferenceLinks(
+  references: ItemReference[] | undefined,
+  referenceLinks: FullItemReferenceLink[]
+): ItemReferenceLink[] | undefined {
+  if (!references) {
+    return undefined;
+  }
+
+  const links = references
+    .map(reference => {
+      const { name, type } = reference.context;
+      const link = referenceLinks.find(
+        reference => reference.name === name && reference.type === type
+      );
+
+      if (!link) {
+        throw new Error(`Unable to find a reference for ${name} ${type}`);
+      }
+
+      if (link.private) {
+        return null;
+      }
+
+      return omit(link, "private");
+    })
+    .filter(Boolean);
+
+  return links.length ? links : undefined;
+}
+
+function formatItem(
+  item: Item,
+  references: FullItemReferenceLink[]
+): FormattedItem {
   const {
     context: { name, line },
     description = "",
     file: { path },
-    group,
-    link: links,
+    link,
     see,
     example,
     usedBy,
   } = item;
 
-  let type: FormattedItemType;
-  if (isVariableItem(item)) {
-    ({ type } = item);
-  } else if (
-    isFunctionItem(item) ||
-    isMixinItem(item) ||
-    isPlaceholderItem(item)
-  ) {
-    ({ type } = item.context);
-  } else {
-    throw new Error("Impossible");
-  }
-
   let examples: CompiledExample[] | undefined;
   if (example) {
     examples = example.map(({ code, type, description }) => {
       const exampleCode = removeUncompilableCode(code);
+      let compiled: string | undefined;
+      if (type === "scss") {
+        compiled = compileExampleCode(exampleCode);
+      }
 
       return {
         code: format(exampleCode, getFormatParser(type)),
-        compiled: compileExampleCode(exampleCode),
+        compiled,
         type,
         description,
       };
     });
   }
 
+  let links: FormattedItemLink[] | undefined;
+  if (link) {
+    links = link.map(({ url, caption }) => ({
+      name: caption || "",
+      href: url,
+    }));
+  }
+
   return {
     name,
-    type,
     description,
-    source: getGithubUrl(path, line),
+    source: getGithubUrl(
+      path.replace("@react-md/", "").replace(nonWebpackDist, src),
+      line.start,
+      line.end
+    ),
     links,
-    see,
-    usedBy,
-    group: group[0],
+    see: getReferenceLinks(see, references),
+    usedBy: getReferenceLinks(usedBy, references),
+    packageName: getPackageName(item),
     examples,
   };
 }
@@ -187,8 +247,12 @@ function getCompiledValue(value: CompiledScssValue): string {
     .substring(prefix.length);
 }
 
-function formatVariableItem(variable: VariableItem): FormattedVariableItem {
+function formatVariableItem(
+  variable: VariableItem,
+  references: FullItemReferenceLink[]
+): FormattedVariableItem {
   const { value, scope } = variable.context;
+  const { type } = variable;
 
   let compiled: string | undefined;
   if (isCompileable(value)) {
@@ -204,33 +268,189 @@ function formatVariableItem(variable: VariableItem): FormattedVariableItem {
   }
 
   return {
-    ...formatItem(variable),
+    ...formatItem(variable, references),
+    type,
     value,
     compiled,
     overridable: scope === "default",
   };
 }
 
-export default async function sassdoc(): Promise<void> {
-  await copyStyles();
+interface ParameterizedCodeOptions {
+  name: string;
+  type: "function" | "mixin";
+  code: string;
+  parameters: ParameterizedItemParameter[] | undefined;
+}
 
-  const sassdocs = (await getSassdoc()).filter(isPublic);
-  const variables = sassdocs.filter(isVariableItem).map(formatVariableItem);
-  await writeFile(
-    "variables.ts",
-    format(`import { FormattedVariableItem } from "./customSassdoc";
+function createParamaterizedItem<T extends MixinItem | FunctionItem>({
+  context,
+  parameter,
+  throw: throws,
+}: T): ParameterizedItem {
+  const { name, type } = context;
+  let params = "";
+  if (parameter) {
+    params = parameter
+      .map(param => {
+        const { name } = param;
+        const defaultValue = (param.default || "").replace(/^rmd/, "$rmd");
+        const suffix = defaultValue && `: ${defaultValue}`;
 
-const variables: FormattedVariableItem[] = ${JSON.stringify(variables)};
+        return `$${name}${suffix}`;
+      })
+      .join("\n");
+  }
 
-export default variables;
-`)
+  params = `(${params})`;
+  const sourceCode = `@${type} ${name}${params} {${context.code}}`;
+  const prefix = sourceCode.substring(0, sourceCode.indexOf("{") + 1);
+  const suffix = sourceCode.substring(sourceCode.lastIndexOf("}"));
+  const code = `${prefix} \u2026 ${suffix}`;
+
+  return {
+    code,
+    sourceCode,
+    throws,
+  };
+}
+
+function formatFunctionItem(
+  func: FunctionItem,
+  references: FullItemReferenceLink[]
+): FormattedFunctionItem {
+  return {
+    ...formatItem(func, references),
+    ...createParamaterizedItem(func),
+    type: "function",
+    parameters: func.parameter,
+    returns: func.return,
+  };
+}
+
+function formatMixinItem(
+  mixin: MixinItem,
+  references: FullItemReferenceLink[]
+): FormattedMixinItem {
+  return {
+    ...formatItem(mixin, references),
+    ...createParamaterizedItem(mixin),
+    type: "mixin",
+    parameters: mixin.parameter,
+  };
+}
+
+const devUtilsSrc = join(packagesRoot, "dev-utils", src);
+const documentationSrc = join(packagesRoot, "documentation", src);
+const documentationSassdoc = join(documentationSrc, "constants", "sassdoc");
+
+/**
+ * This creates a custom utils/sassdoc.ts file within the documentation site
+ * that is a combination of the sassdoc.d.ts and the sassdoc-custom.ts within
+ * this package. It's kind of hacky, but I was getting errors when trying to
+ * reuse these definitions in the documentation site.
+ */
+export async function createSassdocUtil(): Promise<void> {
+  const sassdocDef = await readFile(join(devUtilsSrc, "sassdoc.d.ts"), "utf8");
+  const customDef = await readFile(
+    join(devUtilsSrc, "sassdoc-custom.ts"),
+    "utf8"
   );
 
-  // console.log(variables);
+  const sassdocLines = sassdocDef.split(/\r?\n/);
+  const sassdocStart = sassdocLines.findIndex(line =>
+    line.startsWith("declare module")
+  );
+  const sassdocEnd = sassdocLines.findIndex(line =>
+    line.startsWith("  export interface ParseOptions")
+  );
+  const sassdocTypes = sassdocLines
+    .slice(sassdocStart + 1, sassdocEnd)
+    .join("\n");
 
-  // const functions = sassdocs.filter(isFunctionItem);
-  // const mixins = sassdocs.filter(isMixinItem);
-  // const compiled = getCompiledScssVariables(variables);
-  // console.log(compiled);
+  const customLines = customDef.split(/\r?\n/);
+  const customStart = customLines.findIndex(line =>
+    line.startsWith('export * from "sassdoc')
+  );
+  const customContent = customLines.slice(customStart + 1).join("\n");
+
+  const contents = format(
+    `/** this is a generated file from \`yarn dev-utils sassdoc\` and should not be manually updated */
+${sassdocTypes}${customContent}`,
+    "typescript"
+  );
+  await writeFile(join(documentationSrc, "utils", "sassdoc.ts"), contents);
+}
+
+export default async function sassdoc(): Promise<void> {
+  await copyStyles();
+  await createSassdocUtil();
+
+  const sassdocs = await getSassdoc();
+  const publicSassdocs = sassdocs.filter(isPublic);
+  const references = sassdocs.map(item => createReferenceLink(item));
+  const lookup: PackageSassDocMap = {};
+  publicSassdocs.forEach(item => {
+    const packageName = getPackageName(item);
+    if (!lookup[packageName]) {
+      lookup[packageName] = {
+        functions: {},
+        mixins: {},
+        variables: {},
+      };
+    }
+
+    const packageDoc = lookup[packageName];
+    if (isVariableItem(item)) {
+      const variable = formatVariableItem(item, references);
+      const { name } = variable;
+      if (packageDoc.variables[name]) {
+        throw new Error(
+          `${name} already exists in ${packageName}'s variables...`
+        );
+      }
+
+      packageDoc.variables[name] = variable;
+    }
+
+    if (isFunctionItem(item)) {
+      const func = formatFunctionItem(item, references);
+      const { name } = func;
+      if (packageDoc.functions[name]) {
+        throw new Error(
+          `${name} already exists in ${packageName}'s functions...`
+        );
+      }
+
+      packageDoc.functions[name] = func;
+    }
+
+    if (isMixinItem(item)) {
+      const mixin = formatMixinItem(item, references);
+      const { name } = mixin;
+      if (packageDoc.mixins[name]) {
+        throw new Error(`${name} already exists in ${packageName}'s mixins...`);
+      }
+
+      packageDoc.mixins[name] = mixin;
+    }
+  });
+
+  await Promise.all(
+    Object.entries(lookup).map(([packageName, sassdoc]) => {
+      const contents = `/** this file is generated from \`yarn dev-utils sassdoc\` and should not be updated manually */
+import { PackageSassDoc } from "utils/sassdoc";
+
+const sassdoc: PackageSassDoc = ${JSON.stringify(sassdoc)}
+
+export default sassdoc;
+`;
+      return writeFile(
+        join(documentationSassdoc, `${packageName}.ts`),
+        format(contents)
+      );
+    })
+  );
+
   await cleanTempStyles();
 }

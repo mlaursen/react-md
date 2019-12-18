@@ -2,7 +2,9 @@ import React, { FC, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { CODE_SANDBOX_DEFINE_API } from "constants/index";
+
+const CODE_SANDBOX_DEFINE_API =
+  "https://codesandbox.io/api/v1/sandboxes/define";
 
 export interface SandboxDefineFormProps {
   onCreated: () => void;

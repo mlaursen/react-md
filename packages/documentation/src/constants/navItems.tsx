@@ -13,7 +13,12 @@ import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import { PACKAGE_NAMES } from ".";
+import {
+  PACKAGE_NAMES,
+  DEMOABLE_PACKAGES,
+  TYPESCRIPT_PACKAGES,
+  SCSS_PACKAGES,
+} from "./packages";
 
 interface Route {
   href: string;
@@ -37,16 +42,6 @@ type NavItem = Route | Divider | Subheader;
 
 const uuid = createIdGenerator("nav");
 
-export const APIABLE_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/elevation/.test(name)
-);
-export const DEMOABLE_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/layout/.test(name)
-);
-export const SASSDOCABLE_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/material-icons/.test(name)
-);
-
 const getPackageRoutes = (name: string): Route[] => {
   const routes: Route[] = [];
 
@@ -62,14 +57,14 @@ const getPackageRoutes = (name: string): Route[] => {
     children: "Installation",
   });
 
-  if (APIABLE_PACKAGES.includes(name)) {
+  if (TYPESCRIPT_PACKAGES.includes(name)) {
     routes.push({
       href: "/api",
       children: "API",
     });
   }
 
-  if (SASSDOCABLE_PACKAGES.includes(name)) {
+  if (SCSS_PACKAGES.includes(name)) {
     routes.push({
       href: "/sassdoc",
       children: "SassDoc",

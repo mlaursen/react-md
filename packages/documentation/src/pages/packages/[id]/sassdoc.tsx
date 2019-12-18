@@ -1,7 +1,7 @@
 import React from "react";
 import { NextFC } from "next";
 
-import { SASSDOCABLE_PACKAGES } from "constants/navItems";
+import { SCSS_PACKAGES } from "constants/packages";
 import NotFoundPage from "components/NotFoundPage";
 import SassDocInProgress from "components/InProgress/SassDoc";
 import { qsToString } from "utils/routes";
@@ -15,7 +15,7 @@ const SassDoc: NextFC<SassDocProps> = ({ sassdoc }) =>
 
 SassDoc.getInitialProps = async ({ query }): Promise<SassDocProps> => {
   const name = qsToString(query.id);
-  const sassdoc = SASSDOCABLE_PACKAGES.includes(name) ? {} : null;
+  const sassdoc = SCSS_PACKAGES.includes(name) ? {} : null;
   // const sassdoc = await import(`../../../sassdocs/${query.id}`)
   //   .then(mod => mod.default)
   //   .catch(() => null);

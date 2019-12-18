@@ -18,6 +18,7 @@ const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
       } catch (e) {
       } finally {
         document.body.removeChild(area);
+        event.currentTarget.focus();
       }
     },
     []

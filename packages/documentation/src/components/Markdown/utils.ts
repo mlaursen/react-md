@@ -2,8 +2,8 @@ import Prism from "prismjs";
 import * as marked from "marked";
 import cn from "classnames";
 
-import { GITHUB_URL, PACKAGE_NAMES } from "constants/index";
-import { DEMOABLE_PACKAGES } from "constants/navItems";
+import { GITHUB_URL } from "constants/github";
+import { DEMOABLE_PACKAGES, PACKAGE_NAMES } from "constants/packages";
 
 export function getLanguage(language: string): string {
   switch (language) {
