@@ -31,16 +31,7 @@
 @mixin rmd-toggle {
   @include rmd-button-theme(height, icon-size);
   @include rmd-button-theme(width, icon-size);
-  @include rmd-states-surface;
-  @include rmd-utils-keyboard-only {
-    &--focused {
-      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
-
-      &:hover {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
-      }
-    }
-  }
+  @include rmd-states-surface('&--focused');
 
   align-items: center;
   border-radius: $rmd-toggle-border-radius;
@@ -207,6 +198,7 @@
 /// @access private
 @mixin rmd-switch-input {
   @include rmd-input-hidden;
+  @include rmd-states-focus-shadow('&:focus + .rmd-switch__ball');
 
   &:disabled + .rmd-switch__ball {
     @include rmd-states-theme-update-var(hover-color, transparent);

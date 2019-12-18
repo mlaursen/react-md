@@ -86,7 +86,7 @@
     @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
     @include rmd-form-theme-update-var(label-left-offset, $rmd-text-field-filled-padding);
     @include rmd-form-theme(background-color, text-filled-color);
-    @include rmd-states-surface(false);
+    @include rmd-states-surface($clickable: false);
 
     border-top-left-radius: $rmd-text-field-filled-border-radius;
     border-top-right-radius: $rmd-text-field-filled-border-radius;
