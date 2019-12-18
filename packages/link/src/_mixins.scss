@@ -26,7 +26,7 @@
 ///
 /// @param {String} theme-style - The link theme style type to update. This should be one
 ///   of the `$rmd-link-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-link-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-link-theme-values, link);
 }

@@ -3,7 +3,106 @@ import { PackageSassDoc } from "utils/sassdoc";
 
 const sassdoc: PackageSassDoc = {
   functions: {},
-  mixins: {},
+  mixins: {
+    "rmd-media-aspect-ratio-container": {
+      name: "rmd-media-aspect-ratio-container",
+      description:
+        "Creates the styles for a media container that should enforce a specific\naspect ratio.\n",
+      source: "packages/media/src/_mixins.scss#L11-L16",
+      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      packageName: "media",
+      code: "@mixin rmd-media-aspect-ratio-container { … }",
+      sourceCode:
+        "@mixin rmd-media-aspect-ratio-container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n}\n",
+      type: "mixin",
+    },
+    "rmd-media-forced-aspect-ratio": {
+      name: "rmd-media-forced-aspect-ratio",
+      description:
+        "Creates the styles for a responsive media item that should have a specific\naspect ratio.\n",
+      source: "packages/media/src/_mixins.scss#L20-L28",
+      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      packageName: "media",
+      code: "@mixin rmd-media-forced-aspect-ratio { … }",
+      sourceCode:
+        "@mixin rmd-media-forced-aspect-ratio {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n",
+      type: "mixin",
+    },
+    "rmd-media": {
+      name: "rmd-media",
+      description:
+        "Creates the styles for a responsive media item that will update its\nheight and width based on the parent element.\n",
+      source: "packages/media/src/_mixins.scss#L32-L35",
+      usedBy: [
+        { name: "react-md-media", type: "mixin", packageName: "media" },
+        { name: "react-md-media", type: "mixin", packageName: "media" },
+      ],
+      packageName: "media",
+      code: "@mixin rmd-media { … }",
+      sourceCode: "@mixin rmd-media {\n  height: auto;\n  width: 100%;\n}\n",
+      type: "mixin",
+    },
+    "rmd-media-overlay-position": {
+      name: "rmd-media-overlay-position",
+      description:
+        "Creates the base positioning styles for the media overlay element.\n",
+      source: "packages/media/src/_mixins.scss#L39-L76",
+      usedBy: [
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+      ],
+      packageName: "media",
+      code: "@mixin rmd-media-overlay-position($position) { … }",
+      sourceCode:
+        '@mixin rmd-media-overlay-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-media-overlay-positions,\n    $position,\n    "rmd-media-overlay-positions"\n  );\n\n  @if $position == left or $position == right or $position == center {\n    bottom: 0;\n    top: 0;\n    width: $rmd-media-overlay-horizontal-width;\n\n    @if $position == left {\n      left: 0;\n    } @else if $position == right {\n      right: 0;\n    } @else if $position == center {\n      left: 50%;\n      transform: translateX(-50%);\n    }\n  } @else if $position == top or $position == bottom or $position == middle {\n    left: 0;\n    right: 0;\n\n    @if $position == top {\n      top: 0;\n    } @else if $position == bottom {\n      bottom: 0;\n    } @else if $position == middle {\n      top: 50%;\n      transform: translateY(-50%);\n    }\n  } @else if $position == absolute-center {\n    left: 50%;\n    top: 50%;\n    transform: translateX(-50%) translateY(-50%);\n  }\n}\n',
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "position",
+          description: "One of the `rmd-media-overlay-positions` values",
+        },
+      ],
+    },
+    "rmd-media-overlay": {
+      name: "rmd-media-overlay",
+      description:
+        "Creates the media overlay styles. All this really does is update the theme background and\ntext colors based on the provided background color for the overlay element.\n\n",
+      source: "packages/media/src/_mixins.scss#L86-L111",
+      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      packageName: "media",
+      code:
+        "@mixin rmd-media-overlay($background-color: $rmd-media-overlay-background-color, $color: null) { … }",
+      sourceCode:
+        '@mixin rmd-media-overlay(\n  $background-color: $rmd-media-overlay-background-color,\n  $color: null\n) {\n  @if $color == null {\n    $light: rmd-theme-tone($background-color) == "light";\n    $color: rmd-theme-var(\n      if($light, text-primary-on-light, text-primary-on-dark)\n    );\n    $secondary-color: rmd-theme-var(\n      if($light, text-secondary-on-light, text-secondary-on-dark)\n    );\n\n    @include rmd-theme-update-var(\n      text-secondary-on-background,\n      $secondary-color\n    );\n  }\n\n  @include rmd-theme-update-var(background, $background-color);\n  @include rmd-theme-update-var(text-primary-on-background, $color);\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n\n  padding: $rmd-media-overlay-padding;\n  position: absolute;\n  z-index: 1;\n\n  @if $rmd-media-overlay-positions != null {\n    @each $position in $rmd-media-overlay-positions {\n      &--#{$position} {\n        @include rmd-media-overlay-position($position);\n      }\n    }\n  }\n}\n',
+      type: "mixin",
+      parameters: [
+        {
+          type: "Color",
+          name: "background-color",
+          default: "rmd-media-overlay-background-color",
+          description: "The background color\n  for the media overlay.",
+        },
+        {
+          type: "Color",
+          name: "color",
+          default: "null",
+          description:
+            "An optional color to use for the overlay. If this is `null`,\n  it will determine the contrast tone of the background color and use either the light or\n  dark theme variables instead.",
+        },
+      ],
+    },
+    "react-md-media": {
+      name: "react-md-media",
+      description: "Creates all the styles for the media package.\n",
+      source: "packages/media/src/_mixins.scss#L114-L155",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "media",
+      code: "@mixin react-md-media { … }",
+      sourceCode:
+        "@mixin react-md-media {\n  .rmd-media-container {\n    display: inline-block;\n    position: relative;\n\n    @each $selector in $rmd-media-selectors {\n      &--auto #{$selector} {\n        @include rmd-media;\n      }\n\n      &--aspect-ratio #{$selector} {\n        @include rmd-media-forced-aspect-ratio;\n      }\n    }\n\n    &--aspect-ratio {\n      @include rmd-media-aspect-ratio-container;\n    }\n\n    @each $key, $value in $rmd-media-default-aspect-ratios {\n      &--#{$key} {\n        $width: nth($value, 1);\n        $height: nth($value, 2);\n\n        padding-bottom: percentage($height / $width);\n      }\n    }\n\n    &--full-width {\n      display: block;\n      width: 100%;\n    }\n  }\n\n  .rmd-media {\n    @include rmd-media;\n  }\n\n  .rmd-media-overlay {\n    @include rmd-media-overlay;\n  }\n}\n",
+      type: "mixin",
+    },
+  },
   variables: {
     "rmd-media-overlay-background-color": {
       name: "rmd-media-overlay-background-color",

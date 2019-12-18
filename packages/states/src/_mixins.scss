@@ -27,7 +27,7 @@
 ///
 /// @param {String} theme-style - The states theme style type to update. This should be one
 ///   of the `$rmd-states-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-states-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-states-theme-values, states);
 }

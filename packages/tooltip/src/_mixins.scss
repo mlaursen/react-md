@@ -25,7 +25,7 @@
 ///
 /// @param {String} theme-style - The tooltip theme style type to update. This should be one
 ///   of the `$rmd-tooltip-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tooltip-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tooltip-theme-values, tooltip);
 }

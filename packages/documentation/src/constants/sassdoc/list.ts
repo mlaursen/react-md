@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "list",
       code: "@function rmd-list-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-list-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-list-theme-values, list);\n}",
+        "@function rmd-list-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-list-theme-values, list);\n}\n",
       type: "function",
       parameters: [
         {
@@ -45,9 +45,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
-      code: "@function rmd-list-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@function rmd-list-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-list-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-list-theme-values, list, $fallback);\n}",
+        "@function rmd-list-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-list-theme-values,\n    list,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -74,60 +74,146 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-theme": {
       name: "rmd-list-theme",
       description:
-        "This function is used to quickly get one of the list's theme values. This is really\njust for the `rmd-list-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/list/src/_functions.scss#L14-L16",
-      packageName: "list",
-      code: "@function rmd-list-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-list-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-list-theme-values, list);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-list-theme-values` map keys to get a value for.",
-        },
-      ],
-    },
-    "rmd-list-theme-var": {
-      name: "rmd-list-theme-var",
-      description:
-        "This function is used to get one of the list's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-list-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/list/src/_functions.scss#L29-L31",
+        "Creates the styles for one of the list's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/list/src/_mixins.scss#L25-L27",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
-        { name: "rmd-list", type: "mixin", packageName: "list" },
-        { name: "rmd-list", type: "mixin", packageName: "list" },
-        { name: "rmd-list", type: "mixin", packageName: "list" },
-        { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
-        { name: "rmd-list-item", type: "mixin", packageName: "list" },
-        { name: "rmd-list-item", type: "mixin", packageName: "list" },
-        { name: "rmd-list-item", type: "mixin", packageName: "list" },
-        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+        { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
-      code: "@function rmd-list-theme-var($theme-style\n$fallback: null) { … }",
+      code:
+        "@mixin rmd-list-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-list-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-list-theme-values, list, $fallback);\n}",
+        "@mixin rmd-list-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-list-theme-values,\n    list\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-list-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-list-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-list-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-list-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-list-theme-update-var": {
+      name: "rmd-list-theme-update-var",
+      description:
+        "Updates one of the list's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/list/src/_mixins.scss#L35-L37",
+      usedBy: [
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+      ],
+      packageName: "list",
+      code: "@mixin rmd-list-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-list-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-list-theme-values,\n    list\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The list theme style type to update. This should be one\n  of the `$rmd-list-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "rmd-list-unstyled": {
+      name: "rmd-list-unstyled",
+      description:
+        'A "general" use mixin that will remove the default browser styles for a list and apply the\noptionally provided margin and padding instead.\n\n',
+      source: "packages/list/src/_mixins.scss#L44-L48",
+      usedBy: [{ name: "rmd-list", type: "mixin", packageName: "list" }],
+      packageName: "list",
+      code: "@mixin rmd-list-unstyled($padding: 0, $margin: 0) { … }",
+      sourceCode:
+        "@mixin rmd-list-unstyled($padding: 0, $margin: 0) {\n  list-style-type: none;\n  margin: $margin;\n  padding: $padding;\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String|Number",
+          name: "padding",
+          default: "0",
+          description: "The amount of padding to apply.",
+        },
+        {
+          type: "String|Number",
+          name: "margin",
+          default: "0",
+          description: "The amount of margin to apply.",
+        },
+      ],
+    },
+    "rmd-list": {
+      name: "rmd-list",
+      description: "Creates the styles for a list in react-md.\n",
+      source: "packages/list/src/_mixins.scss#L60-L78",
+      usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
+      packageName: "list",
+      code: "@mixin rmd-list { … }",
+      sourceCode:
+        "@mixin rmd-list {\n  @include rmd-typography(subtitle-1);\n  @include rmd-divider-theme-update-var(\n    inset,\n    rmd-list-theme-var(text-keyline)\n  );\n  @include rmd-list-unstyled(null);\n  @include rmd-list-theme(font-size);\n\n  line-height: $rmd-list-line-height;\n  padding: rmd-list-theme-var(vertical-padding)\n    rmd-list-theme-var(horizontal-padding);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n    padding: rmd-list-theme-var(horizontal-padding)\n      rmd-list-theme-var(vertical-padding);\n  }\n\n  &--dense {\n    @include rmd-list-dense-theme;\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-list-item": {
+      name: "rmd-list-item",
+      description: "Creates all the styles for a list item.\n",
+      source: "packages/list/src/_mixins.scss#L119-L210",
+      usedBy: [
+        { name: "react-md-list", type: "mixin", packageName: "list" },
+        { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
+      ],
+      packageName: "list",
+      code: "@mixin rmd-list-item { … }",
+      sourceCode:
+        '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &[aria-disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__icon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
+      type: "mixin",
+    },
+    "rmd-list-subheader": {
+      name: "rmd-list-subheader",
+      description: "Creates the styles for a subheader within a list.\n",
+      source: "packages/list/src/_mixins.scss#L213-L225",
+      usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
+      packageName: "list",
+      code: "@mixin rmd-list-subheader { … }",
+      sourceCode:
+        "@mixin rmd-list-subheader {\n  @include rmd-typography(subtitle-2);\n  @include rmd-theme(color, text-secondary-on-background);\n  @include rmd-list-item-base;\n\n  &--inset {\n    @include rmd-list-theme(padding-left, text-keyline);\n    @include rmd-utils-rtl {\n      @include rmd-list-theme(padding-left, item-horizontal-padding);\n      @include rmd-list-theme(padding-right, text-keyline);\n    }\n  }\n}\n",
+      type: "mixin",
+    },
+    "react-md-list": {
+      name: "react-md-list",
+      description: "Creats all the styles for the list package.\n",
+      source: "packages/list/src/_mixins.scss#L228-L242",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "list",
+      code: "@mixin react-md-list { … }",
+      sourceCode:
+        "@mixin react-md-list {\n  @include rmd-theme-create-root-theme($rmd-list-theme-values, list);\n\n  .rmd-list {\n    @include rmd-list;\n  }\n\n  .rmd-list-item {\n    @include rmd-list-item;\n  }\n\n  .rmd-list-subheader {\n    @include rmd-list-subheader;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "alert",
       code: "@function rmd-alert-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-alert-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-alert-theme-values, alert);\n}",
+        "@function rmd-alert-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-alert-theme-values, alert);\n}\n",
       type: "function",
       parameters: [
         {
@@ -33,9 +33,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_functions.scss#L29-L31",
       packageName: "alert",
       code:
-        "@function rmd-alert-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-alert-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-alert-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-alert-theme-values, alert, $fallback);\n}",
+        "@function rmd-alert-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-alert-theme-values,\n    alert,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -62,48 +62,75 @@ const sassdoc: PackageSassDoc = {
     "rmd-alert-theme": {
       name: "rmd-alert-theme",
       description:
-        "This function is used to quickly get one of the alert's theme values. This is really\njust for the `rmd-alert-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/alert/src/_functions.scss#L14-L16",
-      packageName: "alert",
-      code: "@function rmd-alert-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-alert-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-alert-theme-values, alert);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-alert-theme-values` map keys to get a value for.",
-        },
+        "Creates the styles for one of the alert's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/alert/src/_mixins.scss#L21-L23",
+      usedBy: [
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
       ],
-    },
-    "rmd-alert-theme-var": {
-      name: "rmd-alert-theme-var",
-      description:
-        "This function is used to get one of the alert's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-alert-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/alert/src/_functions.scss#L29-L31",
       packageName: "alert",
       code:
-        "@function rmd-alert-theme-var($theme-style\n$fallback: null) { … }",
+        "@mixin rmd-alert-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-alert-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-alert-theme-values, alert, $fallback);\n}",
+        "@mixin rmd-alert-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-alert-theme-values,\n    alert\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-alert-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-alert-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-alert-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\nisn't set somehow. This will default to automatically retrieving the default value\nfrom the `rmd-alert-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-alert-theme-update-var": {
+      name: "rmd-alert-theme-update-var",
+      description:
+        "Updates one of the alert's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/alert/src/_mixins.scss#L31-L33",
+      packageName: "alert",
+      code: "@mixin rmd-alert-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-alert-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-alert-theme-values,\n    alert\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The alert theme style type to update. This should be one\nof the `$rmd-alert-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "react-md-alert": {
+      name: "react-md-alert",
+      description:
+        "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
+      source: "packages/alert/src/_mixins.scss#L36-L137",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "alert",
+      code: "@mixin react-md-alert { … }",
+      sourceCode:
+        "@mixin react-md-alert {\n  @include rmd-theme-create-root-theme($rmd-alert-theme-values, alert);\n\n  .rmd-snackbar {\n    bottom: 0;\n    display: flex;\n    justify-content: center;\n    left: 0;\n    margin: $rmd-snackbar-margin;\n    // disable pointer events since otherwise this will block clicking on elements while the toast\n    // is visible. they will be re-enabled on the toast itself.\n    pointer-events: none;\n    position: fixed;\n    right: 0;\n    z-index: $rmd-snackbar-z-index;\n  }\n\n  .rmd-toast {\n    @include rmd-elevation($rmd-toast-elevation);\n    @include rmd-typography(subtitle-2);\n    @include rmd-alert-theme(background-color, toast-background-color);\n    @include rmd-alert-theme(color, toast-color);\n\n    align-items: center;\n    border-radius: $rmd-toast-border-radius;\n    display: flex;\n    min-height: $rmd-toast-min-height;\n    min-width: $rmd-toast-min-width;\n    padding: 0 $rmd-toast-horizontal-padding;\n    pointer-events: auto;\n    transform-origin: center;\n\n    &--padded {\n      padding-bottom: $rmd-toast-vertical-padding;\n      padding-top: $rmd-toast-vertical-padding;\n    }\n\n    &--action {\n      @include rmd-utils-rtl-auto(\n        padding-right,\n        0,\n        $rmd-toast-horizontal-padding\n      );\n    }\n\n    &--two-lines {\n      min-height: $rmd-toast-two-line-min-height;\n    }\n\n    &--stacked {\n      flex-direction: column;\n      padding-bottom: 0;\n    }\n\n    &--enter {\n      @include rmd-transition(deceleration);\n\n      opacity: 0;\n      transform: scale(0);\n      transition: opacity $rmd-toast-enter-duration,\n        transform $rmd-toast-enter-duration;\n    }\n\n    &--enter-active {\n      opacity: 1;\n      transform: scale(1);\n    }\n\n    &--exit {\n      @include rmd-transition(acceleration);\n\n      opacity: 1;\n      transform: scale(1);\n    }\n\n    &--exit-active {\n      opacity: 0;\n      transform: scale(0);\n      transition: opacity $rmd-toast-exit-duration,\n        transform $rmd-toast-exit-duration;\n    }\n\n    &__message {\n      @include rmd-utils-rtl-auto(margin-right, auto);\n\n      display: inline-flex;\n      flex: 1 1 auto;\n      flex-wrap: wrap;\n\n      p {\n        margin: 0;\n        width: 100%;\n      }\n    }\n\n    &__action {\n      display: inline-flex;\n      flex-shrink: 0;\n      margin: 0 $rmd-toast-action-margin;\n\n      &--stacked {\n        align-self: flex-end;\n        margin-bottom: $rmd-toast-action-margin;\n        margin-top: $rmd-toast-stacked-action-margin-top;\n      }\n    }\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

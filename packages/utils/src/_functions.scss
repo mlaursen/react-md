@@ -29,7 +29,7 @@
 ///
 /// @access private
 /// @param {List|Map} list-or-map - The list or map to validate
-/// @param {String|Number|Color} key-or-value - Either the value to check
+/// @param {Color|String|Number} key-or-value - Either the value to check
 ///   for in a list or a Map's key.
 /// @param {String} error-message - The prop name that was being used
 ///   for the validation. This is mostly for a more helpful error message

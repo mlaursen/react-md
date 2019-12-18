@@ -93,8 +93,9 @@ declare module "sassdoc" {
   export type ItemDeprecated = string;
 
   /**
-   * The supported example types for an `@example`.  @see
-   * http://sassdoc.com/annotations/#example
+   * The supported example types for an `@example`.
+   *
+   * @see http://sassdoc.com/annotations/#example
    */
   export type ExampleType = "css" | "scss" | "markup" | "javascript";
 

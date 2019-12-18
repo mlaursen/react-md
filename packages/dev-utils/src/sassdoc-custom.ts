@@ -1,5 +1,6 @@
 import {
   DataType,
+  ExampleType,
   Item,
   ItemExample,
   ItemThrow,
@@ -24,11 +25,11 @@ export const isFunctionItem = (item: Item): item is FunctionItem =>
   item.context.type === "function";
 
 export const isMixinItem = (item: Item): item is MixinItem =>
-  item.context.type === "function";
+  item.context.type === "mixin";
 
 export const isPublic = (item: Item): boolean => item.access !== "private";
 
-export interface CompiledExample extends ItemExample {
+export interface CompiledExample extends ItemExample<ExampleType | "html"> {
   /**
    * A compiled version if the code is an scss example.
    */
@@ -119,7 +120,13 @@ export interface FormattedItem {
  * This is complete over-engineering since it's really just a string type, but I want
  * to know and be consistent for how the sassdoc types are defined.
  */
-export type JoinedDataType = "Color|String" | "Color|String|Number";
+export type JoinedDataType =
+  | "Map|String"
+  | "List|String"
+  | "Color|String"
+  | "Color|String|Number"
+  | "String|Number"
+  | "String...";
 export type SupportedVariableType = DataType | JoinedDataType;
 export type SupportedItemDataType = ItemDataType | JoinedDataType;
 

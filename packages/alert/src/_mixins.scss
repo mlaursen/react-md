@@ -16,8 +16,8 @@
 /// @param {String} property - The property to set a `rmd-alert-theme-values` value to.
 /// @param {String} theme-style - One of the keys of `rmd-alert-theme-values` to extract a value from.
 /// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-alert-theme-values` map when `null`.
+/// isn't set somehow. This will default to automatically retrieving the default value
+/// from the `rmd-alert-theme-values` map when `null`.
 @mixin rmd-alert-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-alert-theme-values, alert);
 }
@@ -26,8 +26,8 @@
 /// of your app.
 ///
 /// @param {String} theme-style - The alert theme style type to update. This should be one
-///   of the `$rmd-alert-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// of the `$rmd-alert-theme-values` keys.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-alert-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-alert-theme-values, alert);
 }

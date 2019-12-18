@@ -8,7 +8,7 @@
 /// This is a simple mixin that will create styles from a Map of properties with
 /// values.
 ///
-/// @param Map style-map - The map of styles that should be applied. If this is
+/// @param {Map} style-map - The map of styles that should be applied. If this is
 /// `null`, no styles will be generated.
 @mixin rmd-utils-map-to-styles($style-map) {
   @if $style-map {

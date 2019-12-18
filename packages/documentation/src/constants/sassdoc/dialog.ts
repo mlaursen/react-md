@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "dialog",
       code: "@function rmd-dialog-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-dialog-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-dialog-theme-values, dialog);\n}",
+        "@function rmd-dialog-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -33,9 +33,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/dialog/src/_functions.scss#L29-L31",
       packageName: "dialog",
       code:
-        "@function rmd-dialog-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-dialog-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-dialog-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-dialog-theme-values, dialog, $fallback);\n}",
+        "@function rmd-dialog-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -62,48 +62,70 @@ const sassdoc: PackageSassDoc = {
     "rmd-dialog-theme": {
       name: "rmd-dialog-theme",
       description:
-        "This function is used to quickly get one of the dialog's theme values. This is really\njust for the `rmd-dialog-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/dialog/src/_functions.scss#L14-L16",
-      packageName: "dialog",
-      code: "@function rmd-dialog-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-dialog-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-dialog-theme-values, dialog);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-dialog-theme-values` map keys to get a value for.",
-        },
-      ],
-    },
-    "rmd-dialog-theme-var": {
-      name: "rmd-dialog-theme-var",
-      description:
-        "This function is used to get one of the dialog's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-dialog-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/dialog/src/_functions.scss#L29-L31",
+        "Creates the styles for one of the dialog's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/dialog/src/_mixins.scss#L22-L24",
       packageName: "dialog",
       code:
-        "@function rmd-dialog-theme-var($theme-style\n$fallback: null) { … }",
+        "@mixin rmd-dialog-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-dialog-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-dialog-theme-values, dialog, $fallback);\n}",
+        "@mixin rmd-dialog-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-dialog-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-dialog-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-dialog-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-dialog-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-dialog-theme-update-var": {
+      name: "rmd-dialog-theme-update-var",
+      description:
+        "Updates one of the dialog's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/dialog/src/_mixins.scss#L32-L34",
+      packageName: "dialog",
+      code: "@mixin rmd-dialog-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-dialog-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The dialog theme style type to update. This should be one\n  of the `$rmd-dialog-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "react-md-dialog": {
+      name: "react-md-dialog",
+      description: "Creates all the styles for the dialog package.\n",
+      source: "packages/dialog/src/_mixins.scss#L210-L240",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "dialog",
+      code: "@mixin react-md-dialog { … }",
+      sourceCode:
+        "@mixin react-md-dialog {\n  @include rmd-theme-create-root-theme($rmd-dialog-theme-values, dialog);\n\n  .rmd-dialog-container {\n    @include rmd-dialog-container;\n  }\n\n  .rmd-dialog-overlay {\n    @include rmd-dialog-overlay;\n  }\n\n  .rmd-dialog {\n    @include rmd-dialog;\n\n    &__header {\n      @include rmd-dialog-header;\n    }\n\n    &__content {\n      @include rmd-dialog-content;\n    }\n\n    &__footer {\n      @include rmd-dialog-footer;\n    }\n\n    &__title {\n      @include rmd-dialog-title;\n    }\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

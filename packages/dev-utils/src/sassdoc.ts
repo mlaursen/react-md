@@ -299,10 +299,11 @@ function createParamaterizedItem<T extends MixinItem | FunctionItem>({
 
         return `$${name}${suffix}`;
       })
-      .join("\n");
+      .join(", ");
+
+    params = `(${params})`;
   }
 
-  params = `(${params})`;
   const sourceCode = `@${type} ${name}${params} {${context.code}}`;
   const prefix = sourceCode.substring(0, sourceCode.indexOf("{") + 1);
   const suffix = sourceCode.substring(sourceCode.lastIndexOf("}"));
@@ -310,7 +311,7 @@ function createParamaterizedItem<T extends MixinItem | FunctionItem>({
 
   return {
     code,
-    sourceCode,
+    sourceCode: format(sourceCode, "scss"),
     throws,
   };
 }

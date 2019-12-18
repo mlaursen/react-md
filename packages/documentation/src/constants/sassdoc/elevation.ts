@@ -40,9 +40,9 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       code:
-        "@function rmd-elevation($z-value\n$color: $rmd-elevation-color\n$opacity-boost: 0) { … }",
+        "@function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
-        "@function rmd-elevation($z-value\n$color: $rmd-elevation-color\n$opacity-boost: 0) {\n  @if type-of($z-value) != 'number' or not unitless($z-value) {\n    @error \"$z-value must be a unitless number, but received '#{$z-value}'\";\n  }\n\n  @if $z-value < 0 or $z-value > 24 {\n    @error \"$z-value must be between 0 and 24, but received '#{$z-value}'\";\n  }\n\n  $color: rmd-theme($color);\n  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);\n  $shadow-1-color: rgba($color, $rmd-elevation-shadow-1-opacity + $opacity-boost);\n\n  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);\n  $shadow-2-color: rgba($color, $rmd-elevation-shadow-2-opacity + $opacity-boost);\n\n  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);\n  $shadow-3-color: rgba($color, $rmd-elevation-shadow-3-opacity + $opacity-boost);\n\n  @return #{'#{$shadow-1-value} #{$shadow-1-color}'}, #{'#{$shadow-2-value} #{$shadow-2-color}'},\n    #{'#{$shadow-3-value} #{$shadow-3-color}'};\n}",
+        '@function rmd-elevation(\n  $z-value,\n  $color: $rmd-elevation-color,\n  $opacity-boost: 0\n) {\n  @if type-of($z-value) != "number" or not unitless($z-value) {\n    @error "$z-value must be a unitless number, but received \'#{$z-value}\'";\n  }\n\n  @if $z-value < 0 or $z-value > 24 {\n    @error "$z-value must be between 0 and 24, but received \'#{$z-value}\'";\n  }\n\n  $color: rmd-theme($color);\n  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);\n  $shadow-1-color: rgba(\n    $color,\n    $rmd-elevation-shadow-1-opacity + $opacity-boost\n  );\n\n  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);\n  $shadow-2-color: rgba(\n    $color,\n    $rmd-elevation-shadow-2-opacity + $opacity-boost\n  );\n\n  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);\n  $shadow-3-color: rgba(\n    $color,\n    $rmd-elevation-shadow-3-opacity + $opacity-boost\n  );\n\n  @return #{"#{$shadow-1-value} #{$shadow-1-color}"},\n    #{"#{$shadow-2-value} #{$shadow-2-color}"},\n    #{"#{$shadow-3-value} #{$shadow-3-color}"};\n}\n',
       throws: [
         "$z-value must be a unitless number, but received ",
         "$z-value must be between 0 and 24, but received ",
@@ -77,54 +77,98 @@ const sassdoc: PackageSassDoc = {
   mixins: {
     "rmd-elevation": {
       name: "rmd-elevation",
-      description:
-        "Returns a box shadow string for the current material design elevation. This is\nuseful if you want to merge material design elevation with custom box shadow\nvalues as well.\n\n",
-      source: "packages/elevation/src/_functions.scss#L27-L48",
+      description: "Create the box shadow based on a z-value.\n\n",
+      source: "packages/elevation/src/_mixins.scss#L26-L28",
       usedBy: [
-        { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
-        {
-          name: "rmd-elevation-transition",
-          type: "mixin",
-          packageName: "elevation",
-        },
-        {
-          name: "rmd-elevation-transition",
-          type: "mixin",
-          packageName: "elevation",
-        },
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "elevation",
       examples: [
         {
-          code: ".my-class {\n  box-shadow: rmd-elevation(2);\n}\n",
-          compiled:
-            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n",
-          type: "scss",
-          description: "Simple usage",
-        },
-        {
           code:
-            ".my-class {\n  box-shadow: rmd-elevation(2), inset 0 0 0 1px $rmd-blue-500;\n}\n",
+            ".my-class {\n  @include rmd-elevation(8);\n\n  background-color: white;\n  position: fixed;\n  z-index: 8;\n}\n",
           compiled:
-            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 0 1px #2196f3;\n}\n",
+            ".my-class {\n  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),\n    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);\n  background-color: white;\n  position: fixed;\n  z-index: 8;\n}\n",
           type: "scss",
-          description: "Merging Shadows",
+          description: "Example Usage SCSS",
         },
       ],
       code:
-        "@function rmd-elevation($z-value\n$color: $rmd-elevation-color\n$opacity-boost: 0) { … }",
+        "@mixin rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
-        "@function rmd-elevation($z-value\n$color: $rmd-elevation-color\n$opacity-boost: 0) {\n  @if type-of($z-value) != 'number' or not unitless($z-value) {\n    @error \"$z-value must be a unitless number, but received '#{$z-value}'\";\n  }\n\n  @if $z-value < 0 or $z-value > 24 {\n    @error \"$z-value must be between 0 and 24, but received '#{$z-value}'\";\n  }\n\n  $color: rmd-theme($color);\n  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);\n  $shadow-1-color: rgba($color, $rmd-elevation-shadow-1-opacity + $opacity-boost);\n\n  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);\n  $shadow-2-color: rgba($color, $rmd-elevation-shadow-2-opacity + $opacity-boost);\n\n  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);\n  $shadow-3-color: rgba($color, $rmd-elevation-shadow-3-opacity + $opacity-boost);\n\n  @return #{'#{$shadow-1-value} #{$shadow-1-color}'}, #{'#{$shadow-2-value} #{$shadow-2-color}'},\n    #{'#{$shadow-3-value} #{$shadow-3-color}'};\n}",
-      throws: [
-        "$z-value must be a unitless number, but received ",
-        "$z-value must be between 0 and 24, but received ",
-      ],
+        "@mixin rmd-elevation(\n  $z-value,\n  $color: $rmd-elevation-color,\n  $opacity-boost: 0\n) {\n  box-shadow: rmd-elevation($z-value, $color, $opacity-boost);\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "Number",
           name: "z-value",
           description: "This should be a number between 0 and 24.",
+        },
+        {
+          type: "Color",
+          name: "color",
+          default: "rmd-elevation-color",
+          description: "The color to use for the box-shadow.",
+        },
+        {
+          type: "Number",
+          name: "opacity-boost",
+          default: "0",
+          description:
+            "The amount to boost the default opacity levels for the\n  three box-shadows applied.",
+        },
+      ],
+    },
+    "rmd-elevation-transition": {
+      name: "rmd-elevation-transition",
+      description:
+        "This mixin is used to create performant box-shadow transitions between different elevations. What\nthis does behind the scenes is update the element to have `position: relative` along with a pseudo\n`::before` or `::after` tag that has the new box shadow with an initial opacity set to 0. When the\n`$active-selectors` class or state is applied to the element, the pseudo element's opacity will be\nupdated to 1 and it'll animate in. This is really just because it is more performant to animate opacity\ninstead of box-shadow itself.\n\n",
+      source: "packages/elevation/src/_mixins.scss#L47-L70",
+      usedBy: [
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+      ],
+      packageName: "elevation",
+      code:
+        "@mixin rmd-elevation-transition($start, $end, $active-selectors, $before: true, $duration: $rmd-transition-standard-time, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
+      sourceCode:
+        "@mixin rmd-elevation-transition(\n  $start,\n  $end,\n  $active-selectors,\n  $before: true,\n  $duration: $rmd-transition-standard-time,\n  $color: $rmd-elevation-color,\n  $opacity-boost: 0\n) {\n  $start-shadow: if(\n    $start == none or $start == 0,\n    none,\n    rmd-elevation($start, $color, $opacity-boost)\n  );\n  $end-shadow: if(\n    $end == none or $end == 0,\n    none,\n    rmd-elevation($end, $color, $opacity-boost)\n  );\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    $active-selectors,\n    $before,\n    $duration\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String|Number",
+          name: "start",
+          description:
+            "This should be the starting shadow z-index. So any number from 0 to 24 (inclusive).",
+        },
+        {
+          type: "String|Number",
+          name: "end",
+          description:
+            "This should be the ending shadow z-index. So any number from 0 to 24 (inclusive).",
+        },
+        {
+          type: "List|String",
+          name: "active-selectors",
+          description:
+            "This is normally a class name that should be used or a list of class names\n  for when the box shadow should start animating. This can also be different states such as `&:hover` or `&:focus`",
+        },
+        {
+          type: "Boolean",
+          name: "before",
+          default: "true",
+          description:
+            "Boolean the shadow should be placed within the `::before` pseudo element.\n  When this is set to `false`, the `::after` pseudo element will be used instead.",
+        },
+        {
+          type: "String|Number",
+          name: "duration",
+          default: "rmd-transition-standard-time",
+          description: "The animation duration to use.",
         },
         {
           type: "Color",

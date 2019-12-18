@@ -24,9 +24,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       code:
-        "@function rmd-theme-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) { … }",
+        "@function rmd-theme-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
-        "@function rmd-theme-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) {\n  @if $color == 'dark' or $color == 'light' {\n    @return $color;\n  }\n\n  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);\n  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));\n\n  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {\n    @return 'light';\n  } @else {\n    @return 'dark';\n  }\n}",
+        '@function rmd-theme-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @if $color == "dark" or $color == "light" {\n    @return $color;\n  }\n\n  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);\n  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));\n\n  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {\n    @return "light";\n  } @else {\n    @return "dark";\n  }\n}\n',
       type: "function",
       parameters: [
         { type: "Color", name: "color", description: "The color to test." },
@@ -64,9 +64,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       code:
-        "@function rmd-theme-contrast-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) { … }",
+        "@function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
-        "@function rmd-theme-contrast-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) {\n  @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');\n}",
+        '@function rmd-theme-contrast-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @return if(rmd-theme-tone($color) == "dark", "light", "dark");\n}\n',
       type: "function",
       parameters: [
         { type: "Color", name: "color", description: "The color to test." },
@@ -109,9 +109,9 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       code:
-        "@function rmd-theme-get-swatch($color\n$swatch\n$accent: false\n$fallback-color: null\n$fallback-name: null) { … }",
+        "@function rmd-theme-get-swatch($color, $swatch, $accent: false, $fallback-color: null, $fallback-name: null) { … }",
       sourceCode:
-        "@function rmd-theme-get-swatch($color\n$swatch\n$accent: false\n$fallback-color: null\n$fallback-name: null) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if($fallback-name, \"the '$#{$fallback-name}' variable\", 'a fallback color');\n\n      $error-msg: \"Invalid material design color: '#{$color}'. If this was intentional because your app does \" +\n        'not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: ' +\n        '#{$swatch}.';\n      @error $error-msg;\n    } @else if type-of($fallback-color) != 'color' {\n      @error 'Invalid fallback color: \\'#{$fallback-color}\\'. This must be a valid color.';\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    'material design color swatch'\n  );\n\n  $current-color-name: nth(map-keys($rmd-theme-color-map), $current-color-index);\n  $accent-index: str-index($current-color-name, '-a-');\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-primary-suffixes) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: '#{$current-color-name}#{if($accent, '-a', '')}-#{$swatch}';\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}",
+        '@function rmd-theme-get-swatch(\n  $color,\n  $swatch,\n  $accent: false,\n  $fallback-color: null,\n  $fallback-name: null\n) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if(\n        $fallback-name,\n        "the \'$#{$fallback-name}\' variable",\n        "a fallback color"\n      );\n\n      $error-msg: "Invalid material design color: \'#{$color}\'. If this was intentional because your app does " +\n        "not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: " +\n        "#{$swatch}.";\n      @error $error-msg;\n    } @else if type-of($fallback-color) != "color" {\n      @error \'Invalid fallback color: \\\'#{$fallback-color}\\\'. This must be a valid color.\';\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    "material design color swatch"\n  );\n\n  $current-color-name: nth(\n    map-keys($rmd-theme-color-map),\n    $current-color-index\n  );\n  $accent-index: str-index($current-color-name, "-a-");\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-primary-suffixes) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}\n',
       throws: ["Invalid fallback color: \\"],
       type: "function",
       parameters: [
@@ -171,9 +171,9 @@ const sassdoc: PackageSassDoc = {
           description: "Current Default Values",
         },
       ],
-      code: "@function rmd-theme-text-color($style\n$color) { … }",
+      code: "@function rmd-theme-text-color($style, $color) { … }",
       sourceCode:
-        "@function rmd-theme-text-color($style\n$color) {\n  $contrast-tone: rmd-theme-contrast-tone($color);\n\n  @if $contrast-tone == 'light' {\n    @return map-get($rmd-theme-dark-text-colors, $style);\n  } @else {\n    @return map-get($rmd-theme-light-text-colors, $style);\n  }\n}",
+        '@function rmd-theme-text-color($style, $color) {\n  $contrast-tone: rmd-theme-contrast-tone($color);\n\n  @if $contrast-tone == "light" {\n    @return map-get($rmd-theme-dark-text-colors, $style);\n  } @else {\n    @return map-get($rmd-theme-light-text-colors, $style);\n  }\n}\n',
       type: "function",
       parameters: [
         {
@@ -197,177 +197,176 @@ const sassdoc: PackageSassDoc = {
     },
   },
   mixins: {
-    "rmd-theme-tone": {
-      name: "rmd-theme-tone",
-      description:
-        "Determines if a provided color is considered light or dark.\n\n",
-      source: "packages/theme/src/_color-a11y.scss#L126-L139",
-      links: [
-        {
-          name: "",
-          href: "https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast",
-        },
-      ],
+    "rmd-theme": {
+      name: "rmd-theme",
+      description: "Applies one of theme values to the provided property.\n\n",
+      source: "packages/theme/src/_mixins.scss#L29-L31",
       usedBy: [
+        { name: "rmd-badge", type: "mixin", packageName: "badge" },
+        { name: "rmd-badge", type: "mixin", packageName: "badge" },
+        { name: "rmd-badge", type: "mixin", packageName: "badge" },
+        { name: "rmd-badge", type: "mixin", packageName: "badge" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-card-subtitle", type: "mixin", packageName: "card" },
+        { name: "rmd-card-content", type: "mixin", packageName: "card" },
+        { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+        { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         {
-          name: "rmd-theme-contrast-tone",
-          type: "function",
-          packageName: "theme",
+          name: "react-md-typography",
+          type: "mixin",
+          packageName: "typography",
         },
+        { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
+        { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
       ],
       packageName: "theme",
-      code:
-        "@function rmd-theme-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) { … }",
+      examples: [
+        {
+          code:
+            "html {\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n}\n\n.primary-bg {\n  @include rmd-theme(background-color, primary);\n}\n\n.primary-text {\n  @include rmd-theme(color, primary);\n}\n",
+          compiled:
+            "html {\n  background-color: var(--rmd-theme-background, #fafafa);\n  color: var(--rmd-theme-text-primary-on-background, #212121);\n}\n\n.primary-bg {\n  background-color: var(--rmd-theme-primary, #9c27b0);\n}\n\n.primary-text {\n  color: var(--rmd-theme-primary, #9c27b0);\n}\n",
+          type: "scss",
+          description: "Example Theme Application",
+        },
+      ],
+      code: "@mixin rmd-theme($property, $theme-style) { … }",
       sourceCode:
-        "@function rmd-theme-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) {\n  @if $color == 'dark' or $color == 'light' {\n    @return $color;\n  }\n\n  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);\n  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));\n\n  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {\n    @return 'light';\n  } @else {\n    @return 'dark';\n  }\n}",
+        "@mixin rmd-theme($property, $theme-style) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-theme-values,\n    theme\n  );\n}\n",
       type: "mixin",
       parameters: [
-        { type: "Color", name: "color", description: "The color to test." },
         {
-          type: "Number",
-          name: "min-contrast",
-          default: "rmd-theme-default-contrast-ratio",
+          type: "String",
+          name: "property",
           description:
-            "The minimum contrast that should be applied. The min\n    contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See\n    the link for contrasts for more information.",
+            "This is normally `color` or `background-color`, but any valid CSS property that accepts\n  color values can be used.",
+        },
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The type of theme style to use. This should be one of the `$rmd-theme-values` or a literal\n  color value.",
         },
       ],
     },
-    "rmd-theme-contrast-tone": {
-      name: "rmd-theme-contrast-tone",
+    "rmd-theme-update-var": {
+      name: "rmd-theme-update-var",
       description:
-        "Determines if the provided color should have a light or dark contrast using the\nluminance algorithm to maintain a required contrast ratio for accessibility.\n\n",
-      source: "packages/theme/src/_color-a11y.scss#L151-L153",
-      links: [
-        {
-          name: "",
-          href: "https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast",
-        },
-      ],
+        "This is an extremely simple mixin that will allow you to quickly set or update the value of a theme css variable\nwith the new provided value.\n\n",
+      source: "packages/theme/src/_mixins.scss#L49-L51",
       usedBy: [
-        {
-          name: "rmd-theme-text-color",
-          type: "function",
-          packageName: "theme",
-        },
+        { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
-      packageName: "theme",
-      code:
-        "@function rmd-theme-contrast-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) { … }",
-      sourceCode:
-        "@function rmd-theme-contrast-tone($color\n$min-contrast: $rmd-theme-default-contrast-ratio) {\n  @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');\n}",
-      type: "mixin",
-      parameters: [
-        { type: "Color", name: "color", description: "The color to test." },
-        {
-          type: "Number",
-          name: "min-contrast",
-          default: "rmd-theme-default-contrast-ratio",
-          description:
-            "The minimum contrast that should be applied. The min\n    contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See\n    the link for contrasts for more information.",
-        },
-      ],
-    },
-    "rmd-theme-get-swatch": {
-      name: "rmd-theme-get-swatch",
-      description:
-        "A theme utility function to convert a material design color to the same color but with a different\nswatch. If your app is not using material design colors, this utility function is useless but you\nwill need to define fallback colors so compliation does not fail.\n\n",
-      source: "packages/theme/src/_functions.scss#L45-L101",
       packageName: "theme",
       examples: [
         {
           code:
-            ".something {\n  color: rmd-theme-get-swatch($rmd-theme-primary, 200);\n}\n\n.something-2 {\n  color: rmd-theme-get-swatch($rmd-theme-primary, 200, true);\n}\n",
+            "$rmd-theme-primary: $rmd-blue-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n\n.some-class-with-different-themes {\n  // no idea if these colors go together...\n  @include rmd-theme-update-var(primary, $rmd-orange-500);\n  @include rmd-theme-update-var(secondary, $rmd-brown-700);\n}\n",
           compiled:
-            ".something {\n  color: #ce93d8;\n}\n\n.something-2 {\n  color: #e040fb;\n}\n",
+            ".some-class-with-different-themes {\n  --rmd-theme-primary: #ff9800;\n  --rmd-theme-secondary: #5d4037;\n}\n",
           type: "scss",
-          description: "Example Material Design Color Usage",
-        },
-        {
-          code:
-            "$my-theme-color: #3498db;\n.something-failed--fixed {\n  color: rmd-theme-get-swatch(\n    $my-theme-color,\n    200,\n    false,\n    rgba($my-theme-color, 0.32)\n  );\n}\n",
-          compiled:
-            ".something-failed--fixed {\n  color: rgba(52, 152, 219, 0.32);\n}\n",
-          type: "scss",
-          description: "Example Non-Material Design Color Usage",
+          description: "Example Usage SCSS",
         },
       ],
-      code:
-        "@function rmd-theme-get-swatch($color\n$swatch\n$accent: false\n$fallback-color: null\n$fallback-name: null) { … }",
+      code: "@mixin rmd-theme-update-var($theme-style, $value) { … }",
       sourceCode:
-        "@function rmd-theme-get-swatch($color\n$swatch\n$accent: false\n$fallback-color: null\n$fallback-name: null) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if($fallback-name, \"the '$#{$fallback-name}' variable\", 'a fallback color');\n\n      $error-msg: \"Invalid material design color: '#{$color}'. If this was intentional because your app does \" +\n        'not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: ' +\n        '#{$swatch}.';\n      @error $error-msg;\n    } @else if type-of($fallback-color) != 'color' {\n      @error 'Invalid fallback color: \\'#{$fallback-color}\\'. This must be a valid color.';\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    'material design color swatch'\n  );\n\n  $current-color-name: nth(map-keys($rmd-theme-color-map), $current-color-index);\n  $accent-index: str-index($current-color-name, '-a-');\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-primary-suffixes) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: '#{$current-color-name}#{if($accent, '-a', '')}-#{$swatch}';\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}",
-      throws: ["Invalid fallback color: \\"],
+        "@mixin rmd-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-theme-values,\n    theme\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
-          type: "Color",
-          name: "color",
-          description:
-            "The material design color to create a new color for with the provided swatch.",
-        },
-        {
-          type: "Number",
-          name: "swatch",
-          description:
-            "The swatch to apply. This should be one of `$rmd-theme-primary-suffixes` or\n  `$rmd-theme-accent-suffixes` if the `$accent` param is enabled.",
-        },
-        {
-          type: "Boolean",
-          name: "accent",
-          default: "false",
-          description:
-            "Boolean if the swatch is an accent color instead of a primary color.",
-        },
-        {
-          type: "Color",
-          name: "fallback-color",
-          default: "null",
-          description:
-            "The color to fallback to if the `$color` is not a valid\n  material design color. Since this is null by default, the complilation will fail until a valid\n  fallback is provided.",
-        },
-        {
           type: "String",
-          name: "fallback-name",
-          default: "null",
+          name: "theme-style",
           description:
-            "The name of a variable or global variable that should be set to\n  automatically fix the compilation error.",
+            "The react-md theme style to update. This should be one of the keys of\n    `$rmd-theme-values` map.",
+        },
+        {
+          type: "Color",
+          name: "value",
+          description: "The updated color value to apply.",
         },
       ],
     },
-    "rmd-theme-text-color": {
-      name: "rmd-theme-text-color",
+    "rmd-theme-light": {
+      name: "rmd-theme-light",
       description:
-        'This function is used to auto-generate "reasonable" defaults for the text colors based on a the\nbackground it is on. This will basically check if the provided color is considered light or dark,\nand choose a value from either the dark theme text colors or the light theme text colors so that\nit is still legible.\n\nNOTE: This is not perfect since it only handles the min-contrast ration of 3:1 by default so you still\nmight need to define your own overrides.\n\n',
-      source: "packages/theme/src/_variables.scss#L255-L263",
+        "This mixin can be used to apply the light theme by updating **every** color theme variable across\nall react-md packages.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.\n",
+      source: "packages/theme/src/_mixins.scss#L57-L130",
+      packageName: "theme",
+      code: "@mixin rmd-theme-light { … }",
+      sourceCode:
+        "@mixin rmd-theme-light {\n  @include rmd-theme-update-var(background, $rmd-theme-light-background);\n  @include rmd-theme-update-var(surface, $rmd-theme-light-surface);\n  @include rmd-theme-update-var(on-surface, $rmd-black-base);\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    $rmd-theme-primary-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    $rmd-theme-secondary-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-hint-on-background,\n    $rmd-theme-hint-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-disabled-on-background,\n    $rmd-theme-disabled-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-icon-on-background,\n    $rmd-theme-icon-on-light-color\n  );\n\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      default-background-color,\n      $rmd-app-bar-default-light-theme-background-color\n    );\n    @include rmd-app-bar-theme-update-var(\n      default-color,\n      $rmd-app-bar-default-light-theme-color\n    );\n  }\n\n  @if mixin-exists(rmd-card-theme-update-var) {\n    @include rmd-card-theme-update-var(\n      color,\n      $rmd-theme-primary-text-on-light-color\n    );\n    @include rmd-card-theme-update-var(\n      secondary-color,\n      $rmd-theme-secondary-text-on-light-color\n    );\n  }\n\n  @if mixin-exists(rmd-chip-theme-update-var) {\n    @include rmd-chip-theme-update-var(\n      solid-background-color,\n      $rmd-chip-solid-light-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      solid-color,\n      $rmd-chip-solid-light-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-background-color,\n      $rmd-chip-outline-light-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-color,\n      $rmd-chip-outline-light-color\n    );\n  }\n\n  @if mixin-exists(rmd-divider-theme-update-var) {\n    @include rmd-divider-theme-update-var(\n      background-color,\n      $rmd-divider-background-color-on-light\n    );\n  }\n\n  @if mixin-exists(rmd-form-theme-update-var) {\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      $rmd-text-field-light-border-color\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      $rmd-text-field-light-border-hover-color\n    );\n    @include rmd-form-theme-update-var(\n      text-filled-color,\n      $rmd-text-field-filled-light-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-states-theme-update-var) {\n    @include rmd-states-theme-update-var(\n      hover-color,\n      $rmd-states-light-theme-hover-color\n    );\n    @include rmd-states-theme-update-var(\n      focus-color,\n      $rmd-states-light-theme-focus-color\n    );\n    @include rmd-states-theme-update-var(\n      pressed-color,\n      $rmd-states-light-theme-pressed-color\n    );\n    @include rmd-states-theme-update-var(\n      selected-color,\n      $rmd-states-light-theme-selected-color\n    );\n    @include rmd-states-theme-update-var(\n      ripple-background-color,\n      $rmd-states-light-theme-ripple-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-tabs-theme-update-var) {\n    @include rmd-tabs-theme-update-var(active, $rmd-black-base);\n    @include rmd-tabs-theme-update-var(\n      inactive,\n      $rmd-theme-secondary-text-on-light-color\n    );\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-theme-dark": {
+      name: "rmd-theme-dark",
+      description:
+        "This mixin can be used to apply the dark theme by updating **every** color theme variable across\nall react-md packages.\n\nThis is really great to use within a media query for browsers that now support the\n`prefers-color-scheme` so that if the user has the dark theme enabled, they'll automatically gain\nthe dark theme while using your app as well.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.\n\n",
+      source: "packages/theme/src/_mixins.scss#L147-L220",
       packageName: "theme",
       examples: [
         {
           code:
-            "$variables: primary secondary hint disabled icon;\n$themes: background light dark;\n\n@each $theme in $themes {\n  @each $variable in $variables {\n    .#{$theme}-#{$variable} {\n      // create the corresponding color. When it's the `background`, we'll check the current defined background theme\n      // color so that it \"works out of the box\" (for most cases).\n      color: rmd-theme-text-color(\n        $variable,\n        if($theme == background, $rmd-theme-background, $theme)\n      );\n    }\n  }\n}\n",
+            "@media (prefers-color-scheme: dark) {\n  :root {\n    @include rmd-theme-dark;\n  }\n}\n",
           compiled:
-            ".background-primary {\n  color: #212121;\n}\n\n.background-secondary {\n  color: #757575;\n}\n\n.background-hint {\n  color: #a8a8a8;\n}\n\n.background-disabled {\n  color: #9e9e9e;\n}\n\n.background-icon {\n  color: #757575;\n}\n\n.light-primary {\n  color: #212121;\n}\n\n.light-secondary {\n  color: #757575;\n}\n\n.light-hint {\n  color: #a8a8a8;\n}\n\n.light-disabled {\n  color: #9e9e9e;\n}\n\n.light-icon {\n  color: #757575;\n}\n\n.dark-primary {\n  color: #d9d9d9;\n}\n\n.dark-secondary {\n  color: #b3b3b3;\n}\n\n.dark-hint {\n  color: gray;\n}\n\n.dark-disabled {\n  color: gray;\n}\n\n.dark-icon {\n  color: #b3b3b3;\n}\n",
+            "@media (prefers-color-scheme: dark) {\n  :root {\n    --rmd-theme-background: #303030;\n    --rmd-theme-surface: #424242;\n    --rmd-theme-on-surface: #fff;\n    --rmd-theme-text-primary-on-background: #d9d9d9;\n    --rmd-theme-text-secondary-on-background: #b3b3b3;\n    --rmd-theme-text-hint-on-background: gray;\n    --rmd-theme-text-disabled-on-background: gray;\n    --rmd-theme-text-icon-on-background: #b3b3b3;\n    --rmd-app-bar-default-background-color: #212121;\n    --rmd-app-bar-default-color: #fff;\n    --rmd-card-color: #d9d9d9;\n    --rmd-card-secondary-color: #b3b3b3;\n    --rmd-chip-solid-background-color: #212121;\n    --rmd-chip-solid-color: #fff;\n    --rmd-chip-outline-background-color: #424242;\n    --rmd-chip-outline-color: #fff;\n    --rmd-divider-background-color: rgba(255, 255, 255, 0.12);\n    --rmd-form-text-border-color: rgba(255, 255, 255, 0.5);\n    --rmd-form-text-border-hover-color: rgba(255, 255, 255, 0.87);\n    --rmd-form-text-filled-color: #616161;\n    --rmd-states-hover-color: rgba(0, 0, 0, 0.04);\n    --rmd-states-focus-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-pressed-color: rgba(0, 0, 0, 0.16);\n    --rmd-states-selected-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-ripple-background-color: rgba(0, 0, 0, 0.08);\n    --rmd-tabs-active: #fff;\n    --rmd-tabs-inactive: #b3b3b3;\n  }\n}\n",
           type: "scss",
-          description: "Current Default Values",
+          description: "Media Query Example",
         },
       ],
-      code: "@function rmd-theme-text-color($style\n$color) { … }",
+      code: "@mixin rmd-theme-dark { … }",
       sourceCode:
-        "@function rmd-theme-text-color($style\n$color) {\n  $contrast-tone: rmd-theme-contrast-tone($color);\n\n  @if $contrast-tone == 'light' {\n    @return map-get($rmd-theme-dark-text-colors, $style);\n  } @else {\n    @return map-get($rmd-theme-light-text-colors, $style);\n  }\n}",
+        "@mixin rmd-theme-dark {\n  @include rmd-theme-update-var(background, $rmd-theme-dark-background);\n  @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);\n  @include rmd-theme-update-var(on-surface, $rmd-white-base);\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    $rmd-theme-primary-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    $rmd-theme-secondary-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-hint-on-background,\n    $rmd-theme-hint-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-disabled-on-background,\n    $rmd-theme-disabled-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-icon-on-background,\n    $rmd-theme-icon-on-dark-color\n  );\n\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      default-background-color,\n      $rmd-app-bar-default-dark-theme-background-color\n    );\n    @include rmd-app-bar-theme-update-var(\n      default-color,\n      $rmd-app-bar-default-dark-theme-color\n    );\n  }\n\n  @if mixin-exists(rmd-card-theme-update-var) {\n    @include rmd-card-theme-update-var(\n      color,\n      $rmd-theme-primary-text-on-dark-color\n    );\n    @include rmd-card-theme-update-var(\n      secondary-color,\n      $rmd-theme-secondary-text-on-dark-color\n    );\n  }\n\n  @if mixin-exists(rmd-chip-theme-update-var) {\n    @include rmd-chip-theme-update-var(\n      solid-background-color,\n      $rmd-chip-solid-dark-background-color\n    );\n    @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-dark-color);\n    @include rmd-chip-theme-update-var(\n      outline-background-color,\n      $rmd-chip-outline-dark-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-color,\n      $rmd-chip-outline-dark-color\n    );\n  }\n\n  @if mixin-exists(rmd-divider-theme-update-var) {\n    @include rmd-divider-theme-update-var(\n      background-color,\n      $rmd-divider-background-color-on-dark\n    );\n  }\n\n  @if mixin-exists(rmd-form-theme-update-var) {\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      $rmd-text-field-dark-border-color\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      $rmd-text-field-dark-border-hover-color\n    );\n    @include rmd-form-theme-update-var(\n      text-filled-color,\n      $rmd-text-field-filled-dark-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-states-theme-update-var) {\n    @include rmd-states-theme-update-var(\n      hover-color,\n      $rmd-states-dark-theme-hover-color\n    );\n    @include rmd-states-theme-update-var(\n      focus-color,\n      $rmd-states-dark-theme-focus-color\n    );\n    @include rmd-states-theme-update-var(\n      pressed-color,\n      $rmd-states-dark-theme-pressed-color\n    );\n    @include rmd-states-theme-update-var(\n      selected-color,\n      $rmd-states-dark-theme-selected-color\n    );\n    @include rmd-states-theme-update-var(\n      ripple-background-color,\n      $rmd-states-dark-theme-ripple-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-tabs-theme-update-var) {\n    @include rmd-tabs-theme-update-var(active, $rmd-white-base);\n    @include rmd-tabs-theme-update-var(\n      inactive,\n      $rmd-theme-secondary-text-on-dark-color\n    );\n  }\n}\n",
       type: "mixin",
-      parameters: [
+    },
+    "react-md-theme": {
+      name: "react-md-theme",
+      description:
+        "Creates all the styles for a theme in react-md. This will start by creating CSS Variables\nfor each theme variable and then create class names for each variable.\n\n",
+      source: "packages/theme/src/_mixins.scss#L231-L233",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "theme",
+      examples: [
         {
-          type: "String",
-          name: "style",
-          description:
-            "This should be one of the keys for the text colors map.",
-        },
-        {
-          type: "Color|String",
-          name: "color",
-          description:
-            "This is either a color that will be checked for a contrast tone or one of\n   'light' | 'dark'.",
+          code:
+            "// declare your theme variables\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-400;\n\n@include react-md-theme;\n",
+          compiled:
+            ":root {\n  --rmd-theme-background: #fafafa;\n  --rmd-theme-primary: #9c27b0;\n  --rmd-theme-on-primary: #000;\n  --rmd-theme-secondary: #f50057;\n  --rmd-theme-on-secondary: #000;\n  --rmd-theme-surface: #fff;\n  --rmd-theme-on-surface: #000;\n  --rmd-theme-warning: #ff6e40;\n  --rmd-theme-on-warning: #fff;\n  --rmd-theme-error: #f44336;\n  --rmd-theme-on-error: #000;\n  --rmd-theme-success: #00c853;\n  --rmd-theme-on-success: #fff;\n  --rmd-theme-text-primary-on-background: #212121;\n  --rmd-theme-text-secondary-on-background: #757575;\n  --rmd-theme-text-hint-on-background: #a8a8a8;\n  --rmd-theme-text-disabled-on-background: #9e9e9e;\n  --rmd-theme-text-icon-on-background: #757575;\n  --rmd-theme-light-background: #fafafa;\n  --rmd-theme-light-surface: #fff;\n  --rmd-theme-dark-background: #303030;\n  --rmd-theme-dark-surface: #424242;\n  --rmd-theme-text-primary-on-light: #212121;\n  --rmd-theme-text-secondary-on-light: #757575;\n  --rmd-theme-text-hint-on-light: #a8a8a8;\n  --rmd-theme-text-disabled-on-light: #9e9e9e;\n  --rmd-theme-text-icon-on-light: #757575;\n  --rmd-theme-text-primary-on-dark: #d9d9d9;\n  --rmd-theme-text-secondary-on-dark: #b3b3b3;\n  --rmd-theme-text-hint-on-dark: gray;\n  --rmd-theme-text-disabled-on-dark: gray;\n  --rmd-theme-text-icon-on-dark: #b3b3b3;\n}\n",
+          type: "scss",
+          description: "Normal SCSS Usage",
         },
       ],
+      code: "@mixin react-md-theme { … }",
+      sourceCode:
+        "@mixin react-md-theme {\n  @include rmd-theme-create-root-theme($rmd-theme-values, theme);\n}\n",
+      type: "mixin",
     },
   },
   variables: {

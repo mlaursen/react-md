@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "button",
       code: "@function rmd-button-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-button-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-button-theme-values, button);\n}",
+        "@function rmd-button-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-button-theme-values,\n    button\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -37,9 +37,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "button",
       code:
-        "@function rmd-button-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-button-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-button-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-button-theme-values, button, $fallback);\n}",
+        "@function rmd-button-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-button-theme-values,\n    button,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -66,52 +66,141 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-theme": {
       name: "rmd-button-theme",
       description:
-        "This function is used to quickly get one of the button's theme values. This is really\njust for the `rmd-button-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/button/src/_functions.scss#L14-L16",
-      packageName: "button",
-      code: "@function rmd-button-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-button-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-button-theme-values, button);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-button-theme-values` map keys to get a value for.",
-        },
-      ],
-    },
-    "rmd-button-theme-var": {
-      name: "rmd-button-theme-var",
-      description:
-        "This function is used to get one of the button's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-button-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/button/src/_functions.scss#L29-L31",
+        "Creates the styles for one of the button's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/button/src/_mixins.scss#L26-L28",
       usedBy: [
+        { name: "rmd-button-base", type: "mixin", packageName: "button" },
+        { name: "rmd-button-base", type: "mixin", packageName: "button" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
+        { name: "rmd-button-text", type: "mixin", packageName: "button" },
+        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
       ],
       packageName: "button",
       code:
-        "@function rmd-button-theme-var($theme-style\n$fallback: null) { … }",
+        "@mixin rmd-button-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-button-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-button-theme-values, button, $fallback);\n}",
+        "@mixin rmd-button-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-button-theme-values,\n    button\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-button-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-button-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-button-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-button-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-button-theme-update-var": {
+      name: "rmd-button-theme-update-var",
+      description:
+        "Updates one of the button's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/button/src/_mixins.scss#L36-L38",
+      packageName: "button",
+      code: "@mixin rmd-button-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-button-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-button-theme-values,\n    button\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The button theme style type to update. This should be one\n  of the `$rmd-button-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "rmd-button-unstyled": {
+      name: "rmd-button-unstyled",
+      description:
+        "A simple mixin to create an unstyled button.\n\nNOTE: An unstyled button removed the `outline-style` so you *must* add a custom focus behavior with\neither ripples or something else for keyboard users.\n\n",
+      source: "packages/button/src/_mixins.scss#L52-L57",
+      packageName: "button",
+      examples: [
+        {
+          code:
+            ".my-button {\n  @include rmd-button-unstyled;\n  @include rmd-typography(button);\n\n  display: inline-flex;\n}\n",
+          compiled:
+            ".my-button {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  background-color: transparent;\n  border-width: 0;\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 0.875rem;\n  line-height: 2.25rem;\n  font-weight: 500;\n  letter-spacing: 0.08929em;\n  text-decoration: none;\n  text-transform: uppercase;\n  display: inline-flex;\n}\n.my-button:focus {\n  outline-style: none;\n}\n.my-button::-moz-focus-inner {\n  border: 0;\n}\n",
+          type: "scss",
+          description: "Example Usage SCSS",
+        },
+      ],
+      code: "@mixin rmd-button-unstyled { … }",
+      sourceCode:
+        "@mixin rmd-button-unstyled {\n  @include rmd-utils-hide-focus-outline;\n\n  background-color: transparent;\n  border-width: 0;\n}\n",
+      type: "mixin",
+    },
+    "rmd-button-base": {
+      name: "rmd-button-base",
+      description: "The base styles for a button.\n\n",
+      source: "packages/button/src/_mixins.scss#L65-L75",
+      packageName: "button",
+      examples: [
+        {
+          code: ".my-button {\n  @include rmd-button-base;\n}\n",
+          compiled:
+            ".my-button {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  background-color: var(--rmd-button-background-color, transparent);\n  color: var(\n    --rmd-button-color,\n    var(--rmd-theme-text-primary-on-background, #212121)\n  );\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  justify-content: center;\n  position: relative;\n}\n.my-button:focus {\n  outline-style: none;\n}\n.my-button::-moz-focus-inner {\n  border: 0;\n}\n",
+          type: "scss",
+          description: "Example Usage SCSS",
+        },
+      ],
+      code: "@mixin rmd-button-base { … }",
+      sourceCode:
+        "@mixin rmd-button-base {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-button-theme(background-color);\n  @include rmd-button-theme(color);\n\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  justify-content: center;\n  position: relative;\n}\n",
+      type: "mixin",
+    },
+    "rmd-button-text": {
+      name: "rmd-button-text",
+      description: "Creates the base styles for a text button.\n",
+      source: "packages/button/src/_mixins.scss#L78-L93",
+      packageName: "button",
+      code: "@mixin rmd-button-text { … }",
+      sourceCode:
+        "@mixin rmd-button-text {\n  @include rmd-typography(button);\n\n  // icons have smaller sizes due to the padding on buttons. This is also not applied\n  // below in the rmd-button__icon since a user of this library _could_ include the icon styles\n  // after the button styles which would prevent these styles from working\n  @if $rmd-icon-use-font-icons or $rmd-icon-use-svg-icons {\n    @include rmd-icon-theme-update-var(size, $rmd-button-text-icon-size);\n  }\n\n  @include rmd-button-theme(border-radius, text-border-radius);\n  @include rmd-button-theme(min-height, text-height);\n  @include rmd-button-theme(min-width, text-min-width);\n\n  padding: rmd-button-theme-var(text-vertical-padding)\n    rmd-button-theme-var(text-horizontal-padding);\n}\n",
+      type: "mixin",
+    },
+    "rmd-button-icon": {
+      name: "rmd-button-icon",
+      description: "Creates the base styles for an icon button.\n",
+      source: "packages/button/src/_mixins.scss#L96-L106",
+      packageName: "button",
+      code: "@mixin rmd-button-icon { … }",
+      sourceCode:
+        "@mixin rmd-button-icon {\n  @if not $rmd-button-text-icon-inherit-color {\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  @include rmd-button-theme(border-radius, icon-border-radius);\n  @include rmd-button-theme(height, icon-size);\n  @include rmd-button-theme(width, icon-size);\n\n  padding: 0;\n}\n",
+      type: "mixin",
+    },
+    "react-md-button": {
+      name: "react-md-button",
+      description:
+        "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
+      source: "packages/button/src/_mixins.scss#L191-L197",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "button",
+      code: "@mixin react-md-button { … }",
+      sourceCode:
+        "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

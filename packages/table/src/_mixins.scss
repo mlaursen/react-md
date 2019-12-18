@@ -30,7 +30,7 @@
 ///
 /// @param {String} theme-style - The table theme style type to update. This should be one
 ///   of the `$rmd-table-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-table-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-table-theme-values, table);
 }

@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "sheet",
       code: "@function rmd-sheet-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-sheet-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-sheet-theme-values, sheet);\n}",
+        "@function rmd-sheet-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-sheet-theme-values, sheet);\n}\n",
       type: "function",
       parameters: [
         {
@@ -40,9 +40,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "sheet",
       code:
-        "@function rmd-sheet-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-sheet-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-sheet-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-sheet-theme-values, sheet, $fallback);\n}",
+        "@function rmd-sheet-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-sheet-theme-values,\n    sheet,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -69,27 +69,47 @@ const sassdoc: PackageSassDoc = {
     "rmd-sheet-theme": {
       name: "rmd-sheet-theme",
       description:
-        "This function is used to quickly get one of the sheet's theme values. This is really\njust for the `rmd-sheet-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/sheet/src/_functions.scss#L14-L16",
+        "Creates the styles for one of the sheet's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/sheet/src/_mixins.scss#L20-L22",
+      usedBy: [
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
-      code: "@function rmd-sheet-theme($theme-style) { … }",
+      code:
+        "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-sheet-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-sheet-theme-values, sheet);\n}",
+        "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-sheet-theme-values,\n    sheet\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-sheet-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-sheet-theme-values` map keys to get a value for.",
+            "One of the keys of `rmd-sheet-theme-values` to extract a value from.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "fallback",
+          default: "null",
+          description:
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-sheet-theme-values` map when `null`.",
         },
       ],
     },
-    "rmd-sheet-theme-var": {
-      name: "rmd-sheet-theme-var",
+    "rmd-sheet-theme-update-var": {
+      name: "rmd-sheet-theme-update-var",
       description:
-        "This function is used to get one of the sheet's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-sheet-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/sheet/src/_functions.scss#L29-L31",
+        "Updates one of the sheet's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/sheet/src/_mixins.scss#L30-L32",
       usedBy: [
         { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
         { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
@@ -98,26 +118,35 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "sheet",
-      code:
-        "@function rmd-sheet-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@mixin rmd-sheet-theme-update-var($theme-style, $value) { … }",
       sourceCode:
-        "@function rmd-sheet-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-sheet-theme-values, sheet, $fallback);\n}",
+        "@mixin rmd-sheet-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-sheet-theme-values,\n    sheet\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-sheet-theme-values` map keys to set a value for.",
+            "The sheet theme style type to update. This should be one\n  of the `$rmd-sheet-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
-          name: "fallback",
-          default: "null",
-          description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+          name: "value",
+          description: "The new value to use.",
         },
       ],
+    },
+    "react-md-sheet": {
+      name: "react-md-sheet",
+      description:
+        "Creates all the styles for the sheet package as well as the root css variable theme.\n",
+      source: "packages/sheet/src/_mixins.scss#L67-L152",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "sheet",
+      code: "@mixin react-md-sheet { … }",
+      sourceCode:
+        "@mixin react-md-sheet {\n  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);\n\n  .rmd-sheet {\n    @include rmd-elevation($rmd-sheet-elevation);\n    @include rmd-utils-scroll;\n    @include rmd-sheet-positions;\n    @include rmd-sheet-theme(max-height);\n    @include rmd-sheet-theme(height);\n    @include rmd-sheet-theme(width);\n\n    position: fixed;\n    z-index: $rmd-sheet-z-index;\n\n    &--raised {\n      @include rmd-elevation($rmd-sheet-raised-elevation);\n      z-index: $rmd-sheet-raised-z-index;\n    }\n\n    &--horizontal {\n      bottom: 0;\n      top: 0;\n    }\n\n    &--touch-width {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(touch-width)\n      );\n    }\n\n    &--static-width {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(static-width)\n      );\n    }\n\n    &--media-width {\n      @include rmd-utils-tablet-media {\n        @include rmd-sheet-theme-update-var(\n          width,\n          rmd-sheet-theme-var(static-width)\n        );\n      }\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(touch-width)\n      );\n    }\n\n    &--vertical {\n      left: 0;\n      right: 0;\n    }\n\n    &--viewport-height {\n      @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);\n    }\n\n    &--touchable-height {\n      @include rmd-sheet-theme-update-var(\n        max-height,\n        rmd-sheet-theme-var(touchable-max-height)\n      );\n    }\n\n    &--recommended-height {\n      max-height: $rmd-sheet-recommended-max-height;\n      min-height: $rmd-sheet-recommended-min-height;\n    }\n\n    &--offscreen {\n      @include rmd-sheet-theme(transform, transform-offscreen);\n    }\n\n    &--hidden {\n      box-shadow: none;\n    }\n\n    &--visible {\n      transform: translate3d(0, 0, 0);\n    }\n\n    &--enter {\n      @include rmd-transition(deceleration);\n\n      transition: transform $rmd-sheet-enter-duration;\n    }\n\n    &--exit {\n      @include rmd-transition(acceleration);\n\n      transition: transform $rmd-sheet-enter-duration;\n    }\n  }\n\n  .rmd-sheet-overlay {\n    z-index: $rmd-sheet-overlay-z-index;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

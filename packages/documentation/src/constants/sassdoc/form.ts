@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@function rmd-form-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-form-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-form-theme-values, form);\n}",
+        "@function rmd-form-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-form-theme-values, form);\n}\n",
       type: "function",
       parameters: [
         {
@@ -36,9 +36,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
       ],
       packageName: "form",
-      code: "@function rmd-form-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@function rmd-form-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-form-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-form-theme-values, form, $fallback);\n}",
+        "@function rmd-form-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-form-theme-values,\n    form,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -65,51 +65,133 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-theme": {
       name: "rmd-form-theme",
       description:
-        "This function is used to quickly get one of the form's theme values. This is really\njust for the `rmd-form-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/form/src/_functions.scss#L14-L16",
-      packageName: "form",
-      code: "@function rmd-form-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-form-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-form-theme-values, form);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-form-theme-values` map keys to get a value for.",
-        },
-      ],
-    },
-    "rmd-form-theme-var": {
-      name: "rmd-form-theme-var",
-      description:
-        "This function is used to get one of the form's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-form-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/form/src/_functions.scss#L29-L31",
+        "Creates the styles for one of the form's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/form/src/_functions.scss#L41-L43",
       usedBy: [
-        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
-        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-label", type: "mixin", packageName: "form" },
       ],
       packageName: "form",
-      code: "@function rmd-form-theme-var($theme-style\n$fallback: null) { … }",
+      code:
+        "@mixin rmd-form-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-form-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-form-theme-values, form, $fallback);\n}",
+        "@mixin rmd-form-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-form-theme-values,\n    form\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-form-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-form-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-form-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-form-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-form-theme-update-var": {
+      name: "rmd-form-theme-update-var",
+      description:
+        "Updates one of the form's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/form/src/_functions.scss#L51-L53",
+      usedBy: [
+        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+      ],
+      packageName: "form",
+      code: "@mixin rmd-form-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-form-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-form-theme-values,\n    form\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The form theme style type to update. This should be one\n  of the `$rmd-form-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "react-md-form": {
+      name: "react-md-form",
+      description:
+        "Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables\nto be enabled to generate any styles.\n",
+      source: "packages/form/src/_mixins.scss#L35-L52",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "form",
+      code: "@mixin react-md-form { … }",
+      sourceCode:
+        "@mixin react-md-form {\n  $omit: (\n    addon-top label-left-offset label-top-offset label-active-background-color\n      label-active-padding text-offset text-padding-left text-padding-right\n      text-padding-top\n  );\n  @include rmd-theme-create-root-theme($rmd-form-theme-values, form, $omit);\n\n  @include react-md-file-input;\n  @include react-md-label;\n  @include react-md-toggle;\n  @include react-md-text-field;\n  // has to come after text field since it overrides some of the text-field-container styles\n  @include react-md-select;\n\n  .rmd-fieldset {\n    @include rmd-fieldset;\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-label": {
+      name: "rmd-label",
+      description:
+        "Creates the base styles for a `<label>` element as well as all the different\nstates a label can be in.\n",
+      source: "packages/form/src/label/_mixins.scss#L14-L33",
+      packageName: "form",
+      code: "@mixin rmd-label { … }",
+      sourceCode:
+        "@mixin rmd-label {\n  @include rmd-typography(body-1);\n  @include rmd-transition(standard);\n\n  display: inline-flex;\n  font-size: $rmd-label-font-size;\n  transition: color $rmd-transition-standard-time;\n\n  &--active {\n    @include rmd-form-theme(color, active-color);\n  }\n\n  &--error {\n    @include rmd-form-theme(color, error-color);\n  }\n\n  &--disabled {\n    @include rmd-form-theme(color, disabled-color);\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-text-field-placeholder": {
+      name: "rmd-text-field-placeholder",
+      description:
+        "A simple mixin that applies placeholder styles to an input/textarea\nelement.\n",
+      source: "packages/form/src/text-field/_mixins.scss#L198-L218",
+      packageName: "form",
+      code: "@mixin rmd-text-field-placeholder { … }",
+      sourceCode:
+        "@mixin rmd-text-field-placeholder {\n  &::-webkit-input-placeholder {\n    @content;\n  }\n\n  &:-ms-input-placeholder {\n    @content;\n  }\n\n  &::-moz-placeholder {\n    @content;\n  }\n\n  &:-moz-placeholder {\n    @content;\n  }\n\n  &:placeholder {\n    @content;\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-text-field-base": {
+      name: "rmd-text-field-base",
+      description:
+        "Creates the base styles for a text field so that it gains the\ncorrect typography and a few different colors based on its state.\n",
+      source: "packages/form/src/text-field/_mixins.scss#L222-L250",
+      packageName: "form",
+      code: "@mixin rmd-text-field-base { … }",
+      sourceCode:
+        "@mixin rmd-text-field-base {\n  @include rmd-typography(body-1, font-size);\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-text-field-placeholder {\n    @include rmd-transition(standard);\n    @include rmd-theme(color, text-secondary-on-background);\n\n    // want to gain the same font styles as the input/textarea itself,\n    // just apply different colors as needed instead. Can't just do font: inherit\n    // since it'll break the styles in firefox.\n    font-family: inherit;\n    font-size: inherit;\n    font-weight: inherit;\n  }\n\n  background-color: transparent;\n  border-width: 0;\n  color: inherit;\n  font-size: 1em;\n  width: 100%;\n\n  &[disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    @include rmd-text-field-placeholder {\n      @include rmd-theme(color, text-disabled-on-background);\n    }\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-toggle-dense-theme": {
+      name: "rmd-toggle-dense-theme",
+      description:
+        "Updates the checkbox and radio components to have a dense theme by updating the toggle-inset\ncss variable to be the dense version. This should generally be used within media queries.\n",
+      source: "packages/form/src/toggle/_mixins.scss#L165-L171",
+      usedBy: [
+        { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
+      ],
+      packageName: "form",
+      code: "@mixin rmd-toggle-dense-theme { … }",
+      sourceCode:
+        "@mixin rmd-toggle-dense-theme {\n  @include rmd-form-theme-update-var(\n    toggle-inset,\n    rmd-form-theme-var(toggle-dense-inset)\n  );\n  @include rmd-form-theme-update-var(\n    indeterminate-height,\n    rmd-form-theme-var(indeterminate-dense-height)\n  );\n}\n",
+      type: "mixin",
     },
   },
   variables: {

@@ -24,7 +24,7 @@
 ///
 /// @param {String} theme-style - The avatar theme style type to update. This should be one
 ///   of the `$rmd-avatar-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-avatar-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-avatar-theme-values, avatar);
 }

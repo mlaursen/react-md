@@ -24,7 +24,7 @@
 ///
 /// @param {String} theme-style - The divider theme style type to update. This should be one
 ///   of the `$rmd-divider-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-divider-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-divider-theme-values, divider);
 }

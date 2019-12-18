@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "avatar",
       code: "@function rmd-avatar-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-avatar-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-avatar-theme-values, avatar);\n}",
+        "@function rmd-avatar-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -34,9 +34,9 @@ const sassdoc: PackageSassDoc = {
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       packageName: "avatar",
       code:
-        "@function rmd-avatar-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-avatar-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-avatar-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-avatar-theme-values, avatar, $fallback);\n}",
+        "@function rmd-avatar-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -63,49 +63,145 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-theme": {
       name: "rmd-avatar-theme",
       description:
-        "This function is used to quickly get one of the avatar's theme values. This is really\njust for the `rmd-avatar-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/avatar/src/_functions.scss#L14-L16",
-      packageName: "avatar",
-      code: "@function rmd-avatar-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-avatar-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-avatar-theme-values, avatar);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-avatar-theme-values` map keys to get a value for.",
-        },
+        "Creates the styles for one of the avatar's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/avatar/src/_mixins.scss#L18-L20",
+      usedBy: [
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
-    },
-    "rmd-avatar-theme-var": {
-      name: "rmd-avatar-theme-var",
-      description:
-        "This function is used to get one of the avatar's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-avatar-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/avatar/src/_functions.scss#L29-L31",
-      usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       packageName: "avatar",
       code:
-        "@function rmd-avatar-theme-var($theme-style\n$fallback: null) { … }",
+        "@mixin rmd-avatar-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-avatar-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-avatar-theme-values, avatar, $fallback);\n}",
+        "@mixin rmd-avatar-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-avatar-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-avatar-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-avatar-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-avatar-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-avatar-theme-update-var": {
+      name: "rmd-avatar-theme-update-var",
+      description:
+        "Updates one of the avatar's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/avatar/src/_mixins.scss#L28-L30",
+      usedBy: [
+        { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
+        { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
+      ],
+      packageName: "avatar",
+      code: "@mixin rmd-avatar-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-avatar-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The avatar theme style type to update. This should be one\n  of the `$rmd-avatar-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "rmd-avatar-color": {
+      name: "rmd-avatar-color",
+      description: "A mixin for updating the avatar's theme colors.\n\n",
+      source: "packages/avatar/src/_mixins.scss#L45-L48",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
+      ],
+      packageName: "avatar",
+      examples: [
+        {
+          code:
+            ".my-red-avatar {\n  @include rmd-avatar-color($rmd-red-500, $rmd-black-base);\n}\n\n.my-orange-avatar {\n  @include rmd-avatar-color($rmd-orange-500, $rmd-black-base);\n}\n",
+          compiled:
+            ".my-red-avatar {\n  --rmd-avatar-background-color: #f44336;\n  --rmd-avatar-color: #000;\n}\n\n.my-orange-avatar {\n  --rmd-avatar-background-color: #ff9800;\n  --rmd-avatar-color: #000;\n}\n",
+          type: "scss",
+          description: "Example Usage SCSS",
+        },
+      ],
+      code: "@mixin rmd-avatar-color($background-color, $color) { … }",
+      sourceCode:
+        "@mixin rmd-avatar-color($background-color, $color) {\n  @include rmd-avatar-theme-update-var(background-color, $background-color);\n  @include rmd-avatar-theme-update-var(color, $color);\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "Color",
+          name: "background-color",
+          description: "The background color to apply",
+        },
+        {
+          type: "Color",
+          name: "color",
+          description: "The text color to apply",
+        },
+      ],
+    },
+    "rmd-avatar-colors": {
+      name: "rmd-avatar-colors",
+      description:
+        "A mixin for creating the avatar color suffix class names from a color map. It is\nnot recommended to use this mixin for creating additional colors. Instead use the\n`rmd-avatar-color` mixin with custom class names instead.\n\n",
+      source: "packages/avatar/src/_mixins.scss#L56-L66",
+      usedBy: [
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+      ],
+      packageName: "avatar",
+      code: "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) { … }",
+      sourceCode:
+        "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. \"#{$values}\"';\n    }\n\n    .rmd-avatar--#{$color-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n",
+      throws: [
+        "Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. ",
+      ],
+      type: "mixin",
+      parameters: [
+        {
+          type: "Map",
+          name: "color-map",
+          default: "rmd-avatar-colors",
+          description:
+            "a map of color name suffixes and a list\nof the background-color and color to apply",
+        },
+      ],
+    },
+    "react-md-avatar": {
+      name: "react-md-avatar",
+      description:
+        "Creates all the styles for the avatar package as well as the root css variable theme.\n",
+      source: "packages/avatar/src/_mixins.scss#L69-L97",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "avatar",
+      code: "@mixin react-md-avatar { … }",
+      sourceCode:
+        "@mixin react-md-avatar {\n  @include rmd-theme-create-root-theme($rmd-avatar-theme-values, avatar);\n\n  .rmd-avatar {\n    @include rmd-typography-base;\n    @include rmd-icon-theme-update-var(color, currentColor);\n    @include rmd-avatar-theme(border-radius);\n    @include rmd-avatar-theme(font-size);\n    @include rmd-avatar-theme(height, size);\n    @include rmd-avatar-theme(width, size);\n    @include rmd-avatar-theme(border-color);\n    @include rmd-avatar-theme(background-color);\n    @include rmd-avatar-theme(color);\n\n    align-items: center;\n    border: 1px solid;\n    display: inline-flex;\n    justify-content: center;\n    line-height: $rmd-avatar-line-height;\n    overflow: hidden;\n\n    &__image {\n      height: 100%;\n      width: auto;\n    }\n  }\n\n  @include rmd-avatar-colors;\n}\n",
+      type: "mixin",
     },
   },
   variables: {

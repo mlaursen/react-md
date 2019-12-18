@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "card",
       code: "@function rmd-card-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-card-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-card-theme-values, card);\n}",
+        "@function rmd-card-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-card-theme-values, card);\n}\n",
       type: "function",
       parameters: [
         {
@@ -37,9 +37,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-card", type: "mixin", packageName: "card" },
       ],
       packageName: "card",
-      code: "@function rmd-card-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@function rmd-card-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-card-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-card-theme-values, card, $fallback);\n}",
+        "@function rmd-card-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-card-theme-values,\n    card,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -66,52 +66,148 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-theme": {
       name: "rmd-card-theme",
       description:
-        "This function is used to quickly get one of the card's theme values. This is really\njust for the `rmd-card-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/card/src/_functions.scss#L14-L16",
+        "Creates the styles for one of the card's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/card/src/_mixins.scss#L24-L26",
       packageName: "card",
-      code: "@function rmd-card-theme($theme-style) { … }",
+      code:
+        "@mixin rmd-card-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-card-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-card-theme-values, card);\n}",
+        "@mixin rmd-card-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-card-theme-values,\n    card\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
-          name: "theme-style",
+          name: "property",
           description:
-            "One of the `$rmd-card-theme-values` map keys to get a value for.",
+            "The property to set a `rmd-card-theme-values` value to.",
         },
-      ],
-    },
-    "rmd-card-theme-var": {
-      name: "rmd-card-theme-var",
-      description:
-        "This function is used to get one of the card's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-card-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/card/src/_functions.scss#L29-L31",
-      usedBy: [
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-      ],
-      packageName: "card",
-      code: "@function rmd-card-theme-var($theme-style\n$fallback: null) { … }",
-      sourceCode:
-        "@function rmd-card-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-card-theme-values, card, $fallback);\n}",
-      type: "mixin",
-      parameters: [
         {
           type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-card-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-card-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-card-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-card-theme-update-var": {
+      name: "rmd-card-theme-update-var",
+      description:
+        "Updates one of the card's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/card/src/_mixins.scss#L34-L36",
+      usedBy: [
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+      ],
+      packageName: "card",
+      code: "@mixin rmd-card-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-card-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-card-theme-values,\n    card\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The card theme style type to update. This should be one\n  of the `$rmd-card-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "rmd-card": {
+      name: "rmd-card",
+      description:
+        "Creates all the styles for the `Card` component only. You'll need to use this within a\nselector.\n",
+      source: "packages/card/src/_mixins.scss#L40-L64",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card { … }",
+      sourceCode:
+        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-elevation($rmd-card-elevation);\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n',
+      type: "mixin",
+    },
+    "rmd-card-header": {
+      name: "rmd-card-header",
+      description:
+        "Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.\n",
+      source: "packages/card/src/_mixins.scss#L67-L85",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card-header { … }",
+      sourceCode:
+        "@mixin rmd-card-header {\n  @include rmd-icon-theme-update-var(text-spacing, $rmd-card-header-spacing);\n\n  display: flex;\n  padding: $rmd-card-header-padding;\n  padding-top: $rmd-card-header-padding-top;\n\n  &--top {\n    align-items: flex-start;\n  }\n\n  &--center {\n    align-items: center;\n  }\n\n  &--bottom {\n    align-items: flex-end;\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-card-title": {
+      name: "rmd-card-title",
+      description:
+        "Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.\n",
+      source: "packages/card/src/_mixins.scss#L88-L97",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card-title { … }",
+      sourceCode:
+        "@mixin rmd-card-title {\n  @include rmd-typography(headline-5);\n\n  margin-bottom: 0;\n  margin-top: 0;\n\n  &--small {\n    @include rmd-typography-value(\n      subtitle-1,\n      line-height,\n      font-size,\n      letter-spacing\n    );\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-card-subtitle": {
+      name: "rmd-card-subtitle",
+      description:
+        "Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.\n",
+      source: "packages/card/src/_mixins.scss#L100-L109",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card-subtitle { … }",
+      sourceCode:
+        "@mixin rmd-card-subtitle {\n  @include rmd-typography(subtitle-2);\n\n  margin-bottom: 0;\n  margin-top: 0;\n\n  &--secondary {\n    @include rmd-theme(color, text-secondary-on-background);\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-card-content": {
+      name: "rmd-card-content",
+      description:
+        "Creates all the styles for the `CardContent` component. You'll need to use this within a selector.\n",
+      source: "packages/card/src/_mixins.scss#L112-L132",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card-content { … }",
+      sourceCode:
+        "@mixin rmd-card-content {\n  &--secondary {\n    @include rmd-theme(color, text-secondary-on-background);\n  }\n\n  &--remove-margin p {\n    margin-top: 0;\n\n    &:last-child {\n      margin-bottom: 0;\n    }\n  }\n\n  &--padded {\n    padding: $rmd-card-content-padding;\n  }\n\n  &--extra-padding:last-child {\n    padding-bottom: $rmd-card-content-padding-extra;\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-card-actions": {
+      name: "rmd-card-actions",
+      description:
+        "Creates all the styles for the `CardActions` component. You'll need to use this within a selector.\n",
+      source: "packages/card/src/_mixins.scss#L135-L148",
+      usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      code: "@mixin rmd-card-actions { … }",
+      sourceCode:
+        "@mixin rmd-card-actions {\n  align-items: center;\n  display: flex;\n  justify-content: flex-end;\n  padding: $rmd-card-actions-padding;\n\n  &--start {\n    justify-content: flex-start;\n  }\n\n  &--center {\n    justify-content: center;\n  }\n}\n",
+      type: "mixin",
+    },
+    "react-md-card": {
+      name: "react-md-card",
+      description: "Creates all the styles for the @react-md/card package.\n",
+      source: "packages/card/src/_mixins.scss#L151-L185",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "card",
+      code: "@mixin react-md-card { … }",
+      sourceCode:
+        "@mixin react-md-card {\n  @include rmd-theme-create-root-theme($rmd-card-theme-values, card);\n\n  .rmd-card {\n    @include rmd-card;\n\n    &__header {\n      @include rmd-card-header;\n    }\n\n    &__header-addon {\n      flex-shrink: 0;\n    }\n\n    &__header-content {\n      flex-grow: 1;\n    }\n\n    &__title {\n      @include rmd-card-title;\n    }\n\n    &__subtitle {\n      @include rmd-card-subtitle;\n    }\n\n    &__content {\n      @include rmd-card-content;\n    }\n\n    &__actions {\n      @include rmd-card-actions;\n    }\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

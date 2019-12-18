@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "tooltip",
       code: "@function rmd-tooltip-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-tooltip-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-tooltip-theme-values, tooltip);\n}",
+        "@function rmd-tooltip-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-tooltip-theme-values,\n    tooltip\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -69,9 +69,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "tooltip",
       code:
-        "@function rmd-tooltip-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-tooltip-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-tooltip-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-tooltip-theme-values, tooltip, $fallback);\n}",
+        "@function rmd-tooltip-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-tooltip-theme-values,\n    tooltip,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -98,27 +98,62 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-theme": {
       name: "rmd-tooltip-theme",
       description:
-        "This function is used to quickly get one of the tooltip's theme values. This is really\njust for the `rmd-tooltip-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/tooltip/src/_functions.scss#L15-L17",
+        "Creates the styles for one of the tooltip's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/tooltip/src/_mixins.scss#L19-L21",
+      usedBy: [
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+        {
+          name: "rmd-tooltip-line-wrap",
+          type: "mixin",
+          packageName: "tooltip",
+        },
+        {
+          name: "rmd-tooltip-line-wrap",
+          type: "mixin",
+          packageName: "tooltip",
+        },
+      ],
       packageName: "tooltip",
-      code: "@function rmd-tooltip-theme($theme-style) { … }",
+      code:
+        "@mixin rmd-tooltip-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-tooltip-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-tooltip-theme-values, tooltip);\n}",
+        "@mixin rmd-tooltip-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-tooltip-theme-values,\n    tooltip\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-tooltip-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-tooltip-theme-values` map keys to get a value for.",
+            "One of the keys of `rmd-tooltip-theme-values` to extract a value from.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "fallback",
+          default: "null",
+          description:
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-tooltip-theme-values` map when `null`.",
         },
       ],
     },
-    "rmd-tooltip-theme-var": {
-      name: "rmd-tooltip-theme-var",
+    "rmd-tooltip-theme-update-var": {
+      name: "rmd-tooltip-theme-update-var",
       description:
-        "This function is used to get one of the tooltip's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-tooltip-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/tooltip/src/_functions.scss#L30-L32",
+        "Updates one of the tooltip's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/tooltip/src/_mixins.scss#L29-L31",
       usedBy: [
         {
           name: "rmd-tooltip-dense-theme",
@@ -150,32 +185,87 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "tooltip",
         },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
       ],
       packageName: "tooltip",
-      code:
-        "@function rmd-tooltip-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@mixin rmd-tooltip-theme-update-var($theme-style, $value) { … }",
       sourceCode:
-        "@function rmd-tooltip-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-tooltip-theme-values, tooltip, $fallback);\n}",
+        "@mixin rmd-tooltip-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-tooltip-theme-values,\n    tooltip\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-tooltip-theme-values` map keys to set a value for.",
+            "The tooltip theme style type to update. This should be one\n  of the `$rmd-tooltip-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
-          name: "fallback",
-          default: "null",
-          description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+          name: "value",
+          description: "The new value to use.",
         },
       ],
+    },
+    "rmd-tooltip-base": {
+      name: "rmd-tooltip-base",
+      description: "Creates the base styles for a tooltip.\n",
+      source: "packages/tooltip/src/_mixins.scss#L34-L56",
+      usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
+      packageName: "tooltip",
+      code: "@mixin rmd-tooltip-base { … }",
+      sourceCode:
+        "@mixin rmd-tooltip-base {\n  @include rmd-typography-base;\n  @include rmd-typography-value(body-1, letter-spacing);\n  @include rmd-tooltip-theme(background-color);\n  @include rmd-tooltip-theme(color);\n  @include rmd-tooltip-theme(font-size);\n  @include rmd-tooltip-theme(line-height);\n  @include rmd-tooltip-theme(min-height);\n  @include rmd-tooltip-theme(max-width);\n  @include rmd-tooltip-theme(padding-left, horizontal-padding);\n  @include rmd-tooltip-theme(padding-right, horizontal-padding);\n  @include rmd-tooltip-theme(z-index);\n\n  align-items: center;\n  border-radius: $rmd-tooltip-border-radius;\n  display: flex;\n  opacity: 0;\n  pointer-events: none;\n  position: fixed;\n  text-transform: none;\n  user-select: none;\n  white-space: nowrap;\n}\n",
+      type: "mixin",
+    },
+    "rmd-tooltip-line-wrap": {
+      name: "rmd-tooltip-line-wrap",
+      description: "Creates the base styles to allow line-wrapping tooltips.\n",
+      source: "packages/tooltip/src/_mixins.scss#L59-L64",
+      usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
+      packageName: "tooltip",
+      code: "@mixin rmd-tooltip-line-wrap { … }",
+      sourceCode:
+        "@mixin rmd-tooltip-line-wrap {\n  @include rmd-tooltip-theme(padding-bottom, vertical-padding);\n  @include rmd-tooltip-theme(padding-top, vertical-padding);\n\n  white-space: normal;\n}\n",
+      type: "mixin",
+    },
+    "rmd-tooltip-dense-theme": {
+      name: "rmd-tooltip-dense-theme",
+      description: "Creates the dense tooltip style overrides.\n",
+      source: "packages/tooltip/src/_mixins.scss#L67-L80",
+      usedBy: [
+        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
+      ],
+      packageName: "tooltip",
+      code: "@mixin rmd-tooltip-dense-theme { … }",
+      sourceCode:
+        "@mixin rmd-tooltip-dense-theme {\n  @include rmd-tooltip-theme-update-var(\n    font-size,\n    rmd-tooltip-theme-var(dense-font-size)\n  );\n  @include rmd-tooltip-theme-update-var(\n    line-height,\n    rmd-tooltip-theme-var(dense-line-height)\n  );\n  @include rmd-tooltip-theme-update-var(\n    min-height,\n    rmd-tooltip-theme-var(dense-min-height)\n  );\n  @include rmd-tooltip-theme-update-var(\n    horizontal-padding,\n    rmd-tooltip-theme-var(dense-horizontal-padding)\n  );\n  @include rmd-tooltip-theme-update-var(\n    vertical-padding,\n    rmd-tooltip-theme-var(dense-vertical-padding)\n  );\n  @include rmd-tooltip-theme-update-var(\n    spacing,\n    rmd-tooltip-theme-var(dense-spacing)\n  );\n}\n",
+      type: "mixin",
+    },
+    "rmd-tooltip": {
+      name: "rmd-tooltip",
+      description:
+        "Creates all the styles for a tooltip element. This should be used within a\ncss class.\n",
+      source: "packages/tooltip/src/_mixins.scss#L84-L131",
+      usedBy: [
+        { name: "react-md-tooltip", type: "mixin", packageName: "tooltip" },
+      ],
+      packageName: "tooltip",
+      code: "@mixin rmd-tooltip { … }",
+      sourceCode:
+        "@mixin rmd-tooltip {\n  @include rmd-tooltip-base;\n\n  &--line-wrap {\n    @include rmd-tooltip-line-wrap;\n  }\n\n  &--dense {\n    @include rmd-tooltip-dense-theme;\n  }\n\n  &--above {\n    transform: translateY(\n      rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance))\n    );\n  }\n\n  &--below {\n    transform: translateY(rmd-tooltip-theme-var(transition-distance));\n  }\n\n  &--left {\n    transform: translateX(\n      rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance))\n    );\n  }\n\n  &--right {\n    transform: translateX(rmd-tooltip-theme-var(transition-distance));\n  }\n\n  &--visible {\n    opacity: 1;\n    transform: none;\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    transition: opacity $rmd-tooltip-enter-duration,\n      transform $rmd-tooltip-enter-duration * 2;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    transition-duration: $rmd-tooltip-exit-duration;\n  }\n\n  &--exit-active {\n    opacity: 0;\n  }\n}\n",
+      type: "mixin",
+    },
+    "react-md-tooltip": {
+      name: "react-md-tooltip",
+      description:
+        "Creates all the styles and theme for the tooltip package.\n",
+      source: "packages/tooltip/src/_mixins.scss#L134-L140",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "tooltip",
+      code: "@mixin react-md-tooltip { … }",
+      sourceCode:
+        "@mixin react-md-tooltip {\n  @include rmd-theme-create-root-theme($rmd-tooltip-theme-values, tooltip);\n\n  .rmd-tooltip {\n    @include rmd-tooltip;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

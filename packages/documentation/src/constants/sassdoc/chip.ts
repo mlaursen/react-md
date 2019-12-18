@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "chip",
       code: "@function rmd-chip-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-chip-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-chip-theme-values, chip);\n}",
+        "@function rmd-chip-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-chip-theme-values, chip);\n}\n",
       type: "function",
       parameters: [
         {
@@ -33,9 +33,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/chip/src/_functions.scss#L29-L31",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
-      code: "@function rmd-chip-theme-var($theme-style\n$fallback: null) { … }",
+      code: "@function rmd-chip-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-chip-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-chip-theme-values, chip, $fallback);\n}",
+        "@function rmd-chip-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-chip-theme-values,\n    chip,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -62,48 +62,104 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-theme": {
       name: "rmd-chip-theme",
       description:
-        "This function is used to quickly get one of the chip's theme values. This is really\njust for the `rmd-chip-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/chip/src/_functions.scss#L14-L16",
-      packageName: "chip",
-      code: "@function rmd-chip-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-chip-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-chip-theme-values, chip);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-chip-theme-values` map keys to get a value for.",
-        },
+        "Creates the styles for one of the chip's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/chip/src/_mixins.scss#L23-L25",
+      usedBy: [
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
       ],
-    },
-    "rmd-chip-theme-var": {
-      name: "rmd-chip-theme-var",
-      description:
-        "This function is used to get one of the chip's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-chip-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/chip/src/_functions.scss#L29-L31",
-      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
-      code: "@function rmd-chip-theme-var($theme-style\n$fallback: null) { … }",
+      code:
+        "@mixin rmd-chip-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-chip-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-chip-theme-values, chip, $fallback);\n}",
+        "@mixin rmd-chip-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-chip-theme-values,\n    chip\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-chip-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-chip-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-chip-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-chip-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-chip-theme-update-var": {
+      name: "rmd-chip-theme-update-var",
+      description:
+        "Updates one of the chip's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/chip/src/_mixins.scss#L33-L35",
+      usedBy: [
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+      ],
+      packageName: "chip",
+      code: "@mixin rmd-chip-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-chip-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-chip-theme-values,\n    chip\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The chip theme style type to update. This should be one\n  of the `$rmd-chip-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "rmd-chip": {
+      name: "rmd-chip",
+      description: "Creates all the styles for the chip button\n",
+      source: "packages/chip/src/_mixins.scss#L38-L74",
+      usedBy: [{ name: "react-md-chip", type: "mixin", packageName: "chip" }],
+      packageName: "chip",
+      code: "@mixin rmd-chip { … }",
+      sourceCode:
+        '@mixin rmd-chip {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-surface;\n  @include rmd-typography(body-2);\n  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);\n  @include rmd-chip-theme(height);\n  @include rmd-chip-theme(border-radius);\n  @include rmd-chip-theme(padding-left, large-spacing);\n  @include rmd-chip-theme(padding-right, large-spacing);\n\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  position: relative;\n\n  &--solid {\n    @include rmd-elevation-transition(\n      0,\n      4,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      0.15s\n    );\n    @include rmd-chip-theme(background-color, solid-background-color);\n    @include rmd-chip-theme(color, solid-color);\n  }\n\n  &--outline {\n    @include rmd-elevation-transition(\n      0,\n      8,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      0.15s\n    );\n    @include rmd-chip-theme(background-color, outline-background-color);\n    @include rmd-chip-theme(color, outline-color);\n\n    box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);\n  }\n\n  &--leading-icon {\n    @include rmd-chip-theme(padding-left, small-spacing);\n  }\n\n  &--trailing-icon {\n    @include rmd-chip-theme(padding-right, medium-spacing);\n  }\n}\n',
+      type: "mixin",
+    },
+    "react-md-chip": {
+      name: "react-md-chip",
+      description:
+        "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
+      source: "packages/chip/src/_mixins.scss#L77-L83",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "chip",
+      code: "@mixin react-md-chip { … }",
+      sourceCode:
+        "@mixin react-md-chip {\n  @include rmd-theme-create-root-theme($rmd-chip-theme-values, chip);\n\n  .rmd-chip {\n    @include rmd-chip;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

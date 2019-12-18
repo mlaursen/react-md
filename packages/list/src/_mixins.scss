@@ -31,7 +31,7 @@
 ///
 /// @param {String} theme-style - The list theme style type to update. This should be one
 ///   of the `$rmd-list-theme-values` keys.
-/// @param {String|Number|Color} value - The new value to use.
+/// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-list-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-list-theme-values, list);
 }
@@ -39,8 +39,8 @@
 /// A "general" use mixin that will remove the default browser styles for a list and apply the
 /// optionally provided margin and padding instead.
 ///
-/// @param {Number | String} padding [0] - The amount of padding to apply.
-/// @param {Number | String} margin [0] - The amount of margin to apply.
+/// @param {String|Number} padding [0] - The amount of padding to apply.
+/// @param {String|Number} margin [0] - The amount of margin to apply.
 @mixin rmd-list-unstyled($padding: 0, $margin: 0) {
   list-style-type: none;
   margin: $margin;

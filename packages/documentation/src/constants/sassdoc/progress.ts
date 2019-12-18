@@ -11,7 +11,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "progress",
       code: "@function rmd-progress-theme($theme-style) { … }",
       sourceCode:
-        "@function rmd-progress-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-progress-theme-values, progress);\n}",
+        "@function rmd-progress-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -33,9 +33,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/progress/src/_functions.scss#L29-L31",
       packageName: "progress",
       code:
-        "@function rmd-progress-theme-var($theme-style\n$fallback: null) { … }",
+        "@function rmd-progress-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-progress-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-progress-theme-values, progress, $fallback);\n}",
+        "@function rmd-progress-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress,\n    $fallback\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -62,48 +62,70 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-theme": {
       name: "rmd-progress-theme",
       description:
-        "This function is used to quickly get one of the progress's theme values. This is really\njust for the `rmd-progress-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/progress/src/_functions.scss#L14-L16",
-      packageName: "progress",
-      code: "@function rmd-progress-theme($theme-style) { … }",
-      sourceCode:
-        "@function rmd-progress-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-progress-theme-values, progress);\n}",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-progress-theme-values` map keys to get a value for.",
-        },
-      ],
-    },
-    "rmd-progress-theme-var": {
-      name: "rmd-progress-theme-var",
-      description:
-        "This function is used to get one of the progress's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-progress-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/progress/src/_functions.scss#L29-L31",
+        "Creates the styles for one of the progress's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
+      source: "packages/progress/src/_mixins.scss#L19-L21",
       packageName: "progress",
       code:
-        "@function rmd-progress-theme-var($theme-style\n$fallback: null) { … }",
+        "@mixin rmd-progress-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
-        "@function rmd-progress-theme-var($theme-style\n$fallback: null) {\n  @return rmd-theme-get-var($theme-style, $rmd-progress-theme-values, progress, $fallback);\n}",
+        "@mixin rmd-progress-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress\n  );\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "String",
+          name: "property",
+          description:
+            "The property to set a `rmd-progress-theme-values` value to.",
+        },
+        {
+          type: "String",
           name: "theme-style",
           description:
-            "One of the `$rmd-progress-theme-values` map keys to set a value for.",
+            "One of the keys of `rmd-progress-theme-values` to extract a value from.",
         },
         {
           type: "Color|String|Number",
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-progress-theme-values` map when `null`.",
         },
       ],
+    },
+    "rmd-progress-theme-update-var": {
+      name: "rmd-progress-theme-update-var",
+      description:
+        "Updates one of the progress's theme variables with the new value for the section\nof your app.\n\n",
+      source: "packages/progress/src/_mixins.scss#L29-L31",
+      packageName: "progress",
+      code: "@mixin rmd-progress-theme-update-var($theme-style, $value) { … }",
+      sourceCode:
+        "@mixin rmd-progress-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "The progress theme style type to update. This should be one\n  of the `$rmd-progress-theme-values` keys.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "value",
+          description: "The new value to use.",
+        },
+      ],
+    },
+    "react-md-progress": {
+      name: "react-md-progress",
+      description: "Creates all the styles for the progress package.\n",
+      source: "packages/progress/src/_mixins.scss#L277-L287",
+      usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      packageName: "progress",
+      code: "@mixin react-md-progress { … }",
+      sourceCode:
+        "@mixin react-md-progress {\n  @include rmd-theme-create-root-theme($rmd-progress-theme-values, progress);\n\n  @if $rmd-progress-include-linear {\n    @include rmd-linear-progress;\n  }\n\n  @if $rmd-progress-include-circular {\n    @include rmd-circular-progress;\n  }\n}\n",
+      type: "mixin",
     },
   },
   variables: {

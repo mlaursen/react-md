@@ -28,7 +28,7 @@
 ///
 /// @param {String} theme-style - The transition theme style type to update. This should be one
 ///   of the `$rmd-transition-theme-values` keys.
-/// @param {String|Number|Color} - The new value to use.
+/// @param {Color|String|Number} - The new value to use.
 @mixin rmd-transition-set-theme-var($style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-transition-theme-values, transition);
 }
@@ -46,7 +46,7 @@
 /// This should really only be used internally.
 ///
 /// @param {String} shadow - The box shadow to apply.
-/// @param {Number|String} duration - The transition duration for the shadow opacity change.
+/// @param {String|Number} duration - The transition duration for the shadow opacity change.
 /// @param {Number} z-index [0] - The z-index to apply. This is set to 0 by default so that
 /// it can be shown more easily if there are child elements with position absolute.
 /// @access private
@@ -88,11 +88,11 @@
 ///
 /// @param {String} start-shadow - The starting box-shadow to use.
 /// @param {String} end-shadow - The ending box-shadow to use.
-/// @param {String|List} active-selectors - Either a single string or a list of strings that is used
+/// @param {List|String} active-selectors - Either a single string or a list of strings that is used
 ///   to determine when the `$end-shadow` should be used.
 /// @param {Boolean} before [true] - Boolean if the `::before` or `::after` pseudo selector should be
 ///   used as the `end-shadow` target.
-/// @param {Number|String} duration [rmd-transition-standard-time] - The animation duration
+/// @param {String|Number} duration [rmd-transition-standard-time] - The animation duration
 /// @param {Number} pseudo-z-index [0] - The z-index to apply. This is set to 0 by default so that
 /// it can be shown more easily if there are child elements with position absolute
 @mixin rmd-transition-shadow-transition(
