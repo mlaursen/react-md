@@ -230,6 +230,36 @@ export default class SelectField extends PureComponent {
     getActiveLabel: PropTypes.func,
 
     /**
+     * Whether scroll top position of dropdown list should be preserved when the list is opened next time.
+     * By default the list is scrolled so that active item is displayed on top of visible area of the list.
+     * Has priority over `listScrollTopUpdate` prop.
+     */
+    saveListScrollTop: PropTypes.bool,
+
+    /**
+     * Specifies update for scroll top position of dropdown list when the list is opened.
+     * By default the list is scrolled so that active item is displayed on top of visible area of the list.
+     * When this property is set the property value or function's result is subtracted
+     * from calculated scroll top position of the list.
+     *
+     * An object with the following fields will be passed into the function:
+     * - `listRef` - reference to list
+     * - `listNode` - reference to list's DOM node
+     * - `listScrollTop` - current value of `scrollTop` property of list's DOM node
+     * - `newListScrollTop` - calculated value for `scrollTop` property of list's DOM node
+     *    (will be changed if the function returns non-zero value)
+     * - `listItems` - array of references to list items
+     * - `activeItemRef` - reference to active list item
+     * - `activeItemNode` - reference to active list item's DOM node
+     * - `activeIndex` - active item's index
+     * - `field` - reference to the component instance
+     */
+    listScrollTopUpdate: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.func,
+    ]),
+
+    /**
      * The default value to use for the select field. If this is set, it should either match
      * one of the `number` or `string` in your `menuItems` list or be the empty string. If
      * the `menuItems` is a list of `object`, this value should match one of the menu item's
@@ -588,6 +618,8 @@ export default class SelectField extends PureComponent {
     transitionTime: 300,
     repositionOnScroll: true,
     repositionOnResize: false,
+    saveListScrollTop: false,
+    listScrollTopUpdate: 0,
   };
 
   constructor(props) {
@@ -718,16 +750,39 @@ export default class SelectField extends PureComponent {
   };
 
   _scrollActiveIntoView = (listRef) => {
+    const activeItem = this._activeItem;
+    const { props } = this;
     if (listRef === null) {
       this._items = [];
       return;
-    } else if (!this._activeItem) {
+    } else if (!activeItem || props.saveListScrollTop) {
       return;
     }
 
     const list = findDOMNode(listRef);
-    const { offsetTop } = this._activeItem;
-    list.scrollTop = offsetTop > MOBILE_LIST_PADDING ? offsetTop : 0;
+    const { offsetTop } = activeItem;
+    let newListScrollTop = offsetTop > MOBILE_LIST_PADDING ? offsetTop : 0;
+
+    const { listScrollTopUpdate } = props;
+    if (listScrollTopUpdate) {
+      const { activeIndex } = this.state;
+      const listItems = this._items;
+      newListScrollTop -= typeof listScrollTopUpdate === 'function'
+        ? listScrollTopUpdate({
+          listRef,
+          listNode: list,
+          listScrollTop: list.scrollTop,
+          newListScrollTop,
+          listItems,
+          activeItemRef: listItems[activeIndex],
+          activeItemNode: activeItem,
+          activeIndex,
+          field: this,
+        })
+        : listScrollTopUpdate;
+    }
+
+    list.scrollTop = newListScrollTop;
   };
 
   _toggle = (e) => {
@@ -1065,6 +1120,8 @@ export default class SelectField extends PureComponent {
       itemProps,
       getItemProps,
       getActiveLabel,
+      saveListScrollTop,
+      listScrollTopUpdate,
       defaultValue,
       defaultVisible,
       onClick,

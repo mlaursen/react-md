@@ -29,6 +29,10 @@ function getActiveLabel({ activeLabel, activeIndex }) {
   return activeIndex > -1 ? `#${activeIndex + 1}: ${activeLabel}` : activeLabel;
 }
 
+function listScrollTopUpdate({ activeItemNode }) {
+  return activeItemNode.offsetHeight;
+}
+
 const Simple = ({ simplifiedMenu }) => (
   <div className="md-grid">
     <h4 className="md-cell md-cell--12">Normal SelectFields</h4>
@@ -63,6 +67,24 @@ const Simple = ({ simplifiedMenu }) => (
       className="md-cell"
       menuItems={OBJECT_ITEMS}
       getActiveLabel={getActiveLabel}
+      simplifiedMenu={simplifiedMenu}
+    />
+    <SelectField
+      id="select-field-3-2"
+      label="Preserve List's Scroll Top Position"
+      placeholder="Placeholder"
+      className="md-cell"
+      menuItems={STRING_ITEMS}
+      saveListScrollTop
+      simplifiedMenu={simplifiedMenu}
+    />
+    <SelectField
+      id="select-field-3-3"
+      label="Change Active Item's Visible Position in List"
+      placeholder="Placeholder"
+      className="md-cell"
+      menuItems={STRING_ITEMS}
+      listScrollTopUpdate={listScrollTopUpdate}
       simplifiedMenu={simplifiedMenu}
     />
     <h4 className="md-cell md-cell--12">SelectField Buttons</h4>

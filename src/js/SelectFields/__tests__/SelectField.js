@@ -290,4 +290,48 @@ describe('SelectField', () => {
     label = field.find(FloatingLabel);
     expect(label.props().floating).toBe(true);
   });
+
+  it('should call function to change list\'s scrollTop', () => {
+    const listScrollTopUpdate = jest.fn(() => 48);
+    const field = mount(
+      <SelectField
+        id="test"
+        menuItems={['a', 'b', 'c', 'd', 'e']}
+        value="c"
+        listScrollTopUpdate={listScrollTopUpdate}
+        onChange={jest.fn()}
+        onVisibilityChange={jest.fn()}
+      />
+    );
+
+    const calls = listScrollTopUpdate.mock.calls;
+    expect(calls.length).toBe(0);
+
+    field.setProps({ visible: true });
+    expect(calls.length).toBe(1);
+    expect(calls[0].length).toBe(1);
+    expect(typeof calls[0][0]).toBe('object');
+    expect(calls[0][0]).not.toBeNull();
+  });
+
+  it('should not call function to change list\'s scrollTop', () => {
+    const listScrollTopUpdate = jest.fn(() => 48);
+    const field = mount(
+      <SelectField
+        id="test"
+        menuItems={['a', 'b', 'c', 'd', 'e']}
+        value="c"
+        saveListScrollTop
+        listScrollTopUpdate={listScrollTopUpdate}
+        onChange={jest.fn()}
+        onVisibilityChange={jest.fn()}
+      />
+    );
+
+    const calls = listScrollTopUpdate.mock.calls;
+    expect(calls.length).toBe(0);
+
+    field.setProps({ visible: true });
+    expect(calls.length).toBe(0);
+  });
 });

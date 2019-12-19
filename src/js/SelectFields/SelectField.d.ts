@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { IdPropType, Props } from '../index';
+import { ListComponent } from '../Lists/List';
+import { ListItemComponent } from '../Lists/ListItem';
 import { SharedTextFieldProps } from '../TextFields';
 
 import {
@@ -35,6 +37,18 @@ export interface GetActiveLabelParam {
   field: SelectFieldComponent;
 }
 
+export interface ListScrollTopUpdateParam {
+  listRef: ListComponent;
+  listNode: HTMLElement;
+  listScrollTop: number;
+  newListScrollTop: number;
+  listItems: ListItemComponent[];
+  activeItemRef: ListItemComponent;
+  activeItemNode: HTMLElement;
+  activeIndex: number;
+  field: SelectFieldComponent;
+}
+
 export interface FieldDataProps {
   id: string;
   name: string;
@@ -60,6 +74,8 @@ export interface SharedSelectFieldProps extends BaseMenuProps, SharedTextFieldPr
   name?: string;
   getItemProps?: (data: GetItemPropsParam) => Object;
   getActiveLabel?: (data: GetActiveLabelParam) => React.ReactNode;
+  saveListScrollTop?: boolean;
+  listScrollTopUpdate?: number | ((data: ListScrollTopUpdateParam) => number);
   defaultValue?: ListValue;
   value?: ListValue;
   onChange?: (value: ListValue, selectedIndex: number, event: React.MouseEvent<HTMLElement>, data: FieldDataProps) => void;
