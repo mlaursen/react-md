@@ -32,7 +32,10 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   }, [from, router]);
   const onFileChange = useCallback(
     (nextFileName: string) => {
-      if (nextFileName === fileName || /^src\/[A-z]+$/.test(nextFileName)) {
+      if (
+        nextFileName === fileName ||
+        ["src", "public"].includes(nextFileName)
+      ) {
         return;
       }
 
