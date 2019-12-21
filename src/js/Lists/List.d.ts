@@ -6,5 +6,8 @@ export interface ListProps extends Props {
   ordered?: boolean;
 }
 
-declare const List: React.ComponentClass<ListProps>;
+export interface ListComponent extends React.ComponentClass<ListProps> {
+}
+
+declare const List: ListComponent;
 export default List;
