@@ -6,6 +6,7 @@ export default {
   "rmd-utils-swappable-positions": ["top", "right", "bottom", "left"],
   "rmd-utils-swappable-position-prefixes": ["border", "margin", "padding"],
   "rmd-utils-skip-validation": true,
+  "rmd-utils-fix-moz-focus": true,
   "rmd-utils-phone-max-width": "47.9375em",
   "rmd-utils-tablet-min-width": "48em",
   "rmd-utils-tablet-max-width": "64em",

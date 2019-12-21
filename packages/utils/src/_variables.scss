@@ -35,6 +35,12 @@ $rmd-utils-swappable-position-prefixes: border margin padding;
 /// @type Boolean
 $rmd-utils-skip-validation: false !default;
 
+/// Boolean if the moz focusring and inner-focus styles should be removed for the
+/// `rmd-utils-hide-focus-outline` mixin by default. This is generally recommended since
+/// custom focus styles will be added instead.
+/// @type Boolean
+$rmd-utils-fix-moz-focus: true !default;
+
 /// The max width for a phone when in portrait or landscape mode.
 /// @type Number
 $rmd-utils-phone-max-width: 47.9375em !default;

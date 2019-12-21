@@ -31,6 +31,20 @@
 @mixin rmd-native-select {
   @include rmd-text-field;
 
+  @if $rmd-utils-fix-moz-focus {
+    // this is really annoying to try to "fix". Firefox will apply a dotted border
+    // on select fields and the only way you can style it is by changing the `color`
+    // value to `transparent`. Unfortunately, this means that the select's value will
+    // also become transparent so to fix it you have to apply a text-shadow with the
+    // expected color instead. Since the select inherits the current color, we have
+    // to "guess" what the color should be (text-primary-on-background) but it won't
+    // always be correct.
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 rmd-theme-var(text-primary-on-background);
+    }
+  }
+
   &--icon {
     @include rmd-icon-theme(padding-right, size);
 
