@@ -86,7 +86,7 @@ Please see the list of [examples](examples/) for how you can get a project start
   <head>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@1.13.0/dist/react-md.deep_purple-pink.min.css"
+      href="https://unpkg.com/react-md@1.14.0/dist/react-md.deep_purple-pink.min.css"
     />
     <link
       rel="stylesheet"
@@ -98,7 +98,7 @@ Please see the list of [examples](examples/) for how you can get a project start
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
     <script>
-    <script src="https://unpkg.com/react-md@1.13.0/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.14.0/dist/react-md.min.js"></script>
       var MyAwesomeComponent = React.createClass({
         render: function() {
           return React.createElement(ReactMD.Button, {

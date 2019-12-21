@@ -1,5 +1,12 @@
 ## December 2019
 
+### v1.14.0 Release
+
+#### Changelog
+
+- Updated the `SelectField` to support custom scroll position when the menu is opened with the
+  new `saveScrollTop` and `listScrollTopUpdate` props ([@gamtiq] - [pull-856])
+
 ### v1.13.0 Release
 
 #### Changelog
